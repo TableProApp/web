@@ -1,0 +1,346 @@
+import { useEffect, useRef, useState } from 'react';
+import { Check, Copy } from 'lucide-react';
+import { toast } from 'sonner';
+import Container from '@/components/ui/container';
+import { FullLine } from '@/components/ui/full-line';
+import { cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
+import SectionShell from '@/components/ui/section-shell';
+
+interface FlashMessage {
+    type: 'success' | 'warning' | 'error';
+    message: string;
+}
+
+const COLS: ColumnMap = { base: 1, sm: 2 };
+const BREW_COMMAND = 'brew install --cask tablepro';
+
+const flashColors = {
+    success: 'text-green-600 dark:text-green-400',
+    warning: 'text-amber-600 dark:text-amber-400',
+    error: 'text-red-600 dark:text-red-400',
+};
+
+function FlashStatus({ flash }: { flash?: FlashMessage | null }) {
+    if (!flash?.message) {
+        return null;
+    }
+
+    return (
+        <p role="status" className={`mt-3 text-sm ${flashColors[flash.type]}`}>
+            {flash.message}
+        </p>
+    );
+}
+
+function AppleGlyph() {
+    return (
+        <svg className="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+        </svg>
+    );
+}
+
+/**
+ * A minimal stand-in for Inertia's useForm, used by the two anonymous email
+ * forms. Their endpoints are handled by the TablePro backend and take no part
+ * in this app's Inertia page lifecycle, so a plain JSON fetch keeps the whole
+ * exchange inside React — no session, no CSRF token, no flash bag.
+ */
+function useEmailForm(endpoint: string) {
+    const [email, setEmail] = useState('');
+    const [processing, setProcessing] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [flash, setFlash] = useState<FlashMessage | null>(null);
+
+    async function submit() {
+        setProcessing(true);
+        setError(null);
+        setFlash(null);
+
+        try {
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+            const data = await res.json().catch(() => ({}));
+
+            if (res.status === 422) {
+                setError(data?.errors?.email?.[0] ?? 'Enter a valid email address.');
+
+                return;
+            }
+
+            if (!res.ok) {
+                setFlash({ type: 'error', message: data?.message ?? 'Something went wrong. Try again.' });
+
+                return;
+            }
+
+            setFlash({ type: data?.type ?? 'success', message: data?.message ?? 'Thanks, check your inbox.' });
+            setEmail('');
+        } catch {
+            setFlash({ type: 'error', message: 'Network error. Try again.' });
+        } finally {
+            setProcessing(false);
+        }
+    }
+
+    return { email, setEmail, processing, error, flash, submit };
+}
+
+const INPUT_CLASS =
+    'min-w-0 flex-1 rounded-lg border border-gray-950/5 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/50 focus:outline-none disabled:opacity-50 dark:border-white/10';
+const SUBMIT_CLASS =
+    'shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50';
+
+export default function FooterCTA() {
+    const [showBeta, setShowBeta] = useState(false);
+    const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
+    const [copied, setCopied] = useState(false);
+    const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const statsAnchorRef = useRef<HTMLDivElement>(null);
+    const betaForm = useEmailForm('/beta/signup');
+    const newsletterForm = useEmailForm('/newsletter/subscribe');
+
+    /**
+     * The subscriber count is decoration, so it must not cost a request on page
+     * load. The fetch waits until the newsletter cell is within 200px of the
+     * viewport, and the AbortController still cancels an in-flight request if
+     * the section unmounts first.
+     */
+    useEffect(() => {
+        const controller = new AbortController();
+
+        function loadStats() {
+            fetch('/api/newsletter/stats', { signal: controller.signal, headers: { Accept: 'application/json' } })
+                .then((res) => (res.ok ? res.json() : null))
+                .then((data) => {
+                    if (data && typeof data.count === 'number') {
+                        setSubscriberCount(data.count);
+                    }
+                })
+                .catch(() => undefined);
+        }
+
+        const node = statsAnchorRef.current;
+
+        if (!node || typeof IntersectionObserver === 'undefined') {
+            loadStats();
+
+            return () => controller.abort();
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries.some((entry) => entry.isIntersecting)) {
+                    observer.disconnect();
+                    loadStats();
+                }
+            },
+            { rootMargin: '200px' },
+        );
+
+        observer.observe(node);
+
+        return () => {
+            observer.disconnect();
+            controller.abort();
+        };
+    }, []);
+
+    useEffect(
+        () => () => {
+            if (copyTimeoutRef.current) {
+                clearTimeout(copyTimeoutRef.current);
+            }
+        },
+        [],
+    );
+
+    function trackEvent(name: string, payload: Record<string, string>) {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
+        const win = window as unknown as {
+            plausible?: (event: string, options?: { props?: Record<string, string> }) => void;
+        };
+
+        if (typeof win.plausible === 'function') {
+            win.plausible(name, { props: payload });
+        }
+    }
+
+    async function handleCopyBrew() {
+        try {
+            await navigator.clipboard.writeText(BREW_COMMAND);
+            toast('Copied');
+            setCopied(true);
+
+            if (copyTimeoutRef.current) {
+                clearTimeout(copyTimeoutRef.current);
+            }
+            copyTimeoutRef.current = setTimeout(() => setCopied(false), 1200);
+        } catch {
+            toast.error('Could not copy. Select the text and copy it by hand.');
+        }
+    }
+
+    function handleBetaSubmit(event: React.FormEvent) {
+        event.preventDefault();
+        betaForm.submit();
+    }
+
+    function handleNewsletterSubmit(event: React.FormEvent) {
+        event.preventDefault();
+        trackEvent('newsletter_signup_clicked', { source: 'footer' });
+        newsletterForm.submit();
+    }
+
+    return (
+        <SectionShell
+            id="footer-cta"
+            label="Get started"
+            headline="Install it and open a database."
+            headlineMuted="There is nothing to sign up for."
+        >
+            <FullLine />
+            <Container>
+                <div className="grid grid-cols-1 items-start sm:grid-cols-2">
+                    <GridCell className={`p-6 sm:p-8 ${cellBorders(0, COLS, 2)}`}>
+                        <h3 className="text-lg font-semibold text-foreground">Download</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            macOS 14 or later. Apple Silicon and Intel. About 20 MB.
+                        </p>
+
+                        <div className="mt-6 flex flex-wrap items-center gap-3">
+                            <a
+                                href="/download"
+                                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                            >
+                                <AppleGlyph />
+                                Download for Mac
+                            </a>
+                            <button
+                                type="button"
+                                data-beta-toggle
+                                aria-expanded={showBeta}
+                                aria-controls="beta-invite"
+                                onClick={() => setShowBeta(true)}
+                                className="inline-flex items-center gap-2 rounded-full border border-gray-950/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                            >
+                                Get for iPhone
+                            </button>
+                        </div>
+
+                        <div className="mt-4 flex items-center gap-2">
+                            <code className="min-w-0 flex-1 overflow-x-auto rounded-lg border border-gray-950/5 px-3 py-2 font-mono text-xs whitespace-nowrap text-muted-foreground dark:border-white/10">
+                                {BREW_COMMAND}
+                            </code>
+                            <button
+                                type="button"
+                                onClick={handleCopyBrew}
+                                aria-label={`Copy ${BREW_COMMAND}`}
+                                className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-gray-950/5 text-muted-foreground transition-colors hover:bg-gray-950/[2.5%] hover:text-foreground dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                            >
+                                {copied ? (
+                                    <Check className="size-4 text-primary-strong" strokeWidth={1.75} aria-hidden="true" />
+                                ) : (
+                                    <Copy className="size-4" strokeWidth={1.75} aria-hidden="true" />
+                                )}
+                            </button>
+                        </div>
+
+                        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                            With no connection to hand,{' '}
+                            <span className="font-mono text-xs">File &gt; Try Sample Database</span> opens a bundled
+                            Chinook SQLite.
+                        </p>
+
+                        <p className="mt-4 font-mono text-xs text-muted-foreground">
+                            Free and open source · AGPLv3 · macOS 14+ · Apple Silicon and Intel · No account
+                        </p>
+
+                        {showBeta && (
+                            <div id="beta-invite" className="mt-6">
+                                <p className="text-sm text-muted-foreground">
+                                    Enter your email to get a TestFlight invite.
+                                </p>
+                                <form onSubmit={handleBetaSubmit} className="mt-3 flex flex-col gap-2 sm:flex-row sm:gap-3">
+                                    <label htmlFor="beta-email" className="sr-only">
+                                        Email address
+                                    </label>
+                                    <input
+                                        id="beta-email"
+                                        type="email"
+                                        required
+                                        autoComplete="email"
+                                        value={betaForm.email}
+                                        onChange={(e) => betaForm.setEmail(e.target.value)}
+                                        placeholder="you@example.com"
+                                        disabled={betaForm.processing}
+                                        className={INPUT_CLASS}
+                                    />
+                                    <button type="submit" disabled={betaForm.processing} className={SUBMIT_CLASS}>
+                                        {betaForm.processing ? 'Joining...' : 'Join Beta'}
+                                    </button>
+                                </form>
+                                {betaForm.error && (
+                                    <p role="alert" className="mt-3 text-sm text-red-600 dark:text-red-400">
+                                        {betaForm.error}
+                                    </p>
+                                )}
+                                <FlashStatus flash={betaForm.flash} />
+                            </div>
+                        )}
+                    </GridCell>
+
+                    <GridCell className={`p-6 sm:p-8 ${cellBorders(1, COLS, 2)}`}>
+                        <div ref={statsAnchorRef}>
+                            <h3 className="text-lg font-semibold text-foreground">Stay updated</h3>
+                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                Release notes and database notes. About one email a month, unsubscribe any time.
+                            </p>
+                            {subscriberCount !== null && subscriberCount > 0 && (
+                                <p className="mt-2 font-mono text-xs text-muted-foreground">
+                                    Join {subscriberCount.toLocaleString()}{' '}
+                                    {subscriberCount === 1 ? 'developer' : 'developers'}.
+                                </p>
+                            )}
+                            <form
+                                onSubmit={handleNewsletterSubmit}
+                                className="mt-6 flex flex-col gap-2 sm:flex-row sm:gap-3"
+                            >
+                                <label htmlFor="newsletter-email" className="sr-only">
+                                    Email address
+                                </label>
+                                <input
+                                    id="newsletter-email"
+                                    type="email"
+                                    required
+                                    autoComplete="email"
+                                    value={newsletterForm.email}
+                                    onChange={(e) => newsletterForm.setEmail(e.target.value)}
+                                    placeholder="you@example.com"
+                                    disabled={newsletterForm.processing}
+                                    className={INPUT_CLASS}
+                                />
+                                <button type="submit" disabled={newsletterForm.processing} className={SUBMIT_CLASS}>
+                                    {newsletterForm.processing ? 'Subscribing...' : 'Subscribe'}
+                                </button>
+                            </form>
+                            {newsletterForm.error && (
+                                <p role="alert" className="mt-3 text-sm text-red-600 dark:text-red-400">
+                                    {newsletterForm.error}
+                                </p>
+                            )}
+                            <FlashStatus flash={newsletterForm.flash} />
+                        </div>
+                    </GridCell>
+                </div>
+            </Container>
+            <FullLine />
+        </SectionShell>
+    );
+}

@@ -1,0 +1,262 @@
+[
+    {
+        "name": "MySQL",
+        "icon": "/images/databases/mysql.svg",
+        "monogram": "MY",
+        "port": "3306",
+        "distribution": "builtin",
+        "driverGroup": "mysql",
+        "category": "relational",
+        "href": "/mysql-client"
+    },
+    {
+        "name": "PostgreSQL",
+        "icon": "/images/databases/postgresql.svg",
+        "monogram": "PG",
+        "port": "5432",
+        "distribution": "builtin",
+        "driverGroup": "postgresql",
+        "category": "relational",
+        "href": "/postgresql-client"
+    },
+    {
+        "name": "MariaDB",
+        "icon": "/images/databases/mariadb.svg",
+        "monogram": "MA",
+        "port": "3306",
+        "distribution": "builtin",
+        "driverGroup": "mariadb",
+        "category": "relational",
+        "href": "/mariadb-client"
+    },
+    {
+        "name": "SQLite",
+        "icon": "/images/databases/sqlite.svg",
+        "monogram": "SL",
+        "port": "file",
+        "distribution": "builtin",
+        "driverGroup": "sqlite",
+        "category": "file-embedded",
+        "href": "/sqlite-client"
+    },
+    {
+        "name": "Redis",
+        "icon": "/images/databases/redis.svg",
+        "monogram": "RD",
+        "port": "6379",
+        "distribution": "builtin",
+        "driverGroup": "redis",
+        "category": "document-kv",
+        "href": "/redis-gui"
+    },
+    {
+        "name": "ClickHouse",
+        "icon": "/images/databases/clickhouse.svg",
+        "monogram": "CH",
+        "port": "8123",
+        "distribution": "builtin",
+        "driverGroup": "clickhouse",
+        "category": "analytics",
+        "href": "/clickhouse-client"
+    },
+    {
+        "name": "Amazon Redshift",
+        "icon": "/images/databases/redshift.svg",
+        "monogram": "RS",
+        "port": "5439",
+        "distribution": "builtin",
+        "driverGroup": "redshift",
+        "category": "relational",
+        "href": "/redshift-client"
+    },
+    {
+        "name": "CockroachDB",
+        "icon": "/images/databases/cockroachdb.svg",
+        "monogram": "CR",
+        "port": "26257",
+        "distribution": "builtin",
+        "driverGroup": "cockroachdb",
+        "category": "relational",
+        "href": "/cockroachdb-client"
+    },
+    {
+        "name": "PGlite",
+        "icon": "/images/databases/pglite.svg",
+        "monogram": "PL",
+        "port": "5432",
+        "distribution": "builtin",
+        "driverGroup": "pglite",
+        "category": "relational",
+        "href": "/pglite-client"
+    },
+    {
+        "name": "MongoDB",
+        "icon": "/images/databases/mongodb.svg",
+        "monogram": "MG",
+        "port": "27017",
+        "distribution": "plugin",
+        "driverGroup": "mongodb",
+        "category": "document-kv",
+        "href": "/mongodb-client"
+    },
+    {
+        "name": "SQL Server",
+        "icon": "/images/databases/sqlserver.svg",
+        "monogram": "MS",
+        "port": "1433",
+        "distribution": "plugin",
+        "driverGroup": "mssql",
+        "category": "relational",
+        "href": "/sql-server-client"
+    },
+    {
+        "name": "Oracle",
+        "icon": "/images/databases/oracle.svg",
+        "monogram": "OR",
+        "port": "1521",
+        "distribution": "plugin",
+        "driverGroup": "oracle",
+        "category": "relational",
+        "href": "/oracle-client"
+    },
+    {
+        "name": "DuckDB",
+        "icon": "/images/databases/duckdb.svg",
+        "monogram": "DD",
+        "port": "file",
+        "distribution": "plugin",
+        "driverGroup": "duckdb",
+        "category": "file-embedded",
+        "href": "/duckdb-client"
+    },
+    {
+        "name": "Cassandra",
+        "icon": "/images/databases/cassandra.svg",
+        "monogram": "CS",
+        "port": "9042",
+        "distribution": "plugin",
+        "driverGroup": "cassandra",
+        "category": "document-kv",
+        "href": "/cassandra-client"
+    },
+    {
+        "name": "ScyllaDB",
+        "icon": "/images/databases/scylladb.svg",
+        "monogram": "SC",
+        "port": "9042",
+        "distribution": "plugin",
+        "driverGroup": "cassandra",
+        "category": "document-kv",
+        "href": "/scylladb-client"
+    },
+    {
+        "name": "etcd",
+        "icon": "/images/databases/etcd.svg",
+        "monogram": "ET",
+        "port": "2379",
+        "distribution": "plugin",
+        "driverGroup": "etcd",
+        "category": "document-kv",
+        "href": "/etcd-gui"
+    },
+    {
+        "name": "Elasticsearch",
+        "icon": "/images/databases/elasticsearch.svg",
+        "monogram": "ES",
+        "port": "9200",
+        "distribution": "plugin",
+        "driverGroup": "elasticsearch",
+        "category": "document-kv",
+        "href": "/elasticsearch-client"
+    },
+    {
+        "name": "SurrealDB",
+        "icon": "/images/databases/surrealdb.svg",
+        "monogram": "SD",
+        "port": "8000",
+        "distribution": "plugin",
+        "driverGroup": "surrealdb",
+        "category": "document-kv",
+        "href": "/surrealdb-client"
+    },
+    {
+        "name": "Cloudflare D1",
+        "icon": "/images/databases/cloudflare-d1.svg",
+        "monogram": "D1",
+        "port": "API",
+        "distribution": "plugin",
+        "driverGroup": "cloudflare-d1",
+        "category": "cloud-api",
+        "href": "/cloudflare-d1-client"
+    },
+    {
+        "name": "DynamoDB",
+        "icon": "/images/databases/dynamodb.svg",
+        "monogram": "DY",
+        "port": "API",
+        "distribution": "plugin",
+        "driverGroup": "dynamodb",
+        "category": "cloud-api",
+        "href": "/dynamodb-gui"
+    },
+    {
+        "name": "BigQuery",
+        "icon": "/images/databases/bigquery.svg",
+        "monogram": "BQ",
+        "port": "API",
+        "distribution": "plugin",
+        "driverGroup": "bigquery",
+        "category": "cloud-api",
+        "href": "/bigquery-client"
+    },
+    {
+        "name": "Snowflake",
+        "icon": "/images/databases/snowflake.svg",
+        "monogram": "SF",
+        "port": "443",
+        "distribution": "plugin",
+        "driverGroup": "snowflake",
+        "category": "cloud-api",
+        "href": "/snowflake-client"
+    },
+    {
+        "name": "libSQL / Turso",
+        "icon": "/images/databases/turso.svg",
+        "monogram": "LS",
+        "port": "API",
+        "distribution": "plugin",
+        "driverGroup": "libsql",
+        "category": "file-embedded",
+        "href": "/turso-client"
+    },
+    {
+        "name": "Beancount",
+        "icon": "/images/databases/beancount.svg",
+        "monogram": "BC",
+        "port": "file",
+        "distribution": "plugin",
+        "driverGroup": "beancount",
+        "category": "file-embedded",
+        "href": "/beancount-client"
+    },
+    {
+        "name": "Teradata",
+        "icon": "/images/databases/teradata.svg",
+        "monogram": "TD",
+        "port": "1025",
+        "distribution": "plugin",
+        "driverGroup": "teradata",
+        "category": "analytics",
+        "href": "/teradata-client"
+    },
+    {
+        "name": "Trino",
+        "icon": "/images/databases/trino.svg",
+        "monogram": "TR",
+        "port": "8080",
+        "distribution": "plugin",
+        "driverGroup": "trino",
+        "category": "analytics",
+        "href": "/trino-client"
+    }
+]

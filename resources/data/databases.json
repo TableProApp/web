@@ -1,0 +1,2761 @@
+[
+    {
+        "slug": "mysql-client",
+        "name": "MySQL",
+        "tagline": "The MySQL GUI Client for Mac.",
+        "description": "Native MySQL GUI client for Mac. Free, open source, fast. SSH tunneling, autocomplete, AI assistant. Apple Silicon ready.",
+        "longDescription": "A fast, native MySQL GUI client for Mac. Connect to MySQL 5.7, 8.0, or any MariaDB drop-in over TCP, socket, or SSH. Browse schemas, edit cells, run queries. Starts in under a second. Idles at 80 MB. Free and open source.",
+        "features": [
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell in the data grid. Add or delete rows. Review every pending change before commit. Full undo and redo across the session."
+            },
+            {
+                "title": "SSH Tunnel Built In",
+                "description": "Reach a remote MySQL through SSH from the connection form. Password, key, or ssh-agent. Jump hosts and custom ports work."
+            },
+            {
+                "title": "Schema-Aware Autocomplete",
+                "description": "Suggests table names, column names, aliases, MySQL functions, and CTEs. Reads your schema on connect, refreshes on demand."
+            },
+            {
+                "title": "Import and Export",
+                "description": "Export to CSV, JSON, SQL dump, or XLSX. Import from CSV or .sql files. Choose skip, abort, or replace on error."
+            },
+            {
+                "title": "Visual Structure Editor",
+                "description": "Add columns, rename, drop. Create indexes and foreign keys. Change types, defaults, nullability without writing DDL."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get SQL. Explain or rewrite slow queries. Works with Claude, OpenAI, and local Ollama models."
+            }
+        ],
+        "capabilities": [
+            "Browse databases, tables, views, and stored procedures",
+            "Run multiple queries in tabs with separate result sets",
+            "Filter and sort rows without writing SQL",
+            "Edit table structure: columns, indexes, foreign keys",
+            "Auto-reconnect after a dropped connection",
+            "Stream-export million-row tables without OOM",
+            "Full-text search across query history",
+            "Safe mode blocks UPDATE without WHERE"
+        ],
+        "supportedVersions": "MySQL 5.7+, MySQL 8.0+, MariaDB 10.3+",
+        "connectionTypes": [
+            "TCP/IP",
+            "Unix Socket",
+            "SSH Tunnel (password, key, agent)",
+            "SSL/TLS"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 3306\nUser: root\nDatabase: mydb\n\n# Or via terminal\nmysql -h 127.0.0.1 -P 3306 -u root -p mydb",
+        "snippetLanguage": "bash",
+        "defaultPort": 3306,
+        "icon": "/images/databases/mysql.svg",
+        "keywords": [
+            "mysql client mac",
+            "mysql gui macos",
+            "mysql workbench alternative",
+            "native mysql client",
+            "best mysql client for mac"
+        ],
+        "docsPath": "mysql",
+        "ogContext": "MySQL & MariaDB · Native macOS",
+        "ogPunchline": "Native C driver. No JDBC. No Electron. 80 MB at idle.",
+        "ogVersionsHtml": "<strong>MySQL</strong> 5.7+ · 8.0+ · <strong>MariaDB</strong> 10.3+",
+        "ogStatValue": "80 MB",
+        "ogStatLabel": "RAM IDLE",
+        "faqs": [
+            {
+                "question": "Is TablePro free?",
+                "answer": "Yes. AGPLv3 open source. No per-feature gate. The MySQL driver ships built in."
+            },
+            {
+                "question": "Does it run on Apple Silicon?",
+                "answer": "Yes. Universal Binary, native arm64 and x86_64. M1/M2/M3/M4 all run at full speed."
+            },
+            {
+                "question": "How does TablePro compare to MySQL Workbench?",
+                "answer": "MySQL Workbench is the official Oracle client, written in C and C++. It's slow to start (10+ seconds on a fresh launch) and heavy for what it does. TablePro is native SwiftUI for Mac, starts in under 1 second, and includes an AI assistant."
+            },
+            {
+                "question": "Can I connect through a bastion?",
+                "answer": "Yes. Open the SSH tab in the connection form. Add bastion host, port, and credential. TablePro builds the tunnel."
+            },
+            {
+                "question": "Does the AI assistant send data to a server?",
+                "answer": "Only if you choose a cloud provider (Claude, OpenAI). Pick Ollama and everything stays on the Mac."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or download the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection on the welcome screen. Pick MySQL."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Host 127.0.0.1, port 3306, user root, password, database. SSH tab for remote."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Test, then Connect. Schemas appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "postgresql-client",
+        "name": "PostgreSQL",
+        "tagline": "The PostgreSQL GUI Client for Mac.",
+        "description": "Native PostgreSQL GUI client for Mac. Free, open source, fast. SSH tunneling, schema-aware autocomplete, AI assistant.",
+        "longDescription": "A fast, native PostgreSQL GUI client for Mac. Connect to local Postgres, RDS, Supabase, Neon, or any libpq-compatible host. Browse schemas, edit rows, run queries with EXPLAIN visualization. Starts in under a second, idles at 80 MB. Free and open source.",
+        "features": [
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit cells in a real spreadsheet. Add and delete rows. Review every change before commit. Full undo and redo."
+            },
+            {
+                "title": "SSH Tunnel Built In",
+                "description": "Reach a remote Postgres through SSH from the connection form. Password, key, or agent auth."
+            },
+            {
+                "title": "Schema-Aware Autocomplete",
+                "description": "Suggests tables, columns, aliases, Postgres functions, JSON path expressions, and CTEs. Reads schema on connect."
+            },
+            {
+                "title": "EXPLAIN Visualization",
+                "description": "Render query plans as a tree. Spot full table scans, missed indexes, and costly joins at a glance."
+            },
+            {
+                "title": "JSONB Tree Viewer",
+                "description": "Click any JSONB cell to open a tree view. Edit nested values. Convert dot-notation paths to JSON path expressions."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get SQL. Explain or rewrite slow queries. Works with Claude, OpenAI, and local Ollama."
+            }
+        ],
+        "capabilities": [
+            "Browse databases, schemas, tables, views, and materialized views",
+            "Run multiple queries in tabs with separate result sets",
+            "Filter and sort rows without writing SQL",
+            "Edit table structure including check constraints and partitions",
+            "View pg_stat_activity in the server dashboard",
+            "Stream-export huge tables to CSV, JSON, or SQL",
+            "Full-text search across query history",
+            "Safe mode blocks DELETE without WHERE"
+        ],
+        "supportedVersions": "PostgreSQL 12+, including cloud providers (RDS, Cloud SQL, Azure, Supabase, Neon)",
+        "connectionTypes": [
+            "TCP/IP",
+            "Unix Socket",
+            "SSH Tunnel",
+            "SSL/TLS (verify-full, verify-ca, require, prefer)"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 5432\nUser: postgres\nDatabase: mydb\n\n# Or via terminal\npsql -h 127.0.0.1 -p 5432 -U postgres -d mydb",
+        "snippetLanguage": "bash",
+        "defaultPort": 5432,
+        "icon": "/images/databases/postgresql.svg",
+        "keywords": [
+            "postgresql client mac",
+            "postgres gui macos",
+            "pgadmin alternative mac",
+            "native postgresql client",
+            "best postgres client mac"
+        ],
+        "docsPath": "postgresql",
+        "ogContext": "PostgreSQL · Native macOS",
+        "ogPunchline": "Native libpq. No JDBC, no Electron. 80 MB at idle.",
+        "ogVersionsHtml": "<strong>Postgres</strong> 12 · 13 · 14 · 15 · 16 · 17",
+        "ogStatValue": "<800 ms",
+        "ogStatLabel": "COLD START",
+        "faqs": [
+            {
+                "question": "Is TablePro free for PostgreSQL?",
+                "answer": "Yes. AGPLv3 open source. The Postgres driver ships built in."
+            },
+            {
+                "question": "Does it work with Supabase, Neon, and RDS?",
+                "answer": "Yes. Any libpq-compatible host. Use the connection string they give you."
+            },
+            {
+                "question": "How does it compare to pgAdmin?",
+                "answer": "pgAdmin is web-based and runs in a browser. TablePro is a native Mac app. Faster start, native shortcuts, no Python runtime."
+            },
+            {
+                "question": "Can I edit JSONB inline?",
+                "answer": "Yes. Click any JSONB cell to open a tree editor. Add or remove keys, change types."
+            },
+            {
+                "question": "Does the AI run locally?",
+                "answer": "If you pick Ollama, yes. Cloud providers (Claude, OpenAI) only send what you ask them to."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick PostgreSQL."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Host 127.0.0.1, port 5432, user postgres, password, database. SSH tab for remote."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Test, then Connect. Your schemas appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "sqlite-client",
+        "name": "SQLite",
+        "tagline": "The SQLite GUI Client for Mac.",
+        "description": "Native SQLite GUI client for Mac. Free, open source, fast. Open .db files directly. AI assistant included.",
+        "longDescription": "A fast, native SQLite GUI client for Mac. Open any .db, .sqlite, or .sqlite3 file. Browse tables, edit rows, run queries with autocomplete. Streams million-row tables without loading them all in memory. Free and open source.",
+        "features": [
+            {
+                "title": "Open Any SQLite File",
+                "description": "Drag a .db file onto the app, or pick it from File > Open. Read-only or read-write, your call."
+            },
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell. Add and delete rows. Type-aware editor for INTEGER, REAL, TEXT, BLOB, and NULL."
+            },
+            {
+                "title": "Schema-Aware Autocomplete",
+                "description": "Suggests tables, columns, aliases, and SQLite functions. Picks up the schema instantly."
+            },
+            {
+                "title": "Streaming Result Sets",
+                "description": "Million-row tables open in 200 ms. Scroll without lag. Export streams to disk."
+            },
+            {
+                "title": "FTS5 Search",
+                "description": "Run full-text searches across FTS5 virtual tables. View ranked snippets in the result grid."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get SQL. Explain queries. Optimize index usage."
+            }
+        ],
+        "capabilities": [
+            "Open .db, .sqlite, .sqlite3, and FTS5 files",
+            "Browse tables, views, indexes, and triggers",
+            "Edit cells with type-aware widgets",
+            "Run queries in tabs, view EXPLAIN QUERY PLAN",
+            "Export to CSV, JSON, SQL dump, or XLSX",
+            "Import from CSV with type inference",
+            "Read encrypted SQLite files (with key)",
+            "Safe mode for read-only browsing"
+        ],
+        "supportedVersions": "SQLite 3.x (any version)",
+        "connectionTypes": [
+            "Local file (.sqlite, .db, .sqlite3)"
+        ],
+        "snippet": "# Open in TablePro\nFile > Open > select your .db file\n\n# Or drag and drop onto the app icon\n\n# Common locations:\n~/Library/Application Support/*/databases.sqlite\n~/Documents/*.db",
+        "snippetLanguage": "bash",
+        "defaultPort": null,
+        "icon": "/images/databases/sqlite.svg",
+        "keywords": [
+            "sqlite browser mac",
+            "sqlite gui macos",
+            "sqlite client mac",
+            "db browser alternative",
+            "sqlite viewer mac"
+        ],
+        "docsPath": "sqlite",
+        "ogContext": "SQLite · Native macOS",
+        "ogPunchline": "Drag a .db file onto the app. That's it.",
+        "ogVersionsHtml": "<strong>SQLite</strong> 3.x · WAL mode · in-memory",
+        "ogStatValue": "0",
+        "ogStatLabel": "DRIVERS NEEDED",
+        "faqs": [
+            {
+                "question": "Does it support encrypted SQLite?",
+                "answer": "Yes. SEE and SQLCipher both. Provide the key when opening the file."
+            },
+            {
+                "question": "Can I work on huge databases?",
+                "answer": "Yes. The data grid streams rows. We test against 10 GB SQLite files routinely."
+            },
+            {
+                "question": "Is it actually free?",
+                "answer": "Yes. AGPLv3 open source. No paywall, no nag screen."
+            },
+            {
+                "question": "Does it work for FTS5 tables?",
+                "answer": "Yes. Run MATCH queries; results include ranking and snippets."
+            },
+            {
+                "question": "Can I open multiple databases at once?",
+                "answer": "Yes. Each DB opens in its own tab. Cmd+Tab between them."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open a SQLite file",
+                "text": "File > Open, or drag the .db file onto the app icon."
+            },
+            {
+                "name": "Browse and edit",
+                "text": "Tables show up in the sidebar. Click any to view rows. Edit cells inline."
+            },
+            {
+                "name": "Run queries",
+                "text": "Cmd+T opens a query tab. Type, hit Cmd+Return to run."
+            }
+        ]
+    },
+    {
+        "slug": "mongodb-client",
+        "name": "MongoDB",
+        "tagline": "The MongoDB GUI Client for Mac.",
+        "description": "Native MongoDB GUI client for Mac. Free, open source, fast. Document tree view, aggregation pipeline, AI assistant.",
+        "longDescription": "A fast, native MongoDB GUI client for Mac. Connect to local Mongo, Atlas, or self-hosted clusters. Browse collections, edit documents in a JSON tree, run aggregation pipelines. Starts in under a second. 80 MB at idle. Free and open source.",
+        "features": [
+            {
+                "title": "Document Tree Editor",
+                "description": "Click any document to open a JSON tree. Add or remove fields. Type-aware widgets for ObjectId, Date, Decimal128."
+            },
+            {
+                "title": "Aggregation Pipeline Builder",
+                "description": "Stage by stage. See output after each $match, $group, $lookup. Save pipelines as named queries."
+            },
+            {
+                "title": "Atlas and Self-Host",
+                "description": "Atlas SRV strings, replica sets, sharded clusters, X.509 cert auth. All work."
+            },
+            {
+                "title": "Schema Inference",
+                "description": "TablePro samples documents and shows likely field types. No more guessing what a collection holds."
+            },
+            {
+                "title": "Native Mongo Shell",
+                "description": "Drop into mongosh from any connection. Tab-complete commands and collection names."
+            },
+            {
+                "title": "AI Query Assistant",
+                "description": "Ask in English, get a Mongo query or aggregation. Explain pipeline output."
+            }
+        ],
+        "capabilities": [
+            "Browse databases, collections, and indexes",
+            "Edit documents in a JSON tree with type widgets",
+            "Build aggregation pipelines stage by stage",
+            "Connect to Atlas, self-host, replica sets, sharded clusters",
+            "Switch between databases with Cmd+K",
+            "Export collections to JSON or CSV",
+            "Full-text search across query history",
+            "Safe mode for production clusters"
+        ],
+        "supportedVersions": "MongoDB 4.4+, including Atlas, self-hosted, and replica sets",
+        "connectionTypes": [
+            "TCP/IP",
+            "SSH Tunnel",
+            "TLS/SSL",
+            "SRV records (Atlas)",
+            "Connection string"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 27017\nDatabase: mydb\n\n# Or paste a connection string\nmongodb+srv://user:pass@cluster.mongodb.net/mydb",
+        "snippetLanguage": "bash",
+        "defaultPort": 27017,
+        "icon": "/images/databases/mongodb.svg",
+        "keywords": [
+            "mongodb client mac",
+            "mongodb gui macos",
+            "compass alternative mac",
+            "native mongodb client",
+            "mongodb atlas client mac"
+        ],
+        "docsPath": "mongodb",
+        "ogContext": "MongoDB · Native macOS",
+        "ogPunchline": "Native Swift driver. Atlas SRV, sharding, X.509. Just works.",
+        "ogVersionsHtml": "<strong>MongoDB</strong> 4.4+ · <strong>Atlas</strong> · replica sets",
+        "ogStatValue": "100 MB",
+        "ogStatLabel": "vs 1.2 GB COMPASS",
+        "faqs": [
+            {
+                "question": "Does it work with MongoDB Atlas?",
+                "answer": "Yes. Paste your SRV string, pick a database, connect. X.509 cert auth and IP allowlist both supported."
+            },
+            {
+                "question": "Can I run aggregation pipelines visually?",
+                "answer": "Yes. Add stages one at a time, see output after each. Save the pipeline as a named query."
+            },
+            {
+                "question": "Is TablePro free for MongoDB?",
+                "answer": "Yes. AGPLv3 open source. The Mongo driver ships built in."
+            },
+            {
+                "question": "Does it support transactions?",
+                "answer": "Yes. Wrap multiple writes in a transaction. Roll back if any fail."
+            },
+            {
+                "question": "How does it compare to MongoDB Compass?",
+                "answer": "Compass is the official MongoDB client, built on Electron. Like all Electron apps, it bundles Chromium and uses several hundred MB of RAM at idle. TablePro is native SwiftUI, idles at ~80 MB, and supports databases beyond MongoDB."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick MongoDB."
+            },
+            {
+                "name": "Paste SRV or fill fields",
+                "text": "For Atlas, paste the SRV string. For self-host, fill host, port, user, password."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Collections appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "redis-gui",
+        "name": "Redis",
+        "tagline": "The Redis GUI for Mac.",
+        "description": "Native Redis GUI for Mac. Free, open source, fast. RESP3, Cluster, Sentinel, ACL. AI assistant included.",
+        "longDescription": "A fast, native Redis GUI for Mac. Connect to local Redis, Cluster, Sentinel, AWS ElastiCache, or Upstash. Browse keys by pattern, run commands with autocomplete, monitor pub/sub in real time. Starts in under a second. Free and open source.",
+        "features": [
+            {
+                "title": "Hierarchical Key Browser",
+                "description": "Browse keys by colon-separated namespace. Drill into prefixes. Filter by pattern."
+            },
+            {
+                "title": "Type-Aware Editors",
+                "description": "String, list, set, hash, sorted set, stream, JSON. Each gets a tailored editor with type-safe writes."
+            },
+            {
+                "title": "Pub/Sub Monitor",
+                "description": "Subscribe to channels and watch messages stream. Replay events, send test publishes."
+            },
+            {
+                "title": "Cluster Topology View",
+                "description": "Visualize masters, replicas, slot ranges. Spot a re-shard mid-flight."
+            },
+            {
+                "title": "RedisJSON, RedisSearch, RediStream",
+                "description": "Module-aware editors for JSON.GET, FT.SEARCH, XADD. Autocomplete includes module commands."
+            },
+            {
+                "title": "AI Command Assistant",
+                "description": "Ask in English, get a Redis command. Explain LUA scripts. Optimize SCAN patterns."
+            }
+        ],
+        "capabilities": [
+            "Browse keys by pattern and namespace",
+            "Edit string, list, set, hash, sorted set, stream, JSON",
+            "Connect to standalone, Cluster, Sentinel, ACL",
+            "Monitor pub/sub channels in real time",
+            "View slow log and INFO stats in the dashboard",
+            "Run LUA scripts with line-by-line debugging",
+            "Switch between databases with Cmd+K",
+            "Safe mode blocks FLUSHDB and FLUSHALL"
+        ],
+        "supportedVersions": "Redis 6+, KeyDB, DragonflyDB, Valkey",
+        "connectionTypes": [
+            "TCP/IP",
+            "SSH Tunnel (password, key, agent)",
+            "TLS/SSL",
+            "Unix Socket"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 6379\nPassword: (optional)\nDatabase: 0\n\n# Or via terminal\nredis-cli -h 127.0.0.1 -p 6379",
+        "snippetLanguage": "bash",
+        "defaultPort": 6379,
+        "icon": "/images/databases/redis.svg",
+        "keywords": [
+            "redis gui mac",
+            "redis client macos",
+            "redis desktop manager alternative",
+            "native redis gui",
+            "best redis client mac"
+        ],
+        "docsPath": "redis",
+        "ogContext": "Redis · Native macOS",
+        "ogPunchline": "Native hiredis. RESP3, Cluster, Sentinel, ACL. All in.",
+        "ogVersionsHtml": "<strong>Redis</strong> 6 · 7 · <strong>Sentinel</strong> · <strong>Cluster</strong>",
+        "ogStatValue": "8",
+        "ogStatLabel": "DATA TYPES",
+        "faqs": [
+            {
+                "question": "Does TablePro support Redis Cluster?",
+                "answer": "Yes. Connect with cluster mode on; TablePro handles re-routing and shows the slot map."
+            },
+            {
+                "question": "Can I edit RedisJSON values?",
+                "answer": "Yes. Click any RedisJSON key to open a tree editor. Add or remove paths."
+            },
+            {
+                "question": "Is TablePro free for Redis?",
+                "answer": "Yes. AGPLv3 open source. The Redis driver ships built in."
+            },
+            {
+                "question": "Does it work with Upstash?",
+                "answer": "Yes. Paste the connection URL. TLS is enabled by default for Upstash."
+            },
+            {
+                "question": "Can I monitor pub/sub?",
+                "answer": "Yes. Subscribe to a channel, watch messages stream live, send test publishes."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick Redis."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Host 127.0.0.1, port 6379, password if any. Toggle TLS for managed Redis."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. The key tree appears in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "sql-server-client",
+        "name": "SQL Server",
+        "tagline": "The SQL Server GUI Client for Mac.",
+        "description": "Native SQL Server GUI client for Mac. Free, open source, fast. T-SQL editor, Azure SQL, Always On, AI assistant.",
+        "longDescription": "A fast, native SQL Server GUI client for Mac. Connect to SQL Server 2017+, Azure SQL, and Always On availability groups. Browse schemas, edit rows, run T-SQL with autocomplete. No Wine, no VM, no Java. Free and open source.",
+        "features": [
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell in the data grid. Add and delete rows. Type widgets for DATETIME2, UNIQUEIDENTIFIER, HIERARCHYID."
+            },
+            {
+                "title": "T-SQL Autocomplete",
+                "description": "Suggests tables, columns, aliases, T-SQL functions, system views, and CTEs. Reads schema on connect."
+            },
+            {
+                "title": "Azure SQL Native",
+                "description": "Connect to Azure SQL with AAD or SQL auth. TablePro handles the redirect to the gateway automatically."
+            },
+            {
+                "title": "Always On Topology",
+                "description": "View primary and secondary replicas, sync state, and failover readiness in the dashboard."
+            },
+            {
+                "title": "Streaming Export",
+                "description": "Million-row exports to CSV, JSON, SQL, or XLSX. No Java, no OOM."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get T-SQL. Explain or rewrite slow queries. Works with Claude, OpenAI, Ollama."
+            }
+        ],
+        "capabilities": [
+            "Browse databases, schemas, tables, views, and stored procedures",
+            "Run T-SQL in multiple tabs with separate results",
+            "Connect to SQL Server 2017+, Azure SQL, Always On",
+            "Edit table structure: columns, indexes, foreign keys",
+            "View execution plans for slow queries",
+            "Stream-export large datasets",
+            "Full-text search across query history",
+            "Safe mode for production databases"
+        ],
+        "supportedVersions": "SQL Server 2016+, Azure SQL Database, Azure SQL Managed Instance",
+        "connectionTypes": [
+            "TCP/IP",
+            "SSH Tunnel",
+            "TLS/SSL (encrypted connection)"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 1433\nUser: sa\nDatabase: mydb\n\n# Azure SQL\nHost: myserver.database.windows.net\nPort: 1433\nUser: admin@myserver",
+        "snippetLanguage": "bash",
+        "defaultPort": 1433,
+        "icon": "/images/databases/sqlserver.svg",
+        "keywords": [
+            "sql server client mac",
+            "mssql gui macos",
+            "ssms alternative mac",
+            "azure sql client mac",
+            "sql server mac native"
+        ],
+        "docsPath": "mssql",
+        "ogContext": "SQL Server · Native macOS",
+        "ogPunchline": "Native FreeTDS. No Wine. No VM. 80 MB at idle.",
+        "ogVersionsHtml": "<strong>SQL Server</strong> 2017 · 2019 · 2022 · <strong>Azure</strong>",
+        "ogStatValue": "Free",
+        "ogStatLabel": "vs $899 SSMS",
+        "faqs": [
+            {
+                "question": "Does it work with Azure SQL?",
+                "answer": "Yes. AAD auth and SQL auth both. TablePro follows the gateway redirect."
+            },
+            {
+                "question": "Can I see execution plans?",
+                "answer": "Yes. Press Cmd+L on a query to show the SQL Server execution plan as a tree."
+            },
+            {
+                "question": "Is TablePro free?",
+                "answer": "Yes. AGPLv3 open source. The SQL Server driver ships built in."
+            },
+            {
+                "question": "Does it support SSPI / Kerberos?",
+                "answer": "Kerberos via gss-api works on Linux and Mac with kinit. Pure SSPI Windows auth needs the SQL auth fallback."
+            },
+            {
+                "question": "How does it compare to SSMS or Azure Data Studio on Mac?",
+                "answer": "SSMS is Windows-only. Microsoft's cross-platform option is Azure Data Studio, which is Electron-based. TablePro is a native SwiftUI Mac app: faster start, lower RAM, with the same SQL Server feature coverage you need day to day."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick SQL Server."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Host or Azure endpoint, port 1433, user, password, database. Toggle SSL on."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Your databases and schemas appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "oracle-client",
+        "name": "Oracle",
+        "tagline": "The Oracle GUI Client for Mac.",
+        "description": "Native Oracle GUI client for Mac. Free, open source, fast. Wallet auth, PL/SQL editor, AI assistant. Apple Silicon ready.",
+        "longDescription": "A fast, native Oracle GUI client for Mac. Connect to Oracle 12c, 19c, 21c, 23ai, and Autonomous Database. Browse schemas, edit rows, run PL/SQL with autocomplete. Pure Swift driver, no JDBC, no instant client. Free and open source.",
+        "features": [
+            {
+                "title": "Wallet and TNS Support",
+                "description": "Drop in your wallet zip or tnsnames.ora. TablePro reads alias names and DSN strings."
+            },
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell. Type widgets for NUMBER, TIMESTAMP WITH TIME ZONE, INTERVAL, CLOB, BLOB."
+            },
+            {
+                "title": "PL/SQL Editor",
+                "description": "Run anonymous blocks, packages, and functions. Compile errors point to the exact line."
+            },
+            {
+                "title": "Autonomous Database Native",
+                "description": "Connect to ADW, ATP, and ADW Free with the wallet. mTLS handled automatically."
+            },
+            {
+                "title": "Streaming Result Sets",
+                "description": "Million-row queries open in a streaming grid. Cancel runs cleanly."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get PL/SQL or Oracle SQL. Explain query plans, optimize hints."
+            }
+        ],
+        "capabilities": [
+            "Browse schemas, tables, views, packages, and procedures",
+            "Run PL/SQL blocks and packages",
+            "Connect via wallet, TNS, or direct host",
+            "Edit table structure and storage parameters",
+            "View execution plans with hints",
+            "Stream-export huge datasets",
+            "Full-text search across query history",
+            "Safe mode for production databases"
+        ],
+        "supportedVersions": "Oracle 12c+, Oracle 19c, Oracle 21c, Oracle 23c, Oracle Cloud (Autonomous)",
+        "connectionTypes": [
+            "TCP/IP",
+            "SSH Tunnel",
+            "TLS/SSL",
+            "Oracle Wallet (for Cloud)"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 1521\nService Name: XEPDB1\nUser: system\n\n# Oracle Cloud\nHost: adb.region.oraclecloud.com\nWallet: /path/to/wallet.zip",
+        "snippetLanguage": "bash",
+        "defaultPort": 1521,
+        "icon": "/images/databases/oracle.svg",
+        "keywords": [
+            "oracle client mac",
+            "oracle gui macos",
+            "oracle database mac",
+            "sql developer alternative mac",
+            "oracle cloud client mac"
+        ],
+        "docsPath": "oracle",
+        "ogContext": "Oracle Database · Native macOS",
+        "ogPunchline": "Pure Swift driver. No instant client. No Java. Wallet ready.",
+        "ogVersionsHtml": "<strong>Oracle</strong> 10g · 12c · 19c · 21c · 23ai",
+        "ogStatValue": "0",
+        "ogStatLabel": "INSTANT CLIENT NEEDED",
+        "faqs": [
+            {
+                "question": "Do I need Oracle Instant Client?",
+                "answer": "No. TablePro uses a pure Swift Oracle driver. Nothing to install on the Mac."
+            },
+            {
+                "question": "Does it work with Autonomous Database?",
+                "answer": "Yes. Drop in the wallet zip. TablePro handles mTLS automatically."
+            },
+            {
+                "question": "Can I run PL/SQL packages?",
+                "answer": "Yes. Compile, run, and step through. Errors point to the exact line."
+            },
+            {
+                "question": "Is TablePro free for Oracle?",
+                "answer": "Yes. AGPLv3 open source. The Oracle driver is a separate plugin from the registry."
+            },
+            {
+                "question": "Does it support Kerberos auth?",
+                "answer": "Kerberos via OS native ticket cache works. SSO and AAD federated auth on the roadmap."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the Oracle plugin",
+                "text": "brew install --cask tablepro. Open Settings > Plugins, install the Oracle driver from the registry."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick Oracle."
+            },
+            {
+                "name": "Pick auth method",
+                "text": "Wallet zip, TNS alias, or direct host. Fill credentials."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Schemas appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "clickhouse-client",
+        "name": "ClickHouse",
+        "tagline": "The ClickHouse GUI Client for Mac.",
+        "description": "Native ClickHouse GUI client for Mac. Free, open source, fast. Streaming results, ClickHouse Cloud, AI assistant.",
+        "longDescription": "A fast, native ClickHouse GUI client for Mac. Connect to local ClickHouse, ClickHouse Cloud, or any HTTP/native endpoint. Browse databases, edit rows where allowed, run analytical queries with autocomplete. Streams billion-row results without OOM. Free and open source.",
+        "features": [
+            {
+                "title": "Streaming Result Sets",
+                "description": "Billion-row queries open in a streaming grid. Scroll, cancel, export without loading the full result."
+            },
+            {
+                "title": "ClickHouse Cloud Native",
+                "description": "Connect to ClickHouse Cloud with HTTPS and JWT. SSL on by default."
+            },
+            {
+                "title": "Schema-Aware Autocomplete",
+                "description": "Suggests tables, columns, MergeTree settings, ClickHouse functions, and array operations."
+            },
+            {
+                "title": "Type-Rich Cell View",
+                "description": "Tuple, Array, Nested, Decimal, LowCardinality. All shown in their native form, not flattened."
+            },
+            {
+                "title": "Query Cost Insight",
+                "description": "After each query, see rows read, bytes read, time spent. Spot expensive scans before they hit prod."
+            },
+            {
+                "title": "AI Query Assistant",
+                "description": "Ask in English, get ClickHouse SQL. Explain query plans, suggest array joins."
+            }
+        ],
+        "capabilities": [
+            "Browse databases, tables, MergeTree engines, dictionaries",
+            "Run analytical queries with streaming results",
+            "Connect over HTTP, HTTPS, or native TCP",
+            "Edit rows where the engine allows",
+            "View query stats: rows read, bytes, duration",
+            "Stream-export billion-row results",
+            "Full-text search across query history",
+            "Safe mode for production clusters"
+        ],
+        "supportedVersions": "ClickHouse 21+, ClickHouse Cloud",
+        "connectionTypes": [
+            "HTTP",
+            "HTTPS",
+            "SSH Tunnel (via port forwarding)"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 8123\nUser: default\nDatabase: default\n\n# ClickHouse Cloud\nHost: abc123.clickhouse.cloud\nPort: 8443 (HTTPS)\nUser: default",
+        "snippetLanguage": "bash",
+        "defaultPort": 8123,
+        "icon": "/images/databases/clickhouse.svg",
+        "keywords": [
+            "clickhouse client mac",
+            "clickhouse gui macos",
+            "clickhouse desktop client",
+            "clickhouse cloud client mac"
+        ],
+        "docsPath": "clickhouse",
+        "ogContext": "ClickHouse · Native macOS",
+        "ogPunchline": "Native HTTP and TCP. Streams a billion rows without breaking a sweat.",
+        "ogVersionsHtml": "<strong>ClickHouse</strong> 23+ · <strong>Cloud</strong> · self-hosted",
+        "ogStatValue": "1B+",
+        "ogStatLabel": "ROWS / QUERY",
+        "faqs": [
+            {
+                "question": "Does it work with ClickHouse Cloud?",
+                "answer": "Yes. Paste the HTTPS endpoint and the user/password from the cloud console. TLS is on by default."
+            },
+            {
+                "question": "Can I open billion-row tables?",
+                "answer": "Yes. The data grid streams. Memory stays flat. Scroll without lag."
+            },
+            {
+                "question": "Is TablePro free?",
+                "answer": "Yes. AGPLv3 open source. The ClickHouse driver ships built in."
+            },
+            {
+                "question": "Does it support Tuple, Array, and Nested?",
+                "answer": "Yes. Each shows in its native form. Click to expand nested structures."
+            },
+            {
+                "question": "Can I see query cost?",
+                "answer": "Yes. After every query, TablePro shows rows read, bytes read, and elapsed time."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick ClickHouse."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Host or Cloud endpoint, port 8123 (HTTP) or 9000 (native), user, password."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Databases appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "duckdb-client",
+        "name": "DuckDB",
+        "tagline": "The DuckDB GUI Client for Mac.",
+        "description": "Native DuckDB GUI client for Mac. Free, open source, fast. Open .duckdb files. Query Parquet, CSV, JSON in place.",
+        "longDescription": "A fast, native DuckDB GUI client for Mac. Open any .duckdb file or query Parquet, CSV, JSON, and Iceberg tables in place. Browse tables, edit rows, run analytical SQL with autocomplete. Streams billion-row queries. Free and open source.",
+        "features": [
+            {
+                "title": "Open Any DuckDB File",
+                "description": "Drag a .duckdb file onto the app. Read-only or read-write. Multiple files at once."
+            },
+            {
+                "title": "Query Parquet, CSV, JSON in Place",
+                "description": "Run SELECT directly against files on disk or S3. No import step needed."
+            },
+            {
+                "title": "Schema-Aware Autocomplete",
+                "description": "Suggests tables, columns, DuckDB functions, including read_parquet, read_csv_auto."
+            },
+            {
+                "title": "Streaming Result Sets",
+                "description": "Million-row queries open in a streaming grid. Memory stays flat."
+            },
+            {
+                "title": "Iceberg and Delta Support",
+                "description": "Query Iceberg and Delta Lake tables with the official DuckDB extensions, pre-loaded."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get DuckDB SQL. Explain analytical queries, suggest window function tweaks."
+            }
+        ],
+        "capabilities": [
+            "Open .duckdb, .db files",
+            "Query Parquet, CSV, JSON, Iceberg, Delta in place",
+            "Edit rows in MergeTree-equivalent tables",
+            "Run analytical SQL with streaming results",
+            "Export results to CSV, JSON, Parquet",
+            "View query plan with EXPLAIN",
+            "Full-text search across query history",
+            "Safe mode for read-only browsing"
+        ],
+        "supportedVersions": "DuckDB 0.9+",
+        "connectionTypes": [
+            "Local file (.duckdb)",
+            "In-memory"
+        ],
+        "snippet": "# Open in TablePro\nFile > Open > select your .duckdb file\n\n# Or query files directly\nSELECT * FROM read_csv('data.csv')\nSELECT * FROM read_parquet('data.parquet')",
+        "snippetLanguage": "sql",
+        "defaultPort": null,
+        "icon": "/images/databases/duckdb.svg",
+        "keywords": [
+            "duckdb gui mac",
+            "duckdb client macos",
+            "duckdb desktop app",
+            "duckdb viewer mac"
+        ],
+        "docsPath": "duckdb",
+        "ogContext": "DuckDB · Native macOS",
+        "ogPunchline": "Drag a .duckdb file. Query Parquet in place. Done.",
+        "ogVersionsHtml": "<strong>DuckDB</strong> 0.10+ · <strong>Parquet</strong> · <strong>CSV</strong> · <strong>JSON</strong>",
+        "ogStatValue": "0 MB",
+        "ogStatLabel": "SERVER OVERHEAD",
+        "faqs": [
+            {
+                "question": "Can I query Parquet files directly?",
+                "answer": "Yes. SELECT * FROM 'data.parquet' works out of the box. S3 paths too."
+            },
+            {
+                "question": "Does it support Iceberg and Delta Lake?",
+                "answer": "Yes. The official DuckDB extensions ship pre-loaded."
+            },
+            {
+                "question": "Is TablePro free for DuckDB?",
+                "answer": "Yes. AGPLv3 open source. The DuckDB driver is a separate plugin from the registry."
+            },
+            {
+                "question": "Can I open multiple files at once?",
+                "answer": "Yes. Each .duckdb opens in its own tab."
+            },
+            {
+                "question": "Does it work on Apple Silicon?",
+                "answer": "Yes. arm64 native. Same DuckDB binary the CLI ships."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the DuckDB plugin",
+                "text": "brew install --cask tablepro. Open Settings > Plugins, install DuckDB from the registry."
+            },
+            {
+                "name": "Open a DuckDB file",
+                "text": "File > Open, or drag the .duckdb file onto the app icon."
+            },
+            {
+                "name": "Browse and query",
+                "text": "Tables appear in the sidebar. Cmd+T opens a query tab."
+            },
+            {
+                "name": "Query files in place",
+                "text": "Run SELECT * FROM 'path/to/data.parquet' to query without import."
+            }
+        ]
+    },
+    {
+        "slug": "cassandra-client",
+        "name": "Cassandra",
+        "tagline": "The Cassandra GUI Client for Mac.",
+        "description": "Native Cassandra GUI client for Mac. Free, open source, fast. CQL editor, multi-DC topology, AI assistant.",
+        "longDescription": "A fast, native Cassandra GUI client for Mac. Connect to Cassandra 3.11, 4.x, ScyllaDB, or Astra DB. Browse keyspaces, edit rows, run CQL with autocomplete. Visualize ring topology. Free and open source.",
+        "features": [
+            {
+                "title": "CQL Editor with Autocomplete",
+                "description": "Tree-sitter highlighting for CQL. Suggests tables, columns, UDTs, functions, and consistency levels."
+            },
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell. Widgets for UUID, TIMEUUID, INET, FROZEN collections."
+            },
+            {
+                "title": "Ring Topology View",
+                "description": "See nodes, racks, datacenters, and token ranges in the dashboard. Spot a down node fast."
+            },
+            {
+                "title": "Astra DB Native",
+                "description": "Connect with the secure connect bundle. mTLS handled automatically."
+            },
+            {
+                "title": "Streaming Pagination",
+                "description": "Browse huge partitions. TablePro paginates with the driver, no client OOM."
+            },
+            {
+                "title": "AI CQL Assistant",
+                "description": "Ask in English, get CQL. Explain schemas, suggest partition keys."
+            }
+        ],
+        "capabilities": [
+            "Browse keyspaces, tables, materialized views, UDTs",
+            "Run CQL with consistency level controls",
+            "Connect to Cassandra, ScyllaDB, Astra DB",
+            "Edit rows including frozen collections and UDTs",
+            "View ring topology and node health",
+            "Stream-paginate huge partitions",
+            "Full-text search across query history",
+            "Safe mode for production clusters"
+        ],
+        "supportedVersions": "Apache Cassandra 3.11+, Cassandra 4.x, ScyllaDB, DataStax Astra",
+        "connectionTypes": [
+            "TCP/IP (CQL native protocol)",
+            "SSH Tunnel",
+            "TLS/SSL",
+            "Secure Connect Bundle (Astra)"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 9042\nKeyspace: my_keyspace\nUser: cassandra\n\n# DataStax Astra\nUse Secure Connect Bundle (.zip)",
+        "snippetLanguage": "bash",
+        "defaultPort": 9042,
+        "icon": "/images/databases/cassandra.svg",
+        "keywords": [
+            "cassandra client mac",
+            "cassandra gui macos",
+            "cql client mac",
+            "scylladb client mac",
+            "cassandra desktop app"
+        ],
+        "docsPath": "cassandra",
+        "ogContext": "Cassandra · Native macOS",
+        "ogPunchline": "Native CQL editor. Multi-DC aware. Astra wallet ready.",
+        "ogVersionsHtml": "<strong>Cassandra</strong> 3.11 · 4.0 · 4.1 · <strong>Astra</strong>",
+        "ogStatValue": "Multi-DC",
+        "ogStatLabel": "AWARE",
+        "faqs": [
+            {
+                "question": "Does it work with ScyllaDB?",
+                "answer": "Yes. ScyllaDB speaks CQL; TablePro connects the same way as Cassandra."
+            },
+            {
+                "question": "Can I connect to Astra DB?",
+                "answer": "Yes. Drop in the secure connect bundle zip. mTLS handled automatically."
+            },
+            {
+                "question": "Is TablePro free for Cassandra?",
+                "answer": "Yes. AGPLv3 open source. The Cassandra driver is a separate plugin from the registry."
+            },
+            {
+                "question": "Can I see ring topology?",
+                "answer": "Yes. The dashboard shows datacenters, racks, nodes, and token ranges."
+            },
+            {
+                "question": "Does it handle frozen collections?",
+                "answer": "Yes. Edit FROZEN<list>, FROZEN<set>, FROZEN<map> with type-aware widgets."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the Cassandra plugin",
+                "text": "brew install --cask tablepro. Open Settings > Plugins, install Cassandra from the registry."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick Cassandra."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Contact points, port 9042, user, password. For Astra, drop in the secure connect bundle zip."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Keyspaces appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "mariadb-client",
+        "name": "MariaDB",
+        "tagline": "The MariaDB GUI Client for Mac.",
+        "description": "Native MariaDB GUI client for Mac. Free, open source, fast. SSH tunneling, autocomplete, AI assistant. Apple Silicon ready.",
+        "longDescription": "A fast, native MariaDB GUI client for Mac. Connect to local MariaDB, remote production, MaxScale, or a Galera cluster. Browse schemas, edit rows, run queries with autocomplete. One second start. 80 MB at idle. Free and open source.",
+        "features": [
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell in the data grid. Add and delete rows. Review every pending change before commit. Full undo and redo."
+            },
+            {
+                "title": "SSH Tunnel Built In",
+                "description": "Reach a remote MariaDB through SSH. Password, key, ssh-agent. Jump hosts and custom ports work."
+            },
+            {
+                "title": "MariaDB-Aware Autocomplete",
+                "description": "Suggests tables, columns, sequences, virtual columns, JSON_OBJECT, ROW_NUMBER, RANK."
+            },
+            {
+                "title": "Galera Cluster Status",
+                "description": "Server dashboard shows wsrep_cluster_size, wsrep_local_state, and node lag. Spot a stuck follower fast."
+            },
+            {
+                "title": "System-Versioned Tables",
+                "description": "Query historical rows with FOR SYSTEM_TIME AS OF. The schema browser marks versioned tables."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get MariaDB SQL. Explain or rewrite slow queries. Claude, OpenAI, Ollama."
+            }
+        ],
+        "capabilities": [
+            "Browse schemas, tables, views, sequences, stored procedures",
+            "Run multiple queries in tabs",
+            "Filter and sort rows without writing SQL",
+            "Edit table structure: columns, indexes, foreign keys, virtual columns",
+            "View Galera cluster state in the server dashboard",
+            "Stream-export huge tables to CSV, JSON, SQL",
+            "Full-text search across query history",
+            "Safe mode blocks UPDATE without WHERE"
+        ],
+        "supportedVersions": "MariaDB 10.3+, 10.6 LTS, 10.11 LTS, 11.x, MaxScale, Galera Cluster",
+        "connectionTypes": [
+            "TCP/IP",
+            "Unix Socket",
+            "SSH Tunnel (password, key, agent)",
+            "SSL/TLS"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 3306\nUser: root\nDatabase: mydb\n\n# Or via terminal\nmariadb -h 127.0.0.1 -P 3306 -u root -p mydb",
+        "snippetLanguage": "bash",
+        "defaultPort": 3306,
+        "icon": "/images/databases/mariadb.svg",
+        "keywords": [
+            "mariadb client mac",
+            "mariadb gui macos",
+            "native mariadb client",
+            "mariadb desktop client",
+            "best mariadb gui for mac"
+        ],
+        "docsPath": "mariadb",
+        "ogContext": "MariaDB · Native macOS",
+        "ogPunchline": "Native libmariadb. Galera-aware. 80 MB at idle.",
+        "ogVersionsHtml": "<strong>MariaDB</strong> 10.3+ · 10.6 LTS · 10.11 LTS · 11.x",
+        "ogStatValue": "80 MB",
+        "ogStatLabel": "RAM IDLE",
+        "faqs": [
+            {
+                "question": "Is TablePro free for MariaDB?",
+                "answer": "Yes. AGPLv3 open source. The MariaDB driver ships built in."
+            },
+            {
+                "question": "Does it work with Galera Cluster?",
+                "answer": "Yes. The dashboard reads wsrep_* status. Connect to any node, or route through MaxScale."
+            },
+            {
+                "question": "Can I edit virtual columns?",
+                "answer": "Virtual columns are read-only by definition. The structure editor shows them; the cell editor blocks writes."
+            },
+            {
+                "question": "Does it support system-versioned tables?",
+                "answer": "Yes. Query history with FOR SYSTEM_TIME AS OF. The browser marks versioned tables with a clock icon."
+            },
+            {
+                "question": "How does TablePro compare to HeidiSQL on Mac?",
+                "answer": "HeidiSQL is Delphi-based and Windows-first. As of 2026 there is a separate Lazarus build for macOS, but it remains a preview. TablePro is built only for macOS, native arm64, with Touch ID and iCloud sync."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick MariaDB."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Host 127.0.0.1, port 3306, user root, password, database. SSH tab for remote."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Test, then Connect. Schemas appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "redshift-client",
+        "name": "Amazon Redshift",
+        "tagline": "The Amazon Redshift GUI Client for Mac.",
+        "description": "Native Amazon Redshift GUI client for Mac. Free, open source, fast. SSH tunneling, IAM auth, AI assistant.",
+        "longDescription": "A fast, native Amazon Redshift GUI client for Mac. Connect to Redshift clusters, Redshift Serverless, and Spectrum endpoints. Browse schemas, run analytical queries, view EXPLAIN plans. Streams million-row results. Free and open source.",
+        "features": [
+            {
+                "title": "Streaming Result Sets",
+                "description": "Million-row queries open in a streaming grid. Cancel cleanly. Memory stays flat."
+            },
+            {
+                "title": "SSH Tunnel Built In",
+                "description": "Reach private Redshift in a VPC through a bastion. Password, key, agent."
+            },
+            {
+                "title": "Redshift-Aware Autocomplete",
+                "description": "Suggests SORTKEY, DISTKEY, ENCODE types, COPY options, SUPER path expressions."
+            },
+            {
+                "title": "EXPLAIN Visualization",
+                "description": "Render Redshift plans as a tree. Spot broadcasts and full table scans at a glance."
+            },
+            {
+                "title": "Streaming Export",
+                "description": "Export million-row results to CSV, JSON, or XLSX without OOM."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get Redshift SQL. Explain plans, suggest sort and dist keys."
+            }
+        ],
+        "capabilities": [
+            "Browse databases, schemas, tables, views",
+            "Run multiple queries in tabs with separate results",
+            "Connect to Redshift, Redshift Serverless, Spectrum",
+            "View sort keys, dist keys, column encodings",
+            "Stream-export million-row results",
+            "Auto-reconnect on dropped connection",
+            "Full-text search across query history",
+            "Safe mode blocks TRUNCATE in production"
+        ],
+        "supportedVersions": "Amazon Redshift, Redshift Serverless, Redshift Spectrum",
+        "connectionTypes": [
+            "TCP/IP",
+            "SSH Tunnel (password, key, agent)",
+            "SSL/TLS (required by AWS)"
+        ],
+        "snippet": "# Connect with TablePro\nHost: my-cluster.abc123.us-east-1.redshift.amazonaws.com\nPort: 5439\nUser: awsuser\nDatabase: dev\nSSL: Required\n\n# Or via terminal\npsql -h my-cluster.abc123.us-east-1.redshift.amazonaws.com -p 5439 -U awsuser -d dev",
+        "snippetLanguage": "bash",
+        "defaultPort": 5439,
+        "icon": "/images/databases/redshift.svg",
+        "keywords": [
+            "redshift client mac",
+            "amazon redshift gui mac",
+            "redshift desktop client",
+            "redshift mac client",
+            "best redshift client macos"
+        ],
+        "docsPath": "redshift",
+        "ogContext": "Amazon Redshift · Native macOS",
+        "ogPunchline": "Native libpq. Cluster, Serverless, Spectrum. Streaming results.",
+        "ogVersionsHtml": "<strong>Redshift</strong> Cluster · <strong>Redshift</strong> Serverless · <strong>Spectrum</strong>",
+        "ogStatValue": "80 MB",
+        "ogStatLabel": "RAM IDLE",
+        "faqs": [
+            {
+                "question": "Is TablePro free for Redshift?",
+                "answer": "Yes. AGPLv3 open source. The Postgres driver under the hood handles Redshift."
+            },
+            {
+                "question": "Does it work with Redshift Serverless?",
+                "answer": "Yes. Use the workgroup endpoint as the host. SSL is on by default."
+            },
+            {
+                "question": "Can I use IAM authentication?",
+                "answer": "Generate a temporary password with aws redshift get-cluster-credentials, paste into TablePro. SSO via federated identity is on the roadmap."
+            },
+            {
+                "question": "How do I connect through a bastion?",
+                "answer": "Open the SSH tab, fill bastion host, port, key. TablePro builds the tunnel and routes Redshift traffic through it."
+            },
+            {
+                "question": "Can it handle large result sets?",
+                "answer": "Yes. The grid streams. Export streams to disk."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick Amazon Redshift."
+            },
+            {
+                "name": "Fill in the cluster endpoint",
+                "text": "Host my-cluster.xyz.region.redshift.amazonaws.com, port 5439, user awsuser, database dev. SSL on."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Test, then Connect. Databases appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "cloudflare-d1-client",
+        "name": "Cloudflare D1",
+        "tagline": "The Cloudflare D1 GUI Client for Mac.",
+        "description": "Native Cloudflare D1 GUI client for Mac. Free, open source, fast. No wrangler needed. AI assistant included.",
+        "longDescription": "A fast, native Cloudflare D1 GUI client for Mac. Connect with an API token, browse all databases in your account, edit rows in a real grid, run SQL with autocomplete. No wrangler CLI required. Free and open source.",
+        "features": [
+            {
+                "title": "API Token Auth",
+                "description": "Cloudflare API token with D1:Edit. Stored in the macOS Keychain. Never written to disk."
+            },
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit D1 rows in a real spreadsheet. INSERT, UPDATE, DELETE generated and sent over the D1 REST API."
+            },
+            {
+                "title": "Multi-Database Browser",
+                "description": "All D1 databases in your Cloudflare account, in one sidebar. Cmd+K to switch."
+            },
+            {
+                "title": "Query Cost Insight",
+                "description": "Every query shows rows_read, rows_written, and duration_ms returned by the D1 API."
+            },
+            {
+                "title": "SQLite-Compatible Editor",
+                "description": "Tree-sitter SQLite highlighting. Autocomplete catches D1 incompatibilities before you run."
+            },
+            {
+                "title": "AI Query Assistant",
+                "description": "Ask in English, get D1-compatible SQL. Catch full-SQLite features that D1 doesn't support."
+            }
+        ],
+        "capabilities": [
+            "Browse all D1 databases in a Cloudflare account",
+            "Run SELECT, INSERT, UPDATE, DELETE, DDL",
+            "View rows_read, rows_written, duration_ms per query",
+            "Edit rows inline with change tracking",
+            "Switch between D1 databases with Cmd+K",
+            "Export results to CSV, JSON, SQL",
+            "Full-text search across query history",
+            "Safe mode for production D1 databases"
+        ],
+        "supportedVersions": "Cloudflare D1 (REST API v4)",
+        "connectionTypes": [
+            "HTTPS API (Account ID + API Token)"
+        ],
+        "snippet": "# Connect with TablePro\nAccount ID: abc123def456...\nAPI Token: <token with D1:Edit scope>\nDatabase: my-d1-database\n\n# Or via wrangler\nwrangler d1 execute my-d1-database --command \"SELECT * FROM users\"",
+        "snippetLanguage": "bash",
+        "defaultPort": null,
+        "icon": "/images/databases/cloudflare-d1.svg",
+        "keywords": [
+            "cloudflare d1 client mac",
+            "cloudflare d1 gui",
+            "d1 desktop client",
+            "cloudflare d1 mac app",
+            "d1 database gui"
+        ],
+        "docsPath": "cloudflare-d1",
+        "ogContext": "Cloudflare D1 · Native macOS",
+        "ogPunchline": "No wrangler. Browse D1 with a real GUI.",
+        "ogVersionsHtml": "<strong>Cloudflare D1</strong> · <strong>SQLite</strong> 3.x compatible",
+        "ogStatValue": "API",
+        "ogStatLabel": "NATIVE",
+        "faqs": [
+            {
+                "question": "Do I need wrangler installed?",
+                "answer": "No. TablePro talks to the D1 REST API directly with a Cloudflare API token."
+            },
+            {
+                "question": "What permissions does the API token need?",
+                "answer": "D1:Edit, scoped to the account that owns your D1 databases."
+            },
+            {
+                "question": "Can I see query cost?",
+                "answer": "Yes. Every query returns rows_read, rows_written, duration_ms from the D1 API."
+            },
+            {
+                "question": "Is the API token stored safely?",
+                "answer": "Yes. macOS Keychain. Never on disk in plaintext."
+            },
+            {
+                "question": "Does TablePro use D1 sessions?",
+                "answer": "Yes. Sessions API is used for read-after-write consistency across multiple statements."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Create a Cloudflare API Token",
+                "text": "Visit dash.cloudflare.com/profile/api-tokens. Create a token with D1:Edit."
+            },
+            {
+                "name": "Add a D1 Connection",
+                "text": "Click New Connection. Pick Cloudflare D1. Paste Account ID and API Token."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. D1 databases appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "turso-client",
+        "name": "libSQL / Turso",
+        "tagline": "The Turso and libSQL GUI Client for Mac.",
+        "description": "Native Turso GUI client for Mac. Free, open source, fast. Branches, embedded replicas, libSQL. AI assistant included.",
+        "longDescription": "A fast, native Turso GUI client for Mac. Connect to Turso cloud, libSQL servers, embedded replicas, or local SQLite files. Browse branches, edit rows, run SQL with autocomplete. SQLite-compatible with libSQL extensions. Free and open source.",
+        "features": [
+            {
+                "title": "Connect Any Way",
+                "description": "libsql://, HTTPS, or local file. Embedded replicas with sync URL. All work in one connection form."
+            },
+            {
+                "title": "Token Auth",
+                "description": "Paste a Turso auth token from turso db tokens create. Stored in the macOS Keychain."
+            },
+            {
+                "title": "Branch Switching",
+                "description": "List all branches of a Turso database. Cmd+K to jump between branches."
+            },
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit Turso rows in a real spreadsheet. Statements sent over libSQL HTTP."
+            },
+            {
+                "title": "libSQL DDL Support",
+                "description": "ALTER TABLE DROP COLUMN, RENAME COLUMN, and other libSQL extensions get autocompleted."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get libSQL-compatible SQL. Optimize for edge replicas."
+            }
+        ],
+        "capabilities": [
+            "Connect to Turso cloud, libSQL, embedded replicas, local SQLite",
+            "Run SELECT, INSERT, UPDATE, DELETE, DDL",
+            "Browse branches with Cmd+K",
+            "Edit rows inline with change tracking",
+            "Export to CSV, JSON, SQL dump, XLSX",
+            "Full-text search across query history",
+            "Safe mode for production Turso",
+            "Full SQLite plus libSQL extensions"
+        ],
+        "supportedVersions": "Turso (cloud), libSQL server, libSQL embedded replicas, SQLite 3.x",
+        "connectionTypes": [
+            "libsql:// (with auth token)",
+            "HTTPS (with auth token)",
+            "Local file (file://)"
+        ],
+        "snippet": "# Connect with TablePro\nURL: libsql://my-db-username.turso.io\nAuth Token: <token from turso db tokens create>\n\n# Or via Turso CLI\nturso db shell my-db",
+        "snippetLanguage": "bash",
+        "defaultPort": null,
+        "icon": "/images/databases/turso.svg",
+        "keywords": [
+            "turso client mac",
+            "libsql gui mac",
+            "turso desktop client",
+            "libsql mac app",
+            "turso database gui"
+        ],
+        "docsPath": "libsql",
+        "ogContext": "Turso & libSQL · Native macOS",
+        "ogPunchline": "SQLite at the edge. Branches, replicas, embedded. All in.",
+        "ogVersionsHtml": "<strong>Turso</strong> · <strong>libSQL</strong> Server · <strong>libSQL</strong> Embedded",
+        "ogStatValue": "Edge",
+        "ogStatLabel": "READY",
+        "faqs": [
+            {
+                "question": "Does TablePro support Turso branches?",
+                "answer": "Yes. List branches with Cmd+K, switch in one click. Useful for testing schema changes against prod data."
+            },
+            {
+                "question": "Can I open a local libSQL file?",
+                "answer": "Yes. Pick the file connection type, select your .db. Read and write."
+            },
+            {
+                "question": "Does it work with embedded replicas?",
+                "answer": "Yes. Local file path plus sync URL. Reads from the local replica, writes through the sync URL."
+            },
+            {
+                "question": "How is the auth token stored?",
+                "answer": "macOS Keychain. Never on disk in plaintext."
+            },
+            {
+                "question": "Does it support libSQL extensions?",
+                "answer": "Yes. ALTER TABLE DROP COLUMN, RENAME COLUMN, all libSQL-only DDL works in the editor with autocomplete."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download."
+            },
+            {
+                "name": "Get the URL and Token",
+                "text": "turso db show my-db for the URL. turso db tokens create my-db for the auth token."
+            },
+            {
+                "name": "Add a Turso Connection",
+                "text": "Click New Connection. Pick Turso. Paste libsql:// URL and auth token."
+            },
+            {
+                "name": "Connect and switch branches",
+                "text": "Click Connect. Tables appear in the sidebar. Cmd+K switches branches."
+            }
+        ]
+    },
+    {
+        "slug": "dynamodb-gui",
+        "name": "DynamoDB",
+        "tagline": "The DynamoDB GUI for Mac.",
+        "description": "Native DynamoDB GUI for Mac. Free, open source, fast. PartiQL editor, AWS SigV4, capacity metrics. AI assistant included.",
+        "longDescription": "A fast, native DynamoDB GUI for Mac. Connect to AWS DynamoDB or DynamoDB Local. Browse tables, edit items, run scans, queries, and PartiQL with autocomplete. See capacity consumed on every operation. Free and open source.",
+        "features": [
+            {
+                "title": "AWS SigV4 Auth",
+                "description": "Use access keys, named profiles, IAM roles via aws sso login. STS assume-role works."
+            },
+            {
+                "title": "PartiQL Editor",
+                "description": "Write SELECT, INSERT, UPDATE, DELETE in PartiQL. Schema-aware autocomplete for tables and attributes."
+            },
+            {
+                "title": "JSON Tree Editor",
+                "description": "Click any item to open a tree view. Add or remove attributes. Type widgets for B, BOOL, L, M, NS, SS."
+            },
+            {
+                "title": "Capacity Metrics",
+                "description": "Every query shows ConsumedCapacity. Spot expensive scans before they hit prod."
+            },
+            {
+                "title": "DynamoDB Local Support",
+                "description": "Connect to DynamoDB Local on http://localhost:8000. No AWS credentials needed."
+            },
+            {
+                "title": "AI Query Assistant",
+                "description": "Ask in English, get PartiQL or scan parameters. Catch hot partition risks."
+            }
+        ],
+        "capabilities": [
+            "List tables, GSIs, LSIs in a region",
+            "Run scans, queries, PartiQL statements",
+            "Edit items with JSON tree widgets",
+            "View ConsumedCapacity per query",
+            "Switch regions and profiles with Cmd+K",
+            "Export results to CSV or JSON",
+            "Connect to DynamoDB Local",
+            "Safe mode blocks scans on large tables"
+        ],
+        "supportedVersions": "AWS DynamoDB (all regions), DynamoDB Local",
+        "connectionTypes": [
+            "AWS Access Keys",
+            "AWS Profile (~/.aws/credentials)",
+            "AWS SSO",
+            "DynamoDB Local (HTTP)"
+        ],
+        "snippet": "# Connect with TablePro\nProfile: default\nRegion: us-east-1\n\n# Or with explicit credentials\nAccess Key ID: AKIA...\nSecret Access Key: ****\nRegion: us-east-1\n\n# DynamoDB Local\nEndpoint: http://localhost:8000",
+        "snippetLanguage": "bash",
+        "defaultPort": null,
+        "icon": "/images/databases/dynamodb.svg",
+        "keywords": [
+            "dynamodb gui mac",
+            "dynamodb client mac",
+            "aws dynamodb gui",
+            "dynamodb desktop client",
+            "dynamodb mac app"
+        ],
+        "docsPath": "dynamodb",
+        "ogContext": "DynamoDB · Native macOS",
+        "ogPunchline": "PartiQL editor. SigV4. ConsumedCapacity on every query.",
+        "ogVersionsHtml": "<strong>AWS DynamoDB</strong> · <strong>DynamoDB Local</strong>",
+        "ogStatValue": "PartiQL",
+        "ogStatLabel": "EDITOR",
+        "faqs": [
+            {
+                "question": "Does it support AWS SSO?",
+                "answer": "Yes. Run aws sso login first, pick the profile in TablePro. SSO tokens read from the AWS config."
+            },
+            {
+                "question": "Can I use DynamoDB Local?",
+                "answer": "Yes. Pick DynamoDB Local in the form, point at http://localhost:8000. No AWS creds needed."
+            },
+            {
+                "question": "How does TablePro show capacity?",
+                "answer": "Every query returns ConsumedCapacity from the API. Read and write units shown alongside results."
+            },
+            {
+                "question": "Does it support transactions?",
+                "answer": "Yes. TransactWriteItems via PartiQL. Multiple INSERT/UPDATE/DELETE in one transaction with rollback."
+            },
+            {
+                "question": "Can I export DynamoDB tables?",
+                "answer": "Yes. Run a scan or query, export to CSV or JSON. Streaming export handles tables of any size."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the DynamoDB plugin",
+                "text": "brew install --cask tablepro. Settings > Plugins, install DynamoDB from the registry."
+            },
+            {
+                "name": "Configure AWS Credentials",
+                "text": "aws configure or aws sso login. TablePro reads from ~/.aws/credentials."
+            },
+            {
+                "name": "Add a DynamoDB Connection",
+                "text": "Click New Connection. Pick DynamoDB. Choose AWS profile and region."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Tables appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "bigquery-client",
+        "name": "BigQuery",
+        "tagline": "The BigQuery GUI Client for Mac.",
+        "description": "Native BigQuery GUI client for Mac. Free, open source, fast. Dry-run cost estimates, AI assistant. Apple Silicon ready.",
+        "longDescription": "A fast, native BigQuery GUI client for Mac. Connect with a service account JSON or gcloud auth. Browse projects, datasets, tables; run Standard SQL with cost estimates; export streaming results. Free and open source.",
+        "features": [
+            {
+                "title": "Service Account or OAuth",
+                "description": "Service account JSON key or gcloud auth application-default login. Tokens in the macOS Keychain."
+            },
+            {
+                "title": "Dry-Run Cost Estimate",
+                "description": "Cmd+Shift+Return shows bytes processed and dollar cost before the query runs."
+            },
+            {
+                "title": "Standard SQL Editor",
+                "description": "Tree-sitter highlighting for BigQuery Standard SQL. Autocomplete for project.dataset.table paths."
+            },
+            {
+                "title": "Cross-Project Queries",
+                "description": "Reference any project you have IAM access to. Full three-part path autocompletes."
+            },
+            {
+                "title": "Streaming Result Sets",
+                "description": "Million-row queries stream from BigQuery. Cancel cleanly. Export streams to disk."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get BigQuery SQL. Suggest partitioning and clustering for cost reduction."
+            }
+        ],
+        "capabilities": [
+            "Browse projects, datasets, tables, views, routines",
+            "Run Standard SQL with cost estimate before execution",
+            "View slot consumption and query plan",
+            "Switch projects and regions with Cmd+K",
+            "Stream-export million-row results",
+            "View partitioned and clustered table metadata",
+            "Full-text search across query history",
+            "Safe mode blocks queries above a cost threshold"
+        ],
+        "supportedVersions": "Google BigQuery (all regions), BigQuery Omni",
+        "connectionTypes": [
+            "Service Account JSON",
+            "gcloud Application Default Credentials",
+            "OAuth User Auth"
+        ],
+        "snippet": "# Connect with TablePro\nProject: my-gcp-project\nAuth: Service Account JSON\nKey File: ~/.gcp/service-account.json\n\n# Or via bq CLI\nbq query --use_legacy_sql=false 'SELECT * FROM `my-gcp-project.dataset.table` LIMIT 10'",
+        "snippetLanguage": "bash",
+        "defaultPort": null,
+        "icon": "/images/databases/bigquery.svg",
+        "keywords": [
+            "bigquery client mac",
+            "bigquery gui mac",
+            "bigquery desktop client",
+            "google bigquery mac app",
+            "bigquery mac client"
+        ],
+        "docsPath": "bigquery",
+        "ogContext": "Google BigQuery · Native macOS",
+        "ogPunchline": "Standard SQL editor. Dry-run before you spend.",
+        "ogVersionsHtml": "<strong>Google BigQuery</strong> · <strong>BigQuery Omni</strong>",
+        "ogStatValue": "Dry-Run",
+        "ogStatLabel": "COSTS",
+        "faqs": [
+            {
+                "question": "How do I authenticate with BigQuery?",
+                "answer": "Two paths. Service account JSON key, or gcloud auth application-default login. TablePro picks up the local creds."
+            },
+            {
+                "question": "Does it show query cost?",
+                "answer": "Yes. Cmd+Shift+Return for a dry-run that returns bytes and estimated USD."
+            },
+            {
+                "question": "Can I query across projects?",
+                "answer": "Yes. Reference any project.dataset.table you have IAM access to. The full path autocompletes."
+            },
+            {
+                "question": "Does it support BigQuery Omni?",
+                "answer": "Yes. Omni regions on AWS and Azure work the same as Google Cloud regions."
+            },
+            {
+                "question": "Is the service account key secure?",
+                "answer": "Yes. macOS Keychain. Never on disk in plaintext."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the BigQuery plugin",
+                "text": "brew install --cask tablepro. Settings > Plugins, install BigQuery from the registry."
+            },
+            {
+                "name": "Get a Service Account Key",
+                "text": "Google Cloud Console: create a service account with BigQuery User. Download the JSON key."
+            },
+            {
+                "name": "Add a BigQuery Connection",
+                "text": "Click New Connection. Pick BigQuery. Enter project ID, select the JSON key file."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Datasets appear in the sidebar. Cmd+Shift+Return for a dry-run."
+            }
+        ]
+    },
+    {
+        "slug": "snowflake-client",
+        "name": "Snowflake",
+        "tagline": "The Snowflake GUI Client for Mac.",
+        "description": "Native Snowflake GUI client for Mac. Free, open source, fast. Key-pair, browser SSO, MFA, or token auth. AI assistant. Apple Silicon ready.",
+        "longDescription": "A fast, native Snowflake GUI client for Mac. Sign in with password and MFA, key-pair, browser SSO, or an access token. Browse databases, edit cells, run scripts, switch warehouse and role from the toolbar. Free and open source.",
+        "features": [
+            {
+                "title": "Four Auth Methods",
+                "description": "Password with MFA, key-pair JWT, browser SSO, or a programmatic access token. Secrets live in the macOS Keychain."
+            },
+            {
+                "title": "Warehouse and Role Switcher",
+                "description": "Change the active warehouse or role from the toolbar. No USE WAREHOUSE typing between queries."
+            },
+            {
+                "title": "Snowflake CLI Connections",
+                "description": "Reads ~/.snowflake/config.toml. Pick an existing CLI connection by name instead of re-entering credentials."
+            },
+            {
+                "title": "Schema-Aware Autocomplete",
+                "description": "Suggests databases, schemas, tables, columns, and Snowflake functions. Reads your schema on connect."
+            },
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell in the data grid. Add or delete rows. Review every pending change before commit. Full undo and redo."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get Snowflake SQL. Explain or rewrite slow queries. Works with Claude, OpenAI, and local Ollama models."
+            }
+        ],
+        "capabilities": [
+            "Browse databases, schemas, tables, and views",
+            "Run multiple queries in tabs with separate result sets",
+            "Switch warehouse and role from the toolbar",
+            "Edit table structure: columns, types, defaults",
+            "Import CSV and JSON files",
+            "Stream-export large result sets",
+            "Full-text search across query history",
+            "Safe mode blocks UPDATE without WHERE"
+        ],
+        "supportedVersions": "Snowflake Standard, Enterprise, Business Critical (all regions)",
+        "connectionTypes": [
+            "Username & Password (MFA supported)",
+            "Key-Pair (JWT)",
+            "Browser SSO",
+            "Programmatic Access Token"
+        ],
+        "snippet": "# Connect with TablePro\nAccount: myorg-myaccount\nUser: analyst\nAuth: Key Pair\nPrivate Key: ~/.ssh/snowflake_key.p8\nWarehouse: COMPUTE_WH\n\n# Or via Snowflake CLI\nsnow sql -q \"SELECT CURRENT_VERSION()\"",
+        "snippetLanguage": "bash",
+        "defaultPort": null,
+        "icon": "/images/databases/snowflake.svg",
+        "keywords": [
+            "snowflake client mac",
+            "snowflake gui mac",
+            "snowflake desktop client",
+            "snowsight alternative",
+            "snowflake mac app"
+        ],
+        "docsPath": "snowflake",
+        "ogContext": "Snowflake · Native macOS",
+        "ogPunchline": "Key-pair, browser SSO, MFA, or token. No JDBC.",
+        "ogVersionsHtml": "<strong>Snowflake</strong> Standard · Enterprise · Business Critical",
+        "ogStatValue": "4",
+        "ogStatLabel": "AUTH METHODS",
+        "faqs": [
+            {
+                "question": "How do I authenticate with Snowflake?",
+                "answer": "Four ways. Username and password (MFA included), key-pair JWT, browser SSO through your identity provider, or a programmatic access token."
+            },
+            {
+                "question": "Can I reuse my Snowflake CLI connections?",
+                "answer": "Yes. TablePro reads ~/.snowflake/config.toml. Pick a connection by name and it fills in account, user, and auth settings."
+            },
+            {
+                "question": "Can I switch warehouse or role without writing SQL?",
+                "answer": "Yes. Both are toolbar dropdowns. The change applies to the current session immediately."
+            },
+            {
+                "question": "Does it work with MFA?",
+                "answer": "Yes. Duo push and passcode prompts work during sign-in. Credentials stay in the macOS Keychain."
+            },
+            {
+                "question": "Does it need a JDBC or ODBC driver?",
+                "answer": "No. TablePro talks to Snowflake over its REST connector protocol. No Java runtime, nothing extra to install."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the Snowflake plugin",
+                "text": "brew install --cask tablepro. Settings > Plugins, install Snowflake from the registry."
+            },
+            {
+                "name": "Find your account identifier",
+                "text": "Snowsight: Account menu > copy account identifier. Looks like myorg-myaccount or xy12345.us-east-1."
+            },
+            {
+                "name": "Add a Snowflake Connection",
+                "text": "Click New Connection. Pick Snowflake. Enter the account identifier, user, and an auth method."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Databases appear in the sidebar. Pick a warehouse and role from the toolbar."
+            }
+        ]
+    },
+    {
+        "slug": "etcd-gui",
+        "name": "etcd",
+        "tagline": "The etcd GUI for Mac.",
+        "description": "Native etcd GUI for Mac. Free, open source, fast. gRPC, watch streams, mTLS. AI assistant included.",
+        "longDescription": "A fast, native etcd GUI for Mac. Connect to etcd 3.4 and 3.5 over gRPC HTTP/2. Browse keys hierarchically, edit values, watch live changes, view cluster member health. Free and open source.",
+        "features": [
+            {
+                "title": "Hierarchical Key Browser",
+                "description": "Browse keys as a tree by / separator. Drill into nested namespaces. Filter by prefix."
+            },
+            {
+                "title": "Inline Value Editing",
+                "description": "Edit values in a real cell editor. JSON values get a tree view with type widgets."
+            },
+            {
+                "title": "Watch Streams",
+                "description": "Subscribe to a key prefix. PUT and DELETE events stream into a panel live."
+            },
+            {
+                "title": "Cluster Health",
+                "description": "All members in the dashboard: leader, raft term, DB size, version. Spot a lagging follower."
+            },
+            {
+                "title": "TLS and Auth",
+                "description": "TLS server cert, mutual TLS with client cert and key, etcd basic auth (user/password)."
+            },
+            {
+                "title": "AI Assistant",
+                "description": "Ask in English, get gRPC operations. Suggest key naming conventions."
+            }
+        ],
+        "capabilities": [
+            "Browse keys with hierarchical / tree view",
+            "Run get, put, delete, range, txn operations",
+            "Watch key prefixes for live updates",
+            "Edit values with JSON tree editor",
+            "View cluster members and leader",
+            "Export key ranges to JSON or CSV",
+            "Full-text search across query history",
+            "Safe mode confirms before bulk delete"
+        ],
+        "supportedVersions": "etcd 3.4, 3.5, 3.6",
+        "connectionTypes": [
+            "gRPC (HTTP/2)",
+            "TLS server cert",
+            "Mutual TLS (client cert + key)",
+            "etcd Basic Auth"
+        ],
+        "snippet": "# Connect with TablePro\nEndpoints: http://127.0.0.1:2379\nUser: root\nPassword: ****\n\n# Or via etcdctl\nETCDCTL_API=3 etcdctl --endpoints=http://127.0.0.1:2379 get / --prefix",
+        "snippetLanguage": "bash",
+        "defaultPort": 2379,
+        "icon": "/images/databases/etcd.svg",
+        "keywords": [
+            "etcd gui mac",
+            "etcd client mac",
+            "etcd desktop ui",
+            "etcd ui macos",
+            "etcd browser mac"
+        ],
+        "docsPath": "etcd",
+        "ogContext": "etcd · Native macOS",
+        "ogPunchline": "gRPC over HTTP/2. Watch streams. mTLS ready.",
+        "ogVersionsHtml": "<strong>etcd</strong> 3.4 · 3.5 · 3.6",
+        "ogStatValue": "gRPC",
+        "ogStatLabel": "NATIVE",
+        "faqs": [
+            {
+                "question": "Does it support etcd v2 API?",
+                "answer": "No. v3 gRPC only. v2 has been deprecated since etcd 3.5."
+            },
+            {
+                "question": "Can I watch key changes?",
+                "answer": "Yes. Right-click a prefix, pick Watch. PUT and DELETE events stream live."
+            },
+            {
+                "question": "Does it support mutual TLS?",
+                "answer": "Yes. Pick mTLS in the form, provide client cert and key. CA bundle optional."
+            },
+            {
+                "question": "How do I view cluster health?",
+                "answer": "Server dashboard shows all members, the leader, raft term, and DB size per node."
+            },
+            {
+                "question": "Can I import key/value pairs from JSON?",
+                "answer": "Yes. Right-click a prefix, pick Import. Each top-level key becomes a put."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the etcd plugin",
+                "text": "brew install --cask tablepro. Settings > Plugins, install etcd from the registry."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick etcd."
+            },
+            {
+                "name": "Fill in the endpoints",
+                "text": "http://127.0.0.1:2379. User and password if etcd has auth. SSL tab for TLS."
+            },
+            {
+                "name": "Connect and Watch",
+                "text": "Click Connect. Key tree appears. Right-click a prefix to Watch."
+            }
+        ]
+    },
+    {
+        "slug": "cockroachdb-client",
+        "name": "CockroachDB",
+        "tagline": "The CockroachDB GUI Client for Mac.",
+        "description": "Native CockroachDB GUI client for Mac. Free, open source, fast. SQL editor, schema browser, AI assistant.",
+        "longDescription": "A fast, native CockroachDB GUI client for Mac. Connect to a single node, a self-hosted cluster, or CockroachDB Cloud over the PostgreSQL wire protocol. Browse databases, edit rows, run distributed SQL with autocomplete. Free and open source.",
+        "features": [
+            {
+                "title": "SQL Editor with Autocomplete",
+                "description": "Tree-sitter highlighting for CockroachDB SQL. Suggests tables, columns, functions, and keywords."
+            },
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell. Type-aware widgets for JSONB, ARRAY, INTERVAL, and UUID."
+            },
+            {
+                "title": "Cluster Aware",
+                "description": "Connect to single nodes, self-hosted clusters, or CockroachDB Cloud over the PostgreSQL protocol."
+            },
+            {
+                "title": "Schema Browser",
+                "description": "Browse databases, schemas, tables, indexes, and views in the sidebar."
+            },
+            {
+                "title": "Streaming Results",
+                "description": "Browse huge result sets. TablePro paginates with the driver, no client OOM."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get SQL. Explain schemas, suggest indexes."
+            }
+        ],
+        "capabilities": [
+            "Browse databases, schemas, tables, views, indexes",
+            "Run distributed SQL with autocomplete",
+            "Connect to self-hosted clusters or CockroachDB Cloud",
+            "Edit rows including JSONB and ARRAY columns",
+            "Stream-paginate huge result sets",
+            "Full-text search across query history",
+            "TLS/SSL and SSH tunnel support",
+            "Safe mode for production clusters"
+        ],
+        "supportedVersions": "CockroachDB 22.x, 23.x, 24.x, CockroachDB Cloud (Serverless & Dedicated)",
+        "connectionTypes": [
+            "TCP/IP (PostgreSQL wire protocol)",
+            "SSH Tunnel",
+            "TLS/SSL (client certificates)"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 26257\nDatabase: defaultdb\nUser: root\n\n# CockroachDB Cloud\nUse the connection string from the console",
+        "snippetLanguage": "bash",
+        "defaultPort": 26257,
+        "icon": "/images/databases/cockroachdb.svg",
+        "keywords": [
+            "cockroachdb client mac",
+            "cockroachdb gui macos",
+            "distributed sql client mac",
+            "crdb client mac",
+            "cockroachdb desktop app"
+        ],
+        "docsPath": "cockroachdb",
+        "ogContext": "CockroachDB · Native macOS",
+        "ogPunchline": "Native SQL editor. Cluster aware. Cloud ready.",
+        "ogVersionsHtml": "<strong>CockroachDB</strong> 22.x · 23.x · 24.x · <strong>Cloud</strong>",
+        "ogStatValue": "Distributed",
+        "ogStatLabel": "SQL",
+        "faqs": [
+            {
+                "question": "Does it work with CockroachDB Cloud?",
+                "answer": "Yes. Use the connection string from the CockroachDB Cloud console. TablePro connects over the PostgreSQL wire protocol."
+            },
+            {
+                "question": "Is TablePro free for CockroachDB?",
+                "answer": "Yes. AGPLv3 open source. CockroachDB is served by the PostgreSQL driver plugin."
+            },
+            {
+                "question": "Can I edit JSONB columns?",
+                "answer": "Yes. Edit JSONB and ARRAY values with type-aware widgets."
+            },
+            {
+                "question": "Does it support TLS?",
+                "answer": "Yes. Connect with client certificates over TLS/SSL, or tunnel through SSH."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the PostgreSQL plugin",
+                "text": "brew install --cask tablepro. The PostgreSQL driver also powers CockroachDB connections."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick CockroachDB."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Host, port 26257, database, user. For CockroachDB Cloud, paste the connection string."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Databases appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "elasticsearch-client",
+        "name": "Elasticsearch",
+        "tagline": "The Elasticsearch GUI Client for Mac.",
+        "description": "Native Elasticsearch GUI client for Mac. Free, open source, fast. Query DSL editor, index browser, AI assistant.",
+        "longDescription": "A fast, native Elasticsearch GUI client for Mac. Connect to a single node, a cluster, or Elastic Cloud over HTTP. Browse indices, inspect mappings, run Query DSL with autocomplete, and view documents. Free and open source.",
+        "features": [
+            {
+                "title": "Query DSL Editor",
+                "description": "Highlighting and autocomplete for Elasticsearch Query DSL. Suggests fields, queries, and aggregations."
+            },
+            {
+                "title": "Index Browser",
+                "description": "Browse indices, aliases, and mappings in the sidebar. Inspect settings and field types."
+            },
+            {
+                "title": "Document Viewer",
+                "description": "View and edit documents as JSON with syntax highlighting and validation."
+            },
+            {
+                "title": "Cluster Aware",
+                "description": "Connect to single nodes, clusters, or Elastic Cloud with API key or basic auth."
+            },
+            {
+                "title": "Streaming Results",
+                "description": "Page through large hit sets. TablePro paginates with the search API, no client OOM."
+            },
+            {
+                "title": "AI Query Assistant",
+                "description": "Ask in English, get Query DSL. Explain mappings, suggest aggregations."
+            }
+        ],
+        "capabilities": [
+            "Browse indices, aliases, and mappings",
+            "Run Query DSL with autocomplete",
+            "Connect to clusters or Elastic Cloud",
+            "View and edit documents as JSON",
+            "Inspect index settings and field types",
+            "Page through large hit sets",
+            "API key, basic auth, and TLS/SSL support",
+            "Full-text search across query history"
+        ],
+        "supportedVersions": "Elasticsearch 7.x, 8.x, Elastic Cloud",
+        "connectionTypes": [
+            "HTTP / HTTPS (REST API)",
+            "API Key",
+            "Basic Auth",
+            "SSH Tunnel"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 9200\nScheme: https\nUser: elastic\n\n# Elastic Cloud\nUse the Cloud ID and API key",
+        "snippetLanguage": "bash",
+        "defaultPort": 9200,
+        "icon": "/images/databases/elasticsearch.svg",
+        "keywords": [
+            "elasticsearch client mac",
+            "elasticsearch gui macos",
+            "query dsl client mac",
+            "elastic client mac",
+            "elasticsearch desktop app"
+        ],
+        "docsPath": "elasticsearch",
+        "ogContext": "Elasticsearch · Native macOS",
+        "ogPunchline": "Native Query DSL editor. Index aware. Cloud ready.",
+        "ogVersionsHtml": "<strong>Elasticsearch</strong> 7.x · 8.x · <strong>Elastic Cloud</strong>",
+        "ogStatValue": "Query DSL",
+        "ogStatLabel": "NATIVE",
+        "faqs": [
+            {
+                "question": "Does it work with Elastic Cloud?",
+                "answer": "Yes. Connect with your Cloud ID and an API key, or with basic auth over HTTPS."
+            },
+            {
+                "question": "Is TablePro free for Elasticsearch?",
+                "answer": "Yes. AGPLv3 open source. The Elasticsearch driver is a separate plugin from the registry."
+            },
+            {
+                "question": "Can I edit documents?",
+                "answer": "Yes. View and edit documents as JSON with highlighting and validation."
+            },
+            {
+                "question": "Does it support API keys?",
+                "answer": "Yes. Authenticate with API keys or basic auth, over HTTP or HTTPS."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the Elasticsearch plugin",
+                "text": "brew install --cask tablepro. Open Settings > Plugins, install Elasticsearch from the registry."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick Elasticsearch."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Host, port 9200, scheme, and an API key or username/password. For Elastic Cloud, use the Cloud ID."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Indices appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "scylladb-client",
+        "name": "ScyllaDB",
+        "tagline": "The ScyllaDB GUI Client for Mac.",
+        "description": "Native ScyllaDB GUI client for Mac. Free, open source, fast. CQL editor, multi-DC topology, AI assistant.",
+        "longDescription": "A fast, native ScyllaDB GUI client for Mac. Connect to ScyllaDB Open Source, Enterprise, or ScyllaDB Cloud. Browse keyspaces, edit rows, run CQL with autocomplete. Visualize ring topology. Free and open source.",
+        "features": [
+            {
+                "title": "CQL Editor with Autocomplete",
+                "description": "Tree-sitter highlighting for CQL. Suggests tables, columns, UDTs, functions, and consistency levels."
+            },
+            {
+                "title": "Inline Cell Editing",
+                "description": "Edit any cell. Widgets for UUID, TIMEUUID, INET, FROZEN collections."
+            },
+            {
+                "title": "Ring Topology View",
+                "description": "See nodes, racks, datacenters, and token ranges in the dashboard. Spot a down node fast."
+            },
+            {
+                "title": "ScyllaDB Cloud Ready",
+                "description": "Connect to ScyllaDB Cloud clusters with TLS. Multi-DC aware."
+            },
+            {
+                "title": "Streaming Pagination",
+                "description": "Browse huge partitions. TablePro paginates with the driver, no client OOM."
+            },
+            {
+                "title": "AI CQL Assistant",
+                "description": "Ask in English, get CQL. Explain schemas, suggest partition keys."
+            }
+        ],
+        "capabilities": [
+            "Browse keyspaces, tables, materialized views, UDTs",
+            "Run CQL with consistency level controls",
+            "Connect to ScyllaDB Open Source, Enterprise, and Cloud",
+            "Edit rows including frozen collections and UDTs",
+            "View ring topology and node health",
+            "Stream-paginate huge partitions",
+            "Full-text search across query history",
+            "Safe mode for production clusters"
+        ],
+        "supportedVersions": "ScyllaDB Open Source 5.x, 6.x, ScyllaDB Enterprise, ScyllaDB Cloud",
+        "connectionTypes": [
+            "TCP/IP (CQL native protocol)",
+            "SSH Tunnel",
+            "TLS/SSL"
+        ],
+        "snippet": "# Connect with TablePro\nHost: 127.0.0.1\nPort: 9042\nKeyspace: my_keyspace\nUser: scylla\n\n# ScyllaDB Cloud\nUse the node addresses and TLS",
+        "snippetLanguage": "bash",
+        "defaultPort": 9042,
+        "icon": "/images/databases/scylladb.svg",
+        "keywords": [
+            "scylladb client mac",
+            "scylladb gui macos",
+            "cql client mac",
+            "scylla client mac",
+            "scylladb desktop app"
+        ],
+        "docsPath": "scylladb",
+        "ogContext": "ScyllaDB · Native macOS",
+        "ogPunchline": "Native CQL editor. Multi-DC aware. Cloud ready.",
+        "ogVersionsHtml": "<strong>ScyllaDB</strong> 5.x · 6.x · <strong>Cloud</strong>",
+        "ogStatValue": "Multi-DC",
+        "ogStatLabel": "AWARE",
+        "faqs": [
+            {
+                "question": "Does it work with ScyllaDB Cloud?",
+                "answer": "Yes. Connect to ScyllaDB Cloud node addresses over TLS. Multi-DC aware."
+            },
+            {
+                "question": "Is TablePro free for ScyllaDB?",
+                "answer": "Yes. AGPLv3 open source. ScyllaDB is served by the Cassandra driver plugin, since ScyllaDB speaks CQL."
+            },
+            {
+                "question": "Can I see ring topology?",
+                "answer": "Yes. The dashboard shows datacenters, racks, nodes, and token ranges."
+            },
+            {
+                "question": "Does it handle frozen collections?",
+                "answer": "Yes. Edit FROZEN<list>, FROZEN<set>, FROZEN<map> with type-aware widgets."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the Cassandra plugin",
+                "text": "brew install --cask tablepro. Open Settings > Plugins, install Cassandra from the registry. ScyllaDB speaks CQL, so it uses the same driver."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick ScyllaDB."
+            },
+            {
+                "name": "Fill in the credentials",
+                "text": "Node addresses, port 9042, user, password. For ScyllaDB Cloud, use the provided endpoints and TLS."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Keyspaces appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "pglite-client",
+        "name": "PGlite",
+        "tagline": "The PGlite GUI Client for Mac.",
+        "description": "Native PGlite GUI client for Mac. Free, open source. Connects to the @electric-sql/pglite-socket server on 127.0.0.1:5432. PostgreSQL 17 in WebAssembly.",
+        "longDescription": "A fast, native PGlite GUI client for Mac. PGlite is PostgreSQL 17 compiled to WebAssembly, so TablePro reaches it through its socket server, @electric-sql/pglite-socket, using the same libpq driver as PostgreSQL. Browse the public schema, run DDL, read visual EXPLAIN plans, and edit rows the way you would against a full PostgreSQL server. Free and open source.",
+        "features": [
+            {
+                "title": "Socket Server Connection",
+                "description": "PGlite runs in-process in JavaScript, so TablePro talks to it over the PostgreSQL wire protocol through @electric-sql/pglite-socket. The socket server binds 127.0.0.1:5432 by default and uses trust auth, so the form has no password field."
+            },
+            {
+                "title": "Real PostgreSQL 17 Catalogs",
+                "description": "pg_catalog and information_schema are complete. Table and view definitions, indexes, foreign keys, and structure editing behave exactly as they do on PostgreSQL."
+            },
+            {
+                "title": "Single Connection Handling",
+                "description": "PGlite serves one client at a time, and TablePro keeps to one connection, serializing schema browsing, autocomplete, and row counts over it. Cancelling a running query has no effect at the protocol level, since PGlite has no backend process to signal."
+            },
+            {
+                "title": "Visual EXPLAIN Plans",
+                "description": "EXPLAIN and EXPLAIN ANALYZE render as a plan tree, the same view PostgreSQL connections get."
+            },
+            {
+                "title": "AI Assistant and SQL Editor",
+                "description": "Ask in English and get PostgreSQL SQL, with schema-aware autocomplete in the editor. The AI Rules pane holds per-connection guidance the assistant sees on every chat turn."
+            },
+            {
+                "title": "Import and Export",
+                "description": "Export results to CSV, JSON, SQL, or XLSX. Import from CSV, JSON, or SQL."
+            }
+        ],
+        "capabilities": [
+            "Connect over the PostgreSQL wire protocol",
+            "Browse the public schema and pg_catalog",
+            "Run DDL and edit table structure",
+            "Read visual EXPLAIN and EXPLAIN ANALYZE plan trees",
+            "Switch the active schema from the sidebar menu",
+            "Export to CSV, JSON, SQL, or XLSX",
+            "Import from CSV, JSON, or SQL",
+            "Ask the AI assistant for PostgreSQL SQL"
+        ],
+        "supportedVersions": "PGlite, a build of PostgreSQL 17 compiled to WebAssembly",
+        "connectionTypes": [
+            "Socket server (@electric-sql/pglite-socket)",
+            "TCP on loopback 127.0.0.1",
+            "Trust auth (no password)"
+        ],
+        "snippet": "# 1. Start the PGlite socket server\nnpx @electric-sql/pglite-socket            # in-memory\nnpx @electric-sql/pglite-socket --db=./my-pgdata   # persisted\n\n# 2. Connect with TablePro\nHost: 127.0.0.1\nPort: 5432\nDatabase: postgres\nUsername: postgres\n\n# Connection URL\npglite://postgres@127.0.0.1:5432/postgres",
+        "snippetLanguage": "bash",
+        "defaultPort": 5432,
+        "icon": "/images/databases/pglite.svg",
+        "keywords": [
+            "pglite gui mac",
+            "pglite client macos",
+            "pglite desktop client",
+            "pglite socket server gui",
+            "electric sql pglite client"
+        ],
+        "docsPath": "pglite",
+        "ogContext": "PGlite · Native macOS",
+        "ogPunchline": "PostgreSQL 17 in WebAssembly. One socket, one client.",
+        "ogVersionsHtml": "<strong>PGlite</strong> · <strong>PostgreSQL</strong> 17 · <strong>WebAssembly</strong>",
+        "ogStatValue": "PG 17",
+        "ogStatLabel": "WASM BUILD",
+        "faqs": [
+            {
+                "question": "Do I need to run anything before connecting?",
+                "answer": "Yes. PGlite has no server of its own. Start one with npx @electric-sql/pglite-socket, or add --db=./my-pgdata to persist, and leave it running while you use the connection."
+            },
+            {
+                "question": "Why does the connection fail on localhost?",
+                "answer": "The socket server binds loopback IPv4. Use 127.0.0.1, since localhost can resolve to IPv6 first. Also confirm the port matches the server's --port."
+            },
+            {
+                "question": "Is TablePro free for PGlite?",
+                "answer": "Yes. AGPLv3 open source. PGlite uses the built-in PostgreSQL driver, so there is no plugin to install from the registry."
+            },
+            {
+                "question": "Can I use SSH tunnel or SSL?",
+                "answer": "No. The socket server has no TLS and rejects SSL, so SSL Mode is fixed to Disabled and the SSH, Cloudflare Tunnel, and SOCKS panes do not apply."
+            },
+            {
+                "question": "Can another tool stay connected at the same time?",
+                "answer": "No. The socket server serves one client at a time, and a second client gets a too many connections error. Close the other client and reconnect."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro",
+                "text": "brew install --cask tablepro, or grab the DMG from tablepro.app/download. The PostgreSQL driver PGlite uses ships built in."
+            },
+            {
+                "name": "Start the socket server",
+                "text": "Run npx @electric-sql/pglite-socket, or npx @electric-sql/pglite-socket --db=./my-pgdata to persist. Leave it running."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection, pick PGlite. Host 127.0.0.1, port 5432, database postgres, username postgres. There is no password field."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Save & Connect. The public schema appears in the sidebar, and Cmd+K lists the single postgres database."
+            }
+        ]
+    },
+    {
+        "slug": "surrealdb-client",
+        "name": "SurrealDB",
+        "tagline": "The SurrealDB GUI Client for Mac.",
+        "description": "Native SurrealDB GUI client for Mac. Free, open source, fast. HTTP RPC over CBOR, namespace and database browsing, SurrealQL editor, AI assistant.",
+        "longDescription": "A fast, native SurrealDB GUI client for Mac. Connects to SurrealDB 2.x and 3.x over the HTTP RPC protocol, with CBOR on the wire so record links, datetimes, durations, decimals, and UUIDs keep their types instead of arriving as plain strings. Browse namespaces and databases in the sidebar, run SurrealQL in the editor, and edit records inline in the data grid. Free and open source.",
+        "features": [
+            {
+                "title": "Namespace and Database Tree",
+                "description": "Namespaces sit at the top of the sidebar, databases sit inside them, tables sit inside a database. Switch either level without reconnecting."
+            },
+            {
+                "title": "CBOR Typed Values",
+                "description": "The driver talks CBOR, so record links, datetimes, durations, decimals, and UUIDs arrive typed. A record link shows as table:id, objects and arrays show as compact JSON."
+            },
+            {
+                "title": "Five Auth Levels",
+                "description": "Sign in as Root, Namespace, Database, Record Access, or with a JWT you already hold, including SurrealDB Cloud. Record Access takes the name from DEFINE ACCESS."
+            },
+            {
+                "title": "Field-Level Record Editing",
+                "description": "Changing a cell runs an UPDATE that sets only the fields you touched, so computed FUTURE fields and fields another writer changed are left alone. Values go out as typed parameters, never as SurrealQL."
+            },
+            {
+                "title": "Schemaless Column Inference",
+                "description": "A SCHEMALESS table has no declared fields, so TablePro reads columns from the rows it fetched. A field only some records carry still gets a column."
+            },
+            {
+                "title": "SurrealQL Editor and AI",
+                "description": "The Explain button runs the current query with EXPLAIN or EXPLAIN FULL to show how it resolves, for example whether an index is used. Ask the AI assistant in English and get SurrealQL back."
+            }
+        ],
+        "capabilities": [
+            "Browse namespaces, databases, and tables",
+            "Run SurrealQL in the query editor",
+            "Edit records inline, one field per UPDATE",
+            "Sign in at root, namespace, database, record, or token level",
+            "Inspect plans with EXPLAIN and EXPLAIN FULL",
+            "Connect over HTTPS, SSH tunnel, or SOCKS5",
+            "Open surrealdb:// URLs from the browser or terminal",
+            "Safe mode for production servers"
+        ],
+        "supportedVersions": "SurrealDB 2.x and 3.x (1.x is not supported)",
+        "connectionTypes": [
+            "HTTP RPC",
+            "HTTPS (SSL/TLS)",
+            "Root, Namespace, or Database auth",
+            "Record Access",
+            "JWT Token, including SurrealDB Cloud",
+            "SSH Tunnel",
+            "Cloudflare Tunnel",
+            "SOCKS5 Proxy"
+        ],
+        "snippet": "-- Connect with TablePro\n-- Host: 127.0.0.1  Port: 8000\n-- Auth Level: Root  Namespace: test  Database: app\n\nSELECT * FROM person WHERE age > 18;\n\n-- Transactions run as a single query in the editor\nBEGIN TRANSACTION;\nUPDATE person:tobie SET age = 31;\nCOMMIT TRANSACTION;",
+        "snippetLanguage": "sql",
+        "defaultPort": 8000,
+        "icon": "/images/databases/surrealdb.svg",
+        "keywords": [
+            "surrealdb gui mac",
+            "surrealdb client macos",
+            "surrealdb desktop client",
+            "surrealql editor mac",
+            "surrealdb browser mac"
+        ],
+        "docsPath": "surrealdb",
+        "ogContext": "SurrealDB · Native macOS",
+        "ogPunchline": "HTTP RPC over CBOR. Typed records, not strings.",
+        "ogVersionsHtml": "<strong>SurrealDB</strong> 2.x · 3.x · <strong>HTTP RPC</strong>",
+        "ogStatValue": "CBOR",
+        "ogStatLabel": "WIRE FORMAT",
+        "faqs": [
+            {
+                "question": "Does it work with SurrealDB 1.x?",
+                "answer": "No. TablePro supports SurrealDB 2.x and 3.x over the HTTP RPC protocol. 1.x is not supported."
+            },
+            {
+                "question": "Which auth level should I pick?",
+                "answer": "SurrealDB cannot infer which level your credentials belong to. Root for a DEFINE USER ON ROOT user, Namespace or Database for users scoped to those, Record Access for a DEFINE ACCESS TYPE RECORD user, Token for a JWT. Only a root user can list every namespace."
+            },
+            {
+                "question": "Is TablePro free for SurrealDB?",
+                "answer": "Yes. AGPLv3 open source. The SurrealDB driver is a registry plugin, so picking SurrealDB in the chooser prompts to install it, and connecting to a saved SurrealDB connection installs it without asking."
+            },
+            {
+                "question": "Can I run multi-statement transactions?",
+                "answer": "Each HTTP request is independent, so BEGIN in one request cannot affect another. Run BEGIN TRANSACTION; ... COMMIT TRANSACTION; as a single query in the editor. Live queries with LIVE SELECT are not supported."
+            },
+            {
+                "question": "Can I create fields and indexes from the UI?",
+                "answer": "No. The structure editor is read-only for SurrealDB. Use DEFINE FIELD and DEFINE INDEX in the query editor instead."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the SurrealDB plugin",
+                "text": "brew install --cask tablepro. Open Settings > Plugins > Browse and install SurrealDB Driver."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick SurrealDB from the chooser sheet."
+            },
+            {
+                "name": "Fill in host, port, and auth level",
+                "text": "Host localhost, port 8000, then pick Root, Namespace, Database, Record Access, or Token. Set Namespace for every level except Root and Token. Use the SSL/TLS pane to connect over HTTPS."
+            },
+            {
+                "name": "Connect",
+                "text": "Click Connect. Namespaces appear in the sidebar, databases nest inside them, tables inside a database. Leave Database empty to pick one after connecting."
+            }
+        ]
+    },
+    {
+        "slug": "teradata-client",
+        "name": "Teradata",
+        "tagline": "The Teradata GUI Client for Mac.",
+        "description": "Native Teradata GUI client for Mac. Free, open source, fast. Swift wire-protocol driver, TD2 and TDNEGO logon, TLS on 443. No ODBC or JDBC.",
+        "longDescription": "A fast, native Teradata GUI client for Mac. The driver is written in Swift and speaks the Teradata wire protocol directly, so there is no ODBC driver and no JDBC jar to install. Log on with TD2 or TDNEGO, pick DEFAULT, ANSI, or TERA transaction mode, and browse databases, tables, views, and columns straight from the data dictionary. Free and open source.",
+        "features": [
+            {
+                "title": "Native Swift Driver",
+                "description": "Speaks the Teradata wire protocol directly against Teradata Vantage. No ODBC driver and no JDBC jar to install."
+            },
+            {
+                "title": "Logon and Transaction Modes",
+                "description": "Type TD2 or TDNEGO for the logon mechanism, and DEFAULT, ANSI, or TERA for transaction mode. Both live in the Advanced pane and both are uppercase."
+            },
+            {
+                "title": "TLS Over Port 443",
+                "description": "Encrypted sessions tunnel over the gateway WebSocket endpoint on port 443, separate from the plain 1025 gateway. Preferred, Required, Verify CA, and Verify Identity modes are supported."
+            },
+            {
+                "title": "Data Dictionary Browser",
+                "description": "Databases and users are both namespaces, listed as top-level databases from DBC.DatabasesV. Tables, views, and columns come from DBC.TablesV and DBC.ColumnsV."
+            },
+            {
+                "title": "Paging Without LIMIT",
+                "description": "Teradata has no LIMIT clause. The result grid pages with TOP on the first page and QUALIFY ROW_NUMBER() for later pages, with identifiers quoted in double quotes."
+            },
+            {
+                "title": "AI SQL Assistant",
+                "description": "Ask in English, get Teradata SQL in the editor. Per-connection AI Rules give the assistant guidance on every chat turn."
+            }
+        ],
+        "capabilities": [
+            "Browse databases and users from DBC.DatabasesV",
+            "List tables, views, and columns from the data dictionary",
+            "Log on with TD2 or TDNEGO",
+            "Switch transaction mode between DEFAULT, ANSI, and TERA",
+            "Connect over TLS on port 443 with CA verification",
+            "Reach the gateway through SSH, Cloudflare Tunnel, or SOCKS5",
+            "Page large results with TOP and QUALIFY ROW_NUMBER()",
+            "Set Safe Mode to read-only on production"
+        ],
+        "supportedVersions": "Teradata Vantage",
+        "connectionTypes": [
+            "TD2 logon",
+            "TDNEGO logon",
+            "TLS on port 443",
+            "SSH Tunnel",
+            "Cloudflare Tunnel",
+            "SOCKS5 Proxy"
+        ],
+        "snippet": "# Connect with TablePro\nHost: vantage.example.com\nPort: 1025\nUser: dbc\nDatabase: retail\n\n# Advanced pane, uppercase only\nLogon Mechanism: TD2\nTransaction Mode: DEFAULT\n\n# TLS moves the session to 443\nSSL Mode: Required",
+        "snippetLanguage": "bash",
+        "defaultPort": 1025,
+        "icon": "/images/databases/teradata.svg",
+        "keywords": [
+            "teradata client mac",
+            "teradata gui macos",
+            "teradata vantage client mac",
+            "teradata desktop client",
+            "teradata sql editor mac"
+        ],
+        "docsPath": "teradata",
+        "ogContext": "Teradata · Native macOS",
+        "ogPunchline": "Native Swift wire protocol. No ODBC, no JDBC jar.",
+        "ogVersionsHtml": "<strong>Teradata Vantage</strong> · <strong>TD2</strong> · <strong>TDNEGO</strong>",
+        "ogStatValue": "0",
+        "ogStatLabel": "JDBC JARS",
+        "faqs": [
+            {
+                "question": "Do I need the Teradata ODBC driver or a JDBC jar?",
+                "answer": "No. The driver is written in Swift and speaks the Teradata wire protocol directly. There is nothing to install outside TablePro."
+            },
+            {
+                "question": "Does it support LDAP, Kerberos, or JWT logon?",
+                "answer": "No. TD2 and TDNEGO only. An unsupported mechanism fails before connecting with unsupported: logon mechanism LDAP; only TD2 and TDNEGO are supported. A mechanism typed in lowercase is ignored and TD2 is used instead."
+            },
+            {
+                "question": "Can I change the TLS port?",
+                "answer": "No. Teradata carries encrypted sessions on port 443 and that port is fixed. Preferred falls back to a plain connection on 1025 if 443 is unreachable, so use Required when you want a failed handshake to surface."
+            },
+            {
+                "question": "Is TablePro free for Teradata?",
+                "answer": "Yes. AGPLv3 open source. The Teradata driver is a registry plugin, installed from Settings > Plugins > Browse > Teradata Driver, and it loads without restarting the app."
+            },
+            {
+                "question": "Why is the Foreign Keys view empty?",
+                "answer": "Foreign keys are never listed for Teradata. The Structure tab shows the view and it stays empty. Macros and stored procedures are not listed either."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the Teradata plugin",
+                "text": "brew install --cask tablepro. Open Settings > Plugins > Browse and install Teradata Driver. It loads without a restart."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Click New Connection. Pick Teradata from the chooser."
+            },
+            {
+                "name": "Fill in the gateway details",
+                "text": "Host, port 1025, username, password. Database is optional. Set TD2 or TDNEGO and the transaction mode in the Advanced pane."
+            },
+            {
+                "name": "Turn on TLS and connect",
+                "text": "Set SSL Mode to Required to move the session to port 443, then click Test Connection and Save & Connect. Databases appear in the sidebar."
+            }
+        ]
+    },
+    {
+        "slug": "trino-client",
+        "name": "Trino",
+        "tagline": "The Trino GUI Client for Mac.",
+        "description": "Native Trino GUI client for Mac. Free, open source. Speaks the Trino REST protocol over HTTP, no JDBC jar. Cross-catalog queries, AI assistant.",
+        "longDescription": "A native Trino GUI client for Mac, written in Swift. It speaks the Trino client REST protocol directly over HTTP, so there is no JDBC jar and no CLI to install. Queries run through POST /v1/statement and TablePro pages the results until the cluster is done. Browse every catalog on the coordinator, run cross-catalog SQL, and read five EXPLAIN variants without leaving the editor. Free and open source.",
+        "features": [
+            {
+                "title": "Native REST Protocol Driver",
+                "description": "The driver is written in Swift and talks to the coordinator over the Trino client REST protocol. Statements go to POST /v1/statement and results page in until the cluster finishes."
+            },
+            {
+                "title": "Cross-Catalog Browsing",
+                "description": "Catalogs come from SHOW CATALOGS, schemas from SHOW SCHEMAS, and tables and columns from each catalog's information_schema. Materialized views appear next to tables and views, and row counts come from SHOW STATS."
+            },
+            {
+                "title": "Five EXPLAIN Variants",
+                "description": "The Explain dropdown runs EXPLAIN, EXPLAIN (TYPE DISTRIBUTED), EXPLAIN (TYPE IO), EXPLAIN (TYPE VALIDATE), and EXPLAIN ANALYZE. Validate parses the query without running it."
+            },
+            {
+                "title": "Exact Number Handling",
+                "description": "bigint and decimal are read as exact text instead of floating point. varbinary shows as hex, array, map, and row show as JSON, and json values open in the JSON viewer."
+            },
+            {
+                "title": "Row Edits Without Keys",
+                "description": "Cell edits write INSERT, UPDATE, and DELETE back. Trino's information_schema reports no primary keys, so the WHERE clause matches every comparable column of the row as it was read."
+            },
+            {
+                "title": "AI Assistant and SQL Editor",
+                "description": "Ask in English and get Trino SQL, with per-connection AI Rules the assistant sees on every turn. The editor quotes identifiers with double quotes and pages results using OFFSET n ROWS FETCH NEXT m ROWS ONLY."
+            }
+        ],
+        "capabilities": [
+            "Browse catalogs, schemas, tables, views, materialized views",
+            "Query across catalogs with catalog.schema.table names",
+            "Run five EXPLAIN variants from the query editor",
+            "Edit rows and write INSERT, UPDATE, DELETE back",
+            "Create tables and alter columns in the Structure tab",
+            "Authenticate with LDAP, password file, or JWT over TLS",
+            "Reach a coordinator through SSH tunnel, Cloudflare Tunnel, or SOCKS5",
+            "Export query results to CSV, JSON, and more"
+        ],
+        "supportedVersions": "Trino coordinators serving the v1 client REST protocol. Presto uses the same protocol under a different header prefix, and the current driver targets Trino.",
+        "connectionTypes": [
+            "HTTP (port 8080)",
+            "HTTPS (port 8443)",
+            "Username & Password (HTTP Basic, LDAP or password file)",
+            "JWT Access Token (bearer)",
+            "Client certificate (mutual TLS)",
+            "SSH Tunnel, Cloudflare Tunnel, SOCKS5 proxy"
+        ],
+        "snippet": "-- Connect with TablePro\n-- Host: trino.internal   Port: 8080 (8443 when the coordinator serves HTTPS)\n-- User: analyst   Catalog: hive   Schema: default\n\nSHOW CATALOGS;\n\n-- Name objects in full to query across catalogs\nSELECT o.orderkey, c.name\nFROM hive.default.orders o\nJOIN postgresql.public.customer c ON c.custkey = o.custkey\nOFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY;",
+        "snippetLanguage": "sql",
+        "defaultPort": 8080,
+        "icon": "/images/databases/trino.svg",
+        "keywords": [
+            "trino client mac",
+            "trino gui macos",
+            "trino desktop client",
+            "trino sql editor mac",
+            "trino query tool mac"
+        ],
+        "docsPath": "trino",
+        "ogContext": "Trino · Native macOS",
+        "ogPunchline": "The Trino REST protocol, spoken in native Swift.",
+        "ogVersionsHtml": "<strong>Trino</strong> · <strong>REST</strong> POST /v1/statement · <strong>no JDBC</strong>",
+        "ogStatValue": "0",
+        "ogStatLabel": "JDBC JARS",
+        "faqs": [
+            {
+                "question": "Do I need the Trino JDBC jar or the CLI?",
+                "answer": "No. The driver is native Swift and speaks the Trino client REST protocol over HTTP. Statements run through POST /v1/statement."
+            },
+            {
+                "question": "Does it work with Presto?",
+                "answer": "Presto uses the same protocol under a different header prefix, but the current driver targets Trino. Presto is not a supported target."
+            },
+            {
+                "question": "Is TablePro free for Trino?",
+                "answer": "Yes. AGPLv3 open source. The Trino driver is a registry plugin, not bundled. Install it from Settings > Plugins > Browse > Trino Driver, or accept the prompt when you pick Trino in the type chooser. It loads without restarting the app."
+            },
+            {
+                "question": "Can I edit rows and change schema?",
+                "answer": "Yes. Cell edits write INSERT, UPDATE, and DELETE, and the Structure tab creates tables and adds, drops, renames, and retypes columns. Whether a write succeeds depends on the catalog's connector, so a valid statement can still return NOT_SUPPORTED."
+            },
+            {
+                "question": "Does password or JWT auth need TLS?",
+                "answer": "Yes. Trino requires TLS for any authentication, so set an SSL mode when you use Username & Password or JWT Access Token. Kerberos and OAuth 2.0 are not supported."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and the Trino plugin",
+                "text": "brew install --cask tablepro. Open Settings > Plugins > Browse and install Trino Driver. It loads without a restart."
+            },
+            {
+                "name": "Open New Connection",
+                "text": "Press Cmd+N and pick Trino from the database type chooser."
+            },
+            {
+                "name": "Fill in the coordinator details",
+                "text": "Host, port 8080 for HTTP or 8443 for HTTPS, and the username the query runs as. Catalog and schema are optional. Set an SSL mode and pick Username & Password or JWT Access Token in the Authentication pane if the cluster requires credentials."
+            },
+            {
+                "name": "Test and connect",
+                "text": "Click Test Connection, then Save & Connect. Catalogs appear in the sidebar. Expand one to see its schemas and tables."
+            }
+        ]
+    },
+    {
+        "slug": "beancount-client",
+        "name": "Beancount",
+        "tagline": "The Beancount GUI Client for Mac.",
+        "description": "Native Beancount GUI client for Mac. Free and open source. Opens .beancount ledgers read-only as SQL tables, with BQL queries through rledger.",
+        "longDescription": "A native Beancount GUI client for Mac. Open a .beancount ledger read-only and browse transactions, postings, accounts, prices, computed balances, and balance assertions as SQL tables. Parsing runs through rledger or the Python beancount package, which you install yourself, and BQL queries run through rledger. Free and open source.",
+        "features": [
+            {
+                "title": "Ledger As SQL Tables",
+                "description": "The driver projects a ledger into seven tables: transactions, postings, accounts, prices, balances, balance_assertions, and source_files. Browse them in the sidebar like any other database."
+            },
+            {
+                "title": "Resolved Amounts",
+                "description": "Thousands separators, arithmetic, cost annotations in braces, and price annotations with @ or @@ arrive already booked from the backend parser. Postings carry cost_number and cost_currency."
+            },
+            {
+                "title": "BQL In The Editor",
+                "description": "Prefix a query with BQL: to run it through rledger. Table browsing, row counts, and pagination work on BQL results, though BQL does not accept SQL parameters."
+            },
+            {
+                "title": "Two Parser Backends",
+                "description": "TablePro looks for an rledger executable first, then a python3 that can import beancount. Point at either one with TABLEPRO_RUSTLEDGER_BINARY or TABLEPRO_BEANCOUNT_PYTHON, or pin a choice with TABLEPRO_BEANCOUNT_BACKEND."
+            },
+            {
+                "title": "Include Directives Followed",
+                "description": "Literal includes and glob patterns such as include \"imports/*.beancount\" and include \"imports/**/*.beancount\" are parsed. Every file that was read shows up in source_files."
+            },
+            {
+                "title": "Read-Only By Design",
+                "description": "Beancount connections never write. Schema editing, imports, SSH, SSL, and database switching are off, so the plain-text ledger stays the single source of truth."
+            }
+        ],
+        "capabilities": [
+            "Open .beancount ledgers as read-only connections",
+            "Browse transactions, postings, and accounts as tables",
+            "Read computed balances and balance assertions",
+            "Follow include directives and glob patterns",
+            "Run BQL queries through rledger",
+            "Inspect every parsed ledger and include file",
+            "Export projected tables and query results",
+            "Filter and paginate large posting sets"
+        ],
+        "supportedVersions": "Beancount ledgers parsed by rledger (rustledger) or the Python beancount package",
+        "connectionTypes": [
+            "Local file (.beancount)",
+            "beancount:/// connection URL"
+        ],
+        "snippet": "# Install a backend first, TablePro bundles neither\npip3 install beancount\nrledger --version\n\n# If TablePro cannot find it, set the path and relaunch\nlaunchctl setenv TABLEPRO_RUSTLEDGER_BINARY /opt/homebrew/bin/rledger\n\n# Then open the ledger\nbeancount:///path/to/main.beancount",
+        "snippetLanguage": "bash",
+        "defaultPort": null,
+        "icon": "/images/databases/beancount.svg",
+        "keywords": [
+            "beancount gui mac",
+            "beancount viewer macos",
+            "beancount sql query",
+            "plain text accounting mac",
+            "beancount ledger client"
+        ],
+        "docsPath": "beancount",
+        "ogContext": "Beancount · Native macOS",
+        "ogPunchline": "Plain-text ledgers, projected into SQL tables.",
+        "ogVersionsHtml": "<strong>Beancount</strong> ledgers · <strong>rledger</strong> · <strong>Python Beancount</strong>",
+        "ogStatValue": "7",
+        "ogStatLabel": "PROJECTED TABLES",
+        "faqs": [
+            {
+                "question": "Can I edit my ledger from TablePro?",
+                "answer": "No. Beancount connections are read-only. Browse and export the projected tables here, and make edits in your text editor."
+            },
+            {
+                "question": "Do I need to install anything besides TablePro?",
+                "answer": "Yes. TablePro bundles neither parser. Run pip3 install beancount, or put an rledger executable on PATH, in /opt/homebrew/bin, or in /usr/local/bin. When both exist, rledger is used."
+            },
+            {
+                "question": "rledger works in Terminal but TablePro says no backend was found. Why?",
+                "answer": "An app launched from Finder does not inherit your shell PATH. Run launchctl setenv TABLEPRO_RUSTLEDGER_BINARY with the full path, or TABLEPRO_BEANCOUNT_PYTHON for the Python backend, then relaunch TablePro."
+            },
+            {
+                "question": "Can I run BQL queries?",
+                "answer": "Yes. Prefix the query with BQL: and it runs through rledger. BQL always needs the rledger executable, even when the ledger was opened on the Python backend."
+            },
+            {
+                "question": "Is TablePro free for Beancount?",
+                "answer": "Yes. AGPLv3 open source. The Beancount driver is a registry plugin rather than a bundled driver, so TablePro offers to download it the first time you open a ledger."
+            }
+        ],
+        "howToSteps": [
+            {
+                "name": "Install TablePro and a parser backend",
+                "text": "brew install --cask tablepro. Then run pip3 install beancount, or put an rledger executable on PATH."
+            },
+            {
+                "name": "Install the Beancount plugin",
+                "text": "Open Settings > Plugins and install Beancount from the registry. TablePro also prompts to download it when you pick a ledger."
+            },
+            {
+                "name": "Create the connection",
+                "text": "Press Cmd+N, choose Beancount, click Browse... and select your .beancount file."
+            },
+            {
+                "name": "Connect and query",
+                "text": "Click Save & Connect. The projected tables appear in the sidebar. Cmd+T opens a query tab, and a BQL: prefix runs the query through rledger."
+            }
+        ]
+    }
+]

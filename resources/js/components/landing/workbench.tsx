@@ -1,0 +1,222 @@
+import { ReactNode } from 'react';
+import Container from '@/components/ui/container';
+import { FullLine } from '@/components/ui/full-line';
+import Kbd from '@/components/ui/kbd';
+import { Ledger, LedgerRow } from '@/components/ui/ledger';
+import SectionShell from '@/components/ui/section-shell';
+import ThemedImage from '@/components/ui/themed-image';
+
+interface Shot {
+    light: string;
+    dark: string;
+    alt: string;
+}
+
+interface Row {
+    index: string;
+    title: string;
+    body: string;
+    shot: Shot;
+    rows: { label: string; value: ReactNode }[];
+}
+
+/** Inline literal, for file extensions and vim commands that are not shortcuts. */
+function Mono({ children }: { children: ReactNode }) {
+    return <span className="font-mono text-[12px] text-foreground/80">{children}</span>;
+}
+
+/**
+ * The screenshot cell carries the row's only interior hairline: a top rule while
+ * the row is stacked, and the vertical divider once the row splits at lg. Which
+ * vertical side it lands on flips with the row's parity, because the copy cell
+ * reorders past it.
+ */
+const SHOT_BORDER_ODD = 'border-gray-950/5 max-lg:border-t lg:border-l dark:border-white/10';
+const SHOT_BORDER_EVEN = 'border-gray-950/5 max-lg:border-t lg:border-r dark:border-white/10';
+
+const ROWS: Row[] = [
+    {
+        index: '01',
+        title: 'SQL Editor',
+        body: 'Tree-sitter highlighting, schema-aware autocomplete that resolves aliases through JOINs and CTEs from the first character, and multi-statement batches that run inside one transaction where the engine supports it. If statement three of five fails, the error names statement three and the whole batch rolls back.',
+        shot: {
+            light: '/images/features/sql-editor-light.png',
+            dark: '/images/features/sql-editor-dark.png',
+            alt: 'The SQL editor with a multi-statement query and its result tabs below.',
+        },
+        rows: [
+            {
+                label: 'Run',
+                value: (
+                    <>
+                        <Kbd>⌘⏎</Kbd> statement at cursor · <Kbd>⌘⇧⏎</Kbd> all · <Kbd>⌘⌥⏎</Kbd> uncapped ·{' '}
+                        <Kbd>⌘.</Kbd> cancel
+                    </>
+                ),
+            },
+            {
+                label: 'Format',
+                value: (
+                    <>
+                        <Kbd>⌘⇧L</Kbd>, two-space indent, comments, strings and your cursor preserved
+                    </>
+                ),
+            },
+            {
+                label: 'Row cap',
+                value: '10,000 by default, 100 to 500,000. The SQL is never rewritten, so your own LIMIT always wins.',
+            },
+            {
+                label: 'Vim',
+                value: (
+                    <>
+                        Six modes, motions, text objects, registers, marks, macros. <Mono>:w</Mono> runs the query.
+                    </>
+                ),
+            },
+            {
+                label: 'Files',
+                value: (
+                    <>
+                        Opens <Mono>.sql</Mono>, <Mono>.psql</Mono>, <Mono>.pgsql</Mono> and saves back to disk, with a
+                        side-by-side diff if the file changed underneath you
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        index: '02',
+        title: 'Data Grid',
+        body: 'Edit cells inline with the right editor for the type: a calendar for timestamps, a searchable list of referenced values for foreign keys, a three-state checkbox for nullable booleans, multi-select for MySQL SET columns. Nothing reaches the database until you press Save.',
+        shot: {
+            light: '/images/features/data-grid-light.png',
+            dark: '/images/features/data-grid-dark.png',
+            alt: 'The data grid with edited cells highlighted and a pending-changes count in the toolbar.',
+        },
+        rows: [
+            {
+                label: 'Filter',
+                value: '18 operators, or a raw WHERE clause with column autocomplete after AND and OR',
+            },
+            {
+                label: 'Navigate',
+                value: (
+                    <>
+                        Foreign key cells open the referenced row. <Kbd>⌘</Kbd>-click opens it in a new tab.
+                    </>
+                ),
+            },
+            {
+                label: 'Commit',
+                value: (
+                    <>
+                        <Kbd>⌘S</Kbd> saves. <Kbd>⌘⇧P</Kbd> shows the exact parameterized SQL first, values inlined.
+                    </>
+                ),
+            },
+            {
+                label: 'Undo',
+                value: (
+                    <>
+                        <Kbd>⌘Z</Kbd> is focus aware. A multi-row delete is a single undo.
+                    </>
+                ),
+            },
+            { label: 'Copy as', value: 'CSV, JSON, Markdown, IN clause, INSERT, UPDATE' },
+        ],
+    },
+    {
+        index: '03',
+        title: 'AI Assistant',
+        body: 'Thirteen providers, all bring your own key or your own account. Claude, OpenAI, Gemini, xAI, OpenRouter, GitHub Copilot, Cursor, OpenCode Zen, or fully local with Ollama, llama.cpp and MLX. Keys live in the macOS Keychain and are deleted with the provider.',
+        shot: {
+            light: '/images/features/ai-assistant-light.png',
+            dark: '/images/features/ai-assistant-dark.png',
+            alt: 'The AI assistant showing a before and after diff of a rewritten query with numbered explanation steps.',
+        },
+        rows: [
+            {
+                label: 'Explain',
+                value: (
+                    <>
+                        <Kbd>⌘L</Kbd>. <Kbd>⌘⌥L</Kbd> optimizes. A failed query grows a Fix with AI button.
+                    </>
+                ),
+            },
+            {
+                label: 'Diff',
+                value: 'Before and after, unified or split, with numbered steps tagged Critical, Change or Context',
+            },
+            { label: 'Apply', value: 'Nothing reaches your editor until you press Apply' },
+            {
+                label: 'Modes',
+                value: 'Ask is read only. Edit adds writes. Agent adds destructive operations behind a typed phrase.',
+            },
+        ],
+    },
+];
+
+export default function Workbench() {
+    return (
+        <SectionShell
+            id="features"
+            label="The workbench"
+            headline="Write, run, edit, commit."
+            headlineMuted="In one window."
+            lede="Every result is a tab. Every edit queues in memory until you save. Nothing runs against your database that you have not read first."
+        >
+            <FullLine />
+            <Container>
+                {ROWS.map((row, i) => {
+                    const isEven = (i + 1) % 2 === 0;
+
+                    return (
+                        <div key={row.index}>
+                            <div
+                                className={`lg:grid lg:grid-cols-[minmax(0,24rem)_1fr] lg:items-stretch ${
+                                    isEven ? 'lg:[&>*:first-child]:order-2' : ''
+                                }`}
+                            >
+                                <div className="p-6 sm:p-8 lg:p-10">
+                                    <p
+                                        className="font-mono text-xs font-semibold tracking-widest text-primary-strong"
+                                        aria-hidden="true"
+                                    >
+                                        {row.index}
+                                    </p>
+                                    <h3 className="mt-3 text-lg font-semibold tracking-tight">{row.title}</h3>
+                                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
+                                        {row.body}
+                                    </p>
+
+                                    <Ledger className="mt-6 -mx-6 border-t border-gray-950/5 sm:-mx-8 lg:-mx-10 dark:border-white/10">
+                                        {row.rows.map((item) => (
+                                            <LedgerRow key={item.label} label={item.label}>
+                                                {item.value}
+                                            </LedgerRow>
+                                        ))}
+                                    </Ledger>
+                                </div>
+
+                                <div
+                                    className={`relative overflow-hidden ${isEven ? SHOT_BORDER_EVEN : SHOT_BORDER_ODD}`}
+                                >
+                                    <ThemedImage
+                                        light={{ src: row.shot.light }}
+                                        dark={{ src: row.shot.dark }}
+                                        alt={row.shot.alt}
+                                        width={3024}
+                                        height={1722}
+                                        className={`w-[145%] max-w-none ${isEven ? '-translate-x-[45%]' : 'translate-x-0'}`}
+                                    />
+                                </div>
+                            </div>
+                            <FullLine />
+                        </div>
+                    );
+                })}
+            </Container>
+        </SectionShell>
+    );
+}

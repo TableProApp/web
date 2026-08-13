@@ -1,0 +1,32 @@
+name: linter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+# Deliberately read-only. The upstream repository auto-committed Pint fixes,
+# which is unsafe once pull requests arrive from forks: it would hand a write
+# token to a workflow run whose input an outside contributor controls. Here the
+# job only reports, and the contributor runs `vendor/bin/pint` themselves.
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Check code style
+        run: ./vendor/bin/pint --test

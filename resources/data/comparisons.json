@@ -1,0 +1,1640 @@
+[
+    {
+        "slug": "dbeaver",
+        "name": "DBeaver",
+        "tagline": "Free, Native DBeaver Alternative for Mac.",
+        "description": "Native DBeaver alternative for Mac. 80 MB RAM, instant startup, no Java. Free and open source. 18 databases.",
+        "longDescription": "DBeaver is a popular cross-platform database tool licensed Apache 2.0. The Community Edition is free; DBeaver PRO starts at $99 per year. It runs on Java 21 via the Eclipse RCP. On Mac you'll see 8+ second cold starts and 800 MB of RAM at idle on the same connections where TablePro starts in 1 second and idles at 80 MB.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "Free / from $99/yr PRO"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "Java (Eclipse RCP)"
+            },
+            {
+                "label": "Startup Time",
+                "tablePro": "<1s",
+                "competitor": "~8s"
+            },
+            {
+                "label": "Memory Usage",
+                "tablePro": "~80 MB",
+                "competitor": "~800 MB"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "100+"
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iCloud Sync",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Inline Editing",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "ER Diagrams",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Native Drivers",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Dark Mode",
+                "tablePro": true,
+                "competitor": true
+            }
+        ],
+        "prosTablePro": [
+            "Cold start under 1 second vs ~8 seconds",
+            "80 MB at idle vs ~800 MB",
+            "Native macOS, no Java runtime",
+            "AI SQL assistant in the free tier",
+            "iOS app with iCloud sync",
+            "Open source under AGPLv3"
+        ],
+        "prosCompetitor": [
+            "100+ database drivers in the Community Edition",
+            "Apache 2.0 licensed, large GitHub community",
+            "Cross-platform parity (Windows, Mac, Linux)",
+            "Mature feature set after a decade of releases"
+        ],
+        "chooseTablePro": "you want a Mac-native app with a one-second start and 80 MB of RAM, free, with AI built in.",
+        "chooseCompetitor": "you need a database TablePro doesn't yet support, or you work across Linux and Windows often.",
+        "verdict": "DBeaver is solid on every OS. TablePro is faster and lighter on Mac because it skips Java. Pick the one that matches where you work.",
+        "keywords": [
+            "dbeaver alternative",
+            "dbeaver vs tablepro",
+            "dbeaver alternative mac",
+            "dbeaver too slow"
+        ],
+        "ogTableProMetaHtml": "<strong>SwiftUI</strong> · &lt;1s start<br>~80 MB RAM<br>Native macOS",
+        "ogCompetitorMetaHtml": "<strong>Java/Eclipse</strong> · ~8s start<br>~800 MB RAM<br>Cross-platform",
+        "ogPunchline": "Mac-native. No Java. 10x lighter. Free.",
+        "ogStatValue": "10×",
+        "ogStatLabel": "LESS RAM",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "5-15s",
+                "memory": "600 MB - 1 GB",
+                "download": "~118 MB"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro. DBeaver stays installed."
+            },
+            {
+                "title": "Import from DBeaver",
+                "description": "File > Import from Other App > DBeaver. TablePro reads the workspace at ~/Library/DBeaverData/, decrypts credentials-config.json, and previews every connection."
+            },
+            {
+                "title": "Confirm import",
+                "description": "MySQL, PostgreSQL, SQLite, SQL Server, Oracle, MongoDB, Redis, ClickHouse, MariaDB, Cassandra all map. JDBC-only drivers (Db2, Teradata, etc.) skip with a warning."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Why is DBeaver so slow on Mac?",
+                "answer": "DBeaver runs on the Eclipse RCP, a Java desktop framework. JVM startup, SWT widget rendering, and JDBC each add overhead. TablePro skips all of that with native libpq, libmariadb, hiredis."
+            },
+            {
+                "question": "Does TablePro support as many databases?",
+                "answer": "DBeaver supports 100+ via JDBC. TablePro supports 18 via native drivers. The 18 cover Postgres, MySQL, MongoDB, Redis, and the major cloud databases."
+            },
+            {
+                "question": "Can I migrate connections from DBeaver?",
+                "answer": "Yes. File > Import from Other App > DBeaver. Connections and folder structure transfer. Passwords need re-entry due to DBeaver project-key encryption."
+            },
+            {
+                "question": "Is TablePro really 10 times lighter?",
+                "answer": "RAM idle: 80 MB vs DBeaver's 800 MB on the same connections. Cold start: 1 second vs 8 seconds. Measured on M2 Mac."
+            },
+            {
+                "question": "What about DBeaver Pro features?",
+                "answer": "DBeaver Pro adds NoSQL support, ER diagrams, and visual query builder for $25 a month. TablePro includes ER diagrams, Mongo, Redis, and AI in the free tier."
+            }
+        ]
+    },
+    {
+        "slug": "datagrip",
+        "name": "DataGrip",
+        "tagline": "Free, Native DataGrip Alternative for Mac.",
+        "description": "Native DataGrip alternative for Mac. Free, open source, fast. JetBrains-quality editor without the IntelliJ weight.",
+        "longDescription": "DataGrip is JetBrains' database IDE, built on the IntelliJ platform in Java. It costs $99 the first year, $79 the second, $59 from year three; or $9.90 per month. TablePro is free, native macOS, and starts in 1 second. Same SQL editor power for daily work, without the IDE weight.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "$99/yr individual (first year), $9.90/mo"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "Java (IntelliJ)"
+            },
+            {
+                "label": "Startup Time",
+                "tablePro": "<1s",
+                "competitor": "~10s"
+            },
+            {
+                "label": "Memory Usage",
+                "tablePro": "~80 MB",
+                "competitor": "1-2 GB"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "30+"
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": "Paid add-on"
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iCloud Sync",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Inline Editing",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Version Control",
+                "tablePro": false,
+                "competitor": true
+            },
+            {
+                "label": "Refactoring Tools",
+                "tablePro": false,
+                "competitor": true
+            },
+            {
+                "label": "Dark Mode",
+                "tablePro": true,
+                "competitor": true
+            }
+        ],
+        "prosTablePro": [
+            "Free vs $99/yr (DataGrip Personal) or $9.90/mo",
+            "Native macOS, not Java",
+            "1 second start vs ~10 seconds",
+            "80 MB RAM vs 1-2 GB",
+            "iOS app with iCloud sync",
+            "Open source under AGPLv3"
+        ],
+        "prosCompetitor": [
+            "Git integration and version control",
+            "SQL refactoring across files",
+            "30+ databases via JDBC",
+            "JetBrains AI Assistant (separate paid add-on)"
+        ],
+        "chooseTablePro": "you want a fast, free, native Mac client and don't need Git inside the SQL editor.",
+        "chooseCompetitor": "you live in the JetBrains ecosystem and need Git integration and refactoring tools in the same window.",
+        "verdict": "DataGrip is a full IDE. TablePro is a tight client that does daily database work better and free.",
+        "keywords": [
+            "datagrip alternative",
+            "datagrip vs tablepro",
+            "datagrip alternative free",
+            "datagrip alternative mac"
+        ],
+        "ogTableProMetaHtml": "<strong>$0 Forever</strong><br>SwiftUI · 80 MB RAM<br>One-click connect",
+        "ogCompetitorMetaHtml": "<strong>$100/yr individual</strong><br>IntelliJ . 1-2 GB RAM<br>1.1 GB download",
+        "ogPunchline": "Free. Native. No JetBrains tax.",
+        "ogStatValue": "10x",
+        "ogStatLabel": "LESS RAM",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "5-15s",
+                "memory": "1-2 GB",
+                "download": "~1.1 GB"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro. DataGrip stays installed in parallel."
+            },
+            {
+                "title": "Re-enter your data sources",
+                "description": "DataGrip stores connections in IDE settings. Recreate each in TablePro by hand or paste the JDBC URL."
+            },
+            {
+                "title": "Move daily work over",
+                "description": "Keep DataGrip for refactoring and Git tasks. Use TablePro for everything else, especially the parts where startup time matters."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Will TablePro replace DataGrip for me?",
+                "answer": "For everyday SQL work, schema browsing, data editing: yes. For SQL refactoring across files and migrations comparison: no, those stay DataGrip strengths."
+            },
+            {
+                "question": "Why is DataGrip so heavy?",
+                "answer": "It's the full IntelliJ platform. JVM, plugin sandbox, code intelligence services. Every database tool inherits the IDE weight."
+            },
+            {
+                "question": "Is TablePro really free?",
+                "answer": "Yes. AGPLv3 open source. Optional paid license to support development; no feature gating."
+            },
+            {
+                "question": "Does TablePro have version control?",
+                "answer": "Not inside the editor. Save queries to .sql files in your repo, version them with git like any other source code."
+            },
+            {
+                "question": "Can I use both DataGrip and TablePro?",
+                "answer": "Yes. They don't conflict. Many devs use TablePro for daily browsing, DataGrip for migration reviews."
+            }
+        ]
+    },
+    {
+        "slug": "navicat",
+        "name": "Navicat",
+        "tagline": "Free, Native Navicat Alternative for Mac.",
+        "description": "Native Navicat alternative for Mac. Free, open source, fast. 18 databases, AI assistant, iOS app.",
+        "longDescription": "Navicat Premium covers 7+ databases in one app. It costs $399 per year subscription or $1,299 for a perpetual license per user. TablePro covers 25 databases and is free, open source under AGPLv3. Native macOS, no per-database editions.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "$399/yr or $1,299 perpetual"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "Native (cross-platform)"
+            },
+            {
+                "label": "Startup Time",
+                "tablePro": "<1s",
+                "competitor": "~3s"
+            },
+            {
+                "label": "Memory Usage",
+                "tablePro": "~80 MB",
+                "competitor": "~300 MB"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "7+ (Premium)"
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "iCloud Sync",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Inline Editing",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Data Modeling",
+                "tablePro": false,
+                "competitor": true
+            },
+            {
+                "label": "Data Sync",
+                "tablePro": false,
+                "competitor": true
+            },
+            {
+                "label": "ER Diagrams",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Dark Mode",
+                "tablePro": true,
+                "competitor": true
+            }
+        ],
+        "prosTablePro": [
+            "Free vs $399/yr or $1,299 perpetual",
+            "25 databases in one app",
+            "Native macOS",
+            "AI SQL assistant in the free tier",
+            "iOS app with iCloud sync",
+            "Open source under AGPLv3"
+        ],
+        "prosCompetitor": [
+            "Mature data modeler with reverse engineering",
+            "Data sync between tables and instances",
+            "Job scheduler for batch operations",
+            "Polished Oracle PL/SQL debugger"
+        ],
+        "chooseTablePro": "you want one free, native app for every database without monthly fees.",
+        "chooseCompetitor": "you need Navicat-only features like Data Modeler reverse engineering or a built-in job scheduler.",
+        "verdict": "Navicat does more for $30 a month. TablePro does the everyday 80% for free.",
+        "keywords": [
+            "navicat alternative",
+            "navicat vs tablepro",
+            "navicat alternative free",
+            "navicat alternative mac",
+            "navicat too expensive"
+        ],
+        "ogTableProMetaHtml": "<strong>$0 Lifetime</strong><br>SwiftUI · open source<br>One app, every DB",
+        "ogCompetitorMetaHtml": "<strong>$1,299+ bundle</strong><br>Per-DB licenses<br>Closed source",
+        "ogPunchline": "Free vs $30/month. One app for every database.",
+        "ogStatValue": "100%",
+        "ogStatLabel": "CHEAPER",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "~3s",
+                "memory": "~350 MB",
+                "download": "~375 MB"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro."
+            },
+            {
+                "title": "Import Navicat connections",
+                "description": "File > Import from Other App > Navicat reads .ncx and migrates connection metadata. Passwords need re-entry."
+            },
+            {
+                "title": "Cancel the subscription",
+                "description": "Once everything works in TablePro, cancel Navicat. Save $360 a year per database."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Will TablePro replace Navicat?",
+                "answer": "For everyday querying, browsing, editing, importing, exporting, SSH, schema design: yes. For Navicat's Data Modeler reverse engineering, Data Sync, Job Scheduler: not yet."
+            },
+            {
+                "question": "Can I import Navicat connections?",
+                "answer": "Yes. TablePro reads .ncx connection files. Connection metadata transfers; passwords need re-entry."
+            },
+            {
+                "question": "Is TablePro really free?",
+                "answer": "Yes. AGPLv3 open source. No subscription. Optional paid license to support development."
+            },
+            {
+                "question": "What about Navicat for Oracle's PL/SQL debugger?",
+                "answer": "Navicat for Oracle is more mature there. TablePro handles SQL queries and basic schema browsing well; PL/SQL package debugging isn't there yet."
+            },
+            {
+                "question": "Can I use both?",
+                "answer": "Yes. They don't conflict. Try TablePro alongside Navicat and switch when ready."
+            }
+        ]
+    },
+    {
+        "slug": "beekeeper-studio",
+        "name": "Beekeeper Studio",
+        "tagline": "Native Beekeeper Studio Alternative for Mac.",
+        "description": "Native Beekeeper Studio alternative for Mac. 4x lighter, native Swift, no Electron. Free and open source.",
+        "longDescription": "Beekeeper Studio is a friendly cross-platform database client built on Electron. The Community Edition is free; paid tiers start at $108 per year (Indie) and add AI from the Professional tier ($168 per year). Electron bundles Chromium so even at idle the app uses 200-400 MB of RAM. TablePro is native SwiftUI for Mac. 80 MB at idle, under 1 second to start.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "Free / from $108/yr Indie"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": "Community Edition GPLv3"
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "Electron (Chromium)"
+            },
+            {
+                "label": "Startup Time",
+                "tablePro": "<1s",
+                "competitor": "~3s"
+            },
+            {
+                "label": "Memory Usage",
+                "tablePro": "~80 MB",
+                "competitor": "~200-400 MB"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "17+"
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": "Free tier",
+                "competitor": "Pro tier ($168/yr)"
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iCloud Sync",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Inline Editing",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "ER Diagrams",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Vim Mode",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Dark Mode",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Cross-Platform",
+                "tablePro": false,
+                "competitor": true
+            }
+        ],
+        "prosTablePro": [
+            "80 MB RAM vs ~200-400 MB for Electron",
+            "Under 1 second start vs ~3 seconds",
+            "Native SwiftUI, not Electron",
+            "Apple Silicon arm64 native",
+            "AI SQL assistant in the free tier (Beekeeper requires Pro)",
+            "iOS app with iCloud sync"
+        ],
+        "prosCompetitor": [
+            "Cross-platform (Linux, Windows, Mac)",
+            "Active community, ~20k+ GitHub stars",
+            "Free Community Edition under GPLv3",
+            "17+ databases including BigQuery and CockroachDB"
+        ],
+        "chooseTablePro": "you work mainly on Mac and want a real native app instead of a Chromium runtime.",
+        "chooseCompetitor": "you split time between Mac, Linux, and Windows and want feature parity across all three.",
+        "verdict": "Beekeeper Studio is the best Electron-based DB client. TablePro is the best Mac-native one.",
+        "keywords": [
+            "beekeeper studio alternative",
+            "beekeeper studio vs tablepro",
+            "beekeeper studio alternative mac",
+            "beekeeper studio electron alternative"
+        ],
+        "ogTableProMetaHtml": "<strong>SwiftUI</strong> · 80 MB<br>&lt;1s start · AGPLv3<br>Apple Silicon native",
+        "ogCompetitorMetaHtml": "<strong>Electron</strong> . 300-500 MB<br>Pro from $108/yr<br>~315 MB download",
+        "ogPunchline": "Native Swift. No Chromium runtime. 4x lighter.",
+        "ogStatValue": "4×",
+        "ogStatLabel": "LESS RAM",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "2-5s",
+                "memory": "300-500 MB",
+                "download": "~315 MB"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro. Beekeeper stays installed."
+            },
+            {
+                "title": "Re-enter your connections",
+                "description": "Beekeeper stores connections in its own format. Recreate each in TablePro or paste the connection URL."
+            },
+            {
+                "title": "Compare for a week",
+                "description": "Run both side by side. The startup speed and RAM difference are obvious by day three."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Why is Beekeeper Studio heavier than TablePro?",
+                "answer": "It's built on Electron, which bundles Chromium. Even an idle Electron app is hundreds of MB of RAM. TablePro is native SwiftUI; idle stays at 80 MB."
+            },
+            {
+                "question": "Does TablePro work on Apple Silicon?",
+                "answer": "Yes. Universal Binary, native arm64 and x86_64. Beekeeper Studio runs on M-series via the bundled Chromium."
+            },
+            {
+                "question": "Is TablePro really free?",
+                "answer": "Yes. AGPLv3 open source. Beekeeper has a free Community Edition too; both are honest about that."
+            },
+            {
+                "question": "Can I import Beekeeper connections?",
+                "answer": "Not yet. TablePro doesn't read Beekeeper's connection store. Recreate connections by hand."
+            },
+            {
+                "question": "Does TablePro work on Linux and Windows?",
+                "answer": "No. TablePro is Mac-native by design. If you need cross-platform, Beekeeper Studio is the pragmatic pick."
+            }
+        ]
+    },
+    {
+        "slug": "sequel-pro",
+        "name": "Sequel Pro",
+        "tagline": "Modern Sequel Pro Alternative for Mac.",
+        "description": "Modern Sequel Pro alternative for Mac. 18 databases, AI assistant, active development. Free and open source.",
+        "longDescription": "Sequel Pro stopped active development in 2016. The community fork Sequel Ace continues it but stays MySQL and MariaDB only. As of 2026, the latest Sequel Ace release dates back to April 2024. TablePro is a fresh native Mac app with regular releases, AI assistant in the free tier, and 25 databases.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "Free"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": "MIT (Sequel Ace fork)"
+            },
+            {
+                "label": "Technology",
+                "tablePro": "SwiftUI (modern)",
+                "competitor": "AppKit (legacy)"
+            },
+            {
+                "label": "Actively Maintained",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "macOS 14+ Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "MySQL & MariaDB"
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Inline Editing",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Autocomplete",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Query History",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Dark Mode",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Tabs",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Active Development",
+                "tablePro": "Yes",
+                "competitor": "Last release Apr 2024"
+            }
+        ],
+        "prosTablePro": [
+            "Active development with regular releases",
+            "25 databases, not just MySQL",
+            "AI SQL assistant in the free tier",
+            "iOS app with iCloud sync",
+            "Modern SwiftUI on macOS Sonoma+",
+            "Open source under AGPLv3"
+        ],
+        "prosCompetitor": [
+            "Familiar UI for Sequel Pro veterans",
+            "Free and open source (MIT, Sequel Ace)",
+            "Lightweight install",
+            "Solid MySQL feature coverage"
+        ],
+        "chooseTablePro": "you want active development, multi-database support, and modern macOS features like iCloud sync.",
+        "chooseCompetitor": "you only use MySQL and prefer the Sequel Pro UI you already know.",
+        "verdict": "Sequel Ace keeps Sequel Pro alive. TablePro is what a modern, multi-database successor looks like.",
+        "keywords": [
+            "sequel pro alternative",
+            "sequel pro replacement",
+            "sequel pro not working",
+            "sequel pro macos sonoma",
+            "sequel pro alternative 2024"
+        ],
+        "ogTableProMetaHtml": "<strong>Active in 2026</strong><br>25 databases<br>SwiftUI · AI · iCloud",
+        "ogCompetitorMetaHtml": "<strong>Last release: 2019</strong><br>MySQL only<br>Cocoa . unmaintained",
+        "ogPunchline": "Active in 2026. AI, multi-DB, iCloud, iOS.",
+        "ogStatValue": "25",
+        "ogStatLabel": "DATABASES",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "n/a",
+                "memory": "n/a",
+                "download": "~25 MB"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro. Sequel Ace stays installed."
+            },
+            {
+                "title": "Import Sequel Ace connections",
+                "description": "File > Import from Other App > Sequel Ace reads ~/Library/Containers/com.sequel-ace.sequel-ace and maps each connection."
+            },
+            {
+                "title": "Re-enter passwords",
+                "description": "Keychain entries are scoped per app. Re-enter passwords once; TablePro stores them in its own access group."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Why move from Sequel Ace?",
+                "answer": "Active development. TablePro ships weekly; Sequel Ace ships every few months. If you also touch Postgres, Mongo, or Redis, the multi-database angle replaces three separate apps."
+            },
+            {
+                "question": "Will my Sequel Ace connections import?",
+                "answer": "Yes. File > Import from Other App > Sequel Ace."
+            },
+            {
+                "question": "Is TablePro really free?",
+                "answer": "Yes. AGPLv3 open source. Free for personal and commercial use."
+            },
+            {
+                "question": "Does it have everything Sequel Ace does?",
+                "answer": "Core MySQL: yes. Plus AI assistant, ER diagrams, and Vim mode that Sequel Ace doesn't have."
+            },
+            {
+                "question": "Is TablePro maintained?",
+                "answer": "Yes. Weekly releases on GitHub, active issue triage and Discord."
+            }
+        ]
+    },
+    {
+        "slug": "postico",
+        "name": "Postico",
+        "tagline": "Multi-Database Postico Alternative for Mac.",
+        "description": "Native, free, open-source Postico alternative for Mac. Postgres plus MySQL, MongoDB, Redis, SQLite, and 13 more.",
+        "longDescription": "Postico 2 is a polished native Mac client for PostgreSQL, Redshift, CockroachDB, and Greenplum. It costs $69 for a personal license (3 devices) or $99 per device for commercial use. TablePro is free and open source under AGPLv3, and covers 25 databases beyond Postgres.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "$69 personal / $99 commercial"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "Native (AppKit)"
+            },
+            {
+                "label": "Startup Time",
+                "tablePro": "<1s",
+                "competitor": "<1s"
+            },
+            {
+                "label": "Memory Usage",
+                "tablePro": "~80 MB",
+                "competitor": "~60 MB"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "Postgres, Redshift, CockroachDB, Greenplum"
+            },
+            {
+                "label": "MySQL Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "MongoDB Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Redis Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iCloud Sync",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Inline Editing",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "ER Diagrams",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Vim Mode",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Dark Mode",
+                "tablePro": true,
+                "competitor": true
+            }
+        ],
+        "prosTablePro": [
+            "Free vs $69 personal or $99 commercial",
+            "25 databases including MySQL, Mongo, Redis",
+            "AI SQL assistant",
+            "iOS app with iCloud sync",
+            "ER diagrams, Vim mode, MCP server",
+            "Open source under AGPLv3"
+        ],
+        "prosCompetitor": [
+            "Polished, focused Postgres UX",
+            "Decade of refinement on Mac",
+            "Eggerapps build quality",
+            "First-class Redshift, CockroachDB, Greenplum support"
+        ],
+        "chooseTablePro": "you work with multiple databases or want AI and iOS support in the free tier.",
+        "chooseCompetitor": "Postgres, Redshift, CockroachDB, or Greenplum is your only database and you prefer paying once for a focused tool.",
+        "verdict": "Postico is excellent for Postgres alone. TablePro covers the same ground for Postgres plus 17 other databases, free.",
+        "keywords": [
+            "postico alternative",
+            "tablepro vs postico",
+            "postico vs tablepro",
+            "free postico alternative",
+            "multi-database mac client"
+        ],
+        "ogTableProMetaHtml": "<strong>FREE</strong> · 18 databases",
+        "ogCompetitorMetaHtml": "<strong>$40</strong> · Postgres only",
+        "ogPunchline": "Postgres plus 17 more. Free. Native.",
+        "ogStatValue": "25",
+        "ogStatLabel": "DATABASES",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "<1s",
+                "memory": "~60 MB",
+                "download": "~25 MB"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro. Postico stays installed."
+            },
+            {
+                "title": "Re-enter Postgres connections",
+                "description": "Postico stores connections in macOS Keychain per app. Recreate each in TablePro by hand or paste the connection URL."
+            },
+            {
+                "title": "Add your other databases",
+                "description": "If you also use MySQL, MongoDB, Redis, etc., add them to TablePro. Now everything is in one app."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Why not just use Postico for Postgres?",
+                "answer": "If Postgres (or Redshift, CockroachDB, Greenplum) is your only database, Postico 2 is fine. TablePro fits when you also touch MySQL, MongoDB, Redis, SQLite, or any of the other 14 databases TablePro supports."
+            },
+            {
+                "question": "Does TablePro have all of Postico's Postgres features?",
+                "answer": "Core overlap: connections, table browser, SQL editor with autocomplete, inline editing, ER diagrams, query history. Postico has Postgres-specific UX flourishes TablePro doesn't yet match."
+            },
+            {
+                "question": "Is TablePro really free?",
+                "answer": "Yes. AGPLv3 open source. No per-version fee."
+            },
+            {
+                "question": "Can I run both apps?",
+                "answer": "Yes. They don't conflict."
+            },
+            {
+                "question": "Does TablePro work on Apple Silicon?",
+                "answer": "Yes. Universal Binary, native arm64 and x86_64."
+            }
+        ]
+    },
+    {
+        "slug": "sequel-ace",
+        "name": "Sequel Ace",
+        "tagline": "Modern, Multi-Database Sequel Ace Alternative for Mac.",
+        "description": "Modern, multi-database Sequel Ace alternative for Mac. Active development, AI assistant, 18 databases. Free and open source.",
+        "longDescription": "Sequel Ace is the MIT-licensed community fork of Sequel Pro. It keeps a beloved MySQL client alive but stays MySQL and MariaDB only. As of 2026 the latest release is from April 2024. TablePro is a fresh native Mac app with regular releases, 25 databases, and AI in the free tier.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "Free"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": "MIT"
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "Native (Cocoa)"
+            },
+            {
+                "label": "Active Development",
+                "tablePro": "Yes",
+                "competitor": "Last release Apr 2024"
+            },
+            {
+                "label": "Startup Time",
+                "tablePro": "<1s",
+                "competitor": "~2s"
+            },
+            {
+                "label": "Memory Usage",
+                "tablePro": "~80 MB",
+                "competitor": "~120 MB"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "MySQL & MariaDB"
+            },
+            {
+                "label": "PostgreSQL Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "MongoDB Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iCloud Sync",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Inline Editing",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "ER Diagrams",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Modern SwiftUI",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Dark Mode",
+                "tablePro": true,
+                "competitor": true
+            }
+        ],
+        "prosTablePro": [
+            "Active development with regular releases",
+            "25 databases, not just MySQL",
+            "AI SQL assistant in the free tier",
+            "iOS app with iCloud sync",
+            "Modern SwiftUI on macOS Sonoma+",
+            "Open source under AGPLv3"
+        ],
+        "prosCompetitor": [
+            "Familiar UI for Sequel Pro veterans",
+            "Free and open source (MIT)",
+            "Lightweight install",
+            "Solid MySQL feature coverage"
+        ],
+        "chooseTablePro": "you want active development, multi-database support, and AI in one Mac app.",
+        "chooseCompetitor": "you only use MySQL and the Sequel Pro UI is muscle memory.",
+        "verdict": "Sequel Ace keeps a classic alive. TablePro is what comes next.",
+        "keywords": [
+            "sequel ace alternative",
+            "tablepro vs sequel ace",
+            "sequel pro alternative",
+            "modern sequel ace replacement",
+            "multi database mac client"
+        ],
+        "ogTableProMetaHtml": "<strong>18 databases</strong> · Active",
+        "ogCompetitorMetaHtml": "<strong>MySQL only</strong> · Slow",
+        "ogPunchline": "Active. AI. 18 databases. iCloud. Free.",
+        "ogStatValue": "Active",
+        "ogStatLabel": "DEV",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "~2s",
+                "memory": "~120 MB",
+                "download": "~30 MB"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro. Sequel Ace stays installed in parallel."
+            },
+            {
+                "title": "Import Sequel Ace connections",
+                "description": "File > Import from Other App > Sequel Ace reads ~/Library/Containers/com.sequel-ace.sequel-ace and maps each connection."
+            },
+            {
+                "title": "Re-enter passwords",
+                "description": "Keychain entries are scoped per app. Re-enter passwords once; TablePro stores them in its own access group."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Why move from Sequel Ace?",
+                "answer": "Active development. TablePro ships weekly; Sequel Ace ships every few months. Multi-database support replaces three separate apps if you also use Postgres, Mongo, or Redis."
+            },
+            {
+                "question": "Will my Sequel Ace connections import?",
+                "answer": "Yes. File > Import from Other App > Sequel Ace."
+            },
+            {
+                "question": "Is TablePro really free?",
+                "answer": "Yes. AGPLv3 open source."
+            },
+            {
+                "question": "Does it have everything Sequel Ace does?",
+                "answer": "Core MySQL features: yes. Plus AI assistant, ER diagrams, and Vim mode."
+            },
+            {
+                "question": "Is TablePro maintained?",
+                "answer": "Yes. Weekly releases on GitHub. Active Discord and issue triage."
+            }
+        ]
+    },
+    {
+        "slug": "heidisql",
+        "name": "HeidiSQL",
+        "tagline": "Native HeidiSQL Alternative for Mac.",
+        "description": "Native HeidiSQL alternative for Mac. No Wine, no VM. Free and open source. 18 databases, AI assistant, iCloud sync.",
+        "longDescription": "HeidiSQL is a free GPL-2.0 database client built with Delphi for Windows. As of 2026 there is a separate Lazarus-based macOS preview build, but it remains a Windows-first app. TablePro is built natively for macOS in Swift and AppKit and covers MySQL, MariaDB, PostgreSQL, SQL Server, SQLite (the same databases HeidiSQL handles) plus 13 more.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "Free"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": "GPL-2.0"
+            },
+            {
+                "label": "Native Mac App",
+                "tablePro": true,
+                "competitor": "Lazarus preview"
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "Delphi (Win) / Lazarus (Mac)"
+            },
+            {
+                "label": "Runs on Mac",
+                "tablePro": "Native",
+                "competitor": "Wine / VM only"
+            },
+            {
+                "label": "Startup Time",
+                "tablePro": "<1s",
+                "competitor": "~5s via Wine"
+            },
+            {
+                "label": "Memory Usage",
+                "tablePro": "~80 MB",
+                "competitor": "~250 MB via Wine"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "MySQL, MariaDB, Postgres, SQL Server, SQLite, Interbase, Firebird"
+            },
+            {
+                "label": "MongoDB Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Redis Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iCloud Sync",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Touch ID",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "macOS Dark Mode",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": true
+            }
+        ],
+        "prosTablePro": [
+            "Native macOS app from day one",
+            "Touch ID, dark mode, iCloud sync",
+            "AI SQL assistant",
+            "MongoDB and Redis support beyond SQL",
+            "Modern SwiftUI on macOS Sonoma+",
+            "Open source under AGPLv3"
+        ],
+        "prosCompetitor": [
+            "Free and open source (GPL-2.0)",
+            "Mature on Windows after 20+ years",
+            "Familiar to Windows DBAs",
+            "Strong export and import features"
+        ],
+        "chooseTablePro": "you work on Mac and want a native app rather than the Lazarus preview build.",
+        "chooseCompetitor": "you primarily work on Windows where HeidiSQL is the native, free choice.",
+        "verdict": "HeidiSQL is great on Windows. On Mac, TablePro is built for the platform; HeidiSQL's Lazarus build is a preview.",
+        "keywords": [
+            "heidisql mac alternative",
+            "heidisql for mac",
+            "tablepro vs heidisql",
+            "native heidisql mac",
+            "heidisql replacement mac"
+        ],
+        "ogTableProMetaHtml": "<strong>Native</strong> macOS",
+        "ogCompetitorMetaHtml": "<strong>Wine</strong> required",
+        "ogPunchline": "Real Mac app. No Wine. No compromises.",
+        "ogStatValue": "Native",
+        "ogStatLabel": "MAC APP",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "~5s via Wine",
+                "memory": "~250 MB via Wine",
+                "download": "~10 MB + Wine"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro. Native arm64 binary."
+            },
+            {
+                "title": "Re-enter your connections",
+                "description": "HeidiSQL stores connections in the Windows registry or a settings file. There's no automated import; recreate each in TablePro."
+            },
+            {
+                "title": "Use macOS features",
+                "description": "Touch ID, iCloud sync, and dark mode work because TablePro is built only for macOS."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Can I run HeidiSQL natively on Mac?",
+                "answer": "No. HeidiSQL is Windows-only. On Mac you run it through Wine, which is slow and breaks macOS UI."
+            },
+            {
+                "question": "Does TablePro support the same databases?",
+                "answer": "Yes for SQL: MySQL, MariaDB, PostgreSQL, SQL Server, SQLite. Plus MongoDB, Redis, ClickHouse, and Cassandra that HeidiSQL doesn't."
+            },
+            {
+                "question": "Is TablePro free?",
+                "answer": "Yes. AGPLv3 open source."
+            },
+            {
+                "question": "Does TablePro support Touch ID?",
+                "answer": "Yes. Lock connections behind Touch ID per connection."
+            },
+            {
+                "question": "Will I miss HeidiSQL features?",
+                "answer": "TablePro covers query, browse, edit, export, import, SSH, table structure. The session manager is replaced by TablePro's connection list with iCloud sync."
+            }
+        ]
+    },
+    {
+        "slug": "azimutt",
+        "name": "Azimutt",
+        "tagline": "Database Client and ER Diagram for Mac.",
+        "description": "Native database client with ER diagrams for Mac. Free and open source. SQL editor, data grid, schema browser. 18 databases.",
+        "longDescription": "Azimutt is an MIT-licensed schema visualization tool with a free tier and paid plans from €7/mo (Solo). It's web-based with self-host via Docker. It's not a database client; queries and edits aren't its focus. TablePro is a full database client with built-in ER diagrams. The two solve different problems and run side by side.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "Free / from €7/mo Solo"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": "MIT"
+            },
+            {
+                "label": "Native App",
+                "tablePro": "macOS native",
+                "competitor": "Web app"
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "Web (Elm + TypeScript)"
+            },
+            {
+                "label": "Startup Time",
+                "tablePro": "<1s",
+                "competitor": "Browser load"
+            },
+            {
+                "label": "Memory Usage",
+                "tablePro": "~80 MB",
+                "competitor": "Browser tab"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "Postgres, MySQL, SQL Server (read-only)"
+            },
+            {
+                "label": "SQL Editor",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Data Grid Editing",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "ER Diagrams",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Large Schema (1000+ tables)",
+                "tablePro": "Tested at 500+",
+                "competitor": "Optimized for"
+            },
+            {
+                "label": "Schema Exploration",
+                "tablePro": "Sidebar",
+                "competitor": "Diagram-first"
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": "Team plan"
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Inline Data Editing",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Offline Mode",
+                "tablePro": true,
+                "competitor": "Self-host required"
+            },
+            {
+                "label": "Self-host",
+                "tablePro": "N/A",
+                "competitor": "Docker"
+            }
+        ],
+        "prosTablePro": [
+            "Full database client with SQL editor and data grid",
+            "Edit data inline, run queries, manage table structure",
+            "Native macOS, works offline",
+            "25 databases including NoSQL",
+            "iOS app with iCloud sync",
+            "AI SQL assistant"
+        ],
+        "prosCompetitor": [
+            "Built for very large schemas (1000+ tables)",
+            "Tag-based table search and exploration",
+            "Web-based, accessible from any device",
+            "Schema-as-code with .azimutt files in git",
+            "MIT-licensed, self-host via Docker"
+        ],
+        "chooseTablePro": "you need a real database client to query, edit, and manage data, plus ER diagrams for moderate schemas.",
+        "chooseCompetitor": "you architect very large schemas and want a diagram-first workflow with schema-as-code.",
+        "verdict": "Azimutt visualizes huge schemas. TablePro works with data day to day. Most teams want both.",
+        "keywords": [
+            "azimutt alternative",
+            "tablepro vs azimutt",
+            "database visualization mac",
+            "er diagram database client",
+            "schema explorer mac"
+        ],
+        "ogTableProMetaHtml": "<strong>Full client</strong> · Edit data",
+        "ogCompetitorMetaHtml": "<strong>Viewer</strong> · Read only",
+        "ogPunchline": "Real database client with ER diagrams.",
+        "ogStatValue": "Full",
+        "ogStatLabel": "CLIENT",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "Browser",
+                "memory": "Browser tab",
+                "download": "Web app"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro",
+                "description": "brew install --cask tablepro. Azimutt stays in the browser."
+            },
+            {
+                "title": "Connect your databases",
+                "description": "Add each database TablePro should manage. Both apps can read the same Postgres or MySQL instance."
+            },
+            {
+                "title": "Use both for what they're best at",
+                "description": "TablePro for queries and edits. Azimutt for the 1000-table overview when you need it."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Does TablePro replace Azimutt?",
+                "answer": "For most teams, yes. TablePro's ER diagrams cover schemas up to a few hundred tables. For 1000+ tables with tag-based exploration, Azimutt remains stronger."
+            },
+            {
+                "question": "Can TablePro do schema-as-code?",
+                "answer": "Not yet. Schema lives in your database. Migrations are managed by your migration tool."
+            },
+            {
+                "question": "Does TablePro have AI for diagrams?",
+                "answer": "TablePro's AI focuses on SQL: writing, explaining, optimizing queries. It doesn't generate diagrams from prose."
+            },
+            {
+                "question": "Is TablePro free like Azimutt?",
+                "answer": "Yes. AGPLv3 open source."
+            },
+            {
+                "question": "Can I use both?",
+                "answer": "Yes. They don't conflict and read different parts of your database."
+            }
+        ]
+    },
+    {
+        "slug": "phpmyadmin",
+        "name": "phpMyAdmin",
+        "tagline": "Desktop phpMyAdmin Alternative for Mac.",
+        "description": "Native phpMyAdmin alternative for Mac. SSH-tunneled, no public web surface. Free and open source. 18 databases.",
+        "longDescription": "phpMyAdmin is a free GPL-licensed PHP web app for MySQL and MariaDB. The current release (5.2.x as of late 2025) ships with most cPanel hosts. It's a recurring CVE target when exposed publicly. TablePro is a desktop client. SSH-tunnel through your existing server access; no public web surface.",
+        "rows": [
+            {
+                "label": "Price",
+                "tablePro": "Free",
+                "competitor": "Free"
+            },
+            {
+                "label": "Open Source",
+                "tablePro": true,
+                "competitor": "GPL"
+            },
+            {
+                "label": "Type",
+                "tablePro": "Desktop app",
+                "competitor": "Web app (PHP)"
+            },
+            {
+                "label": "Install Location",
+                "tablePro": "Your Mac",
+                "competitor": "Server (PHP runtime)"
+            },
+            {
+                "label": "Technology",
+                "tablePro": "Native (SwiftUI)",
+                "competitor": "PHP + JavaScript"
+            },
+            {
+                "label": "Auth Method",
+                "tablePro": "SSH tunnel + native",
+                "competitor": "Web cookie session"
+            },
+            {
+                "label": "Public Attack Surface",
+                "tablePro": "None",
+                "competitor": "Yes (web exposed)"
+            },
+            {
+                "label": "Databases",
+                "tablePro": "25",
+                "competitor": "MySQL & MariaDB"
+            },
+            {
+                "label": "PostgreSQL Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "MongoDB Support",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "AI Assistant",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "iOS App",
+                "tablePro": true,
+                "competitor": "Browser"
+            },
+            {
+                "label": "iCloud Sync",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "SSH Tunneling",
+                "tablePro": true,
+                "competitor": false
+            },
+            {
+                "label": "Inline Editing",
+                "tablePro": true,
+                "competitor": true
+            },
+            {
+                "label": "Native macOS UX",
+                "tablePro": true,
+                "competitor": false
+            }
+        ],
+        "prosTablePro": [
+            "No public web surface to attack",
+            "SSH-tunneled, not /phpmyadmin?token=...",
+            "Native macOS UX with Touch ID and dark mode",
+            "25 databases, not just MySQL",
+            "AI SQL assistant",
+            "iOS app with iCloud sync"
+        ],
+        "prosCompetitor": [
+            "Pre-installed on most cPanel hosts",
+            "Browser-based, works on any device",
+            "20+ years of MySQL feature coverage",
+            "Free and open source (GPL)"
+        ],
+        "chooseTablePro": "you ssh to your servers and want a real desktop client.",
+        "chooseCompetitor": "you only have browser access to your server (no SSH) or use shared hosting.",
+        "verdict": "phpMyAdmin is the default on shared hosts. TablePro is the safer, faster choice when SSH is on the table.",
+        "keywords": [
+            "phpmyadmin alternative mac",
+            "phpmyadmin desktop client",
+            "tablepro vs phpmyadmin",
+            "secure phpmyadmin replacement",
+            "phpmyadmin without web"
+        ],
+        "ogTableProMetaHtml": "<strong>SSH</strong> tunneled",
+        "ogCompetitorMetaHtml": "<strong>Web</strong> exposed",
+        "ogPunchline": "Skip /phpmyadmin. SSH-tunnel a desktop client.",
+        "ogStatValue": "0",
+        "ogStatLabel": "WEB SURFACE",
+        "benchmarks": {
+            "tablePro": {
+                "startup": "~1s",
+                "memory": "~80 MB",
+                "download": "~20 MB"
+            },
+            "competitor": {
+                "startup": "Browser load",
+                "memory": "PHP + browser",
+                "download": "Server install"
+            }
+        },
+        "migrationSteps": [
+            {
+                "title": "Install TablePro on your Mac",
+                "description": "brew install --cask tablepro. Nothing to install on the server."
+            },
+            {
+                "title": "Add an SSH-tunneled connection",
+                "description": "New Connection > MySQL. Fill DB credentials. Open the SSH tab and add your bastion or server credentials."
+            },
+            {
+                "title": "Block /phpmyadmin in nginx",
+                "description": "Once TablePro works, deny public access to /phpmyadmin in nginx or Apache. SSH tunneling replaces it."
+            }
+        ],
+        "faqs": [
+            {
+                "question": "Why move from phpMyAdmin?",
+                "answer": "Two reasons: security (phpMyAdmin is a recurring CVE target when exposed) and UX (a real desktop app beats a web form). If you can SSH, you can stop exposing /phpmyadmin."
+            },
+            {
+                "question": "Does TablePro need a server install?",
+                "answer": "No. TablePro runs on your Mac. Connects to MySQL directly or through SSH."
+            },
+            {
+                "question": "Can I tunnel through a bastion?",
+                "answer": "Yes. Password, key, or agent. Jump hosts and custom ports work."
+            },
+            {
+                "question": "Will I lose phpMyAdmin features?",
+                "answer": "Core ones, no: SQL editor, table browser, structure editor, import/export, query history. Some niche features (designer view, GIS plot) aren't in TablePro yet."
+            },
+            {
+                "question": "Is TablePro free like phpMyAdmin?",
+                "answer": "Yes. AGPLv3 open source."
+            }
+        ]
+    }
+]

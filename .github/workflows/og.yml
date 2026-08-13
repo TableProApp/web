@@ -1,0 +1,68 @@
+name: og cards
+
+# Manual only, and deliberately so.
+#
+# Regenerating cards writes to public/og, which is tracked, so this job needs
+# write access. A workflow with write access must never run against code from a
+# fork, which rules out `pull_request`. A maintainer runs this after merging a
+# content change instead.
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: "Which set to regenerate"
+        required: true
+        default: "all"
+        type: choice
+        options: [all, blog, compare, database]
+      slug:
+        description: "Single slug (optional)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Install Chromium
+        run: |
+          npm install -g puppeteer
+          npx puppeteer browsers install chrome
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Generate cards
+        run: |
+          ARGS=""
+          if [ "${{ inputs.type }}" != "all" ]; then ARGS="$ARGS --type=${{ inputs.type }}"; fi
+          if [ -n "${{ inputs.slug }}" ]; then ARGS="$ARGS --slug=${{ inputs.slug }}"; fi
+          php artisan og:generate $ARGS
+
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore(og): regenerate social cards"
+          file_pattern: public/og/**
