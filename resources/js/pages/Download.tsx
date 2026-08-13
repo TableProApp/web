@@ -96,7 +96,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
         if (navigator.userAgentData) {
             navigator.userAgentData
                 .getHighEntropyValues(['architecture'])
-                .then((hints: { architecture: string }) => {
+                .then((hints) => {
                     startDownload(hints.architecture === 'x86' ? 'x86_64' : 'arm64');
                 });
         } else {

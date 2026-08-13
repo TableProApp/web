@@ -15,6 +15,9 @@ export interface SEOHeadProps {
 
 interface SharedSeoProps {
     canonicalBaseUrl: string;
+    // usePage's PageProps constraint requires an index signature; without it a
+    // narrow interface is not assignable even though every field it declares is.
+    [key: string]: unknown;
 }
 
 const SITE_NAME = 'TablePro';

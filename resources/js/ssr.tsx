@@ -1,4 +1,5 @@
-import { createInertiaApp } from '@inertiajs/react';
+import { createInertiaApp, App as InertiaApp } from '@inertiajs/react';
+import type { ComponentProps, ComponentType } from 'react';
 import createServer from '@inertiajs/react/server';
 import ReactDOMServer from 'react-dom/server';
 
@@ -11,12 +12,28 @@ import ReactDOMServer from 'react-dom/server';
  */
 const port = Number(process.env.INERTIA_SSR_PORT ?? 13715);
 
+type SsrSetupOptions = {
+    el: null;
+    App: ComponentType<ComponentProps<typeof InertiaApp>>;
+    props: ComponentProps<typeof InertiaApp>;
+};
+
 createServer(
     (page) =>
+        // @ts-expect-error -- `resolve` is injected at build time by
+        // @inertiajs/vite, so it is absent from this source but present in the
+        // bundle. The SSR overload types it as required and cannot know that.
+        // Using @ts-expect-error rather than @ts-ignore on purpose: if Inertia
+        // ever relaxes the type, this line starts failing and gets removed.
         createInertiaApp({
             page,
             render: ReactDOMServer.renderToString,
-            setup: ({ App, props }) => <App {...props} />,
+            // Typed explicitly: the SSR overload passes a null element, and
+            // without the annotation inference picks the browser variant, whose
+            // setup signature expects an HTMLElement and so does not match.
+            // Inertia does not re-export SetupOptions, so the shape is built
+            // here from the App component it does export.
+            setup: ({ App, props }: SsrSetupOptions) => <App {...props} />,
         }),
     port,
 );

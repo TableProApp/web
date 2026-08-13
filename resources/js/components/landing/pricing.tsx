@@ -117,10 +117,12 @@ function CheckIcon({ className }: { className?: string }) {
 }
 
 function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, teamMinSeats }: { tier: Tier; cycle: BillingCycle; discountCode: string; discount: Discount | null; paymentProvider: string; teamMinSeats: number }) {
-    const isFree = tier.price === 'free';
+    // Narrow off tier.price directly: TypeScript does not carry the refinement
+    // through a separate boolean, so `isFree` alone leaves priceObj as the union.
+    const priceObj = tier.price === 'free' ? null : tier.price;
+    const isFree = priceObj === null;
     const isTeam = tier.key === 'team';
     const [seats, setSeats] = useState(teamMinSeats);
-    const priceObj = isFree ? null : tier.price;
     const unitPrice = priceObj ? priceObj[cycle] : 0;
     const price = isTeam ? +(unitPrice * seats).toFixed(2) : unitPrice;
     const discountedPrice = !priceObj || cycle === 'monthly' ? null : applyDiscount(price, discount);

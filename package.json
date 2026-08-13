@@ -5,7 +5,8 @@
         "dev": "vite",
         "build": "vite build && vite build --ssr",
         "ssr:start": "php artisan inertia:start-ssr",
-        "ssr:stop": "php artisan inertia:stop-ssr"
+        "ssr:stop": "php artisan inertia:stop-ssr",
+        "typecheck": "tsc --noEmit"
     },
     "dependencies": {
         "@fontsource-variable/inter": "^5.2.8",
