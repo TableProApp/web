@@ -105,6 +105,14 @@ comparison page, a typo fix, better copy — are as welcome as code.
 
 ## Licence
 
-Code is [MIT](LICENSE). Prose, images and product screenshots are
-[CC BY-NC 4.0](LICENSE-CONTENT). See [CONTRIBUTING.md](CONTRIBUTING.md#licensing)
-for what that means in practice.
+Two licences, because code and writing want different terms:
+
+- **Code** — [MIT](LICENSE). Use it however you like.
+- **Content** — [CC BY-NC 4.0](LICENSE-CONTENT). Covers the prose in
+  `resources/blog`, the page copy in `resources/data` and `resources/js`, and
+  the images under `public/images` and `public/og`. Share and adapt it with
+  attribution, but not commercially.
+
+Neither licence covers the third-party logos under `public/images/sponsors`,
+which belong to their owners, or the TablePro name and logo, which are
+trademarks. See [CONTRIBUTING.md](CONTRIBUTING.md#licensing).
