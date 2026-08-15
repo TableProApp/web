@@ -1,5 +1,4 @@
-import { createInertiaApp, App as InertiaApp } from '@inertiajs/react';
-import type { ComponentProps, ComponentType } from 'react';
+import { createInertiaApp } from '@inertiajs/react';
 import createServer from '@inertiajs/react/server';
 import ReactDOMServer from 'react-dom/server';
 
@@ -12,28 +11,26 @@ import ReactDOMServer from 'react-dom/server';
  */
 const port = Number(process.env.INERTIA_SSR_PORT ?? 13715);
 
-type SsrSetupOptions = {
-    el: null;
-    App: ComponentType<ComponentProps<typeof InertiaApp>>;
-    props: ComponentProps<typeof InertiaApp>;
-};
-
 createServer(
     (page) =>
-        // @ts-expect-error -- `resolve` is injected at build time by
-        // @inertiajs/vite, so it is absent from this source but present in the
-        // bundle. The SSR overload types it as required and cannot know that.
-        // Using @ts-expect-error rather than @ts-ignore on purpose: if Inertia
-        // ever relaxes the type, this line starts failing and gets removed.
         createInertiaApp({
             page,
+            /*
+             * `resolve` is absent on purpose: @inertiajs/vite only injects it
+             * into a createInertiaApp() call that has neither `pages` nor
+             * `resolve`, so writing one here would suppress the injection and
+             * leave the bundle with no page map at all.
+             *
+             * That absence is also why this line needs suppressing. Of the
+             * three published overloads, the two that accept `render` both
+             * require `resolve`, so resolution falls through to the third,
+             * which declares `render?: undefined`. The suppression is
+             * @ts-expect-error rather than @ts-ignore so that the day Inertia
+             * types the injected form, this stops compiling and gets deleted.
+             */
+            // @ts-expect-error -- see above
             render: ReactDOMServer.renderToString,
-            // Typed explicitly: the SSR overload passes a null element, and
-            // without the annotation inference picks the browser variant, whose
-            // setup signature expects an HTMLElement and so does not match.
-            // Inertia does not re-export SetupOptions, so the shape is built
-            // here from the App component it does export.
-            setup: ({ App, props }: SsrSetupOptions) => <App {...props} />,
+            setup: ({ App, props }) => <App {...props} />,
         }),
     port,
 );

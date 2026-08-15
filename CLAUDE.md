@@ -43,6 +43,15 @@ php artisan og:generate --type=blog --slug=my-post   # needs Chromium
 
 Run `vendor/bin/pint --dirty --format agent` after editing any PHP file.
 
+## Deploying
+
+`main` deploys itself: green tests on `main` trigger `.github/workflows/deploy.yml`,
+which runs `scripts/deploy.sh` on the server. Never build straight into the live
+`public/build` — Vite empties it first and the site 500s until it is rewritten.
+Read `docs/deployment.md` before changing anything about the server; the host is
+shared with a dozen other sites and with the private platform app that answers
+`/checkout` and `/api/newsletter` on this same domain.
+
 ## Testing
 
 Every change needs a test. Feature tests live in `tests/Feature`; there is no
