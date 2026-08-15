@@ -1,6 +1,18 @@
 @import "tailwindcss";
-@import "@fontsource-variable/inter";
-@import "@fontsource/ibm-plex-mono";
+/*
+ * `@fontsource-variable/inter` resolves to the `wght` axis (48,256 B latin).
+ * `opsz` (72,920 B latin) adds the optical-size axis, which is what lets 11px
+ * mono labels and a 60px headline be drawn with the metrics each size wants.
+ * Both keep the full `font-weight: 100 900` range.
+ *
+ * IBM Plex Mono is imported per weight on purpose. The package's own
+ * `index.css` ships weight 400 and nothing else, so the 35 `font-mono
+ * font-semibold` call sites — every section eyebrow on the site — were being
+ * synthesised into faux bold by the browser.
+ */
+@import "@fontsource-variable/inter/opsz.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/600.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -33,19 +45,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 :root {
@@ -56,10 +55,17 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.72 0.18 55);
+  /*
+   * Chroma is clamped to the sRGB ceiling at each lightness and hue, computed
+   * rather than eyeballed: L 0.72 / H 55 tops out at C 0.1783, L 0.52 / H 45 at
+   * C 0.1487. Above the ceiling a browser clips on sRGB but renders the fuller
+   * colour on P3, so the same token was two different colours depending on the
+   * display. Hue is deliberately unchanged.
+   */
+  --primary: oklch(0.72 0.178 55);
   --primary-foreground: oklch(0.25 0.05 55);
   /* Text-only accent. --primary is tuned for fills; at small type it reads ~2.2:1 on white. */
-  --primary-strong: oklch(0.52 0.15 45);
+  --primary-strong: oklch(0.52 0.148 45);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -69,20 +75,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.72 0.18 55);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --ring: oklch(0.72 0.178 55);
 }
 
 .dark {
@@ -92,9 +85,10 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.72 0.18 55);
+  --primary: oklch(0.72 0.178 55);
   --primary-foreground: oklch(0.25 0.05 55);
-  --primary-strong: oklch(0.8 0.15 58);
+  /* L 0.80 / H 58 tops out at C 0.1371 — this was the worst offender, 0.0129 over. */
+  --primary-strong: oklch(0.8 0.137 58);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -104,20 +98,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.72 0.18 55);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --ring: oklch(0.72 0.178 55);
 }
 
 @layer base {
@@ -147,20 +128,30 @@ html {
   *,
   *::before,
   *::after {
+    animation-delay: 0s !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-timeline: none !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
 
-/* Text gradient utility */
-.text-gradient {
-  background: linear-gradient(135deg, oklch(0.78 0.18 55), oklch(0.65 0.24 40));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/*
+ * `animation-delay` and `animation-timeline` are part of the block above for
+ * reasons that are easy to miss:
+ *
+ * - Collapsing `animation-duration` does nothing to the delay. Under `both`
+ *   fill the `backwards` half holds the `from` state for the whole delay, so a
+ *   staggered reveal still makes elements pop in one at a time — precisely the
+ *   effect the setting exists to prevent.
+ * - A progress-based `animation-timeline` ignores duration entirely, so a
+ *   0.01ms duration does not disable it.
+ *
+ * `animation-iteration-count: 1` is also not an off switch: it truncates a loop
+ * to a single 0.01ms pass, freezing it mid-transform. Anything that loops needs
+ * its own reduced-motion branch rather than relying on this block.
+ */
 
 /* Blog article typography */
 .blog-article {

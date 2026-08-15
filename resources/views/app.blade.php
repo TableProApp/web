@@ -8,6 +8,29 @@
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    {{--
+        Both faces reach the browser through `@import` inside app.css, so they
+        cannot be discovered until that stylesheet has downloaded and parsed.
+        These two are the ones used above the fold — Inter for the headline and
+        body, IBM Plex Mono 600 for the section eyebrow — so preloading them
+        removes a visible swap on first paint. The mono 400 face is deliberately
+        left out: a third font preload competes with the hero image, which is
+        the LCP element.
+
+        Paths come from the Vite manifest because the woff2 files are
+        content-hashed at build time. Skipped while the dev server is hot, where
+        there is no manifest to resolve against.
+    --}}
+    @if (! Vite::isRunningHot())
+        @foreach ([
+            'node_modules/@fontsource-variable/inter/files/inter-latin-opsz-normal.woff2',
+            'node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2',
+        ] as $font)
+            <link rel="preload" as="font" type="font/woff2" crossorigin href="{{ Vite::asset($font) }}" />
+        @endforeach
+    @endif
+
     @inertiaHead
     <script>
         (function () {
