@@ -5,6 +5,7 @@ import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
@@ -37,7 +38,7 @@ export default function RefundPolicy({ downloadUrls }: Props) {
                         </p>
                         <p>
                             To request a refund, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>{' '}
+                            <a href="mailto:hello@tablepro.app" className={PROSE_LINK}>hello@tablepro.app</a>{' '}
                             with the email or License Key from your purchase. Eligible refunds are processed within 5 business days to the original payment method.
                         </p>
                         <p>

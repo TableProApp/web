@@ -8,6 +8,7 @@ import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 import Button, { buttonClasses } from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
@@ -126,7 +127,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                     lede={
                         <>
                             If your download doesn't start automatically,{' '}
-                        <a ref={manualRef} href="https://github.com/TableProApp/TablePro/releases/latest" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">click here</a>.
+                        <a ref={manualRef} href="https://github.com/TableProApp/TablePro/releases/latest" className={PROSE_LINK}>click here</a>.
                         </>
                     }
                 />

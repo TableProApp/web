@@ -71,7 +71,8 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                                 <li key={post.slug}>
                                     <Link
                                         href={post.url}
-                                        className="group block p-6 transition-colors hover:bg-gray-950/[1.5%] sm:p-8 dark:hover:bg-white/[1.5%]"
+                                        data-row
+                                        className="group block p-6 sm:p-8"
                                     >
                                         <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground">
                                             <time dateTime={post.date}>{post.dateFormatted}</time>

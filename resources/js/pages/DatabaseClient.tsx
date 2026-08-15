@@ -244,7 +244,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                     <div className="grid grid-cols-1 sm:grid-cols-2">
                         {/* Code snippet */}
                         <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
-                            <div tabIndex={0} role="region" aria-label="Connection snippet" className="overflow-x-auto rounded-lg border border-rule-strong bg-gray-950/[2.5%] p-4 dark:bg-white/[2.5%]">
+                            <div tabIndex={0} role="region" aria-label="Connection snippet" className="overflow-x-auto rounded-lg border border-rule-strong bg-surface-raised p-4">
                                 <code className="block whitespace-pre font-mono text-sm leading-relaxed text-foreground">
                                     {db.snippet}
                                 </code>

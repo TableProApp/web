@@ -6,6 +6,7 @@ import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 import { Availability, CheckGlyph } from '@/components/ui/glyph';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -150,7 +151,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
     }
 
     return (
-        <div className={`flex h-full flex-col border-rule p-6 sm:p-8 ${tier.featured ? 'bg-primary/[0.03]' : ''}`}>
+        <div className={`flex h-full flex-col border-rule p-6 sm:p-8 ${tier.featured ? 'bg-primary/5' : ''}`}>
             <div>
                 <h3 className="text-lg font-semibold text-foreground">{tier.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{tier.description}</p>
@@ -184,7 +185,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
                         <button
                             type="button"
                             onClick={() => setSeats((s) => Math.max(teamMinSeats, s - 1))}
-                            className="px-3 py-1 text-lg leading-none text-muted-foreground hover:text-foreground disabled:opacity-40"
+                            className="px-3 py-1 text-lg leading-none text-muted-foreground hover:text-foreground disabled:opacity-50"
                             disabled={seats <= teamMinSeats}
                             aria-label="Fewer seats"
                         >
@@ -200,7 +201,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
                         <button
                             type="button"
                             onClick={() => setSeats((s) => Math.min(200, s + 1))}
-                            className="px-3 py-1 text-lg leading-none text-muted-foreground hover:text-foreground disabled:opacity-40"
+                            className="px-3 py-1 text-lg leading-none text-muted-foreground hover:text-foreground disabled:opacity-50"
                             disabled={seats >= 200}
                             aria-label="More seats"
                         >
@@ -212,11 +213,11 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
 
             <div className="mt-6">
                 {tier.ctaHref ? (
-                    <a href={tier.ctaHref} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'}`}>
+                    <a href={tier.ctaHref} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-(--dur-tap) ease-(--ease-feedback) ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'}`}>
                         {tier.cta}
                     </a>
                 ) : (
-                    <button type="button" onClick={handleCheckout} disabled={isLoading} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'} ${isLoading ? 'cursor-wait opacity-60' : ''}`}>
+                    <button type="button" onClick={handleCheckout} disabled={isLoading} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-(--dur-tap) ease-(--ease-feedback) ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'} ${isLoading ? 'cursor-wait opacity-60' : ''}`}>
                         {isLoading ? 'Loading...' : tier.cta}
                     </button>
                 )}
@@ -348,13 +349,13 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             <Container>
                 <FullLine />
                 <div className="flex items-center justify-center overflow-x-auto py-4">
-                    <div className="inline-flex items-center rounded-full border border-rule bg-gray-950/[0.02] p-1 dark:bg-white/[0.03]">
+                    <div className="inline-flex items-center rounded-full border border-rule bg-surface-raised p-1">
                         {cycles.map((c) => (
                             <button
                                 key={c.value}
                                 type="button"
                                 onClick={() => setBillingCycle(c.value)}
-                                className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
+                                className={`rounded-full px-5 py-2 text-sm font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback) ${
                                     billingCycle === c.value
                                         ? 'bg-foreground text-background shadow-sm'
                                         : 'text-muted-foreground hover:text-foreground'
@@ -362,7 +363,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                             >
                                 {c.label}
                                 {c.badge && (
-                                    <span className="ml-1.5 rounded-full bg-primary/15 px-1.5 py-0.5 text-2xs font-semibold text-primary-strong">
+                                    <span className="ml-1.5 rounded-full bg-primary/10 px-1.5 py-0.5 text-2xs font-semibold text-primary-strong">
                                         {c.badge}
                                     </span>
                                 )}
@@ -466,7 +467,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             <Container>
                 <p className="px-4 py-4 text-sm text-muted-foreground">
                     7-day money-back guarantee on all paid plans.{' '}
-                    <a href="/refund-policy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Refund policy</a>
+                    <a href="/refund-policy" className={PROSE_LINK}>Refund policy</a>
                 </p>
                 <FullLine />
                 <p className="px-4 py-4 text-sm text-muted-foreground">

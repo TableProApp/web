@@ -151,7 +151,7 @@ export default function Header({ githubStars }: Props) {
                                 role="menu"
                                 aria-label="Download options"
                                 onKeyDown={handleMenuKeyDown}
-                                className={`absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-rule bg-background shadow-xl transition-all ${downloadOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}
+                                className={`absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-rule bg-background shadow-xl transition-[opacity,transform] duration-(--dur-state) ease-(--ease-panel) ${downloadOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}
                             >
                                 <a
                                     ref={(el) => { itemRefs.current[0] = el; }}

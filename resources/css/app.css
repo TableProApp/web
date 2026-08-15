@@ -85,6 +85,14 @@
    * which also meant the dark rule sat ~13% heavier than its light counterpart
    * for no reason. Dark is 0.08 here so the two match optically.
    */
+  /*
+   * One step off the base ground. Serves both the raised section tone and any
+   * inset panel — a code block, a segmented-control track — because those are
+   * the same visual idea seen from opposite sides, and they were previously
+   * five different raw alpha pairs.
+   */
+  --color-surface-raised: var(--surface-raised);
+
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
 
@@ -301,6 +309,18 @@ html {
  * `animation-iteration-count: 1` is also not an off switch: it truncates a loop
  * to a single 0.01ms pass, freezing it mid-transform. Anything that loops needs
  * its own reduced-motion branch rather than relying on this block.
+ */
+
+/*
+ * The accent tint scale, recorded because it was seven values in two syntaxes.
+ *
+ *   /5   a surface marked as the featured one — the Starter card, the TablePro
+ *        column in either comparison table
+ *   /10  a filled chip or step marker, and the selected state of a control
+ *
+ * `safety.tsx` keeps its own /[0.02] /[0.04] /[0.06] ladder. That is not drift:
+ * the tint there encodes how far up the six-level ladder a row sits, so the
+ * steps have to be finer than the scale above and have to be evenly spaced.
  */
 
 /*

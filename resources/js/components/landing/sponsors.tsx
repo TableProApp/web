@@ -2,6 +2,7 @@ import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import SectionShell from '@/components/ui/section-shell';
 import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 
 const COLS: ColumnMap = { base: 2, lg: 4 };
 
@@ -112,7 +113,7 @@ function SponsorMark({ sponsor }: { sponsor: Sponsor }) {
             <span
                 role="img"
                 aria-label={sponsor.name}
-                className={`${MARK_CLASS} block opacity-80 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 [&>svg]:h-full [&>svg]:w-auto [&>svg]:max-w-full`}
+                className={`${MARK_CLASS} block opacity-80 grayscale transition-[opacity,filter] duration-(--dur-state) ease-(--ease-feedback) group-hover:opacity-100 group-hover:grayscale-0 [&>svg]:h-full [&>svg]:w-auto [&>svg]:max-w-full`}
                 dangerouslySetInnerHTML={{ __html: sponsor.svgContent }}
             />
         );
@@ -126,7 +127,7 @@ function SponsorMark({ sponsor }: { sponsor: Sponsor }) {
             height={sponsor.height}
             loading="lazy"
             decoding="async"
-            className={`${MARK_CLASS} object-contain opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 group-hover:dark:grayscale dark:invert`}
+            className={`${MARK_CLASS} object-contain opacity-70 grayscale transition-[opacity,filter] duration-(--dur-state) ease-(--ease-feedback) group-hover:opacity-100 group-hover:grayscale-0 group-hover:dark:grayscale dark:invert`}
         />
     );
 }
@@ -170,7 +171,7 @@ export default function Sponsors() {
                                     aria-label="Become a sponsor"
                                     className={`${CELL_CLASS} ${borders}`}
                                 >
-                                    <span className="flex size-10 items-center justify-center rounded-xl border border-dashed border-rule-strong text-muted-foreground transition-colors group-hover:border-gray-950/20 dark:group-hover:border-white/20">
+                                    <span className="flex size-10 items-center justify-center rounded-xl border border-dashed border-rule-strong text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) group-hover:border-primary/40">
                                         <svg
                                             className="size-4"
                                             viewBox="0 0 24 24"
@@ -214,7 +215,7 @@ export default function Sponsors() {
                         href={GITHUB_SPONSORS_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong"
+                        className={PROSE_LINK}
                     >
                         Become a sponsor
                     </a>
