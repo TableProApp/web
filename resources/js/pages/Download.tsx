@@ -9,6 +9,7 @@ import { FullLine } from '@/components/ui/full-line';
 import Button, { buttonClasses } from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
 import { PROSE_LINK } from '@/components/ui/prose-link';
+import { cn } from '@/lib/utils';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
@@ -201,7 +202,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                                 href="https://github.com/TableProApp/TablePro/releases"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong"
+                                className={cn(PROSE_LINK, 'mt-4 inline-flex items-center gap-1.5 text-sm font-medium')}
                             >
                                 View all releases
                                 <svg className="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
