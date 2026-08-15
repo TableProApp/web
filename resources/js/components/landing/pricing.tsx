@@ -7,6 +7,7 @@ import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 import { Availability, CheckGlyph } from '@/components/ui/glyph';
 import { PROSE_LINK } from '@/components/ui/prose-link';
+import { PANEL_TITLE } from '@/components/ui/grid-cell';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -153,7 +154,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
     return (
         <div className={`flex h-full flex-col border-rule p-6 sm:p-8 ${tier.featured ? 'bg-primary/5' : ''}`}>
             <div>
-                <h3 className="text-lg font-semibold text-foreground">{tier.name}</h3>
+                <h3 className={PANEL_TITLE}>{tier.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{tier.description}</p>
             </div>
 
@@ -225,7 +226,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
 
             <div className="mt-6">
                 {tier.summary ? (
-                    <p className="text-sm leading-relaxed text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                         {tier.summary}
                     </p>
                 ) : (

@@ -46,7 +46,7 @@ export function LedgerRow({ label, children, aside, accent, className }: LedgerR
                 {label}
                 {aside && <span className="ml-2 normal-case text-muted-foreground-subtle">{aside}</span>}
             </dt>
-            <dd className="text-sm leading-relaxed text-muted-foreground">{children}</dd>
+            <dd className="text-sm text-muted-foreground">{children}</dd>
         </div>
     );
 }

@@ -20,7 +20,7 @@ export default function DatabaseMark({ icon, monogram, name }: DatabaseMarkProps
                 height={40}
                 loading="lazy"
                 decoding="async"
-                className="size-10 object-contain opacity-40 grayscale transition-[opacity,filter] duration-(--dur-state) ease-(--ease-feedback) group-hover:opacity-100 group-hover:grayscale-0 dark:invert group-hover:dark:invert-0"
+                className="size-10 object-contain opacity-40 grayscale transition-[opacity,filter] duration-(--dur-state) ease-(--ease-feedback) group-hover:opacity-100 group-hover:grayscale-0 dark:invert group-hover:dark:invert-0 group-focus-within:opacity-100 group-focus-within:grayscale-0 group-focus-within:dark:invert-0"
             />
         );
     }
@@ -29,7 +29,7 @@ export default function DatabaseMark({ icon, monogram, name }: DatabaseMarkProps
         <span
             aria-hidden="true"
             title={name}
-            className="grid size-10 place-items-center border border-rule-strong font-mono text-sm font-semibold text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) group-hover:border-primary/40"
+            className="grid size-10 place-items-center border border-rule-strong font-mono text-sm font-semibold text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) group-hover:border-primary/40 group-focus-within:border-primary/40"
         >
             {monogram ?? name.slice(0, 2).toUpperCase()}
         </span>

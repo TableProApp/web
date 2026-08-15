@@ -32,7 +32,7 @@ export default function RefundPolicy({ downloadUrls }: Props) {
 
                 <Container width="md">
                     <FullLine />
-                    <div className="space-y-4 p-6 text-sm leading-relaxed text-muted-foreground sm:p-8">
+                    <div className="space-y-4 p-6 text-sm text-muted-foreground sm:p-8">
                         <p>
                             7-day money-back guarantee on all paid plans. The window starts on the date of purchase, or on the most recent renewal for yearly subscriptions.
                         </p>

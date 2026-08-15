@@ -48,7 +48,7 @@ export default function OpenSource({ latestRelease }: Props) {
             <Container>
                 <div className="lg:grid lg:grid-cols-[1fr_18rem]">
                     <div className="border-rule max-lg:border-b lg:border-r">
-                        <div className="max-w-2xl space-y-4 p-6 text-base leading-relaxed text-muted-foreground text-pretty sm:p-8">
+                        <div className="max-w-2xl space-y-4 p-6 text-base text-muted-foreground text-pretty sm:p-8">
                             <p>
                                 TablePro is AGPLv3. All 25 databases, the SQL editor, the data grid, the AI assistant,
                                 the MCP server, Safe Mode with Touch ID, SSH tunnels, ER diagrams, the server dashboard,

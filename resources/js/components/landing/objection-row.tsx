@@ -39,7 +39,7 @@ export default function ObjectionRow() {
                                 className={`p-6 sm:p-8 ${cellBorders(i, COLS, QUESTIONS.length)} border-rule`}
                             >
                                 <h2 className="text-base font-semibold text-foreground">{faq.question}</h2>
-                                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
+                                <p className="mt-2 text-sm text-muted-foreground">{faq.answer}</p>
                             </div>
                         );
                     })}

@@ -1,13 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { Check, Copy } from 'lucide-react';
-import { toast } from 'sonner';
 import { CodeBlock } from '@/components/ui/code';
+import CopyButton from '@/components/ui/copy-button';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 import { relocatedFaq } from '@/data/home-faqs';
-import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
+import { ITEM_TITLE, cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
 
 /** Kept byte-identical to the tokenized block below, since this is what gets copied. */
 const CONFIG_JSON = `{
@@ -70,49 +68,6 @@ function Tool({ children }: { children: string }) {
     return <span className="font-mono text-sm">{children}</span>;
 }
 
-function CopyButton() {
-    const [copied, setCopied] = useState(false);
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-    useEffect(
-        () => () => {
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-        },
-        [],
-    );
-
-    async function handleCopy() {
-        try {
-            await navigator.clipboard.writeText(CONFIG_JSON);
-            toast('Copied');
-            setCopied(true);
-
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-            timeoutRef.current = setTimeout(() => setCopied(false), 1200);
-        } catch {
-            toast.error('Could not copy. Select the text and copy it by hand.');
-        }
-    }
-
-    return (
-        <button
-            type="button"
-            onClick={handleCopy}
-            aria-label="Copy configuration"
-            className="inline-flex size-7 items-center justify-center rounded-key text-muted-foreground transition-colors hover:text-foreground"
-        >
-            {copied ? (
-                <Check className="size-4 text-primary-strong" strokeWidth={1.75} aria-hidden="true" />
-            ) : (
-                <Copy className="size-4" strokeWidth={1.75} aria-hidden="true" />
-            )}
-        </button>
-    );
-}
 
 const aiSafetyFaq = relocatedFaq('Can the AI drop a table on production?');
 
@@ -139,7 +94,7 @@ export default function AgentsMcp() {
                             <span className="font-mono text-2xs text-muted-foreground">
                                 claude_desktop_config.json
                             </span>
-                            <CopyButton />
+                            <CopyButton value={CONFIG_JSON} label="the MCP configuration" />
                         </div>
 
                         <CodeBlock label="MCP client configuration">
@@ -229,8 +184,8 @@ export default function AgentsMcp() {
               */}
             <Container>
                 <div className="border-l-2 border-primary p-4 sm:p-6">
-                    <h3 className="text-base font-semibold text-foreground">{aiSafetyFaq.question}</h3>
-                    <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                    <h3 className={ITEM_TITLE}>{aiSafetyFaq.question}</h3>
+                    <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
                         {aiSafetyFaq.answer}
                     </p>
                 </div>

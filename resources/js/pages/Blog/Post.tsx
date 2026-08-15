@@ -164,10 +164,10 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                                                 <span aria-hidden="true">·</span>
                                                 <span>{rp.readingMinutes} min read</span>
                                             </div>
-                                            <h3 className="mt-2 text-xl font-bold text-foreground transition-colors group-hover:text-primary-strong sm:text-2xl">
+                                            <h3 className="mt-2 text-xl font-bold text-foreground transition-colors group-hover:text-primary-strong sm:text-2xl group-focus-within:text-primary-strong">
                                                 {rp.title}
                                             </h3>
-                                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                            <p className="mt-2 text-sm text-muted-foreground">
                                                 {rp.description}
                                             </p>
                                         </Link>

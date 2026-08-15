@@ -222,7 +222,7 @@ export default function Safety() {
                             <h3 className="font-mono text-2xs font-semibold tracking-widest text-primary-strong uppercase">
                                 {cell.label}
                             </h3>
-                            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{cell.body}</p>
+                            <p className="mt-3 text-sm text-muted-foreground">{cell.body}</p>
                         </GridCell>
                     ))}
                 </div>

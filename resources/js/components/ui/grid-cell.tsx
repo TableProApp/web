@@ -116,6 +116,21 @@ export const CELL_DENSITY = {
 
 export type CellDensity = keyof typeof CELL_DENSITY;
 
+/**
+ * The two heading sizes a cell can carry, named so the choice stops being made
+ * ad hoc.
+ *
+ * `PANEL_TITLE` heads a cell that is the whole point of its cell — the download
+ * panel, a pricing tier. `ITEM_TITLE` heads one entry in a list of like things —
+ * a question, a capability, a feature row — where a larger size would make every
+ * item shout.
+ *
+ * Both are h3s. This was three sites at one size and twenty-three at the other,
+ * with nothing recording which was which.
+ */
+export const PANEL_TITLE = 'text-lg font-semibold text-foreground';
+export const ITEM_TITLE = 'text-base font-semibold text-foreground';
+
 interface GridCellProps {
     className?: string;
     /** `stripe` fills the cell with the page gutter's 45 degree hatch. */

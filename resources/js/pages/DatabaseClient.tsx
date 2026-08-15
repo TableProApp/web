@@ -10,6 +10,8 @@ import Button from '@/components/ui/button';
 import { AppleGlyph, CheckGlyph } from '@/components/ui/glyph';
 import FaqList from '@/components/ui/faq-list';
 import ThemedImage from '@/components/ui/themed-image';
+import { ITEM_TITLE } from '@/components/ui/grid-cell';
+import ClosingCta from '@/components/landing/closing-cta';
 
 interface Props {
     slug: string;
@@ -162,8 +164,8 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                                     i % 2 === 0 ? 'sm:border-r' : ''
                                 } ${i < db.features.length - 2 ? 'border-b' : i < db.features.length - 1 ? 'max-sm:border-b' : ''}`}
                             >
-                                <h3 className="text-base font-semibold text-foreground">{feature.title}</h3>
-                                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+                                <h3 className={ITEM_TITLE}>{feature.title}</h3>
+                                <p className="mt-2 text-sm text-muted-foreground">{feature.description}</p>
                             </div>
                         ))}
                     </div>
@@ -245,7 +247,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         {/* Code snippet */}
                         <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
                             <div tabIndex={0} role="region" aria-label="Connection snippet" className="overflow-x-auto rounded-lg border border-rule-strong bg-surface-raised p-4">
-                                <code className="block whitespace-pre font-mono text-sm leading-relaxed text-foreground">
+                                <code className="block whitespace-pre font-mono text-sm text-foreground">
                                     {db.snippet}
                                 </code>
                             </div>
@@ -253,7 +255,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                         {/* Connection details */}
                         <div className="p-6 sm:p-8">
-                            <h3 className="text-base font-semibold text-foreground">Supported versions</h3>
+                            <h3 className={ITEM_TITLE}>Supported versions</h3>
                             <p className="mt-1 text-sm text-muted-foreground">{db.supportedVersions}</p>
 
                             <h3 className="mt-6 text-base font-semibold text-foreground">Connection types</h3>
@@ -293,8 +295,8 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                                             {idx + 1}
                                         </div>
                                         <div>
-                                            <h3 className="text-base font-semibold text-foreground">{step.name}</h3>
-                                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
+                                            <h3 className={ITEM_TITLE}>{step.name}</h3>
+                                            <p className="mt-2 text-sm text-muted-foreground">{step.text}</p>
                                         </div>
                                     </li>
                                 ))}
@@ -318,37 +320,14 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         <FullLine />
                     </>
                 )}
-
-                {/* CTA */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <div className="px-4 py-12 text-center sm:py-16">
-                        <h2 className="text-3xl font-bold sm:text-4xl">
-                            Try TablePro for free.
-                        </h2>
-                        <p className="mt-3 text-muted-foreground">
-                            Free and open-source. macOS 14+. Apple Silicon and Intel.
-                        </p>
-                        <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-                            <Button
-                                href="/download"
-                            >
-                                <AppleGlyph />
-                                Download for Mac
-                            </Button>
-                            <Button variant="secondary"
+                <ClosingCta>
+                    <Button variant="secondary"
                                 href={`https://docs.tablepro.app/databases/${db.docsPath}`}
                             >
                                 Setup guide
                             </Button>
-                        </div>
-                    </div>
-                    <FullLine />
-                </Container>
-
-                <div className="h-12 sm:h-16 lg:h-24" />
+                </ClosingCta>
+<div className="h-12 sm:h-16 lg:h-24" />
         </LandingLayout>
     );
 }
