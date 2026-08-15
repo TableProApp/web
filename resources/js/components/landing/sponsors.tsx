@@ -21,6 +21,18 @@ const nimbusSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="2
 interface Sponsor {
     name: string;
     url: string;
+    /**
+     * One line saying what this company does.
+     *
+     * A wall of unfamiliar marks reads as weaker credibility than showing none,
+     * because the reader cannot tell a sponsor from a customer from a logo
+     * someone licensed. A sentence turns paid placement into something the
+     * reader gets value from, which is the Neovim pattern.
+     *
+     * Optional on purpose: a sponsor without a description still renders its
+     * mark, so adding copy later is a data edit and never a code change.
+     */
+    description?: string;
     logo?: string;
     /** Intrinsic pixel size of the mark, so the row does not reflow while it loads. */
     width: number;
@@ -120,7 +132,7 @@ function SponsorMark({ sponsor }: { sponsor: Sponsor }) {
 }
 
 const CELL_CLASS =
-    'group flex items-center justify-center p-6 transition-colors sm:p-8 lg:p-10';
+    'group flex flex-col items-center justify-center gap-3 p-6 text-center transition-colors sm:p-8 lg:p-10';
 
 /**
  * Sponsors get their own section high on the page, not a footnote near the
@@ -183,6 +195,11 @@ export default function Sponsors() {
                                 className={`${CELL_CLASS} ${borders}`}
                             >
                                 <SponsorMark sponsor={cell.sponsor} />
+                                {cell.sponsor.description && (
+                                    <span className="text-xs leading-relaxed text-muted-foreground">
+                                        {cell.sponsor.description}
+                                    </span>
+                                )}
                             </a>
                         );
                     })}

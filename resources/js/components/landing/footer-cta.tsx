@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import { toast } from 'sonner';
+import { buttonClasses } from '@/components/ui/button';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 import SectionShell from '@/components/ui/section-shell';
+import Button from '@/components/ui/button';
 
 interface FlashMessage {
     type: 'success' | 'warning' | 'error';
@@ -96,8 +98,7 @@ function useEmailForm(endpoint: string) {
  */
 const INPUT_CLASS =
     'min-w-0 flex-1 rounded-lg border border-rule bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground disabled:opacity-50';
-const SUBMIT_CLASS =
-    'shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50';
+const SUBMIT_CLASS = buttonClasses('primary', 'sm', 'shrink-0 disabled:opacity-50');
 
 export default function FooterCTA() {
     const [showBeta, setShowBeta] = useState(false);
@@ -220,20 +221,19 @@ export default function FooterCTA() {
                         </p>
 
                         <div className="mt-6 flex flex-wrap items-center gap-3">
-                            <a
+                            <Button
                                 href="/download"
-                                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
                             >
                                 <AppleGlyph />
                                 Download for Mac
-                            </a>
+                            </Button>
                             <button
                                 type="button"
                                 data-beta-toggle
                                 aria-expanded={showBeta}
                                 aria-controls="beta-invite"
                                 onClick={() => setShowBeta(true)}
-                                className="inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
+                                className={buttonClasses('secondary')}
                             >
                                 Get for iPhone
                             </button>
