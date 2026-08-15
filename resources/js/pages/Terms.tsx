@@ -3,7 +3,7 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 
 interface Props {
@@ -38,37 +38,12 @@ export default function Terms({ downloadUrls }: Props) {
                     { name: 'Terms', path: '/terms' },
                 ]}
             />
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Legal
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
-                        Terms of Service
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-                <Container>
-                    <FullLine />
-                    <p className="pl-4 text-sm text-muted-foreground">
-                        Last updated: May 2026
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
+                <PageHeader
+                    label="Legal"
+                    headline="Terms of Service"
+                    lede="Last updated: May 2026"
+                />
+<div className="h-6 sm:h-8 lg:h-10" />
 
                 <Container width="md">
                     <FullLine />

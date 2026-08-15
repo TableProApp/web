@@ -5,6 +5,7 @@ import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { Link } from '@inertiajs/react';
 import SectionLabel from '@/components/ui/section-label';
+import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 import Button from '@/components/ui/button';
 
@@ -98,38 +99,21 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                     { name: post.title, path: post.url },
                 ]}
             />
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <FullLine />
-                <Container>
-                    <Link
-                        href="/blog"
-                        className="block py-3 pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary-strong transition-opacity hover:opacity-70"
-                    >
-                        ← Blog
-                    </Link>
-                </Container>
-
-                <FullLine />
-                <Container>
-                    <h1 className="px-4 py-6 text-3xl font-bold text-pretty sm:text-4xl lg:py-8 lg:text-5xl">
-                        {post.title}
-                    </h1>
-                </Container>
-
-                <FullLine />
-                <Container>
-                    <div className="flex flex-wrap items-center gap-3 px-4 py-4 text-sm text-muted-foreground">
-                        <span>{post.author}</span>
+                <PageHeader
+                    label="← Blog"
+                    labelHref="/blog"
+                    headline={post.title}
+                    lede={
+                        <span className="flex flex-wrap items-center gap-3">
+                            <span>{post.author}</span>
                         <span aria-hidden="true">·</span>
                         <time dateTime={post.date}>{post.dateFormatted}</time>
                         <span aria-hidden="true">·</span>
                         <span>{post.readingMinutes} min read</span>
-                    </div>
-                </Container>
-
-                {post.tags.length > 0 && (
+                        </span>
+                    }
+                />
+{post.tags.length > 0 && (
                     <>
                         <FullLine />
                         <Container>

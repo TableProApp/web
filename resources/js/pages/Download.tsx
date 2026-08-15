@@ -4,7 +4,7 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 import Button, { buttonClasses } from '@/components/ui/button';
 
@@ -119,42 +119,17 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                     { name: 'Download', path: '/download' },
                 ]}
             />
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                {/* Label */}
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Download
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                {/* Spacer */}
-                <div className="h-4" />
-
-                {/* Headline */}
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
-                        Your download is starting...
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                {/* Manual link */}
-                <div className="h-2" />
-                <Container>
-                    <FullLine />
-                    <p className="pl-4 text-base text-muted-foreground">
-                        If your download doesn't start automatically,{' '}
+                <PageHeader
+                    label="Download"
+                    headline="Your download is starting..."
+                    lede={
+                        <>
+                            If your download doesn't start automatically,{' '}
                         <a ref={manualRef} href="https://github.com/TableProApp/TablePro/releases/latest" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">click here</a>.
-                    </p>
-                    <FullLine />
-                </Container>
-
-                {/* Spacer */}
+                        </>
+                    }
+                />
+{/* Spacer */}
                 <div className="h-6" />
 
                 {/* Architecture selector */}

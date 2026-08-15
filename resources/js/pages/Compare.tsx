@@ -4,7 +4,7 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { getComparisonBySlug } from '@/data/comparisons';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader, SectionHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 import Button from '@/components/ui/button';
 
@@ -134,39 +134,8 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                     { name: comp.name, path: canonical },
                 ]}
             />
-
-                {/* Hero */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Compare
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-4xl font-bold text-pretty sm:text-5xl lg:text-6xl">
-                        {comp.tagline}
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-
-                <Container>
-                    <FullLine />
-                    <p className="max-w-3xl pl-4 text-lg leading-relaxed text-muted-foreground">
-                        {comp.longDescription}
-                    </p>
-                    <FullLine />
-                </Container>
-
-                {/* Comparison Table */}
+                <PageHeader label="Compare" headline={comp.tagline} lede={comp.longDescription} />
+{/* Comparison Table */}
                 <div className="h-8 sm:h-12 lg:h-16" />
 
                 <FullLine />
@@ -208,28 +177,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 {/* Benchmarks */}
                 {comp.benchmarks && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                Benchmarks
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                The numbers.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="Benchmarks"
+                            headline="The numbers."
+                        />
                         <FullLine />
                         <Container>
                             <div className="grid grid-cols-1 sm:grid-cols-3">
@@ -260,28 +211,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 )}
 
                 {/* Pros */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Summary
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Strengths of each.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Summary"
+                    headline="Strengths of each."
+                />
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -317,28 +250,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 {/* Migration guide */}
                 {comp.migrationSteps && comp.migrationSteps.length > 0 && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                Migration
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                Switch from {comp.name}.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="Migration"
+                            headline={<>Switch from {comp.name}.</>}
+                        />
                         <FullLine />
                         <Container>
                             <ol className="divide-y divide-rule">
@@ -360,28 +275,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 )}
 
                 {/* App Screenshot */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        TablePro
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        See it in action.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="TablePro"
+                    headline="See it in action."
+                />
                 <FullLine />
                 <Container>
                     <picture className="hidden dark:contents">
@@ -416,28 +313,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 <FullLine />
 
                 {/* Who Should Choose What */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Decision
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Which one is right for you?
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Decision"
+                    headline="Which one is right for you?"
+                />
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -452,21 +331,8 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                     </div>
                 </Container>
                 <FullLine />
-
-                {/* Verdict */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Verdict
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <FullLine />
+                <SectionHeader label="Verdict" headline="The short answer." />
+<FullLine />
                 <Container>
                     <div className="p-6 sm:p-8">
                         <p className="text-base leading-relaxed text-foreground">
@@ -479,28 +345,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 {/* FAQ */}
                 {comp.faqs && comp.faqs.length > 0 && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                FAQ
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                Common questions.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="FAQ"
+                            headline="Common questions."
+                        />
                         <FullLine />
                         <Container>
                             <dl className="divide-y divide-rule">

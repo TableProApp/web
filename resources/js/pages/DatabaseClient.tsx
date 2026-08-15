@@ -4,7 +4,7 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { getDatabaseBySlug } from '@/data/databases';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader, SectionHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 import Button from '@/components/ui/button';
 
@@ -96,40 +96,18 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
             />
 
                 {/* Hero */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <div className="flex items-center gap-3 pl-4">
-                        <img src={db.icon} alt={db.name} className="size-8" width={32} height={32} />
-                        <SectionLabel>
+                <PageHeader
+                    label={
+                        <span className="flex items-center gap-3">
+                            <img src={db.icon} alt={db.name} className="size-8" width={32} height={32} />
                             {db.name} Client
-                        </SectionLabel>
-                    </div>
-                    <FullLine />
-                </Container>
+                        </span>
+                    }
+                    headline={db.tagline}
+                    lede={db.longDescription}
+                />
 
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-4xl font-bold text-pretty sm:text-5xl lg:text-6xl">
-                        {db.tagline}
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-
-                <Container>
-                    <FullLine />
-                    <p className="max-w-3xl pl-4 text-lg leading-relaxed text-muted-foreground">
-                        {db.longDescription}
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6" />
+<div className="h-6" />
 
                 <Container>
                     <FullLine />
@@ -184,28 +162,10 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
 
                 {/* Features */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Features
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Built for {db.name}.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Features"
+                    headline={<>Built for {db.name}.</>}
+                />
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -225,39 +185,11 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
 
                 {/* Data Grid Screenshot */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Data Grid
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Browse and edit data.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-
-                <Container>
-                    <FullLine />
-                    <p className="max-w-2xl pl-4 text-base text-muted-foreground">
-                        Sort, filter, and edit {db.name} data in a spreadsheet-like grid. Click any cell to edit.
-                        Insert and delete rows. Review changes before saving.
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Data Grid"
+                    headline="Browse and edit data."
+                    lede={<>Sort, filter, and edit {db.name} data in a spreadsheet-like grid. Click any cell to edit. Insert and delete rows. Review changes before saving.</>}
+                />
                 <FullLine />
                 <Container>
                     <div className="p-4 sm:p-6">
@@ -278,39 +210,11 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
 
                 {/* SQL Editor Screenshot */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        SQL Editor
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Write queries faster.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-
-                <Container>
-                    <FullLine />
-                    <p className="max-w-2xl pl-4 text-base text-muted-foreground">
-                        Tree-sitter syntax highlighting, schema-aware autocomplete, multi-tab, Vim mode, and full-text query history.
-                        AI assistant can write, explain, or optimize your SQL.
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="SQL Editor"
+                    headline="Write queries faster."
+                    lede="Tree-sitter syntax highlighting, schema-aware autocomplete, multi-tab, Vim mode, and full-text query history. AI assistant can write, explain, or optimize your SQL."
+                />
                 <FullLine />
                 <Container>
                     <div className="p-4 sm:p-6">
@@ -331,28 +235,10 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
 
                 {/* What You Can Do */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Capabilities
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        What you can do.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Capabilities"
+                    headline="What you can do."
+                />
                 <FullLine />
                 <Container>
                     <div className="p-6 sm:p-8">
@@ -371,28 +257,10 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
 
                 {/* Connection Info */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Connect
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Get connected in seconds.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Connect"
+                    headline="Get connected in seconds."
+                />
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -434,28 +302,10 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 {/* How to connect */}
                 {db.howToSteps && db.howToSteps.length > 0 && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                How to
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                Connect to {db.name} in four steps.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="How to"
+                            headline={<>Connect to {db.name} in four steps.</>}
+                        />
                         <FullLine />
                         <Container>
                             <ol className="divide-y divide-rule">
@@ -479,28 +329,10 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 {/* FAQ */}
                 {db.faqs && db.faqs.length > 0 && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                FAQ
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                Common {db.name} questions.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="FAQ"
+                            headline={<>Common {db.name} questions.</>}
+                        />
                         <FullLine />
                         <Container>
                             <dl className="divide-y divide-rule">

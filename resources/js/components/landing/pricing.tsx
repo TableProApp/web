@@ -339,7 +339,6 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
         >
 
             {/* What a license actually buys. Stated before the prices, on purpose. */}
-            <div className="h-4" />
             <Container>
                 <FullLine />
                 <Ledger>
@@ -359,7 +358,6 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             </Container>
 
             {/* Billing toggle */}
-            <div className="h-4" />
             <Container>
                 <FullLine />
                 <div className="flex items-center justify-center overflow-x-auto py-4">
@@ -479,12 +477,12 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
 
             {/* Refund note */}
             <Container>
-                <p className="py-4 pl-4 text-sm text-muted-foreground">
+                <p className="px-4 py-4 text-sm text-muted-foreground">
                     7-day money-back guarantee on all paid plans.{' '}
                     <a href="/refund-policy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Refund policy</a>
                 </p>
                 <FullLine />
-                <p className="py-4 pl-4 text-sm text-muted-foreground">
+                <p className="px-4 py-4 text-sm text-muted-foreground">
                     If you use TablePro at work, buy a license. If you cannot afford one, the free version is not
                     going anywhere.
                 </p>
@@ -495,7 +493,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
 
             <Container>
                 <FullLine />
-                <h3 className="pl-4 text-2xl font-bold text-foreground">
+                <h3 className="px-4 py-4 text-2xl font-bold sm:py-5 text-foreground">
                     Compare plans
                 </h3>
                 <FullLine />

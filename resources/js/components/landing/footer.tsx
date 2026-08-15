@@ -115,7 +115,7 @@ export default function Footer() {
 
             {/* Copyright */}
             <Container>
-                <p className="py-6 pl-4 text-muted-foreground">
+                <p className="px-4 py-6 text-muted-foreground">
                     &copy; {new Date().getFullYear()} TablePro. All rights reserved.
                 </p>
             </Container>
