@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\Assert;
+
 /**
  * A regression guard against the specific untrue claims this site used to make.
  * Every string below was live copy at some point and was wrong; if one comes
@@ -18,7 +20,9 @@ it('never revives a stale database count or platform claim', function () use ($r
     ];
 
     $banned = [
-        '18+' => 'the database count is 25',
+        // Not bare '18+': that also matches 'macOS 14+, iOS 18+', which is the
+        // correct deployment target. The stale claim was always '18+ databases'.
+        '18+ databases' => 'the database count is 25',
         '15+ databases' => 'the database count is 25',
         '21+' => 'the database count is 25',
         '9 built-in themes' => 'there are 4 built-in themes',
@@ -30,8 +34,15 @@ it('never revives a stale database count or platform claim', function () use ($r
         $contents = $readSource($source);
 
         foreach ($banned as $needle => $reason) {
-            expect($contents)->not->toContain(
+            // Not `expect()->not->toContain($needle, $message)`. Pest's
+            // toContain() is `(mixed ...$needles)` with no message parameter,
+            // so the message is swallowed as a second needle, and `not` passes
+            // as soon as *any* needle is absent. Since the message never
+            // appears in a source file, that assertion could never fail: this
+            // whole block was green while Home.tsx carried a banned string.
+            Assert::assertStringNotContainsString(
                 $needle,
+                $contents,
                 "{$source} contains \"{$needle}\" but {$reason}",
             );
         }
@@ -87,8 +98,15 @@ it('never links the retired TablePlus comparison page', function () use ($readSo
     );
 
     foreach ($sources as $source) {
-        expect(file_get_contents($source))->not->toContain(
-            '/compare/tableplus',
+        // Anchored to an opening quote so this catches a *link*
+        // (href="/compare/tableplus") and not a *mention*. Two components carry
+        // the slug in a comment explaining precisely why it is never linked,
+        // and those comments are the documentation of this rule — failing on
+        // them would delete the reason the rule exists. Backticks are excluded
+        // for the same reason: architecture.tsx quotes the path in a docblock.
+        Assert::assertDoesNotMatchRegularExpression(
+            '#["\']/compare/tableplus#',
+            file_get_contents($source),
             basename($source) . ' links a URL that returns 410 Gone',
         );
     }
