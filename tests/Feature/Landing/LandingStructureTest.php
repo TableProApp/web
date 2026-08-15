@@ -154,3 +154,69 @@ it('states the availability of every plan in words, not only in an icon', functi
     expect($html)->toContain('>Included<');
     expect($html)->toContain('>Not included<');
 });
+
+it('never draws two rules at the same height', function (): void {
+    $html = landingHtml();
+
+    /*
+     * Two rules with nothing between them but a section boundary render as one
+     * hairline and consume two ordinals, so the gutter prints both numbers on
+     * top of each other. That shipped, visibly, as an unreadable "08/09" —
+     * a boundary is one rule, and it belongs to whatever closes.
+     *
+     * Only `<section>` and unstyled `<div>` count as transparent here. Anything
+     * that can carry height genuinely separates the two.
+     */
+    preg_match_all('/<div class="[^"]*rule-numbered[^"]*"[^>]*>/', $html, $matches, PREG_OFFSET_CAPTURE);
+
+    $ends = [];
+    foreach ($matches[0] as [$tag, $offset]) {
+        $open = $offset + strlen($tag);
+        $close = strpos($html, '</div>', $open);
+        if (str_contains(substr($html, $open, $close - $open), '<div')) {
+            $close = strpos($html, '</div>', strpos($html, '</div>', $open) + 6);
+        }
+        $ends[] = [$offset, $close + 6];
+    }
+
+    $coincident = [];
+    for ($i = 0; $i < count($ends) - 1; $i++) {
+        $between = substr($html, $ends[$i][1], $ends[$i + 1][0] - $ends[$i][1]);
+
+        if (trim(strip_tags($between)) !== '') {
+            continue;
+        }
+
+        $boxes = false;
+        preg_match_all('/<(\w+)([^>]*)>/', $between, $tags, PREG_SET_ORDER);
+        foreach ($tags as $tag) {
+            if (! in_array($tag[1], ['section', 'div'], true)) {
+                $boxes = true;
+                break;
+            }
+            if (preg_match('/(?<!scroll-)\b(h-\d|min-h|p-\d|py-\d|pt-\d|pb-\d|m[tby]?-\d|grid|flex)/', $tag[2])) {
+                $boxes = true;
+                break;
+            }
+        }
+
+        if (! $boxes) {
+            $coincident[] = ($i + 1) . '/' . ($i + 2);
+        }
+    }
+
+    expect($coincident)->toBe([], 'Rules ' . implode(', ', $coincident) . ' render at the same height');
+});
+
+it('spans the gutters and rails past the footer', function (): void {
+    $html = landingHtml();
+
+    /*
+     * `row-span-full` compiles to `grid-row: 1 / -1`, and `-1` counts back from
+     * the last line of the *explicit* grid. With only `grid-cols` declared every
+     * row was implicit, `-1` resolved to line 1, and all four vertical lines
+     * stopped dead where <main> ended — the footer stood beside nothing.
+     */
+    expect($html)->toContain('grid-rows-[1fr_auto]');
+    expect($html)->toContain('row-start-2');
+});

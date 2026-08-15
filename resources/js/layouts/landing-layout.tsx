@@ -51,6 +51,16 @@ export default function LandingLayout({ header, footer, children }: Props) {
             </a>
             {header}
             {/*
+              * `grid-rows-[1fr_auto]` is load-bearing, not cosmetic. The gutters and
+              * the container rails span the full height with `row-span-full`, which
+              * compiles to `grid-row: 1 / -1` — and `-1` counts back from the last
+              * line of the *explicit* grid. With only `grid-cols` declared, every
+              * row was implicit, so `-1` resolved to line 1 and the span collapsed
+              * to a single row: all four vertical lines stopped dead where <main>
+              * ended and the footer stood beside nothing. Declaring the two rows
+              * makes `-1` mean what it reads like. The `1fr` also pins the footer
+              * to the bottom on short pages, which `min-h-dvh` alone did not.
+              *
               * The middle column is 80rem, matching `Container`'s own max-width,
               * not `--breakpoint-2xl` (96rem). At 96rem the container floated
               * free of its column above ~1616px and the gutters detached from
@@ -59,7 +69,7 @@ export default function LandingLayout({ header, footer, children }: Props) {
               * equal.
               */}
             <div
-                className="grid min-h-dvh grid-cols-1 justify-center [--gutter-width:2.5rem] md:-mx-4 md:grid-cols-[var(--gutter-width)_minmax(0,80rem)_var(--gutter-width)] lg:mx-0"
+                className="grid min-h-dvh grid-cols-1 grid-rows-[1fr_auto] justify-center [--gutter-width:2.5rem] md:-mx-4 md:grid-cols-[var(--gutter-width)_minmax(0,80rem)_var(--gutter-width)] lg:mx-0"
             >
                 {/*
                   * Left gutter. The 45-degree hatch is gone: it was the page's
