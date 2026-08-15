@@ -3,6 +3,7 @@ import { toast } from 'sonner';
 import Container from '@/components/ui/container';
 import { AccentLine, FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
+import SectionLabel from '@/components/ui/section-label';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -161,7 +162,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
     }
 
     return (
-        <div className={`flex h-full flex-col border-gray-950/5 p-6 dark:border-white/10 sm:p-8 ${tier.featured ? 'bg-primary/[0.03]' : ''}`}>
+        <div className={`flex h-full flex-col border-rule p-6 sm:p-8 ${tier.featured ? 'bg-primary/[0.03]' : ''}`}>
             <div>
                 <h3 className="text-lg font-semibold text-foreground">{tier.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{tier.description}</p>
@@ -169,19 +170,19 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
 
             <div className="mt-4">
                 {isFree ? (
-                    <span className="text-4xl font-bold tracking-tight text-foreground">$0</span>
+                    <span className="text-4xl font-bold text-foreground">$0</span>
                 ) : (() => {
                     const cycleSuffixUsd = cycle === 'monthly' ? '/mo' : cycle === 'yearly' ? '/year' : ' once';
 
                     return discountedPrice !== null ? (
                         <>
-                            <span className="text-4xl font-bold tracking-tight text-foreground">${discountedPrice}</span>
+                            <span className="text-4xl font-bold text-foreground">${discountedPrice}</span>
                             <span className="ml-2 text-lg text-muted-foreground line-through">${price}</span>
                             <span className="ml-1 text-sm text-muted-foreground">{cycleSuffixUsd}</span>
                         </>
                     ) : (
                         <>
-                            <span className="text-4xl font-bold tracking-tight text-foreground">${price}</span>
+                            <span className="text-4xl font-bold text-foreground">${price}</span>
                             <span className="ml-1 text-sm text-muted-foreground">{cycleSuffixUsd}</span>
                         </>
                     );
@@ -191,7 +192,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
             {isTeam && !isFree && (
                 <div className="mt-4 flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">${unitPrice}/seat</span>
-                    <div className="flex items-center rounded-full border border-gray-950/10 dark:border-white/10">
+                    <div className="flex items-center rounded-full border border-rule-strong">
                         <button
                             type="button"
                             onClick={() => setSeats((s) => Math.max(teamMinSeats, s - 1))}
@@ -223,11 +224,11 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
 
             <div className="mt-6">
                 {tier.ctaHref ? (
-                    <a href={tier.ctaHref} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-gray-950/5 text-foreground hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]'}`}>
+                    <a href={tier.ctaHref} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'}`}>
                         {tier.cta}
                     </a>
                 ) : (
-                    <button type="button" onClick={handleCheckout} disabled={isLoading} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-gray-950/5 text-foreground hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]'} ${isLoading ? 'cursor-wait opacity-60' : ''}`}>
+                    <button type="button" onClick={handleCheckout} disabled={isLoading} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'} ${isLoading ? 'cursor-wait opacity-60' : ''}`}>
                         {isLoading ? 'Loading...' : tier.cta}
                     </button>
                 )}
@@ -333,9 +334,9 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             {/* Label */}
             <Container>
                 <AccentLine />
-                <p className="pl-4 font-mono text-xs font-semibold tracking-widest text-primary-strong uppercase">
+                <SectionLabel className="pl-4">
                     Pricing
-                </p>
+                </SectionLabel>
                 <FullLine />
             </Container>
 
@@ -345,7 +346,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             {/* Headline */}
             <Container>
                 <FullLine />
-                <h2 id="pricing-heading" className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                <h2 id="pricing-heading" className="pl-4 text-3xl font-bold sm:text-4xl">
                     The app is free.
                     <br />
                     <span className="text-muted-foreground">The license funds it.</span>
@@ -387,7 +388,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             <Container>
                 <FullLine />
                 <div className="flex items-center justify-center overflow-x-auto py-4">
-                    <div className="inline-flex items-center rounded-full border border-gray-950/5 bg-gray-950/[0.02] p-1 dark:border-white/10 dark:bg-white/[0.03]">
+                    <div className="inline-flex items-center rounded-full border border-rule bg-gray-950/[0.02] p-1 dark:bg-white/[0.03]">
                         {cycles.map((c) => (
                             <button
                                 key={c.value}
@@ -431,10 +432,10 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                                             value={discountCode}
                                             onChange={(e) => setDiscountCode(e.target.value)}
                                             placeholder="Enter coupon code"
-                                            className={`w-48 rounded-lg border bg-transparent px-3 py-1.5 text-center text-sm text-foreground placeholder:text-muted-foreground/50 ${
+                                            className={`w-48 rounded-lg border bg-transparent px-3 py-1.5 text-center text-sm text-foreground placeholder:text-muted-foreground-subtle ${
                                                 discount?.valid
                                                     ? 'border-primary/50 focus:border-primary'
-                                                    : 'border-gray-950/5 focus:border-primary/50 dark:border-white/10'
+                                                    : 'border-rule focus:border-primary/50'
                                             }`}
                                         />
                                         {isValidating && (
@@ -488,7 +489,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                         const isFree = tier.price === 'free';
                         return (
                         <div key={tier.name} className={`
-                            border-gray-950/5 dark:border-white/10
+                            border-rule
                             ${isFree ? 'order-last md:order-first md:border-r' : ''}
                             ${!isFree ? 'border-b md:border-b-0 md:border-r' : ''}
                             ${i === tiers.length - 1 ? 'md:border-r-0' : ''}
@@ -519,7 +520,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
 
             <Container>
                 <FullLine />
-                <h3 className="pl-4 text-2xl font-bold tracking-tight text-foreground">
+                <h3 className="pl-4 text-2xl font-bold text-foreground">
                     Compare plans
                 </h3>
                 <FullLine />
@@ -541,46 +542,79 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                     role="region"
                     aria-label="Plan comparison"
                 >
-                    <div className="min-w-[500px]">
-                        {/* Header */}
-                        <div className="grid grid-cols-4">
-                            <div className="border-gray-950/5 p-4 dark:border-white/10 sm:p-5">
-                                <span className="text-sm font-medium text-muted-foreground">Feature</span>
-                            </div>
-                            <div className="border-l border-gray-950/5 p-4 text-center dark:border-white/10 sm:p-5">
-                                <span className="text-sm font-medium text-muted-foreground">Free</span>
-                            </div>
-                            <div className="border-l border-gray-950/5 bg-primary/5 p-4 text-center dark:border-white/10 sm:p-5">
-                                <span className="text-sm font-bold text-primary-strong">Starter</span>
-                            </div>
-                            <div className="border-l border-gray-950/5 p-4 text-center dark:border-white/10 sm:p-5">
-                                <span className="text-sm font-medium text-muted-foreground">Team</span>
-                            </div>
-                        </div>
+                    {/*
+                      * A real table, not a grid of divs.
+                      *
+                      * Nine feature rows by four columns had no table semantics
+                      * at all, so nothing tied a cell to its plan. Worse, the
+                      * checkmark is aria-hidden and carried no text, so every
+                      * *included* feature announced as an empty cell — the
+                      * table said the opposite of what it shows. The dash
+                      * carried `aria-label` on a bare <span>, which ARIA does
+                      * not permit to be named.
+                      *
+                      * Availability is now real text, hidden visually.
+                      */}
+                    <table className="w-full min-w-[500px] border-collapse">
+                        <caption className="sr-only">
+                            What each plan includes, compared across Free, Starter and Team.
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" className="p-4 text-left text-sm font-medium text-muted-foreground sm:p-5">
+                                    Feature
+                                </th>
+                                <th scope="col" className="border-l border-rule p-4 text-center text-sm font-medium text-muted-foreground sm:p-5">
+                                    Free
+                                </th>
+                                <th scope="col" className="border-l border-rule bg-primary/5 p-4 text-center text-sm font-bold text-primary-strong sm:p-5">
+                                    Starter
+                                </th>
+                                <th scope="col" className="border-l border-rule p-4 text-center text-sm font-medium text-muted-foreground sm:p-5">
+                                    Team
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {comparisonFeatures.map((row) => (
+                                <tr key={row.name} className="border-t border-rule">
+                                    <th scope="row" className="p-4 text-left text-sm font-normal text-foreground sm:p-5">
+                                        {row.name}
+                                    </th>
+                                    {(['free', 'pro', 'team'] as const).map((tier) => {
+                                        const value = row[tier];
 
-                        {/* Rows */}
-                        {comparisonFeatures.map((row) => (
-                            <div key={row.name} className="grid grid-cols-4 border-t border-gray-950/5 dark:border-white/10">
-                                <div className="p-4 sm:p-5">
-                                    <span className="text-sm text-foreground">{row.name}</span>
-                                </div>
-                                {(['free', 'pro', 'team'] as const).map((tier) => {
-                                    const value = row[tier];
-                                    return (
-                                        <div key={tier} className={`flex items-center justify-center border-l border-gray-950/5 p-4 dark:border-white/10 sm:p-5 ${tier === 'pro' ? 'bg-primary/5' : ''}`}>
-                                            {typeof value === 'string' ? (
-                                                <span className="text-sm font-medium text-foreground">{value}</span>
-                                            ) : value ? (
-                                                <CheckIcon />
-                                            ) : (
-                                                <span className="text-sm text-muted-foreground" aria-label="not included">&mdash;</span>
-                                            )}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        ))}
-                    </div>
+                                        return (
+                                            <td
+                                                key={tier}
+                                                className={`border-l border-rule p-4 text-center sm:p-5 ${
+                                                    tier === 'pro' ? 'bg-primary/5' : ''
+                                                }`}
+                                            >
+                                                {typeof value === 'string' ? (
+                                                    <span className="text-sm font-medium text-foreground">{value}</span>
+                                                ) : value ? (
+                                                    <>
+                                                        <span className="sr-only">Included</span>
+                                                        <span className="inline-flex justify-center">
+                                                            <CheckIcon />
+                                                        </span>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <span className="sr-only">Not included</span>
+                                                        <span aria-hidden="true" className="text-sm text-muted-foreground">
+                                                            &mdash;
+                                                        </span>
+                                                    </>
+                                                )}
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </Container>
             <FullLine />

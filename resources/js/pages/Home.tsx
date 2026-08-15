@@ -11,6 +11,7 @@ import AgentsMcp from '@/components/landing/agents-mcp';
 import Mobile from '@/components/landing/mobile';
 import Safety from '@/components/landing/safety';
 import DepthGrid from '@/components/landing/depth-grid';
+import DownloadRail from '@/components/landing/download-rail';
 import SwitchFrom from '@/components/landing/switch-from';
 import OpenSource from '@/components/landing/open-source';
 import Pricing from '@/components/landing/pricing';
@@ -129,15 +130,41 @@ export default function Home({
             {/* Sponsors sit high on purpose: the visible credit is what attracts the next one. */}
             <Sponsors />
             <DatabaseGrid />
+
+            {/*
+              * "Here is what it does", then "and moving costs you nothing".
+              * SwitchFrom used to sit at position eleven, after roughly 1,800
+              * words, so the one argument aimed squarely at a TablePlus or
+              * DBeaver user read as a footnote.
+              */}
             <Workbench />
-            <Architecture />
-            <AgentsMcp />
-            <Mobile />
-            <Safety />
-            <DepthGrid />
             <SwitchFrom />
+            <DownloadRail note="Your existing connections import on first launch. macOS 14+, Apple Silicon and Intel." />
+
+            <Architecture />
+
+            {/*
+              * Agents raises the most alarming claim on the page — "let Claude
+              * query your database" — and Safety is its answer. They used to be
+              * separated by 274 words about iCloud sync, which left the anxiety
+              * sitting unresolved through an unrelated section.
+              */}
+            <AgentsMcp />
+            <Safety />
+            <DownloadRail note="Safe Mode is on before you connect anything. macOS 14+, Apple Silicon and Intel." />
+
+            <DepthGrid />
             <OpenSource latestRelease={latestRelease} />
             <Pricing paymentProvider={paymentProvider} teamMinSeats={teamMinSeats} />
+
+            {/*
+              * Mobile lands after Pricing rather than at the midpoint. It admits
+              * a paywall, opens an email gate and disclaims a platform that does
+              * not exist yet — three deceleration moments, none of which advance
+              * a Mac download. After the prices, "requires a licence" is on
+              * message instead of a surprise.
+              */}
+            <Mobile />
             <FAQ items={homeFaqs} />
 
             <FooterCTA />

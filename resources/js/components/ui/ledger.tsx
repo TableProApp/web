@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
  * column carries the prose, so a stack of rows reads as a spec sheet.
  */
 export function Ledger({ className, children }: { className?: string; children: ReactNode }) {
-    return <dl className={cn('divide-y divide-gray-950/5 dark:divide-white/10', className)}>{children}</dl>;
+    return <dl className={cn('divide-y divide-rule', className)}>{children}</dl>;
 }
 
 interface LedgerRowProps {
@@ -22,6 +22,7 @@ interface LedgerRowProps {
 export function LedgerRow({ label, children, aside, accent, className }: LedgerRowProps) {
     return (
         <div
+            data-row
             className={cn(
                 'relative grid grid-cols-1 items-baseline gap-x-6 gap-y-1 px-4 py-3 sm:grid-cols-[13rem_1fr] sm:py-4',
                 className,
@@ -34,9 +35,9 @@ export function LedgerRow({ label, children, aside, accent, className }: LedgerR
                     aria-hidden="true"
                 />
             )}
-            <dt className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+            <dt className="font-mono text-2xs tracking-widest text-muted-foreground uppercase">
                 {label}
-                {aside && <span className="ml-2 normal-case opacity-70">{aside}</span>}
+                {aside && <span className="ml-2 normal-case text-muted-foreground-subtle">{aside}</span>}
             </dt>
             <dd className="text-sm leading-relaxed text-muted-foreground">{children}</dd>
         </div>

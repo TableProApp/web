@@ -47,6 +47,7 @@ const COMPARISONS: { name: string; slug: string }[] = [
 export default function SwitchFrom() {
     return (
         <SectionShell
+            tier="reference"
             id="switch"
             label="Migration"
             headline="Bring your connections with you."
@@ -60,9 +61,9 @@ export default function SwitchFrom() {
                     {SOURCES.map((source, i) => (
                         <div key={source.name} className={`p-5 ${cellBorders(i, COLS, SOURCES.length)}`}>
                             <p className="text-sm font-semibold">{source.name}</p>
-                            <p className="mt-2 font-mono text-[11px] text-muted-foreground">{source.source}</p>
+                            <p className="mt-2 font-mono text-2xs text-muted-foreground">{source.source}</p>
                             {source.note && (
-                                <p className="mt-1 font-mono text-[11px] text-muted-foreground">{source.note}</p>
+                                <p className="mt-1 font-mono text-2xs text-muted-foreground">{source.note}</p>
                             )}
                         </div>
                     ))}
@@ -79,7 +80,7 @@ export default function SwitchFrom() {
                                 <a
                                     key={comparison.slug}
                                     href={`/compare/${comparison.slug}`}
-                                    className="rounded-[4px] border border-gray-950/10 px-2 py-1 font-mono text-[11px] whitespace-nowrap transition-colors hover:bg-gray-950/[2.5%] hover:text-foreground dark:border-white/15 dark:hover:bg-white/[2.5%]"
+                                    className="rounded-[4px] border border-rule-strong px-2 py-1 font-mono text-2xs whitespace-nowrap transition-colors hover:text-foreground"
                                 >
                                     {comparison.name}
                                 </a>

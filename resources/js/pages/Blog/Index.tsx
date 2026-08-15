@@ -4,6 +4,7 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { Link } from '@inertiajs/react';
+import SectionLabel from '@/components/ui/section-label';
 
 interface PostSummary {
     slug: string;
@@ -23,7 +24,7 @@ interface Props {
 }
 
 function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-gray-950/5 dark:bg-white/10" aria-hidden="true" />;
+    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 const BLOG_TITLE = 'Blog - TablePro';
@@ -66,14 +67,14 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
 
                 <FullLine />
                 <Container>
-                    <p className="px-4 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="px-4 py-3">
                         Blog
-                    </p>
+                    </SectionLabel>
                 </Container>
 
                 <FullLine />
                 <Container>
-                    <h1 className="px-4 py-6 text-4xl font-bold tracking-tighter text-pretty sm:text-5xl lg:py-8 lg:text-6xl">
+                    <h1 className="px-4 py-6 text-4xl font-bold text-pretty sm:text-5xl lg:py-8 lg:text-6xl">
                         Database tools, SQL, and Mac.
                     </h1>
                 </Container>
@@ -92,7 +93,7 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                             <p className="text-base text-muted-foreground">No posts yet. Check back soon.</p>
                         </div>
                     ) : (
-                        <ul className="divide-y divide-gray-950/5 dark:divide-white/10">
+                        <ul className="divide-y divide-rule">
                             {posts.map((post) => (
                                 <li key={post.slug}>
                                     <Link
@@ -104,7 +105,7 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                                             <span aria-hidden="true">·</span>
                                             <span>{post.readingMinutes} min read</span>
                                         </div>
-                                        <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-3xl">
+                                        <h2 className="mt-3 text-2xl font-bold text-foreground transition-colors group-hover:text-primary sm:text-3xl">
                                             {post.title}
                                         </h2>
                                         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
@@ -115,7 +116,7 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                                                 {post.tags.map((tag) => (
                                                     <span
                                                         key={tag}
-                                                        className="rounded-full border border-gray-950/10 px-2.5 py-1 text-xs font-mono text-muted-foreground dark:border-white/10"
+                                                        className="rounded-full border border-rule-strong px-2.5 py-1 text-xs font-mono text-muted-foreground"
                                                     >
                                                         {tag}
                                                     </span>

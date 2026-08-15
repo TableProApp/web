@@ -103,10 +103,24 @@ export function cellBorders(index: number, cols: ColumnMap, total: number): stri
         .join(' ');
 }
 
+/**
+ * Three densities, replacing five ad-hoc padding scales (`p-4` x13, `p-6` x12,
+ * `p-8` x10, `p-5` x8, `p-10` x2) and two local `CELL_CLASS`/`TILE_CLASS`
+ * constants that had drifted apart in separate section files.
+ */
+export const CELL_DENSITY = {
+    compact: 'p-4 sm:p-5',
+    default: 'p-6 sm:p-8',
+    roomy: 'p-6 sm:p-8 lg:p-10',
+} as const;
+
+export type CellDensity = keyof typeof CELL_DENSITY;
+
 interface GridCellProps {
     className?: string;
     /** `stripe` fills the cell with the page gutter's 45 degree hatch. */
     variant?: 'plain' | 'stripe';
+    density?: CellDensity;
     children?: ReactNode;
 }
 
@@ -114,11 +128,12 @@ interface GridCellProps {
  * One cell of a flush hairline grid. Zero radius by design: the grid's rules
  * are the page's structure, and rounding them breaks the alignment.
  */
-export function GridCell({ className, variant = 'plain', children }: GridCellProps) {
+export function GridCell({ className, variant = 'plain', density, children }: GridCellProps) {
     return (
         <div
             className={cn(
-                'border-gray-950/5 dark:border-white/10',
+                'border-rule',
+                density && CELL_DENSITY[density],
                 variant === 'stripe' &&
                     'bg-[repeating-linear-gradient(315deg,var(--pattern-fg)_0,var(--pattern-fg)_1px,transparent_0,transparent_50%)] bg-[size:10px_10px] [--pattern-fg:var(--color-black)]/5 dark:[--pattern-fg:var(--color-white)]/10',
                 className,

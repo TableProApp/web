@@ -16,7 +16,7 @@ function Column({ items, className }: { items: FaqItem[]; className?: string }) 
             {items.map((faq, i) => (
                 <div
                     key={faq.question}
-                    className={`p-6 sm:p-8 ${i < items.length - 1 ? 'border-b border-gray-950/5 dark:border-white/10' : ''}`}
+                    className={`p-6 sm:p-8 ${i < items.length - 1 ? 'border-b border-rule' : ''}`}
                 >
                     <h3 className="text-base font-semibold text-foreground">{faq.question}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
@@ -34,13 +34,13 @@ export default function FAQ({
     const mid = Math.ceil(items.length / 2);
 
     return (
-        <SectionShell id="faq" label="FAQ" headline={headline} headlineMuted={headlineMuted}>
+        <SectionShell tier="reference" id="faq" label="FAQ" headline={headline} headlineMuted={headlineMuted}>
             <FullLine />
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     <Column
                         items={items.slice(0, mid)}
-                        className="border-b border-gray-950/5 md:border-r md:border-b-0 dark:border-white/10"
+                        className="border-b border-rule md:border-r md:border-b-0"
                     />
                     <Column items={items.slice(mid)} />
                 </div>

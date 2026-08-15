@@ -19,13 +19,79 @@
 @theme inline {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+
+  /*
+   * Size, line-height and letter-spacing are one token, never three.
+   *
+   * Every tracking value is the output of Inter's own dynamic-metrics curve,
+   * `-0.0223 + 0.185 * e^(-0.1745 * px)`, evaluated at that size. They are the
+   * typeface designer's numbers rather than taste, and declaring them here is
+   * what stops `text-4xl tracking-tight` being retyped by hand at every call
+   * site with a slightly different guess.
+   *
+   * The one thing this replaces rather than systematises: the h1 carried
+   * `tracking-tighter` (-0.05em), roughly double the tightest value the curve
+   * ever reaches and tighter than any reference site sets Inter.
+   *
+   * Mono labels are exempt. `tracking-widest` on 11px uppercase is a different
+   * problem — the curve models optical compensation for a proportional text
+   * face, not letterspacing for small caps.
+   */
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1.45;
+  --text-2xs--letter-spacing: 0.0048em;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+  --text-xs--letter-spacing: 0.0005em;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.55;
+  --text-sm--letter-spacing: -0.0062em;
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+  --text-base--letter-spacing: -0.011em;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.55;
+  --text-lg--letter-spacing: -0.0143em;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.4;
+  --text-xl--letter-spacing: -0.0167em;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.3;
+  --text-2xl--letter-spacing: -0.0195em;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 1.15;
+  --text-3xl--letter-spacing: -0.0213em;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 1.1;
+  --text-4xl--letter-spacing: -0.022em;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1.05;
+  --text-5xl--letter-spacing: -0.0223em;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-6xl--letter-spacing: -0.0223em;
+
+  /* Only the two rungs anything actually uses, plus the keycap. */
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-key: 4px;
+
+  /*
+   * Two rule weights, and the distinction is not decorative: vertical and
+   * column separators are stable structure and take --rule-strong; horizontal
+   * and row separators are data and take --rule. That is how a real grid draws.
+   *
+   * These replace `gray-950/5` + `dark:white/10` written out at 92 call sites,
+   * which also meant the dark rule sat ~13% heavier than its light counterpart
+   * for no reason. Dark is 0.08 here so the two match optically.
+   */
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+
+  /* Motion. Two curves, four durations, and 320ms is the ceiling. */
+  --ease-feedback: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-panel: cubic-bezier(0.32, 0.72, 0, 1);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -39,6 +105,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-muted-foreground-subtle: var(--muted-foreground-subtle);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -69,13 +136,25 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  /*
+   * Raised from L 0.556 (4.73:1) to 0.52 (5.51:1). The old value cleared AA by
+   * 0.23, so it had no headroom at all: every opacity modifier stacked on it
+   * failed outright — /50 measured 1.65:1, /60 1.90:1, /70 2.23:1.
+   *
+   * `--muted-foreground-subtle` exists so those modifiers can be deleted rather
+   * than re-tuned. It is a real token that passes AA on its own (4.96:1), not
+   * an alpha applied to another one.
+   */
+  --muted-foreground: oklch(0.52 0 0);
+  --muted-foreground-subtle: oklch(0.545 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.72 0.178 55);
+  --rule: oklch(0.145 0 0 / 0.07);
+  --rule-strong: oklch(0.145 0 0 / 0.14);
 }
 
 .dark {
@@ -93,12 +172,15 @@
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground-subtle: oklch(0.64 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.72 0.178 55);
+  --rule: oklch(1 0 0 / 0.08);
+  --rule-strong: oklch(1 0 0 / 0.16);
 }
 
 @layer base {
@@ -152,6 +234,119 @@ html {
  * to a single 0.01ms pass, freezing it mid-transform. Anything that loops needs
  * its own reduced-motion branch rather than relying on this block.
  */
+
+/*
+ * Row selection, borrowed from the product's own grid.
+ *
+ * `hover:bg-gray-950/[2.5%]` was written out seventeen times and is the single
+ * most generic interaction in the Tailwind ecosystem. Users of DataGrip,
+ * TablePlus and Sequel Ace have row selection in their hands rather than their
+ * heads; they recognise it well below conscious brand evaluation, which makes
+ * it the cheapest identity this page can buy.
+ *
+ * Three things this fixes beyond the look:
+ *
+ * - `:focus-visible` resolves to the same treatment, so keyboard users see what
+ *   pointer users see. Before, focus had no row-level feedback at all.
+ * - The dark lift rises from 2.5% to 5%. At 2.5% it was four times weaker than
+ *   the `white/10` border around it, so the affordance disappeared into its own
+ *   frame.
+ * - `any-hover: hover` means touch devices never get a stuck-on state after a
+ *   tap.
+ *
+ * Transform and opacity only. The bar scales from the top edge, which is the
+ * direction a grid stamps a selection.
+ */
+[data-row] {
+  position: relative;
+  transition: background-color var(--dur-row, 160ms) var(--ease-feedback);
+}
+
+[data-row]::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 2px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 180ms var(--ease-panel);
+  pointer-events: none;
+}
+
+[data-row]:focus-visible::before,
+[data-row][aria-selected="true"]::before {
+  transform: scaleY(1);
+}
+
+[data-row][aria-selected="true"] {
+  background-color: color-mix(in oklab, var(--primary) 5%, transparent);
+}
+
+@media (any-hover: hover) {
+  [data-row]:hover {
+    background-color: color-mix(in oklab, var(--primary) 4%, transparent);
+  }
+
+  [data-row]:hover::before {
+    transform: scaleY(1);
+  }
+}
+
+/*
+ * The row-number gutter.
+ *
+ * 2.5rem is what the page already reserved either side of the content, and it
+ * is also what a row-number column has been in every data grid ever shipped,
+ * including TablePro's own. Numbering the rules turns a 10,000px scroll into
+ * something with a continuous position signal, and it replaces the 45-degree
+ * hatch that was the page's most generic element.
+ *
+ * A CSS counter rather than a prop threaded down from Home.tsx: SectionShell
+ * emits three rules, the hero eight and pricing eighteen, so hand-numbering
+ * would silently renumber the whole page the moment anyone added one. The
+ * counter is correct by construction and costs nothing under SSR — it resolves
+ * at paint.
+ *
+ * Anchoring, and it only works because of one thing: FullLine renders at
+ * `-ml-[100vw] w-[200vw]`, so a child at `left: calc(100vw - 2.5rem)` lands
+ * 2.5rem before Container's *content* edge. That is 0.5rem into the gutter
+ * column only while Container fills its grid column exactly — which is why the
+ * layout's middle column is `minmax(0, 80rem)` and not `--breakpoint-2xl`
+ * (96rem). With the old 96rem the container floated free of the column above
+ * ~1616px and these numbers would drift inward with it. Changing that column
+ * width breaks this. Same mechanism as AccentLine, in the other direction.
+ *
+ * Desktop only, deliberately. Below lg the gutter columns are not rendered at
+ * all, so there is nowhere for the numbers to go, and the page falls back to
+ * the hairline system on its own.
+ */
+main {
+  counter-reset: rule;
+}
+
+@media (width >= 64rem) {
+  .rule-numbered {
+    counter-increment: rule;
+  }
+
+  .rule-numbered::before {
+    content: counter(rule, decimal-leading-zero);
+    position: absolute;
+    left: calc(100vw - 2.5rem);
+    top: -0.6em;
+    width: 1.75rem;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    font-variant-numeric: tabular-nums slashed-zero;
+    line-height: 1;
+    color: var(--muted-foreground-subtle);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}
 
 /* Blog article typography */
 .blog-article {
