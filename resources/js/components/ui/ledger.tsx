@@ -19,10 +19,16 @@ interface LedgerRowProps {
     className?: string;
 }
 
+/**
+ * Deliberately not `data-row`. A ledger row is a definition list entry with
+ * nothing to activate, so the shared row-selection treatment would advertise
+ * an affordance that is not there — and on the row holding the comparison
+ * chips it lit the whitespace more strongly than the links inside it.
+ * `data-row` belongs on things you can actually click or select.
+ */
 export function LedgerRow({ label, children, aside, accent, className }: LedgerRowProps) {
     return (
         <div
-            data-row
             {...(accent !== undefined && accent > 0 ? { 'data-accent': '' } : {})}
             className={cn(
                 'relative grid grid-cols-1 items-baseline gap-x-6 gap-y-1 px-4 py-3 sm:grid-cols-[13rem_1fr] sm:py-4',

@@ -8,7 +8,7 @@ export default function Kbd({ children, className }: { children: React.ReactNode
     return (
         <kbd
             className={cn(
-                'inline-flex h-5 items-center rounded-[4px] border border-rule-strong px-1.5 font-mono text-2xs leading-none text-muted-foreground',
+                'inline-flex h-5 items-center rounded-key border border-rule-strong px-1.5 font-mono text-2xs leading-none text-muted-foreground',
                 className,
             )}
         >

@@ -57,6 +57,7 @@ function fillerVisibility(index: number, count: number): string {
 }
 
 const TILE_CLASS = `group flex flex-col items-center gap-3 text-center ${CELL_DENSITY.compact}`;
+/** Tiles are links, so the shared row-selection treatment applies on hover AND focus. */
 const TILE_HOVER = 'transition-colors';
 
 function TileBody({ database }: { database: DatabaseTile }) {
@@ -64,9 +65,9 @@ function TileBody({ database }: { database: DatabaseTile }) {
         <>
             <DatabaseMark icon={database.icon} monogram={database.monogram} name={database.name} />
             <span className="text-xs leading-tight font-medium text-muted-foreground">{database.name}</span>
-            <span className="font-mono text-[10px] text-muted-foreground">{database.port}</span>
+            <span className="font-mono text-2xs text-muted-foreground">{database.port}</span>
             <span
-                className="font-mono text-[10px] text-muted-foreground"
+                className="font-mono text-2xs text-muted-foreground"
                 title={database.distribution === 'builtin' ? 'Bundled with the app' : 'Downloads on demand'}
             >
                 {database.distribution === 'builtin' ? '●' : '○'}
@@ -181,6 +182,7 @@ export default function DatabaseGrid() {
                                     <a
                                         key={database.name}
                                         href={database.href}
+                                        data-row
                                         className={`${TILE_CLASS} ${TILE_HOVER} ${borders}`}
                                     >
                                         <TileBody database={database} />
@@ -190,6 +192,7 @@ export default function DatabaseGrid() {
 
                             <a
                                 href={REQUEST_DATABASE_HREF}
+                                data-row
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={`${TILE_CLASS} ${TILE_HOVER} ${cellBorders(visible.length, COLS, itemCount)}`}
