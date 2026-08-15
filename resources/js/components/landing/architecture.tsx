@@ -1,15 +1,14 @@
 import { ReactNode } from 'react';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
-import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
+import { CELL_DENSITY, cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
 import Kbd from '@/components/ui/kbd';
-import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 
 const COLS: ColumnMap = { base: 1, sm: 3 };
 
-const CELL_CLASS = 'p-6 sm:p-8';
-const STRIP_LABEL_CLASS = 'px-4 py-3 font-mono text-[11px] font-semibold tracking-widest text-muted-foreground uppercase';
+
+const STRIP_LABEL_CLASS = 'px-4 py-3 font-mono text-2xs font-semibold tracking-widest text-muted-foreground uppercase';
 
 interface Material {
     label: string;
@@ -58,22 +57,6 @@ const BEHAVIOURS: Behaviour[] = [
     },
 ];
 
-/** Slugs are exhaustive. `/compare/tableplus` is 410 Gone, so it is never linked. */
-const COMPARISONS: { name: string; slug: string }[] = [
-    { name: 'DBeaver', slug: 'dbeaver' },
-    { name: 'DataGrip', slug: 'datagrip' },
-    { name: 'Navicat', slug: 'navicat' },
-    { name: 'Beekeeper Studio', slug: 'beekeeper-studio' },
-    { name: 'Sequel Pro', slug: 'sequel-pro' },
-    { name: 'Postico', slug: 'postico' },
-    { name: 'Sequel Ace', slug: 'sequel-ace' },
-    { name: 'HeidiSQL', slug: 'heidisql' },
-    { name: 'Azimutt', slug: 'azimutt' },
-    { name: 'phpMyAdmin', slug: 'phpmyadmin' },
-];
-
-const CHIP_CLASS =
-    'rounded-full border border-gray-950/5 px-2.5 py-1 font-mono text-[11px] text-muted-foreground transition-colors hover:bg-gray-950/[2.5%] hover:text-foreground dark:border-white/10 dark:hover:bg-white/[2.5%]';
 
 export default function Architecture() {
     return (
@@ -97,12 +80,6 @@ export default function Architecture() {
             </Container>
             <FullLine />
 
-            <Container>
-                <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    Cold start under one second. Around 80 MB of memory when idle. About 20 MB to download.
-                </p>
-            </Container>
-            <FullLine />
 
             <Container>
                 <h3 className={STRIP_LABEL_CLASS}>Bill of materials</h3>
@@ -113,9 +90,9 @@ export default function Architecture() {
                     {MATERIALS.map((material, i) => (
                         <div
                             key={material.label}
-                            className={`${CELL_CLASS} ${cellBorders(i, COLS, MATERIALS.length)} border-gray-950/5 dark:border-white/10`}
+                            className={`${CELL_DENSITY.default} ${cellBorders(i, COLS, MATERIALS.length)} border-rule`}
                         >
-                            <h4 className="font-mono text-[11px] font-semibold tracking-widest text-primary-strong uppercase">
+                            <h4 className="font-mono text-2xs font-semibold tracking-widest text-primary-strong uppercase">
                                 {material.label}
                             </h4>
                             <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
@@ -136,9 +113,9 @@ export default function Architecture() {
                     {BEHAVIOURS.map((behaviour, i) => (
                         <div
                             key={behaviour.title}
-                            className={`${CELL_CLASS} ${cellBorders(i, COLS, BEHAVIOURS.length)} border-gray-950/5 dark:border-white/10`}
+                            className={`${CELL_DENSITY.default} ${cellBorders(i, COLS, BEHAVIOURS.length)} border-rule`}
                         >
-                            <h4 className="text-base font-semibold tracking-tight text-pretty">{behaviour.title}</h4>
+                            <h4 className="text-base font-semibold text-pretty">{behaviour.title}</h4>
                             <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
                                 {behaviour.body}
                             </p>
@@ -156,20 +133,6 @@ export default function Architecture() {
             </Container>
             <FullLine />
 
-            <Container>
-                <Ledger>
-                    <LedgerRow label="Compare">
-                        <span className="flex flex-wrap gap-2">
-                            {COMPARISONS.map((comparison) => (
-                                <a key={comparison.slug} href={`/compare/${comparison.slug}`} className={CHIP_CLASS}>
-                                    {comparison.name}
-                                </a>
-                            ))}
-                        </span>
-                    </LedgerRow>
-                </Ledger>
-            </Container>
-            <FullLine />
         </SectionShell>
     );
 }
