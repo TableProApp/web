@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import Container from '@/components/ui/container';
-import { AccentLine, FullLine } from '@/components/ui/full-line';
+import DataTable from '@/components/ui/data-table';
+import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
-import SectionLabel from '@/components/ui/section-label';
+import SectionShell from '@/components/ui/section-shell';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -328,40 +329,14 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
     ];
 
     return (
-        <section id="pricing" aria-labelledby="pricing-heading" className="scroll-mt-20">
-            <div className="h-12 sm:h-16 lg:h-24" />
-
-            {/* Label */}
-            <Container>
-                <AccentLine />
-                <SectionLabel className="pl-4">
-                    Pricing
-                </SectionLabel>
-                <FullLine />
-            </Container>
-
-            {/* Spacer */}
-            <div className="h-4" />
-
-            {/* Headline */}
-            <Container>
-                <FullLine />
-                <h2 id="pricing-heading" className="pl-4 text-3xl font-bold sm:text-4xl">
-                    The app is free.
-                    <br />
-                    <span className="text-muted-foreground">The license funds it.</span>
-                </h2>
-                <FullLine />
-            </Container>
-            <div className="h-2" />
-            <Container>
-                <FullLine />
-                <p className="max-w-3xl pl-4 text-base text-muted-foreground">
-                    Starter is per person. Team is per seat, from {teamMinSeats} seats. Yearly saves 33 percent.
-                    Lifetime pays for itself against yearly in about two and a half years.
-                </p>
-                <FullLine />
-            </Container>
+        <SectionShell
+            id="pricing"
+            label="Pricing"
+            headline="The app is free."
+            headlineMuted="The license funds it."
+            lede={`Starter is per person. Team is per seat, from ${teamMinSeats} seats. Yearly saves 33 percent. Lifetime pays for itself against yearly in about two and a half years.`}
+            tone="raised"
+        >
 
             {/* What a license actually buys. Stated before the prices, on purpose. */}
             <div className="h-4" />
@@ -555,22 +530,22 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                       *
                       * Availability is now real text, hidden visually.
                       */}
-                    <table className="w-full min-w-[500px] border-collapse">
-                        <caption className="sr-only">
-                            What each plan includes, compared across Free, Starter and Team.
-                        </caption>
+                    <DataTable
+                        className="min-w-[500px]"
+                        caption="What each plan includes, compared across Free, Starter and Team."
+                    >
                         <thead>
                             <tr>
                                 <th scope="col" className="p-4 text-left text-sm font-medium text-muted-foreground sm:p-5">
                                     Feature
                                 </th>
-                                <th scope="col" className="border-l border-rule p-4 text-center text-sm font-medium text-muted-foreground sm:p-5">
+                                <th scope="col" className="border-l border-rule-strong p-4 text-center text-sm font-medium text-muted-foreground sm:p-5">
                                     Free
                                 </th>
-                                <th scope="col" className="border-l border-rule bg-primary/5 p-4 text-center text-sm font-bold text-primary-strong sm:p-5">
+                                <th scope="col" className="border-l border-rule-strong bg-primary/5 p-4 text-center text-sm font-bold text-primary-strong sm:p-5">
                                     Starter
                                 </th>
-                                <th scope="col" className="border-l border-rule p-4 text-center text-sm font-medium text-muted-foreground sm:p-5">
+                                <th scope="col" className="border-l border-rule-strong p-4 text-center text-sm font-medium text-muted-foreground sm:p-5">
                                     Team
                                 </th>
                             </tr>
@@ -587,7 +562,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                                         return (
                                             <td
                                                 key={tier}
-                                                className={`border-l border-rule p-4 text-center sm:p-5 ${
+                                                className={`border-l border-rule-strong p-4 text-center sm:p-5 ${
                                                     tier === 'pro' ? 'bg-primary/5' : ''
                                                 }`}
                                             >
@@ -614,10 +589,10 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
+                    </DataTable>
                 </div>
             </Container>
             <FullLine />
-        </section>
+        </SectionShell>
     );
 }

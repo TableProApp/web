@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Plus } from 'lucide-react';
 import gridData from '../../../data/database-grid.json';
 import Container from '@/components/ui/container';
@@ -78,6 +78,7 @@ function TileBody({ database }: { database: DatabaseTile }) {
 
 export default function DatabaseGrid() {
     const [activeCategory, setActiveCategory] = useState('all');
+    const tileRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
     const counts = useMemo(() => {
         const tally: Record<string, number> = { all: databases.length };
@@ -97,6 +98,67 @@ export default function DatabaseGrid() {
         () => databases.filter((database) => activeCategory === 'all' || database.category === activeCategory),
         [activeCategory],
     );
+
+    /**
+     * Columns at each breakpoint, so up and down move a whole row rather than a
+     * single tile. Read off `COLS` so the two can never disagree.
+     */
+    function columnsNow(): number {
+        if (typeof window === 'undefined') {
+            return COLS.lg ?? COLS.base;
+        }
+
+        const width = window.innerWidth;
+        if (width >= 1024) return COLS.lg ?? COLS.base;
+        if (width >= 768) return COLS.md ?? COLS.base;
+        if (width >= 640) return COLS.sm ?? COLS.base;
+
+        return COLS.base;
+    }
+
+    function handleGridKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+        // `visible` tiles plus the "request a database" tile at the end.
+        const last = visible.length;
+        const columns = columnsNow();
+        const current = tileRefs.current.findIndex((el) => el === document.activeElement);
+
+        if (current === -1) {
+            return;
+        }
+
+        const moves: Record<string, number> = {
+            ArrowRight: 1,
+            ArrowLeft: -1,
+            ArrowDown: columns,
+            ArrowUp: -columns,
+        };
+
+        let next: number | null = null;
+
+        if (event.key in moves) {
+            next = current + moves[event.key];
+        } else if (event.key === 'Home') {
+            next = 0;
+        } else if (event.key === 'End') {
+            next = last;
+        }
+
+        // Clamp rather than wrap: wrapping a two-dimensional grid on Left at the
+        // start of a row lands you at the end of the previous one, which reads
+        // as the focus jumping backwards for no reason.
+        if (next === null) {
+            return;
+        }
+
+        const clamped = Math.max(0, Math.min(last, next));
+
+        if (clamped === current) {
+            return;
+        }
+
+        event.preventDefault();
+        tileRefs.current[clamped]?.focus();
+    }
 
     const visibleIndex = useMemo(() => {
         const map = new Map<string, number>();
@@ -160,7 +222,25 @@ export default function DatabaseGrid() {
                     </div>
 
                     <div>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                        {/*
+                          * Arrow-key traversal across the tiles. Up and down move
+                          * a whole row, Home and End jump to the ends.
+                          *
+                          * Purely additive: every tile stays in the tab order.
+                          * The usual composite-widget pattern would take them all
+                          * out and leave one, but that needs `role="grid"` with
+                          * `row` and `gridcell` children for assistive tech to
+                          * understand what happened — and this is one flat CSS
+                          * grid whose borders are computed by index, so row
+                          * wrappers would break the layout. Adding the roles
+                          * without the structure would describe a widget that is
+                          * not there. Arrows are a shortcut for people who can
+                          * see where focus went; nobody loses anything.
+                          */}
+                        <div
+                            onKeyDown={handleGridKeyDown}
+                            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+                        >
                             {databases.map((database) => {
                                 const index = visibleIndex.get(database.name);
 
@@ -181,6 +261,7 @@ export default function DatabaseGrid() {
                                 return (
                                     <a
                                         key={database.name}
+                                        ref={(el) => { tileRefs.current[index] = el; }}
                                         href={database.href}
                                         data-row
                                         className={`${TILE_CLASS} ${TILE_HOVER} ${borders}`}
@@ -191,6 +272,7 @@ export default function DatabaseGrid() {
                             })}
 
                             <a
+                                ref={(el) => { tileRefs.current[visible.length] = el; }}
                                 href={REQUEST_DATABASE_HREF}
                                 data-row
                                 target="_blank"

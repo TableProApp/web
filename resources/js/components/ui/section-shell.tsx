@@ -23,6 +23,14 @@ interface SectionShellProps {
      * the argument and which were the appendix.
      */
     tier?: 'argument' | 'reference';
+    /**
+     * `raised` puts the section on the second ground.
+     *
+     * Reserved for sections that are already conceptually inset. Two grounds,
+     * not five — a page that changes background every section has no rhythm
+     * either, it just has noise.
+     */
+    tone?: 'base' | 'raised';
     className?: string;
     children: ReactNode;
 }
@@ -51,13 +59,19 @@ export default function SectionShell({
     headlineMuted,
     lede,
     tier = 'argument',
+    tone = 'base',
     className,
     children,
 }: SectionShellProps) {
     const headingId = `${id}-heading`;
 
     return (
-        <section id={id} aria-labelledby={headingId} className={`scroll-mt-20 ${className ?? ''}`}>
+        <section
+            id={id}
+            aria-labelledby={headingId}
+            data-tone={tone === 'raised' ? 'raised' : undefined}
+            className={`scroll-mt-20 ${className ?? ''}`}
+        >
             <div className="h-12 sm:h-16 lg:h-24" />
 
             <Container>

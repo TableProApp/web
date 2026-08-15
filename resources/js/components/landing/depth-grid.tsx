@@ -65,7 +65,8 @@ const ITEMS: DepthItem[] = [
  */
 export default function DepthGrid() {
     return (
-        <SectionShell tier="reference" id="more" label="Depth" headline="Six more things" headlineMuted="you would expect to pay for.">
+        <SectionShell tier="reference"
+            tone="raised" id="more" label="Depth" headline="Six more things" headlineMuted="you would expect to pay for.">
             <FullLine />
             <Container>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">

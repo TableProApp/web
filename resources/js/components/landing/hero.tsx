@@ -129,7 +129,7 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                         width={3024}
                         height={1720}
                         priority
-                        className="w-full rounded-xl border border-rule shadow-sm"
+                        className="app-plate w-full"
                     />
                 </div>
             </Container>
