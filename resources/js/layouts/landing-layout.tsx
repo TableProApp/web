@@ -2,10 +2,22 @@ import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 
 interface Props {
+    /**
+     * Rendered as a sibling of `<main>`, not inside it.
+     *
+     * A `<header>` nested in `<main>` produces no banner landmark, and the skip
+     * link below lands immediately *before* the nav links it exists to skip.
+     * Passing the site header through this slot is what makes both work.
+     *
+     * The 64px the fixed header occupies is added back as padding on `<main>`
+     * rather than as a spacer element, so the gutter columns still run the full
+     * height of the page and stay visible through the header's backdrop blur.
+     */
+    header?: ReactNode;
     children: ReactNode;
 }
 
-export default function LandingLayout({ children }: Props) {
+export default function LandingLayout({ header, children }: Props) {
     return (
         <div className="overflow-x-hidden bg-background text-foreground antialiased">
             <Toaster
@@ -26,6 +38,7 @@ export default function LandingLayout({ children }: Props) {
             <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:inline-flex focus:min-h-[48px] focus:items-center focus:rounded-lg focus:bg-primary focus:px-4 focus:text-primary-foreground focus:shadow-lg">
                 Skip to content
             </a>
+            {header}
             <div
                 className="grid min-h-dvh grid-cols-1 justify-center [--gutter-width:2.5rem] md:-mx-4 md:grid-cols-[var(--gutter-width)_minmax(0,var(--breakpoint-2xl))_var(--gutter-width)] lg:mx-0"
             >
@@ -36,7 +49,10 @@ export default function LandingLayout({ children }: Props) {
                 />
 
                 {/* Main content */}
-                <main id="main-content" className="relative col-start-1 row-start-1 md:col-start-2">
+                <main
+                    id="main-content"
+                    className={`relative col-start-1 row-start-1 md:col-start-2 ${header ? 'pt-16' : ''}`}
+                >
                     {/* Container-width vertical border lines */}
                     <div className="pointer-events-none absolute inset-0 z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-hidden="true">
                         <div className="h-full border-x border-gray-950/5 dark:border-white/10" />

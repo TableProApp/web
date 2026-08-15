@@ -7,9 +7,26 @@ import SectionShell from '@/components/ui/section-shell';
 import ThemedImage from '@/components/ui/themed-image';
 
 interface Shot {
-    light: string;
-    dark: string;
+    /** Base name under /images/features. The 1216/2432 WebP ladder is derived from it. */
+    name: string;
     alt: string;
+}
+
+/**
+ * `ThemedImage` has always supported a WebP ladder; this section simply never
+ * passed one, and shipped 4.46 MB of raw PNG instead. At 2x the same three
+ * screenshots now cost about 0.50 MB.
+ *
+ * Widths are 1216 and 2432 because the cell renders at 1216 CSS px at most, so
+ * 2432 is an exact 2x and nothing is resampled on a retina Mac.
+ */
+function shotSources(name: string, theme: 'light' | 'dark') {
+    const stem = `/images/features/${name}-${theme}`;
+
+    return {
+        src: `${stem}.png`,
+        webpSrcSet: `${stem}-1216.webp 1216w, ${stem}-2432.webp 2432w`,
+    };
 }
 
 interface Row {
@@ -40,8 +57,7 @@ const ROWS: Row[] = [
         title: 'SQL Editor',
         body: 'Tree-sitter highlighting, schema-aware autocomplete that resolves aliases through JOINs and CTEs from the first character, and multi-statement batches that run inside one transaction where the engine supports it. If statement three of five fails, the error names statement three and the whole batch rolls back.',
         shot: {
-            light: '/images/features/sql-editor-light.png',
-            dark: '/images/features/sql-editor-dark.png',
+            name: 'sql-editor',
             alt: 'The SQL editor with a multi-statement query and its result tabs below.',
         },
         rows: [
@@ -90,8 +106,7 @@ const ROWS: Row[] = [
         title: 'Data Grid',
         body: 'Edit cells inline with the right editor for the type: a calendar for timestamps, a searchable list of referenced values for foreign keys, a three-state checkbox for nullable booleans, multi-select for MySQL SET columns. Nothing reaches the database until you press Save.',
         shot: {
-            light: '/images/features/data-grid-light.png',
-            dark: '/images/features/data-grid-dark.png',
+            name: 'data-grid',
             alt: 'The data grid with edited cells highlighted and a pending-changes count in the toolbar.',
         },
         rows: [
@@ -131,8 +146,7 @@ const ROWS: Row[] = [
         title: 'AI Assistant',
         body: 'Thirteen providers, all bring your own key or your own account. Claude, OpenAI, Gemini, xAI, OpenRouter, GitHub Copilot, Cursor, OpenCode Zen, or fully local with Ollama, llama.cpp and MLX. Keys live in the macOS Keychain and are deleted with the provider.',
         shot: {
-            light: '/images/features/ai-assistant-light.png',
-            dark: '/images/features/ai-assistant-dark.png',
+            name: 'ai-assistant',
             alt: 'The AI assistant showing a before and after diff of a rewritten query with numbered explanation steps.',
         },
         rows: [
@@ -203,12 +217,13 @@ export default function Workbench() {
                                     className={`relative overflow-hidden ${isEven ? SHOT_BORDER_EVEN : SHOT_BORDER_ODD}`}
                                 >
                                     <ThemedImage
-                                        light={{ src: row.shot.light }}
-                                        dark={{ src: row.shot.dark }}
+                                        light={shotSources(row.shot.name, 'light')}
+                                        dark={shotSources(row.shot.name, 'dark')}
                                         alt={row.shot.alt}
-                                        width={3024}
-                                        height={1722}
-                                        className={`w-[145%] max-w-none ${isEven ? '-translate-x-[45%]' : 'translate-x-0'}`}
+                                        width={2432}
+                                        height={1385}
+                                        sizes="(min-width: 1024px) 1216px, 100vw"
+                                        className={`lg:w-[145%] lg:max-w-none ${isEven ? 'lg:-translate-x-[31%]' : ''}`}
                                     />
                                 </div>
                             </div>

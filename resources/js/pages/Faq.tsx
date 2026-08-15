@@ -25,7 +25,7 @@ const faqJsonLd = {
 
 export default function FaqPage({ downloadUrls, githubStars }: Props) {
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
             <SEOHead
                 title={FAQ_TITLE}
                 description={FAQ_DESCRIPTION}
@@ -36,7 +36,6 @@ export default function FaqPage({ downloadUrls, githubStars }: Props) {
                     { name: 'FAQ', path: '/faq' },
                 ]}
             />
-            <Header downloadUrls={downloadUrls} githubStars={githubStars} />
             <div>
                 <Faq />
             </div>

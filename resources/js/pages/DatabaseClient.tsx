@@ -83,7 +83,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
     }
 
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
             <SEOHead
                 title={title}
                 description={db.description}
@@ -95,8 +95,6 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                     { name: db.name, path: `/${db.slug}` },
                 ]}
             />
-
-            <Header downloadUrls={downloadUrls} githubStars={githubStars} />
 
             <main>
                 {/* Hero */}
@@ -164,7 +162,6 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         <source
                             type="image/webp"
                             srcSet="/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w"
-                            sizes="(max-width: 1280px) 1280px, (max-width: 1920px) 1920px, 3024px"
                         />
                         <img
                             src="/images/app-dark.png"
@@ -178,7 +175,6 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         <source
                             type="image/webp"
                             srcSet="/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w"
-                            sizes="(max-width: 1280px) 1280px, (max-width: 1920px) 1920px, 3024px"
                         />
                         <img
                             src="/images/app-light.png"

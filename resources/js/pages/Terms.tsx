@@ -30,7 +30,7 @@ function SectionBlock({ title, children }: { title: string; children: React.Reac
 
 export default function Terms({ downloadUrls }: Props) {
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} />}>
             <SEOHead
                 title="Terms of Service - TablePro"
                 description="Terms of Service for TablePro, the native macOS database client. License, liability, and user responsibilities."
@@ -40,8 +40,6 @@ export default function Terms({ downloadUrls }: Props) {
                     { name: 'Terms', path: '/terms' },
                 ]}
             />
-
-            <Header downloadUrls={downloadUrls} />
 
             <main>
                 <div className="h-12 sm:h-16 lg:h-24" />

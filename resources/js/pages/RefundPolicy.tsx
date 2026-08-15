@@ -14,7 +14,7 @@ function FullLine() {
 
 export default function RefundPolicy({ downloadUrls }: Props) {
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} />}>
             <SEOHead
                 title="Refund Policy - TablePro"
                 description="7-day money-back guarantee on all paid TablePro plans."
@@ -24,8 +24,6 @@ export default function RefundPolicy({ downloadUrls }: Props) {
                     { name: 'Refund Policy', path: '/refund-policy' },
                 ]}
             />
-
-            <Header downloadUrls={downloadUrls} />
 
             <main>
                 <div className="h-12 sm:h-16 lg:h-24" />

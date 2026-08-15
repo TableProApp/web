@@ -112,7 +112,7 @@ export default function Home({
     const { canonicalBaseUrl } = usePage<{ canonicalBaseUrl: string }>().props;
 
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
             <SEOHead
                 title={HOME_TITLE}
                 description={HOME_DESCRIPTION}
@@ -123,8 +123,6 @@ export default function Home({
                     buildFaqJsonLd(),
                 ]}
             />
-
-            <Header downloadUrls={downloadUrls} githubStars={githubStars} />
 
             <Hero githubStars={githubStars} latestRelease={latestRelease} />
             <SpecStrip latestRelease={latestRelease} />

@@ -40,31 +40,74 @@ export default function MobileNav({ isOpen, onClose }: Props) {
         }
     }, [onClose]);
 
+    /**
+     * The panel is `md:hidden`, so crossing the md breakpoint while it is open
+     * — a phone rotating into landscape is enough — hides it in CSS while
+     * `isOpen` stays true. The scroll lock below would stay applied, and the
+     * hamburger that closes it is `md:hidden` too, so the page ends up frozen
+     * with no visible control and no way back on a touch device. Closing on the
+     * breakpoint keeps React state and the CSS agreeing about whether this
+     * dialog exists.
+     *
+     * 48rem is Tailwind's `md`. Kept in rem, like the utility, so a change to
+     * the root font size moves both together.
+     */
     useEffect(() => {
-        if (isOpen) {
-            const scrollY = window.scrollY;
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.left = '0';
-            document.body.style.right = '0';
-            document.addEventListener('keydown', handleKeyDown);
-            closeButtonRef.current?.focus();
-        } else {
-            const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.left = '';
-            document.body.style.right = '';
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        if (!isOpen) {
+            return;
         }
+
+        const desktop = window.matchMedia('(min-width: 48rem)');
+
+        if (desktop.matches) {
+            onClose();
+
+            return;
+        }
+
+        const handleChange = (event: MediaQueryListEvent) => {
+            if (event.matches) {
+                onClose();
+            }
+        };
+
+        desktop.addEventListener('change', handleChange);
+
+        return () => {
+            desktop.removeEventListener('change', handleChange);
+        };
+    }, [isOpen, onClose]);
+
+    /**
+     * Scroll lock. The restore lives only in the cleanup, and the offset is
+     * captured in this closure rather than read back out of `body.style.top`.
+     *
+     * The previous shape had an `else` branch doing its own restore, which ran
+     * *after* the cleanup had already reset `top` to an empty string — so
+     * `parseInt('' || '0') * -1` came out as 0 and closing the menu scrolled
+     * the visitor to the top of the page instead of back to where they were.
+     */
+    useEffect(() => {
+        if (!isOpen) {
+            return;
+        }
+
+        const scrollY = window.scrollY;
+
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.addEventListener('keydown', handleKeyDown);
+        closeButtonRef.current?.focus();
+
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
-            const scrollY = document.body.style.top;
             document.body.style.position = '';
             document.body.style.top = '';
             document.body.style.left = '';
             document.body.style.right = '';
-            if (scrollY) window.scrollTo(0, parseInt(scrollY) * -1);
+            window.scrollTo(0, scrollY);
         };
     }, [isOpen, handleKeyDown]);
 

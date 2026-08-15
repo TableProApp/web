@@ -63,3 +63,74 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  # HomepageRenderTest is the only test that needs a built SSR bundle and a
+  # running SSR service, and it skips itself when either is missing. The `php`
+  # job above provides neither, so every assertion in that file silently
+  # skipped on every run. This job is the one place it actually executes;
+  # REQUIRE_SSR turns those skips into failures so it cannot go quiet again.
+  ssr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+          coverage: none
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Copy environment file
+        run: cp .env.example .env
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Build client and SSR bundles
+        run: npm run build
+
+      # The port is read from .env rather than repeated here: .env.example
+      # already carries INERTIA_SSR_URL and INERTIA_SSR_PORT, and its own
+      # comment requires the two to agree. A third copy would be a third thing
+      # to keep in sync.
+      - name: Start the SSR service
+        run: |
+          port="$(grep '^INERTIA_SSR_PORT=' .env | cut -d= -f2)"
+          nohup php artisan inertia:start-ssr > /tmp/ssr.log 2>&1 &
+
+          for _ in $(seq 1 30); do
+            if (exec 3<>"/dev/tcp/127.0.0.1/${port}") 2>/dev/null; then
+              exec 3<&-
+              echo "SSR service listening on ${port}"
+              exit 0
+            fi
+            sleep 1
+          done
+
+          echo "SSR service did not open port ${port} within 30s" >&2
+          cat /tmp/ssr.log >&2 || true
+          exit 1
+
+      - name: SSR render tests
+        env:
+          REQUIRE_SSR: 1
+        run: ./vendor/bin/pest tests/Feature/Landing/HomepageRenderTest.php
+
+      - name: SSR service log
+        if: always()
+        run: cat /tmp/ssr.log || true
