@@ -95,7 +95,7 @@ function useEmailForm(endpoint: string) {
  * it with `ring-primary/50` at roughly 1.6:1, on the one control that converts.
  */
 const INPUT_CLASS =
-    'min-w-0 flex-1 rounded-lg border border-gray-950/5 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground disabled:opacity-50 dark:border-white/10';
+    'min-w-0 flex-1 rounded-lg border border-rule bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground disabled:opacity-50';
 const SUBMIT_CLASS =
     'shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50';
 
@@ -233,21 +233,21 @@ export default function FooterCTA() {
                                 aria-expanded={showBeta}
                                 aria-controls="beta-invite"
                                 onClick={() => setShowBeta(true)}
-                                className="inline-flex items-center gap-2 rounded-full border border-gray-950/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                                className="inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                             >
                                 Get for iPhone
                             </button>
                         </div>
 
                         <div className="mt-4 flex items-center gap-2">
-                            <code className="min-w-0 flex-1 overflow-x-auto rounded-lg border border-gray-950/5 px-3 py-2 font-mono text-xs whitespace-nowrap text-muted-foreground dark:border-white/10">
+                            <code className="min-w-0 flex-1 overflow-x-auto rounded-lg border border-rule px-3 py-2 font-mono text-xs whitespace-nowrap text-muted-foreground">
                                 {BREW_COMMAND}
                             </code>
                             <button
                                 type="button"
                                 onClick={handleCopyBrew}
                                 aria-label={`Copy ${BREW_COMMAND}`}
-                                className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-gray-950/5 text-muted-foreground transition-colors hover:bg-gray-950/[2.5%] hover:text-foreground dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                                className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-rule text-muted-foreground transition-colors hover:text-foreground"
                             >
                                 {copied ? (
                                     <Check className="size-4 text-primary-strong" strokeWidth={1.75} aria-hidden="true" />

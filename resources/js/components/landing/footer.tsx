@@ -87,7 +87,7 @@ export default function Footer() {
                         <div
                             key={col.title}
                             className={`
-                                border-gray-950/5 dark:border-white/10 p-6 sm:p-8
+                                border-rule p-6 sm:p-8
                                 ${colIndex < 2 ? 'border-b md:border-b-0' : ''}
                                 ${colIndex % 2 === 0 ? 'border-r' : 'max-md:border-r-0'}
                                 ${colIndex < 3 ? 'md:border-r' : ''}

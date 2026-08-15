@@ -4,6 +4,7 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { getDatabaseBySlug } from '@/data/databases';
+import SectionLabel from '@/components/ui/section-label';
 
 interface Props {
     slug: string;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-gray-950/5 dark:bg-white/10" aria-hidden="true" />;
+    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 function buildAppJsonLd(name: string, description: string, slug: string, stars?: number | null): object {
@@ -104,9 +105,9 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                     <FullLine />
                     <div className="flex items-center gap-3 pl-4">
                         <img src={db.icon} alt={db.name} className="size-8" width={32} height={32} />
-                        <p className="font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                        <SectionLabel>
                             {db.name} Client
-                        </p>
+                        </SectionLabel>
                     </div>
                     <FullLine />
                 </Container>
@@ -115,7 +116,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <h1 className="pl-4 text-4xl font-bold tracking-tighter text-pretty sm:text-5xl lg:text-6xl">
+                    <h1 className="pl-4 text-4xl font-bold text-pretty sm:text-5xl lg:text-6xl">
                         {db.tagline}
                     </h1>
                     <FullLine />
@@ -145,7 +146,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         </a>
                         <a
                             href={`https://docs.tablepro.app/databases/${db.docsPath}`}
-                            className="inline-flex items-center gap-2 rounded-full border border-gray-950/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                            className="inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                         >
                             Read the docs
                         </a>
@@ -168,7 +169,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                             alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
                             width={3024}
                             height={1720}
-                            className="w-full rounded-xl border border-gray-950/5 shadow-sm dark:border-white/10"
+                            className="w-full rounded-xl border border-rule shadow-sm"
                         />
                     </picture>
                     <picture className="contents dark:hidden">
@@ -181,7 +182,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                             alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
                             width={3024}
                             height={1720}
-                            className="w-full rounded-xl border border-gray-950/5 shadow-sm dark:border-white/10"
+                            className="w-full rounded-xl border border-rule shadow-sm"
                         />
                     </picture>
                 </Container>
@@ -192,9 +193,9 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Features
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -202,7 +203,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                         Built for {db.name}.
                     </h2>
                     <FullLine />
@@ -216,7 +217,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         {db.features.map((feature, i) => (
                             <div
                                 key={feature.title}
-                                className={`border-gray-950/5 p-6 dark:border-white/10 sm:p-8 ${
+                                className={`border-rule p-6 sm:p-8 ${
                                     i % 2 === 0 ? 'sm:border-r' : ''
                                 } ${i < db.features.length - 2 ? 'border-b' : i < db.features.length - 1 ? 'max-sm:border-b' : ''}`}
                             >
@@ -233,9 +234,9 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Data Grid
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -243,7 +244,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                         Browse and edit data.
                     </h2>
                     <FullLine />
@@ -268,13 +269,13 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         <img
                             src="/images/features/data-grid-light.png"
                             alt={`TablePro data grid showing ${db.name} table rows with inline editing`}
-                            className="w-full rounded-lg border border-gray-950/5 shadow-sm dark:hidden dark:border-white/10"
+                            className="w-full rounded-lg border border-rule shadow-sm dark:hidden"
                             loading="lazy"
                         />
                         <img
                             src="/images/features/data-grid-dark.png"
                             alt={`TablePro data grid showing ${db.name} table rows with inline editing`}
-                            className="hidden w-full rounded-lg border border-gray-950/5 shadow-sm dark:block dark:border-white/10"
+                            className="hidden w-full rounded-lg border border-rule shadow-sm dark:block"
                             loading="lazy"
                         />
                     </div>
@@ -286,9 +287,9 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         SQL Editor
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -296,7 +297,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                         Write queries faster.
                     </h2>
                     <FullLine />
@@ -321,13 +322,13 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         <img
                             src="/images/features/sql-editor-light.png"
                             alt={`TablePro SQL editor with ${db.name} query and autocomplete`}
-                            className="w-full rounded-lg border border-gray-950/5 shadow-sm dark:hidden dark:border-white/10"
+                            className="w-full rounded-lg border border-rule shadow-sm dark:hidden"
                             loading="lazy"
                         />
                         <img
                             src="/images/features/sql-editor-dark.png"
                             alt={`TablePro SQL editor with ${db.name} query and autocomplete`}
-                            className="hidden w-full rounded-lg border border-gray-950/5 shadow-sm dark:block dark:border-white/10"
+                            className="hidden w-full rounded-lg border border-rule shadow-sm dark:block"
                             loading="lazy"
                         />
                     </div>
@@ -339,9 +340,9 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Capabilities
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -349,7 +350,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                         What you can do.
                     </h2>
                     <FullLine />
@@ -379,9 +380,9 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Connect
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -389,7 +390,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <Container>
                     <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                         Get connected in seconds.
                     </h2>
                     <FullLine />
@@ -401,8 +402,8 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
                         {/* Code snippet */}
-                        <div className="border-b border-gray-950/5 p-6 dark:border-white/10 sm:border-b-0 sm:border-r sm:p-8">
-                            <div className="overflow-x-auto rounded-lg border border-gray-950/10 bg-gray-950/[2.5%] p-4 dark:border-white/10 dark:bg-white/[2.5%]">
+                        <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
+                            <div className="overflow-x-auto rounded-lg border border-rule-strong bg-gray-950/[2.5%] p-4 dark:bg-white/[2.5%]">
                                 <code className="block whitespace-pre font-mono text-sm leading-relaxed text-foreground">
                                     {db.snippet}
                                 </code>
@@ -442,9 +443,9 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                         <Container>
                             <FullLine />
-                            <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                            <SectionLabel className="pl-4">
                                 How to
-                            </p>
+                            </SectionLabel>
                             <FullLine />
                         </Container>
 
@@ -452,7 +453,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                         <Container>
                             <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                                 Connect to {db.name} in four steps.
                             </h2>
                             <FullLine />
@@ -462,10 +463,10 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                         <FullLine />
                         <Container>
-                            <ol className="divide-y divide-gray-950/5 dark:divide-white/10">
+                            <ol className="divide-y divide-rule">
                                 {db.howToSteps.map((step, idx) => (
                                     <li key={step.name} className="grid grid-cols-[auto_1fr] gap-6 p-6 sm:p-8">
-                                        <div className="flex size-8 items-center justify-center rounded-full border border-primary/30 bg-primary/10 font-mono text-sm font-semibold text-primary">
+                                        <div className="flex size-8 items-center justify-center rounded-full border border-primary/30 bg-primary/10 font-mono text-sm font-semibold text-primary-strong">
                                             {idx + 1}
                                         </div>
                                         <div>
@@ -487,9 +488,9 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                         <Container>
                             <FullLine />
-                            <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                            <SectionLabel className="pl-4">
                                 FAQ
-                            </p>
+                            </SectionLabel>
                             <FullLine />
                         </Container>
 
@@ -497,7 +498,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                         <Container>
                             <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                                 Common {db.name} questions.
                             </h2>
                             <FullLine />
@@ -507,7 +508,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                         <FullLine />
                         <Container>
-                            <dl className="divide-y divide-gray-950/5 dark:divide-white/10">
+                            <dl className="divide-y divide-rule">
                                 {db.faqs.map((faq) => (
                                     <details key={faq.question} className="group p-6 sm:p-8">
                                         <summary className="flex cursor-pointer items-start justify-between gap-6 text-base font-semibold text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
@@ -531,7 +532,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <Container>
                     <FullLine />
                     <div className="px-4 py-12 text-center sm:py-16">
-                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                        <h2 className="text-3xl font-bold sm:text-4xl">
                             Try TablePro for free.
                         </h2>
                         <p className="mt-3 text-muted-foreground">
@@ -547,7 +548,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                             </a>
                             <a
                                 href={`https://docs.tablepro.app/databases/${db.docsPath}`}
-                                className="inline-flex items-center gap-2 rounded-full border border-gray-950/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                                className="inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                             >
                                 Setup guide
                             </a>

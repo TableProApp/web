@@ -39,7 +39,7 @@ interface Row {
 
 /** Inline literal, for file extensions and vim commands that are not shortcuts. */
 function Mono({ children }: { children: ReactNode }) {
-    return <span className="font-mono text-[12px] text-foreground/80">{children}</span>;
+    return <span className="font-mono text-xs text-foreground/80">{children}</span>;
 }
 
 /**
@@ -48,8 +48,8 @@ function Mono({ children }: { children: ReactNode }) {
  * vertical side it lands on flips with the row's parity, because the copy cell
  * reorders past it.
  */
-const SHOT_BORDER_ODD = 'border-gray-950/5 max-lg:border-t lg:border-l dark:border-white/10';
-const SHOT_BORDER_EVEN = 'border-gray-950/5 max-lg:border-t lg:border-r dark:border-white/10';
+const SHOT_BORDER_ODD = 'border-rule max-lg:border-t lg:border-l';
+const SHOT_BORDER_EVEN = 'border-rule max-lg:border-t lg:border-r';
 
 const ROWS: Row[] = [
     {
@@ -199,12 +199,12 @@ export default function Workbench() {
                                     >
                                         {row.index}
                                     </p>
-                                    <h3 className="mt-3 text-lg font-semibold tracking-tight">{row.title}</h3>
+                                    <h3 className="mt-3 text-lg font-semibold">{row.title}</h3>
                                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
                                         {row.body}
                                     </p>
 
-                                    <Ledger className="mt-6 -mx-6 border-t border-gray-950/5 sm:-mx-8 lg:-mx-10 dark:border-white/10">
+                                    <Ledger className="mt-6 -mx-6 border-t border-rule sm:-mx-8 lg:-mx-10">
                                         {row.rows.map((item) => (
                                             <LedgerRow key={item.label} label={item.label}>
                                                 {item.value}

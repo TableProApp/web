@@ -4,6 +4,7 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
+import SectionLabel from '@/components/ui/section-label';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
@@ -11,7 +12,7 @@ interface Props {
 }
 
 function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-gray-950/5 dark:bg-white/10" aria-hidden="true" />;
+    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 const DOWNLOAD_TITLE = 'Download for Mac - TablePro';
@@ -85,7 +86,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
             const secondary = arch === 'arm64' ? x86Ref.current : arm64Ref.current;
             if (primary && secondary) {
                 primary.className = 'inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90';
-                secondary.className = 'inline-flex items-center gap-2 rounded-full border border-gray-950/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]';
+                secondary.className = 'inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors';
             }
 
             setTimeout(() => {
@@ -127,9 +128,9 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 {/* Label */}
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Download
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -139,7 +140,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 {/* Headline */}
                 <Container>
                     <FullLine />
-                    <h1 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+                    <h1 className="pl-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
                         Your download is starting...
                     </h1>
                     <FullLine />
@@ -174,7 +175,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                         <a
                             ref={x86Ref}
                             href="https://github.com/TableProApp/TablePro/releases/latest"
-                            className="inline-flex items-center gap-2 rounded-full border border-gray-950/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                            className="inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                         >
                             {appleIcon}
                             Intel
@@ -186,7 +187,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 {/* System requirements */}
                 <Container>
                     <FullLine />
-                    <p className="px-4 py-2 text-xs text-muted-foreground/80">
+                    <p className="px-4 py-2 text-xs text-muted-foreground-subtle">
                         Requires macOS 14 Sonoma or later
                     </p>
                     <FullLine />
@@ -200,19 +201,19 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 <Container width="md">
                     <div className="grid grid-cols-1 sm:grid-cols-2">
                         {/* Installation */}
-                        <div className="border-b border-gray-950/5 p-6 dark:border-white/10 sm:border-b-0 sm:border-r sm:p-8">
+                        <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
                             <h2 className="text-lg font-semibold text-foreground">Installation</h2>
                             <ol className="mt-4 space-y-4 text-sm text-muted-foreground">
                                 <li className="flex gap-3">
-                                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">1</span>
+                                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary-strong">1</span>
                                     <span>Open the downloaded <code className="rounded bg-black/5 px-1.5 py-0.5 text-foreground dark:bg-white/10">.dmg</code> file</span>
                                 </li>
                                 <li className="flex gap-3">
-                                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">2</span>
+                                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary-strong">2</span>
                                     <span>Drag <strong className="text-foreground">TablePro</strong> to your Applications folder</span>
                                 </li>
                                 <li className="flex gap-3">
-                                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">3</span>
+                                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary-strong">3</span>
                                     <span>Launch TablePro and connect to your database</span>
                                 </li>
                             </ol>

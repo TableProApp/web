@@ -39,6 +39,7 @@ function PhoneMockup() {
 export default function Mobile() {
     return (
         <SectionShell
+            tier="reference"
             id="mobile"
             label="Mac and iPhone"
             headline="Your connections, in your pocket."
@@ -48,7 +49,7 @@ export default function Mobile() {
             <FullLine />
             <Container>
                 <div className="lg:grid lg:grid-cols-[1fr_20rem]">
-                    <div className="border-b border-gray-950/5 lg:border-r lg:border-b-0 dark:border-white/10">
+                    <div className="border-b border-rule lg:border-r lg:border-b-0">
                         <Ledger>
                             <LedgerRow label="Syncs to your Macs">
                                 Connections, groups, tags, SSH profiles, favourites, saved queries and settings. Each
@@ -81,7 +82,7 @@ export default function Mobile() {
                 <div className="px-4 py-4">
                     <a
                         href="#footer-cta"
-                        className="inline-flex items-center gap-2 rounded-full border border-gray-950/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                        className="inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                     >
                         Join the iOS beta <span aria-hidden="true">&rarr;</span>
                     </a>

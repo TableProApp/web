@@ -4,6 +4,7 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { Link } from '@inertiajs/react';
+import SectionLabel from '@/components/ui/section-label';
 
 interface PostFull {
     slug: string;
@@ -38,7 +39,7 @@ interface Props {
 }
 
 function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-gray-950/5 dark:bg-white/10" aria-hidden="true" />;
+    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 function buildArticleJsonLd(post: PostFull, baseUrl: string): object {
@@ -107,7 +108,7 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                 <Container>
                     <Link
                         href="/blog"
-                        className="block py-3 pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+                        className="block py-3 pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary-strong transition-opacity hover:opacity-70"
                     >
                         ← Blog
                     </Link>
@@ -115,7 +116,7 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
 
                 <FullLine />
                 <Container>
-                    <h1 className="px-4 py-6 text-3xl font-bold tracking-tight text-pretty sm:text-4xl lg:py-8 lg:text-5xl">
+                    <h1 className="px-4 py-6 text-3xl font-bold text-pretty sm:text-4xl lg:py-8 lg:text-5xl">
                         {post.title}
                     </h1>
                 </Container>
@@ -139,7 +140,7 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                                 {post.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="rounded-full border border-gray-950/10 px-2.5 py-1 text-xs font-mono text-muted-foreground dark:border-white/10"
+                                        className="rounded-full border border-rule-strong px-2.5 py-1 text-xs font-mono text-muted-foreground"
                                     >
                                         {tag}
                                     </span>
@@ -161,14 +162,14 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                     <>
                         <FullLine />
                         <Container>
-                            <p className="px-4 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                            <SectionLabel className="px-4 py-3">
                                 Related
-                            </p>
+                            </SectionLabel>
                         </Container>
 
                         <FullLine />
                         <Container>
-                            <ul className="divide-y divide-gray-950/5 dark:divide-white/10">
+                            <ul className="divide-y divide-rule">
                                 {relatedPosts.map((rp) => (
                                     <li key={rp.slug}>
                                         <Link
@@ -180,7 +181,7 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                                                 <span aria-hidden="true">·</span>
                                                 <span>{rp.readingMinutes} min read</span>
                                             </div>
-                                            <h3 className="mt-2 text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-2xl">
+                                            <h3 className="mt-2 text-xl font-bold text-foreground transition-colors group-hover:text-primary sm:text-2xl">
                                                 {rp.title}
                                             </h3>
                                             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -197,7 +198,7 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                 <FullLine />
                 <Container>
                     <div className="px-4 py-12 text-center sm:py-16">
-                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                        <h2 className="text-3xl font-bold sm:text-4xl">
                             Try TablePro for free.
                         </h2>
                         <p className="mt-3 text-muted-foreground">

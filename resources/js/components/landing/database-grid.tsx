@@ -5,7 +5,7 @@ import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import DatabaseMark from '@/components/ui/database-mark';
 import SectionShell from '@/components/ui/section-shell';
-import { cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
+import { CELL_DENSITY, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 
 interface DatabaseTile {
     name: string;
@@ -56,8 +56,8 @@ function fillerVisibility(index: number, count: number): string {
         .join(' ');
 }
 
-const TILE_CLASS = 'group flex flex-col items-center gap-3 p-4 text-center sm:p-5';
-const TILE_HOVER = 'transition-colors hover:bg-gray-950/[2.5%] dark:hover:bg-white/[2.5%]';
+const TILE_CLASS = `group flex flex-col items-center gap-3 text-center ${CELL_DENSITY.compact}`;
+const TILE_HOVER = 'transition-colors';
 
 function TileBody({ database }: { database: DatabaseTile }) {
     return (
@@ -128,7 +128,7 @@ export default function DatabaseGrid() {
                     <div
                         role="group"
                         aria-label="Filter databases by category"
-                        className="flex gap-0 overflow-x-auto border-b border-gray-950/5 lg:flex-col lg:overflow-visible lg:border-r lg:border-b-0 dark:border-white/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        className="flex gap-0 overflow-x-auto border-b border-rule lg:flex-col lg:overflow-visible lg:border-r lg:border-b-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                     >
                         {CATEGORIES.map((category) => {
                             const isActive = activeCategory === category.id;
@@ -139,7 +139,7 @@ export default function DatabaseGrid() {
                                     type="button"
                                     aria-pressed={isActive}
                                     onClick={() => setActiveCategory(category.id)}
-                                    className={`relative shrink-0 px-4 py-3 text-left font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors lg:whitespace-normal ${
+                                    className={`relative shrink-0 px-4 py-3 text-left font-mono text-2xs tracking-widest whitespace-nowrap uppercase transition-colors lg:whitespace-normal ${
                                         isActive
                                             ? 'font-semibold text-primary-strong'
                                             : 'text-muted-foreground hover:text-foreground'
@@ -152,7 +152,7 @@ export default function DatabaseGrid() {
                                         />
                                     )}
                                     {category.label}{' '}
-                                    <span className="tabular-nums opacity-60">{counts[category.id] ?? 0}</span>
+                                    <span className="tabular-nums text-muted-foreground-subtle">{counts[category.id] ?? 0}</span>
                                 </button>
                             );
                         })}

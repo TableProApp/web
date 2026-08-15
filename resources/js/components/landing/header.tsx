@@ -92,7 +92,7 @@ export default function Header({ githubStars }: Props) {
 
     return (
         <>
-            <header className="fixed top-0 left-0 right-0 z-40 border-b border-gray-950/5 dark:border-white/10 bg-background/50 backdrop-blur-2xl" >
+            <header className="fixed top-0 left-0 right-0 z-40 border-b border-rule bg-background/50 backdrop-blur-2xl" >
                 <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
                     <a href="/" className="flex items-center gap-2.5">
@@ -149,13 +149,13 @@ export default function Header({ githubStars }: Props) {
                                 role="menu"
                                 aria-label="Download options"
                                 onKeyDown={handleMenuKeyDown}
-                                className={`absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-gray-950/5 dark:border-white/10 bg-background shadow-xl transition-all ${downloadOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}
+                                className={`absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-rule bg-background shadow-xl transition-all ${downloadOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}
                             >
                                 <a
                                     ref={(el) => { itemRefs.current[0] = el; }}
                                     role="menuitem"
                                     href="/download"
-                                    className="flex items-center gap-3 px-4 py-3 text-sm text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:hover:bg-white/[2.5%]"
+                                    className="flex items-center gap-3 px-4 py-3 text-sm text-foreground transition-colors"
                                     onClick={() => {
                                         const scrollY = window.scrollY;
                                         setDownloadOpen(false);
@@ -170,12 +170,12 @@ export default function Header({ githubStars }: Props) {
                                         <div className="text-xs text-muted-foreground">macOS 14+</div>
                                     </div>
                                 </a>
-                                <div className="h-px bg-gray-950/5 dark:bg-white/10" />
+                                <div className="h-px bg-rule" />
                                 <a
                                     ref={(el) => { itemRefs.current[1] = el; }}
                                     role="menuitem"
                                     href="/#mobile"
-                                    className="flex items-center gap-3 px-4 py-3 text-sm text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:hover:bg-white/[2.5%]"
+                                    className="flex items-center gap-3 px-4 py-3 text-sm text-foreground transition-colors"
                                     onClick={closeDropdown}
                                 >
                                     <svg className="size-5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">

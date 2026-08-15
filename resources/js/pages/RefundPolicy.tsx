@@ -3,13 +3,14 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
+import SectionLabel from '@/components/ui/section-label';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
 }
 
 function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-gray-950/5 dark:bg-white/10" aria-hidden="true" />;
+    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 export default function RefundPolicy({ downloadUrls }: Props) {
@@ -30,9 +31,9 @@ export default function RefundPolicy({ downloadUrls }: Props) {
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Legal
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -40,7 +41,7 @@ export default function RefundPolicy({ downloadUrls }: Props) {
 
                 <Container>
                     <FullLine />
-                    <h1 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+                    <h1 className="pl-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
                         Refund Policy
                     </h1>
                     <FullLine />

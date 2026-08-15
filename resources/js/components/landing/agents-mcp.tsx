@@ -49,7 +49,7 @@ const PROVIDERS = [
 ];
 
 const CHIP_CLASS =
-    'rounded-full border border-gray-950/5 px-2.5 py-1 font-mono text-[11px] text-muted-foreground dark:border-white/10';
+    'rounded-full border border-rule px-2.5 py-1 font-mono text-2xs text-muted-foreground';
 
 function Chips({ items, label }: { items: string[]; label: string }) {
     return (
@@ -101,7 +101,7 @@ function CopyButton() {
             type="button"
             onClick={handleCopy}
             aria-label="Copy configuration"
-            className="inline-flex size-7 items-center justify-center rounded-[4px] text-muted-foreground transition-colors hover:bg-gray-950/[2.5%] hover:text-foreground dark:hover:bg-white/[2.5%]"
+            className="inline-flex size-7 items-center justify-center rounded-[4px] text-muted-foreground transition-colors hover:text-foreground"
         >
             {copied ? (
                 <Check className="size-4 text-primary-strong" strokeWidth={1.75} aria-hidden="true" />
@@ -128,11 +128,11 @@ export default function AgentsMcp() {
             <FullLine />
             <Container>
                 <div className="lg:grid lg:grid-cols-2">
-                    <div className={`min-w-0 border-gray-950/5 dark:border-white/10 ${cellBorders(0, PANE_COLS, 2)}`}>
+                    <div className={`min-w-0 border-rule ${cellBorders(0, PANE_COLS, 2)}`}>
                         <h3 className="sr-only">Configuration</h3>
 
-                        <div className="flex items-center justify-between border-b border-gray-950/5 px-4 py-2 dark:border-white/10">
-                            <span className="font-mono text-[11px] text-muted-foreground">
+                        <div className="flex items-center justify-between border-b border-rule px-4 py-2">
+                            <span className="font-mono text-2xs text-muted-foreground">
                                 claude_desktop_config.json
                             </span>
                             <CopyButton />
@@ -167,7 +167,7 @@ export default function AgentsMcp() {
                             </code>
                         </pre>
 
-                        <p className="border-t border-gray-950/5 px-4 py-3 font-mono text-xs text-muted-foreground dark:border-white/10">
+                        <p className="border-t border-rule px-4 py-3 font-mono text-xs text-muted-foreground">
                             No token in the config. The bridge launches TablePro if it is not already running.
                         </p>
                     </div>
@@ -190,7 +190,7 @@ export default function AgentsMcp() {
                             </LedgerRow>
                         </Ledger>
 
-                        <p className="border-t border-gray-950/5 px-4 py-3 font-mono text-xs text-muted-foreground dark:border-white/10">
+                        <p className="border-t border-rule px-4 py-3 font-mono text-xs text-muted-foreground">
                             Fresh installs start in Ask.
                         </p>
                     </div>

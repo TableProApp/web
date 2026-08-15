@@ -29,7 +29,7 @@ export default function DatabaseMark({ icon, monogram, name }: DatabaseMarkProps
         <span
             aria-hidden="true"
             title={name}
-            className="grid size-10 place-items-center border border-gray-950/10 font-mono text-sm font-semibold text-muted-foreground transition-colors group-hover:border-gray-950/20 dark:border-white/15 dark:group-hover:border-white/25"
+            className="grid size-10 place-items-center border border-rule-strong font-mono text-sm font-semibold text-muted-foreground transition-colors group-hover:border-gray-950/20 dark:group-hover:border-white/25"
         >
             {monogram ?? name.slice(0, 2).toUpperCase()}
         </span>

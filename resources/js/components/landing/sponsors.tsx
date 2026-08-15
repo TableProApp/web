@@ -120,7 +120,7 @@ function SponsorMark({ sponsor }: { sponsor: Sponsor }) {
 }
 
 const CELL_CLASS =
-    'group flex items-center justify-center p-6 transition-colors hover:bg-gray-950/[2.5%] sm:p-8 lg:p-10 dark:hover:bg-white/[2.5%]';
+    'group flex items-center justify-center p-6 transition-colors sm:p-8 lg:p-10';
 
 /**
  * Sponsors get their own section high on the page, not a footnote near the
@@ -158,7 +158,7 @@ export default function Sponsors() {
                                     aria-label="Become a sponsor"
                                     className={`${CELL_CLASS} ${borders}`}
                                 >
-                                    <span className="flex size-10 items-center justify-center rounded-xl border border-dashed border-gray-950/10 text-muted-foreground transition-colors group-hover:border-gray-950/20 dark:border-white/10 dark:group-hover:border-white/20">
+                                    <span className="flex size-10 items-center justify-center rounded-xl border border-dashed border-rule-strong text-muted-foreground transition-colors group-hover:border-gray-950/20 dark:group-hover:border-white/20">
                                         <svg
                                             className="size-4"
                                             viewBox="0 0 24 24"

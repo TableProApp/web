@@ -54,7 +54,7 @@ const TRUST_CELLS: { label: string; body: string }[] = [
 ];
 
 const HEAD_CELL =
-    'px-4 py-3 text-left font-mono text-[11px] font-semibold tracking-widest text-muted-foreground uppercase';
+    'px-4 py-3 text-left font-mono text-2xs font-semibold tracking-widest text-muted-foreground uppercase';
 const BODY_CELL = 'px-4 py-3 align-top text-sm text-muted-foreground';
 
 export default function Safety() {
@@ -77,7 +77,7 @@ export default function Safety() {
                     <table className="w-full min-w-[38rem] border-collapse">
                         <caption className="sr-only">Safe Mode levels and their behaviour</caption>
                         <thead>
-                            <tr className="border-b border-gray-950/5 dark:border-white/10">
+                            <tr className="border-b border-rule">
                                 {COLUMNS.map((column) => (
                                     <th key={column} scope="col" className={HEAD_CELL}>
                                         {column}
@@ -89,7 +89,7 @@ export default function Safety() {
                             {LEVELS.map((level, i) => (
                                 <tr
                                     key={level.name}
-                                    className={`border-b border-gray-950/5 last:border-b-0 dark:border-white/10 ${ROW_TINT[i]}`}
+                                    className={`border-b border-rule last:border-b-0 ${ROW_TINT[i]}`}
                                 >
                                     <th
                                         scope="row"
@@ -132,7 +132,7 @@ export default function Safety() {
                             key={cell.label}
                             className={`p-4 sm:p-6 ${cellBorders(i, TRUST_COLS, TRUST_CELLS.length)}`}
                         >
-                            <h3 className="font-mono text-[11px] font-semibold tracking-widest text-primary-strong uppercase">
+                            <h3 className="font-mono text-2xs font-semibold tracking-widest text-primary-strong uppercase">
                                 {cell.label}
                             </h3>
                             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{cell.body}</p>

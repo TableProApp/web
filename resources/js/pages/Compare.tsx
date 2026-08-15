@@ -4,6 +4,7 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { getComparisonBySlug } from '@/data/comparisons';
+import SectionLabel from '@/components/ui/section-label';
 
 interface Props {
     slug: string;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-gray-950/5 dark:bg-white/10" aria-hidden="true" />;
+    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 function Check() {
@@ -112,9 +113,9 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Compare
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -122,7 +123,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <h1 className="pl-4 text-4xl font-bold tracking-tighter text-pretty sm:text-5xl lg:text-6xl">
+                    <h1 className="pl-4 text-4xl font-bold text-pretty sm:text-5xl lg:text-6xl">
                         {comp.tagline}
                     </h1>
                     <FullLine />
@@ -147,27 +148,27 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                         <div className="min-w-[400px]">
                             {/* Header */}
                             <div className="grid grid-cols-3">
-                                <div className="border-gray-950/5 p-4 dark:border-white/10 sm:p-5">
+                                <div className="border-rule p-4 sm:p-5">
                                     <span className="text-sm font-medium text-muted-foreground">Feature</span>
                                 </div>
-                                <div className="border-l border-gray-950/5 bg-primary/5 p-4 text-center dark:border-white/10 sm:p-5">
-                                    <span className="text-sm font-bold text-primary">TablePro</span>
+                                <div className="border-l border-rule bg-primary/5 p-4 text-center sm:p-5">
+                                    <span className="text-sm font-bold text-primary-strong">TablePro</span>
                                 </div>
-                                <div className="border-l border-gray-950/5 p-4 text-center dark:border-white/10 sm:p-5">
+                                <div className="border-l border-rule p-4 text-center sm:p-5">
                                     <span className="text-sm font-medium text-muted-foreground">{comp.name}</span>
                                 </div>
                             </div>
 
                             {/* Rows */}
                             {comp.rows.map((row) => (
-                                <div key={row.label} className="grid grid-cols-3 border-t border-gray-950/5 dark:border-white/10">
+                                <div key={row.label} className="grid grid-cols-3 border-t border-rule">
                                     <div className="p-4 sm:p-5">
                                         <span className="text-sm font-medium text-foreground">{row.label}</span>
                                     </div>
-                                    <div className="flex items-center justify-center border-l border-gray-950/5 bg-primary/5 p-4 dark:border-white/10 sm:p-5">
+                                    <div className="flex items-center justify-center border-l border-rule bg-primary/5 p-4 sm:p-5">
                                         <CellValue value={row.tablePro} />
                                     </div>
-                                    <div className="flex items-center justify-center border-l border-gray-950/5 p-4 dark:border-white/10 sm:p-5">
+                                    <div className="flex items-center justify-center border-l border-rule p-4 sm:p-5">
                                         <CellValue value={row.competitor} />
                                     </div>
                                 </div>
@@ -184,9 +185,9 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         <Container>
                             <FullLine />
-                            <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                            <SectionLabel className="pl-4">
                                 Benchmarks
-                            </p>
+                            </SectionLabel>
                             <FullLine />
                         </Container>
 
@@ -194,7 +195,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         <Container>
                             <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                                 The numbers.
                             </h2>
                             <FullLine />
@@ -212,14 +213,14 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                                         download: 'Download size',
                                     };
                                     return (
-                                        <div key={metric} className="border-b border-gray-950/5 p-6 dark:border-white/10 sm:border-b-0 sm:border-r sm:p-8 sm:last:border-r-0">
+                                        <div key={metric} className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8 sm:last:border-r-0">
                                             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">{labels[metric]}</p>
                                             <div className="mt-4 flex items-baseline gap-3">
-                                                <span className="text-3xl font-bold text-primary">{comp.benchmarks!.tablePro[metric]}</span>
+                                                <span className="text-3xl font-bold text-primary-strong">{comp.benchmarks!.tablePro[metric]}</span>
                                                 <span className="text-xs text-muted-foreground">TablePro</span>
                                             </div>
                                             <div className="mt-2 flex items-baseline gap-3">
-                                                <span className="text-2xl font-semibold text-muted-foreground/60">{comp.benchmarks!.competitor[metric]}</span>
+                                                <span className="text-2xl font-semibold text-muted-foreground-subtle">{comp.benchmarks!.competitor[metric]}</span>
                                                 <span className="text-xs text-muted-foreground">{comp.name}</span>
                                             </div>
                                         </div>
@@ -236,9 +237,9 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Summary
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -246,7 +247,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                         Strengths of each.
                     </h2>
                     <FullLine />
@@ -258,8 +259,8 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
                         {/* TablePro pros */}
-                        <div className="border-b border-gray-950/5 p-6 dark:border-white/10 sm:border-b-0 sm:border-r sm:p-8">
-                            <h3 className="text-base font-semibold text-primary">TablePro</h3>
+                        <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
+                            <h3 className="text-base font-semibold text-primary-strong">TablePro</h3>
                             <ul className="mt-4 space-y-3">
                                 {comp.prosTablePro.map((pro) => (
                                     <li key={pro} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -293,9 +294,9 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         <Container>
                             <FullLine />
-                            <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                            <SectionLabel className="pl-4">
                                 Migration
-                            </p>
+                            </SectionLabel>
                             <FullLine />
                         </Container>
 
@@ -303,7 +304,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         <Container>
                             <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                                 Switch from {comp.name}.
                             </h2>
                             <FullLine />
@@ -313,10 +314,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         <FullLine />
                         <Container>
-                            <ol className="divide-y divide-gray-950/5 dark:divide-white/10">
+                            <ol className="divide-y divide-rule">
                                 {comp.migrationSteps.map((step, idx) => (
                                     <li key={step.title} className="grid grid-cols-[auto_1fr] gap-6 p-6 sm:p-8">
-                                        <div className="flex size-8 items-center justify-center rounded-full border border-primary/30 bg-primary/10 font-mono text-sm font-semibold text-primary">
+                                        <div className="flex size-8 items-center justify-center rounded-full border border-primary/30 bg-primary/10 font-mono text-sm font-semibold text-primary-strong">
                                             {idx + 1}
                                         </div>
                                         <div>
@@ -336,9 +337,9 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         TablePro
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -346,7 +347,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                         See it in action.
                     </h2>
                     <FullLine />
@@ -366,7 +367,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                             alt="TablePro interface showing the data grid and SQL editor"
                             width={3024}
                             height={1720}
-                            className="w-full rounded-xl border border-gray-950/5 shadow-sm dark:border-white/10"
+                            className="w-full rounded-xl border border-rule shadow-sm"
                             loading="lazy"
                         />
                     </picture>
@@ -380,7 +381,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                             alt="TablePro interface showing the data grid and SQL editor"
                             width={3024}
                             height={1720}
-                            className="w-full rounded-xl border border-gray-950/5 shadow-sm dark:border-white/10"
+                            className="w-full rounded-xl border border-rule shadow-sm"
                             loading="lazy"
                         />
                     </picture>
@@ -392,9 +393,9 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Decision
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -402,7 +403,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                         Which one is right for you?
                     </h2>
                     <FullLine />
@@ -413,8 +414,8 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
-                        <div className="border-b border-gray-950/5 p-6 dark:border-white/10 sm:border-b-0 sm:border-r sm:p-8">
-                            <h3 className="text-base font-semibold text-primary">Choose TablePro if...</h3>
+                        <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
+                            <h3 className="text-base font-semibold text-primary-strong">Choose TablePro if...</h3>
                             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{comp.chooseTablePro}</p>
                         </div>
                         <div className="p-6 sm:p-8">
@@ -430,9 +431,9 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <Container>
                     <FullLine />
-                    <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                    <SectionLabel className="pl-4">
                         Verdict
-                    </p>
+                    </SectionLabel>
                     <FullLine />
                 </Container>
 
@@ -455,9 +456,9 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         <Container>
                             <FullLine />
-                            <p className="pl-4 font-mono text-xs font-semibold uppercase tracking-widest text-primary">
+                            <SectionLabel className="pl-4">
                                 FAQ
-                            </p>
+                            </SectionLabel>
                             <FullLine />
                         </Container>
 
@@ -465,7 +466,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         <Container>
                             <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold tracking-tight sm:text-4xl">
+                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
                                 Common questions.
                             </h2>
                             <FullLine />
@@ -475,7 +476,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         <FullLine />
                         <Container>
-                            <dl className="divide-y divide-gray-950/5 dark:divide-white/10">
+                            <dl className="divide-y divide-rule">
                                 {comp.faqs.map((faq) => (
                                     <details key={faq.question} className="group p-6 sm:p-8">
                                         <summary className="flex cursor-pointer items-start justify-between gap-6 text-base font-semibold text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
@@ -499,7 +500,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 <Container>
                     <FullLine />
                     <div className="px-4 py-12 text-center sm:py-16">
-                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                        <h2 className="text-3xl font-bold sm:text-4xl">
                             Try TablePro for free.
                         </h2>
                         <p className="mt-3 text-muted-foreground">

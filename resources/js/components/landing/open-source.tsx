@@ -38,6 +38,7 @@ export default function OpenSource({ latestRelease }: Props) {
 
     return (
         <SectionShell
+            tier="reference"
             id="open-source"
             label="Open source"
             headline="Nothing is behind a paywall."
@@ -46,7 +47,7 @@ export default function OpenSource({ latestRelease }: Props) {
             <FullLine />
             <Container>
                 <div className="lg:grid lg:grid-cols-[1fr_18rem]">
-                    <div className="border-gray-950/5 max-lg:border-b lg:border-r dark:border-white/10">
+                    <div className="border-rule max-lg:border-b lg:border-r">
                         <div className="max-w-2xl space-y-4 p-6 text-base leading-relaxed text-muted-foreground text-pretty sm:p-8">
                             <p>
                                 TablePro is AGPLv3. All 25 databases, the SQL editor, the data grid, the AI assistant,

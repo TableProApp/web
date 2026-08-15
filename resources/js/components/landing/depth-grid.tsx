@@ -97,14 +97,14 @@ const ITEMS: DepthItem[] = [
  */
 export default function DepthGrid() {
     return (
-        <SectionShell id="more" label="Depth" headline="Twelve more things" headlineMuted="you would expect to pay for.">
+        <SectionShell tier="reference" id="more" label="Depth" headline="Twelve more things" headlineMuted="you would expect to pay for.">
             <FullLine />
             <Container>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                     {ITEMS.map((item, i) => (
                         <GridCell
                             key={item.title}
-                            className={`p-6 transition-colors hover:bg-gray-950/[2.5%] sm:p-8 dark:hover:bg-white/[2.5%] ${cellBorders(i, COLS, ITEMS.length)}`}
+                            className={`p-6 transition-colors sm:p-8 ${cellBorders(i, COLS, ITEMS.length)}`}
                         >
                             <p
                                 className="font-mono text-xs font-semibold tabular-nums text-primary-strong"
