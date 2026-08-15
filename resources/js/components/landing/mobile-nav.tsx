@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
+import Button from '@/components/ui/button';
 
 interface Props {
     isOpen: boolean;
@@ -155,13 +156,9 @@ export default function MobileNav({ isOpen, onClose }: Props) {
 
                 <div className="my-1 h-px w-12 bg-foreground/10" />
 
-                <a
-                    href="/download"
-                    onClick={onClose}
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-                >
+                <Button href="/download" size="lg" onClick={onClose}>
                     Download for Mac
-                </a>
+                </Button>
                 <a
                     href="/#mobile"
                     onClick={onClose}

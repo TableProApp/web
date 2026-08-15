@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Ref, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 type Variant = 'primary' | 'secondary' | 'ghost';
@@ -30,10 +30,37 @@ const sizes: Record<Size, string> = {
     lg: 'px-6 py-3 text-base',
 };
 
+/**
+ * The class list, exported because one caller cannot use the component to get
+ * it: Download.tsx detects the visitor's architecture after mount and swaps
+ * which of its two buttons is primary by assigning `className` directly. That
+ * used to hard-code the strings, so the imperative half and the rendered half
+ * would drift apart the first time either changed.
+ */
+export function buttonClasses(variant: Variant = 'primary', size: Size = 'md', className?: string): string {
+    return cn(
+        'inline-flex items-center justify-center gap-2 rounded-full font-semibold',
+        'transition-opacity duration-(--dur-tap) ease-(--ease-feedback)',
+        variants[variant],
+        sizes[size],
+        className,
+    );
+}
+
 interface ButtonProps {
     variant?: Variant;
     size?: Size;
     href?: string;
+    /**
+     * Forwarded to the rendered element. Download.tsx resolves the real asset
+     * URL after mount and assigns `.href` imperatively, so a button primitive
+     * that swallowed the ref would leave those links pointing at the generic
+     * releases page — a broken download that no test here would catch.
+     *
+     * React 19 passes `ref` to function components as an ordinary prop, so this
+     * needs no forwardRef.
+     */
+    ref?: Ref<HTMLAnchorElement>;
     target?: string;
     rel?: string;
     onClick?: () => void;
@@ -47,6 +74,7 @@ export default function Button({
     variant = 'primary',
     size = 'md',
     href,
+    ref,
     target,
     rel,
     onClick,
@@ -55,18 +83,11 @@ export default function Button({
     className,
     children,
 }: ButtonProps) {
-    const classes = cn(
-        'inline-flex items-center justify-center gap-2 rounded-full font-semibold',
-        'transition-opacity duration-(--dur-tap) ease-(--ease-feedback)',
-        variants[variant],
-        sizes[size],
-        disabled && 'pointer-events-none opacity-50',
-        className,
-    );
+    const classes = buttonClasses(variant, size, cn(disabled && 'pointer-events-none opacity-50', className));
 
     if (href) {
         return (
-            <a href={href} target={target} rel={rel} onClick={onClick} className={classes}>
+            <a ref={ref} href={href} target={target} rel={rel} onClick={onClick} className={classes}>
                 {children}
             </a>
         );

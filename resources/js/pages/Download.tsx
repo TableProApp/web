@@ -6,6 +6,7 @@ import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import SectionLabel from '@/components/ui/section-label';
 import { FullLine } from '@/components/ui/full-line';
+import Button, { buttonClasses } from '@/components/ui/button';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
@@ -82,8 +83,8 @@ export default function Download({ downloadUrls, githubStars }: Props) {
             const primary = arch === 'arm64' ? arm64Ref.current : x86Ref.current;
             const secondary = arch === 'arm64' ? x86Ref.current : arm64Ref.current;
             if (primary && secondary) {
-                primary.className = 'inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90';
-                secondary.className = 'inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors';
+                primary.className = buttonClasses('primary');
+                secondary.className = buttonClasses('secondary');
             }
 
             setTimeout(() => {
@@ -160,22 +161,20 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 <Container>
                     <FullLine />
                     <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row">
-                        <a
+                        <Button
                             ref={arm64Ref}
                             href="https://github.com/TableProApp/TablePro/releases/latest"
-                            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
                         >
                             {appleIcon}
                             Apple Silicon
-                        </a>
-                        <a
+                        </Button>
+                        <Button variant="secondary"
                             ref={x86Ref}
                             href="https://github.com/TableProApp/TablePro/releases/latest"
-                            className="inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                         >
                             {appleIcon}
                             Intel
-                        </a>
+                        </Button>
                     </div>
                     <FullLine />
                 </Container>

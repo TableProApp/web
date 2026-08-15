@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { buttonClasses } from '@/components/ui/button';
 import MobileNav from './mobile-nav';
 
 interface Props {
@@ -132,7 +133,7 @@ export default function Header({ githubStars }: Props) {
                                 type="button"
                                 onClick={toggleDropdown}
                                 onKeyDown={handleTriggerKeyDown}
-                                className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                                className={buttonClasses('primary', 'sm', 'px-4 py-2 font-medium')}
                                 aria-expanded={downloadOpen}
                                 aria-haspopup="menu"
                             >
