@@ -194,7 +194,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                         {/* Older versions */}
                         <div className="p-6 sm:p-8">
                             <h2 className="text-lg font-semibold text-foreground">Older versions</h2>
-                            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                            <p className="mt-4 text-sm text-muted-foreground">
                                 Need a previous release? All versions are available on GitHub.
                             </p>
                             <a

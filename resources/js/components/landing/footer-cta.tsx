@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import { buttonClasses } from '@/components/ui/button';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
-import { cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
+import { PANEL_TITLE, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 import SectionShell from '@/components/ui/section-shell';
 import Button from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
@@ -209,8 +209,8 @@ export default function FooterCTA() {
             <Container>
                 <div className="grid grid-cols-1 items-start sm:grid-cols-2">
                     <GridCell className={`p-6 sm:p-8 ${cellBorders(0, COLS, 2)}`}>
-                        <h3 className="text-lg font-semibold text-foreground">Download</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        <h3 className={PANEL_TITLE}>Download</h3>
+                        <p className="mt-2 text-sm text-muted-foreground">
                             macOS 14 or later. Apple Silicon and Intel. About 20 MB.
                         </p>
 
@@ -251,7 +251,7 @@ export default function FooterCTA() {
                             </button>
                         </div>
 
-                        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                        <p className="mt-4 text-sm text-muted-foreground">
                             With no connection to hand,{' '}
                             <span className="font-mono text-xs">File &gt; Try Sample Database</span> opens a bundled
                             Chinook SQLite.
@@ -297,8 +297,8 @@ export default function FooterCTA() {
 
                     <GridCell className={`p-6 sm:p-8 ${cellBorders(1, COLS, 2)}`}>
                         <div ref={statsAnchorRef}>
-                            <h3 className="text-lg font-semibold text-foreground">Stay updated</h3>
-                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            <h3 className={PANEL_TITLE}>Stay updated</h3>
+                            <p className="mt-2 text-sm text-muted-foreground">
                                 Release notes and database notes. About one email a month, unsubscribe any time.
                             </p>
                             {subscriberCount !== null && subscriberCount > 0 && (

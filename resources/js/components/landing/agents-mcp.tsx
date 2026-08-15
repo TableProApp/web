@@ -7,7 +7,7 @@ import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 import { relocatedFaq } from '@/data/home-faqs';
-import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
+import { ITEM_TITLE, cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
 
 /** Kept byte-identical to the tokenized block below, since this is what gets copied. */
 const CONFIG_JSON = `{
@@ -229,8 +229,8 @@ export default function AgentsMcp() {
               */}
             <Container>
                 <div className="border-l-2 border-primary p-4 sm:p-6">
-                    <h3 className="text-base font-semibold text-foreground">{aiSafetyFaq.question}</h3>
-                    <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                    <h3 className={ITEM_TITLE}>{aiSafetyFaq.question}</h3>
+                    <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
                         {aiSafetyFaq.answer}
                     </p>
                 </div>

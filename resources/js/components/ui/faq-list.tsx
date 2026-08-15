@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import type { FaqItem } from '@/data/faqs';
+import { ITEM_TITLE } from '@/components/ui/grid-cell';
 
 function Column({ items, className }: { items: FaqItem[]; className?: string }) {
     return (
@@ -9,8 +10,8 @@ function Column({ items, className }: { items: FaqItem[]; className?: string }) 
                     key={faq.question}
                     className={cn('p-6 sm:p-8', i < items.length - 1 && 'border-b border-rule')}
                 >
-                    <h3 className="text-base font-semibold text-foreground">{faq.question}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
+                    <h3 className={ITEM_TITLE}>{faq.question}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{faq.answer}</p>
                 </div>
             ))}
         </div>

@@ -44,7 +44,14 @@
   --text-xs--line-height: 1.5;
   --text-xs--letter-spacing: 0.0005em;
   --text-sm: 0.875rem;
-  --text-sm--line-height: 1.55;
+  /*
+   * 1.625, not the 1.55 the curve suggests. Ninety-four elements overrode it
+   * with `leading-relaxed`, and the overrides were right: `text-sm` is the
+   * site's body copy rung, and 14px prose wants more air than a 14px table
+   * cell. A scale that every prose paragraph has to argue with is not a scale,
+   * so the scale changed rather than the ninety-four.
+   */
+  --text-sm--line-height: 1.625;
   --text-sm--letter-spacing: -0.0062em;
   --text-base: 1rem;
   --text-base--line-height: 1.6;

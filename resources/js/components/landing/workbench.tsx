@@ -200,7 +200,7 @@ export default function Workbench() {
                                         {row.index}
                                     </p>
                                     <h3 className="mt-3 text-lg font-semibold">{row.title}</h3>
-                                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
+                                    <p className="mt-3 text-sm text-muted-foreground text-pretty">
                                         {row.body}
                                     </p>
 

@@ -79,10 +79,10 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                                             <span aria-hidden="true">·</span>
                                             <span>{post.readingMinutes} min read</span>
                                         </div>
-                                        <h2 className="mt-3 text-2xl font-bold text-foreground transition-colors group-hover:text-primary-strong sm:text-3xl">
+                                        <h2 className="mt-3 text-2xl font-bold text-foreground transition-colors group-hover:text-primary-strong sm:text-3xl group-focus-within:text-primary-strong">
                                             {post.title}
                                         </h2>
-                                        <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                                        <p className="mt-3 text-base text-muted-foreground">
                                             {post.description}
                                         </p>
                                         {post.tags.length > 0 && (

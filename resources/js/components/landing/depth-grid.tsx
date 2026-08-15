@@ -82,7 +82,7 @@ export default function DepthGrid() {
                                 {String(i + 1).padStart(2, '0')}
                             </p>
                             <h3 className="mt-3 text-base font-semibold">{item.title}</h3>
-                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                            <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
                         </GridCell>
                     ))}
                 </div>

@@ -11,6 +11,7 @@ import { AppleGlyph, Availability, CheckGlyph } from '@/components/ui/glyph';
 import FaqList from '@/components/ui/faq-list';
 import ThemedImage from '@/components/ui/themed-image';
 import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
+import { ITEM_TITLE } from '@/components/ui/grid-cell';
 
 interface Props {
     slug: string;
@@ -220,7 +221,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                         {/* Competitor pros */}
                         <div className="p-6 sm:p-8">
-                            <h3 className="text-base font-semibold text-foreground">{comp.name}</h3>
+                            <h3 className={ITEM_TITLE}>{comp.name}</h3>
                             <ul className="mt-4 space-y-3">
                                 {comp.prosCompetitor.map((pro) => (
                                     <li key={pro} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -250,8 +251,8 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                                             {idx + 1}
                                         </div>
                                         <div>
-                                            <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
-                                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                                            <h3 className={ITEM_TITLE}>{step.title}</h3>
+                                            <p className="mt-2 text-sm text-muted-foreground">{step.description}</p>
                                         </div>
                                     </li>
                                 ))}
@@ -290,11 +291,11 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                     <div className="grid grid-cols-1 sm:grid-cols-2">
                         <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
                             <h3 className="text-base font-semibold text-primary-strong">Choose TablePro if...</h3>
-                            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{comp.chooseTablePro}</p>
+                            <p className="mt-3 text-sm text-muted-foreground">{comp.chooseTablePro}</p>
                         </div>
                         <div className="p-6 sm:p-8">
-                            <h3 className="text-base font-semibold text-foreground">Choose {comp.name} if...</h3>
-                            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{comp.chooseCompetitor}</p>
+                            <h3 className={ITEM_TITLE}>Choose {comp.name} if...</h3>
+                            <p className="mt-3 text-sm text-muted-foreground">{comp.chooseCompetitor}</p>
                         </div>
                     </div>
                 </Container>
@@ -303,7 +304,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 <FullLine />
                 <Container>
                     <div className="p-6 sm:p-8">
-                        <p className="text-base leading-relaxed text-foreground">
+                        <p className="text-base text-foreground">
                             {comp.verdict}
                         </p>
                     </div>

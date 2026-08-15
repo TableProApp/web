@@ -69,7 +69,7 @@ export default function Architecture() {
         >
             <FullLine />
             <Container>
-                <p className="max-w-4xl px-4 py-5 text-base leading-relaxed text-muted-foreground text-pretty">
+                <p className="max-w-4xl px-4 py-5 text-base text-muted-foreground text-pretty">
                     Native macOS database clients come in three shapes today. Single database and open source, like
                     Sequel Ace and Postico. Multi database and closed source, like TablePlus. Multi database but not
                     native, like DBeaver on the JVM or Beekeeper Studio and DBGate on Electron.{' '}
@@ -95,7 +95,7 @@ export default function Architecture() {
                             <h4 className="font-mono text-2xs font-semibold tracking-widest text-primary-strong uppercase">
                                 {material.label}
                             </h4>
-                            <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
+                            <p className="mt-3 text-sm text-muted-foreground text-pretty">
                                 {material.body}
                             </p>
                         </div>
@@ -116,7 +116,7 @@ export default function Architecture() {
                             className={`${CELL_DENSITY.default} ${cellBorders(i, COLS, BEHAVIOURS.length)} border-rule`}
                         >
                             <h4 className="text-base font-semibold text-pretty">{behaviour.title}</h4>
-                            <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
+                            <p className="mt-3 text-sm text-muted-foreground text-pretty">
                                 {behaviour.body}
                             </p>
                         </div>

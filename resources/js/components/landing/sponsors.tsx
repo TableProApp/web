@@ -113,7 +113,7 @@ function SponsorMark({ sponsor }: { sponsor: Sponsor }) {
             <span
                 role="img"
                 aria-label={sponsor.name}
-                className={`${MARK_CLASS} block opacity-80 grayscale transition-[opacity,filter] duration-(--dur-state) ease-(--ease-feedback) group-hover:opacity-100 group-hover:grayscale-0 [&>svg]:h-full [&>svg]:w-auto [&>svg]:max-w-full`}
+                className={`${MARK_CLASS} block opacity-80 grayscale transition-[opacity,filter] duration-(--dur-state) ease-(--ease-feedback) group-hover:opacity-100 group-hover:grayscale-0 [&>svg]:h-full [&>svg]:w-auto [&>svg]:max-w-full group-focus-within:opacity-100 group-focus-within:grayscale-0`}
                 dangerouslySetInnerHTML={{ __html: sponsor.svgContent }}
             />
         );
@@ -127,7 +127,7 @@ function SponsorMark({ sponsor }: { sponsor: Sponsor }) {
             height={sponsor.height}
             loading="lazy"
             decoding="async"
-            className={`${MARK_CLASS} object-contain opacity-70 grayscale transition-[opacity,filter] duration-(--dur-state) ease-(--ease-feedback) group-hover:opacity-100 group-hover:grayscale-0 group-hover:dark:grayscale dark:invert`}
+            className={`${MARK_CLASS} object-contain opacity-70 grayscale transition-[opacity,filter] duration-(--dur-state) ease-(--ease-feedback) group-hover:opacity-100 group-hover:grayscale-0 group-hover:dark:grayscale dark:invert group-focus-within:opacity-100 group-focus-within:grayscale-0 group-focus-within:dark:grayscale`}
         />
     );
 }
@@ -171,7 +171,7 @@ export default function Sponsors() {
                                     aria-label="Become a sponsor"
                                     className={`${CELL_CLASS} ${borders}`}
                                 >
-                                    <span className="flex size-10 items-center justify-center rounded-xl border border-dashed border-rule-strong text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) group-hover:border-primary/40">
+                                    <span className="flex size-10 items-center justify-center rounded-xl border border-dashed border-rule-strong text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) group-hover:border-primary/40 group-focus-within:border-primary/40">
                                         <svg
                                             className="size-4"
                                             viewBox="0 0 24 24"
@@ -197,7 +197,7 @@ export default function Sponsors() {
                             >
                                 <SponsorMark sponsor={cell.sponsor} />
                                 {cell.sponsor.description && (
-                                    <span className="text-xs leading-relaxed text-muted-foreground">
+                                    <span className="text-xs text-muted-foreground">
                                         {cell.sponsor.description}
                                     </span>
                                 )}

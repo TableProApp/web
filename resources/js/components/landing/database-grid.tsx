@@ -281,7 +281,7 @@ export default function DatabaseGrid() {
                             >
                                 <span className="flex size-10 items-center justify-center">
                                     <Plus
-                                        className="size-7 text-muted-foreground opacity-40 transition-opacity group-hover:opacity-100"
+                                        className="size-7 text-muted-foreground opacity-40 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100"
                                         strokeWidth={1.5}
                                         aria-hidden="true"
                                     />
