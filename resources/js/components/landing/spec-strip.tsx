@@ -42,7 +42,10 @@ function formatReleaseDate(iso: string): string {
  * the page can carry — a database client's own result grid, with the column
  * types spelled out.
  *
- * Below `sm` the row transposes to label/value pairs rather than scrolling.
+ * Below `lg` the row transposes to label/value pairs rather than scrolling.
+ * Six columns need about 170px each before the 24px value and its 11px
+ * subtitle stop wrapping, which is why the wide form waits for lg — the
+ * grid this replaced reached six columns at exactly the same breakpoint.
  * Adding a fifth unlabelled scroll container while the rest of this work is
  * busy labelling the two that exist would be a poor trade.
  */
@@ -96,7 +99,7 @@ export default function SpecStrip({ latestRelease }: Props) {
                                 <th
                                     key={spec.label}
                                     scope="col"
-                                    className="max-sm:hidden border-r border-rule-strong p-4 text-left align-bottom font-normal last:border-r-0 sm:p-6"
+                                    className="max-lg:hidden border-r border-rule-strong p-4 text-left align-bottom font-normal last:border-r-0 sm:p-6"
                                 >
                                     <span className="block font-mono text-2xs tracking-widest text-muted-foreground uppercase">
                                         {spec.label}
@@ -110,7 +113,7 @@ export default function SpecStrip({ latestRelease }: Props) {
                     </thead>
 
                     <tbody>
-                        <tr className="max-sm:hidden border-t border-rule">
+                        <tr className="max-lg:hidden border-t border-rule">
                             {specs.map((spec) => (
                                 <td
                                     key={spec.label}
@@ -130,7 +133,7 @@ export default function SpecStrip({ latestRelease }: Props) {
 
                         {/* Transposed below sm: one row per metric, header in the row. */}
                         {specs.map((spec) => (
-                            <tr key={spec.label} className="border-t border-rule sm:hidden">
+                            <tr key={spec.label} className="border-t border-rule lg:hidden">
                                 <th scope="row" className="p-4 text-left align-top font-normal">
                                     <span className="block font-mono text-2xs tracking-widest text-muted-foreground uppercase">
                                         {spec.label}
