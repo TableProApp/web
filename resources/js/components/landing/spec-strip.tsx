@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import Container from '@/components/ui/container';
+import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
 import { FullLine } from '@/components/ui/full-line';
 
 interface Props {
@@ -82,11 +83,10 @@ export default function SpecStrip({ latestRelease }: Props) {
         <section aria-label="Key specifications" className="scroll-mt-20">
             <FullLine />
             <Container>
-                <table className="w-full table-fixed border-collapse">
-                    <caption className="sr-only">
-                        TablePro in numbers: database count, cold start, idle memory, download size, licence and
-                        latest release.
-                    </caption>
+                <DataTable
+                    className="table-fixed"
+                    caption="TablePro in numbers: database count, cold start, idle memory, download size, licence and latest release."
+                >
 
                     {/*
                       * Column separators take the strong weight and the single
@@ -99,7 +99,7 @@ export default function SpecStrip({ latestRelease }: Props) {
                                 <th
                                     key={spec.label}
                                     scope="col"
-                                    className="max-lg:hidden border-r border-rule-strong p-4 text-left align-bottom font-normal last:border-r-0 sm:p-6"
+                                    className={`max-lg:hidden border-r ${TABLE_COLUMN_RULE} p-4 text-left align-bottom font-normal last:border-r-0 sm:p-6`}
                                 >
                                     <span className="block font-mono text-2xs tracking-widest text-muted-foreground uppercase">
                                         {spec.label}
@@ -113,11 +113,11 @@ export default function SpecStrip({ latestRelease }: Props) {
                     </thead>
 
                     <tbody>
-                        <tr className="max-lg:hidden border-t border-rule">
+                        <tr className={`max-lg:hidden border-t ${TABLE_ROW_RULE}`}>
                             {specs.map((spec) => (
                                 <td
                                     key={spec.label}
-                                    className={`border-r border-rule-strong p-4 align-top last:border-r-0 sm:p-6 ${
+                                    className={`border-r ${TABLE_COLUMN_RULE} p-4 align-top last:border-r-0 sm:p-6 ${
                                         spec.numeric ? 'tabular-nums slashed-zero' : ''
                                     }`}
                                 >
@@ -157,7 +157,7 @@ export default function SpecStrip({ latestRelease }: Props) {
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                </DataTable>
             </Container>
             <FullLine />
 
