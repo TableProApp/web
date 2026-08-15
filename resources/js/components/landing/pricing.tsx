@@ -345,9 +345,8 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                 <FullLine />
             </Container>
 
-            {/* Billing toggle */}
+            {/* Billing toggle. No opening rule: the ledger above closes with one. */}
             <Container>
-                <FullLine />
                 <div className="flex items-center justify-center overflow-x-auto py-4">
                     <div className="inline-flex items-center rounded-full border border-rule bg-surface-raised p-1">
                         {cycles.map((c) => (

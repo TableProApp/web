@@ -81,7 +81,13 @@ export default function SpecStrip({ latestRelease }: Props) {
 
     return (
         <section aria-label="Key specifications" className="scroll-mt-20">
-            <FullLine />
+            {/*
+              * No opening rule. The block above this one closes with a
+              * FullLine, and two rules at the same y draw a single hairline
+              * while consuming two ordinals — which is how the gutter ended
+              * up printing 08 and 09 on top of each other. A boundary is one
+              * rule, and it belongs to whatever closes.
+              */}
             <Container>
                 <DataTable
                     className="table-fixed"

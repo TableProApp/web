@@ -157,9 +157,8 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                     <FullLine />
                 </Container>
 
-                {/* System requirements */}
+                {/* System requirements. No opening rule: the block above closes with one. */}
                 <Container>
-                    <FullLine />
                     <p className="px-4 py-2 text-xs text-muted-foreground-subtle">
                         Requires macOS 14 Sonoma or later
                     </p>

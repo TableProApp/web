@@ -28,7 +28,6 @@ const QUESTIONS = [
 export default function ObjectionRow() {
     return (
         <section aria-label="Common questions before downloading">
-            <FullLine />
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     {QUESTIONS.map((question, i) => {
