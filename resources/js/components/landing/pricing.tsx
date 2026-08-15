@@ -402,7 +402,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                             >
                                 {c.label}
                                 {c.badge && (
-                                    <span className="ml-1.5 rounded-full bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary-strong">
+                                    <span className="ml-1.5 rounded-full bg-primary/15 px-1.5 py-0.5 text-2xs font-semibold text-primary-strong">
                                         {c.badge}
                                     </span>
                                 )}

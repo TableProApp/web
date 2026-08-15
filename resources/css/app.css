@@ -218,6 +218,7 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     animation-timeline: none !important;
+    transition-delay: 0s !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
@@ -233,6 +234,9 @@ html {
  *   effect the setting exists to prevent.
  * - A progress-based `animation-timeline` ignores duration entirely, so a
  *   0.01ms duration does not disable it.
+ * - `transition-delay` is the same omission as `animation-delay`: collapsing a
+ *   transition's duration still leaves it holding its start value for the whole
+ *   delay.
  *
  * `animation-iteration-count: 1` is also not an off switch: it truncates a loop
  * to a single 0.01ms pass, freezing it mid-transform. Anything that loops needs
@@ -338,13 +342,16 @@ html {
  *
  * The other half of the arithmetic: the layout's middle column is
  * `minmax(0, 80rem)`, matching Container's own max-width. At the old
- * `--breakpoint-2xl` (96rem) the container floated free of its column on wide
- * viewports and these numbers drifted with it. Changing either value breaks
- * this.
+ * `--breakpoint-2xl` (96rem) the column outgrew the container from 1360px
+ * upward — 80rem of content plus two 40px gutters — so the container floated
+ * free of it and these numbers would drift inward with it. Changing either
+ * value breaks this.
  *
- * Desktop only, deliberately. Below lg the gutter columns are not rendered at
- * all, so there is nowhere for the numbers to go, and the page falls back to
- * the hairline system on its own.
+ * Numbering starts at lg, one breakpoint after the gutter columns appear at md.
+ * That is not an oversight: at 768-1023px the gutter is 40px of a much narrower
+ * viewport, and an ordinal there crowds the content rail. The columns are not
+ * empty in that band — they carry the same hairline frame as the rest of the
+ * page — they simply do not carry numbers yet.
  */
 main {
   counter-reset: rule;
@@ -397,18 +404,20 @@ main {
 }
 .blog-article h2 {
   color: var(--foreground);
-  font-size: 1.875rem;
+  font-size: var(--text-3xl);
+  line-height: var(--text-3xl--line-height);
+  letter-spacing: var(--text-3xl--letter-spacing);
   font-weight: 700;
-  letter-spacing: -0.02em;
   margin-top: 2.5em;
   margin-bottom: 0.75em;
   scroll-margin-top: 6rem;
 }
 .blog-article h3 {
   color: var(--foreground);
-  font-size: 1.375rem;
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+  letter-spacing: var(--text-xl--letter-spacing);
   font-weight: 600;
-  letter-spacing: -0.015em;
   margin-top: 2em;
   margin-bottom: 0.5em;
 }

@@ -80,7 +80,7 @@ export default function SwitchFrom() {
                                 <a
                                     key={comparison.slug}
                                     href={`/compare/${comparison.slug}`}
-                                    className="rounded-[4px] border border-rule-strong px-2 py-1 font-mono text-2xs whitespace-nowrap transition-colors hover:text-foreground"
+                                    className="rounded-key border border-rule-strong px-2 py-1 font-mono text-2xs whitespace-nowrap transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:border-primary/40 hover:text-foreground"
                                 >
                                     {comparison.name}
                                 </a>

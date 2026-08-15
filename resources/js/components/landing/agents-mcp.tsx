@@ -65,7 +65,7 @@ function Chips({ items, label }: { items: string[]; label: string }) {
 
 /** A tool or function name inside prose. */
 function Tool({ children }: { children: string }) {
-    return <span className="font-mono text-[13px]">{children}</span>;
+    return <span className="font-mono text-sm">{children}</span>;
 }
 
 function CopyButton() {
@@ -101,7 +101,7 @@ function CopyButton() {
             type="button"
             onClick={handleCopy}
             aria-label="Copy configuration"
-            className="inline-flex size-7 items-center justify-center rounded-[4px] text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex size-7 items-center justify-center rounded-key text-muted-foreground transition-colors hover:text-foreground"
         >
             {copied ? (
                 <Check className="size-4 text-primary-strong" strokeWidth={1.75} aria-hidden="true" />
