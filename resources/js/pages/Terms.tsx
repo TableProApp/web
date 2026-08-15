@@ -4,13 +4,10 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import SectionLabel from '@/components/ui/section-label';
+import { FullLine } from '@/components/ui/full-line';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
-}
-
-function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 function Bullet() {
@@ -79,7 +76,7 @@ export default function Terms({ downloadUrls }: Props) {
                     <div className="p-6 sm:p-8">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             These Terms of Service govern your use of TablePro, the website at{' '}
-                            <a href="https://tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">tablepro.app</a>,
+                            <a href="https://tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">tablepro.app</a>,
                             the desktop application, the iOS application, and any related services. By downloading, installing, accessing, or using
                             any part of TablePro, you agree to these Terms. If you do not agree, do not use TablePro.
                         </p>
@@ -99,9 +96,9 @@ export default function Terms({ downloadUrls }: Props) {
                     <SectionBlock title="2. Open Source License (Free Use)">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             The Application source code is licensed under the{' '}
-                            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">GNU Affero General Public License v3 (AGPLv3)</a>.
+                            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">GNU Affero General Public License v3 (AGPLv3)</a>.
                             You may use, modify, and distribute it under those terms. The full license text is at{' '}
-                            <a href="https://github.com/TableProApp/TablePro/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">github.com/TableProApp/TablePro/LICENSE</a>.
+                            <a href="https://github.com/TableProApp/TablePro/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">github.com/TableProApp/TablePro/LICENSE</a>.
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             The free tier covers core functionality and is enough for most personal and commercial use. No registration is required to use the free tier.
@@ -117,7 +114,7 @@ export default function Terms({ downloadUrls }: Props) {
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             Refund eligibility is described in the{' '}
-                            <a href="/refund-policy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">Refund Policy</a>.
+                            <a href="/refund-policy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Refund Policy</a>.
                         </p>
                     </SectionBlock>
 
@@ -200,7 +197,7 @@ export default function Terms({ downloadUrls }: Props) {
                     <SectionBlock title="12. Privacy">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             Our handling of personal data is described in the{' '}
-                            <a href="/privacy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">Privacy Policy</a>. By using the Application or Services, you agree to that policy.
+                            <a href="/privacy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Privacy Policy</a>. By using the Application or Services, you agree to that policy.
                         </p>
                     </SectionBlock>
 
@@ -234,9 +231,9 @@ export default function Terms({ downloadUrls }: Props) {
                     <SectionBlock title="17. Contact">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             For questions about these Terms, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">hello@tablepro.app</a>{' '}
+                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>{' '}
                             or open an issue at{' '}
-                            <a href="https://github.com/TableProApp/TablePro/issues" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">github.com/TableProApp/TablePro/issues</a>.
+                            <a href="https://github.com/TableProApp/TablePro/issues" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">github.com/TableProApp/TablePro/issues</a>.
                         </p>
                     </SectionBlock>
 

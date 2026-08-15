@@ -4,13 +4,10 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import SectionLabel from '@/components/ui/section-label';
+import { FullLine } from '@/components/ui/full-line';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
-}
-
-function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 export default function RefundPolicy({ downloadUrls }: Props) {
@@ -66,7 +63,7 @@ export default function RefundPolicy({ downloadUrls }: Props) {
                         </p>
                         <p>
                             To request a refund, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">hello@tablepro.app</a>{' '}
+                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>{' '}
                             with the email or License Key from your purchase. Eligible refunds are processed within 5 business days to the original payment method.
                         </p>
                         <p>

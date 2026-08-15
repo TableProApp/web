@@ -5,6 +5,7 @@ import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { Link } from '@inertiajs/react';
 import SectionLabel from '@/components/ui/section-label';
+import { FullLine } from '@/components/ui/full-line';
 
 interface PostFull {
     slug: string;
@@ -36,10 +37,6 @@ interface Props {
     relatedPosts: RelatedPost[];
     downloadUrls: { arm64: string; x86_64: string };
     githubStars?: number | null;
-}
-
-function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 function buildArticleJsonLd(post: PostFull, baseUrl: string): object {
@@ -181,7 +178,7 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                                                 <span aria-hidden="true">·</span>
                                                 <span>{rp.readingMinutes} min read</span>
                                             </div>
-                                            <h3 className="mt-2 text-xl font-bold text-foreground transition-colors group-hover:text-primary sm:text-2xl">
+                                            <h3 className="mt-2 text-xl font-bold text-foreground transition-colors group-hover:text-primary-strong sm:text-2xl">
                                                 {rp.title}
                                             </h3>
                                             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
