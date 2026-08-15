@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import { toast } from 'sonner';
 import { buttonClasses } from '@/components/ui/button';
+import CopyButton from '@/components/ui/copy-button';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { PANEL_TITLE, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
@@ -97,7 +98,6 @@ const SUBMIT_CLASS = buttonClasses('primary', 'sm', 'shrink-0 disabled:opacity-5
 export default function FooterCTA() {
     const [showBeta, setShowBeta] = useState(false);
     const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
-    const [copied, setCopied] = useState(false);
     const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const statsAnchorRef = useRef<HTMLDivElement>(null);
     const betaForm = useEmailForm('/beta/signup');
@@ -149,14 +149,6 @@ export default function FooterCTA() {
         };
     }, []);
 
-    useEffect(
-        () => () => {
-            if (copyTimeoutRef.current) {
-                clearTimeout(copyTimeoutRef.current);
-            }
-        },
-        [],
-    );
 
     function trackEvent(name: string, payload: Record<string, string>) {
         if (typeof window === 'undefined') {
@@ -172,20 +164,6 @@ export default function FooterCTA() {
         }
     }
 
-    async function handleCopyBrew() {
-        try {
-            await navigator.clipboard.writeText(BREW_COMMAND);
-            toast('Copied');
-            setCopied(true);
-
-            if (copyTimeoutRef.current) {
-                clearTimeout(copyTimeoutRef.current);
-            }
-            copyTimeoutRef.current = setTimeout(() => setCopied(false), 1200);
-        } catch {
-            toast.error('Could not copy. Select the text and copy it by hand.');
-        }
-    }
 
     function handleBetaSubmit(event: React.FormEvent) {
         event.preventDefault();
@@ -237,18 +215,7 @@ export default function FooterCTA() {
                             <code tabIndex={0} className="min-w-0 flex-1 overflow-x-auto rounded-lg border border-rule px-3 py-2 font-mono text-xs whitespace-nowrap text-muted-foreground">
                                 {BREW_COMMAND}
                             </code>
-                            <button
-                                type="button"
-                                onClick={handleCopyBrew}
-                                aria-label={`Copy ${BREW_COMMAND}`}
-                                className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-rule text-muted-foreground transition-colors hover:text-foreground"
-                            >
-                                {copied ? (
-                                    <Check className="size-4 text-primary-strong" strokeWidth={1.75} aria-hidden="true" />
-                                ) : (
-                                    <Copy className="size-4" strokeWidth={1.75} aria-hidden="true" />
-                                )}
-                            </button>
+                            <CopyButton value={BREW_COMMAND} label="the Homebrew command" className="size-9 rounded-lg border border-rule" />
                         </div>
 
                         <p className="mt-4 text-sm text-muted-foreground">

@@ -12,6 +12,7 @@ import FaqList from '@/components/ui/faq-list';
 import ThemedImage from '@/components/ui/themed-image';
 import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
 import { ITEM_TITLE } from '@/components/ui/grid-cell';
+import ClosingCta from '@/components/landing/closing-cta';
 
 interface Props {
     slug: string;
@@ -179,7 +180,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                                         download: 'Download size',
                                     };
                                     return (
-                                        <div key={metric} className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8 sm:last:border-r-0">
+                                        <div key={metric} className="border-b border-rule p-6 last:border-b-0 sm:border-b-0 sm:border-r sm:p-8 sm:last:border-r-0">
                                             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">{labels[metric]}</p>
                                             <div className="mt-4 flex items-baseline gap-3">
                                                 <span className="text-3xl font-bold text-primary-strong">{comp.benchmarks!.tablePro[metric]}</span>
@@ -325,32 +326,8 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                         <FullLine />
                     </>
                 )}
-
-                {/* CTA */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <div className="px-4 py-12 text-center sm:py-16">
-                        <h2 className="text-3xl font-bold sm:text-4xl">
-                            Try TablePro for free.
-                        </h2>
-                        <p className="mt-3 text-muted-foreground">
-                            Free and open-source. No account required.
-                        </p>
-                        <div className="mt-6">
-                            <Button
-                                href="/download"
-                            >
-                                <AppleGlyph />
-                                Download for Mac
-                            </Button>
-                        </div>
-                    </div>
-                    <FullLine />
-                </Container>
-
-                <div className="h-12 sm:h-16 lg:h-24" />
+                <ClosingCta />
+<div className="h-12 sm:h-16 lg:h-24" />
         </LandingLayout>
     );
 }
