@@ -1,0 +1,82 @@
+name: deploy
+
+# This is the one workflow in the repository that holds a secret, and
+# tests.yml's warning explains why that needs care: pull requests arrive from
+# forks. Three things keep this job out of their reach.
+#
+#   1. It never runs on `pull_request`. `workflow_run` fires only after a run of
+#      the tests workflow that has already completed on main, and a fork's pull
+#      request does not produce one of those.
+#   2. It does not check the repository out. Nothing from a contributor's branch
+#      is ever executed on the runner or sent to the server — the job opens an
+#      SSH connection and nothing else.
+#   3. The key it uses cannot open a shell. Its entry in the server's
+#      authorized_keys pins it to a single forced command, so the most a leaked
+#      copy could do is deploy main, which is what it is for.
+#
+# See docs/deployment.md for how the key is created and how to revoke it.
+
+on:
+  workflow_run:
+    workflows: ["tests"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Two deploys at once would race over the same build directory. Queue them
+# instead, and never cancel one that is already running — being interrupted
+# between the asset swap and the SSR restart is the one state worth avoiding.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # workflow_run fires for failed runs too, so the conclusion has to be
+    # checked here; there is no `types: [success]` filter to do it declaratively.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Deploy over SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+
+          for name in DEPLOY_SSH_KEY DEPLOY_KNOWN_HOSTS DEPLOY_HOST DEPLOY_PORT DEPLOY_USER; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is not set. See docs/deployment.md." >&2
+              exit 1
+            fi
+          done
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          # Pinned rather than discovered with ssh-keyscan: keyscan trusts
+          # whatever answers, which would accept an impostor on the very first
+          # connection and defeat the point of checking at all.
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          # No command is sent. The server's authorized_keys entry pins this key
+          # to scripts/deploy.sh, so whatever were written here would be ignored
+          # — which is the property that makes the key safe to store.
+          ssh -i ~/.ssh/deploy_key \
+              -p "$DEPLOY_PORT" \
+              -o BatchMode=yes \
+              -o StrictHostKeyChecking=yes \
+              -o ConnectTimeout=20 \
+              "$DEPLOY_USER@$DEPLOY_HOST"
