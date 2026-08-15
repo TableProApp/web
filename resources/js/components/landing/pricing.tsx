@@ -431,15 +431,32 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                                             value={discountCode}
                                             onChange={(e) => setDiscountCode(e.target.value)}
                                             placeholder="Enter coupon code"
-                                            className={`w-48 rounded-lg border bg-transparent px-3 py-1.5 text-center text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none ${
+                                            className={`w-48 rounded-lg border bg-transparent px-3 py-1.5 text-center text-sm text-foreground placeholder:text-muted-foreground/50 ${
                                                 discount?.valid
                                                     ? 'border-primary/50 focus:border-primary'
                                                     : 'border-gray-950/5 focus:border-primary/50 dark:border-white/10'
                                             }`}
                                         />
                                         {isValidating && (
-                                            <div className="absolute top-1/2 right-2.5 -translate-y-1/2">
-                                                <div className="size-3.5 animate-spin rounded-full border-2 border-muted-foreground/20 border-t-muted-foreground/60" />
+                                            <div
+                                                className="absolute top-1/2 right-2.5 -translate-y-1/2"
+                                                role="status"
+                                                aria-live="polite"
+                                            >
+                                                <span className="sr-only">Checking coupon code</span>
+                                                {/*
+                                                  * `motion-reduce:animate-none` rather than relying on the
+                                                  * global reduced-motion block: that block sets
+                                                  * `animation-iteration-count: 1`, which truncates a loop to
+                                                  * one 0.01ms pass and leaves the ring frozen at an arbitrary
+                                                  * angle. `animation: none` stops it cleanly, and the ring
+                                                  * still reads as a busy indicator because the top border
+                                                  * stays weighted.
+                                                  */}
+                                                <div
+                                                    className="size-3.5 animate-spin rounded-full border-2 border-muted-foreground/20 border-t-muted-foreground/60 motion-reduce:animate-none"
+                                                    aria-hidden="true"
+                                                />
                                             </div>
                                         )}
                                     </div>
@@ -513,7 +530,17 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             {/* Comparison table */}
             <FullLine />
             <Container>
-                <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                {/*
+                  * tabindex/role/label because this scrolls and contains no
+                  * focusable descendant: below ~500px a keyboard user could not
+                  * reach the Starter and Team columns at all.
+                  */}
+                <div
+                    className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0"
+                    tabIndex={0}
+                    role="region"
+                    aria-label="Plan comparison"
+                >
                     <div className="min-w-[500px]">
                         {/* Header */}
                         <div className="grid grid-cols-4">

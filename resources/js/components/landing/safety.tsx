@@ -73,7 +73,7 @@ export default function Safety() {
                  * columns never widen the page. FullLine stays outside it, since
                  * its 200vw bleed would add scroll width in here.
                  */}
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Safe Mode levels">
                     <table className="w-full min-w-[38rem] border-collapse">
                         <caption className="sr-only">Safe Mode levels and their behaviour</caption>
                         <thead>

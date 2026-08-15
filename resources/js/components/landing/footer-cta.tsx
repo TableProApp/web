@@ -89,8 +89,13 @@ function useEmailForm(endpoint: string) {
     return { email, setEmail, processing, error, flash, submit };
 }
 
+/**
+ * No `focus:outline-none` here. It used to suppress the global focus ring from
+ * `app.css` — 2px solid `--primary-strong`, which measures 5.9:1 — and replace
+ * it with `ring-primary/50` at roughly 1.6:1, on the one control that converts.
+ */
 const INPUT_CLASS =
-    'min-w-0 flex-1 rounded-lg border border-gray-950/5 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/50 focus:outline-none disabled:opacity-50 dark:border-white/10';
+    'min-w-0 flex-1 rounded-lg border border-gray-950/5 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground disabled:opacity-50 dark:border-white/10';
 const SUBMIT_CLASS =
     'shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50';
 
