@@ -5,6 +5,7 @@ import DataTable from '@/components/ui/data-table';
 import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
+import { Availability, CheckGlyph } from '@/components/ui/glyph';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -103,20 +104,6 @@ const comparisonFeatures = [
     { name: 'Priority support', free: false, pro: false, team: true },
 ];
 
-function CheckIcon({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className ?? 'size-4 text-primary-strong'}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            aria-hidden="true"
-        >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-        </svg>
-    );
-}
 
 function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, teamMinSeats }: { tier: Tier; cycle: BillingCycle; discountCode: string; discount: Discount | null; paymentProvider: string; teamMinSeats: number }) {
     // Narrow off tier.price directly: TypeScript does not carry the refinement
@@ -250,7 +237,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
                         <ul className="space-y-2.5">
                             {tier.features?.map((feature) => (
                                 <li key={feature} className="flex items-start gap-2.5">
-                                    <CheckIcon className="mt-0.5 size-4 shrink-0 text-primary-strong" />
+                                    <CheckGlyph className="mt-0.5 size-4 shrink-0 text-primary-strong" />
                                     <span className="text-sm text-muted-foreground">{feature}</span>
                                 </li>
                             ))}
@@ -566,20 +553,10 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                                             >
                                                 {typeof value === 'string' ? (
                                                     <span className="text-sm font-medium text-foreground">{value}</span>
-                                                ) : value ? (
-                                                    <>
-                                                        <span className="sr-only">Included</span>
-                                                        <span className="inline-flex justify-center">
-                                                            <CheckIcon />
-                                                        </span>
-                                                    </>
                                                 ) : (
-                                                    <>
-                                                        <span className="sr-only">Not included</span>
-                                                        <span aria-hidden="true" className="text-sm text-muted-foreground">
-                                                            &mdash;
-                                                        </span>
-                                                    </>
+                                                    <span className="inline-flex justify-center">
+                                                        <Availability included={value} />
+                                                    </span>
                                                 )}
                                             </td>
                                         );
