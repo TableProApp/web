@@ -41,7 +41,7 @@ export default function Header({ githubStars }: Props) {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
                 const scrollY = window.scrollY;
                 setDownloadOpen(false);
-                requestAnimationFrame(() => window.scrollTo(0, scrollY));
+                requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: 'instant' }));
             }
         };
         const escape = (e: KeyboardEvent) => {
@@ -57,7 +57,7 @@ export default function Header({ githubStars }: Props) {
     function toggleDropdown() {
         const scrollY = window.scrollY;
         setDownloadOpen(prev => !prev);
-        requestAnimationFrame(() => window.scrollTo(0, scrollY));
+        requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: 'instant' }));
     }
 
     function closeDropdown() {
@@ -92,7 +92,7 @@ export default function Header({ githubStars }: Props) {
 
     return (
         <>
-            <header className="fixed left-0 right-0 z-40 border-b border-gray-950/5 dark:border-white/10 bg-background/50 backdrop-blur-2xl" >
+            <header className="fixed top-0 left-0 right-0 z-40 border-b border-gray-950/5 dark:border-white/10 bg-background/50 backdrop-blur-2xl" >
                 <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
                     <a href="/" className="flex items-center gap-2.5">
@@ -159,7 +159,7 @@ export default function Header({ githubStars }: Props) {
                                     onClick={() => {
                                         const scrollY = window.scrollY;
                                         setDownloadOpen(false);
-                                        requestAnimationFrame(() => window.scrollTo(0, scrollY));
+                                        requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: 'instant' }));
                                     }}
                                 >
                                     <svg className="size-5 text-muted-foreground" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -203,8 +203,13 @@ export default function Header({ githubStars }: Props) {
                 </nav>
             </header>
 
-            <div className="h-16" />
-
+            {/*
+              * The 64px this fixed header occupies is reserved by `LandingLayout`
+              * as padding on <main>, not by a spacer here. This component is
+              * rendered outside <main> so that it is a real banner landmark, and
+              * a spacer at this level would push the gutter columns down instead
+              * of the content.
+              */}
             <MobileNav
                 isOpen={mobileNavOpen}
                 onClose={() => setMobileNavOpen(false)}

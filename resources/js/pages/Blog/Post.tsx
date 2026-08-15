@@ -85,7 +85,7 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
     const articleJsonLd = buildArticleJsonLd(post, baseUrl);
 
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
             <SEOHead
                 title={`${post.title} - TablePro`}
                 description={post.description}
@@ -99,8 +99,6 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                     { name: post.title, path: post.url },
                 ]}
             />
-
-            <Header downloadUrls={downloadUrls} githubStars={githubStars} />
 
             <main>
                 <div className="h-12 sm:h-16 lg:h-24" />

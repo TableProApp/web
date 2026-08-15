@@ -109,7 +109,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
     );
 
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
             <SEOHead
                 title={DOWNLOAD_TITLE}
                 description={DOWNLOAD_DESCRIPTION}
@@ -120,8 +120,6 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                     { name: 'Download', path: '/download' },
                 ]}
             />
-
-            <Header downloadUrls={downloadUrls} githubStars={githubStars} />
 
             <main>
                 <div className="h-12 sm:h-16 lg:h-24" />

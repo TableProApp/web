@@ -49,7 +49,7 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
     const itemListJsonLd = buildItemListJsonLd(posts, baseUrl);
 
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
             <SEOHead
                 title={BLOG_TITLE}
                 description={BLOG_DESCRIPTION}
@@ -60,8 +60,6 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                     { name: 'Blog', path: '/blog' },
                 ]}
             />
-
-            <Header downloadUrls={downloadUrls} githubStars={githubStars} />
 
             <main>
                 <div className="h-12 sm:h-16 lg:h-24" />

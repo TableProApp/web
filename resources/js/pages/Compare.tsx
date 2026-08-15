@@ -92,7 +92,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
     }
 
     return (
-        <LandingLayout>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
             <SEOHead
                 title={title}
                 description={comp.description}
@@ -105,8 +105,6 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                     { name: comp.name, path: canonical },
                 ]}
             />
-
-            <Header downloadUrls={downloadUrls} githubStars={githubStars} />
 
             <main>
                 {/* Hero */}
@@ -362,7 +360,6 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                         <source
                             type="image/webp"
                             srcSet="/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w"
-                            sizes="(max-width: 1280px) 1280px, (max-width: 1920px) 1920px, 3024px"
                         />
                         <img
                             src="/images/app-dark.png"
@@ -377,7 +374,6 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                         <source
                             type="image/webp"
                             srcSet="/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w"
-                            sizes="(max-width: 1280px) 1280px, (max-width: 1920px) 1920px, 3024px"
                         />
                         <img
                             src="/images/app-light.png"
