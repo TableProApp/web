@@ -9,6 +9,7 @@ import { FullLine } from '@/components/ui/full-line';
 import Button from '@/components/ui/button';
 import { AppleGlyph, CheckGlyph } from '@/components/ui/glyph';
 import FaqList from '@/components/ui/faq-list';
+import ThemedImage from '@/components/ui/themed-image';
 
 interface Props {
     slug: string;
@@ -134,32 +135,15 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <FullLine />
                 <Container>
-                    <picture className="hidden dark:contents">
-                        <source
-                            type="image/webp"
-                            srcSet="/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w"
-                        />
-                        <img
-                            src="/images/app-dark.png"
-                            alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
-                            width={3024}
-                            height={1720}
-                            className="app-plate w-full"
-                        />
-                    </picture>
-                    <picture className="contents dark:hidden">
-                        <source
-                            type="image/webp"
-                            srcSet="/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w"
-                        />
-                        <img
-                            src="/images/app-light.png"
-                            alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
-                            width={3024}
-                            height={1720}
-                            className="app-plate w-full"
-                        />
-                    </picture>
+                    <ThemedImage
+                        light={{ src: '/images/app-light.png', webpSrcSet: '/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w' }}
+                        dark={{ src: '/images/app-dark.png', webpSrcSet: '/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w' }}
+                        alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
+                        width={3024}
+                        height={1720}
+                        sizes="(min-width: 1024px) 1216px, 100vw"
+                        className="app-plate w-full"
+                    />
                 </Container>
                 <FullLine />
 
@@ -195,17 +179,14 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
                 <Container>
                     <div className="p-4 sm:p-6">
-                        <img
-                            src="/images/features/data-grid-light.png"
+                        <ThemedImage
+                            light={{ src: '/images/features/data-grid-light.png', webpSrcSet: '/images/features/data-grid-light-1216.webp 1216w, /images/features/data-grid-light-2432.webp 2432w' }}
+                            dark={{ src: '/images/features/data-grid-dark.png', webpSrcSet: '/images/features/data-grid-dark-1216.webp 1216w, /images/features/data-grid-dark-2432.webp 2432w' }}
                             alt={`TablePro data grid showing ${db.name} table rows with inline editing`}
-                            className="app-plate w-full dark:hidden"
-                            loading="lazy"
-                        />
-                        <img
-                            src="/images/features/data-grid-dark.png"
-                            alt={`TablePro data grid showing ${db.name} table rows with inline editing`}
-                            className="hidden app-plate w-full dark:block"
-                            loading="lazy"
+                            width={2432}
+                            height={1385}
+                            sizes="(min-width: 1024px) 1216px, 100vw"
+                            className="app-plate w-full"
                         />
                     </div>
                 </Container>
@@ -220,17 +201,14 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
                 <Container>
                     <div className="p-4 sm:p-6">
-                        <img
-                            src="/images/features/sql-editor-light.png"
+                        <ThemedImage
+                            light={{ src: '/images/features/sql-editor-light.png', webpSrcSet: '/images/features/sql-editor-light-1216.webp 1216w, /images/features/sql-editor-light-2432.webp 2432w' }}
+                            dark={{ src: '/images/features/sql-editor-dark.png', webpSrcSet: '/images/features/sql-editor-dark-1216.webp 1216w, /images/features/sql-editor-dark-2432.webp 2432w' }}
                             alt={`TablePro SQL editor with ${db.name} query and autocomplete`}
-                            className="app-plate w-full dark:hidden"
-                            loading="lazy"
-                        />
-                        <img
-                            src="/images/features/sql-editor-dark.png"
-                            alt={`TablePro SQL editor with ${db.name} query and autocomplete`}
-                            className="hidden app-plate w-full dark:block"
-                            loading="lazy"
+                            width={2432}
+                            height={1385}
+                            sizes="(min-width: 1024px) 1216px, 100vw"
+                            className="app-plate w-full"
                         />
                     </div>
                 </Container>
@@ -266,7 +244,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                     <div className="grid grid-cols-1 sm:grid-cols-2">
                         {/* Code snippet */}
                         <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
-                            <div className="overflow-x-auto rounded-lg border border-rule-strong bg-gray-950/[2.5%] p-4 dark:bg-white/[2.5%]">
+                            <div tabIndex={0} role="region" aria-label="Connection snippet" className="overflow-x-auto rounded-lg border border-rule-strong bg-gray-950/[2.5%] p-4 dark:bg-white/[2.5%]">
                                 <code className="block whitespace-pre font-mono text-sm leading-relaxed text-foreground">
                                     {db.snippet}
                                 </code>

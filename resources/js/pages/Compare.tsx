@@ -9,6 +9,8 @@ import { FullLine } from '@/components/ui/full-line';
 import Button from '@/components/ui/button';
 import { AppleGlyph, Availability, CheckGlyph } from '@/components/ui/glyph';
 import FaqList from '@/components/ui/faq-list';
+import ThemedImage from '@/components/ui/themed-image';
+import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
 
 interface Props {
     slug: string;
@@ -108,36 +110,53 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
 
                 <FullLine />
                 <Container>
-                    <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-                        <div className="min-w-[400px]">
-                            {/* Header */}
-                            <div className="grid grid-cols-3">
-                                <div className="border-rule p-4 sm:p-5">
-                                    <span className="text-sm font-medium text-muted-foreground">Feature</span>
-                                </div>
-                                <div className="border-l border-rule bg-primary/5 p-4 text-center sm:p-5">
-                                    <span className="text-sm font-bold text-primary-strong">TablePro</span>
-                                </div>
-                                <div className="border-l border-rule p-4 text-center sm:p-5">
-                                    <span className="text-sm font-medium text-muted-foreground">{comp.name}</span>
-                                </div>
-                            </div>
-
-                            {/* Rows */}
-                            {comp.rows.map((row) => (
-                                <div key={row.label} className="grid grid-cols-3 border-t border-rule">
-                                    <div className="p-4 sm:p-5">
-                                        <span className="text-sm font-medium text-foreground">{row.label}</span>
-                                    </div>
-                                    <div className="flex items-center justify-center border-l border-rule bg-primary/5 p-4 sm:p-5">
-                                        <CellValue value={row.tablePro} />
-                                    </div>
-                                    <div className="flex items-center justify-center border-l border-rule p-4 sm:p-5">
-                                        <CellValue value={row.competitor} />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                    {/*
+                      * Same shape as the plan comparison on the homepage: a real
+                      * table, column separators at the column weight, and the
+                      * scroll container reachable by keyboard. This was a grid of
+                      * divs with no table semantics, drawing its columns at the
+                      * row weight — in the one table where the columns carry the
+                      * entire meaning.
+                      */}
+                    <div
+                        className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0"
+                        tabIndex={0}
+                        role="region"
+                        aria-label={`TablePro compared with ${comp.name}`}
+                    >
+                        <DataTable
+                            className="min-w-[400px]"
+                            caption={`Feature comparison between TablePro and ${comp.name}`}
+                        >
+                            <thead>
+                                <tr>
+                                    <th scope="col" className="p-4 text-left text-sm font-medium text-muted-foreground sm:p-5">
+                                        Feature
+                                    </th>
+                                    <th scope="col" className={`border-l ${TABLE_COLUMN_RULE} bg-primary/5 p-4 text-center text-sm font-bold text-primary-strong sm:p-5`}>
+                                        TablePro
+                                    </th>
+                                    <th scope="col" className={`border-l ${TABLE_COLUMN_RULE} p-4 text-center text-sm font-medium text-muted-foreground sm:p-5`}>
+                                        {comp.name}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {comp.rows.map((row) => (
+                                    <tr key={row.label} className={`border-t ${TABLE_ROW_RULE}`}>
+                                        <th scope="row" className="p-4 text-left text-sm font-normal text-foreground sm:p-5">
+                                            {row.label}
+                                        </th>
+                                        <td className={`border-l ${TABLE_COLUMN_RULE} bg-primary/5 p-4 text-center sm:p-5`}>
+                                            <CellValue value={row.tablePro} />
+                                        </td>
+                                        <td className={`border-l ${TABLE_COLUMN_RULE} p-4 text-center sm:p-5`}>
+                                            <CellValue value={row.competitor} />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </DataTable>
                     </div>
                 </Container>
                 <FullLine />
@@ -249,34 +268,15 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 />
                 <FullLine />
                 <Container>
-                    <picture className="hidden dark:contents">
-                        <source
-                            type="image/webp"
-                            srcSet="/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w"
-                        />
-                        <img
-                            src="/images/app-dark.png"
-                            alt="TablePro interface showing the data grid and SQL editor"
-                            width={3024}
-                            height={1720}
-                            className="app-plate w-full"
-                            loading="lazy"
-                        />
-                    </picture>
-                    <picture className="contents dark:hidden">
-                        <source
-                            type="image/webp"
-                            srcSet="/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w"
-                        />
-                        <img
-                            src="/images/app-light.png"
-                            alt="TablePro interface showing the data grid and SQL editor"
-                            width={3024}
-                            height={1720}
-                            className="app-plate w-full"
-                            loading="lazy"
-                        />
-                    </picture>
+                    <ThemedImage
+                        light={{ src: '/images/app-light.png', webpSrcSet: '/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w' }}
+                        dark={{ src: '/images/app-dark.png', webpSrcSet: '/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w' }}
+                        alt="TablePro interface showing the data grid and SQL editor"
+                        width={3024}
+                        height={1720}
+                        sizes="(min-width: 1024px) 1216px, 100vw"
+                        className="app-plate w-full"
+                    />
                 </Container>
                 <FullLine />
 

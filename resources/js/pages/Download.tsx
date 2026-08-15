@@ -177,7 +177,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                             <ol className="mt-4 space-y-4 text-sm text-muted-foreground">
                                 <li className="flex gap-3">
                                     <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary-strong">1</span>
-                                    <span>Open the downloaded <code className="rounded bg-black/5 px-1.5 py-0.5 text-foreground dark:bg-white/10">.dmg</code> file</span>
+                                    <span>Open the downloaded <code className="rounded-key bg-muted px-1.5 py-0.5 text-xs text-foreground">.dmg</code> file</span>
                                 </li>
                                 <li className="flex gap-3">
                                     <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary-strong">2</span>

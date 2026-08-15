@@ -60,7 +60,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             When enabled, a 24-hour heartbeat sends three things to{' '}
-                            <code className="rounded bg-muted px-1.5 py-0.5 text-xs text-foreground">https://api.tablepro.app/v1/analytics</code>:
+                            <code className="rounded-key bg-muted px-1.5 py-0.5 text-xs text-foreground">https://api.tablepro.app/v1/analytics</code>:
                         </p>
                         <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Anonymous machine ID</strong>: SHA-256 hash of your hardware UUID. The raw UUID is never sent.</span></li>
@@ -227,7 +227,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             The Application source is on{' '}
                             <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">GitHub</a> under the AGPLv3. The analytics code is in{' '}
-                            <code className="rounded bg-muted px-1.5 py-0.5 text-xs text-foreground">TablePro/Core/Services/AnalyticsService.swift</code>. You can verify what is sent.
+                            <code className="rounded-key bg-muted px-1.5 py-0.5 text-xs text-foreground">TablePro/Core/Services/AnalyticsService.swift</code>. You can verify what is sent.
                         </p>
                     </ProseBlock>
 
