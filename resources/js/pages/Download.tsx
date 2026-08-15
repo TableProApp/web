@@ -4,9 +4,12 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 import Button, { buttonClasses } from '@/components/ui/button';
+import { AppleGlyph } from '@/components/ui/glyph';
+import { PROSE_LINK } from '@/components/ui/prose-link';
+import { cn } from '@/lib/utils';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
@@ -104,7 +107,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
     }, [downloadUrls]);
 
     const appleIcon = (
-        <svg className="size-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" /></svg>
+        <AppleGlyph className="size-5" />
     );
 
     return (
@@ -119,42 +122,17 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                     { name: 'Download', path: '/download' },
                 ]}
             />
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                {/* Label */}
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Download
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                {/* Spacer */}
-                <div className="h-4" />
-
-                {/* Headline */}
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
-                        Your download is starting...
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                {/* Manual link */}
-                <div className="h-2" />
-                <Container>
-                    <FullLine />
-                    <p className="pl-4 text-base text-muted-foreground">
-                        If your download doesn't start automatically,{' '}
-                        <a ref={manualRef} href="https://github.com/TableProApp/TablePro/releases/latest" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">click here</a>.
-                    </p>
-                    <FullLine />
-                </Container>
-
-                {/* Spacer */}
+                <PageHeader
+                    label="Download"
+                    headline="Your download is starting..."
+                    lede={
+                        <>
+                            If your download doesn't start automatically,{' '}
+                        <a ref={manualRef} href="https://github.com/TableProApp/TablePro/releases/latest" className={PROSE_LINK}>click here</a>.
+                        </>
+                    }
+                />
+{/* Spacer */}
                 <div className="h-6" />
 
                 {/* Architecture selector */}
@@ -201,7 +179,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                             <ol className="mt-4 space-y-4 text-sm text-muted-foreground">
                                 <li className="flex gap-3">
                                     <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary-strong">1</span>
-                                    <span>Open the downloaded <code className="rounded bg-black/5 px-1.5 py-0.5 text-foreground dark:bg-white/10">.dmg</code> file</span>
+                                    <span>Open the downloaded <code className="rounded-key bg-muted px-1.5 py-0.5 text-xs text-foreground">.dmg</code> file</span>
                                 </li>
                                 <li className="flex gap-3">
                                     <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary-strong">2</span>
@@ -224,7 +202,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                                 href="https://github.com/TableProApp/TablePro/releases"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong"
+                                className={cn(PROSE_LINK, 'mt-4 inline-flex items-center gap-1.5 text-sm font-medium')}
                             >
                                 View all releases
                                 <svg className="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

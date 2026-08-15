@@ -3,28 +3,16 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
+import { Bullet, ProseBlock } from '@/components/ui/prose-block';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
 }
 
-function Bullet() {
-    return <span className="mt-1.5 block size-1.5 shrink-0 rounded-full bg-primary" />;
-}
 
-function SectionBlock({ title, children }: { title: string; children: React.ReactNode }) {
-    return (
-        <>
-            <FullLine />
-            <div className="p-6 sm:p-8">
-                <h2 className="text-xl font-bold text-foreground sm:text-2xl">{title}</h2>
-                <div className="mt-4">{children}</div>
-            </div>
-        </>
-    );
-}
 
 export default function Privacy({ downloadUrls }: Props) {
     return (
@@ -38,58 +26,33 @@ export default function Privacy({ downloadUrls }: Props) {
                     { name: 'Privacy', path: '/privacy' },
                 ]}
             />
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Legal
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
-                        Privacy Policy
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-                <Container>
-                    <FullLine />
-                    <p className="pl-4 text-sm text-muted-foreground">
-                        Last updated: May 2026
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
+                <PageHeader
+                    label="Legal"
+                    headline="Privacy Policy"
+                    lede="Last updated: May 2026"
+                />
+<div className="h-6 sm:h-8 lg:h-10" />
 
                 <Container width="md">
                     <FullLine />
                     <div className="p-6 sm:p-8">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             TablePro collects minimal data, never touches your database contents, and lets you opt out of analytics. The codebase is{' '}
-                            <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">open source on GitHub</a> under the AGPLv3, so you can verify exactly what is collected and how it is handled.
+                            <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>open source on GitHub</a> under the AGPLv3, so you can verify exactly what is collected and how it is handled.
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             This policy covers the desktop and mobile Application, the Website at tablepro.app, and the account portal at tablepro.app/account.
                         </p>
                     </div>
 
-                    <SectionBlock title="1. Data Controller">
+                    <ProseBlock title="1. Data Controller">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             TablePro is the data controller for personal information described in this policy. For privacy questions, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>.
+                            <a href="mailto:hello@tablepro.app" className={PROSE_LINK}>hello@tablepro.app</a>.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="2. What We Collect">
+                    <ProseBlock title="2. What We Collect">
                         <h3 className="text-base font-semibold text-foreground">Anonymous usage analytics (desktop app)</h3>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             The Application can send anonymous usage analytics. It is{' '}
@@ -98,7 +61,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             When enabled, a 24-hour heartbeat sends three things to{' '}
-                            <code className="rounded bg-muted px-1.5 py-0.5 text-xs text-foreground">https://api.tablepro.app/v1/analytics</code>:
+                            <code className="rounded-key bg-muted px-1.5 py-0.5 text-xs text-foreground">https://api.tablepro.app/v1/analytics</code>:
                         </p>
                         <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Anonymous machine ID</strong>: SHA-256 hash of your hardware UUID. The raw UUID is never sent.</span></li>
@@ -112,7 +75,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         <h3 className="mt-8 text-base font-semibold text-foreground">Update checks</h3>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             The Application uses{' '}
-                            <a href="https://sparkle-project.org" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Sparkle</a> to check for updates. This sends your{' '}
+                            <a href="https://sparkle-project.org" target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>Sparkle</a> to check for updates. This sends your{' '}
                             <strong className="text-foreground">app version</strong>, <strong className="text-foreground">macOS version</strong>, and <strong className="text-foreground">CPU architecture</strong> to our update server. Update checks cannot be disabled separately.
                         </p>
 
@@ -127,7 +90,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             The account portal at{' '}
-                            <a href="/account" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">tablepro.app/account</a>{' '}
+                            <a href="/account" className={PROSE_LINK}>tablepro.app/account</a>{' '}
                             uses magic-link authentication. We store your email and an authentication token for that purpose.
                         </p>
 
@@ -140,9 +103,9 @@ export default function Privacy({ downloadUrls }: Props) {
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             Our servers record standard request logs (IP address, user agent, timestamp, URL) for security and abuse prevention. These logs are retained for up to 90 days.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="3. What We Do Not Collect">
+                    <ProseBlock title="3. What We Do Not Collect">
                         <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No database contents or queries</strong>. SQL you write and data you fetch never leave your machine.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No connection credentials</strong>. Database hosts, usernames, and passwords stay in the macOS Keychain.</span></li>
@@ -150,9 +113,9 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No crash reports</strong> sent to any third party.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No third-party trackers</strong>. No Google Analytics, Mixpanel, Sentry, or similar SDK in the desktop app.</span></li>
                         </ul>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="4. How We Use Information">
+                    <ProseBlock title="4. How We Use Information">
                         <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Anonymous analytics</strong>: understand which app versions, OS versions, and database types our users run, to prioritise compatibility and bug fixes.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">License validation</strong>: confirm a License Key is valid and active.</span></li>
@@ -161,9 +124,9 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Newsletter and announcements</strong>: only if you subscribed.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Security</strong>: detect abuse and unauthorised access attempts.</span></li>
                         </ul>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="5. Legal Basis (GDPR)">
+                    <ProseBlock title="5. Legal Basis (GDPR)">
                         <p className="text-sm leading-relaxed text-muted-foreground">For users in the European Economic Area or the United Kingdom, the legal bases under GDPR / UK GDPR are:</p>
                         <ul className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Contract (Art. 6(1)(b))</strong>: processing payment, providing the License Key, account portal access.</span></li>
@@ -171,9 +134,9 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Consent (Art. 6(1)(a))</strong>: newsletter subscriptions, optional features you enable.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Legal obligation (Art. 6(1)(c))</strong>: tax records, responses to lawful requests.</span></li>
                         </ul>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="6. Sharing With Third Parties">
+                    <ProseBlock title="6. Sharing With Third Parties">
                         <p className="text-sm leading-relaxed text-muted-foreground">We share personal data only with the providers needed to operate the Services:</p>
                         <ul className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">LemonSqueezy</strong> or <strong className="text-foreground">Polar</strong>: payment processing for License Key purchases.</span></li>
@@ -184,15 +147,15 @@ export default function Privacy({ downloadUrls }: Props) {
                         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                             We do not sell, rent, or share personal data with advertisers.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="7. International Data Transfers">
+                    <ProseBlock title="7. International Data Transfers">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             Our servers operate in multiple regions. When you interact with TablePro, your data may be transferred to or processed in countries outside your own. Where required, transfers from the EEA / UK rely on Standard Contractual Clauses or other approved mechanisms.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="8. Data Retention">
+                    <ProseBlock title="8. Data Retention">
                         <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Anonymous analytics</strong>: aggregated indefinitely; the SHA-256 machine ID has no link to your identity.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Account and license data</strong>: kept while your license is active and for up to 7 years afterward for tax and audit purposes.</span></li>
@@ -200,9 +163,9 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Server logs</strong>: 90 days.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Support emails</strong>: 2 years from the last interaction.</span></li>
                         </ul>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="9. Your Rights">
+                    <ProseBlock title="9. Your Rights">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             Subject to local law, you have the right to:
                         </p>
@@ -218,30 +181,30 @@ export default function Privacy({ downloadUrls }: Props) {
                         </ul>
                         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                             To exercise any of these rights, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>. We respond within 30 days.
+                            <a href="mailto:hello@tablepro.app" className={PROSE_LINK}>hello@tablepro.app</a>. We respond within 30 days.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="10. CCPA (California Residents)">
+                    <ProseBlock title="10. CCPA (California Residents)">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             If you are a California resident, the California Consumer Privacy Act gives you the right to know what personal information we collect, to request deletion, to opt out of "sale" of personal information, and to non-discrimination for exercising these rights. We do not sell personal information.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="11. Children's Privacy">
+                    <ProseBlock title="11. Children's Privacy">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             TablePro is not directed at children under 16. We do not knowingly collect personal data from children. If you believe a child has provided us data, contact us and we will delete it.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="12. Security">
+                    <ProseBlock title="12. Security">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             We use industry-standard measures to protect data: HTTPS for all network traffic, password hashing with modern algorithms, scoped API tokens, and least-privilege access for our team. No system is perfectly secure; if you suspect a vulnerability, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>.
+                            <a href="mailto:hello@tablepro.app" className={PROSE_LINK}>hello@tablepro.app</a>.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="13. Website Cookies">
+                    <ProseBlock title="13. Website Cookies">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             The marketing site uses two functional cookies. No tracking, no advertising, no third-party SDKs.
                         </p>
@@ -249,9 +212,9 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">nl_dismissed_at</strong> (90 days): records when you dismissed the newsletter prompt so we don't reshow it. Lawful basis: legitimate interest.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">nl_subscribed</strong> (365 days): records that you subscribed so we don't reprompt. Lawful basis: legitimate interest, performance of a subscription you initiated.</span></li>
                         </ul>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="14. Local Storage on Your Device">
+                    <ProseBlock title="14. Local Storage on Your Device">
                         <p className="text-sm leading-relaxed text-muted-foreground">Sensitive data stays on your Mac:</p>
                         <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Database credentials</strong>: macOS Keychain.</span></li>
@@ -259,28 +222,28 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">App settings</strong>: standard macOS UserDefaults.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Tab state</strong>: local JSON files for session restore.</span></li>
                         </ul>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="15. Source Code Transparency">
+                    <ProseBlock title="15. Source Code Transparency">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             The Application source is on{' '}
-                            <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">GitHub</a> under the AGPLv3. The analytics code is in{' '}
-                            <code className="rounded bg-muted px-1.5 py-0.5 text-xs text-foreground">TablePro/Core/Services/AnalyticsService.swift</code>. You can verify what is sent.
+                            <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>GitHub</a> under the AGPLv3. The analytics code is in{' '}
+                            <code className="rounded-key bg-muted px-1.5 py-0.5 text-xs text-foreground">TablePro/Core/Services/AnalyticsService.swift</code>. You can verify what is sent.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="16. Changes to This Policy">
+                    <ProseBlock title="16. Changes to This Policy">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             We may update this policy. Material changes will be posted on this page with a new "Last updated" date and, where required by law, notified to users.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="17. Contact">
+                    <ProseBlock title="17. Contact">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             For privacy questions, security reports, or anything else, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>.
+                            <a href="mailto:hello@tablepro.app" className={PROSE_LINK}>hello@tablepro.app</a>.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
                     <FullLine />
                 </Container>

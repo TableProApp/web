@@ -4,9 +4,12 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { getDatabaseBySlug } from '@/data/databases';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader, SectionHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 import Button from '@/components/ui/button';
+import { AppleGlyph, CheckGlyph } from '@/components/ui/glyph';
+import FaqList from '@/components/ui/faq-list';
+import ThemedImage from '@/components/ui/themed-image';
 
 interface Props {
     slug: string;
@@ -96,40 +99,18 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
             />
 
                 {/* Hero */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <div className="flex items-center gap-3 pl-4">
-                        <img src={db.icon} alt={db.name} className="size-8" width={32} height={32} />
-                        <SectionLabel>
+                <PageHeader
+                    label={
+                        <span className="flex items-center gap-3">
+                            <img src={db.icon} alt={db.name} className="size-8" width={32} height={32} />
                             {db.name} Client
-                        </SectionLabel>
-                    </div>
-                    <FullLine />
-                </Container>
+                        </span>
+                    }
+                    headline={db.tagline}
+                    lede={db.longDescription}
+                />
 
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-4xl font-bold text-pretty sm:text-5xl lg:text-6xl">
-                        {db.tagline}
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-
-                <Container>
-                    <FullLine />
-                    <p className="max-w-3xl pl-4 text-lg leading-relaxed text-muted-foreground">
-                        {db.longDescription}
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6" />
+<div className="h-6" />
 
                 <Container>
                     <FullLine />
@@ -137,7 +118,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         <Button
                             href="/download"
                         >
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" /></svg>
+                            <AppleGlyph />
                             Download for Mac
                         </Button>
                         <Button variant="secondary"
@@ -154,58 +135,23 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
 
                 <FullLine />
                 <Container>
-                    <picture className="hidden dark:contents">
-                        <source
-                            type="image/webp"
-                            srcSet="/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w"
-                        />
-                        <img
-                            src="/images/app-dark.png"
-                            alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
-                            width={3024}
-                            height={1720}
-                            className="app-plate w-full"
-                        />
-                    </picture>
-                    <picture className="contents dark:hidden">
-                        <source
-                            type="image/webp"
-                            srcSet="/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w"
-                        />
-                        <img
-                            src="/images/app-light.png"
-                            alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
-                            width={3024}
-                            height={1720}
-                            className="app-plate w-full"
-                        />
-                    </picture>
+                    <ThemedImage
+                        light={{ src: '/images/app-light.png', webpSrcSet: '/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w' }}
+                        dark={{ src: '/images/app-dark.png', webpSrcSet: '/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w' }}
+                        alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
+                        width={3024}
+                        height={1720}
+                        sizes="(min-width: 1024px) 1216px, 100vw"
+                        className="app-plate w-full"
+                    />
                 </Container>
                 <FullLine />
 
                 {/* Features */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Features
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Built for {db.name}.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Features"
+                    headline={<>Built for {db.name}.</>}
+                />
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -225,143 +171,61 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
 
                 {/* Data Grid Screenshot */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Data Grid
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Browse and edit data.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-
-                <Container>
-                    <FullLine />
-                    <p className="max-w-2xl pl-4 text-base text-muted-foreground">
-                        Sort, filter, and edit {db.name} data in a spreadsheet-like grid. Click any cell to edit.
-                        Insert and delete rows. Review changes before saving.
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Data Grid"
+                    headline="Browse and edit data."
+                    lede={<>Sort, filter, and edit {db.name} data in a spreadsheet-like grid. Click any cell to edit. Insert and delete rows. Review changes before saving.</>}
+                />
                 <FullLine />
                 <Container>
                     <div className="p-4 sm:p-6">
-                        <img
-                            src="/images/features/data-grid-light.png"
+                        <ThemedImage
+                            light={{ src: '/images/features/data-grid-light.png', webpSrcSet: '/images/features/data-grid-light-1216.webp 1216w, /images/features/data-grid-light-2432.webp 2432w' }}
+                            dark={{ src: '/images/features/data-grid-dark.png', webpSrcSet: '/images/features/data-grid-dark-1216.webp 1216w, /images/features/data-grid-dark-2432.webp 2432w' }}
                             alt={`TablePro data grid showing ${db.name} table rows with inline editing`}
-                            className="app-plate w-full dark:hidden"
-                            loading="lazy"
-                        />
-                        <img
-                            src="/images/features/data-grid-dark.png"
-                            alt={`TablePro data grid showing ${db.name} table rows with inline editing`}
-                            className="hidden app-plate w-full dark:block"
-                            loading="lazy"
+                            width={2432}
+                            height={1385}
+                            sizes="(min-width: 1024px) 1216px, 100vw"
+                            className="app-plate w-full"
                         />
                     </div>
                 </Container>
                 <FullLine />
 
                 {/* SQL Editor Screenshot */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        SQL Editor
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Write queries faster.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-
-                <Container>
-                    <FullLine />
-                    <p className="max-w-2xl pl-4 text-base text-muted-foreground">
-                        Tree-sitter syntax highlighting, schema-aware autocomplete, multi-tab, Vim mode, and full-text query history.
-                        AI assistant can write, explain, or optimize your SQL.
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="SQL Editor"
+                    headline="Write queries faster."
+                    lede="Tree-sitter syntax highlighting, schema-aware autocomplete, multi-tab, Vim mode, and full-text query history. AI assistant can write, explain, or optimize your SQL."
+                />
                 <FullLine />
                 <Container>
                     <div className="p-4 sm:p-6">
-                        <img
-                            src="/images/features/sql-editor-light.png"
+                        <ThemedImage
+                            light={{ src: '/images/features/sql-editor-light.png', webpSrcSet: '/images/features/sql-editor-light-1216.webp 1216w, /images/features/sql-editor-light-2432.webp 2432w' }}
+                            dark={{ src: '/images/features/sql-editor-dark.png', webpSrcSet: '/images/features/sql-editor-dark-1216.webp 1216w, /images/features/sql-editor-dark-2432.webp 2432w' }}
                             alt={`TablePro SQL editor with ${db.name} query and autocomplete`}
-                            className="app-plate w-full dark:hidden"
-                            loading="lazy"
-                        />
-                        <img
-                            src="/images/features/sql-editor-dark.png"
-                            alt={`TablePro SQL editor with ${db.name} query and autocomplete`}
-                            className="hidden app-plate w-full dark:block"
-                            loading="lazy"
+                            width={2432}
+                            height={1385}
+                            sizes="(min-width: 1024px) 1216px, 100vw"
+                            className="app-plate w-full"
                         />
                     </div>
                 </Container>
                 <FullLine />
 
                 {/* What You Can Do */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Capabilities
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        What you can do.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Capabilities"
+                    headline="What you can do."
+                />
                 <FullLine />
                 <Container>
                     <div className="p-6 sm:p-8">
                         <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                             {db.capabilities.map((cap) => (
                                 <li key={cap} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                    <svg className="mt-0.5 size-4 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                    </svg>
+                                    <CheckGlyph />
                                     <span>{cap}</span>
                                 </li>
                             ))}
@@ -371,34 +235,16 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 <FullLine />
 
                 {/* Connection Info */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Connect
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Get connected in seconds.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Connect"
+                    headline="Get connected in seconds."
+                />
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
                         {/* Code snippet */}
                         <div className="border-b border-rule p-6 sm:border-b-0 sm:border-r sm:p-8">
-                            <div className="overflow-x-auto rounded-lg border border-rule-strong bg-gray-950/[2.5%] p-4 dark:bg-white/[2.5%]">
+                            <div tabIndex={0} role="region" aria-label="Connection snippet" className="overflow-x-auto rounded-lg border border-rule-strong bg-surface-raised p-4">
                                 <code className="block whitespace-pre font-mono text-sm leading-relaxed text-foreground">
                                     {db.snippet}
                                 </code>
@@ -434,28 +280,10 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 {/* How to connect */}
                 {db.howToSteps && db.howToSteps.length > 0 && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                How to
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                Connect to {db.name} in four steps.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="How to"
+                            headline={<>Connect to {db.name} in four steps.</>}
+                        />
                         <FullLine />
                         <Container>
                             <ol className="divide-y divide-rule">
@@ -479,43 +307,13 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 {/* FAQ */}
                 {db.faqs && db.faqs.length > 0 && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                FAQ
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                Common {db.name} questions.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="FAQ"
+                            headline={<>Common {db.name} questions.</>}
+                        />
                         <FullLine />
                         <Container>
-                            <dl className="divide-y divide-rule">
-                                {db.faqs.map((faq) => (
-                                    <details key={faq.question} className="group p-6 sm:p-8">
-                                        <summary className="flex cursor-pointer items-start justify-between gap-6 text-base font-semibold text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
-                                            <span>{faq.question}</span>
-                                            <svg className="size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </summary>
-                                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
-                                    </details>
-                                ))}
-                            </dl>
+                            <FaqList items={db.faqs} />
                         </Container>
                         <FullLine />
                     </>
@@ -537,7 +335,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                             <Button
                                 href="/download"
                             >
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" /></svg>
+                                <AppleGlyph />
                                 Download for Mac
                             </Button>
                             <Button variant="secondary"

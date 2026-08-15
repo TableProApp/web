@@ -4,7 +4,7 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { Link } from '@inertiajs/react';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 
 interface PostSummary {
@@ -58,31 +58,8 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                     { name: 'Blog', path: '/blog' },
                 ]}
             />
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <FullLine />
-                <Container>
-                    <SectionLabel className="px-4 py-3">
-                        Blog
-                    </SectionLabel>
-                </Container>
-
-                <FullLine />
-                <Container>
-                    <h1 className="px-4 py-6 text-4xl font-bold text-pretty sm:text-5xl lg:py-8 lg:text-6xl">
-                        Database tools, SQL, and Mac.
-                    </h1>
-                </Container>
-
-                <FullLine />
-                <Container>
-                    <p className="max-w-3xl px-4 py-6 text-lg leading-relaxed text-muted-foreground">
-                        {BLOG_DESCRIPTION}
-                    </p>
-                </Container>
-
-                <FullLine />
+                <PageHeader label="Blog" headline="Database tools, SQL, and Mac." lede={BLOG_DESCRIPTION} />
+<FullLine />
                 <Container>
                     {posts.length === 0 ? (
                         <div className="p-8 sm:p-12 text-center">
@@ -94,7 +71,8 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                                 <li key={post.slug}>
                                     <Link
                                         href={post.url}
-                                        className="group block p-6 transition-colors hover:bg-gray-950/[1.5%] sm:p-8 dark:hover:bg-white/[1.5%]"
+                                        data-row
+                                        className="group block p-6 sm:p-8"
                                     >
                                         <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground">
                                             <time dateTime={post.date}>{post.dateFormatted}</time>

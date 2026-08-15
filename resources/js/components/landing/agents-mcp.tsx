@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import { toast } from 'sonner';
+import { CodeBlock } from '@/components/ui/code';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
@@ -141,7 +142,8 @@ export default function AgentsMcp() {
                             <CopyButton />
                         </div>
 
-                        <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed">
+                        <CodeBlock label="MCP client configuration">
+                            <pre className="p-4 font-mono text-xs leading-relaxed">
                             <code>
                                 <span className="text-muted-foreground">{'{'}</span>
                                 {'\n'}
@@ -168,7 +170,8 @@ export default function AgentsMcp() {
                                 {'\n'}
                                 <span className="text-muted-foreground">{'}'}</span>
                             </code>
-                        </pre>
+                            </pre>
+                        </CodeBlock>
 
                         <p className="border-t border-rule px-4 py-3 font-mono text-xs text-muted-foreground">
                             No token in the config. The bridge launches TablePro if it is not already running.

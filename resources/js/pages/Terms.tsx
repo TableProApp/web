@@ -3,28 +3,16 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
+import { Bullet, ProseBlock } from '@/components/ui/prose-block';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
 }
 
-function Bullet() {
-    return <span className="mt-1.5 block size-1.5 shrink-0 rounded-full bg-primary" />;
-}
 
-function SectionBlock({ title, children }: { title: string; children: React.ReactNode }) {
-    return (
-        <>
-            <FullLine />
-            <div className="p-6 sm:p-8">
-                <h2 className="text-xl font-bold text-foreground sm:text-2xl">{title}</h2>
-                <div className="mt-4">{children}</div>
-            </div>
-        </>
-    );
-}
 
 export default function Terms({ downloadUrls }: Props) {
     return (
@@ -38,50 +26,25 @@ export default function Terms({ downloadUrls }: Props) {
                     { name: 'Terms', path: '/terms' },
                 ]}
             />
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Legal
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
-                        Terms of Service
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-                <Container>
-                    <FullLine />
-                    <p className="pl-4 text-sm text-muted-foreground">
-                        Last updated: May 2026
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
+                <PageHeader
+                    label="Legal"
+                    headline="Terms of Service"
+                    lede="Last updated: May 2026"
+                />
+<div className="h-6 sm:h-8 lg:h-10" />
 
                 <Container width="md">
                     <FullLine />
                     <div className="p-6 sm:p-8">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             These Terms of Service govern your use of TablePro, the website at{' '}
-                            <a href="https://tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">tablepro.app</a>,
+                            <a href="https://tablepro.app" className={PROSE_LINK}>tablepro.app</a>,
                             the desktop application, the iOS application, and any related services. By downloading, installing, accessing, or using
                             any part of TablePro, you agree to these Terms. If you do not agree, do not use TablePro.
                         </p>
                     </div>
 
-                    <SectionBlock title="1. Definitions">
+                    <ProseBlock title="1. Definitions">
                         <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">"TablePro", "we", "us", "our"</strong> refers to the TablePro project and its maintainers.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">"Application"</strong> means the TablePro desktop and mobile software, including all updates and plugins.</span></li>
@@ -90,21 +53,21 @@ export default function Terms({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">"License Key"</strong> means the credential that activates paid features in the Application.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">"You", "your"</strong> means the individual or entity using the Application or Services.</span></li>
                         </ul>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="2. Open Source License (Free Use)">
+                    <ProseBlock title="2. Open Source License (Free Use)">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             The Application source code is licensed under the{' '}
-                            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">GNU Affero General Public License v3 (AGPLv3)</a>.
+                            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>GNU Affero General Public License v3 (AGPLv3)</a>.
                             You may use, modify, and distribute it under those terms. The full license text is at{' '}
-                            <a href="https://github.com/TableProApp/TablePro/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">github.com/TableProApp/TablePro/LICENSE</a>.
+                            <a href="https://github.com/TableProApp/TablePro/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>github.com/TableProApp/TablePro/LICENSE</a>.
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             The free tier covers core functionality and is enough for most personal and commercial use. No registration is required to use the free tier.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="3. Commercial License (Paid Features)">
+                    <ProseBlock title="3. Commercial License (Paid Features)">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             Some advanced features require a paid License Key. When you purchase a License Key, you receive a non-exclusive, non-transferable right to enable those features for the number of devices and the duration covered by your plan.
                         </p>
@@ -113,17 +76,17 @@ export default function Terms({ downloadUrls }: Props) {
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             Refund eligibility is described in the{' '}
-                            <a href="/refund-policy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Refund Policy</a>.
+                            <a href="/refund-policy" className={PROSE_LINK}>Refund Policy</a>.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="4. Account and Security">
+                    <ProseBlock title="4. Account and Security">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             License Keys are managed through an account portal accessed by magic link sent to the email address you used at purchase. You are responsible for keeping that email account secure. We are not responsible for unauthorized access to your account caused by a compromised email account.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="5. Acceptable Use">
+                    <ProseBlock title="5. Acceptable Use">
                         <p className="text-sm leading-relaxed text-muted-foreground">You agree not to:</p>
                         <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span>Use the Application or Services in violation of any law or third-party right.</span></li>
@@ -132,9 +95,9 @@ export default function Terms({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span>Use the Services to transmit malware or carry out denial-of-service attacks.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span>Resell or redistribute License Keys without our written permission.</span></li>
                         </ul>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="6. Your Responsibilities">
+                    <ProseBlock title="6. Your Responsibilities">
                         <p className="text-sm leading-relaxed text-muted-foreground">You are solely responsible for:</p>
                         <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span>Securing your database credentials and License Keys.</span></li>
@@ -146,18 +109,18 @@ export default function Terms({ downloadUrls }: Props) {
                             You acknowledge and agree that your use of the Application can affect your databases, and you accept{' '}
                             <strong className="text-foreground">sole responsibility for any errors, malfunctions, or corruption of any database</strong> caused by your use of the Application, including queries you run, scripts you execute, and changes you commit.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="7. Disclaimer of Warranties">
+                    <ProseBlock title="7. Disclaimer of Warranties">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             THE APPLICATION AND SERVICES ARE PROVIDED <strong className="text-foreground">"AS IS"</strong> AND <strong className="text-foreground">"AS AVAILABLE"</strong> WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, OR UNINTERRUPTED OPERATION.
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             We do not warrant that the Application will meet your requirements, be compatible with any specific database version, operate without error, or that any errors will be corrected.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="8. Limitation of Liability">
+                    <ProseBlock title="8. Limitation of Liability">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL TABLEPRO OR ITS CONTRIBUTORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO: LOSS OF DATA, LOSS OF DATABASE CONTENTS, DATA CORRUPTION, LOSS OF PROFITS, LOSS OF BUSINESS, BUSINESS INTERRUPTION, LOSS OF GOODWILL, OR THE COST OF SUBSTITUTE GOODS OR SERVICES, ARISING OUT OF OR RELATED TO YOUR USE OF THE APPLICATION OR SERVICES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
                         </p>
@@ -167,74 +130,74 @@ export default function Terms({ downloadUrls }: Props) {
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             Some jurisdictions do not allow the exclusion or limitation of certain damages. In such jurisdictions, our liability is limited to the minimum extent permitted by law.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="9. Indemnification">
+                    <ProseBlock title="9. Indemnification">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             You agree to indemnify and hold harmless TablePro and its contributors from any claim, demand, loss, or damage (including reasonable legal fees) arising out of your use of the Application or Services in violation of these Terms or any third-party right.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="10. Updates and Maintenance">
+                    <ProseBlock title="10. Updates and Maintenance">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             We may release updates, fixes, and new features at our discretion. We have no obligation to maintain, update, or provide support for any version of the Application. Older versions may stop receiving security updates.
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             Some Services (license validation, update checks) require network access to function. We do not guarantee continuous availability of these Services and may discontinue them with reasonable notice.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="11. Termination">
+                    <ProseBlock title="11. Termination">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             You may stop using the Application and Services at any time. We may suspend or terminate your access to paid features without refund if you breach these Terms, including the Acceptable Use clause.
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             Sections that by their nature survive termination (Disclaimer, Limitation of Liability, Indemnification, Governing Law) will continue to apply after termination.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="12. Privacy">
+                    <ProseBlock title="12. Privacy">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             Our handling of personal data is described in the{' '}
-                            <a href="/privacy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Privacy Policy</a>. By using the Application or Services, you agree to that policy.
+                            <a href="/privacy" className={PROSE_LINK}>Privacy Policy</a>. By using the Application or Services, you agree to that policy.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="13. Changes to These Terms">
+                    <ProseBlock title="13. Changes to These Terms">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             We may update these Terms from time to time. Material changes will be announced on this page with a new "Last updated" date. Continuing to use the Application or Services after the update means you accept the new Terms.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="14. Governing Law and Dispute Resolution">
+                    <ProseBlock title="14. Governing Law and Dispute Resolution">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             These Terms are governed by the laws of the Socialist Republic of Vietnam, without regard to conflict of law principles. Any dispute arising out of or relating to these Terms or your use of the Application or Services shall be resolved in the competent courts of Vietnam.
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             If you reside in a jurisdiction with mandatory consumer protection laws, those laws apply to the extent they cannot be waived.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="15. Severability">
+                    <ProseBlock title="15. Severability">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             If any provision of these Terms is held invalid or unenforceable by a court of competent jurisdiction, the remaining provisions remain in full force and effect.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="16. Entire Agreement">
+                    <ProseBlock title="16. Entire Agreement">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             These Terms, together with the AGPLv3 license, the Privacy Policy, and the Refund Policy, constitute the entire agreement between you and TablePro regarding the Application and Services and supersede any prior agreements.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
-                    <SectionBlock title="17. Contact">
+                    <ProseBlock title="17. Contact">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             For questions about these Terms, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>{' '}
+                            <a href="mailto:hello@tablepro.app" className={PROSE_LINK}>hello@tablepro.app</a>{' '}
                             or open an issue at{' '}
-                            <a href="https://github.com/TableProApp/TablePro/issues" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">github.com/TableProApp/TablePro/issues</a>.
+                            <a href="https://github.com/TableProApp/TablePro/issues" target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>github.com/TableProApp/TablePro/issues</a>.
                         </p>
-                    </SectionBlock>
+                    </ProseBlock>
 
                     <FullLine />
                 </Container>

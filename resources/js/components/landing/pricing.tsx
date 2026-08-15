@@ -5,6 +5,8 @@ import DataTable from '@/components/ui/data-table';
 import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
+import { Availability, CheckGlyph } from '@/components/ui/glyph';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -103,20 +105,6 @@ const comparisonFeatures = [
     { name: 'Priority support', free: false, pro: false, team: true },
 ];
 
-function CheckIcon({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className ?? 'size-4 text-primary-strong'}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            aria-hidden="true"
-        >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-        </svg>
-    );
-}
 
 function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, teamMinSeats }: { tier: Tier; cycle: BillingCycle; discountCode: string; discount: Discount | null; paymentProvider: string; teamMinSeats: number }) {
     // Narrow off tier.price directly: TypeScript does not carry the refinement
@@ -163,7 +151,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
     }
 
     return (
-        <div className={`flex h-full flex-col border-rule p-6 sm:p-8 ${tier.featured ? 'bg-primary/[0.03]' : ''}`}>
+        <div className={`flex h-full flex-col border-rule p-6 sm:p-8 ${tier.featured ? 'bg-primary/5' : ''}`}>
             <div>
                 <h3 className="text-lg font-semibold text-foreground">{tier.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{tier.description}</p>
@@ -197,7 +185,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
                         <button
                             type="button"
                             onClick={() => setSeats((s) => Math.max(teamMinSeats, s - 1))}
-                            className="px-3 py-1 text-lg leading-none text-muted-foreground hover:text-foreground disabled:opacity-40"
+                            className="px-3 py-1 text-lg leading-none text-muted-foreground hover:text-foreground disabled:opacity-50"
                             disabled={seats <= teamMinSeats}
                             aria-label="Fewer seats"
                         >
@@ -213,7 +201,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
                         <button
                             type="button"
                             onClick={() => setSeats((s) => Math.min(200, s + 1))}
-                            className="px-3 py-1 text-lg leading-none text-muted-foreground hover:text-foreground disabled:opacity-40"
+                            className="px-3 py-1 text-lg leading-none text-muted-foreground hover:text-foreground disabled:opacity-50"
                             disabled={seats >= 200}
                             aria-label="More seats"
                         >
@@ -225,11 +213,11 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
 
             <div className="mt-6">
                 {tier.ctaHref ? (
-                    <a href={tier.ctaHref} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'}`}>
+                    <a href={tier.ctaHref} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-(--dur-tap) ease-(--ease-feedback) ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'}`}>
                         {tier.cta}
                     </a>
                 ) : (
-                    <button type="button" onClick={handleCheckout} disabled={isLoading} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'} ${isLoading ? 'cursor-wait opacity-60' : ''}`}>
+                    <button type="button" onClick={handleCheckout} disabled={isLoading} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-(--dur-tap) ease-(--ease-feedback) ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'} ${isLoading ? 'cursor-wait opacity-60' : ''}`}>
                         {isLoading ? 'Loading...' : tier.cta}
                     </button>
                 )}
@@ -250,7 +238,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
                         <ul className="space-y-2.5">
                             {tier.features?.map((feature) => (
                                 <li key={feature} className="flex items-start gap-2.5">
-                                    <CheckIcon className="mt-0.5 size-4 shrink-0 text-primary-strong" />
+                                    <CheckGlyph className="mt-0.5 size-4 shrink-0 text-primary-strong" />
                                     <span className="text-sm text-muted-foreground">{feature}</span>
                                 </li>
                             ))}
@@ -339,7 +327,6 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
         >
 
             {/* What a license actually buys. Stated before the prices, on purpose. */}
-            <div className="h-4" />
             <Container>
                 <FullLine />
                 <Ledger>
@@ -359,17 +346,16 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             </Container>
 
             {/* Billing toggle */}
-            <div className="h-4" />
             <Container>
                 <FullLine />
                 <div className="flex items-center justify-center overflow-x-auto py-4">
-                    <div className="inline-flex items-center rounded-full border border-rule bg-gray-950/[0.02] p-1 dark:bg-white/[0.03]">
+                    <div className="inline-flex items-center rounded-full border border-rule bg-surface-raised p-1">
                         {cycles.map((c) => (
                             <button
                                 key={c.value}
                                 type="button"
                                 onClick={() => setBillingCycle(c.value)}
-                                className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
+                                className={`rounded-full px-5 py-2 text-sm font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback) ${
                                     billingCycle === c.value
                                         ? 'bg-foreground text-background shadow-sm'
                                         : 'text-muted-foreground hover:text-foreground'
@@ -377,7 +363,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                             >
                                 {c.label}
                                 {c.badge && (
-                                    <span className="ml-1.5 rounded-full bg-primary/15 px-1.5 py-0.5 text-2xs font-semibold text-primary-strong">
+                                    <span className="ml-1.5 rounded-full bg-primary/10 px-1.5 py-0.5 text-2xs font-semibold text-primary-strong">
                                         {c.badge}
                                     </span>
                                 )}
@@ -479,12 +465,12 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
 
             {/* Refund note */}
             <Container>
-                <p className="py-4 pl-4 text-sm text-muted-foreground">
+                <p className="px-4 py-4 text-sm text-muted-foreground">
                     7-day money-back guarantee on all paid plans.{' '}
-                    <a href="/refund-policy" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Refund policy</a>
+                    <a href="/refund-policy" className={PROSE_LINK}>Refund policy</a>
                 </p>
                 <FullLine />
-                <p className="py-4 pl-4 text-sm text-muted-foreground">
+                <p className="px-4 py-4 text-sm text-muted-foreground">
                     If you use TablePro at work, buy a license. If you cannot afford one, the free version is not
                     going anywhere.
                 </p>
@@ -495,7 +481,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
 
             <Container>
                 <FullLine />
-                <h3 className="pl-4 text-2xl font-bold text-foreground">
+                <h3 className="px-4 py-4 text-2xl font-bold sm:py-5 text-foreground">
                     Compare plans
                 </h3>
                 <FullLine />
@@ -568,20 +554,10 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                                             >
                                                 {typeof value === 'string' ? (
                                                     <span className="text-sm font-medium text-foreground">{value}</span>
-                                                ) : value ? (
-                                                    <>
-                                                        <span className="sr-only">Included</span>
-                                                        <span className="inline-flex justify-center">
-                                                            <CheckIcon />
-                                                        </span>
-                                                    </>
                                                 ) : (
-                                                    <>
-                                                        <span className="sr-only">Not included</span>
-                                                        <span aria-hidden="true" className="text-sm text-muted-foreground">
-                                                            &mdash;
-                                                        </span>
-                                                    </>
+                                                    <span className="inline-flex justify-center">
+                                                        <Availability included={value} />
+                                                    </span>
                                                 )}
                                             </td>
                                         );

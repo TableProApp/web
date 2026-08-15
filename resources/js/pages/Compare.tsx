@@ -4,9 +4,13 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { getComparisonBySlug } from '@/data/comparisons';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader, SectionHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
 import Button from '@/components/ui/button';
+import { AppleGlyph, Availability, CheckGlyph } from '@/components/ui/glyph';
+import FaqList from '@/components/ui/faq-list';
+import ThemedImage from '@/components/ui/themed-image';
+import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
 
 interface Props {
     slug: string;
@@ -24,44 +28,10 @@ interface Props {
  * `muted-foreground/30` measured 1.51:1: both were effectively invisible to
  * anyone who needed them most.
  */
-function Check() {
-    return (
-        <>
-            <span className="sr-only">Included</span>
-            <svg
-                className="size-4 text-primary-strong"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                aria-hidden="true"
-            >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-            </svg>
-        </>
-    );
-}
 
-function Cross() {
-    return (
-        <>
-            <span className="sr-only">Not included</span>
-            <svg
-                className="size-3.5 text-muted-foreground"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                aria-hidden="true"
-            >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </>
-    );
-}
 
 function CellValue({ value }: { value: string | boolean }) {
-    if (typeof value === 'boolean') return value ? <Check /> : <Cross />;
+    if (typeof value === 'boolean') return <Availability included={value} />;
     return <span className="text-sm text-muted-foreground">{value}</span>;
 }
 
@@ -134,73 +104,59 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                     { name: comp.name, path: canonical },
                 ]}
             />
-
-                {/* Hero */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Compare
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-4xl font-bold text-pretty sm:text-5xl lg:text-6xl">
-                        {comp.tagline}
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-
-                <Container>
-                    <FullLine />
-                    <p className="max-w-3xl pl-4 text-lg leading-relaxed text-muted-foreground">
-                        {comp.longDescription}
-                    </p>
-                    <FullLine />
-                </Container>
-
-                {/* Comparison Table */}
+                <PageHeader label="Compare" headline={comp.tagline} lede={comp.longDescription} />
+{/* Comparison Table */}
                 <div className="h-8 sm:h-12 lg:h-16" />
 
                 <FullLine />
                 <Container>
-                    <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-                        <div className="min-w-[400px]">
-                            {/* Header */}
-                            <div className="grid grid-cols-3">
-                                <div className="border-rule p-4 sm:p-5">
-                                    <span className="text-sm font-medium text-muted-foreground">Feature</span>
-                                </div>
-                                <div className="border-l border-rule bg-primary/5 p-4 text-center sm:p-5">
-                                    <span className="text-sm font-bold text-primary-strong">TablePro</span>
-                                </div>
-                                <div className="border-l border-rule p-4 text-center sm:p-5">
-                                    <span className="text-sm font-medium text-muted-foreground">{comp.name}</span>
-                                </div>
-                            </div>
-
-                            {/* Rows */}
-                            {comp.rows.map((row) => (
-                                <div key={row.label} className="grid grid-cols-3 border-t border-rule">
-                                    <div className="p-4 sm:p-5">
-                                        <span className="text-sm font-medium text-foreground">{row.label}</span>
-                                    </div>
-                                    <div className="flex items-center justify-center border-l border-rule bg-primary/5 p-4 sm:p-5">
-                                        <CellValue value={row.tablePro} />
-                                    </div>
-                                    <div className="flex items-center justify-center border-l border-rule p-4 sm:p-5">
-                                        <CellValue value={row.competitor} />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                    {/*
+                      * Same shape as the plan comparison on the homepage: a real
+                      * table, column separators at the column weight, and the
+                      * scroll container reachable by keyboard. This was a grid of
+                      * divs with no table semantics, drawing its columns at the
+                      * row weight — in the one table where the columns carry the
+                      * entire meaning.
+                      */}
+                    <div
+                        className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0"
+                        tabIndex={0}
+                        role="region"
+                        aria-label={`TablePro compared with ${comp.name}`}
+                    >
+                        <DataTable
+                            className="min-w-[400px]"
+                            caption={`Feature comparison between TablePro and ${comp.name}`}
+                        >
+                            <thead>
+                                <tr>
+                                    <th scope="col" className="p-4 text-left text-sm font-medium text-muted-foreground sm:p-5">
+                                        Feature
+                                    </th>
+                                    <th scope="col" className={`border-l ${TABLE_COLUMN_RULE} bg-primary/5 p-4 text-center text-sm font-bold text-primary-strong sm:p-5`}>
+                                        TablePro
+                                    </th>
+                                    <th scope="col" className={`border-l ${TABLE_COLUMN_RULE} p-4 text-center text-sm font-medium text-muted-foreground sm:p-5`}>
+                                        {comp.name}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {comp.rows.map((row) => (
+                                    <tr key={row.label} className={`border-t ${TABLE_ROW_RULE}`}>
+                                        <th scope="row" className="p-4 text-left text-sm font-normal text-foreground sm:p-5">
+                                            {row.label}
+                                        </th>
+                                        <td className={`border-l ${TABLE_COLUMN_RULE} bg-primary/5 p-4 text-center sm:p-5`}>
+                                            <CellValue value={row.tablePro} />
+                                        </td>
+                                        <td className={`border-l ${TABLE_COLUMN_RULE} p-4 text-center sm:p-5`}>
+                                            <CellValue value={row.competitor} />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </DataTable>
                     </div>
                 </Container>
                 <FullLine />
@@ -208,28 +164,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 {/* Benchmarks */}
                 {comp.benchmarks && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                Benchmarks
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                The numbers.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="Benchmarks"
+                            headline="The numbers."
+                        />
                         <FullLine />
                         <Container>
                             <div className="grid grid-cols-1 sm:grid-cols-3">
@@ -260,28 +198,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 )}
 
                 {/* Pros */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Summary
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Strengths of each.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Summary"
+                    headline="Strengths of each."
+                />
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -291,7 +211,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                             <ul className="mt-4 space-y-3">
                                 {comp.prosTablePro.map((pro) => (
                                     <li key={pro} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                        <Check />
+                                        <CheckGlyph />
                                         <span>{pro}</span>
                                     </li>
                                 ))}
@@ -304,7 +224,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                             <ul className="mt-4 space-y-3">
                                 {comp.prosCompetitor.map((pro) => (
                                     <li key={pro} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                        <Check />
+                                        <CheckGlyph />
                                         <span>{pro}</span>
                                     </li>
                                 ))}
@@ -317,28 +237,10 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 {/* Migration guide */}
                 {comp.migrationSteps && comp.migrationSteps.length > 0 && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                Migration
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                Switch from {comp.name}.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="Migration"
+                            headline={<>Switch from {comp.name}.</>}
+                        />
                         <FullLine />
                         <Container>
                             <ol className="divide-y divide-rule">
@@ -360,84 +262,29 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 )}
 
                 {/* App Screenshot */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        TablePro
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        See it in action.
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="TablePro"
+                    headline="See it in action."
+                />
                 <FullLine />
                 <Container>
-                    <picture className="hidden dark:contents">
-                        <source
-                            type="image/webp"
-                            srcSet="/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w"
-                        />
-                        <img
-                            src="/images/app-dark.png"
-                            alt="TablePro interface showing the data grid and SQL editor"
-                            width={3024}
-                            height={1720}
-                            className="app-plate w-full"
-                            loading="lazy"
-                        />
-                    </picture>
-                    <picture className="contents dark:hidden">
-                        <source
-                            type="image/webp"
-                            srcSet="/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w"
-                        />
-                        <img
-                            src="/images/app-light.png"
-                            alt="TablePro interface showing the data grid and SQL editor"
-                            width={3024}
-                            height={1720}
-                            className="app-plate w-full"
-                            loading="lazy"
-                        />
-                    </picture>
+                    <ThemedImage
+                        light={{ src: '/images/app-light.png', webpSrcSet: '/images/app-light-1280.webp 1280w, /images/app-light-1920.webp 1920w, /images/app-light.webp 3024w' }}
+                        dark={{ src: '/images/app-dark.png', webpSrcSet: '/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w' }}
+                        alt="TablePro interface showing the data grid and SQL editor"
+                        width={3024}
+                        height={1720}
+                        sizes="(min-width: 1024px) 1216px, 100vw"
+                        className="app-plate w-full"
+                    />
                 </Container>
                 <FullLine />
 
                 {/* Who Should Choose What */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Decision
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                        Which one is right for you?
-                    </h2>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
-
+                <SectionHeader
+                    label="Decision"
+                    headline="Which one is right for you?"
+                />
                 <FullLine />
                 <Container>
                     <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -452,21 +299,8 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                     </div>
                 </Container>
                 <FullLine />
-
-                {/* Verdict */}
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Verdict
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <FullLine />
+                <SectionHeader label="Verdict" headline="The short answer." />
+<FullLine />
                 <Container>
                     <div className="p-6 sm:p-8">
                         <p className="text-base leading-relaxed text-foreground">
@@ -479,43 +313,13 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 {/* FAQ */}
                 {comp.faqs && comp.faqs.length > 0 && (
                     <>
-                        <div className="h-12 sm:h-16 lg:h-24" />
-
-                        <Container>
-                            <FullLine />
-                            <SectionLabel className="pl-4">
-                                FAQ
-                            </SectionLabel>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-4" />
-
-                        <Container>
-                            <FullLine />
-                            <h2 className="pl-4 text-3xl font-bold sm:text-4xl">
-                                Common questions.
-                            </h2>
-                            <FullLine />
-                        </Container>
-
-                        <div className="h-6 sm:h-8 lg:h-10" />
-
+                        <SectionHeader
+                            label="FAQ"
+                            headline="Common questions."
+                        />
                         <FullLine />
                         <Container>
-                            <dl className="divide-y divide-rule">
-                                {comp.faqs.map((faq) => (
-                                    <details key={faq.question} className="group p-6 sm:p-8">
-                                        <summary className="flex cursor-pointer items-start justify-between gap-6 text-base font-semibold text-foreground marker:hidden [&::-webkit-details-marker]:hidden">
-                                            <span>{faq.question}</span>
-                                            <svg className="size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </summary>
-                                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
-                                    </details>
-                                ))}
-                            </dl>
+                            <FaqList items={comp.faqs} />
                         </Container>
                         <FullLine />
                     </>
@@ -537,7 +341,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                             <Button
                                 href="/download"
                             >
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" /></svg>
+                                <AppleGlyph />
                                 Download for Mac
                             </Button>
                         </div>

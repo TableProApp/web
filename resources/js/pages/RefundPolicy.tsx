@@ -3,8 +3,9 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
-import SectionLabel from '@/components/ui/section-label';
+import { PageHeader } from '@/components/ui/section-shell';
 import { FullLine } from '@/components/ui/full-line';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
@@ -22,37 +23,12 @@ export default function RefundPolicy({ downloadUrls }: Props) {
                     { name: 'Refund Policy', path: '/refund-policy' },
                 ]}
             />
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-
-                <Container>
-                    <FullLine />
-                    <SectionLabel className="pl-4">
-                        Legal
-                    </SectionLabel>
-                    <FullLine />
-                </Container>
-
-                <div className="h-4" />
-
-                <Container>
-                    <FullLine />
-                    <h1 className="pl-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
-                        Refund Policy
-                    </h1>
-                    <FullLine />
-                </Container>
-
-                <div className="h-2" />
-                <Container>
-                    <FullLine />
-                    <p className="pl-4 text-sm text-muted-foreground">
-                        Last updated: May 2026
-                    </p>
-                    <FullLine />
-                </Container>
-
-                <div className="h-6 sm:h-8 lg:h-10" />
+                <PageHeader
+                    label="Legal"
+                    headline="Refund Policy"
+                    lede="Last updated: May 2026"
+                />
+<div className="h-6 sm:h-8 lg:h-10" />
 
                 <Container width="md">
                     <FullLine />
@@ -62,7 +38,7 @@ export default function RefundPolicy({ downloadUrls }: Props) {
                         </p>
                         <p>
                             To request a refund, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>{' '}
+                            <a href="mailto:hello@tablepro.app" className={PROSE_LINK}>hello@tablepro.app</a>{' '}
                             with the email or License Key from your purchase. Eligible refunds are processed within 5 business days to the original payment method.
                         </p>
                         <p>
