@@ -1,14 +1,31 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
+use PHPUnit\Framework\Assert;
+
+/**
+ * Skips when SSR is unavailable locally, fails when `REQUIRE_SSR` is set.
+ *
+ * Skipping is right on a developer machine, where not everyone has run
+ * `npm run build`. It is wrong in CI: a skipped run is indistinguishable from a
+ * passing one, so an SSR job that silently stopped rendering would report green
+ * forever. The `ssr` workflow job sets `REQUIRE_SSR=1` for exactly this reason.
+ */
+function ssrUnavailable(string $reason): never
+{
+    if (filter_var(env('REQUIRE_SSR', false), FILTER_VALIDATE_BOOL)) {
+        Assert::fail($reason);
+    }
+
+    test()->markTestSkipped($reason);
+}
 
 /**
  * Renders the homepage through Inertia SSR and asserts on the real DOM.
  *
  * This is the only coverage that proves the React tree actually renders: a
  * successful Vite build only proves it compiles. Requires `npm run build` plus
- * a running SSR service (`php artisan inertia:start-ssr`), so it skips rather
- * than fails when either is absent.
+ * a running SSR service (`php artisan inertia:start-ssr`).
  */
 function ssrHomepageHtml(): string
 {
@@ -19,7 +36,7 @@ function ssrHomepageHtml(): string
     }
 
     if (! file_exists(base_path('bootstrap/ssr/ssr.js'))) {
-        test()->markTestSkipped('SSR bundle missing. Run: npm run build');
+        ssrUnavailable('SSR bundle missing. Run: npm run build');
     }
 
     $ssrUrl = config('inertia.ssr.url', 'http://127.0.0.1:13715');
@@ -33,7 +50,7 @@ function ssrHomepageHtml(): string
     $probe = @fsockopen(parse_url($ssrUrl, PHP_URL_HOST), (int) parse_url($ssrUrl, PHP_URL_PORT), $errno, $errstr, 2);
 
     if ($probe === false) {
-        test()->markTestSkipped('SSR service not running. Run: php artisan inertia:start-ssr');
+        ssrUnavailable('SSR service not running. Run: php artisan inertia:start-ssr');
     }
 
     fclose($probe);
