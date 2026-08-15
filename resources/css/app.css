@@ -159,6 +159,7 @@
   --ring: oklch(0.72 0.178 55);
   --rule: oklch(0.145 0 0 / 0.07);
   --rule-strong: oklch(0.145 0 0 / 0.14);
+  --surface-raised: oklch(0.975 0 0);
 }
 
 .dark {
@@ -185,6 +186,65 @@
   --ring: oklch(0.72 0.178 55);
   --rule: oklch(1 0 0 / 0.08);
   --rule-strong: oklch(1 0 0 / 0.16);
+  --surface-raised: oklch(0.185 0 0);
+}
+
+/*
+ * The product screenshot.
+ *
+ * `shadow-sm` is a 3px blur. On an image rendered 1216px wide that is an order
+ * of magnitude too small, which is why the hero read as a sticker laid on the
+ * page rather than a window sitting above it. Every reference Mac-app site
+ * converged on the same shape instead: a big soft ambient drop, and no single
+ * blur anywhere.
+ *
+ * `drop-shadow` rather than `box-shadow` because the captures carry real
+ * transparent macOS squircle corners — verified, the shipped PNGs have an alpha
+ * channel — so the shadow follows the actual silhouette. A box-shadow would
+ * draw a rectangle behind a rounded image, and CSS `border-radius` is a
+ * circular arc that cannot reproduce a continuous corner anyway. That is also
+ * why the border and radius come off: the image already has the corners, and a
+ * 1px rule tracing a squircle with an arc is visibly wrong at the join.
+ *
+ * Warm-tinted rather than neutral black, so it sits in the page's own light
+ * instead of muddying it. Three stacked is the practical paint limit.
+ */
+.app-plate {
+  filter:
+    drop-shadow(0 1px 1px oklch(0.145 0.004 55 / 0.04))
+    drop-shadow(0 6px 8px oklch(0.145 0.004 55 / 0.05))
+    drop-shadow(0 24px 32px oklch(0.145 0.004 55 / 0.07));
+}
+
+.dark .app-plate {
+  filter:
+    drop-shadow(0 1px 1px oklch(0 0 0 / 0.3))
+    drop-shadow(0 8px 16px oklch(0 0 0 / 0.35))
+    drop-shadow(0 32px 48px oklch(0 0 0 / 0.3));
+}
+
+/*
+ * The second ground.
+ *
+ * Sixteen sections shared one background, so over roughly ten thousand pixels
+ * of scroll the only rhythm device was hairline density — a reader could not
+ * tell from peripheral vision whether they had moved from Architecture to
+ * Agents to Mobile. `--card`, `--secondary` and `--accent` were all declared
+ * and used zero times.
+ *
+ * Two grounds, not five. The discipline is the point: `raised` goes only to the
+ * sections that are already conceptually inset.
+ *
+ * This has to sit after `.dark`, because `[data-tone="raised"]` and `.dark` are
+ * both specificity (0,1,0) and source order breaks the tie. It only needs one
+ * rule because `--surface-raised` is itself theme-swapped above.
+ *
+ * Every foreground token was checked against this surface rather than assumed:
+ * the tightest is `--muted-foreground-subtle` at 4.61:1, which still clears AA.
+ */
+[data-tone="raised"] {
+  --background: var(--surface-raised);
+  background-color: var(--background);
 }
 
 @layer base {

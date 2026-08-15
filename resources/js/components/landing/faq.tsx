@@ -34,7 +34,8 @@ export default function FAQ({
     const mid = Math.ceil(items.length / 2);
 
     return (
-        <SectionShell tier="reference" id="faq" label="FAQ" headline={headline} headlineMuted={headlineMuted}>
+        <SectionShell tier="reference"
+            tone="raised" id="faq" label="FAQ" headline={headline} headlineMuted={headlineMuted}>
             <FullLine />
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2">

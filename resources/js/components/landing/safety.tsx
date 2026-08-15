@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import Container from '@/components/ui/container';
+import DataTable, { TABLE_ROW_RULE } from '@/components/ui/data-table';
 import { FullLine } from '@/components/ui/full-line';
 import { cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 import SectionShell from '@/components/ui/section-shell';
@@ -129,6 +130,7 @@ export default function Safety() {
 
     return (
         <SectionShell
+            tone="raised"
             id="safety"
             label="Safe Mode"
             headline="Six levels between you and production."
@@ -157,8 +159,7 @@ export default function Safety() {
                  * its 200vw bleed would add scroll width in here.
                  */}
                 <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Safe Mode levels">
-                    <table className="w-full min-w-[38rem] border-collapse">
-                        <caption className="sr-only">Safe Mode levels and their behaviour</caption>
+                    <DataTable className="min-w-[38rem]" caption="Safe Mode levels and their behaviour">
                         <thead>
                             <tr className="border-b border-rule">
                                 {COLUMNS.map((column) => (
@@ -196,7 +197,7 @@ export default function Safety() {
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
+                    </DataTable>
                 </div>
             </Container>
             <FullLine />
