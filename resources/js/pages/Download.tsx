@@ -107,7 +107,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
     );
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
             <SEOHead
                 title={DOWNLOAD_TITLE}
                 description={DOWNLOAD_DESCRIPTION}
@@ -119,7 +119,6 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 ]}
             />
 
-            <main>
                 <div className="h-12 sm:h-16 lg:h-24" />
 
                 {/* Label */}
@@ -239,9 +238,6 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 <FullLine />
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

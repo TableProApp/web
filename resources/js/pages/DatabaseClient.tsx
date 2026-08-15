@@ -81,7 +81,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
     }
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
             <SEOHead
                 title={title}
                 description={db.description}
@@ -94,7 +94,6 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 ]}
             />
 
-            <main>
                 {/* Hero */}
                 <div className="h-12 sm:h-16 lg:h-24" />
 
@@ -555,9 +554,6 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 </Container>
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

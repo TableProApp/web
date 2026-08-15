@@ -120,7 +120,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
     }
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
             <SEOHead
                 title={title}
                 description={comp.description}
@@ -134,7 +134,6 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 ]}
             />
 
-            <main>
                 {/* Hero */}
                 <div className="h-12 sm:h-16 lg:h-24" />
 
@@ -547,9 +546,6 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 </Container>
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

@@ -83,7 +83,7 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
     const articleJsonLd = buildArticleJsonLd(post, baseUrl);
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
             <SEOHead
                 title={`${post.title} - TablePro`}
                 description={post.description}
@@ -98,7 +98,6 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                 ]}
             />
 
-            <main>
                 <div className="h-12 sm:h-16 lg:h-24" />
 
                 <FullLine />
@@ -215,9 +214,6 @@ export default function BlogPost({ post, relatedPosts, downloadUrls, githubStars
                 <FullLine />
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

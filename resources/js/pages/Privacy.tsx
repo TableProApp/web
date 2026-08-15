@@ -28,7 +28,7 @@ function SectionBlock({ title, children }: { title: string; children: React.Reac
 
 export default function Privacy({ downloadUrls }: Props) {
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} />} footer={<Footer />}>
             <SEOHead
                 title="Privacy Policy - TablePro"
                 description="What TablePro collects, what it doesn't, where your data stays, and your privacy rights under GDPR and CCPA."
@@ -39,7 +39,6 @@ export default function Privacy({ downloadUrls }: Props) {
                 ]}
             />
 
-            <main>
                 <div className="h-12 sm:h-16 lg:h-24" />
 
                 <Container>
@@ -287,9 +286,6 @@ export default function Privacy({ downloadUrls }: Props) {
                 </Container>
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }
