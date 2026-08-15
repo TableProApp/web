@@ -1,3 +1,14 @@
+{{--
+    Colours here are literals because this template renders to a PNG through
+    Chromium and never sees the stylesheet. They correspond to the dark theme's
+    tokens: #0b0b10 to --background, #f8f8f5 to --foreground, #ffaa46 to
+    --primary-strong (which computes to #ffa65e — the two are indistinguishable
+    at 10.4:1 versus 10.2:1 on this ground, so the existing value stays rather
+    than invalidating 36 committed PNGs).
+
+    Changing any of them means re-running `php artisan og:generate`, which needs
+    Chromium and writes into a tracked directory.
+--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
