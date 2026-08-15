@@ -2,6 +2,7 @@ import { Star } from 'lucide-react';
 import Container from '@/components/ui/container';
 import { AccentLine, FullLine } from '@/components/ui/full-line';
 import ThemedImage from '@/components/ui/themed-image';
+import SectionLabel from '@/components/ui/section-label';
 
 interface Props {
     githubStars?: number | null;
@@ -51,41 +52,26 @@ export default function Hero({ githubStars, latestRelease }: Props) {
         <section id="top">
             <div className="h-12 sm:h-16 lg:h-24" />
 
+            {/*
+              * One rule per boundary, matching SectionShell. This block used to
+              * emit ten FullLines separated by bare spacer divs, which drew a
+              * doubled hairline at every join.
+              */}
             <Container>
                 <AccentLine />
-                <p className="pl-4 font-mono text-xs font-semibold tracking-widest text-primary-strong uppercase">
-                    {eyebrow}
-                </p>
+                <SectionLabel className="px-4 py-3">{eyebrow}</SectionLabel>
                 <FullLine />
-            </Container>
-
-            <div className="h-4" />
-
-            <Container>
-                <FullLine />
-                <h1 className="pl-4 text-4xl font-bold tracking-tighter text-pretty sm:text-5xl lg:text-6xl">
+                <h1 className="px-4 py-4 text-4xl font-bold text-pretty sm:py-5 sm:text-5xl lg:text-6xl">
                     Every database.
                     <br />
                     <span className="text-muted-foreground">One native Mac app.</span>
                 </h1>
                 <FullLine />
-            </Container>
-
-            <div className="h-2" />
-
-            <Container>
-                <FullLine />
-                <p className="max-w-2xl pl-4 text-lg text-muted-foreground text-pretty">
+                <p className="max-w-2xl px-4 py-4 text-lg text-muted-foreground text-pretty sm:py-5">
                     MySQL, PostgreSQL, MongoDB, Redis, Snowflake and 20 more. Written in Swift with SwiftUI and
                     AppKit, so there is no Java runtime, no Chromium and no JavaScript engine to start first. Free and
                     open source under AGPLv3.
                 </p>
-                <FullLine />
-            </Container>
-
-            <div className="h-6" />
-
-            <Container>
                 <FullLine />
                 <div className="flex flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center">
                     <a
@@ -99,7 +85,7 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                         href={GITHUB_REPO_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-950/5 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-950/[2.5%] dark:border-white/10 dark:hover:bg-white/[2.5%]"
+                        className="inline-flex items-center justify-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                     >
                         <Star className="size-4" strokeWidth={1.75} aria-hidden="true" />
                         View source
@@ -117,9 +103,6 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                     </a>
                 </div>
                 <FullLine />
-            </Container>
-
-            <Container>
                 <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
                     Free and open source · AGPLv3 · macOS 14+ · Apple Silicon and Intel · No account
                 </p>
@@ -147,7 +130,7 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                         width={3024}
                         height={1720}
                         priority
-                        className="w-full rounded-xl border border-gray-950/5 shadow-sm dark:border-white/10"
+                        className="w-full rounded-xl border border-rule shadow-sm"
                     />
                 </div>
             </Container>
