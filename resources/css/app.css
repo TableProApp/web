@@ -91,6 +91,10 @@
   /* Motion. Two curves, four durations, and 320ms is the ceiling. */
   --ease-feedback: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-panel: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-tap: 120ms;
+  --dur-row: 160ms;
+  --dur-state: 220ms;
+  --dur-panel: 320ms;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -259,7 +263,7 @@ html {
  */
 [data-row] {
   position: relative;
-  transition: background-color var(--dur-row, 160ms) var(--ease-feedback);
+  transition: background-color var(--dur-row) var(--ease-feedback);
 }
 
 [data-row]::before {
@@ -278,6 +282,17 @@ html {
 [data-row]:focus-visible::before,
 [data-row][aria-selected="true"]::before {
   transform: scaleY(1);
+}
+
+/*
+ * LedgerRow already draws a 2px bar at left:0 when its `accent` prop is set —
+ * the Ask/Edit/Agent ladder uses it to encode magnitude. The hover bar would
+ * land on the same two pixels in the same colour, so a hover would overwrite a
+ * meaningful indicator with a transient one. Those rows keep the tint and drop
+ * the bar.
+ */
+[data-row][data-accent]::before {
+  content: none;
 }
 
 [data-row][aria-selected="true"] {
@@ -309,14 +324,23 @@ html {
  * counter is correct by construction and costs nothing under SSR — it resolves
  * at paint.
  *
- * Anchoring, and it only works because of one thing: FullLine renders at
- * `-ml-[100vw] w-[200vw]`, so a child at `left: calc(100vw - 2.5rem)` lands
- * 2.5rem before Container's *content* edge. That is 0.5rem into the gutter
- * column only while Container fills its grid column exactly — which is why the
- * layout's middle column is `minmax(0, 80rem)` and not `--breakpoint-2xl`
- * (96rem). With the old 96rem the container floated free of the column above
- * ~1616px and these numbers would drift inward with it. Changing that column
- * width breaks this. Same mechanism as AccentLine, in the other direction.
+ * Anchoring. A FullLine is -ml-[100vw] w-[200vw], so an absolutely positioned
+ * child at `left: L` lands at `parent.content-left - 100vw + L`. To put the box
+ * in the gutter we need `L = 100vw - 2.5rem - (parent.content-left -
+ * main.left)`, and that last term is not constant: about half the FullLines on
+ * the site sit directly inside a section, where it is zero, and the rest sit
+ * inside a Container, where it is Container's own horizontal padding.
+ *
+ * Shipped without that term the two populations rendered 32px apart, and the
+ * Container half landed *inside* the content column rather than in the gutter.
+ * `--rule-inset` is how Container declares its padding to the rules nested in
+ * it; anything outside a Container falls back to 0 and was always correct.
+ *
+ * The other half of the arithmetic: the layout's middle column is
+ * `minmax(0, 80rem)`, matching Container's own max-width. At the old
+ * `--breakpoint-2xl` (96rem) the container floated free of its column on wide
+ * viewports and these numbers drifted with it. Changing either value breaks
+ * this.
  *
  * Desktop only, deliberately. Below lg the gutter columns are not rendered at
  * all, so there is nowhere for the numbers to go, and the page falls back to
@@ -326,7 +350,22 @@ main {
   counter-reset: rule;
 }
 
+/* Container declares its own padding so nested rules can subtract it. */
+.rule-inset-host {
+  --rule-inset: 1rem;
+}
+
+@media (width >= 40rem) {
+  .rule-inset-host {
+    --rule-inset: 1.5rem;
+  }
+}
+
 @media (width >= 64rem) {
+  .rule-inset-host {
+    --rule-inset: 2rem;
+  }
+
   .rule-numbered {
     counter-increment: rule;
   }
@@ -334,7 +373,7 @@ main {
   .rule-numbered::before {
     content: counter(rule, decimal-leading-zero);
     position: absolute;
-    left: calc(100vw - 2.5rem);
+    left: calc(100vw - 2.5rem - var(--rule-inset, 0px));
     top: -0.6em;
     width: 1.75rem;
     text-align: right;
@@ -342,8 +381,7 @@ main {
     font-size: var(--text-2xs);
     font-variant-numeric: tabular-nums slashed-zero;
     line-height: 1;
-    color: var(--muted-foreground-subtle);
-    opacity: 0.55;
+    color: var(--muted-foreground);
     pointer-events: none;
   }
 }
@@ -383,7 +421,8 @@ main {
   text-underline-offset: 4px;
 }
 .blog-article a:hover {
-  color: var(--primary);
+  /* --primary is a fill token: 2.62:1 on white. Body links need the text half. */
+  color: var(--primary-strong);
 }
 .blog-article ul,
 .blog-article ol {
@@ -469,7 +508,7 @@ main {
 .blog-article .heading-permalink {
   opacity: 0;
   margin-left: 0.5em;
-  color: var(--primary);
+  color: var(--primary-strong);
   font-weight: 400;
 }
 .blog-article h2:hover .heading-permalink,

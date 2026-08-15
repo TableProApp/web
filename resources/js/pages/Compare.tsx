@@ -5,6 +5,7 @@ import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { getComparisonBySlug } from '@/data/comparisons';
 import SectionLabel from '@/components/ui/section-label';
+import { FullLine } from '@/components/ui/full-line';
 
 interface Props {
     slug: string;
@@ -12,23 +13,49 @@ interface Props {
     githubStars?: number | null;
 }
 
-function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
-}
-
+/**
+ * These two glyphs are the entire content of the comparison column, so they
+ * carry the meaning on their own and are held to the 3:1 floor for graphical
+ * objects — plus a text alternative, because colour and shape alone say nothing
+ * to a screen reader.
+ *
+ * `--primary` measured 2.50:1 on the tinted TablePro column, and the cross at
+ * `muted-foreground/30` measured 1.51:1: both were effectively invisible to
+ * anyone who needed them most.
+ */
 function Check() {
     return (
-        <svg className="size-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-        </svg>
+        <>
+            <span className="sr-only">Included</span>
+            <svg
+                className="size-4 text-primary-strong"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                aria-hidden="true"
+            >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+        </>
     );
 }
 
 function Cross() {
     return (
-        <svg className="size-3.5 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
+        <>
+            <span className="sr-only">Not included</span>
+            <svg
+                className="size-3.5 text-muted-foreground"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+            >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </>
     );
 }
 
@@ -93,7 +120,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
     }
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
             <SEOHead
                 title={title}
                 description={comp.description}
@@ -107,7 +134,6 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 ]}
             />
 
-            <main>
                 {/* Hero */}
                 <div className="h-12 sm:h-16 lg:h-24" />
 
@@ -520,9 +546,6 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 </Container>
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

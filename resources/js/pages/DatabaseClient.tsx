@@ -5,15 +5,12 @@ import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { getDatabaseBySlug } from '@/data/databases';
 import SectionLabel from '@/components/ui/section-label';
+import { FullLine } from '@/components/ui/full-line';
 
 interface Props {
     slug: string;
     downloadUrls: { arm64: string; x86_64: string };
     githubStars?: number | null;
-}
-
-function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 function buildAppJsonLd(name: string, description: string, slug: string, stars?: number | null): object {
@@ -84,7 +81,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
     }
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
             <SEOHead
                 title={title}
                 description={db.description}
@@ -97,7 +94,6 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 ]}
             />
 
-            <main>
                 {/* Hero */}
                 <div className="h-12 sm:h-16 lg:h-24" />
 
@@ -558,9 +554,6 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                 </Container>
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

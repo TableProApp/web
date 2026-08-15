@@ -5,14 +5,11 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import SectionLabel from '@/components/ui/section-label';
+import { FullLine } from '@/components/ui/full-line';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
     githubStars?: number | null;
-}
-
-function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 const DOWNLOAD_TITLE = 'Download for Mac - TablePro';
@@ -110,7 +107,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
     );
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
             <SEOHead
                 title={DOWNLOAD_TITLE}
                 description={DOWNLOAD_DESCRIPTION}
@@ -122,7 +119,6 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 ]}
             />
 
-            <main>
                 <div className="h-12 sm:h-16 lg:h-24" />
 
                 {/* Label */}
@@ -152,7 +148,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                     <FullLine />
                     <p className="pl-4 text-base text-muted-foreground">
                         If your download doesn't start automatically,{' '}
-                        <a ref={manualRef} href="https://github.com/TableProApp/TablePro/releases/latest" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">click here</a>.
+                        <a ref={manualRef} href="https://github.com/TableProApp/TablePro/releases/latest" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">click here</a>.
                     </p>
                     <FullLine />
                 </Container>
@@ -229,7 +225,7 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                                 href="https://github.com/TableProApp/TablePro/releases"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
+                                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong"
                             >
                                 View all releases
                                 <svg className="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -242,9 +238,6 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 <FullLine />
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

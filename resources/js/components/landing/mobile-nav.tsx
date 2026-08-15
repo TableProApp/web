@@ -93,6 +93,14 @@ export default function MobileNav({ isOpen, onClose }: Props) {
         }
 
         const scrollY = window.scrollY;
+        /*
+         * Whatever opened this dialog is what focus must return to when it
+         * closes. Without this the trap releases focus to the top of the
+         * document, so a keyboard user who dismisses the menu has to tab all
+         * the way back to where they were — one of the three places on the site
+         * that silently destroyed focus.
+         */
+        const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
         document.body.style.position = 'fixed';
         document.body.style.top = `-${scrollY}px`;
@@ -108,6 +116,7 @@ export default function MobileNav({ isOpen, onClose }: Props) {
             document.body.style.left = '';
             document.body.style.right = '';
             window.scrollTo(0, scrollY);
+            opener?.focus();
         };
     }, [isOpen, handleKeyDown]);
 

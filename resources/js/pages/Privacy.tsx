@@ -4,13 +4,10 @@ import Footer from '@/components/landing/footer';
 import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import SectionLabel from '@/components/ui/section-label';
+import { FullLine } from '@/components/ui/full-line';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
-}
-
-function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 function Bullet() {
@@ -31,7 +28,7 @@ function SectionBlock({ title, children }: { title: string; children: React.Reac
 
 export default function Privacy({ downloadUrls }: Props) {
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} />} footer={<Footer />}>
             <SEOHead
                 title="Privacy Policy - TablePro"
                 description="What TablePro collects, what it doesn't, where your data stays, and your privacy rights under GDPR and CCPA."
@@ -42,7 +39,6 @@ export default function Privacy({ downloadUrls }: Props) {
                 ]}
             />
 
-            <main>
                 <div className="h-12 sm:h-16 lg:h-24" />
 
                 <Container>
@@ -79,7 +75,7 @@ export default function Privacy({ downloadUrls }: Props) {
                     <div className="p-6 sm:p-8">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             TablePro collects minimal data, never touches your database contents, and lets you opt out of analytics. The codebase is{' '}
-                            <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">open source on GitHub</a> under the AGPLv3, so you can verify exactly what is collected and how it is handled.
+                            <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">open source on GitHub</a> under the AGPLv3, so you can verify exactly what is collected and how it is handled.
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             This policy covers the desktop and mobile Application, the Website at tablepro.app, and the account portal at tablepro.app/account.
@@ -89,7 +85,7 @@ export default function Privacy({ downloadUrls }: Props) {
                     <SectionBlock title="1. Data Controller">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             TablePro is the data controller for personal information described in this policy. For privacy questions, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">hello@tablepro.app</a>.
+                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>.
                         </p>
                     </SectionBlock>
 
@@ -116,7 +112,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         <h3 className="mt-8 text-base font-semibold text-foreground">Update checks</h3>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             The Application uses{' '}
-                            <a href="https://sparkle-project.org" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">Sparkle</a> to check for updates. This sends your{' '}
+                            <a href="https://sparkle-project.org" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">Sparkle</a> to check for updates. This sends your{' '}
                             <strong className="text-foreground">app version</strong>, <strong className="text-foreground">macOS version</strong>, and <strong className="text-foreground">CPU architecture</strong> to our update server. Update checks cannot be disabled separately.
                         </p>
 
@@ -131,7 +127,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             The account portal at{' '}
-                            <a href="/account" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">tablepro.app/account</a>{' '}
+                            <a href="/account" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">tablepro.app/account</a>{' '}
                             uses magic-link authentication. We store your email and an authentication token for that purpose.
                         </p>
 
@@ -222,7 +218,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         </ul>
                         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                             To exercise any of these rights, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">hello@tablepro.app</a>. We respond within 30 days.
+                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>. We respond within 30 days.
                         </p>
                     </SectionBlock>
 
@@ -241,7 +237,7 @@ export default function Privacy({ downloadUrls }: Props) {
                     <SectionBlock title="12. Security">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             We use industry-standard measures to protect data: HTTPS for all network traffic, password hashing with modern algorithms, scoped API tokens, and least-privilege access for our team. No system is perfectly secure; if you suspect a vulnerability, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">hello@tablepro.app</a>.
+                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>.
                         </p>
                     </SectionBlock>
 
@@ -268,7 +264,7 @@ export default function Privacy({ downloadUrls }: Props) {
                     <SectionBlock title="15. Source Code Transparency">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             The Application source is on{' '}
-                            <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">GitHub</a> under the AGPLv3. The analytics code is in{' '}
+                            <a href="https://github.com/TableProApp/TablePro" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">GitHub</a> under the AGPLv3. The analytics code is in{' '}
                             <code className="rounded bg-muted px-1.5 py-0.5 text-xs text-foreground">TablePro/Core/Services/AnalyticsService.swift</code>. You can verify what is sent.
                         </p>
                     </SectionBlock>
@@ -282,7 +278,7 @@ export default function Privacy({ downloadUrls }: Props) {
                     <SectionBlock title="17. Contact">
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             For privacy questions, security reports, or anything else, email{' '}
-                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary">hello@tablepro.app</a>.
+                            <a href="mailto:hello@tablepro.app" className="text-foreground underline underline-offset-4 transition-colors hover:text-primary-strong">hello@tablepro.app</a>.
                         </p>
                     </SectionBlock>
 
@@ -290,9 +286,6 @@ export default function Privacy({ downloadUrls }: Props) {
                 </Container>
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

@@ -5,6 +5,7 @@ import Container from '@/components/ui/container';
 import SEOHead from '@/components/seo/seo-head';
 import { Link } from '@inertiajs/react';
 import SectionLabel from '@/components/ui/section-label';
+import { FullLine } from '@/components/ui/full-line';
 
 interface PostSummary {
     slug: string;
@@ -21,10 +22,6 @@ interface Props {
     posts: PostSummary[];
     downloadUrls: { arm64: string; x86_64: string };
     githubStars?: number | null;
-}
-
-function FullLine() {
-    return <div className="h-px w-[200vw] -ml-[100vw] bg-rule" aria-hidden="true" />;
 }
 
 const BLOG_TITLE = 'Blog - TablePro';
@@ -50,7 +47,7 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
     const itemListJsonLd = buildItemListJsonLd(posts, baseUrl);
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />}>
+        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
             <SEOHead
                 title={BLOG_TITLE}
                 description={BLOG_DESCRIPTION}
@@ -62,7 +59,6 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                 ]}
             />
 
-            <main>
                 <div className="h-12 sm:h-16 lg:h-24" />
 
                 <FullLine />
@@ -105,7 +101,7 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                                             <span aria-hidden="true">·</span>
                                             <span>{post.readingMinutes} min read</span>
                                         </div>
-                                        <h2 className="mt-3 text-2xl font-bold text-foreground transition-colors group-hover:text-primary sm:text-3xl">
+                                        <h2 className="mt-3 text-2xl font-bold text-foreground transition-colors group-hover:text-primary-strong sm:text-3xl">
                                             {post.title}
                                         </h2>
                                         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
@@ -132,9 +128,6 @@ export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
                 <FullLine />
 
                 <div className="h-12 sm:h-16 lg:h-24" />
-            </main>
-
-            <Footer />
         </LandingLayout>
     );
 }

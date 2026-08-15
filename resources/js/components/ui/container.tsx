@@ -20,7 +20,9 @@ export default function Container({ width = 'full', className, children }: Conta
     return (
         <div
             className={cn(
-                'mx-auto px-4 sm:px-6 lg:px-8',
+                // rule-inset-host publishes this padding to any FullLine nested
+                // inside, so the rule ordinals in the gutter can subtract it.
+                'rule-inset-host mx-auto px-4 sm:px-6 lg:px-8',
                 widthMap[width],
                 className,
             )}

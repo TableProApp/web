@@ -14,10 +14,21 @@ interface Props {
      * height of the page and stay visible through the header's backdrop blur.
      */
     header?: ReactNode;
+    /**
+     * Rendered as a sibling of `<main>` in a second grid row, for the same
+     * reason as `header`: a `<footer>` nested in `<main>` is not a contentinfo
+     * landmark, so the explicit `role="contentinfo"` it carries was illegally
+     * nested and announced as nothing.
+     *
+     * It takes its own row rather than sitting outside the grid so the gutter
+     * columns, which are `row-span-full`, still run the whole height of the
+     * page behind it.
+     */
+    footer?: ReactNode;
     children: ReactNode;
 }
 
-export default function LandingLayout({ header, children }: Props) {
+export default function LandingLayout({ header, footer, children }: Props) {
     return (
         <div className="overflow-x-hidden bg-background text-foreground antialiased">
             <Toaster
@@ -61,16 +72,33 @@ export default function LandingLayout({ header, children }: Props) {
                 />
 
                 {/* Main content */}
+                {/*
+                  * tabIndex -1 so the skip link can actually move focus here.
+                  * Without it the browser scrolls to the anchor but focus stays
+                  * at the top of the document, so the next Tab lands right back
+                  * in the nav the link exists to skip.
+                  */}
+                {/*
+                  * The container-width vertical rails. A grid item spanning
+                  * every row rather than an overlay inside <main>, so they
+                  * carry on past the content and down the side of the footer.
+                  */}
+                <div
+                    className="pointer-events-none z-10 col-start-1 row-span-full row-start-1 mx-auto w-full max-w-7xl px-4 sm:px-6 md:col-start-2 lg:px-8"
+                    aria-hidden="true"
+                >
+                    <div className="h-full border-x border-rule" />
+                </div>
+
                 <main
                     id="main-content"
+                    tabIndex={-1}
                     className={`relative col-start-1 row-start-1 md:col-start-2 ${header ? 'pt-16' : ''}`}
                 >
-                    {/* Container-width vertical border lines */}
-                    <div className="pointer-events-none absolute inset-0 z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-hidden="true">
-                        <div className="h-full border-x border-rule" />
-                    </div>
                     {children}
                 </main>
+
+                {footer && <div className="col-start-1 row-start-2 md:col-start-2">{footer}</div>}
 
                 {/*
                   * Right gutter. `md:block`, matching the left one — it used to

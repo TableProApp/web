@@ -23,6 +23,7 @@ export function LedgerRow({ label, children, aside, accent, className }: LedgerR
     return (
         <div
             data-row
+            {...(accent !== undefined && accent > 0 ? { 'data-accent': '' } : {})}
             className={cn(
                 'relative grid grid-cols-1 items-baseline gap-x-6 gap-y-1 px-4 py-3 sm:grid-cols-[13rem_1fr] sm:py-4',
                 className,

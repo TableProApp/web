@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
@@ -57,7 +58,75 @@ const HEAD_CELL =
     'px-4 py-3 text-left font-mono text-2xs font-semibold tracking-widest text-muted-foreground uppercase';
 const BODY_CELL = 'px-4 py-3 align-top text-sm text-muted-foreground';
 
+/**
+ * The table is the whole answer, and a six-row table is a thing people skim
+ * rather than locate themselves in. The selector lets a reader pick the level
+ * they would actually run and see that row called out.
+ *
+ * Layered, not replacing: the table below is the server-rendered baseline and
+ * works with no JavaScript at all. This adds a roving-tabindex radiogroup on
+ * top, and the selected row is marked with aria-selected, which is what the
+ * shared [data-row] treatment already keys off.
+ *
+ * Every string it shows comes from LEVELS. The one derived value is the floor
+ * on an unguarded statement, which the section lede states outright: even at
+ * the loosest level a DELETE with no WHERE stops and asks.
+ */
+function unguardedOutcome(level: SafeModeLevel): string {
+    return level.write === 'runs' ? 'confirmation' : level.write;
+}
+
+function LevelPicker({ selected, onSelect }: { selected: number; onSelect: (index: number) => void }) {
+    const refs = useRef<(HTMLButtonElement | null)[]>([]);
+
+    function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+        const step = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1
+            : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1
+            : 0;
+
+        if (step === 0) {
+            return;
+        }
+
+        event.preventDefault();
+        const next = (selected + step + LEVELS.length) % LEVELS.length;
+        onSelect(next);
+        refs.current[next]?.focus();
+    }
+
+    return (
+        <div
+            role="radiogroup"
+            aria-label="Safe Mode level"
+            onKeyDown={handleKeyDown}
+            className="flex flex-wrap gap-2 px-4 py-4"
+        >
+            {LEVELS.map((level, i) => (
+                <button
+                    key={level.name}
+                    ref={(el) => { refs.current[i] = el; }}
+                    type="button"
+                    role="radio"
+                    aria-checked={i === selected}
+                    tabIndex={i === selected ? 0 : -1}
+                    onClick={() => onSelect(i)}
+                    className={`rounded-full border px-3 py-1.5 font-mono text-2xs tracking-widest uppercase transition-colors duration-(--dur-tap) ease-(--ease-feedback) ${
+                        i === selected
+                            ? 'border-primary bg-primary/10 text-primary-strong'
+                            : 'border-rule text-muted-foreground'
+                    }`}
+                >
+                    {level.name}
+                </button>
+            ))}
+        </div>
+    );
+}
+
 export default function Safety() {
+    const [selected, setSelected] = useState(0);
+    const level = LEVELS[selected];
+
     return (
         <SectionShell
             id="safety"
@@ -66,6 +135,20 @@ export default function Safety() {
             headlineMuted="Set per connection."
             lede="Even at the loosest setting, DROP, TRUNCATE and a DELETE with no WHERE clause stop and ask."
         >
+            <FullLine />
+            <Container>
+                <LevelPicker selected={selected} onSelect={setSelected} />
+            </Container>
+            <FullLine />
+            <Container>
+                <p className="px-4 py-4 text-sm text-muted-foreground">
+                    At <span className="font-semibold text-foreground">{level.name}</span>, a scoped{' '}
+                    <code className="font-mono text-xs text-foreground">UPDATE</code> {level.write}
+                    {level.auth !== 'none' && <> and asks for {level.auth}</>}. An unguarded{' '}
+                    <code className="font-mono text-xs text-foreground">DELETE FROM users</code>{' '}
+                    {unguardedOutcome(level)} — that floor holds at every level, including this one.
+                </p>
+            </Container>
             <FullLine />
             <Container>
                 {/*
@@ -89,6 +172,9 @@ export default function Safety() {
                             {LEVELS.map((level, i) => (
                                 <tr
                                     key={level.name}
+                                    data-row
+                                    data-accent={level.accent > 0 ? '' : undefined}
+                                    aria-selected={i === selected}
                                     className={`border-b border-rule last:border-b-0 ${ROW_TINT[i]}`}
                                 >
                                     <th
