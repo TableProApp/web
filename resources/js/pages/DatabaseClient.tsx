@@ -164,7 +164,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                             alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
                             width={3024}
                             height={1720}
-                            className="w-full rounded-xl border border-rule shadow-sm"
+                            className="app-plate w-full"
                         />
                     </picture>
                     <picture className="contents dark:hidden">
@@ -177,7 +177,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                             alt={`TablePro connected to a ${db.name} database showing the data grid and SQL editor`}
                             width={3024}
                             height={1720}
-                            className="w-full rounded-xl border border-rule shadow-sm"
+                            className="app-plate w-full"
                         />
                     </picture>
                 </Container>
@@ -264,13 +264,13 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         <img
                             src="/images/features/data-grid-light.png"
                             alt={`TablePro data grid showing ${db.name} table rows with inline editing`}
-                            className="w-full rounded-lg border border-rule shadow-sm dark:hidden"
+                            className="app-plate w-full dark:hidden"
                             loading="lazy"
                         />
                         <img
                             src="/images/features/data-grid-dark.png"
                             alt={`TablePro data grid showing ${db.name} table rows with inline editing`}
-                            className="hidden w-full rounded-lg border border-rule shadow-sm dark:block"
+                            className="hidden app-plate w-full dark:block"
                             loading="lazy"
                         />
                     </div>
@@ -317,13 +317,13 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
                         <img
                             src="/images/features/sql-editor-light.png"
                             alt={`TablePro SQL editor with ${db.name} query and autocomplete`}
-                            className="w-full rounded-lg border border-rule shadow-sm dark:hidden"
+                            className="app-plate w-full dark:hidden"
                             loading="lazy"
                         />
                         <img
                             src="/images/features/sql-editor-dark.png"
                             alt={`TablePro SQL editor with ${db.name} query and autocomplete`}
-                            className="hidden w-full rounded-lg border border-rule shadow-sm dark:block"
+                            className="hidden app-plate w-full dark:block"
                             loading="lazy"
                         />
                     </div>

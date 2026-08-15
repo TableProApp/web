@@ -394,7 +394,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                             alt="TablePro interface showing the data grid and SQL editor"
                             width={3024}
                             height={1720}
-                            className="w-full rounded-xl border border-rule shadow-sm"
+                            className="app-plate w-full"
                             loading="lazy"
                         />
                     </picture>
@@ -408,7 +408,7 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                             alt="TablePro interface showing the data grid and SQL editor"
                             width={3024}
                             height={1720}
-                            className="w-full rounded-xl border border-rule shadow-sm"
+                            className="app-plate w-full"
                             loading="lazy"
                         />
                     </picture>
