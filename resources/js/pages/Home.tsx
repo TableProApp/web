@@ -9,6 +9,7 @@ import Workbench from '@/components/landing/workbench';
 import Architecture from '@/components/landing/architecture';
 import AgentsMcp from '@/components/landing/agents-mcp';
 import Mobile from '@/components/landing/mobile';
+import ObjectionRow from '@/components/landing/objection-row';
 import Safety from '@/components/landing/safety';
 import DepthGrid from '@/components/landing/depth-grid';
 import DownloadRail from '@/components/landing/download-rail';
@@ -129,6 +130,14 @@ export default function Home({
             <SpecStrip latestRelease={latestRelease} />
             {/* Sponsors sit high on purpose: the visible credit is what attracts the next one. */}
             <Sponsors />
+
+            {/*
+              * The two questions that stop a download, answered while the
+              * reader is still deciding whether to keep scrolling rather than
+              * at position fifteen.
+              */}
+            <ObjectionRow />
+
             <DatabaseGrid />
 
             {/*

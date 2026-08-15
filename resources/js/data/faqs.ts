@@ -3,14 +3,19 @@ export interface FaqItem {
     answer: string;
 }
 
-import { homeFaqs } from '@/data/home-faqs';
+import { homeFaqs, relocatedFaqs } from '@/data/home-faqs';
 
 /**
- * The /faq page. The first eight items are the homepage set; the rest add the
- * depth that does not belong on the homepage.
+ * The /faq page. The first eight items are everything the homepage asks — the
+ * four in its FAQ section plus the four it now asks inline, where they arise —
+ * and the rest add the depth that does not belong on the homepage at all.
+ *
+ * Relocating a question on the homepage must never remove it from here. This
+ * page is the knowledge base; the homepage is objection handling.
  */
 export const faqs: FaqItem[] = [
     ...homeFaqs,
+    ...relocatedFaqs,
     {
         question: 'Do I need to pay for the AI features?',
         answer: 'No, and there is no AI subscription to buy from us. You bring a provider. Thirteen are supported. Some take an API key, some sign in with an account you already have such as GitHub Copilot, ChatGPT or xAI, and three run entirely on your machine: Ollama, llama.cpp and MLX. Keys are stored in the Keychain.',

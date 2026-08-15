@@ -36,9 +36,14 @@ export default function FaqPage({ downloadUrls, githubStars }: Props) {
                     { name: 'FAQ', path: '/faq' },
                 ]}
             />
-            <div>
-                <Faq />
-            </div>
+            {/*
+              * /faq rendered no h1 at all — SectionShell emits h2, so the page
+              * started its heading tree at level 2. sr-only rather than visible
+              * because the FAQ section already opens with its own headline, and
+              * two stacked headlines saying the same thing is worse than none.
+              */}
+            <h1 className="sr-only">Frequently asked questions about TablePro</h1>
+            <Faq />
         </LandingLayout>
     );
 }

@@ -5,6 +5,7 @@ import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
+import { relocatedFaq } from '@/data/home-faqs';
 import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
 
 /** Kept byte-identical to the tokenized block below, since this is what gets copied. */
@@ -112,6 +113,8 @@ function CopyButton() {
     );
 }
 
+const aiSafetyFaq = relocatedFaq('Can the AI drop a table on production?');
+
 /**
  * No screenshot exists for the MCP server, so this section stays typographic:
  * the config you paste on the left, the permission ladder on the right.
@@ -212,6 +215,22 @@ export default function AgentsMcp() {
                         <Chips items={PROVIDERS} label="Supported AI providers" />
                     </LedgerRow>
                 </Ledger>
+            </Container>
+            <FullLine />
+
+            {/*
+              * This section raises the most alarming claim on the page, so it
+              * carries the first half of the answer rather than deferring all of
+              * it to the FAQ. Verbatim from relocatedFaqs — one copy of the
+              * answer, and /faq still lists it.
+              */}
+            <Container>
+                <div className="border-l-2 border-primary p-4 sm:p-6">
+                    <h3 className="text-base font-semibold text-foreground">{aiSafetyFaq.question}</h3>
+                    <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                        {aiSafetyFaq.answer}
+                    </p>
+                </div>
             </Container>
             <FullLine />
 

@@ -4,6 +4,7 @@ import { GridCell } from '@/components/ui/grid-cell';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 import ThemedImage from '@/components/ui/themed-image';
+import Button from '@/components/ui/button';
 
 /**
  * The iPhone frame is decorative chrome; the screenshot inside carries the alt
@@ -80,12 +81,11 @@ export default function Mobile() {
 
             <Container>
                 <div className="px-4 py-4">
-                    <a
+                    <Button variant="secondary"
                         href="#footer-cta"
-                        className="inline-flex items-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                     >
                         Join the iOS beta <span aria-hidden="true">&rarr;</span>
-                    </a>
+                    </Button>
                 </div>
             </Container>
             <FullLine />

@@ -3,6 +3,7 @@ import Container from '@/components/ui/container';
 import { AccentLine, FullLine } from '@/components/ui/full-line';
 import ThemedImage from '@/components/ui/themed-image';
 import SectionLabel from '@/components/ui/section-label';
+import Button from '@/components/ui/button';
 
 interface Props {
     githubStars?: number | null;
@@ -74,27 +75,25 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                 </p>
                 <FullLine />
                 <div className="flex flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center">
-                    <a
+                    <Button
                         href="/download"
-                        className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
                     >
                         <AppleGlyph />
                         Download for Mac
-                    </a>
-                    <a
+                    </Button>
+                    <Button variant="secondary"
                         href={GITHUB_REPO_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 rounded-full border border-rule px-6 py-3 text-sm font-semibold text-foreground transition-colors"
                     >
-                        <Star className="size-4" strokeWidth={1.75} aria-hidden="true" />
+                        <Star strokeWidth={1.75} aria-hidden="true" />
                         View source
                         {githubStars && githubStars > 0 ? (
-                            <span className="font-mono text-xs text-muted-foreground">
+                            <span>
                                 {formatStarCount(githubStars)}
                             </span>
                         ) : null}
-                    </a>
+                    </Button>
                     <a
                         href="#mobile"
                         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"

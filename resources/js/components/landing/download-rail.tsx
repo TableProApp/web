@@ -1,3 +1,4 @@
+import Button from '@/components/ui/button';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 
@@ -37,13 +38,10 @@ export default function DownloadRail({ note }: Props) {
             <Container>
                 <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
                     <p className="font-mono text-xs text-muted-foreground">{note}</p>
-                    <a
-                        href="/download"
-                        className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-                    >
+                    <Button href="/download" size="sm" className="shrink-0">
                         <AppleGlyph />
                         Download for Mac
-                    </a>
+                    </Button>
                 </div>
             </Container>
             <FullLine />
