@@ -61,8 +61,15 @@ export default function LandingLayout({ header, children }: Props) {
                 />
 
                 {/* Main content */}
+                {/*
+                  * tabIndex -1 so the skip link can actually move focus here.
+                  * Without it the browser scrolls to the anchor but focus stays
+                  * at the top of the document, so the next Tab lands right back
+                  * in the nav the link exists to skip.
+                  */}
                 <main
                     id="main-content"
+                    tabIndex={-1}
                     className={`relative col-start-1 row-start-1 md:col-start-2 ${header ? 'pt-16' : ''}`}
                 >
                     {/* Container-width vertical border lines */}
