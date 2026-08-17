@@ -219,3 +219,89 @@ it('serves a comparison page for every slug the route accepts, and vice versa', 
 
     expect($routed)->toBe($authored);
 });
+
+it('never implies a database count other than 25', function (): void {
+    /*
+     * Four entries carried counts from the era when TablePro shipped 18 —
+     * Postico promised "Postgres plus 17 other databases" and named five
+     * engines "and 13 more", HeidiSQL the same. Both read as 18, on pages whose
+     * own table said 25 two rows below.
+     *
+     * Relative phrasing is what rots: "plus N more" has to be re-derived every
+     * time the driver count moves, and nobody remembers to. This catches the
+     * ones that no longer add up.
+     */
+    $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+
+    $offenders = [];
+
+    foreach ($entries as $entry) {
+        array_walk_recursive($entry, function ($value) use (&$offenders, $entry): void {
+            if (! is_string($value)) {
+                return;
+            }
+
+            // "Postgres plus 24 other databases" / "... and 20 more"
+            if (! preg_match('/\b(?:plus|and)\s+(\d{1,3})\s+(?:other|more)\b/i', $value, $m)) {
+                return;
+            }
+
+            /*
+             * Only the engines named in the same sentence count. Postico's
+             * verdict reads "excellent for Postgres alone. TablePro covers the
+             * same ground for Postgres plus 24 other databases" — counting the
+             * whole string sees Postgres twice and makes 25 look like 26.
+             */
+            $before = substr($value, 0, strpos($value, $m[0]));
+            $sentence = preg_split('/(?<=[.!?])\s+/', $before);
+
+            $named = preg_match_all(
+                '/\b(PostgreSQL|Postgres|MySQL|MariaDB|MongoDB|Redis|SQLite|SQL Server|Redshift|CockroachDB|Greenplum|Snowflake|Cassandra|DuckDB|Oracle|ClickHouse)\b/i',
+                (string) end($sentence),
+            );
+
+            if ($named + (int) $m[1] !== 25) {
+                $offenders[] = "{$entry['slug']}: \"{$m[0]}\" after {$named} named engines = " . ($named + (int) $m[1]);
+            }
+        });
+    }
+
+    expect($offenders)->toBe([], "Database counts that do not total 25:\n  " . implode("\n  ", $offenders));
+});
+
+it('quotes one price per competitor claim, consistently within an entry', function (): void {
+    /*
+     * The OG card is generated from its own fields, so it drifts silently from
+     * the page it advertises: Postico's said $40 against $69/$99 in the entry,
+     * DataGrip's said $100 against $99. Nobody sees an OG image until it is
+     * already being shared.
+     */
+    $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+
+    foreach ($entries as $entry) {
+        if (! isset($entry['ogCompetitorMetaHtml'])) {
+            continue;
+        }
+
+        preg_match_all('/\$[\d,]+(?:\.\d{2})?/', $entry['ogCompetitorMetaHtml'], $onCard);
+
+        if ($onCard[0] === []) {
+            continue;
+        }
+
+        $inEntry = [];
+        array_walk_recursive($entry, function ($value) use (&$inEntry): void {
+            if (is_string($value)) {
+                preg_match_all('/\$[\d,]+(?:\.\d{2})?/', $value, $found);
+                $inEntry = array_merge($inEntry, $found[0]);
+            }
+        });
+
+        foreach ($onCard[0] as $price) {
+            expect(array_count_values($inEntry)[$price] ?? 0)->toBeGreaterThan(
+                1,
+                "{$entry['slug']}: the OG card quotes {$price}, which appears nowhere else in the entry",
+            );
+        }
+    }
+});
