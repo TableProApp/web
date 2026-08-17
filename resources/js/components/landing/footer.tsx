@@ -16,6 +16,9 @@ const columns = [
             { label: 'vs Navicat', href: '/compare/navicat' },
             { label: 'vs HeidiSQL', href: '/compare/heidisql' },
             { label: 'vs phpMyAdmin', href: '/compare/phpmyadmin' },
+            // Two of the ten comparison pages had no link anywhere on the site.
+            { label: 'vs Sequel Pro', href: '/compare/sequel-pro' },
+            { label: 'vs Azimutt', href: '/compare/azimutt' },
         ],
     },
     {

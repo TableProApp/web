@@ -148,7 +148,10 @@ export default function Home({
               */}
             <Workbench />
             <SwitchFrom />
-            <DownloadRail note="Your existing connections import on first launch. macOS 14+, Apple Silicon and Intel." />
+            <DownloadRail
+                location="switch"
+                note="Your existing connections import on first launch. macOS 14+, Apple Silicon and Intel."
+            />
 
             <Architecture />
 
@@ -160,7 +163,10 @@ export default function Home({
               */}
             <AgentsMcp />
             <Safety />
-            <DownloadRail note="Safe Mode is on before you connect anything. macOS 14+, Apple Silicon and Intel." />
+            <DownloadRail
+                location="safety"
+                note="Safe Mode is on before you connect anything. macOS 14+, Apple Silicon and Intel."
+            />
 
             <DepthGrid />
             <OpenSource latestRelease={latestRelease} />

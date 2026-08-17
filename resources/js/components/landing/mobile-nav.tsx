@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import Button from '@/components/ui/button';
+import { trackDownload } from '@/lib/analytics';
 
 interface Props {
     isOpen: boolean;
@@ -156,7 +157,14 @@ export default function MobileNav({ isOpen, onClose }: Props) {
 
                 <div className="my-1 h-px w-12 bg-foreground/10" />
 
-                <Button href="/download" size="lg" onClick={onClose}>
+                <Button
+                    href="/download"
+                    size="lg"
+                    onClick={() => {
+                        trackDownload('mobile-nav');
+                        onClose();
+                    }}
+                >
                     Download for Mac
                 </Button>
                 <a
