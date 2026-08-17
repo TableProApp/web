@@ -300,12 +300,12 @@
     "name": "DataGrip",
     "tagline": "Free, Native DataGrip Alternative for Mac.",
     "description": "Native DataGrip alternative for Mac. Free, open source, fast. JetBrains-quality editor without the IntelliJ weight.",
-    "longDescription": "DataGrip is JetBrains' database IDE, built on the IntelliJ platform in Java. It costs $99 the first year, $79 the second, $59 from year three; or $9.90 per month. TablePro is free, native macOS, and starts in 1 second. Same SQL editor power for daily work, without the IDE weight.",
+    "longDescription": "DataGrip is JetBrains' database IDE, built on the IntelliJ platform in Java. It costs $99 the first year, $79 the second, $59 from year three; or $10.90 per month. TablePro is free, native macOS, and starts in 1 second. Same SQL editor power for daily work, without the IDE weight.",
     "rows": [
       {
         "label": "Price",
         "tablePro": "Free",
-        "competitor": "$99/yr individual (first year), $9.90/mo"
+        "competitor": "$99/yr individual (first year), $10.90/mo"
       },
       {
         "label": "Open Source",
@@ -364,7 +364,7 @@
       }
     ],
     "prosTablePro": [
-      "Free vs $99/yr (DataGrip Personal) or $9.90/mo",
+      "Free vs $99/yr (DataGrip Personal) or $10.90/mo",
       "Native macOS, not Java",
       "1 second start vs ~10 seconds",
       "80 MB RAM vs 1-2 GB",
@@ -387,7 +387,7 @@
       "datagrip alternative mac"
     ],
     "ogTableProMetaHtml": "<strong>$0 Forever</strong><br>SwiftUI · 80 MB RAM<br>One-click connect",
-    "ogCompetitorMetaHtml": "<strong>$100/yr individual</strong><br>IntelliJ . 1-2 GB RAM<br>1.1 GB download",
+    "ogCompetitorMetaHtml": "<strong>$99/yr individual</strong><br>IntelliJ . 1-2 GB RAM<br>1.1 GB download",
     "ogPunchline": "Free. Native. No JetBrains tax.",
     "ogStatValue": "10x",
     "ogStatLabel": "LESS RAM",
@@ -445,12 +445,12 @@
     "name": "Navicat",
     "tagline": "Free, Native Navicat Alternative for Mac.",
     "description": "Native Navicat alternative for Mac. Free, open source, fast. 25 databases, AI assistant, iOS app.",
-    "longDescription": "Navicat Premium covers 7+ databases in one app. It costs $399 per year subscription or $1,299 for a perpetual license per user. TablePro covers 25 databases and is free, open source under AGPLv3. Native macOS, no per-database editions.",
+    "longDescription": "Navicat Premium covers 7+ databases in one app. It costs $399 per year subscription or $1,599 for a perpetual license per user. TablePro covers 25 databases and is free, open source under AGPLv3. Native macOS, no per-database editions.",
     "rows": [
       {
         "label": "Price",
         "tablePro": "Free",
-        "competitor": "$399/yr or $1,299 perpetual"
+        "competitor": "$399/yr or $1,599 perpetual"
       },
       {
         "label": "Open Source",
@@ -514,7 +514,7 @@
       }
     ],
     "prosTablePro": [
-      "Free vs $399/yr or $1,299 perpetual",
+      "Free vs $399/yr or $1,599 perpetual",
       "25 databases in one app",
       "Native macOS",
       "AI SQL assistant in the free tier",
@@ -538,7 +538,7 @@
       "navicat too expensive"
     ],
     "ogTableProMetaHtml": "<strong>$0 Lifetime</strong><br>SwiftUI · open source<br>One app, every DB",
-    "ogCompetitorMetaHtml": "<strong>$1,299+ bundle</strong><br>Per-DB licenses<br>Closed source",
+    "ogCompetitorMetaHtml": "<strong>$1,599+ perpetual</strong><br>Per-DB licenses<br>Closed source",
     "ogPunchline": "Free vs $30/month. One app for every database.",
     "ogStatValue": "100%",
     "ogStatLabel": "CHEAPER",
@@ -906,7 +906,7 @@
     "slug": "postico",
     "name": "Postico",
     "tagline": "Multi-Database Postico Alternative for Mac.",
-    "description": "Native, free, open-source Postico alternative for Mac. Postgres plus MySQL, MongoDB, Redis, SQLite, and 13 more.",
+    "description": "Native, free, open-source Postico alternative for Mac. Postgres plus MySQL, MongoDB, Redis, SQLite, and 20 more.",
     "longDescription": "Postico 2 is a polished native Mac client for PostgreSQL, Redshift, CockroachDB, and Greenplum. It costs $69 for a personal license (3 devices) or $99 per device for commercial use. TablePro is free and open source under AGPLv3, and covers 25 databases beyond Postgres.",
     "rows": [
       {
@@ -1001,7 +1001,7 @@
     ],
     "chooseTablePro": "you work with multiple databases or want AI and iOS support in the free tier.",
     "chooseCompetitor": "Postgres, Redshift, CockroachDB, or Greenplum is your only database and you prefer paying once for a focused tool.",
-    "verdict": "Postico is excellent for Postgres alone. TablePro covers the same ground for Postgres plus 17 other databases, free.",
+    "verdict": "Postico is excellent for Postgres alone. TablePro covers the same ground for Postgres plus 24 other databases, free.",
     "keywords": [
       "postico alternative",
       "tablepro vs postico",
@@ -1010,8 +1010,8 @@
       "multi-database mac client"
     ],
     "ogTableProMetaHtml": "<strong>FREE</strong> · 25 databases",
-    "ogCompetitorMetaHtml": "<strong>$40</strong> · Postgres only",
-    "ogPunchline": "Postgres plus 17 more. Free. Native.",
+    "ogCompetitorMetaHtml": "<strong>$69</strong> · Postgres only",
+    "ogPunchline": "Postgres plus 24 more. Free. Native.",
     "ogStatValue": "25",
     "ogStatLabel": "DATABASES",
     "benchmarks": {
@@ -1229,7 +1229,7 @@
     "name": "HeidiSQL",
     "tagline": "Native HeidiSQL Alternative for Mac.",
     "description": "Native HeidiSQL alternative for Mac. No Wine, no VM. Free and open source. 25 databases, AI assistant, iCloud sync.",
-    "longDescription": "HeidiSQL is a free GPL-2.0 database client built with Delphi for Windows. As of 2026 there is a separate Lazarus-based macOS preview build, but it remains a Windows-first app. TablePro is built natively for macOS in Swift and AppKit and covers MySQL, MariaDB, PostgreSQL, SQL Server, SQLite (the same databases HeidiSQL handles) plus 13 more.",
+    "longDescription": "HeidiSQL is a free GPL-2.0 database client built with Delphi for Windows. As of 2026 there is a separate Lazarus-based macOS preview build, but it remains a Windows-first app. TablePro is built natively for macOS in Swift and AppKit and covers MySQL, MariaDB, PostgreSQL, SQL Server, SQLite (the same databases HeidiSQL handles) plus 20 more.",
     "rows": [
       {
         "label": "Price",
