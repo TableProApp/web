@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="index,follow" />
+    {{-- No robots tag here. SEOHead emits exactly one per page, so a tag in the
+         layout meant every page shipped two directives — and on a `noindex`
+         page they contradicted each other. --}}
     {{-- Matches --background in each theme, computed from the tokens: oklch(1 0 0)
          and oklch(0.145 0 0). It tints the browser's own chrome, so an accent
          colour here paints the address bar something that appears nowhere on

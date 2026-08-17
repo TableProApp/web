@@ -48,6 +48,9 @@ function landingHtml(): string
             $reason = 'SSR service not running. Run: php artisan inertia:start-ssr';
         } else {
             fclose($probe);
+            // Shared with HomepageRenderTest: a running service is not the same
+            // as a current one, and a stale bundle silently validates old markup.
+            assertSsrBundleIsFresh();
         }
     }
 

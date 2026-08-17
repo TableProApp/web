@@ -10,6 +10,7 @@ import { PROSE_LINK } from '@/components/ui/prose-link';
 import { PANEL_TITLE } from '@/components/ui/grid-cell';
 import { trackDownload } from '@/lib/analytics';
 import SponsorRow from '@/components/landing/sponsor-row';
+import { STARTER_PRICE, TEAM_SEAT_PRICE, type TierPrice } from '@/data/pricing';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -28,7 +29,7 @@ interface Tier {
     key: 'free' | 'starter' | 'team';
     name: string;
     description: string;
-    price: 'free' | { monthly: number; yearly: number; lifetime: number };
+    price: 'free' | TierPrice;
     featured: boolean;
     summary?: string;
     includesFrom?: string;
@@ -61,7 +62,7 @@ function buildTiers(teamMinSeats: number): Tier[] {
             key: 'starter',
             name: 'Starter',
             description: 'For people who use it every day',
-            price: { monthly: 2.99, yearly: 24, lifetime: 59 },
+            price: STARTER_PRICE,
             featured: true,
             includesFrom: 'Free',
             features: [
@@ -76,7 +77,7 @@ function buildTiers(teamMinSeats: number): Tier[] {
             key: 'team',
             name: 'Team',
             description: 'For teams and organizations',
-            price: { monthly: 1.25, yearly: 10, lifetime: 25 },
+            price: TEAM_SEAT_PRICE,
             featured: false,
             includesFrom: 'Starter',
             features: [
