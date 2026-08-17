@@ -177,7 +177,14 @@ COMPOSER_CHANGED=false
 PHP_CHANGED=false
 CONTENT_CHANGED=false
 
-if changed '^(resources/(js|css)/|vite\.config\.|package(-lock)?\.json|tsconfig\.json)'; then
+# resources/data/*.json counts as front-end source, not content. Every file in
+# there is `import`ed by a module under resources/js — comparisons.json by
+# data/comparisons.ts, databases.json by data/databases.ts, database-grid.json
+# by the grid component — so Vite inlines them into the bundle at build time.
+# Editing one and skipping the rebuild leaves the old copy being served: that is
+# how corrected prices and database counts merged, deployed green, and never
+# reached the site.
+if changed '^(resources/(js|css|data)/|vite\.config\.|package(-lock)?\.json|tsconfig\.json)'; then
     FRONTEND_CHANGED=true
 fi
 

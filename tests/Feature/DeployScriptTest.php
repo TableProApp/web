@@ -59,15 +59,49 @@ it('rebuilds the bundles for a component, a stylesheet or a dependency', functio
     'tsconfig.json',
 ]);
 
-it('does not rebuild the bundles for prose, data or PHP', function (string $path) {
+it('does not rebuild the bundles for prose, templates or PHP', function (string $path) {
     expect(deployMatches('FRONTEND_CHANGED', $path))->toBeFalse();
 })->with([
     'resources/blog/mcp-database-claude.md',
-    'resources/data/databases.json',
     'resources/views/app.blade.php',
     'app/Http/Controllers/LandingController.php',
     'docs/deployment.md',
 ]);
+
+it('rebuilds the bundles for every data file the front end imports', function (): void {
+    /*
+     * `resources/data/*.json` reads like content and is not. Vite inlines each
+     * of these into the bundle at build time, so editing one without rebuilding
+     * leaves the previous copy being served — which is exactly what happened:
+     * corrected prices and database counts merged, deployed green, and never
+     * reached the site, because the deploy classified the change as content.
+     *
+     * Derived from the imports rather than hardcoded, so a new data file cannot
+     * be added to the bundle and quietly miss the rebuild.
+     */
+    $imported = [];
+
+    foreach (glob(base_path('resources/js/**/*.{ts,tsx}'), GLOB_BRACE) ?: [] as $file) {
+        preg_match_all("#from '[^']*data/([a-z0-9-]+\.json)'#i", file_get_contents($file), $found);
+        $imported = array_merge($imported, $found[1]);
+    }
+
+    $imported = array_values(array_unique($imported));
+
+    expect($imported)->not->toBeEmpty('Expected the front end to import at least one data file');
+
+    foreach ($imported as $json) {
+        expect(deployMatches('FRONTEND_CHANGED', "resources/data/{$json}"))->toBeTrue(
+            "resources/data/{$json} is bundled but does not trigger a front-end rebuild",
+        );
+    }
+
+    // And every file sitting in that directory, so an unimported one still
+    // rebuilds rather than depending on someone noticing it became bundled.
+    foreach (glob(base_path('resources/data/*.json')) as $file) {
+        expect(deployMatches('FRONTEND_CHANGED', 'resources/data/' . basename($file)))->toBeTrue();
+    }
+});
 
 it('downloads dependencies only when the lock file moves', function () {
     expect(deployMatches('COMPOSER_CHANGED', 'composer.lock'))->toBeTrue();
