@@ -68,7 +68,19 @@ export default function SEOHead({
         <Head>
             <title>{title}</title>
             <meta name="description" content={description} />
-            {noindex && <meta name="robots" content="noindex, nofollow" />}
+            {/*
+              * Unconditional, and the only robots tag on the page. It used to
+              * render only in the noindex case while `app.blade.php` hardcoded
+              * `index,follow`, so every page carried two and a noindex page
+              * carried two that disagreed.
+              *
+              * `max-image-preview:large` matters on a site whose hero is a
+              * 3024x1720 screenshot.
+              */}
+            <meta
+                name="robots"
+                content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
+            />
             <link rel="canonical" href={canonicalUrl} />
 
             <meta property="og:type" content={ogType} />
@@ -82,6 +94,8 @@ export default function SEOHead({
             <meta property="og:site_name" content={SITE_NAME} />
 
             <meta name="twitter:card" content={twitterCard} />
+            {/* Without this the card carries no attribution on any share. */}
+            <meta name="twitter:site" content="@TableProApp" />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={ogImageUrl} />
