@@ -5,16 +5,26 @@ import SectionShell from '@/components/ui/section-shell';
 import { getComparisonBySlug, type ComparisonInfo } from '@/data/comparisons';
 
 /**
- * Three competitors, one per runtime: a JVM desktop app, a JVM IDE, and an
- * Electron app. The point of the table is the category, not the vendor, which
- * is also the shape least likely to compete with the ten /compare/* pages that
- * each own their competitor's name.
+ * Four competitors: a JVM desktop app, a JVM IDE, an Electron app, and the one
+ * other native Mac client. The first three lose the runtime argument on the
+ * Technology row; TablePlus does not, and that is the honest reason it is here.
+ * Against TablePlus the row that separates the two is Price.
  *
- * TablePlus is deliberately absent. /compare/tableplus returns 410, and
- * StaleClaimsTest fails the build on any landing component that links it. It
- * appears in SwitchFrom as an import source only.
+ * Ordered so the runtime contrast reads first and the like-for-like comparison
+ * closes it.
  */
-const SLUGS = ['dbeaver', 'datagrip', 'beekeeper-studio'] as const;
+const SLUGS = ['dbeaver', 'datagrip', 'beekeeper-studio', 'tableplus'] as const;
+
+/**
+ * Rendered where a competitor has no measurement for a metric.
+ *
+ * TablePlus ships without a `benchmarks` block, because it is native like
+ * TablePro and nothing published about either app's cold start survives
+ * scrutiny — the tidy figures in circulation trace back to competitor
+ * comparison pages, this site's included. An em-dash and a footnote say "not
+ * measured", which is true; a number here would not be.
+ */
+const UNMEASURED = '—';
 
 interface Metric {
     label: string;
@@ -39,7 +49,7 @@ const METRICS: Metric[] = [
  */
 function valueFor(comparison: ComparisonInfo, metric: Metric, side: 'tablePro' | 'competitor'): string {
     if (metric.benchmark) {
-        return comparison.benchmarks?.[side][metric.benchmark] ?? '';
+        return comparison.benchmarks?.[side][metric.benchmark] ?? UNMEASURED;
     }
 
     const row = comparison.rows.find((candidate) => candidate.label === metric.row);
@@ -66,7 +76,7 @@ export default function CompareTable() {
             tone="raised"
             id="compare"
             label="Comparison"
-            headline="TablePro, DBeaver, DataGrip and Beekeeper Studio."
+            headline="TablePro, DBeaver, DataGrip, Beekeeper Studio and TablePlus."
             headlineMuted="Startup, memory, runtime and price."
         >
             <FullLine />
@@ -77,10 +87,10 @@ export default function CompareTable() {
                   * and FullLine stays outside it, since its 200vw bleed would
                   * add scroll width in here.
                   */}
-                <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="TablePro compared with three other clients">
+                <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="TablePro compared with four other clients">
                     <DataTable
-                        className="min-w-[40rem]"
-                        caption="Cold start, idle memory, runtime and price, compared across TablePro, DBeaver, DataGrip and Beekeeper Studio."
+                        className="min-w-[48rem]"
+                        caption="Cold start, idle memory, runtime and price, compared across TablePro, DBeaver, DataGrip, Beekeeper Studio and TablePlus."
                     >
                         <thead>
                             <tr>
@@ -140,7 +150,8 @@ export default function CompareTable() {
             <Container>
                 <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
                     Every competitor figure comes from its own comparison page, which is where the version tested is
-                    written down.
+                    written down. TablePlus is native like TablePro, and its cold start and idle memory are not
+                    measured here rather than estimated.
                 </p>
             </Container>
             <FullLine />

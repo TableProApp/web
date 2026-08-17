@@ -128,7 +128,13 @@ it('keeps every FAQ question, and asks each of them in one place', function () u
 it('quotes TablePro download size and engine count consistently on the compare pages', function (): void {
     $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
 
-    foreach ($entries as $entry) {
+    /*
+     * `benchmarks` is optional. The TablePlus entry ships without one, because
+     * it is native like TablePro and no published cold-start or memory figure
+     * for either survives scrutiny — so the page states no number rather than
+     * an invented one.
+     */
+    foreach (array_filter($entries, static fn(array $entry): bool => isset($entry['benchmarks'])) as $entry) {
         expect($entry['benchmarks']['tablePro']['download'])
             ->toBe('~20 MB', "{$entry['slug']} still quotes the old download size");
     }
@@ -171,11 +177,14 @@ it('states each performance metric in exactly one place', function (): void {
         }
     }
 
-    // And TablePro's own figures are one product, so they are one string.
+    // And TablePro's own figures are one product, so they are one string —
+    // across the entries that quote them at all.
+    $measured = array_values(array_filter($entries, static fn(array $entry): bool => isset($entry['benchmarks'])));
+
     foreach (['startup', 'memory', 'download'] as $metric) {
         $values = array_unique(array_map(
             static fn(array $entry): string => $entry['benchmarks']['tablePro'][$metric],
-            $entries,
+            $measured,
         ));
 
         expect($values)->toHaveCount(
@@ -185,23 +194,28 @@ it('states each performance metric in exactly one place', function (): void {
     }
 });
 
-it('never links the retired TablePlus comparison page', function () use ($readSource): void {
-    $sources = array_merge(
-        glob(base_path('resources/js/components/landing/*.tsx')),
-        [base_path('resources/js/pages/Home.tsx')],
+it('serves a comparison page for every slug the route accepts, and vice versa', function (): void {
+    /*
+     * These two lists drifting apart is how /compare/tableplus spent the
+     * project's whole history returning 410 while TablePlus sat in the import
+     * grid three sections above, and how sequel-pro and azimutt ended up with
+     * no link anywhere on the site.
+     *
+     * A slug in the route with no entry renders a blank page; an entry with no
+     * slug in the route is a page nobody can reach.
+     */
+    $route = collect(app('router')->getRoutes())->first(
+        static fn($candidate): bool => $candidate->getName() === 'landing.compare',
     );
 
-    foreach ($sources as $source) {
-        // Anchored to an opening quote so this catches a *link*
-        // (href="/compare/tableplus") and not a *mention*. Two components carry
-        // the slug in a comment explaining precisely why it is never linked,
-        // and those comments are the documentation of this rule — failing on
-        // them would delete the reason the rule exists. Backticks are excluded
-        // for the same reason: architecture.tsx quotes the path in a docblock.
-        Assert::assertDoesNotMatchRegularExpression(
-            '#["\']/compare/tableplus#',
-            file_get_contents($source),
-            basename($source) . ' links a URL that returns 410 Gone',
-        );
-    }
+    $routed = explode('|', $route->wheres['slug']);
+    $authored = array_column(
+        json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true),
+        'slug',
+    );
+
+    sort($routed);
+    sort($authored);
+
+    expect($routed)->toBe($authored);
 });

@@ -31,10 +31,8 @@ Route::get('/blog/{slug}', [BlogController::class, 'show'])
     ->where('slug', '[a-z0-9-]+')
     ->name('landing.blog.show');
 
-Route::get('/compare/tableplus', fn() => abort(410))->name('landing.compare.tableplus.gone');
-
 Route::get('/compare/{slug}', [LandingController::class, 'compare'])
-    ->where('slug', 'dbeaver|datagrip|navicat|beekeeper-studio|sequel-pro|postico|sequel-ace|heidisql|azimutt|phpmyadmin')
+    ->where('slug', 'tableplus|dbeaver|datagrip|navicat|beekeeper-studio|sequel-pro|postico|sequel-ace|heidisql|azimutt|phpmyadmin')
     ->name('landing.compare');
 
 Route::get('/{slug}', [LandingController::class, 'databaseClient'])

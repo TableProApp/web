@@ -22,10 +22,10 @@ function comparisonEntries(): array
     return json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
 }
 
-it('renders three competitors that all exist in the data', function (): void {
+it('renders four competitors that all exist in the data', function (): void {
     $slugs = array_column(comparisonEntries(), 'slug');
 
-    foreach (['dbeaver', 'datagrip', 'beekeeper-studio'] as $slug) {
+    foreach (['dbeaver', 'datagrip', 'beekeeper-studio', 'tableplus'] as $slug) {
         expect($slugs)->toContain($slug);
     }
 });
@@ -39,11 +39,14 @@ it('reads every value from the data and hardcodes none', function (): void {
      * comparison page start disagreeing the next time the JSON changes.
      */
     $entries = collect(comparisonEntries())
-        ->whereIn('slug', ['dbeaver', 'datagrip', 'beekeeper-studio']);
+        ->whereIn('slug', ['dbeaver', 'datagrip', 'beekeeper-studio', 'tableplus']);
 
     foreach ($entries as $entry) {
+        // TablePlus ships no benchmarks; the table renders an em-dash for it.
         foreach (['startup', 'memory'] as $metric) {
-            expect($source)->not->toContain($entry['benchmarks']['competitor'][$metric]);
+            if (isset($entry['benchmarks'])) {
+                expect($source)->not->toContain($entry['benchmarks']['competitor'][$metric]);
+            }
         }
 
         foreach ($entry['rows'] as $row) {
@@ -61,16 +64,24 @@ it('reads every value from the data and hardcodes none', function (): void {
         ->not->toContain('~80 MB');
 });
 
-it('never links the comparison page that returns 410', function (): void {
+it('says "not measured" rather than inventing a number', function (): void {
     /*
-     * Anchored to an opening quote, so this catches a link and not a mention —
-     * the docblock in the component explains why TablePlus is absent, and that
-     * comment is the documentation of this rule. Same anchoring as the guard in
-     * StaleClaimsTest, for the same reason.
+     * TablePlus is native like TablePro, so its cold start and idle memory are
+     * close — and nothing published about either survives scrutiny, because the
+     * quotable figures in circulation trace back to competitor comparison
+     * pages, this site's own included. The entry therefore ships without a
+     * `benchmarks` block and the table renders an em-dash.
+     *
+     * This guards the honest half: that the fallback is a dash and not a
+     * plausible-looking number somebody added later to tidy the column up.
      */
-    PHPUnit\Framework\Assert::assertDoesNotMatchRegularExpression(
-        '#["\']/compare/tableplus#',
-        compareTableSource(),
-        'compare-table.tsx links a URL that returns 410 Gone',
-    );
+    $tableplus = collect(comparisonEntries())->firstWhere('slug', 'tableplus');
+
+    expect($tableplus)->not->toBeNull();
+    expect($tableplus)->not->toHaveKey('benchmarks');
+
+    $source = compareTableSource();
+
+    expect($source)->toContain("const UNMEASURED = '—'");
+    expect($source)->toContain('?? UNMEASURED');
 });

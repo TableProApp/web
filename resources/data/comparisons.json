@@ -1,5 +1,156 @@
 [
   {
+    "slug": "tableplus",
+    "name": "TablePlus",
+    "tagline": "Free, open source TablePlus alternative for Mac.",
+    "description": "TablePlus is $99 a device and closed source. TablePro is free, open source under AGPLv3, and covers 25 databases. Both are native Mac apps — that part is a tie.",
+    "longDescription": "TablePlus is the closest thing to TablePro on the Mac: a genuinely native AppKit app, fast, well made, and shipping since 2019. It also has an LLM chat panel and, since June 2026, an MCP server — so the usual \"native versus Electron\" and \"we have AI\" arguments do not apply here. What separates them is the licence. TablePlus costs $99 for one device or $129 for two, includes one year of updates, and asks $59 per device to keep receiving them. TablePro is free, AGPLv3, and the source is public.",
+    "rows": [
+      {
+        "label": "Price",
+        "tablePro": "Free",
+        "competitor": "$99 one device, $129 two"
+      },
+      {
+        "label": "Updates",
+        "tablePro": "Always free",
+        "competitor": "1 year, then $59 per device"
+      },
+      {
+        "label": "Open Source",
+        "tablePro": true,
+        "competitor": false
+      },
+      {
+        "label": "Technology",
+        "tablePro": "Native (SwiftUI)",
+        "competitor": "Native (AppKit)"
+      },
+      {
+        "label": "Databases",
+        "tablePro": "25 drivers",
+        "competitor": "16"
+      },
+      {
+        "label": "AI Assistant",
+        "tablePro": true,
+        "competitor": true
+      },
+      {
+        "label": "MCP Server",
+        "tablePro": true,
+        "competitor": true
+      },
+      {
+        "label": "Safe Mode",
+        "tablePro": "6 levels, per connection",
+        "competitor": "5 levels"
+      },
+      {
+        "label": "Touch ID",
+        "tablePro": true,
+        "competitor": true
+      },
+      {
+        "label": "SSH Tunneling",
+        "tablePro": true,
+        "competitor": true
+      },
+      {
+        "label": "Inline Editing",
+        "tablePro": true,
+        "competitor": true
+      },
+      {
+        "label": "Export Formats",
+        "tablePro": "CSV, JSON, XLSX, Markdown",
+        "competitor": "CSV, JSON, SQL"
+      },
+      {
+        "label": "ER Diagrams",
+        "tablePro": true,
+        "competitor": "Via plugin"
+      },
+      {
+        "label": "iOS App",
+        "tablePro": true,
+        "competitor": true
+      },
+      {
+        "label": "Windows and Linux",
+        "tablePro": false,
+        "competitor": true
+      }
+    ],
+    "prosTablePro": [
+      "Free forever, against $99 a device",
+      "Updates never expire",
+      "Open source under AGPLv3",
+      "25 database drivers, against 16",
+      "Six Safe Mode levels, set per connection",
+      "XLSX export"
+    ],
+    "prosCompetitor": [
+      "Windows and Linux builds",
+      "Available on Setapp",
+      "Perpetual licence — your last covered build keeps working",
+      "Shipping and refined since 2019",
+      "One seat covers any OS"
+    ],
+    "chooseTablePro": "you want the same native Mac experience without a per-device licence, or you want to read the source.",
+    "chooseCompetitor": "you need Windows or Linux, you already own a licence, or you prefer paying once for a build you can freeze.",
+    "verdict": "TablePlus is a good native Mac client and the closest match to TablePro in design and speed. The difference is not performance and it is no longer AI — both ship an MCP server. It is the licence: $99 a device and closed, against free and AGPLv3.",
+    "keywords": [
+      "tableplus alternative",
+      "tablepro vs tableplus",
+      "tableplus vs tablepro",
+      "free tableplus alternative",
+      "open source tableplus alternative",
+      "tableplus alternative mac"
+    ],
+    "ogTableProMetaHtml": "<strong>FREE</strong> · AGPLv3<br>25 databases<br>Native (SwiftUI)",
+    "ogCompetitorMetaHtml": "<strong>$99</strong> per device<br>+$59 to keep updates<br>Closed source",
+    "ogPunchline": "Both native. One is free and open source.",
+    "ogStatValue": "$0",
+    "ogStatLabel": "PER DEVICE",
+    "migrationSteps": [
+      {
+        "title": "Open the importer",
+        "description": "File > Import Connections, then pick TablePlus. The Setapp edition is detected as well, and TablePlus does not need to be running."
+      },
+      {
+        "title": "Passwords come across",
+        "description": "Connections, groups, SSH tunnels and SSL settings are read directly, and passwords are copied from the macOS Keychain into your own Keychain."
+      },
+      {
+        "title": "Check the tunnels",
+        "description": "Open one connection that uses an SSH tunnel and connect once. Everything else carries over untouched, so nothing needs retyping."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is TablePro slower than TablePlus?",
+        "answer": "No, and neither is meaningfully slower than the other. Both are native Mac apps — TablePro in SwiftUI and AppKit, TablePlus in AppKit — so neither pays the startup or memory cost of Electron or a JVM. Anyone claiming a large speed gap between two native clients is guessing."
+      },
+      {
+        "question": "Does TablePlus have AI and MCP?",
+        "answer": "Yes to both. TablePlus ships an LLM chat panel that you point at OpenAI, Anthropic, GitHub Copilot or a local model, and it added an MCP server in version 7.1.8 on 10 June 2026. TablePro has the same two capabilities. This is not a difference between them."
+      },
+      {
+        "question": "Why do you say 16 databases when TablePlus documents 13?",
+        "answer": "Their documentation lists 13 engines and their homepage shows 14 logos, and the two lists do not match — BigQuery, ClickHouse and Turso appear only on the homepage, Snowflake and Vertica only in the docs. Sixteen is the union of both, which is the most generous reading. TablePro ships 25 drivers."
+      },
+      {
+        "question": "What does the TablePlus licence actually cost over time?",
+        "answer": "A licence is $99 for one device or $129 for two, one time, and includes a year of updates. After that the app keeps working forever on the last build your term covered, with no feature lockout. To carry on receiving updates it is $59 per device. The bundled iOS unlock, however, stops when the term lapses."
+      },
+      {
+        "question": "Can I import my TablePlus connections?",
+        "answer": "Yes. TablePro reads TablePlus connections directly, including the Setapp edition, and takes passwords from the macOS Keychain along with SSH tunnels and SSL settings. TablePlus does not need to be running, and groups and folders carry over."
+      }
+    ]
+  },
+  {
     "slug": "dbeaver",
     "name": "DBeaver",
     "tagline": "Free, Native DBeaver Alternative for Mac.",
