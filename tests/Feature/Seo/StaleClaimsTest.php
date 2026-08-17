@@ -60,13 +60,51 @@ it('does not describe a Terminal feature that was removed from the app', functio
 });
 
 it('never publishes a rating nobody gave', function () use ($readSource): void {
-    foreach (['resources/js/pages/Home.tsx', 'resources/js/pages/Compare.tsx'] as $source) {
-        $contents = $readSource($source);
+    /*
+     * Every page that emits a SoftwareApplication node, not just the two that
+     * were listed. DatabaseClient.tsx was absent for as long as it shipped
+     * `ratingValue: '4.9'` with `ratingCount` set to the GitHub star count, so
+     * this test passed while 26 indexed URLs published a fabricated rating.
+     *
+     * The list is asserted against the filesystem rather than hardcoded alone:
+     * a new page that builds a SoftwareApplication must be added here, and the
+     * count below is what forces that.
+     */
+    $sources = [
+        'resources/js/pages/Home.tsx',
+        'resources/js/pages/Compare.tsx',
+        'resources/js/pages/DatabaseClient.tsx',
+        'resources/js/pages/Download.tsx',
+    ];
 
-        // A rating derived from star counts, and a constant score applied to
-        // every competitor, are both inventions. Neither may come back.
-        expect($contents)
-            ->not->toContain("'aggregateRating'")
+    $emitters = array_values(array_filter(
+        glob(base_path('resources/js/pages/*.tsx')),
+        static fn(string $path): bool => str_contains(file_get_contents($path), "'SoftwareApplication'"),
+    ));
+
+    expect($emitters)->toHaveCount(
+        count($sources),
+        'A page started emitting a SoftwareApplication node. Add it to $sources above.',
+    );
+
+    foreach ($sources as $source) {
+        /*
+         * Comments stripped first. Two of these files carry a docblock saying
+         * why they do not publish a rating, and a bare `aggregateRating` needle
+         * matches the explanation as readily as the offence.
+         */
+        $code = preg_replace(['#/\*[\s\S]*?\*/#', '#//.*$#m'], '', $readSource($source));
+
+        /*
+         * A rating derived from star counts, and a constant score applied to
+         * every competitor, are both inventions. Neither may come back.
+         *
+         * `aggregateRating` is matched unquoted because the property-assignment
+         * form — `data.aggregateRating = {...}` — is how it actually shipped,
+         * and the quoted needle this test used to carry never matched it.
+         */
+        expect($code)
+            ->not->toContain('aggregateRating')
             ->not->toContain('AggregateRating')
             ->not->toContain('ratingValue');
     }
