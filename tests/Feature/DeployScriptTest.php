@@ -185,3 +185,30 @@ it('lets its own scratch directories past the cleanliness check, and nothing els
     'blocks a stray untracked file' => ['?? .env.backup', true],
     'blocks an untracked build directory that is not one of ours' => ['?? public/uploads-old/', true],
 ]);
+
+it('explains a diverged branch instead of dumping git hints', function (): void {
+    /*
+     * `git pull --ff-only` is the right call — a deploy must never merge or
+     * rebase on its own — but on a force-pushed branch it fails with a wall of
+     * git advice ending in "aborting", which reads as a broken script rather
+     * than as a checkout one command from fine. That cost a round trip the
+     * first time it happened.
+     */
+    $script = file_get_contents(base_path('scripts/deploy.sh'));
+
+    expect($script)->toContain('git merge-base --is-ancestor HEAD');
+
+    // And it has to name the recovery, not just the diagnosis.
+    expect($script)->toContain('git reset --hard origin/');
+
+    /*
+     * The check has to come before the pull, or the raw git failure wins the
+     * race. Compared on the executable lines only — the comment above the check
+     * names `git pull --ff-only` too, and matching that instead put the guard
+     * "after" the pull it precedes by twelve lines.
+     */
+    $code = preg_replace('/^\s*#.*$/m', '', $script);
+
+    expect(strpos($code, 'git merge-base --is-ancestor HEAD'))
+        ->toBeLessThan(strpos($code, 'git pull --ff-only'));
+});
