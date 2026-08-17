@@ -19,7 +19,15 @@ interface Props {
     githubStars?: number | null;
 }
 
-function buildAppJsonLd(name: string, description: string, slug: string, stars?: number | null): object {
+/**
+ * No `aggregateRating`. This page used to derive one from the GitHub star count
+ * — a constant 4.9 with `ratingCount` set to the stars — on all 26 database
+ * pages. A star is not a review, so that published a rating nobody gave, and
+ * `Compare.tsx` already refuses to do it for the same reason. The guard in
+ * `StaleClaimsTest` was written to catch exactly this and did not list this
+ * file; it does now.
+ */
+function buildAppJsonLd(name: string, description: string, slug: string): object {
     const data: Record<string, unknown> = {
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
@@ -36,16 +44,6 @@ function buildAppJsonLd(name: string, description: string, slug: string, stars?:
         downloadUrl: 'https://tablepro.app/download',
     };
 
-    if (stars && stars > 0) {
-        data.aggregateRating = {
-            '@type': 'AggregateRating',
-            ratingValue: '4.9',
-            ratingCount: stars,
-            bestRating: '5',
-            worstRating: '1',
-        };
-    }
-
     return data;
 }
 
@@ -55,7 +53,7 @@ export default function DatabaseClient({ slug, downloadUrls, githubStars }: Prop
     if (!db) return null;
 
     const title = `${db.name} GUI Client for Mac - Free & Native | TablePro`;
-    const jsonLd: object[] = [buildAppJsonLd(db.name, db.description, db.slug, githubStars)];
+    const jsonLd: object[] = [buildAppJsonLd(db.name, db.description, db.slug)];
 
     if (db.faqs && db.faqs.length > 0) {
         jsonLd.push({
