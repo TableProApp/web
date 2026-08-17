@@ -55,10 +55,75 @@ function ssrHomepageHtml(): string
 
     fclose($probe);
 
+    assertSsrBundleIsFresh();
+
     $response = test()->get('http://' . config('app.web_domain') . '/');
     $response->assertOk();
 
     return $html = $response->getContent();
+}
+
+/**
+ * Fails when the SSR service is older than the bundle it is meant to serve.
+ *
+ * `inertia:start-ssr` reads `bootstrap/ssr/ssr.js` into a long-lived Node
+ * process at boot. Running `npm run build` afterwards rewrites the file but
+ * does not reload it, so every assertion below keeps passing against whatever
+ * markup the last restart happened to load. That is worse than a skip: a copy
+ * change can be asserted, merged and deployed while the test that was supposed
+ * to guard it never saw the new string.
+ *
+ * Degrades to a no-op where the process cannot be identified, since a missing
+ * `lsof` must not fail an otherwise valid run.
+ */
+function assertSsrBundleIsFresh(): void
+{
+    $bundle = base_path('bootstrap/ssr/ssr.js');
+    $port = (int) parse_url(config('inertia.ssr.url', 'http://127.0.0.1:13715'), PHP_URL_PORT);
+
+    $pid = trim((string) @shell_exec("lsof -ti tcp:{$port} -sTCP:LISTEN 2>/dev/null | head -1"));
+
+    if ($pid === '' || ! ctype_digit($pid)) {
+        return;
+    }
+
+    /*
+     * Elapsed time, not `lstart`. `ps` prints a wall-clock start with no zone,
+     * and `strtotime()` reads it in PHP's timezone — which is UTC here and
+     * local on the machine printing it. That silently shifted the comparison by
+     * the UTC offset and made this check pass for every possible input.
+     */
+    $elapsed = parseProcessElapsedSeconds((string) @shell_exec("ps -p {$pid} -o etime= 2>/dev/null"));
+
+    if ($elapsed === null) {
+        return;
+    }
+
+    // Two seconds of slack: `ps` reports whole seconds, and a build finishing
+    // as the service starts is fine.
+    expect(filemtime($bundle))->toBeLessThanOrEqual(
+        time() - $elapsed + 2,
+        'The SSR service is serving a stale bundle. Run: php artisan inertia:stop-ssr && php artisan inertia:start-ssr',
+    );
+}
+
+/**
+ * Parses the `[[DD-]HH:]MM:SS` form `ps -o etime=` prints.
+ *
+ * @return int|null Seconds since the process started, or null if unparseable.
+ */
+function parseProcessElapsedSeconds(string $etime): ?int
+{
+    $etime = trim($etime);
+
+    if (! preg_match('/^(?:(?:(\d+)-)?(\d+):)?(\d+):(\d+)$/', $etime, $m)) {
+        return null;
+    }
+
+    return ((int) ($m[1] ?: 0)) * 86400
+        + ((int) ($m[2] ?: 0)) * 3600
+        + ((int) $m[3]) * 60
+        + (int) $m[4];
 }
 
 it('server-renders exactly one h1 and one main landmark', function (): void {
@@ -120,7 +185,8 @@ it('server-renders the verified claims and none of the retired ones', function (
 
     expect($html)
         ->toContain('Every database.')
-        ->toContain('One native Mac app.')
+        // "client", not "app": the head noun of every query this page targets.
+        ->toContain('One native Mac client.')
         ->toContain('25 databases.')
         ->toContain('Starter');
 

@@ -15,6 +15,7 @@ import FooterCTA from '@/components/landing/footer-cta';
 import Footer from '@/components/landing/footer';
 import SEOHead from '@/components/seo/seo-head';
 import { buildOrganizationJsonLd } from '@/lib/structured-data';
+import { STARTER_PRICE, TEAM_SEAT_PRICE } from '@/data/pricing';
 
 interface LatestRelease {
     version: string | null;
@@ -30,9 +31,31 @@ interface Props {
     teamMinSeats: number;
 }
 
-const HOME_TITLE = 'TablePro - Native macOS Database Client for 25 Databases';
+/**
+ * Keyword-first, like every other template on this site.
+ *
+ * The old title led with the brand and spent its tail on "for 25 Databases",
+ * which nobody types, while omitting `free` and `open source` — the two
+ * modifiers TablePro owns outright against TablePlus, DataGrip and Navicat.
+ * `Compare.tsx` is already `${name} Alternative for Mac - Free & Native |
+ * TablePro` and `DatabaseClient.tsx` is `${name} GUI Client for Mac - Free &
+ * Native | TablePro`; the homepage was the only page doing it backwards.
+ *
+ * 52 characters, against a desktop cutoff around 580px.
+ */
+const HOME_TITLE = 'TablePro - Free, Open Source Database Client for Mac';
+
+/**
+ * 144 characters. The old one was 156 and truncated mid-word at "…Free and open
+ * sour" on desktop; on mobile the whole snippet became five database names that
+ * /mysql-client and its 25 siblings already own with their own descriptions.
+ *
+ * Sentence one is byte-identical to the hero's opening sentence, so the snippet
+ * and the landing experience say the same thing — and it is the sentence an
+ * answer engine lifts for "what is TablePro".
+ */
 const HOME_DESCRIPTION =
-    'A native macOS database client for MySQL, PostgreSQL, MongoDB, Redis, Snowflake and 20 more. Built in Swift, no Electron. Free and open source under AGPLv3.';
+    'TablePro is a free, open source database client for macOS. 25 engines through native drivers, in a 20 MB Swift app that opens in under a second.';
 
 const FEATURE_LIST = [
     '25 databases through native drivers',
@@ -47,26 +70,84 @@ const FEATURE_LIST = [
     'iCloud Sync with an iPhone and iPad app',
 ];
 
-function buildAppJsonLd(canonicalBaseUrl: string, latestRelease?: LatestRelease | null): object {
+function buildAppJsonLd(
+    canonicalBaseUrl: string,
+    teamMinSeats: number,
+    latestRelease?: LatestRelease | null,
+    githubStars?: number | null,
+): object {
+    const base = canonicalBaseUrl.replace(/\/$/, '');
+
+    const offer = (name: string, price: number, seatMin?: number) => ({
+        '@type': 'Offer',
+        name,
+        price: String(price),
+        priceCurrency: 'USD',
+        url: `${base}/#pricing`,
+        availability: 'https://schema.org/InStock',
+        ...(seatMin
+            ? { eligibleQuantity: { '@type': 'QuantitativeValue', minValue: seatMin, unitText: 'seat' } }
+            : {}),
+    });
+
     const data: Record<string, unknown> = {
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
+        '@id': `${base}/#app`,
         name: 'TablePro',
+        alternateName: 'TablePro Database Client',
         applicationCategory: 'DeveloperApplication',
         applicationSubCategory: 'Database Client',
-        operatingSystem: 'macOS 14+, iOS 18+',
+        /*
+         * `macOS`, not `macOS 14+, iOS 18+`. One node cannot stand for two
+         * applications, and this one's downloadUrl is a Mac-only page. The
+         * floor moves to softwareRequirements, where it belongs.
+         */
+        operatingSystem: 'macOS',
+        softwareRequirements: 'macOS 14.0 or later, Apple Silicon or Intel',
         description: HOME_DESCRIPTION,
-        url: 'https://tablepro.app',
-        downloadUrl: 'https://tablepro.app/download',
+        disambiguatingDescription:
+            'TablePro is a native macOS GUI client for 25 database engines, written in Swift rather than Electron or Java, and released as open source under AGPLv3.',
+        // Every URL from canonicalBaseUrl. Four of these used to hardcode the
+        // production origin while `screenshot` did not, so one object carried
+        // two origins on any non-production host.
+        url: base,
+        downloadUrl: `${base}/download`,
+        installUrl: `${base}/download`,
+        fileSize: '20 MB',
         license: 'https://github.com/TableProApp/TablePro/blob/main/LICENSE',
-        screenshot: `${canonicalBaseUrl}/images/app-light.png`,
+        isAccessibleForFree: true,
+        screenshot: `${base}/images/app-light.png`,
         featureList: FEATURE_LIST,
+        publisher: { '@id': `${base}/#organization` },
+        author: { '@id': `${base}/#organization` },
+        /*
+         * Seven real price points, enumerated, instead of `offerCount: '4'`
+         * against a highPrice with no indication that Team is priced per seat.
+         */
         offers: {
             '@type': 'AggregateOffer',
-            lowPrice: '0',
-            highPrice: '59',
             priceCurrency: 'USD',
-            offerCount: '4',
+            lowPrice: '0',
+            highPrice: String(STARTER_PRICE.lifetime),
+            offerCount: 7,
+            url: `${base}/#pricing`,
+            offers: [
+                {
+                    '@type': 'Offer',
+                    name: 'Free',
+                    price: '0',
+                    priceCurrency: 'USD',
+                    url: `${base}/download`,
+                    availability: 'https://schema.org/InStock',
+                },
+                offer('Starter, monthly', STARTER_PRICE.monthly),
+                offer('Starter, yearly', STARTER_PRICE.yearly),
+                offer('Starter, lifetime', STARTER_PRICE.lifetime),
+                offer('Team, per seat, monthly', TEAM_SEAT_PRICE.monthly, teamMinSeats),
+                offer('Team, per seat, yearly', TEAM_SEAT_PRICE.yearly, teamMinSeats),
+                offer('Team, per seat, lifetime', TEAM_SEAT_PRICE.lifetime, teamMinSeats),
+            ],
         },
     };
 
@@ -74,9 +155,27 @@ function buildAppJsonLd(canonicalBaseUrl: string, latestRelease?: LatestRelease 
         data.softwareVersion = latestRelease.version;
     }
 
+    /*
+     * `dateModified` only. `datePublished` was set to the *latest* release
+     * date, so the markup asserted the app was first published last week — and
+     * the claim moved forward again on every release.
+     */
     if (latestRelease?.publishedAt) {
-        data.datePublished = latestRelease.publishedAt;
         data.dateModified = latestRelease.publishedAt;
+        data.releaseNotes = 'https://docs.tablepro.app/changelog';
+    }
+
+    /*
+     * The honest popularity signal. Not `aggregateRating`: a star is not a
+     * review, and StaleClaimsTest forbids the string in this file for exactly
+     * that reason. This says "N people starred this", which is true.
+     */
+    if (githubStars && githubStars > 0) {
+        data.interactionStatistic = {
+            '@type': 'InteractionCounter',
+            interactionType: 'https://schema.org/LikeAction',
+            userInteractionCount: githubStars,
+        };
     }
 
     return data;
@@ -105,7 +204,7 @@ export default function Home({
                  * owns that entity uncontested now.
                  */
                 jsonLd={[
-                    buildAppJsonLd(canonicalBaseUrl, latestRelease),
+                    buildAppJsonLd(canonicalBaseUrl, teamMinSeats, latestRelease, githubStars),
                     buildOrganizationJsonLd(canonicalBaseUrl),
                 ]}
             />
