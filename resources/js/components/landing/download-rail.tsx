@@ -2,7 +2,7 @@ import Button from '@/components/ui/button';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { AppleGlyph } from '@/components/ui/glyph';
-
+import { trackDownload } from '@/lib/analytics';
 
 interface Props {
     /**
@@ -10,6 +10,8 @@ interface Props {
      * section above it, not a restatement of the button.
      */
     note: string;
+    /** Which rail this is, for the download event. Not rendered. */
+    location: string;
 }
 
 /**
@@ -24,14 +26,18 @@ interface Props {
  *
  * Deliberately not a section: no heading, no eyebrow, no id. It is a rule in
  * the existing rhythm, so it interrupts the argument as little as possible.
+ *
+ * Full size rather than `sm`. At 75px this was the smallest control on a page
+ * that gave a sponsor logo grid 707px, which is backwards for one of only two
+ * mid-body conversion points.
  */
-export default function DownloadRail({ note }: Props) {
+export default function DownloadRail({ note, location }: Props) {
     return (
         <>
             <Container>
                 <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
                     <p className="font-mono text-xs text-muted-foreground">{note}</p>
-                    <Button href="/download" size="sm" className="shrink-0">
+                    <Button href="/download" className="shrink-0" onClick={() => trackDownload(location)}>
                         <AppleGlyph />
                         Download for Mac
                     </Button>

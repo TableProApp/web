@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { buttonClasses } from '@/components/ui/button';
 import MobileNav from './mobile-nav';
 import { AppleGlyph } from '@/components/ui/glyph';
+import { trackDownload } from '@/lib/analytics';
 
 interface Props {
     /**
@@ -159,6 +160,7 @@ export default function Header({ githubStars }: Props) {
                                     href="/download"
                                     className="flex items-center gap-3 px-4 py-3 text-sm text-foreground transition-colors"
                                     onClick={() => {
+                                        trackDownload('header-menu');
                                         const scrollY = window.scrollY;
                                         setDownloadOpen(false);
                                         requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: 'instant' }));
@@ -190,16 +192,33 @@ export default function Header({ githubStars }: Props) {
                         </div>
                     </div>
 
-                    {/* Mobile hamburger */}
-                    <button
-                        onClick={() => setMobileNavOpen(true)}
-                        className="rounded-lg p-2 text-muted-foreground transition-colors hover:text-foreground md:hidden"
-                        aria-label="Open menu"
-                    >
-                        <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+                    {/*
+                      * Mobile: a download and the hamburger.
+                      *
+                      * The cluster above is `hidden md:flex`, so below 768px this
+                      * header carried a logo and a menu button and nothing else,
+                      * across a page that is thirty-one iPhone screens tall. The
+                      * only routes to /download were in the body, and the longest
+                      * gap between two of them was eleven screens.
+                      */}
+                    <div className="flex items-center gap-1 md:hidden">
+                        <a
+                            href="/download"
+                            onClick={() => trackDownload('header-mobile')}
+                            className={buttonClasses('primary', 'sm', 'px-4 py-2')}
+                        >
+                            Download
+                        </a>
+                        <button
+                            onClick={() => setMobileNavOpen(true)}
+                            className="rounded-lg p-2 text-muted-foreground transition-colors hover:text-foreground"
+                            aria-label="Open menu"
+                        >
+                            <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                 </nav>
             </header>
 
