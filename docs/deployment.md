@@ -110,6 +110,34 @@ It finishes by fetching `APP_URL` and checking two things: that the answer is
 the one that matters — SSR falling over still returns 200, just with an empty
 shell.
 
+### If it refuses over `build-old` or `ssr-old`
+
+```
+?? bootstrap/ssr-old/
+?? public/build-old/
+error: working tree is not clean — refusing to deploy over local changes
+```
+
+A deploy keeps the bundles it replaced at `public/build-old` and
+`bootstrap/ssr-old` so the `EXIT` trap can put them back. Those paths were not
+ignored at first, so the first successful deploy left them in the tree and every
+deploy after it stopped here.
+
+The script skips its own scratch directories now, but a server that has not yet
+pulled that change cannot get past the check to reach it — the cleanliness test
+runs before `git pull`, and the pinned SSH command runs **the copy of
+`scripts/deploy.sh` that is already on the server**. Break the loop once, by
+hand:
+
+```bash
+cd /var/www/tablepro.app && rm -rf public/build-old bootstrap/ssr-old
+```
+
+Then re-run the workflow. Nothing else needs doing: those directories are the
+previous release's bundles, and the live ones are `public/build` and
+`bootstrap/ssr`. Deleting them costs only the ability to roll back to the
+release before last, which `git` can rebuild anyway.
+
 ## The SSR process
 
 Supervisor owns it:
