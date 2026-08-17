@@ -114,6 +114,23 @@ fi
 
 step "Pulling $BRANCH"
 git fetch --prune origin
+
+# `git pull --ff-only` is right — a deploy must never merge or rebase on its own
+# — but when the branch has been rewritten upstream it fails with a wall of git
+# hints and the word "aborting", which reads like the script is broken rather
+# than like the server is one command from fine. Name the situation instead.
+if ! git merge-base --is-ancestor HEAD "origin/$BRANCH" 2>/dev/null; then
+    printf '\033[31mLocal %s has diverged from origin/%s.\033[0m\n' "$BRANCH" "$BRANCH" >&2
+    printf '  local  %s %s\n' "$(git rev-parse --short HEAD)" "$(git log -1 --format=%s)" >&2
+    printf '  origin %s %s\n' \
+        "$(git rev-parse --short "origin/$BRANCH")" \
+        "$(git log -1 --format=%s "origin/$BRANCH")" >&2
+    printf '\nUsually this means the branch was force-pushed. If this checkout has no\n' >&2
+    printf 'commits of its own worth keeping — it should not — take the remote as truth:\n\n' >&2
+    printf '    cd %s && git fetch origin && git reset --hard origin/%s\n\n' "$APP_PATH" "$BRANCH" >&2
+    fail "refusing to merge or rebase during a deploy"
+fi
+
 git pull --ff-only origin "$BRANCH"
 CURR_COMMIT="$(git rev-parse HEAD)"
 echo "    now at $(git rev-parse --short HEAD) $(git log -1 --format=%s)"
