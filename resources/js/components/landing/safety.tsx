@@ -46,12 +46,16 @@ const TRUST_CELLS: { label: string; body: string }[] = [
         body: 'Connection passwords, SSH passphrases, TOTP secrets and AI keys go to the macOS Keychain. Or they never live in TablePro at all: a connection can resolve its password at connect time from a file, an environment variable, a shell command, 1Password, HashiCorp Vault or AWS Secrets Manager.',
     },
     {
+        // The AI sentence went with the Agents section, which lists all thirteen
+        // providers including the three that run locally, two sections earlier.
         label: 'Network',
-        body: 'There is no account, no login and no cloud service in the connection path. Anonymous usage data is a single switch in Settings and carries no personal data and no queries. AI runs against the provider you configured, or entirely on your machine with Ollama, llama.cpp or MLX.',
+        body: 'There is no account, no login and no cloud service in the connection path. Anonymous usage data is one switch in Settings and carries no personal data and no queries.',
     },
     {
+        // libssh2, the five auth methods, the five TLS modes and the IAM token
+        // lifetime are docs. What survives is the part a reader can act on.
         label: 'Getting there',
-        body: 'A built-in libssh2 client with five auth methods and jump hosts chained in process, no ssh binary. Or Cloudflare Tunnel, Cloud SQL Auth Proxy, or SOCKS5 with DNS always resolved at the proxy. Five TLS modes with per-driver defaults. AWS IAM tokens are valid fifteen minutes and never stored.',
+        body: 'SSH tunnels and jump hosts chained in process, with no ssh binary and no config file to edit. Or Cloudflare Tunnel, Cloud SQL Auth Proxy, or SOCKS5 with DNS resolved at the proxy.',
     },
 ];
 
@@ -205,9 +209,8 @@ export default function Safety() {
             <Container>
                 <p className="px-4 py-3 text-sm text-muted-foreground">
                     Read-Only disables the interface, not just the query: no inline editing, no add or delete rows, no
-                    truncate, no drop, no import. The toolbar badge shows the level and changes it in one click. Opening
-                    a project folder whose path, host or database name contains &ldquo;prod&rdquo;,
-                    &ldquo;production&rdquo; or &ldquo;live&rdquo; raises the level to Alert automatically.
+                    truncate, no drop, no import. Open a folder whose path, host or database name says
+                    &ldquo;prod&rdquo;, &ldquo;production&rdquo; or &ldquo;live&rdquo; and the level raises itself.
                 </p>
             </Container>
             <FullLine />

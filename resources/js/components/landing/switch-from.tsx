@@ -1,7 +1,6 @@
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
-import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 
 const COLS: ColumnMap = { base: 2, sm: 3, lg: 6 };
@@ -27,32 +26,27 @@ const SOURCES: ImportSource[] = [
 ];
 
 /**
- * Every comparison page that resolves. TablePlus is deliberately absent:
- * /compare/tableplus returns 410 Gone. It appears above as an import source
- * only, never as a link.
+ * No competitor chip row.
+ *
+ * This section used to close with ten links to /compare/*, which is ten routes
+ * out of the page at the exact moment the reader has been told that moving costs
+ * them nothing. CompareTable directly below carries three of them with better
+ * anchor text, and the footer carries all ten — so the pages keep their inbound
+ * links and this section stops being an exit.
+ *
+ * The H2 names two competitors without linking either, which is the same keyword
+ * capture at no exit cost. TablePlus stays a plain mention: /compare/tableplus
+ * returns 410, and StaleClaimsTest fails the build on a component that links it.
  */
-const COMPARISONS: { name: string; slug: string }[] = [
-    { name: 'DBeaver', slug: 'dbeaver' },
-    { name: 'DataGrip', slug: 'datagrip' },
-    { name: 'Navicat', slug: 'navicat' },
-    { name: 'Beekeeper Studio', slug: 'beekeeper-studio' },
-    { name: 'Sequel Pro', slug: 'sequel-pro' },
-    { name: 'Postico', slug: 'postico' },
-    { name: 'Sequel Ace', slug: 'sequel-ace' },
-    { name: 'HeidiSQL', slug: 'heidisql' },
-    { name: 'Azimutt', slug: 'azimutt' },
-    { name: 'phpMyAdmin', slug: 'phpmyadmin' },
-];
-
 export default function SwitchFrom() {
     return (
         <SectionShell
             tier="reference"
             id="switch"
             label="Migration"
-            headline="Bring your connections with you."
+            headline="Import your connections from TablePlus or DBeaver."
             headlineMuted="Passwords, tunnels and SSL included."
-            lede="The source app does not even need to be running. Groups and folders carry over. Or point TablePro at a project folder and it reads the connection out of your .env, wp-config.php, schema.prisma, database.yml, docker-compose.yml, application.yml or appsettings.json without you copying anything by hand."
+            lede="The source app does not need to be running, and groups and folders carry over. Or point TablePro at a project folder and it reads the connection out of your .env or your docker-compose.yml."
         >
             <FullLine />
             <Container>
@@ -68,26 +62,6 @@ export default function SwitchFrom() {
                         </div>
                     ))}
                 </div>
-            </Container>
-            <FullLine />
-
-            <Container>
-                <h3 className="sr-only">Comparisons</h3>
-                <Ledger>
-                    <LedgerRow label="Compare">
-                        <span className="flex flex-wrap gap-x-2 gap-y-1">
-                            {COMPARISONS.map((comparison) => (
-                                <a
-                                    key={comparison.slug}
-                                    href={`/compare/${comparison.slug}`}
-                                    className="rounded-key border border-rule-strong px-2 py-1 font-mono text-2xs whitespace-nowrap transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:border-primary/40 hover:text-foreground"
-                                >
-                                    {comparison.name}
-                                </a>
-                            ))}
-                        </span>
-                    </LedgerRow>
-                </Ledger>
             </Container>
             <FullLine />
         </SectionShell>

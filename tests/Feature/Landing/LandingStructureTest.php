@@ -95,25 +95,45 @@ it('keeps a download within reach of the reader', function (): void {
     expect(substr_count($html, 'href="/download"'))->toBeGreaterThanOrEqual(4);
 });
 
-it('answers the two blocking objections before the database grid', function (): void {
+it('answers the free and AGPL objections where the prices are', function (): void {
     $html = landingHtml();
 
-    $free = strpos($html, 'Is it really free, or free for now?');
-    $agpl = strpos($html, 'Can I use TablePro at work under AGPLv3?');
-    $grid = strpos($html, 'id="databases"');
+    /*
+     * Both used to be asked at position four, as a pair of orphan h2s rendered
+     * at body size before the reader had seen a single feature — and both were
+     * then answered again by the open-source section and a third time by the
+     * pricing lede. They are answered once now, on screen with the prices,
+     * which is where the reader is deciding and where the AGPL question blocks
+     * the highest-value visitor on the site.
+     */
+    $pricing = strpos($html, 'id="pricing"');
+    $free = strpos($html, 'Free means permanently free');
+    $agpl = strpos($html, 'AGPL obligations attach to distributing a modified version');
 
     expect($free)->not->toBeFalse();
     expect($agpl)->not->toBeFalse();
-    expect($free)->toBeLessThan($grid, 'The free/paid objection must be answered before the feature tour');
-    expect($agpl)->toBeLessThan($grid, 'The AGPL objection blocks the highest-value visitor');
+    expect($free)->toBeGreaterThan($pricing);
+    expect($agpl)->toBeGreaterThan($pricing);
+
+    // And the retired duplicate is gone rather than merely moved.
+    expect($html)->not->toContain('Nothing is behind a paywall.');
 });
 
 it('answers the AI question inside the section that raises it', function (): void {
     $html = landingHtml();
 
+    /*
+     * The needle used to be the FAQ callout's "Not without you clicking". That
+     * callout restated the permission ledger forty-five words above it — same
+     * quoted phrase, same "can never be pre-approved" — so it was deleted and
+     * the ledger, which says it with the actual tool names, is the answer.
+     *
+     * The fact this test protects is unchanged: the section that raises the
+     * fear also resolves it, before Safety arrives.
+     */
     $agents = strpos($html, 'id="mcp"');
     $safety = strpos($html, 'id="safety"');
-    $answer = strpos($html, 'Not without you clicking');
+    $answer = strpos($html, 'confirm_destructive_operation');
 
     expect($answer)->not->toBeFalse();
     expect($answer)->toBeGreaterThan($agents);
@@ -132,9 +152,51 @@ it('keeps Agents adjacent to the answer to the fear it raises', function (): voi
     $html = landingHtml();
 
     // 274 words about iCloud sync used to sit between the question and the
-    // reply. Mobile now lands after Pricing.
+    // reply. The iPhone content is a cell in the closing CTA now, so it still
+    // lands after the prices — where "needs a license" reads as on message
+    // rather than as a surprise in the middle of a feature tour.
     expect(strpos($html, 'id="mcp"'))->toBeLessThan(strpos($html, 'id="safety"'));
     expect(strpos($html, 'id="pricing"'))->toBeLessThan(strpos($html, 'id="mobile"'));
+});
+
+it('states each repeated claim once', function (): void {
+    $html = landingHtml();
+
+    /*
+     * Sixty-nine percent of the rendered words on this page restated something
+     * it had already said. These are the worst offenders, each reduced to the
+     * fewest render sites the layout allows.
+     *
+     * Counted inside <main> only. The head legitimately repeats the description
+     * across the meta, og: and twitter: tags, and that is not duplication — it
+     * is three consumers of one string. Counting the whole document would make
+     * this test fail for a reason it does not care about.
+     *
+     * Ceilings allow for the spec table, which renders its cells twice: a wide
+     * row above lg and a transposed row below it. Two render sites, one claim.
+     */
+    $start = strpos($html, '<main');
+    $end = strrpos($html, '</main>');
+    expect($start)->not->toBeFalse();
+    $main = substr($html, $start, $end - $start);
+
+    $ceilings = [
+        // Hero lede, hero fine print, and the spec table's two responsive cells.
+        'AGPLv3' => 4,
+        // Was rendered by spec-strip and again by open-source, from one prop.
+        'releases in the last thirty days' => 0,
+        // The four-item paid surface: pricing lede, Starter card, comparison table.
+        'Encrypted connection export' => 3,
+        // Was 3: the permission ledger, the FAQ callout, the workbench Modes row.
+        'I understand this is irreversible' => 1,
+        // Was 8 across hero, spec-strip and architecture's two cells.
+        'no Chromium' => 1,
+    ];
+
+    foreach ($ceilings as $needle => $ceiling) {
+        expect(substr_count($main, $needle))
+            ->toBeLessThanOrEqual($ceiling, "\"{$needle}\" is rendered more times than it earns");
+    }
 });
 
 it('carries the row treatment only on things that can take focus', function (): void {
