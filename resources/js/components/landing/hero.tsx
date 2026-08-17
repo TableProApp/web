@@ -57,16 +57,41 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                 <AccentLine />
                 <SectionLabel className="px-4 py-3">{eyebrow}</SectionLabel>
                 <FullLine />
+                {/*
+                  * "client", not "app". It is the head noun of every query this
+                  * page competes for — mac database client, database client for
+                  * mac, open source database client mac — and it appeared
+                  * nowhere in the H1, while every sub-page already leads with
+                  * it: /mysql-client's H1 is "The MySQL GUI Client for Mac."
+                  */}
                 <h1 className="px-4 py-4 text-4xl font-bold text-pretty sm:py-5 sm:text-5xl lg:text-6xl">
                     Every database.
                     <br />
-                    <span className="text-muted-foreground">One native Mac app.</span>
+                    <span className="text-muted-foreground">One native Mac client.</span>
                 </h1>
                 <FullLine />
+                {/*
+                  * Three sentences became one.
+                  *
+                  * The first named five databases the grid below re-lists as 26
+                  * links, and that /mysql-client and its 25 siblings own far
+                  * better. The second was the no-runtime claim, which the spec
+                  * table one screen down proves with numbers instead of
+                  * asserting. The third was already printed verbatim in the
+                  * fine print 32px below this paragraph.
+                  *
+                  * What replaces them: a sentence saying what TablePro *is*,
+                  * which nothing on the page said in a liftable form, and the
+                  * best sentence the page had — previously the third clause of
+                  * a lede in section six, at roughly word 1,000. It is the only
+                  * line that states a promise rather than a spec, and Safe
+                  * Mode, the deferred-commit grid, the Apply gate and the MCP
+                  * ladder are four implementations of it. Said here, the eight
+                  * sections below read as evidence for a claim already made.
+                  */}
                 <p className="max-w-2xl px-4 py-4 text-lg text-muted-foreground text-pretty sm:py-5">
-                    MySQL, PostgreSQL, MongoDB, Redis, Snowflake and 20 more. Written in Swift with SwiftUI and
-                    AppKit, so there is no Java runtime, no Chromium and no JavaScript engine to start first. Free and
-                    open source under AGPLv3.
+                    TablePro is a free, open source database client for macOS. 25 engines through native drivers, and
+                    nothing runs against your database that you have not read first.
                 </p>
                 <FullLine />
                 <div className="flex flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center">
@@ -87,16 +112,22 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                             </span>
                         ) : null}
                     </Button>
-                    <a
-                        href="#mobile"
-                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                        Also on iPhone <span aria-hidden="true">&rarr;</span>
-                    </a>
+                    {/*
+                      * No third control. "Also on iPhone" was the lightest of
+                      * three above-fold links and the most expensive: it jumped
+                      * a first-time visitor past every screenshot, every price
+                      * and every safety argument, into the one section that
+                      * admits a paywall — and into a button that, until this
+                      * week, did nothing when it arrived. Eleven of seventeen
+                      * comparable dev-tool heroes ship exactly two controls.
+                      * The iPhone app is in the header menu and in the closing
+                      * call to action, which is where its working form lives.
+                      */}
                 </div>
                 <FullLine />
+                {/* "Free and open source" moved out: the sub now opens with it. */}
                 <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    Free and open source · AGPLv3 · macOS 14+ · Apple Silicon and Intel · No account
+                    AGPLv3 · macOS 14+ · Apple Silicon and Intel · No account · About 20 MB
                 </p>
                 <FullLine />
             </Container>

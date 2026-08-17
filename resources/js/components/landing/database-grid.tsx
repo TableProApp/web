@@ -174,7 +174,7 @@ export default function DatabaseGrid() {
             label="Databases"
             headline="25 databases."
             headlineMuted="One native driver each. No JDBC."
-            lede="Nine drivers ship inside the app. The other sixteen download the moment you pick one, with no restart, and every download is checksum and code-signature verified before it loads."
+            lede="MySQL, PostgreSQL, MongoDB, Redis and 21 more. Nine drivers ship inside the app; the rest download the first time you pick one, checksum and signature verified, with no restart."
         >
             <FullLine />
             <Container>
