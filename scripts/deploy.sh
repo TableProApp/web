@@ -188,6 +188,23 @@ if changed '^(resources/(js|css|data)/|vite\.config\.|package(-lock)?\.json|tsco
     FRONTEND_CHANGED=true
 fi
 
+# The pattern above classifies a diff. This asks the far simpler question the
+# diff is only a proxy for: is what we built older than what we built it from?
+#
+# The two disagree whenever a release is skipped, and a skipped rebuild does not
+# retry itself — the next deploy diffs against the commit that skipped it, sees
+# nothing front-end in that range, and leaves the stale bundle in place forever.
+# One misclassified path therefore strands the site until somebody runs FORCE=1.
+# It happened: data corrections deployed green and never reached the page, and
+# the deploy that fixed the classifier could not undo its own backlog.
+#
+# Comparing artifacts to sources costs one `find` and cannot be fooled by a
+# pattern nobody updated.
+if [ "$FRONTEND_CHANGED" = false ] && bundles_are_stale; then
+    echo "    the built bundles are older than the sources — rebuilding regardless of the diff"
+    FRONTEND_CHANGED=true
+fi
+
 # Kept apart from PHP_CHANGED below: a Blade edit needs the caches rebuilt and
 # the bytecode dropped, but there is nothing new to download for it.
 if changed '^composer\.(json|lock)$'; then

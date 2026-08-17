@@ -290,3 +290,37 @@ it('proves the smoke test hit this release and not merely a live one', function 
     expect(strpos($script, 'no server-rendered <h1>'))
         ->toBeLessThan(strpos($script, 'serving a different build'));
 });
+
+it('rebuilds when the artifacts are older than the sources, whatever the diff says', function (): void {
+    /*
+     * The changed-paths pattern classifies a diff. This asks the question the
+     * diff is only a proxy for: is what we built older than what we built it
+     * from?
+     *
+     * They disagree whenever a release is skipped, and a skipped rebuild does
+     * not retry itself — the next deploy diffs against the commit that skipped
+     * it, sees nothing front-end in that range, and leaves the stale bundle in
+     * place indefinitely. One misclassified path strands the site until someone
+     * runs FORCE=1 by hand.
+     *
+     * That is not hypothetical. `resources/data/*.json` was classified as
+     * content, so corrected prices deployed green and never reached the page —
+     * and the deploy that fixed the classifier could not undo its own backlog,
+     * because by then the data change was behind it.
+     */
+    $script = file_get_contents(base_path('scripts/deploy.sh'));
+
+    // The staleness check must be consulted for the front-end decision, not
+    // only inside the unchanged-commit branch.
+    expect(substr_count($script, 'bundles_are_stale'))->toBeGreaterThanOrEqual(
+        3,
+        'bundles_are_stale should be defined and consulted in both the skip branch and the front-end decision',
+    );
+
+    expect($script)->toMatch('/FRONTEND_CHANGED"?\s*=\s*false.*bundles_are_stale/s');
+
+    // And it has to be defined before both uses, or the shell sees an empty command.
+    $definedAt = strpos($script, 'bundles_are_stale() {');
+    expect($definedAt)->not->toBeFalse();
+    expect($definedAt)->toBeLessThan(strrpos($script, 'bundles_are_stale;'));
+});
