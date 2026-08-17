@@ -8,6 +8,7 @@ import SectionShell from '@/components/ui/section-shell';
 import { Availability, CheckGlyph } from '@/components/ui/glyph';
 import { PROSE_LINK } from '@/components/ui/prose-link';
 import { PANEL_TITLE } from '@/components/ui/grid-cell';
+import { trackDownload } from '@/lib/analytics';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -214,7 +215,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
 
             <div className="mt-6">
                 {tier.ctaHref ? (
-                    <a href={tier.ctaHref} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-(--dur-tap) ease-(--ease-feedback) ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'}`}>
+                    <a href={tier.ctaHref} onClick={() => trackDownload('pricing-free')} className={`inline-flex w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-(--dur-tap) ease-(--ease-feedback) ${tier.featured ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border border-rule text-foreground'}`}>
                         {tier.cta}
                     </a>
                 ) : (
@@ -447,14 +448,25 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-3">
                     {tiers.map((tier, i) => {
-                        const isFree = tier.price === 'free';
+                        /*
+                         * One rule per interior boundary: stacked below md, side
+                         * by side above it.
+                         *
+                         * The Free card used to carry `order-last`, so it led on
+                         * desktop and sat at the bottom on mobile — a
+                         * price-sensitive reader on a phone met "Get Starter" and
+                         * "Get Team" before the $0 card whose call to action is
+                         * the download this page exists to produce. Reading order
+                         * is the same on both now, which also means the border
+                         * can be derived from the index instead of from the tier.
+                         */
+                        const isLast = i === tiers.length - 1;
+
                         return (
-                        <div key={tier.name} className={`
-                            border-rule
-                            ${isFree ? 'order-last md:order-first md:border-r' : ''}
-                            ${!isFree ? 'border-b md:border-b-0 md:border-r' : ''}
-                            ${i === tiers.length - 1 ? 'md:border-r-0' : ''}
-                        `}>
+                        <div
+                            key={tier.name}
+                            className={`border-rule ${isLast ? '' : 'border-b md:border-r md:border-b-0'}`}
+                        >
                             <PricingCard tier={tier} cycle={billingCycle} discountCode={discountCode} discount={discount} paymentProvider={paymentProvider} teamMinSeats={teamMinSeats} />
                         </div>
                         );

@@ -5,6 +5,7 @@ import ThemedImage from '@/components/ui/themed-image';
 import SectionLabel from '@/components/ui/section-label';
 import Button from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
+import { trackDownload } from '@/lib/analytics';
 
 interface Props {
     githubStars?: number | null;
@@ -69,9 +70,7 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                 </p>
                 <FullLine />
                 <div className="flex flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center">
-                    <Button
-                        href="/download"
-                    >
+                    <Button href="/download" onClick={() => trackDownload('hero')}>
                         <AppleGlyph />
                         Download for Mac
                     </Button>

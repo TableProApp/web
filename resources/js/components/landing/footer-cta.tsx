@@ -9,6 +9,7 @@ import { PANEL_TITLE, cellBorders, GridCell, type ColumnMap } from '@/components
 import SectionShell from '@/components/ui/section-shell';
 import Button from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
+import { trackDownload, trackEvent } from '@/lib/analytics';
 
 interface FlashMessage {
     type: 'success' | 'warning' | 'error';
@@ -150,21 +151,6 @@ export default function FooterCTA() {
     }, []);
 
 
-    function trackEvent(name: string, payload: Record<string, string>) {
-        if (typeof window === 'undefined') {
-            return;
-        }
-
-        const win = window as unknown as {
-            plausible?: (event: string, options?: { props?: Record<string, string> }) => void;
-        };
-
-        if (typeof win.plausible === 'function') {
-            win.plausible(name, { props: payload });
-        }
-    }
-
-
     function handleBetaSubmit(event: React.FormEvent) {
         event.preventDefault();
         betaForm.submit();
@@ -193,9 +179,7 @@ export default function FooterCTA() {
                         </p>
 
                         <div className="mt-6 flex flex-wrap items-center gap-3">
-                            <Button
-                                href="/download"
-                            >
+                            <Button href="/download" onClick={() => trackDownload('footer-cta')}>
                                 <AppleGlyph />
                                 Download for Mac
                             </Button>

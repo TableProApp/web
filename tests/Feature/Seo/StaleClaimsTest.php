@@ -126,7 +126,55 @@ it('quotes TablePro download size and engine count consistently on the compare p
     }
 
     $raw = file_get_contents(base_path('resources/data/comparisons.json'));
-    expect($raw)->not->toContain('18+ databases');
+
+    /*
+     * Not `toContain('18+ databases')`. Every occurrence this guard was written
+     * to catch was the plus-less "18 databases", so it never fired once while
+     * ten entries carried a stale count.
+     */
+    Assert::assertDoesNotMatchRegularExpression(
+        '/\b18\+? databases\b/',
+        $raw,
+        'comparisons.json still quotes a stale database count',
+    );
+});
+
+it('states each performance metric in exactly one place', function (): void {
+    /*
+     * `rows` and `benchmarks` both render on a comparison page — the first as
+     * the feature table, the second directly below it under a heading that says
+     * "The numbers." Both used to carry startup time and memory, and five of the
+     * ten pages disagreed with themselves across roughly 200px: DBeaver started
+     * in "~8s" in the table and "5-15s" in the benchmark block.
+     *
+     * `benchmarks` owns the three performance figures now. `rows` owns features,
+     * price and technology. A metric restated in both is the bug.
+     */
+    $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+
+    foreach ($entries as $entry) {
+        $labels = array_column($entry['rows'], 'label');
+
+        foreach (['Startup Time', 'Memory Usage'] as $perfLabel) {
+            expect($labels)->not->toContain(
+                $perfLabel,
+                "{$entry['slug']} restates {$perfLabel} in rows; benchmarks owns it",
+            );
+        }
+    }
+
+    // And TablePro's own figures are one product, so they are one string.
+    foreach (['startup', 'memory', 'download'] as $metric) {
+        $values = array_unique(array_map(
+            static fn(array $entry): string => $entry['benchmarks']['tablePro'][$metric],
+            $entries,
+        ));
+
+        expect($values)->toHaveCount(
+            1,
+            "TablePro quotes more than one {$metric} across the compare pages: " . implode(', ', $values),
+        );
+    }
 });
 
 it('never links the retired TablePlus comparison page', function () use ($readSource): void {
