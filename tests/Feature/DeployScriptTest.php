@@ -126,3 +126,62 @@ it('verifies the new bundles before it moves them into place', function (string 
     '"resources/js/app.tsx"',
     'bootstrap/ssr-next/ssr.js',
 ]);
+
+it('ignores every directory it leaves in the working tree', function (): void {
+    /*
+     * The script refuses to deploy when `git status --porcelain` reports
+     * anything, which is right: a dirty tree means someone edited files on the
+     * server, and merging over that silently is how those edits vanish.
+     *
+     * But the script also builds into `*-next` and keeps the bundles it
+     * replaced at `*-old`, so a successful deploy ends with two untracked
+     * directories in the tree it just checked. Unignored, the first deploy
+     * created them and every deploy after it refused to run — which is exactly
+     * what happened after the CD workflow landed.
+     */
+    $script = file_get_contents(base_path('scripts/deploy.sh'));
+    $ignored = file_get_contents(base_path('.gitignore'));
+
+    preg_match_all('#\b((?:public|bootstrap)/[a-z]+-(?:old|next))\b#', $script, $matches);
+
+    $created = array_unique($matches[1]);
+
+    expect($created)->not->toBeEmpty('Expected the script to name its scratch directories');
+
+    // `Assert::` because Pest's toContain() is `(mixed ...$needles)` and would
+    // read the message as a second needle, failing for the wrong reason.
+    foreach ($created as $path) {
+        PHPUnit\Framework\Assert::assertStringContainsString(
+            "/{$path}",
+            $ignored,
+            "deploy.sh leaves {$path} in the working tree, but .gitignore does not cover it",
+        );
+    }
+});
+
+it('lets its own scratch directories past the cleanliness check, and nothing else', function (string $line, bool $blocks): void {
+    /*
+     * The filter runs before the pull, so a server already holding the
+     * artifacts can reach the commit that ignores them. Exercised against the
+     * real expression rather than a copy, so the two cannot drift.
+     */
+    $script = file_get_contents(base_path('scripts/deploy.sh'));
+
+    preg_match("#git status --porcelain \| grep -vE '([^']+)'#", $script, $m);
+    expect($m[1] ?? null)->not->toBeNull('The cleanliness filter is missing from deploy.sh');
+
+    $survives = preg_match('#' . str_replace('#', '\#', $m[1]) . '#', $line) !== 1;
+
+    expect($survives)->toBe($blocks, $blocks
+        ? "\"{$line}\" should block a deploy"
+        : "\"{$line}\" is this script's own artifact and should not block a deploy");
+})->with([
+    'keeps the previous SSR bundle' => ['?? bootstrap/ssr-old/', false],
+    'keeps the previous asset build' => ['?? public/build-old/', false],
+    'keeps a half-finished SSR build' => ['?? bootstrap/ssr-next/', false],
+    'keeps a half-finished asset build' => ['?? public/build-next/', false],
+    'blocks an edited controller' => [' M app/Http/Controllers/Landing/LandingController.php', true],
+    'blocks an edited component' => [' M resources/js/pages/Home.tsx', true],
+    'blocks a stray untracked file' => ['?? .env.backup', true],
+    'blocks an untracked build directory that is not one of ours' => ['?? public/uploads-old/', true],
+]);

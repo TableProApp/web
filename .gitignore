@@ -15,6 +15,15 @@
 /node_modules
 /bootstrap/ssr
 /public/build
+# scripts/deploy.sh builds into *-next, then keeps the bundles it replaced at
+# *-old so the EXIT trap can put them back. Both live in the working tree on the
+# server, so leaving them untracked made the next deploy's cleanliness check —
+# which exists to catch a human editing files on the server — refuse to run
+# against the artifacts the previous deploy had just created.
+/bootstrap/ssr-next
+/bootstrap/ssr-old
+/public/build-next
+/public/build-old
 /public/hot
 /public/sitemap.xml
 /public/storage

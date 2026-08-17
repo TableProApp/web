@@ -95,8 +95,20 @@ trap on_exit EXIT
 
 # A dirty tree means someone edited files on the server. Merging on top of that
 # silently is how those edits disappear, so stop and let a human look.
-if [ -n "$(git status --porcelain)" ]; then
-    git status --short >&2
+#
+# Its own scratch directories do not count. This script builds into *-next and
+# keeps the bundles it replaced at *-old so the EXIT trap can restore them, so
+# a successful deploy ends by leaving two untracked directories in the tree the
+# next deploy checks. They were not ignored, so the first deploy created them
+# and every deploy after it refused to run.
+#
+# Filtered here rather than left to .gitignore alone, because this check runs
+# before the pull: a tree already holding the artifacts cannot reach the commit
+# that would ignore them, and the deadlock would need a human on the server.
+DIRTY="$(git status --porcelain | grep -vE '^\?\? (public/build|bootstrap/ssr)-(old|next)/$' || true)"
+
+if [ -n "$DIRTY" ]; then
+    printf '%s\n' "$DIRTY" >&2
     fail "working tree is not clean — refusing to deploy over local changes"
 fi
 
