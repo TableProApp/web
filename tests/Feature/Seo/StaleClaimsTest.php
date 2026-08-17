@@ -12,7 +12,6 @@ $readSource = static fn(string $relative): string => file_get_contents(base_path
 it('never revives a stale database count or platform claim', function () use ($readSource): void {
     $sources = [
         'resources/js/data/faqs.ts',
-        'resources/js/data/home-faqs.ts',
         'resources/js/pages/Home.tsx',
         'resources/js/components/landing/hero.tsx',
         'resources/js/components/landing/database-grid.tsx',
@@ -110,11 +109,20 @@ it('never publishes a rating nobody gave', function () use ($readSource): void {
     }
 });
 
-it('keeps the FAQ sets at the sizes the page and schema expect', function () use ($readSource): void {
-    // Count only populated entries, so the `question:` field on FaqItem is not tallied.
-    expect(substr_count($readSource('resources/js/data/home-faqs.ts'), "question: '"))->toBe(8);
-    // The /faq page spreads the homepage set and adds six of its own.
-    expect(substr_count($readSource('resources/js/data/faqs.ts'), "question: '"))->toBe(6);
+it('keeps every FAQ question, and asks each of them in one place', function () use ($readSource): void {
+    /*
+     * Fourteen: the eight the homepage used to ask — four in a section of its
+     * own and four inline — plus the six that were always only here.
+     *
+     * The homepage set was redundant twice over. Every one of those eight was
+     * already answered in prose elsewhere on the homepage, and `faqs.ts` spread
+     * `home-faqs.ts` in wholesale, so /faq answered each of them a third time.
+     * The questions all survived the move; only the duplicate render sites went.
+     */
+    expect(substr_count($readSource('resources/js/data/faqs.ts'), "question: '"))->toBe(14);
+
+    expect(file_exists(base_path('resources/js/data/home-faqs.ts')))
+        ->toBeFalse('home-faqs.ts is gone; /faq is the only place a question is asked');
 });
 
 it('quotes TablePro download size and engine count consistently on the compare pages', function (): void {

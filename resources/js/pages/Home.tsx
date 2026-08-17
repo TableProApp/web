@@ -3,25 +3,18 @@ import LandingLayout from '@/layouts/landing-layout';
 import Header from '@/components/landing/header';
 import Hero from '@/components/landing/hero';
 import SpecStrip from '@/components/landing/spec-strip';
-import Sponsors from '@/components/landing/sponsors';
 import DatabaseGrid from '@/components/landing/database-grid';
 import Workbench from '@/components/landing/workbench';
-import Architecture from '@/components/landing/architecture';
 import AgentsMcp from '@/components/landing/agents-mcp';
-import Mobile from '@/components/landing/mobile';
-import ObjectionRow from '@/components/landing/objection-row';
 import Safety from '@/components/landing/safety';
-import DepthGrid from '@/components/landing/depth-grid';
 import DownloadRail from '@/components/landing/download-rail';
 import SwitchFrom from '@/components/landing/switch-from';
-import OpenSource from '@/components/landing/open-source';
+import CompareTable from '@/components/landing/compare-table';
 import Pricing from '@/components/landing/pricing';
-import FAQ from '@/components/landing/faq';
 import FooterCTA from '@/components/landing/footer-cta';
 import Footer from '@/components/landing/footer';
 import SEOHead from '@/components/seo/seo-head';
 import { buildOrganizationJsonLd } from '@/lib/structured-data';
-import { homeFaqs } from '@/data/home-faqs';
 
 interface LatestRelease {
     version: string | null;
@@ -89,21 +82,6 @@ function buildAppJsonLd(canonicalBaseUrl: string, latestRelease?: LatestRelease 
     return data;
 }
 
-function buildFaqJsonLd(): object {
-    return {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: homeFaqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.answer,
-            },
-        })),
-    };
-}
-
 export default function Home({
     downloadUrls,
     githubStars,
@@ -119,47 +97,55 @@ export default function Home({
                 title={HOME_TITLE}
                 description={HOME_DESCRIPTION}
                 canonical="/"
+                /*
+                 * No FAQPage. Google retired the FAQ rich result on 7 May 2026,
+                 * so the markup earns nothing in Search — and it published a
+                 * second FAQPage entity on this domain, competing with /faq,
+                 * which serves a strict superset of the same questions. /faq
+                 * owns that entity uncontested now.
+                 */
                 jsonLd={[
                     buildAppJsonLd(canonicalBaseUrl, latestRelease),
                     buildOrganizationJsonLd(canonicalBaseUrl),
-                    buildFaqJsonLd(),
                 ]}
             />
 
+            {/*
+              * Nine headed sections and two headless rails, down from eighteen
+              * blocks and fifteen H2s.
+              *
+              * The rule that produced this order came from the design system
+              * rather than from a word budget: a section earns an H2 only if it
+              * owns a data artifact — a table, a ledger, a grid or a screenshot.
+              * Architecture, OpenSource and ObjectionRow owned none, and every
+              * argument they made has a URL on this site that already ranks for
+              * it. What they said that was load-bearing moved to the section
+              * that proves it.
+              */}
             <Hero githubStars={githubStars} latestRelease={latestRelease} />
             <SpecStrip latestRelease={latestRelease} />
-            {/* Sponsors sit high on purpose: the visible credit is what attracts the next one. */}
-            <Sponsors />
-
-            {/*
-              * The two questions that stop a download, answered while the
-              * reader is still deciding whether to keep scrolling rather than
-              * at position fifteen.
-              */}
-            <ObjectionRow />
-
             <DatabaseGrid />
 
-            {/*
-              * "Here is what it does", then "and moving costs you nothing".
-              * SwitchFrom used to sit at position eleven, after roughly 1,800
-              * words, so the one argument aimed squarely at a TablePlus or
-              * DBeaver user read as a footnote.
-              */}
+            {/* Conviction peaks at the screenshots, so a download follows them. */}
             <Workbench />
-            <SwitchFrom />
             <DownloadRail
-                location="switch"
-                note="Your existing connections import on first launch. macOS 14+, Apple Silicon and Intel."
+                location="workbench"
+                note="Open a database and press ⌘⏎. macOS 14+, Apple Silicon and Intel."
             />
 
-            <Architecture />
+            {/*
+              * "Moving costs you nothing", then the numbers that say why you
+              * would. CompareTable replaces SwitchFrom's ten competitor chips at
+              * the same scroll position with three linked columns, which is a
+              * net reduction of seven exits at the highest-intent moment.
+              */}
+            <SwitchFrom />
+            <CompareTable />
 
             {/*
               * Agents raises the most alarming claim on the page — "let Claude
-              * query your database" — and Safety is its answer. They used to be
-              * separated by 274 words about iCloud sync, which left the anxiety
-              * sitting unresolved through an unrelated section.
+              * query your database" — and Safety is its answer. Adjacency does
+              * that work, and adjacency is free.
               */}
             <AgentsMcp />
             <Safety />
@@ -168,20 +154,7 @@ export default function Home({
                 note="Safe Mode is on before you connect anything. macOS 14+, Apple Silicon and Intel."
             />
 
-            <DepthGrid />
-            <OpenSource latestRelease={latestRelease} />
             <Pricing paymentProvider={paymentProvider} teamMinSeats={teamMinSeats} />
-
-            {/*
-              * Mobile lands after Pricing rather than at the midpoint. It admits
-              * a paywall, opens an email gate and disclaims a platform that does
-              * not exist yet — three deceleration moments, none of which advance
-              * a Mac download. After the prices, "requires a licence" is on
-              * message instead of a surprise.
-              */}
-            <Mobile />
-            <FAQ items={homeFaqs} />
-
             <FooterCTA />
         </LandingLayout>
     );

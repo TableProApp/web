@@ -2,6 +2,39 @@ import { ReactNode } from 'react';
 import Container from '@/components/ui/container';
 import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
 import { FullLine } from '@/components/ui/full-line';
+import { CELL_DENSITY, cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
+import SectionShell from '@/components/ui/section-shell';
+
+const BEHAVIOUR_COLS: ColumnMap = { base: 1, sm: 3 };
+
+interface Behaviour {
+    title: string;
+    body: string;
+}
+
+/**
+ * Consequences of what the table measures, in the order you would meet them.
+ *
+ * Relocated from `architecture.tsx`, which was 321 words of prose with no data
+ * artifact of its own, an H2 that restated the H1 and a closing paragraph that
+ * recommended two competitors. These three cells were the only content in it a
+ * competitor could not also claim, and they belong under the numbers that
+ * explain them rather than under a second headline about Swift.
+ */
+const BEHAVIOURS: Behaviour[] = [
+    {
+        title: 'Results before metadata',
+        body: 'Rows appear as soon as they come back. Column metadata loads behind them, so a slow remote database no longer costs you a multi-second wait before you see anything.',
+    },
+    {
+        title: 'Hiding a column makes the table load faster',
+        body: 'A hidden column is not fetched at all. Hide a large TEXT or BLOB column and the query gets smaller. Widths, order and hidden state are remembered per table.',
+    },
+    {
+        title: 'No accidental COUNT(*)',
+        body: 'Above the row-count threshold, which defaults to 100,000, the pager shows an estimated total instead of running a full count against a large table.',
+    },
+];
 
 interface Props {
     latestRelease?: { version: string | null; publishedAt: string | null; countLast30Days: number | null } | null;
@@ -34,7 +67,13 @@ function formatReleaseDate(iso: string): string {
 }
 
 /**
- * The hero's claims, restated as a result set.
+ * The page's proof section: what the app costs to run, as a result set.
+ *
+ * This used to render under a bare `aria-label` with no heading, which made it
+ * decoration. A magnitude with an `aria-label` is not citable by anything —
+ * a reader scanning headings never meets it, and an answer engine has no
+ * statement to lift. It carries an H2 now, and a stated measurement basis,
+ * which is the one thing on this page no competitor can copy.
  *
  * This is a real `<table>` rather than six divs, and the change is not
  * cosmetic: a flat run of divs gives a screen reader no header association at
@@ -53,9 +92,16 @@ function formatReleaseDate(iso: string): string {
 export default function SpecStrip({ latestRelease }: Props) {
     const specs: Spec[] = [
         { label: 'databases', type: 'int', value: '25', sub: '9 bundled · 16 on demand', numeric: true },
-        { label: 'cold_start', type: 'interval', value: 'Under 1s', sub: 'Nothing to bootstrap', numeric: true },
-        { label: 'idle_rss', type: 'bytes', value: '~80 MB', sub: 'No JVM, no Chromium', numeric: true },
-        { label: 'download', type: 'bytes', value: '~20 MB', sub: 'No runtime to install', numeric: true },
+        /*
+         * The subs say how each number was produced, not what it proves.
+         * "Nothing to bootstrap" and "No JVM, no Chromium" were the third and
+         * fourth statements of the no-runtime claim; the headline above carries
+         * it once, and a measured figure is worth more with a method than with
+         * a slogan.
+         */
+        { label: 'cold_start', type: 'interval', value: 'Under 1s', sub: 'Cold, to first window', numeric: true },
+        { label: 'idle_rss', type: 'bytes', value: '~80 MB', sub: 'One connection, open and idle', numeric: true },
+        { label: 'download', type: 'bytes', value: '~20 MB', sub: 'Apple Silicon or Intel', numeric: true },
         {
             label: 'license',
             type: 'text',
@@ -75,23 +121,34 @@ export default function SpecStrip({ latestRelease }: Props) {
             label: 'latest',
             type: 'version',
             value: latestRelease?.version ? `v${latestRelease.version}` : 'Shipping',
-            sub: latestRelease?.publishedAt ? formatReleaseDate(latestRelease.publishedAt) : 'Weekly releases',
+            /*
+             * The cadence lives here now. It used to render as its own
+             * paragraph below this table — "{n} releases in the last thirty
+             * days. Development happens in the open on GitHub." — and again,
+             * from the same prop, roughly two thousand words later in the
+             * open-source section. Same sentence, twice, one page.
+             */
+            sub: [
+                latestRelease?.publishedAt ? formatReleaseDate(latestRelease.publishedAt) : 'Weekly releases',
+                latestRelease?.countLast30Days ? `${latestRelease.countLast30Days} releases in 30 days` : null,
+            ]
+                .filter(Boolean)
+                .join(' · '),
         },
     ];
 
     return (
-        <section aria-label="Key specifications" className="scroll-mt-20">
-            {/*
-              * No opening rule. The block above this one closes with a
-              * FullLine, and two rules at the same y draw a single hairline
-              * while consuming two ordinals — which is how the gutter ended
-              * up printing 08 and 09 on top of each other. A boundary is one
-              * rule, and it belongs to whatever closes.
-              */}
+        <SectionShell
+            id="specs"
+            label="Specification"
+            headline="Written in Swift, not in Electron."
+            headlineMuted="Here is what that costs to run."
+        >
+            <FullLine />
             <Container>
                 <DataTable
                     className="table-fixed"
-                    caption="TablePro in numbers: database count, cold start, idle memory, download size, licence and latest release."
+                    caption="TablePro in numbers: database count, cold start, idle memory, download size, license and latest release."
                 >
 
                     {/*
@@ -167,17 +224,41 @@ export default function SpecStrip({ latestRelease }: Props) {
             </Container>
             <FullLine />
 
-            {latestRelease?.countLast30Days ? (
-                <>
-                    <Container>
-                        <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                            {latestRelease.countLast30Days} releases in the last thirty days. Development happens in the
-                            open on GitHub.
-                        </p>
-                    </Container>
-                    <FullLine />
-                </>
-            ) : null}
-        </section>
+            {/*
+              * The measurement basis. A stated method is what separates a
+              * number from a slogan, and it is the most falsifiable sentence on
+              * the page — which is exactly why it is worth the twenty-five
+              * words. If a figure cannot be reproduced here, delete it rather
+              * than soften it into an adjective.
+              */}
+            <Container>
+                <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
+                    Cold start and idle memory measured on an M4 MacBook Pro running macOS 27, from a cold launch to
+                    the first window, with one PostgreSQL connection open.
+                </p>
+            </Container>
+            <FullLine />
+
+            <Container>
+                <h3 className="px-4 py-3 font-mono text-2xs font-semibold tracking-widest text-muted-foreground uppercase">
+                    What the numbers buy on day two
+                </h3>
+            </Container>
+            <FullLine />
+            <Container>
+                <div className="grid grid-cols-1 sm:grid-cols-3">
+                    {BEHAVIOURS.map((behaviour, i) => (
+                        <div
+                            key={behaviour.title}
+                            className={`${CELL_DENSITY.default} ${cellBorders(i, BEHAVIOUR_COLS, BEHAVIOURS.length)} border-rule`}
+                        >
+                            <h4 className="text-base font-semibold text-pretty">{behaviour.title}</h4>
+                            <p className="mt-3 text-sm text-muted-foreground text-pretty">{behaviour.body}</p>
+                        </div>
+                    ))}
+                </div>
+            </Container>
+            <FullLine />
+        </SectionShell>
     );
 }

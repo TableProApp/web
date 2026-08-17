@@ -9,6 +9,7 @@ import { Availability, CheckGlyph } from '@/components/ui/glyph';
 import { PROSE_LINK } from '@/components/ui/prose-link';
 import { PANEL_TITLE } from '@/components/ui/grid-cell';
 import { trackDownload } from '@/lib/analytics';
+import SponsorRow from '@/components/landing/sponsor-row';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -94,12 +95,18 @@ function buildTiers(teamMinSeats: number): Tier[] {
  * Deliberately short. A table of rows that are checked in all three columns
  * makes the free tier look finished and gives nobody a reason to pay; these are
  * the rows that actually differ, plus enough context to show how little does.
+ *
+ * Four all-ticked rows became one. Four rows of "included everywhere" is the
+ * exact failure this docblock says it avoids — one row carrying the whole free
+ * surface does the same job in a sixth of the vertical space.
  */
 const comparisonFeatures = [
-    { name: 'All 25 databases', free: true, pro: true, team: true },
-    { name: 'SQL editor, data grid, AI assistant, MCP server', free: true, pro: true, team: true },
-    { name: 'Safe Mode, Touch ID, SSH tunnels', free: true, pro: true, team: true },
-    { name: 'Import and export, including XLSX', free: true, pro: true, team: true },
+    {
+        name: 'The whole app: 25 databases, SQL editor, data grid, AI assistant, MCP server, Safe Mode, SSH tunnels, import and export',
+        free: true,
+        pro: true,
+        team: true,
+    },
     { name: 'License activations', free: 'No license needed', pro: '2 Macs', team: '5 minimum, then per seat' },
     { name: 'iCloud Sync', free: false, pro: true, team: true },
     { name: 'Encrypted connection export and environment variables', free: false, pro: true, team: true },
@@ -324,24 +331,46 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             label="Pricing"
             headline="The app is free."
             headlineMuted="The license funds it."
-            lede={`Starter is per person. Team is per seat, from ${teamMinSeats} seats. Yearly saves 33 percent. Lifetime pays for itself against yearly in about two and a half years.`}
+            /*
+             * This lede absorbs three sections.
+             *
+             * "Is it really free, or free for now?" used to be answered at
+             * position four, before the reader had seen a feature. The whole
+             * open-source section answered it again at position fifteen, in
+             * near-identical words — one of them spelling "licence", the other
+             * "license". Then this lede answered it a third time. One statement
+             * of what is free and one of what is paid, at the moment the prices
+             * are on screen, which is where the reader is actually deciding.
+             */
+            lede="Free means permanently free. All 25 databases, the SQL editor, the data grid, the AI assistant, the MCP server, Safe Mode with Touch ID, SSH tunnels and XLSX export cost nothing, on every Mac you own, with no trial countdown. A license adds four things: iCloud Sync, a second Mac, encrypted connection export, and environment variables in connection fields."
             tone="raised"
         >
 
-            {/* What a license actually buys. Stated before the prices, on purpose. */}
             <Container>
                 <FullLine />
                 <Ledger>
+                    {/*
+                      * The AGPL answer, moved to where it converts. It used to
+                      * render at position four as an orphan h2 at body size —
+                      * a section-level heading smaller than every h3 on the page
+                      * — blocking the highest-value visitor on the site before
+                      * they had seen anything. It belongs one scroll from the
+                      * Team card.
+                      *
+                      * The ask survives; the apology does not. "Mostly it buys
+                      * my time" and "if you cannot afford one" both hedged the
+                      * value proposition at the moment of decision, and the
+                      * second one told a Team buyer the product is priced for
+                      * people who cannot spare $24 a year.
+                      */}
+                    <LedgerRow label="At work">
+                        AGPL obligations attach to distributing a modified version, not to using it. There is no
+                        company-size or revenue limit. If you use TablePro at work, buying a license is how the next
+                        release gets built.
+                    </LedgerRow>
                     <LedgerRow label="iCloud Sync">
                         Connections, groups, tags, SSH profiles, favorites, saved queries and settings on every Mac you
                         own. Passwords go through iCloud Keychain as a separate opt in.
-                    </LedgerRow>
-                    <LedgerRow label="A second Mac">
-                        Starter activates two. Team activates {teamMinSeats}, then one per purchased seat.
-                    </LedgerRow>
-                    <LedgerRow label="Team catalog and library">
-                        Publish connection definitions and saved queries to your team. Passwords are never sent, so
-                        everyone supplies their own.
                     </LedgerRow>
                 </Ledger>
                 <FullLine />
@@ -373,8 +402,16 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                     </div>
                 </div>
                 <FullLine />
+                {/*
+                  * The mechanics, once. This row used to read "$24 a year, or
+                  * $59 once" — two price literals typed a second time, outside
+                  * `buildTiers()`, which is the one function CLAUDE.md points at
+                  * as the source for a figure that must match what checkout
+                  * charges. It also restated the lede fifty lines above it.
+                  */}
                 <p className="px-4 py-3 text-center font-mono text-xs text-muted-foreground">
-                    $24 a year, or $59 once. Lifetime pays for itself in two and a half years.
+                    Starter is per person. Team is per seat, from {teamMinSeats} seats. Yearly saves 33 percent;
+                    lifetime pays for itself against yearly in about two and a half years.
                 </p>
                 <FullLine />
 
@@ -481,11 +518,6 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                     7-day money-back guarantee on all paid plans.{' '}
                     <a href="/refund-policy" className={PROSE_LINK}>Refund policy</a>
                 </p>
-                <FullLine />
-                <p className="px-4 py-4 text-sm text-muted-foreground">
-                    If you use TablePro at work, buy a license. If you cannot afford one, the free version is not
-                    going anywhere.
-                </p>
             </Container>
 
             {/* Plan comparison */}
@@ -580,6 +612,9 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                     </DataTable>
                 </div>
             </Container>
+            <FullLine />
+
+            <SponsorRow />
             <FullLine />
         </SectionShell>
     );

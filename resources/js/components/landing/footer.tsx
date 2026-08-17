@@ -1,5 +1,9 @@
+import { useEffect, useRef, useState } from 'react';
+import { buttonClasses } from '@/components/ui/button';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
+import { useEmailForm } from '@/hooks/use-email-form';
+import { trackEvent } from '@/lib/analytics';
 
 const columns = [
     {
@@ -77,10 +81,136 @@ const columns = [
     },
 ];
 
+const INPUT_CLASS =
+    'min-w-0 flex-1 rounded-lg border border-rule bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground disabled:opacity-50';
+
+const flashColors = {
+    success: 'text-green-600 dark:text-green-400',
+    warning: 'text-amber-600 dark:text-amber-400',
+    error: 'text-red-600 dark:text-red-400',
+};
+
+/**
+ * The newsletter, moved down from the closing call to action.
+ *
+ * It used to render as a sibling panel beside the Mac download, which put a
+ * second, non-download conversion goal at the single highest-intent moment on
+ * the page. Down here it competes with nothing.
+ *
+ * The subscriber count is decoration, so it must not cost a request on page
+ * load. The fetch waits until the panel is within 200px of the viewport, and the
+ * AbortController still cancels an in-flight request if the footer unmounts.
+ */
+function Newsletter() {
+    const form = useEmailForm('/newsletter/subscribe');
+    const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
+    const anchorRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const controller = new AbortController();
+
+        function loadStats() {
+            fetch('/api/newsletter/stats', { signal: controller.signal, headers: { Accept: 'application/json' } })
+                .then((res) => (res.ok ? res.json() : null))
+                .then((data) => {
+                    if (data && typeof data.count === 'number') {
+                        setSubscriberCount(data.count);
+                    }
+                })
+                .catch(() => undefined);
+        }
+
+        const node = anchorRef.current;
+
+        if (!node || typeof IntersectionObserver === 'undefined') {
+            loadStats();
+
+            return () => controller.abort();
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries.some((entry) => entry.isIntersecting)) {
+                    observer.disconnect();
+                    loadStats();
+                }
+            },
+            { rootMargin: '200px' },
+        );
+
+        observer.observe(node);
+
+        return () => {
+            observer.disconnect();
+            controller.abort();
+        };
+    }, []);
+
+    function handleSubmit(event: React.FormEvent) {
+        event.preventDefault();
+        trackEvent('newsletter_signup_clicked', { source: 'footer' });
+        form.submit();
+    }
+
+    return (
+        <div ref={anchorRef} className="px-4 py-6 sm:px-6">
+            <h3 className="font-semibold text-foreground">Stay updated</h3>
+            <p className="mt-2 text-muted-foreground">
+                Release notes and database notes. About one email a month, unsubscribe any time.
+                {subscriberCount !== null && subscriberCount > 0 && (
+                    <>
+                        {' '}
+                        Join {subscriberCount.toLocaleString()}{' '}
+                        {subscriberCount === 1 ? 'developer' : 'developers'}.
+                    </>
+                )}
+            </p>
+            <form onSubmit={handleSubmit} className="mt-4 flex max-w-md flex-col gap-2 sm:flex-row sm:gap-3">
+                <label htmlFor="newsletter-email" className="sr-only">
+                    Email address
+                </label>
+                <input
+                    id="newsletter-email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    value={form.email}
+                    onChange={(e) => form.setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    disabled={form.processing}
+                    className={INPUT_CLASS}
+                />
+                <button
+                    type="submit"
+                    disabled={form.processing}
+                    className={buttonClasses('primary', 'sm', 'shrink-0 disabled:opacity-50')}
+                >
+                    {form.processing ? 'Subscribing...' : 'Subscribe'}
+                </button>
+            </form>
+            {form.error && (
+                <p role="alert" className="mt-3 text-sm text-red-600 dark:text-red-400">
+                    {form.error}
+                </p>
+            )}
+            {form.flash?.message && (
+                <p role="status" className={`mt-3 text-sm ${flashColors[form.flash.type]}`}>
+                    {form.flash.message}
+                </p>
+            )}
+        </div>
+    );
+}
+
 export default function Footer() {
     return (
         <footer className="text-sm/loose" role="contentinfo">
             <div className="h-12 sm:h-16 lg:h-24" />
+
+            <FullLine />
+            <Container>
+                <Newsletter />
+            </Container>
 
             {/* Link columns */}
             <FullLine />

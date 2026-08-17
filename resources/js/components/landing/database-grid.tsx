@@ -4,6 +4,7 @@ import gridData from '../../../data/database-grid.json';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import DatabaseMark from '@/components/ui/database-mark';
+import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 import { CELL_DENSITY, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 
@@ -79,15 +80,6 @@ function TileBody({ database }: { database: DatabaseTile }) {
 export default function DatabaseGrid() {
     const [activeCategory, setActiveCategory] = useState('all');
     const tileRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-
-    const counts = useMemo(() => {
-        const tally: Record<string, number> = { all: databases.length };
-        for (const database of databases) {
-            tally[database.category] = (tally[database.category] ?? 0) + 1;
-        }
-
-        return tally;
-    }, []);
 
     /**
      * Every tile stays mounted so the server-rendered markup is the complete
@@ -214,8 +206,15 @@ export default function DatabaseGrid() {
                                             aria-hidden="true"
                                         />
                                     )}
-                                    {category.label}{' '}
-                                    <span className="tabular-nums text-muted-foreground-subtle">{counts[category.id] ?? 0}</span>
+                                    {/*
+                                      * No per-category counts. They rendered
+                                      * "All 26" one row under an H2 that says
+                                      * 25, and that visible contradiction was
+                                      * the only reason the FAQ carried an entry
+                                      * explaining it. The reconciliation line
+                                      * below the grid states it once, properly.
+                                      */}
+                                    {category.label}
                                 </button>
                             );
                         })}
@@ -264,6 +263,7 @@ export default function DatabaseGrid() {
                                         ref={(el) => { tileRefs.current[index] = el; }}
                                         href={database.href}
                                         data-row
+                                        aria-label={`${database.name} client for Mac`}
                                         className={`${TILE_CLASS} ${TILE_HOVER} ${borders}`}
                                     >
                                         <TileBody database={database} />
@@ -300,29 +300,46 @@ export default function DatabaseGrid() {
                             ))}
                         </div>
 
+                        {/* "Entries", not "databases": Cassandra and ScyllaDB are two of them sharing one driver. */}
                         <div className="sr-only" role="status" aria-live="polite">
-                            Showing {visible.length} of {databases.length} databases.
+                            Showing {visible.length} of {databases.length} entries.
                         </div>
                     </div>
                 </div>
             </Container>
             <FullLine />
 
+            {/*
+              * Three fine-print rows became one, and one of them was false.
+              * "and so do libSQL and Turso" was wrong: `driverGroup` has exactly
+              * one duplicate, `cassandra`. libSQL and Turso are a single tile,
+              * so they cannot be a second pair. The plugin-registry paragraph
+              * restated the checksum and signature claim the lede already makes.
+              */}
             <Container>
                 <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    ● bundled &nbsp; ○ downloads on demand
+                    ● bundled &nbsp; ○ downloads on demand &nbsp;·&nbsp; Twenty six tiles, twenty five drivers:
+                    Cassandra and ScyllaDB share one.
                 </p>
-                <FullLine />
-                <p className="px-4 py-3 text-sm text-muted-foreground">
-                    Twenty six tiles, twenty five drivers. Cassandra and ScyllaDB share one driver, and so do libSQL and
-                    Turso.
-                </p>
-                <FullLine />
-                <p className="px-4 py-3 text-sm text-muted-foreground">
-                    Drivers are .tableplugin bundles built against TableProPluginKit. The registry manifest is public at
-                    github.com/TableProApp/plugins, every download must match a SHA-256 checksum, and the bundle's code
-                    signature must match TablePro's signing team before it loads.
-                </p>
+            </Container>
+            <FullLine />
+
+            {/*
+              * The bill of materials, relocated from `architecture.tsx`. Under
+              * a headline about Swift it was a parts list. Under one that says
+              * "One native driver each. No JDBC." it is the proof of the
+              * sentence directly above it.
+              */}
+            <Container>
+                <Ledger>
+                    <LedgerRow label="Drivers">
+                        libpq, libmariadb, hiredis, libmongoc, libcassandra, FreeTDS, OracleNIO. Teradata and Trino
+                        speak their wire protocols in pure Swift. No JDBC jar, no ODBC bridge, anywhere.
+                    </LedgerRow>
+                    <LedgerRow label="Plugins">
+                        Each driver is a signed bundle that loads over a stable ABI, so an app update never breaks one.
+                    </LedgerRow>
+                </Ledger>
             </Container>
             <FullLine />
         </SectionShell>
