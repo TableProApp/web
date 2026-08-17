@@ -43,6 +43,8 @@ const TRUST_COLS: ColumnMap = { base: 1, sm: 3 };
 const TRUST_CELLS: { label: string; body: string }[] = [
     {
         label: 'Credentials',
+        // Sole owner of this claim now. Its last 22 words used to be
+        // byte-identical to the homepage FAQ answer about password storage.
         body: 'Connection passwords, SSH passphrases, TOTP secrets and AI keys go to the macOS Keychain. Or they never live in TablePro at all: a connection can resolve its password at connect time from a file, an environment variable, a shell command, 1Password, HashiCorp Vault or AWS Secrets Manager.',
     },
     {
