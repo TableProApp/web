@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
+import { cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 import Kbd from '@/components/ui/kbd';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
@@ -71,14 +72,6 @@ const ROWS: Row[] = [
                 ),
             },
             {
-                label: 'Format',
-                value: (
-                    <>
-                        <Kbd>⌘⇧L</Kbd>, two-space indent, comments, strings and your cursor preserved
-                    </>
-                ),
-            },
-            {
                 label: 'Row cap',
                 value: '10,000 by default, 100 to 500,000. The SQL is never rewritten, so your own LIMIT always wins.',
             },
@@ -87,15 +80,6 @@ const ROWS: Row[] = [
                 value: (
                     <>
                         Six modes, motions, text objects, registers, marks, macros. <Mono>:w</Mono> runs the query.
-                    </>
-                ),
-            },
-            {
-                label: 'Files',
-                value: (
-                    <>
-                        Opens <Mono>.sql</Mono>, <Mono>.psql</Mono>, <Mono>.pgsql</Mono> and saves back to disk, with a
-                        side-by-side diff if the file changed underneath you
                     </>
                 ),
             },
@@ -111,30 +95,10 @@ const ROWS: Row[] = [
         },
         rows: [
             {
-                label: 'Filter',
-                value: '18 operators, or a raw WHERE clause with column autocomplete after AND and OR',
-            },
-            {
-                label: 'Navigate',
-                value: (
-                    <>
-                        Foreign key cells open the referenced row. <Kbd>⌘</Kbd>-click opens it in a new tab.
-                    </>
-                ),
-            },
-            {
                 label: 'Commit',
                 value: (
                     <>
                         <Kbd>⌘S</Kbd> saves. <Kbd>⌘⇧P</Kbd> shows the exact parameterized SQL first, values inlined.
-                    </>
-                ),
-            },
-            {
-                label: 'Undo',
-                value: (
-                    <>
-                        <Kbd>⌘Z</Kbd> is focus aware. A multi-row delete is a single undo.
                     </>
                 ),
             },
@@ -158,27 +122,63 @@ const ROWS: Row[] = [
                     </>
                 ),
             },
-            {
-                label: 'Diff',
-                value: 'Before and after, unified or split, with numbered steps tagged Critical, Change or Context',
-            },
             { label: 'Apply', value: 'Nothing reaches your editor until you press Apply' },
-            {
-                label: 'Modes',
-                value: 'Ask is read only. Edit adds writes. Agent adds destructive operations behind a typed phrase.',
-            },
         ],
     },
 ];
+
+/**
+ * The long tail, folded in from what used to be its own section.
+ *
+ * `DepthGrid` carried an H2, an eyebrow and roughly 430px of header chrome for
+ * six cells, and its `#more` anchor had no inbound link anywhere in the repo.
+ * Every item here is something you do inside the app window, which is what this
+ * section is about, so it reads as the end of the tour rather than as a seventh
+ * pitch.
+ */
+const DEPTH_ITEMS: { title: string; body: ReactNode }[] = [
+    {
+        title: 'EXPLAIN, visualized',
+        body: 'Three views of the plan: a cost-coloured diagram, an expandable tree, and the raw text.',
+    },
+    {
+        title: 'Server dashboard',
+        body: 'Active sessions, per-engine metrics and slow queries, with Cancel Query and Terminate Session behind a confirmation.',
+    },
+    {
+        title: 'Users and roles',
+        body: 'Grant and revoke without hand-writing GRANT, from the server down to a single column.',
+    },
+    {
+        title: 'Quick Switcher',
+        body: 'Fuzzy search across tables, databases, saved queries and history, with the ones you use most at the top.',
+    },
+    {
+        title: 'CSV inspector',
+        body: (
+            <>
+                Open a <Mono>.csv</Mono> or <Mono>.tsv</Mono> as a document, with no scratch database and no import
+                step.
+            </>
+        ),
+    },
+    {
+        title: 'Backup and restore',
+        body: "PostgreSQL and Redshift dumps through the connection's existing SSH tunnel.",
+    },
+];
+
+/** 6 items divide evenly into 1, 2 and 3 columns, so no filler cells are needed. */
+const DEPTH_COLS: ColumnMap = { base: 1, sm: 2, lg: 3 };
 
 export default function Workbench() {
     return (
         <SectionShell
             id="features"
             label="The workbench"
-            headline="Write, run, edit, commit."
+            headline="Write SQL, edit rows, commit."
             headlineMuted="In one window."
-            lede="Every result is a tab. Every edit queues in memory until you save. Nothing runs against your database that you have not read first."
+            lede="Every result is a tab. Every edit queues in memory until you save."
         >
             <FullLine />
             <Container>
@@ -232,6 +232,25 @@ export default function Workbench() {
                     );
                 })}
             </Container>
+
+            <Container>
+                <h3 className="px-4 py-4 text-lg font-semibold">Six more things you would expect to pay for.</h3>
+            </Container>
+            <FullLine />
+            <Container>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                    {DEPTH_ITEMS.map((item, i) => (
+                        <GridCell
+                            key={item.title}
+                            className={`p-6 transition-colors sm:p-8 ${cellBorders(i, DEPTH_COLS, DEPTH_ITEMS.length)}`}
+                        >
+                            <h4 className="text-base font-semibold">{item.title}</h4>
+                            <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
+                        </GridCell>
+                    ))}
+                </div>
+            </Container>
+            <FullLine />
         </SectionShell>
     );
 }

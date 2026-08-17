@@ -1,6 +1,5 @@
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
-import SectionShell from '@/components/ui/section-shell';
 import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
 import { PROSE_LINK } from '@/components/ui/prose-link';
 
@@ -23,15 +22,9 @@ interface Sponsor {
     name: string;
     url: string;
     /**
-     * One line saying what this company does.
-     *
-     * A wall of unfamiliar marks reads as weaker credibility than showing none,
-     * because the reader cannot tell a sponsor from a customer from a logo
-     * someone licensed. A sentence turns paid placement into something the
-     * reader gets value from, which is the Neovim pattern.
-     *
-     * Optional on purpose: a sponsor without a description still renders its
-     * mark, so adding copy later is a data edit and never a code change.
+     * One line saying what this company does. Optional on purpose: a sponsor
+     * without a description still renders its mark, so adding copy later is a
+     * data edit and never a code change.
      */
     description?: string;
     logo?: string;
@@ -40,8 +33,6 @@ interface Sponsor {
     height: number;
     svgContent?: string;
 }
-
-const GITHUB_SPONSORS_URL = 'https://github.com/sponsors/datlechin';
 
 const sponsors: Sponsor[] = [
     {
@@ -102,8 +93,7 @@ const sponsors: Sponsor[] = [
     },
 ];
 
-const TOTAL_SLOTS = 8;
-const emptySlots = Math.max(TOTAL_SLOTS - sponsors.length, 0);
+const GITHUB_SPONSORS_URL = 'https://github.com/sponsors/datlechin';
 
 const MARK_CLASS = 'h-8 w-auto max-w-full sm:h-10 lg:h-12';
 
@@ -136,92 +126,61 @@ const CELL_CLASS =
     'group flex flex-col items-center justify-center gap-3 p-6 text-center transition-colors sm:p-8 lg:p-10';
 
 /**
- * Sponsors get their own section high on the page, not a footnote near the
- * bottom. Visible credit is the product being sold here, so the placement is
- * the point. The heading states plainly that these are sponsors funding the
- * work, which is what stops a logo row from reading as a customer list.
+ * The sponsor credit, as a headless row rather than a section.
+ *
+ * This used to open the page at position three, with its own H2 — "Paid for by
+ * these companies. / That is why the app is free." — a 46-word funding lede and
+ * a 22-word solicitation paragraph, before the reader had seen a database list
+ * or a price. That is the slot comparable pages spend on adoption proof, and
+ * eight unfamiliar grayscale marks under a heading that names them as paid
+ * placements is the opposite of proof. Its own docblock said as much, and named
+ * `description` as the mitigation — which none of the eight ever set.
+ *
+ * At the foot of Pricing the same marks are on topic: the reader has just been
+ * told what a license buys, so "these companies pay for the time" is the same
+ * argument the lede was making, in a fraction of the words. The credit, the
+ * `rel="sponsored"` marks and the README promise all survive.
+ *
+ * No SectionShell, no id, no heading. It is a row in the rhythm of the section
+ * that hosts it.
  */
-export default function Sponsors() {
-    const cells = [
-        ...sponsors.map((sponsor) => ({ kind: 'sponsor' as const, sponsor })),
-        ...Array.from({ length: emptySlots }, (_, i) => ({ kind: 'empty' as const, key: `empty-${i}` })),
-    ];
-
+export default function SponsorRow() {
     return (
-        <SectionShell
-            id="sponsors"
-            label="Sponsors"
-            headline="Paid for by these companies."
-            headlineMuted="That is why the app is free."
-            lede="TablePro takes no funding and sells no data. Sponsorships and licenses cover the whole cost of building it, so every database, the AI assistant and the MCP server can stay free for everyone."
-        >
+        <>
+            <Container>
+                <h3 className="px-4 py-3 font-mono text-2xs font-semibold tracking-widest text-muted-foreground uppercase">
+                    Sponsors
+                </h3>
+            </Container>
             <FullLine />
             <Container>
                 <div className="grid grid-cols-2 lg:grid-cols-4">
-                    {cells.map((cell, i) => {
-                        const borders = cellBorders(i, COLS, cells.length);
-
-                        if (cell.kind === 'empty') {
-                            return (
-                                <a
-                                    key={cell.key}
-                                    href={GITHUB_SPONSORS_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Become a sponsor"
-                                    className={`${CELL_CLASS} ${borders}`}
-                                >
-                                    <span className="flex size-10 items-center justify-center rounded-xl border border-dashed border-rule-strong text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) group-hover:border-primary/40 group-focus-within:border-primary/40">
-                                        <svg
-                                            className="size-4"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="1.5"
-                                            aria-hidden="true"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                        </svg>
-                                    </span>
-                                </a>
-                            );
-                        }
-
-                        return (
-                            <a
-                                key={cell.sponsor.name}
-                                href={cell.sponsor.url}
-                                target="_blank"
-                                rel="noopener sponsored"
-                                className={`${CELL_CLASS} ${borders}`}
-                            >
-                                <SponsorMark sponsor={cell.sponsor} />
-                                {cell.sponsor.description && (
-                                    <span className="text-xs text-muted-foreground">
-                                        {cell.sponsor.description}
-                                    </span>
-                                )}
-                            </a>
-                        );
-                    })}
+                    {sponsors.map((sponsor, i) => (
+                        <a
+                            key={sponsor.name}
+                            href={sponsor.url}
+                            target="_blank"
+                            rel="noopener sponsored"
+                            className={`${CELL_CLASS} ${cellBorders(i, COLS, sponsors.length)}`}
+                        >
+                            <SponsorMark sponsor={sponsor} />
+                            {sponsor.description && (
+                                <span className="text-xs text-muted-foreground">{sponsor.description}</span>
+                            )}
+                        </a>
+                    ))}
                 </div>
             </Container>
             <FullLine />
 
             <Container>
                 <p className="px-4 py-4 text-sm text-muted-foreground">
-                    Sponsoring puts your logo here, near the top of the page, and in the project README.{' '}
-                    <a
-                        href={GITHUB_SPONSORS_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={PROSE_LINK}
-                    >
+                    TablePro takes no funding and sells no data. These companies pay for the time.{' '}
+                    <a href={GITHUB_SPONSORS_URL} target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>
                         Become a sponsor
                     </a>
                 </p>
             </Container>
-            <FullLine />
-        </SectionShell>
+        </>
     );
 }

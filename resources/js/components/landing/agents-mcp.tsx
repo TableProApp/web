@@ -4,8 +4,7 @@ import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
-import { relocatedFaq } from '@/data/home-faqs';
-import { ITEM_TITLE, cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
+import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
 
 /** Kept byte-identical to the tokenized block below, since this is what gets copied. */
 const CONFIG_JSON = `{
@@ -69,8 +68,6 @@ function Tool({ children }: { children: string }) {
 }
 
 
-const aiSafetyFaq = relocatedFaq('Can the AI drop a table on production?');
-
 /**
  * No screenshot exists for the MCP server, so this section stays typographic:
  * the config you paste on the left, the permission ladder on the right.
@@ -82,7 +79,7 @@ export default function AgentsMcp() {
             label="Agents"
             headline="Let Claude query your database."
             headlineMuted="Without giving it your password."
-            lede="TablePro runs an MCP server over your saved connections. The client receives a scoped token, never a credential, and every call lands in an activity log kept for ninety days."
+            lede="TablePro runs an MCP server with sixteen tools over your saved connections. The client receives a scoped token, never a credential, and every call lands in an activity log kept for ninety days."
         >
             <FullLine />
             <Container>
@@ -159,12 +156,14 @@ export default function AgentsMcp() {
             </Container>
             <FullLine />
 
+            {/*
+              * The 16-tool taxonomy — "4 connection · 5 schema · 5 query · 4
+              * navigation · 1 history" — went to docs. It is a manual page, and
+              * the count itself now sits in the lede where it is a claim rather
+              * than an inventory.
+              */}
             <Container>
                 <Ledger>
-                    <LedgerRow label="16 tools">
-                        4 connection · 5 schema · 5 query · 4 navigation · 1 history. Plus 3 resources for connections,
-                        schema and history.
-                    </LedgerRow>
                     <LedgerRow label="Clients">
                         <Chips items={CLIENTS} label="Supported MCP clients" />
                     </LedgerRow>
@@ -177,26 +176,21 @@ export default function AgentsMcp() {
             <FullLine />
 
             {/*
-              * This section raises the most alarming claim on the page, so it
-              * carries the first half of the answer rather than deferring all of
-              * it to the FAQ. Verbatim from relocatedFaqs — one copy of the
-              * answer, and /faq still lists it.
+              * The relocated FAQ callout that used to sit here is gone. It
+              * restated the permission ledger forty-five words above it — both
+              * said fresh installs start in Ask, both quoted "I understand this
+              * is irreversible", both said it can never be pre-approved — and
+              * the ledger says it more precisely, with the tool names. The
+              * question is still answered in full on /faq.
+              *
+              * The remote-access TLS paragraph went to docs with it: a
+              * self-signed certificate's lifetime and a handshake-file
+              * fingerprint are a manual page, not an argument.
               */}
             <Container>
-                <div className="border-l-2 border-primary p-4 sm:p-6">
-                    <h3 className={ITEM_TITLE}>{aiSafetyFaq.question}</h3>
-                    <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-                        {aiSafetyFaq.answer}
-                    </p>
-                </div>
-            </Container>
-            <FullLine />
-
-            <Container>
                 <p className="p-4 font-mono text-xs text-muted-foreground">
-                    Remote access is off by default. Turning it on switches authentication and TLS on automatically,
-                    generates a self-signed certificate valid for one year, and writes its fingerprint to the handshake
-                    file so the bridge can pin it.
+                    Remote access is off by default, and turning it on switches authentication and TLS on
+                    automatically.
                 </p>
             </Container>
             <FullLine />
