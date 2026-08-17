@@ -33,14 +33,19 @@ it('emits exactly one robots directive per page', function (string $path): void 
      * `app.blade.php` hardcoded `index,follow` while `SEOHead` conditionally
      * emitted `noindex, nofollow`, so every page shipped two robots tags — and
      * a noindex page shipped two that contradicted each other.
+     *
+     * SSR-gated: head tags come from a React component, so without a rendering
+     * service the response is the Blade shell and carries none of them. The
+     * first version of this test was not gated, counted zero on every page and
+     * failed in CI for a reason that had nothing to do with robots directives.
      */
-    $html = getOnWebDomain($path)->getContent();
+    $html = ssrHtml($path);
 
     expect(substr_count($html, 'name="robots"'))->toBe(1, "{$path} emits more than one robots directive");
 })->with(['/', '/download', '/faq', '/compare/dbeaver', '/mysql-client']);
 
 it('publishes one application entity and no FAQPage on the homepage', function (): void {
-    $html = getOnWebDomain('/')->getContent();
+    $html = ssrHtml('/');
 
     expect(substr_count($html, '"@type":"SoftwareApplication"'))->toBe(1);
     // /faq owns the FAQPage entity for the site. Google retired the rich result
@@ -49,7 +54,7 @@ it('publishes one application entity and no FAQPage on the homepage', function (
 });
 
 it('describes every price point it claims to offer', function (): void {
-    $html = getOnWebDomain('/')->getContent();
+    $html = ssrHtml('/');
 
     preg_match('/"offerCount":(\d+)/', $html, $m);
     expect($m[1] ?? null)->not->toBeNull();
