@@ -60,7 +60,7 @@ it('serves the download, faq, privacy, terms, and refund-policy landing pages', 
 it('keeps the comparison data shape stable with required SEO fields', function (): void {
     $entries = json_decode(file_get_contents(__DIR__ . '/../../../resources/data/comparisons.json'), true);
 
-    expect($entries)->toHaveCount(10);
+    expect($entries)->toHaveCount(11);
 
     foreach ($entries as $entry) {
         expect($entry)
@@ -70,9 +70,6 @@ it('keeps the comparison data shape stable with required SEO fields', function (
     }
 });
 
-it('returns 410 Gone for the retired /compare/tableplus URL', function (): void {
-    getOnWebDomain('/compare/tableplus')->assertStatus(410);
-});
 
 it('keeps the database data shape stable with required SEO fields', function (): void {
     $entries = json_decode(file_get_contents(__DIR__ . '/../../../resources/data/databases.json'), true);

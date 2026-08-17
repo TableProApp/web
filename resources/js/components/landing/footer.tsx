@@ -12,6 +12,7 @@ const columns = [
             { label: 'Features', href: '/#features' },
             { label: 'Pricing', href: '/#pricing' },
             { label: 'Download', href: '/download' },
+            { label: 'vs TablePlus', href: '/compare/tableplus' },
             { label: 'vs DBeaver', href: '/compare/dbeaver' },
             { label: 'vs DataGrip', href: '/compare/datagrip' },
             { label: 'vs Beekeeper Studio', href: '/compare/beekeeper-studio' },

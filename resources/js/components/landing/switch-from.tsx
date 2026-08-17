@@ -30,13 +30,13 @@ const SOURCES: ImportSource[] = [
  *
  * This section used to close with ten links to /compare/*, which is ten routes
  * out of the page at the exact moment the reader has been told that moving costs
- * them nothing. CompareTable directly below carries three of them with better
- * anchor text, and the footer carries all ten — so the pages keep their inbound
- * links and this section stops being an exit.
+ * them nothing. CompareTable directly below carries four of them with better
+ * anchor text, and the footer carries all eleven — so the pages keep their
+ * inbound links and this section stops being an exit.
  *
  * The H2 names two competitors without linking either, which is the same keyword
- * capture at no exit cost. TablePlus stays a plain mention: /compare/tableplus
- * returns 410, and StaleClaimsTest fails the build on a component that links it.
+ * capture at no exit cost. Both are linked from CompareTable one section down,
+ * so a link here would only be a second route out of the same screen.
  */
 export default function SwitchFrom() {
     return (
