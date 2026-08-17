@@ -212,3 +212,47 @@ it('explains a diverged branch instead of dumping git hints', function (): void 
     expect(strpos($code, 'git merge-base --is-ancestor HEAD'))
         ->toBeLessThan(strpos($code, 'git pull --ff-only'));
 });
+
+it('does not trust the commit alone to mean the bundles are current', function (): void {
+    /*
+     * `public/build` and `bootstrap/ssr` are gitignored, so a `git reset --hard`
+     * — which the runbook prescribes after a force-push — moves the sources and
+     * leaves the built output untouched. The next deploy then sees an unchanged
+     * commit, skips the build, reports success, and leaves the site serving the
+     * previous release.
+     *
+     * That is not hypothetical: a deploy went green while the live homepage was
+     * still the pre-rewrite page, and the smoke test passed because a stale
+     * bundle renders a perfectly valid old site.
+     */
+    $script = file_get_contents(base_path('scripts/deploy.sh'));
+
+    expect($script)->toContain('bundles_are_stale');
+
+    // The skip branch must consult it, not just define it.
+    expect($script)->toMatch('/PREV_COMMIT.+CURR_COMMIT.+FORCE.+bundles_are_stale/s');
+
+    // And it has to look at both halves of the build, not only the assets.
+    expect($script)
+        ->toContain('public/build/manifest.json')
+        ->toContain('bootstrap/ssr/ssr.js');
+});
+
+it('proves the smoke test hit this release and not merely a live one', function (): void {
+    /*
+     * An `<h1>` proves SSR is alive. It does not prove the bundle behind it is
+     * the one just built — which is the exact failure above, where every check
+     * passed against the previous release.
+     *
+     * Vite hashes the entry filename per build, so the manifest's entry appears
+     * in the served HTML only when the served app is this build.
+     */
+    $script = file_get_contents(base_path('scripts/deploy.sh'));
+
+    expect($script)->toContain('BUILT_ENTRY');
+    expect($script)->toContain('serving a different build than the one just deployed');
+
+    // The assertion has to run after the <h1> check, inside the same block.
+    expect(strpos($script, 'no server-rendered <h1>'))
+        ->toBeLessThan(strpos($script, 'serving a different build'));
+});
