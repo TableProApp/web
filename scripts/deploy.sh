@@ -135,9 +135,32 @@ git pull --ff-only origin "$BRANCH"
 CURR_COMMIT="$(git rev-parse HEAD)"
 echo "    now at $(git rev-parse --short HEAD) $(git log -1 --format=%s)"
 
+# The commit is a proxy for "the bundles are current", and it is wrong in the
+# one case that matters: someone repaired this checkout by hand. A `git reset
+# --hard` — which the runbook tells you to run after a force-push — moves the
+# sources without touching public/build or bootstrap/ssr, because both are
+# gitignored build output. The next deploy then sees an unchanged commit,
+# reports success, and leaves the site on bundles built from older sources.
+#
+# That happened: a deploy went green while the live homepage served the previous
+# release, and the smoke test passed because the stale bundle still renders a
+# perfectly valid page.
+bundles_are_stale() {
+    [ -f public/build/manifest.json ] || return 0
+    [ -f bootstrap/ssr/ssr.js ] || return 0
+
+    # Any front-end source newer than the manifest means the manifest predates it.
+    [ -n "$(find resources package.json package-lock.json vite.config.js tsconfig.json \
+        -newer public/build/manifest.json -print -quit 2>/dev/null)" ]
+}
+
 # Only the work the diff actually calls for. A blog post is markdown read by PHP
 # at request time, so publishing one needs no bundle; a component change does.
-if [ "$PREV_COMMIT" = "$CURR_COMMIT" ] && [ -z "$FORCE" ]; then
+if [ "$PREV_COMMIT" = "$CURR_COMMIT" ] && [ -z "$FORCE" ] && bundles_are_stale; then
+    echo "    commit unchanged, but the built bundles are missing or older than the sources"
+    echo "    rebuilding anyway — a hand-repaired checkout looks identical to an idle one"
+    CHANGED_FILES="$(git ls-files)"
+elif [ "$PREV_COMMIT" = "$CURR_COMMIT" ] && [ -z "$FORCE" ]; then
     echo "    already up to date — nothing to build (FORCE=1 to rebuild anyway)"
     CHANGED_FILES=""
 elif [ "$PREV_COMMIT" = "$CURR_COMMIT" ]; then
@@ -281,8 +304,28 @@ else
         fail "$SMOKE_URL returned 200 but no server-rendered <h1> — is SSR running?"
     fi
 
+    # And that what it rendered is *this* release. An <h1> proves SSR is alive;
+    # it does not prove the bundle behind it is the one just built, and a stale
+    # bundle renders a completely valid previous version of the site. Compare
+    # the entry filename in the manifest against what the page actually loads —
+    # Vite hashes it per build, so they match only if the served app is this one.
+    BUILT_ENTRY="$(tr -d ' \n' < public/build/manifest.json \
+        | grep -o '"resources/js/app.tsx":{"file":"[^"]*"' \
+        | sed 's/.*"file":"//;s/"$//')"
+
+    if [ -z "$BUILT_ENTRY" ]; then
+        rm -f "$smoke_file"
+        fail "could not read the app entry out of public/build/manifest.json"
+    fi
+
+    if ! grep -q "$BUILT_ENTRY" "$smoke_file"; then
+        rm -f "$smoke_file"
+        printf '    expected asset: %s\n' "$BUILT_ENTRY" >&2
+        fail "$SMOKE_URL is serving a different build than the one just deployed"
+    fi
+
     rm -f "$smoke_file"
-    echo "    $SMOKE_URL 200, server-rendered markup present"
+    echo "    $SMOKE_URL 200, serving $BUILT_ENTRY"
 fi
 
 printf '\n\033[32mDeployed %s (was %s)\033[0m\n' \
