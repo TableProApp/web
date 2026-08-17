@@ -12,3 +12,15 @@
 */
 
 pest()->extend(Tests\TestCase::class)->in('Feature');
+
+/*
+|--------------------------------------------------------------------------
+| Shared helpers
+|--------------------------------------------------------------------------
+|
+| Loaded once, so the three files that assert on server-rendered markup share
+| one SSR gate instead of keeping their own copies of the probe.
+|
+*/
+
+require_once __DIR__ . '/Support/ssr.php';
