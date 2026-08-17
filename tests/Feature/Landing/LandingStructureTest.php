@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
-use PHPUnit\Framework\Assert;
-
 /**
  * Guards the structure introduced by the landing redesign.
  *
@@ -19,53 +16,7 @@ function landingHtml(): string
 {
     static $html = null;
 
-    if ($html !== null) {
-        return $html;
-    }
-
-    $reason = null;
-
-    if (! file_exists(base_path('bootstrap/ssr/ssr.js'))) {
-        $reason = 'SSR bundle missing. Run: npm run build';
-    } else {
-        $ssrUrl = config('inertia.ssr.url', 'http://127.0.0.1:13715');
-
-        try {
-            Http::timeout(2)->get($ssrUrl . '/health');
-        } catch (\Throwable) {
-            // The health endpoint is optional; only a refused connection matters.
-        }
-
-        $probe = @fsockopen(
-            parse_url($ssrUrl, PHP_URL_HOST),
-            (int) parse_url($ssrUrl, PHP_URL_PORT),
-            $errno,
-            $errstr,
-            2,
-        );
-
-        if ($probe === false) {
-            $reason = 'SSR service not running. Run: php artisan inertia:start-ssr';
-        } else {
-            fclose($probe);
-            // Shared with HomepageRenderTest: a running service is not the same
-            // as a current one, and a stale bundle silently validates old markup.
-            assertSsrBundleIsFresh();
-        }
-    }
-
-    if ($reason !== null) {
-        if (filter_var(env('REQUIRE_SSR', false), FILTER_VALIDATE_BOOL)) {
-            Assert::fail($reason);
-        }
-
-        test()->markTestSkipped($reason);
-    }
-
-    $response = test()->get('http://' . config('app.web_domain') . '/');
-    $response->assertOk();
-
-    return $html = $response->getContent();
+    return $html ??= ssrHtml('/');
 }
 
 it('numbers every full-bleed rule, including the accent ones', function (): void {
