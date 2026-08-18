@@ -11,6 +11,18 @@ interface Shot {
     /** Base name under /images/features. The 1216/2432 WebP ladder is derived from it. */
     name: string;
     alt: string;
+    /**
+     * Which edge of the screenshot carries its subject.
+     *
+     * The cell blows every shot up to 145% and clips it, so only 1/1.45 of the
+     * image — 69% — is ever on the page. Anchoring used to follow row parity,
+     * which is a fact about the layout and not about the picture: it put the
+     * AI assistant's panel, which lives on the right of that shot, in the 31%
+     * that gets cut. The row was captioned "AI Assistant" above a screenshot
+     * with no assistant in it. Parity still decides which side the cell sits on
+     * and where its hairline goes; the picture decides this.
+     */
+    anchor: 'left' | 'right';
 }
 
 /**
@@ -60,6 +72,7 @@ const ROWS: Row[] = [
         shot: {
             name: 'sql-editor',
             alt: 'The SQL editor with a multi-statement query and its result tabs below.',
+            anchor: 'left',
         },
         rows: [
             {
@@ -91,7 +104,8 @@ const ROWS: Row[] = [
         body: 'Every column type gets its own editor: a calendar for timestamps, a searchable list of referenced rows for foreign keys, a three-state checkbox for nullable booleans. Nothing reaches the database until you press Save.',
         shot: {
             name: 'data-grid',
-            alt: 'The data grid with edited cells highlighted and a pending-changes count in the toolbar.',
+            alt: 'The data grid with an edited cell highlighted and the save control live, the change still only in memory.',
+            anchor: 'right',
         },
         rows: [
             {
@@ -113,7 +127,8 @@ const ROWS: Row[] = [
         body: 'Explain a query, optimize it, or fix one that failed. Suggestions arrive as a before-and-after diff with numbered steps tagged Critical, Change or Context.',
         shot: {
             name: 'ai-assistant',
-            alt: 'The AI assistant showing a before and after diff of a rewritten query with numbered explanation steps.',
+            alt: 'The AI assistant answering a question in a side panel, with the SQL it generated and a step-by-step explanation.',
+            anchor: 'right',
         },
         rows: [
             {
@@ -189,9 +204,21 @@ export default function Workbench() {
 
                     return (
                         <div key={row.index}>
+                            {/*
+                              * The column template flips with the row, not just the
+                              * order. `order-2` moves the copy cell past the shot in
+                              * placement order but leaves the track sizes alone, so a
+                              * fixed `[minmax(0,24rem)_1fr]` handed every even row's
+                              * screenshot the 24rem track and its prose the 1fr one.
+                              * Row 02 rendered a 2432px shot into 384px of cell — the
+                              * width `shotSources` sizes the whole ladder against is
+                              * 1216 — and nothing in that window was legible.
+                              */}
                             <div
-                                className={`lg:grid lg:grid-cols-[minmax(0,24rem)_1fr] lg:items-stretch ${
-                                    isEven ? 'lg:[&>*:first-child]:order-2' : ''
+                                className={`lg:grid lg:items-stretch ${
+                                    isEven
+                                        ? 'lg:grid-cols-[1fr_minmax(0,24rem)] lg:[&>*:first-child]:order-2'
+                                        : 'lg:grid-cols-[minmax(0,24rem)_1fr]'
                                 }`}
                             >
                                 <div className="p-6 sm:p-8 lg:p-10">
@@ -225,7 +252,7 @@ export default function Workbench() {
                                         width={2432}
                                         height={1385}
                                         sizes="(min-width: 1024px) 1216px, 100vw"
-                                        className={`lg:w-[145%] lg:max-w-none ${isEven ? 'lg:-translate-x-[31%]' : ''}`}
+                                        className={`lg:w-[145%] lg:max-w-none ${row.shot.anchor === 'right' ? 'lg:-translate-x-[31%]' : ''}`}
                                     />
                                 </div>
                             </div>
