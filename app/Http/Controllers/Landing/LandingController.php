@@ -17,6 +17,7 @@ class LandingController extends Controller
             'downloadUrls' => $this->fetchDownloadUrls(),
             'githubStars' => $this->fetchGitHubStars(),
             'latestRelease' => $this->fetchLatestRelease(),
+            'downloads' => $this->fetchDownloadStats(),
             'paymentProvider' => config('payment.provider', 'lemonsqueezy'),
             'teamMinSeats' => max(1, (int) config('pricing.team_min_seats', 5)),
         ]);
@@ -96,7 +97,7 @@ class LandingController extends Controller
      * landing pages use. Cached once and shared by every reader so adding a
      * consumer never adds an HTTP call.
      *
-     * @return array<int, array{tag_name: string, published_at: ?string, assets: array<int, array{name: string, browser_download_url: string}>}>
+     * @return array<int, array{tag_name: string, published_at: ?string, assets: array<int, array{name: string, browser_download_url: string, download_count: int}>}>
      */
     private function fetchAppReleases(): array
     {
@@ -123,6 +124,9 @@ class LandingController extends Controller
                         ->map(fn(array $asset): array => [
                             'name' => (string) ($asset['name'] ?? ''),
                             'browser_download_url' => (string) ($asset['browser_download_url'] ?? ''),
+                            // Already in this payload. Reading it costs nothing;
+                            // it was simply being discarded.
+                            'download_count' => (int) ($asset['download_count'] ?? 0),
                         ])
                         ->values()
                         ->all(),
@@ -186,6 +190,37 @@ class LandingController extends Controller
                 ? Carbon::parse($latest['published_at'])->toDateString()
                 : null,
             'countLast30Days' => $recent > 0 ? $recent : null,
+        ];
+    }
+
+    /**
+     * How many times the Mac app has been downloaded, and over how many
+     * releases that figure was counted.
+     *
+     * DMG assets only. Each app release also ships a .zip, which is the update
+     * feed the installed app pulls from — counting those would fold automatic
+     * updates into a number the page presents as people choosing to install.
+     * The DMG is what the download button serves, so it is the honest one.
+     *
+     * `releases` travels with the count because this is a floor, not a lifetime
+     * total: the API returns one page of releases and most of them are plugin
+     * releases, so the window reaches back only so far. The page says how many
+     * releases it counted rather than implying it counted them all.
+     *
+     * @return array{total: ?int, releases: int}
+     */
+    private function fetchDownloadStats(): array
+    {
+        $releases = $this->fetchAppReleases();
+
+        $total = collect($releases)
+            ->flatMap(fn(array $release): array => $release['assets'])
+            ->filter(fn(array $asset): bool => str_ends_with($asset['name'], '.dmg'))
+            ->sum('download_count');
+
+        return [
+            'total' => $total > 0 ? $total : null,
+            'releases' => count($releases),
         ];
     }
 
