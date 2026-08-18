@@ -23,10 +23,17 @@ interface LatestRelease {
     countLast30Days: number | null;
 }
 
+interface DownloadStats {
+    /** DMG downloads across the app releases GitHub returned. Null when the API is unreachable. */
+    total: number | null;
+    releases: number;
+}
+
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
     githubStars?: number | null;
     latestRelease?: LatestRelease | null;
+    downloads?: DownloadStats | null;
     paymentProvider: string;
     teamMinSeats: number;
 }
@@ -185,6 +192,7 @@ export default function Home({
     downloadUrls,
     githubStars,
     latestRelease,
+    downloads,
     paymentProvider,
     teamMinSeats,
 }: Props) {
@@ -222,7 +230,7 @@ export default function Home({
               * that proves it.
               */}
             <Hero githubStars={githubStars} latestRelease={latestRelease} />
-            <SpecStrip latestRelease={latestRelease} />
+            <SpecStrip latestRelease={latestRelease} downloads={downloads} />
             <DatabaseGrid />
 
             {/* Conviction peaks at the screenshots, so a download follows them. */}

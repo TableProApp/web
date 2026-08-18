@@ -38,6 +38,8 @@ const BEHAVIOURS: Behaviour[] = [
 
 interface Props {
     latestRelease?: { version: string | null; publishedAt: string | null; countLast30Days: number | null } | null;
+    /** DMG downloads, and how many releases that figure was counted over. */
+    downloads?: { total: number | null; releases: number } | null;
 }
 
 const GITHUB_REPO_URL = 'https://github.com/TableProApp/TablePro';
@@ -89,7 +91,7 @@ function formatReleaseDate(iso: string): string {
  * Adding a fifth unlabelled scroll container while the rest of this work is
  * busy labelling the two that exist would be a poor trade.
  */
-export default function SpecStrip({ latestRelease }: Props) {
+export default function SpecStrip({ latestRelease, downloads }: Props) {
     const specs: Spec[] = [
         { label: 'databases', type: 'int', value: '25', sub: '9 bundled · 16 on demand', numeric: true },
         /*
@@ -101,7 +103,25 @@ export default function SpecStrip({ latestRelease }: Props) {
          */
         { label: 'cold_start', type: 'interval', value: 'Under 1s', sub: 'Cold, to first window', numeric: true },
         { label: 'idle_rss', type: 'bytes', value: '~80 MB', sub: 'One connection, open and idle', numeric: true },
-        { label: 'download', type: 'bytes', value: '~20 MB', sub: 'Apple Silicon or Intel', numeric: true },
+        /*
+         * Download count, not download size. The size is already in the hero
+         * fine print and again in the closing call to action, and a third copy
+         * bought nothing; an adoption number is the most persuasive thing this
+         * slot can hold and it costs no new request — the controller was
+         * already fetching it and throwing it away.
+         *
+         * Falls back to the size when the GitHub API is unreachable, so the
+         * table never renders a hole.
+         */
+        downloads?.total
+            ? {
+                label: 'downloads',
+                type: 'int',
+                value: downloads.total.toLocaleString('en-US'),
+                sub: `Across ${downloads.releases} releases`,
+                numeric: true,
+            }
+            : { label: 'download', type: 'bytes', value: '~20 MB', sub: 'Apple Silicon or Intel', numeric: true },
         {
             label: 'license',
             type: 'text',
@@ -235,6 +255,29 @@ export default function SpecStrip({ latestRelease }: Props) {
                 <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
                     Cold start and idle memory measured on an M4 MacBook Pro running macOS 27, from a cold launch to
                     the first window, with one PostgreSQL connection open.
+                </p>
+            </Container>
+            <FullLine />
+
+            {/*
+              * The only social proof on this page, and every word of it is
+              * somebody else's judgement rather than ours — which is the whole
+              * point. It is linked so a reader can check it in one click.
+              *
+              * Written as fine print on purpose. A trophy row would be louder
+              * than the numbers above it, and the numbers are the argument.
+              */}
+            <Container>
+                <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
+                    <a
+                        href="https://trendshift.io/repositories/24114"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-4 transition-colors hover:text-foreground"
+                    >
+                        #1 on GitHub Trending
+                    </a>{' '}
+                    on 23 March 2026, and Trendshift&rsquo;s #1 Swift repository of that week.
                 </p>
             </Container>
             <FullLine />
