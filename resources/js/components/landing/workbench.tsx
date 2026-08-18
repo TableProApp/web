@@ -71,7 +71,7 @@ const ROWS: Row[] = [
         body: 'Tree-sitter highlighting, with autocomplete that resolves aliases through JOINs and CTEs. Run a batch inside one transaction: if the third statement fails, the error names it and the whole batch rolls back.',
         shot: {
             name: 'sql-editor',
-            alt: 'The SQL editor with autocomplete open, offering columns resolved through the JOINs in the query.',
+            alt: 'The SQL editor with a multi-statement query and its result tabs below.',
             anchor: 'left',
         },
         rows: [
@@ -104,7 +104,7 @@ const ROWS: Row[] = [
         body: 'Every column type gets its own editor: a calendar for timestamps, a searchable list of referenced rows for foreign keys, a three-state checkbox for nullable booleans. Nothing reaches the database until you press Save.',
         shot: {
             name: 'data-grid',
-            alt: 'The data grid filtered to delivered orders, with one cell open for editing and the selected row expanded in the inspector.',
+            alt: 'The data grid with an edited cell highlighted and the save control live, the change still only in memory.',
             anchor: 'right',
         },
         rows: [

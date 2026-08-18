@@ -149,7 +149,7 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                                 '/images/app-dark-1280.webp 1280w, /images/app-dark-1920.webp 1920w, /images/app-dark.webp 3024w',
                         }}
                         sizes="(max-width: 1280px) 1280px, (max-width: 1920px) 1920px, 3024px"
-                        alt="TablePro on macOS: the orders table open in the data grid, with the connection sidebar on the left and one row's address cell open for editing."
+                        alt="TablePro on macOS: the orders table open in the data grid, sixty rows deep, with the connection sidebar on the left."
                         width={3024}
                         height={1720}
                         priority
