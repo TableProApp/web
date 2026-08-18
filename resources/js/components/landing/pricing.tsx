@@ -188,6 +188,12 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
                 })()}
             </div>
 
+            {!isFree && cycle === 'yearly' && priceObj !== null && priceObj.lifetime > 0 && (
+                <p className="mt-1 text-sm text-muted-foreground">
+                    or ${priceObj.lifetime} once, no renewal
+                </p>
+            )}
+
             {isTeam && !isFree && (
                 <div className="mt-4 flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">${unitPrice}/seat</span>
