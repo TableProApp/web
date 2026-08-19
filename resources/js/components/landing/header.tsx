@@ -185,7 +185,7 @@ export default function Header({ githubStars }: Props) {
                                     </svg>
                                     <div>
                                         <div className="font-medium">Get for iPhone</div>
-                                        <div className="text-xs text-muted-foreground">iOS 18+ &middot; Free</div>
+                                        <div className="text-xs text-muted-foreground">iOS 18+ &middot; TestFlight beta</div>
                                     </div>
                                 </a>
                             </div>

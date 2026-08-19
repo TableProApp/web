@@ -172,7 +172,7 @@ export default function MobileNav({ isOpen, onClose }: Props) {
                     onClick={onClose}
                     className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
-                    Get for iPhone
+                    Get for iPhone (beta)
                 </a>
             </nav>
         </div>
