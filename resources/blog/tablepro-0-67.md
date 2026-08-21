@@ -21,7 +21,7 @@ Almost all of it lands in two places, the SQL editor and the results pane.
 
 Results draw as bar, line, area and scatter charts without leaving the tab. Pick a numeric Y column. X can be row numbers, another numeric column, a date, or a category, and a text, boolean, enum or set column splits the result into series.
 
-Date columns plot on a real time axis. A three-month gap looks like three months.
+Date columns plot on a real time axis. A three-month gap looks like three months. Hover the plot for the exact values behind a point.
 
 Chart type and axes belong to the tab and follow the column names, so they survive a page turn, a sort and a re-run.
 
@@ -47,11 +47,13 @@ Folds survive closing and reopening a tab. Strings, comments and PostgreSQL doll
 ## Run one statement at a time
 
 <figure>
-  <img src="/images/blog/sql-editor-statement-run.png" alt="TablePro SQL editor gutter with a run control beside each statement and a faint band over the statement at the cursor" />
-  <figcaption>Click any statement's run control, wherever the cursor happens to be.</figcaption>
+  <img src="/images/blog/sql-editor-statement-run.png" alt="TablePro SQL editor gutter with a run control beside the WITH statement on line 17, next to the fold chevrons for that statement and the one below it" />
+  <figcaption>Hover the gutter and that statement's run control appears. Clicking it runs only that statement.</figcaption>
 </figure>
 
-The statement under your cursor gets a faint background, so you can see what `Cmd+Enter` will send. Hover the gutter and a run button appears beside every statement.
+Hover the gutter and a run button appears beside the statement you are pointing at. Click it and that statement runs on its own, wherever the cursor happens to be, under the same Safe Mode checks and parameter prompts as any other run.
+
+The statement your cursor is in also gets a faint background, so you can see what `Cmd+Enter` will send before you press it.
 
 `Ctrl+Cmd+Enter` runs the statement you're in and moves to the next. `Ctrl+Cmd+Left` and `Ctrl+Cmd+Right` step between them without running anything.
 
@@ -82,11 +84,11 @@ One thing to know if you're upgrading: `Cmd+F` used to toggle the filter panel. 
 
 ## MongoDB filters reach inside a document
 
-Filter on `customer.country` or `items.sku`, picked from the paths found in the collection rather than typed from memory.
+Filter on `customer.country` or `items.sku`. The paths come from the collection rather than your memory, and each one carries the type TablePro found for it, so a date, ObjectId or decimal is compared as itself instead of as text.
 
 <figure>
-  <img src="/images/blog/mongodb-nested-filter.png" alt="TablePro filter panel on a MongoDB collection with a nested field path selected from the column list" />
-  <figcaption>Nested paths sit in the column list. A button beside it opens the full searchable set.</figcaption>
+  <img src="/images/blog/mongodb-nested-filter.png" alt="TablePro filter panel on a MongoDB orders collection with the field path browser open, listing customer.age, customer.city, customer.country and customer.name under customer and items.name, items.price, items.qty and items.sku under items, each with its detected type" />
+  <figcaption>Search or type a path. The type beside each one is what the filter compares against.</figcaption>
 </figure>
 
 A field inside an array gets a scope control.
