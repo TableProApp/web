@@ -20,10 +20,18 @@ use PHPUnit\Framework\Assert;
 $readSource = static fn(string $relative): string => file_get_contents(base_path($relative));
 
 it('names who builds TablePro, on the screen with the prices', function (): void {
+    /*
+     * Measured inside `<main>`. The top banner carries its own funding line and
+     * renders above the header, so an unscoped `strpos` finds that one first
+     * and this assertion silently starts testing the chrome — it did, the hour
+     * the banner shipped.
+     */
     $html = ssrHtml('/');
+    $start = strpos($html, '<main');
+    $main = substr($html, $start, strrpos($html, '</main>') - $start);
 
-    $pricing = strpos($html, 'id="pricing"');
-    $claim = strpos($html, 'funded by licenses rather than investors');
+    $pricing = strpos($main, 'id="pricing"');
+    $claim = strpos($main, 'funded by licenses rather than investors');
 
     expect($pricing)->not->toBeFalse();
     expect($claim)->not->toBeFalse('The site must say what pays for TablePro');
@@ -40,9 +48,19 @@ it('names who builds TablePro, on the screen with the prices', function (): void
 it('states the funding model as a fact rather than a plea', function (): void {
     $html = ssrHtml('/');
 
-    $start = strpos($html, '<main');
-    $end = strrpos($html, '</main>');
-    $main = substr($html, $start, $end - $start);
+    /*
+     * `<body>`, not `<main>`. The top banner is site chrome and renders outside
+     * the main landmark, so a scan bounded by `<main>` would exempt the single
+     * loudest surface on the site — the one element every visitor sees on every
+     * page — from the rule it most needs to obey.
+     *
+     * The head is still excluded: it repeats the page description across the
+     * meta, og: and twitter: tags, and three consumers of one string is not
+     * something this test has an opinion about.
+     */
+    $start = strpos($html, '<body');
+    $end = strrpos($html, '</body>');
+    $body = substr($html, $start, $end - $start);
 
     /*
      * `pricing.tsx`'s own docblock records the rule this enforces: "The ask
@@ -68,7 +86,7 @@ it('states the funding model as a fact rather than a plea', function (): void {
     foreach ($pleas as $plea) {
         Assert::assertStringNotContainsString(
             $plea,
-            $main,
+            $body,
             "\"{$plea}\" asks for sympathy. State the model and make the ask.",
         );
     }
@@ -131,9 +149,13 @@ it('tells a fresh download what keeps the next release coming', function (): voi
      * repeating that the app is free, it names no price, and it sits after the
      * install steps rather than before them.
      */
-    $free = strpos($html, 'TablePro is free, all of it');
-    $claim = strpos($html, 'funded by licenses rather than investors');
-    $install = strpos($html, 'Drag <strong');
+    // Inside <main>, for the same reason: the banner sits above the header.
+    $start = strpos($html, '<main');
+    $main = substr($html, $start, strrpos($html, '</main>') - $start);
+
+    $free = strpos($main, 'TablePro is free, all of it');
+    $claim = strpos($main, 'funded by licenses rather than investors');
+    $install = strpos($main, 'Drag <strong');
 
     expect($free)->not->toBeFalse('The download page must restate that the app is free');
     expect($claim)->not->toBeFalse();

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
+import SupportBanner from '@/components/landing/support-banner';
 
 interface Props {
     /**
@@ -49,6 +50,14 @@ export default function LandingLayout({ header, footer, children }: Props) {
             <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:inline-flex focus:min-h-[48px] focus:items-center focus:rounded-lg focus:bg-primary focus:px-4 focus:text-primary-foreground focus:shadow-lg">
                 Skip to content
             </a>
+            {/*
+              * Above the header, and outside <main>, for the same reason the
+              * header is: it is site chrome, not content. It renders on every
+              * page because `HandleInertiaRequests::share()` supplies it, and
+              * returns null when the config switches it off — so a disabled
+              * banner leaves no element and `--banner-h` stays 0.
+              */}
+            <SupportBanner />
             {header}
             {/*
               * `grid-rows-[1fr_auto]` is load-bearing, not cosmetic. The gutters and
@@ -103,7 +112,13 @@ export default function LandingLayout({ header, footer, children }: Props) {
                 <main
                     id="main-content"
                     tabIndex={-1}
-                    className={`relative col-start-1 row-start-1 md:col-start-2 ${header ? 'pt-16' : ''}`}
+                    /*
+                      * `4rem` is the header; `--banner-h` is 0 unless the
+                      * banner is up. Both are cleared with padding rather than
+                      * a spacer element so the gutter columns still run the
+                      * full height of the page behind them.
+                      */
+                    className={`relative col-start-1 row-start-1 md:col-start-2 ${header ? 'pt-[calc(4rem+var(--banner-h))]' : 'pt-[var(--banner-h)]'}`}
                 >
                     {children}
                 </main>

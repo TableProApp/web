@@ -276,10 +276,54 @@
   }
 }
 
-/* Anchor scrolling clears the fixed header plus the PPP banner when it is shown. */
+/*
+ * The top banner, and the four measurements that have to agree with it.
+ *
+ * `--banner-h` is the single source. The banner sets its own height from it,
+ * the fixed header hangs below it, `<main>` pads past both, and
+ * `scroll-padding-top` keeps an anchor from landing underneath the pair. Four
+ * copies of one number is four chances to move three of them, and this file
+ * already carried a comment claiming `5rem` allowed for "the PPP banner" — a
+ * banner that has never existed in this repository.
+ *
+ * Zero by default, so every dependent measurement collapses to what it was
+ * before the banner existed. `html.has-banner` is added server-side in
+ * `app.blade.php` when the config enables it, and removed there before first
+ * paint when the reader has dismissed the current version — so a dismissed
+ * banner never flashes, and a disabled one reserves nothing.
+ *
+ * Visibility lives here rather than in React state for the same reason: the
+ * element is server-rendered whenever config allows it, and CSS decides whether
+ * it is seen. State would resolve one paint too late.
+ */
+:root {
+  --banner-h: 0px;
+}
+
+.support-banner {
+  display: none;
+}
+
+html.has-banner {
+  --banner-h: 2.75rem;
+}
+
+html.has-banner .support-banner {
+  display: block;
+  height: var(--banner-h);
+}
+
+/*
+ * Anchor scrolling clears the fixed header, and the banner when it is shown.
+ *
+ * The `5rem` base is the 64px header plus 16px of slack, which is why sections
+ * carry a matching `scroll-mt-20`. Adding `--banner-h` keeps the gap between
+ * the header's lower edge and the anchored heading identical whether or not the
+ * banner is up, rather than silently eating 44px of it.
+ */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: calc(5rem + var(--banner-h));
 }
 
 @media (prefers-reduced-motion: reduce) {

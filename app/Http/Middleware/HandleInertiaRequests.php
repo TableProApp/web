@@ -42,6 +42,36 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'canonicalBaseUrl' => rtrim('https://' . config('app.web_domain'), '/'),
+            'banner' => $this->banner(),
+        ];
+    }
+
+    /**
+     * The top banner, or null when it is switched off.
+     *
+     * Shared rather than passed per page, because it sits in `LandingLayout`
+     * and every page uses that layout. Threading it through eight controllers
+     * would put the same prop in eight signatures and guarantee that the ninth
+     * page forgets it.
+     *
+     * Null rather than `['enabled' => false]`: the component renders nothing
+     * for null, so a disabled banner leaves no element, no reserved height and
+     * no shifted header behind it.
+     *
+     * @return array{message: string, messageShort: string, cta: string, href: string, version: string}|null
+     */
+    private function banner(): ?array
+    {
+        if (! config('banner.enabled')) {
+            return null;
+        }
+
+        return [
+            'message' => (string) config('banner.message'),
+            'messageShort' => (string) config('banner.message_short'),
+            'cta' => (string) config('banner.cta'),
+            'href' => (string) config('banner.href'),
+            'version' => (string) config('banner.version'),
         ];
     }
 }

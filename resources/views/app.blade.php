@@ -1,5 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="overflow-x-hidden">
+{{--
+    `has-banner` decides, before a single pixel is painted, whether the top
+    banner is seen and how much room the header and <main> leave for it. It is
+    set here rather than in React because `--banner-h` has to be settled by the
+    time the first frame renders: resolving it in state would drop the header
+    44px on every load for every reader who had already dismissed the bar.
+
+    The script below removes it again when this browser has dismissed the
+    current banner version.
+--}}
+<html lang="en" class="overflow-x-hidden @if(config('banner.enabled')) has-banner @endif">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,6 +51,28 @@
     @inertiaHead
     <script>
         (function () {
+            @if(config('banner.enabled'))
+            /*
+             * The banner dismissal, before first paint.
+             *
+             * Version-matched: a reader who closed the previous message has not
+             * read this one, so bumping `banner.version` brings the bar back
+             * without touching anyone's storage. Wrapped, because localStorage
+             * throws outright in a private window rather than returning null —
+             * and a banner is not worth a blank page.
+             *
+             * Emitted only when the banner is on, so a switched-off banner
+             * leaves no element, no class, no reserved height and no dead
+             * script — nothing for a reader to find in view-source and wonder
+             * about.
+             */
+            try {
+                if (localStorage.getItem('tablepro:banner-dismissed') === @json((string) config('banner.version'))) {
+                    document.documentElement.classList.remove('has-banner');
+                }
+            } catch (e) {}
+            @endif
+
             var theme = localStorage.getItem('theme');
             var isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
             if (isDark) {
