@@ -60,14 +60,23 @@ it('answers the free and AGPL objections where the prices are', function (): voi
      * which is where the reader is deciding and where the AGPL question blocks
      * the highest-value visitor on the site.
      */
+    $license = strpos($html, 'id="license"');
     $pricing = strpos($html, 'id="pricing"');
-    $free = strpos($html, 'Free means permanently free');
+    $free = strpos($html, 'Free is not a trial and not a demo');
     $agpl = strpos($html, 'AGPL obligations attach to distributing a modified version');
 
     expect($free)->not->toBeFalse();
     expect($agpl)->not->toBeFalse();
-    expect($free)->toBeGreaterThan($pricing);
     expect($agpl)->toBeGreaterThan($pricing);
+
+    /*
+     * The free answer moved one section up, onto the License table that shows
+     * what the free tier actually holds. It still has to arrive with the paid
+     * surface on screen rather than a scroll earlier, and License is directly
+     * above Pricing.
+     */
+    expect($free)->toBeGreaterThan($license);
+    expect($free)->toBeLessThan($pricing);
 
     // And the retired duplicate is gone rather than merely moved.
     expect($html)->not->toContain('Nothing is behind a paywall.');
@@ -139,8 +148,13 @@ it('states each repeated claim once', function (): void {
         'AGPLv3' => 4,
         // Was rendered by spec-strip and again by open-source, from one prop.
         'releases in the last thirty days' => 0,
-        // The four-item paid surface: pricing lede, Starter card, comparison table.
-        'Encrypted connection export' => 3,
+        /*
+         * The paid surface is enumerated once, by the License table, which
+         * reads its rows from `data/license.ts`. The pricing lede used to
+         * enumerate it a second time in prose — and named four of the nine
+         * features the app gates.
+         */
+        'Encrypted Export' => 1,
         // Was 3: the permission ledger, the FAQ callout, the workbench Modes row.
         'I understand this is irreversible' => 1,
         // Was 8 across hero, spec-strip and architecture's two cells.

@@ -174,7 +174,7 @@ export default function DatabaseGrid() {
             label="Databases"
             headline="25 databases."
             headlineMuted="One native driver each. No JDBC."
-            lede="MySQL, PostgreSQL, MongoDB, Redis and 21 more. Nine drivers ship inside the app; the rest download the first time you pick one, checksum and signature verified, with no restart."
+            lede="Nine drivers ship inside the app. The other sixteen download the first time you pick one, signature verified, with no restart."
         >
             <FullLine />
             <Container>
@@ -334,10 +334,10 @@ export default function DatabaseGrid() {
                 <Ledger>
                     <LedgerRow label="Drivers">
                         libpq, libmariadb, hiredis, libmongoc, libcassandra, FreeTDS, OracleNIO. Teradata and Trino
-                        speak their wire protocols in pure Swift. No JDBC jar, no ODBC bridge, anywhere.
+                        speak their wire protocols in pure Swift.
                     </LedgerRow>
                     <LedgerRow label="Plugins">
-                        Each driver is a signed bundle that loads over a stable ABI, so an app update never breaks one.
+                        A signed bundle over a stable ABI, so an app update never breaks a driver.
                     </LedgerRow>
                 </Ledger>
             </Container>

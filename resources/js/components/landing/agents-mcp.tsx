@@ -79,7 +79,7 @@ export default function AgentsMcp() {
             label="Agents"
             headline="Let Claude query your database."
             headlineMuted="Without giving it your password."
-            lede="TablePro runs an MCP server with sixteen tools over your saved connections. The client receives a scoped token, never a credential, and every call lands in an activity log kept for ninety days."
+            lede="An MCP server with sixteen tools over your saved connections. The client gets a scoped token, never a credential, and every call is logged."
         >
             <FullLine />
             <Container>

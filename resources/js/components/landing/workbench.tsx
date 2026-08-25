@@ -68,7 +68,7 @@ const ROWS: Row[] = [
     {
         index: '01',
         title: 'SQL Editor',
-        body: 'Tree-sitter highlighting, with autocomplete that resolves aliases through JOINs and CTEs. Run a batch inside one transaction: if the third statement fails, the error names it and the whole batch rolls back.',
+        body: 'Tree-sitter highlighting, and autocomplete that resolves aliases through JOINs and CTEs. A batch runs in one transaction: a failure names the statement and rolls the lot back.',
         shot: {
             name: 'sql-editor',
             alt: 'The SQL editor with a multi-statement query and its result tabs below.',
@@ -86,7 +86,7 @@ const ROWS: Row[] = [
             },
             {
                 label: 'Row cap',
-                value: '10,000 by default, up to 500,000. The SQL is never rewritten, so your own LIMIT always wins.',
+                value: '10,000 by default, up to 500,000. Your own LIMIT always wins.',
             },
             {
                 label: 'Vim',
@@ -101,7 +101,7 @@ const ROWS: Row[] = [
     {
         index: '02',
         title: 'Data Grid',
-        body: 'Every column type gets its own editor: a calendar for timestamps, a searchable list of referenced rows for foreign keys, a three-state checkbox for nullable booleans. Nothing reaches the database until you press Save.',
+        body: 'Every column type gets its own editor, down to a three-state checkbox for a nullable boolean. Nothing reaches the database until you press Save.',
         shot: {
             name: 'data-grid',
             alt: 'The data grid with an edited cell highlighted and the save control live, the change still only in memory.',
@@ -124,7 +124,7 @@ const ROWS: Row[] = [
         title: 'AI Assistant',
         // Was a list of the thirteen providers, which the Agents section
         // enumerates as chips. This says what the assistant does instead.
-        body: 'Explain a query, optimize it, or fix one that failed. Suggestions arrive as a before-and-after diff with numbered steps tagged Critical, Change or Context.',
+        body: 'Explain a query, optimize it, or fix one that failed. Suggestions arrive as a before-and-after diff you apply, or do not.',
         shot: {
             name: 'ai-assistant',
             alt: 'The AI assistant answering a question in a side panel, with the SQL it generated and a step-by-step explanation.',
@@ -156,11 +156,11 @@ const ROWS: Row[] = [
 const DEPTH_ITEMS: { title: string; body: ReactNode }[] = [
     {
         title: 'EXPLAIN, visualized',
-        body: 'Three views of the plan: a cost-coloured diagram, an expandable tree, and the raw text.',
+        body: 'A cost-coloured diagram, an expandable tree, and the raw text.',
     },
     {
         title: 'Server dashboard',
-        body: 'Active sessions, per-engine metrics and slow queries, with Cancel Query and Terminate Session behind a confirmation.',
+        body: 'Active sessions, per-engine metrics and slow queries. Cancel and terminate behind a confirmation.',
     },
     {
         title: 'Users and roles',
@@ -168,7 +168,7 @@ const DEPTH_ITEMS: { title: string; body: ReactNode }[] = [
     },
     {
         title: 'Quick Switcher',
-        body: 'Fuzzy search across tables, databases, saved queries and history, with the ones you use most at the top.',
+        body: 'Fuzzy search across tables, databases, saved queries and history, most-used first.',
     },
     {
         title: 'CSV inspector',
@@ -263,10 +263,13 @@ export default function Workbench() {
             </Container>
 
             <Container>
-                <h3 className="px-4 pt-4 text-lg font-semibold">Six more things you would expect to pay for.</h3>
-                <p className="px-4 pt-2 pb-4 text-sm text-muted-foreground">
-                    Each one is usually a separate tool, a paid add-on, or a command you have to remember.
-                </p>
+                {/*
+                  * The 17-word subtitle under this heading is gone. It said
+                  * each item is "usually a separate tool, a paid add-on, or a
+                  * command you have to remember", which is the heading's own
+                  * claim written out a second time.
+                  */}
+                <h3 className="px-4 py-4 text-lg font-semibold">Six more things you would expect to pay for.</h3>
             </Container>
             <FullLine />
             <Container>

@@ -24,15 +24,15 @@ interface Behaviour {
 const BEHAVIOURS: Behaviour[] = [
     {
         title: 'Results before metadata',
-        body: 'Rows appear as soon as they come back. Column metadata loads behind them, so a slow remote database no longer costs you a multi-second wait before you see anything.',
+        body: 'Rows appear as soon as they come back. Column metadata loads in behind them.',
     },
     {
         title: 'Hiding a column makes the table load faster',
-        body: 'A hidden column is not fetched at all. Hide a large TEXT or BLOB column and the query gets smaller. Widths, order and hidden state are remembered per table.',
+        body: 'A hidden column is not fetched at all. Widths, order and hidden state are remembered per table.',
     },
     {
         title: 'No accidental COUNT(*)',
-        body: 'Above the row-count threshold, which defaults to 100,000, the pager shows an estimated total instead of running a full count against a large table.',
+        body: 'Past 100,000 rows the pager estimates the total instead of counting the whole table.',
     },
 ];
 
@@ -253,8 +253,8 @@ export default function SpecStrip({ latestRelease, downloads }: Props) {
               */}
             <Container>
                 <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    Cold start and idle memory measured on an M4 MacBook Pro running macOS 27, from a cold launch to
-                    the first window, with one PostgreSQL connection open.
+                    Measured on an M4 MacBook Pro, macOS 27: cold launch to first window, one PostgreSQL connection
+                    open.
                 </p>
             </Container>
             <FullLine />
@@ -277,7 +277,7 @@ export default function SpecStrip({ latestRelease, downloads }: Props) {
                     >
                         #1 on GitHub Trending
                     </a>{' '}
-                    on 23 March 2026, and Trendshift&rsquo;s #1 Swift repository of that week.
+                    on 23 March 2026, and Trendshift&rsquo;s #1 Swift repository that week.
                 </p>
             </Container>
             <FullLine />

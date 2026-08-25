@@ -26,13 +26,22 @@ it('server-renders every section of the running order', function (): void {
     $html = ssrHomepageHtml();
 
     $sections = [
-        'specs', 'databases', 'features', 'switch', 'compare',
-        'mcp', 'safety', 'pricing', 'mobile', 'footer-cta',
+        'specs', 'databases', 'features', 'switch',
+        'mcp', 'safety', 'license', 'pricing', 'mobile', 'footer-cta',
     ];
 
     foreach ($sections as $id) {
         expect($html)->toContain("id=\"{$id}\"");
     }
+
+    /*
+     * `compare` is an anchor, not a section, since Migration absorbed the
+     * comparison table: two header stacks for one argument. It still has to
+     * resolve, and it has to land inside Migration rather than after it.
+     */
+    expect($html)->toContain('id="compare"');
+    expect($html)->not->toContain('id="compare-heading"');
+    expect(strpos($html, 'id="switch"'))->toBeLessThan(strpos($html, 'id="compare"'));
 
     /*
      * And the retired ones stay retired. `speed`, `more` and `open-source` were
