@@ -149,7 +149,27 @@
    * display. Hue is deliberately unchanged.
    */
   --primary: oklch(0.72 0.178 55);
-  --primary-foreground: oklch(0.25 0.05 55);
+  /*
+   * Darkened from L 0.25 to 0.16, which takes it from 6.18:1 on --primary to
+   * 7.45:1 — past AAA rather than sitting between the two thresholds.
+   *
+   * Every use of this token is the same pairing on the same fill: the primary
+   * Button, the two checkout buttons in Pricing, the skip link, and the top
+   * banner. Text and fill share hue 55, and a same-hue pair reads flatter than
+   * its ratio suggests, because there is no hue separation doing any of the
+   * work — which is why 6.18:1 was reported as hard to read even though it
+   * cleared AA by 1.68.
+   *
+   * Not black. Chroma stays at 0.04 so the mark still belongs to the fill it
+   * sits on; pure black measures 8.02:1 and reads as a different design.
+   * L 0.16 / C 0.04 / H 55 is inside the sRGB gamut, checked rather than
+   * assumed — the note below records what happens when it is not.
+   *
+   * The headroom is the point. `--muted-foreground` was raised for the same
+   * reason: at 4.73:1 it "cleared AA by 0.23, so it had no headroom at all",
+   * and every opacity modifier stacked on it failed outright.
+   */
+  --primary-foreground: oklch(0.16 0.04 55);
   /* Text-only accent. --primary is tuned for fills; at small type it reads ~2.2:1 on white. */
   --primary-strong: oklch(0.52 0.148 45);
   --secondary: oklch(0.97 0 0);
@@ -185,7 +205,8 @@
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.72 0.178 55);
-  --primary-foreground: oklch(0.25 0.05 55);
+  /* Theme-invariant, like --primary: one fill, one mark, both grounds. */
+  --primary-foreground: oklch(0.16 0.04 55);
   /* L 0.80 / H 58 tops out at C 0.1371 — this was the worst offender, 0.0129 over. */
   --primary-strong: oklch(0.8 0.137 58);
   --secondary: oklch(0.269 0 0);

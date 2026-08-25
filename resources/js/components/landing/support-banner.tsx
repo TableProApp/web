@@ -46,9 +46,12 @@ export const BANNER_STORAGE_KEY = 'tablepro:banner-dismissed';
  * (4.77:1 for the message); it also gives back most of the dark-mode
  * visibility, so make that trade knowingly.
  *
- * Every pairing here clears AA and was computed rather than eyeballed:
- * `--primary-foreground` on `--primary` is 6.18:1, in both themes, because
- * both tokens are theme-invariant.
+ * Every pairing here clears AAA and was computed rather than eyeballed:
+ * `--primary-foreground` on `--primary` is 7.45:1, in both themes, because both
+ * tokens are theme-invariant. It was 6.18:1 when this shipped — clearing AA but
+ * reading flat, because the mark and the fill share hue 55 and a same-hue pair
+ * has no hue separation helping it. Darkening the token fixed the banner and
+ * the three buttons that wear the same pairing.
  *
  * **It can be closed, and stays closed.** Dismissal writes the config's version
  * to `localStorage` — the browser is the only place it can live, because this
