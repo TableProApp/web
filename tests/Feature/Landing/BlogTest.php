@@ -21,16 +21,17 @@ it('renders the blog index', function (): void {
         );
 });
 
-it('lists all 5 seed posts on the index', function (): void {
+it('lists all 6 seed posts on the index', function (): void {
     getOnWebDomainBlog('/blog')
         ->assertOk()
         ->assertInertia(
             fn($page) => $page->component('Blog/Index')
-                ->has('posts', 5),
+                ->has('posts', 6),
         );
 });
 
 dataset('blogSlugs', [
+    'tablepro-0-68',
     'tablepro-0-67',
     'cloudflare-d1-mac',
     'mcp-database-claude',
