@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { buttonClasses } from '@/components/ui/button';
 import CopyButton from '@/components/ui/copy-button';
 import Container from '@/components/ui/container';
+import FootNote from '@/components/ui/footnote';
 import { FullLine } from '@/components/ui/full-line';
 import { PANEL_TITLE, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 import SectionShell from '@/components/ui/section-shell';
@@ -110,11 +111,8 @@ export default function FooterCTA() {
             <FullLine />
             <Container>
                 <div className="grid grid-cols-1 items-start sm:grid-cols-2">
-                    <GridCell className={`p-6 sm:p-8 ${cellBorders(0, COLS, 2)}`}>
+                    <GridCell density="default" className={cellBorders(0, COLS, 2)}>
                         <h3 className={PANEL_TITLE}>Download</h3>
-                        <p className="mt-2 text-sm text-muted-foreground">
-                            macOS 14 or later. Apple Silicon and Intel. About 20 MB.
-                        </p>
 
                         <div className="mt-6">
                             <Button href="/download" onClick={() => trackDownload('footer-cta')}>
@@ -130,24 +128,20 @@ export default function FooterCTA() {
                             <CopyButton value={BREW_COMMAND} label="the Homebrew command" className="size-9 rounded-lg border border-rule" />
                         </div>
 
-                        <p className="mt-4 text-sm text-muted-foreground">
+                        <p className="mt-4 text-sm text-muted-foreground text-pretty">
                             No database to hand?{' '}
                             <span className="font-mono text-xs">File &gt; Try Sample Database</span> opens a bundled
-                            Chinook SQLite.
+                            Chinook.
                         </p>
                     </GridCell>
 
-                    <GridCell className={`p-6 sm:p-8 ${cellBorders(1, COLS, 2)}`}>
+                    <GridCell density="default" className={cellBorders(1, COLS, 2)}>
                         {/* Carries the anchor the header and the mobile nav both target. */}
                         <div id="mobile" className="scroll-mt-20">
                             <h3 className={PANEL_TITLE}>iPhone and iPad</h3>
-                            <p className="mt-2 text-sm text-muted-foreground">
+                            <p className="mt-3 text-sm text-muted-foreground text-pretty">
                                 SQLite, DuckDB, MySQL, MariaDB, PostgreSQL, Redis and SQL Server on device, with SSH
-                                tunnels, Face ID and Handoff.
-                            </p>
-                            <p className="mt-3 text-sm text-muted-foreground">
-                                Free, like the Mac app. Syncing needs a license. Mac only: plugins, AI chat, MCP and ER
-                                diagrams.
+                                tunnels, Face ID and Handoff. Free, like the Mac app; syncing needs a license.
                             </p>
 
                             <div className="mt-6">
@@ -209,13 +203,9 @@ export default function FooterCTA() {
               * that the platform note has left the iPhone section. It is a real
               * query and the honest answer is short.
               */}
-            <Container>
-                <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    There is no Windows version. A native Linux app is being built in Rust with GTK4, and there is
-                    nothing to install yet.
-                </p>
-            </Container>
-            <FullLine />
+            <FootNote>
+                No Windows version. A native Linux app is being built in Rust with GTK4, with nothing to install yet.
+            </FootNote>
         </SectionShell>
     );
 }

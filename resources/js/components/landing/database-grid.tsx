@@ -2,9 +2,9 @@ import { useMemo, useRef, useState } from 'react';
 import { Plus } from 'lucide-react';
 import gridData from '../../../data/database-grid.json';
 import Container from '@/components/ui/container';
+import FootNote from '@/components/ui/footnote';
 import { FullLine } from '@/components/ui/full-line';
 import DatabaseMark from '@/components/ui/database-mark';
-import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 import { CELL_DENSITY, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 
@@ -57,22 +57,30 @@ function fillerVisibility(index: number, count: number): string {
         .join(' ');
 }
 
-const TILE_CLASS = `group flex flex-col items-center gap-3 text-center ${CELL_DENSITY.compact}`;
+const TILE_CLASS = `group flex flex-col items-center justify-center gap-3.5 text-center ${CELL_DENSITY.default}`;
 /** Tiles are links, so the shared row-selection treatment applies on hover AND focus. */
 const TILE_HOVER = 'transition-colors';
 
+/**
+ * A mark and a name. Nothing else.
+ *
+ * Each tile also carried the default port and a ● / ○ glyph for bundled versus
+ * on-demand: four text runs times twenty six tiles, sixty two mono strings in
+ * one grid, and the densest single block on the page. Neither fact chooses a
+ * database for anyone — nobody picks a client because Redis is on 6379 — and
+ * the bundled/on-demand split is a property of nine drivers rather than of
+ * twenty six tiles, so the lede states it once and the grid is a wall of marks
+ * again.
+ *
+ * `port` and `distribution` stay on the type and in the JSON. The grid filters
+ * on `category`, and `DatabaseGridDataTest` reads the rest; stripping fields
+ * from a dataset to match one view is how a dataset stops being reusable.
+ */
 function TileBody({ database }: { database: DatabaseTile }) {
     return (
         <>
             <DatabaseMark icon={database.icon} monogram={database.monogram} name={database.name} />
-            <span className="text-xs leading-tight font-medium text-muted-foreground">{database.name}</span>
-            <span className="font-mono text-2xs text-muted-foreground">{database.port}</span>
-            <span
-                className="font-mono text-2xs text-muted-foreground"
-                title={database.distribution === 'builtin' ? 'Bundled with the app' : 'Downloads on demand'}
-            >
-                {database.distribution === 'builtin' ? '●' : '○'}
-            </span>
+            <span className="text-sm leading-tight font-medium text-muted-foreground">{database.name}</span>
         </>
     );
 }
@@ -170,6 +178,7 @@ export default function DatabaseGrid() {
 
     return (
         <SectionShell
+            tone="raised"
             id="databases"
             label="Databases"
             headline="25 databases."
@@ -194,10 +203,10 @@ export default function DatabaseGrid() {
                                     type="button"
                                     aria-pressed={isActive}
                                     onClick={() => setActiveCategory(category.id)}
-                                    className={`relative shrink-0 px-4 py-3 text-left font-mono text-2xs tracking-widest whitespace-nowrap uppercase transition-colors lg:whitespace-normal ${
+                                    className={`relative shrink-0 px-4 py-4 text-left text-sm whitespace-nowrap transition-colors lg:whitespace-normal ${
                                         isActive
                                             ? 'font-semibold text-primary-strong'
-                                            : 'text-muted-foreground hover:text-foreground'
+                                            : 'font-medium text-muted-foreground hover:text-foreground'
                                     }`}
                                 >
                                     {isActive && (
@@ -286,7 +295,7 @@ export default function DatabaseGrid() {
                                         aria-hidden="true"
                                     />
                                 </span>
-                                <span className="text-xs leading-tight font-medium text-muted-foreground">
+                                <span className="text-sm leading-tight font-medium text-muted-foreground">
                                     Request a database
                                 </span>
                             </a>
@@ -310,38 +319,18 @@ export default function DatabaseGrid() {
             <FullLine />
 
             {/*
-              * Three fine-print rows became one, and one of them was false.
-              * "and so do libSQL and Turso" was wrong: `driverGroup` has exactly
-              * one duplicate, `cassandra`. libSQL and Turso are a single tile,
-              * so they cannot be a second pair. The plugin-registry paragraph
-              * restated the checksum and signature claim the lede already makes.
+              * One footnote where there were two bands and a two-row ledger.
+              *
+              * The ● / ○ legend went with the glyphs it explained; the lede now
+              * carries the bundled/on-demand split in a sentence. The plugin ABI
+              * row folded in here because it is a reassurance about the parts
+              * list, not a second subject.
               */}
-            <Container>
-                <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    ● bundled &nbsp; ○ downloads on demand &nbsp;·&nbsp; Twenty six tiles, twenty five drivers:
-                    Cassandra and ScyllaDB share one.
-                </p>
-            </Container>
-            <FullLine />
-
-            {/*
-              * The bill of materials, relocated from `architecture.tsx`. Under
-              * a headline about Swift it was a parts list. Under one that says
-              * "One native driver each. No JDBC." it is the proof of the
-              * sentence directly above it.
-              */}
-            <Container>
-                <Ledger>
-                    <LedgerRow label="Drivers">
-                        libpq, libmariadb, hiredis, libmongoc, libcassandra, FreeTDS, OracleNIO. Teradata and Trino
-                        speak their wire protocols in pure Swift.
-                    </LedgerRow>
-                    <LedgerRow label="Plugins">
-                        A signed bundle over a stable ABI, so an app update never breaks a driver.
-                    </LedgerRow>
-                </Ledger>
-            </Container>
-            <FullLine />
+            <FootNote>
+                Twenty six tiles, twenty five drivers: Cassandra and ScyllaDB share one. Underneath are libpq,
+                libmariadb, hiredis, libmongoc, libcassandra, FreeTDS and OracleNIO, with Teradata and Trino speaking
+                their wire protocols in pure Swift.
+            </FootNote>
         </SectionShell>
     );
 }

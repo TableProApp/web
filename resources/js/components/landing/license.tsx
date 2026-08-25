@@ -1,38 +1,42 @@
 import Container from '@/components/ui/container';
 import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
+import FootNote from '@/components/ui/footnote';
 import { FullLine } from '@/components/ui/full-line';
 import { Availability } from '@/components/ui/glyph';
-import SectionShell from '@/components/ui/section-shell';
 import { PAID_FEATURES } from '@/data/license';
+
+/*
+ * The plan matrix, headless, rendered inside `Pricing`.
+ *
+ * It shipped as a section of its own, directly above Pricing, with its own
+ * eyebrow, H2 and lede — and the two sections answered one question in two
+ * halves: what a license adds, then what it costs. That is 469 rendered words
+ * and two full header stacks for a reader who is deciding a single thing.
+ *
+ * The pattern is `CompareTable` inside `SwitchFrom`: a headless artifact that
+ * lends its `id` as an anchor. `#license` still resolves and still lands with
+ * the prices on screen, which is the whole point of where it sits.
+ */
 
 interface Row {
     name: string;
-    /** Optional: the two terms rows carry their answer in the columns instead. */
+    /** One line under the name. Under ten words; the cell is narrow. See `data/license.ts`. */
     detail?: string;
     free: boolean | string;
     starter: boolean | string;
     team: boolean | string;
 }
 
-/**
- * The paid surface, as one artifact, one section before the prices.
- *
- * It replaces the six-row "Compare plans" table that used to close Pricing.
- * That table was the last thing on the section and named four paid features;
- * this one names all nine, arrives while the reader is still deciding rather
- * than after they have scrolled past the cards, and lets the pricing lede stop
- * enumerating features in prose — it was 59 words, the longest paragraph on the
- * page, and it was wrong about the count.
- *
- * A matrix rather than a grid of cards on purpose: the question a reader has
- * here is "what do I lose by not paying", and three columns of ticks answer it
- * without being read.
- */
 function buildRows(teamMinSeats: number): Row[] {
     return [
         {
             name: 'The whole app',
-            detail: '25 databases, SQL editor, data grid, AI assistant, MCP server, Safe Mode, SSH tunnels',
+            /*
+             * This listed "25 databases, SQL editor, data grid, AI assistant, MCP
+             * server, Safe Mode, SSH tunnels" — seven items that are seven
+             * sections above it, each with its own screenshot or table.
+             */
+            detail: 'Every section above this one',
             free: true,
             starter: true,
             team: true,
@@ -66,25 +70,19 @@ function Cell({ value }: { value: boolean | string }) {
     );
 }
 
-export default function License({ teamMinSeats }: { teamMinSeats: number }) {
+export default function LicenseTable({ teamMinSeats }: { teamMinSeats: number }) {
     const rows = buildRows(teamMinSeats);
 
     return (
-        <SectionShell
-            id="license"
-            label="License"
-            headline={`${PAID_FEATURES.length} features need a license.`}
-            headlineMuted="Everything else is free."
-            lede="Free is not a trial and not a demo. It is the whole app, on every Mac you own, with nothing counting down."
-        >
+        <>
+            <Container>
+                <h3 id="license" className="scroll-mt-20 px-4 py-5 text-lg font-semibold sm:py-6">
+                    What a license adds.
+                </h3>
+            </Container>
             <FullLine />
             <Container>
-                {/*
-                  * The scrolling-table pattern from safety.tsx and
-                  * compare-table.tsx: focusable and labelled because it scrolls,
-                  * with FullLine kept outside so its 200vw bleed cannot add
-                  * scroll width in here.
-                  */}
+                {/* Scrollable and focusable: four columns do not fit a phone. */}
                 <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="What each plan includes">
                     <DataTable
                         className="min-w-[40rem]"
@@ -121,7 +119,7 @@ export default function License({ teamMinSeats }: { teamMinSeats: number }) {
                                     <th scope="row" className="p-4 text-left align-top font-normal sm:p-5">
                                         <span className="block text-sm font-medium text-foreground">{row.name}</span>
                                         {row.detail && (
-                                            <span className="mt-1 block text-xs text-muted-foreground">
+                                            <span className="mt-1.5 block text-xs text-muted-foreground text-pretty">
                                                 {row.detail}
                                             </span>
                                         )}
@@ -143,12 +141,9 @@ export default function License({ teamMinSeats }: { teamMinSeats: number }) {
             </Container>
             <FullLine />
 
-            <Container>
-                <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    A license verifies offline on every launch. A 30-day grace period covers a server we cannot reach.
-                </p>
-            </Container>
-            <FullLine />
-        </SectionShell>
+            <FootNote>
+                A license verifies offline on every launch. A 30-day grace period covers a server we cannot reach.
+            </FootNote>
+        </>
     );
 }

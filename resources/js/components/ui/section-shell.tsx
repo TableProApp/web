@@ -38,13 +38,29 @@ interface HeaderStackProps {
  * pages hand-rolled this stack forty-one times and every copy had drifted: no
  * accent tick, no vertical padding, `pl-4` instead of `px-4`, and the retired
  * four-rule pattern intact. Duplicating a rhythm is how a rhythm stops being one.
+ *
+ * The measurements changed once, on 2026-08-25, under one rule:
+ *
+ *   Rules and grids are for data. Prose gets air.
+ *
+ * The homepage had ninety-two full-bleed rules across 1,925 words in `<main>` —
+ * a hairline every hundred-odd words — because "one rule per boundary" was being
+ * applied to paragraphs as well as to artifacts. Every sentence was drawn as a
+ * table row, so nothing on the page could read as more important than anything
+ * else.
+ *
+ * The framing convention is untouched; what changed is how much air each band
+ * gets, and the lede stopped being 16px muted text at `max-w-3xl` — roughly
+ * ninety characters a line, half again the measure prose wants. It is 18px at
+ * 58ch now, because it is the one paragraph in a section a reader will actually
+ * read.
  */
 function HeaderStack({ headingId, level, label, labelHref, headline, headlineMuted, lede, tier }: HeaderStackProps) {
     const Heading = level;
 
     return (
         <>
-            <div className="h-12 sm:h-16 lg:h-24" />
+            <div className="h-16 sm:h-24 lg:h-32" />
 
             <Container>
                 <AccentLine />
@@ -58,7 +74,7 @@ function HeaderStack({ headingId, level, label, labelHref, headline, headlineMut
                 <FullLine />
                 <Heading
                     id={headingId}
-                    className={`px-4 py-4 font-bold text-pretty sm:py-5 ${HEADLINE_CLASS[tier]}`}
+                    className={`px-4 py-5 font-bold text-pretty sm:py-7 ${HEADLINE_CLASS[tier]}`}
                 >
                     {headline}
                     {headlineMuted && (
@@ -71,7 +87,7 @@ function HeaderStack({ headingId, level, label, labelHref, headline, headlineMut
                 {lede && (
                     <>
                         <FullLine />
-                        <p className="max-w-3xl px-4 py-4 text-base text-muted-foreground text-pretty sm:py-5">
+                        <p className="max-w-[58ch] px-4 py-5 text-lg text-muted-foreground text-pretty sm:py-6">
                             {lede}
                         </p>
                     </>
@@ -79,7 +95,7 @@ function HeaderStack({ headingId, level, label, labelHref, headline, headlineMut
                 <FullLine />
             </Container>
 
-            <div className="h-6 sm:h-8 lg:h-10" />
+            <div className="h-8 sm:h-10 lg:h-14" />
         </>
     );
 }

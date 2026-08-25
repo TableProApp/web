@@ -5,9 +5,7 @@ import Hero from '@/components/landing/hero';
 import SpecStrip from '@/components/landing/spec-strip';
 import DatabaseGrid from '@/components/landing/database-grid';
 import Workbench from '@/components/landing/workbench';
-import AgentsMcp from '@/components/landing/agents-mcp';
-import Safety from '@/components/landing/safety';
-import License from '@/components/landing/license';
+import Guardrails from '@/components/landing/guardrails';
 import DownloadRail from '@/components/landing/download-rail';
 import SwitchFrom from '@/components/landing/switch-from';
 import Pricing from '@/components/landing/pricing';
@@ -226,16 +224,29 @@ export default function Home({
             />
 
             {/*
-              * Nine headed sections and two headless rails, down from eighteen
-              * blocks and fifteen H2s.
+              * Six headed sections, one headless spec rail and two download
+              * rails, down from nine headed sections.
               *
-              * The rule that produced this order came from the design system
-              * rather than from a word budget: a section earns an H2 only if it
-              * owns a data artifact — a table, a ledger, a grid or a screenshot.
-              * Architecture, OpenSource and ObjectionRow owned none, and every
-              * argument they made has a URL on this site that already ranks for
-              * it. What they said that was load-bearing moved to the section
-              * that proves it.
+              * The rule that produced the old order still holds — a section
+              * earns an H2 only if it owns a data artifact — but three sections
+              * were spending a full header stack on an artifact that needed no
+              * introduction, or splitting one argument across two:
+              *
+              * - `SpecStrip` headlined six numbers that argue for themselves. It
+              *   is a labelled region under the hero plate now, with no heading.
+              * - `AgentsMcp` and `Safety` were one argument in two halves, kept
+              *   adjacent on purpose. `Guardrails` is that argument whole.
+              * - `License` and `Pricing` answered "what does it add" and "what
+              *   does it cost" under separate eyebrows. The plan matrix is an
+              *   artifact inside Pricing now, the way the comparison table is an
+              *   artifact inside Migration.
+              *
+              * Nothing was deleted to get there; every id still resolves.
+              *
+              * The two grounds alternate strictly from `databases` down, so
+              * peripheral vision has a section boundary to read over ten
+              * thousand pixels of scroll. `raised` goes to Databases, Migration
+              * and Pricing.
               */}
             <Hero githubStars={githubStars} latestRelease={latestRelease} />
             <SpecStrip latestRelease={latestRelease} downloads={downloads} />
@@ -245,7 +256,7 @@ export default function Home({
             <Workbench />
             <DownloadRail
                 location="workbench"
-                note="Open a database and press ⌘⏎. macOS 14+, Apple Silicon and Intel."
+                note="Open a database and press ⌘⏎."
             />
 
             {/*
@@ -257,25 +268,18 @@ export default function Home({
             <SwitchFrom />
 
             {/*
-              * Agents raises the most alarming claim on the page — "let Claude
-              * query your database" — and Safety is its answer. Adjacency does
-              * that work, and adjacency is free.
+              * The most alarming claim on the page — "let an agent query your
+              * database" — and its answer, in the same section. Adjacency used
+              * to do that job across two header stacks; one section does it
+              * without spending them.
               */}
-            <AgentsMcp />
-            <Safety />
+            <Guardrails />
             <DownloadRail
                 location="safety"
-                note="Safe Mode is on before you connect anything. macOS 14+, Apple Silicon and Intel."
+                note="Safe Mode is on before you connect anything."
             />
 
-            {/*
-              * The paid surface, then the prices. It reads as one argument in
-              * two parts — what a license adds, then what it costs — and it is
-              * the order the reader asks the questions in. Pricing used to
-              * carry both, which is how its lede grew to 59 words and still
-              * named only four of the nine features the app gates.
-              */}
-            <License teamMinSeats={teamMinSeats} />
+            {/* What a license adds, then what it costs. One section, in that order. */}
             <Pricing paymentProvider={paymentProvider} teamMinSeats={teamMinSeats} />
             <FooterCTA />
         </LandingLayout>

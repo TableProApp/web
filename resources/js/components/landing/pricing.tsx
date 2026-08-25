@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import Container from '@/components/ui/container';
+import FootNote from '@/components/ui/footnote';
 import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
@@ -8,6 +9,7 @@ import { CheckGlyph } from '@/components/ui/glyph';
 import { PROSE_LINK } from '@/components/ui/prose-link';
 import { PANEL_TITLE } from '@/components/ui/grid-cell';
 import { trackDownload } from '@/lib/analytics';
+import LicenseTable from '@/components/landing/license';
 import SponsorRow from '@/components/landing/sponsor-row';
 import { STARTER_PRICE, TEAM_SEAT_PRICE, type TierPrice } from '@/data/pricing';
 import { PAID_FEATURES } from '@/data/license';
@@ -28,10 +30,8 @@ interface Tier {
      */
     key: 'free' | 'starter' | 'team';
     name: string;
-    description: string;
     price: 'free' | TierPrice;
     featured: boolean;
-    summary?: string;
     includesFrom?: string;
     features?: string[];
     cta: string;
@@ -62,17 +62,14 @@ function buildTiers(teamMinSeats: number): Tier[] {
         {
             key: 'free',
             name: 'Free',
-            description: 'Everything to get started',
             price: 'free',
             featured: false,
-            summary: 'The full app. All 25 databases. Every Mac you own.',
             cta: 'Download',
             ctaHref: '/download',
         },
         {
             key: 'starter',
             name: 'Starter',
-            description: 'For people who use it every day',
             price: STARTER_PRICE,
             featured: true,
             includesFrom: 'Free',
@@ -82,15 +79,13 @@ function buildTiers(teamMinSeats: number): Tier[] {
         {
             key: 'team',
             name: 'Team',
-            description: 'For teams and organizations',
             price: TEAM_SEAT_PRICE,
             featured: false,
             includesFrom: 'Starter',
             features: [
                 `Per seat, from ${teamMinSeats} seats`,
                 `All ${starterCount + teamCount} licensed features above`,
-                'Passwords are never sent',
-                'Seats and invites managed on the web',
+                'Seats and invites on the web. Passwords are never sent.',
             ],
             cta: 'Get Team',
         },
@@ -150,10 +145,7 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
 
     return (
         <div className={`flex h-full flex-col border-rule p-6 sm:p-8 ${tier.featured ? 'bg-primary/5' : ''}`}>
-            <div>
-                <h3 className={PANEL_TITLE}>{tier.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{tier.description}</p>
-            </div>
+            <h3 className={PANEL_TITLE}>{tier.name}</h3>
 
             <div className="mt-4">
                 {isFree ? (
@@ -227,29 +219,23 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
                 )}
             </div>
 
-            <div className="mt-6">
-                {tier.summary ? (
-                    <p className="text-sm text-muted-foreground">
-                        {tier.summary}
-                    </p>
-                ) : (
-                    <>
-                        {tier.includesFrom && (
-                            <p className="mb-3 text-sm font-medium text-foreground">
-                                Everything in {tier.includesFrom}, plus:
-                            </p>
-                        )}
-                        <ul className="space-y-2.5">
-                            {tier.features?.map((feature) => (
-                                <li key={feature} className="flex items-start gap-2.5">
-                                    <CheckGlyph className="mt-0.5 size-4 shrink-0 text-primary-strong" />
-                                    <span className="text-sm text-muted-foreground">{feature}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
-            </div>
+            {tier.features && (
+                <div className="mt-6">
+                    {tier.includesFrom && (
+                        <p className="mb-3 text-sm font-medium text-foreground">
+                            Everything in {tier.includesFrom}, plus:
+                        </p>
+                    )}
+                    <ul className="space-y-2.5">
+                        {tier.features.map((feature) => (
+                            <li key={feature} className="flex items-start gap-2.5">
+                                <CheckGlyph className="mt-0.5 size-4 shrink-0 text-primary-strong" />
+                                <span className="text-sm text-muted-foreground">{feature}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }
@@ -325,17 +311,23 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             id="pricing"
             label="Pricing"
             headline="The app is free."
-            headlineMuted="The license funds it."
             /*
-             * Twenty words, down from fifty-nine.
-             *
-             * The old lede enumerated the free surface and then the paid one,
-             * in prose, and got the second list wrong: it said a license adds
-             * four things when the app gates nine. Both lists are now the
-             * License table one section above, where ticks say it faster and
-             * cannot fall out of date with `ProFeature.swift` unnoticed.
+             * The second line counts rather than asserts, so it cannot drift
+             * from `ProFeature.swift` the way the retired "a license adds four
+             * things" lede did while the app gated nine.
              */
-            lede="One price list, no seat you have to buy to try it. The table above says what a license adds."
+            headlineMuted={`${PAID_FEATURES.length} features need a license.`}
+            /*
+             * The free promise, which used to open the License section's own
+             * header stack one scroll above this one. Two eyebrows, two H2s and
+             * two ledes were being spent to answer a single question in halves —
+             * what a license adds, then what it costs — so License is an artifact
+             * inside this section now and this is the sentence that opens it.
+             *
+             * It is also the objection that blocks the most readers, and it is
+             * answered on the screen where they are deciding.
+             */
+            lede="Free is not a trial and not a demo. It is the whole app, on every Mac you own, with nothing counting down."
             tone="raised"
         >
 
@@ -357,14 +349,20 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                       * people who cannot spare $24 a year.
                       */}
                     <LedgerRow label="At work">
-                        AGPL obligations attach to distributing a modified version, not to using it. No company-size
-                        limit. Buying a license is how the next release gets built.
+                        AGPL obligations attach to distributing a modified version, not to using it. Buying a
+                        license is how the next release gets built.
                     </LedgerRow>
                 </Ledger>
                 <FullLine />
             </Container>
 
-            {/* Billing toggle. No opening rule: the ledger above closes with one. */}
+            {/*
+              * What a license adds, then what it costs. One argument, in the
+              * order the reader asks the questions.
+              */}
+            <LicenseTable teamMinSeats={teamMinSeats} />
+
+            {/* Billing toggle. No opening rule: the footnote above closes with one. */}
             <Container>
                 <div className="flex items-center justify-center overflow-x-auto py-4">
                     <div className="inline-flex items-center rounded-full border border-rule bg-surface-raised p-1">
@@ -389,17 +387,15 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                         ))}
                     </div>
                 </div>
-                <FullLine />
                 {/*
-                  * The mechanics, once. This row used to read "$24 a year, or
-                  * $59 once" — two price literals typed a second time, outside
-                  * `buildTiers()`, which is the one function CLAUDE.md points at
-                  * as the source for a figure that must match what checkout
-                  * charges. It also restated the lede fifty lines above it.
+                  * No rule between the toggle and its caption. They are one
+                  * control, and the band that used to sit here also restated
+                  * "Yearly saves 33 percent" — which the toggle's own badge
+                  * says, eight pixels above it — and a lifetime payback figure
+                  * derived from two price literals typed outside `buildTiers()`.
                   */}
-                <p className="px-4 py-3 text-center font-mono text-xs text-muted-foreground">
-                    Starter is per person, Team per seat from {teamMinSeats}. Yearly saves 33 percent; lifetime pays
-                    for itself in about two and a half years.
+                <p className="px-4 pb-4 text-center text-sm text-muted-foreground">
+                    Starter is per person, Team per seat from {teamMinSeats}.
                 </p>
                 <FullLine />
 
@@ -466,7 +462,7 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             </Container>
 
             {/* Spacer */}
-            <div className="h-6 sm:h-8 lg:h-10" />
+            <div className="h-8 sm:h-10 lg:h-14" />
 
             {/* Pricing cards */}
             <FullLine />
@@ -500,21 +496,15 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             </Container>
             <FullLine />
 
-            {/* Refund note */}
-            <Container>
-                <p className="px-4 py-4 text-sm text-muted-foreground">
-                    7-day money-back guarantee on all paid plans.{' '}
-                    <a href="/refund-policy" className={PROSE_LINK}>Refund policy</a>
-                </p>
-            </Container>
-
             {/*
-              * The plan comparison table stood here and is now `license.tsx`,
-              * one section up. Everything below the cards is fine print and a
-              * credit; a reader who has read the prices has already met the
-              * feature matrix.
+              * Everything below the cards is fine print and a credit. The plan
+              * comparison table is `LicenseTable`, above the toggle, because a
+              * reader decides what to buy before they decide how to pay.
               */}
-            <FullLine />
+            <FootNote>
+                7-day money-back guarantee on all paid plans.{' '}
+                <a href="/refund-policy" className={PROSE_LINK}>Refund policy</a>
+            </FootNote>
 
             <SponsorRow />
             <FullLine />

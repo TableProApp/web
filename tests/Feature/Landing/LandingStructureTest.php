@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\Assert;
+
 /**
  * Guards the structure introduced by the landing redesign.
  *
@@ -29,7 +31,15 @@ it('numbers every full-bleed rule, including the accent ones', function (): void
     $rules = substr_count($html, '-ml-[100vw] h-px w-[200vw] bg-rule');
 
     expect($numbered)->toBe($rules, 'Every full-bleed rule must carry the ordinal counter');
-    expect($numbered)->toBeGreaterThan(80);
+
+    /*
+     * Was 80. The framing convention did not change — every block is still
+     * closed by a rule — but three header stacks went with the three sections
+     * that merged, and twelve mono caveat bands became four footnotes. Rules
+     * are a consequence of how many blocks the page has, so this floor tracks
+     * the block count rather than pinning it.
+     */
+    expect($numbered)->toBeGreaterThan(70);
 });
 
 it('subtracts the container padding from the rule ordinals', function (): void {
@@ -60,26 +70,72 @@ it('answers the free and AGPL objections where the prices are', function (): voi
      * which is where the reader is deciding and where the AGPL question blocks
      * the highest-value visitor on the site.
      */
-    $license = strpos($html, 'id="license"');
     $pricing = strpos($html, 'id="pricing"');
+    $license = strpos($html, 'id="license"');
     $free = strpos($html, 'Free is not a trial and not a demo');
     $agpl = strpos($html, 'AGPL obligations attach to distributing a modified version');
 
+    expect($pricing)->not->toBeFalse();
+    expect($license)->not->toBeFalse();
     expect($free)->not->toBeFalse();
     expect($agpl)->not->toBeFalse();
-    expect($agpl)->toBeGreaterThan($pricing);
 
     /*
-     * The free answer moved one section up, onto the License table that shows
-     * what the free tier actually holds. It still has to arrive with the paid
-     * surface on screen rather than a scroll earlier, and License is directly
-     * above Pricing.
+     * License stopped being a section of its own. Its eyebrow, H2 and lede were
+     * a second header stack asking "what does a license add" one scroll above
+     * the one asking "what does it cost" — one question, split in half. The
+     * plan matrix is an artifact inside Pricing now, so `#license` follows
+     * `#pricing` in the document rather than preceding it.
      */
-    expect($free)->toBeGreaterThan($license);
-    expect($free)->toBeLessThan($pricing);
+    expect($free)->toBeGreaterThan($pricing, 'The free promise is the lede of the pricing section');
+    expect($agpl)->toBeGreaterThan($pricing);
+    expect($free)->toBeLessThan($license, 'The promise opens the section the plan matrix then proves');
+    expect($agpl)->toBeLessThan($license);
 
     // And the retired duplicate is gone rather than merely moved.
     expect($html)->not->toContain('Nothing is behind a paywall.');
+});
+
+it('keeps each merged pair inside one section', function (): void {
+    $html = landingHtml();
+
+    /*
+     * Two merges carry this redesign, and both are invisible to a typecheck:
+     * an id can keep resolving from a section that quietly grew a second header
+     * stack back. What makes them merges is that no `</section>` separates the
+     * pair — the second id rides a sub-heading inside the first section.
+     *
+     * `#mcp` + `#safety`: the section that raises "let an agent query your
+     * database" is the section that answers it.
+     * `#pricing` + `#license`: what a license adds, then what it costs.
+     */
+    $pairs = [
+        ['id="mcp"', 'id="safety"'],
+        ['id="pricing"', 'id="license"'],
+    ];
+
+    foreach ($pairs as [$opener, $inner]) {
+        $from = strpos($html, $opener);
+        $to = strpos($html, $inner);
+
+        expect($from)->not->toBeFalse();
+        expect($to)->not->toBeFalse();
+        expect($from)->toBeLessThan($to, "{$inner} must sit inside {$opener}");
+
+        /*
+         * `Assert::assertStringNotContainsString`, not `->not->toContain(...)`.
+         * Pest's `toContain()` is `(mixed ...$needles)` with no message
+         * parameter, so a message passed there becomes a second needle and
+         * `not` passes the moment *any* needle is absent — which a message
+         * string always is. Two blocks in `StaleClaimsTest` were green for
+         * their whole life that way.
+         */
+        Assert::assertStringNotContainsString(
+            '</section>',
+            substr($html, $from, $to - $from),
+            "{$opener} and {$inner} must be one section, not two",
+        );
+    }
 });
 
 it('answers the AI question inside the section that raises it', function (): void {
@@ -236,6 +292,61 @@ it('never draws two rules at the same height', function (): void {
     }
 
     expect($coincident)->toBe([], 'Rules ' . implode(', ', $coincident) . ' render at the same height');
+});
+
+it('keeps the spec strip headless', function (): void {
+    $html = landingHtml();
+
+    /*
+     * Six numbers under the hero plate used to carry an eyebrow, an H2 reading
+     * "Written in Swift, not in Electron.", two mono caveat bands, a third
+     * heading and a behaviour grid — 204 rendered words wrapped around figures
+     * that argue for themselves.
+     *
+     * It is a labelled region now. `aria-label` rather than `aria-labelledby`,
+     * because a region with neither is not announced at all, so dropping the
+     * heading without adding the label would have silently cost a landmark.
+     */
+    expect($html)->toContain('id="specs"');
+    Assert::assertStringNotContainsString(
+        'specs-heading',
+        $html,
+        'The spec strip owns no heading; it is a labelled region',
+    );
+    expect($html)->toContain('aria-label="TablePro in numbers"');
+});
+
+it('spends mono on data rather than on prose', function (): void {
+    $html = landingHtml();
+
+    $start = strpos($html, '<main');
+    $end = strrpos($html, '</main>');
+    $main = substr($html, $start, $end - $start);
+
+    /*
+     * IBM Plex Mono is the page's deliberate friction: a section eyebrow, a
+     * column header, a value, a keystroke, an identifier. It was rendering 206
+     * times inside <main> — ledger labels, category filters, twenty four client
+     * and provider chips, twenty six database ports, and twelve caveat bands —
+     * which made the rarest voice on the page the most common one, at 11px
+     * letterspaced small caps.
+     *
+     * The ceiling is what the data actually needs, with headroom. It is a
+     * budget, not a target: spend it on a table, not on a sentence.
+     */
+    expect(substr_count($main, 'font-mono'))
+        ->toBeLessThan(80, 'Mono belongs on values, identifiers and eyebrows, not on prose');
+
+    /*
+     * The retired footnote band, in its exact shipped form. Twelve copies of
+     * this string lived in seven section files; `ui/footnote.tsx` owns the one
+     * that replaced them, and it is sans.
+     */
+    Assert::assertStringNotContainsString(
+        'py-3 font-mono text-xs text-muted-foreground',
+        $main,
+        'Footnotes are prose about data, not data: use <FootNote>',
+    );
 });
 
 it('spans the gutters and rails past the footer', function (): void {

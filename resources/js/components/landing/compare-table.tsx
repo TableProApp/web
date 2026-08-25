@@ -1,4 +1,5 @@
 import Container from '@/components/ui/container';
+import FootNote from '@/components/ui/footnote';
 import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
 import { FullLine } from '@/components/ui/full-line';
 import { getComparisonBySlug, type ComparisonInfo } from '@/data/comparisons';
@@ -79,8 +80,13 @@ export default function CompareTable() {
     return (
         <>
             <Container>
-                <h3 id="compare" className="scroll-mt-20 px-4 py-4 text-lg font-semibold">
-                    TablePro against DBeaver, DataGrip, Beekeeper Studio and TablePlus.
+                {/*
+                  * The four names are links in the table header directly below,
+                  * so the heading spent nine words re-listing them. It says what
+                  * the table measures instead.
+                  */}
+                <h3 id="compare" className="scroll-mt-20 px-4 py-5 text-lg font-semibold sm:py-6">
+                    Cold start, memory, runtime and price.
                 </h3>
             </Container>
             <FullLine />
@@ -151,13 +157,10 @@ export default function CompareTable() {
             </Container>
             <FullLine />
 
-            <Container>
-                <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    Each competitor figure comes from its own comparison page, which names the version tested.
-                    TablePlus is native too: unmeasured here rather than estimated.
-                </p>
-            </Container>
-            <FullLine />
+            <FootNote>
+                Every competitor figure comes from its own comparison page, which names the version tested. TablePlus
+                is native too, and unmeasured rather than estimated.
+            </FootNote>
         </>
     );
 }

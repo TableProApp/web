@@ -18,9 +18,13 @@ export interface PaidFeature {
     /** Matches `ProFeature.displayName` in the app, so the two cannot drift. */
     name: string;
     /**
-     * One line, under fourteen words. This renders in a table cell beside three
+     * One line, under ten words. This renders in a table cell beside three
      * availability columns; anything longer wraps to three lines on a phone and
      * turns a scannable matrix back into prose.
+     *
+     * The ceiling was fourteen and every entry sat near it, which put a hundred
+     * and twenty four words inside one table. Ten is enough to say what the
+     * feature is, and the feature's own page says the rest.
      */
     detail: string;
     tier: PaidTier;
@@ -34,37 +38,37 @@ export interface PaidFeature {
 export const PAID_FEATURES: PaidFeature[] = [
     {
         name: 'Compare & Sync',
-        detail: 'Diff two databases, structure or rows. Read the script before it runs.',
+        detail: 'Diff two databases, structure or rows. Read the script first.',
         tier: 'starter',
     },
     {
         name: 'Query Insights',
-        detail: 'What you run most, what costs the most time, what got slower.',
+        detail: 'What you run most, and what got slower.',
         tier: 'starter',
     },
     {
         name: 'Result Charts',
-        detail: 'Bar, line, area and scatter, drawn from the rows already loaded.',
+        detail: 'Bar, line, area and scatter, from rows already loaded.',
         tier: 'starter',
     },
     {
         name: 'iCloud Sync',
-        detail: 'Connections, saved queries, favorites and settings across your Macs.',
+        detail: 'Connections, queries, favorites and settings across your Macs.',
         tier: 'starter',
     },
     {
         name: 'Linked Folders',
-        detail: 'A Git repo or a shared drive, read as connections that stay current.',
+        detail: 'A Git repo or shared drive, read as live connections.',
         tier: 'starter',
     },
     {
         name: 'Encrypted Export',
-        detail: 'Credentials travel inside the export file, under AES-256-GCM.',
+        detail: 'Credentials travel inside the file, under AES-256-GCM.',
         tier: 'starter',
     },
     {
         name: 'Environment Variables',
-        detail: 'Write $VAR in a connection field; it resolves at connect time.',
+        detail: 'Write $VAR in a field; it resolves at connect time.',
         tier: 'starter',
     },
     {
@@ -74,7 +78,7 @@ export const PAID_FEATURES: PaidFeature[] = [
     },
     {
         name: 'Team Library',
-        detail: 'Connections and saved queries through your account, no folder needed.',
+        detail: 'Connections and saved queries through your account.',
         tier: 'team',
     },
 ];

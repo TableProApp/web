@@ -1,38 +1,20 @@
 import { ReactNode } from 'react';
 import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
-import { cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
+import { cellBorders, GridCell, ITEM_TITLE, PANEL_TITLE, type ColumnMap } from '@/components/ui/grid-cell';
 import Kbd from '@/components/ui/kbd';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
 import ThemedImage from '@/components/ui/themed-image';
 
 interface Shot {
-    /** Base name under /images/features. The 1216/2432 WebP ladder is derived from it. */
+    /** Basename under `/images/features/`, without the theme suffix. */
     name: string;
     alt: string;
-    /**
-     * Which edge of the screenshot carries its subject.
-     *
-     * The cell blows every shot up to 145% and clips it, so only 1/1.45 of the
-     * image — 69% — is ever on the page. Anchoring used to follow row parity,
-     * which is a fact about the layout and not about the picture: it put the
-     * AI assistant's panel, which lives on the right of that shot, in the 31%
-     * that gets cut. The row was captioned "AI Assistant" above a screenshot
-     * with no assistant in it. Parity still decides which side the cell sits on
-     * and where its hairline goes; the picture decides this.
-     */
+    /** Which edge of the capture stays in frame when it overflows its column. */
     anchor: 'left' | 'right';
 }
 
-/**
- * `ThemedImage` has always supported a WebP ladder; this section simply never
- * passed one, and shipped 4.46 MB of raw PNG instead. At 2x the same three
- * screenshots now cost about 0.50 MB.
- *
- * Widths are 1216 and 2432 because the cell renders at 1216 CSS px at most, so
- * 2432 is an exact 2x and nothing is resampled on a retina Mac.
- */
 function shotSources(name: string, theme: 'light' | 'dark') {
     const stem = `/images/features/${name}-${theme}`;
 
@@ -50,25 +32,32 @@ interface Row {
     rows: { label: string; value: ReactNode }[];
 }
 
-/** Inline literal, for file extensions and vim commands that are not shortcuts. */
 function Mono({ children }: { children: ReactNode }) {
     return <span className="font-mono text-xs text-foreground/80">{children}</span>;
 }
 
-/**
- * The screenshot cell carries the row's only interior hairline: a top rule while
- * the row is stacked, and the vertical divider once the row splits at lg. Which
- * vertical side it lands on flips with the row's parity, because the copy cell
- * reorders past it.
- */
 const SHOT_BORDER_ODD = 'border-rule max-lg:border-t lg:border-l';
 const SHOT_BORDER_EVEN = 'border-rule max-lg:border-t lg:border-r';
 
+/**
+ * Three screenshots, each with one paragraph and a short ledger.
+ *
+ * The paragraphs used to carry three technical claims apiece in two sentences,
+ * at 14px muted, above a ledger that made the same claims again in a form you
+ * could actually scan. The ledger wins that fight every time: it is the artifact
+ * and the paragraph is the caption. So each body says what the thing *is* and
+ * stops, and anything specific enough to have a keystroke or a number attached
+ * moved into a row.
+ *
+ * Row 02 also absorbed the three "what the numbers buy on day two" cells that
+ * used to sit under the spec table behind an H3 of their own. All three were
+ * about the data grid's loading behaviour, so they are rows on the data grid.
+ */
 const ROWS: Row[] = [
     {
         index: '01',
         title: 'SQL Editor',
-        body: 'Tree-sitter highlighting, and autocomplete that resolves aliases through JOINs and CTEs. A batch runs in one transaction: a failure names the statement and rolls the lot back.',
+        body: 'Autocomplete resolves aliases through JOINs and CTEs. A batch runs in one transaction.',
         shot: {
             name: 'sql-editor',
             alt: 'The SQL editor with a multi-statement query and its result tabs below.',
@@ -85,8 +74,12 @@ const ROWS: Row[] = [
                 ),
             },
             {
+                label: 'Rollback',
+                value: 'A failed statement is named, and the batch rolls back.',
+            },
+            {
                 label: 'Row cap',
-                value: '10,000 by default, up to 500,000. Your own LIMIT always wins.',
+                value: '10,000 by default, up to 500,000. Your own LIMIT wins.',
             },
             {
                 label: 'Vim',
@@ -101,7 +94,7 @@ const ROWS: Row[] = [
     {
         index: '02',
         title: 'Data Grid',
-        body: 'Every column type gets its own editor, down to a three-state checkbox for a nullable boolean. Nothing reaches the database until you press Save.',
+        body: 'Every column type gets its own editor. Nothing lands until you press Save.',
         shot: {
             name: 'data-grid',
             alt: 'The data grid with an edited cell highlighted and the save control live, the change still only in memory.',
@@ -112,9 +105,17 @@ const ROWS: Row[] = [
                 label: 'Commit',
                 value: (
                     <>
-                        <Kbd>⌘S</Kbd> saves. <Kbd>⌘⇧P</Kbd> shows the exact parameterized SQL first, values inlined.
+                        <Kbd>⌘S</Kbd> saves. <Kbd>⌘⇧P</Kbd> shows the parameterized SQL first.
                     </>
                 ),
+            },
+            {
+                label: 'Loading',
+                value: 'Rows arrive before metadata, and a hidden column is never fetched.',
+            },
+            {
+                label: 'Paging',
+                value: 'Past 100,000 rows the pager estimates instead of counting.',
             },
             { label: 'Copy as', value: 'CSV, JSON, Markdown, IN clause, INSERT, UPDATE' },
         ],
@@ -122,9 +123,7 @@ const ROWS: Row[] = [
     {
         index: '03',
         title: 'AI Assistant',
-        // Was a list of the thirteen providers, which the Agents section
-        // enumerates as chips. This says what the assistant does instead.
-        body: 'Explain a query, optimize it, or fix one that failed. Suggestions arrive as a before-and-after diff you apply, or do not.',
+        body: 'Explain a query, optimize it, or fix one that failed.',
         shot: {
             name: 'ai-assistant',
             alt: 'The AI assistant answering a question in a side panel, with the SQL it generated and a step-by-step explanation.',
@@ -135,57 +134,46 @@ const ROWS: Row[] = [
                 label: 'Explain',
                 value: (
                     <>
-                        <Kbd>⌘L</Kbd>. <Kbd>⌘⌥L</Kbd> optimizes. A failed query grows a Fix with AI button.
+                        <Kbd>⌘L</Kbd>. <Kbd>⌘⌥L</Kbd> optimizes. A failed query grows a Fix button.
                     </>
                 ),
             },
-            { label: 'Apply', value: 'Nothing reaches your editor until you press Apply.' },
+            { label: 'Apply', value: 'Arrives as a diff. Nothing lands until you press Apply.' },
         ],
     },
 ];
 
-/**
- * The long tail, folded in from what used to be its own section.
- *
- * `DepthGrid` carried an H2, an eyebrow and roughly 430px of header chrome for
- * six cells, and its `#more` anchor had no inbound link anywhere in the repo.
- * Every item here is something you do inside the app window, which is what this
- * section is about, so it reads as the end of the tour rather than as a seventh
- * pitch.
- */
 const DEPTH_ITEMS: { title: string; body: ReactNode }[] = [
     {
         title: 'EXPLAIN, visualized',
-        body: 'A cost-coloured diagram, an expandable tree, and the raw text.',
+        body: 'A cost-coloured diagram, an expandable tree, the raw text.',
     },
     {
         title: 'Server dashboard',
-        body: 'Active sessions, per-engine metrics and slow queries. Cancel and terminate behind a confirmation.',
+        body: 'Sessions, per-engine metrics and slow queries.',
     },
     {
         title: 'Users and roles',
-        body: 'Grant and revoke without hand-writing GRANT, from the server down to a single column.',
+        body: 'Grant and revoke down to a single column, without writing GRANT.',
     },
     {
         title: 'Quick Switcher',
-        body: 'Fuzzy search across tables, databases, saved queries and history, most-used first.',
+        body: 'Fuzzy search across tables, queries and history, most-used first.',
     },
     {
         title: 'CSV inspector',
         body: (
             <>
-                Open a <Mono>.csv</Mono> or <Mono>.tsv</Mono> as a document, with no scratch database and no import
-                step.
+                Open a <Mono>.csv</Mono> or <Mono>.tsv</Mono> as a document. No import step.
             </>
         ),
     },
     {
         title: 'Backup and restore',
-        body: "PostgreSQL and Redshift dumps through the connection's existing SSH tunnel.",
+        body: "PostgreSQL and Redshift dumps, through the existing SSH tunnel.",
     },
 ];
 
-/** 6 items divide evenly into 1, 2 and 3 columns, so no filler cells are needed. */
 const DEPTH_COLS: ColumnMap = { base: 1, sm: 2, lg: 3 };
 
 export default function Workbench() {
@@ -204,16 +192,7 @@ export default function Workbench() {
 
                     return (
                         <div key={row.index}>
-                            {/*
-                              * The column template flips with the row, not just the
-                              * order. `order-2` moves the copy cell past the shot in
-                              * placement order but leaves the track sizes alone, so a
-                              * fixed `[minmax(0,24rem)_1fr]` handed every even row's
-                              * screenshot the 24rem track and its prose the 1fr one.
-                              * Row 02 rendered a 2432px shot into 384px of cell — the
-                              * width `shotSources` sizes the whole ladder against is
-                              * 1216 — and nothing in that window was legible.
-                              */}
+                            {/* Text and shot swap sides each row; the shot bleeds off the outer edge. */}
                             <div
                                 className={`lg:grid lg:items-stretch ${
                                     isEven
@@ -228,12 +207,12 @@ export default function Workbench() {
                                     >
                                         {row.index}
                                     </p>
-                                    <h3 className="mt-3 text-lg font-semibold">{row.title}</h3>
-                                    <p className="mt-3 text-sm text-muted-foreground text-pretty">
+                                    <h3 className={`mt-4 ${PANEL_TITLE}`}>{row.title}</h3>
+                                    <p className="mt-3 max-w-[46ch] text-base text-muted-foreground text-pretty">
                                         {row.body}
                                     </p>
 
-                                    <Ledger className="mt-6 -mx-6 border-t border-rule sm:-mx-8 lg:-mx-10">
+                                    <Ledger className="mt-8 -mx-6 border-t border-rule sm:-mx-8 lg:-mx-10">
                                         {row.rows.map((item) => (
                                             <LedgerRow key={item.label} label={item.label}>
                                                 {item.value}
@@ -263,13 +242,10 @@ export default function Workbench() {
             </Container>
 
             <Container>
-                {/*
-                  * The 17-word subtitle under this heading is gone. It said
-                  * each item is "usually a separate tool, a paid add-on, or a
-                  * command you have to remember", which is the heading's own
-                  * claim written out a second time.
-                  */}
-                <h3 className="px-4 py-4 text-lg font-semibold">Six more things you would expect to pay for.</h3>
+                {/* The long tail, headed rather than listed, so it reads as a boundary. */}
+                <h3 className="px-4 py-5 text-lg font-semibold sm:py-6">
+                    Six more things you would expect to pay for.
+                </h3>
             </Container>
             <FullLine />
             <Container>
@@ -277,10 +253,11 @@ export default function Workbench() {
                     {DEPTH_ITEMS.map((item, i) => (
                         <GridCell
                             key={item.title}
-                            className={`p-6 transition-colors sm:p-8 ${cellBorders(i, DEPTH_COLS, DEPTH_ITEMS.length)}`}
+                            density="default"
+                            className={`transition-colors ${cellBorders(i, DEPTH_COLS, DEPTH_ITEMS.length)}`}
                         >
-                            <h4 className="text-base font-semibold">{item.title}</h4>
-                            <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
+                            <h4 className={ITEM_TITLE}>{item.title}</h4>
+                            <p className="mt-3 text-sm text-muted-foreground text-pretty">{item.body}</p>
                         </GridCell>
                     ))}
                 </div>

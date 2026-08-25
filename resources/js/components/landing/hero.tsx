@@ -46,7 +46,7 @@ export default function Hero({ githubStars, latestRelease }: Props) {
 
     return (
         <section id="top">
-            <div className="h-12 sm:h-16 lg:h-24" />
+            <div className="h-16 sm:h-24 lg:h-32" />
 
             {/*
               * One rule per boundary, matching SectionShell. This block used to
@@ -64,7 +64,7 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                   * nowhere in the H1, while every sub-page already leads with
                   * it: /mysql-client's H1 is "The MySQL GUI Client for Mac."
                   */}
-                <h1 className="px-4 py-4 text-4xl font-bold text-pretty sm:py-5 sm:text-5xl lg:text-6xl">
+                <h1 className="px-4 py-5 text-4xl font-bold text-pretty sm:py-7 sm:text-5xl lg:text-6xl">
                     Every database.
                     <br />
                     <span className="text-muted-foreground">One native Mac client.</span>
@@ -89,12 +89,12 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                   * ladder are four implementations of it. Said here, the eight
                   * sections below read as evidence for a claim already made.
                   */}
-                <p className="max-w-2xl px-4 py-4 text-lg text-muted-foreground text-pretty sm:py-5">
+                <p className="max-w-[58ch] px-4 py-5 text-lg text-muted-foreground text-pretty sm:py-6">
                     TablePro is a free, open source database client for macOS. 25 engines through native drivers, and
                     nothing runs against your database that you have not read first.
                 </p>
                 <FullLine />
-                <div className="flex flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center">
+                <div className="flex flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center">
                     <Button href="/download" onClick={() => trackDownload('hero')}>
                         <AppleGlyph />
                         Download for Mac
@@ -125,14 +125,19 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                       */}
                 </div>
                 <FullLine />
-                {/* "Free and open source" moved out: the sub now opens with it. */}
-                <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    AGPLv3 · macOS 14+ · Apple Silicon and Intel · No account · About 20 MB
+                {/*
+                  * "Free and open source" moved out: the sub now opens with it.
+                  * AGPLv3 and the 20 MB went too — the spec table one screen
+                  * down states both as values in a result set, which is where
+                  * a number belongs, and this line was reading them out first.
+                  */}
+                <p className="px-4 py-4 text-sm text-muted-foreground">
+                    macOS 14+ · Apple Silicon and Intel · No account
                 </p>
                 <FullLine />
             </Container>
 
-            <div className="h-6 sm:h-8 lg:h-10" />
+            <div className="h-8 sm:h-10 lg:h-14" />
 
             <FullLine />
             <Container>
