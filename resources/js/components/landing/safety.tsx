@@ -45,19 +45,19 @@ const TRUST_CELLS: { label: string; body: string }[] = [
         label: 'Credentials',
         // Sole owner of this claim now. Its last 22 words used to be
         // byte-identical to the homepage FAQ answer about password storage.
-        body: 'Connection passwords, SSH passphrases, TOTP secrets and AI keys go to the macOS Keychain. Or they never live in TablePro at all: a connection can resolve its password at connect time from a file, an environment variable, a shell command, 1Password, HashiCorp Vault or AWS Secrets Manager.',
+        body: 'Passwords, SSH passphrases, TOTP secrets and AI keys go to the macOS Keychain. Or nowhere: resolve them at connect time from 1Password, HashiCorp Vault, AWS Secrets Manager or a shell command.',
     },
     {
         // The AI sentence went with the Agents section, which lists all thirteen
         // providers including the three that run locally, two sections earlier.
         label: 'Network',
-        body: 'There is no account, no login and no cloud service in the connection path. Anonymous usage data is one switch in Settings and carries no personal data and no queries.',
+        body: 'No account, no login, no cloud service in the connection path. Anonymous usage data is one switch, and carries no queries.',
     },
     {
         // libssh2, the five auth methods, the five TLS modes and the IAM token
         // lifetime are docs. What survives is the part a reader can act on.
         label: 'Getting there',
-        body: 'SSH tunnels and jump hosts chained in process, with no ssh binary and no config file to edit. Or Cloudflare Tunnel, Cloud SQL Auth Proxy, or SOCKS5 with DNS resolved at the proxy.',
+        body: 'SSH tunnels and jump hosts chained in process, with no ssh binary to configure. Or Cloudflare Tunnel, Cloud SQL Auth Proxy, or SOCKS5.',
     },
 ];
 
@@ -210,9 +210,8 @@ export default function Safety() {
 
             <Container>
                 <p className="px-4 py-3 text-sm text-muted-foreground">
-                    Read-Only disables the interface, not just the query: no inline editing, no add or delete rows, no
-                    truncate, no drop, no import. Open a folder whose path, host or database name says
-                    &ldquo;prod&rdquo;, &ldquo;production&rdquo; or &ldquo;live&rdquo; and the level raises itself.
+                    Read-Only disables the interface, not just the query: no inline editing, no truncate, no drop, no
+                    import. A host or database named &ldquo;prod&rdquo; raises the level by itself.
                 </p>
             </Container>
             <FullLine />

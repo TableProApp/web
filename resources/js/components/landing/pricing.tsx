@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import Container from '@/components/ui/container';
-import DataTable from '@/components/ui/data-table';
 import { FullLine } from '@/components/ui/full-line';
 import { Ledger, LedgerRow } from '@/components/ui/ledger';
 import SectionShell from '@/components/ui/section-shell';
-import { Availability, CheckGlyph } from '@/components/ui/glyph';
+import { CheckGlyph } from '@/components/ui/glyph';
 import { PROSE_LINK } from '@/components/ui/prose-link';
 import { PANEL_TITLE } from '@/components/ui/grid-cell';
 import { trackDownload } from '@/lib/analytics';
 import SponsorRow from '@/components/landing/sponsor-row';
 import { STARTER_PRICE, TEAM_SEAT_PRICE, type TierPrice } from '@/data/pricing';
+import { PAID_FEATURES } from '@/data/license';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -46,7 +46,18 @@ function applyDiscount(price: number, discount: Discount | null): number | null 
     return Math.max(0, +(price - discount.amount / 100).toFixed(2));
 }
 
+/*
+ * Counted, never typed. "The seven Starter features" was a literal here for as
+ * long as there were four of them listed one section down, and a hand-typed
+ * count is the thing that goes stale first when `ProFeature.swift` grows a
+ * case. The cards name no feature at all now: `license.tsx` renders the whole
+ * matrix directly above them, and a bullet that repeats a table row is a bullet
+ * that can disagree with it.
+ */
 function buildTiers(teamMinSeats: number): Tier[] {
+    const starterCount = PAID_FEATURES.filter((feature) => feature.tier === 'starter').length;
+    const teamCount = PAID_FEATURES.filter((feature) => feature.tier === 'team').length;
+
     return [
         {
             key: 'free',
@@ -65,12 +76,7 @@ function buildTiers(teamMinSeats: number): Tier[] {
             price: STARTER_PRICE,
             featured: true,
             includesFrom: 'Free',
-            features: [
-                'iCloud Sync across your Macs',
-                '2 Mac activations',
-                'Encrypted connection export',
-                'Environment variables in connection fields',
-            ],
+            features: [`All ${starterCount} Starter features above`, '2 Mac activations'],
             cta: 'Get Starter',
         },
         {
@@ -81,40 +87,22 @@ function buildTiers(teamMinSeats: number): Tier[] {
             featured: false,
             includesFrom: 'Starter',
             features: [
-                `Priced per seat, from ${teamMinSeats} seats`,
-                'Team Catalog: publish connections to a shared folder',
-                'Team Library: share connections and saved queries',
+                `Per seat, from ${teamMinSeats} seats`,
+                `All ${starterCount + teamCount} licensed features above`,
                 'Passwords are never sent',
-                'Priority support',
+                'Seats and invites managed on the web',
             ],
             cta: 'Get Team',
         },
     ];
 }
 
-/**
- * Deliberately short. A table of rows that are checked in all three columns
- * makes the free tier look finished and gives nobody a reason to pay; these are
- * the rows that actually differ, plus enough context to show how little does.
- *
- * Four all-ticked rows became one. Four rows of "included everywhere" is the
- * exact failure this docblock says it avoids — one row carrying the whole free
- * surface does the same job in a sixth of the vertical space.
+/*
+ * The plan comparison table used to live here, six rows naming four of the nine
+ * features the app gates. `license.tsx` owns that artifact now: it names all
+ * nine, and it renders one section earlier, where the reader is still deciding
+ * rather than scrolling past the cards on their way out.
  */
-const comparisonFeatures = [
-    {
-        name: 'The whole app: 25 databases, SQL editor, data grid, AI assistant, MCP server, Safe Mode, SSH tunnels, import and export',
-        free: true,
-        pro: true,
-        team: true,
-    },
-    { name: 'License activations', free: 'No license needed', pro: '2 Macs', team: '5 minimum, then per seat' },
-    { name: 'iCloud Sync', free: false, pro: true, team: true },
-    { name: 'Encrypted connection export and environment variables', free: false, pro: true, team: true },
-    { name: 'Team Catalog and Team Library', free: false, pro: false, team: true },
-    { name: 'Priority support', free: false, pro: false, team: true },
-];
-
 
 function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, teamMinSeats }: { tier: Tier; cycle: BillingCycle; discountCode: string; discount: Discount | null; paymentProvider: string; teamMinSeats: number }) {
     // Narrow off tier.price directly: TypeScript does not carry the refinement
@@ -339,17 +327,15 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
             headline="The app is free."
             headlineMuted="The license funds it."
             /*
-             * This lede absorbs three sections.
+             * Twenty words, down from fifty-nine.
              *
-             * "Is it really free, or free for now?" used to be answered at
-             * position four, before the reader had seen a feature. The whole
-             * open-source section answered it again at position fifteen, in
-             * near-identical words — one of them spelling "licence", the other
-             * "license". Then this lede answered it a third time. One statement
-             * of what is free and one of what is paid, at the moment the prices
-             * are on screen, which is where the reader is actually deciding.
+             * The old lede enumerated the free surface and then the paid one,
+             * in prose, and got the second list wrong: it said a license adds
+             * four things when the app gates nine. Both lists are now the
+             * License table one section above, where ticks say it faster and
+             * cannot fall out of date with `ProFeature.swift` unnoticed.
              */
-            lede="Free means permanently free. All 25 databases, the SQL editor, the data grid, the AI assistant, the MCP server, Safe Mode with Touch ID, SSH tunnels and XLSX export cost nothing, on every Mac you own, with no trial countdown. A license adds four things: iCloud Sync, a second Mac, encrypted connection export, and environment variables in connection fields."
+            lede="One price list, no seat you have to buy to try it. The table above says what a license adds."
             tone="raised"
         >
 
@@ -371,13 +357,8 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                       * people who cannot spare $24 a year.
                       */}
                     <LedgerRow label="At work">
-                        AGPL obligations attach to distributing a modified version, not to using it. There is no
-                        company-size or revenue limit. If you use TablePro at work, buying a license is how the next
-                        release gets built.
-                    </LedgerRow>
-                    <LedgerRow label="iCloud Sync">
-                        Connections, groups, tags, SSH profiles, favorites, saved queries and settings on every Mac you
-                        own. Passwords go through iCloud Keychain as a separate opt in.
+                        AGPL obligations attach to distributing a modified version, not to using it. No company-size
+                        limit. Buying a license is how the next release gets built.
                     </LedgerRow>
                 </Ledger>
                 <FullLine />
@@ -417,8 +398,8 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                   * charges. It also restated the lede fifty lines above it.
                   */}
                 <p className="px-4 py-3 text-center font-mono text-xs text-muted-foreground">
-                    Starter is per person. Team is per seat, from {teamMinSeats} seats. Yearly saves 33 percent;
-                    lifetime pays for itself against yearly in about two and a half years.
+                    Starter is per person, Team per seat from {teamMinSeats}. Yearly saves 33 percent; lifetime pays
+                    for itself in about two and a half years.
                 </p>
                 <FullLine />
 
@@ -527,98 +508,12 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                 </p>
             </Container>
 
-            {/* Plan comparison */}
-            <div className="h-6 sm:h-8 lg:h-10" />
-
-            <Container>
-                <FullLine />
-                <h3 className="px-4 py-4 text-2xl font-bold sm:py-5 text-foreground">
-                    Compare plans
-                </h3>
-                <FullLine />
-            </Container>
-
-            <div className="h-6" />
-
-            {/* Comparison table */}
-            <FullLine />
-            <Container>
-                {/*
-                  * tabindex/role/label because this scrolls and contains no
-                  * focusable descendant: below ~500px a keyboard user could not
-                  * reach the Starter and Team columns at all.
-                  */}
-                <div
-                    className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0"
-                    tabIndex={0}
-                    role="region"
-                    aria-label="Plan comparison"
-                >
-                    {/*
-                      * A real table, not a grid of divs.
-                      *
-                      * Nine feature rows by four columns had no table semantics
-                      * at all, so nothing tied a cell to its plan. Worse, the
-                      * checkmark is aria-hidden and carried no text, so every
-                      * *included* feature announced as an empty cell — the
-                      * table said the opposite of what it shows. The dash
-                      * carried `aria-label` on a bare <span>, which ARIA does
-                      * not permit to be named.
-                      *
-                      * Availability is now real text, hidden visually.
-                      */}
-                    <DataTable
-                        className="min-w-[500px]"
-                        caption="What each plan includes, compared across Free, Starter and Team."
-                    >
-                        <thead>
-                            <tr>
-                                <th scope="col" className="p-4 text-left text-sm font-medium text-muted-foreground sm:p-5">
-                                    Feature
-                                </th>
-                                <th scope="col" className="border-l border-rule-strong p-4 text-center text-sm font-medium text-muted-foreground sm:p-5">
-                                    Free
-                                </th>
-                                <th scope="col" className="border-l border-rule-strong bg-primary/5 p-4 text-center text-sm font-bold text-primary-strong sm:p-5">
-                                    Starter
-                                </th>
-                                <th scope="col" className="border-l border-rule-strong p-4 text-center text-sm font-medium text-muted-foreground sm:p-5">
-                                    Team
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {comparisonFeatures.map((row) => (
-                                <tr key={row.name} className="border-t border-rule">
-                                    <th scope="row" className="p-4 text-left text-sm font-normal text-foreground sm:p-5">
-                                        {row.name}
-                                    </th>
-                                    {(['free', 'pro', 'team'] as const).map((tier) => {
-                                        const value = row[tier];
-
-                                        return (
-                                            <td
-                                                key={tier}
-                                                className={`border-l border-rule-strong p-4 text-center sm:p-5 ${
-                                                    tier === 'pro' ? 'bg-primary/5' : ''
-                                                }`}
-                                            >
-                                                {typeof value === 'string' ? (
-                                                    <span className="text-sm font-medium text-foreground">{value}</span>
-                                                ) : (
-                                                    <span className="inline-flex justify-center">
-                                                        <Availability included={value} />
-                                                    </span>
-                                                )}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </DataTable>
-                </div>
-            </Container>
+            {/*
+              * The plan comparison table stood here and is now `license.tsx`,
+              * one section up. Everything below the cards is fine print and a
+              * credit; a reader who has read the prices has already met the
+              * feature matrix.
+              */}
             <FullLine />
 
             <SponsorRow />

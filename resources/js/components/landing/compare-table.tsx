@@ -1,7 +1,6 @@
 import Container from '@/components/ui/container';
 import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
 import { FullLine } from '@/components/ui/full-line';
-import SectionShell from '@/components/ui/section-shell';
 import { getComparisonBySlug, type ComparisonInfo } from '@/data/comparisons';
 
 /**
@@ -12,6 +11,13 @@ import { getComparisonBySlug, type ComparisonInfo } from '@/data/comparisons';
  *
  * Ordered so the runtime contrast reads first and the like-for-like comparison
  * closes it.
+ *
+ * Headless since the merge. This was a section of its own directly below
+ * Migration, listing the same competitor set for a different question — two
+ * full header stacks, eyebrow through lede plus four rules apiece, for one
+ * argument. `switch-from.tsx` owns the shell now and renders this after its
+ * import grid. The `#compare` anchor moved onto the H3, so nothing that
+ * pointed at it breaks.
  */
 const SLUGS = ['dbeaver', 'datagrip', 'beekeeper-studio', 'tableplus'] as const;
 
@@ -71,14 +77,12 @@ export default function CompareTable() {
     }
 
     return (
-        <SectionShell
-            tier="reference"
-            tone="raised"
-            id="compare"
-            label="Comparison"
-            headline="TablePro, DBeaver, DataGrip, Beekeeper Studio and TablePlus."
-            headlineMuted="Startup, memory, runtime and price."
-        >
+        <>
+            <Container>
+                <h3 id="compare" className="scroll-mt-20 px-4 py-4 text-lg font-semibold">
+                    TablePro against DBeaver, DataGrip, Beekeeper Studio and TablePlus.
+                </h3>
+            </Container>
             <FullLine />
             <Container>
                 {/*
@@ -149,12 +153,11 @@ export default function CompareTable() {
 
             <Container>
                 <p className="px-4 py-3 font-mono text-xs text-muted-foreground">
-                    Every competitor figure comes from its own comparison page, which is where the version tested is
-                    written down. TablePlus is native like TablePro, and its cold start and idle memory are not
-                    measured here rather than estimated.
+                    Each competitor figure comes from its own comparison page, which names the version tested.
+                    TablePlus is native too: unmeasured here rather than estimated.
                 </p>
             </Container>
             <FullLine />
-        </SectionShell>
+        </>
     );
 }

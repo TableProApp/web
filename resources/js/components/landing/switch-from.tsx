@@ -2,6 +2,7 @@ import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
 import SectionShell from '@/components/ui/section-shell';
+import CompareTable from '@/components/landing/compare-table';
 
 const COLS: ColumnMap = { base: 2, sm: 3, lg: 6 };
 
@@ -26,27 +27,30 @@ const SOURCES: ImportSource[] = [
 ];
 
 /**
- * No competitor chip row.
+ * Migration and the comparison, under one H2.
  *
- * This section used to close with ten links to /compare/*, which is ten routes
- * out of the page at the exact moment the reader has been told that moving costs
- * them nothing. CompareTable directly below carries four of them with better
- * anchor text, and the footer carries all eleven — so the pages keep their
- * inbound links and this section stops being an exit.
+ * These were adjacent sections making one argument — leaving your current
+ * client is cheap, and here is why you would — over the same four competitors,
+ * and each paid a full header stack for it: an eyebrow, a two-line H2, a lede
+ * and four rules, about 200px of chrome before either artifact appeared.
+ * `CompareTable` is headless now and renders below the import grid under an H3
+ * that still carries the competitor names and the `#compare` anchor.
  *
- * The H2 names two competitors without linking either, which is the same keyword
- * capture at no exit cost. Both are linked from CompareTable one section down,
- * so a link here would only be a second route out of the same screen.
+ * No competitor chip row. This used to close with ten links to /compare/*, ten
+ * routes out of the page at the moment the reader has been told that moving
+ * costs them nothing. The table below links four of them with better anchor
+ * text and the footer carries all eleven.
  */
 export default function SwitchFrom() {
     return (
         <SectionShell
             tier="reference"
+            tone="raised"
             id="switch"
             label="Migration"
             headline="Import your connections from TablePlus or DBeaver."
             headlineMuted="Passwords, tunnels and SSL included."
-            lede="The source app does not need to be running, and groups and folders carry over. Or point TablePro at a project folder and it reads the connection out of your .env or your docker-compose.yml."
+            lede="The source app does not need to be running, and groups carry over. Or point TablePro at a project folder and it reads your .env."
         >
             <FullLine />
             <Container>
@@ -64,6 +68,8 @@ export default function SwitchFrom() {
                 </div>
             </Container>
             <FullLine />
+
+            <CompareTable />
         </SectionShell>
     );
 }

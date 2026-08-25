@@ -23,7 +23,7 @@ export interface FaqItem {
 export const faqs: FaqItem[] = [
     {
         question: 'Is it really free, or free for now?',
-        answer: 'Free, permanently. TablePro is AGPLv3 and the whole app works without a license, with no trial countdown and no per-Mac limit. All 25 databases, the SQL editor, the data grid, the AI assistant, the MCP server, Safe Mode with Touch ID, SSH tunnels, ER diagrams and XLSX export cost nothing. A license adds four things: iCloud Sync, a second Mac activation, encrypted connection export, and environment variables in connection fields. Team adds a shared catalog and a shared query library.',
+        answer: 'Free, permanently. TablePro is AGPLv3 and the whole app works without a license, with no trial countdown and no per-Mac limit. All 25 databases, the SQL editor, the data grid, the AI assistant, the MCP server, Safe Mode with Touch ID, SSH tunnels, ER diagrams and XLSX export cost nothing. Starter adds seven: Compare & Sync, Query Insights, result charts, iCloud Sync, Linked Folders, encrypted connection export, and environment variables in connection fields. Team adds two more, the Team Catalog and the Team Library.',
     },
     {
         question: 'Can I use TablePro at work under AGPLv3?',

@@ -131,7 +131,7 @@ export default function FooterCTA() {
                         </div>
 
                         <p className="mt-4 text-sm text-muted-foreground">
-                            With no connection to hand,{' '}
+                            No database to hand?{' '}
                             <span className="font-mono text-xs">File &gt; Try Sample Database</span> opens a bundled
                             Chinook SQLite.
                         </p>
@@ -142,13 +142,12 @@ export default function FooterCTA() {
                         <div id="mobile" className="scroll-mt-20">
                             <h3 className={PANEL_TITLE}>iPhone and iPad</h3>
                             <p className="mt-2 text-sm text-muted-foreground">
-                                Seven engines on device: SQLite, DuckDB, MySQL, MariaDB, PostgreSQL, Redis and SQL
-                                Server, with SSH tunnels, Face ID and Handoff. Connections, groups and tags sync from
-                                the Mac; syncing passwords is a separate opt in.
+                                SQLite, DuckDB, MySQL, MariaDB, PostgreSQL, Redis and SQL Server on device, with SSH
+                                tunnels, Face ID and Handoff.
                             </p>
                             <p className="mt-3 text-sm text-muted-foreground">
-                                The app is free; syncing needs a Starter or Team license. Mac only: the plugin
-                                registry, AI chat, the MCP server and ER diagrams.
+                                Free, like the Mac app. Syncing needs a license. Mac only: plugins, AI chat, MCP and ER
+                                diagrams.
                             </p>
 
                             <div className="mt-6">

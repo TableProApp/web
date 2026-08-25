@@ -7,9 +7,9 @@ import DatabaseGrid from '@/components/landing/database-grid';
 import Workbench from '@/components/landing/workbench';
 import AgentsMcp from '@/components/landing/agents-mcp';
 import Safety from '@/components/landing/safety';
+import License from '@/components/landing/license';
 import DownloadRail from '@/components/landing/download-rail';
 import SwitchFrom from '@/components/landing/switch-from';
-import CompareTable from '@/components/landing/compare-table';
 import Pricing from '@/components/landing/pricing';
 import FooterCTA from '@/components/landing/footer-cta';
 import Footer from '@/components/landing/footer';
@@ -74,6 +74,14 @@ const FEATURE_LIST = [
     'Built-in SSH tunnels with jump hosts',
     'ER diagrams and EXPLAIN visualization',
     'Users and roles management',
+    /*
+     * The three paid features that are product rather than plumbing. They were
+     * absent from this list for as long as it shipped, so the SoftwareApplication
+     * node described a strictly smaller app than the one on the download page.
+     */
+    'Compare & Sync between two databases',
+    'Query Insights over local query history',
+    'Charts from query results',
     'iCloud Sync with an iPhone and iPad app',
 ];
 
@@ -242,12 +250,11 @@ export default function Home({
 
             {/*
               * "Moving costs you nothing", then the numbers that say why you
-              * would. CompareTable replaces SwitchFrom's ten competitor chips at
-              * the same scroll position with three linked columns, which is a
-              * net reduction of seven exits at the highest-intent moment.
+              * would — one section, two artifacts. `SwitchFrom` renders the
+              * comparison table itself; two header stacks for one argument was
+              * the largest block of pure chrome on the page.
               */}
             <SwitchFrom />
-            <CompareTable />
 
             {/*
               * Agents raises the most alarming claim on the page — "let Claude
@@ -261,6 +268,14 @@ export default function Home({
                 note="Safe Mode is on before you connect anything. macOS 14+, Apple Silicon and Intel."
             />
 
+            {/*
+              * The paid surface, then the prices. It reads as one argument in
+              * two parts — what a license adds, then what it costs — and it is
+              * the order the reader asks the questions in. Pricing used to
+              * carry both, which is how its lede grew to 59 words and still
+              * named only four of the nine features the app gates.
+              */}
+            <License teamMinSeats={teamMinSeats} />
             <Pricing paymentProvider={paymentProvider} teamMinSeats={teamMinSeats} />
             <FooterCTA />
         </LandingLayout>
