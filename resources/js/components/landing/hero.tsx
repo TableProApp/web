@@ -6,13 +6,12 @@ import SectionLabel from '@/components/ui/section-label';
 import Button from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
 import { trackDownload } from '@/lib/analytics';
+import { GITHUB_REPO_URL } from '@/data/links';
 
 interface Props {
     githubStars?: number | null;
     latestRelease?: { version: string | null; publishedAt: string | null } | null;
 }
-
-const GITHUB_REPO_URL = 'https://github.com/TableProApp/TablePro';
 
 function formatStarCount(count: number): string {
     if (count < 1000) {

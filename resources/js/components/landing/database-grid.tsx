@@ -7,6 +7,7 @@ import { FullLine } from '@/components/ui/full-line';
 import DatabaseMark from '@/components/ui/database-mark';
 import SectionShell from '@/components/ui/section-shell';
 import { CELL_DENSITY, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
+import { GITHUB_REPO_URL } from '@/data/links';
 
 interface DatabaseTile {
     name: string;
@@ -22,7 +23,7 @@ interface DatabaseTile {
 const databases = gridData as DatabaseTile[];
 
 const REQUEST_DATABASE_HREF =
-    'https://github.com/TableProApp/TablePro/issues/new?template=feature_request.yml&title=Database%20request%3A%20';
+    `${GITHUB_REPO_URL}/issues/new?template=feature_request.yml&title=Database%20request%3A%20`;
 
 const COLS: ColumnMap = { base: 2, sm: 3, md: 4, lg: 5 };
 

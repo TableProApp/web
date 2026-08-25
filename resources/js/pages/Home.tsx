@@ -13,6 +13,7 @@ import FooterCTA from '@/components/landing/footer-cta';
 import Footer from '@/components/landing/footer';
 import SEOHead from '@/components/seo/seo-head';
 import { buildOrganizationJsonLd } from '@/lib/structured-data';
+import { GITHUB_REPO_URL } from '@/data/links';
 import { STARTER_PRICE, TEAM_SEAT_PRICE } from '@/data/pricing';
 
 interface LatestRelease {
@@ -128,7 +129,7 @@ function buildAppJsonLd(
         downloadUrl: `${base}/download`,
         installUrl: `${base}/download`,
         fileSize: '20 MB',
-        license: 'https://github.com/TableProApp/TablePro/blob/main/LICENSE',
+        license: `${GITHUB_REPO_URL}/blob/main/LICENSE`,
         isAccessibleForFree: true,
         screenshot: `${base}/images/app-light.png`,
         featureList: FEATURE_LIST,

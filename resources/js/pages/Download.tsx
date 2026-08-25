@@ -213,6 +213,37 @@ export default function Download({ downloadUrls, githubStars }: Props) {
                 </Container>
                 <FullLine />
 
+                {/*
+                  * The funding model, after the install steps rather than
+                  * before them.
+                  *
+                  * This is the one page on the site where the ask carries a
+                  * real risk: the homepage promises "Free is not a trial and
+                  * not a demo", and a reader who has just triggered a download
+                  * meets anything money-shaped here as a toll booth. Beekeeper
+                  * and Bruno both keep their homepage and download flow clear
+                  * of it for that reason and put the whole argument on
+                  * /pricing.
+                  *
+                  * So it states a fact and links; it does not ask. It opens by
+                  * restating that the app is free, it names no price, it
+                  * carries no button, and it sits below the install steps —
+                  * after the job the reader came here to do.
+                  */}
+                <Container width="md">
+                    <div className="px-4 py-5 sm:py-6">
+                        <p className="max-w-[68ch] text-sm text-muted-foreground text-pretty">
+                            TablePro is free, all of it. No trial, no per-Mac limit. It is built full time by one
+                            person and funded by licenses rather than investors, so buying one is what pays for the
+                            next release.
+                        </p>
+                        <a href="/#license" className={cn(PROSE_LINK, 'mt-3 inline-block text-sm font-medium')}>
+                            See what a license adds &rarr;
+                        </a>
+                    </div>
+                </Container>
+                <FullLine />
+
                 <div className="h-12 sm:h-16 lg:h-24" />
         </LandingLayout>
     );

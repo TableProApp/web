@@ -1,3 +1,5 @@
+import { GITHUB_REPO_URL } from '@/data/links';
+
 export interface BreadcrumbCrumb {
     name: string;
     path: string;
@@ -43,7 +45,7 @@ export function buildOrganizationJsonLd(baseUrl: string): object {
             'TablePro builds a native database client for macOS, iPadOS and iOS covering 25 engines, released as open source under AGPLv3.',
         // All five profiles the footer links, not two of them.
         sameAs: [
-            'https://github.com/TableProApp/TablePro',
+            GITHUB_REPO_URL,
             'https://x.com/TableProApp',
             'https://discord.gg/hCNmUUbnD4',
             'https://www.facebook.com/tableproapp',

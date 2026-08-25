@@ -2,6 +2,7 @@ import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { cellBorders, type ColumnMap } from '@/components/ui/grid-cell';
 import { PROSE_LINK } from '@/components/ui/prose-link';
+import { GITHUB_SPONSORS_URL } from '@/data/links';
 
 const COLS: ColumnMap = { base: 2, lg: 4 };
 
@@ -92,8 +93,6 @@ const sponsors: Sponsor[] = [
         height: 200,
     },
 ];
-
-const GITHUB_SPONSORS_URL = 'https://github.com/sponsors/datlechin';
 
 const MARK_CLASS = 'h-8 w-auto max-w-full sm:h-10 lg:h-12';
 

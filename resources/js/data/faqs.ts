@@ -47,7 +47,7 @@ export const faqs: FaqItem[] = [
     },
     {
         question: 'Is this abandoned like Sequel Pro?',
-        answer: 'No. Development happens in the open on GitHub with a public changelog, a Discord, and roughly ten releases a month. The full release history is in the repository.',
+        answer: 'No. TablePro is built full time by one person and funded by licenses rather than investors, which is the whole business model. Development happens in the open on GitHub with a public changelog, a Discord, and roughly ten releases a month.',
     },
     {
         question: 'Windows or Linux?',

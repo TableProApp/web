@@ -4,6 +4,7 @@ import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { useEmailForm } from '@/hooks/use-email-form';
 import { trackEvent } from '@/lib/analytics';
+import { GITHUB_REPO_URL, GITHUB_SPONSORS_URL } from '@/data/links';
 
 const columns = [
     {
@@ -65,8 +66,8 @@ const columns = [
             { label: 'FAQ', href: '/faq' },
             { label: 'My Account', href: '/account' },
             { label: 'Changelog', href: 'https://docs.tablepro.app/changelog', external: true },
-            { label: 'GitHub', href: 'https://github.com/TableProApp/TablePro', external: true },
-            { label: 'Sponsor', href: 'https://github.com/sponsors/datlechin', external: true },
+            { label: 'GitHub', href: GITHUB_REPO_URL, external: true },
+            { label: 'Sponsor', href: GITHUB_SPONSORS_URL, external: true },
             { label: 'Privacy', href: '/privacy' },
             { label: 'Terms', href: '/terms' },
         ],

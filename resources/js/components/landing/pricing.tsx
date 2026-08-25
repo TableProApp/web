@@ -13,6 +13,7 @@ import LicenseTable from '@/components/landing/license';
 import SponsorRow from '@/components/landing/sponsor-row';
 import { STARTER_PRICE, TEAM_SEAT_PRICE, type TierPrice } from '@/data/pricing';
 import { PAID_FEATURES } from '@/data/license';
+import { GITHUB_SPONSORS_URL } from '@/data/links';
 
 type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -347,10 +348,49 @@ export default function Pricing({ paymentProvider, teamMinSeats }: { paymentProv
                       * value proposition at the moment of decision, and the
                       * second one told a Team buyer the product is priced for
                       * people who cannot spare $24 a year.
+                      *
+                      * "No company-size limit" is back. It was cut as filler and
+                      * it is not: every comparable project states it, because
+                      * the reader deciding whether they may expense this is the
+                      * one the AGPL question actually blocks.
                       */}
                     <LedgerRow label="At work">
-                        AGPL obligations attach to distributing a modified version, not to using it. Buying a
-                        license is how the next release gets built.
+                        AGPL obligations attach to distributing a modified version, not to using it. No
+                        company-size limit.
+                    </LedgerRow>
+                    {/*
+                      * Who builds it, which nothing on this domain said.
+                      *
+                      * Every comparable project states this where it asks:
+                      * Obsidian sells "independent development" and being "free
+                      * from investor influence", Beekeeper "a small indie team,
+                      * not backed by big corporations or VC investment", Sindre
+                      * "a full-time open-sourcerer funded by the community". The
+                      * site said only that these companies "pay for the time",
+                      * at the very foot of the page, which credits the sponsors
+                      * rather than naming the model.
+                      *
+                      * A fact, not a plea. No revenue figure, no "we need your
+                      * help" — the page that asks for money is the worst place
+                      * on the site to sound like it needs any.
+                      *
+                      * Sponsorship is deliberately the subordinate clause. It is
+                      * worth less to the project and less to the reader than a
+                      * license, and Beekeeper says so outright: "the best way to
+                      * support us is by purchasing a license."
+                      */}
+                    <LedgerRow label="Who builds it">
+                        One person, full time, funded by licenses rather than investors. Buying one is how the
+                        next release gets built, and{' '}
+                        <a
+                            href={GITHUB_SPONSORS_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={PROSE_LINK}
+                        >
+                            sponsorship
+                        </a>{' '}
+                        goes to the same place.
                     </LedgerRow>
                 </Ledger>
                 <FullLine />

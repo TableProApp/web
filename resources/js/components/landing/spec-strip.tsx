@@ -3,14 +3,13 @@ import Container from '@/components/ui/container';
 import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/data-table';
 import FootNote from '@/components/ui/footnote';
 import { FullLine } from '@/components/ui/full-line';
+import { GITHUB_REPO_URL } from '@/data/links';
 
 interface Props {
     latestRelease?: { version: string | null; publishedAt: string | null; countLast30Days: number | null } | null;
     /** DMG downloads, and how many releases that figure was counted over. */
     downloads?: { total: number | null; releases: number } | null;
 }
-
-const GITHUB_REPO_URL = 'https://github.com/TableProApp/TablePro';
 
 interface Spec {
     label: string;
