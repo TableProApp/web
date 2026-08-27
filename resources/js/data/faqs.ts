@@ -1,3 +1,5 @@
+import { DRIVER_PLUGIN_COUNT, ENGINE_COUNT } from '@/data/engines';
+
 export interface FaqItem {
     question: string;
     answer: string;
@@ -23,7 +25,7 @@ export interface FaqItem {
 export const faqs: FaqItem[] = [
     {
         question: 'Is it really free, or free for now?',
-        answer: 'Free, permanently. TablePro is AGPLv3 and the whole app works without a license, with no trial countdown and no per-Mac limit. All 25 databases, the SQL editor, the data grid, the AI assistant, the MCP server, Safe Mode with Touch ID, SSH tunnels, ER diagrams and XLSX export cost nothing. Starter adds seven: Compare & Sync, Query Insights, result charts, iCloud Sync, Linked Folders, encrypted connection export, and environment variables in connection fields. Team adds two more, the Team Catalog and the Team Library.',
+        answer: `Free, permanently. TablePro is AGPLv3 and the whole app works without a license, with no trial countdown and no per-Mac limit. All ${ENGINE_COUNT} databases, the SQL editor, the data grid, the AI assistant, the MCP server, Safe Mode with Touch ID, SSH tunnels, ER diagrams and XLSX export cost nothing. Starter adds seven: Compare & Sync, Query Insights, result charts, iCloud Sync, Linked Folders, encrypted connection export, and environment variables in connection fields. Team adds two more, the Team Catalog and the Team Library.`,
     },
     {
         question: 'Can I use TablePro at work under AGPLv3?',
@@ -42,8 +44,14 @@ export const faqs: FaqItem[] = [
         answer: 'In the macOS Keychain. Connection details live in a plain JSON file with no secrets in it. A connection can also skip storage entirely and resolve its password at connect time from a file, an environment variable, a shell command, 1Password, HashiCorp Vault or AWS Secrets Manager.',
     },
     {
-        question: 'Why do Cassandra and ScyllaDB appear separately when you say 25?',
-        answer: 'The grid shows 26 tiles because Cassandra and ScyllaDB are two entries in the connection chooser. They share one driver, which is why the driver count is 25.',
+        /*
+         * This used to reconcile 26 tiles against a claim of 25, because the
+         * headline quoted driver groups while the grid rendered entries. The
+         * grid now renders one tile per engine, so that gap is gone and the
+         * only one left is the honest one: a driver can serve several engines.
+         */
+        question: `Why do Cassandra and ScyllaDB appear separately when you say ${ENGINE_COUNT}?`,
+        answer: `Because they are two entries in the connection chooser, and the grid shows one tile per entry. The ${ENGINE_COUNT} engines run on ${DRIVER_PLUGIN_COUNT} native driver plugins, because one driver can serve several engines: PostgreSQL also drives Redshift, CockroachDB and PGlite, Cassandra drives ScyllaDB, and libSQL drives Turso.`,
     },
     {
         question: 'Is this abandoned like Sequel Pro?',

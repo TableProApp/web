@@ -67,14 +67,33 @@ it('keeps every anchor the navigation points at', function (): void {
     }
 });
 
-it('server-renders all 26 database tiles', function (): void {
+it('server-renders all 29 database tiles', function (): void {
     $html = ssrHomepageHtml();
 
-    expect(substr_count($html, '/images/databases/'))->toBe(26);
+    /*
+     * Counted on the tile, not on the icon. Dameng and Kafka render through
+     * `DatabaseMark`'s monogram fallback because they have no artwork yet, so
+     * counting `/images/databases/` returns 26 whether the grid holds 26 tiles
+     * or 29 — an assertion that would have kept passing, under this name, while
+     * three engines were missing from the page.
+     */
+    $tiles = json_decode(file_get_contents(base_path('resources/data/database-grid.json')), true);
 
-    foreach (['PGlite', 'SurrealDB', 'Teradata', 'Trino', 'Beancount', 'libSQL / Turso', 'etcd'] as $name) {
-        expect($html)->toContain($name);
-    }
+    expect($tiles)->toHaveCount(29);
+
+    /*
+     * Collected, not asserted in the loop. `toContain()` is `(mixed ...$needles)`
+     * with no message parameter, so a message passed there becomes a second
+     * needle and the failure reports the message as the missing string.
+     */
+    $missing = array_values(array_filter(
+        array_column($tiles, 'name'),
+        static fn(string $name): bool => ! str_contains($html, $name),
+    ));
+
+    expect($missing)->toBe([], 'Grid tiles missing from SSR output: ' . implode(', ', $missing));
+
+    expect(substr_count($html, '/images/databases/'))->toBe(26);
 });
 
 it('server-renders the verified claims and none of the retired ones', function (): void {
@@ -84,7 +103,7 @@ it('server-renders the verified claims and none of the retired ones', function (
         ->toContain('Every database.')
         // "client", not "app": the head noun of every query this page targets.
         ->toContain('One native Mac client.')
-        ->toContain('25 databases.')
+        ->toContain('29 databases.')
         ->toContain('Starter');
 
     foreach (['15+ databases', '21+ supported', 'iOS 17+', 'free forever on one Mac', '9 built-in themes'] as $stale) {

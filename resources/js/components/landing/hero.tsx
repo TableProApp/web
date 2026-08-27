@@ -7,6 +7,7 @@ import Button from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
 import { trackDownload } from '@/lib/analytics';
 import { GITHUB_REPO_URL } from '@/data/links';
+import { ENGINE_COUNT } from '@/data/engines';
 
 interface Props {
     githubStars?: number | null;
@@ -89,7 +90,7 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                   * sections below read as evidence for a claim already made.
                   */}
                 <p className="max-w-[58ch] px-4 py-5 text-lg text-muted-foreground text-pretty sm:py-6">
-                    TablePro is a free, open source database client for macOS. 25 engines through native drivers, and
+                    TablePro is a free, open source database client for macOS. {ENGINE_COUNT} engines through native drivers, and
                     nothing runs against your database that you have not read first.
                 </p>
                 <FullLine />

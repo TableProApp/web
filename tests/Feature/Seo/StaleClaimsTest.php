@@ -21,9 +21,9 @@ it('never revives a stale database count or platform claim', function () use ($r
     $banned = [
         // Not bare '18+': that also matches 'macOS 14+, iOS 18+', which is the
         // correct deployment target. The stale claim was always '18+ databases'.
-        '18+ databases' => 'the database count is 25',
-        '15+ databases' => 'the database count is 25',
-        '21+' => 'the database count is 25',
+        '18+ databases' => 'the database count is 29',
+        '15+ databases' => 'the database count is 29',
+        '21+' => 'the database count is 29',
         '9 built-in themes' => 'there are 4 built-in themes',
         'iOS 17' => 'the iOS deployment target is 18.0',
         'free forever on one Mac' => 'the unlicensed app has no per-Mac limit',
@@ -118,8 +118,13 @@ it('keeps every FAQ question, and asks each of them in one place', function () u
      * already answered in prose elsewhere on the homepage, and `faqs.ts` spread
      * `home-faqs.ts` in wholesale, so /faq answered each of them a third time.
      * The questions all survived the move; only the duplicate render sites went.
+     *
+     * Counted on the key, not on the quote character. This matched `question: '`
+     * until one question began interpolating the engine count and switched to a
+     * template literal — at which point a file that still held all fourteen
+     * questions reported thirteen.
      */
-    expect(substr_count($readSource('resources/js/data/faqs.ts'), "question: '"))->toBe(14);
+    expect(preg_match_all("/\bquestion: ['`]/", $readSource('resources/js/data/faqs.ts')))->toBe(14);
 
     expect(file_exists(base_path('resources/js/data/home-faqs.ts')))
         ->toBeFalse('home-faqs.ts is gone; /faq is the only place a question is asked');
@@ -220,7 +225,7 @@ it('serves a comparison page for every slug the route accepts, and vice versa', 
     expect($routed)->toBe($authored);
 });
 
-it('never implies a database count other than 25', function (): void {
+it('never implies a database count other than 29', function (): void {
     /*
      * Four entries carried counts from the era when TablePro shipped 18 —
      * Postico promised "Postgres plus 17 other databases" and named five
@@ -229,7 +234,8 @@ it('never implies a database count other than 25', function (): void {
      *
      * Relative phrasing is what rots: "plus N more" has to be re-derived every
      * time the driver count moves, and nobody remembers to. This catches the
-     * ones that no longer add up.
+     * ones that no longer add up — it caught all four when the count went to 28,
+     * and all four again at 29.
      */
     $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
 
@@ -249,8 +255,8 @@ it('never implies a database count other than 25', function (): void {
             /*
              * Only the engines named in the same sentence count. Postico's
              * verdict reads "excellent for Postgres alone. TablePro covers the
-             * same ground for Postgres plus 24 other databases" — counting the
-             * whole string sees Postgres twice and makes 25 look like 26.
+             * same ground for Postgres plus 28 other databases" — counting the
+             * whole string sees Postgres twice and makes 29 look like 30.
              */
             $before = substr($value, 0, strpos($value, $m[0]));
             $sentence = preg_split('/(?<=[.!?])\s+/', $before);
@@ -260,13 +266,13 @@ it('never implies a database count other than 25', function (): void {
                 (string) end($sentence),
             );
 
-            if ($named + (int) $m[1] !== 25) {
+            if ($named + (int) $m[1] !== 29) {
                 $offenders[] = "{$entry['slug']}: \"{$m[0]}\" after {$named} named engines = " . ($named + (int) $m[1]);
             }
         });
     }
 
-    expect($offenders)->toBe([], "Database counts that do not total 25:\n  " . implode("\n  ", $offenders));
+    expect($offenders)->toBe([], "Database counts that do not total 29:\n  " . implode("\n  ", $offenders));
 });
 
 it('quotes one price per competitor claim, consistently within an entry', function (): void {

@@ -1,4 +1,5 @@
 import { GITHUB_REPO_URL } from '@/data/links';
+import { ENGINE_COUNT } from '@/data/engines';
 
 export interface BreadcrumbCrumb {
     name: string;
@@ -42,7 +43,7 @@ export function buildOrganizationJsonLd(baseUrl: string): object {
             height: 256,
         },
         description:
-            'TablePro builds a native database client for macOS, iPadOS and iOS covering 25 engines, released as open source under AGPLv3.',
+            `TablePro builds a native database client for macOS, iPadOS and iOS covering ${ENGINE_COUNT} engines, released as open source under AGPLv3.`,
         // All five profiles the footer links, not two of them.
         sameAs: [
             GITHUB_REPO_URL,

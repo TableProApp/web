@@ -4,6 +4,7 @@ import DataTable, { TABLE_COLUMN_RULE, TABLE_ROW_RULE } from '@/components/ui/da
 import FootNote from '@/components/ui/footnote';
 import { FullLine } from '@/components/ui/full-line';
 import { GITHUB_REPO_URL } from '@/data/links';
+import { BUNDLED_ENGINE_COUNT, ENGINE_COUNT, ON_DEMAND_ENGINE_COUNT } from '@/data/engines';
 
 interface Props {
     latestRelease?: { version: string | null; publishedAt: string | null; countLast30Days: number | null } | null;
@@ -55,7 +56,7 @@ function formatReleaseDate(iso: string): string {
  */
 export default function SpecStrip({ latestRelease, downloads }: Props) {
     const specs: Spec[] = [
-        { label: 'databases', value: '25', sub: '9 bundled, 16 on demand', numeric: true },
+        { label: 'databases', value: String(ENGINE_COUNT), sub: `${BUNDLED_ENGINE_COUNT} bundled, ${ON_DEMAND_ENGINE_COUNT} on demand`, numeric: true },
         { label: 'cold_start', value: 'Under 1s', sub: 'Cold, to first window', numeric: true },
         { label: 'idle_rss', value: '~80 MB', sub: 'One connection, open and idle', numeric: true },
         downloads?.total

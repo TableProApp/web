@@ -76,7 +76,7 @@ Status: actively maintained. Used by enterprise data teams that need schema docu
 
 ### TablePro (AGPLv3)
 
-Native macOS app written in Swift and AppKit. 25 databases through a plugin architecture (MySQL, Postgres, MongoDB, Redis, ClickHouse, BigQuery, DynamoDB, Cloudflare D1, Turso, etc.). Free, open source, with paid features (license server, advanced AI usage).
+Native macOS app written in Swift and AppKit. 28 databases through a plugin architecture (MySQL, Postgres, MongoDB, Redis, ClickHouse, BigQuery, DynamoDB, Cloudflare D1, Turso, etc.). Free, open source, with paid features (license server, advanced AI usage).
 
 Best at: native macOS performance with broad database coverage. ~80 MB at idle, ~1 second cold start. AI assistant in the free tier. iOS app with iCloud sync.
 

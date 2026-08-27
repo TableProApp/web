@@ -15,6 +15,7 @@ import SEOHead from '@/components/seo/seo-head';
 import { buildOrganizationJsonLd } from '@/lib/structured-data';
 import { GITHUB_REPO_URL } from '@/data/links';
 import { STARTER_PRICE, TEAM_SEAT_PRICE } from '@/data/pricing';
+import { ENGINE_COUNT } from '@/data/engines';
 
 interface LatestRelease {
     version: string | null;
@@ -61,10 +62,10 @@ const HOME_TITLE = 'TablePro - Free, Open Source Database Client for Mac';
  * answer engine lifts for "what is TablePro".
  */
 const HOME_DESCRIPTION =
-    'TablePro is a free, open source database client for macOS. 25 engines through native drivers, in a 20 MB Swift app that opens in under a second.';
+    `TablePro is a free, open source database client for macOS. ${ENGINE_COUNT} engines through native drivers, in a 20 MB Swift app that opens in under a second.`;
 
 const FEATURE_LIST = [
-    '25 databases through native drivers',
+    `${ENGINE_COUNT} databases through native drivers`,
     'SQL editor with tree-sitter highlighting and Vim mode',
     'Editable data grid with deferred commit',
     '13 AI providers, bring your own key',
@@ -121,7 +122,7 @@ function buildAppJsonLd(
         softwareRequirements: 'macOS 14.0 or later, Apple Silicon or Intel',
         description: HOME_DESCRIPTION,
         disambiguatingDescription:
-            'TablePro is a native macOS GUI client for 25 database engines, written in Swift rather than Electron or Java, and released as open source under AGPLv3.',
+            `TablePro is a native macOS GUI client for ${ENGINE_COUNT} database engines, written in Swift rather than Electron or Java, and released as open source under AGPLv3.`,
         // Every URL from canonicalBaseUrl. Four of these used to hardcode the
         // production origin while `screenshot` did not, so one object carried
         // two origins on any non-production host.
