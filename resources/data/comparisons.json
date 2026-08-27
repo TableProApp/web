@@ -3,7 +3,7 @@
     "slug": "tableplus",
     "name": "TablePlus",
     "tagline": "Free, open source TablePlus alternative for Mac.",
-    "description": "TablePlus is $99 a device and closed source. TablePro is free, open source under AGPLv3, and covers 25 databases. Both are native Mac apps — that part is a tie.",
+    "description": "TablePlus is $99 a device and closed source. TablePro is free, open source under AGPLv3, and covers 29 databases. Both are native Mac apps — that part is a tie.",
     "longDescription": "TablePlus is the closest thing to TablePro on the Mac: a genuinely native AppKit app, fast, well made, and shipping since 2019. It also has an LLM chat panel and, since June 2026, an MCP server — so the usual \"native versus Electron\" and \"we have AI\" arguments do not apply here. What separates them is the licence. TablePlus costs $99 for one device or $129 for two, includes one year of updates, and asks $59 per device to keep receiving them. TablePro is free, AGPLv3, and the source is public.",
     "rows": [
       {
@@ -28,7 +28,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25 drivers",
+        "tablePro": "29 drivers",
         "competitor": "16"
       },
       {
@@ -86,7 +86,7 @@
       "Free forever, against $99 a device",
       "Updates never expire",
       "Open source under AGPLv3",
-      "25 database drivers, against 16",
+      "29 database drivers, against 16",
       "Six Safe Mode levels, set per connection",
       "XLSX export"
     ],
@@ -108,7 +108,7 @@
       "open source tableplus alternative",
       "tableplus alternative mac"
     ],
-    "ogTableProMetaHtml": "<strong>FREE</strong> · AGPLv3<br>25 databases<br>Native (SwiftUI)",
+    "ogTableProMetaHtml": "<strong>FREE</strong> · AGPLv3<br>29 databases<br>Native (SwiftUI)",
     "ogCompetitorMetaHtml": "<strong>$99</strong> per device<br>+$59 to keep updates<br>Closed source",
     "ogPunchline": "Both native. One is free and open source.",
     "ogStatValue": "$0",
@@ -138,7 +138,7 @@
       },
       {
         "question": "Why do you say 16 databases when TablePlus documents 13?",
-        "answer": "Their documentation lists 13 engines and their homepage shows 14 logos, and the two lists do not match — BigQuery, ClickHouse and Turso appear only on the homepage, Snowflake and Vertica only in the docs. Sixteen is the union of both, which is the most generous reading. TablePro ships 25 drivers."
+        "answer": "Their documentation lists 13 engines and their homepage shows 14 logos, and the two lists do not match — BigQuery, ClickHouse and Turso appear only on the homepage, Snowflake and Vertica only in the docs. Sixteen is the union of both, which is the most generous reading. TablePro ships 29 drivers."
       },
       {
         "question": "What does the TablePlus licence actually cost over time?",
@@ -154,7 +154,7 @@
     "slug": "dbeaver",
     "name": "DBeaver",
     "tagline": "Free, Native DBeaver Alternative for Mac.",
-    "description": "Native DBeaver alternative for Mac. 80 MB RAM, instant startup, no Java. Free and open source. 25 databases.",
+    "description": "Native DBeaver alternative for Mac. 80 MB RAM, instant startup, no Java. Free and open source. 29 databases.",
     "longDescription": "DBeaver is a popular cross-platform database tool licensed Apache 2.0. The Community Edition is free; DBeaver PRO starts at $113 per year. It runs on Java 21 via the Eclipse RCP. On Mac you'll see 8+ second cold starts and 800 MB of RAM at idle on the same connections where TablePro starts in 1 second and idles at 80 MB.",
     "rows": [
       {
@@ -174,7 +174,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "100+"
       },
       {
@@ -319,7 +319,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "30+"
       },
       {
@@ -444,8 +444,8 @@
     "slug": "navicat",
     "name": "Navicat",
     "tagline": "Free, Native Navicat Alternative for Mac.",
-    "description": "Native Navicat alternative for Mac. Free, open source, fast. 25 databases, AI assistant, iOS app.",
-    "longDescription": "Navicat Premium covers 7+ databases in one app. It costs $399 per year subscription or $1,599 for a perpetual license per user. TablePro covers 25 databases and is free, open source under AGPLv3. Native macOS, no per-database editions.",
+    "description": "Native Navicat alternative for Mac. Free, open source, fast. 29 databases, AI assistant, iOS app.",
+    "longDescription": "Navicat Premium covers 7+ databases in one app. It costs $399 per year subscription or $1,599 for a perpetual license per user. TablePro covers 29 databases and is free, open source under AGPLv3. Native macOS, no per-database editions.",
     "rows": [
       {
         "label": "Price",
@@ -464,7 +464,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "7+ (Premium)"
       },
       {
@@ -515,7 +515,7 @@
     ],
     "prosTablePro": [
       "Free vs $399/yr or $1,599 perpetual",
-      "25 databases in one app",
+      "29 databases in one app",
       "Native macOS",
       "AI SQL assistant in the free tier",
       "iOS app with iCloud sync",
@@ -615,7 +615,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "17+"
       },
       {
@@ -745,8 +745,8 @@
     "slug": "sequel-pro",
     "name": "Sequel Pro",
     "tagline": "Modern Sequel Pro Alternative for Mac.",
-    "description": "Modern Sequel Pro alternative for Mac. 25 databases, AI assistant, active development. Free and open source.",
-    "longDescription": "Sequel Pro stopped active development in 2016. The community fork Sequel Ace continues it but stays MySQL and MariaDB only. As of 2026, the latest Sequel Ace release dates back to April 2024. TablePro is a fresh native Mac app with regular releases, AI assistant in the free tier, and 25 databases.",
+    "description": "Modern Sequel Pro alternative for Mac. 29 databases, AI assistant, active development. Free and open source.",
+    "longDescription": "Sequel Pro stopped active development in 2016. The community fork Sequel Ace continues it but stays MySQL and MariaDB only. As of 2026, the latest Sequel Ace release dates back to April 2024. TablePro is a fresh native Mac app with regular releases, AI assistant in the free tier, and 29 databases.",
     "rows": [
       {
         "label": "Price",
@@ -775,7 +775,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "MySQL & MariaDB"
       },
       {
@@ -826,7 +826,7 @@
     ],
     "prosTablePro": [
       "Active development with regular releases",
-      "25 databases, not just MySQL",
+      "29 databases, not just MySQL",
       "AI SQL assistant in the free tier",
       "iOS app with iCloud sync",
       "Modern SwiftUI on macOS Sonoma+",
@@ -848,10 +848,10 @@
       "sequel pro macos sonoma",
       "sequel pro alternative 2024"
     ],
-    "ogTableProMetaHtml": "<strong>Active in 2026</strong><br>25 databases<br>SwiftUI · AI · iCloud",
+    "ogTableProMetaHtml": "<strong>Active in 2026</strong><br>29 databases<br>SwiftUI · AI · iCloud",
     "ogCompetitorMetaHtml": "<strong>Last release: 2019</strong><br>MySQL only<br>Cocoa . unmaintained",
     "ogPunchline": "Active in 2026. AI, multi-DB, iCloud, iOS.",
-    "ogStatValue": "25",
+    "ogStatValue": "29",
     "ogStatLabel": "DATABASES",
     "benchmarks": {
       "tablePro": {
@@ -906,8 +906,8 @@
     "slug": "postico",
     "name": "Postico",
     "tagline": "Multi-Database Postico Alternative for Mac.",
-    "description": "Native, free, open-source Postico alternative for Mac. Postgres plus MySQL, MongoDB, Redis, SQLite, and 20 more.",
-    "longDescription": "Postico 2 is a polished native Mac client for PostgreSQL, Redshift, CockroachDB, and Greenplum. It costs $69 for a personal license (3 devices) or $99 per device for commercial use. TablePro is free and open source under AGPLv3, and covers 25 databases beyond Postgres.",
+    "description": "Native, free, open-source Postico alternative for Mac. Postgres plus MySQL, MongoDB, Redis, SQLite, and 24 more.",
+    "longDescription": "Postico 2 is a polished native Mac client for PostgreSQL, Redshift, CockroachDB, and Greenplum. It costs $69 for a personal license (3 devices) or $99 per device for commercial use. TablePro is free and open source under AGPLv3, and covers 29 databases beyond Postgres.",
     "rows": [
       {
         "label": "Price",
@@ -926,7 +926,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "Postgres, Redshift, CockroachDB, Greenplum"
       },
       {
@@ -987,7 +987,7 @@
     ],
     "prosTablePro": [
       "Free vs $69 personal or $99 commercial",
-      "25 databases including MySQL, Mongo, Redis",
+      "29 databases including MySQL, Mongo, Redis",
       "AI SQL assistant",
       "iOS app with iCloud sync",
       "ER diagrams, Vim mode, MCP server",
@@ -1001,7 +1001,7 @@
     ],
     "chooseTablePro": "you work with multiple databases or want AI and iOS support in the free tier.",
     "chooseCompetitor": "Postgres, Redshift, CockroachDB, or Greenplum is your only database and you prefer paying once for a focused tool.",
-    "verdict": "Postico is excellent for Postgres alone. TablePro covers the same ground for Postgres plus 24 other databases, free.",
+    "verdict": "Postico is excellent for Postgres alone. TablePro covers the same ground for Postgres plus 28 other databases, free.",
     "keywords": [
       "postico alternative",
       "tablepro vs postico",
@@ -1009,10 +1009,10 @@
       "free postico alternative",
       "multi-database mac client"
     ],
-    "ogTableProMetaHtml": "<strong>FREE</strong> · 25 databases",
+    "ogTableProMetaHtml": "<strong>FREE</strong> · 29 databases",
     "ogCompetitorMetaHtml": "<strong>$69</strong> · Postgres only",
-    "ogPunchline": "Postgres plus 24 more. Free. Native.",
-    "ogStatValue": "25",
+    "ogPunchline": "Postgres plus 28 more. Free. Native.",
+    "ogStatValue": "29",
     "ogStatLabel": "DATABASES",
     "benchmarks": {
       "tablePro": {
@@ -1067,8 +1067,8 @@
     "slug": "sequel-ace",
     "name": "Sequel Ace",
     "tagline": "Modern, Multi-Database Sequel Ace Alternative for Mac.",
-    "description": "Modern, multi-database Sequel Ace alternative for Mac. Active development, AI assistant, 25 databases. Free and open source.",
-    "longDescription": "Sequel Ace is the MIT-licensed community fork of Sequel Pro. It keeps a beloved MySQL client alive but stays MySQL and MariaDB only. As of 2026 the latest release is from April 2024. TablePro is a fresh native Mac app with regular releases, 25 databases, and AI in the free tier.",
+    "description": "Modern, multi-database Sequel Ace alternative for Mac. Active development, AI assistant, 29 databases. Free and open source.",
+    "longDescription": "Sequel Ace is the MIT-licensed community fork of Sequel Pro. It keeps a beloved MySQL client alive but stays MySQL and MariaDB only. As of 2026 the latest release is from April 2024. TablePro is a fresh native Mac app with regular releases, 29 databases, and AI in the free tier.",
     "rows": [
       {
         "label": "Price",
@@ -1092,7 +1092,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "MySQL & MariaDB"
       },
       {
@@ -1148,7 +1148,7 @@
     ],
     "prosTablePro": [
       "Active development with regular releases",
-      "25 databases, not just MySQL",
+      "29 databases, not just MySQL",
       "AI SQL assistant in the free tier",
       "iOS app with iCloud sync",
       "Modern SwiftUI on macOS Sonoma+",
@@ -1170,9 +1170,9 @@
       "modern sequel ace replacement",
       "multi database mac client"
     ],
-    "ogTableProMetaHtml": "<strong>25 databases</strong> · Active",
+    "ogTableProMetaHtml": "<strong>29 databases</strong> · Active",
     "ogCompetitorMetaHtml": "<strong>MySQL only</strong> · Slow",
-    "ogPunchline": "Active. AI. 25 databases. iCloud. Free.",
+    "ogPunchline": "Active. AI. 29 databases. iCloud. Free.",
     "ogStatValue": "Active",
     "ogStatLabel": "DEV",
     "benchmarks": {
@@ -1228,8 +1228,8 @@
     "slug": "heidisql",
     "name": "HeidiSQL",
     "tagline": "Native HeidiSQL Alternative for Mac.",
-    "description": "Native HeidiSQL alternative for Mac. No Wine, no VM. Free and open source. 25 databases, AI assistant, iCloud sync.",
-    "longDescription": "HeidiSQL is a free GPL-2.0 database client built with Delphi for Windows. As of 2026 there is a separate Lazarus-based macOS preview build, but it remains a Windows-first app. TablePro is built natively for macOS in Swift and AppKit and covers MySQL, MariaDB, PostgreSQL, SQL Server, SQLite (the same databases HeidiSQL handles) plus 20 more.",
+    "description": "Native HeidiSQL alternative for Mac. No Wine, no VM. Free and open source. 29 databases, AI assistant, iCloud sync.",
+    "longDescription": "HeidiSQL is a free GPL-2.0 database client built with Delphi for Windows. As of 2026 there is a separate Lazarus-based macOS preview build, but it remains a Windows-first app. TablePro is built natively for macOS in Swift and AppKit and covers MySQL, MariaDB, PostgreSQL, SQL Server, SQLite (the same databases HeidiSQL handles) plus 24 more.",
     "rows": [
       {
         "label": "Price",
@@ -1258,7 +1258,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "MySQL, MariaDB, Postgres, SQL Server, SQLite, Interbase, Firebird"
       },
       {
@@ -1384,7 +1384,7 @@
     "slug": "azimutt",
     "name": "Azimutt",
     "tagline": "Database Client and ER Diagram for Mac.",
-    "description": "Native database client with ER diagrams for Mac. Free and open source. SQL editor, data grid, schema browser. 25 databases.",
+    "description": "Native database client with ER diagrams for Mac. Free and open source. SQL editor, data grid, schema browser. 29 databases.",
     "longDescription": "Azimutt is an MIT-licensed schema visualization tool with a free tier and paid plans from €7/mo (Solo). It's web-based with self-host via Docker. It's not a database client; queries and edits aren't its focus. TablePro is a full database client with built-in ER diagrams. The two solve different problems and run side by side.",
     "rows": [
       {
@@ -1409,7 +1409,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "Postgres, MySQL, SQL Server (read-only)"
       },
       {
@@ -1467,7 +1467,7 @@
       "Full database client with SQL editor and data grid",
       "Edit data inline, run queries, manage table structure",
       "Native macOS, works offline",
-      "25 databases including NoSQL",
+      "29 databases including NoSQL",
       "iOS app with iCloud sync",
       "AI SQL assistant"
     ],
@@ -1546,7 +1546,7 @@
     "slug": "phpmyadmin",
     "name": "phpMyAdmin",
     "tagline": "Desktop phpMyAdmin Alternative for Mac.",
-    "description": "Native phpMyAdmin alternative for Mac. SSH-tunneled, no public web surface. Free and open source. 25 databases.",
+    "description": "Native phpMyAdmin alternative for Mac. SSH-tunneled, no public web surface. Free and open source. 29 databases.",
     "longDescription": "phpMyAdmin is a free GPL-licensed PHP web app for MySQL and MariaDB. The current release (5.2.x as of late 2025) ships with most cPanel hosts. It's a recurring CVE target when exposed publicly. TablePro is a desktop client. SSH-tunnel through your existing server access; no public web surface.",
     "rows": [
       {
@@ -1586,7 +1586,7 @@
       },
       {
         "label": "Databases",
-        "tablePro": "25",
+        "tablePro": "29",
         "competitor": "MySQL & MariaDB"
       },
       {
@@ -1634,7 +1634,7 @@
       "No public web surface to attack",
       "SSH-tunneled, not /phpmyadmin?token=...",
       "Native macOS UX with Touch ID and dark mode",
-      "25 databases, not just MySQL",
+      "29 databases, not just MySQL",
       "AI SQL assistant",
       "iOS app with iCloud sync"
     ],

@@ -120,6 +120,16 @@
         "href": "/oracle-client"
     },
     {
+        "name": "Dameng",
+        "icon": null,
+        "monogram": "DM",
+        "port": "5236",
+        "distribution": "plugin",
+        "driverGroup": "dameng",
+        "category": "relational",
+        "href": null
+    },
+    {
         "name": "DuckDB",
         "icon": "/images/databases/duckdb.svg",
         "monogram": "DD",
@@ -180,6 +190,16 @@
         "href": "/surrealdb-client"
     },
     {
+        "name": "Kafka",
+        "icon": null,
+        "monogram": "KA",
+        "port": "9092",
+        "distribution": "plugin",
+        "driverGroup": "kafka",
+        "category": "document-kv",
+        "href": null
+    },
+    {
         "name": "Cloudflare D1",
         "icon": "/images/databases/cloudflare-d1.svg",
         "monogram": "D1",
@@ -220,9 +240,19 @@
         "href": "/snowflake-client"
     },
     {
-        "name": "libSQL / Turso",
-        "icon": "/images/databases/turso.svg",
+        "name": "libSQL",
+        "icon": null,
         "monogram": "LS",
+        "port": "API",
+        "distribution": "plugin",
+        "driverGroup": "libsql",
+        "category": "file-embedded",
+        "href": "/turso-client"
+    },
+    {
+        "name": "Turso",
+        "icon": "/images/databases/turso.svg",
+        "monogram": "TU",
         "port": "API",
         "distribution": "plugin",
         "driverGroup": "libsql",

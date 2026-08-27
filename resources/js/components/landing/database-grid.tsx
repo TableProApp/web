@@ -8,6 +8,7 @@ import DatabaseMark from '@/components/ui/database-mark';
 import SectionShell from '@/components/ui/section-shell';
 import { CELL_DENSITY, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 import { GITHUB_REPO_URL } from '@/data/links';
+import { BUNDLED_ENGINE_COUNT, ENGINE_COUNT, ON_DEMAND_ENGINE_COUNT } from '@/data/engines';
 
 interface DatabaseTile {
     name: string;
@@ -182,9 +183,9 @@ export default function DatabaseGrid() {
             tone="raised"
             id="databases"
             label="Databases"
-            headline="25 databases."
+            headline={`${ENGINE_COUNT} databases.`}
             headlineMuted="One native driver each. No JDBC."
-            lede="Nine drivers ship inside the app. The other sixteen download the first time you pick one, signature verified, with no restart."
+            lede={`${BUNDLED_ENGINE_COUNT} drivers ship inside the app. The other ${ON_DEMAND_ENGINE_COUNT} download the first time you pick one, signature verified, with no restart.`}
         >
             <FullLine />
             <Container>
