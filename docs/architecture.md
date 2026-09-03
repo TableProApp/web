@@ -44,7 +44,7 @@ All anonymous, all rate limited, none needs a token.
 
 | Endpoint | Sends | Returns |
 | --- | --- | --- |
-| `POST /checkout` | `{tier, cycle, seats?, discount_code?}` | `{url}` — passed to the checkout SDK |
+| `POST /checkout` | `{tier, cycle, seats?, discount_code?, attribution?}` | `{url}` — passed to the checkout SDK |
 | `POST /discount/preview` | `{code}` | `{valid, amount_type?, amount?}` |
 | `POST /newsletter/subscribe` | `{email}` | `{type, message}` |
 | `POST /beta/signup` | `{email}` | `{type, message}` |
@@ -52,6 +52,57 @@ All anonymous, all rate limited, none needs a token.
 
 Checkout takes a tier and billing cycle rather than a product identifier, which
 is why no payment-provider identifier appears anywhere in this repository.
+
+## Purchase attribution
+
+Neither half of this system can answer "where did this customer come from" on
+its own. This app sees the arrival and never learns that a sale happened: the
+overlay that takes the money runs on the payment provider's domain, and the
+license is written by the backend. The backend sees the sale and never saw the
+arrival. Plausible measures visits on this domain only, so it can report the
+source of a *visit* and not the source of a *sale*.
+
+`POST /checkout` is the one request in which both are in scope, so the
+acquisition source is resolved in the browser and sent in that body as an
+optional `attribution` object:
+
+| Key | Meaning |
+| --- | --- |
+| `source` | `utm_source`, or a bare `?ref=` when there is no `utm_source` |
+| `medium` | `utm_medium` |
+| `campaign` | `utm_campaign` |
+| `term` | `utm_term` |
+| `content` | `utm_content` |
+| `referrer` | Origin and path of an off-site referrer, query string dropped |
+| `landing_page` | Path of the first attributable page, without its query string |
+| `first_seen_at` | ISO 8601 timestamp of that first attributable visit |
+
+Only the last two are always present. `resources/js/lib/attribution.ts` holds
+the rules and `tests/js/attribution.test.ts` holds their proof; the short
+version is **first touch, ninety days**. The first visit carrying a campaign tag
+or an off-site referrer wins and is not overwritten, so a reader who arrives
+through a comparison page and buys a fortnight later after typing the domain is
+credited to the comparison page rather than to "direct". A visit with neither is
+not recorded at all, precisely so it cannot take that slot.
+
+The record lives in `localStorage` under `tablepro:attribution`, because this
+app has no session and sets no cookies. It is disclosed on `/privacy`.
+
+Three things the backend end of this contract has to do:
+
+1. **Tolerate its absence.** It is missing for every reader who arrived
+   untagged, and for every browser that refuses storage. It is not a validation
+   error, and checkout must open without it.
+2. **Distrust its contents.** `localStorage` belongs to the reader. This app
+   whitelists the keys and clamps every value — tags to 128 characters, URLs to
+   256 — so the object arrives in a fixed shape, but it is still reader-supplied
+   input and the backend must validate it as such.
+3. **Persist it against the license, not just the checkout session.** Storing it
+   as provider metadata is what carries it through to the webhook; the
+   attribution is only worth collecting if it survives to sit beside the sale.
+
+Until that end exists, the field is sent and ignored, and the `checkout_started`
+Plausible event is the only part of this that reports anything.
 
 ## Working on these forms locally
 

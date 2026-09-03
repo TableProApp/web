@@ -205,13 +205,15 @@ export default function Privacy({ downloadUrls }: Props) {
                         </p>
                     </ProseBlock>
 
-                    <ProseBlock title="13. Website Cookies">
+                    <ProseBlock title="13. Website Cookies and Browser Storage">
                         <p className="text-sm text-muted-foreground">
-                            The marketing site uses two functional cookies. No tracking, no advertising, no third-party SDKs.
+                            The marketing site sets two functional cookies and keeps a few values in your browser's own storage. No advertising, no profiles, no cross-site tracking, and nothing here is sold or handed to an advertiser.
                         </p>
                         <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">nl_dismissed_at</strong> (90 days): records when you dismissed the newsletter prompt so we don't reshow it. Lawful basis: legitimate interest.</span></li>
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">nl_subscribed</strong> (365 days): records that you subscribed so we don't reprompt. Lawful basis: legitimate interest, performance of a subscription you initiated.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">nl_dismissed_at</strong> (cookie, 90 days): records when you dismissed the newsletter prompt so we don't reshow it. Lawful basis: legitimate interest.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">nl_subscribed</strong> (cookie, 365 days): records that you subscribed so we don't reprompt. Lawful basis: legitimate interest, performance of a subscription you initiated.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">theme</strong> and <strong className="text-foreground">tablepro:banner-dismissed</strong> (local storage, until you clear it): remember whether you chose light or dark, and which announcement bar you closed. Lawful basis: legitimate interest.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">tablepro:attribution</strong> (local storage, 90 days): records how you first reached this site — the campaign tags on the link you followed, or the site that linked to us, and the page you landed on. If you buy a license it is sent with that purchase so we know which writing and which links pay for the work. It holds no identifier of you, it is never read on any other site, and clearing your browser storage removes it.</span></li>
                         </ul>
                     </ProseBlock>
 

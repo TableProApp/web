@@ -72,6 +72,14 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      # Node's own runner over `tests/js`, no test dependency to install. The
+      # attribution module decides which source a sale is credited to and is
+      # the only frontend logic here that cannot be checked by rendering a
+      # page, so it is covered by execution rather than by the source-reading
+      # assertions the Pest suite uses.
+      - name: Frontend tests
+        run: npm run test:js
+
       - name: Build
         run: npm run build
 

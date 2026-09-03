@@ -8,7 +8,8 @@ import SectionShell from '@/components/ui/section-shell';
 import { CheckGlyph } from '@/components/ui/glyph';
 import { PROSE_LINK } from '@/components/ui/prose-link';
 import { PANEL_TITLE } from '@/components/ui/grid-cell';
-import { trackDownload } from '@/lib/analytics';
+import { trackDownload, trackEvent } from '@/lib/analytics';
+import { currentAttribution } from '@/lib/attribution';
 import LicenseTable from '@/components/landing/license';
 import SponsorRow from '@/components/landing/sponsor-row';
 import { STARTER_PRICE, TEAM_SEAT_PRICE, type TierPrice } from '@/data/pricing';
@@ -117,15 +118,36 @@ function PricingCard({ tier, cycle, discountCode, discount, paymentProvider, tea
      * Checkout is handled by the TablePro backend, reached same-origin. We send
      * the tier and billing cycle rather than a provider product id, so no
      * payment-provider identifier ever has to exist in this repository.
+     *
+     * The attribution record rides along because this call is the last point at
+     * which a reader's acquisition source and their purchase are both visible:
+     * the overlay that takes the money runs on the provider's domain, and the
+     * license is written by the backend afterwards. It is absent for anyone
+     * whose first visit carried no campaign tag and no off-site referrer, and
+     * for anyone whose browser refuses storage, so the field is optional at
+     * both ends. See resources/js/lib/attribution.ts.
      */
     async function handleCheckout() {
         if (isFree) return;
         setIsLoading(true);
+
+        /*
+         * Fired on intent rather than on success, because success happens
+         * inside the provider's overlay where nothing here can observe it.
+         * Read against `checkout_completed` on the backend, this is the
+         * abandonment rate for the overlay.
+         */
+        trackEvent('checkout_started', { tier: tier.key, cycle });
+
         try {
-            const body: Record<string, string> = { tier: tier.key, cycle };
+            const body: Record<string, unknown> = { tier: tier.key, cycle };
             const trimmed = discountCode.trim();
             if (trimmed) body.discount_code = trimmed;
             if (isTeam) body.seats = String(seats);
+
+            const attribution = currentAttribution();
+            if (attribution !== null) { body.attribution = attribution; }
+
             const res = await fetch('/checkout', {
                 method: 'POST',
                 headers: {
