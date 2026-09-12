@@ -21,16 +21,17 @@ it('renders the blog index', function (): void {
         );
 });
 
-it('lists all 10 seed posts on the index', function (): void {
+it('lists all 11 seed posts on the index', function (): void {
     getOnWebDomainBlog('/blog')
         ->assertOk()
         ->assertInertia(
             fn($page) => $page->component('Blog/Index')
-                ->has('posts', 10),
+                ->has('posts', 11),
         );
 });
 
 dataset('blogSlugs', [
+    'tablepro-0-74',
     'tablepro-0-73',
     'tablepro-0-72',
     'tablepro-0-70',
