@@ -13,8 +13,8 @@ TablePro 0.74 is out: 270 changes, 228 of them fixes.
 The new work is spatial results, row colouring and invisible characters. The fixes are mostly one thing: commands that ran against the wrong database.
 
 <figure>
-  <img src="/images/blog/results-map-geometry.png" alt="TablePro results pane on the Map segment, showing polygons and points drawn over an Apple Maps street view, one polygon selected with its row highlighted, and a toolbar line reading how many shapes were drawn in SRID 4326 and how many rows were in other coordinate systems" />
-  <figcaption>The Map segment appears when a column of the result holds values the map can read. Click a shape to select its row.</figcaption>
+  <img src="/images/blog/results-map-geometry.png" alt="TablePro on the Map segment for a PostGIS table of San Francisco service areas, with fifteen blue polygons, four transit lines and six depot pins drawn over an Apple Maps street view, a line above the map reading Drawing 25 shapes in SRID 4326, 3 rows in other coordinate systems are not drawn, a Fit to Result button on the right, and Data, Structure, JSON, Chart and Map segments along the bottom with Map selected" />
+  <figcaption>The line above the map says what was drawn and what was skipped. Three rows here are in a state-plane coordinate system, so they are counted rather than placed.</figcaption>
 </figure>
 
 ## A map for spatial rows
@@ -49,8 +49,8 @@ Rules read the stored value, not the text a **Display As** format shows, so a nu
 Rules belong to the table, scoped to the connection, database and schema, and follow it through a rename.
 
 <figure>
-  <img src="/images/blog/sql-editor-invisible-characters.png" alt="TablePro SQL editor showing a query pasted from a chat, with an orange BS box before SELECT on line 2, an outlined non-breaking space between Name and LIKE on line 4, and a ZWSP box after Composer on line 5" />
-  <figcaption>A mark is the character itself: select it, arrow past it, or delete it like any other text.</figcaption>
+  <img src="/images/blog/sql-editor-invisible-characters.png" alt="TablePro SQL editor holding a query pasted from a chat thread, with an orange BS box before SELECT on line 2, an outlined no-break space after zone on line 4, an orange ZWSP box after name on line 5, and orange underlines beneath the curly quotes around downtown and beneath a full-width greater-than sign on line 6" />
+  <figcaption>A mark is the character itself: select it, arrow past it, or delete it like any other text. The underlines are the separate warning for characters that are visible but wrong.</figcaption>
 </figure>
 
 ## Characters you cannot see
