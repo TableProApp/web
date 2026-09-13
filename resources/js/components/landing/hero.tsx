@@ -5,7 +5,6 @@ import ThemedImage from '@/components/ui/themed-image';
 import SectionLabel from '@/components/ui/section-label';
 import Button from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
-import ProductHuntBadge from '@/components/landing/product-hunt-badge';
 import { trackDownload } from '@/lib/analytics';
 import { GITHUB_REPO_URL } from '@/data/links';
 import { ENGINE_COUNT } from '@/data/engines';
@@ -132,10 +131,9 @@ export default function Hero({ githubStars, latestRelease }: Props) {
                   * down states both as values in a result set, which is where
                   * a number belongs, and this line was reading them out first.
                   */}
-                <div className="flex flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="text-sm text-muted-foreground">macOS 14+ · Apple Silicon and Intel · No account</p>
-                    <ProductHuntBadge />
-                </div>
+                <p className="px-4 py-4 text-sm text-muted-foreground">
+                    macOS 14+ · Apple Silicon and Intel · No account
+                </p>
                 <FullLine />
             </Container>
 
