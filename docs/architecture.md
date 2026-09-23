@@ -64,8 +64,8 @@ Neither half of this system can answer "where did this customer come from" on
 its own. This app sees the arrival and never learns that a sale happened: the
 overlay that takes the money runs on the payment provider's domain, and the
 license is written by the backend. The backend sees the sale and never saw the
-arrival. Plausible measures visits on this domain only, so it can report the
-source of a *visit* and not the source of a *sale*.
+arrival. Google Analytics measures visits on this domain only, so it can report
+the source of a *visit* and not the source of a *sale*.
 
 `POST /checkout` is the one request in which both are in scope, so the
 acquisition source is resolved in the browser and sent in that body as an
@@ -107,7 +107,47 @@ Three things the backend end of this contract has to do:
    attribution is only worth collecting if it survives to sit beside the sale.
 
 Until that end exists, the field is sent and ignored, and the `checkout_started`
-Plausible event is the only part of this that reports anything.
+analytics event is the only part of this that reports anything.
+
+## Analytics and consent
+
+Google Analytics 4 replaced self-hosted Plausible on 2026-09-23. Plausible set no
+cookies and needed no consent; GA4 sets `_ga` and `_ga_<stream>`, which in the
+EEA and UK need the reader's permission first. So the tag runs in **Consent
+Mode**, and nothing about it is optional:
+
+1. **`app.blade.php` loads the tag with every storage type denied**, then reads
+   `tablepro:analytics-consent` from `localStorage` and grants
+   `analytics_storage` if the reader said yes before — all ahead of
+   `gtag('config')`, so a returning reader's first page view carries its
+   cookies. Until then GA receives a cookieless ping per page and sets nothing.
+2. **`ConsentBar` asks**, once, after hydration. Allow and Decline are the same
+   button at the same weight; that is a legal requirement, not a style choice.
+3. **`resources/js/lib/consent.ts` applies the answer** to the running tag and,
+   on a decline, deletes any `_ga*` cookie already written. "Cookie settings" in
+   the footer and a button in `/privacy#cookies` reopen the bar.
+
+The advertising signals (`ad_storage`, `ad_user_data`, `ad_personalization`)
+are denied for everyone, always. Nothing here advertises, and `/privacy` says so.
+
+**The account portal is the other half.** `/account`, `/checkout`, `/thank-you`
+and the newsletter pages are the platform app, on this same origin. It carries a
+copy of the tag, the bar and `consent.ts`, reads the same storage key, and so
+shares one answer with this site. Change the key, the consent defaults or the
+measurement ID in one repository and the other has to follow in the same
+release, or a reader is asked twice and counted as two users.
+
+The platform app also redacts what it sends: its pages are reached through
+signed links and order IDs, and GA — unlike Plausible — records the full URL.
+See `App\Support\AnalyticsLocation` there.
+
+Events keep the names the Plausible goals had: `download_click` (`location`,
+`platform`), `checkout_started` (`tier`, `cycle`) and
+`newsletter_signup_clicked` (`source`). GA4 stores those parameters from the
+first hit but only shows them in reports once each is registered as an
+event-scoped custom dimension under Admin → Custom definitions. Page changes
+between Inertia visits are counted by enhanced measurement's "page changes
+based on browser history events", which must stay on in the web stream.
 
 ## Working on these forms locally
 

@@ -1,10 +1,11 @@
 /**
  * Where a reader came from, kept until the moment they buy.
  *
- * Plausible already reports the source of a *visit*. What it cannot report is
- * the source of a *sale*: the sale completes on the payment provider's overlay,
- * on a domain Plausible does not measure, minutes after the click, and the
- * license is written by the TablePro backend — none of which this app can see.
+ * Google Analytics already reports the source of a *visit*. What it cannot
+ * report is the source of a *sale*: the sale completes on the payment
+ * provider's overlay, on a domain the tag does not measure, minutes after the
+ * click, and the license is written by the TablePro backend — none of which
+ * this app can see.
  *
  * `POST /checkout` is the one moment the two halves touch. So the acquisition
  * source is resolved here, in the browser, and handed over in that request
@@ -18,7 +19,8 @@
  * customer come from — so the first attributable visit wins and is never
  * overwritten while it is still inside the window below.
  *
- * Held in `localStorage` because this app has no session and sets no cookies.
+ * Held in `localStorage` because this app has no session and its server sets
+ * no cookies.
  * That storage is writable by the reader, so nothing read back from it is
  * trusted: `parseStored` rebuilds a fixed set of keys at a fixed length rather
  * than passing the parsed object through to the request body.

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
+import ConsentBar from '@/components/landing/consent-bar';
 import SupportBanner from '@/components/landing/support-banner';
 
 interface Props {
@@ -135,6 +136,13 @@ export default function LandingLayout({ header, footer, children }: Props) {
                     aria-hidden="true"
                 />
             </div>
+            {/*
+              * Last in the document, so it is the last stop in the tab order
+              * rather than one a keyboard user must pass before the skip link
+              * and the nav. It is fixed-position, so DOM order costs it nothing
+              * visually.
+              */}
+            <ConsentBar />
         </div>
     );
 }

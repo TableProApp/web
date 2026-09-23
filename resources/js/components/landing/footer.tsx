@@ -4,6 +4,7 @@ import Container from '@/components/ui/container';
 import { FullLine } from '@/components/ui/full-line';
 import { useEmailForm } from '@/hooks/use-email-form';
 import { trackEvent } from '@/lib/analytics';
+import { openConsentSettings } from '@/lib/consent';
 import { GITHUB_REPO_URL, GITHUB_SPONSORS_URL } from '@/data/links';
 
 const columns = [
@@ -70,6 +71,12 @@ const columns = [
             { label: 'Sponsor', href: GITHUB_SPONSORS_URL, external: true },
             { label: 'Privacy', href: '/privacy' },
             { label: 'Terms', href: '/terms' },
+            /*
+             * Withdrawing consent has to be as easy as giving it, so the way
+             * back to the choice sits on every page rather than only inside
+             * the privacy policy.
+             */
+            { label: 'Cookie settings', action: openConsentSettings },
         ],
     },
     {
@@ -232,13 +239,23 @@ export default function Footer() {
                             <ul className="mt-4 grid gap-3">
                                 {col.links.map((link) => (
                                     <li key={link.label}>
-                                        <a
-                                            href={link.href}
-                                            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                                            className="text-muted-foreground hover:underline"
-                                        >
-                                            {link.label}
-                                        </a>
+                                        {link.action ? (
+                                            <button
+                                                type="button"
+                                                onClick={link.action}
+                                                className="cursor-pointer text-muted-foreground hover:underline"
+                                            >
+                                                {link.label}
+                                            </button>
+                                        ) : (
+                                            <a
+                                                href={link.href}
+                                                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                                                className="text-muted-foreground hover:underline"
+                                            >
+                                                {link.label}
+                                            </a>
+                                        )}
                                     </li>
                                 ))}
                             </ul>
