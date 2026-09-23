@@ -12,11 +12,14 @@ type Size = 'sm' | 'md' | 'lg';
  * buttons ended up hand-written at four different padding scales instead.
  *
  * `secondary` takes `border-rule` so it moves with the two-weight rule system
- * rather than declaring its own black/white alphas.
+ * rather than declaring its own black/white alphas. Its hover steps up to
+ * `border-rule-strong` over a `bg-muted` fill. It had no hover state at all
+ * until the consent bar rendered it as a `<button>`: every earlier use was a
+ * link, and the link's pointer cursor had been the only feedback it gave.
  */
 const variants: Record<Variant, string> = {
     primary: 'bg-primary text-primary-foreground hover:opacity-90',
-    secondary: 'border border-rule text-foreground',
+    secondary: 'border border-rule text-foreground hover:border-rule-strong hover:bg-muted',
     ghost: 'text-muted-foreground hover:text-foreground',
 };
 
@@ -39,8 +42,14 @@ const sizes: Record<Size, string> = {
  */
 export function buttonClasses(variant: Variant = 'primary', size: Size = 'md', className?: string): string {
     return cn(
-        'inline-flex items-center justify-center gap-2 rounded-full font-semibold',
-        'transition-opacity duration-(--dur-tap) ease-(--ease-feedback)',
+        /*
+         * `cursor-pointer` because Tailwind v4's preflight leaves `<button>` on
+         * the default arrow. A link gets the pointer from the browser, so
+         * without this the same pill read as clickable or not depending on
+         * which element it rendered as.
+         */
+        'inline-flex cursor-pointer items-center justify-center gap-2 rounded-full font-semibold',
+        'transition-[opacity,background-color,border-color] duration-(--dur-tap) ease-(--ease-feedback)',
         variants[variant],
         sizes[size],
         className,
