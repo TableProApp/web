@@ -130,6 +130,21 @@ it('weighs Allow and Decline the same', function () use ($readSource): void {
     Assert::assertSame($props[0], $props[1], 'Allow and Decline must be styled identically');
 });
 
+/*
+ * The bar's buttons were the first secondary `Button`s to render as `<button>`
+ * rather than `<a>`, and they showed an arrow cursor and no hover: Tailwind v4
+ * leaves buttons on the default cursor, and the variant had no hover because
+ * a link's pointer had always stood in for one.
+ */
+it('makes the Allow and Decline buttons look clickable', function () use ($readSource): void {
+    $button = $readSource('resources/js/components/ui/button.tsx');
+
+    preg_match("/secondary: '([^']+)'/", $button, $secondary);
+
+    expect($button)->toMatch("/'inline-flex cursor-pointer /");
+    expect($secondary[1] ?? '')->toContain('hover:');
+});
+
 it('tells readers which cookies analytics sets and how to take consent back', function () use ($readSource): void {
     $privacy = $readSource('resources/js/pages/Privacy.tsx');
 
