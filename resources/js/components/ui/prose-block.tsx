@@ -8,13 +8,15 @@ import { FullLine } from '@/components/ui/full-line';
  * byte-identical local copy, which is two places for one rule to drift and two
  * places to fix when it does.
  *
- * The heading is an h2 because these sit under the page's single h1.
+ * The heading is an h2 because these sit under the page's single h1. `id`
+ * makes a block linkable — the consent bar points at `/privacy#cookies` — and
+ * the global `scroll-padding-top` keeps the heading clear of the fixed header.
  */
-export function ProseBlock({ title, children }: { title: string; children: ReactNode }) {
+export function ProseBlock({ title, id, children }: { title: string; id?: string; children: ReactNode }) {
     return (
         <>
             <FullLine />
-            <div className="p-6 sm:p-8">
+            <div id={id} className="p-6 sm:p-8">
                 <h2 className="text-xl font-bold text-foreground sm:text-2xl">{title}</h2>
                 <div className="mt-4">{children}</div>
             </div>

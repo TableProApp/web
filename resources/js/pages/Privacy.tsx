@@ -8,6 +8,7 @@ import { FullLine } from '@/components/ui/full-line';
 import { Bullet, ProseBlock } from '@/components/ui/prose-block';
 import { PROSE_LINK } from '@/components/ui/prose-link';
 import { ITEM_TITLE } from '@/components/ui/grid-cell';
+import { openConsentSettings } from '@/lib/consent';
 
 interface Props {
     downloadUrls: { arm64: string; x86_64: string };
@@ -178,13 +179,14 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No connection credentials</strong>. Passwords and private keys stay in the Keychain on whichever device you entered them.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No personal information in either app</strong> beyond the email used at purchase.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No crash reports</strong> sent to any third party.</span></li>
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No third-party trackers</strong>. No Google Analytics, Mixpanel, Sentry, or similar SDK in either app.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No third-party trackers in the apps</strong>. No Google Analytics, Mixpanel, Sentry, or similar SDK in the Mac or iPhone app. The Website uses Google Analytics, and sets its cookies only if you allow it; see section 13.</span></li>
                         </ul>
                     </ProseBlock>
 
                     <ProseBlock title="4. How We Use Information">
                         <ul className="space-y-3 text-sm text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Anonymous analytics</strong>: understand which app versions, OS versions, and database types our users run, to prioritise compatibility and bug fixes.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Website analytics</strong>: see which pages, links, and downloads bring people to TablePro, to decide what to write and where to put it.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">License validation</strong>: confirm a License Key is valid and active.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Updates</strong>: deliver new versions of the Application.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Customer support</strong>: respond to questions and refund requests.</span></li>
@@ -198,7 +200,7 @@ export default function Privacy({ downloadUrls }: Props) {
                         <ul className="mt-3 space-y-3 text-sm text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Contract (Art. 6(1)(b))</strong>: processing payment, providing the License Key, account portal access.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Legitimate interest (Art. 6(1)(f))</strong>: anonymous analytics, abuse detection, server logs, retention of business records.</span></li>
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Consent (Art. 6(1)(a))</strong>: newsletter subscriptions, optional features you enable.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Consent (Art. 6(1)(a))</strong>: newsletter subscriptions, Google Analytics cookies on the Website, optional features you enable.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Legal obligation (Art. 6(1)(c))</strong>: tax records, responses to lawful requests.</span></li>
                         </ul>
                     </ProseBlock>
@@ -209,7 +211,7 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">LemonSqueezy</strong> or <strong className="text-foreground">Polar</strong>: payment processing for License Key purchases.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Email delivery providers</strong>: transactional emails (magic links, receipts, newsletter). We use providers that do not sell or share contact data.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Hosting providers</strong>: server infrastructure for the Website, account portal, and analytics endpoint.</span></li>
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Plausible Analytics (self-hosted)</strong>: aggregate, cookie-less Website analytics. No personal identifiers, no IP storage.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Google Analytics</strong> (Google Ireland Limited and Google LLC): Website and account portal analytics. The tag loads on every page, but until you allow analytics cookies it sends only a cookieless ping per page, with no identifier stored on your device. Advertising storage, ad personalisation, and ad user data are always denied. Google states that Google Analytics 4 does not log or store IP addresses.</span></li>
                         </ul>
                         <p className="mt-4 text-sm text-muted-foreground">
                             We do not sell, rent, or share personal data with advertisers.
@@ -218,7 +220,7 @@ export default function Privacy({ downloadUrls }: Props) {
 
                     <ProseBlock title="7. International Data Transfers">
                         <p className="text-sm text-muted-foreground">
-                            Our servers operate in multiple regions. When you interact with TablePro, your data may be transferred to or processed in countries outside your own. Where required, transfers from the EEA / UK rely on Standard Contractual Clauses or other approved mechanisms.
+                            Our servers operate in multiple regions. When you interact with TablePro, your data may be transferred to or processed in countries outside your own. Where required, transfers from the EEA / UK rely on Standard Contractual Clauses or other approved mechanisms. Google processes Website analytics data in the United States under the EU-US Data Privacy Framework and its Standard Contractual Clauses.
                         </p>
                     </ProseBlock>
 
@@ -227,6 +229,7 @@ export default function Privacy({ downloadUrls }: Props) {
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Anonymous analytics</strong>: aggregated indefinitely; the SHA-256 machine ID has no link to your identity.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Account and license data</strong>: kept while your license is active and for up to 7 years afterward for tax and audit purposes.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Newsletter subscribers</strong>: until you unsubscribe.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Website analytics</strong>: Google Analytics keeps event data for at most 14 months. Its cookies expire after 2 years, or immediately when you decline.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Server logs</strong>: 90 days.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Support emails</strong>: 2 years from the last interaction.</span></li>
                         </ul>
@@ -271,16 +274,26 @@ export default function Privacy({ downloadUrls }: Props) {
                         </p>
                     </ProseBlock>
 
-                    <ProseBlock title="13. Website Cookies and Browser Storage">
+                    <ProseBlock title="13. Website Cookies and Browser Storage" id="cookies">
                         <p className="text-sm text-muted-foreground">
-                            The marketing site sets two functional cookies and keeps a few values in your browser's own storage. No advertising, no profiles, no cross-site tracking, and nothing here is sold or handed to an advertiser.
+                            The Website and account portal set a few cookies and keep a few values in your browser's own storage. Only the Google Analytics cookies need your consent, and they are not set until you give it. Nothing here is used for advertising, sold, or handed to an advertiser.
                         </p>
                         <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">_ga</strong> and <strong className="text-foreground">_ga_&lt;ID&gt;</strong> (cookies, 2 years, only if you allow analytics): Google Analytics' random identifier for your browser and the state of your current visit, which let it tell a returning visit from a new one and link the pages of one visit together. Declining, or changing your answer later, deletes them. Lawful basis: consent.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">tablepro:analytics-consent</strong> (local storage, until you clear it): your answer to the analytics question, so you are not asked on every page. It is shared by the Website and the account portal. Lawful basis: strictly necessary to honour your choice.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">tablepro-session</strong> and <strong className="text-foreground">XSRF-TOKEN</strong> (cookies, account portal, until you sign out or the session expires): keep you signed in and protect the portal's forms against cross-site request forgery. Lawful basis: strictly necessary to provide the account portal.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">nl_dismissed_at</strong> (cookie, 90 days): records when you dismissed the newsletter prompt so we don't reshow it. Lawful basis: legitimate interest.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">nl_subscribed</strong> (cookie, 365 days): records that you subscribed so we don't reprompt. Lawful basis: legitimate interest, performance of a subscription you initiated.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">theme</strong> and <strong className="text-foreground">tablepro:banner-dismissed</strong> (local storage, until you clear it): remember whether you chose light or dark, and which announcement bar you closed. Lawful basis: legitimate interest.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">tablepro:attribution</strong> (local storage, 90 days): records how you first reached this site — the campaign tags on the link you followed, or the site that linked to us, and the page you landed on. If you buy a license it is sent with that purchase so we know which writing and which links pay for the work. It holds no identifier of you, it is never read on any other site, and clearing your browser storage removes it.</span></li>
                         </ul>
+                        <p className="mt-4 text-sm text-muted-foreground">
+                            You can change or withdraw your answer at any time with <strong className="text-foreground">Cookie settings</strong> in the footer of every page, or here:{' '}
+                            <button type="button" onClick={openConsentSettings} className={`cursor-pointer ${PROSE_LINK}`}>
+                                change your analytics choice
+                            </button>
+                            .
+                        </p>
                     </ProseBlock>
 
                     <ProseBlock title="14. Local Storage on Your Device">

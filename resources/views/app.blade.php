@@ -94,9 +94,37 @@
     @else
         <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
     @endif
-    @if(config('analytics.plausible.domain'))
-        <script defer data-domain="{{ config('analytics.plausible.domain') }}" src="{{ config('analytics.plausible.script_url') }}"></script>
-        <script>window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+    @if(config('analytics.google.measurement_id'))
+        {{--
+            Google Analytics 4 in Consent Mode. The tag loads for everyone, but
+            with analytics storage denied it sets no cookie and sends only a
+            cookieless ping — until the reader allows it in the consent bar.
+
+            The order is the contract: `consent default` must precede `config`,
+            and the stored choice is applied in between, so a reader who allowed
+            analytics on an earlier visit has their first page view counted with
+            cookies rather than as a stranger. The storage key is shared with
+            `resources/js/lib/consent.ts` and with the account portal, which
+            lives on this same origin and so reads the same choice.
+        --}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('analytics.google.measurement_id') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('consent', 'default', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                analytics_storage: 'denied',
+            });
+            try {
+                if (localStorage.getItem('tablepro:analytics-consent') === 'granted') {
+                    gtag('consent', 'update', { analytics_storage: 'granted' });
+                }
+            } catch (e) {}
+            gtag('js', new Date());
+            gtag('config', @json(config('analytics.google.measurement_id')));
+        </script>
     @endif
     @if(config('services.crisp.website_id'))
         <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="{{ config('services.crisp.website_id') }}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>

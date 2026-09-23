@@ -3,21 +3,24 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Plausible Analytics
+    | Google Analytics 4
     |--------------------------------------------------------------------------
     |
-    | Self-hosted Plausible. Set PLAUSIBLE_DOMAIN to the site identifier you
-    | configured in your Plausible dashboard (typically the bare domain, e.g.
-    | "tablepro.app"). Set PLAUSIBLE_SCRIPT_URL to the script endpoint of your
-    | Plausible host (e.g. "https://plausible.tablepro.app/js/script.js").
+    | Set GOOGLE_ANALYTICS_ID to the web stream's measurement ID (G-XXXXXXXXXX).
+    | The account portal at /account is a separate application on the same
+    | origin and carries its own copy of this setting; both must name the same
+    | stream, or a reader who crosses from one to the other becomes two users.
     |
-    | When PLAUSIBLE_DOMAIN is empty the script tag is not rendered, so dev
-    | and staging environments stay clean by default.
+    | The tag loads in Consent Mode with analytics storage denied, so no cookie
+    | is set until the reader allows it — see "Analytics and consent" in
+    | docs/architecture.md.
+    |
+    | When GOOGLE_ANALYTICS_ID is empty the tag is not rendered, so dev and
+    | staging environments stay clean by default.
     |
     */
 
-    'plausible' => [
-        'domain' => env('PLAUSIBLE_DOMAIN'),
-        'script_url' => env('PLAUSIBLE_SCRIPT_URL', 'https://plausible.io/js/script.js'),
+    'google' => [
+        'measurement_id' => env('GOOGLE_ANALYTICS_ID'),
     ],
 ];

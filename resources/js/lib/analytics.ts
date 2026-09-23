@@ -1,27 +1,35 @@
 /**
- * Plausible events, for the handful of places worth counting.
+ * Google Analytics events, for the handful of places worth counting.
  *
  * Extracted from `footer-cta.tsx`, where it sat as a private function and so
  * could only ever instrument the newsletter form. The page offers five routes
  * to `/download` and none of them were counted, which meant no argument about
  * where a call to action belongs could be settled with anything but taste.
  *
- * Silent when Plausible is absent — the script is not loaded in development and
- * an analytics helper must never be the reason a button stops working.
+ * The names and parameters are the ones the Plausible goals used, so the two
+ * series read as one across the switch. GA4 records the parameters regardless,
+ * but shows them in reports only once each is registered as an event-scoped
+ * custom dimension — see "Analytics and consent" in docs/architecture.md.
+ *
+ * Consent is not this function's concern. `gtag` exists whenever the tag is
+ * configured; Consent Mode decides whether the event carries cookies.
+ *
+ * Silent when the tag is absent — it is not loaded in development and an
+ * analytics helper must never be the reason a button stops working.
  */
-interface PlausibleWindow {
-    plausible?: (event: string, options?: { props?: Record<string, string> }) => void;
+interface GtagWindow {
+    gtag?: (command: 'event', name: string, params: Record<string, string>) => void;
 }
 
-export function trackEvent(name: string, props: Record<string, string> = {}): void {
+export function trackEvent(name: string, params: Record<string, string> = {}): void {
     if (typeof window === 'undefined') {
         return;
     }
 
-    const plausible = (window as unknown as PlausibleWindow).plausible;
+    const gtag = (window as unknown as GtagWindow).gtag;
 
-    if (typeof plausible === 'function') {
-        plausible(name, { props });
+    if (typeof gtag === 'function') {
+        gtag('event', name, params);
     }
 }
 

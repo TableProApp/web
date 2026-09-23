@@ -55,9 +55,9 @@ export const BANNER_STORAGE_KEY = 'tablepro:banner-dismissed';
  *
  * **It can be closed, and stays closed.** Dismissal writes the config's version
  * to `localStorage` — the browser is the only place it can live, because this
- * domain has no session and no cookies. Reach is a first-impression property,
- * so nothing is lost by letting a reader who has already read it, or already
- * paid, put it away.
+ * app has no session and its server sets no cookies. Reach is a
+ * first-impression property, so nothing is lost by letting a reader who has
+ * already read it, or already paid, put it away.
  *
  * Visibility is entirely CSS. The element renders whenever the config enables
  * it and `html.has-banner` decides whether it is seen, which is what lets the

@@ -61,8 +61,8 @@ return [
      * Bump to re-show the banner to readers who dismissed the previous message.
      *
      * Stored as `tablepro:banner-dismissed` in `localStorage` with this value.
-     * There is no session and no cookie on this domain, so the browser is the
-     * only place a dismissal can live.
+     * There is no session on this domain and the server sets no cookie, so the
+     * browser is the only place a dismissal can live.
      */
     'version' => env('BANNER_VERSION', '1'),
 
