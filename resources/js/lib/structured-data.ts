@@ -42,8 +42,16 @@ export function buildOrganizationJsonLd(baseUrl: string): object {
             width: 256,
             height: 256,
         },
+        /*
+         * Two apps, not one, and the engine count belongs to the Mac.
+         *
+         * This used to read "a native database client for macOS, iPadOS and iOS
+         * covering N engines", which attached the Mac's grid to the phone. The
+         * iPhone app offers ten in its connection form, so the old sentence
+         * overstated it by the better part of twenty.
+         */
         description:
-            `TablePro builds a native database client for macOS, iPadOS and iOS covering ${ENGINE_COUNT} engines, released as open source under AGPLv3.`,
+            `TablePro builds native database clients for macOS, iOS and iPadOS, released as open source under AGPLv3. The Mac app covers ${ENGINE_COUNT} engines.`,
         // All five profiles the footer links, not two of them.
         sameAs: [
             GITHUB_REPO_URL,

@@ -6,10 +6,15 @@ use PHPUnit\Framework\Assert;
  * The paid surface, and how much reading the homepage asks for.
  *
  * Two failures this file exists to catch. The first is the one that shipped:
- * `ProFeature.swift` in the app gates nine features, seven Starter and two
+ * `ProFeature.swift` in the app gates ten features, eight Starter and two
  * Team, and this site named four of them and said "a license adds four things"
  * in two places. Compare & Sync, Query Insights, Result Charts and Linked
  * Folders appeared nowhere on the domain.
+ *
+ * The count moved from nine to ten on 2026-09-22, when Data Rewind was found
+ * gated in the app and missing from this site — the same failure again, caught
+ * by reading the enum rather than by this test, which can only pin a number
+ * somebody has already checked.
  *
  * The second is the reason that copy grew wrong in the first place: the paid
  * list was written into prose in three files, so keeping it true meant editing
@@ -43,19 +48,21 @@ it('carries every feature the app gates, split the way the app splits them', fun
     $features = paidFeatures();
 
     /*
-     * Nine, seven, two. Taken from `ProFeature.swift`: `requiredTier` returns
+     * Ten, eight, two. Taken from `ProFeature.swift`: `requiredTier` returns
      * `.starter` for iCloudSync, encryptedExport, envVarReferences,
-     * linkedFolders, queryInsights, resultCharts and compareSync, and `.team`
-     * for teamCatalog and teamLibrary.
+     * linkedFolders, queryInsights, resultCharts, compareSync and dataRewind,
+     * and `.team` for teamCatalog and teamLibrary.
      *
      * Nothing in this repository can read that enum, so these counts are the
      * whole guard: adding a case there and forgetting this file fails here.
+     * That is exactly what happened to dataRewind, which gated in the app while
+     * this list still held nine.
      */
-    expect($features)->toHaveCount(9, 'ProFeature has nine cases; license.ts must list all nine');
+    expect($features)->toHaveCount(10, 'ProFeature has ten cases; license.ts must list all ten');
 
     $tiers = array_count_values(array_column($features, 'tier'));
 
-    expect($tiers['starter'] ?? 0)->toBe(7);
+    expect($tiers['starter'] ?? 0)->toBe(8);
     expect($tiers['team'] ?? 0)->toBe(2);
 
     // Names are `ProFeature.displayName` verbatim, so the app's paywall overlay
@@ -64,6 +71,7 @@ it('carries every feature the app gates, split the way the app splits them', fun
         'Compare & Sync',
         'Query Insights',
         'Result Charts',
+        'Data Rewind',
         'iCloud Sync',
         'Linked Folders',
         'Encrypted Export',
@@ -104,7 +112,7 @@ it('never revives the claim that a license adds four things', function (): void 
         Assert::assertStringNotContainsString(
             'adds four things',
             $code,
-            "{$source} says a license adds four things; ProFeature gates nine",
+            "{$source} says a license adds four things; ProFeature gates ten",
         );
     }
 });

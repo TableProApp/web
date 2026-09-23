@@ -30,7 +30,7 @@ export default function Privacy({ downloadUrls }: Props) {
                 <PageHeader
                     label="Legal"
                     headline="Privacy Policy"
-                    lede="Last updated: May 2026"
+                    lede="Last updated: September 2026"
                 />
 <div className="h-6 sm:h-8 lg:h-10" />
 
@@ -54,35 +54,93 @@ export default function Privacy({ downloadUrls }: Props) {
                     </ProseBlock>
 
                     <ProseBlock title="2. What We Collect">
-                        <h3 className={ITEM_TITLE}>Anonymous usage analytics (desktop app)</h3>
+                        <h3 className={ITEM_TITLE}>Anonymous usage analytics (Mac app)</h3>
                         <p className="mt-3 text-sm text-muted-foreground">
-                            The Application can send anonymous usage analytics. It is{' '}
+                            The Mac app can send anonymous usage analytics. It is{' '}
                             <strong className="text-foreground">enabled by default</strong> and can be turned off in{' '}
                             <strong className="text-foreground">Settings &gt; General &gt; "Share anonymous usage data"</strong>.
                         </p>
                         <p className="mt-3 text-sm text-muted-foreground">
-                            When enabled, a 24-hour heartbeat sends three things to{' '}
+                            When enabled, a 24-hour heartbeat sends the following to{' '}
                             <code className="rounded-key bg-muted px-1.5 py-0.5 text-xs text-foreground">https://api.tablepro.app/v1/analytics</code>:
                         </p>
                         <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Anonymous machine ID</strong>: SHA-256 hash of your hardware UUID. The raw UUID is never sent.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Environment</strong>: app version, macOS version, CPU architecture (arm64/x86_64), language.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Usage</strong>: which database engine types you connect to (e.g. "mysql", "postgresql") and the number of open connections.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">First-use dates</strong>: when the app was first launched, first connected, and first ran a query, plus whether a License Key is present.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">Update settings</strong>: how updates install and how often the app checks, read from Sparkle. The iPhone and iPad app sends neither; it has no updater.</span></li>
                         </ul>
                         <p className="mt-4 text-sm text-muted-foreground">
                             That's it. No connection details, no hosts, no credentials, no queries, no database contents. All payloads are signed with HMAC-SHA256.
                         </p>
 
-                        <h3 className="mt-8 text-base font-semibold text-foreground">Update checks</h3>
+                        {/*
+                          * A separate subsection, not a clause bolted onto the
+                          * Mac one, because the default is inverted between the
+                          * two platforms. Saying "a toggle in Settings" without
+                          * naming the default is true of both and useful for
+                          * neither — and getting it backwards on iOS is the
+                          * kind of error Apple's privacy label is checked
+                          * against, since the App Store listing is what a
+                          * reviewer reads this page beside.
+                          */}
+                        <h3 className="mt-8 text-base font-semibold text-foreground">Anonymous usage analytics (iPhone and iPad app)</h3>
                         <p className="mt-3 text-sm text-muted-foreground">
-                            The Application uses{' '}
-                            <a href="https://sparkle-project.org" target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>Sparkle</a> to check for updates. This sends your{' '}
-                            <strong className="text-foreground">app version</strong>, <strong className="text-foreground">macOS version</strong>, and <strong className="text-foreground">CPU architecture</strong> to our update server. Update checks cannot be disabled separately.
+                            The iPhone and iPad app sends the same heartbeat to the same endpoint, but it is{' '}
+                            <strong className="text-foreground">off by default</strong>. Nothing is sent unless you
+                            choose "Share Usage Data" during first run, or turn it on later in Settings. The device
+                            identifier is a SHA-256 hash of the vendor identifier Apple gives the app, not your
+                            hardware UUID, and the report carries no update settings, because the App Store handles
+                            updates and the app has no updater of its own.
+                        </p>
+                        <p className="mt-3 text-sm text-muted-foreground">
+                            Turning it off stops anything being sent. The first-use dates and the connection counter
+                            are still recorded on the device itself, where they stay.
                         </p>
 
-                        <h3 className="mt-8 text-base font-semibold text-foreground">License validation</h3>
+                        <h3 className="mt-8 text-base font-semibold text-foreground">Update checks (Mac app only)</h3>
                         <p className="mt-3 text-sm text-muted-foreground">
-                            If you have entered a paid License Key, the Application sends the License Key to our server when it starts and periodically afterward to confirm it is valid. No other data is sent in that request.
+                            The Mac app uses{' '}
+                            <a href="https://sparkle-project.org" target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>Sparkle</a> to check for updates. This sends your{' '}
+                            <strong className="text-foreground">app version</strong>, <strong className="text-foreground">macOS version</strong>, and <strong className="text-foreground">CPU architecture</strong> to our update server. Update checks cannot be disabled separately. The iPhone and iPad app has no updater: the App Store handles that, and we are not told about it.
+                        </p>
+
+                        <h3 className="mt-8 text-base font-semibold text-foreground">License validation (Mac app only)</h3>
+                        <p className="mt-3 text-sm text-muted-foreground">
+                            If you have entered a paid License Key, the Mac app sends the License Key to our server when it starts and periodically afterward to confirm it is valid. No other data is sent in that request. The iPhone and iPad app contains no licensing code at all and never makes this request.
+                        </p>
+
+                        {/*
+                          * The one thing this page did not say and had to.
+                          *
+                          * "Your hosts and usernames never leave your machine"
+                          * is the claim a reader takes away from section 3, and
+                          * with iCloud Sync switched on it is not true: the
+                          * Connection record carries host, port, username and
+                          * database name. It goes to the reader's own private
+                          * CloudKit database and never to us, which is the
+                          * distinction worth drawing — "off-device" and "sent
+                          * to TablePro" are different claims and the page was
+                          * collapsing them.
+                          */}
+                        <h3 className="mt-8 text-base font-semibold text-foreground">iCloud sync</h3>
+                        <p className="mt-3 text-sm text-muted-foreground">
+                            iCloud sync is <strong className="text-foreground">off by default</strong> on both apps.
+                            With it on, your connections, groups and tags are stored in your own private iCloud
+                            database — under your Apple Account, not ours. The connection record includes the host,
+                            port, username and database name. We cannot read any of it.
+                        </p>
+                        <p className="mt-3 text-sm text-muted-foreground">
+                            Passwords are a second, separate switch inside it and travel through iCloud Keychain,
+                            which is end-to-end encrypted. Database contents are never synced.
+                        </p>
+                        <p className="mt-3 text-sm text-muted-foreground">
+                            Saved queries are. With iCloud Sync on, the Mac stores the SQL text of each saved query
+                            in your private iCloud database, and a connection's startup commands travel inside its
+                            own record. Ten record types sync from the Mac in all. The iPhone and iPad app syncs
+                            three — connections, groups and tags — so saved queries, SSH profiles and app settings
+                            never leave the Mac.
                         </p>
 
                         <h3 className="mt-8 text-base font-semibold text-foreground">License purchase and account portal</h3>
@@ -95,9 +153,17 @@ export default function Privacy({ downloadUrls }: Props) {
                             uses magic-link authentication. We store your email and an authentication token for that purpose.
                         </p>
 
-                        <h3 className="mt-8 text-base font-semibold text-foreground">Newsletter and beta signup</h3>
+                        {/*
+                          * "and beta signup" went with the TestFlight programme
+                          * on 2026-09-22, when the iPhone app shipped on the App
+                          * Store. The site no longer has anywhere to apply for
+                          * beta access, so a clause describing what we do with
+                          * that email address described a collection that no
+                          * longer happens.
+                          */}
+                        <h3 className="mt-8 text-base font-semibold text-foreground">Newsletter</h3>
                         <p className="mt-3 text-sm text-muted-foreground">
-                            If you subscribe to the newsletter or apply for beta access, we store your email address for that purpose only. You can unsubscribe at any time from any email we send.
+                            If you subscribe to the newsletter, we store your email address for that purpose only. You can unsubscribe at any time from any email we send.
                         </p>
 
                         <h3 className="mt-8 text-base font-semibold text-foreground">Server logs</h3>
@@ -108,11 +174,11 @@ export default function Privacy({ downloadUrls }: Props) {
 
                     <ProseBlock title="3. What We Do Not Collect">
                         <ul className="space-y-3 text-sm text-muted-foreground">
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No database contents or queries</strong>. SQL you write and data you fetch never leave your machine.</span></li>
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No connection credentials</strong>. Database hosts, usernames, and passwords stay in the macOS Keychain.</span></li>
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No personal information in the desktop app</strong> beyond the email used at purchase.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No database contents or queries</strong> reach us. SQL you run and rows you fetch never go to a TablePro server. If you turn on iCloud Sync, the Mac puts your <em>saved</em> queries in your own iCloud — see below.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No connection credentials</strong>. Passwords and private keys stay in the Keychain on whichever device you entered them.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No personal information in either app</strong> beyond the email used at purchase.</span></li>
                             <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No crash reports</strong> sent to any third party.</span></li>
-                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No third-party trackers</strong>. No Google Analytics, Mixpanel, Sentry, or similar SDK in the desktop app.</span></li>
+                            <li className="flex items-start gap-2"><Bullet /><span><strong className="text-foreground">No third-party trackers</strong>. No Google Analytics, Mixpanel, Sentry, or similar SDK in either app.</span></li>
                         </ul>
                     </ProseBlock>
 

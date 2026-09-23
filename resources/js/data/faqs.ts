@@ -25,7 +25,7 @@ export interface FaqItem {
 export const faqs: FaqItem[] = [
     {
         question: 'Is it really free, or free for now?',
-        answer: `Free, permanently. TablePro is AGPLv3 and the whole app works without a license, with no trial countdown and no per-Mac limit. All ${ENGINE_COUNT} databases, the SQL editor, the data grid, the AI assistant, the MCP server, Safe Mode with Touch ID, SSH tunnels, ER diagrams and XLSX export cost nothing. Starter adds seven: Compare & Sync, Query Insights, result charts, iCloud Sync, Linked Folders, encrypted connection export, and environment variables in connection fields. Team adds two more, the Team Catalog and the Team Library.`,
+        answer: `Free, permanently. TablePro is AGPLv3 and the whole app works without a license, with no trial countdown and no per-Mac limit. All ${ENGINE_COUNT} databases, the SQL editor, the data grid, the AI assistant, the MCP server, Safe Mode with Touch ID, SSH tunnels, ER diagrams and XLSX export cost nothing. Starter adds eight: Compare & Sync, Query Insights, result charts, Data Rewind, iCloud Sync, Linked Folders, encrypted connection export, and environment variables in connection fields. Team adds two more, the Team Catalog and the Team Library. The iPhone and iPad app is free outright and gates nothing.`,
     },
     {
         question: 'Can I use TablePro at work under AGPLv3?',
@@ -59,7 +59,7 @@ export const faqs: FaqItem[] = [
     },
     {
         question: 'Windows or Linux?',
-        answer: 'macOS 14 or later and iOS 18 or later today. A native Linux app is being built in Rust with GTK4, with PostgreSQL, MySQL, SQLite and SQL Server working already, but it is not ready for a beta and there is nothing to install yet. There is no Windows version.',
+        answer: 'macOS 14 or later, and iOS or iPadOS 18 or later. A native Linux app is being built in Rust with GTK4, with PostgreSQL, MySQL, SQLite and SQL Server working already, but it is not ready for a beta and there is nothing to install yet. There is no Windows version.',
     },
     {
         question: 'Do I need to pay for the AI features?',
@@ -67,11 +67,11 @@ export const faqs: FaqItem[] = [
     },
     {
         question: 'Does it phone home?',
-        answer: 'There is no account and no login. Anonymous usage data is a single toggle in Settings and contains no personal data and no queries. iCloud Sync is off by default, and syncing passwords is a separate opt in inside it. The source is public, so you can check.',
+        answer: 'There is no account and no login. Anonymous usage data is a single toggle in Settings, and it carries no hostnames, usernames, passwords, queries or rows. The default differs by platform: on the Mac it is on and you can turn it off, on iPhone and iPad it is off until you turn it on during first run. iCloud Sync is off by default on both, and syncing passwords is a separate opt in inside it. The source is public, so you can check.',
     },
     {
         question: 'How many Macs does one license cover?',
-        answer: 'Starter activates two Macs. Team activates five as a minimum, then one per purchased seat. Activation is bound to a hashed hardware ID, the list shows every activated machine, and Deactivate frees the slot. Activations never sync, and a license restored from another Mac backup is cleared on launch.',
+        answer: 'Starter activates two Macs. Team activates five as a minimum, then one per purchased seat. Activation is bound to a hashed hardware ID, the list shows every activated machine, and Deactivate frees the slot. Activations never sync, and a license restored from another Mac backup is cleared on launch. An iPhone or iPad never takes a slot: the mobile app has no licensing in it at all.',
     },
     {
         question: 'Does it work offline?',
@@ -79,10 +79,10 @@ export const faqs: FaqItem[] = [
     },
     {
         question: 'What happens when my subscription ends?',
-        answer: 'The app keeps working. iCloud Sync stops and the Starter and Team screens show an activation overlay again. Your local connections, queries, favorites and settings are untouched.',
+        answer: 'The Mac app keeps working. iCloud Sync pauses there and the Starter and Team screens show an activation overlay again. Your local connections, queries, favorites and settings are untouched. Nothing changes on iPhone or iPad, which keeps syncing its own connections, groups and tags — it simply stops hearing from a Mac that has paused.',
     },
     {
         question: 'Is there an iPhone app?',
-        answer: 'Yes, for iOS and iPadOS 18 or later. Seven engines on device, SSH tunnels, Face ID lock, Handoff with your Mac, and Shortcuts actions that insert rows without opening the app. It shares your iCloud connections, groups and tags. It is a companion to the Mac app, not a copy of it: no plugin registry, no AI chat, no MCP server and no ER diagrams.',
+        answer: 'Yes, free on the App Store, for iPhone and iPad running iOS or iPadOS 18 or later. The connection form offers MySQL, MariaDB, TiDB, OceanBase, PostgreSQL, SQLite, DuckDB, Redis, SQL Server and Oracle, with SSH tunnels, SSL, Face ID and Handoff, and Shortcuts actions that add a row without opening the app. It syncs connections, groups and tags with your Mac over iCloud. It is a companion to the Mac app, not a copy of it: no plugin registry, no AI chat, no MCP server, no ER diagrams and no saved queries. There is more detail at tablepro.app/ios.',
     },
 ];

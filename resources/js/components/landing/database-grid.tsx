@@ -8,7 +8,7 @@ import DatabaseMark from '@/components/ui/database-mark';
 import SectionShell from '@/components/ui/section-shell';
 import { CELL_DENSITY, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
 import { GITHUB_REPO_URL } from '@/data/links';
-import { BUNDLED_ENGINE_COUNT, ENGINE_COUNT, ON_DEMAND_ENGINE_COUNT } from '@/data/engines';
+import { BUNDLED_ENGINE_COUNT, DRIVER_PLUGIN_COUNT, ENGINE_COUNT, ON_DEMAND_ENGINE_COUNT } from '@/data/engines';
 
 interface DatabaseTile {
     name: string;
@@ -328,10 +328,21 @@ export default function DatabaseGrid() {
               * row folded in here because it is a reassurance about the parts
               * list, not a second subject.
               */}
+            {/*
+              * Interpolated, not spelled out.
+              *
+              * This read "Twenty six tiles, twenty five drivers" until
+              * 2026-09-22, against a grid holding 29 and a driver count of 23.
+              * It survived `EngineCountTest` for the length of its life because
+              * that guard matches a digit beside "tiles" or "drivers", and a
+              * number written as a word is invisible to it. Numerals here come
+              * from `engines.ts` so the sentence cannot drift from the grid a
+              * reader can count two rows up.
+              */}
             <FootNote>
-                Twenty six tiles, twenty five drivers: Cassandra and ScyllaDB share one. Underneath are libpq,
-                libmariadb, hiredis, libmongoc, libcassandra, FreeTDS and OracleNIO, with Teradata and Trino speaking
-                their wire protocols in pure Swift.
+                {ENGINE_COUNT} tiles over {DRIVER_PLUGIN_COUNT} driver plugins: one driver can serve several engines.
+                Underneath are libpq, libmariadb, hiredis, libmongoc, libcassandra, FreeTDS and OracleNIO, with
+                Teradata and Trino speaking their wire protocols in pure Swift.
             </FootNote>
         </SectionShell>
     );

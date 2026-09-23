@@ -13,14 +13,21 @@ use Illuminate\Support\Facades\Route;
 | under resources/blog, JSON under resources/data, and React pages under
 | resources/js/pages. Nothing below touches a database or a secret.
 |
-| The paths this app deliberately does NOT serve — checkout, accounts, the
-| newsletter and beta signup — are handled by the TablePro backend. See
-| docs/architecture.md.
+| The paths this app deliberately does NOT serve — checkout, accounts and the
+| newsletter — are handled by the TablePro backend. See docs/architecture.md.
 |
 */
 
 Route::get('/', [LandingController::class, 'home'])->name('landing.home');
 Route::get('/download', [LandingController::class, 'download'])->name('landing.download');
+/*
+ * Declared here, with the other static pages, rather than near the `/{slug}`
+ * catch-all below. Order is not load-bearing — Laravel compiles each `where()`
+ * into the route's own regex and skips a route that does not match, which is
+ * why `/robots.txt` still resolves from below the catch-all — but `ios` is not
+ * a database slug and must never be added to that alternation.
+ */
+Route::get('/ios', [LandingController::class, 'ios'])->name('landing.ios');
 Route::get('/privacy', [LandingController::class, 'privacy'])->name('landing.privacy');
 Route::get('/terms', [LandingController::class, 'terms'])->name('landing.terms');
 Route::get('/refund-policy', [LandingController::class, 'refundPolicy'])->name('landing.refundPolicy');

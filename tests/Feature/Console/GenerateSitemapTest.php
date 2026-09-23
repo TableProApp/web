@@ -61,6 +61,7 @@ it('only includes URLs derived from the data files plus the static landing pages
         $baseUrl . '/',
         $baseUrl . '/blog',
         $baseUrl . '/download',
+        $baseUrl . '/ios',
         $baseUrl . '/privacy',
         $baseUrl . '/terms',
         $baseUrl . '/refund-policy',

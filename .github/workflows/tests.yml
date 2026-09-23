@@ -156,10 +156,21 @@ jobs:
           cat /tmp/ssr.log >&2 || true
           exit 1
 
+      # The whole suite, not one file.
+      #
+      # This ran only HomepageRenderTest.php, which left 43 of 222 tests
+      # skipping on every push: the `php` job above builds no bundles, so every
+      # `ssrHtml()` assertion short-circuits there, and this job — the one place
+      # they could execute — was scoped to a single file. All of
+      # LandingStructureTest, ProductHuntBadgeTest and TopBannerTest, plus the
+      # rendered halves of LandingSeoTest, FundingModelTest and
+      # LicenseFeaturesTest, were green-by-skip for their whole lives.
+      #
+      # REQUIRE_SSR turns a skip into a failure, so this cannot go quiet again.
       - name: SSR render tests
         env:
           REQUIRE_SSR: 1
-        run: ./vendor/bin/pest tests/Feature/Landing/HomepageRenderTest.php
+        run: ./vendor/bin/pest
 
       - name: SSR service log
         if: always()

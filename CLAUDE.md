@@ -17,7 +17,7 @@ web middleware group in `bootstrap/app.php`. Consequences that bite:
 - `session()`, `->with('flash')` and `redirect()->back()->with(...)` do not work.
 - Inertia's `useForm().post()` must not be used. Writes go through plain
   `fetch` and hold their result in React state — copy the `useEmailForm`
-  pattern in `resources/js/components/landing/footer-cta.tsx`.
+  pattern in `resources/js/hooks/use-email-form.ts`.
 
 See `docs/architecture.md` before touching anything that posts data.
 

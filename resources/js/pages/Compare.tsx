@@ -100,9 +100,16 @@ export default function Compare({ slug, downloadUrls, githubStars }: Props) {
                 canonical={canonical}
                 ogImage={ogImage}
                 jsonLd={jsonLd}
+                /*
+                 * No `/compare` crumb. There is no `/compare` index route —
+                 * routes/web.php goes straight from /blog/{slug} to
+                 * /compare/{slug} — so all eleven of these pages were
+                 * publishing a BreadcrumbList item pointing at a 404. Nothing
+                 * tested it, because a breadcrumb's `item` is a URL in JSON-LD
+                 * and never rendered as a link a crawler here would follow.
+                 */
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
-                    { name: 'Compare', path: '/compare' },
                     { name: comp.name, path: canonical },
                 ]}
             />

@@ -74,6 +74,13 @@ it('never publishes a rating nobody gave', function () use ($readSource): void {
         'resources/js/pages/Compare.tsx',
         'resources/js/pages/DatabaseClient.tsx',
         'resources/js/pages/Download.tsx',
+        /*
+         * Ios.tsx emits the iOS app as its own node with its own @id. It is the
+         * page most exposed to a fabricated rating, because the App Store shows
+         * a star control on every listing and the temptation is to mirror it —
+         * the listing had no ratings and no reviews on launch day.
+         */
+        'resources/js/pages/Ios.tsx',
     ];
 
     $emitters = array_values(array_filter(

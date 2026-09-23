@@ -8,7 +8,7 @@ database and no credentials: every page is built from markdown in
 
 ```
 /                        homepage
-/download  /faq          product pages
+/download  /ios  /faq    product pages
 /privacy  /terms  /refund-policy
 /blog  /blog/{slug}      markdown in resources/blog
 /compare/{slug}          data in resources/data/comparisons.json
@@ -21,10 +21,9 @@ enough — Inertia is configured without an explicit `resolve`.
 
 ## What it does not serve
 
-Buying a licence, signing in to an account, subscribing to the newsletter and
-joining the beta are handled by the TablePro backend, which is a separate
-application and not part of this repository. Requests to those paths never
-reach this code.
+Buying a licence, signing in to an account and subscribing to the newsletter are
+handled by the TablePro backend, which is a separate application and not part of
+this repository. Requests to those paths never reach this code.
 
 That is why this app runs **without a session**: it has nothing to keep state
 for. `StartSession`, `PreventRequestForgery`, `ShareErrorsFromSession` and
@@ -36,7 +35,8 @@ Two consequences worth knowing before you write code here:
 - `csrf_token()` throws, and there is no CSRF meta tag. Nothing should add one.
 - `session()`, `redirect()->back()->with(...)` and Inertia's `useForm().post()`
   do not work. Forms use plain `fetch` and keep their result in React state —
-  see `useEmailForm` in `resources/js/components/landing/footer-cta.tsx`.
+  see `useEmailForm` in `resources/js/hooks/use-email-form.ts`, whose
+  remaining caller is the footer newsletter.
 
 ## The endpoints the pages call
 
@@ -47,11 +47,16 @@ All anonymous, all rate limited, none needs a token.
 | `POST /checkout` | `{tier, cycle, seats?, discount_code?, attribution?}` | `{url}` — passed to the checkout SDK |
 | `POST /discount/preview` | `{code}` | `{valid, amount_type?, amount?}` |
 | `POST /newsletter/subscribe` | `{email}` | `{type, message}` |
-| `POST /beta/signup` | `{email}` | `{type, message}` |
 | `GET /api/newsletter/stats` | — | `{count}` |
 
 Checkout takes a tier and billing cycle rather than a product identifier, which
 is why no payment-provider identifier appears anywhere in this repository.
+
+`POST /beta/signup` was the fifth row here until 2026-09-22. The endpoint still
+exists on the backend and nginx still proxies `/beta`, but nothing on this site
+calls it: the iPhone app shipped on the App Store, so the TestFlight invite form
+in the closing call to action became a link. Do not add a caller back without
+checking the endpoint is still wired.
 
 ## Purchase attribution
 

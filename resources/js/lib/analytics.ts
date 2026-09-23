@@ -29,7 +29,13 @@ export function trackEvent(name: string, props: Record<string, string> = {}): vo
  * One event name for every download, with the section that produced it. Keeping
  * the name constant and varying only the prop is what makes the totals
  * comparable across a layout change.
+ *
+ * `platform` arrived with the App Store listing. It is a second prop rather than
+ * a second event name, and rather than a suffix on `location`, so that the total
+ * download count stays one number and the Mac/iOS split is a breakdown of it.
+ * The App Store click is the last thing this domain sees — Plausible cannot
+ * follow the reader to Apple — so it is the only signal there will be.
  */
-export function trackDownload(location: string): void {
-    trackEvent('download_click', { location });
+export function trackDownload(location: string, platform: 'mac' | 'ios' = 'mac'): void {
+    trackEvent('download_click', { location, platform });
 }
