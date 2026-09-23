@@ -82,6 +82,7 @@ const FEATURE_LIST = [
     'Compare & Sync between two databases',
     'Query Insights over local query history',
     'Charts from query results',
+    'Data Rewind for rows already saved',
     'iCloud Sync with an iPhone and iPad app',
 ];
 

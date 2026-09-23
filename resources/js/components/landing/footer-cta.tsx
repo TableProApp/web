@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { buttonClasses } from '@/components/ui/button';
 import CopyButton from '@/components/ui/copy-button';
 import Container from '@/components/ui/container';
 import FootNote from '@/components/ui/footnote';
@@ -9,29 +7,12 @@ import SectionShell from '@/components/ui/section-shell';
 import ThemedImage from '@/components/ui/themed-image';
 import Button from '@/components/ui/button';
 import { AppleGlyph } from '@/components/ui/glyph';
+import AppStoreBadge from '@/components/landing/app-store-badge';
+import { PROSE_LINK } from '@/components/ui/prose-link';
 import { trackDownload } from '@/lib/analytics';
-import { useEmailForm, type FlashMessage } from '@/hooks/use-email-form';
 
 const COLS: ColumnMap = { base: 1, sm: 2 };
 const BREW_COMMAND = 'brew install --cask tablepro';
-
-const flashColors = {
-    success: 'text-green-600 dark:text-green-400',
-    warning: 'text-amber-600 dark:text-amber-400',
-    error: 'text-red-600 dark:text-red-400',
-};
-
-function FlashStatus({ flash }: { flash?: FlashMessage | null }) {
-    if (!flash?.message) {
-        return null;
-    }
-
-    return (
-        <p role="status" className={`mt-3 text-sm ${flashColors[flash.type]}`}>
-            {flash.message}
-        </p>
-    );
-}
 
 /**
  * The iPhone frame is decorative chrome; the screenshot inside carries the alt
@@ -54,7 +35,7 @@ function PhoneMockup() {
                 <ThemedImage
                     light={{ src: '/images/ios-screenshot-light.png' }}
                     dark={{ src: '/images/ios-screenshot-dark.png' }}
-                    alt="TablePro on iPhone showing rows from a PostgreSQL table."
+                    alt="TablePro on iPhone, showing the connection list."
                     width={1206}
                     height={2622}
                     className="size-full object-cover object-top"
@@ -65,42 +46,37 @@ function PhoneMockup() {
 }
 
 /**
- * No `focus:outline-none` here. It used to suppress the global focus ring from
- * `app.css` — 2px solid `--primary-strong`, which measures 5.9:1 — and replace
- * it with `ring-primary/50` at roughly 1.6:1, on the one control that converts.
- */
-const INPUT_CLASS =
-    'min-w-0 flex-1 rounded-lg border border-rule bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground disabled:opacity-50';
-const SUBMIT_CLASS = buttonClasses('primary', 'sm', 'shrink-0 disabled:opacity-50');
-
-/**
  * The closing call to action: the Mac download, and the iPhone app beside it.
  *
  * The iPhone panel used to be a section of its own at the midpoint of the page,
  * carrying an H2, a four-row ledger, a seven-item enumeration that the pricing
  * ledger already listed, and a "Join the iOS beta" button whose href was
  * `#footer-cta` — it scrolled here and stopped, leaving the reader to find the
- * real control themselves. The `data-beta-toggle` hook that looked like the
- * intended wiring was referenced nowhere else in the repository.
+ * real control themselves.
  *
  * Folding it in keeps the `#mobile` anchor alive for the header and the mobile
- * nav, puts the copy that motivates the beta in the same cell as the button that
- * opens it, and means "needs a license" is read after the prices rather than as
- * a surprise in the middle of a feature tour.
+ * nav, and means "needs a license" is read after the prices rather than as a
+ * surprise in the middle of a feature tour.
+ *
+ * On 2026-09-22 the app shipped on the App Store and this cell stopped being a
+ * signup. It held a disclosure button that revealed an email field posting to
+ * `/beta/signup` for a TestFlight invite — the whole apparatus is gone, along
+ * with the `FlashStatus` helper and the two input class constants that existed
+ * only to dress it. `useEmailForm` stays: the footer newsletter is still its
+ * caller. What replaces it is a link, because there is nothing left to collect.
+ *
+ * The engine sentence is deliberately not a count. The old one said "SQLite,
+ * DuckDB, MySQL, MariaDB, PostgreSQL, Redis and SQL Server", which was seven of
+ * the ten the connection form now offers, and the site had already published
+ * "Seven engines on device" as a number that was wrong for six weeks. Naming a
+ * subset and saying "and more" cannot go stale the same way; the full list is
+ * on /ios, where it can be maintained in one place.
  *
  * The newsletter form moved to the footer. It was a second, non-download
  * conversion goal rendered as a sibling panel at the highest-intent moment on
  * the page.
  */
 export default function FooterCTA() {
-    const [showBeta, setShowBeta] = useState(false);
-    const betaForm = useEmailForm('/beta/signup');
-
-    function handleBetaSubmit(event: React.FormEvent) {
-        event.preventDefault();
-        betaForm.submit();
-    }
-
     return (
         <SectionShell
             id="footer-cta"
@@ -112,7 +88,7 @@ export default function FooterCTA() {
             <Container>
                 <div className="grid grid-cols-1 items-start sm:grid-cols-2">
                     <GridCell density="default" className={cellBorders(0, COLS, 2)}>
-                        <h3 className={PANEL_TITLE}>Download</h3>
+                        <h3 className={PANEL_TITLE}>Mac</h3>
 
                         <div className="mt-6">
                             <Button href="/download" onClick={() => trackDownload('footer-cta')}>
@@ -140,54 +116,18 @@ export default function FooterCTA() {
                         <div id="mobile" className="scroll-mt-20">
                             <h3 className={PANEL_TITLE}>iPhone and iPad</h3>
                             <p className="mt-3 text-sm text-muted-foreground text-pretty">
-                                SQLite, DuckDB, MySQL, MariaDB, PostgreSQL, Redis and SQL Server on device, with SSH
-                                tunnels, Face ID and Handoff. Free, like the Mac app; syncing needs a license.
+                                MySQL, PostgreSQL, SQL Server, Oracle, Redis, SQLite and more, on the phone. SSH
+                                tunnels, Face ID and Handoff. Free, with no in-app purchases. Sending your
+                                connections from the Mac needs a Starter license.
                             </p>
 
                             <div className="mt-6">
-                                <button
-                                    type="button"
-                                    aria-expanded={showBeta}
-                                    aria-controls="beta-invite"
-                                    onClick={() => setShowBeta(true)}
-                                    className={buttonClasses('secondary')}
-                                >
-                                    Get for iPhone
-                                </button>
+                                <AppStoreBadge location="footer-cta" />
                             </div>
 
-                            {showBeta && (
-                                <div id="beta-invite" className="mt-6">
-                                    <p className="text-sm text-muted-foreground">
-                                        Enter your email to get a TestFlight invite.
-                                    </p>
-                                    <form onSubmit={handleBetaSubmit} className="mt-3 flex flex-col gap-2 sm:flex-row sm:gap-3">
-                                        <label htmlFor="beta-email" className="sr-only">
-                                            Email address
-                                        </label>
-                                        <input
-                                            id="beta-email"
-                                            type="email"
-                                            required
-                                            autoComplete="email"
-                                            value={betaForm.email}
-                                            onChange={(e) => betaForm.setEmail(e.target.value)}
-                                            placeholder="you@example.com"
-                                            disabled={betaForm.processing}
-                                            className={INPUT_CLASS}
-                                        />
-                                        <button type="submit" disabled={betaForm.processing} className={SUBMIT_CLASS}>
-                                            {betaForm.processing ? 'Joining...' : 'Join Beta'}
-                                        </button>
-                                    </form>
-                                    {betaForm.error && (
-                                        <p role="alert" className="mt-3 text-sm text-red-600 dark:text-red-400">
-                                            {betaForm.error}
-                                        </p>
-                                    )}
-                                    <FlashStatus flash={betaForm.flash} />
-                                </div>
-                            )}
+                            <p className="mt-4 text-sm text-muted-foreground text-pretty">
+                                <a href="/ios" className={PROSE_LINK}>What it does on iPhone &rarr;</a>
+                            </p>
 
                             <div className="mt-8">
                                 <PhoneMockup />

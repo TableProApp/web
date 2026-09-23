@@ -26,7 +26,7 @@ export default function RefundPolicy({ downloadUrls }: Props) {
                 <PageHeader
                     label="Legal"
                     headline="Refund Policy"
-                    lede="Last updated: May 2026"
+                    lede="Last updated: September 2026"
                 />
 <div className="h-6 sm:h-8 lg:h-10" />
 

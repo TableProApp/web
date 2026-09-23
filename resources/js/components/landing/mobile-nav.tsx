@@ -168,11 +168,14 @@ export default function MobileNav({ isOpen, onClose }: Props) {
                     Download for Mac
                 </Button>
                 <a
-                    href="/#mobile"
-                    onClick={onClose}
+                    href="/ios"
+                    onClick={() => {
+                        trackDownload('mobile-nav', 'ios');
+                        onClose();
+                    }}
                     className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
-                    Get for iPhone (beta)
+                    TablePro for iPhone
                 </a>
             </nav>
         </div>

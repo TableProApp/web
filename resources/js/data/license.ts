@@ -1,16 +1,21 @@
 /**
  * Every feature the app actually gates, in one place.
  *
- * The source of truth is `ProFeature.swift` in the app repository: nine cases,
- * seven of them `requiredTier == .starter` and two `.team`. This site used to
+ * The source of truth is `ProFeature.swift` in the app repository: ten cases,
+ * eight of them `requiredTier == .starter` and two `.team`. This site used to
  * name four of them and said so out loud — "a license adds four things" — in
  * the pricing lede and again in the FAQ, while Compare & Sync, Query Insights,
  * Result Charts and Linked Folders were not mentioned anywhere on the domain.
  * Three of those four are the features a competitor charges most for.
  *
  * Adding a case to `ProFeature` means adding it here. `LicenseFeaturesTest`
- * fails when this list stops holding nine entries split seven/two, which is the
+ * fails when this list stops holding ten entries split eight/two, which is the
  * cheapest guard available from a repository that cannot read the Swift enum.
+ *
+ * Data Rewind was the case that proved the guard only works if someone runs it:
+ * it shipped in the app while this file still held nine, so the pricing table
+ * undersold Starter by a feature until 2026-09-22. The count in the test moved
+ * with it.
  */
 export type PaidTier = 'starter' | 'team';
 
@@ -49,6 +54,11 @@ export const PAID_FEATURES: PaidFeature[] = [
     {
         name: 'Result Charts',
         detail: 'Bar, line, area and scatter, from rows already loaded.',
+        tier: 'starter',
+    },
+    {
+        name: 'Data Rewind',
+        detail: 'Put back the values a row had before you saved.',
         tier: 'starter',
     },
     {

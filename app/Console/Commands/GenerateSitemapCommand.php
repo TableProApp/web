@@ -55,6 +55,18 @@ class GenerateSitemapCommand extends Command
                     ->setPriority(0.9)
                     ->setLastModificationDate($this->sourceModifiedAt('resources/js/pages/Download.tsx')),
             )
+            /*
+             * Weekly at 0.9, matching /download rather than the 0.8 monthly the
+             * database pages get. It is the other half of the same question —
+             * how do I get this — and it changes on the app's release cadence,
+             * not on a content edit here.
+             */
+            ->add(
+                Url::create($baseUrl . '/ios')
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.9)
+                    ->setLastModificationDate($this->sourceModifiedAt('resources/js/pages/Ios.tsx')),
+            )
             ->add(
                 Url::create($baseUrl . '/privacy')
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)

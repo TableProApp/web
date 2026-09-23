@@ -15,8 +15,19 @@
  * appears.
  */
 
-/** The app's source, AGPLv3. */
+/** The app's source, AGPLv3. Both apps live here: `TableProMobile/` is the iOS target. */
 export const GITHUB_REPO_URL = 'https://github.com/TableProApp/TablePro';
+
+/**
+ * The iPhone and iPad app on the App Store.
+ *
+ * No country segment. `apps.apple.com/app/...` geo-redirects to the reader's own
+ * storefront, while `/us/app/...` pins every visitor to the US store and shows a
+ * "not available in your country" interstitial to anyone who is signed in
+ * elsewhere. The listing ships in five languages, so the storefront the reader
+ * lands on matters.
+ */
+export const APP_STORE_URL = 'https://apps.apple.com/app/tablepro/id6761621829';
 
 /**
  * GitHub Sponsors, personal rather than organisational, because that is who

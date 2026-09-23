@@ -188,6 +188,13 @@ it('holds every repeated external URL in one file', function () use ($readSource
     $urls = [
         'https://github.com/TableProApp/TablePro' => 'GITHUB_REPO_URL',
         'https://github.com/sponsors/datlechin' => 'GITHUB_SPONSORS_URL',
+        /*
+         * The App Store listing, reached from /ios twice, the closing call to
+         * action, the header menu and the mobile nav. It carries an Apple
+         * product id that nobody can eyeball for correctness, which is the
+         * worst kind of string to hold five copies of.
+         */
+        'https://apps.apple.com/app/tablepro/id6761621829' => 'APP_STORE_URL',
     ];
 
     $files = new RecursiveIteratorIterator(

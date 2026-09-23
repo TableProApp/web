@@ -39,6 +39,23 @@ class LandingController extends Controller
         ]);
     }
 
+    /**
+     * The iPhone and iPad app.
+     *
+     * Takes no App Store data of its own. Everything the page states about the
+     * iOS app is a literal in `resources/js/pages/Ios.tsx`, because there is no
+     * public App Store API this site could read without a credential, and this
+     * repository has none. `downloadUrls` is here only because `Header`
+     * requires it.
+     */
+    public function ios(): Response
+    {
+        return Inertia::render('Ios', [
+            'downloadUrls' => $this->fetchDownloadUrls(),
+            'githubStars' => $this->fetchGitHubStars(),
+        ]);
+    }
+
     public function privacy(): Response
     {
         return Inertia::render('Privacy');
