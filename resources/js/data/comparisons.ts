@@ -1,4 +1,4 @@
-import comparisonsData from '../../data/comparisons.json';
+import comparisonsData from '../../data/legacy/comparisons.json';
 
 export interface ComparisonRow {
     label: string;
