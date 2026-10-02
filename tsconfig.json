@@ -10,8 +10,11 @@
         "skipLibCheck": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
+        "noEmit": true,
+        "allowImportingTsExtensions": true,
         "paths": {
-            "@/*": ["./resources/js/*"]
+            "@/*": ["./resources/js/*"],
+            "@data/*": ["./resources/data/*"]
         }
     },
     "include": ["resources/js/**/*", "resources/data/**/*.json"],
