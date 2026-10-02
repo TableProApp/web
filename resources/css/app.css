@@ -1,25 +1,29 @@
 @import "tailwindcss";
 /*
- * `@fontsource-variable/inter` resolves to the `wght` axis (48,256 B latin).
- * `opsz` (72,920 B latin) adds the optical-size axis, which is what lets 11px
- * mono labels and a 60px headline be drawn with the metrics each size wants.
- * Both keep the full `font-weight: 100 900` range.
- *
- * IBM Plex Mono is imported per weight on purpose. The package's own
- * `index.css` ships weight 400 and nothing else, so the 35 `font-mono
- * font-semibold` call sites — every section eyebrow on the site — were being
- * synthesised into faux bold by the browser.
+ * The shared foundation first: the hand-ordered font faces and the design
+ * tokens, both byte-identical in the account app (docs/shared-files.md).
  */
-@import "@fontsource-variable/inter/opsz.css";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/600.css";
+@import "./fonts.css";
+@import "./tokens.css";
 
-@custom-variant dark (&:is(.dark *));
-
+/*
+ * ---------------------------------------------------------------------------
+ * Legacy layer
+ * ---------------------------------------------------------------------------
+ *
+ * Everything from here to the banner block keeps the pre-rebuild pages
+ * rendering as they did while the new chrome and pages are built. It declares
+ * the old token names, and it re-declares a few names tokens.css also uses
+ * (`--background`, `--foreground`, `--muted-foreground`, `--rule`,
+ * `--rule-strong`) with their old values, which win because they come later.
+ * `tests/Feature/Landing/ColorContrastTest.php` reads the `:root` and `.dark`
+ * blocks below until it moves to tokens.css.
+ *
+ * The chrome and design-system agent deletes this layer, and the `.app-plate`,
+ * `[data-tone]`, `[data-row]` and rule-ordinal blocks after it, once no
+ * component uses the old names.
+ */
 @theme inline {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
-
   /*
    * Size, line-height and letter-spacing are one token, never three.
    *
@@ -100,8 +104,6 @@
    */
   --color-surface-raised: var(--surface-raised);
 
-  --color-rule: var(--rule);
-  --color-rule-strong: var(--rule-strong);
 
   /* Motion. Two curves, four durations, and 320ms is the ceiling. */
   --ease-feedback: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -111,8 +113,6 @@
   --dur-state: 220ms;
   --dur-panel: 320ms;
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -123,10 +123,7 @@
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
   --color-muted-foreground-subtle: var(--muted-foreground-subtle);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -186,8 +183,6 @@
    */
   --muted-foreground: oklch(0.52 0 0);
   --muted-foreground-subtle: oklch(0.545 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -214,8 +209,6 @@
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --muted-foreground-subtle: oklch(0.64 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
@@ -346,42 +339,6 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(5rem + var(--banner-h));
 }
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-delay: 0s !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    animation-timeline: none !important;
-    transition-delay: 0s !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/*
- * `animation-delay` and `animation-timeline` are part of the block above for
- * reasons that are easy to miss:
- *
- * - Collapsing `animation-duration` does nothing to the delay. Under `both`
- *   fill the `backwards` half holds the `from` state for the whole delay, so a
- *   staggered reveal still makes elements pop in one at a time — precisely the
- *   effect the setting exists to prevent.
- * - A progress-based `animation-timeline` ignores duration entirely, so a
- *   0.01ms duration does not disable it.
- * - `transition-delay` is the same omission as `animation-delay`: collapsing a
- *   transition's duration still leaves it holding its start value for the whole
- *   delay.
- *
- * `animation-iteration-count: 1` is also not an off switch: it truncates a loop
- * to a single 0.01ms pass, freezing it mid-transform. Anything that loops needs
- * its own reduced-motion branch rather than relying on this block.
- */
 
 /*
  * The accent tint scale, recorded because it was seven values in two syntaxes.
