@@ -31,6 +31,7 @@ use Symfony\Component\Finder\SplFileInfo;
  *     refund: array{days: int, scope: string},
  *     license: array{revalidateDays: int, offlineGraceDays: int, perpetualFallback: bool},
  *     billingPortalUrl: string,
+ *     checkoutSdk: array{polar: string, lemonsqueezy: string},
  *     syncedWith: string
  * }
  */
@@ -51,7 +52,7 @@ it('has exactly the documented shape', function (): void {
     $pricing = pricingJson();
 
     expect(array_keys($pricing))->toBe([
-        'currency', 'merchantOfRecord', 'cycles', 'tiers', 'refund', 'license', 'billingPortalUrl', 'syncedWith',
+        'currency', 'merchantOfRecord', 'cycles', 'tiers', 'refund', 'license', 'billingPortalUrl', 'checkoutSdk', 'syncedWith',
     ]);
     expect(array_keys($pricing['tiers']))->toBe(['free', 'starter', 'team']);
     expect(array_keys($pricing['tiers']['starter']))->toBe(['unit', 'prices', 'activations']);
@@ -113,6 +114,22 @@ it('pins the refund window, the license timings and Priority support', function 
     expect($pricing['refund'])->toBe(['days' => 7, 'scope' => 'all-paid-plans']);
     expect($pricing['license'])->toBe(['revalidateDays' => 7, 'offlineGraceDays' => 30, 'perpetualFallback' => false]);
     expect($pricing['tiers']['team']['prioritySupport'])->toBe(['responseBusinessDays' => 1]);
+});
+
+/*
+ * The checkout overlay's script, which `resources/js/lib/checkout-sdk.ts`
+ * injects at checkout intent and never with the page (architecture §1.12;
+ * ThirdParty/ScriptsTest checks the documents). It lives here rather than in
+ * the module because external URLs belong in data (Data/FactsDataTest), and
+ * the Polar build stays pinned: the embed is third-party code running on
+ * this origin, so a new version is a reviewed change, not a silent one.
+ */
+it('pins the checkout overlay scripts, one per provider, over HTTPS', function (): void {
+    $sdk = pricingJson()['checkoutSdk'];
+
+    expect(array_keys($sdk))->toBe(['polar', 'lemonsqueezy']);
+    expect($sdk['polar'])->toBe('https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.2.0/dist/embed.global.js');
+    expect($sdk['lemonsqueezy'])->toBe('https://app.lemonsqueezy.com/js/lemon.js');
 });
 
 it('keeps paid features out of the pricing file', function (): void {
