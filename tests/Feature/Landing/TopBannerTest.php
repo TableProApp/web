@@ -1,157 +1,189 @@
 <?php
 
+use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 
+use function Pest\Laravel\get;
+
 /**
- * Guards the standing banner above the header.
+ * The optional banner above the header.
  *
- * It is the loudest surface on the site — the one element every visitor meets
- * on every page — and it sits four pixels above a headline reading "The app is
- * free." Almost everything that can go wrong with it is invisible to a
- * typecheck: a class that Tailwind never compiled, a height that three of its
- * four dependents stopped agreeing on, a dismissal that flashes the bar on
- * every load, or an `enabled => false` that leaves 44px of nothing behind.
+ * Off by default (sitemap §B.5). When it is switched on it is the one element
+ * every visitor meets on every page, and almost everything that can go wrong
+ * with it is invisible to a typecheck: a dismissal that flashes the bar on
+ * every load, a disabled banner that still reserves its height, a sentence
+ * that wraps out of its 40px line in one language, or copy that only exists in
+ * English.
  *
- * The geometry was verified in a real browser before these were written —
- * banner 0..44, header 44..109, `<main>` padded 108, `scroll-padding-top` 124,
- * and every one of those collapsing back to the pre-banner values when
- * dismissed. What a test can hold is that the wiring which produced those
- * numbers is still in place.
+ * Config holds the switch, the link and the dismissal version. The words live
+ * in the `banner` UI catalog, once per language.
  */
-it('shows the banner on every kind of page', function (): void {
-    /*
-     * Shared from `HandleInertiaRequests::share()` rather than passed per page,
-     * so this is really asserting that no page bypasses `LandingLayout`. A
-     * banner that appears on the homepage alone is worse than none: it reads as
-     * a bug to anyone who lands on /faq from search.
-     */
-    foreach (['/', '/download', '/faq', '/compare/dbeaver', '/mysql-client'] as $path) {
-        $html = ssrHtml($path);
 
-        /*
-         * `Assert::assertStringContainsString`, not `->toContain($needle,
-         * $message)`. Pest's `toContain` is `(mixed ...$needles)` with no
-         * message parameter, so a message passed there becomes a second needle
-         * — which for the positive form makes the assertion stricter and fails
-         * on the message text itself. The negative form is worse: it passes the
-         * moment either needle is absent, which is how two blocks in
-         * `StaleClaimsTest` stayed green for their whole lives.
-         */
-        Assert::assertStringContainsString('support-banner', $html, "{$path} is missing the banner");
-        Assert::assertStringContainsString('has-banner', $html, "{$path} does not reserve room for the banner");
+/** The `banner` catalog strings of one locale, parsed from its TypeScript source. @return array<string, string> */
+function bannerCatalog(string $locale): array
+{
+    $source = (string) file_get_contents(resource_path("js/i18n/messages/{$locale}/banner.ts"));
+
+    preg_match_all("/^\s+(\w+): '((?:[^'\\\\]|\\\\.)*)',$/m", $source, $matches, PREG_SET_ORDER);
+
+    $strings = [];
+
+    foreach ($matches as $match) {
+        $strings[$match[1]] = stripslashes($match[2]);
     }
-});
 
-it('drives the header, main and scroll offsets from one token', function (): void {
-    $html = ssrHtml('/');
+    return $strings;
+}
 
+it('is off unless it is switched on', function (): void {
     /*
-     * Four measurements have to agree: the banner's own height, the fixed
-     * header's top, `<main>`'s padding, and `scroll-padding-top`. Three of them
-     * are Tailwind arbitrary values, which is the failure mode this catches —
-     * Tailwind silently emits nothing for a class it cannot find in a source
-     * scan, and the result is a header sitting under the banner with no error
-     * anywhere.
-     *
-     * `app.css` owns the fourth and the token itself.
+     * Read from the file rather than from `config()`, which a test or a local
+     * `.env` may have changed: the default is what a fresh deploy ships.
      */
-    Assert::assertStringContainsString(
-        'top-[var(--banner-h)]',
-        $html,
-        'The header must hang below the banner',
-    );
-    Assert::assertStringContainsString(
-        'pt-[calc(4rem+var(--banner-h))]',
-        $html,
-        'Main must clear the header and the banner',
-    );
+    $defaults = require base_path('config/banner.php');
 
-    $css = file_get_contents(base_path('resources/css/app.css'));
-    Assert::assertStringContainsString('html.has-banner', $css);
-    Assert::assertStringContainsString('--banner-h: 0px', $css, 'The token must default to zero');
-    Assert::assertStringContainsString('scroll-padding-top: calc(5rem + var(--banner-h))', $css);
-});
-
-it('settles the dismissal before the first paint', function (): void {
-    $html = ssrHtml('/');
-
-    /*
-     * The class is stamped server-side and removed by an inline script in the
-     * document head, ahead of any stylesheet or bundle. Deciding it in React
-     * state instead would drop the header 44px on every load for every reader
-     * who had already closed the bar — the same class of flash the theme script
-     * two lines below it exists to prevent.
-     *
-     * Asserted by position: the dismissal must run before the app's own script
-     * tags, or it is not a pre-paint script at all.
-     */
-    $script = strpos($html, 'tablepro:banner-dismissed');
-    $body = strpos($html, '<body');
-
-    expect($script)->not->toBeFalse('The dismissal must be settled by an inline script');
-    expect($script)->toBeLessThan($body, 'The dismissal script belongs in the head, before first paint');
-
-    // Version-matched, so bumping `banner.version` re-shows the bar to everyone
-    // without touching what any browser has stored.
-    Assert::assertStringContainsString((string) config('banner.version'), $html);
+    expect($defaults['enabled'])->toBeFalse();
+    expect(array_keys($defaults))->toEqualCanonicalizing(['enabled', 'href', 'version']);
 });
 
 it('leaves nothing behind when it is switched off', function (): void {
     config(['banner.enabled' => false]);
 
-    $html = ssrHtml('/download');
+    $html = get('/download')->assertOk()->getContent();
 
     /*
-     * A disabled banner must not be a hidden banner. If the element still
-     * rendered, or the class were still stamped, the header would sit 44px
-     * down the page with an invisible bar above it — which is exactly what a
-     * `display: none` implementation would ship.
+     * A disabled banner must not be a hidden banner: no class reserving its
+     * height, and no pre-paint script whose only job is to remove that class.
      */
-    Assert::assertStringNotContainsString('support-banner', $html, 'A disabled banner must leave no element');
+    Assert::assertStringNotContainsString('has-banner', $html, 'A disabled banner must reserve no height');
+    Assert::assertStringNotContainsString('tablepro:banner-dismissed', $html, 'A disabled banner must not ship a dismissal script');
 
-    // Including the pre-paint script, whose only job is to remove that class.
-    Assert::assertStringNotContainsString(
-        'has-banner',
-        $html,
-        'A disabled banner must reserve no height and ship no dismissal script',
-    );
-    Assert::assertStringNotContainsString(
-        'tablepro:banner-dismissed',
-        $html,
-        'A disabled banner must not ship a dismissal script',
-    );
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('banner', null));
 });
 
-it('keeps the banner short enough to survive a phone', function (): void {
-    /*
-     * The bar is one 44px line and the message truncates. On a 390px viewport
-     * the CTA and the dismiss control take roughly 150px, so a long message is
-     * not wrapped, it is cut — and a funding claim ending in an ellipsis argues
-     * against itself.
-     *
-     * Asserted against config rather than the DOM, because that is where a
-     * future edit will happen and the ceiling is what the layout can hold.
-     */
-    expect(strlen((string) config('banner.message_short')))
-        ->toBeLessThanOrEqual(40, 'The narrow message will be truncated on a phone');
+it('sends only its link and version to the page, so the words come from the catalog', function (): void {
+    config(['banner.enabled' => true, 'banner.href' => '/pricing', 'banner.version' => '7']);
 
-    expect(strlen((string) config('banner.cta')))
-        ->toBeLessThanOrEqual(20, 'A long call to action squeezes the message out entirely');
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('banner', ['href' => '/pricing', 'version' => '7']));
 });
 
-it('offers a license rather than asking for a donation', function (): void {
-    $html = ssrHtml('/');
+it('settles the dismissal before the first paint, per version', function (): void {
+    config(['banner.enabled' => true, 'banner.version' => '7']);
+
+    $html = get('/download')->assertOk()->getContent();
 
     /*
-     * Beekeeper Studio, the closest peer, says it outright: "the best way to
-     * support us is by purchasing a license." A license is worth more to the
-     * project than a sponsorship and more to the reader, who gets nine features
-     * for it — so the one control on the loudest surface of the site points at
-     * the prices.
-     *
-     * The plea vocabulary is scanned separately, over the whole `<body>`, by
-     * `FundingModelTest`.
+     * The class is stamped server-side and removed by an inline script in the
+     * head, ahead of any stylesheet or bundle. Deciding it in React state would
+     * drop the header 40px on every load for every reader who had already
+     * closed the bar.
      */
-    expect((string) config('banner.href'))->toContain('#pricing');
-    Assert::assertStringContainsString('>' . config('banner.cta'), $html);
+    $script = strpos($html, "localStorage.getItem('tablepro:banner-dismissed') === \"7\"");
+
+    expect(str_contains($html, '<html lang="en" class="has-banner">'))->toBeTrue();
+    Assert::assertNotFalse($script, 'The dismissal must be settled by an inline script, matched against the configured version');
+    Assert::assertLessThan(strpos($html, '<body'), $script, 'The dismissal script belongs in the head, before first paint');
+
+    // Wrapped, because localStorage throws in a private window, and a banner is not worth a broken head.
+    $guard = strrpos(substr($html, 0, $script), 'try {');
+    Assert::assertNotFalse($guard, 'The dismissal read must be wrapped in try');
+    Assert::assertLessThan(60, $script - $guard, 'The dismissal read must be the first thing inside its try');
+});
+
+it('dismisses under the key the head script reads', function (): void {
+    $component = (string) file_get_contents(resource_path('js/components/site/support-banner.tsx'));
+    $blade = (string) file_get_contents(resource_path('views/app.blade.php'));
+
+    preg_match("/BANNER_STORAGE_KEY = '([^']+)'/", $component, $key);
+
+    Assert::assertSame('tablepro:banner-dismissed', $key[1] ?? null);
+    Assert::assertStringContainsString("localStorage.getItem('{$key[1]}')", $blade);
+});
+
+it('sizes the sticky header offset from one token', function (): void {
+    $css = (string) file_get_contents(resource_path('css/app.css'));
+    $layout = (string) file_get_contents(resource_path('js/layouts/landing-layout.tsx'));
+
+    /*
+     * `--banner-h` is zero unless `html.has-banner` is set, so a disabled or
+     * dismissed banner changes no measurement. The banner and the header stick
+     * together, and anchors clear both.
+     */
+    expect($css)->toContain('--banner-h: 0px;')
+        ->toContain('html.has-banner {')
+        ->toContain('scroll-padding-top: calc(5rem + var(--banner-h));');
+
+    expect($layout)->toMatch('/<div className="sticky top-0 z-40">\s*<SupportBanner \/>\s*<SiteHeader \/>\s*<\/div>/');
+});
+
+it('keeps its wording to one line, in both languages', function (string $locale): void {
+    $copy = bannerCatalog($locale);
+
+    expect($copy)->toHaveKeys(['label', 'message', 'short', 'cta']);
+
+    /*
+     * One 40px line, never truncated (design-system §3.3). From 1024px the
+     * line is the sentence and its link, about 920px of room at 14px Inter;
+     * below 1024px the link alone carries the message on a 375px phone, beside
+     * the dismiss button.
+     */
+    Assert::assertLessThanOrEqual(110, mb_strlen($copy['message']) + mb_strlen($copy['cta']), "{$locale}: the sentence and its link will not fit one line at 1024px");
+    Assert::assertLessThanOrEqual(20, mb_strlen($copy['cta']), "{$locale}: the call to action is too long");
+    Assert::assertLessThanOrEqual(32, mb_strlen($copy['short']), "{$locale}: the short link will not fit a phone");
+})->with(['en', 'vi']);
+
+/*
+ * Positioning §12.1 allows "free to use" only next to "paid plans add
+ * optional features". The Vietnamese line once read "Bạn dùng TablePro miễn
+ * phí" ("you use TablePro for free"), a statement about the reader, and its
+ * phone link was a fragment with no verb where the English says "See".
+ */
+it('pairs free to use with optional features, and leads the phone link with a verb', function (string $locale, string $free, string $optional, string $verb): void {
+    $copy = bannerCatalog($locale);
+
+    expect($copy['message'])->toContain($free)->toContain($optional);
+    expect($copy['short'])->toStartWith($verb);
+})->with([
+    'en' => ['en', 'free to use', 'optional', 'See '],
+    'vi' => ['vi', 'Bạn có thể dùng TablePro miễn phí', 'tùy chọn', 'Xem '],
+]);
+
+it('states a fact rather than pleading, and never says the whole app is free', function (string $locale): void {
+    $copy = mb_strtolower(implode(' ', bannerCatalog($locale)));
+
+    foreach (['whole app is free', 'free forever', 'support us', 'help us', 'donate', 'keep it free', 'unlock', 'hoàn toàn miễn phí', 'miễn phí mãi mãi', 'ủng hộ', 'mở khóa'] as $phrase) {
+        Assert::assertStringNotContainsString($phrase, $copy, "{$locale}: the banner says \"{$phrase}\"");
+    }
+})->with(['en', 'vi']);
+
+it('links to pricing or a release post', function (): void {
+    $href = (string) (require base_path('config/banner.php'))['href'];
+
+    expect($href)->toMatch('#^/(pricing|blog/[a-z0-9-]+)$#');
+});
+
+it('renders above the header, in the page language, on every kind of page', function (): void {
+    config(['banner.enabled' => true, 'banner.href' => '/pricing']);
+
+    foreach (['/' => 'en', '/download' => 'en', '/vi/download' => 'vi'] as $path => $locale) {
+        $html = ssrHtml($path);
+        $copy = bannerCatalog($locale);
+        $start = strpos($html, 'class="support-banner');
+        $header = strpos($html, '<header');
+
+        Assert::assertNotFalse($start, "{$path} is missing the banner");
+        Assert::assertNotFalse($header, "{$path} is missing the header");
+        Assert::assertLessThan($header, $start, "{$path}: the banner must sit above the header");
+
+        $banner = substr($html, $start, $header - $start);
+
+        Assert::assertStringContainsString(htmlspecialchars($copy['message'], ENT_QUOTES), $banner, "{$path} shows the banner in the wrong language");
+        Assert::assertStringContainsString($locale === 'vi' ? 'href="/vi/pricing"' : 'href="/pricing"', $banner, "{$path}: the banner link must stay in the page language");
+    }
+});
+
+it('renders no banner element when it is switched off', function (): void {
+    config(['banner.enabled' => false]);
+
+    Assert::assertStringNotContainsString('support-banner', ssrHtml('/download'), 'A disabled banner must leave no element');
 });
