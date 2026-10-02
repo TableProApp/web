@@ -1,0 +1,144 @@
+{
+    "seo": {
+        "title": "Schema editing, ER diagrams and database compare",
+        "description": "Change table structure with a DDL preview, read a schema as an ER diagram, compare two databases into a sync script, and copy tables to another engine."
+    },
+    "og": {
+        "kicker": "Schema",
+        "title": "Schema, compare and sync"
+    },
+    "header": {
+        "title": "Schema, compare and sync",
+        "lead": "For changing a database’s structure and keeping two databases in step: edit a table with the DDL in front of you, see how the tables relate, bring staging in line with development, or copy tables to another server or engine. Everything here is in the Mac app; the last section covers iPhone and iPad.",
+        "docs": "/features/table-structure"
+    },
+    "sections": [
+        {
+            "id": "structure",
+            "title": "Change structure, read the DDL first",
+            "paragraphs": [
+                "The Structure tab edits a table’s columns, indexes, foreign keys and CHECK constraints in a grid. Changes wait until you save, and <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) shows the ALTER TABLE statements before anything runs. A change that removes something, changes a type, adds NOT NULL or changes the primary key asks first, even on a connection whose Safe Mode level is {macSafeModeDefault}.",
+                "Indexes can use expression keys such as <code>lower(email)</code>. New Table builds a table the same way, with a live SQL preview. On SQLite, libSQL, Turso and Cloudflare D1, which cannot alter a foreign key in place, TablePro writes a table rebuild for you to review. It runs it on SQLite and a local libSQL file once you confirm, and leaves it to you on Turso, remote libSQL and D1."
+            ],
+            "engines": [
+                { "label": "Structure is read-only", "list": "schemaReadOnly" },
+                { "label": "Some structure changes only", "list": "schemaPartial" }
+            ],
+            "asset": "mac-structure-ddl-preview"
+        },
+        {
+            "id": "er-diagram",
+            "title": "See how the tables relate",
+            "paragraphs": [
+                "<ui>View ER Diagram</ui> draws the current schema’s tables and foreign keys, with crow’s-foot cardinality worked out from primary and unique keys. Junction tables such as <code>product_tags</code> fold into one many-to-many line. Export the diagram as a PNG, copy it as an image, or export it as SQL: the CREATE TABLE statements with their foreign keys.",
+                "The diagram is a snapshot to read and share. Tables are changed in the Structure tab, not on the canvas."
+            ],
+            "asset": "mac-er-diagram"
+        },
+        {
+            "id": "objects",
+            "title": "Routines, triggers and folders in the sidebar",
+            "paragraphs": [
+                "Under each schema the sidebar lists procedures, functions and triggers where the engine has them, and opens their source in a read-only tab you can copy from or open in the editor. Redshift, CockroachDB, PGlite and SAP HANA list none. PostgreSQL partitions sit under their parent table."
+            ],
+            "blocks": [
+                {
+                    "id": "table-folders",
+                    "title": "Folders for tables and views",
+                    "paragraphs": [
+                        "Group tables and views into folders by dragging them or with <ui>Move to</ui>, in the list or the tree layout of the sidebar. The filter field looks inside folders. A folder exists only in TablePro and changes nothing on the server; with iCloud Sync on, folders follow you to your other Macs."
+                    ],
+                    "since": "0.77.0"
+                }
+            ]
+        },
+        {
+            "id": "compare-sync",
+            "title": "Compare & Sync",
+            "paragraphs": [
+                "Pick a source and a target, which can be two servers or two databases on one server, and Compare & Sync lists every table that differs, with views, routines and triggers if you include them. In data mode it matches rows by key and marks each value that differs, with a filter and a row limit per table, so you can compare one stretch of a large table.",
+                "The script it generates is ordered by foreign keys and written for the target’s own client. Statements that destroy data, such as dropping a column, narrowing a type or deleting rows, are held back until you allow them for that run, and a connection set to Read-Only cannot be picked as the target. Save a comparison to run it again in one click."
+            ],
+            "paid": ["compare-sync"],
+            "asset": "mac-compare-sync-structure"
+        },
+        {
+            "id": "copy",
+            "title": "Copy To, Duplicate Database and Transfer To",
+            "paragraphs": [
+                "Copy To sends tables, views, routines and triggers, as structure, data or both, to another database on any saved connection, including one running a different engine. Before anything is written, a review lists the DDL, the rows each table expects and every column type that will be approximated, such as <code>TINYINT(1)</code> from MariaDB arriving in PostgreSQL as <code>BOOLEAN</code>. A WHERE clause and a row limit per table copy part of a table.",
+                "Duplicate Database copies a whole database under a new name on the same connection. Transfer To moves rows straight into an existing table on another open connection, with a column mapping and no file in between. All three are free."
+            ],
+            "asset": "mac-copy-to-review"
+        },
+        {
+            "id": "administer",
+            "title": "Users, sessions and maintenance",
+            "paragraphs": [
+                "Table maintenance, such as VACUUM and REINDEX on PostgreSQL or OPTIMIZE and CHECK on MySQL, shows its SQL before it runs. Databases and schemas can be created, dropped and renamed from the sidebar where the engine supports it."
+            ],
+            "blocks": [
+                {
+                    "id": "users-roles",
+                    "title": "Users & Roles",
+                    "paragraphs": [
+                        "Users & Roles shows each user’s privileges as a tree from the server down to a single column. Grants and revokes wait as staged changes and show their SQL before they run, so you never write a GRANT by hand."
+                    ],
+                    "engines": [{ "label": "Users & Roles", "list": "usersRoles" }],
+                    "asset": "mac-users-roles-mysql"
+                },
+                {
+                    "id": "server-dashboard",
+                    "title": "Server Dashboard",
+                    "paragraphs": [
+                        "The Server Dashboard shows live sessions, server metrics and slow queries, refreshed at the interval you pick. Where the engine allows it, cancel a running query or terminate a session from its row; both go through the connection’s Safe Mode. On SQLite, DuckDB and Typesense it shows metrics only."
+                    ],
+                    "engines": [{ "label": "Server Dashboard", "list": "dashboard" }],
+                    "asset": "mac-server-dashboard-postgresql"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "On iPhone and iPad",
+            "paragraphs": [
+                "The iPhone and iPad app shows a table’s columns, indexes and foreign keys, read-only. From the table list you can truncate or drop a table on a SQL engine, unless the connection is Read-Only.",
+                "Structure editing, the ER diagram, Compare & Sync, Copy To, Users & Roles and the Server Dashboard are in the Mac app only."
+            ],
+            "links": [{ "label": "Tables on iPhone and iPad", "href": "/ios#browse" }]
+        }
+    ],
+    "availability": [
+        { "label": "Structure editing with a DDL preview", "ios": "partial", "iosNote": "Columns, indexes and foreign keys, read-only" },
+        { "label": "New Table", "ios": "no" },
+        { "label": "Truncate and drop tables", "ios": "yes" },
+        { "label": "ER diagram", "ios": "no" },
+        { "label": "Routines, triggers and table folders", "ios": "no" },
+        { "label": "Compare & Sync", "paid": "compare-sync", "ios": "no" },
+        { "label": "Copy To, Duplicate Database and Transfer To", "ios": "no" },
+        { "label": "Users & Roles", "ios": "no" },
+        { "label": "Server Dashboard and table maintenance", "ios": "no" }
+    ],
+    "limits": [
+        "Compare & Sync writes a structure script only between two databases of the same engine, with MySQL and MariaDB counted as one. Other pairs compare read-only, MongoDB structures never get a script, and a data sync across engines warns you to check how values are written. To move tables to another engine, use Copy To.",
+        "Reordering columns rebuilds the table on SQLite and on a local libSQL file, after you confirm. On PostgreSQL, Turso, remote libSQL and Cloudflare D1, TablePro writes the rebuild script and leaves running it to you.",
+        "The ER diagram is read-only. It is not a schema designer.",
+        "The sessions and query text the Server Dashboard can show depend on the privileges of the account you connect with."
+    ],
+    "docs": [
+        { "label": "Table structure", "docs": "/features/table-structure" },
+        { "label": "ER diagram", "docs": "/features/er-diagram" },
+        { "label": "Procedures, functions and triggers", "docs": "/features/routines-triggers" },
+        { "label": "Compare & Sync", "docs": "/features/compare-sync" },
+        { "label": "Copy and duplicate", "docs": "/features/copy-objects" },
+        { "label": "Users & Roles", "docs": "/features/users-roles" },
+        { "label": "Server Dashboard", "docs": "/features/server-dashboard" },
+        { "label": "Table operations and maintenance", "docs": "/features/table-operations" }
+    ],
+    "related": [
+        { "label": "Import, export and data files", "href": "/features/import-export" },
+        { "label": "PostgreSQL in TablePro", "href": "/postgresql-client" },
+        { "label": "MySQL and MariaDB in TablePro", "href": "/mysql-client" },
+        { "label": "What a paid plan adds", "href": "/pricing#features" }
+    ]
+}
