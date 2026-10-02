@@ -1,0 +1,180 @@
+{
+    "seo": {
+        "title": "TablePro vs Sequel Ace: chỉ MySQL, hay nhiều engine",
+        "description": "Hai client miễn phí, mã nguồn mở có ứng dụng native cho Mac: so sánh cơ sở dữ liệu, AI và MCP, Mac App Store, và cách import connection Sequel Ace kèm mật khẩu."
+    },
+    "og": {
+        "kicker": "So sánh",
+        "title": "TablePro vs Sequel Ace"
+    },
+    "header": {
+        "title": "TablePro vs Sequel Ace",
+        "lead": "Sequel Ace và TablePro đều là database client miễn phí, mã nguồn mở, có ứng dụng native cho Mac, và cả hai đều đang được phát triển tích cực. Sequel Ace tiếp nối Sequel Pro và chỉ làm việc với MySQL và MariaDB. TablePro kết nối tới MySQL, MariaDB và nhiều engine khác, có ứng dụng cho iPhone và iPad, cùng một số tính năng trả phí tùy chọn trên Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Bạn còn làm việc với PostgreSQL, SQL Server, Redis, MongoDB hay các engine khác, và muốn một client dùng chung cho tất cả.",
+            "Bạn muốn có trợ lý AI ngay trong ứng dụng, miễn phí, với nhà cung cấp AI do bạn chọn.",
+            "Bạn muốn xem EXPLAIN dưới dạng sơ đồ, có sơ đồ ER chỉ đọc và chế độ Vim trong editor.",
+            "Bạn muốn một ứng dụng miễn phí cho iPhone và iPad, kết nối được tới MySQL và MariaDB."
+        ],
+        "competitor": [
+            "Bạn chỉ dùng MySQL và MariaDB, và muốn một client chỉ dành riêng cho hai cơ sở dữ liệu này.",
+            "Bạn muốn mọi tính năng đều miễn phí, không có gói trả phí nào.",
+            "Bạn quen cài ứng dụng từ Mac App Store.",
+            "Bạn chuyển từ Sequel Pro sang và muốn giữ giao diện quen thuộc."
+        ]
+    },
+    "glance": {
+        "intro": "Cả hai ứng dụng đều tải về miễn phí và là mã nguồn mở. Sequel Ace có MCP server tích hợp sẵn từ phiên bản {cells.mcp.version}, phát hành ngày {cells.mcp.date}, nhưng không có AI chat trong ứng dụng."
+    },
+    "rows": {
+        "macAppStore": {
+            "label": "Mac App Store",
+            "tablepro": "Không có trên Mac App Store. Tải về từ trang này hoặc cài bằng Homebrew"
+        },
+        "userManager": {
+            "label": "Người dùng và quyền",
+            "tablepro": "Users & Roles cho MySQL, MariaDB và PostgreSQL, phân quyền tới từng cột và hiện câu lệnh SQL trước khi chạy"
+        },
+        "bundles": {
+            "label": "Bundles",
+            "tablepro": "Không có"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Mọi thứ trong Sequel Ace đều miễn phí và là mã nguồn mở theo license MIT. Không có gói trả phí nào.",
+                "cite": ["licence", "prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Sequel Ace có trên Mac App Store, nên được cài và cập nhật giống các ứng dụng App Store khác của bạn.",
+                "cite": ["cells.macAppStore"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Bundles cho phép bạn tự thêm lệnh vào ứng dụng, và trình quản lý người dùng của Sequel Ace chỉnh được user và quyền trong MySQL.",
+                "cite": ["cells.bundles", "cells.userManager"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Ngoài MySQL và MariaDB, TablePro còn kết nối tới PostgreSQL, SQL Server, SQLite, Redis, MongoDB và các engine khác. Xem danh sách <link>cơ sở dữ liệu được hỗ trợ</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>Trợ lý AI</link> miễn phí trong ứng dụng Mac, giúp giải thích, tối ưu và sửa query với nhà cung cấp AI do bạn chọn. Sequel Ace không có AI chat, còn các AI client bên ngoài làm việc với nó qua MCP server.",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Khi <link>làm việc với MySQL</link>, EXPLAIN hiện dưới dạng sơ đồ, sơ đồ ER export được ra PNG hoặc SQL, và editor có chế độ Vim. Tất cả đều miễn phí.",
+                "cite": [],
+                "feature": null,
+                "href": "/mysql-client"
+            },
+            {
+                "text": "<link>Compare & Sync</link> so sánh cấu trúc hoặc dữ liệu của hai cơ sở dữ liệu và tạo script để đưa bên này về giống bên kia. Tính năng này thuộc gói Starter.",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "<link>Ứng dụng cho iPhone và iPad</link> miễn phí, kết nối được tới MySQL và MariaDB, không có mua hàng trong ứng dụng.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro chỉ kết nối tới MySQL và MariaDB qua TCP, không qua socket file trên máy.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro không có tính năng nào giống Bundles của Sequel Ace để bạn tự thêm lệnh vào ứng dụng.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro không có trên Mac App Store và không chạy trong App Sandbox.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Một số tính năng phải trả phí. Gói Starter bổ sung những tính năng như {starterExamples}, trong khi mọi thứ trong Sequel Ace đều miễn phí.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro đọc các favorite mà Sequel Ace đã lưu, cùng những mật khẩu Sequel Ace giữ trong Keychain của macOS. Sequel Ace không cần đang mở, và các file của Sequel Ace không bị thay đổi.",
+        "steps": [
+            "Trong TablePro, chọn <ui>Tệp > Nhập > Nhập từ ứng dụng khác…</ui> (File > Import > Import from Other App…).",
+            "Chọn Sequel Ace. Bật <ui>Bao gồm mật khẩu</ui> (Include passwords) để đọc mật khẩu cơ sở dữ liệu và mật khẩu SSH đã lưu trong Keychain của macOS.",
+            "macOS sẽ hỏi mật khẩu đăng nhập máy một lần cho mỗi mật khẩu đã lưu. Chọn <ui>Luôn cho phép</ui> (Always Allow) ở mỗi lần hỏi. Nếu bạn hủy một lần hỏi, các mật khẩu còn lại sẽ được bỏ qua.",
+            "Xem lại danh sách, chọn cách xử lý các connection bị trùng, rồi bấm <ui>Nhập</ui> (Import). Nhóm, màu của connection, SSH tunnel và thiết lập SSL đều được chuyển sang.",
+            "Trước khi gỡ Sequel Ace, hãy mở thử một connection có mật khẩu để chắc rằng mật khẩu đã được chuyển sang."
+        ],
+        "after": [
+            "Query favorite, lịch sử query, bundle và phím tắt vẫn nằm lại trong Sequel Ace.",
+            "Mọi connection đều được chuyển sang dưới dạng connection MySQL, kể cả connection tới server MariaDB.",
+            "SSH key được liên kết theo đường dẫn file. Passphrase của key không được import.",
+            "TablePro không kết nối qua socket file, nên connection nào từng dùng socket cần có host và port trước khi mở được."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "keep-sequel-ace",
+            "question": "Sau khi import, tôi có thể tiếp tục dùng Sequel Ace không?",
+            "answer": "Có. TablePro chỉ đọc file favorite và các mục Keychain của Sequel Ace, nên cả hai ứng dụng vẫn hoạt động với bản connection riêng của mình.",
+            "href": null
+        },
+        {
+            "id": "mcp",
+            "question": "Cả hai ứng dụng đều có MCP server. Chúng khác nhau thế nào?",
+            "answer": "MCP server của Sequel Ace có từ phiên bản {cells.mcp.version}, mặc định tắt, chỉ lắng nghe trên máy Mac của bạn và mặc định chỉ đọc. MCP server của TablePro cũng chỉ lắng nghe trên máy Mac, và mỗi connection tự quyết định ứng dụng bên ngoài bị chặn, chỉ được đọc (mặc định) hay được phép ghi. TablePro còn có AI chat ngay trong ứng dụng. <link>Tìm hiểu về AI và MCP</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "free",
+            "question": "TablePro có miễn phí như Sequel Ace không?",
+            "answer": "TablePro dùng miễn phí và là mã nguồn mở theo giấy phép AGPLv3, kể cả MySQL, MariaDB, trợ lý AI và MCP server. Gói Starter hoặc Team bổ sung một số tính năng tùy chọn cho ứng dụng Mac, như {starterExamples}. Sequel Ace không có gói trả phí. <link>Xem bảng giá</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "sequel-pro",
+            "question": "Tôi vẫn đang dùng Sequel Pro. Nên bắt đầu từ đâu?",
+            "answer": "Chuyển favorite sang Sequel Ace theo hướng dẫn chuyển đổi của chính Sequel Ace, rồi import từ Sequel Ace vào TablePro. Trang <link>Các lựa chọn thay thế Sequel Pro</link> hướng dẫn từng bước.",
+            "href": "/compare/sequel-pro"
+        }
+    ],
+    "notes": {
+        "sequel-ace-databases": "MySQL 5.7 trở lên và MariaDB 10.0 trở lên, không hỗ trợ cơ sở dữ liệu nào khác",
+        "sequel-ace-no-ai-chat": "Không có AI chat trong ứng dụng. Các AI client bên ngoài có thể dùng MCP server của Sequel Ace.",
+        "sequel-ace-mcp-read-only": "Tích hợp sẵn, mặc định tắt, chỉ lắng nghe trên máy Mac của bạn và mặc định chỉ đọc. Có {value} tool."
+    }
+}

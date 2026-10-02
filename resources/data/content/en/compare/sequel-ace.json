@@ -1,0 +1,180 @@
+{
+    "seo": {
+        "title": "TablePro vs Sequel Ace: MySQL only, or many engines",
+        "description": "Two free, open-source clients with native Mac apps: compare databases, AI and MCP, the Mac App Store, and importing Sequel Ace connections with passwords."
+    },
+    "og": {
+        "kicker": "Compare",
+        "title": "TablePro vs Sequel Ace"
+    },
+    "header": {
+        "title": "TablePro vs Sequel Ace",
+        "lead": "Sequel Ace and TablePro are free, open-source database clients with native Mac apps, and both are actively maintained. Sequel Ace continues Sequel Pro and works only with MySQL and MariaDB. TablePro connects to MySQL, MariaDB and other engines, has an iPhone and iPad app, and adds optional paid features on the Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "You also work with PostgreSQL, SQL Server, Redis, MongoDB or other engines, and want one client for all of them.",
+            "You want an AI assistant inside the app, free, with the AI provider you choose.",
+            "You want EXPLAIN as a diagram, a read-only ER diagram and a Vim mode in the editor.",
+            "You want a free iPhone and iPad app that connects to MySQL and MariaDB."
+        ],
+        "competitor": [
+            "You only use MySQL and MariaDB, and want a client built for nothing else.",
+            "You want every feature free, with no paid plans.",
+            "You install your apps from the Mac App Store.",
+            "You came from Sequel Pro and want the interface you already know."
+        ]
+    },
+    "glance": {
+        "intro": "Both apps are free to download and open source. Sequel Ace added a built-in MCP server in version {cells.mcp.version}, released {cells.mcp.date}. It has no AI chat in the app."
+    },
+    "rows": {
+        "macAppStore": {
+            "label": "Mac App Store",
+            "tablepro": "Not on the Mac App Store. Download it from this site or install it with Homebrew"
+        },
+        "userManager": {
+            "label": "Users and privileges",
+            "tablepro": "Users & Roles for MySQL, MariaDB and PostgreSQL, with grants down to a column and the SQL shown before it runs"
+        },
+        "bundles": {
+            "label": "Bundles",
+            "tablepro": "Not available"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Everything in Sequel Ace is free and open source under the MIT license. There are no paid plans.",
+                "cite": ["licence", "prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "It is on the Mac App Store, so it installs and updates like your other App Store apps.",
+                "cite": ["cells.macAppStore"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Bundles let you add your own commands to the app, and its user manager edits MySQL users and privileges.",
+                "cite": ["cells.bundles", "cells.userManager"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Besides MySQL and MariaDB, TablePro connects to PostgreSQL, SQL Server, SQLite, Redis, MongoDB and other engines. See the <link>supported databases</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "The <link>AI assistant</link> is free in the Mac app. It explains, optimizes and fixes queries with the AI provider you choose. Sequel Ace has no AI chat, and outside AI clients reach it through its MCP server.",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "For <link>MySQL work</link>, EXPLAIN opens as a diagram, the ER diagram exports to PNG or SQL, and the editor has a Vim mode. All of this is free.",
+                "cite": [],
+                "feature": null,
+                "href": "/mysql-client"
+            },
+            {
+                "text": "<link>Compare & Sync</link> compares the structure or the data of two databases and writes the script that brings one in line with the other. It is part of Starter.",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "A free <link>iPhone and iPad app</link> connects to MySQL and MariaDB, with no in-app purchases.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro connects to MySQL and MariaDB over TCP only, not through a local socket file.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "There is nothing like Sequel Ace’s Bundles for adding your own commands to the app.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro is not on the Mac App Store and does not run in the App Sandbox.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Some features are paid. Starter adds features such as {starterExamples}, while everything in Sequel Ace is free.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro reads the favorites Sequel Ace has saved, and the passwords it keeps in the macOS Keychain. Sequel Ace does not need to be open, and its files are not changed.",
+        "steps": [
+            "In TablePro, choose <ui>File > Import > Import from Other App…</ui>",
+            "Select Sequel Ace. Turn on <ui>Include passwords</ui> to read saved database and SSH passwords from the macOS Keychain.",
+            "macOS asks for your login password once for each saved password. Choose <ui>Always Allow</ui> on each prompt. Cancelling a prompt skips the passwords that are left.",
+            "Review the list, decide what happens to any duplicates, and click <ui>Import</ui>. Groups, connection colors, SSH tunnels and SSL settings come across.",
+            "Before you remove Sequel Ace, open a connection that had a password to check that it came across."
+        ],
+        "after": [
+            "Query favorites, query history, bundles and keyboard shortcuts stay in Sequel Ace.",
+            "Every connection arrives as a MySQL connection, MariaDB servers included.",
+            "SSH keys are linked by their file path. A key’s passphrase is not imported.",
+            "TablePro does not connect through a socket file, so a connection that used one needs a host and port before it opens."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "keep-sequel-ace",
+            "question": "Can I keep using Sequel Ace after importing?",
+            "answer": "Yes. The import only reads Sequel Ace’s favorites file and its Keychain items, so both apps keep working with their own copies.",
+            "href": null
+        },
+        {
+            "id": "mcp",
+            "question": "Both apps have an MCP server. How do they differ?",
+            "answer": "Sequel Ace’s server, added in version {cells.mcp.version}, is off by default, listens only on your Mac and is read-only by default. TablePro’s server also listens only on your Mac, and each connection decides whether outside apps are blocked, read only (the default) or allowed to write. TablePro also has an AI chat in the app. <link>Read about AI and MCP</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "free",
+            "question": "Is TablePro free like Sequel Ace?",
+            "answer": "TablePro is free to use and open source under the AGPLv3, including MySQL, MariaDB, the AI assistant and the MCP server. A Starter or Team plan adds optional features to the Mac app, such as {starterExamples}. Sequel Ace has no paid plans. <link>See pricing</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "sequel-pro",
+            "question": "I still use Sequel Pro. Where do I start?",
+            "answer": "Move your favorites to Sequel Ace with Sequel Ace’s own migration guide, then import them from Sequel Ace into TablePro. <link>Sequel Pro alternatives</link> walks through the path.",
+            "href": "/compare/sequel-pro"
+        }
+    ],
+    "notes": {
+        "sequel-ace-databases": "MySQL 5.7 or later and MariaDB 10.0 or later, and no other databases",
+        "sequel-ace-no-ai-chat": "No AI chat in the app. Outside AI clients can use its MCP server.",
+        "sequel-ace-mcp-read-only": "Built in, off by default, listens only on your Mac and is read-only by default. It offers {value} tools."
+    }
+}
