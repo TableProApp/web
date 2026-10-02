@@ -1,3 +1,5 @@
+/* Shared with TableProApp/web and TableProApp/license at resources/js/lib/consent.ts. Change both in the same release. See docs/shared-files.md. */
+
 /**
  * The reader's answer to "may Google Analytics set cookies?".
  *
@@ -7,10 +9,10 @@
  * other half: recording the answer, applying it to the running tag, and taking
  * the cookies back when the reader changes their mind.
  *
- * The account portal at `/account` is a different application on the same
- * origin, so it reads the same `localStorage` — one answer covers both, and
- * withdrawing it on either side withdraws it everywhere. Its copy of this file
- * must keep the key identical.
+ * The public site and the account app are two applications on one origin, so
+ * they read the same `localStorage`: one answer covers both, and withdrawing it
+ * on either side withdraws it everywhere. This file is byte-identical in both
+ * repositories, which keeps the key identical too.
  *
  * Only `analytics_storage` is ever granted. The advertising signals stay denied
  * for everyone because nothing on this site advertises.
@@ -48,7 +50,7 @@ export function readConsent(): ConsentChoice | null {
 /**
  * The `_ga` cookie and one `_ga_<stream>` per measurement ID. Everything Google
  * Analytics writes starts with that prefix, so this matches its cookies and
- * none of the site's own (`nl_dismissed_at`, `nl_subscribed`).
+ * nobody else's.
  */
 export function analyticsCookieNames(cookieHeader: string): string[] {
     return cookieHeader
