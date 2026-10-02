@@ -51,7 +51,7 @@ export default {
     },
     newsletter: {
         title: 'Release notes by email',
-        body: 'A short email when a new version ships. Every email has an unsubscribe link.',
+        body: 'Occasional emails with release notes. Every email has an unsubscribe link.',
         note: 'We email you a confirmation link first. <link>Privacy policy</link>',
     },
     bottom: {

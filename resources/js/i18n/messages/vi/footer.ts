@@ -45,7 +45,7 @@ export default {
     },
     newsletter: {
         title: 'Ghi chú phát hành qua email',
-        body: 'Một email ngắn, viết bằng tiếng Anh, mỗi khi có phiên bản mới. Email nào cũng có liên kết hủy đăng ký.',
+        body: 'Thỉnh thoảng một email, viết bằng tiếng Anh, về các bản phát hành. Email nào cũng có liên kết hủy đăng ký.',
         note: 'Chúng tôi sẽ gửi cho bạn một liên kết xác nhận trước. <link>Chính sách quyền riêng tư</link>',
     },
     bottom: {
