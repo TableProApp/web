@@ -7,16 +7,17 @@ beforeEach(function () {
     withoutVite();
 });
 
-it('renders the home page', function () {
-    get(route('landing.home'))
+it('renders the home page', function (string $route): void {
+    get(route($route))
         ->assertOk()
         ->assertInertia(
             fn($page) => $page->component('Home')
-            ->has('downloadUrls')
-            ->has('downloadUrls.arm64')
-            ->has('downloadUrls.x86_64'),
+                ->has('content.hero.title')
+                ->has('engines.0.path')
+                ->has('checkout')
+                ->missing('downloadUrls'),
         );
-});
+})->with(['landing.home', 'vi.landing.home']);
 
 /*
  * The download page's cases moved to Releases/DownloadPageTest and

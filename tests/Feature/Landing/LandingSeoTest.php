@@ -55,13 +55,33 @@ it('publishes one application entity and no FAQPage on the homepage', function (
 
 it('describes every price point it claims to offer', function (): void {
     $html = ssrHtml('/');
+    $tiers = json_decode((string) file_get_contents(resource_path('data/pricing.json')), true, 512, JSON_THROW_ON_ERROR)['tiers'];
+    $app = null;
 
-    preg_match('/"offerCount":(\d+)/', $html, $m);
-    expect($m[1] ?? null)->not->toBeNull();
+    preg_match_all('#<script type="application/ld\+json"[^>]*>(.*?)</script>#s', $html, $blocks);
 
-    // Free, plus three Starter cycles, plus three Team cycles.
-    expect((int) $m[1])->toBe(7);
-    expect(substr_count($html, '"@type":"Offer"'))->toBe(7);
+    foreach ($blocks[1] as $block) {
+        $data = json_decode($block, true, 512, JSON_THROW_ON_ERROR);
+
+        foreach ($data['@graph'] ?? [$data] as $node) {
+            if (str_ends_with((string) ($node['@id'] ?? ''), '/#app')) {
+                $app = $node;
+            }
+        }
+    }
+
+    expect($app)->not->toBeNull();
+
+    // The free tier plus one offer per paid tier and cycle, each priced from pricing.json.
+    $prices = collect([$tiers['free']['price']]);
+
+    foreach ($tiers as $tier) {
+        $prices = $prices->merge(array_values($tier['prices'] ?? []));
+    }
+
+    expect(collect($app['offers'])->pluck('@type')->unique()->all())->toBe(['Offer']);
+    expect(collect($app['offers'])->pluck('price')->map(fn(string $price): float => (float) $price)->all())
+        ->toBe($prices->map(fn(int|float $price): float => (float) $price)->all());
 
     /*
      * `datePublished` was set to the *latest* release date, so the markup said

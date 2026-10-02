@@ -19,22 +19,16 @@ use PHPUnit\Framework\Assert;
 
 const THIRD_PARTY_HOSTS = ['client.crisp.chat', '@polar-sh/checkout', 'lemon.js', 'lemonsqueezy.com', 'producthunt.com'];
 
-/** Pages whose rendered HTML is checked, beyond the ones W7a and W9 still have to replace. @return list<string> */
+/**
+ * Pages whose rendered HTML is checked: the homepage (rebuilt without the
+ * Product Hunt hotlink), the download page and the pricing page, whose buy
+ * buttons load the checkout SDK only at checkout intent.
+ *
+ * @return list<string>
+ */
 function thirdPartyPages(): array
 {
-    $pages = ['/download', '/vi/download'];
-
-    /*
-     * The pre-rebuild homepage still renders the Product Hunt hotlink from its
-     * hero. The homepage rewrite removes it, and the cleanup deletes the file;
-     * from then on the homepage is checked too, without an edit here.
-     */
-    if (! is_file(resource_path('js/components/landing/product-hunt-badge.tsx'))) {
-        $pages[] = '/';
-        $pages[] = '/vi';
-    }
-
-    return $pages;
+    return ['/', '/vi', '/download', '/vi/download', '/pricing', '/vi/pricing'];
 }
 
 it('loads no third-party script from the document template', function (): void {

@@ -34,7 +34,7 @@ final class ContentCollection implements PageFamily
      * @var array<string, array{0: string, 1: string, 2: list<string>}>
      */
     private const HUBS = [
-        'landing.features.index' => ['features', 'feature', ['resources/data/paid-features.json']],
+        'landing.features.index' => ['features', 'feature', ['resources/data/paid-features.json', 'resources/data/facts.json']],
         'landing.databases.index' => ['databases', 'database', ['resources/data/engines.json']],
         'landing.compare.index' => ['compare', 'compare', ['resources/data/comparisons.json']],
     ];
@@ -44,12 +44,13 @@ final class ContentCollection implements PageFamily
      *
      * The data files join the content file in `sources`, so a page's lastmod
      * moves when the facts it renders change, not only its copy.
-     * `content/{locale}/engines.json` holds each engine's limit sentences.
+     * `content/{locale}/engines.json` holds each engine's limit sentences, and
+     * `content/{locale}/features/index.json` the labels every feature page shares.
      *
      * @var array<string, array{0: string, 1: string, 2: list<string>}>
      */
     private const PAGES = [
-        'landing.features.show' => ['features', 'feature', ['resources/data/facts.json', 'resources/data/paid-features.json']],
+        'landing.features.show' => ['features', 'feature', ['resources/data/facts.json', 'resources/data/paid-features.json', 'resources/data/engines.json', 'resources/data/platforms.json', 'resources/data/content/{locale}/features/index.json']],
         'landing.databaseClient' => ['databases', 'database', ['resources/data/engines.json', 'resources/data/content/{locale}/engines.json']],
         'landing.compare' => ['compare', 'compare', ['resources/data/comparisons.json']],
     ];

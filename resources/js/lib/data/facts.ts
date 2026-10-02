@@ -86,7 +86,8 @@ export interface FactsData {
     filterOperators: { mac: string[]; ios: string[]; evidence: string };
     /** Apps whose connections TablePro imports. `id` matches a `comparisons.json` product where one exists. */
     connectionImport: { id: string; app: string; passwords: boolean; format: string | null }[];
-    dataImport: { formats: { id: string; name: string }[]; evidence: string };
+    /** `exceptEngines`: engine ids the format's import plugin refuses (SQL on MongoDB and Redis). */
+    dataImport: { formats: { id: string; name: string; exceptEngines: string[] }[]; evidence: string };
     export: { formats: ExportFormat[]; evidence: string };
     backup: { tools: BackupTool[]; serverSideExport: string[]; evidence: string };
     sync: {

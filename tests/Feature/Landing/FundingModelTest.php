@@ -16,34 +16,12 @@ use PHPUnit\Framework\Assert;
  * What each assertion here is really holding is a *shape*, not a sentence: the
  * claim is a fact rather than a plea, it arrives where the reader is deciding,
  * and a license always outranks sponsorship.
+ *
+ * The two position cases that read the pre-rebuild homepage's ledger copy are
+ * gone; architecture §1.17 retires this file once Content/BannedClaimsTest
+ * carries the plea vocabulary and Data/FactsDataTest the URL guard.
  */
 $readSource = static fn(string $relative): string => file_get_contents(base_path($relative));
-
-it('names who builds TablePro, on the screen with the prices', function (): void {
-    /*
-     * Measured inside `<main>`. The top banner carries its own funding line and
-     * renders above the header, so an unscoped `strpos` finds that one first
-     * and this assertion silently starts testing the chrome — it did, the hour
-     * the banner shipped.
-     */
-    $html = ssrHtml('/');
-    $start = strpos($html, '<main');
-    $main = substr($html, $start, strrpos($html, '</main>') - $start);
-
-    $pricing = strpos($main, 'id="pricing"');
-    $claim = strpos($main, 'funded by licenses rather than investors');
-
-    expect($pricing)->not->toBeFalse();
-    expect($claim)->not->toBeFalse('The site must say what pays for TablePro');
-
-    /*
-     * Position is the whole point. The hero is the wrong place — no comparable
-     * project puts this above the fold, and there it competes with "the app is
-     * free" before the reader has any reason to care who pays. It belongs one
-     * scroll from the Team card.
-     */
-    expect($claim)->toBeGreaterThan($pricing, 'The funding model belongs at the decision point, not in the hero');
-});
 
 it('states the funding model as a fact rather than a plea', function (): void {
     $html = ssrHtml('/');
@@ -90,26 +68,6 @@ it('states the funding model as a fact rather than a plea', function (): void {
             "\"{$plea}\" asks for sympathy. State the model and make the ask.",
         );
     }
-});
-
-it('keeps a license ahead of sponsorship wherever both are offered', function (): void {
-    $html = ssrHtml('/');
-
-    /*
-     * Beekeeper says it outright: "the best way to support us is by purchasing
-     * a license." A license is worth more to the project than a sponsorship and
-     * more to the buyer, who gets nine features for it, so sponsorship is never
-     * the primary action in a place that offers both.
-     *
-     * In the ledger row that carries both, "Buying one" is the sentence's
-     * subject and sponsorship is the subordinate clause after it.
-     */
-    $license = strpos($html, 'Buying one is how the');
-    $sponsorship = strpos($html, '>sponsorship</a>');
-
-    expect($license)->not->toBeFalse();
-    expect($sponsorship)->not->toBeFalse();
-    expect($license)->toBeLessThan($sponsorship, 'The license ask leads; sponsorship follows it');
 });
 
 it('answers the abandonment question with a business model, not only a release count', function () use ($readSource): void {
