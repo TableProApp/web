@@ -15,10 +15,33 @@ use PHPUnit\Framework\Assert;
  * The behaviour of the resolver itself is covered by execution, in
  * `tests/js/attribution.test.ts`. What is left for this file is the wiring:
  * that the field list still matches the document, that the checkout request
- * still carries it, that something still writes it, and that the privacy page
- * still describes what is stored.
+ * from the plan cards (`components/pricing/use-checkout.ts`) still carries it
+ * with the page language, that something still writes it, and that the
+ * privacy policy still describes what is stored.
  */
 $readSource = static fn(string $relative): string => file_get_contents(base_path($relative));
+
+/** The hook that posts `/checkout` from the plan cards. */
+const CHECKOUT_SOURCE = 'resources/js/components/pricing/use-checkout.ts';
+
+/**
+ * The privacy policy as readers get it, with the word for "days" in its
+ * language: the markdown in each language once it exists, the pre-rebuild
+ * page until then.
+ *
+ * @return array<string, string>
+ */
+function attributionPrivacySources(): array
+{
+    if (is_file(resource_path('data/legal/en/privacy.md'))) {
+        return [
+            'resources/data/legal/en/privacy.md' => 'days',
+            'resources/data/legal/vi/privacy.md' => 'ngày',
+        ];
+    }
+
+    return ['resources/js/pages/Privacy.tsx' => 'days'];
+}
 
 /**
  * The payload keys the module can emit, read off the exported interface.
@@ -87,20 +110,36 @@ it('always sends the landing page and the timestamp', function () use ($readSour
 });
 
 it('attaches the attribution to the checkout request', function () use ($readSource): void {
-    $pricing = $readSource('resources/js/components/landing/pricing.tsx');
+    $checkout = $readSource(CHECKOUT_SOURCE);
 
-    expect($pricing)->toContain("import { currentAttribution } from '@/lib/attribution';");
-    expect($pricing)->toContain('body.attribution = attribution');
+    expect($checkout)->toMatch("/import \\{[^}]*\\bcurrentAttribution\\b[^}]*\\} from '@\\/lib\\/attribution';/");
+    expect($checkout)->toContain('body.attribution = attribution');
 
     /*
      * Position matters more than presence. The body is assembled and then
      * passed to fetch, so an assignment that drifted below the call would
      * typecheck, ship, and send nothing.
      */
-    $assigned = strpos($pricing, 'body.attribution = attribution');
-    $posted = strpos($pricing, "await fetch('/checkout'");
+    $assigned = strpos($checkout, 'body.attribution = attribution');
+    $posted = strpos($checkout, "await fetch('/checkout'");
 
+    expect($posted)->not->toBeFalse('Checkout must post to the root path, which nginx routes to the platform');
     expect($assigned)->toBeLessThan($posted, 'The attribution must be attached before the request is sent');
+});
+
+/*
+ * The platform stores the page's language on the order, so the purchase
+ * emails arrive in it (architecture §1.14). The body carries it next to
+ * the tier and cycle, and the request sends no cookies, because the public
+ * site sets none.
+ */
+it('sends the page language with the checkout request, and no cookies', function () use ($readSource): void {
+    $checkout = $readSource(CHECKOUT_SOURCE);
+
+    expect($checkout)->toContain('const { locale, m } = useI18n();')
+        ->toContain('const body: CheckoutBody = { tier, cycle, locale };')
+        ->toContain('body: JSON.stringify(body)')
+        ->toMatch("/fetch\\('\\/checkout', \\{\\s*method: 'POST',\\s*credentials: 'omit',/");
 });
 
 /*
@@ -122,37 +161,49 @@ it('captures the landing URL at boot', function () use ($readSource): void {
 });
 
 it('counts the intent to buy, which is the only part of a sale this app can see', function () use ($readSource): void {
-    $pricing = $readSource('resources/js/components/landing/pricing.tsx');
+    $checkout = $readSource(CHECKOUT_SOURCE);
 
-    expect($pricing)->toContain("trackEvent('checkout_started'");
+    expect($checkout)->toContain("trackEvent('checkout_started', { tier, cycle });");
+    expect(strpos($checkout, "trackEvent('checkout_started'"))->toBeLessThan(
+        strpos($checkout, "await fetch('/checkout'"),
+        'The intent is counted on the click, before the platform answers',
+    );
 });
 
 it('tells readers what it stores, under the name it stores it', function () use ($readSource): void {
     $module = $readSource('resources/js/lib/attribution.ts');
-    $privacy = $readSource('resources/js/pages/Privacy.tsx');
 
     preg_match("/ATTRIBUTION_STORAGE_KEY = '([^']+)'/", $module, $key);
-    preg_match('/ATTRIBUTION_TTL_DAYS = (\d+)/', $module, $ttl);
+    preg_match('/ATTRIBUTION_TTL_DAYS = (\\d+)/', $module, $ttl);
 
     expect($key[1] ?? '')->not->toBeEmpty();
 
     /*
-     * Assert:: rather than expect()->toContain(). Pest's toContain() takes
-     * `(mixed ...$needles)`, so a message passed to it becomes a second needle
-     * and the assertion starts demanding its own failure text appear in the
-     * file. See the note in StaleClaimsTest, where that cost a green suite.
+     * The privacy policy moves from Privacy.tsx to markdown in each language
+     * (architecture §1.4). Whichever exists is the one readers see.
      */
-    Assert::assertStringContainsString(
-        $key[1],
-        $privacy,
-        'The privacy page names every key this site writes to browser storage',
-    );
+    foreach (attributionPrivacySources() as $source => $days) {
+        $privacy = $readSource($source);
 
-    Assert::assertStringContainsString(
-        $ttl[1] . ' days',
-        $privacy,
-        'The privacy page states how long the attribution record is kept',
-    );
+        /*
+         * Assert:: rather than expect()->toContain(). Pest's toContain() takes
+         * `(mixed ...$needles)`, so a message passed to it becomes a second needle
+         * and the assertion starts demanding its own failure text appear in the
+         * file; under `->not` the same mistake makes the check pass whatever the
+         * file says. A message belongs in the third argument of Assert::.
+         */
+        Assert::assertStringContainsString(
+            $key[1],
+            $privacy,
+            "{$source} names every key this site writes to browser storage",
+        );
+
+        Assert::assertStringContainsString(
+            $ttl[1] . ' ' . $days,
+            $privacy,
+            "{$source} states how long the attribution record is kept",
+        );
+    }
 });
 
 /*
@@ -163,7 +214,7 @@ it('tells readers what it stores, under the name it stores it', function () use 
  * leave undisclosed.
  */
 it('does not claim the site stores nothing but cookies', function () use ($readSource): void {
-    $privacy = $readSource('resources/js/pages/Privacy.tsx');
-
-    expect($privacy)->not->toContain('The marketing site uses two functional cookies.');
+    foreach (array_keys(attributionPrivacySources()) as $source) {
+        expect($readSource($source))->not->toContain('The marketing site uses two functional cookies.');
+    }
 });

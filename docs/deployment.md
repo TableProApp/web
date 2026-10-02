@@ -18,8 +18,16 @@ Everything below exists because that sentence hides three things worth knowing.
 nginx sends `/account`, `/checkout`, `/webhooks`, `/newsletter`, `/beta`,
 `/discount`, `/thank-you`, `/api/newsletter` and `/platform-build` to the
 platform app, and everything else here. The footer's email form posts to
-`/api/newsletter`, so it leaves this codebase entirely — which is why nothing in
-this repository needs a database or a session.
+`/newsletter/subscribe`, so it leaves this codebase entirely — which is why
+nothing in this repository needs a database or a session.
+
+nginx matches those prefixes at the root only. `/vi/account` or `/vi/checkout`
+would come here, not to the platform, and answer 404: the public site never
+links or posts to a prefixed platform path. The Vietnamese pages under `/vi`
+are this app's, and need no nginx change.
+
+`scripts/dev-proxy.mjs` reproduces this split on a developer machine
+(docs/architecture.md, "Working on these forms locally").
 
 A dozen other sites share the same host and the same PHP-FPM master, so a reload
 is not free — but it is required, and this is the trap on this host:
@@ -50,10 +58,17 @@ from the changed paths:
 
 | Changed | Consequence |
 | --- | --- |
-| `resources/js/`, `resources/css/`, `vite.config.*`, `package*.json`, `tsconfig.json` | `npm ci`, rebuild both bundles, swap, restart SSR |
+| `resources/js/`, `resources/css/`, `resources/data/` (page copy, legal text and data files, in every locale), `vite.config.*`, `package*.json`, `tsconfig.json` | `npm ci`, rebuild both bundles, swap, restart SSR |
 | `composer.json`, `composer.lock` | `composer install` |
-| `app/`, `config/`, `routes/`, `bootstrap/`, `resources/views/`, `composer.*` | rebuild caches, reload PHP-FPM |
-| `resources/blog/`, `resources/data/`, `routes/` | regenerate the sitemap |
+| `app/`, `config/`, `routes/`, `bootstrap/`, `resources/views/`, `lang/`, `resources/data/locales.json`, `composer.*` | rebuild caches, reload PHP-FPM |
+| `resources/blog/` (including `resources/blog/vi/`), `resources/data/`, `routes/` | regenerate the sitemap |
+
+`lang/` is in the third row because its files are PHP arrays that opcache holds
+like any other PHP file. `resources/data/locales.json` is there because
+`routes/web.php` mounts one route group per locale it lists, so adding a locale
+must rebuild the route cache; the other data files are read per request. Note
+that `scripts/deploy.sh` runs from the copy already on the server (see "The
+deploy key"), so a change to these patterns takes effect one deploy late.
 
 `resources/views/` earns its place in the third row the hard way. A Blade
 template compiles to a PHP file named after its path, so editing one leaves the
@@ -62,9 +77,48 @@ first release deployed from this repository shipped a rewritten root template �
 new theme colours, new font preloads — that reached nobody until FPM was
 reloaded by hand.
 
-Publishing a blog post therefore costs a `git pull` and a sitemap, not a build:
-the post is markdown that PHP reads at request time. `FORCE=1` rebuilds
-everything anyway, which is what you want after a deploy that stopped halfway.
+A blog post is markdown that PHP reads at request time, so the diff alone does
+not call for a build. A build happens anyway: `bundles_are_stale` rebuilds
+whenever anything under `resources/` is newer than the built manifest, and a new
+post is. Publishing a post therefore costs a `git pull`, a build and a sitemap.
+That is the safe side of the trade, because a skipped rebuild never retries
+itself. `FORCE=1` rebuilds everything, which is what you want after a deploy
+that stopped halfway.
+
+## Before a launch or after an app release
+
+Three things are not part of a deploy and are checked by hand.
+
+**Release facts.** The versions, dates, requirements and App Store price the
+site states are data in `resources/data/platforms.json`, not a live lookup. Run,
+on any machine with network access:
+
+```bash
+php artisan release:check
+```
+
+It compares GitHub `releases/latest`, the Sparkle appcast, the Homebrew cask and
+the App Store listing with that file, prints one row per fact and exits non-zero
+on any drift or on a source it cannot read. Fix a drift in `platforms.json` and
+deploy that commit. When Homebrew serves the current Mac release, bump
+`mac.floorVersion` there: that removes the "0.77"-style labels.
+The suite never runs this command, because tests do not touch the network.
+
+**Social cards.** `public/og/` is committed, never generated on the server. After
+a content change that alters a page's `og` block, run the `og cards` workflow
+(or `php artisan og:generate --type=… --locale=…` locally, with Chromium) and
+deploy the commit it makes.
+
+**Server environment.** `PAYMENT_PROVIDER` must match the platform app's setting,
+because the plan cards open the overlay of whichever provider's URL
+`POST /checkout` returns. This app does not read `TEAM_MIN_SEATS`: the minimum
+seat count it shows comes from `resources/data/pricing.json`, synced by hand
+with the platform, which enforces its own value.
+
+The generated asset files (`docs/visual-assets.md` and
+`resources/js/lib/data/asset-slots.json`) need no step here: CI fails when
+either is stale (`php artisan assets:handoff --check`), so a green `main` has
+current ones.
 
 ## The bundles are swapped, not overwritten
 
