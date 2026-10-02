@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,7 +13,21 @@
 |
 */
 
-pest()->extend(Tests\TestCase::class)->in('Feature');
+pest()->extend(Tests\TestCase::class)
+    /*
+     * No test reaches the network. Several used to call the live GitHub API,
+     * which made them slow, rate-limited and dependent on whatever the latest
+     * release happened to be. A test that needs a response fakes it with
+     * `Http::fake()`; anything unfaked throws instead of leaving the machine.
+     *
+     * The SSR server is the one exception: it is local, and the SSR-gated tests
+     * exist to render through it.
+     */
+    ->beforeEach(function (): void {
+        Http::preventStrayRequests();
+        Http::allowStrayRequests([rtrim((string) config('inertia.ssr.url', 'http://127.0.0.1:13715'), '/') . '/*']);
+    })
+    ->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
