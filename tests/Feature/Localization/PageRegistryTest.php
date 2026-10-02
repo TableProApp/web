@@ -7,6 +7,7 @@ use App\Support\Seo\OgImages;
 use App\Support\Seo\PageEntry;
 use App\Support\Seo\PageFamily;
 use App\Support\Seo\PageRegistry;
+use App\Support\Seo\RedirectMap;
 use App\Support\Seo\SeoContext;
 use App\Support\Seo\StaticPages;
 use Illuminate\Http\Request;
@@ -156,7 +157,10 @@ it('declares reciprocal alternates and a self canonical on a real pair', functio
 });
 
 it('sends the switcher to the nearest index when a page has no translation', function (): void {
-    $slug = pathinfo((string) collect(glob(resource_path('blog/*.md')))->first(), PATHINFO_FILENAME);
+    // A post that is still a page: a post merged elsewhere answers 301 and has no registry entry (sitemap §C.5).
+    $slug = pathinfo((string) collect(glob(resource_path('blog/*.md')))->first(
+        fn(string $post): bool => ! app(RedirectMap::class)->retires('/blog/' . pathinfo($post, PATHINFO_FILENAME)),
+    ), PATHINFO_FILENAME);
 
     $before = app(LocaleSwitcher::class)->forRequest(matchedRequest("/blog/{$slug}", 'en'));
 

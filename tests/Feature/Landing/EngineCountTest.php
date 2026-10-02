@@ -118,7 +118,8 @@ it('quotes one engine count across every comparison page', function (): void {
      * generated from their own fields and so drift silently from the table they
      * advertise.
      */
-    $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+    // The pre-rebuild Compare page renders the legacy file; the new schema has no `rows`.
+    $entries = json_decode(file_get_contents(base_path('resources/data/legacy/comparisons.json')), true);
 
     $offenders = [];
 

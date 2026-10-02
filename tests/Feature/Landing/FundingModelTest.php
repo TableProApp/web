@@ -136,33 +136,14 @@ it('answers the abandonment question with a business model, not only a release c
     expect($answer)->toContain('funded by licenses rather than investors');
 });
 
-it('tells a fresh download what keeps the next release coming', function (): void {
-    $html = ssrHtml('/download');
-
+it('names no price on the download page', function (): void {
     /*
-     * The riskiest of the four surfaces. This page is reached by someone who
-     * has just decided to use TablePro, and the homepage promises them "Free is
-     * not a trial and not a demo" — so anything money-shaped here reads as a
-     * toll booth on a promise made one page earlier.
-     *
-     * Three things keep it honest, and all three are asserted: it opens by
-     * repeating that the app is free, it names no price, and it sits after the
-     * install steps rather than before them.
+     * The rest of this case pinned "TablePro is free, all of it" on /download.
+     * Positioning §12 now bans the whole-app-is-free claim, and the rebuilt
+     * page states the Mac and iOS terms from platforms.json instead, so only
+     * the price guard remains until this file is retired (architecture §1.17).
      */
-    // Inside <main>, for the same reason: the banner sits above the header.
-    $start = strpos($html, '<main');
-    $main = substr($html, $start, strrpos($html, '</main>') - $start);
-
-    $free = strpos($main, 'TablePro is free, all of it');
-    $claim = strpos($main, 'funded by licenses rather than investors');
-    $install = strpos($main, 'Drag <strong');
-
-    expect($free)->not->toBeFalse('The download page must restate that the app is free');
-    expect($claim)->not->toBeFalse();
-    expect($install)->not->toBeFalse();
-
-    expect($free)->toBeLessThan($claim, 'Free comes first, then what pays for it');
-    expect($claim)->toBeGreaterThan($install, 'The ask sits below the install steps, not above them');
+    $html = ssrHtml('/download');
 
     // A price literal here could not be corrected without a deploy, and
     // `data/pricing.ts` is the only place a figure may live.

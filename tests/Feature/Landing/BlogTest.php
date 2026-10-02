@@ -41,11 +41,14 @@ dataset('blogSlugs', [
     'tablepro-0-69',
     'tablepro-0-68',
     'tablepro-0-67',
-    'cloudflare-d1-mac',
-    'mcp-database-claude',
-    'mongodb-native-vs-compass',
-    'open-source-db-clients-2026',
 ]);
+
+/*
+ * cloudflare-d1-mac, mcp-database-claude, mongodb-native-vs-compass and
+ * open-source-db-clients-2026 are merged into other pages and answer 301
+ * (sitemap §C.5, resources/data/redirects.json); Seo/RedirectsTest covers
+ * them. Their files stay until the blog rewrite deletes them.
+ */
 
 it('renders the post page for slug [%s]', function (string $slug): void {
     getOnWebDomainBlog('/blog/' . $slug)
@@ -62,12 +65,12 @@ it('renders the post page for slug [%s]', function (string $slug): void {
 })->with('blogSlugs');
 
 it('passes up to 3 related posts and excludes the current post', function (): void {
-    getOnWebDomainBlog('/blog/cloudflare-d1-mac')
+    getOnWebDomainBlog('/blog/tablepro-0-77')
         ->assertOk()
         ->assertInertia(
             fn($page) => $page->component('Blog/Post')
                 ->has('relatedPosts', 3)
-                ->where('relatedPosts.0.slug', fn(string $slug): bool => $slug !== 'cloudflare-d1-mac'),
+                ->where('relatedPosts.0.slug', fn(string $slug): bool => $slug !== 'tablepro-0-77'),
         );
 });
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Seo\RedirectMap;
 
 use function Pest\Laravel\withoutVite;
 
@@ -129,6 +130,11 @@ it('keeps every tile link resolvable and consistent with its marketing page', fu
 it('serves a page for every tile link', function (): void {
     foreach (gridTiles() as $tile) {
         if ($tile['href'] === null) {
+            continue;
+        }
+
+        // Merged into a family page (sitemap §C.3): the 301 is Seo/RedirectsTest's to check.
+        if (app(RedirectMap::class)->retires($tile['href'])) {
             continue;
         }
 

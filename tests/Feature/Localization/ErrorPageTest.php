@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Seo\RedirectMap;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Inertia\Testing\AssertableInertia;
@@ -59,8 +60,10 @@ it('renders an unknown Vietnamese URL as the Vietnamese 404 page', function (): 
 });
 
 it('offers the English post on /vi/blog/{slug} instead of its English body', function (): void {
+    // An English-only post that is still a page: a post merged elsewhere answers 301 (sitemap §C.5).
     $slug = pathinfo((string) collect(glob(resource_path('blog/*.md')))->first(
-        fn(string $post): bool => ! is_file(resource_path('blog/vi/' . basename($post))),
+        fn(string $post): bool => ! is_file(resource_path('blog/vi/' . basename($post)))
+            && ! app(RedirectMap::class)->retires('/blog/' . pathinfo($post, PATHINFO_FILENAME)),
     ), PATHINFO_FILENAME);
 
     $this->get("/vi/blog/{$slug}")

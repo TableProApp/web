@@ -21,35 +21,12 @@ function landingHtml(): string
     return $html ??= ssrHtml('/');
 }
 
-it('numbers every full-bleed rule, including the accent ones', function (): void {
-    $html = landingHtml();
-
-    // Every FullLine and every AccentLine carries the counter class. AccentLine
-    // was skipped once, which made the ordinal the position of *some* rules
-    // rather than of the rule — the first one in each section was missing.
-    $numbered = substr_count($html, 'rule-numbered');
-    $rules = substr_count($html, '-ml-[100vw] h-px w-[200vw] bg-rule');
-
-    expect($numbered)->toBe($rules, 'Every full-bleed rule must carry the ordinal counter');
-
-    /*
-     * Was 80. The framing convention did not change — every block is still
-     * closed by a rule — but three header stacks went with the three sections
-     * that merged, and twelve mono caveat bands became four footnotes. Rules
-     * are a consequence of how many blocks the page has, so this floor tracks
-     * the block count rather than pinning it.
-     */
-    expect($numbered)->toBeGreaterThan(70);
-});
-
-it('subtracts the container padding from the rule ordinals', function (): void {
-    $html = landingHtml();
-
-    // Roughly half the rules sit inside a Container and half do not. Without
-    // --rule-inset the two groups rendered 32px apart, and the Container half
-    // landed inside the content column instead of the gutter.
-    expect($html)->toContain('rule-inset-host');
-});
+/*
+ * The cases that pinned the ledger's rule ordinals, `rule-inset-host`, the
+ * `data-tone="raised"` ground and the full-height rails are gone: the rebuilt
+ * chrome retires that design (spec §9, design-system), and architecture §1.17
+ * deletes this file in phase D.
+ */
 
 it('keeps a download within reach of the reader', function (): void {
     $html = landingHtml();
@@ -157,14 +134,6 @@ it('answers the AI question inside the section that raises it', function (): voi
     expect($answer)->not->toBeFalse();
     expect($answer)->toBeGreaterThan($agents);
     expect($answer)->toBeLessThan($safety, 'The answer belongs in Agents, not after it');
-});
-
-it('gives the page a second ground', function (): void {
-    $html = landingHtml();
-
-    // Sixteen sections shared one background until this shipped, so hairline
-    // density was the only rhythm over ten thousand pixels of scroll.
-    expect(substr_count($html, 'data-tone="raised"'))->toBeGreaterThanOrEqual(3);
 });
 
 it('keeps Agents adjacent to the answer to the fear it raises', function (): void {
@@ -347,17 +316,4 @@ it('spends mono on data rather than on prose', function (): void {
         $main,
         'Footnotes are prose about data, not data: use <FootNote>',
     );
-});
-
-it('spans the gutters and rails past the footer', function (): void {
-    $html = landingHtml();
-
-    /*
-     * `row-span-full` compiles to `grid-row: 1 / -1`, and `-1` counts back from
-     * the last line of the *explicit* grid. With only `grid-cols` declared every
-     * row was implicit, `-1` resolved to line 1, and all four vertical lines
-     * stopped dead where <main> ended — the footer stood beside nothing.
-     */
-    expect($html)->toContain('grid-rows-[1fr_auto]');
-    expect($html)->toContain('row-start-2');
 });

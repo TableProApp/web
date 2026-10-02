@@ -17,9 +17,15 @@ function compareTableSource(): string
     return file_get_contents(base_path('resources/js/components/landing/compare-table.tsx'));
 }
 
+/**
+ * The pre-rebuild entries the table renders, through `resources/js/data/comparisons.ts`.
+ * `resources/data/comparisons.json` now holds the new, sourced schema (architecture §1.8).
+ *
+ * @return list<array<string, mixed>>
+ */
 function comparisonEntries(): array
 {
-    return json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+    return json_decode(file_get_contents(base_path('resources/data/legacy/comparisons.json')), true);
 }
 
 it('renders four competitors that all exist in the data', function (): void {
