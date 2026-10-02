@@ -269,11 +269,74 @@
 }
 
 @layer base {
-  /* One ring for every focusable thing, 4.94–9.70:1 against every ground. */
-  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  /*
+   * Decorative borders default to the hairline, so a bare `border` draws
+   * `--rule` rather than `currentColor`. Control outlines ask for
+   * `--rule-strong` by name.
+   */
+  *,
+  ::before,
+  ::after,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--rule);
+  }
+
+  /*
+   * One ring for every focusable thing, 4.94–9.70:1 against every ground.
+   * Never removed and never replaced by a box-shadow ring. A programmatic focus
+   * target (`tabindex="-1"`, such as `<main>` after the skip link) is not a
+   * control and draws none.
+   */
+  :where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
     outline: 2px solid var(--focus);
     outline-offset: 2px;
   }
+}
+
+/*
+ * Forced colours (Windows contrast themes): the ring and the state bars take
+ * the system highlight, and nothing relies on a background alone. Filled
+ * buttons and badges keep a transparent 1px border, which the system paints.
+ */
+@media (forced-colors: active) {
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+/*
+ * The theme control (components/shared/theme-control.tsx) renders all three
+ * icons and all three options. Which icon shows, and which option looks
+ * selected, follows `html[data-theme-choice]`, which the head script sets
+ * before paint. So the control is right on the first frame without the server
+ * knowing the theme, and stays right after `applyTheme()` changes it.
+ */
+.theme-choice-icon {
+  display: none;
+}
+
+:root:not([data-theme-choice]) .theme-choice-icon[data-choice="light"],
+[data-theme-choice="light"] .theme-choice-icon[data-choice="light"],
+[data-theme-choice="dark"] .theme-choice-icon[data-choice="dark"],
+[data-theme-choice="system"] .theme-choice-icon[data-choice="system"] {
+  display: block;
+}
+
+/* The selected segment: `--raised` with a hairline and the text colour, on the `--surface-strong` track. */
+:root:not([data-theme-choice]) .theme-segment[data-theme-option="light"],
+[data-theme-choice="light"] .theme-segment[data-theme-option="light"],
+[data-theme-choice="dark"] .theme-segment[data-theme-option="dark"],
+[data-theme-choice="system"] .theme-segment[data-theme-option="system"] {
+  background-color: var(--raised);
+  border-color: var(--rule);
+  color: var(--foreground);
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.06);
+}
+
+/* Light only: a shadow does not separate layers on a dark ground. */
+.dark .theme-segment[data-theme-option] {
+  box-shadow: none;
 }
 
 /* Motion confirms what the reader did; it never performs on its own. */
