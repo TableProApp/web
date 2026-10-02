@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Cloudflare D1 client for {devices}",
+        "description": "Connect to Cloudflare D1 with an account ID and an API token, move between the account’s databases, and query them in SQLite’s dialect with plan diagrams."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "Cloudflare D1 client"
+    },
+    "engine": "cloudflare-d1",
+    "breadcrumb": "Cloudflare D1",
+    "header": {
+        "title": "Cloudflare D1 client for {devices}",
+        "lead": "Reach the D1 databases in your Cloudflare account from one connection, query them in SQLite’s dialect over Cloudflare’s API, and manage their tables, indexes and triggers in the Structure tab."
+    },
+    "asset": "mac-db-d1-databases",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "credentials": "/features/connections#credentials",
+        "sqlite": "/sqlite-client"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connect with an API token",
+            "paragraphs": [
+                "A D1 connection takes three values: the database’s name or UUID, your Cloudflare account ID and an API token. The token goes in the field labelled <ui>API Token</ui> and is kept in the <credentials>macOS Keychain</credentials>. There is no host, port, SSL setting or SSH tunnel, because every request goes to Cloudflare’s API over HTTPS.",
+                "Create the token from the Custom token template with the <ui>Account > D1 > Edit</ui> permission, and copy it when Cloudflare shows it, because it is shown once. That token reaches every D1 database in the account, not only the one you connect to.",
+                "Importing a <code>d1://account-id/database-name</code> URL fills in the account and the database; the token never travels in the URL, so paste it in afterwards."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Switch databases and query",
+            "paragraphs": [
+                "The database switcher in the toolbar lists the account’s D1 databases and moves between them without reconnecting. It creates and drops databases too. Each tab stays on the database it was opened on.",
+                "Queries use SQLite’s dialect. <explain>EXPLAIN QUERY PLAN</explain> is drawn as a diagram, and row edits wait in the grid until you save, with <editing>Preview SQL</editing> showing the statements first.",
+                "Write each statement so it stands on its own: a <code>PRAGMA</code> setting or a temporary table made by one statement is gone by the next, and every statement commits when it runs, with nothing to roll back. When Cloudflare rate-limits a request, the error carries the wait Cloudflare asked for before a retry."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tables, indexes and triggers",
+            "paragraphs": [
+                "The <structure>Structure tab</structure> creates and drops tables, adds and drops columns, and creates and drops indexes, including partial indexes with a WHERE condition; Preview SQL shows the DDL before you save. The Triggers tab creates, edits and drops triggers, and tables can be renamed from the sidebar.",
+                "A column reorder or a foreign key change means rebuilding the table. On D1, TablePro writes that rebuild script and hands it to you to run, because every statement is a separate request and no transaction can hold the rebuild together."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Move data",
+            "paragraphs": [
+                "TablePro has no import for D1. Load a SQL file with <code>wrangler d1 execute</code> and its <code>--file</code> option, then browse the result here. <export>Export</export> writes a D1 table or a query result as {exportFormats}."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "sessions",
+            "question": "Does TablePro use D1’s Sessions API?",
+            "answer": "No. Each statement goes out as its own request, with no session and no bookmark, so nothing carries over from one statement to the next, in one tab or across tabs."
+        },
+        {
+            "id": "wrangler",
+            "question": "Do I need Wrangler installed?",
+            "answer": "Not to browse, query or edit: TablePro talks to Cloudflare’s API directly. Wrangler is only needed to load a SQL file, since TablePro has no import for D1."
+        }
+    ],
+    "related": [
+        {
+            "label": "SQLite, the dialect D1 speaks",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Turso and libSQL, SQLite over HTTP",
+            "href": "/turso-client"
+        },
+        {
+            "label": "Structure editing and rebuild scripts",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "Connections and credentials",
+            "href": "/features/connections"
+        }
+    ]
+}
