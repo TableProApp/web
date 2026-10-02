@@ -2,7 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Localization\LocaleSwitcher;
+use App\Support\Localization\LocalizedUrl;
+use App\Support\Seo\SeoContext;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -31,7 +35,16 @@ class HandleInertiaRequests extends Middleware
      *
      * This app runs without a session, so there is no flash bag to share. Pages
      * that need to report the outcome of a write hold that state in React — see
-     * useEmailForm in resources/js/components/landing/footer-cta.tsx.
+     * `useEmailForm` in resources/js/hooks/use-email-form.ts.
+     *
+     * Everything that depends on the locale is a closure. This middleware is in
+     * the `web` group and runs before the route's `locale:{code}` middleware, so
+     * an eager `app()->getLocale()` here would read the default locale on every
+     * Vietnamese page. Closures resolve when the page renders, after `SetLocale`
+     * (or after the error renderer has set the locale from the path).
+     *
+     * The method tolerates a request with no route: the error renderer calls it
+     * for 404s that matched nothing.
      *
      * @see https://inertiajs.com/shared-data
      *
@@ -41,24 +54,33 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            'canonicalBaseUrl' => rtrim('https://' . config('app.web_domain'), '/'),
+            'canonicalBaseUrl' => LocalizedUrl::base(),
+            'locale' => fn(): string => App::getLocale(),
+            'localization' => fn(): array => [
+                'switcher' => app(LocaleSwitcher::class)->forRequest($request),
+            ],
+            'seo' => fn(): array => app(SeoContext::class)->forRequest($request),
             'banner' => $this->banner(),
+            'crispWebsiteId' => config('services.crisp.website_id') ?: null,
         ];
     }
 
     /**
      * The top banner, or null when it is switched off.
      *
-     * Shared rather than passed per page, because it sits in `LandingLayout`
-     * and every page uses that layout. Threading it through eight controllers
-     * would put the same prop in eight signatures and guarantee that the ninth
-     * page forgets it.
+     * Shared rather than passed per page, because every page renders it.
      *
      * Null rather than `['enabled' => false]`: the component renders nothing
      * for null, so a disabled banner leaves no element, no reserved height and
      * no shifted header behind it.
      *
-     * @return array{message: string, messageShort: string, cta: string, href: string, version: string}|null
+     * The banner's words belong to the `banner` UI catalog in each language;
+     * config keeps only the switch, the link and the dismissal version. Until
+     * the chrome agent trims `config/banner.php`, the legacy English copy still
+     * travels with it for the pre-rebuild `SupportBanner`, and each of those
+     * keys disappears from the prop once its config value is gone.
+     *
+     * @return array{href: string, version: string, message?: string, messageShort?: string, cta?: string}|null
      */
     private function banner(): ?array
     {
@@ -66,12 +88,16 @@ class HandleInertiaRequests extends Middleware
             return null;
         }
 
+        $legacy = array_filter([
+            'message' => config('banner.message'),
+            'messageShort' => config('banner.message_short'),
+            'cta' => config('banner.cta'),
+        ], static fn(mixed $value): bool => is_string($value) && $value !== '');
+
         return [
-            'message' => (string) config('banner.message'),
-            'messageShort' => (string) config('banner.message_short'),
-            'cta' => (string) config('banner.cta'),
             'href' => (string) config('banner.href'),
             'version' => (string) config('banner.version'),
+            ...$legacy,
         ];
     }
 }

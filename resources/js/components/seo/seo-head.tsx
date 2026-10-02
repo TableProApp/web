@@ -1,107 +1,146 @@
 import { Head, usePage } from '@inertiajs/react';
+import { useI18n } from '@/i18n';
 import { buildBreadcrumbJsonLd, type BreadcrumbCrumb } from '@/lib/structured-data';
 
 export interface SEOHeadProps {
+    /** The page's own title. The `seo.titleTemplate` catalog entry adds the brand. */
     title: string;
     description: string;
-    canonical: string;
-    ogImage?: string;
     ogType?: 'website' | 'article' | 'product';
-    twitterCard?: 'summary' | 'summary_large_image';
     jsonLd?: object | object[];
     breadcrumbs?: BreadcrumbCrumb[];
+    /** False for a title that already leads with the brand, such as the homepage's. */
+    titleTemplate?: boolean;
+    twitterCard?: 'summary' | 'summary_large_image';
+    /**
+     * @deprecated Pre-rebuild pages only, and ignored: the canonical comes from
+     * the registry. Its presence marks a legacy page whose title already
+     * carries "- TablePro", so the template is not applied twice. Removed with
+     * the legacy pages.
+     */
+    canonical?: string;
+    /** @deprecated Ignored. The card comes from the registry (`seo.ogImage`). */
+    ogImage?: string;
+    /** @deprecated Ignored. Robots come from the registry (`seo.robots`). */
     noindex?: boolean;
 }
 
-interface SharedSeoProps {
-    canonicalBaseUrl: string;
-    // usePage's PageProps constraint requires an index signature; without it a
-    // narrow interface is not assignable even though every field it declares is.
-    [key: string]: unknown;
-}
-
 const SITE_NAME = 'TablePro';
-const DEFAULT_OG_IMAGE = '/og.png';
 
 function escapeJsonLd(payload: object | object[]): string {
     return JSON.stringify(payload).replace(/<\/script/gi, '<\\/script');
 }
 
 function mergeJsonLd(base: object | object[] | undefined, extra: object | null): object[] | object | undefined {
-    if (!extra) return base;
-    if (!base) return extra;
-    const baseArray = Array.isArray(base) ? base : [base];
-    return [...baseArray, extra];
+    if (!extra) {
+        return base;
+    }
+
+    if (!base) {
+        return extra;
+    }
+
+    return [...(Array.isArray(base) ? base : [base]), extra];
 }
 
+/**
+ * The document head, rendered from the shared `seo` prop.
+ *
+ * Robots, canonical, hreflang alternates, `og:locale` and the OG image all come
+ * from the PHP page registry (`App\Support\Seo\SeoContext`), the same source the
+ * sitemap uses. No page decides its own robots value or canonical, so the head
+ * and the sitemap cannot disagree.
+ *
+ * In order: title and description; exactly one robots meta; the canonical when
+ * the page is indexed in this locale; one alternate per real translation plus
+ * `x-default`; Open Graph and Twitter tags; JSON-LD with `</script` escaped.
+ * Every tag that can repeat carries a unique `head-key`.
+ */
 export default function SEOHead({
     title,
     description,
-    canonical,
-    ogImage = DEFAULT_OG_IMAGE,
     ogType = 'website',
-    twitterCard = 'summary_large_image',
     jsonLd,
     breadcrumbs,
-    noindex = false,
+    titleTemplate = true,
+    twitterCard = 'summary_large_image',
+    canonical: legacyCanonical,
 }: SEOHeadProps) {
-    const { canonicalBaseUrl } = usePage<SharedSeoProps>().props;
+    const { seo, canonicalBaseUrl } = usePage().props;
+    const { m, fmt } = useI18n();
 
-    const absoluteUrl = (url: string): string => {
-        if (/^https?:\/\//i.test(url)) {
-            return url;
-        }
-        const path = url.startsWith('/') ? url : `/${url}`;
-        return `${canonicalBaseUrl}${path}`;
-    };
+    const applyTemplate = titleTemplate && legacyCanonical === undefined;
+    const fullTitle = applyTemplate ? fmt(m.seo.titleTemplate, { title }) : title;
 
-    const canonicalUrl = absoluteUrl(canonical);
-    const ogImageUrl = absoluteUrl(ogImage);
-
-    const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
-        ? buildBreadcrumbJsonLd(breadcrumbs, canonicalBaseUrl)
-        : null;
+    const breadcrumbJsonLd =
+        breadcrumbs && breadcrumbs.length > 0 ? buildBreadcrumbJsonLd(breadcrumbs, canonicalBaseUrl) : null;
     const combined = mergeJsonLd(jsonLd, breadcrumbJsonLd);
     const jsonLdContent = combined ? escapeJsonLd(combined) : null;
 
     return (
         <Head>
-            <title>{title}</title>
-            <meta name="description" content={description} />
+            <title>{fullTitle}</title>
+            <meta head-key="description" name="description" content={description} />
+            <meta head-key="robots" name="robots" content={seo.robots} />
+            {seo.canonical && <link head-key="canonical" rel="canonical" href={seo.canonical} />}
+
             {/*
-              * Unconditional, and the only robots tag on the page. It used to
-              * render only in the noindex case while `app.blade.php` hardcoded
-              * `index,follow`, so every page carried two and a noindex page
-              * carried two that disagreed.
-              *
-              * `max-image-preview:large` matters on a site whose hero is a
-              * 3024x1720 screenshot.
+              * `hreflang` is spread in lowercase on purpose. Inertia's <Head>
+              * serialises props by their JSX names, so `hrefLang` would ship as
+              * `hrefLang="vi"`; browsers accept either case, but the attribute
+              * is `hreflang` and that is what crawlers and tests look for.
               */}
-            <meta
-                name="robots"
-                content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
-            />
-            <link rel="canonical" href={canonicalUrl} />
+            {seo.alternates.map((alternate) => (
+                <link
+                    key={alternate.hreflang}
+                    head-key={`alternate-${alternate.hreflang}`}
+                    rel="alternate"
+                    {...{ hreflang: alternate.hreflang }}
+                    href={alternate.href}
+                />
+            ))}
+            {seo.xDefault && (
+                <link
+                    head-key="alternate-x-default"
+                    rel="alternate"
+                    {...{ hreflang: 'x-default' }}
+                    href={seo.xDefault}
+                />
+            )}
 
-            <meta property="og:type" content={ogType} />
-            <meta property="og:url" content={canonicalUrl} />
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
-            <meta property="og:image" content={ogImageUrl} />
-            <meta property="og:image:width" content="1200" />
-            <meta property="og:image:height" content="630" />
-            <meta property="og:image:type" content="image/png" />
-            <meta property="og:site_name" content={SITE_NAME} />
+            <meta head-key="og:type" property="og:type" content={ogType} />
+            {seo.canonical && <meta head-key="og:url" property="og:url" content={seo.canonical} />}
+            <meta head-key="og:title" property="og:title" content={fullTitle} />
+            <meta head-key="og:description" property="og:description" content={description} />
+            <meta head-key="og:site_name" property="og:site_name" content={SITE_NAME} />
+            <meta head-key="og:locale" property="og:locale" content={seo.ogLocale} />
+            {seo.ogLocaleAlternates.map((ogLocale) => (
+                <meta
+                    key={ogLocale}
+                    head-key={`og:locale:alternate-${ogLocale}`}
+                    property="og:locale:alternate"
+                    content={ogLocale}
+                />
+            ))}
+            {seo.ogImage && <meta head-key="og:image" property="og:image" content={seo.ogImage.url} />}
+            {seo.ogImage && (
+                <meta head-key="og:image:width" property="og:image:width" content={String(seo.ogImage.width)} />
+            )}
+            {seo.ogImage && (
+                <meta head-key="og:image:height" property="og:image:height" content={String(seo.ogImage.height)} />
+            )}
+            {seo.ogImage && <meta head-key="og:image:type" property="og:image:type" content={seo.ogImage.type} />}
 
-            <meta name="twitter:card" content={twitterCard} />
+            <meta head-key="twitter:card" name="twitter:card" content={twitterCard} />
             {/* Without this the card carries no attribution on any share. */}
-            <meta name="twitter:site" content="@TableProApp" />
-            <meta name="twitter:title" content={title} />
-            <meta name="twitter:description" content={description} />
-            <meta name="twitter:image" content={ogImageUrl} />
+            <meta head-key="twitter:site" name="twitter:site" content="@TableProApp" />
+            <meta head-key="twitter:title" name="twitter:title" content={fullTitle} />
+            <meta head-key="twitter:description" name="twitter:description" content={description} />
+            {seo.ogImage && <meta head-key="twitter:image" name="twitter:image" content={seo.ogImage.url} />}
 
             {jsonLdContent && (
                 <script
+                    head-key="json-ld"
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: jsonLdContent }}
                 />

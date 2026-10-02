@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Toaster } from 'sonner';
+import { useI18n } from '@/i18n';
 import ConsentBar from '@/components/landing/consent-bar';
 import SupportBanner from '@/components/landing/support-banner';
 
@@ -31,6 +32,18 @@ interface Props {
 }
 
 export default function LandingLayout({ header, footer, children }: Props) {
+    const { locale, m } = useI18n();
+
+    /*
+     * `<html lang>` is right on the first byte, from Blade. A visit between
+     * locales is a full document load (`LocaleLink` renders a plain `<a>` for
+     * it), so this only matters if history navigation ever restores a page in
+     * the other language without one. It is a safety net, not the mechanism.
+     */
+    useEffect(() => {
+        document.documentElement.lang = locale;
+    }, [locale]);
+
     return (
         <div className="overflow-x-hidden bg-background text-foreground antialiased">
             <Toaster
@@ -49,7 +62,7 @@ export default function LandingLayout({ header, footer, children }: Props) {
                 }}
             />
             <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:inline-flex focus:min-h-[48px] focus:items-center focus:rounded-lg focus:bg-primary focus:px-4 focus:text-primary-foreground focus:shadow-lg">
-                Skip to content
+                {m.a11y.skipToContent}
             </a>
             {/*
               * Above the header, and outside <main>, for the same reason the

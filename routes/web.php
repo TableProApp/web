@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Landing\BlogController;
-use App\Http\Controllers\Landing\LandingController;
+use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,35 +15,24 @@ use Illuminate\Support\Facades\Route;
 | The paths this app deliberately does NOT serve — checkout, accounts and the
 | newsletter — are handled by the TablePro backend. See docs/architecture.md.
 |
+| The localized pages are declared once, in routes/localized.php, and mounted
+| once per locale in resources/data/locales.json: English at the root with
+| today's route names, every other locale under its prefix with the same names
+| behind its code (`vi.landing.home` is `/vi`). The locale is a function of the
+| URL alone. `locale:{code}` sets it from the group, and `page` lets a route
+| answer only in the locales its registry entry renders in.
+|
+| Redirects and 410s are not routes. The global CanonicalizeRequest middleware
+| answers them before routing, because a retired path has no route to match.
+|
 */
 
-Route::get('/', [LandingController::class, 'home'])->name('landing.home');
-Route::get('/download', [LandingController::class, 'download'])->name('landing.download');
-/*
- * Declared here, with the other static pages, rather than near the `/{slug}`
- * catch-all below. Order is not load-bearing — Laravel compiles each `where()`
- * into the route's own regex and skips a route that does not match, which is
- * why `/robots.txt` still resolves from below the catch-all — but `ios` is not
- * a database slug and must never be added to that alternation.
- */
-Route::get('/ios', [LandingController::class, 'ios'])->name('landing.ios');
-Route::get('/privacy', [LandingController::class, 'privacy'])->name('landing.privacy');
-Route::get('/terms', [LandingController::class, 'terms'])->name('landing.terms');
-Route::get('/refund-policy', [LandingController::class, 'refundPolicy'])->name('landing.refundPolicy');
-Route::get('/faq', [LandingController::class, 'faq'])->name('landing.faq');
-
-Route::get('/blog', [BlogController::class, 'index'])->name('landing.blog.index');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])
-    ->where('slug', '[a-z0-9-]+')
-    ->name('landing.blog.show');
-
-Route::get('/compare/{slug}', [LandingController::class, 'compare'])
-    ->where('slug', 'tableplus|dbeaver|datagrip|navicat|beekeeper-studio|sequel-pro|postico|sequel-ace|heidisql|azimutt|phpmyadmin')
-    ->name('landing.compare');
-
-Route::get('/{slug}', [LandingController::class, 'databaseClient'])
-    ->where('slug', 'mysql-client|postgresql-client|sqlite-client|mongodb-client|redis-gui|sql-server-client|oracle-client|clickhouse-client|duckdb-client|cassandra-client|mariadb-client|redshift-client|cloudflare-d1-client|turso-client|dynamodb-gui|bigquery-client|etcd-gui|snowflake-client|cockroachdb-client|elasticsearch-client|scylladb-client|pglite-client|surrealdb-client|teradata-client|trino-client|beancount-client')
-    ->name('landing.databaseClient');
+foreach (Locales::all() as $code => $locale) {
+    Route::middleware(['locale:' . $code, 'page'])
+        ->prefix($locale['prefix'] ?? '')
+        ->name($locale['prefix'] === null ? '' : $code . '.')
+        ->group(base_path('routes/localized.php'));
+}
 
 Route::get('/robots.txt', function () {
     $content = "User-agent: *\nAllow: /\n\nSitemap: https://tablepro.app/sitemap.xml\nSitemap: https://docs.tablepro.app/sitemap.xml\n";
