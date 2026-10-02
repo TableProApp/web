@@ -1,0 +1,188 @@
+{
+    "seo": {
+        "title": "SSH tunnels, cloud sign-in and connection import",
+        "description": "Reach databases through SSH jump hosts, proxies or kubectl, sign in with AWS IAM or Entra ID, and bring connections over from TablePlus, DBeaver and more."
+    },
+    "og": {
+        "kicker": "Connections",
+        "title": "Connections, tunnels and credentials"
+    },
+    "header": {
+        "title": "Connections, tunnels and credentials",
+        "lead": "For anyone whose databases sit behind a bastion, a cluster or a cloud login: set a connection up once, with the route and the password source it needs, and give production ones stricter rules. Everything here is in the Mac app; the last section covers iPhone and iPad.",
+        "docs": "/connections"
+    },
+    "sections": [
+        {
+            "id": "organize",
+            "title": "Keep a library of connections",
+            "paragraphs": [
+                "Each connection is edited in one form with General, Network, Options and Appearance tabs. Import a connection URL, including <code>jdbc:</code> URLs and <code>+ssh</code> URLs that carry an SSH hop, and the form fills itself in; when one is already on your clipboard, the form offers <ui>Use clipboard URL</ui>.",
+                "Give a connection a colour, as many tags as you like and a place in nested groups, and star the ones you use most as favorites. Environments are tags: local, development, production and testing are built in, and you can add your own. An empty library offers <ui>Open Sample Database</ui>, a bundled SQLite copy of Chinook."
+            ],
+            "asset": "mac-connection-library"
+        },
+        {
+            "id": "import",
+            "title": "Bring the connections you already have",
+            "paragraphs": [
+                "You rarely start from an empty list: TablePro reads connections from another client, from a project’s config files or from your AWS account."
+            ],
+            "links": [{ "label": "Connection files and share links", "href": "/features/sync-and-teams#share" }],
+            "blocks": [
+                {
+                    "id": "other-apps",
+                    "title": "From another database client",
+                    "paragraphs": [
+                        "<ui>Import from Other App</ui> reads the connections saved in {connectionImportApps}, TablePlus's Setapp edition included, and brings their passwords across where that app stored them, including the encrypted passwords DBeaver and Navicat keep. Navicat connections come from an <code>.ncx</code> export file."
+                    ],
+                    "asset": "mac-import-other-app"
+                },
+                {
+                    "id": "project-folder",
+                    "title": "From a project’s config files",
+                    "paragraphs": [
+                        "<ui>Open Project Folder</ui> scans a project for database settings in <code>.env</code>, <code>wp-config.php</code>, a Prisma schema, Rails’ <code>config/database.yml</code>, <code>docker-compose.yml</code>, Spring’s <code>application.properties</code> or <code>application.yml</code>, and <code>appsettings.json</code>. It lists each set it finds with the file it came from, and the one you pick fills in the connection form; passwords go straight to the Keychain. When <code>prod</code>, <code>production</code> or <code>live</code> appears as a whole word in the file path, the host or the database name, that connection starts at the Alert Safe Mode level."
+                    ],
+                    "asset": "mac-open-project-folder"
+                },
+                {
+                    "id": "aws",
+                    "title": "From your AWS account",
+                    "paragraphs": [
+                        "<ui>Import from AWS</ui> lists the RDS instances and Aurora clusters an AWS profile can see in the regions you pick, and adds the ones you choose. The profile needs <code>rds:DescribeDBInstances</code> and <code>rds:DescribeDBClusters</code>."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "network",
+            "title": "Reach databases behind a bastion, a proxy or a cluster",
+            "paragraphs": [],
+            "blocks": [
+                {
+                    "id": "ssh",
+                    "title": "SSH and TLS",
+                    "paragraphs": [
+                        "SSH tunnels sign in with a password, a private key, an SSH agent such as 1Password’s, or keyboard-interactive prompts, and can pass through jump hosts in order or follow <code>ProxyJump</code> from <code>~/.ssh/config</code>. A one-time code can be generated from a secret in the Keychain or asked for at each connect, and an unknown host key shows its fingerprint before TablePro trusts it. Save a tunnel as an SSH profile to reuse it.",
+                        "TLS runs in Disabled, Preferred, Required, Verify CA or Verify Identity mode, with your own CA, client certificate and key. Required encrypts without checking the server’s certificate; the Verify modes check it."
+                    ],
+                    "engines": [{ "label": "Network engines without an SSH tunnel", "list": "noSsh" }],
+                    "asset": "mac-connection-ssh-form"
+                },
+                {
+                    "id": "tunnels",
+                    "title": "Proxies, Cloudflare, Cloud SQL and tunnel commands",
+                    "paragraphs": [
+                        "When SSH is not the way in, the Network tab connects through a SOCKS5 proxy with remote DNS, through Cloudflare Access, where TablePro runs <code>cloudflared</code> and signs in with the browser or a service token, or through the Cloud SQL Auth Proxy, which TablePro downloads, checks and runs for {cloudSqlProxy}.",
+                        "Tunnel Command starts <code>kubectl port-forward</code>, <code>aws ssm start-session</code> or a command of your own, then connects to the local port it opens. A connection can also run a shell script before connecting, asking you first each session, and SQL statements right after."
+                    ],
+                    "asset": "mac-tunnel-command"
+                }
+            ]
+        },
+        {
+            "id": "cloud-auth",
+            "title": "Sign in with your cloud account",
+            "paragraphs": [
+                "AWS IAM database authentication signs a fresh token at every connect, from an access key, a profile in <code>~/.aws</code> (with <code>credential_process</code> and assumed roles) or AWS IAM Identity Center, and turns TLS up to Required for it. Amazon ElastiCache for Redis, Amazon Keyspaces and DynamoDB have their own AWS signing.",
+                "SQL Server signs in with Microsoft Entra ID in the browser, using the client ID of an app registration you provide, or with Kerberos from a ticket or a principal and password. Google BigQuery takes a service account key, Application Default Credentials or Google OAuth with your own client, and Google Cloud Spanner and the Cloud SQL Auth Proxy can use your Google account."
+            ],
+            "engines": [{ "label": "AWS IAM authentication on RDS and Aurora", "list": "awsIam" }],
+            "links": [
+                { "label": "SQL Server in TablePro", "href": "/sql-server-client" },
+                { "label": "BigQuery in TablePro", "href": "/bigquery-client" }
+            ]
+        },
+        {
+            "id": "credentials",
+            "title": "Keep passwords where they belong",
+            "paragraphs": [
+                "Passwords are saved in the macOS Keychain; with iCloud Sync on, password sync carries them to your other devices through iCloud Keychain. An SSH key stays a file on disk that the connection points to; only its passphrase goes in the Keychain.",
+                "A credential profile shares one login across many connections and can read its password at connect time from 1Password (<code>op</code>), HashiCorp Vault, AWS Secrets Manager, a shell command, a file or an environment variable. These password sources are free and never sync, and each command-line tool has to be on your <code>PATH</code> or in <code>/usr/local/bin</code> or <code>/opt/homebrew/bin</code>. A connection can also use <code>~/.pgpass</code> on PostgreSQL, Amazon Redshift and CockroachDB, or ask for its password every time."
+            ],
+            "links": [{ "label": "iCloud Sync and password sync", "href": "/features/sync-and-teams#icloud-sync" }],
+            "blocks": [
+                {
+                    "id": "environment-variables",
+                    "title": "Environment Variables",
+                    "paragraphs": [
+                        "Write <code>$DB_HOST</code> into a connection’s host, database, username, SSH host, user and key path, SSL paths, startup commands or driver fields, and TablePro fills in the value from its own environment when it connects. The port and the password are never read this way; give the password a source instead."
+                    ],
+                    "paid": ["environment-variables"]
+                }
+            ]
+        },
+        {
+            "id": "policies",
+            "title": "Rules each connection carries",
+            "paragraphs": [
+                "A connection’s Safe Mode level decides whether a statement runs as written, asks first, asks for Touch ID or your password, or is refused. Its External Clients level, Blocked, Read Only or Read & Write, sets what MCP clients and AppleScript may do with it, and stays on this Mac. Its AI policy sets whether the AI assistant may use it without asking, only after asking, or never; Never also shuts out MCP clients.",
+                "An organisation can enforce a minimum Safe Mode level for every connection, and control updates, through a configuration profile."
+            ],
+            "links": [
+                { "label": "Safe Mode levels", "href": "/features/data-editing#safe-mode" },
+                { "label": "MCP clients and External Clients", "href": "/features/ai-mcp#mcp" }
+            ],
+            "blocks": [
+                {
+                    "id": "timeouts",
+                    "title": "Connect and query timeouts",
+                    "paragraphs": [
+                        "Each connection can set its own connect timeout, which covers the network, TLS, sign-in and any tunnel or proxy, and its own query timeout in place of the app-wide one. The query timeout applies to the drivers that support one, after you reconnect."
+                    ],
+                    "since": "0.77.0"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "On iPhone and iPad",
+            "paragraphs": [
+                "The iPhone and iPad app has its own connection form for {iosPicker}, with groups, one tag per connection and favorites. SSH tunnels sign in with a password or a private key, from a file or pasted in, and check the host key; SSH agents and jump hosts are not supported on iPhone and iPad. TLS can verify the server’s certificate, except on SQL Server, where it encrypts without verifying. Certificates stay on the device and never sync.",
+                "Passwords and pasted keys are kept in the Keychain. SQL Server connections synced from a Mac can sign in with Microsoft Entra ID. Importing from other apps, AWS IAM, Kerberos and Google sign-in, proxies and tunnel commands, password sources and timeouts are in the Mac app only."
+            ],
+            "links": [{ "label": "Connecting securely on iPhone and iPad", "href": "/ios#security" }]
+        }
+    ],
+    "availability": [
+        { "label": "Connection form, groups, tags and favorites", "ios": "partial", "iosNote": "One tag per connection; no colours" },
+        { "label": "Import from a URL or the clipboard", "ios": "no" },
+        { "label": "Import from other apps, project folders and AWS", "ios": "no" },
+        { "label": "SSH tunnel with a password or private key", "ios": "yes" },
+        { "label": "SSH agent, one-time codes and jump hosts", "ios": "no" },
+        { "label": "TLS with certificate checks", "ios": "partial", "iosNote": "SQL Server encrypts without verifying" },
+        { "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy and Tunnel Command", "ios": "no" },
+        { "label": "AWS IAM, Kerberos and Google sign-in", "ios": "no" },
+        { "label": "Microsoft Entra ID", "ios": "partial", "iosNote": "On connections synced from a Mac" },
+        { "label": "Passwords in the Keychain", "ios": "yes" },
+        { "label": "Password sources, credential profiles and ~/.pgpass", "ios": "no" },
+        { "label": "Environment Variables", "paid": "environment-variables", "ios": "no" },
+        { "label": "Safe Mode per connection", "ios": "partial", "iosNote": "{iosSafeModeLevels}" },
+        { "label": "Connect and query timeouts", "ios": "no" },
+        { "label": "Minimum Safe Mode level through a configuration profile", "ios": "no" }
+    ],
+    "limits": [
+        "Password sources and the Network tab’s proxies and tunnel commands stay on the Mac where you set them: they never sync, so a synced connection needs them set up again on each Mac.",
+        "TablePro reads the environment it was started with. Opened from the Dock or Finder, it does not see the variables your shell profile sets, which affects the environment-variable password source and Environment Variables alike.",
+        "When a plan ends, <code>$DB_HOST</code> and other references are no longer filled in and reach the server as typed, with no warning.",
+        "Open Project Folder is a one-time import: nothing is watched, and importing the same settings twice creates two connections.",
+        "AWS IAM authentication covers {awsIam}, not Amazon Redshift. A configuration profile can enforce a minimum Safe Mode level and update settings, nothing more."
+    ],
+    "docs": [
+        { "label": "Managing connections", "docs": "/connections" },
+        { "label": "Switching from another client", "docs": "/switching" },
+        { "label": "Open Project Folder", "docs": "/features/project-folder-import" },
+        { "label": "SSH tunneling", "docs": "/connections/ssh-tunneling" },
+        { "label": "Tunnel Command", "docs": "/connections/tunnel-command" },
+        { "label": "AWS IAM authentication", "docs": "/connections/aws-iam" },
+        { "label": "Credential profiles", "docs": "/connections/credential-profiles" },
+        { "label": "Password sources and Environment Variables", "docs": "/features/connection-sharing#environment-variables" }
+    ],
+    "related": [
+        { "label": "Sync and share connections", "href": "/features/sync-and-teams" },
+        { "label": "Safe Mode and data editing", "href": "/features/data-editing#safe-mode" },
+        { "label": "Compare TablePro with other clients", "href": "/compare" },
+        { "label": "What a paid plan adds", "href": "/pricing#features" }
+    ]
+}
