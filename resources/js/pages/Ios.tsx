@@ -1,454 +1,312 @@
+import type { ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
-import LandingLayout from '@/layouts/landing-layout';
-import Header from '@/components/landing/header';
-import Footer from '@/components/landing/footer';
-import AppStoreBadge from '@/components/landing/app-store-badge';
-import Container from '@/components/ui/container';
+import AppStoreBadge from '@/components/download/app-store-badge';
+import { requirementLine } from '@/components/download/format';
+import { useContentTags, type SiteLinks } from '@/components/faq/content-links';
 import SEOHead from '@/components/seo/seo-head';
-import SectionShell, { PageHeader } from '@/components/ui/section-shell';
-import { FullLine } from '@/components/ui/full-line';
-import FootNote from '@/components/ui/footnote';
-import { ITEM_TITLE, cellBorders, GridCell, type ColumnMap } from '@/components/ui/grid-cell';
-import ThemedImage from '@/components/ui/themed-image';
-import Button from '@/components/ui/button';
-import { AppleGlyph } from '@/components/ui/glyph';
-import { PROSE_LINK } from '@/components/ui/prose-link';
-import { APP_STORE_URL, GITHUB_REPO_URL } from '@/data/links';
-import { trackDownload } from '@/lib/analytics';
+import AssetSlot from '@/components/ui/asset-slot';
+import Container from '@/components/ui/container';
+import FaqList from '@/components/ui/faq-list';
+import LocaleLink from '@/components/ui/locale-link';
+import PageHeader from '@/components/ui/page-header';
+import Section from '@/components/ui/section';
+import { textLinkClasses } from '@/components/ui/text-link';
+import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
+import { joinList } from '@/i18n/format';
+import type { Requirements } from '@/lib/data/platforms';
+import { PRICING } from '@/lib/data/pricing';
+import { absoluteUrl, graph, iosAppId, iosAppNode, organizationNode, webPageNode } from '@/lib/structured-data';
+import LandingLayout from '@/layouts/landing-layout';
 
-interface Props {
-    downloadUrls: { arm64: string; x86_64: string };
-    githubStars?: number | null;
+type IosContent = typeof import('@data/content/en/ios.json');
+
+interface EngineLink {
+    id: string;
+    name: string;
+    /** The page that describes the engine, when the site has one. */
+    href: string | null;
 }
 
-const IOS_TITLE = 'TablePro for iPhone and iPad - Free Database Client';
-const IOS_DESCRIPTION =
-    'A native database client for iPhone and iPad. Browse tables, run queries and edit rows on MySQL, PostgreSQL, SQL Server, Oracle, Redis and more. Free on the App Store.';
+interface IosProps {
+    content: IosContent;
+    /** The App Store release from platforms.json, or null while the app is not released. */
+    ios: {
+        deviceNames: string[];
+        requirements: Requirements | null;
+        appStoreUrl: string | null;
+        free: boolean;
+        inAppPurchases: boolean;
+        version: string | null;
+        publishedAt: string | null;
+        publishedAtFormatted: string | null;
+    } | null;
+    macRequirements: Requirements | null;
+    engines: { picker: EngineLink[]; syncedOnly: EngineLink[] };
+    safeModeLevels: string[];
+    limits: { history: number | null; results: number | null };
+    links: SiteLinks;
+    /** The organization's own profiles, for `sameAs`. */
+    organizationProfiles: string[];
+}
+
+/** One block of copy: paragraphs with `{token}` slots and link tags. */
+function Paragraphs({ items, tags, values }: { items: string[]; tags: Record<string, (text: string) => ReactNode>; values: Values }) {
+    return (
+        <div className="type-body max-w-[44rem] space-y-4 text-foreground">
+            {items.map((paragraph, index) => (
+                <p key={index}>
+                    <Trans text={paragraph} tags={tags} values={values} />
+                </p>
+            ))}
+        </div>
+    );
+}
+
+/** Text beside its phone screens from 1024px, the screens below the text on smaller screens. */
+function Row({ text, screens }: { text: ReactNode; screens: ReactNode }) {
+    return (
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-6">{text}</div>
+            <div className="flex flex-wrap items-start gap-6 lg:col-span-6 lg:justify-end">{screens}</div>
+        </div>
+    );
+}
 
 /**
- * Engines the connection form on the phone actually offers, in the order the
- * picker lists them.
+ * `/ios` and `/vi/ios` (sitemap §A.1, §E.5; design-system §8.8).
  *
- * Named, not counted. The site published "Seven engines on device" for six
- * weeks after it stopped being true: seven was the number of driver *classes*
- * compiled into the app, while the picker offered ten, because MariaDB, TiDB
- * and OceanBase all ride the MySQL driver. A list cannot drift the way a
- * numeral can, and `EngineCountTest` forbids writing a digit beside the word
- * "engines" in the files it scans for exactly this reason.
- */
-const ENGINES = [
-    'MySQL',
-    'MariaDB',
-    'TiDB',
-    'OceanBase',
-    'PostgreSQL',
-    'SQLite',
-    'DuckDB',
-    'Redis',
-    'SQL Server',
-    'Oracle',
-];
-
-const CAPABILITY_COLS: ColumnMap = { base: 1, sm: 2, lg: 3 };
-
-/**
- * Three captures from the bundled Chinook database, on an iPhone 16 Pro at 3x,
- * which is the 1206x2622 the rest of this site's iOS artwork already uses.
+ * The App Store app as released: version 1.0 (build 22), nothing merged after
+ * it. Engines are named from data and never counted, Safe Mode has its own
+ * three levels, export goes through the clipboard and the share sheet, and
+ * the page says plainly what the app leaves to the Mac: jump hosts, Redis key
+ * browsing, the AI assistant and the rest of `#limits`.
  *
- * Each is a real screen with real rows, driven through the app by the
- * `TableProMobileScreenshots` UI test in the app repository, so the light and
- * dark files in a pair are the same frame in two palettes rather than two
- * separate sessions. The pair that shipped before these disagreed on the
- * status-bar clock, which is the tell that they were shot by hand a minute
- * apart; the status bar is pinned to 09:41 here.
- *
- * The alt text describes what is actually on screen. The previous iOS
- * screenshot on this site was captioned "showing rows from a PostgreSQL table"
- * while showing a connection list.
+ * Every image is an `AssetSlot` placeholder from the manifest until the owner
+ * supplies the captures. The App Store badge is Apple's artwork.
  */
-const IOS_SCREENS = [
-    {
-        src: 'table',
-        alt: 'The Track table open on iPhone, showing TrackId, Name, AlbumId and MediaTypeId for the first rows of 3,503.',
-        caption: 'Browse a table',
-    },
-    {
-        src: 'row',
-        alt: 'A single Chinook track open full screen on iPhone, one field per row, ready to edit.',
-        caption: 'Open a row',
-    },
-    {
-        src: 'structure',
-        alt: 'The Track table structure on iPhone, listing each column with its type.',
-        caption: 'Read the structure',
-    },
-];
+export default function Ios({ content, ios, macRequirements, engines, safeModeLevels, limits, links, organizationProfiles }: IosProps) {
+    const { canonicalBaseUrl } = usePage().props;
+    const { locale, m, fmt, path, format } = useI18n();
+    const tags = useContentTags(links);
+    const number = m.download.file.number;
+    const list = (items: string[]): string => joinList(items, m.common.list);
 
-/**
- * Six cells, each one thing the app does, in the order a reader meets them:
- * open something, read it, change it, ask it a question, keep it safe, keep it
- * in step with the Mac.
- */
-const CAPABILITIES = [
-    {
-        title: 'Browse',
-        body: 'Sort by any column, search every column but the binary ones, and stack filters with AND or OR. Fifty to five hundred rows a page. Tap a foreign key to preview the row it points at.',
-    },
-    {
-        title: 'Edit',
-        body: 'Open a row full screen, change values, set NULL, save. Insert and delete rows, truncate or drop a table.',
-    },
-    {
-        title: 'Query',
-        body: 'A SQL editor with syntax highlighting, and a Stop button while it runs. Every connection keeps its own history. Results copy out as JSON, CSV or SQL INSERT.',
-    },
-    {
-        title: 'Safe Mode',
-        body: 'Per connection, on the connection form under Organization: Off, Confirm Writes, or Read-Only. Read-Only refuses a write before it reaches the server.',
-    },
-    {
-        title: 'Connect',
-        body: 'SSH tunnels with a password or a private key, and host keys are checked. SSL with CA and client certificates. Passwords and keys live in the Keychain.',
-    },
-    {
-        title: 'Lock',
-        body: 'Face ID, Touch ID or Optic ID on open, with your passcode as the fallback it always falls back to.',
-    },
-];
-
-/**
- * The limits, stated on the page rather than discovered after installing.
- *
- * Every release post on this site carries a "what it will not do" section and
- * this is the same discipline: the list below is what makes the list above
- * believable. It is also the honest answer to the question a Mac user actually
- * arrives with, which is not "what does it do" but "is this the whole app".
- */
-const LIMITS = [
-    'No AI chat and no MCP server. Those are the Mac app.',
-    'No ER diagrams, no Compare & Sync, no Query Insights, no charts.',
-    'No saved queries. History is per connection and stays on the device.',
-    'No plugin registry. Every driver is compiled in, so there is nothing to install — and nothing to add either.',
-    'SQLite and DuckDB open files on the device or in memory. There is no remote DuckDB here; that one is Mac-only.',
-    'No jump hosts. A tunnel that needs one has to be opened on the Mac.',
-];
-
-function buildIosAppJsonLd(canonicalBaseUrl: string): object {
-    const base = canonicalBaseUrl.replace(/\/$/, '');
-
-    return {
-        '@context': 'https://schema.org',
-        '@type': 'SoftwareApplication',
-        /*
-         * A distinct @id from the homepage's `#app`. That node is the Mac app —
-         * its downloadUrl is a DMG page and its softwareRequirements name
-         * macOS. One node cannot stand for two applications that ship from two
-         * projects on two release cadences, which is the same reason the
-         * homepage stopped claiming `macOS 14+, iOS 18+` in one string.
-         */
-        '@id': `${base}/#ios-app`,
-        name: 'TablePro for iPhone and iPad',
-        applicationCategory: 'DeveloperApplication',
-        applicationSubCategory: 'Database Client',
-        operatingSystem: 'iOS 18.0, iPadOS 18.0',
-        softwareRequirements: 'iOS 18.0 or later, iPadOS 18.0 or later',
-        description: IOS_DESCRIPTION,
-        url: `${base}/ios`,
-        downloadUrl: APP_STORE_URL,
-        installUrl: APP_STORE_URL,
-        license: `${GITHUB_REPO_URL}/blob/main/LICENSE`,
-        isAccessibleForFree: true,
-        featureList: [
-            'Ten database engines, every driver built in',
-            'Browse, sort, filter and page through rows',
-            'Full-screen row editing with NULL support',
-            'SQL editor with syntax highlighting and query history',
-            'Per-connection Safe Mode: off, confirm writes, or read-only',
-            'SSH tunnels with host key checking',
-            'SSL with CA and client certificates',
-            'Face ID, Touch ID and Optic ID lock',
-            'iCloud sync of connections, groups and tags',
-            'Handoff with TablePro for Mac',
-            'Quick Connect widget, Shortcuts and Siri actions',
-            'Live Activity for a running query',
-        ],
-        publisher: { '@id': `${base}/#organization` },
-        author: { '@id': `${base}/#organization` },
-        /*
-         * No aggregateRating. The listing has no ratings and no reviews, and
-         * StaleClaimsTest bans the string on every page that emits one of these
-         * nodes — which now includes this file.
-         */
-        offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-            url: APP_STORE_URL,
-            availability: 'https://schema.org/InStock',
-        },
+    const values: Values = {
+        levels: list(safeModeLevels),
+        engines: list(engines.syncedOnly.map((engine) => engine.name)),
+        ...(limits.history !== null && { history: format.formatNumber(limits.history, number) }),
+        ...(limits.results !== null && { results: format.formatNumber(limits.results, number) }),
     };
-}
 
-/**
- * The iPhone and iPad app.
- *
- * Its own route rather than a cell in the homepage's closing call to action,
- * because it is the only iOS surface this domain owns and a reader searching
- * for "database client iphone" has nowhere else to land. The closing CTA keeps
- * the `#mobile` anchor and a badge; this page is where the detail lives.
- *
- * Every fact below was read out of the app repository rather than out of the
- * App Store listing, because the listing is marketing copy and the site's rule
- * is that a claim has a source. The three that most often get written wrong,
- * all by reusing a Mac sentence: Safe Mode has three levels here and six on the
- * Mac, export goes to the clipboard or the Share Sheet rather than to a file,
- * and there are no jump hosts.
- */
-export default function Ios({ downloadUrls, githubStars }: Props) {
-    const { canonicalBaseUrl } = usePage<{ canonicalBaseUrl: string }>().props;
+    const requirement = ios?.requirements ? requirementLine(ios.requirements, m.platforms) : null;
+    const pageUrl = absoluteUrl(canonicalBaseUrl, path('/ios'));
+    const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
+
+    const jsonLd = graph([
+        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles }),
+        webPageNode(context, {
+            url: pageUrl,
+            name: content.seo.title,
+            description: content.seo.description,
+            about: iosAppId(canonicalBaseUrl),
+        }),
+        ios !== null &&
+            ios.requirements !== null &&
+            ios.appStoreUrl !== null &&
+            links.license !== null &&
+            iosAppNode(context, {
+                alternateName: m.seo.iosApp.alternateName,
+                description: content.seo.description,
+                operatingSystem: ios.requirements.systems.join(', '),
+                requirements: requirementLine(ios.requirements, m.platforms),
+                installUrl: ios.appStoreUrl,
+                licenseUrl: links.license,
+                currency: PRICING.currency,
+            }),
+    ]);
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
-            <SEOHead
-                title={IOS_TITLE}
-                description={IOS_DESCRIPTION}
-                canonical="/ios"
-                jsonLd={[buildIosAppJsonLd(canonicalBaseUrl)]}
-                breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'iPhone and iPad', path: '/ios' },
-                ]}
-            />
+        <LandingLayout>
+            <SEOHead title={content.seo.title} titleTemplate={false} description={content.seo.description} jsonLd={jsonLd} />
 
-            <PageHeader
-                label="iPhone and iPad"
-                headline="Your databases, on the phone."
-                headlineMuted="Free on the App Store."
-                lede="A native client for iPhone and iPad. It opens the same connections you use on the Mac, and it is a companion to that app rather than a copy of it."
-            />
-
-            <Container>
-                <div className="flex flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center">
-                    <AppStoreBadge location="ios-page-hero" />
-                    <p className="text-sm text-muted-foreground">
-                        iOS 18 and iPadOS 18 or later &middot; No in-app purchases
+            <PageHeader title={content.hero.title} lead={content.hero.lead}>
+                <div className="space-y-4">
+                    {ios?.appStoreUrl && (
+                        <AppStoreBadge
+                            href={ios.appStoreUrl}
+                            label={m.download.ios.badge}
+                            labelLang={locale === 'en' ? undefined : 'en'}
+                            location="ios-page"
+                        />
+                    )}
+                    <ul className="type-small space-y-1 text-muted-foreground">
+                        {requirement !== null && <li>{fmt(m.platforms.requires, { requirement })}</li>}
+                        {ios?.free && !ios.inAppPurchases && <li>{m.platforms.free}</li>}
+                        <li>{content.hero.noSignUp}</li>
+                        {ios?.version && (
+                            <li className="tabular-nums">
+                                {ios.publishedAtFormatted !== null
+                                    ? fmt(m.download.release.dated, { version: ios.version, date: ios.publishedAtFormatted })
+                                    : fmt(m.download.release.undated, { version: ios.version })}
+                            </li>
+                        )}
+                    </ul>
+                    <p className="type-small text-foreground">
+                        <Trans text={content.hero.mac} tags={tags} />
+                        {macRequirements !== null && (
+                            <span className="text-muted-foreground"> {fmt(m.platforms.requires, { requirement: requirementLine(macRequirements, m.platforms) })}</span>
+                        )}
                     </p>
                 </div>
-                <FullLine />
+            </PageHeader>
+
+            <Container className="pb-4">
+                <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-end">
+                    <AssetSlot id="ios-connection-list" />
+                    <div className="w-full min-w-0 lg:flex-1">
+                        <AssetSlot id="ipad-table-browse" sizes="(min-width: 1280px) 904px, (min-width: 1024px) calc(100vw - 376px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" />
+                    </div>
+                </div>
             </Container>
 
-            <SectionShell
-                id="engines"
-                label="Engines"
-                headline="Ten to choose from on the phone."
-                lede="Every driver is compiled into the app, so there is nothing to install and nothing to wait for the first time you pick one."
-                tone="raised"
-            >
-                <FullLine />
-                <Container>
-                    {/*
-                      * Two columns, then five. Both divide ten exactly, so the
-                      * last row is always full and no filler cells are needed.
-                      * A three-column step at `sm` leaves one item in a row of
-                      * three, and `cellBorders` then draws that cell's right
-                      * rule into empty space — the grid would need two hidden
-                      * fillers to stay square, which is machinery for nothing.
-                      */}
-                    <ul className="grid grid-cols-2 lg:grid-cols-5">
-                        {ENGINES.map((engine, index) => (
-                            <li key={engine}>
-                                <GridCell
-                                    density="compact"
-                                    className={cellBorders(index, { base: 2, lg: 5 }, ENGINES.length)}
-                                >
-                                    <span className="text-sm font-medium text-foreground">{engine}</span>
-                                </GridCell>
-                            </li>
-                        ))}
-                    </ul>
-                </Container>
-                <FullLine />
-                <FootNote>
-                    A Redshift connection made on a Mac opens here too once it syncs across, though it cannot be
-                    created on the phone. Anything else from the Mac's longer list syncs down and appears in the
-                    list, but will not open — the driver is not in this app.
-                </FootNote>
-            </SectionShell>
+            <Section id="databases" title={content.databases.title} lead={content.databases.lead}>
+                <ul className="grid max-w-[44rem] grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3">
+                    {engines.picker.map((engine) => (
+                        <li key={engine.id} className="type-body font-medium text-foreground">
+                            {engine.href !== null ? (
+                                <LocaleLink href={engine.href} className={textLinkClasses('inline')}>
+                                    {engine.name}
+                                </LocaleLink>
+                            ) : (
+                                engine.name
+                            )}
+                        </li>
+                    ))}
+                </ul>
+                <div className="mt-8">
+                    <Paragraphs
+                        items={[
+                            ...(engines.syncedOnly.length > 0 ? [content.databases.syncedOnly] : []),
+                            content.databases.others,
+                            content.databases.files,
+                            content.databases.redis,
+                            content.databases.sample,
+                        ]}
+                        tags={tags}
+                        values={values}
+                    />
+                </div>
+            </Section>
 
-            <SectionShell
-                id="what-it-does"
-                label="What it does"
-                headline="Read a table. Change a row. Run a query."
-            >
-                <FullLine />
-                <Container>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                        {CAPABILITIES.map((capability, index) => (
-                            <GridCell
-                                key={capability.title}
-                                density="default"
-                                className={cellBorders(index, CAPABILITY_COLS, CAPABILITIES.length)}
-                            >
-                                <h3 className={ITEM_TITLE}>{capability.title}</h3>
-                                <p className="mt-3 text-sm text-muted-foreground text-pretty">{capability.body}</p>
-                            </GridCell>
-                        ))}
-                    </div>
-                </Container>
-                <FullLine />
-            </SectionShell>
+            <Section id="browse" title={content.browse.title}>
+                <Row
+                    text={<Paragraphs items={content.browse.paragraphs} tags={tags} values={values} />}
+                    screens={
+                        <>
+                            <AssetSlot id="ios-table-browse" />
+                            <AssetSlot id="ios-row-edit" />
+                        </>
+                    }
+                />
+            </Section>
 
-            <SectionShell
-                id="screens"
-                label="Screens"
-                headline="The Chinook sample, on an iPhone."
-                lede="Open it from the connection list in two taps and there is something to read before you have set up a server."
-                tone="raised"
-            >
-                <FullLine />
-                <Container>
-                    {/*
-                      * One column until `lg`, not until `sm`.
-                      *
-                      * Three columns inside a 640px container gives each phone
-                      * roughly 170px of usable width against a `max-w-56` cap,
-                      * so the captures shrink by about two fifths at exactly
-                      * the width where a reader is most likely to be holding
-                      * the device they are being sold. The column count and the
-                      * `cellBorders` breakpoint map have to move together or
-                      * the internal rules land at the wrong width.
-                      */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3">
-                        {IOS_SCREENS.map((screen, index) => (
-                            <GridCell
-                                key={screen.src}
-                                density="default"
-                                className={cellBorders(index, { base: 1, lg: 3 }, IOS_SCREENS.length)}
-                            >
-                                <ThemedImage
-                                    light={{ src: `/images/ios/${screen.src}-light.png` }}
-                                    dark={{ src: `/images/ios/${screen.src}-dark.png` }}
-                                    alt={screen.alt}
-                                    width={1206}
-                                    height={2622}
-                                    className="mx-auto block w-full max-w-56 rounded-xl border border-rule"
-                                />
-                                <p className="mt-4 text-center text-sm text-muted-foreground">{screen.caption}</p>
-                            </GridCell>
-                        ))}
-                    </div>
-                </Container>
-                <FullLine />
-            </SectionShell>
+            <Section id="query" title={content.query.title}>
+                <Row
+                    text={<Paragraphs items={content.query.paragraphs} tags={tags} values={values} />}
+                    screens={
+                        <>
+                            <AssetSlot id="ios-query" />
+                            <AssetSlot id="ios-live-activity" />
+                        </>
+                    }
+                />
+            </Section>
 
-            <SectionShell
-                id="with-your-mac"
-                label="With your Mac"
-                headline="The same connections, in both places."
-            >
-                <FullLine />
-                <Container>
-                    <div className="grid grid-cols-1 sm:grid-cols-3">
-                        <GridCell density="default" className={cellBorders(0, { base: 1, sm: 3 }, 3)}>
-                            <h3 className={ITEM_TITLE}>iCloud sync</h3>
-                            <p className="mt-3 text-sm text-muted-foreground text-pretty">
-                                Connections, groups and tags, in your own iCloud account. Off until you turn it on.
-                                Passwords are a separate switch again, and travel through iCloud Keychain.
-                            </p>
-                        </GridCell>
-                        <GridCell density="default" className={cellBorders(1, { base: 1, sm: 3 }, 3)}>
-                            <h3 className={ITEM_TITLE}>Handoff</h3>
-                            <p className="mt-3 text-sm text-muted-foreground text-pretty">
-                                Pick up an open connection, or the table you were reading, on whichever device you
-                                reach for next.
-                            </p>
-                        </GridCell>
-                        <GridCell density="default" className={cellBorders(2, { base: 1, sm: 3 }, 3)}>
-                            <h3 className={ITEM_TITLE}>Shortcuts and widgets</h3>
-                            <p className="mt-3 text-sm text-muted-foreground text-pretty">
-                                A Quick Connect widget for the Home Screen. Shortcuts actions add a row without
-                                opening the app — after Face ID, and still inside Safe Mode.
-                            </p>
-                        </GridCell>
-                    </div>
-                </Container>
-                <FullLine />
-                <FootNote>
-                    Sync on the phone is a switch and nothing else. On the Mac, iCloud Sync is a Starter feature, so a
-                    Mac without a license will not send its side. Importing a <span className="font-mono text-xs">.tablepro</span>{' '}
-                    file through Files or AirDrop needs neither.
-                </FootNote>
-            </SectionShell>
+            <Section id="security" title={content.security.title}>
+                <Row
+                    text={<Paragraphs items={content.security.paragraphs} tags={tags} values={values} />}
+                    screens={<AssetSlot id="ios-connection-form" />}
+                />
+            </Section>
 
-            <SectionShell
-                id="limits"
-                label="Limits"
-                headline="What it will not do."
-                lede="It is a companion to the Mac app, and the list below is the part that makes the rest of this page worth believing."
-                tier="reference"
-                tone="raised"
-            >
-                <FullLine />
-                <Container>
-                    <ul>
-                        {LIMITS.map((limit, index) => (
-                            <li key={limit}>
-                                <GridCell density="compact" className={cellBorders(index, { base: 1 }, LIMITS.length)}>
-                                    <span className="text-sm text-muted-foreground text-pretty">{limit}</span>
-                                </GridCell>
-                            </li>
-                        ))}
-                    </ul>
-                </Container>
-                <FullLine />
-            </SectionShell>
+            <Section id="safe-mode" title={content.safeMode.title}>
+                <Row
+                    text={<Paragraphs items={content.safeMode.paragraphs} tags={tags} values={values} />}
+                    screens={<AssetSlot id="ios-safe-mode-confirm" />}
+                />
+            </Section>
 
-            <SectionShell
-                id="privacy"
-                label="Privacy"
-                headline="Nothing reaches us unless you send it."
-                tier="reference"
-            >
-                <FullLine />
-                <Container>
-                    <p className="max-w-[68ch] px-4 py-5 text-sm text-muted-foreground text-pretty sm:py-6">
-                        Usage data is off until you turn it on, and it carries no hostnames, usernames, passwords,
-                        queries or rows. The app makes no other call to us: there is no update check, no license
-                        check and no plugin registry on this platform. Your database traffic goes to your database,
-                        and iCloud sync goes to your iCloud.{' '}
-                        <a href="/privacy" className={PROSE_LINK}>Read the privacy policy</a>.
-                    </p>
-                    <FullLine />
-                </Container>
-            </SectionShell>
+            <Section id="ipad" title={content.ipad.title}>
+                <Paragraphs items={content.ipad.paragraphs} tags={tags} values={values} />
+                <div className="mt-10">
+                    <AssetSlot id="ipad-two-windows" />
+                </div>
+            </Section>
 
-            <SectionShell
-                id="get-it"
-                label="Get it"
-                headline="Free, and there is no account."
-                tone="raised"
-            >
-                <FullLine />
-                <Container>
-                    <div className="flex flex-col gap-5 px-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-                        <AppStoreBadge location="ios-page-footer" />
-                        <Button variant="secondary" href="/download" onClick={() => trackDownload('ios-page')}>
-                            <AppleGlyph />
-                            Download for Mac
-                        </Button>
-                    </div>
-                    <FullLine />
-                </Container>
-                <FootNote>
-                    Open source under AGPLv3, in the{' '}
-                    <a href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>
-                        same repository
-                    </a>{' '}
-                    as the Mac app. The two version separately: this one is 1.0.
-                </FootNote>
-            </SectionShell>
+            <Section id="mac" title={content.mac.title}>
+                <Paragraphs items={content.mac.paragraphs} tags={tags} values={values} />
+                <div className="mt-10 grid gap-8">
+                    <AssetSlot id="diagram-icloud-sync" />
+                    <AssetSlot id="mac-handoff-ios" />
+                </div>
+            </Section>
 
-            <div className="h-12 sm:h-16 lg:h-24" />
+            <Section id="automation" title={content.automation.title}>
+                <Row
+                    text={<Paragraphs items={content.automation.paragraphs} tags={tags} values={values} />}
+                    screens={
+                        <>
+                            <AssetSlot id="ios-widgets" />
+                            <AssetSlot id="ios-shortcuts-add-rows" />
+                        </>
+                    }
+                />
+            </Section>
+
+            <Section id="limits" title={content.limits.title} width="text">
+                <p className="type-body text-foreground">{content.limits.lead}</p>
+                <ul className="type-body mt-4 list-disc space-y-2 pl-6 text-foreground marker:text-muted-foreground">
+                    {content.limits.items.map((item) => (
+                        <li key={item} className="pl-1">
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+                <p className="type-body mt-6 text-foreground">
+                    <Trans text={content.limits.mac} tags={tags} />
+                </p>
+            </Section>
+
+            <Section id="privacy" title={content.privacy.title}>
+                <Row
+                    text={<Paragraphs items={content.privacy.paragraphs} tags={tags} values={values} />}
+                    screens={<AssetSlot id="ios-settings-privacy" />}
+                />
+            </Section>
+
+            <Section id="get" title={content.get.title} width="text">
+                <div className="space-y-4">
+                    {ios?.appStoreUrl && (
+                        <AppStoreBadge
+                            href={ios.appStoreUrl}
+                            label={m.download.ios.badge}
+                            labelLang={locale === 'en' ? undefined : 'en'}
+                            location="ios-page-end"
+                        />
+                    )}
+                    {requirement !== null && <p className="type-small text-muted-foreground">{fmt(m.platforms.requires, { requirement })}</p>}
+                </div>
+                <FaqList
+                    className="mt-10"
+                    items={content.get.faq.map((item) => ({
+                        question: item.question,
+                        answer: <p><Trans text={item.answer} tags={tags} values={values} /></p>,
+                    }))}
+                />
+                <p className="type-body mt-8 text-foreground">
+                    <Trans text={content.get.source} tags={tags} />
+                </p>
+            </Section>
         </LandingLayout>
     );
 }

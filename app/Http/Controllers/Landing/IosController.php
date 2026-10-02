@@ -3,37 +3,78 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
-use App\Services\Releases\GitHubRepoService;
-use App\Services\Releases\MacReleaseService;
+use App\Services\Content\SiteFacts;
+use App\Services\Releases\PlatformCatalog;
+use App\Support\Content\ContentRepository;
+use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\App;
 use Inertia\Inertia;
 use Inertia\Response;
 
 /**
- * The iPhone and iPad page, `/ios` and `/vi/ios`.
+ * The iPhone and iPad page, `/ios` and `/vi/ios` (sitemap §A.1, §E.5).
  *
- * Still the pre-rebuild page until the iOS agent (W7f) writes its body in
- * phase C. `EnsurePageRenders` has already checked the registry, so this runs
- * only in a locale the page renders in, which is English alone until the
- * page's content lands.
- *
- * The legacy header needs `downloadUrls` and `githubStars`. They come from the
- * release services (architecture §1.13), cached with a last-good copy and a
- * failure marker, rather than from `LandingController`, which reads the full
- * releases list that plugin releases crowd and retries a failing API on every
- * request.
+ * It describes the App Store release named in `platforms.json` (1.0, build
+ * 22) and nothing merged after it. Every fact it states arrives here as a
+ * prop: the requirement, price, version and App Store URL from
+ * `platforms.json`, the engine names from `engines.json`, the Safe Mode level
+ * names and the history and result limits from `facts.json`. The page asks
+ * GitHub for nothing: the Mac release does not appear on it.
  */
 class IosController extends Controller
 {
-    public function __invoke(MacReleaseService $releases, GitHubRepoService $repo): Response
+    public function __invoke(ContentRepository $content, PlatformCatalog $platforms, SiteFacts $facts): Response
     {
-        $release = $releases->latest();
+        $locale = App::getLocale();
+        $ios = $platforms->find('ios');
+        $mac = $platforms->summary('mac');
 
         return Inertia::render('Ios', [
-            'downloadUrls' => [
-                'arm64' => $release->assets['arm64']['url'],
-                'x86_64' => $release->assets['x86_64']['url'],
+            'content' => $content->page('ios', $locale),
+            'ios' => $ios !== null && ($ios['status'] ?? null) === 'released' ? $this->ios($ios, $platforms, $locale) : null,
+            'macRequirements' => $mac['requirements'] ?? null,
+            'engines' => $facts->iosEngines($this->stringList($ios['iosEngines'] ?? [])),
+            'safeModeLevels' => $facts->iosSafeModeLevels(),
+            'limits' => [
+                'history' => $facts->limit('historyEntriesIos'),
+                'results' => $facts->limit('resultBufferIos'),
             ],
-            'githubStars' => $repo->stars(),
+            'links' => $facts->links(),
+            'organizationProfiles' => $facts->organizationProfiles(),
         ]);
+    }
+
+    /**
+     * @param  array<string, mixed>  $ios
+     * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}|null, appStoreUrl: string|null, free: bool, inAppPurchases: bool, version: string|null, publishedAt: string|null, publishedAtFormatted: string|null}
+     */
+    private function ios(array $ios, PlatformCatalog $platforms, string $locale): array
+    {
+        $summary = $platforms->summary('ios');
+        $price = is_array($ios['price'] ?? null) ? $ios['price'] : [];
+        $store = $platforms->destination('ios', 'app-store')['url'] ?? null;
+        $release = is_array($ios['release'] ?? null) ? $ios['release'] : [];
+        $published = is_string($release['publishedAt'] ?? null) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $release['publishedAt']) === 1
+            ? CarbonImmutable::createFromFormat('Y-m-d', $release['publishedAt'])->startOfDay()
+            : null;
+
+        return [
+            'deviceNames' => $summary['deviceNames'] ?? [],
+            'requirements' => $summary['requirements'] ?? null,
+            'appStoreUrl' => is_string($store) && str_starts_with($store, 'https://') ? $store : null,
+            'free' => is_numeric($price['amount'] ?? null) && (float) $price['amount'] === 0.0,
+            'inAppPurchases' => ($price['inAppPurchases'] ?? false) === true,
+            'version' => is_string($release['version'] ?? null) ? $release['version'] : null,
+            'publishedAt' => $published?->toDateString(),
+            'publishedAtFormatted' => $published?->locale($locale)->isoFormat('LL'),
+        ];
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function stringList(mixed $value): array
+    {
+        return is_array($value) ? array_values(array_filter($value, 'is_string')) : [];
     }
 }
