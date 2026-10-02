@@ -1,5 +1,4 @@
 import { useEffect, type ReactNode } from 'react';
-import { Toaster } from 'sonner';
 import ConsentBar from '@/components/site/consent-bar';
 import SiteFooter from '@/components/site/site-footer';
 import SiteHeader from '@/components/site/site-header';
@@ -33,6 +32,9 @@ interface Props {
  *    into it rather than only scrolling.
  * 4. The footer, a `contentinfo` landmark for the same reason.
  * 5. The consent bar, last, so it is the last tab stop on the page.
+ *
+ * There is no toast region: nothing on the public site calls `toast()`, and
+ * Sonner's region carried an English landmark name onto every /vi page.
  *
  * Nothing here clips overflow: `overflow-x: hidden` on an ancestor masked
  * horizontal-scroll regressions instead of preventing them, and would break the
@@ -70,18 +72,6 @@ export default function LandingLayout({ children }: Props) {
                 {children}
             </main>
             <SiteFooter />
-            <Toaster
-                position="top-center"
-                toastOptions={{
-                    className: 'font-sans text-sm',
-                    style: {
-                        background: 'var(--raised)',
-                        color: 'var(--foreground)',
-                        border: '1px solid var(--rule)',
-                        boxShadow: 'var(--overlay-shadow)',
-                    },
-                }}
-            />
             <ConsentBar />
         </div>
     );
