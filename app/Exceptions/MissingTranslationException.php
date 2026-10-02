@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Services\Blog\BlogService;
 use App\Support\Localization\Locales;
+use App\Support\Seo\BlogPosts;
 use App\Support\Seo\PageEntry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -14,10 +16,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * in English" on `/vi/blog/{slug}` for an English-only release post.
  *
  * `EnsurePageRenders` throws it, through `forEntry()`, for every localized
- * route whose page does not render in the request's locale. The blog agent
- * owns this class from phase C: `forEntry()` is where a family can add the
- * page's title (a post's front matter, say) so the link reads as the title
- * rather than as a generic "Read it in English".
+ * route whose page does not render in the request's locale. For a blog post
+ * the link carries the post's front-matter title, so `/vi/blog/tablepro-0-77`
+ * offers "TablePro 0.77: SAP HANA and Folders in the Sidebar" (marked
+ * `lang="en"` by the error page) rather than a generic "Read it in English".
+ * Every other page keeps the generic link.
  */
 class MissingTranslationException extends NotFoundHttpException
 {
@@ -44,6 +47,7 @@ class MissingTranslationException extends NotFoundHttpException
         return new self(
             locale: $locale,
             href: $entry->url($locale, false),
+            title: self::titleOf($entry, $locale),
         );
     }
 
@@ -60,5 +64,23 @@ class MissingTranslationException extends NotFoundHttpException
             'hreflang' => Locales::definition($this->locale)['hreflang'],
             'locale' => $this->locale,
         ];
+    }
+
+    /**
+     * The page's own title in `$locale`, where it has one outside the
+     * catalogs: a blog post's front-matter title. Null for every other page,
+     * and for a post whose title is empty.
+     */
+    private static function titleOf(PageEntry $entry, string $locale): ?string
+    {
+        $slug = $entry->params['slug'] ?? null;
+
+        if ($entry->route !== BlogPosts::ROUTE || ! is_string($slug)) {
+            return null;
+        }
+
+        $title = app(BlogService::class)->find($slug, $locale)?->title;
+
+        return is_string($title) && trim($title) !== '' ? trim($title) : null;
     }
 }

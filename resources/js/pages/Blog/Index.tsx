@@ -1,111 +1,91 @@
-import LandingLayout from '@/layouts/landing-layout';
-import Header from '@/components/landing/header';
-import Footer from '@/components/landing/footer';
-import Container from '@/components/ui/container';
+import { usePage } from '@inertiajs/react';
+import NewsletterSignup from '@/components/blog/newsletter-signup';
+import PostList, { type PostSummary } from '@/components/blog/post-list';
 import SEOHead from '@/components/seo/seo-head';
-import { Link } from '@inertiajs/react';
-import { PageHeader } from '@/components/ui/section-shell';
-import { FullLine } from '@/components/ui/full-line';
+import { EXTERNAL } from '@/components/site/site-links';
+import Container from '@/components/ui/container';
+import PageHeader from '@/components/ui/page-header';
+import TextLink from '@/components/ui/text-link';
+import { LOCALES, Trans, useI18n } from '@/i18n';
+import { absoluteUrl, collectionPageNode, graph } from '@/lib/structured-data';
+import LandingLayout from '@/layouts/landing-layout';
 
-interface PostSummary {
-    slug: string;
-    title: string;
-    description: string;
-    date: string;
-    dateFormatted: string;
-    tags: string[];
-    readingMinutes: number;
-    url: string;
+/** `resources/data/content/{locale}/blog.json`, without the corrections the post pages read. */
+interface BlogIndexContent {
+    seo: { title: string; description: string; indexable?: boolean };
+    og: { kicker: string; title: string };
+    header: { title: string; lead: string };
+    newsletter: { title: string; body: string };
 }
 
 interface Props {
+    content: BlogIndexContent;
+    /** Newest first. On `/vi/blog`, the English release posts, each marked as English. */
     posts: PostSummary[];
-    downloadUrls: { arm64: string; x86_64: string };
-    githubStars?: number | null;
 }
 
-const BLOG_TITLE = 'Blog - TablePro';
-const BLOG_DESCRIPTION = 'Articles about database tools, SQL, and native macOS development from the TablePro team.';
+/**
+ * `/blog` and `/vi/blog` (sitemap §A.5; design-system §8.9).
+ *
+ * One line on what the blog is, with the changelog linked; the posts, newest
+ * first; and the release email signup. No filter and no per-post badge: every
+ * retained post is a release post, so either would say nothing.
+ *
+ * `/vi/blog` has Vietnamese chrome and a Vietnamese lead that says the posts
+ * are in English. Its rows keep their English titles and descriptions, marked
+ * `lang="en"` and labelled "(tiếng Anh)", and link the English URLs. The page
+ * is `noindex, follow` and has no hreflang pair: `content/vi/blog.json` sets
+ * `seo.indexable` to false and the registry does the rest.
+ */
+export default function BlogIndex({ content, posts }: Props) {
+    const { canonicalBaseUrl } = usePage().props;
+    const { locale, m, path } = useI18n();
+    const inLanguage = LOCALES.supported[locale].hreflang;
+    const changelogLang = locale === 'en' ? undefined : 'en';
 
-function buildItemListJsonLd(posts: PostSummary[], baseUrl: string): object {
-    const trimmedBase = baseUrl.replace(/\/$/, '');
-
-    return {
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        itemListElement: posts.map((post, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            url: `${trimmedBase}${post.url}`,
-            name: post.title,
-        })),
-    };
-}
-
-export default function BlogIndex({ posts, downloadUrls, githubStars }: Props) {
-    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://tablepro.app';
-    const itemListJsonLd = buildItemListJsonLd(posts, baseUrl);
+    const jsonLd = graph([
+        collectionPageNode(
+            { baseUrl: canonicalBaseUrl, inLanguage },
+            {
+                url: absoluteUrl(canonicalBaseUrl, path('/blog')),
+                name: content.seo.title,
+                description: content.seo.description,
+                items: posts.map((post) => ({ name: post.title, path: post.url })),
+            },
+        ),
+    ]);
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
-            <SEOHead
-                title={BLOG_TITLE}
-                description={BLOG_DESCRIPTION}
-                canonical="/blog"
-                jsonLd={itemListJsonLd}
-                breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Blog', path: '/blog' },
-                ]}
-            />
-                <PageHeader label="Blog" headline="Database tools, SQL, and Mac." lede={BLOG_DESCRIPTION} />
-<FullLine />
-                <Container>
-                    {posts.length === 0 ? (
-                        <div className="p-8 sm:p-12 text-center">
-                            <p className="text-base text-muted-foreground">No posts yet. Check back soon.</p>
-                        </div>
-                    ) : (
-                        <ul className="divide-y divide-rule">
-                            {posts.map((post) => (
-                                <li key={post.slug}>
-                                    <Link
-                                        href={post.url}
-                                        data-row
-                                        className="group block p-6 sm:p-8"
-                                    >
-                                        <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground">
-                                            <time dateTime={post.date}>{post.dateFormatted}</time>
-                                            <span aria-hidden="true">·</span>
-                                            <span>{post.readingMinutes} min read</span>
-                                        </div>
-                                        <h2 className="mt-3 text-2xl font-bold text-foreground transition-colors group-hover:text-primary-strong sm:text-3xl group-focus-within:text-primary-strong">
-                                            {post.title}
-                                        </h2>
-                                        <p className="mt-3 text-base text-muted-foreground">
-                                            {post.description}
-                                        </p>
-                                        {post.tags.length > 0 && (
-                                            <div className="mt-4 flex flex-wrap gap-2">
-                                                {post.tags.map((tag) => (
-                                                    <span
-                                                        key={tag}
-                                                        className="rounded-full border border-rule-strong px-2.5 py-1 text-xs font-mono text-muted-foreground"
-                                                    >
-                                                        {tag}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </Container>
-                <FullLine />
+        <LandingLayout>
+            <SEOHead title={content.seo.title} description={content.seo.description} jsonLd={jsonLd} />
 
-                <div className="h-12 sm:h-16 lg:h-24" />
+            <PageHeader
+                title={content.header.title}
+                lead={
+                    <Trans
+                        text={content.header.lead}
+                        tags={{
+                            changelog: (text) => (
+                                <TextLink href={EXTERNAL.changelog} external hrefLang={changelogLang}>
+                                    {text}
+                                </TextLink>
+                            ),
+                        }}
+                    />
+                }
+            />
+
+            <Container className="pb-16 md:pb-20 xl:pb-24">
+                <div className="max-w-[44rem]">
+                    {posts.length > 0 ? (
+                        <PostList posts={posts} headingLevel="h2" />
+                    ) : (
+                        <p className="type-body text-muted-foreground">{m.blog.index.empty}</p>
+                    )}
+
+                    <NewsletterSignup title={content.newsletter.title} body={content.newsletter.body} className="mt-12" />
+                </div>
+            </Container>
         </LandingLayout>
     );
 }
