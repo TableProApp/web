@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "Client Cassandra và ScyllaDB cho {devices}",
+        "description": "Chạy CQL trên Cassandra, ScyllaDB và Amazon Keyspaces qua TLS, mutual TLS hoặc SigV4. Duyệt keyspace, chuyển trang trong table và sửa dòng theo khóa chính."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client Cassandra và ScyllaDB"
+    },
+    "engine": "cassandra",
+    "breadcrumb": "Cassandra và ScyllaDB",
+    "header": {
+        "title": "Client Cassandra và ScyllaDB cho {devices}",
+        "lead": "Duyệt keyspace và table, chạy CQL trong editor, và sửa các dòng được ghi lại theo đầy đủ khóa chính. Cùng một driver còn kết nối tới ScyllaDB và Amazon Keyspaces."
+    },
+    "asset": "mac-db-cassandra-table",
+    "links": {
+        "network": "/features/connections#network",
+        "awsIam": "docs:/connections/aws-iam",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "cassandraGuide": "docs:/databases/cassandra"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối",
+            "paragraphs": [
+                "Nhập một contact point và port của nó, kèm tên đăng nhập và mật khẩu nếu cluster có cấu hình authenticator. Không có ô keyspace: hãy chọn keyspace trong sidebar sau khi kết nối, hoặc ghi nó vào phần path của một URL <code>cassandra://</code> hay <code>cql://</code> rồi import URL đó. Việc đổi keyspace diễn ra ngay trên connection đang dùng và danh sách không hiện các keyspace hệ thống, còn những tab đang mở vẫn ở lại keyspace của riêng chúng.",
+                "Connection mới để TLS ở trạng thái tắt. Ưu tiên (Preferred) và Required đều mã hóa mà không kiểm tra chứng chỉ, vì driver không có opportunistic TLS. Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) cần một file chứng chỉ CA và không bao giờ quay về dùng chứng chỉ gốc của hệ thống. Với mutual TLS, hãy thêm chứng chỉ client, key của nó và passphrase của key. Cluster nằm trong mạng nội bộ được kết nối qua <network>SSH tunnel</network>.",
+                "Amazon Keyspaces đăng nhập bằng SigV4 thay vì mật khẩu. Hãy trỏ connection tới endpoint theo region, chẳng hạn <code>cassandra.us-east-1.amazonaws.com</code> ở port 9142, đặt Xác thực (Authentication) sang <awsIam>một chế độ AWS IAM</awsIam> (access key, profile hoặc AWS IAM Identity Center), để trống tên đăng nhập và mật khẩu, rồi bật TLS, vì Keyspaces từ chối kết nối không mã hóa."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Duyệt dữ liệu và chạy CQL",
+            "paragraphs": [
+                "Mở một table từ sidebar để xem trong data grid. List, set, map và tuple hiện dưới dạng collection, user-defined type hiện theo các field của nó, <code>duration</code> hiện như <code>1d2h30m</code>, vector là một danh sách số và blob ở dạng hex. Kết quả trong CQL editor chỉ đọc, nên muốn sửa dòng thì hãy mở table từ sidebar.",
+                "CQL không có OFFSET, nên các trang được đọc lần lượt từ dòng đầu tiên: Next và Previous qua những trang đã xem tốn một lần đọc cho mỗi trang, còn nhảy tới một trang ở xa sẽ đọc mọi trang đứng trước nó. Các dòng đến theo thứ tự token, và bấm vào tiêu đề cột không sắp xếp lại chúng, vì CQL chỉ sắp xếp dòng theo clustering column bên trong một partition. Không có gì được đếm khi mở table; <ui>Đếm chính xác (Count Exactly)</ui> chạy <code>SELECT COUNT(*)</code>, câu lệnh này đọc mọi partition.",
+                "<filters>Bộ lọc</filters> thêm <code>ALLOW FILTERING</code>, nên server đọc mọi partition trừ khi bộ lọc cố định toàn bộ partition key. Contains, starts with và ends with được gửi dưới dạng LIKE, mà Cassandra chỉ nhận trên cột có index SASI hoặc SAI. Những toán tử CQL không diễn đạt được, như not equals hay is NULL, bị từ chối kèm tên toán tử, và các điều kiện chỉ nối được bằng AND, vì CQL không có OR.",
+                "<editing>Giá trị bạn sửa</editing> được gửi theo kiểu CQL của cột, và chỉ cần một giá trị không đọc được là cả lần lưu dừng lại. Mỗi dòng được ghi bằng một câu lệnh riêng, xác định bằng đầy đủ khóa chính. <ui>Thêm dòng (Add Row)</ui> ghi <code>INSERT … IF NOT EXISTS</code>, nên dòng mới không bao giờ ghi đè lên dòng đang giữ khóa đó. Cột khóa không sửa trực tiếp được: hãy xóa dòng rồi thêm lại.",
+                "Cột counter cần <code>UPDATE … SET c = c + 1</code> trong CQL editor; server từ chối câu UPDATE thông thường mà thao tác sửa trên data grid sinh ra. Thời gian chờ kết nối lấy từ phần Tùy chọn (Options) của connection, còn request CQL giữ thời gian chờ cố định của driver, không đổi theo query timeout của ứng dụng."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Keyspace và table",
+            "paragraphs": [
+                "<structure>Tab Structure</structure> liệt kê kiểu CQL của từng cột, đánh dấu cả partition key lẫn clustering column là khóa chính, và hiện các secondary index của table. Tab này thêm và xóa cột; mọi thay đổi khác, kể cả index, là một câu lệnh CQL trong editor.",
+                "Tab DDL dựng lại <code>CREATE TABLE</code> từ danh sách cột, nên thiếu các tùy chọn của table như compaction, thứ tự clustering và cách chia giữa partition key với clustering key. Hãy đọc định nghĩa đầy đủ bằng <code>DESCRIBE TABLE</code> trong cqlsh. User-defined function và aggregate được liệt kê trong mục Functions."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "TablePro không có import cho Cassandra và ScyllaDB. <export>Export</export> table hoặc kết quả CQL ra {exportFormats}."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "scylladb",
+            "title": "ScyllaDB",
+            "paragraphs": [
+                "ScyllaDB có mục riêng trong danh sách loại connection và dùng driver Cassandra qua cùng giao thức CQL native, nên việc kết nối, duyệt, sửa dữ liệu và các giới hạn ở trên đều áp dụng nguyên vẹn. URL <code>scylladb://</code> hoặc <code>scylla://</code> tạo một connection ScyllaDB.",
+                "Khác biệt nằm ở thanh lọc: ScyllaDB nhận câu LIKE mà contains, starts with và ends with gửi đi trên bất kỳ cột nào, trong khi Cassandra cần index SASI hoặc SAI. ScyllaDB được thiết lập theo <cassandraGuide>hướng dẫn thiết lập Cassandra</cassandraGuide>."
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "cluster-status",
+            "question": "TablePro có hiển thị trạng thái node hay ring không?",
+            "answer": "Không. Cassandra và ScyllaDB không có Server Dashboard. Hãy kiểm tra node bằng <code>nodetool status</code>, và dùng TablePro cho keyspace, table và CQL."
+        },
+        {
+            "id": "views-and-types",
+            "question": "Làm sao để xem materialized view và user-defined type?",
+            "answer": "Chúng không có trong sidebar, nên hãy query keyspace <code>system_schema</code> trong CQL editor, ví dụ <code>SELECT * FROM system_schema.views</code> hoặc <code>system_schema.types</code>."
+        },
+        {
+            "id": "cassandra-2",
+            "question": "TablePro có kết nối được Cassandra 2.x không?",
+            "answer": "Không. Driver đọc schema từ <code>system_schema</code>, mà Cassandra 2.x không có, nên kết nối sẽ thất bại."
+        }
+    ],
+    "related": [
+        {
+            "label": "Bộ lọc, phân trang và thay đổi đang chờ lưu",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Connection, tunnel và đăng nhập AWS",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Amazon DynamoDB, một engine khác dùng chữ ký AWS",
+            "href": "/dynamodb-gui"
+        },
+        {
+            "label": "Cơ sở dữ liệu được hỗ trợ",
+            "href": "/databases#wide-column"
+        }
+    ]
+}

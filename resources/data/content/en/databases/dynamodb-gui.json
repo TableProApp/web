@@ -1,0 +1,106 @@
+{
+    "seo": {
+        "title": "Amazon DynamoDB GUI for {devices}",
+        "description": "Browse DynamoDB tables through a planner that picks Query or Scan from your filters, edit items with their types intact, and run PartiQL or API requests."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "Amazon DynamoDB GUI"
+    },
+    "engine": "dynamodb",
+    "breadcrumb": "Amazon DynamoDB",
+    "header": {
+        "title": "Amazon DynamoDB GUI for {devices}",
+        "lead": "Browse tables through their keys and indexes, see the read capacity each read consumed, edit items without losing their types, and run PartiQL or DynamoDB API requests in the editor."
+    },
+    "asset": "mac-db-dynamodb-planner",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "permissions": "docs:/databases/dynamodb#iam-permissions",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connect",
+            "paragraphs": [
+                "Choose an <ui>Auth Method</ui> and an <ui>AWS Region</ui>, and the sidebar lists that region’s tables. The methods are an access key with an optional session token, a profile from <code>~/.aws/config</code> and <code>~/.aws/credentials</code> read the way the AWS CLI reads it, or an <cloudAuth>AWS IAM Identity Center</cloudAuth> profile, which opens the sign-in prompt when its session has expired.",
+                "Profiles resolve <code>credential_process</code> helpers and <code>role_arn</code> chains, and expired temporary credentials are fetched again with the request retried once. Every request goes over HTTPS, signed with Signature Version 4, so there is no SSL setting and no SSH tunnel. A region in another AWS partition, such as China or the European Sovereign Cloud, reaches its own endpoint without a custom one.",
+                "For DynamoDB Local, run <code>docker run -p 8000:8000 amazon/dynamodb-local</code> and choose <ui>DynamoDB Local (no credentials)</ui>; leave <ui>Custom Endpoint</ui> empty for port 8000. A custom endpoint may use plain HTTP only on this Mac. The setup guide lists <permissions>the IAM actions each task needs</permissions>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Read, filter and edit items",
+            "paragraphs": [
+                "Opening, filtering and paging a table all go through one planner. Pin the partition key with = and it runs a Query on one partition; filters that fit an index’s keys run a Query on that index; anything else runs a Scan, which reads the whole table and is billed for every item it reads. The status bar names the read it chose, then how many items came back, how many DynamoDB read to find them, and the read capacity units the read consumed.",
+                "A <filters>filter</filters> on the sort key joins the key condition when it is =, <, <=, >, >=, BETWEEN or STARTS WITH. Other filters become a FilterExpression, which DynamoDB applies after reading, so they narrow the rows without lowering the bill. Filter on a nested attribute with a path such as <code>address.city</code> or <code>items[0].sku</code>.",
+                "Clicking the sort key’s header on a Query of one partition makes DynamoDB return the items in that order. Any other sort is done in the grid when the read holds every matching item, and the status bar says when it does not. The next page continues where the last one stopped. The total under the grid is DynamoDB’s own item count; <ui>Count Exactly</ui> reads every item your filters match, and that read is billed in full.",
+                "A table declares only its keys, so columns come from the items: the key attributes, the attributes found in a sample of the table’s first items, and those on the page in view. Maps, lists and sets show as JSON and open in the JSON editor, and numbers keep every digit.",
+                "Each changed row is saved as one PartiQL statement, and <editing>every value keeps its type</editing>: a Number stays a Number, a String such as <code>02134</code> stays a String, and a String Set edited as JSON goes back as a String Set. An update checks each attribute it changes against the value the grid loaded, so it fails rather than overwrite a change someone else made. <ui>Set NULL</ui> removes the attribute.",
+                "The editor takes PartiQL, with double quotes around names and single quotes around strings, or a DynamoDB action name followed by its request JSON, such as <code>Query</code>, <code>BatchWriteItem</code> or <code>TransactWriteItems</code>. Any other action name is refused. Items come back in the grid and any other response as JSON. Throttled requests retry with backoff, and <code>⌘.</code> stops a running statement."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tables and indexes",
+            "paragraphs": [
+                "<ui>New Table…</ui> opens a form for the partition and sort key, on-demand or provisioned capacity, the table class, deletion protection and secondary indexes, and <ui>Preview</ui> shows the <code>CreateTable</code> request before it is sent. A local secondary index can only be defined there, when the table is created.",
+                "In the Structure tab you add or drop a global secondary index, one change per save, because DynamoDB accepts one index change per <code>UpdateTable</code> request. Attributes are not edited there: write one to an item and it appears as a column. The DDL tab shows the <code>CreateTable</code> request that recreates the table, with its Time to Live and point-in-time recovery settings."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Table settings",
+            "paragraphs": [
+                "Right-click a table and choose <ui>Maintenance</ui> for point-in-time recovery, deletion protection, the stream, the table class, switching to on-demand capacity and turning Time to Live off. Dropping a table sends <code>DeleteTable</code>, which fails while deletion protection is on."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Move data",
+            "paragraphs": [
+                "There is no import for DynamoDB. Write items from the editor with a PartiQL <code>INSERT</code> or a <code>BatchWriteItem</code> request, which resends unprocessed items and reports any it could not write. <export>Export</export> a table or a result to a file from the Export dialog."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "avoid-scans",
+            "question": "How do I keep a read from scanning the whole table?",
+            "answer": "Filter on the partition key with =, or on a global index’s partition key with a filter on each of its sort keys, and the read runs as a Query. A global index is used for browsing only when it projects every attribute, so query a keys-only index from the editor with a <code>Query</code> request that names its <code>IndexName</code>."
+        },
+        {
+            "id": "change-key",
+            "question": "How do I change an item’s key?",
+            "answer": "A key attribute cannot be edited in place. Use <ui>Duplicate Row</ui>, which copies every attribute but the keys, give the copy its new key, save, then delete the original."
+        },
+        {
+            "id": "transactions",
+            "question": "Are grid edits saved in one transaction?",
+            "answer": "No. Each changed row is written on its own. Put writes that must succeed together in an <code>ExecuteTransaction</code> or <code>TransactWriteItems</code> request in the editor."
+        }
+    ],
+    "related": [
+        {
+            "label": "Filters across engines",
+            "href": "/features/data-editing#filters"
+        },
+        {
+            "label": "AWS, Google and Microsoft sign-in",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "Redis, keys and commands",
+            "href": "/redis-gui"
+        },
+        {
+            "label": "Cassandra and Amazon Keyspaces",
+            "href": "/cassandra-client"
+        }
+    ]
+}
