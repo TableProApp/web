@@ -1,0 +1,142 @@
+{
+    "seo": {
+        "title": "Import CSV, Excel, export XLSX và sao lưu",
+        "description": "Import file CSV, JSON, Excel và SQL, export table và kết quả query ra các định dạng như XLSX và Parquet, mở riêng file dữ liệu, và sao lưu bằng công cụ dump."
+    },
+    "og": {
+        "kicker": "Import và export",
+        "title": "Import, export và file dữ liệu"
+    },
+    "header": {
+        "title": "Import, export và file dữ liệu",
+        "lead": "Dành cho lúc bạn chuyển dữ liệu qua lại giữa file và cơ sở dữ liệu: đưa một bảng tính vào table, gửi kết quả query cho người khác dưới dạng Excel, dọn dẹp một file CSV trước khi dùng, hoặc tạo bản dump trước một thay đổi rủi ro. Mọi thứ ở đây có trong ứng dụng Mac; phần cuối nói về phần nhỏ hơn có trên iPhone và iPad.",
+        "docs": "/features/import-export"
+    },
+    "sections": [
+        {
+            "id": "import",
+            "title": "Import file vào table",
+            "paragraphs": [
+                "<kbd>⌘⇧I</kbd> import file {importFormats}. File SQL được chạy như các câu lệnh, kể cả dump <code>.sql.gz</code> và script SQL Server chia khối bằng <code>GO</code>. Các định dạng còn lại được nạp vào một table có sẵn, hoặc vào table mới đặt tên theo file với các cột lấy từ file; với workbook Excel, TablePro import sheet đầu tiên.",
+                "Mỗi trường được ghép với một cột, và cả lần import chạy trong một transaction trừ khi bạn tắt tùy chọn này. Khi một dòng bị lỗi, bạn chọn dừng và rollback, dừng và giữ phần đã import, hoặc bỏ qua dòng đó và chạy tiếp, rồi lưu báo cáo các dòng bị bỏ qua thành file CSV."
+            ],
+            "engines": [{ "label": "Engine không hỗ trợ import", "list": "noImport" }],
+            "asset": "mac-import-mapping",
+            "blocks": [
+                {
+                    "id": "mappings",
+                    "title": "Ghép cột đã lưu và bảng mã",
+                    "paragraphs": [
+                        "TablePro nhớ cách ghép cột bạn đã chọn cho từng table khi import CSV, JSON và Excel, và <ui>Match by Name</ui> hoặc <ui>Match by Position</ui> ghép mọi trường chỉ với một cú nhấp; ghép theo vị trí dùng được cho CSV và Excel, nơi thứ tự các trường đi theo file. Khi import CSV và SQL, TablePro đọc được UTF-16 và các bảng mã tiếng Nhật, tiếng Trung, tiếng Hàn như Shift JIS, GB 18030, Big5 và EUC-KR."
+                    ],
+                    "since": "0.77.0"
+                }
+            ]
+        },
+        {
+            "id": "export",
+            "title": "Export table và kết quả query",
+            "paragraphs": [
+                "<kbd>⌘⇧E</kbd> export các table và view bạn chọn ra {exportFormats}. Dữ liệu được đọc thẳng từ cơ sở dữ liệu trong lúc ghi file, nên giới hạn số dòng của data grid không áp dụng, và trên engine SQL, mỗi table có thể có mệnh đề WHERE, giới hạn số dòng và danh sách cột riêng. File SQL có thể kèm cấu trúc, nén gzip và chia thành nhiều phần, còn Excel đặt mỗi table vào một sheet riêng. Collection MongoDB còn export được thành script mongosh, và export SQL không có cho MongoDB và Redis.",
+                "<ui>Export Kết Quả…</ui> (Export Results…) ghi lại những gì query trả về; nếu kết quả bị cắt bởi giới hạn số dòng, query được chạy lại và ghi ra đầy đủ. Export {exportPluginFormats} đến từ một plugin miễn phí mà bạn cài trong <ui>Cài đặt > Plugin</ui> (Settings > Plugins), và ghi mỗi table ra một file."
+            ],
+            "asset": "mac-export-dialog"
+        },
+        {
+            "id": "data-files",
+            "title": "Data Files: làm việc với file mà không cần cơ sở dữ liệu",
+            "paragraphs": [],
+            "blocks": [
+                {
+                    "id": "open-and-clean",
+                    "title": "Mở, tìm kiếm và dọn dẹp",
+                    "paragraphs": [
+                        "Mở một file CSV, TSV hay file văn bản có ký tự phân cách khác, hoặc JSON và JSON Lines, từ Finder hoặc bằng <kbd>⌘O</kbd>, và cửa sổ Data Files hiển thị file đó như một table bạn có thể sửa. Lọc bằng thanh lọc của data grid, tìm trên mọi cột, tìm và thay thế bằng biểu thức chính quy, rồi dọn dữ liệu với Fill Down, Trim Whitespace, Change Case và Remove Duplicate Rows. Workbook Excel mở ra với mỗi sheet một tab, file nén như <code>.csv.gz</code> cũng mở được, và cả hai đều ở chế độ chỉ đọc.",
+                        "Cửa sổ làm việc trên một bản sao riêng, và <kbd>⌘S</kbd> ghi lại file theo đúng định dạng gốc, giữ nguyên những dòng bạn không động tới."
+                    ],
+                    "asset": "mac-data-files-window"
+                },
+                {
+                    "id": "statistics",
+                    "title": "Thống kê cột, rồi export hoặc import",
+                    "paragraphs": [
+                        "Thống kê cột cho biết số ô trống, số giá trị khác nhau, khoảng giá trị và các giá trị xuất hiện nhiều nhất của một cột; bấm vào một giá trị để lọc file theo giá trị đó. Khi file đã sẵn sàng, bạn export sang định dạng khác, hoặc đưa vào một table trên connection đang mở bằng <ui>Import into Table</ui>."
+                    ],
+                    "asset": "mac-data-files-statistics"
+                }
+            ]
+        },
+        {
+            "id": "backup",
+            "title": "Sao lưu bằng công cụ của chính engine",
+            "paragraphs": [
+                "Backup Dump và Restore Dump làm việc qua {backupTools}, đi qua SSH tunnel và dùng cấu hình SSL của connection, nên server nằm sau bastion không cần mở thêm tunnel thứ hai. Trừ DuckDB, mỗi công cụ trên là một công cụ dòng lệnh bạn tự cài; DuckDB tự ghi bản dump ra một file cơ sở dữ liệu hoặc một thư mục file Parquet.",
+                "Trên {serverSideExport}, Server-Side Export để chính server ghi bản export: một job Oracle Data Pump, một stage của Snowflake hoặc một bucket Cloud Storage. Không có gì được ghi xuống máy Mac của bạn."
+            ],
+            "engines": [{ "label": "Backup Dump, kèm công cụ được dùng", "list": "backupEngines" }],
+            "asset": "mac-backup-dump"
+        },
+        {
+            "id": "files",
+            "title": "File cũng là cơ sở dữ liệu",
+            "paragraphs": [
+                "File SQLite và DuckDB mở từ Finder thành connection. DuckDB còn đọc file Parquet, CSV và JSON như các view chỉ đọc, nên file <code>.parquet</code> mở thành connection DuckDB chứ không mở trong Data Files. Một cơ sở dữ liệu SQLite nằm trên server SSH có thể mở trực tiếp, qua một agent nhỏ cần Python 3.6 trở lên trên server, hoặc mở dưới dạng bản sao chỉ đọc.",
+                "File <code>.sql</code> mở thành tab query và lưu lại được xuống đĩa, còn một sổ cái Beancount mở thành các table chỉ đọc."
+            ],
+            "links": [
+                { "label": "SQLite trong TablePro", "href": "/sqlite-client" },
+                { "label": "DuckDB trong TablePro", "href": "/duckdb-client" }
+            ]
+        },
+        {
+            "id": "between-databases",
+            "title": "Từ cơ sở dữ liệu này sang cơ sở dữ liệu khác",
+            "paragraphs": [
+                "Chuyển table hay dòng giữa hai connection không cần file trung gian. Copy To và Transfer To làm việc đó trực tiếp, kể cả giữa hai engine khác nhau, và cho bạn thấy những gì sẽ được ghi trước khi chạy."
+            ],
+            "links": [{ "label": "Copy To và Transfer To", "href": "/features/schema#copy" }]
+        },
+        {
+            "id": "iphone",
+            "title": "Trên iPhone và iPad",
+            "paragraphs": [
+                "Ứng dụng cho iPhone và iPad sao chép hoặc chia sẻ dòng và kết quả query dưới dạng JSON, CSV hoặc câu lệnh SQL INSERT, từ những dòng đã tải. Bản sao chỉ nằm trong clipboard của thiết bị đó, không được chia sẻ sang các thiết bị khác của bạn.",
+                "Dữ liệu được đưa vào qua các tác vụ Phím tắt Thêm dòng vào bảng (Add Row to Table) và Thêm nhiều dòng vào bảng (Add Rows to Table), nhận văn bản JSON hoặc CSV hay một file, và tuân theo Safe Mode của connection. iPhone và iPad không có hộp thoại import, export ra file, cửa sổ Data Files hay sao lưu."
+            ],
+            "links": [{ "label": "Phím tắt trên iPhone và iPad", "href": "/ios#automation" }]
+        }
+    ],
+    "availability": [
+        { "label": "Import file vào table", "ios": "partial", "iosNote": "Tác vụ Phím tắt, từ JSON hoặc CSV" },
+        { "label": "Ghép cột đã lưu, Match by Name và Match by Position", "ios": "no" },
+        { "label": "Export table và kết quả query ra file", "ios": "partial", "iosNote": "Sao chép hoặc chia sẻ dưới dạng JSON, CSV hoặc SQL INSERT" },
+        { "label": "Plugin export {exportPluginFormats}", "ios": "no" },
+        { "label": "Cửa sổ Data Files", "ios": "no" },
+        { "label": "Backup Dump và Restore Dump", "ios": "no" },
+        { "label": "Server-Side Export", "ios": "no" },
+        { "label": "File SQLite và DuckDB", "ios": "partial", "iosNote": "File trên thiết bị, hoặc DuckDB trong bộ nhớ" },
+        { "label": "File SQLite qua SSH", "ios": "no" }
+    ],
+    "limits": [
+        "File export SQL có DROP TABLE IF EXISTS trước mỗi table trừ khi bạn bỏ chọn, nên hãy kiểm tra tùy chọn trước khi chạy file trên một cơ sở dữ liệu có những table bạn muốn giữ.",
+        "Backup Dump dùng công cụ dòng lệnh do bạn tự cài, và chỉ có trên các engine được liệt kê. Các công cụ nhận mật khẩu qua biến môi trường hoặc một file tạm, trừ sqlpackage: công cụ này nhận mật khẩu SQL Server trên dòng lệnh, nơi các tiến trình khác trên máy Mac đọc được; TablePro hỏi lại trước khi chạy.",
+        "Restore Dump thay thế các table có trong bản dump MySQL hoặc MariaDB. Trên các engine khác, đối tượng đã tồn tại không bị thay thế, còn file <code>.bacpac</code> của SQL Server cần một cơ sở dữ liệu trống.",
+        "Mở file cơ sở dữ liệu qua SSH chỉ áp dụng cho SQLite.",
+        "Các extension DuckDB không có sẵn, như httpfs cho S3, Iceberg và Delta, được tải về từ server của DuckDB vào lần đầu một query cần tới.",
+        "Trong phiên bản hiện tại trên App Store, các tác vụ Phím tắt chỉ đọc CSV và JSON ở dạng UTF-8, và chỉ đọc CSV dùng ký tự xuống dòng LF."
+    ],
+    "docs": [
+        { "label": "Import và export", "docs": "/features/import-export" },
+        { "label": "Data Files", "docs": "/features/data-files" },
+        { "label": "Sao lưu và khôi phục", "docs": "/features/backup-restore" },
+        { "label": "File cơ sở dữ liệu từ xa", "docs": "/connections/remote-database-files" },
+        { "label": "File SQL", "docs": "/features/sql-files" },
+        { "label": "Plugin", "docs": "/features/plugins" }
+    ],
+    "related": [
+        { "label": "Schema, so sánh và đồng bộ", "href": "/features/schema" },
+        { "label": "SQLite trong TablePro", "href": "/sqlite-client" },
+        { "label": "DuckDB trong TablePro", "href": "/duckdb-client" },
+        { "label": "TablePro cho iPhone và iPad", "href": "/ios" }
+    ]
+}
