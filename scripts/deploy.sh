@@ -177,13 +177,14 @@ COMPOSER_CHANGED=false
 PHP_CHANGED=false
 CONTENT_CHANGED=false
 
-# resources/data/*.json counts as front-end source, not content. Every file in
-# there is `import`ed by a module under resources/js — comparisons.json by
-# data/comparisons.ts, databases.json by data/databases.ts, database-grid.json
-# by the grid component — so Vite inlines them into the bundle at build time.
-# Editing one and skipping the rebuild leaves the old copy being served: that is
-# how corrected prices and database counts merged, deployed green, and never
-# reached the site.
+# resources/data/ counts as front-end source, not content. Its data files are
+# `import`ed by modules under resources/js (directly or through the `@data`
+# alias), so Vite inlines them into the bundle at build time, and the page copy
+# under resources/data/content/{locale}/ types the pages that render it. Editing
+# one and skipping the rebuild leaves the old copy being served: that is how
+# corrected prices and database counts merged, deployed green, and never reached
+# the site. The pattern is a prefix, so nested files such as content/vi/x.json
+# and legal/vi/privacy.md are covered.
 if changed '^(resources/(js|css|data)/|vite\.config\.|package(-lock)?\.json|tsconfig\.json)'; then
     FRONTEND_CHANGED=true
 fi
@@ -217,12 +218,20 @@ fi
 # on serving the previous compilation. Leaving views out of this test is what
 # once shipped a release whose root template — theme colours, font preloads —
 # never reached a single visitor.
-if changed '^(app/|config/|routes/|bootstrap/|resources/views/|composer\.(json|lock))'; then
+#
+# lang/ for the same reason: its files are PHP arrays that are `require`d and
+# held by opcache. resources/data/locales.json because it decides which route
+# groups exist (routes/web.php mounts one per locale), so a new locale must
+# rebuild the route cache. The rest of resources/data/ is read per request and
+# needs no cache rebuild.
+if changed '^(app/|config/|routes/|bootstrap/|resources/views/|lang/|resources/data/locales\.json|composer\.(json|lock))'; then
     PHP_CHANGED=true
 fi
 
 # The sitemap enumerates blog posts and data-driven pages, so it must be
-# regenerated whenever that content changes — or whenever routing does.
+# regenerated whenever that content changes — or whenever routing does. The
+# prefixes cover the translations too: resources/blog/vi/ and
+# resources/data/content/vi/.
 if changed '^(resources/blog/|resources/data/|routes/)'; then
     CONTENT_CHANGED=true
 fi
