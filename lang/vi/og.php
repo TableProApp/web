@@ -5,7 +5,7 @@
 | Nhãn trên ảnh Open Graph
 |--------------------------------------------------------------------------
 |
-| Giữ cùng khóa với lang/en/og.php.
+| Giữ cùng khóa và cùng :placeholder với lang/en/og.php.
 |
 */
 
@@ -19,5 +19,5 @@ return [
 
     'author' => 'Đội ngũ TablePro',
 
-    'versus' => 'vs',
+    'byline' => ':author · :date',
 ];

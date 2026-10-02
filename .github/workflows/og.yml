@@ -14,7 +14,13 @@ on:
         required: true
         default: "all"
         type: choice
-        options: [all, blog, compare, database]
+        options: [all, site, blog, database, compare, feature]
+      locale:
+        description: "Which language's cards"
+        required: true
+        default: "all"
+        type: choice
+        options: [all, en, vi]
       slug:
         description: "Single slug (optional)"
         required: false
@@ -55,6 +61,12 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist
 
+      # The card templates embed the site's own fonts (resources/css/fonts.css)
+      # from node_modules, so a card rendered here has the same Inter glyphs
+      # as one rendered on a Mac, Vietnamese included.
+      - name: Install Node dependencies
+        run: npm ci --ignore-scripts
+
       - name: Install Chromium
         run: |
           npm install -g puppeteer
@@ -65,15 +77,22 @@ jobs:
           cp .env.example .env
           php artisan key:generate
 
+      # WEB_DOMAIN overrides the localhost value .env.example carries: each
+      # card prints its page's canonical address.
       - name: Generate cards
+        env:
+          WEB_DOMAIN: tablepro.app
+          OG_TYPE: ${{ inputs.type }}
+          OG_LOCALE: ${{ inputs.locale }}
+          OG_SLUG: ${{ inputs.slug }}
         run: |
-          ARGS=""
-          if [ "${{ inputs.type }}" != "all" ]; then ARGS="$ARGS --type=${{ inputs.type }}"; fi
-          if [ -n "${{ inputs.slug }}" ]; then ARGS="$ARGS --slug=${{ inputs.slug }}"; fi
-          php artisan og:generate $ARGS
+          ARGS=(--type="$OG_TYPE" --locale="$OG_LOCALE")
+          if [ -n "$OG_SLUG" ]; then ARGS+=(--slug="$OG_SLUG"); fi
+          php artisan og:generate "${ARGS[@]}"
 
       - name: Commit
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore(og): regenerate social cards"
-          file_pattern: public/og/**
+          # public/og.png is the English generic card, written in place by --type=site.
+          file_pattern: public/og/** public/og.png

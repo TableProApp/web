@@ -5,9 +5,13 @@
 | Open Graph card labels
 |--------------------------------------------------------------------------
 |
-| The few words the og:generate templates print around a page's own title.
-| Phase A first version; the SEO agent owns this file from phase B, when the
-| templates in resources/views/og are rewritten.
+| The few words the og:generate templates (resources/views/og) print around
+| a page's own copy. The page's title and kicker come from its content file,
+| a post's from its front matter.
+|
+| `family` is the kicker a page card falls back to when its content gives
+| none, and the label on a blog card. `byline` is one template, so each
+| language orders author and date its own way.
 |
 */
 
@@ -21,5 +25,5 @@ return [
 
     'author' => 'The TablePro team',
 
-    'versus' => 'vs',
+    'byline' => ':author · :date',
 ];
