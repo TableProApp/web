@@ -1,0 +1,183 @@
+{
+    "seo": {
+        "title": "MySQL and MariaDB client for {devices}",
+        "description": "Connect to MySQL and MariaDB with SSH, SSL/TLS or AWS IAM, and to TiDB, OceanBase and Databend on the same driver. EXPLAIN diagrams and mysqldump backups."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "MySQL and MariaDB client"
+    },
+    "engine": "mysql",
+    "breadcrumb": "MySQL and MariaDB",
+    "header": {
+        "title": "MySQL and MariaDB client for {devices}",
+        "lead": "Write SQL with schema-aware autocomplete, edit rows with a preview of every statement, and manage users, sessions and backups. The same driver also covers MariaDB, TiDB, OceanBase and Databend."
+    },
+    "asset": "mac-db-mysql-query",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "importApps": "/features/connections#import",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "erDiagram": "/features/schema#er-diagram"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connect",
+            "paragraphs": [
+                "Give TablePro a host, a port and a user, or paste a <code>mysql://</code> URL. MySQL 8 accounts that use <code>caching_sha2_password</code> connect on the first try. Leave the database empty and choose one later: switching databases happens in place, on the same connection.",
+                "New connections start with SSL set to Preferred, which tries TLS first and falls back to plain text only after a failed TLS handshake. Choose Verify CA or Verify Identity with your provider’s certificate for strict checking.",
+                "For a server on a private network, connect through an <network>SSH tunnel, with jump hosts if you need them, a SOCKS5 proxy, a Cloudflare Access tunnel or your own tunnel command</network> such as kubectl port-forward.",
+                "On Amazon RDS and Aurora, sign in with <cloudAuth>AWS IAM</cloudAuth>, which signs a fresh token each time you connect, and import instances straight from your AWS account. For Google Cloud SQL, TablePro downloads and runs the Cloud SQL Auth Proxy for you.",
+                "Moving from Sequel Ace? <importApps>Import from Other App</importApps> reads its favorites and, after you confirm, the passwords it keeps in the Keychain."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query and edit",
+            "paragraphs": [
+                "The SQL editor completes table and column names from the schema, aliases and CTEs included, and runs either the statement under the cursor or the whole script. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE and EXPLAIN ANALYZE</explain> are drawn as a plan diagram or tree, and EXPLAIN Compare shows what changed between two runs.",
+                "Row edits are staged until you save, and <editing>Preview SQL</editing> shows the exact statements first. Saves run as bound parameters and stop if a statement would change a different number of rows than expected. A table without a primary key can still be edited: the row is matched on every column.",
+                "Every session uses utf8mb4, so emoji and non-Latin text round-trip. For a database whose text an old client wrote through Latin 1, the UTF-8 via Latin 1 encoding reads it the way that client did.",
+                "Partitioned tables list their partitions with their bounds, such as <code>VALUES LESS THAN (2024)</code>, and table and column comments show in the sidebar and in the grid’s column headers."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Schema",
+            "paragraphs": [
+                "The <structure>Structure tab</structure> stages changes to columns, indexes, foreign keys, CHECK constraints and generated columns, and shows the DDL before it runs. Index keys over an expression, such as <code>lower(email)</code>, need MySQL 8.0.13 or later.",
+                "Routines and triggers appear in the sidebar with their source. The <erDiagram>ER diagram</erDiagram> draws the schema as a read-only picture you can export as PNG or SQL.",
+                "<compareSync>Compare & Sync</compareSync>, part of the {compareSyncTier} plan, compares two MySQL or MariaDB schemas, or their data, and writes the script that brings one in line with the other. Changes that would lose data are held back until you include them."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Administer",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> shows each account’s privileges down to single columns, and stages every GRANT and REVOKE as SQL you read before it runs.",
+                "The Server Dashboard lists sessions, server metrics and slow queries, refreshed every few seconds. It cancels a running query with <code>KILL QUERY</code> or ends a session with <code>KILL</code>. An account without the PROCESS privilege sees only its own sessions.",
+                "Table maintenance runs OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE and REPAIR TABLE, and shows the statement before it runs.",
+                "<backup>Backup Dump</backup> runs {dumpTool} and Restore Dump runs the mysql client, both through the connection’s SSH tunnel; install the MySQL client tools on your Mac first. A restore replaces the objects the dump names.",
+                "To give a server slot back while you are away, set a connection to release itself after some idle minutes; the next query opens a new one. TablePro keeps the connection when the session holds something a reconnect would lose, such as an open transaction or a temporary table."
+            ],
+            "asset": "mac-users-roles-mysql"
+        },
+        {
+            "id": "move-data",
+            "title": "Move data",
+            "paragraphs": [
+                "<importData>Import</importData> {importFormats} files, with column mapping for the table you load into and a choice of what happens when a row fails. Export a table or a result as {exportFormats}.",
+                "<copy>Copy To</copy> sends tables, their data or both to another connection, on MySQL or on a different engine, and lists every column type it has to approximate."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone and iPad",
+            "paragraphs": [
+                "On iPhone and iPad, you browse tables as cards, filter and sort them, edit rows that have a primary key and run SQL in the Query tab. Connections offer SSL from Required to Verify Identity, and SSH tunnels with a password or a key. SSH jump hosts are not supported there."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "mariadb",
+            "title": "MariaDB",
+            "paragraphs": [
+                "MariaDB connects through the same driver as MySQL, with the same SSH, SSL/TLS and AWS IAM options. A <code>mariadb://</code> URL creates a MariaDB connection.",
+                "JSON columns, which MariaDB stores as LONGTEXT, open in the JSON editor. Virtual and persistent columns are detected and left out of generated INSERT and UPDATE statements. Sequences are listed in the sidebar, read-only, and a system-versioned table is listed as an ordinary table.",
+                "Users & Roles, the Server Dashboard, table maintenance and {dumpTool} backups work as they do on MySQL."
+            ]
+        },
+        {
+            "engine": "tidb",
+            "title": "TiDB",
+            "paragraphs": [
+                "Point the connection at a TiDB server’s SQL port, never at PD or TiKV. TiDB Cloud uses the same port; set SSL Mode to Required there.",
+                "Stop sends <code>KILL TIDB QUERY</code> for your own session. Behind TiProxy or a load balancer, that needs Global Kill, which TiDB turns on by default since version 6.1.",
+                "EXPLAIN and EXPLAIN ANALYZE show TiDB’s plan as text. CHECK constraints appear in the Structure tab on TiDB 7.2 and later when the cluster enables them, foreign keys can be created, and table maintenance offers ANALYZE TABLE.",
+                "Choose TiDB as the connection type rather than MySQL, so the sidebar, the type picker and EXPLAIN follow TiDB."
+            ]
+        },
+        {
+            "engine": "oceanbase",
+            "title": "OceanBase",
+            "paragraphs": [
+                "Put the tenant in the user name: <code>root@test</code> on an observer, or <code>root@test#obcluster</code> through OBProxy, which listens on port 2883.",
+                "Connecting checks that the server reports itself as OceanBase, so a wrong host or port fails at once. TablePro’s query timeout replaces OceanBase’s own statement limit.",
+                "EXPLAIN shows the plan as text. A table without a primary key is edited by matching every column, and a save that would change more than one row, or none, stops and says so.",
+                "Choose OceanBase as the connection type: a connection saved as MySQL that reaches OceanBase gets none of this."
+            ]
+        },
+        {
+            "engine": "databend",
+            "title": "Databend",
+            "paragraphs": [
+                "Databend connects through its MySQL handler, not its HTTP API. Choose Databend as the connection type; a MySQL connection that reaches a Databend server is refused and asks you to change the type.",
+                "On Databend Cloud, ask Databend support to turn on the warehouse’s MySQL endpoint, then copy the host and port from its Connect dialog.",
+                "The Structure tab edits columns and CHECK constraints and renames tables, views and columns. EXPLAIN and EXPLAIN ANALYZE show the plan as text, and table maintenance offers ANALYZE TABLE.",
+                "ARRAY, MAP and TUPLE cells cannot be written from text. Change them with an UPDATE in the editor."
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "sequel-ace",
+                "text": "Sequel Ace continues Sequel Pro as a Mac app for MySQL and MariaDB. It has an MCP server that is off by default and read-only unless you change it, and no AI chat. It fits if MySQL and MariaDB are all you use."
+            },
+            {
+                "product": "phpmyadmin",
+                "text": "phpMyAdmin runs on your web server and works in any browser, and cPanel includes it. It fits a server you reach only through a hosting panel, where a desktop app has no route to the database."
+            },
+            {
+                "product": "heidisql",
+                "text": "HeidiSQL is a long-standing open-source client from Windows that now also ships a macOS app."
+            }
+        ],
+        "notes": {}
+    },
+    "faq": [
+        {
+            "id": "socket",
+            "question": "Can TablePro connect through a local MySQL socket?",
+            "answer": "No. Connections use TCP, so the server needs networking turned on. To reach a socket on a remote server, forward it through an SSH tunnel."
+        },
+        {
+            "id": "mysqldump",
+            "question": "Do I need the MySQL client tools installed?",
+            "answer": "Only for Backup Dump and Restore Dump, which run {dumpTool} and mysql. Connecting, querying and editing use the driver that comes with the app."
+        },
+        {
+            "id": "er-diagram",
+            "question": "Can I design a schema in the ER diagram?",
+            "answer": "No. The <erDiagram>ER diagram</erDiagram> is a read-only picture of the schema that you can export. Change tables in the Structure tab or with SQL."
+        }
+    ],
+    "related": [
+        {
+            "label": "Write, run and understand queries",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema, compare and sync",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Connections, tunnels and credentials",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Compare TablePro with other database clients",
+            "href": "/compare"
+        }
+    ]
+}

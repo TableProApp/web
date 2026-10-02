@@ -1,0 +1,164 @@
+{
+    "seo": {
+        "title": "Client PostgreSQL cho {devices}",
+        "description": "Kết nối PostgreSQL qua SSH, SSL/TLS, AWS IAM hoặc ~/.pgpass, và CockroachDB, PGlite trên cùng driver. Sơ đồ EXPLAIN, PostGIS trên bản đồ, sao lưu bằng pg_dump."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client PostgreSQL"
+    },
+    "engine": "postgresql",
+    "breadcrumb": "PostgreSQL",
+    "header": {
+        "title": "Client PostgreSQL cho {devices}",
+        "lead": "Làm việc với schema, array, jsonb và PostGIS, đọc execution plan dưới dạng sơ đồ, và quản lý role, session, bảo trì cùng sao lưu. Cùng một driver còn dùng cho Amazon Redshift, CockroachDB và PGlite."
+    },
+    "asset": "mac-db-postgresql-explain",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "results": "/features/querying#results",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "redshift": "/redshift-client"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối",
+            "paragraphs": [
+                "Nhập host, port, user và cơ sở dữ liệu, hoặc dán một URL <code>postgresql://</code> hay <code>postgres://</code>. PostgreSQL cần biết cơ sở dữ liệu thì mới kết nối được, và muốn đổi cơ sở dữ liệu sau đó thì phải kết nối lại.",
+                "Connection mới để SSL ở chế độ Ưu tiên (Preferred), tức <code>sslmode=prefer</code> của libpq. Hãy chọn Xác minh CA (Verify CA) hoặc Xác minh danh tính (Verify Identity) để kiểm tra chứng chỉ của server.",
+                "Bật Sử dụng ~/.pgpass (Use ~/.pgpass) để đọc mật khẩu từ <code>~/.pgpass</code>. Form cho biết nó tìm thấy gì, kể cả trường hợp quyền truy cập của file khiến libpq bỏ qua file đó.",
+                "Tới server nội bộ qua <network>SSH tunnel (kèm jump host nếu cần), SOCKS5 proxy, Cloudflare Access tunnel hoặc tunnel command</network>, chẳng hạn kubectl port-forward. Trên Amazon RDS và Aurora, bạn đăng nhập bằng <cloudAuth>AWS IAM</cloudAuth> với một role được cấp <code>rds_iam</code>. Với Google Cloud SQL, TablePro tự tải và chạy Cloud SQL Auth Proxy.",
+                "Mọi tùy chọn kết nối mà libpq chấp nhận, như <code>-c application_name=reporting</code>, đều đặt được trong Tùy chọn kết nối (Connection Options)."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query và chỉnh sửa",
+            "paragraphs": [
+                "SQL editor gợi ý tên table và cột theo schema. <explain>EXPLAIN và EXPLAIN ANALYZE</explain> chạy với FORMAT JSON và được vẽ thành sơ đồ hoặc cây execution plan, còn EXPLAIN Compare cho biết plan có chậm đi sau một thay đổi hay không.",
+                "jsonb được định dạng gọn gàng, còn uuid, inet, timestamptz, interval và bytea hiển thị đúng kiểu của chúng. Cột array mở trong trình sửa dạng danh sách, nơi bạn thêm, xóa, đổi thứ tự hoặc đặt NULL cho từng phần tử, và cột enum cho chọn trong các nhãn của nó.",
+                "Giá trị geometry và geography của PostGIS hiển thị dạng EWKT kèm SRID, và kết quả có geometry mở được trên <results>Map view</results>. Ô bản đồ do Apple cung cấp; các dòng dữ liệu của bạn vẫn ở trên máy Mac.",
+                "Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, <editing>Preview SQL</editing> hiển thị trước từng câu lệnh, và khi lưu, giá trị được gửi dưới dạng tham số bind. Dữ liệu của materialized view chỉ đọc: hãy làm mới nó từ menu của view, và làm mới song song (concurrently) khi view có unique index mà PostgreSQL yêu cầu."
+            ],
+            "asset": "mac-result-map"
+        },
+        {
+            "id": "schema",
+            "title": "Schema và cấu trúc",
+            "paragraphs": [
+                "Mọi schema bạn có quyền truy cập đều được liệt kê. Bạn tạo và sửa schema trong một bảng soạn sẵn câu CREATE SCHEMA, owner, comment và quyền USAGE, CREATE, rồi hiển thị chúng trước khi chạy.",
+                "<structure>Tab Structure</structure> giữ các thay đổi về cột, index, khóa ngoại, ràng buộc CHECK và cột generated ở trạng thái chờ lưu. Table có partition liệt kê từng partition kèm giới hạn, lồng nhau khi một partition lại được chia tiếp. Enum, composite, domain và range nằm trong mục Types, và nhãn của enum thêm hoặc đổi tên được.",
+                "Định nghĩa của view được dựng lại với mọi table ghi kèm tên schema, và index bị bỏ dở do một lần build concurrently thất bại được nêu tên trong tab Indexes.",
+                "<compareSync>Compare & Sync</compareSync>, thuộc gói {compareSyncTier}, so sánh hai schema PostgreSQL, hoặc dữ liệu của chúng, rồi viết script đưa bên này về khớp với bên kia, giữ lại những thay đổi có thể làm mất dữ liệu."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Quản trị",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> cho biết mỗi quyền đến từ đâu trước khi bạn cấp hay thu hồi, và giữ mọi câu lệnh dưới dạng SQL chờ chạy.",
+                "Server Dashboard hiển thị session, số connection, tỷ lệ cache hit, dung lượng cơ sở dữ liệu và các query chậm. Từ đây bạn hủy query bằng <code>pg_cancel_backend</code> hoặc kết thúc session bằng <code>pg_terminate_backend</code>. Role không phải superuser và không thuộc <code>pg_monitor</code> sẽ thấy session của người khác nhưng không thấy query của họ.",
+                "Phần bảo trì table chạy VACUUM, với các tùy chọn FULL, ANALYZE và VERBOSE, cùng ANALYZE, REINDEX và CLUSTER, và hiển thị câu lệnh trước khi chạy.",
+                "<backup>Backup Dump và Restore Dump</backup> chạy {dumpTool} và pg_restore cài trên máy bạn, qua SSH tunnel của connection. Hãy cài chúng bằng Homebrew; để sao lưu server PostgreSQL 9.1, hãy dùng pg_dump 14 trở xuống."
+            ],
+            "asset": "mac-server-dashboard-postgresql"
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "<importData>Import</importData> file {importFormats}; file dữ liệu được nạp vào table với từng cột được ghép, và bạn chọn cách xử lý khi một dòng bị lỗi. Export table hoặc kết quả query ra {exportFormats}; bản export SQL giữ lại comment của table, view và materialized view.",
+                "<copy>Copy To</copy> chuyển table, dữ liệu của chúng hoặc cả hai sang một connection khác, trên PostgreSQL hay trên một engine khác, và liệt kê mọi kiểu cột phải chuyển gần đúng."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone và iPad",
+            "paragraphs": [
+                "Trên iPhone và iPad, bạn đổi cơ sở dữ liệu và schema từ thanh công cụ, xem table dưới dạng thẻ, sửa các dòng có khóa chính và chạy SQL trong tab Truy vấn (Query). SSL đặt được từ Required tới Xác minh danh tính (Verify Identity), SSH tunnel xác thực bằng mật khẩu hoặc key, và trên đó không hỗ trợ jump host."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "cockroachdb",
+            "title": "CockroachDB",
+            "paragraphs": [
+                "CockroachDB dùng driver PostgreSQL có sẵn trong ứng dụng, nên không cần cài thêm gì. Cluster mới bắt đầu với cơ sở dữ liệu <code>defaultdb</code>.",
+                "Với CockroachDB Cloud, hãy chép host, user, mật khẩu và cơ sở dữ liệu từ Cloud console, đặt giá trị định tuyến cluster <code>--cluster=your-cluster</code> vào Tùy chọn kết nối (Connection Options), và đặt Chế độ SSL (SSL Mode) là Xác minh danh tính (Verify Identity). Với một node chạy cục bộ ở chế độ insecure, hãy đặt Chế độ SSL là Đã tắt (Disabled).",
+                "DDL của table và view lấy từ câu SHOW CREATE của chính CockroachDB. Execution plan dạng văn bản của EXPLAIN và EXPLAIN ANALYZE được phân tích thành cây plan, và Server Dashboard liệt kê session cùng các query đang chạy.",
+                "Đổi cơ sở dữ liệu sẽ kết nối lại, như trên PostgreSQL, và việc kiểm tra khóa ngoại không hoãn được."
+            ]
+        },
+        {
+            "engine": "pglite",
+            "title": "PGlite",
+            "paragraphs": [
+                "PGlite là PostgreSQL được biên dịch sang WebAssembly, và không gì kết nối được tới nó cho đến khi bạn khởi động socket server: <code>npx @electric-sql/pglite-socket</code>, thêm <code>--db=./my-pgdata</code> để giữ dữ liệu trên đĩa.",
+                "Hãy kết nối tới <code>127.0.0.1</code> thay vì localhost. Socket server không bao giờ kiểm tra mật khẩu và không có TLS, nên form không hỏi cả hai.",
+                "Catalog của PGlite đầy đủ, nên việc sửa cấu trúc, Users & Roles và sơ đồ EXPLAIN hoạt động như trên một server. Nó chỉ có một cơ sở dữ liệu là <code>postgres</code>."
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "pgadmin",
+                "text": "pgAdmin là công cụ quản trị PostgreSQL mã nguồn mở lâu năm, có debugger, so sánh schema, sao lưu và khôi phục.",
+                "notes": ["pgadmin-erd-design"]
+            },
+            {
+                "product": "postico",
+                "text": "Postico 2 là ứng dụng Mac cho PostgreSQL, tập trung vào việc xem và sửa dữ liệu. Chính tài liệu của Postico nói rằng nó không nhắm tới các việc quản trị như sao lưu và khôi phục, quản lý user hay theo dõi server."
+            }
+        ],
+        "notes": {
+            "pgadmin-erd-design": "Công cụ ERD của pgAdmin thiết kế được schema và sinh SQL cho nó, trong khi ER diagram của TablePro chỉ để xem."
+        }
+    },
+    "faq": [
+        {
+            "id": "hosted",
+            "question": "TablePro có dùng được với PostgreSQL được host sẵn, như Amazon RDS không?",
+            "answer": "Có. Server được host sẵn cũng chỉ là một host và một port như mọi server khác. Trên RDS và Aurora, bạn còn đăng nhập được bằng AWS IAM, và với Google Cloud SQL, TablePro tự chạy Cloud SQL Auth Proxy."
+        },
+        {
+            "id": "switch-database",
+            "question": "Vì sao đổi cơ sở dữ liệu lại phải kết nối lại?",
+            "answer": "PostgreSQL không có lệnh USE để đổi tại chỗ. Tab gắn với một cơ sở dữ liệu khác chạy trên connection thứ hai, nên hãy giữ transaction hoặc temporary table trên các tab gắn với cùng một cơ sở dữ liệu."
+        },
+        {
+            "id": "column-order",
+            "question": "Tôi có đổi thứ tự cột được không?",
+            "answer": "TablePro viết script dựng lại table theo thứ tự cột mới và hiển thị cho bạn, nhưng không bao giờ tự chạy. Hãy đọc script, rồi tự chạy khi table có thể được ghi lại toàn bộ."
+        }
+    ],
+    "related": [
+        {
+            "label": "Viết, chạy và phân tích query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema, so sánh và đồng bộ",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Amazon Redshift, dùng cùng driver",
+            "href": "/redshift-client"
+        },
+        {
+            "label": "So sánh TablePro với các database client khác",
+            "href": "/compare"
+        }
+    ]
+}

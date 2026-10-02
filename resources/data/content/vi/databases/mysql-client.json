@@ -1,0 +1,183 @@
+{
+    "seo": {
+        "title": "Client MySQL và MariaDB cho {devices}",
+        "description": "Kết nối MySQL và MariaDB qua SSH, SSL/TLS hoặc AWS IAM, và TiDB, OceanBase, Databend trên cùng driver. Sơ đồ EXPLAIN, Users & Roles và sao lưu bằng mysqldump."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client MySQL và MariaDB"
+    },
+    "engine": "mysql",
+    "breadcrumb": "MySQL và MariaDB",
+    "header": {
+        "title": "Client MySQL và MariaDB cho {devices}",
+        "lead": "Viết SQL với autocomplete hiểu schema, sửa dữ liệu kèm bản xem trước của từng câu lệnh, và quản lý user, session cùng bản sao lưu. Cùng một driver còn dùng cho MariaDB, TiDB, OceanBase và Databend."
+    },
+    "asset": "mac-db-mysql-query",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "importApps": "/features/connections#import",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "erDiagram": "/features/schema#er-diagram"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối",
+            "paragraphs": [
+                "Nhập host, port và user, hoặc dán một URL <code>mysql://</code>. Tài khoản MySQL 8 dùng <code>caching_sha2_password</code> kết nối được ngay lần đầu. Bạn có thể để trống cơ sở dữ liệu và chọn sau: việc đổi cơ sở dữ liệu diễn ra ngay trên connection đang dùng.",
+                "Connection mới để SSL ở chế độ Ưu tiên (Preferred): thử TLS trước, và chỉ chuyển sang kết nối không mã hóa khi bắt tay TLS thất bại. Hãy chọn Xác minh CA (Verify CA) hoặc Xác minh danh tính (Verify Identity) cùng chứng chỉ của nhà cung cấp nếu cần kiểm tra chặt chẽ.",
+                "Với server trong mạng nội bộ, hãy kết nối qua <network>SSH tunnel (kèm jump host nếu cần), SOCKS5 proxy, Cloudflare Access tunnel hoặc tunnel command của riêng bạn</network>, chẳng hạn kubectl port-forward.",
+                "Trên Amazon RDS và Aurora, bạn đăng nhập bằng <cloudAuth>AWS IAM</cloudAuth>, với token mới được ký mỗi lần kết nối, và import instance trực tiếp từ tài khoản AWS. Với Google Cloud SQL, TablePro tự tải và chạy Cloud SQL Auth Proxy.",
+                "Chuyển từ Sequel Ace sang? <importApps>Nhập từ ứng dụng khác (Import from Other App)</importApps> đọc danh sách favorites của nó và, sau khi bạn xác nhận, cả mật khẩu được lưu trong Keychain."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query và chỉnh sửa",
+            "paragraphs": [
+                "SQL editor gợi ý tên table và cột theo schema, kể cả alias và CTE, và chạy câu lệnh tại con trỏ hoặc cả script. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE và EXPLAIN ANALYZE</explain> được vẽ thành sơ đồ hoặc cây execution plan, còn EXPLAIN Compare cho thấy điều gì đã đổi giữa hai lần chạy.",
+                "Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, và <editing>Preview SQL</editing> hiển thị đúng các câu lệnh sẽ chạy. Khi lưu, giá trị được gửi dưới dạng tham số bind, và việc lưu dừng lại nếu một câu lệnh sắp thay đổi số dòng khác với dự kiến. Table không có khóa chính vẫn sửa được: dòng được so khớp theo mọi cột.",
+                "Mọi session đều dùng utf8mb4, nên emoji và chữ không phải Latin được giữ nguyên. Với cơ sở dữ liệu có chữ do một client cũ ghi qua Latin 1, bảng mã UTF-8 via Latin 1 đọc dữ liệu theo đúng cách client đó đã ghi.",
+                "Table có partition liệt kê từng partition kèm giới hạn, chẳng hạn <code>VALUES LESS THAN (2024)</code>, và comment của table và cột hiện trong sidebar và trên tiêu đề cột của data grid."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Schema",
+            "paragraphs": [
+                "<structure>Tab Structure</structure> giữ các thay đổi về cột, index, khóa ngoại, ràng buộc CHECK và cột generated ở trạng thái chờ lưu, và hiển thị DDL trước khi chạy. Index có key là biểu thức, như <code>lower(email)</code>, cần MySQL 8.0.13 trở lên.",
+                "Routine và trigger hiện trong sidebar kèm mã nguồn. <erDiagram>ER diagram</erDiagram> vẽ schema thành một hình chỉ đọc mà bạn có thể export ra PNG hoặc SQL.",
+                "<compareSync>Compare & Sync</compareSync>, thuộc gói {compareSyncTier}, so sánh hai schema MySQL hoặc MariaDB, hoặc dữ liệu của chúng, rồi viết script đưa bên này về khớp với bên kia. Những thay đổi có thể làm mất dữ liệu được giữ lại cho tới khi bạn chọn đưa vào."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Quản trị",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> hiển thị quyền của từng tài khoản tới tận từng cột, và giữ mọi câu GRANT và REVOKE dưới dạng SQL để bạn đọc trước khi chạy.",
+                "Server Dashboard liệt kê session, chỉ số của server và các query chậm, làm mới sau mỗi vài giây. Từ đây bạn hủy query đang chạy bằng <code>KILL QUERY</code> hoặc kết thúc session bằng <code>KILL</code>. Tài khoản không có quyền PROCESS chỉ thấy session của chính mình.",
+                "Phần bảo trì table chạy OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE và REPAIR TABLE, và hiển thị câu lệnh trước khi chạy.",
+                "<backup>Backup Dump</backup> chạy {dumpTool} còn Restore Dump chạy mysql client, cả hai đều qua SSH tunnel của connection; hãy cài bộ công cụ client của MySQL trên máy Mac trước. Khi khôi phục, các đối tượng có trong file dump sẽ được thay thế.",
+                "Để trả lại một slot kết nối cho server khi bạn không dùng, hãy đặt connection tự nhả sau một số phút không hoạt động; query tiếp theo sẽ mở connection mới. TablePro giữ connection lại nếu session đang có thứ sẽ mất khi kết nối lại, chẳng hạn một transaction đang mở hay một temporary table."
+            ],
+            "asset": "mac-users-roles-mysql"
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "<importData>Import</importData> file {importFormats}, kèm ghép cột cho table nhận dữ liệu và lựa chọn cách xử lý khi một dòng bị lỗi. Export table hoặc kết quả query ra {exportFormats}.",
+                "<copy>Copy To</copy> chuyển table, dữ liệu của chúng hoặc cả hai sang một connection khác, trên MySQL hay trên một engine khác, và liệt kê mọi kiểu cột phải chuyển gần đúng."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone và iPad",
+            "paragraphs": [
+                "Trên iPhone và iPad, bạn xem table dưới dạng thẻ, lọc và sắp xếp, sửa các dòng có khóa chính và chạy SQL trong tab Truy vấn (Query). Connection hỗ trợ SSL từ mức Required tới Xác minh danh tính (Verify Identity), và SSH tunnel bằng mật khẩu hoặc key. Trên đó không hỗ trợ SSH jump host."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "mariadb",
+            "title": "MariaDB",
+            "paragraphs": [
+                "MariaDB kết nối qua cùng driver với MySQL, với cùng các tùy chọn SSH, SSL/TLS và AWS IAM. URL <code>mariadb://</code> tạo một connection MariaDB.",
+                "Cột JSON, mà MariaDB lưu dưới dạng LONGTEXT, mở trong JSON editor. Cột virtual và persistent được nhận diện và bỏ ra khỏi các câu INSERT và UPDATE được sinh tự động. Sequence được liệt kê trong sidebar ở chế độ chỉ đọc, còn table system-versioned hiện như một table thường.",
+                "Users & Roles, Server Dashboard, bảo trì table và sao lưu bằng {dumpTool} hoạt động như trên MySQL."
+            ]
+        },
+        {
+            "engine": "tidb",
+            "title": "TiDB",
+            "paragraphs": [
+                "Hãy trỏ connection vào port SQL của server TiDB, không bao giờ vào PD hay TiKV. TiDB Cloud dùng cùng port đó; trên TiDB Cloud, hãy đặt Chế độ SSL (SSL Mode) là Required.",
+                "Nút Dừng (Stop) gửi <code>KILL TIDB QUERY</code> cho session của chính bạn. Khi đi qua TiProxy hay một load balancer, việc này cần Global Kill, được TiDB bật mặc định từ phiên bản 6.1.",
+                "EXPLAIN và EXPLAIN ANALYZE hiển thị execution plan của TiDB dưới dạng văn bản. Ràng buộc CHECK hiện trong tab Structure từ TiDB 7.2 khi cluster bật tính năng này, bạn tạo được khóa ngoại, và phần bảo trì table có ANALYZE TABLE.",
+                "Hãy chọn loại connection là TiDB thay vì MySQL, để sidebar, bộ chọn kiểu dữ liệu và EXPLAIN đều theo TiDB."
+            ]
+        },
+        {
+            "engine": "oceanbase",
+            "title": "OceanBase",
+            "paragraphs": [
+                "Hãy ghi tenant vào tên đăng nhập: <code>root@test</code> khi vào thẳng một observer, hoặc <code>root@test#obcluster</code> khi đi qua OBProxy, vốn lắng nghe ở port 2883.",
+                "Khi kết nối, TablePro kiểm tra server có tự nhận là OceanBase hay không, nên sai host hay port sẽ báo lỗi ngay. Query timeout của TablePro thay cho giới hạn thời gian câu lệnh của chính OceanBase.",
+                "EXPLAIN hiển thị execution plan dưới dạng văn bản. Table không có khóa chính được sửa bằng cách so khớp mọi cột, và việc lưu sẽ dừng lại kèm thông báo nếu thay đổi ảnh hưởng tới nhiều hơn một dòng, hoặc không dòng nào.",
+                "Hãy chọn loại connection là OceanBase: connection lưu dưới loại MySQL dù kết nối tới OceanBase cũng không có những điều trên."
+            ]
+        },
+        {
+            "engine": "databend",
+            "title": "Databend",
+            "paragraphs": [
+                "Databend kết nối qua MySQL handler của nó, không qua HTTP API. Hãy chọn loại connection là Databend; connection MySQL kết nối tới server Databend sẽ bị từ chối và nhắc bạn đổi loại.",
+                "Trên Databend Cloud, hãy nhờ bộ phận hỗ trợ của Databend bật MySQL endpoint của warehouse, rồi chép host và port từ hộp thoại Connect của nó.",
+                "Tab Structure sửa được cột và ràng buộc CHECK, và đổi tên table, view và cột. EXPLAIN và EXPLAIN ANALYZE hiển thị execution plan dưới dạng văn bản, còn phần bảo trì table có ANALYZE TABLE.",
+                "Ô kiểu ARRAY, MAP và TUPLE không ghi được từ văn bản. Hãy thay đổi chúng bằng câu UPDATE trong editor."
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "sequel-ace",
+                "text": "Sequel Ace tiếp nối Sequel Pro, là một ứng dụng Mac chỉ dành cho MySQL và MariaDB. Nó có MCP server, tắt theo mặc định và chỉ đọc trừ khi bạn đổi thiết lập, và không có AI chat. Sequel Ace phù hợp nếu bạn chỉ dùng MySQL và MariaDB."
+            },
+            {
+                "product": "phpmyadmin",
+                "text": "phpMyAdmin chạy trên web server của bạn và dùng được trong mọi trình duyệt, và cPanel có sẵn nó. phpMyAdmin hợp với server mà bạn chỉ vào được qua bảng điều khiển hosting, nơi ứng dụng desktop không có đường kết nối tới cơ sở dữ liệu."
+            },
+            {
+                "product": "heidisql",
+                "text": "HeidiSQL là client mã nguồn mở lâu năm trên Windows, nay có thêm ứng dụng cho macOS."
+            }
+        ],
+        "notes": {}
+    },
+    "faq": [
+        {
+            "id": "socket",
+            "question": "TablePro có kết nối được qua socket MySQL cục bộ không?",
+            "answer": "Không. Connection dùng TCP, nên server cần bật networking. Để tới một socket trên server từ xa, hãy chuyển tiếp nó qua SSH tunnel."
+        },
+        {
+            "id": "mysqldump",
+            "question": "Tôi có cần cài bộ công cụ client của MySQL không?",
+            "answer": "Chỉ khi dùng Backup Dump và Restore Dump, vốn chạy {dumpTool} và mysql. Kết nối, query và chỉnh sửa đều dùng driver có sẵn trong ứng dụng."
+        },
+        {
+            "id": "er-diagram",
+            "question": "Tôi có thiết kế schema trong ER diagram được không?",
+            "answer": "Không. <erDiagram>ER diagram</erDiagram> là hình chỉ đọc của schema, export được. Hãy thay đổi table trong tab Structure hoặc bằng SQL."
+        }
+    ],
+    "related": [
+        {
+            "label": "Viết, chạy và phân tích query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema, so sánh và đồng bộ",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Connection, tunnel và thông tin đăng nhập",
+            "href": "/features/connections"
+        },
+        {
+            "label": "So sánh TablePro với các database client khác",
+            "href": "/compare"
+        }
+    ]
+}

@@ -1,0 +1,118 @@
+{
+    "seo": {
+        "title": "Client SQLite cho {devices}",
+        "description": "Mở file SQLite trên máy Mac hoặc qua SSH, nạp extension như sqlite-vec và SpatiaLite, và thay đổi cấu trúc bằng các lần dựng lại table mà bạn xem trước."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client SQLite"
+    },
+    "engine": "sqlite",
+    "breadcrumb": "SQLite",
+    "header": {
+        "title": "Client SQLite cho {devices}",
+        "lead": "Mở file cơ sở dữ liệu từ Finder, bằng cách kéo thả hoặc từ một server SSH, query bằng bản SQLite đi kèm ứng dụng, và thay đổi cấu trúc qua các script dựng lại table mà bạn xem trước khi chạy."
+    },
+    "asset": "mac-db-sqlite-chinook",
+    "links": {
+        "remoteFiles": "docs:/connections/remote-database-files",
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "copy": "/features/schema#copy",
+        "explain": "/features/querying#performance"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Mở file cơ sở dữ liệu",
+            "paragraphs": [
+                "Chọn file trong form connection, hoặc kéo nó vào cửa sổ TablePro hay biểu tượng trên Dock. Nếu đường dẫn trỏ tới một file chưa tồn tại, file sẽ được tạo khi kết nối. Một file được mở như SQLite khi những byte đầu tiên của nó là <code>SQLite format 3</code>, dù tên file là gì.",
+                "Finder liệt kê TablePro trong mục Mở bằng (Open With) cho các file .db, .sqlite, .sqlite3 và tương tự. Cơ sở dữ liệu nằm trong thư mục được macOS bảo vệ, như Tin nhắn hay lịch sử Safari, cần cấp quyền Truy cập toàn bộ ổ đĩa (Full Disk Access) trước, và thường phải thoát ứng dụng đang giữ file.",
+                "Cơ sở dữ liệu nằm trên máy khác được mở qua <remoteFiles>mục Tệp từ xa (Remote File)</remoteFiles>. Chế độ On the Server chạy câu lệnh của bạn trên chính file đang dùng qua SSH, máy chủ chỉ cần có <code>python3</code>. Chế độ As a Read-Only Copy tải một bản chụp qua SFTP và mở nó ở chế độ chỉ đọc.",
+                "Muốn xem thử trước, hãy chọn Trợ giúp > Mở cơ sở dữ liệu mẫu (Help > Open Sample Database). Lệnh này mở Chinook, một cơ sở dữ liệu mẫu nhỏ của một cửa hàng nhạc số, đi kèm ứng dụng."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query và chỉnh sửa",
+            "paragraphs": [
+                "Driver mang theo bản SQLite riêng, nên SQL của bạn chạy trên cùng một phiên bản dù máy dùng macOS nào. <explain>EXPLAIN QUERY PLAN</explain> được vẽ thành sơ đồ.",
+                "Bạn nạp extension như sqlite-vec và SpatiaLite cho từng connection, theo thứ tự bạn sắp xếp, và hàm cùng virtual table của chúng dùng được trong editor, sidebar và tab Structure. Hàm SQL <code>load_extension()</code> vẫn bị từ chối, và danh sách extension đến qua đồng bộ, qua connection được import hay qua một liên kết sẽ không nạp gì cho tới khi bạn đồng ý.",
+                "Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, và <editing>Preview SQL</editing> hiển thị trước từng câu lệnh. Khi một chương trình khác thay đổi file, sidebar tự tải lại."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "Đổi tên table hay cột, thêm hay xóa cột, và từ SQLite 3.53 là thêm hay xóa ràng buộc CHECK, đều chạy bằng ALTER TABLE. Các thay đổi khác trong <structure>tab Structure</structure>, như kiểu của một cột hay một khóa ngoại, sẽ dựng lại table: TablePro viết script, chép các dòng cùng rowid, khôi phục index và trigger, và chỉ chạy sau khi bạn xác nhận.",
+                "Đổi kiểu của một cột sẽ đọc lại các giá trị theo affinity mới, nên <code>'007'</code> thành <code>7</code> trong cột INTEGER; bảng xem lại báo trước điều này khi chưa có gì chạy. Virtual table, như table FTS5, không dựng lại được, và thao tác lưu sẽ nêu tên table đó.",
+                "Trigger đọc và sửa được ngay từ sidebar."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Bảo trì và sao lưu",
+            "paragraphs": [
+                "Phần bảo trì table chạy VACUUM, ANALYZE, REINDEX và kiểm tra tính toàn vẹn, mỗi thao tác đều hiển thị SQL trước khi chạy. Server Dashboard hiển thị dung lượng file, số page, kích thước page, journal mode và kích thước cache.",
+                "<backup>Backup Dump</backup> ghi cơ sở dữ liệu ra một file .sql bằng {dumpTool}, và Restore Dump chạy một file như vậy vào cơ sở dữ liệu."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "<importData>Import</importData> file {importFormats}, hoặc mở file CSV, JSON hay XLSX trong <dataFiles>cửa sổ Data Files</dataFiles> rồi import từ đó. Table và kết quả query export được ra {exportFormats}.",
+                "<copy>Copy To</copy> chuyển table cùng các dòng dữ liệu sang một connection khác, chẳng hạn một server PostgreSQL, và liệt kê mọi kiểu cột phải chuyển gần đúng. Tham khảo thêm <files>làm việc với file như cơ sở dữ liệu</files>."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone và iPad",
+            "paragraphs": [
+                "Trên iPhone và iPad, bạn chọn một file cơ sở dữ liệu hoặc tạo file mới, hay mở mẫu Chinook từ Mở cơ sở dữ liệu mẫu (Open Sample Database). Bạn xem table dưới dạng thẻ, lọc dữ liệu, sửa các dòng có khóa chính và chạy SQL trong tab Truy vấn (Query)."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "encrypted",
+            "question": "TablePro có mở được cơ sở dữ liệu SQLite đã mã hóa không?",
+            "answer": "Không. File SQLCipher và SEE không mở được, vì bản SQLite đi kèm không nhận key. Hãy giải mã file bằng công cụ sqlcipher trước."
+        },
+        {
+            "id": "version",
+            "question": "TablePro dùng phiên bản SQLite nào?",
+            "answer": "SQLite {engineVersion}, được tích hợp trong driver. Phiên bản này không phụ thuộc vào bản SQLite đi kèm macOS."
+        },
+        {
+            "id": "framework-files",
+            "question": "Tôi có mở được cơ sở dữ liệu phát triển của ứng dụng mình không?",
+            "answer": "Được. Hãy mở file ở nơi framework của bạn lưu nó, như <code>db/development.sqlite3</code> trong Rails hay <code>db.sqlite3</code> trong Django. File nằm trong <code>~/Library</code>, kể cả container của iOS Simulator, cần quyền Truy cập toàn bộ ổ đĩa (Full Disk Access)."
+        }
+    ],
+    "related": [
+        {
+            "label": "Import, export và file dữ liệu",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Cloudflare D1, SQLite qua HTTP",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "Turso và libSQL",
+            "href": "/turso-client"
+        },
+        {
+            "label": "DuckDB, cho file phân tích",
+            "href": "/duckdb-client"
+        }
+    ]
+}
