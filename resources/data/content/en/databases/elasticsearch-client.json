@@ -1,0 +1,83 @@
+{
+    "seo": {
+        "title": "Elasticsearch client for {devices}",
+        "description": "Send Query DSL from a console, browse Elasticsearch indices as tables, filter, sort and edit documents by _id, signed in with a password or API key."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "Elasticsearch client"
+    },
+    "engine": "elasticsearch",
+    "breadcrumb": "Elasticsearch",
+    "header": {
+        "title": "Elasticsearch client for {devices}",
+        "lead": "A console for Query DSL requests, and a grid that reads each index as a table and edits documents by their <code>_id</code>. Neither runs on SQL: every action is a REST request to the cluster."
+    },
+    "asset": "mac-db-elasticsearch-console",
+    "links": {
+        "filters": "/features/data-editing#filters",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connect",
+            "paragraphs": [
+                "Enter the cluster’s host and REST port and pick an <ui>Auth Method</ui>. Username & Password sends HTTP Basic. API Key sends the field in an <code>Authorization: ApiKey</code> header, so paste the <code>encoded</code> value a create API key request returns. None suits a development cluster with security off. A connection reaches one cluster, so the form has no Database field.",
+                "New connections start with SSL Disabled, which is plain HTTP. Every other mode uses HTTPS: Preferred and Required (skip verify) accept a self-signed certificate, and Verify CA and Verify Identity check it. Elasticsearch 8.x turns security and TLS on by default, so an 8.x cluster usually needs HTTPS and credentials."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Indices and the Query DSL console",
+            "paragraphs": [
+                "The console takes a method, a path and an optional JSON body, the way Kibana Dev Tools does, such as <code>GET /orders/_search</code> with a <code>match</code> query. Search hits come back as rows, <code>_cat</code> requests with <code>format=json</code> and other array responses become a table, and anything else shows as formatted JSON. The <code>_sql</code> endpoint is not reachable.",
+                "The sidebar lists indices as tables and hides names that begin with a dot. Columns come from the mapping: object fields flatten to dotted paths such as <code>address.city</code>, a nested field gets one JSON column for its array plus a column per leaf, and every document carries <code>_id</code>, <code>_index</code> and <code>_score</code>.",
+                "<filters>Column filters</filters> become <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> and <code>exists</code> queries, and the Raw SQL filter row takes Lucene syntax, such as <code>name:Widget</code>, sent as a <code>query_string</code>. Sorting a <code>text</code> field uses its <code>.keyword</code> subfield when the mapping has one.",
+                "Grid edits become REST calls keyed by <code>_id</code>: <code>_update</code> for a changed document, <code>_doc</code> to create or delete one. Type an <code>_id</code> into a new row to name the document. Change a nested array through its JSON column; a value typed into one of its leaf columns stops the save, which names the column and sends nothing."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Mappings",
+            "paragraphs": [
+                "Mappings are read-only in TablePro. Truncate is not offered, because the nearest thing Elasticsearch has, <code>_delete_by_query</code>, runs asynchronously and reports conflicts per document; send it from the console. Deleting an index from the sidebar sends the DELETE request its confirmation shows."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Export",
+            "paragraphs": [
+                "There is no import. <export>Export</export> reads a whole index with a point-in-time and <code>search_after</code>, so it is not capped at the result window, and writes CSV, JSON or XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "deep-paging",
+            "question": "Can I page past the result window?",
+            "answer": "Yes. Paging past Elasticsearch’s default window switches to <code>search_after</code> over a point-in-time. The switch happens at the default, so an index with a lowered <code>max_result_window</code> errors before it; raise the setting back to the default."
+        },
+        {
+            "id": "sort-id",
+            "question": "Why does sorting by _id leave the rows in the same order?",
+            "answer": "Elasticsearch cannot sort on <code>_id</code>, or on a <code>text</code> field with no <code>.keyword</code> subfield, so TablePro drops that column from the sort. Add a keyword subfield to the mapping, or sort on a keyword field."
+        }
+    ],
+    "related": [
+        {
+            "label": "Typesense and Weaviate, the other search engines",
+            "href": "/databases#search"
+        },
+        {
+            "label": "Browse and edit data safely",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Query languages other than SQL",
+            "href": "/features/querying#other-languages"
+        }
+    ]
+}

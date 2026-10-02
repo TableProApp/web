@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Teradata client for {devices}",
+        "description": "Log on to Teradata Vantage with TD2 or TDNEGO, over a plain session or TLS, browse databases, users, procedures and macros, and create and alter tables."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "Teradata client"
+    },
+    "engine": "teradata",
+    "breadcrumb": "Teradata",
+    "header": {
+        "title": "Teradata client for {devices}",
+        "lead": "Log on with TD2 or TDNEGO, browse databases and users with their tables, views, procedures and macros, and query and edit through a native Swift driver, with no Teradata client software to install."
+    },
+    "asset": "mac-db-teradata-sidebar",
+    "links": {
+        "network": "/features/connections#network",
+        "objects": "/features/schema#objects",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connect and log on",
+            "paragraphs": [
+                "Enter the host, username and password. Any Vantage system that accepts a TD2 logon works, and no version is checked. <ui>Logon Mechanism</ui> in the Options section takes <code>TD2</code> or <code>TDNEGO</code>, and <ui>Database</ui> is needed only for a default other than your account’s.",
+                "The default port carries a plain session. Any SSL mode moves the session to the gateway’s WebSocket endpoint on port 443, which cannot be changed. Verify CA needs a CA certificate, and Verify Identity checks the chain and hostname against that certificate or, without one, the system trust store.",
+                "Leave <ui>Transaction Mode</ui> on <code>DEFAULT</code> unless a script needs ANSI or TERA commit rules and case sensitivity on the session. Reach a system behind a bastion through an <network>SSH tunnel</network>. <ui>Import from URL…</ui> accepts <code>teradata://</code> URLs, which macOS does not open as links."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query and edit",
+            "paragraphs": [
+                "A database and a user are both namespaces in Teradata, so both appear at the top of the sidebar with their tables and views. A tab bound to a second database keeps the same session and runs <code>DATABASE</code> ahead of its statements.",
+                "Stored procedures are listed in the sidebar, and macros sit under Functions, each opening its <objects>source in a read-only tab</objects>.",
+                "Teradata has no <code>LIMIT</code>, so a table’s first page comes back with <code>TOP</code> and later pages with <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> returns Teradata’s plan as raw text. Row edits wait until you save, and <editing>Preview SQL</editing> shows each statement first."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "Create tables and change their columns from the <structure>Structure tab</structure>. A table’s DDL view shows its full definition, constraints included."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Move data",
+            "paragraphs": [
+                "Bring {importFormats} files in with <importData>Import</importData>, and save a table or a result as {exportFormats}. <copy>Copy To</copy> sends tables, their rows or both to another Teradata connection; a copy to a different engine is refused."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "logon-mechanism",
+            "question": "Why is my logon mechanism ignored?",
+            "answer": "Type it in uppercase. A value the driver does not recognise, such as a lowercase <code>tdnego</code>, is read as <code>TD2</code>."
+        },
+        {
+            "id": "tls-check",
+            "question": "How do I know the session is encrypted?",
+            "answer": "Test with Required (skip verify) or a verify mode. Preferred falls back to a plain session when the TLS port is unreachable, so with it a failed handshake still looks like a successful connect."
+        }
+    ],
+    "related": [
+        {
+            "label": "Write, run and understand queries",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema, compare and sync",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Snowflake, another warehouse",
+            "href": "/snowflake-client"
+        },
+        {
+            "label": "Trino, for queries across catalogs",
+            "href": "/trino-client"
+        }
+    ]
+}

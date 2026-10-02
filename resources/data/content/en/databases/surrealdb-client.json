@@ -1,0 +1,86 @@
+{
+    "seo": {
+        "title": "SurrealDB client for {devices}",
+        "description": "Sign in to SurrealDB at root, namespace, database, record or token level, run SurrealQL scripts, browse namespaces and edit records field by field."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "SurrealDB client"
+    },
+    "engine": "surrealdb",
+    "breadcrumb": "SurrealDB",
+    "header": {
+        "title": "SurrealDB client for {devices}",
+        "lead": "Sign in at the level your user was defined at, run SurrealQL scripts, and edit records field by field, with record links, datetimes and decimals kept as their own types."
+    },
+    "asset": "mac-db-surrealdb-query",
+    "links": {
+        "network": "/features/connections#network",
+        "filters": "/features/data-editing#filters",
+        "explain": "/features/querying#performance",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connect and sign in",
+            "paragraphs": [
+                "SurrealDB cannot tell from the credentials which level a user was defined at, so <ui>Auth Level</ui> names it and the form asks for the rest. Root takes a username and password, Namespace adds the namespace, and Database adds the database too. Record Access takes the namespace, the database, the access method from <code>DEFINE ACCESS</code> and its sign-in fields. Token takes a JWT you already hold, including one for SurrealDB Cloud.",
+                "The driver talks CBOR over the HTTP RPC endpoint, so record links, datetimes, durations, decimals and UUIDs keep their types. A <code>surrealdb://</code> link opens the connection form filled in, and a remote server can be reached through an <network>SSH tunnel</network>.",
+                "SSL starts Disabled, which is plain HTTP; every other mode uses HTTPS. Verify CA and Verify Identity check the certificate against the system trust store, and a CA file set in the SSL/TLS pane is ignored, so install a private CA in macOS first."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SurrealQL and records",
+            "paragraphs": [
+                "The editor runs whole SurrealQL scripts, a <code>RELATE</code> between two records included, with completion for the common statements. <explain>Explain and Explain Full</explain> rerun the current query with <code>EXPLAIN</code> to show how it resolves and whether an index is used; the plan comes back as raw text.",
+                "Namespaces sit at the top of the sidebar with their databases inside. Switching either never reconnects, because the namespace and database ride on each request. Only a root user sees every namespace.",
+                "Changing a cell runs an <code>UPDATE</code> that sets only the fields you touched, as typed parameters, so an <code>int</code> stays an <code>int</code> and computed <code>FUTURE</code> fields and other writers’ changes are left alone. Leave <code>id</code> empty on a new row for a generated one, or type <code>table:id</code>. A <code>SCHEMALESS</code> table takes its columns from the records fetched.",
+                "<filters>Filters</filters> become SurrealQL, and a Raw SQL row takes one condition, such as a graph traversal. A condition that writes, holds a <code>;</code> or a comment, or calls into <code>fn::</code> or <code>http::</code> is refused; run it in the editor."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "The Structure tab is read-only. Create and change fields and indexes with <code>DEFINE FIELD</code> and <code>DEFINE INDEX</code> in the editor. A namespace or a database is dropped from its menu, and selecting several asks once for all of them."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Move data",
+            "paragraphs": [
+                "There is no import. <export>Export</export> a table or a result as CSV, JSON or XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "transactions",
+            "question": "Can I run a transaction?",
+            "answer": "Within one query, yes. HTTP RPC carries no transaction from one request to the next, so send <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> as a single editor query."
+        },
+        {
+            "id": "relations",
+            "question": "How do I change the in or out of a relation?",
+            "answer": "Not from the grid: the save stops, names the field and keeps every edit pending. An <code>UPDATE</code> does not move a relation either, so delete it and <code>RELATE</code> the new pair."
+        }
+    ],
+    "related": [
+        {
+            "label": "MongoDB, the other document database",
+            "href": "/mongodb-client"
+        },
+        {
+            "label": "Query languages other than SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Browse and edit data safely",
+            "href": "/features/data-editing"
+        }
+    ]
+}

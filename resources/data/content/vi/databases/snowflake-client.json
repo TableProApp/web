@@ -1,0 +1,99 @@
+{
+    "seo": {
+        "title": "Client Snowflake cho {devices}",
+        "description": "Đăng nhập Snowflake bằng key pair, SSO qua trình duyệt, OAuth hoặc mật khẩu kèm passcode, đổi warehouse và role không cần kết nối lại, unload table vào stage."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client Snowflake"
+    },
+    "engine": "snowflake",
+    "breadcrumb": "Snowflake",
+    "header": {
+        "title": "Client Snowflake cho {devices}",
+        "lead": "Đăng nhập theo cách tài khoản của bạn yêu cầu, chuyển session giữa các warehouse và role mà không cần kết nối lại, rồi query, sửa dữ liệu và unload table vào stage."
+    },
+    "asset": "mac-db-snowflake-session",
+    "links": {
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối và đăng nhập",
+            "paragraphs": [
+                "Nhập mã định danh tài khoản, như <code>myorg-myaccount</code> hoặc locator kiểu cũ <code>xy12345.us-east-1</code>: tức là phần đứng trước <code>.snowflakecomputing.com</code>. Mọi request đều đi qua HTTPS tới endpoint của tài khoản đó, nên form không có ô host, không có mục SSL và cũng không có phần SSH.",
+                "Chọn <ui>Phương thức xác thực (Auth Method)</ui> và form chỉ hiện những ô phương thức đó cần. Key pair ký mỗi lần kết nối bằng private key PKCS#8 của bạn, nên đồng hồ của máy Mac phải chính xác. SSO qua trình duyệt đưa bạn tới identity provider. OAuth token được dùng nguyên như khi dán vào và không bao giờ được làm mới. Mật khẩu đi kèm một mã còn hiệu lực trong ô <ui>Mã MFA (TOTP)</ui> (MFA Passcode) khi tài khoản bắt buộc MFA.",
+                "Khi tài khoản bật <code>ALLOW_CLIENT_MFA_CACHING</code>, bạn chỉ cần nhập passcode mới một lần: Snowflake trả về một MFA token và TablePro giữ nó trong <credentials>Keychain</credentials>. Khi bật <code>ALLOW_ID_TOKEN</code>, SSO qua trình duyệt cũng lưu một token đăng nhập ở đó, và những lần kết nối sau không cần mở trình duyệt cho tới khi Snowflake từ chối token.",
+                "Snowflake không có URL scheme. Thay vào đó, hãy nhập tên một section vào <ui>Tên kết nối CLI (CLI Connection Name)</ui>, và mọi ô bạn để trống sẽ được đọc từ <code>~/.snowflake/connections.toml</code> khi kết nối."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Warehouse, role và query",
+            "paragraphs": [
+                "<ui>Cơ sở dữ liệu > Session Context (Database > Session Context)</ui> chuyển session sang warehouse hoặc role khác bằng <code>USE WAREHOUSE</code> và <code>USE ROLE</code>, không cần kết nối lại. Mỗi connection trong TablePro là một session Snowflake, được giữ mở cả khi không hoạt động, và tab gắn với cơ sở dữ liệu thứ hai sẽ chạy <code>USE DATABASE</code> trước các câu lệnh của nó trên chính session đó.",
+                "Sidebar nhóm các đối tượng theo cơ sở dữ liệu và schema. Danh sách đối tượng lấy từ các lệnh <code>SHOW</code>, chạy được khi chưa có warehouse; thông tin cột lấy từ <code>INFORMATION_SCHEMA</code>, vốn cần một warehouse. <explain>Explain</explain> trả về plan của Snowflake dưới dạng text thô.",
+                "<editing>Thay đổi trong data grid</editing> được bind giá trị phía server, ô VARIANT, OBJECT và ARRAY được gửi qua <code>PARSE_JSON</code>. Mỗi thay đổi dựa trên khóa chính đã khai báo, hoặc trên mọi cột nếu table không có khóa chính. Snowflake không bao giờ thực thi ràng buộc khóa, nên một giá trị khóa bị trùng nghĩa là thao tác sửa hay xóa sẽ chạm tới mọi dòng khớp với nó: hãy kiểm tra dữ liệu trùng trước khi sửa table."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "DDL của đối tượng lấy từ <code>GET_DDL</code>. <structure>Tab Structure</structure> thêm, đổi tên và xóa cột, đặt NOT NULL, comment và khóa chính, nới rộng VARCHAR, và đổi độ chính xác (precision) của NUMBER khi giữ nguyên scale.",
+                "Những thay đổi Snowflake sẽ từ chối bị chặn trước khi chạy: thu hẹp VARCHAR, mọi thay đổi kiểu dữ liệu khác, và đặt giá trị mặc định mới cho cột. Xóa giá trị mặc định thì vẫn chạy."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "<importData>Import</importData> file {importFormats} qua connection, và export table hoặc kết quả query về máy Mac ra {exportFormats}.",
+                "Muốn unload một table mà không kéo dữ liệu về máy Mac, hãy chọn <ui>Tệp > Server-Side Export…</ui> (File > Server-Side Export…) rồi nhập tên stage, có hoặc không có <code>@</code>. <backup>Server-Side Export</backup> chạy <code>COPY INTO</code> với quyền của chính bạn và ghi ra CSV nén gzip, Parquet hoặc JSON; hộp thoại chờ tới khi unload xong, và không có gì được ghi xuống máy Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "no-columns",
+            "question": "Vì sao sidebar hiện table nhưng không có cột?",
+            "answer": "Thông tin cột lấy từ <code>INFORMATION_SCHEMA</code>, vốn cần một warehouse đang chạy. Hãy đặt <ui>Warehouse</ui> trong connection hoặc trong Session Context. Nếu các đối tượng của một cơ sở dữ liệu hoàn toàn không xuất hiện, role đang kết nối cần được cấp quyền <code>USAGE</code> trên cơ sở dữ liệu đó."
+        },
+        {
+            "id": "timestamp-ltz",
+            "question": "Vì sao giá trị TIMESTAMP_LTZ lại hiển thị theo UTC?",
+            "answer": "TablePro đọc chúng như một thời điểm UTC, có đánh dấu <code>Z</code>, thay vì đổi sang <code>TIMEZONE</code> của session."
+        },
+        {
+            "id": "jwt-invalid",
+            "question": "Đăng nhập bằng key pair báo JWT token không hợp lệ. Tôi nên kiểm tra gì?",
+            "answer": "Token chứa locator của tài khoản và một mốc thời gian. Hãy kiểm tra mã định danh tài khoản và đồng hồ của máy Mac, sau đó xác nhận public key đã được gắn cho user bằng <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Import, export và file dữ liệu",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Viết, chạy và phân tích query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Google BigQuery, một cloud warehouse khác",
+            "href": "/bigquery-client"
+        },
+        {
+            "label": "Trino, cho query xuyên catalog",
+            "href": "/trino-client"
+        }
+    ]
+}

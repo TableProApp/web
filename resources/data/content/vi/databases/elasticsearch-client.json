@@ -1,0 +1,83 @@
+{
+    "seo": {
+        "title": "Client Elasticsearch cho {devices}",
+        "description": "Gửi request Query DSL từ console, duyệt index Elasticsearch như table, lọc và sắp xếp document, sửa document theo _id, đăng nhập bằng mật khẩu hoặc API key."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client Elasticsearch"
+    },
+    "engine": "elasticsearch",
+    "breadcrumb": "Elasticsearch",
+    "header": {
+        "title": "Client Elasticsearch cho {devices}",
+        "lead": "Một console cho request Query DSL, và một data grid đọc mỗi index như một table, sửa document theo <code>_id</code>. Cả hai đều không dùng SQL: mọi thao tác là một REST request gửi tới cluster."
+    },
+    "asset": "mac-db-elasticsearch-console",
+    "links": {
+        "filters": "/features/data-editing#filters",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối",
+            "paragraphs": [
+                "Nhập host và REST port của cluster, rồi chọn <ui>Phương thức xác thực (Auth Method)</ui>. Username & Password gửi HTTP Basic. API Key gửi nội dung ô này trong header <code>Authorization: ApiKey</code>, nên hãy dán giá trị <code>encoded</code> mà request tạo API key trả về. None dành cho cluster phát triển đã tắt bảo mật. Mỗi connection tới một cluster, nên form không có ô Cơ sở dữ liệu (Database).",
+                "Connection mới để SSL ở Đã tắt (Disabled), tức HTTP thường. Mọi chế độ khác dùng HTTPS: Ưu tiên (Preferred) và Bắt buộc, bỏ qua xác minh (Required, skip verify) chấp nhận chứng chỉ tự ký, còn Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ. Elasticsearch 8.x bật sẵn bảo mật và TLS, nên cluster 8.x thường cần HTTPS và thông tin đăng nhập."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Index và console Query DSL",
+            "paragraphs": [
+                "Console nhận method, path và JSON body tùy chọn, giống Kibana Dev Tools, chẳng hạn <code>GET /orders/_search</code> kèm một query <code>match</code>. Các hit tìm được hiện thành dòng, request <code>_cat</code> có <code>format=json</code> và các response dạng mảng khác thành table, còn lại hiển thị dưới dạng JSON đã định dạng. Endpoint <code>_sql</code> không dùng được.",
+                "Sidebar liệt kê index như table và ẩn các tên bắt đầu bằng dấu chấm. Cột lấy từ mapping: field kiểu object được trải thành đường dẫn có dấu chấm như <code>address.city</code>, field nested có một cột JSON cho cả mảng cùng một cột cho mỗi field con, và mọi document đều có <code>_id</code>, <code>_index</code> và <code>_score</code>.",
+                "<filters>Bộ lọc theo cột</filters> được chuyển thành query <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> và <code>exists</code>, còn dòng lọc SQL thô (Raw SQL) nhận cú pháp Lucene, như <code>name:Widget</code>, và gửi đi dưới dạng <code>query_string</code>. Sắp xếp theo field <code>text</code> sẽ dùng subfield <code>.keyword</code> nếu mapping có.",
+                "Thay đổi trong data grid thành REST call theo <code>_id</code>: <code>_update</code> cho document được sửa, <code>_doc</code> để tạo hoặc xóa document. Nhập <code>_id</code> vào dòng mới để tự đặt tên document. Mảng nested được sửa qua cột JSON của nó; giá trị gõ vào một cột con sẽ chặn thao tác lưu, nêu tên cột đó và không gửi gì đi."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Mapping",
+            "paragraphs": [
+                "Mapping chỉ đọc trong TablePro. Không có lệnh Truncate, vì cách gần nhất của Elasticsearch là <code>_delete_by_query</code>, chạy bất đồng bộ và báo xung đột theo từng document; hãy gửi nó từ console. Xóa một index từ sidebar sẽ gửi đúng request DELETE mà hộp xác nhận hiển thị."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Export",
+            "paragraphs": [
+                "TablePro không có import cho Elasticsearch. <export>Export</export> đọc toàn bộ index bằng point-in-time và <code>search_after</code>, nên không bị giới hạn bởi result window, rồi ghi ra CSV, JSON hoặc XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "deep-paging",
+            "question": "Tôi có phân trang vượt quá result window được không?",
+            "answer": "Được. Khi vượt quá window mặc định của Elasticsearch, việc phân trang chuyển sang <code>search_after</code> trên một point-in-time. Điểm chuyển cố định ở mức mặc định, nên index đã hạ <code>max_result_window</code> sẽ báo lỗi trước khi chuyển; hãy nâng thiết lập đó về mức mặc định."
+        },
+        {
+            "id": "sort-id",
+            "question": "Vì sao sắp xếp theo _id mà thứ tự dòng không đổi?",
+            "answer": "Elasticsearch không sắp xếp được theo <code>_id</code>, hay theo field <code>text</code> không có subfield <code>.keyword</code>, nên TablePro bỏ cột đó ra khỏi phần sắp xếp. Hãy thêm subfield keyword vào mapping, hoặc sắp xếp theo một field keyword."
+        }
+    ],
+    "related": [
+        {
+            "label": "Typesense và Weaviate, các search engine khác",
+            "href": "/databases#search"
+        },
+        {
+            "label": "Xem và chỉnh sửa dữ liệu an toàn",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Các ngôn ngữ query ngoài SQL",
+            "href": "/features/querying#other-languages"
+        }
+    ]
+}

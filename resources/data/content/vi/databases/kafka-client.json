@@ -1,0 +1,85 @@
+{
+    "seo": {
+        "title": "Client Apache Kafka cho {devices}",
+        "description": "Đọc topic Kafka từ message mới nhất, cũ nhất, một offset hay một thời điểm, xem độ trễ của consumer group và produce message thử bằng KafkaQL, qua SASL và TLS."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client Apache Kafka"
+    },
+    "engine": "kafka",
+    "breadcrumb": "Apache Kafka",
+    "header": {
+        "title": "Client Apache Kafka cho {devices}",
+        "lead": "Đọc một topic từ vị trí bắt đầu bạn chọn, xem mỗi consumer group đang trễ bao xa, và produce một message thử, tất cả bằng KafkaQL. Topic là một log, nên data grid chỉ đọc message và không bao giờ sửa chúng."
+    },
+    "asset": "mac-db-kafka-consume",
+    "links": {
+        "network": "/features/connections#network",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối",
+            "paragraphs": [
+                "Nhập host và port của một broker; phần còn lại của cluster được tìm ra từ broker đó, và <ui>Máy chủ bootstrap bổ sung (Additional Bootstrap Servers)</ui> liệt kê các broker để thử khi broker đầu tiên không trả lời. Mỗi connection là một cluster, nên không có ô Cơ sở dữ liệu (Database), và sidebar hiện thẳng các topic.",
+                "<ui>Giao thức bảo mật (Security Protocol)</ui> là PLAINTEXT, SSL, SASL_PLAINTEXT hoặc SASL_SSL, còn <ui>Cơ chế SASL (SASL Mechanism)</ui> là PLAIN, SCRAM-SHA-256 hoặc SCRAM-SHA-512. PLAIN hợp với Confluent Cloud; SCRAM hợp với Amazon MSK và broker tự host. Với SSL hoặc SASL_SSL mà chưa chọn chế độ SSL, chuỗi chứng chỉ và hostname sẽ được xác minh. CA riêng đặt ở <ui>Chứng chỉ CA (CA Certificate)</ui>, còn chứng chỉ và khóa của client thêm mutual TLS.",
+                "Khi đi qua <network>SSH tunnel</network>, connection chỉ làm việc với broker bootstrap, nên chỉ đọc được những partition mà broker đó làm leader. <ui>Nhập từ URL… (Import from URL…)</ui> nhận URL <code>kafka://</code>, nhưng macOS không mở các URL này như liên kết."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Đọc, kiểm tra và produce",
+            "paragraphs": [
+                "Mở một topic sẽ hiện các message gần nhất, mới nhất ở cuối, kèm partition, offset, timestamp, key, value, header và kích thước. Message từ các partition khác nhau được xếp xen theo timestamp cho dễ đọc; partition cùng offset mới là thứ định danh một message. Key hoặc value không phải UTF-8 hiển thị dạng hex, và tombstone vẫn phân biệt được với message rỗng.",
+                "KafkaQL thay việc sắp xếp và lọc bằng vị trí bắt đầu: <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code> hoặc <code>FROM TIME</code> với một thời điểm ISO 8601, có thể giới hạn ở một số partition. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code> và <code>DESCRIBE TOPIC</code> cho biết phần còn lại của cluster.",
+                "<code>DESCRIBE GROUP</code> là báo cáo độ trễ: offset đã commit, offset cuối và khoảng chênh, theo từng partition. Partition mà group chưa từng commit sẽ để trống độ trễ thay vì một con số đếm từ 0, và <code>SHOW GROUPS</code> đánh dấu danh sách là chưa đầy đủ khi có broker không truy cập được.",
+                "<code>PRODUCE INTO</code> ghi một message, có thể kèm key, header và partition. Message có key mà không chỉ định partition sẽ rơi vào đúng chỗ producer của chính Kafka đặt nó. Các batch nén gzip, snappy, lz4 và zstd được giải nén khi đọc, không cần chọn thiết lập nào.",
+                "Bạn không sửa được ô, không xóa được dòng và không sắp xếp được cột, vì Kafka không có thao tác update, không xóa được từng message và không sắp xếp phía server, nên data grid làm mờ các nút đó. Mỗi trang đọc tiếp từ chỗ trang trước dừng lại, nên topic đang được ghi vào cũng không bị lặp hay sót message."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Topic",
+            "paragraphs": [
+                "Xóa topic, từ sidebar hoặc bằng <code>DROP TOPIC</code>, là thao tác phá hủy duy nhất. Cluster xóa log sau đó, nên topic có thể còn trong danh sách thêm một lúc. Không có lệnh Truncate: Kafka xóa record theo retention hoặc theo offset của từng partition, và cả hai cách đều không làm trống một topic."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "TablePro không có import cho Kafka; hãy đưa message vào topic bằng <code>PRODUCE INTO</code>. Bạn có thể <export>export</export> các message mà một query đã đọc ra CSV, JSON hoặc XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "advertised-addresses",
+            "question": "Vì sao topic tải được nhưng message lại bị timeout?",
+            "answer": "Cluster đang công bố (advertise) những địa chỉ mà máy Mac này không tới được, như hostname của container hoặc IP nội bộ. Hãy sửa <code>advertised.listeners</code>, hoặc đặt <ui>Địa chỉ broker (Broker Addresses)</ui> để chỉ dùng địa chỉ bootstrap."
+        },
+        {
+            "id": "msk-iam",
+            "question": "Đăng nhập Amazon MSK bằng IAM có được không?",
+            "answer": "Không. Các cơ chế SASL được hỗ trợ là PLAIN, SCRAM-SHA-256 và SCRAM-SHA-512, nên hãy tạo một user SCRAM trên cluster MSK và kết nối bằng SASL_SSL."
+        }
+    ],
+    "related": [
+        {
+            "label": "Các ngôn ngữ query ngoài SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Connection, tunnel và thông tin đăng nhập",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Cơ sở dữ liệu được hỗ trợ",
+            "href": "/databases"
+        }
+    ]
+}
