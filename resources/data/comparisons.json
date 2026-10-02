@@ -23,6 +23,7 @@
                     "currency": "USD",
                     "per": null,
                     "period": null,
+                    "value": 2,
                     "note": "tableplus-free-limits",
                     "source": "s2"
                 },
@@ -210,7 +211,9 @@
                 },
                 "mcp": { "state": "qualified", "note": "dbeaver-mcp-client", "source": "s6" },
                 "sync": { "state": "qualified", "edition": "Enterprise", "note": "dbeaver-git-sync", "source": "s3" },
-                "diagram": { "state": "qualified", "note": "dbeaver-erd-edit-paid", "source": "s7" }
+                "diagram": { "state": "qualified", "note": "dbeaver-erd-edit-paid", "source": "s7" },
+                "queryBuilder": { "state": "qualified", "note": "dbeaver-query-builder-paid", "source": "s3" },
+                "scheduler": { "state": "qualified", "note": "dbeaver-task-scheduler", "source": "s3" }
             },
             "sources": [
                 {
@@ -348,7 +351,7 @@
             ],
             "cells": {
                 "databases": { "state": "qualified", "note": "datagrip-databases", "source": "s7" },
-                "ai": { "state": "qualified", "note": "datagrip-ai-quota", "source": "s5" },
+                "ai": { "state": "qualified", "note": "datagrip-ai-quota", "source": "s8" },
                 "mcp": { "state": "yes", "version": "2025.2", "source": "s6" },
                 "vcs": { "state": "yes", "source": "s1" }
             },
@@ -394,6 +397,12 @@
                     "url": "https://www.jetbrains.com/help/datagrip/other-databases.html",
                     "title": "DataGrip supported databases",
                     "retrievedAt": "2026-10-02"
+                },
+                {
+                    "id": "s8",
+                    "url": "https://www.jetbrains.com/help/ai-assistant/use-custom-models.html",
+                    "title": "JetBrains AI Assistant: custom and local models",
+                    "retrievedAt": "2026-10-02"
                 }
             ]
         },
@@ -404,7 +413,7 @@
             "checkedAt": "2026-10-02",
             "status": {
                 "state": "active",
-                "lastRelease": { "version": "18.0.2", "date": "2026-09-23", "source": "s3" }
+                "lastRelease": { "version": "18.0.3", "date": "2026-09-29", "source": "s3" }
             },
             "platforms": ["mac", "windows", "linux"],
             "platformsSource": "s1",
@@ -441,6 +450,7 @@
                 },
                 {
                     "edition": "Premium Non-Commercial",
+                    "audience": "non-commercial",
                     "amount": 999,
                     "currency": "USD",
                     "per": "user",
@@ -452,8 +462,8 @@
             "cells": {
                 "databases": { "state": "qualified", "note": "navicat-databases", "source": "s1" },
                 "ai": { "state": "yes", "version": "17.2.2", "date": "2025-03-13", "source": "s3" },
-                "ios": { "state": "qualified", "note": "navicat-ios-per-engine-apps", "source": "s1" },
-                "sync": { "state": "qualified", "note": "navicat-cloud", "source": "s1" },
+                "ios": { "state": "qualified", "note": "navicat-ios-per-engine-apps", "source": "s5" },
+                "sync": { "state": "qualified", "note": "navicat-cloud", "source": "s6" },
                 "schemaSync": { "state": "yes", "source": "s1" },
                 "dataModeling": { "state": "qualified", "edition": "Premium Enterprise", "source": "s2" }
             },
@@ -480,6 +490,24 @@
                     "id": "s4",
                     "url": "https://www.navicat.com/en/products/navicat-premium-lite",
                     "title": "Navicat Premium Lite",
+                    "retrievedAt": "2026-10-02"
+                },
+                {
+                    "id": "s5",
+                    "url": "https://apps.apple.com/us/app-bundle/navicat-mobile-database-gui-bundle/id962704113",
+                    "title": "Navicat mobile database GUI bundle (App Store)",
+                    "retrievedAt": "2026-10-02"
+                },
+                {
+                    "id": "s6",
+                    "url": "https://www.navicat.com/en/products/navicat-collaboration",
+                    "title": "Navicat Collaboration",
+                    "retrievedAt": "2026-10-02"
+                },
+                {
+                    "id": "s7",
+                    "url": "https://www.navicat.com/en/store/navicat-premium-plan",
+                    "title": "Navicat Premium plans",
                     "retrievedAt": "2026-10-02"
                 }
             ]
@@ -551,7 +579,7 @@
             ],
             "cells": {
                 "databases": { "state": "qualified", "note": "beekeeper-databases", "source": "s1" },
-                "ai": { "state": "qualified", "edition": "Professional", "note": "beekeeper-ai-shell", "source": "s1" },
+                "ai": { "state": "qualified", "note": "beekeeper-ai-shell", "source": "s7" },
                 "sync": {
                     "state": "qualified",
                     "edition": "Professional",
@@ -597,6 +625,12 @@
                     "url": "https://docs.beekeeperstudio.io/user_guide/sql_editor/editor/",
                     "title": "Beekeeper Studio SQL editor",
                     "retrievedAt": "2026-10-02"
+                },
+                {
+                    "id": "s7",
+                    "url": "https://docs.beekeeperstudio.io/user_guide/sql-ai-shell/",
+                    "title": "Beekeeper Studio AI Shell",
+                    "retrievedAt": "2026-10-02"
                 }
             ]
         },
@@ -611,7 +645,7 @@
             },
             "platforms": ["mac"],
             "platformsSource": "s1",
-            "mac": { "minVersion": "13.5", "architectures": ["arm64", "x86_64"], "source": "s1" },
+            "mac": { "minVersion": "13.5", "architectures": ["arm64", "x86_64"], "universal": true, "source": "s1" },
             "technology": { "name": "Objective-C", "note": null, "source": "s1" },
             "licence": { "name": "MIT", "openSource": true, "edition": null, "source": "s1" },
             "prices": [
@@ -734,7 +768,7 @@
             },
             "platforms": ["mac"],
             "platformsSource": "s1",
-            "mac": { "minVersion": "14", "architectures": ["arm64", "x86_64"], "source": "s1" },
+            "mac": { "minVersion": "14", "architectures": ["arm64", "x86_64"], "universal": true, "source": "s1" },
             "technology": null,
             "licence": { "name": null, "openSource": false, "edition": null, "source": "s2" },
             "prices": [

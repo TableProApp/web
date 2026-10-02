@@ -58,6 +58,8 @@ export interface ComparisonPrice {
     channel?: 'mac-app-store';
     /** Which year of continuous subscription the price applies to (3 means the third and later). */
     continuityYear?: number;
+    /** A sourced number the note's sentence carries as `{value}`, such as the free tier's tab limit. */
+    value?: number;
     note?: string;
     source: string;
 }
@@ -82,7 +84,8 @@ export interface ComparisonProduct {
     /** Verified platforms; empty when none were verified, in which case the page names none. */
     platforms: ComparisonPlatform[];
     platformsSource: string | null;
-    mac: { minVersion: string | null; architectures: ('arm64' | 'x86_64')[]; source: string } | null;
+    /** `universal`: one app for both architectures, rather than a build per architecture. */
+    mac: { minVersion: string | null; architectures: ('arm64' | 'x86_64')[]; universal?: boolean; source: string } | null;
     technology: { name: string; note: string | null; source: string } | null;
     licence: { name: string | null; openSource: boolean; edition: string | null; source: string };
     prices: ComparisonPrice[];
