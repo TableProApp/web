@@ -3,6 +3,7 @@ slug: tablepro-0-70
 title: "TablePro 0.70: Follow a Foreign Key Without Writing the Join"
 description: The row inspector gets a JSON tab where a foreign key expands into the row it points at, five levels deep. Plus a real JavaScript shell for MongoDB, column reorder on six more engines, cross-connection database copy, and 31 fixes.
 date: 2026-09-01
+release: "TablePro 0.70"
 author: TablePro Team
 tags: [release, json, mongodb, column-reorder, sqlite]
 ogPunchline: Click a foreign key. Get the row. Five levels down.
@@ -12,10 +13,7 @@ TablePro 0.70 is out: 58 changes, 31 of them fixes.
 
 Most of it lands in three places: reading a row, querying MongoDB, and moving columns around.
 
-<figure>
-  <img src="/images/blog/json-row-inspector-fk.png" alt="TablePro row inspector with the JSON tab selected, showing the selected order row rendered as formatted JSON with syntax colouring, its customer_id field expanded inline into the full customer row it references, and that row's country_id expanded one level further into a countries row, with a filter field above the tree" />
-  <figcaption>A foreign key expands in place into the row it points at, and that row's keys expand too.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-70-1"></asset-slot>
 
 ## The row as JSON
 
@@ -40,10 +38,7 @@ db.orders.find({ created: { $gt: cutoff } }).sort({ total: -1 }).limit(20)
 
 Each connection keeps its own runtime, so `cutoff` is still there in the next statement, exactly as it is in a shell. `use` switches the database the same way. Autocomplete offers the cursor methods after `find()` and `aggregate()`.
 
-<figure>
-  <img src="/images/blog/mongodb-javascript-shell.png" alt="TablePro query editor connected to MongoDB with a multi-statement JavaScript script, a var declaration on the first line and a db.orders.find chain with sort and limit below it, the autocomplete popup open after a find call listing cursor methods, and the resulting documents in the grid underneath" />
-  <figcaption>Statements share a runtime, so a variable defined on one line is still defined on the next.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-70-2"></asset-slot>
 
 Documents cross into the shell as JSON text rather than as rebuilt objects, because BSON field order decides how an embedded document compares and where `_id` sits, and a document rebuilt from a dictionary comes back reordered.
 
@@ -57,10 +52,7 @@ MySQL, MariaDB and ClickHouse have `MODIFY COLUMN … FIRST | AFTER`, so the cat
 
 PostgreSQL, SQLite, libSQL, Turso and Cloudflare D1 have nothing positional. The order changes by recreating the table and copying the rows into it, so TablePro shows you the whole script and waits before running any of it.
 
-<figure>
-  <img src="/images/blog/column-reorder-rebuild-preview.png" alt="TablePro structure editor with a column being dragged into a new position, and a sheet in front of it listing the full table rebuild script for SQLite line by line, the CREATE TABLE with the new column order, the INSERT SELECT that copies the rows, the DROP and the RENAME, with Run and Cancel buttons" />
-  <figcaption>Where the engine has no positional DDL, the rebuild is shown in full before anything runs.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-70-3"></asset-slot>
 
 **Move Column Up** and **Move Column Down** are on the column's right-click menu for the same thing without the drag. On an engine that cannot reorder at all, the row number carries the reason instead of the menu going quiet.
 

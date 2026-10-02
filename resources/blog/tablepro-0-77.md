@@ -3,6 +3,7 @@ slug: tablepro-0-77
 title: "TablePro 0.77: SAP HANA and Folders in the Sidebar"
 description: A native SAP HANA driver, folders for the tables and views in the sidebar, imports that remember each table's column mapping, and connect and query timeouts per connection. Plus 147 fixes.
 date: 2026-10-02
+release: "TablePro 0.77"
 author: TablePro Team
 tags: [release, sap-hana, sidebar, import, connections]
 ogPunchline: SAP HANA connects. Tables go in folders. Imports remember.
@@ -12,10 +13,7 @@ TablePro 0.77 is out: 156 changes, 147 of them fixes.
 
 The new work is a SAP HANA driver, folders in the sidebar, imports that remember where each column goes, and timeouts you set per connection. The largest groups of fixes are in imports and text encodings, iCloud sync, how edits are written back to SQL Server and Oracle, and etcd.
 
-<figure>
-  <img src="/images/blog/sidebar-table-folders.png" alt="TablePro connection window on the Chinook sample database, with a Folders section at the top of the sidebar holding a Music folder with Album and Artist and a Sales folder with Invoice and InvoiceLine, a Tables section below it with the remaining seven tables, and the Track table open in the data grid" />
-  <figcaption>Four tables sit in two folders, and the Tables section below lists only the ones not yet filed.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-77-1"></asset-slot>
 
 ## Folders in the sidebar
 
@@ -39,10 +37,7 @@ The driver is the work of [@J2TeamNNL](https://github.com/J2TeamNNL).
 
 Import the same CSV into the same table every week and you used to map its columns every week. Clicking **Import** now saves each choice that differs from the name match, for that table, whether the import succeeds or not. The next file into that table starts from those choices, and the sheet says **Restored the mapping saved for** and the table's name.
 
-<figure>
-  <img src="/images/blog/import-match-columns.png" alt="Import sheet for customers.csv into the existing Customer table of the Chinook sample database, with the note Restored the mapping saved for Customer beside an open Match Columns menu offering Match by Name, Match by Position and a dimmed Use Saved Mapping, above a field list that maps Company, City, Country and E-mail to the Company, City, Country and Email columns" />
-  <figcaption>E-mail comes back mapped to Email, the one column picked by hand in the last import.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-77-2"></asset-slot>
 
 **Match Columns** above the field list fills every row at once. **Match by Name** maps each field to the column of the same name, ignoring case. **Match by Position** maps the first field to the first column, the second to the second, and so on. **Use Saved Mapping** brings the saved choices back after you change them. CSV, JSON and Excel imports all work this way.
 
@@ -50,10 +45,7 @@ Import the same CSV into the same table every week and you used to map its colum
 
 A connection's **Options** gains a **Timeouts** section with **Connect timeout** and **Query timeout**. The connect timeout is one deadline for the whole attempt: the SSH tunnel or proxy, TCP, TLS and the database sign-in. Leave it empty for 30 seconds, or set anything from 1 to 600. When an SSH bastion stalls, the error names the bastion instead of the database behind it.
 
-<figure>
-  <img src="/images/blog/connection-timeouts.png" alt="New PostgreSQL Connection sheet open on Options, with a Timeouts section holding Connect timeout showing Default (30) seconds and Query timeout showing Global (60) seconds, above the Startup Commands and Pre-Connect Script fields" />
-  <figcaption>An empty field shows the value it inherits, so you can see what applies before you type anything.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-77-3"></asset-slot>
 
 **Query timeout** overrides the one in **Settings > General** for this connection. Leave it empty to inherit, or enter `0` for no limit. Reconnect after changing either field so the open session picks it up.
 

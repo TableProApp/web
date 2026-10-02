@@ -3,6 +3,7 @@ slug: tablepro-0-73
 title: "TablePro 0.73: Copy a Table Into a Different Engine"
 description: Copy To reads both databases, lists every type it had to approximate, and shows you the script before anything is written. Plus a rebuilt connection editor, Tunnel Command for kubectl and AWS SSM, foreign key editing on SQLite, a Typesense driver, and 163 fixes.
 date: 2026-09-09
+release: "TablePro 0.73"
 author: TablePro Team
 tags: [release, copy, sqlite, connections, typesense]
 ogPunchline: MySQL table into Postgres. Read the script first.
@@ -12,10 +13,7 @@ TablePro 0.73 is out: 231 changes, 163 of them fixes.
 
 Most of it lands in three places: moving data between databases, setting one up, and editing a SQLite table.
 
-<figure>
-  <img src="/images/blog/copy-to-cross-engine-review.png" alt="TablePro Copy To review step, showing the generated PostgreSQL CREATE TABLE for a table read from MySQL, a list of six columns whose types were approximated with the source type and the chosen target type side by side, and the row count each table expects, above a Copy button" />
-  <figcaption>The review step is the whole feature: the DDL that will run, the rows each table expects, and every type it had to approximate.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-73-1"></asset-slot>
 
 ## Copy a table into another engine
 
@@ -31,19 +29,13 @@ Each table takes its own `WHERE` and row limit from the funnel beside it, so you
 
 The editor was up to eleven panes. It is four sections in a sidebar now, the same four for every driver: **General**, **Network**, **Options** and **Appearance**. **Test Connection**, **Cancel** and **Save** sit on a bar along the bottom, and when **Save** is dimmed the reason sits next to it, prefixed with the section holding the empty field.
 
-<figure>
-  <img src="/images/blog/connection-editor-sections.png" alt="TablePro connection editor for a PostgreSQL connection, with a four-item sidebar reading General, Network, Options and Appearance, credential fields filling the pane, and Test Connection, Cancel and Save on a bar along the bottom" />
-  <figcaption>Four sections for every driver, and the reason Save is unavailable sits beside the button.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-73-2"></asset-slot>
 
 Network is where the five Enable switches went. **Connect via** is one picker now, listing Direct, SSH Tunnel, Cloudflare Tunnel, Cloud SQL Auth Proxy, SOCKS Proxy and Tunnel Command, because a connection only ever used one of them. Turning two on used to reach the database with neither applied.
 
 **Tunnel Command** is new. A `kubectl port-forward` in a terminal is a window you cannot close and a tab you have to notice when it dies. Put it in the connection and it starts on connect, stops on disconnect, and comes back on its own. Two presets take named values rather than a command line, `kubectl port-forward` and `aws ssm start-session`, and **Custom Command** takes whatever you write, with `{port}`, `{host}` and `{remotePort}` substituted before it runs. Both presets look the tool up on `PATH` with `/usr/local/bin` and `/opt/homebrew/bin` added, because an app launched from the Dock does not inherit your shell's.
 
-<figure>
-  <img src="/images/blog/tunnel-command-kubectl.png" alt="TablePro Network section with Connect via set to Tunnel Command, the kubectl port-forward method selected, fields for resource, namespace and context filled in, and a Will Run panel below showing the exact argument list with a port placeholder" />
-  <figcaption>Will Run shows the exact argument list, with `{port}` standing in for the port allocated on connect.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-73-3"></asset-slot>
 
 ## SQLite can edit foreign keys and column types
 
@@ -51,10 +43,7 @@ No SQLite version can add or drop a foreign key with `ALTER TABLE`, so TablePro 
 
 Column type, nullability and default changes take the same route, and a column renamed or dropped in the same save runs as its own `ALTER TABLE` afterwards, so the new name reaches every index, trigger and view.
 
-<figure>
-  <img src="/images/blog/sqlite-foreign-key-rebuild.png" alt="TablePro rebuild review sheet for a SQLite table, showing the full generated script with CREATE TABLE, INSERT SELECT, index and trigger recreation and a PRAGMA foreign_key_check, above Cancel and Run buttons" />
-  <figcaption>The rebuild script is shown before it runs, and it ends by checking the rows against the key you just added.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-73-4"></asset-slot>
 
 The Foreign Keys tab also stopped offering Add and Remove on engines that cannot do either, and stopped offering referential actions the engine rejects.
 

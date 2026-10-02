@@ -3,6 +3,7 @@ slug: tablepro-0-69
 title: "TablePro 0.69: Undo a Save That Already Committed"
 description: Restore Previous Values takes back an edit, a delete or a paste after the transaction closed, and refuses when it cannot restore the row exactly. Plus check constraints, generated columns, SQLite over SSH, and 98 fixes.
 date: 2026-08-27
+release: "TablePro 0.69"
 author: TablePro Team
 tags: [release, data-rewind, constraints, sqlite, ssh]
 ogPunchline: Take back a committed save. Or be told plainly why you can't.
@@ -12,10 +13,7 @@ TablePro 0.69 is out: 113 changes, 98 of them fixes.
 
 The headline is a thing databases do not give you, so the app has to keep it itself.
 
-<figure>
-  <img src="/images/blog/rewind-review-sheet.png" alt="TablePro Restore Previous Values sheet listing the rows from a committed save, each showing its table, its key, and the old and new value per changed column, with rows that cannot be restored greyed out and annotated with the reason, and Restore and Cancel buttons at the bottom" />
-  <figcaption>Every row from a committed save, with the ones that cannot be restored named and explained rather than skipped.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-69-1"></asset-slot>
 
 ## Taking back a save
 
@@ -37,10 +35,7 @@ Columns gain Generated and Expression fields with a stored or virtual choice, on
 
 MCP clients see both. `describe_table` now returns `check_constraints` and `generation_expression`.
 
-<figure>
-  <img src="/images/blog/structure-constraints-tab.png" alt="TablePro structure editor with the Constraints tab selected, listing check constraints by name with their full expression in a second column, an add and remove control below the list, and the Columns tab visible alongside showing a column row with its Generated toggle and Expression field filled in" />
-  <figcaption>Check constraints read on four engines and edit on three. Generated columns carry their expression and their stored or virtual kind.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-69-2"></asset-slot>
 
 ## A SQLite file on a server
 
@@ -50,10 +45,7 @@ How it takes that copy depends on what the server has. If its `sqlite3` supports
 
 The copy is fingerprinted on the main file and the `-wal` together. A WAL-mode commit lands in the log and leaves the main file's size and modification time untouched until a checkpoint, so watching only the main file reports "unchanged" for a database that has been written to all afternoon.
 
-<figure>
-  <img src="/images/blog/sqlite-remote-file.png" alt="TablePro New Connection sheet for SQLite with the Remote File pane selected, showing SSH host, port, username and key fields filled in above a remote path pointing at a .db file on the server, and a note that the copy opens read-only" />
-  <figcaption>Point it at a path on an SSH server. What comes back is a read-only local copy, not a live connection.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-69-3"></asset-slot>
 
 ## Rename in place
 
@@ -61,10 +53,7 @@ Rename is on a table's right-click menu in the sidebar, and edits the row's labe
 
 Databases rename on ClickHouse and PostgreSQL. Schemas rename on PostgreSQL, Snowflake and Trino. The rows that cannot rename do not offer the item.
 
-<figure>
-  <img src="/images/blog/sidebar-rename-inline.png" alt="TablePro sidebar object tree with a table row in edit mode, its name selected in an inline text field ready to be typed over, the surrounding tables and the schema container row unchanged around it, and the right-click menu that opened it still showing Rename above Truncate and Drop" />
-  <figcaption>The label edits where it sits, in the tree, with no dialog.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-69-4"></asset-slot>
 
 ## The editor's selection
 

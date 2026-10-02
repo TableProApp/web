@@ -3,6 +3,7 @@ slug: tablepro-0-72
 title: "TablePro 0.72: Backups Through Your Database's Own Tools"
 description: Backup Dump and Restore Dump drive pg_dump, mysqldump, mongodump, sqlite3 and sqlpackage from inside the app. Plus an export tree that reaches routines, triggers and privileges, Transfer To between two live connections, and an AppleScript dictionary.
 date: 2026-09-04
+release: "TablePro 0.72"
 author: TablePro Team
 tags: [release, backup, export, applescript, postgresql]
 ogPunchline: Your database's own dump tools, driven from the app.
@@ -12,10 +13,7 @@ TablePro 0.72 is out: 73 changes, 42 of them fixes.
 
 Nearly all of it lands in one place: getting data out of a database, and back in.
 
-<figure>
-  <img src="/images/blog/backup-dump-sheet.png" alt="TablePro Backup Database sheet listing the databases on the connection with a search field above them, tablepro_demo ticked, and Cancel and Choose Destination buttons along the bottom" />
-  <figcaption>Backup Dump asks which database, then where to write it. The engine's own tool does the rest.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-72-1"></asset-slot>
 
 ## Backups through the engine's own tools
 
@@ -35,19 +33,13 @@ SQL exports gained the options that make a dump reloadable: skip, replace or upd
 
 A selection you keep reaching for saves from the tree's bookmark menu.
 
-<figure>
-  <img src="/images/blog/export-object-tree.png" alt="TablePro export sheet with three tables ticked in the object tree and a popover open over the orders row, holding a Where field, a Row limit field reading All rows, and a checklist of the table's six columns, with the CSV format panel and its options visible to the right" />
-  <figcaption>Each table carries its own WHERE, row limit and column list, set from the row itself.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-72-2"></asset-slot>
 
 ## Transfer To
 
 **Transfer To…** on a table's right-click menu copies its rows straight into another open connection. There is no file in between, so there is no export step to configure and no import step to babysit. Columns are matched by name, and the sheet says how many matched before you run it.
 
-<figure>
-  <img src="/images/blog/transfer-to-sheet.png" alt="TablePro Transfer Tables sheet with a Destination picker set to another open connection and a Database picker below it, a checklist of source tables each reporting how many of its columns mapped, and an open popover pairing every source column of the orders table with its destination column beside a Match by Name button" />
-  <figcaption>The destination list is the connections you already have open, and each table reports how many columns matched.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-72-3"></asset-slot>
 
 ## Unloading on the server
 
@@ -61,10 +53,7 @@ The commands are `connect`, `disconnect`, `show`, `focus`, `run query` and `open
 
 Safe Mode and the connection's External Clients level both apply to a script, exactly as they apply to you.
 
-<figure>
-  <img src="/images/blog/applescript-dictionary.png" alt="Script Editor's dictionary window for TablePro, listing Standard Suite and TablePro Suite in the left column, with the Standard Suite's open, save and close commands shown in the pane below" />
-  <figcaption>Open it in Script Editor with File > Open Dictionary and pick TablePro.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-72-4"></asset-slot>
 
 ## Also new
 

@@ -3,6 +3,7 @@ slug: tablepro-0-67
 title: "TablePro 0.67: Charts, Code Folding, and Statement-Level Runs"
 description: Query results now draw as native charts. The SQL editor folds and runs one statement at a time. Cmd+F searches your results instead of toggling the filter panel. Plus Redis Cluster, nested MongoDB filters, and 144 fixes.
 date: 2026-08-21
+release: "TablePro 0.67"
 author: TablePro Team
 tags: [release, sql-editor, charts, mongodb, redis, duckdb, mcp]
 ogPunchline: Charts in the results pane. Folding in the editor. Cmd+F that actually searches.
@@ -12,10 +13,7 @@ TablePro 0.67 is out: 200 changes, 144 of them fixes.
 
 Almost all of it lands in two places, the SQL editor and the results pane.
 
-<figure>
-  <img src="/images/blog/results-chart-mode.png" alt="TablePro results pane in Chart mode with the Bar type selected, X Axis set to Row Number and Y Axis to ArtistId, a hover tooltip reading Row Number 140 and ArtistId 99, and the status bar still showing 1-347 of 347 rows" />
-  <figcaption>Chart mode sits beside Data, Structure and JSON.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-67-1"></asset-slot>
 
 ## Charts
 
@@ -31,10 +29,7 @@ Needs a license. Both tiers include it.
 
 ## The editor folds
 
-<figure>
-  <img src="/images/blog/sql-editor-code-folding.png" alt="TablePro SQL editor showing three folded regions, each collapsed to a chip naming its opening line and hidden line count, with a peek popover open over the folded CREATE TABLE and its full body syntax highlighted inside" />
-  <figcaption>A folded region becomes a chip. Hover it to peek without expanding.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-67-2"></asset-slot>
 
 Chevrons in the gutter collapse statements, table bodies, CTEs, subqueries, `BEGIN` blocks and block comments.
 
@@ -46,10 +41,7 @@ Folds survive closing and reopening a tab. Strings, comments and PostgreSQL doll
 
 ## Run one statement at a time
 
-<figure>
-  <img src="/images/blog/sql-editor-statement-run.png" alt="TablePro SQL editor gutter with a run control beside the WITH statement on line 17, next to the fold chevrons for that statement and the one below it" />
-  <figcaption>Hover the gutter and that statement's run control appears. Clicking it runs only that statement.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-67-3"></asset-slot>
 
 Hover the gutter and a run button appears beside the statement you are pointing at. Click it and that statement runs on its own, wherever the cursor happens to be, under the same Safe Mode checks and parameter prompts as any other run.
 
@@ -63,10 +55,7 @@ Results are named after the statement that produced them instead of "Result 1", 
 
 ## Cmd+F searches your results
 
-<figure>
-  <img src="/images/blog/data-grid-find-bar.png" alt="TablePro data grid on the Customer table with the find bar open on the term rua, the counter reading 2 of 3, and the matching cell Rua da Assuncao 53 highlighted in the Address column" />
-  <figcaption>Matching ignores case and accents, so rua finds Rua da Assunção.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-67-4"></asset-slot>
 
 Type, and the matching cell is highlighted and scrolled to. Case and accent insensitive.
 
@@ -86,17 +75,11 @@ One thing to know if you're upgrading: `Cmd+F` used to toggle the filter panel. 
 
 Filter on `customer.country` or `items.sku`. The paths come from the collection rather than your memory, and each one carries the type TablePro found for it, so a date, ObjectId or decimal is compared as itself instead of as text.
 
-<figure>
-  <img src="/images/blog/mongodb-nested-filter.png" alt="TablePro filter panel on a MongoDB orders collection with the field path browser open, listing customer.age, customer.city, customer.country and customer.name under customer and items.name, items.price, items.qty and items.sku under items, each with its detected type" />
-  <figcaption>Search or type a path. The type beside each one is what the filter compares against.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-67-5"></asset-slot>
 
 A field inside an array gets a scope control.
 
-<figure>
-  <img src="/images/blog/mongodb-array-element-scope.png" alt="TablePro filter panel on a MongoDB orders collection with two rows, items.price greater than 500 and items.name equals Laptop, and the two matching orders listed in the grid below" />
-  <figcaption>Two conditions on fields inside one array. The scope control decides whether a single item has to satisfy both.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-67-6"></asset-slot>
 
 Any element lets each condition match a different entry. Same element makes them all match one. That is the difference between "an item over $500 and an item named Laptop" and "one item that is both", and it is the query people usually open an aggregation pipeline to write.
 
