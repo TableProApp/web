@@ -52,6 +52,12 @@ export interface EngineCapabilities {
     usersRoles: boolean;
     /** AWS IAM database authentication for RDS and Aurora (not the other AWS sign-ins). */
     awsIam: boolean;
+    /**
+     * Any AWS IAM sign-in the connection form offers: RDS IAM, MongoDB's
+     * MONGODB-AWS, ElastiCache IAM or Amazon Keyspaces SigV4. A superset of
+     * `awsIam`, which the "AWS IAM on RDS and Aurora" lists keep reading.
+     */
+    awsSignIn: boolean;
     cloudSqlProxy: boolean;
     /** A tool id from `facts.backup.tools`, or null when Backup Dump is not offered. */
     nativeDump: string | null;
@@ -112,7 +118,8 @@ export interface Engine {
     /** The editor's language name as the app shows it. */
     queryLanguage: string;
     defaultPort: number | null;
-    connectionMode: 'network' | 'file';
+    /** `api`: the app reaches a service's API and the form has no host or port (`ConnectionMode.apiOnly` in the app). */
+    connectionMode: 'network' | 'file' | 'api';
     icon: string | null;
     monogram: string;
     /** `docs.tablepro.app/databases/{docsSlug}`; null when another engine's docs page covers this one. */
