@@ -10,12 +10,13 @@ namespace App\Support\Content\Slugs;
  * an edit to `app/` is a PHP change. A slug that exists only as a content file
  * would otherwise ship without a route.
  *
- * Phase A holds the pre-rebuild list, so every existing database page keeps
- * rendering through `LegacyPages`, plus `kafka-client`, which is new in the
- * final sitemap and answers 404 until its content exists. The databases agent
- * owns this file from phase C and replaces the list with the final one (the
- * four merged pages leave it for redirects), pinned against
- * `resources/data/content/{en,vi}/databases/*.json` by a test.
+ * The final list of sitemap §A.3: one page per engine whose `page` is `own` in
+ * `resources/data/engines.json`, in that file's order. The four pages merged
+ * into family pages (`mariadb-client`, `cockroachdb-client`, `pglite-client`,
+ * `scylladb-client`) are not here: `resources/data/redirects.json` answers them
+ * with a 301 to their section before routing. `Data/EnginesDataTest` and
+ * `Databases/DatabasePagesTest` pin this list against `engines.json` and
+ * `resources/data/content/{en,vi}/databases/*.json`.
  *
  * Never add `ios`, a locale prefix such as `vi`, or another root path such as
  * `features`, `databases`, `compare` or `pricing`.
@@ -27,32 +28,41 @@ final class DatabaseSlugs
      * @var list<string>
      */
     public const ALL = [
-        'mysql-client',
         'postgresql-client',
+        'mysql-client',
+        'sql-server-client',
         'sqlite-client',
         'mongodb-client',
         'redis-gui',
-        'sql-server-client',
+        'redshift-client',
         'oracle-client',
         'clickhouse-client',
         'duckdb-client',
         'cassandra-client',
-        'mariadb-client',
-        'redshift-client',
-        'cloudflare-d1-client',
-        'turso-client',
         'dynamodb-gui',
         'bigquery-client',
-        'etcd-gui',
         'snowflake-client',
-        'cockroachdb-client',
+        'cloudflare-d1-client',
+        'turso-client',
         'elasticsearch-client',
-        'scylladb-client',
-        'pglite-client',
+        'etcd-gui',
+        'kafka-client',
         'surrealdb-client',
         'teradata-client',
         'trino-client',
         'beancount-client',
-        'kafka-client',
+    ];
+
+    /**
+     * The pages merged into a family page (sitemap §C.3). They answer a 301
+     * from `resources/data/redirects.json` and must never come back here.
+     *
+     * @var list<string>
+     */
+    public const MERGED = [
+        'mariadb-client',
+        'cockroachdb-client',
+        'pglite-client',
+        'scylladb-client',
     ];
 }
