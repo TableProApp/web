@@ -1,0 +1,108 @@
+{
+    "seo": {
+        "title": "Features for querying and managing databases",
+        "description": "What TablePro does, area by area: querying, data editing, schema work, import and export, AI and MCP, connections and sync, with the paid features marked."
+    },
+    "og": {
+        "kicker": "Features",
+        "title": "What you can do in TablePro"
+    },
+    "header": {
+        "title": "What you can do in TablePro",
+        "lead": "The Mac app is the full workbench, and every page below describes it first. The iPhone and iPad app is a separate native app with a smaller scope, and each page ends with what it offers there."
+    },
+    "areas": {
+        "title": "Feature areas",
+        "lead": "Each area has a page with the details, the plan each part needs on the Mac, and the limits worth knowing.",
+        "paid": "{tier}: {features}",
+        "noPaid": "No paid features",
+        "items": [
+            {
+                "slug": "querying",
+                "summary": "Schema-aware autocomplete, <code>:name</code> parameters, a searchable history, saved queries, EXPLAIN plans you can compare, and results as charts or maps."
+            },
+            {
+                "slug": "data-editing",
+                "summary": "Filters and highlight rules, foreign keys you can follow, edits that wait until you save, a Safe Mode level per connection, and Data Rewind for values a save replaced."
+            },
+            {
+                "slug": "schema",
+                "summary": "Structure changes with a DDL preview, a read-only ER diagram, Compare & Sync between two databases, Copy To across engines, and Users & Roles."
+            },
+            {
+                "slug": "import-export",
+                "summary": "Import {importFormats} files, export tables and results, open data files without a connection, and back up supported engines with their own dump tools."
+            },
+            {
+                "slug": "ai-mcp",
+                "summary": "An optional AI assistant that uses the provider you choose, and a local MCP server that lets clients such as Claude Code and Cursor use your saved connections."
+            },
+            {
+                "slug": "connections",
+                "summary": "SSH tunnels with jump hosts, TLS, cloud sign-in and tunnel commands, passwords from the Keychain or a secret manager, and connections imported from other apps."
+            },
+            {
+                "slug": "sync-and-teams",
+                "summary": "iCloud Sync between your Macs, iPhone and iPad, connection files you can share, and Team Catalog and Team Library for sharing with your team."
+            }
+        ]
+    },
+    "ios": {
+        "title": "iPhone and iPad",
+        "body": "TablePro for iPhone and iPad is a separate app, free with no in-app purchases. It connects over SSH or TLS, browses and edits rows and runs queries, with Shortcuts, a Home Screen widget and Live Activities for running queries. It has no AI assistant, schema editing, Data Rewind or Compare & Sync.",
+        "link": "TablePro for iPhone and iPad"
+    },
+    "paid": {
+        "title": "Free and paid",
+        "lead": "The Mac app is free to use, with no trial period. A Starter or Team plan adds the features below to the Mac app, and Team includes everything in Starter. Connecting to any supported engine, the AI assistant, the MCP server and Safe Mode need no license, and the iPhone and iPad app is free, with no in-app purchases.",
+        "caption": "The paid features of the Mac app, the plan each one needs, and the page that describes it",
+        "columns": {
+            "feature": "Feature",
+            "plan": "Plan",
+            "page": "Described on"
+        },
+        "pricing": "See pricing"
+    },
+    "docs": {
+        "title": "Documentation",
+        "body": "Each feature has its own page in the TablePro documentation, with every setting and shortcut.",
+        "link": "Read the docs",
+        "path": "/features/overview"
+    },
+    "labels": {
+        "number": {
+            "decimal": ".",
+            "group": ","
+        },
+        "tiers": {
+            "free": "Free",
+            "starter": "Starter",
+            "team": "Team"
+        },
+        "paidBadge": "{name}: {tier} plan",
+        "header": {
+            "paid": "Paid features on this page: {features}. Everything else here is free.",
+            "paidItem": "{name} ({tier})",
+            "allFree": "Everything on this page is free.",
+            "docs": "Read the docs"
+        },
+        "sections": {
+            "availability": "Where it works",
+            "limits": "Limits worth knowing",
+            "docs": "Documentation",
+            "related": "Related"
+        },
+        "availability": {
+            "caption": "Each capability on this page, the plan it needs on the Mac, and what exists of it on iPhone and iPad",
+            "capability": "Capability",
+            "free": "Free",
+            "notAvailable": "Not available",
+            "plan": "{tier} plan"
+        },
+        "download": {
+            "title": "Get TablePro",
+            "body": "TablePro is open source and free to use. Paid plans add optional features to the Mac app.",
+            "pricing": "See pricing"
+        }
+    }
+}
