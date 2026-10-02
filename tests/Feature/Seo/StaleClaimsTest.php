@@ -6,8 +6,16 @@ use PHPUnit\Framework\Assert;
  * A regression guard against the specific untrue claims this site used to make.
  * Every string below was live copy at some point and was wrong; if one comes
  * back, that is a bug, not a style choice.
+ *
+ * Transitional. The rebuild folds these guards into `Content/BannedClaimsTest`
+ * (architecture §1.17), and cleanup deletes this file with the pre-rebuild
+ * pages. Until then the comparison cases read `resources/data/legacy/
+ * comparisons.json`, the file the pre-rebuild `Compare` page still renders
+ * from; `resources/data/comparisons.json` now holds the new, sourced schema.
  */
 $readSource = static fn(string $relative): string => file_get_contents(base_path($relative));
+
+const STALE_CLAIMS_LEGACY_COMPARISONS = 'resources/data/legacy/comparisons.json';
 
 it('never revives a stale database count or platform claim', function () use ($readSource): void {
     $sources = [
@@ -67,9 +75,12 @@ it('never publishes a rating nobody gave', function () use ($readSource): void {
      *
      * The list is asserted against the filesystem rather than hardcoded alone:
      * a new page that builds a SoftwareApplication must be added here, and the
-     * count below is what forces that.
+     * subset check below is what forces that. A page that stops emitting one
+     * (because it now builds its nodes through `lib/structured-data.ts`) stays
+     * scanned, and so does that shared builder module.
      */
     $sources = [
+        'resources/js/lib/structured-data.ts',
         'resources/js/pages/Home.tsx',
         'resources/js/pages/Compare.tsx',
         'resources/js/pages/DatabaseClient.tsx',
@@ -84,16 +95,16 @@ it('never publishes a rating nobody gave', function () use ($readSource): void {
     ];
 
     $emitters = array_values(array_filter(
-        glob(base_path('resources/js/pages/*.tsx')),
+        glob(base_path('resources/js/pages/{,*/}*.tsx'), GLOB_BRACE),
         static fn(string $path): bool => str_contains(file_get_contents($path), "'SoftwareApplication'"),
     ));
 
-    expect($emitters)->toHaveCount(
-        count($sources),
-        'A page started emitting a SoftwareApplication node. Add it to $sources above.',
-    );
+    foreach ($emitters as $emitter) {
+        expect(in_array(substr($emitter, strlen(base_path()) + 1), $sources, true))
+            ->toBeTrue("{$emitter} started emitting a SoftwareApplication node. Add it to \$sources above.");
+    }
 
-    foreach ($sources as $source) {
+    foreach (array_filter($sources, static fn(string $source): bool => is_file(base_path($source))) as $source) {
         /*
          * Comments stripped first. Two of these files carry a docblock saying
          * why they do not publish a rating, and a bare `aggregateRating` needle
@@ -138,7 +149,7 @@ it('keeps every FAQ question, and asks each of them in one place', function () u
 });
 
 it('quotes TablePro download size and engine count consistently on the compare pages', function (): void {
-    $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+    $entries = json_decode(file_get_contents(base_path(STALE_CLAIMS_LEGACY_COMPARISONS)), true);
 
     /*
      * `benchmarks` is optional. The TablePlus entry ships without one, because
@@ -151,7 +162,7 @@ it('quotes TablePro download size and engine count consistently on the compare p
             ->toBe('~20 MB', "{$entry['slug']} still quotes the old download size");
     }
 
-    $raw = file_get_contents(base_path('resources/data/comparisons.json'));
+    $raw = file_get_contents(base_path(STALE_CLAIMS_LEGACY_COMPARISONS));
 
     /*
      * Not `toContain('18+ databases')`. Every occurrence this guard was written
@@ -176,7 +187,7 @@ it('states each performance metric in exactly one place', function (): void {
      * `benchmarks` owns the three performance figures now. `rows` owns features,
      * price and technology. A metric restated in both is the bug.
      */
-    $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+    $entries = json_decode(file_get_contents(base_path(STALE_CLAIMS_LEGACY_COMPARISONS)), true);
 
     foreach ($entries as $entry) {
         $labels = array_column($entry['rows'], 'label');
@@ -222,14 +233,26 @@ it('serves a comparison page for every slug the route accepts, and vice versa', 
 
     $routed = explode('|', $route->wheres['slug']);
     $authored = array_column(
-        json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true),
+        json_decode(file_get_contents(base_path(STALE_CLAIMS_LEGACY_COMPARISONS)), true),
         'slug',
     );
 
-    sort($routed);
-    sort($authored);
+    /*
+     * A slug the redirect map retires (azimutt, 410) is answered before
+     * routing, so the two lists only have to agree on the rest. A routed slug
+     * may also be drawn from the new compare content instead of the legacy file.
+     */
+    $map = app(\App\Support\Seo\RedirectMap::class);
+    $live = static fn(string $slug): bool => ! $map->retires("/compare/{$slug}");
 
-    expect($routed)->toBe($authored);
+    foreach (array_filter($routed, $live) as $slug) {
+        expect(in_array($slug, $authored, true) || is_file(resource_path("data/content/en/compare/{$slug}.json")))
+            ->toBeTrue("/compare/{$slug} is routed but nothing draws it");
+    }
+
+    foreach (array_filter($authored, $live) as $slug) {
+        expect(in_array($slug, $routed, true))->toBeTrue("{$slug} has an entry but no route");
+    }
 });
 
 it('never implies a database count other than 29', function (): void {
@@ -244,7 +267,7 @@ it('never implies a database count other than 29', function (): void {
      * ones that no longer add up — it caught all four when the count went to 28,
      * and all four again at 29.
      */
-    $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+    $entries = json_decode(file_get_contents(base_path(STALE_CLAIMS_LEGACY_COMPARISONS)), true);
 
     $offenders = [];
 
@@ -289,7 +312,7 @@ it('quotes one price per competitor claim, consistently within an entry', functi
      * DataGrip's said $100 against $99. Nobody sees an OG image until it is
      * already being shared.
      */
-    $entries = json_decode(file_get_contents(base_path('resources/data/comparisons.json')), true);
+    $entries = json_decode(file_get_contents(base_path(STALE_CLAIMS_LEGACY_COMPARISONS)), true);
 
     foreach ($entries as $entry) {
         if (! isset($entry['ogCompetitorMetaHtml'])) {
