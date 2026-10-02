@@ -1,0 +1,112 @@
+{
+    "seo": {
+        "title": "Client Amazon Redshift cho {devices}",
+        "description": "Query cluster và Serverless workgroup của Redshift qua driver PostgreSQL. Xem DISTKEY, SORTKEY, duyệt external schema, theo dõi session và sao lưu bằng pg_dump."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client Amazon Redshift"
+    },
+    "engine": "redshift",
+    "breadcrumb": "Amazon Redshift",
+    "header": {
+        "title": "Client Amazon Redshift cho {devices}",
+        "lead": "Query một cluster provisioned hoặc một Serverless workgroup qua driver PostgreSQL có sẵn trong ứng dụng, xem distribution style và sort key của từng table, và duyệt schema Spectrum hay datashare ngay cạnh schema của bạn."
+    },
+    "asset": "mac-db-redshift-ddl",
+    "links": {
+        "network": "/features/connections#network",
+        "credentials": "/features/connections#credentials",
+        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "postgresql": "/postgresql-client",
+        "icloudSync": "/features/sync-and-teams#icloud-sync",
+        "share": "/features/sync-and-teams#share"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối",
+            "paragraphs": [
+                "Dùng endpoint của cluster làm host, hoặc endpoint của workgroup trên Redshift Serverless; cả hai lắng nghe trên cùng một port. Cơ sở dữ liệu là bắt buộc, và cluster nào khi tạo cũng có sẵn một cơ sở dữ liệu tên <code>dev</code>. Import một URL <code>redshift://</code> sẽ điền sẵn form.",
+                "Connection mới để SSL ở chế độ Ưu tiên (Preferred), và không có bước kiểm tra phiên bản, nên cluster nào AWS còn vận hành cũng kết nối được. Mật khẩu được lưu trong Keychain hoặc đọc từ <code>~/.pgpass</code>, hai trong số các <credentials>cách cung cấp thông tin đăng nhập</credentials> của một connection. Cluster không truy cập được từ internet thì kết nối qua <network>SSH tunnel</network> tới một bastion host trong VPC của nó."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query và chỉnh sửa",
+            "paragraphs": [
+                "Query và <editing>thay đổi dòng đang chờ lưu cùng Preview SQL</editing> hoạt động như trên <postgresql>PostgreSQL</postgresql>, qua cùng một driver. Tab gắn với một cơ sở dữ liệu khác cơ sở dữ liệu đang dùng sẽ mở một connection thứ hai cho nó.",
+                "Phần thông tin table đọc <code>svv_table_info</code> để lấy distribution style, sort key và dung lượng của từng table, còn tab DDL ghi ra DISTKEY, SORTKEY, DISTSTYLE và ENCODE. Khóa ngoại được liệt kê, nhưng Redshift không bắt buộc chúng, nên không có gì ngăn một dòng vi phạm khóa ngoại.",
+                "<explain>EXPLAIN và EXPLAIN VERBOSE</explain> trả về execution plan của Redshift dưới dạng văn bản, không vẽ thành sơ đồ.",
+                "Schema tạo bằng <code>CREATE EXTERNAL SCHEMA</code>, dù là Spectrum trên S3, federated query, tham chiếu chéo giữa các cơ sở dữ liệu hay datashare, đều được liệt kê cạnh schema của bạn và đánh dấu Bên ngoài (External). Table trong đó vẫn duyệt, lọc, sắp xếp và export như thường nhưng chỉ đọc, vì Redshift không nhận UPDATE hay DELETE trên chúng. Các table này không hiện số dòng, và kiểu cột hiển thị đúng như external catalog báo về."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Schema",
+            "paragraphs": [
+                "Redshift không có index, enum, sequence hay trigger để quản lý: DISTKEY và SORTKEY làm thay việc của index, và tab Structure không có tab Triggers. Routine không được liệt kê trong sidebar.",
+                "Từ sidebar, bạn đổi tên được table, cơ sở dữ liệu và schema, và tạo schema kèm owner."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Theo dõi và sao lưu",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> liệt kê session và query chậm, cùng các chỉ số: số connection, tỉ lệ cache hit, dung lượng cơ sở dữ liệu, uptime và số query đang chạy. Hủy truy vấn (Cancel Query) gửi <code>pg_cancel_backend</code> và Kết thúc phiên (Terminate Session) gửi <code>pg_terminate_backend</code>, cả hai đều chạy sau khi bạn xác nhận.",
+                "Redshift không có menu Bảo trì (Maintenance) và không có Users & Roles: hãy chạy VACUUM, ANALYZE và GRANT trong SQL editor.",
+                "<backup>Backup Dump và Restore Dump</backup> chạy {dumpTool} và pg_restore từ máy Mac của bạn, qua SSH tunnel của connection nếu có. Hãy cài chúng trước bằng gói libpq của Homebrew."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "<importData>Import</importData> nạp file {importFormats} từ máy Mac vào một table Redshift. Export ghi table hoặc kết quả query ra {exportFormats}, và external table cũng export được như mọi table khác."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone và iPad",
+            "paragraphs": [
+                "Để đưa connection Redshift sang iPhone hoặc iPad, hãy bật <icloudSync>iCloud Sync</icloudSync>, thuộc gói {icloudSyncTier} trên Mac, hoặc <share>export connection</share> ra file rồi mở file đó trên thiết bị. Connection sẽ chạy trên driver PostgreSQL tích hợp trong ứng dụng: bạn xem table dưới dạng thẻ, lọc và sắp xếp, và chạy SQL trong tab Truy vấn (Query). Mật khẩu chỉ đi kèm qua iCloud Sync khi bật đồng bộ mật khẩu, hoặc trong file export được mã hóa có kèm mật khẩu, thuộc gói {encryptedExportTier}. Chứng chỉ nằm lại trên từng thiết bị."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "serverless",
+            "question": "TablePro có dùng được với Redshift Serverless không?",
+            "answer": "Có. Hãy điền endpoint của workgroup vào ô host, rồi điền port, cơ sở dữ liệu và user như với một cluster provisioned."
+        },
+        {
+            "id": "pg-dump",
+            "question": "pg_dump có hỗ trợ Redshift không?",
+            "answer": "Không có bản pg_dump nào tuyên bố hỗ trợ phiên bản PostgreSQL mà Redshift báo về. TablePro chạy bản pg_dump bạn đã cài, trong khi với PostgreSQL nó chọn bản khớp với server, nên hãy thử sao lưu một schema nhỏ trước khi dựa vào cách này."
+        }
+    ],
+    "related": [
+        {
+            "label": "PostgreSQL, trên cùng driver",
+            "href": "/postgresql-client"
+        },
+        {
+            "label": "Server Dashboard và các công cụ cho schema",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Sao lưu, import và export",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Google BigQuery, một data warehouse khác",
+            "href": "/bigquery-client"
+        }
+    ]
+}

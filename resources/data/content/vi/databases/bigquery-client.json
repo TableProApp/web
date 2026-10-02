@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Client Google BigQuery cho {devices}",
+        "description": "Query BigQuery bằng service account, ADC hoặc OAuth. Xem số byte và chi phí bằng Dry Run, giới hạn chi tiêu bằng Max Bytes Billed và export ra Cloud Storage."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client Google BigQuery"
+    },
+    "engine": "bigquery",
+    "breadcrumb": "Google BigQuery",
+    "header": {
+        "title": "Client Google BigQuery cho {devices}",
+        "lead": "Viết GoogleSQL trên các dataset của project, xem một query sẽ quét bao nhiêu dữ liệu trước khi chạy, và đặt mức trần cho chi phí của một job. Bạn sửa được dòng ngay trong data grid, còn table được unload ra Cloud Storage mà không đi qua máy Mac."
+    },
+    "asset": "mac-db-bigquery-dry-run",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Đăng nhập Google Cloud",
+            "paragraphs": [
+                "Chọn <ui>Phương thức xác thực (Auth Method)</ui> và nhập <ui>Project ID</ui>: là ID, không phải tên hay số của project. <ui>Application Default Credentials</ui> đọc file do <code>gcloud auth application-default login</code> tạo ra, nên đây là cách gọn nhất khi gcloud đã được thiết lập sẵn. <ui>Khóa tài khoản dịch vụ (Service Account Key)</ui> nhận một file key .json hoặc nội dung JSON dán vào.",
+                "Google Account (OAuth) đăng nhập qua trình duyệt bằng một OAuth client loại desktop mà bạn tạo trong Google Cloud Console. Refresh token được lưu trong Keychain, mỗi OAuth client một token, nên những lần kết nối sau không cần mở trình duyệt. Một OAuth client chỉ đăng nhập một tài khoản Google, nên tài khoản thứ hai cần một client thứ hai hoặc refresh token riêng của tài khoản đó.",
+                "Mọi thứ đi qua REST API của BigQuery, nên không có host, port, URL kết nối hay SSH tunnel. <ui>Vị trí (Location)</ui> đặt processing location được gửi kèm mỗi job. Xem thêm về <cloudAuth>đăng nhập bằng tài khoản cloud</cloudAuth>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query và kiểm soát chi phí",
+            "paragraphs": [
+                "Trước khi chạy một query, hãy chọn <ui>Dry Run (Cost)</ui> trong menu <explain>Giải thích (Explain)</explain>. Kết quả liệt kê số byte query sẽ xử lý và bị tính phí, cờ cache hit và chi phí ước tính bằng đô la Mỹ, còn bản thân query không được chạy.",
+                "Sau khi chạy, thanh trạng thái hiển thị số byte đã xử lý, số byte bị tính phí và chi phí ước tính theo giá on-demand, đồng thời đánh dấu khi trúng cache. Để có mức trần cứng, hãy đặt <ui>Số byte tính phí tối đa (Max Bytes Billed)</ui> trong tab Nâng cao (Advanced) của connection: BigQuery sẽ từ chối job nào bị tính phí vượt mức thay vì chạy nó.",
+                "Autocomplete, cách đặt dấu trích dẫn và định dạng đều theo GoogleSQL, với dấu backtick quanh tên table, còn cột STRUCT và ARRAY hiện dưới dạng JSON. Dataset đóng vai trò cơ sở dữ liệu: chúng được liệt kê trong sidebar, <code>⌘K</code> chuyển giữa chúng, và mỗi tab giữ dataset mà nó được mở trên đó. Job được theo dõi cho tới khi hết query timeout thì bị hủy; khi timeout đặt là Không giới hạn (No limit), TablePro chờ tới khi job xong.",
+                "Sửa ô, thêm và xóa dòng đều làm trong <editing>data grid</editing>. UPDATE và DELETE so khớp dòng theo khóa chính đã khai báo; với table không có khóa chính, chúng so khớp mọi cột trừ cột ARRAY, JSON và GEOGRAPHY, nên các dòng giống hệt nhau sẽ thay đổi cùng lúc. Hãy khai báo <code>PRIMARY KEY (…) NOT ENFORCED</code> để sửa đúng một dòng. Với table có partition, hãy viết UPDATE và DELETE kèm bộ lọc partition trong editor."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Dataset và DDL",
+            "paragraphs": [
+                "DDL chạy từ editor, như <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> và <code>CREATE OR REPLACE VIEW</code>. <ui>Cơ sở dữ liệu mới… (New Database…)</ui> tạo dataset bằng <code>CREATE SCHEMA</code>, và table có thể đổi tên từ sidebar. Tab DDL đọc từng định nghĩa từ <code>INFORMATION_SCHEMA.TABLES</code>, còn clustering và partitioning hiện trong mục Indexes."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "TablePro không có import cho BigQuery. <export>Export</export> table hoặc kết quả query về máy Mac ra {exportFormats}.",
+                "<backup>Server-Side Export</backup> unload một table bằng <code>EXPORT DATA</code> tới một prefix <code>gs://</code> ở dạng CSV, Parquet hoặc JSON phân tách theo dòng (newline-delimited JSON), chia thành nhiều phần dưới prefix đó. Thao tác chạy trên connection của bạn với quyền của bạn, hộp thoại chờ tới khi unload xong, và không có file nào được ghi về máy Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "roles",
+            "question": "Connection BigQuery cần những IAM role nào?",
+            "answer": "<code>roles/bigquery.user</code> để chạy query, <code>roles/bigquery.dataViewer</code> để đọc dữ liệu và <code>roles/bigquery.dataEditor</code> để thay đổi dữ liệu."
+        },
+        {
+            "id": "deep-pages",
+            "question": "Vì sao nên lọc thay vì chuyển tới trang rất sâu trong table?",
+            "answer": "Mỗi trang ở sâu trong table đều quét lại table từ đầu. Hãy thu hẹp số dòng bằng bộ lọc hoặc mệnh đề WHERE thay vì chuyển trang thật sâu."
+        }
+    ],
+    "related": [
+        {
+            "label": "Đăng nhập cloud cho AWS, Google và Microsoft",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "Export, sao lưu và Server-Side Export",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "Amazon Redshift, một data warehouse khác",
+            "href": "/redshift-client"
+        },
+        {
+            "label": "Snowflake, một cloud data warehouse khác",
+            "href": "/snowflake-client"
+        }
+    ]
+}

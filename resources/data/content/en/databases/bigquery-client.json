@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Google BigQuery client for {devices}",
+        "description": "Query BigQuery with a service account, ADC or OAuth. Check bytes and cost with a Dry Run, cap spend with Max Bytes Billed, and export to Cloud Storage."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "Google BigQuery client"
+    },
+    "engine": "bigquery",
+    "breadcrumb": "Google BigQuery",
+    "header": {
+        "title": "Google BigQuery client for {devices}",
+        "lead": "Write GoogleSQL against your project’s datasets, see what a query would scan before it runs, and cap what a job may bill. Rows can be edited in the grid, and tables unload to Cloud Storage without passing through your Mac."
+    },
+    "asset": "mac-db-bigquery-dry-run",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Sign in to Google Cloud",
+            "paragraphs": [
+                "Pick an <ui>Auth Method</ui> and enter the <ui>Project ID</ui>: the ID, not the project’s name or number. <ui>Application Default Credentials</ui> reads the file that <code>gcloud auth application-default login</code> writes, so it is the shortest route when gcloud is already set up. A <ui>Service Account Key</ui> takes a .json key file or the pasted JSON.",
+                "Google Account (OAuth) signs in through the browser with a desktop OAuth client you create in Google Cloud Console. The refresh token is kept in the Keychain, one per OAuth client, so later connects open no browser. One OAuth client signs in one Google account, so a second account needs a second client or its own refresh token.",
+                "Everything goes through BigQuery’s REST API, so there is no host, port, connection URL or SSH tunnel. <ui>Location</ui> sets the processing location sent with every job. More on <cloudAuth>cloud sign-in</cloudAuth>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query and control cost",
+            "paragraphs": [
+                "Before you run a query, choose <ui>Dry Run (Cost)</ui> from the <explain>Explain</explain> menu. The result lists the bytes the query would process and bill, a cache hit flag and an estimated cost in US dollars, and the query itself does not run.",
+                "After a run, the status bar shows bytes processed, bytes billed and an estimate at the on-demand rate, and marks a cache hit. For a hard ceiling, set <ui>Max Bytes Billed</ui> on the connection’s Advanced tab: BigQuery then rejects a job that would bill more instead of running it.",
+                "Completion, quoting and formatting follow GoogleSQL, with backticks around table names, and STRUCT and ARRAY columns show as JSON. Datasets stand in for databases: they are listed in the sidebar, <code>⌘K</code> moves between them, and each tab stays on the dataset it opened with. A job is polled until the query timeout and then cancelled; with the timeout set to No limit, TablePro waits for it to finish.",
+                "Cells, inserts and deletes go through the <editing>grid</editing>. UPDATE and DELETE match a row on its declared primary key; on a table without one they match every column except ARRAY, JSON and GEOGRAPHY ones, so identical rows change together. Declare <code>PRIMARY KEY (…) NOT ENFORCED</code> to edit one row exactly. On a partitioned table, write UPDATE and DELETE with a partition filter in the editor."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Datasets and DDL",
+            "paragraphs": [
+                "DDL runs from the editor, such as <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> and <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> creates a dataset with <code>CREATE SCHEMA</code>, and tables can be renamed from the sidebar. The DDL tab reads each definition from <code>INFORMATION_SCHEMA.TABLES</code>, and clustering and partitioning appear under Indexes."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Move data",
+            "paragraphs": [
+                "TablePro has no import for BigQuery. <export>Export</export> a table or a query result to your Mac as {exportFormats}.",
+                "<backup>Server-Side Export</backup> unloads a table with <code>EXPORT DATA</code> to a <code>gs://</code> prefix as CSV, Parquet or newline-delimited JSON, sharded under that prefix. It runs on your connection with your permissions, the sheet waits until the unload finishes, and no file is written to your Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "roles",
+            "question": "Which IAM roles does a BigQuery connection need?",
+            "answer": "<code>roles/bigquery.user</code> to run queries, <code>roles/bigquery.dataViewer</code> to read data and <code>roles/bigquery.dataEditor</code> to change it."
+        },
+        {
+            "id": "deep-pages",
+            "question": "Why filter instead of paging deep into a table?",
+            "answer": "Each page far into a table rescans the table from its start. Narrow the rows with a filter or a WHERE clause rather than paging deep."
+        }
+    ],
+    "related": [
+        {
+            "label": "Cloud sign-in for AWS, Google and Microsoft",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "Export, backups and Server-Side Export",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "Amazon Redshift, another warehouse",
+            "href": "/redshift-client"
+        },
+        {
+            "label": "Snowflake, another cloud warehouse",
+            "href": "/snowflake-client"
+        }
+    ]
+}
