@@ -1,0 +1,175 @@
+{
+    "seo": {
+        "title": "TablePro vs DBeaver: client native hay Java đa nền tảng",
+        "description": "DBeaver chạy trên Windows, macOS và Linux bằng Java và JDBC. TablePro là client native cho Mac, iPhone và iPad. So sánh cơ sở dữ liệu, AI, MCP và giá."
+    },
+    "og": {
+        "kicker": "So sánh",
+        "title": "TablePro vs DBeaver"
+    },
+    "header": {
+        "title": "TablePro vs DBeaver",
+        "lead": "DBeaver là client cho Windows, macOS và Linux, viết bằng Java. Bản Community miễn phí và mã nguồn mở, còn các bản trả phí có thêm nhiều tính năng. TablePro là client mã nguồn mở, có một ứng dụng native cho Mac và một ứng dụng khác cho iPhone và iPad, cùng một số tính năng trả phí tùy chọn trên Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Bạn muốn dùng MongoDB, Redis hay Cassandra mà không phải trả phí. Mọi engine được hỗ trợ trong TablePro đều miễn phí, còn DBeaver Community không hỗ trợ các cơ sở dữ liệu NoSQL.",
+            "Bạn muốn một ứng dụng Mac không cần Java. TablePro được viết bằng Swift, driver cơ sở dữ liệu cũng là native, không dùng JDBC.",
+            "Bạn muốn dùng trợ lý AI với nhà cung cấp do mình chọn mà không phải trả phí. AI chat trong DBeaver Community chỉ làm việc với OpenAI và GitHub Copilot.",
+            "Bạn muốn có một MCP server để các AI client làm việc với connection của bạn, miễn phí trong ứng dụng Mac.",
+            "Bạn cũng muốn có ứng dụng cho iPhone và iPad."
+        ],
+        "competitor": [
+            "Bạn làm việc trên Windows hoặc Linux, không chỉ trên Mac.",
+            "Bạn cần một engine mà TablePro không có driver. DBeaver Community kết nối được với bất kỳ engine nào có JDBC driver.",
+            "Bạn cần visual query builder, chỉnh sửa sơ đồ ER hoặc lập lịch tác vụ. Các bản trả phí của DBeaver có những tính năng này."
+        ]
+    },
+    "glance": {
+        "intro": "DBeaver có bản Community miễn phí và các bản trả phí tính theo người dùng, nên nhiều dòng dưới đây ghi rõ tính năng cần bản nào."
+    },
+    "rows": {
+        "diagram": {
+            "label": "Sơ đồ ER",
+            "tablepro": "Sơ đồ ER chỉ đọc, export ra PNG hoặc SQL, miễn phí"
+        },
+        "queryBuilder": {
+            "label": "Visual query builder",
+            "tablepro": "Không có"
+        },
+        "scheduler": {
+            "label": "Lập lịch tác vụ",
+            "tablepro": "Không có"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DBeaver chạy trên Windows, macOS và Linux, nên một client dùng được trên các máy tính khác nhau của bạn.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Bản Community kết nối được với bất kỳ engine nào có JDBC driver, kể cả những engine TablePro không có driver.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Các bản trả phí có thêm visual query builder, chỉnh sửa sơ đồ ER, lập lịch tác vụ và đồng bộ project qua Git.",
+                "cite": ["cells.queryBuilder", "cells.diagram", "cells.scheduler", "cells.sync"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Mọi engine được hỗ trợ đều miễn phí, kể cả MongoDB, Redis, Cassandra và các cơ sở dữ liệu phi quan hệ khác. DBeaver chỉ hỗ trợ cơ sở dữ liệu NoSQL trong các bản trả phí.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro là ứng dụng Mac viết bằng Swift, với driver cơ sở dữ liệu native. DBeaver viết bằng Java, và bản tải về có kèm sẵn Java runtime.",
+                "cite": ["technology"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Trợ lý AI và MCP server</link> đều miễn phí trong ứng dụng Mac. Bạn tự chọn nhà cung cấp AI, còn MCP server cho phép các client như Claude Code hay Cursor dùng connection đã lưu mà không thấy mật khẩu.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Compare & Sync</link> so sánh cấu trúc hoặc dữ liệu của hai cơ sở dữ liệu và đồng bộ phần khác nhau. Tính năng này thuộc gói Starter.",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "Có <link>ứng dụng cho iPhone và iPad</link> miễn phí, không có mua hàng trong ứng dụng.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Không có ứng dụng TablePro cho Windows hay Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro chỉ kết nối tới những engine có driver của TablePro. Không có kiểu kết nối JDBC chung, nên bạn hãy xem danh sách <link>cơ sở dữ liệu được hỗ trợ</link> trước.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "Sơ đồ ER chỉ là bản chụp chỉ đọc, và TablePro không có visual query builder hay công cụ lập lịch tác vụ.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro đọc các connection trong workspace DBeaver của bạn, từ bản Community hay bất kỳ bản trả phí nào. DBeaver không cần đang mở, và các file của DBeaver không bị thay đổi.",
+        "steps": [
+            "Trong TablePro, chọn <ui>Tệp > Nhập > Nhập từ ứng dụng khác…</ui> (File > Import > Import from Other App…).",
+            "Chọn DBeaver và bật <ui>Bao gồm mật khẩu</ui> (Include passwords). TablePro tự giải mã các mật khẩu DBeaver đã lưu, nên bạn không phải cấp quyền gì trong Keychain.",
+            "Xem lại danh sách, chọn cách xử lý các connection bị trùng, rồi bấm <ui>Nhập</ui> (Import). Thư mục trong DBeaver trở thành nhóm, và thiết lập SSH tunnel cũng được chuyển sang. Connection tới cơ sở dữ liệu TablePro không hỗ trợ sẽ không được chọn sẵn.",
+            "Trước khi gỡ DBeaver, hãy mở thử một connection có mật khẩu để chắc rằng mật khẩu đã được chuyển sang."
+        ],
+        "after": [
+            "Các SQL script, lịch sử query và phím tắt vẫn nằm lại trong DBeaver."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "java",
+            "question": "TablePro có cần Java không?",
+            "answer": "Không. TablePro được viết bằng Swift và làm việc với cơ sở dữ liệu qua driver native. Driver cho các cơ sở dữ liệu phổ biến có sẵn trong ứng dụng, các driver khác được tải về vào lần đầu bạn chọn cơ sở dữ liệu đó.",
+            "href": null
+        },
+        {
+            "id": "speed",
+            "question": "Tốc độ và mức dùng bộ nhớ so với DBeaver thế nào?",
+            "answer": "Trang này không đưa ra nhận định nào về tốc độ hay bộ nhớ, vì cả hai dự án đều chưa công bố phép đo mà người khác có thể kiểm chứng lại. Điều bạn có thể tự kiểm tra là bản tải về của DBeaver có kèm Java runtime, còn TablePro không cần Java.",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "TablePro có miễn phí như DBeaver Community không?",
+            "answer": "Có, với mọi engine được hỗ trợ, trợ lý AI và MCP server: TablePro dùng miễn phí và là mã nguồn mở theo giấy phép AGPLv3. DBeaver bán các tính năng bổ sung dưới dạng những bản riêng, còn TablePro có gói Starter và Team cho ứng dụng Mac, với những tính năng như {starterExamples}. <link>Xem bảng giá</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "unsupported",
+            "question": "Connection DBeaver nào TablePro không mở được thì sao?",
+            "answer": "Chúng vẫn hiện trong danh sách import nhưng không được chọn sẵn, kèm lý do bên cạnh. Những connection này chỉ được import nếu bạn tự chọn.",
+            "href": null
+        }
+    ],
+    "notes": {
+        "dbeaver-bundled-jdk": "Bản tải về có kèm sẵn Java runtime riêng",
+        "dbeaver-databases": "Bản Community kết nối được với bất kỳ engine nào có JDBC driver, nhưng không hỗ trợ các cơ sở dữ liệu NoSQL như MongoDB, Redis hay Cassandra. Các bản trả phí có thêm chúng.",
+        "dbeaver-ai-community-providers": "Trong bản {edition}: AI chat với OpenAI hoặc GitHub Copilot. Các bản trả phí có thêm nhà cung cấp khác và phần giải thích query, giải thích lỗi.",
+        "dbeaver-mcp-client": "Các bản trả phí dùng được MCP server với vai trò client. Ứng dụng desktop không tự chạy MCP server.",
+        "dbeaver-git-sync": "Đồng bộ project qua Git, từ bản {edition} trở lên",
+        "dbeaver-erd-edit-paid": "Bản Community chỉ xem được. Chỉnh sửa có trong các bản Enterprise, Ultimate và Team.",
+        "dbeaver-query-builder-paid": "Có trong mọi bản trả phí, không có trong bản Community",
+        "dbeaver-task-scheduler": "Có trong các bản Enterprise, Ultimate và Team"
+    }
+}
