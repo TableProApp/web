@@ -2,6 +2,15 @@ import { ReactNode } from 'react';
 import Container from '@/components/ui/container';
 import { AccentLine, FullLine } from '@/components/ui/full-line';
 import SectionLabel from '@/components/ui/section-label';
+import { cn } from '@/lib/utils';
+
+/*
+ * Retiring. The pre-rebuild pages build their sections from this file until
+ * their replacements land; new pages use `Section` and `PageHeader` from
+ * `./section` and `./page-header` (design-system §5.1). The `raised` tone now
+ * paints the `--surface` band directly instead of overriding `--background`
+ * through `[data-tone]`, which the design system removes.
+ */
 
 type Tier = 'argument' | 'reference';
 
@@ -150,8 +159,7 @@ export default function SectionShell({
         <section
             id={id}
             aria-labelledby={headingId}
-            data-tone={tone === 'raised' ? 'raised' : undefined}
-            className={`scroll-mt-20 ${className ?? ''}`}
+            className={cn('scroll-mt-20', tone === 'raised' && 'bg-surface', className)}
         >
             <HeaderStack
                 headingId={headingId}

@@ -1,36 +1,89 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Container from '@/components/ui/container';
-import { FullLine } from '@/components/ui/full-line';
 import { cn } from '@/lib/utils';
 
 /**
- * The caveat band under the artifact it qualifies, and the rule that closes it.
+ * Footnotes for tables and comparisons (design-system §5.3.13): a numbered
+ * marker in the cell, and an ordered list of sources under the table, each
+ * with a link back to where it was cited and the date it was checked.
  *
- * This existed twelve times as a hand-written
- * `px-4 py-3 font-mono text-xs text-muted-foreground` inside a `Container`,
- * followed by a `FullLine`, in seven different section files. Twelve copies of
- * one idea is how a rhythm stops being one — and it is also how the page ended
- * up with twelve mono bands, each restating a measurement condition at the same
- * visual weight as the argument above it.
- *
- * Sans, not mono. A footnote is prose about data, not data. Mono is reserved
- * for values, identifiers and the section eyebrow; spending it on caveats made
- * IBM Plex Mono the page's most common voice at 206 render sites, where its job
- * is to be the rarest.
- *
- * `py-4` rather than `py-3`, and `text-sm` rather than `text-xs`: a line nobody
- * can read is not a disclosure, and 12px mono at `--muted-foreground` was the
- * smallest type on the page.
+ * Markers and notes find each other by id: `fn-{id}` for the note and
+ * `fnref-{id}` for the marker. Ids are locale-neutral, so a note keeps its
+ * address in every language.
+ */
+
+interface FootnoteMarkerProps {
+    /** The note's id, shared with its `FootnoteList` entry. */
+    id: string;
+    /** The number shown, in citation order. */
+    number: number;
+    /** Read before the number: "Note" / "Ghi chú". */
+    label: string;
+}
+
+/** The superscript link from a cell to its note. */
+export function FootnoteMarker({ id, number, label }: FootnoteMarkerProps) {
+    return (
+        <sup className="ml-0.5 font-normal">
+            <a
+                id={`fnref-${id}`}
+                href={`#fn-${id}`}
+                className="rounded-[2px] text-accent-text tabular-nums underline-offset-2 hover:underline"
+            >
+                <span className="sr-only">{label} </span>
+                {number}
+            </a>
+        </sup>
+    );
+}
+
+export interface FootnoteEntry {
+    id: string;
+    /** The note itself: a sentence, a source link. */
+    content: ReactNode;
+    /** When the source was checked, already formatted for the page's language. */
+    checked?: ReactNode;
+}
+
+interface FootnoteListProps {
+    notes: FootnoteEntry[];
+    /** The back link's accessible name: "Back to the table" / "Quay lại bảng". */
+    backLabel: string;
+    /** Names the list for assistive technology: "Notes" / "Ghi chú". */
+    label: string;
+    className?: string;
+}
+
+/** The notes under a table: caption size, muted, numbered in order. */
+export function FootnoteList({ notes, backLabel, label, className }: FootnoteListProps) {
+    if (notes.length === 0) {
+        return null;
+    }
+
+    return (
+        <ol aria-label={label} className={cn('type-caption mt-4 list-decimal space-y-1 pl-5 text-muted-foreground marker:tabular-nums', className)}>
+            {notes.map((note) => (
+                <li key={note.id} id={`fn-${note.id}`} className="scroll-mt-24 pl-1">
+                    {note.content}
+                    {note.checked && <> ({note.checked})</>}{' '}
+                    <a href={`#fnref-${note.id}`} aria-label={backLabel} className="rounded-[2px] text-accent-text hover:underline">
+                        ↩
+                    </a>
+                </li>
+            ))}
+        </ol>
+    );
+}
+
+/**
+ * Retiring. The pre-rebuild caveat band under an artifact: one muted line in
+ * the content column. New pages use `FootnoteList` under their tables, or a
+ * `Callout` for a limit worth reading. Delete once nothing imports it.
  */
 export default function FootNote({ children, className }: { children: ReactNode; className?: string }) {
     return (
-        <>
-            <Container>
-                <p className={cn('max-w-[68ch] px-4 py-4 text-sm text-muted-foreground text-pretty', className)}>
-                    {children}
-                </p>
-            </Container>
-            <FullLine />
-        </>
+        <Container>
+            <p className={cn('type-small max-w-[68ch] py-4 text-muted-foreground text-pretty', className)}>{children}</p>
+        </Container>
     );
 }

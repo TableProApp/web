@@ -1,43 +1,26 @@
 import { cn } from '@/lib/utils';
 
 /**
- * A hairline rule that bleeds past the container on both sides.
+ * Retiring. A plain hairline across its container.
  *
- * Relies on `overflow-x: hidden` being set on <html>, <body>, and the layout
- * root. Do not remove those without revisiting this.
+ * This used to bleed 100vw past the container on both sides and carry a rule
+ * ordinal, which only worked while `<html>`, `<body>` and the layout clipped
+ * horizontal overflow. The rebuild removed that clipping, because it hid
+ * horizontal-scroll regressions instead of preventing them, and retired the
+ * ordinals with the ledger design (design-system §4.6). Left bleeding, every
+ * pre-rebuild page would scroll sideways by a full viewport.
  *
- * `relative` is load-bearing, not decoration: the `rule-numbered` class below
- * positions its ordinal against this element. Without it the nearest positioned
- * ancestor is `<main>`, and every ordinal on the page stacks in its top-left
- * corner.
+ * New code draws no decorative rules; a section boundary is spacing, and a
+ * table draws its own row separators. Delete this file once nothing imports
+ * it.
  */
 export function FullLine({ className }: { className?: string }) {
-    return (
-        <div
-            className={cn('rule-numbered relative -ml-[100vw] h-px w-[200vw] bg-rule', className)}
-            aria-hidden="true"
-        />
-    );
+    return <div className={cn('h-px w-full bg-rule', className)} aria-hidden="true" />;
 }
 
-/**
- * A FullLine carrying a short accent segment, used once per section on the
- * label rule so the eyebrow reads as a tick on a ruler.
- *
- * Numbered like any other rule. It draws a visually identical hairline, so
- * skipping it made the ordinal the position of *some* rules rather than of
- * the rule — the first one in every section was silently missing.
- *
- * The segment starts at `100vw + 1rem`, not `100vw`: the rule bleeds from the
- * container's content edge, but every section label is indented by `pl-4`, so
- * anchoring to the content edge left the tick 16px adrift of the text it marks.
- */
+/** Retiring: the same hairline. The accent tick went with the eyebrows it marked. */
 export function AccentLine() {
-    return (
-        <div className="rule-numbered relative -ml-[100vw] h-px w-[200vw] bg-rule" aria-hidden="true">
-            <div className="absolute h-px w-8 bg-primary" style={{ left: 'calc(100vw + 1rem)' }} />
-        </div>
-    );
+    return <div className="h-px w-full bg-rule" aria-hidden="true" />;
 }
 
 export default FullLine;
