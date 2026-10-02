@@ -1,0 +1,100 @@
+{
+    "seo": {
+        "title": "Pricing",
+        "description": "TablePro is free to download and use. Starter and Team plans add optional features to the Mac app, billed monthly, yearly or once. Prices in US dollars."
+    },
+    "og": {
+        "kicker": "Pricing",
+        "title": "Free to use. Paid plans add optional features."
+    },
+    "header": {
+        "title": "Pricing",
+        "lead": "The Mac app is free to download and use, with no trial period or time limit. A Starter or Team plan adds optional features to it. The iPhone and iPad app is free, with no in-app purchases."
+    },
+    "plans": {
+        "title": "Plans"
+    },
+    "features": {
+        "title": "What a paid plan adds",
+        "lead": "These are the only features that need a paid plan, and all of them are in the Mac app. Team includes everything in Starter. Connecting to any supported engine needs no license, and neither do the AI assistant, the MCP server or Safe Mode."
+    },
+    "license": {
+        "title": "How licenses work",
+        "items": {
+            "macs": {
+                "term": "Macs",
+                "body": "A Starter license activates on up to {activations} Macs. On Team, each seat is one activated Mac, the buyer’s own included. The iPhone and iPad app never uses a license or a seat."
+            },
+            "activate": {
+                "term": "Activating",
+                "body": "Enter your license key in TablePro on your Mac, in <ui>Settings > License</ui>. To use it on a different Mac, remove the old one on the Machines page of <account>your account</account>."
+            },
+            "checks": {
+                "term": "Checks",
+                "body": "TablePro checks the license’s signature each time it opens, and confirms the license with TablePro’s server every {revalidateDays} days. If your Mac can’t reach the server, the paid features keep working for {graceDays} days. Confirming it sends the license key, a hashed machine ID, the Mac’s name and the app and macOS versions."
+            },
+            "ends": {
+                "term": "When a plan ends",
+                "body": "If a monthly or yearly plan ends, the paid features stop and the rest of the app keeps working as it does on Free."
+            },
+            "oneTime": {
+                "term": "One-time",
+                "body": "A one-time purchase is paid once and has no expiry date."
+            }
+        },
+        "lapse": {
+            "summary": "What each paid feature does when a plan ends",
+            "intro": "Each paid feature stops in its own way:"
+        },
+        "terms": "The <terms>terms of service</terms> set out what a license allows."
+    },
+    "billing": {
+        "title": "Billing",
+        "merchant": "{merchant} is the merchant of record for TablePro. It sells you the plan, takes the payment, calculates any sales tax or VAT from your billing address, and emails your receipt and invoice. Prices are listed in US dollars.",
+        "renewal": "Monthly and yearly plans renew automatically until you cancel them, in <account>your account</account> or in {merchant}’s customer portal. After you cancel, the plan keeps working until the end of the period you paid for, and you can resume it before then. If a renewal payment fails, {merchant} emails you a link to update your card and retries the payment for about three weeks.",
+        "portal": "For purchases made through {merchant}, your invoices, receipts, payment method and cancellation are in <portal>{merchant}’s customer portal</portal>, where you sign in with the email address you used at checkout. <account>Billing & invoices</account> in your account opens it too."
+    },
+    "refunds": {
+        "title": "Refunds",
+        "body": "Every plan can be refunded within {refundDays} days of purchase, or, for a yearly plan, of its most recent renewal. <link>The refund policy</link> explains how to ask and what happens to the license."
+    },
+    "team": {
+        "title": "Team plans",
+        "seats": "A Team plan is priced per seat, from {min} to {max} seats. Each seat is one activated Mac, the buyer’s own included, so someone who works on two Macs takes two seats.",
+        "invites": "The person who bought the plan manages the team in their account. They invite teammates by email, and each invite is a code that works once, expires after a week and needs a free seat.",
+        "changes": "On a monthly or yearly Team plan, you change the number of seats in your account, and the difference shows on your next invoice. To add seats to a one-time Team purchase, email <email>{email}</email>.",
+        "account": "Manage your team in your account"
+    },
+    "openSource": {
+        "title": "Open source",
+        "body": "TablePro is open source under the AGPLv3, including the code for its paid features. A build from source checks the license the same way the released app does.",
+        "agpl": "The AGPL places no conditions on running TablePro, including at work, in a company of any size. Its conditions apply to distributing it, and to offering a modified version to others over a network.",
+        "github": "View on GitHub"
+    },
+    "faq": {
+        "title": "Questions about plans",
+        "more": "More questions about plans and licenses",
+        "items": {
+            "free": {
+                "question": "Is TablePro free?",
+                "answer": "Yes. The Mac app is free to download and use, with no trial period or time limit. A Starter or Team plan adds optional features to the Mac app. The iPhone and iPad app is free, with no in-app purchases."
+            },
+            "ios-license": {
+                "question": "Do I need a license for the iPhone and iPad app?",
+                "answer": "No. It has no paid features and never asks for a license. iCloud Sync is free on iPhone and iPad; to sync with a Mac, the Mac needs Starter or Team."
+            },
+            "seats": {
+                "question": "Is a Team seat one person?",
+                "answer": "No. A seat is one activated Mac. Someone who works on two Macs takes two seats."
+            },
+            "offline": {
+                "question": "Do the paid features need an internet connection?",
+                "answer": "Only from time to time. The license is confirmed with TablePro’s server every {revalidateDays} days, and the paid features keep working for {graceDays} days without a connection."
+            },
+            "lost-key": {
+                "question": "Where do I find my license key?",
+                "answer": "It’s in the email you received after checkout. You can also sign in to <account>your account</account> with the email address you bought with: your key is there, with every Mac it’s activated on."
+            }
+        }
+    }
+}

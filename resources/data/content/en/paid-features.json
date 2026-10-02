@@ -1,0 +1,42 @@
+{
+    "compare-sync": {
+        "detail": "Compare the structure or data of two databases, and review the sync script before it runs.",
+        "lapse": "Opening it shows an alert that asks for a license."
+    },
+    "query-insights": {
+        "detail": "See which queries you run most, which are slowest and which got slower, from this Mac’s history.",
+        "lapse": "The view stays, covered by a license prompt."
+    },
+    "result-charts": {
+        "detail": "Draw bar, line, area and scatter charts from a result set.",
+        "lapse": "The chart stays, covered by a license prompt."
+    },
+    "data-rewind": {
+        "detail": "Put back the values rows had before you saved a change.",
+        "lapse": "Saves are no longer recorded, and restoring shows an alert."
+    },
+    "icloud-sync": {
+        "detail": "Sync connections and settings between your Macs, and with the iPhone and iPad app.",
+        "lapse": "Sync pauses, and Settings says why."
+    },
+    "linked-folders": {
+        "detail": "Read connections from shared folders of .tablepro files, such as a Git repository or a team drive.",
+        "lapse": "Connections from linked folders leave your connection list."
+    },
+    "encrypted-export": {
+        "detail": "Include passwords in a .tablepro export, encrypted with a passphrase.",
+        "lapse": "Exports lose the option to include passwords. Plain exports, and importing encrypted files, keep working."
+    },
+    "environment-variables": {
+        "detail": "Use $VAR in connection fields such as the host or user; TablePro fills it in when you connect.",
+        "lapse": "$VAR is no longer filled in, and nothing says so: the connection uses the text as written."
+    },
+    "team-catalog": {
+        "detail": "Publish connections, without passwords, to a shared folder your team reads through Linked Folders.",
+        "lapse": "The publish commands are hidden."
+    },
+    "team-library": {
+        "detail": "Share connections and saved queries with your team through TablePro’s server. Passwords are never uploaded.",
+        "lapse": "Team connections and queries are hidden until a Team plan is active again."
+    }
+}
