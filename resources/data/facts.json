@@ -141,14 +141,14 @@
     ],
     "dataImport": {
         "formats": [
-            { "id": "csv", "name": "CSV" },
-            { "id": "tsv", "name": "TSV" },
-            { "id": "json", "name": "JSON" },
-            { "id": "jsonl", "name": "JSONL" },
-            { "id": "xlsx", "name": "XLSX" },
-            { "id": "sql", "name": "SQL" }
+            { "id": "csv", "name": "CSV", "exceptEngines": [] },
+            { "id": "tsv", "name": "TSV", "exceptEngines": [] },
+            { "id": "json", "name": "JSON", "exceptEngines": [] },
+            { "id": "jsonl", "name": "JSONL", "exceptEngines": [] },
+            { "id": "xlsx", "name": "XLSX", "exceptEngines": [] },
+            { "id": "sql", "name": "SQL", "exceptEngines": ["mongodb", "redis"] }
         ],
-        "evidence": "Plugins/{CSV,JSON,XLSX,SQL}ImportPlugin @v0.77.0"
+        "evidence": "Plugins/{CSV,JSON,XLSX,SQL}ImportPlugin @v0.77.0; SQLImportPlugin.swift:22 excludedDatabaseTypeIds"
     },
     "export": {
         "formats": [
@@ -272,6 +272,20 @@
             "unit": "days",
             "platform": "mac",
             "evidence": "TablePro/Core/Storage/QueryHistoryStorage+RewindSnapshots.swift:27 @v0.77.0"
+        },
+        "rewindMaxValue": {
+            "value": 1,
+            "max": null,
+            "unit": "MB",
+            "platform": "mac",
+            "evidence": "TablePro/Core/DataWrite/RowWriteOperationBuilder.swift:21 (maximumCapturedValueBytes = 1_048_576) @v0.77.0"
+        },
+        "explainNoise": {
+            "value": 15,
+            "max": null,
+            "unit": "percent",
+            "platform": "mac",
+            "evidence": "TablePro/Models/Query/QueryPlanDiff.swift:57 (noiseRatio = 1.15) @v0.77.0"
         }
     }
 }
