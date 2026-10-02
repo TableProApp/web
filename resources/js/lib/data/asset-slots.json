@@ -1,0 +1,2511 @@
+{
+    "kinds": {
+        "window": {
+            "type": "screenshot",
+            "aspect": "16:9",
+            "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        },
+        "mobile-crop": {
+            "type": "detail",
+            "aspect": "4:5",
+            "sizes": "(min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        },
+        "detail": {
+            "type": "detail",
+            "aspect": "4:3",
+            "sizes": "(min-width: 1280px) 696px, (min-width: 1024px) calc(58.33vw - 51px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        },
+        "phone": {
+            "type": "screenshot-phone",
+            "aspect": "9:19.5",
+            "sizes": "(min-width: 768px) 280px, 240px"
+        },
+        "ipad": {
+            "type": "screenshot-ipad",
+            "aspect": "4:3",
+            "sizes": "(min-width: 1280px) 1008px, (min-width: 1024px) calc(83.33vw - 59px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        },
+        "diagram": {
+            "type": "diagram",
+            "aspect": "16:9",
+            "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        },
+        "illustration": {
+            "type": "illustration",
+            "aspect": "16:9",
+            "sizes": "(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        },
+        "figure": {
+            "type": "per-figure",
+            "aspect": null,
+            "sizes": "(min-width: 752px) 704px, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        },
+        "og-card": {
+            "type": "og-card",
+            "aspect": "1200:630",
+            "sizes": null
+        }
+    },
+    "assets": {
+        "mac-hero-window": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": true,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-hero-window-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "mac-hero-window"
+            },
+            "description": {
+                "en": "TablePro on Mac with the shop sample database (PostgreSQL): the orders table, a query in the editor and its results.",
+                "vi": "TablePro trên Mac với cơ sở dữ liệu mẫu shop (PostgreSQL): table orders, một query trong editor cùng kết quả."
+            }
+        },
+        "mac-hero-window-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": true,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/home",
+                "base": "mac-hero-window-mobile"
+            },
+            "description": {
+                "en": "Close-up of the same window: the query and the first result rows.",
+                "vi": "Cận cảnh cùng cửa sổ: câu query và các dòng kết quả đầu tiên."
+            }
+        },
+        "mac-query-autocomplete": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-query-autocomplete-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-query-autocomplete"
+            },
+            "description": {
+                "en": "SQL editor on shop: a CTE joined to orders, with autocomplete listing the CTE's columns.",
+                "vi": "SQL editor trên shop: một CTE join với orders, autocomplete gợi ý các cột của CTE."
+            }
+        },
+        "mac-query-autocomplete-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-query-autocomplete-mobile"
+            },
+            "description": {
+                "en": "Close-up of the editor: the CTE query and the autocomplete list with the CTE's columns.",
+                "vi": "Cận cảnh editor: query có CTE và danh sách autocomplete gợi ý các cột của CTE."
+            }
+        },
+        "mac-query-parameters-history": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-query-parameters-history"
+            },
+            "description": {
+                "en": "A query with :customer_id and :since parameters, their value panel and the history drawer.",
+                "vi": "Query có tham số :customer_id và :since, khung nhập giá trị và ngăn lịch sử query."
+            }
+        },
+        "mac-explain-compare": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-explain-compare"
+            },
+            "description": {
+                "en": "EXPLAIN Compare on shop.orders: the plan changed from Index Scan to Seq Scan after an index was dropped.",
+                "vi": "EXPLAIN Compare trên shop.orders: plan đổi từ Index Scan sang Seq Scan sau khi xóa một index."
+            }
+        },
+        "mac-query-insights": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-query-insights-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-query-insights"
+            },
+            "description": {
+                "en": "Query Insights for the last 7 days, with one query shape flagged as Got Slower.",
+                "vi": "Query Insights trong 7 ngày qua, một dạng query được đánh dấu Got Slower."
+            }
+        },
+        "mac-query-insights-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-query-insights-mobile"
+            },
+            "description": {
+                "en": "Close-up of Query Insights: the query shape marked Got Slower and its timing change.",
+                "vi": "Cận cảnh Query Insights: dạng query được đánh dấu Got Slower và mức thay đổi thời gian chạy."
+            }
+        },
+        "mac-result-chart": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-result-chart"
+            },
+            "description": {
+                "en": "Monthly revenue from shop.orders as a line chart, one series per order status.",
+                "vi": "Doanh thu theo tháng từ shop.orders dưới dạng biểu đồ đường, mỗi trạng thái đơn hàng một đường."
+            }
+        },
+        "mac-result-map": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-result-map"
+            },
+            "description": {
+                "en": "Populated places from a PostGIS table on the Map view, with the selection synced to the grid.",
+                "vi": "Các địa điểm dân cư từ một table PostGIS trên Map view, vùng chọn đồng bộ với data grid."
+            }
+        },
+        "mac-edit-preview-sql": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-edit-preview-sql-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-edit-preview-sql"
+            },
+            "description": {
+                "en": "Four staged price edits in shop.products and the Preview SQL sheet with their UPDATE statements.",
+                "vi": "Bốn thay đổi giá đang chờ lưu trong shop.products và hộp thoại Preview SQL với các câu UPDATE tương ứng."
+            }
+        },
+        "mac-edit-preview-sql-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-edit-preview-sql-mobile"
+            },
+            "description": {
+                "en": "Close-up of the Preview SQL sheet: the UPDATE statements for the four staged edits.",
+                "vi": "Cận cảnh hộp thoại Preview SQL: các câu UPDATE cho bốn thay đổi đang chờ lưu."
+            }
+        },
+        "mac-grid-highlight-rules": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-grid-highlight-rules"
+            },
+            "description": {
+                "en": "shop.orders with highlight rules: paid rows green, refunded rows orange, the rules popover open.",
+                "vi": "shop.orders với highlight rules: dòng paid màu xanh lá, dòng refunded màu cam, popover quy tắc đang mở."
+            }
+        },
+        "mac-fk-picker": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-fk-picker"
+            },
+            "description": {
+                "en": "The foreign key picker on orders.user_id, showing customers by last and first name.",
+                "vi": "Bộ chọn giá trị khóa ngoại trên orders.user_id, hiển thị khách hàng theo họ và tên."
+            }
+        },
+        "mac-safe-mode-touchid": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-safe-mode-touchid"
+            },
+            "description": {
+                "en": "A production-tagged connection in Safe Mode asking for Touch ID before a DELETE runs.",
+                "vi": "Một connection gắn tag production đang bật Safe Mode, yêu cầu Touch ID trước khi chạy câu DELETE."
+            }
+        },
+        "mac-data-rewind-review": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-data-rewind-review"
+            },
+            "description": {
+                "en": "Restore Previous Values review: three rows will restore, one changed since the save.",
+                "vi": "Màn hình xem lại Restore Previous Values: ba dòng sẽ được khôi phục, một dòng đã thay đổi sau lần lưu."
+            }
+        },
+        "mac-structure-ddl-preview": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-structure-ddl-preview-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-structure-ddl-preview"
+            },
+            "description": {
+                "en": "Structure tab of shop.reviews with a staged CHECK constraint and a new index, the DDL preview open.",
+                "vi": "Tab Structure của shop.reviews với CHECK constraint và index mới đang chờ lưu, bản xem trước DDL đang mở."
+            }
+        },
+        "mac-structure-ddl-preview-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-structure-ddl-preview-mobile"
+            },
+            "description": {
+                "en": "Close-up of the DDL preview: the statements for the staged constraint and index.",
+                "vi": "Cận cảnh bản xem trước DDL: các câu lệnh cho constraint và index đang chờ lưu."
+            }
+        },
+        "mac-er-diagram": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-er-diagram-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-er-diagram"
+            },
+            "description": {
+                "en": "ER diagram of the shop schema, product_tags drawn as a many-to-many link, the Export menu open.",
+                "vi": "ER diagram của schema shop, product_tags hiển thị như quan hệ nhiều-nhiều, menu Export đang mở."
+            }
+        },
+        "mac-er-diagram-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-er-diagram-mobile"
+            },
+            "description": {
+                "en": "Close-up of the diagram: products and tags joined by a many-to-many link.",
+                "vi": "Cận cảnh sơ đồ: products và tags nối với nhau bằng quan hệ nhiều-nhiều."
+            }
+        },
+        "mac-compare-sync-structure": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-compare-sync-structure-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-compare-sync-structure"
+            },
+            "description": {
+                "en": "Compare & Sync from shop to shop_staging: a column length difference and a DROP COLUMN held back.",
+                "vi": "Compare & Sync từ shop sang shop_staging: một cột khác độ dài và một lệnh DROP COLUMN chưa được đưa vào script."
+            }
+        },
+        "mac-compare-sync-structure-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-compare-sync-structure-mobile"
+            },
+            "description": {
+                "en": "Close-up of the differences: the column length change and the DROP COLUMN held back.",
+                "vi": "Cận cảnh danh sách khác biệt: thay đổi độ dài cột và lệnh DROP COLUMN chưa được đưa vào script."
+            }
+        },
+        "mac-copy-to-review": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-copy-to-review"
+            },
+            "description": {
+                "en": "Copy To from MariaDB shop to PostgreSQL shop_pg, listing type approximations before copying.",
+                "vi": "Copy To từ MariaDB shop sang PostgreSQL shop_pg, liệt kê các kiểu dữ liệu được chuyển gần đúng trước khi sao chép."
+            }
+        },
+        "mac-users-roles-mysql": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-users-roles-mysql"
+            },
+            "description": {
+                "en": "Users & Roles on MySQL: app_reader granted SELECT on one column, the SQL preview open.",
+                "vi": "Users & Roles trên MySQL: app_reader được cấp SELECT trên một cột, bản xem trước SQL đang mở."
+            }
+        },
+        "mac-server-dashboard-postgresql": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-server-dashboard-postgresql-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-server-dashboard-postgresql"
+            },
+            "description": {
+                "en": "Server Dashboard on PostgreSQL: active sessions, one long SELECT selected with Terminate.",
+                "vi": "Server Dashboard trên PostgreSQL: các session đang chạy, một câu SELECT chạy lâu được chọn cùng nút Terminate."
+            }
+        },
+        "mac-server-dashboard-postgresql-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-server-dashboard-postgresql-mobile"
+            },
+            "description": {
+                "en": "Close-up of the sessions list: the long-running SELECT and the Terminate button.",
+                "vi": "Cận cảnh danh sách session: câu SELECT chạy lâu và nút Terminate."
+            }
+        },
+        "mac-data-files-window": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-data-files-window-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-data-files-window"
+            },
+            "description": {
+                "en": "Data Files window with orders.csv (20,000 rows) searched for \"Hanoi\": 2,498 matches.",
+                "vi": "Cửa sổ Data Files với orders.csv (20.000 dòng), tìm \"Hanoi\": 2.498 kết quả."
+            }
+        },
+        "mac-data-files-window-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-data-files-window-mobile"
+            },
+            "description": {
+                "en": "Close-up of the search: rows matching \"Hanoi\" and the 2,498 of 20,000 count.",
+                "vi": "Cận cảnh kết quả tìm: các dòng khớp với \"Hanoi\" và số đếm 2.498 trên 20.000."
+            }
+        },
+        "mac-data-files-statistics": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-data-files-statistics"
+            },
+            "description": {
+                "en": "Column statistics for the status column of orders.csv.",
+                "vi": "Thống kê cột status của orders.csv."
+            }
+        },
+        "mac-import-mapping": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-import-mapping"
+            },
+            "description": {
+                "en": "Importing a CSV into shop.orders: the column mapping and the on-error choice.",
+                "vi": "Import file CSV vào shop.orders: ghép cột và lựa chọn khi gặp lỗi."
+            }
+        },
+        "mac-export-dialog": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-export-dialog"
+            },
+            "description": {
+                "en": "The Export dialog with XLSX chosen for three tables of shop.",
+                "vi": "Hộp thoại Export chọn định dạng XLSX cho ba table của shop."
+            }
+        },
+        "mac-backup-dump": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-backup-dump"
+            },
+            "description": {
+                "en": "Backup Dump of shop through pg_dump over the connection's SSH tunnel.",
+                "vi": "Backup Dump cơ sở dữ liệu shop bằng pg_dump qua SSH tunnel của connection."
+            }
+        },
+        "mac-ai-chat": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-ai-chat-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-ai-chat"
+            },
+            "description": {
+                "en": "AI chat on shop answering \"top 5 customers by revenue last month\" with a query ready to apply.",
+                "vi": "AI chat trên shop trả lời \"5 khách hàng có doanh thu cao nhất tháng trước\" kèm query sẵn sàng đưa vào editor."
+            }
+        },
+        "mac-ai-chat-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-ai-chat-mobile"
+            },
+            "description": {
+                "en": "Close-up of the chat: the answer, its query and the Apply to Editor button.",
+                "vi": "Cận cảnh khung chat: câu trả lời, query đi kèm và nút Apply to Editor."
+            }
+        },
+        "mac-agent-mode": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-agent-mode-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-agent-mode"
+            },
+            "description": {
+                "en": "Agent mode session \"Find orders with no items\": three statements, one write waiting for Run.",
+                "vi": "Phiên Agent mode \"Find orders with no items\": ba câu lệnh, một lệnh ghi đang chờ bấm Run."
+            }
+        },
+        "mac-agent-mode-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-agent-mode-mobile"
+            },
+            "description": {
+                "en": "Close-up of the waiting write: its statement card with Run and Reject.",
+                "vi": "Cận cảnh lệnh ghi đang chờ: thẻ câu lệnh với nút Run và Reject."
+            }
+        },
+        "mac-mcp-settings": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-mcp-settings"
+            },
+            "description": {
+                "en": "Settings > Integrations: the MCP server running and the Claude Code setup snippet.",
+                "vi": "Cài đặt > Tích hợp (Settings > Integrations): MCP server đang chạy, kèm đoạn cấu hình cho Claude Code."
+            }
+        },
+        "mac-connection-ssh-form": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-connection-ssh-form"
+            },
+            "description": {
+                "en": "Connection form, Network tab: SSH through bastion.acme.internal with one jump host.",
+                "vi": "Form connection, tab Network: SSH qua bastion.acme.internal với một jump host."
+            }
+        },
+        "mac-connection-library": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-connection-library-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-connection-library"
+            },
+            "description": {
+                "en": "Welcome window: Production and Staging groups, coloured tags and the Chinook sample.",
+                "vi": "Cửa sổ Welcome: nhóm Production và Staging, tag màu và cơ sở dữ liệu mẫu Chinook."
+            }
+        },
+        "mac-connection-library-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-connection-library-mobile"
+            },
+            "description": {
+                "en": "Close-up of the connection list: the Production group with its red tag and the Chinook sample.",
+                "vi": "Cận cảnh danh sách connection: nhóm Production với tag màu đỏ và cơ sở dữ liệu mẫu Chinook."
+            }
+        },
+        "mac-import-other-app": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-import-other-app"
+            },
+            "description": {
+                "en": "Import from Other App listing three DataGrip connections with their passwords found.",
+                "vi": "Import from Other App liệt kê ba connection từ DataGrip kèm mật khẩu đã tìm thấy."
+            }
+        },
+        "mac-open-project-folder": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-open-project-folder"
+            },
+            "description": {
+                "en": "Open Project Folder on a Laravel project: .env and .env.production, the second marked Alert.",
+                "vi": "Open Project Folder trên một project Laravel: .env và .env.production, file thứ hai được đánh dấu Alert."
+            }
+        },
+        "mac-tunnel-command": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-tunnel-command"
+            },
+            "description": {
+                "en": "The Network tab with the kubectl port-forward preset filled in for svc/orders-db.",
+                "vi": "Tab Network với mẫu kubectl port-forward đã điền cho svc/orders-db."
+            }
+        },
+        "diagram-icloud-sync": {
+            "kind": "diagram",
+            "type": "diagram",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "per-locale",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "diagram-icloud-sync"
+            },
+            "description": {
+                "en": "Diagram: connections, groups and tags syncing between Mac, iCloud and iPhone; passwords only with Sync Passwords on.",
+                "vi": "Sơ đồ: connection, nhóm và tag đồng bộ giữa Mac, iCloud và iPhone; mật khẩu chỉ đồng bộ khi bật Sync Passwords."
+            }
+        },
+        "mac-team-library": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-team-library"
+            },
+            "description": {
+                "en": "Favorites sidebar with a Team Library section: three saved queries labelled by who published them.",
+                "vi": "Sidebar Favorites có mục Team Library: ba query đã lưu, ghi tên người chia sẻ."
+            }
+        },
+        "mac-handoff-ios": {
+            "kind": "illustration",
+            "type": "illustration",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-handoff-ios"
+            },
+            "description": {
+                "en": "Handoff: the Chinook Track table open on iPhone, offered in the Mac Dock.",
+                "vi": "Handoff: table Track của Chinook đang mở trên iPhone, xuất hiện trong Dock của Mac."
+            }
+        },
+        "mac-engine-picker": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-engine-picker"
+            },
+            "description": {
+                "en": "The new-connection type chooser grouped by category, with MongoDB under Document marked Not Installed.",
+                "vi": "Hộp chọn loại connection theo nhóm, MongoDB trong nhóm Document được ghi Not Installed."
+            }
+        },
+        "mac-db-postgresql-explain": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-postgresql-explain"
+            },
+            "description": {
+                "en": "EXPLAIN ANALYZE diagram for a query on shop.orders, with cost bars.",
+                "vi": "Sơ đồ EXPLAIN ANALYZE cho một query trên shop.orders, kèm thanh chi phí."
+            }
+        },
+        "mac-db-mysql-query": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-mysql-query-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-mysql-query"
+            },
+            "description": {
+                "en": "MySQL: orders joined to users in the shop database, results below.",
+                "vi": "MySQL: query join orders với users trong cơ sở dữ liệu shop, kết quả bên dưới."
+            }
+        },
+        "mac-db-mysql-query-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-mysql-query-mobile"
+            },
+            "description": {
+                "en": "Close-up of the MySQL query and its first result rows.",
+                "vi": "Cận cảnh query MySQL và các dòng kết quả đầu tiên."
+            }
+        },
+        "mac-db-sqlite-chinook": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-sqlite-chinook-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-sqlite-chinook"
+            },
+            "description": {
+                "en": "The bundled Chinook SQLite sample with the Track table filtered by genre.",
+                "vi": "Cơ sở dữ liệu mẫu Chinook (SQLite) đi kèm ứng dụng, table Track được lọc theo thể loại."
+            }
+        },
+        "mac-db-sqlite-chinook-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-sqlite-chinook-mobile"
+            },
+            "description": {
+                "en": "Close-up of the Track table with its genre filter applied.",
+                "vi": "Cận cảnh table Track với bộ lọc thể loại đang áp dụng."
+            }
+        },
+        "mac-db-mongodb-document": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-mongodb-document-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-mongodb-document"
+            },
+            "description": {
+                "en": "The Insert Document sheet in Extended JSON over the events collection.",
+                "vi": "Hộp thoại Insert Document dạng Extended JSON trên collection events."
+            }
+        },
+        "mac-db-mongodb-document-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-mongodb-document-mobile"
+            },
+            "description": {
+                "en": "Close-up of the Extended JSON document in the Insert Document sheet.",
+                "vi": "Cận cảnh document Extended JSON trong hộp thoại Insert Document."
+            }
+        },
+        "mac-db-redis-keys": {
+            "kind": "window",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-redis-keys-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-redis-keys"
+            },
+            "description": {
+                "en": "Redis key tree split on \":\" with type, TTL and value columns.",
+                "vi": "Cây key Redis phân theo dấu \":\" với các cột type, TTL và value."
+            }
+        },
+        "mac-db-redis-keys-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-redis-keys-mobile"
+            },
+            "description": {
+                "en": "Close-up of the key tree with the type and TTL of a few keys.",
+                "vi": "Cận cảnh cây key với type và TTL của một vài key."
+            }
+        },
+        "mac-db-sqlserver-script": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-sqlserver-script"
+            },
+            "description": {
+                "en": "A T-SQL script with GO batches and PRINT output in the Output pane.",
+                "vi": "Script T-SQL với các batch GO và kết quả PRINT trong khung Output."
+            }
+        },
+        "mac-db-oracle-plsql": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-oracle-plsql"
+            },
+            "description": {
+                "en": "A PL/SQL block with DBMS_OUTPUT lines in the Output pane.",
+                "vi": "Một khối PL/SQL với các dòng DBMS_OUTPUT trong khung Output."
+            }
+        },
+        "mac-db-clickhouse-parts": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-clickhouse-parts"
+            },
+            "description": {
+                "en": "The Parts tab of a MergeTree table: partitions, parts and row counts.",
+                "vi": "Tab Parts của một table MergeTree: partition, part và số dòng."
+            }
+        },
+        "mac-db-duckdb-parquet": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-duckdb-parquet"
+            },
+            "description": {
+                "en": "A Parquet file opened in DuckDB as a view and queried with SQL.",
+                "vi": "File Parquet mở trong DuckDB dưới dạng view và được query bằng SQL."
+            }
+        },
+        "mac-db-cassandra-table": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-cassandra-table"
+            },
+            "description": {
+                "en": "A Cassandra table browsed with CQL; scalar columns are editable.",
+                "vi": "Duyệt một table Cassandra bằng CQL; các cột scalar có thể sửa."
+            }
+        },
+        "mac-db-redshift-ddl": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-redshift-ddl"
+            },
+            "description": {
+                "en": "A Redshift table's DDL with DISTKEY and SORTKEY; the structure is read-only.",
+                "vi": "DDL của một table Redshift với DISTKEY và SORTKEY; tab Structure ở chế độ chỉ đọc."
+            }
+        },
+        "mac-db-d1-databases": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-d1-databases"
+            },
+            "description": {
+                "en": "The account's D1 databases listed in the sidebar, one of them open in the editor.",
+                "vi": "Các cơ sở dữ liệu D1 của tài khoản hiển thị ở sidebar, một cơ sở dữ liệu đang mở trong editor."
+            }
+        },
+        "mac-db-turso-remote": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-turso-remote"
+            },
+            "description": {
+                "en": "A remote Turso database: tables in the sidebar and a query result.",
+                "vi": "Một cơ sở dữ liệu Turso từ xa: các table trong sidebar và kết quả query."
+            }
+        },
+        "mac-db-dynamodb-planner": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-dynamodb-planner"
+            },
+            "description": {
+                "en": "The DynamoDB planner choosing Query over Scan, with estimated read capacity.",
+                "vi": "Planner của DynamoDB chọn Query thay vì Scan, kèm read capacity ước tính."
+            }
+        },
+        "mac-db-bigquery-dry-run": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-bigquery-dry-run"
+            },
+            "description": {
+                "en": "BigQuery Dry Run from the Explain menu: bytes processed and estimated cost.",
+                "vi": "Dry Run của BigQuery từ menu Explain: số byte xử lý và chi phí ước tính."
+            }
+        },
+        "mac-db-snowflake-session": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-snowflake-session"
+            },
+            "description": {
+                "en": "A Snowflake connection with warehouse and role set in Session Context, a result below.",
+                "vi": "Connection Snowflake với warehouse và role đặt trong Session Context, kết quả bên dưới."
+            }
+        },
+        "mac-db-etcd-keys": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-etcd-keys"
+            },
+            "description": {
+                "en": "etcd keys under a prefix root with their values and leases.",
+                "vi": "Các key etcd dưới một prefix gốc, kèm value và lease."
+            }
+        },
+        "mac-db-elasticsearch-console": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-elasticsearch-console"
+            },
+            "description": {
+                "en": "Query DSL console: a GET _search request and its hits as rows.",
+                "vi": "Console Query DSL: một request GET _search và các hit hiển thị thành dòng."
+            }
+        },
+        "mac-db-surrealdb-query": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-surrealdb-query"
+            },
+            "description": {
+                "en": "A SurrealQL query and its records in the grid.",
+                "vi": "Một query SurrealQL và các record trong data grid."
+            }
+        },
+        "mac-db-teradata-sidebar": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-teradata-sidebar"
+            },
+            "description": {
+                "en": "The Teradata sidebar listing procedures, with macros under Functions.",
+                "vi": "Sidebar Teradata liệt kê procedure, và macro trong mục Functions."
+            }
+        },
+        "mac-db-trino-catalogs": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-trino-catalogs"
+            },
+            "description": {
+                "en": "A Trino query joining tables from two catalogs.",
+                "vi": "Một query Trino join các table từ hai catalog."
+            }
+        },
+        "mac-db-beancount-bql": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-beancount-bql"
+            },
+            "description": {
+                "en": "A Beancount ledger's projected tables with a BQL query result.",
+                "vi": "Các table được dựng từ sổ cái Beancount và kết quả một query BQL."
+            }
+        },
+        "mac-db-kafka-consume": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-kafka-consume"
+            },
+            "description": {
+                "en": "KafkaQL CONSUME on an orders topic: partition, offset, key and value.",
+                "vi": "KafkaQL CONSUME trên topic orders: partition, offset, key và value."
+            }
+        },
+        "ios-connection-list": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-connection-list"
+            },
+            "description": {
+                "en": "TablePro on iPhone: Favorites with the Chinook sample, a Production group and tagged connections.",
+                "vi": "TablePro trên iPhone: mục Favorites có cơ sở dữ liệu mẫu Chinook, nhóm Production và các connection có tag."
+            }
+        },
+        "ipad-table-browse": {
+            "kind": "ipad",
+            "type": "screenshot-ipad",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ipad-table-browse"
+            },
+            "description": {
+                "en": "TablePro on iPad showing the Chinook Track table.",
+                "vi": "TablePro trên iPad hiển thị table Track của Chinook."
+            }
+        },
+        "ios-table-browse": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-table-browse"
+            },
+            "description": {
+                "en": "The Chinook Track table filtered by genre, with row cards and the page range.",
+                "vi": "Table Track của Chinook lọc theo thể loại, hiển thị dạng thẻ và khoảng trang."
+            }
+        },
+        "ios-row-edit": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-row-edit"
+            },
+            "description": {
+                "en": "Editing a track with Composer set to NULL and a link to the related album.",
+                "vi": "Sửa một track, đặt Composer thành NULL, kèm liên kết tới album liên quan."
+            }
+        },
+        "ios-query": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-query"
+            },
+            "description": {
+                "en": "A grouped SQL query and its results in the Query tab.",
+                "vi": "Một query SQL có GROUP BY và kết quả trong tab Query."
+            }
+        },
+        "ios-live-activity": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-live-activity"
+            },
+            "description": {
+                "en": "A running query as a Live Activity on the Lock Screen, with elapsed time and rows received.",
+                "vi": "Một query đang chạy hiển thị dạng Hoạt động trực tiếp trên Màn hình khóa, kèm thời gian đã chạy và số dòng đã nhận."
+            }
+        },
+        "ios-connection-form": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-connection-form"
+            },
+            "description": {
+                "en": "A new PostgreSQL connection with Read-Only Safe Mode, SSL and an SSH tunnel.",
+                "vi": "Connection PostgreSQL mới với Safe Mode Read-Only, SSL và SSH tunnel."
+            }
+        },
+        "ios-safe-mode-confirm": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-safe-mode-confirm"
+            },
+            "description": {
+                "en": "Confirm Writes asking before an UPDATE runs.",
+                "vi": "Confirm Writes hỏi lại trước khi chạy câu UPDATE."
+            }
+        },
+        "ipad-two-windows": {
+            "kind": "ipad",
+            "type": "screenshot-ipad",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ipad-two-windows"
+            },
+            "description": {
+                "en": "Two TablePro windows open at once on iPad in Stage Manager, each on a different table.",
+                "vi": "Hai cửa sổ TablePro mở cùng lúc trên iPad trong Stage Manager, mỗi cửa sổ một table."
+            }
+        },
+        "ios-widgets": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-widgets"
+            },
+            "description": {
+                "en": "Quick Connect widgets on the Home Screen.",
+                "vi": "Tiện ích Quick Connect trên Màn hình chính."
+            }
+        },
+        "ios-shortcuts-add-rows": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-shortcuts-add-rows"
+            },
+            "description": {
+                "en": "A Shortcuts action that adds CSV rows to a table.",
+                "vi": "Một tác vụ trong ứng dụng Phím tắt thêm các dòng CSV vào table."
+            }
+        },
+        "ios-settings-privacy": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ios-settings-privacy"
+            },
+            "description": {
+                "en": "Settings on iPhone: Face ID lock and iCloud Sync on, usage data sharing off.",
+                "vi": "Cài đặt (Settings) trên iPhone: bật khóa Face ID và iCloud Sync, tắt chia sẻ dữ liệu sử dụng."
+            }
+        },
+        "blog-tablepro-0-67-1": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3028:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-67-1"
+            },
+            "description": {
+                "en": "The results pane in Chart mode: a bar chart of a query result, beside the Data, Structure and JSON views.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-67-2": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1990:1372",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-67-2"
+            },
+            "description": {
+                "en": "The SQL editor with three folded regions shown as chips, and a peek popover over a folded CREATE TABLE.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-67-3": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1780:1074",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-67-3"
+            },
+            "description": {
+                "en": "The editor gutter's run control beside one statement, which runs only that statement.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-67-4": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3028:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-67-4"
+            },
+            "description": {
+                "en": "The data grid find bar searching the Customer table for \"rua\", with the matching cell highlighted.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-67-5": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-67-5"
+            },
+            "description": {
+                "en": "The filter panel on a MongoDB orders collection, with the field path browser listing nested fields and their types.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-67-6": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-67-6"
+            },
+            "description": {
+                "en": "Two filter rows on fields inside one MongoDB array, with the array element scope control and the matching orders.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-68-1": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-68-1"
+            },
+            "description": {
+                "en": "The Compare & Sync window: objects grouped by kind and marked by difference, and the generated ALTER script.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-68-2": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-68-2"
+            },
+            "description": {
+                "en": "Compare & Sync in row data mode: rows side by side, key columns highlighted and differing values marked.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-68-3": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-68-3"
+            },
+            "description": {
+                "en": "The sidebar with a PostgreSQL function selected, two overloads told apart by arguments, and the read-only source viewer.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-68-4": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-68-4"
+            },
+            "description": {
+                "en": "The data grid scrolled far to the right on a table with several hundred columns, every cell painted.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-68-5": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1440:1176",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-68-5"
+            },
+            "description": {
+                "en": "Settings, License pane: a masked key, the activated Macs with Release buttons, and the team seat list.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-69-1": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "2864:1830",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-69-1"
+            },
+            "description": {
+                "en": "The Restore Previous Values sheet listing rows from a committed save, with rows that cannot be restored explained.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-69-2": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "2864:1830",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-69-2"
+            },
+            "description": {
+                "en": "The structure editor on the Constraints tab, with check constraints and a generated column's expression.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-69-3": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1640:1368",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-69-3"
+            },
+            "description": {
+                "en": "A new SQLite connection on the Remote File pane: SSH fields and a remote path, opened as a read-only copy.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-69-4": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "2864:1830",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-69-4"
+            },
+            "description": {
+                "en": "A table renamed inline in the sidebar tree, its name selected in an edit field.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-70-1": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "2400:1500",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-70-1"
+            },
+            "description": {
+                "en": "The row inspector's JSON tab with a foreign key expanded in place into the row it references.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-70-2": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "2400:1500",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-70-2"
+            },
+            "description": {
+                "en": "A multi-statement MongoDB JavaScript script in the editor, autocomplete open after find(), and documents below.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-70-3": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "2400:1500",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-70-3"
+            },
+            "description": {
+                "en": "A column dragged to a new position, and the SQLite table rebuild script shown before it runs.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-72-1": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "964:1054",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-72-1"
+            },
+            "description": {
+                "en": "The Backup Dump sheet listing the databases on a connection, with one ticked and Choose Destination.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-72-2": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1540:1316",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-72-2"
+            },
+            "description": {
+                "en": "The export sheet with three tables ticked and a popover setting one table's WHERE, row limit and columns.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-72-3": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1550:1310",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-72-3"
+            },
+            "description": {
+                "en": "The Transfer Tables sheet: a destination connection, source tables with mapped column counts, and a mapping popover.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-72-4": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "2002:1398",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-72-4"
+            },
+            "description": {
+                "en": "Script Editor's dictionary window for TablePro, listing the Standard Suite and the TablePro Suite.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-73-1": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1704:1278",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-73-1"
+            },
+            "description": {
+                "en": "The Copy To review step: the generated PostgreSQL CREATE TABLE for a MySQL table and the approximated column types.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-73-2": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1850:1440",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-73-2"
+            },
+            "description": {
+                "en": "The PostgreSQL connection editor with its General, Network, Options and Appearance sections.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-73-3": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1850:1440",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-73-3"
+            },
+            "description": {
+                "en": "The Network section set to Tunnel Command with the kubectl port-forward method and the Will Run argument list.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-73-4": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1368:1140",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-73-4"
+            },
+            "description": {
+                "en": "The SQLite rebuild review sheet with the full script, ending in a PRAGMA foreign_key_check.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-74-1": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-74-1"
+            },
+            "description": {
+                "en": "The Map view drawing PostGIS polygons, lines and points over an Apple Maps street map, with a line saying what was drawn.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-74-2": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-74-2"
+            },
+            "description": {
+                "en": "The Highlight Rules popover over an invoice grid, with rows tinted by country and single cells tinted orange.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-74-3": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "2464:620",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-74-3"
+            },
+            "description": {
+                "en": "The SQL editor marking invisible and look-alike characters in a pasted query.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-76-1": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-76-1"
+            },
+            "description": {
+                "en": "Agent mode on the Chinook sample: a session waiting, a proposed UPDATE with Run, Always Allow and Reject, and the results.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-76-2": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "1600:960",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-76-2"
+            },
+            "description": {
+                "en": "Settings > Integrations with the MCP server off and an Outside MCP Servers list with two servers.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-76-3": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1826",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-76-3"
+            },
+            "description": {
+                "en": "The Data Files window on orders.csv searched for Hanoi, with 2,498 of 20,000 rows in the status bar.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-76-4": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-76-4"
+            },
+            "description": {
+                "en": "The Insert Document sheet over an empty events collection, with a document written in Extended JSON.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-77-1": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-77-1"
+            },
+            "description": {
+                "en": "The Chinook sample with a Folders section in the sidebar holding Music and Sales folders, and the Track table open.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-77-2": {
+            "kind": "figure",
+            "type": "screenshot",
+            "slot": true,
+            "aspect": "3024:1722",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-77-2"
+            },
+            "description": {
+                "en": "The import sheet for customers.csv into the Customer table, with a restored mapping and the Match Columns menu open.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-0-77-3": {
+            "kind": "figure",
+            "type": "detail",
+            "slot": true,
+            "aspect": "900:720",
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-0-77-3"
+            },
+            "description": {
+                "en": "A new PostgreSQL connection on Options, with Connect timeout and Query timeout fields showing inherited values.",
+                "vi": null
+            }
+        },
+        "blog-tablepro-for-iphone-1": {
+            "kind": "phone",
+            "type": "screenshot-phone",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/blog",
+                "base": "blog-tablepro-for-iphone-1"
+            },
+            "description": {
+                "en": "The Chinook Track table in TablePro on iPhone, with the pager reading 1-100 of 3503.",
+                "vi": null
+            }
+        }
+    }
+}
