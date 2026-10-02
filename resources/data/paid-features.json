@@ -1,0 +1,112 @@
+[
+    {
+        "id": "compare-sync",
+        "proFeature": "compareSync",
+        "name": "Compare & Sync",
+        "tier": "starter",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.68.0",
+        "lapse": ["alert"],
+        "highlight": true,
+        "page": { "path": "/features/schema", "anchor": "compare-sync" }
+    },
+    {
+        "id": "query-insights",
+        "proFeature": "queryInsights",
+        "name": "Query Insights",
+        "tier": "starter",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.66.0",
+        "lapse": ["overlay"],
+        "highlight": true,
+        "page": { "path": "/features/querying", "anchor": "performance" }
+    },
+    {
+        "id": "result-charts",
+        "proFeature": "resultCharts",
+        "name": "Result Charts",
+        "tier": "starter",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.67.0",
+        "lapse": ["overlay"],
+        "highlight": false,
+        "page": { "path": "/features/querying", "anchor": "results" }
+    },
+    {
+        "id": "data-rewind",
+        "proFeature": "dataRewind",
+        "name": "Data Rewind",
+        "tier": "starter",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.69.0",
+        "lapse": ["alert", "disabled", "silent"],
+        "highlight": true,
+        "page": { "path": "/features/data-editing", "anchor": "data-rewind" }
+    },
+    {
+        "id": "icloud-sync",
+        "proFeature": "iCloudSync",
+        "name": "iCloud Sync",
+        "tier": "starter",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.19.0",
+        "lapse": ["disabled"],
+        "highlight": true,
+        "page": { "path": "/features/sync-and-teams", "anchor": "icloud-sync" }
+    },
+    {
+        "id": "linked-folders",
+        "proFeature": "linkedFolders",
+        "name": "Linked Folders",
+        "tier": "starter",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.25.0",
+        "lapse": ["hidden", "disabled"],
+        "highlight": false,
+        "page": { "path": "/features/sync-and-teams", "anchor": "linked-folders" }
+    },
+    {
+        "id": "encrypted-export",
+        "proFeature": "encryptedExport",
+        "name": "Encrypted Export",
+        "tier": "starter",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.25.0",
+        "lapse": ["disabled"],
+        "highlight": false,
+        "page": { "path": "/features/sync-and-teams", "anchor": "share" }
+    },
+    {
+        "id": "environment-variables",
+        "proFeature": "envVarReferences",
+        "name": "Environment Variables",
+        "tier": "starter",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.25.0",
+        "lapse": ["silent"],
+        "highlight": false,
+        "page": { "path": "/features/connections", "anchor": "credentials" }
+    },
+    {
+        "id": "team-catalog",
+        "proFeature": "teamCatalog",
+        "name": "Team Catalog",
+        "tier": "team",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.56.0",
+        "lapse": ["hidden"],
+        "highlight": true,
+        "page": { "path": "/features/sync-and-teams", "anchor": "team" }
+    },
+    {
+        "id": "team-library",
+        "proFeature": "teamLibrary",
+        "name": "Team Library",
+        "tier": "team",
+        "platforms": ["mac"],
+        "sinceAppVersion": "0.56.0",
+        "lapse": ["hidden"],
+        "highlight": true,
+        "page": { "path": "/features/sync-and-teams", "anchor": "team" }
+    }
+]
