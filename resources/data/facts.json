@@ -1,0 +1,277 @@
+{
+    "verifiedAt": "2026-10-02",
+    "links": {
+        "github": "https://github.com/TableProApp/TablePro",
+        "issues": "https://github.com/TableProApp/TablePro/issues",
+        "license": "https://github.com/TableProApp/TablePro/blob/main/LICENSE",
+        "appStore": "https://apps.apple.com/app/tablepro/id6761621829",
+        "sponsorsProgram": "https://github.com/sponsors/datlechin",
+        "discord": "https://discord.gg/hCNmUUbnD4",
+        "x": "https://x.com/tableproapp",
+        "facebook": "https://www.facebook.com/tableproapp",
+        "telegram": "https://t.me/tablepro_app",
+        "docs": "https://docs.tablepro.app",
+        "changelog": "https://docs.tablepro.app/changelog",
+        "raycast": "https://www.raycast.com/ngoquocdat/tablepro"
+    },
+    "support": { "email": "hello@tablepro.app" },
+    "openSource": { "license": "AGPL-3.0" },
+    "ai": {
+        "platforms": ["mac"],
+        "providers": [
+            "GitHub Copilot",
+            "ChatGPT",
+            "Cursor",
+            "Claude",
+            "Claude Agent",
+            "OpenAI",
+            "OpenRouter",
+            "Gemini",
+            "xAI",
+            "Ollama",
+            "llama.cpp",
+            "MLX",
+            "OpenCode Zen",
+            "OpenAI-compatible"
+        ],
+        "evidence": "TablePro/Models/AI/AIModels.swift:10-45 @v0.77.0"
+    },
+    "mcp": {
+        "platforms": ["mac"],
+        "host": "127.0.0.1",
+        "defaultPort": 23508,
+        "enabledByDefault": false,
+        "toolGroups": [
+            "connections",
+            "schema-discovery",
+            "reading-data",
+            "writing-data",
+            "databases-and-objects",
+            "server-administration",
+            "workspace"
+        ],
+        "clients": {
+            "setupSheet": ["Claude Code", "Claude Desktop", "Cursor", "Zed"],
+            "bridge": [
+                "Claude Desktop",
+                "Claude Code",
+                "Cursor",
+                "VS Code",
+                "Cline",
+                "Continue",
+                "Zed",
+                "Windsurf",
+                "Antigravity",
+                "Goose"
+            ]
+        },
+        "evidence": "TablePro/Views/Settings/Components/IntegrationClient.swift:4-7; docs/external-api/mcp-clients.mdx:3; docs/external-api/mcp-tools.mdx:20-30 @v0.77.0"
+    },
+    "safeMode": {
+        "mac": {
+            "levels": [
+                { "id": "silent", "name": "Silent" },
+                { "id": "alert", "name": "Alert" },
+                { "id": "alertFull", "name": "Alert (Full)" },
+                { "id": "safeMode", "name": "Safe Mode" },
+                { "id": "safeModeFull", "name": "Safe Mode (Full)" },
+                { "id": "readOnly", "name": "Read-Only" }
+            ],
+            "default": "silent",
+            "evidence": "TablePro/Models/Connection/SafeModeLevel.swift:8-46 @v0.77.0"
+        },
+        "ios": {
+            "levels": [
+                { "id": "off", "name": "Off" },
+                { "id": "confirmWrites", "name": "Confirm Writes" },
+                { "id": "readOnly", "name": "Read-Only" }
+            ],
+            "default": "off",
+            "evidence": "Packages/TableProCore/Sources/TableProModels/SafeModeLevel.swift:9-33 @232e8dae6"
+        }
+    },
+    "filterOperators": {
+        "mac": [
+            "=",
+            "!=",
+            "CONTAINS",
+            "NOT CONTAINS",
+            "STARTS WITH",
+            "ENDS WITH",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "IS NULL",
+            "IS NOT NULL",
+            "IS EMPTY",
+            "IS NOT EMPTY",
+            "IN",
+            "NOT IN",
+            "BETWEEN",
+            "REGEX"
+        ],
+        "ios": [
+            "=",
+            "!=",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "LIKE",
+            "NOT LIKE",
+            "IS NULL",
+            "IS NOT NULL",
+            "IN",
+            "NOT IN",
+            "BETWEEN",
+            "CONTAINS",
+            "STARTS WITH",
+            "ENDS WITH"
+        ],
+        "evidence": "TablePro/Models/Database/TableFilter.swift:12-31 @v0.77.0; Packages/TableProCore/Sources/TableProModels/TableFilter.swift:73-90 @232e8dae6"
+    },
+    "connectionImport": [
+        { "id": "tableplus", "app": "TablePlus", "passwords": true, "format": null },
+        { "id": "sequel-ace", "app": "Sequel Ace", "passwords": true, "format": null },
+        { "id": "dbeaver", "app": "DBeaver", "passwords": true, "format": null },
+        { "id": "datagrip", "app": "DataGrip", "passwords": true, "format": null },
+        { "id": "beekeeper-studio", "app": "Beekeeper Studio", "passwords": true, "format": null },
+        { "id": "navicat", "app": "Navicat", "passwords": true, "format": ".ncx" }
+    ],
+    "dataImport": {
+        "formats": [
+            { "id": "csv", "name": "CSV" },
+            { "id": "tsv", "name": "TSV" },
+            { "id": "json", "name": "JSON" },
+            { "id": "jsonl", "name": "JSONL" },
+            { "id": "xlsx", "name": "XLSX" },
+            { "id": "sql", "name": "SQL" }
+        ],
+        "evidence": "Plugins/{CSV,JSON,XLSX,SQL}ImportPlugin @v0.77.0"
+    },
+    "export": {
+        "formats": [
+            { "id": "csv", "name": "CSV", "engines": null, "exceptEngines": [], "via": null },
+            { "id": "json", "name": "JSON", "engines": null, "exceptEngines": [], "via": null },
+            { "id": "sql", "name": "SQL", "engines": null, "exceptEngines": ["mongodb", "redis"], "via": null },
+            { "id": "xlsx", "name": "XLSX", "engines": null, "exceptEngines": [], "via": null },
+            { "id": "markdown", "name": "Markdown", "engines": null, "exceptEngines": [], "via": null },
+            { "id": "html", "name": "HTML", "engines": null, "exceptEngines": [], "via": null },
+            { "id": "xml", "name": "XML", "engines": null, "exceptEngines": [], "via": null },
+            { "id": "parquet", "name": "Parquet", "engines": null, "exceptEngines": [], "via": "plugin" },
+            { "id": "mql", "name": "MQL", "engines": ["mongodb"], "exceptEngines": [], "via": null }
+        ],
+        "evidence": "TablePro/Core/Services/Export/ExportFormatCatalog.swift:16-18; Plugins/SQLExportPlugin/SQLExportPlugin.swift:20 @v0.77.0"
+    },
+    "backup": {
+        "tools": [
+            { "id": "pg_dump", "name": "pg_dump", "engines": ["postgresql", "redshift"], "external": true },
+            { "id": "mysqldump", "name": "mysqldump", "engines": ["mysql", "mariadb"], "external": true },
+            { "id": "mongodump", "name": "mongodump", "engines": ["mongodb"], "external": true },
+            { "id": "sqlite3", "name": "sqlite3", "engines": ["sqlite", "libsql"], "external": true },
+            { "id": "sqlpackage", "name": "sqlpackage", "engines": ["sqlserver"], "external": true },
+            { "id": "duckdb", "name": "DuckDB", "engines": ["duckdb"], "external": false }
+        ],
+        "serverSideExport": ["oracle", "snowflake", "bigquery"],
+        "evidence": "TablePro/Core/Database/NativeDumpRegistry.swift:36-53 @v0.77.0"
+    },
+    "sync": {
+        "mac": {
+            "categories": [
+                { "id": "connections", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "groups-and-tags", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "settings", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "ssh-profiles", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "table-favorites", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "database-favorites", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "saved-queries", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "table-folders", "defaultOn": true, "sinceAppVersion": "0.77.0" },
+                { "id": "passwords", "defaultOn": false, "sinceAppVersion": null }
+            ],
+            "enabledByDefault": false,
+            "evidence": "TablePro/Models/Settings/SyncSettings.swift:12-94 @v0.77.0"
+        },
+        "ios": {
+            "categories": [
+                { "id": "connections", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "groups-and-tags", "defaultOn": true, "sinceAppVersion": null }
+            ],
+            "enabledByDefault": false,
+            "evidence": "TableProMobile/TableProMobile/Sync/IOSSyncCoordinator.swift:396-410 @232e8dae6"
+        },
+        "neverSynced": ["query-history", "data-rewind", "tunnel-commands", "password-sources", "external-clients-level"]
+    },
+    "limits": {
+        "resultRowCap": {
+            "value": 10000,
+            "max": 500000,
+            "unit": "rows",
+            "platform": "mac",
+            "evidence": "TablePro/Models/Settings/AppSettings.swift:131; TablePro/Core/Services/Infrastructure/SettingsValidation.swift:96 @v0.77.0"
+        },
+        "countEstimateThreshold": {
+            "value": 100000,
+            "max": null,
+            "unit": "rows",
+            "platform": "mac",
+            "evidence": "TablePro/Models/Settings/AppSettings.swift:130 @v0.77.0"
+        },
+        "chartPoints": {
+            "value": 2000,
+            "max": null,
+            "unit": "points",
+            "platform": "mac",
+            "evidence": "TablePro/Core/Services/Query/ResultChartProjector.swift:11 @v0.77.0"
+        },
+        "chartSeries": {
+            "value": 20,
+            "max": null,
+            "unit": "series",
+            "platform": "mac",
+            "evidence": "TablePro/Core/Services/Query/ResultChartProjector.swift:12 @v0.77.0"
+        },
+        "chartInspectedRows": {
+            "value": 50000,
+            "max": null,
+            "unit": "rows",
+            "platform": "mac",
+            "evidence": "TablePro/Core/Services/Query/ResultChartProjector.swift:13 @v0.77.0"
+        },
+        "historyEntriesMac": {
+            "value": 10000,
+            "max": null,
+            "unit": "entries",
+            "platform": "mac",
+            "evidence": "TablePro/Models/Settings/AppSettings.swift:264,269 @v0.77.0"
+        },
+        "historyDaysMac": {
+            "value": 90,
+            "max": null,
+            "unit": "days",
+            "platform": "mac",
+            "evidence": "TablePro/Models/Settings/AppSettings.swift:269 @v0.77.0"
+        },
+        "historyEntriesIos": {
+            "value": 200,
+            "max": null,
+            "unit": "entries",
+            "platform": "ios",
+            "evidence": "TableProMobile/TableProMobile/Helpers/QueryHistoryStorage.swift:39 @232e8dae6"
+        },
+        "resultBufferIos": {
+            "value": 10000,
+            "max": null,
+            "unit": "rows",
+            "platform": "ios",
+            "evidence": "TableProMobile/TableProMobile/ViewModels/QueryEditorViewModel.swift:18 @232e8dae6"
+        },
+        "rewindDays": {
+            "value": 7,
+            "max": null,
+            "unit": "days",
+            "platform": "mac",
+            "evidence": "TablePro/Core/Storage/QueryHistoryStorage+RewindSnapshots.swift:27 @v0.77.0"
+        }
+    }
+}
