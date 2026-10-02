@@ -3,30 +3,58 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
+use App\Services\Content\SiteFacts;
+use App\Services\Legal\LegalDocuments;
+use App\Support\Content\ContentRepository;
+use Illuminate\Support\Facades\App;
+use Inertia\Inertia;
 use Inertia\Response;
 
 /**
- * The privacy policy, terms and refund policy, in each locale.
+ * The privacy policy, terms and refund policy, in each locale (sitemap §A.6,
+ * §E.7; design-system §8.11).
  *
- * Phase A stub: each action renders the pre-rebuild page through
- * `LandingController`, which `EnsurePageRenders` allows only in English. The
- * legal agent (W7f) owns this controller from phase C, when the pages move to
- * `resources/data/legal/{locale}/*.md`.
+ * The documents are markdown in `resources/data/legal/{locale}/`. English is
+ * authoritative; each Vietnamese file is a full translation, and the page
+ * says the English version prevails. `EnsurePageRenders` has already asked
+ * the registry, so a document is only rendered in a locale it exists in.
+ *
+ * Each document keeps its own component name (`Privacy`, `Terms`,
+ * `RefundPolicy`) over one shared template, so a document can grow its own
+ * controls, such as the privacy page's "Cookie settings" button.
  */
 class LegalController extends Controller
 {
-    public function privacy(LandingController $legacy): Response
+    public function privacy(LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response
     {
-        return $legacy->privacy();
+        return $this->document('Privacy', 'privacy', '/privacy', $documents, $content, $facts);
     }
 
-    public function terms(LandingController $legacy): Response
+    public function terms(LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response
     {
-        return $legacy->terms();
+        return $this->document('Terms', 'terms', '/terms', $documents, $content, $facts);
     }
 
-    public function refundPolicy(LandingController $legacy): Response
+    public function refundPolicy(LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response
     {
-        return $legacy->refundPolicy();
+        return $this->document('RefundPolicy', 'refund-policy', '/refund-policy', $documents, $content, $facts);
+    }
+
+    private function document(string $component, string $name, string $path, LegalDocuments $documents, ContentRepository $content, SiteFacts $facts): Response
+    {
+        $locale = App::getLocale();
+        $chrome = $content->page('legal', $locale);
+        $permalink = $chrome['permalink'] ?? null;
+
+        return Inertia::render($component, [
+            'document' => [
+                'name' => $name,
+                'path' => $path,
+                ...$documents->render($name, $locale, is_string($permalink) ? $permalink : null),
+            ],
+            'chrome' => $chrome,
+            'links' => $facts->links(),
+            'organizationProfiles' => $facts->organizationProfiles(),
+        ]);
     }
 }
