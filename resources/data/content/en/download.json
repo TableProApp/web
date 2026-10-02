@@ -1,0 +1,63 @@
+{
+    "seo": {
+        "title": "Download TablePro for Mac",
+        "description": "Download TablePro for Mac, with separate builds for Apple silicon and Intel, or install it with Homebrew. The iPhone and iPad app is on the App Store."
+    },
+    "og": {
+        "kicker": "Download",
+        "title": "Download TablePro"
+    },
+    "header": {
+        "title": "Download TablePro",
+        "lead": "Download the Mac app for your Mac’s chip, or install it with Homebrew. The iPhone and iPad app is on the App Store."
+    },
+    "mac": {
+        "otherWays": "Other ways to install",
+        "homebrew": {
+            "title": "Homebrew",
+            "body": "Homebrew installs the build for your Mac’s chip. After that, the app keeps itself up to date.",
+            "trails": "Homebrew’s copy is updated separately and can trail a new release. If it installs an older version, choose <ui>TablePro > Check for Updates…</ui> to get the current one."
+        },
+        "releases": "Every build on GitHub Releases",
+        "source": "Build from source (AGPLv3)"
+    },
+    "ios": {
+        "body": "A separate app built for {devices}, with its own set of features.",
+        "link": "TablePro for {devices}"
+    },
+    "install": {
+        "title": "Install and first run",
+        "steps": [
+            "Open the downloaded .dmg file from your Downloads folder.",
+            "Drag TablePro into the Applications folder.",
+            "Open TablePro from Applications. Because it came from the internet, macOS asks you to confirm the first time. Choose <ui>Open</ui>.",
+            "Add a connection, or choose <ui>Help > Open Sample Database</ui> to look around first. It opens Chinook, a small SQLite database that comes with the app."
+        ],
+        "signing": "Both builds are signed with a Developer ID and notarized by Apple, so you don’t need to change any security setting to open TablePro.",
+        "drivers": "Drivers for common databases come with the app. The others download the first time you pick that database, which needs an internet connection, and they update separately from the app.",
+        "databases": "Supported databases",
+        "guide": {
+            "label": "Read the installation guide",
+            "path": "/installation"
+        }
+    },
+    "updates": {
+        "title": "Updates",
+        "paragraphs": [
+            "TablePro checks for updates once a day. A new version downloads in the background and installs the next time you quit the app.",
+            "Most releases reach Macs in stages over about a day and a half. To get one sooner, choose <ui>TablePro > Check for Updates…</ui>",
+            "You can turn off automatic checks or automatic installs in <ui>Settings > General</ui>. Update checks go to GitHub, where releases are published, and every update is signed and verified before it installs."
+        ]
+    },
+    "otherPlatforms": {
+        "title": "Other platforms",
+        "body": "TablePro is not available for {platforms}, and there is no release date.",
+        "faq": "Platform questions in the FAQ"
+    },
+    "olderVersions": {
+        "title": "Older versions and release notes",
+        "body": "Every release, with its notes and both disk images, is on GitHub Releases. The changelog lists what changed in each version.",
+        "releases": "All releases on GitHub",
+        "changelog": "Changelog"
+    }
+}
