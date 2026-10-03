@@ -1,12 +1,16 @@
 # Social cards
 
-**Current state (temporary).** No social card is bespoke artwork yet. Every page's `og:image` is a card that
-`php artisan og:generate` renders from the templates in `resources/views/og/` (architecture §1.15): the TablePro logo
-and the page's own title on the site palette, set in Inter, with no screenshot and no app chrome. The cards are
-committed under `public/og/`; they are generated, not drawn, so they are not part of your work.
+**Current state.** One social card is bespoke artwork: `og-site` below, supplied on 2026-10-03, which every page
+without a card of its own shares. Every other `og:image` is a card that `php artisan og:generate` renders from the
+templates in `resources/views/og/` (architecture §1.15): the TablePro logo and the page's own title on the site
+palette, set in Inter, with no screenshot and no app chrome. Those cards are committed under `public/og/`; they are
+generated, not drawn, so they are not part of your work.
 
 - The generic card, used by every page without a card of its own (the homepage, the hubs, `/pricing`, `/download`,
-  `/ios`, `/faq`, the legal pages and the blog index): `/og.png` in English and `/og/vi/default.png` in Vietnamese.
+  `/ios`, `/faq`, the legal pages and the blog index): the bespoke `/og/bespoke/og-site-en.png` in English and
+  `/og/bespoke/og-site-vi.png` in Vietnamese. The generated `/og.png` and `/og/vi/default.png` stay committed and
+  current: a locale whose bespoke file is missing falls back to its generated card, and `/og.png` is the card that
+  shares made before the rebuild and the platform app's default point at.
 - Page cards: `/og/{feature,database,compare}/{slug}.png` in English and `/og/vi/{feature,database,compare}/{slug}.png`
   in Vietnamese. Release posts keep their English cards at `/og/blog/{slug}.png`; no post has a Vietnamese card.
 - `App\Support\Seo\OgImages` picks, in order: the page's own card, the bespoke `og-site` card once supplied, the
@@ -17,11 +21,12 @@ committed under `public/og/`; they are generated, not drawn, so they are not par
   Before launch, check that every card under `public/og/` comes from the current templates: a card rendered before
   the rebuild still shows the old design and its claims.
 
-The one bespoke card planned is `og-site` below. Until you supply it, the generated generic card stays in use.
+The one bespoke card is `og-site` below. To redesign it, replace its two files with new ones of the same name and
+size, and update its `alt` in `resources/data/assets.json` if the words change.
 
-Hiện tại mọi trang dùng ảnh OG do `og:generate` tạo từ template, nên bạn không cần vẽ các ảnh đó; trước khi ra mắt
-chỉ cần chạy lại lệnh để mọi ảnh trong `public/og/` dùng template mới. Phần dưới mô tả ảnh OG mặc định 1200 × 630 mà
-bạn có thể thiết kế lại sau.
+Các trang có ảnh OG riêng dùng ảnh do `og:generate` tạo từ template, nên bạn không cần vẽ các ảnh đó; trước khi ra
+mắt chỉ cần chạy lại lệnh để mọi ảnh trong `public/og/` dùng template mới. Các trang còn lại dùng ảnh `og-site` (có
+từ 2026-10-03). Phần dưới mô tả ảnh OG mặc định 1200 × 630 này, để bạn thiết kế lại sau nếu muốn.
 
 ## og-site
 
@@ -30,10 +35,12 @@ A designed default social card, in English and Vietnamese, that replaces the gen
 without a card of its own.
 
 ### Scene
-- Designed brand artwork, not a screenshot. Subject: the TablePro logo with its wordmark, and the identity sentence in
-  the card's language (positioning §6.1, the same sentence the generated card takes from `content/{locale}/home.json`):
+- Designed brand artwork, not a screenshot. Subject: the TablePro logo with its wordmark, and the identity sentence
+  of positioning §6.1 (the "OG fallback" row) in the card's language, in two lines at 56 px:
   - en: "TablePro is a native, open-source database client for developers."
   - vi: "TablePro là database client native, mã nguồn mở, dành cho lập trình viên."
+- The homepage H1 ("A native database client for developers.") also fits, but positioning §6.1 reserves the
+  identity sentence for this card.
 - Optional: one crop of a real Mac capture made for this handoff with sample data (for example from the
   `mac-hero-window` capture once it exists). Never drawn UI, a mock-up or the placeholder box.
 - Leave out anything that goes stale or is banned site-wide (positioning §12): platform or device lists, version
@@ -71,4 +78,5 @@ Hãy thiết kế một ảnh chia sẻ 1200 × 630 thay cho ảnh OG mặc đ�
 riêng (trang chủ, các trang tổng hợp, Bảng giá, Tải về, trang iPhone và iPad, Câu hỏi thường gặp, các trang pháp lý và
 trang danh sách bài blog). Nội dung chỉ gồm logo TablePro và câu giới thiệu sản phẩm, làm hai bản tiếng Anh và tiếng
 Việt với cùng bố cục. Giữ logo và chữ cách mép ít nhất 64 px; không ghi nền tảng, phiên bản, số lượng, giá hay tốc độ.
-Trong lúc chờ, các trang vẫn dùng ảnh do template tạo.
+Ảnh hiện tại (2026-10-03) gồm logo, câu giới thiệu theo positioning §6.1 và địa chỉ tablepro.app; ngôn ngữ nào thiếu file thì quay
+về ảnh do template tạo.

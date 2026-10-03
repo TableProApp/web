@@ -40,3 +40,4 @@ pest()->extend(Tests\TestCase::class)
 */
 
 require_once __DIR__ . '/Support/ssr.php';
+require_once __DIR__ . '/Support/asset-slots.php';

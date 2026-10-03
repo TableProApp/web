@@ -19,7 +19,7 @@ require_once __DIR__ . '/../Seo/helpers.php';
  * - `/blog` lists exactly the posts on disk, newest first. The four guides
  *   merged into other pages are gone, and their URLs redirect.
  * - Release posts are an English-only archive: the date and title as
- *   published, each figure a `blog-{slug}-{n}` placeholder slot whose
+ *   published, each figure a `blog-{slug}-{n}` slot whose
  *   manifest entry keeps the original image as its source, the `content-…`
  *   heading ids that links out in the world point at, and a dated correction
  *   only where a post said something that was never true.
@@ -375,11 +375,16 @@ describe('server-rendered', function (): void {
 
     it('renders a post with its archive note, slots, named permalinks and download line', function (): void {
         $html = (string) $this->get('/blog/tablepro-0-77')->getContent();
+        $main = Dom\HTMLDocument::createFromString($html, LIBXML_NOERROR)->querySelector('main');
+
+        expect($main)->not->toBeNull();
+
+        foreach (['blog-tablepro-0-77-1', 'blog-tablepro-0-77-3'] as $id) {
+            expect($main->querySelector(renderedSlotSelector($id)))->not->toBeNull("{$id} is not rendered");
+        }
 
         expect($html)
             ->toContain('Published on October 2, 2026, this post describes TablePro 0.77 as it was then.')
-            ->toContain('data-asset-id="blog-tablepro-0-77-1"')
-            ->toContain('data-asset-id="blog-tablepro-0-77-3"')
             ->toContain('aria-label="Link to this section"')
             ->not->toContain('aria-label="">#</a>')
             ->toContain('Download for Mac')

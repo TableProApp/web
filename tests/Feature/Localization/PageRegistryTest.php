@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Localization\LocaleSwitcher;
 use App\Support\Seo\OgImages;
@@ -225,10 +226,17 @@ it('only ever points at an OG card that exists', function (): void {
         'type' => 'image/png',
     ]);
 
+    /*
+     * A page without its own card shares its language's generic card: the
+     * bespoke `og-site` card once the manifest offers it, else the generated
+     * one (Seo/BespokeOgCardTest).
+     */
+    $assets = new AssetManifest();
     $missing = new PageEntry('landing.databaseClient', ['slug' => 'nope'], ['en'], ['en'], [], 'database', 'nope');
-    expect($og->for($missing, 'en')['url'])->toBe('https://localhost/og.png');
+    expect($og->for($missing, 'en')['url'])->toBe('https://localhost' . ($assets->ogCard(OgImages::SITE_CARD, 'en') ?? '/og.png'));
 
-    $vi = is_file(public_path('og/vi/default.png')) ? 'https://localhost/og/vi/default.png' : null;
+    $viGeneric = $assets->ogCard(OgImages::SITE_CARD, 'vi') ?? (is_file(public_path('og/vi/default.png')) ? '/og/vi/default.png' : null);
+    $vi = $viGeneric !== null ? 'https://localhost' . $viGeneric : null;
     expect($og->for($database, 'vi')['url'] ?? null)->toBe(
         is_file(public_path('og/vi/database/mysql-client.png')) ? 'https://localhost/og/vi/database/mysql-client.png' : $vi,
     );

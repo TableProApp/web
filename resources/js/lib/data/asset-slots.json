@@ -936,16 +936,54 @@
             "theme": "both",
             "locale": "per-locale",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "en": {
+                    "light": {
+                        "widths": [],
+                        "formats": [
+                            "svg"
+                        ],
+                        "width": 1216,
+                        "height": 684
+                    },
+                    "dark": {
+                        "widths": [],
+                        "formats": [
+                            "svg"
+                        ],
+                        "width": 1216,
+                        "height": 684
+                    }
+                },
+                "vi": {
+                    "light": {
+                        "widths": [],
+                        "formats": [
+                            "svg"
+                        ],
+                        "width": 1216,
+                        "height": 684
+                    },
+                    "dark": {
+                        "widths": [],
+                        "formats": [
+                            "svg"
+                        ],
+                        "width": 1216,
+                        "height": 684
+                    }
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "diagram-icloud-sync"
             },
-            "description": {
-                "en": "Diagram: connections, groups and tags syncing between Mac, iCloud and iPhone; passwords only with Sync Passwords on.",
-                "vi": "Sơ đồ: connection, nhóm và tag đồng bộ giữa Mac, iCloud và iPhone; mật khẩu chỉ đồng bộ khi bật Sync Passwords."
-            }
+            "alt": {
+                "en": "A diagram of connections, groups and tags syncing between a Mac and an iPhone or iPad through your iCloud account, with passwords going separately through iCloud Keychain only when password sync is on.",
+                "vi": "Sơ đồ connection, nhóm và tag đồng bộ giữa Mac và iPhone hoặc iPad qua tài khoản iCloud của bạn; mật khẩu đi riêng qua iCloud Keychain, chỉ khi bật đồng bộ mật khẩu."
+            },
+            "caption": null
         },
         "mac-team-library": {
             "kind": "detail",
@@ -2236,14 +2274,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 801
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-1"
             },
-            "description": {
-                "en": "The results pane in Chart mode: a bar chart of a query result, beside the Data, Structure and JSON views.",
+            "alt": {
+                "en": "TablePro results pane in Chart mode with the Bar type selected, X Axis set to Row Number and Y Axis to ArtistId, a hover tooltip reading Row Number 140 and ArtistId 99, and the status bar still showing 1-347 of 347 rows",
+                "vi": null
+            },
+            "caption": {
+                "en": "Chart mode sits beside Data, Structure and JSON.",
                 "vi": null
             }
         },
@@ -2256,14 +2311,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 971
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-2"
             },
-            "description": {
-                "en": "The SQL editor with three folded regions shown as chips, and a peek popover over a folded CREATE TABLE.",
+            "alt": {
+                "en": "TablePro SQL editor showing three folded regions, each collapsed to a chip naming its opening line and hidden line count, with a peek popover open over the folded CREATE TABLE and its full body syntax highlighted inside",
+                "vi": null
+            },
+            "caption": {
+                "en": "A folded region becomes a chip. Hover it to peek without expanding.",
                 "vi": null
             }
         },
@@ -2276,14 +2348,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 850
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-3"
             },
-            "description": {
-                "en": "The editor gutter's run control beside one statement, which runs only that statement.",
+            "alt": {
+                "en": "TablePro SQL editor gutter with a run control beside the WITH statement on line 17, next to the fold chevrons for that statement and the one below it",
+                "vi": null
+            },
+            "caption": {
+                "en": "Hover the gutter and that statement's run control appears. Clicking it runs only that statement.",
                 "vi": null
             }
         },
@@ -2296,14 +2385,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 801
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-4"
             },
-            "description": {
-                "en": "The data grid find bar searching the Customer table for \"rua\", with the matching cell highlighted.",
+            "alt": {
+                "en": "TablePro data grid on the Customer table with the find bar open on the term rua, the counter reading 2 of 3, and the matching cell Rua da Assuncao 53 highlighted in the Address column",
+                "vi": null
+            },
+            "caption": {
+                "en": "Matching ignores case and accents, so rua finds Rua da Assunção.",
                 "vi": null
             }
         },
@@ -2316,14 +2422,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-5"
             },
-            "description": {
-                "en": "The filter panel on a MongoDB orders collection, with the field path browser listing nested fields and their types.",
+            "alt": {
+                "en": "TablePro filter panel on a MongoDB orders collection with the field path browser open, listing customer.age, customer.city, customer.country and customer.name under customer and items.name, items.price, items.qty and items.sku under items, each with its detected type",
+                "vi": null
+            },
+            "caption": {
+                "en": "Search or type a path. The type beside each one is what the filter compares against.",
                 "vi": null
             }
         },
@@ -2336,14 +2459,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-6"
             },
-            "description": {
-                "en": "Two filter rows on fields inside one MongoDB array, with the array element scope control and the matching orders.",
+            "alt": {
+                "en": "TablePro filter panel on a MongoDB orders collection with two rows, items.price greater than 500 and items.name equals Laptop, and the two matching orders listed in the grid below",
+                "vi": null
+            },
+            "caption": {
+                "en": "Two conditions on fields inside one array. The scope control decides whether a single item has to satisfy both.",
                 "vi": null
             }
         },
@@ -2356,14 +2496,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-1"
             },
-            "description": {
-                "en": "Compare & Sync on two PostgreSQL databases: tables grouped by difference, and one table's definitions compared side by side.",
+            "alt": {
+                "en": "TablePro Compare & Sync window comparing Shop Demo with Shop Demo (Copy), with tables grouped under Only in Source, Only in Target and Differs on the left, and the orders table's definitions side by side on the right, a changed total_cents type and an added index highlighted above the list of changes",
+                "vi": null
+            },
+            "caption": {
+                "en": "Compare & Sync walks seven object kinds and writes the script that makes the target match.",
                 "vi": null
             }
         },
@@ -2376,14 +2533,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-2"
             },
-            "description": {
-                "en": "Compare & Sync in row mode: id as the key column, each row to update with its old and new values, and the rows to insert.",
+            "alt": {
+                "en": "TablePro Compare & Sync window in Rows mode with id as the key column, a list of rows to update showing each changed value as old and new, such as an email and a country on row 6, and two rows to insert below",
+                "vi": null
+            },
+            "caption": {
+                "en": "Row mode diffs values against the key columns you choose, not against row order.",
                 "vi": null
             }
         },
@@ -2396,14 +2570,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-3"
             },
-            "description": {
-                "en": "The sidebar with a PostgreSQL function selected, its overloads told apart by arguments, and the read-only source viewer.",
+            "alt": {
+                "en": "TablePro sidebar on a PostgreSQL database with Procedures, Functions and Triggers sections, three balance_of functions told apart by their arguments, and the read-only source viewer showing one of them with its volatility, security and owner above the syntax-highlighted body",
+                "vi": null
+            },
+            "caption": {
+                "en": "Three overloads of one name, told apart by their arguments. The source opens read-only.",
                 "vi": null
             }
         },
@@ -2416,14 +2607,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-4"
             },
-            "description": {
-                "en": "The data grid scrolled far to the right on a table with several hundred columns, every cell painted.",
+            "alt": {
+                "en": "TablePro data grid on a table with several hundred columns, scrolled well to the right so column headers in the middle of the run are visible, every cell painted with no blank columns or gaps, and the status bar reporting the full row count",
+                "vi": null
+            },
+            "caption": {
+                "en": "A few hundred columns in, scrolled sideways, with nothing left unpainted.",
                 "vi": null
             }
         },
@@ -2436,14 +2644,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1150
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-5"
             },
-            "description": {
-                "en": "Settings, License pane: the license holder, a shortened key, the activated Macs and the team member list.",
+            "alt": {
+                "en": "TablePro Settings window on the License pane for a Team lifetime license, with Refresh and Copy Key buttons, two activated Macs with their macOS versions under Devices, 2 of 5 devices, and the team's members, 2 of 5; the license holder's email address, the shortened license key and the Mac names are covered for privacy",
+                "vi": null
+            },
+            "caption": {
+                "en": "Devices and team roster in one pane. Personal details in this capture are covered.",
                 "vi": null
             }
         },
@@ -2456,14 +2681,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 900
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-69-1"
             },
-            "description": {
-                "en": "The Restore Previous Values sheet for four deleted Customer rows, each marked Will restore, with the INSERT statements shown.",
+            "alt": {
+                "en": "TablePro Restore Previous Values sheet over the Chinook Customer table, listing four deleted rows, CustomerId 12 to 15, each with the action Put the row back and the outcome Will restore, Show SQL ticked with the generated INSERT statements below, and Cancel and Restore buttons",
+                "vi": null
+            },
+            "caption": {
+                "en": "Every row from a committed save, with the ones that cannot be restored named and explained rather than skipped.",
                 "vi": null
             }
         },
@@ -2476,14 +2718,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 900
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-69-2"
             },
-            "description": {
-                "en": "The structure editor's Constraints tab on a SQLite table, listing five check constraints with their expressions.",
+            "alt": {
+                "en": "TablePro structure editor on a TrackPricing table added to the Chinook sample, with the Constraints tab selected and five check constraints listed by name beside their expressions, such as ListPrice > 0 and Currency IN ('USD', 'EUR', 'GBP', 'CAD')",
+                "vi": null
+            },
+            "caption": {
+                "en": "Check constraints read on four engines and edit on three. Generated columns carry their expression and their stored or virtual kind.",
                 "vi": null
             }
         },
@@ -2496,14 +2755,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1174
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-69-3"
             },
-            "description": {
-                "en": "A SQLite connection's Remote File pane: open a file on an SSH server as a read-only copy, host set and path still empty.",
+            "alt": {
+                "en": "TablePro Edit Connection sheet for SQLite on the Remote File pane, with Open a database file on an SSH server switched on above a note that the file is copied to this Mac and opened read-only, an empty Path field, and the SSH tunnel settings with host ssh.example.com and port 22",
+                "vi": null
+            },
+            "caption": {
+                "en": "Point it at a path on an SSH server. What comes back is a read-only local copy, not a live connection.",
                 "vi": null
             }
         },
@@ -2516,14 +2792,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 900
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-69-4"
             },
-            "description": {
-                "en": "A table being renamed inline in the sidebar, its name in an edit field.",
+            "alt": {
+                "en": "TablePro sidebar listing the Chinook sample's tables, with InvoiceLine in an inline text field ready to be renamed, and no tab open in the window",
+                "vi": null
+            },
+            "caption": {
+                "en": "The label edits where it sits, in the tree, with no dialog.",
                 "vi": null
             }
         },
@@ -2596,14 +2889,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        964
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 964,
+                    "height": 1054
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-72-1"
             },
-            "description": {
-                "en": "The Backup Database sheet listing the databases on a connection, with one ticked and Choose Destination.",
+            "alt": {
+                "en": "TablePro Backup Database sheet listing the databases on the connection with a search field above them, tablepro_demo ticked, and Cancel and Choose Destination buttons along the bottom",
+                "vi": null
+            },
+            "caption": {
+                "en": "Backup Dump asks which database, then where to write it. The engine's own tool does the rest.",
                 "vi": null
             }
         },
@@ -2616,14 +2926,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1203
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-72-2"
             },
-            "description": {
-                "en": "The export sheet with three tables ticked and a popover setting one table's WHERE, row limit and columns.",
+            "alt": {
+                "en": "TablePro export sheet with three tables ticked in the object tree and a popover open over the orders row, holding a Where field, a Row limit field reading All rows, and a checklist of the table's six columns, with the CSV format panel and its options visible to the right",
+                "vi": null
+            },
+            "caption": {
+                "en": "Each table carries its own WHERE, row limit and column list, set from the row itself.",
                 "vi": null
             }
         },
@@ -2636,14 +2963,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1190
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-72-3"
             },
-            "description": {
-                "en": "The Transfer Tables sheet: a destination connection, source tables with mapped column counts, and a mapping popover.",
+            "alt": {
+                "en": "TablePro Transfer Tables sheet with a Destination picker set to another open connection and a Database picker below it, a checklist of source tables each reporting how many of its columns mapped, and an open popover pairing every source column of the orders table with its destination column beside a Match by Name button",
+                "vi": null
+            },
+            "caption": {
+                "en": "The destination list is the connections you already have open, and each table reports how many columns matched.",
                 "vi": null
             }
         },
@@ -2656,14 +3000,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 983
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-72-4"
             },
-            "description": {
-                "en": "Script Editor's dictionary window for TablePro, listing the Standard Suite and the TablePro Suite.",
+            "alt": {
+                "en": "Script Editor's dictionary window for TablePro with the TablePro Suite selected beside the Standard Suite, its commands such as connect, run query and open table listed, and below them the suite's safe mode level, external access level and tab kind enumerations",
+                "vi": null
+            },
+            "caption": {
+                "en": "Open it in Script Editor with File > Open Dictionary and pick TablePro.",
                 "vi": null
             }
         },
@@ -2676,14 +3037,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1056
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-73-1"
             },
-            "description": {
-                "en": "The Copy To review step: the PostgreSQL DDL generated for a MySQL table, the expected row count and an identity-value warning.",
+            "alt": {
+                "en": "TablePro Copy To review step copying the customers table from a MySQL shop database to a PostgreSQL copy, with a warning that identity and auto-increment values are written as they are, the expected row count, and the generated CREATE TABLE and CREATE INDEX statements beside them, above Cancel, Back and Copy buttons",
+                "vi": null
+            },
+            "caption": {
+                "en": "The review step is the whole feature: the DDL that will run, the rows each table expects, and every type it had to approximate.",
                 "vi": null
             }
         },
@@ -2696,14 +3074,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1096
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-73-2"
             },
-            "description": {
-                "en": "The PostgreSQL connection editor with its General, Network, Options and Appearance sections.",
+            "alt": {
+                "en": "TablePro connection editor for a PostgreSQL connection, with a four-item sidebar reading General, Network, Options and Appearance, credential fields filling the pane, and Test Connection, Cancel and Save on a bar along the bottom",
+                "vi": null
+            },
+            "caption": {
+                "en": "Four sections, the same for every driver, with Test Connection, Cancel and Save on one bar along the bottom.",
                 "vi": null
             }
         },
@@ -2716,14 +3111,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1096
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-73-3"
             },
-            "description": {
-                "en": "The Network section set to Tunnel Command with the kubectl port-forward method and the Will Run argument list.",
+            "alt": {
+                "en": "TablePro Network section with Connect via set to Tunnel Command and the kubectl port-forward method selected, empty resource, namespace and context fields showing their placeholder text, an executable path, and a Will Run panel with the exact argument list and a {port} placeholder",
+                "vi": null
+            },
+            "caption": {
+                "en": "Will Run shows the exact argument list, with {port} standing in for the port allocated on connect.",
                 "vi": null
             }
         },
@@ -2736,14 +3148,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1368
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1368,
+                    "height": 1140
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-73-4"
             },
-            "description": {
-                "en": "The SQLite rebuild preview for a new foreign key: the rebuilt table's DDL and the row copy, before anything runs.",
+            "alt": {
+                "en": "TablePro SQL Preview of 14 statements for adding a foreign key to a SQLite orders table, starting with PRAGMA foreign_keys = off, then the rebuilt table's CREATE TABLE with the customer_fk constraint and the INSERT SELECT that copies the rows, above Open in Query Editor, Cancel and Apply and Rebuild buttons",
+                "vi": null
+            },
+            "caption": {
+                "en": "The rebuild script is shown before it runs, and it ends by checking the rows against the key you just added.",
                 "vi": null
             }
         },
@@ -2756,14 +3185,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-74-1"
             },
-            "description": {
-                "en": "The Map view drawing PostGIS polygons, lines and points over an Apple Maps street map, with a line saying what was drawn.",
+            "alt": {
+                "en": "TablePro on the Map segment for a PostGIS table of San Francisco service areas, with fifteen blue polygons, four transit lines and six depot pins drawn over an Apple Maps street view, a line above the map reading Drawing 25 shapes in SRID 4326, 3 rows in other coordinate systems are not drawn, a Fit to Result button on the right, and Data, Structure, JSON, Chart and Map segments along the bottom with Map selected",
+                "vi": null
+            },
+            "caption": {
+                "en": "The line above the map says what was drawn and what was skipped. Three rows here are in a state-plane coordinate system, so they are counted rather than placed.",
                 "vi": null
             }
         },
@@ -2776,14 +3222,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-74-2"
             },
-            "description": {
-                "en": "The Highlight Rules popover over an invoice grid, with rows tinted by country and single cells tinted orange.",
+            "alt": {
+                "en": "TablePro Highlight Rules popover over an invoice grid, listing three rules with a column, an operator, a value and a colour each, with US invoice rows tinted green, Canadian rows blue, and individual customer ID cells orange",
+                "vi": null
+            },
+            "caption": {
+                "en": "Rules run top to bottom and the first match colours the row. A cell rule tints its own cell over the row's colour.",
                 "vi": null
             }
         },
@@ -2796,14 +3259,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 354
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-74-3"
             },
-            "description": {
-                "en": "The SQL editor marking invisible and look-alike characters in a pasted query.",
+            "alt": {
+                "en": "TablePro SQL editor holding a query pasted from a chat thread, with an orange BS box before SELECT on line 2, an outlined no-break space after zone on line 4, an orange ZWSP box after name on line 5, and orange underlines beneath the curly quotes around downtown and beneath a full-width greater-than sign on line 6",
+                "vi": null
+            },
+            "caption": {
+                "en": "A mark is the character itself: select it, arrow past it, or delete it like any other text. The underlines are the separate warning for characters that are visible but wrong.",
                 "vi": null
             }
         },
@@ -2816,14 +3296,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-76-1"
             },
-            "description": {
-                "en": "Agent mode on the Chinook sample: a session waiting, a proposed UPDATE with Run, Always Allow and Reject, and the results.",
+            "alt": {
+                "en": "TablePro connection window in Agent mode on the Chinook sample database, with one session on the left marked Waiting on you, a conversation in the middle where the assistant checked prices by genre and now proposes UPDATE Track SET UnitPrice = 1.29 for every Rock track on a card with Run, Always Allow and Reject buttons, and a Result column on the right listing the SELECT as Ran and the UPDATE as Waiting",
+                "vi": null
+            },
+            "caption": {
+                "en": "The price check ran after one click. The UPDATE waits on its card, and the result column keeps both.",
                 "vi": null
             }
         },
@@ -2836,14 +3333,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 845
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-76-2"
             },
-            "description": {
-                "en": "Settings > Integrations with the MCP server off and an Outside MCP Servers list with two servers.",
+            "alt": {
+                "en": "TablePro Settings open on Integrations, with Enable MCP Server switched off above an Outside MCP Servers list holding Runbooks at runbooks.internal.example/mcp allowed on 2 connections and Incident Tracker allowed on none, and an Add Server button below them",
+                "vi": null
+            },
+            "caption": {
+                "en": "A server reaches nothing until a connection is ticked, and every call to it still waits for Run or Reject.",
                 "vi": null
             }
         },
@@ -2856,14 +3370,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 850
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-76-3"
             },
-            "description": {
-                "en": "The Data Files window on orders.csv searched for Hanoi, with 2,498 of 20,000 rows in the status bar.",
+            "alt": {
+                "en": "A Data Files window on orders.csv with columns order_id, customer, city, status, total and ordered_at, searched for Hanoi, with the status bar reading 2,498 of 20,000 rows and 6 columns on the left and Comma, UTF-8, LF on the right",
+                "vi": null
+            },
+            "caption": {
+                "en": "The status bar names the delimiter, encoding and line ending the file was read with, and Save writes them back.",
                 "vi": null
             }
         },
@@ -2876,14 +3407,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-76-4"
             },
-            "description": {
-                "en": "The Insert Document sheet over an empty events collection, with a document written in Extended JSON.",
+            "alt": {
+                "en": "Insert Document sheet over an empty events collection, holding a document with a name, a channel, a sentAt date written as $date, a recipients count and a tags array, with a hint to quote every field name and Cancel and Insert buttons",
+                "vi": null
+            },
+            "caption": {
+                "en": "Insert Document takes Extended JSON, so a date and an ObjectId are written the way MongoDB stores them.",
                 "vi": null
             }
         },
@@ -2896,14 +3444,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-77-1"
             },
-            "description": {
-                "en": "The Chinook sample with a Folders section in the sidebar holding Music and Sales folders, and the Track table open.",
+            "alt": {
+                "en": "TablePro connection window on the Chinook sample database, with a Folders section at the top of the sidebar holding a Music folder with Album and Artist and a Sales folder with Invoice and InvoiceLine, a Tables section below it with the remaining seven tables, and the Track table open in the data grid",
+                "vi": null
+            },
+            "caption": {
+                "en": "Four tables sit in two folders, and the Tables section below lists only the ones not yet filed.",
                 "vi": null
             }
         },
@@ -2916,14 +3481,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-77-2"
             },
-            "description": {
-                "en": "The import sheet for customers.csv into the Customer table, with a restored mapping and the Match Columns menu open.",
+            "alt": {
+                "en": "Import sheet for customers.csv into the existing Customer table of the Chinook sample database, with the note Restored the mapping saved for Customer beside an open Match Columns menu offering Match by Name, Match by Position and a dimmed Use Saved Mapping, above a field list that maps Company, City, Country and E-mail to the Company, City, Country and Email columns",
+                "vi": null
+            },
+            "caption": {
+                "en": "E-mail comes back mapped to Email, the one column picked by hand in the last import.",
                 "vi": null
             }
         },
@@ -2936,14 +3518,31 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        900
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 900,
+                    "height": 720
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-77-3"
             },
-            "description": {
-                "en": "A new PostgreSQL connection on Options, with Connect timeout and Query timeout fields showing inherited values.",
+            "alt": {
+                "en": "New PostgreSQL Connection sheet open on Options, with a Timeouts section holding Connect timeout showing Default (30) seconds and Query timeout showing Global (60) seconds, above the Startup Commands and Pre-Connect Script fields",
+                "vi": null
+            },
+            "caption": {
+                "en": "An empty field shows the value it inherits, so you can see what applies before you type anything.",
                 "vi": null
             }
         },
@@ -2956,14 +3555,32 @@
             "theme": "single",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1826
+                }
+            },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-for-iphone-1"
             },
-            "description": {
-                "en": "The Chinook Track table in TablePro on iPhone, with the pager reading 1-100 of 3503.",
+            "alt": {
+                "en": "The Chinook Track table open in TablePro on iPhone, listing TrackId, Name, AlbumId and MediaTypeId for the first rows, with a pager reading 1-100 of 3503 and Tables, Query, History and Info along the bottom",
+                "vi": null
+            },
+            "caption": {
+                "en": "The bundled Chinook database, two taps from the connection list. There is something to read before you have set up a server.",
                 "vi": null
             }
         }

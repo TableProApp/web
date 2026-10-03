@@ -196,7 +196,8 @@ it('server-renders every section, slot and fact of a feature page', function (st
     $html = ssrHtml($path);
     $document = HTMLDocument::createFromString($html, LIBXML_NOERROR);
     $main = $document->querySelector('main');
-    $content = featurePagesData('content/' . (str_starts_with($path, '/vi') ? 'vi' : 'en') . "/features/{$slug}.json");
+    $locale = str_starts_with($path, '/vi') ? 'vi' : 'en';
+    $content = featurePagesData("content/{$locale}/features/{$slug}.json");
 
     expect($main)->not->toBeNull();
 
@@ -205,7 +206,7 @@ it('server-renders every section, slot and fact of a feature page', function (st
 
         foreach ([$section, ...($section['blocks'] ?? [])] as $block) {
             if (isset($block['asset'])) {
-                expect($main->querySelector("[data-asset-id=\"{$block['asset']}\"]"))->not->toBeNull("{$block['asset']} is not rendered");
+                expect($main->querySelector(renderedSlotSelector($block['asset'], $locale)))->not->toBeNull("{$block['asset']} is not rendered");
             }
         }
     }

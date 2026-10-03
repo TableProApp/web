@@ -2011,16 +2011,53 @@
                 "vi": "Sơ đồ: connection, nhóm và tag đồng bộ giữa Mac, iCloud và iPhone; mật khẩu chỉ đồng bộ khi bật Sync Passwords."
             },
             "alt": {
-                "en": "A diagram of connections, groups and tags syncing between a Mac and an iPhone through iCloud, with passwords going through iCloud Keychain only when Sync Passwords is on.",
-                "vi": "Sơ đồ connection, nhóm và tag đồng bộ giữa Mac và iPhone qua iCloud; mật khẩu chỉ đi qua iCloud Keychain khi bật Sync Passwords."
+                "en": "A diagram of connections, groups and tags syncing between a Mac and an iPhone or iPad through your iCloud account, with passwords going separately through iCloud Keychain only when password sync is on.",
+                "vi": "Sơ đồ connection, nhóm và tag đồng bộ giữa Mac và iPhone hoặc iPad qua tài khoản iCloud của bạn; mật khẩu đi riêng qua iCloud Keychain, chỉ khi bật đồng bộ mật khẩu."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/features",
                 "base": "diagram-icloud-sync"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "en": {
+                    "light": {
+                        "widths": [],
+                        "formats": [
+                            "svg"
+                        ],
+                        "width": 1216,
+                        "height": 684
+                    },
+                    "dark": {
+                        "widths": [],
+                        "formats": [
+                            "svg"
+                        ],
+                        "width": 1216,
+                        "height": 684
+                    }
+                },
+                "vi": {
+                    "light": {
+                        "widths": [],
+                        "formats": [
+                            "svg"
+                        ],
+                        "width": 1216,
+                        "height": 684
+                    },
+                    "dark": {
+                        "widths": [],
+                        "formats": [
+                            "svg"
+                        ],
+                        "width": 1216,
+                        "height": 684
+                    }
+                }
+            },
             "legacySource": null
         },
         "mac-team-library": {
@@ -4321,8 +4358,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 801
+                }
+            },
             "legacySource": [
                 "/images/blog/results-chart-mode.png"
             ]
@@ -4361,8 +4411,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-2"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 971
+                }
+            },
             "legacySource": [
                 "/images/blog/sql-editor-code-folding.png"
             ]
@@ -4401,8 +4464,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-3"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 850
+                }
+            },
             "legacySource": [
                 "/images/blog/sql-editor-statement-run.png"
             ]
@@ -4441,8 +4517,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-4"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 801
+                }
+            },
             "legacySource": [
                 "/images/blog/data-grid-find-bar.png"
             ]
@@ -4481,8 +4570,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-5"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/mongodb-nested-filter.png"
             ]
@@ -4521,8 +4623,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-67-6"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/mongodb-array-element-scope.png"
             ]
@@ -4561,8 +4676,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/compare-sync-structure.png"
             ]
@@ -4601,8 +4729,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-2"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/compare-sync-data-diff.png"
             ]
@@ -4634,15 +4775,28 @@
                 "vi": null
             },
             "caption": {
-                "en": "Two overloads of one name, told apart by their arguments. The source opens read-only.",
+                "en": "Three overloads of one name, told apart by their arguments. The source opens read-only.",
                 "vi": null
             },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-3"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/sidebar-routines-source-viewer.png"
             ]
@@ -4681,8 +4835,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-4"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/data-grid-wide-result.png"
             ]
@@ -4710,19 +4877,32 @@
                 "vi": null
             },
             "alt": {
-                "en": "TablePro Settings window on the License pane for a Team lifetime license, with the license holder, a shortened license key and a Copy Key button, two activated Macs with their macOS versions under Devices, and the team's members, 2 of 5",
+                "en": "TablePro Settings window on the License pane for a Team lifetime license, with Refresh and Copy Key buttons, two activated Macs with their macOS versions under Devices, 2 of 5 devices, and the team's members, 2 of 5; the license holder's email address, the shortened license key and the Mac names are covered for privacy",
                 "vi": null
             },
             "caption": {
-                "en": "Devices and team roster in one pane, with the key masked.",
+                "en": "Devices and team roster in one pane. Personal details in this capture are covered.",
                 "vi": null
             },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-68-5"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1150
+                }
+            },
             "legacySource": [
                 "/images/blog/settings-license-devices.png"
             ]
@@ -4761,8 +4941,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-69-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 900
+                }
+            },
             "legacySource": [
                 "/images/blog/rewind-review-sheet.png"
             ]
@@ -4801,8 +4994,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-69-2"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 900
+                }
+            },
             "legacySource": [
                 "/images/blog/structure-constraints-tab.png"
             ]
@@ -4841,8 +5047,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-69-3"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1174
+                }
+            },
             "legacySource": [
                 "/images/blog/sqlite-remote-file.png"
             ]
@@ -4881,8 +5100,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-69-4"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 900
+                }
+            },
             "legacySource": [
                 "/images/blog/sidebar-rename-inline.png"
             ]
@@ -5041,8 +5273,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-72-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        964
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 964,
+                    "height": 1054
+                }
+            },
             "legacySource": [
                 "/images/blog/backup-dump-sheet.png"
             ]
@@ -5081,8 +5326,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-72-2"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1203
+                }
+            },
             "legacySource": [
                 "/images/blog/export-object-tree.png"
             ]
@@ -5121,8 +5379,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-72-3"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1190
+                }
+            },
             "legacySource": [
                 "/images/blog/transfer-to-sheet.png"
             ]
@@ -5161,8 +5432,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-72-4"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 983
+                }
+            },
             "legacySource": [
                 "/images/blog/applescript-dictionary.png"
             ]
@@ -5201,8 +5485,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-73-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1056
+                }
+            },
             "legacySource": [
                 "/images/blog/copy-to-cross-engine-review.png"
             ]
@@ -5234,15 +5531,28 @@
                 "vi": null
             },
             "caption": {
-                "en": "Four sections for every driver, and the reason Save is unavailable sits beside the button.",
+                "en": "Four sections, the same for every driver, with Test Connection, Cancel and Save on one bar along the bottom.",
                 "vi": null
             },
             "replacement": {
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-73-2"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1096
+                }
+            },
             "legacySource": [
                 "/images/blog/connection-editor-sections.png"
             ]
@@ -5281,8 +5591,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-73-3"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 1096
+                }
+            },
             "legacySource": [
                 "/images/blog/tunnel-command-kubectl.png"
             ]
@@ -5321,8 +5644,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-73-4"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1368
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1368,
+                    "height": 1140
+                }
+            },
             "legacySource": [
                 "/images/blog/sqlite-foreign-key-rebuild.png"
             ]
@@ -5361,8 +5697,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-74-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/results-map-geometry.png"
             ]
@@ -5401,8 +5750,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-74-2"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/highlight-rules-grid.png"
             ]
@@ -5441,8 +5803,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-74-3"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 354
+                }
+            },
             "legacySource": [
                 "/images/blog/sql-editor-invisible-characters.png"
             ]
@@ -5481,8 +5856,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-76-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/agent-mode-window.png"
             ]
@@ -5521,8 +5909,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-76-2"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 845
+                }
+            },
             "legacySource": [
                 "/images/blog/mcp-outside-servers-settings.png"
             ]
@@ -5561,8 +5962,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-76-3"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 850
+                }
+            },
             "legacySource": [
                 "/images/blog/data-files-window.png"
             ]
@@ -5601,8 +6015,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-76-4"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/mongodb-insert-document.png"
             ]
@@ -5641,8 +6068,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-77-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/sidebar-table-folders.png"
             ]
@@ -5681,8 +6121,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-77-2"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        1408
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1408,
+                    "height": 802
+                }
+            },
             "legacySource": [
                 "/images/blog/import-match-columns.png"
             ]
@@ -5721,8 +6174,21 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-0-77-3"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        704,
+                        900
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 900,
+                    "height": 720
+                }
+            },
             "legacySource": [
                 "/images/blog/connection-timeouts.png"
             ]
@@ -5761,8 +6227,22 @@
                 "dir": "public/images/blog",
                 "base": "blog-tablepro-for-iphone-1"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1826
+                }
+            },
             "legacySource": [
                 "/images/blog/tablepro-for-iphone-table.png"
             ]
@@ -5834,16 +6314,41 @@
                 "vi": "Ảnh chia sẻ mạng xã hội thiết kế riêng, dùng cho mọi trang không có ảnh OG riêng: logo TablePro và câu giới thiệu sản phẩm."
             },
             "alt": {
-                "en": "The TablePro logo and the words: TablePro is a native, open-source database client for developers.",
-                "vi": "Logo TablePro và dòng chữ: TablePro là database client native, mã nguồn mở, dành cho lập trình viên."
+                "en": "The TablePro logo and the words: TablePro is a native, open-source database client for developers. Below them, the address tablepro.app.",
+                "vi": "Logo TablePro và dòng chữ: TablePro là database client native, mã nguồn mở, dành cho lập trình viên. Bên dưới là địa chỉ tablepro.app."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/og/bespoke",
                 "base": "og-site"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "en": {
+                    "light": {
+                        "widths": [
+                            1200
+                        ],
+                        "formats": [
+                            "png"
+                        ],
+                        "width": 1200,
+                        "height": 630
+                    }
+                },
+                "vi": {
+                    "light": {
+                        "widths": [
+                            1200
+                        ],
+                        "formats": [
+                            "png"
+                        ],
+                        "width": 1200,
+                        "height": 630
+                    }
+                }
+            },
             "legacySource": null
         }
     }

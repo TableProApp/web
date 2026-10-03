@@ -1,7 +1,8 @@
 {{--
     The generic brand card for a locale: the product's identity sentence,
     from `content/{locale}/home.json` → `og`. Written to /og.png (English) and
-    /og/{locale}/default.png, and used by every page without a card of its own.
+    /og/{locale}/default.png, and used by every page without a card of its own
+    in any locale where the bespoke `og-site` card is not supplied (OgImages).
 
     Expects $locale, $fonts, $logo, $kicker (may be empty), $title, $titleSize
     and $address.
