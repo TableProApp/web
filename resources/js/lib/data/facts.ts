@@ -65,6 +65,8 @@ export interface FactsData {
         docs: string;
         changelog: string;
         raycast: string;
+        /** Rendered as a plain text link only: no badge image and no request from the page (spec §0). */
+        productHunt: string;
     };
     support: { email: string };
     openSource: { license: string };

@@ -11,18 +11,48 @@ use PHPUnit\Framework\Assert;
  * - The Polar or Lemon Squeezy checkout SDK loaded on every page; it now loads
  *   at checkout intent, from a module, never from the document.
  * - The Product Hunt badge was a hotlink that set `__cf_bm` before consent.
+ *   The homepage now names Product Hunt in a plain text link (spec §0): an
+ *   anchor the reader follows, which makes no request until it is clicked.
  *
- * Google Analytics is the one third-party script left in the document, and it
- * runs in Consent Mode (AnalyticsConsentTest). Executing the click-to-load
- * behaviour is `tests/js/crisp.test.ts`; this file holds the documents.
+ * Google Analytics is the one third-party script this repository puts in the
+ * document, and it runs in Consent Mode (AnalyticsConsentTest). In production
+ * Cloudflare also injects its Web Analytics beacon
+ * (`static.cloudflareinsights.com`) at the edge; it is a Cloudflare setting,
+ * not in this repository, so no test here can see it, and the privacy policy
+ * discloses it (docs/architecture.md, Third-party scripts). Executing the
+ * click-to-load behaviour is `tests/js/crisp.test.ts`; this file holds the
+ * documents.
  */
 
 const THIRD_PARTY_HOSTS = ['client.crisp.chat', '@polar-sh/checkout', 'lemon.js', 'lemonsqueezy.com', 'producthunt.com'];
 
 /**
+ * Outbound links a page may carry to one of those hosts. Only a plain `<a>`
+ * with exactly this `href` is exempt; the same URL in `src`, `srcset`, a
+ * `<link>` or a script still fails.
+ *
+ * @var list<string>
+ */
+const ALLOWED_OUTBOUND_LINKS = ['https://www.producthunt.com/products/tablepro'];
+
+/**
+ * The page with each allowed outbound anchor's opening tag blanked, so what
+ * remains is checked for requests to third-party hosts.
+ */
+function withoutAllowedLinks(string $html): string
+{
+    foreach (ALLOWED_OUTBOUND_LINKS as $url) {
+        $html = (string) preg_replace('#<a\b[^>]*\bhref="' . preg_quote($url, '#') . '"[^>]*>#', '<a>', $html);
+    }
+
+    return $html;
+}
+
+/**
  * Pages whose rendered HTML is checked: the homepage (rebuilt without the
- * Product Hunt hotlink), the download page and the pricing page, whose buy
- * buttons load the checkout SDK only at checkout intent.
+ * Product Hunt hotlink, with a plain text link instead), the download page and
+ * the pricing page, whose buy buttons load the checkout SDK only at checkout
+ * intent.
  *
  * @return list<string>
  */
@@ -96,10 +126,25 @@ it('renders no third-party request into any page it serves', function (): void {
     config(['services.crisp.website_id' => 'crisp-test-id']);
 
     foreach (thirdPartyPages() as $path) {
-        $html = ssrHtml($path);
+        $html = withoutAllowedLinks(ssrHtml($path));
 
         foreach (THIRD_PARTY_HOSTS as $host) {
             Assert::assertStringNotContainsString($host, $html, "{$path} renders {$host}");
         }
+    }
+});
+
+it('exempts only a plain anchor to an allowed outbound link', function (): void {
+    $anchor = '<a class="x" href="https://www.producthunt.com/products/tablepro">TablePro on Product Hunt</a>';
+
+    expect(withoutAllowedLinks($anchor))->not->toContain('producthunt.com');
+
+    foreach ([
+        '<img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1">',
+        '<link rel="preconnect" href="https://www.producthunt.com/products/tablepro">',
+        '<a href="https://www.producthunt.com/products/tablepro?embed=true"><img src="x.svg"></a>',
+        '<script src="https://www.producthunt.com/products/tablepro"></script>',
+    ] as $request) {
+        expect(withoutAllowedLinks($request))->toContain('producthunt.com');
     }
 });

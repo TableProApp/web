@@ -16,9 +16,14 @@ interface OpenSourceSectionProps {
  * I start?" (sitemap §D; positioning §3.3, §9). On the page background, never
  * the surface band, because the footer follows.
  *
- * The AGPL sentence and the funding sentence, the source on GitHub, then the
- * same two actions as the hero with their availability lines, and the
- * availability summary from platforms.json.
+ * The AGPL sentence and the funding sentence, the source on GitHub and the
+ * Product Hunt page, then the same two actions as the hero with their
+ * availability lines, and the availability summary from platforms.json.
+ *
+ * Product Hunt is a plain text link, by the owner's decision (spec §0): no
+ * badge image and no hotlink, so the page makes no request to Product Hunt
+ * (`ThirdParty/ScriptsTest`). It sits after GitHub, away from the download
+ * actions.
  */
 export default function OpenSourceSection({ content, availability }: OpenSourceSectionProps) {
     const { m, fmt } = useI18n();
@@ -27,11 +32,18 @@ export default function OpenSourceSection({ content, availability }: OpenSourceS
         <Section id="open-source" title={content.title}>
             <div className="max-w-[44rem]">
                 <p className="type-body text-foreground">{content.body}</p>
-                <p className="mt-4">
-                    <TextLink href={FACTS.links.github} kind="standalone" external>
-                        {content.github}
-                    </TextLink>
-                </p>
+                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                    <li>
+                        <TextLink href={FACTS.links.github} kind="standalone" external>
+                            {content.github}
+                        </TextLink>
+                    </li>
+                    <li>
+                        <TextLink href={FACTS.links.productHunt} kind="standalone" external>
+                            {content.productHunt}
+                        </TextLink>
+                    </li>
+                </ul>
             </div>
 
             <p className="type-body mt-10 font-medium text-foreground">{fmt(m.platforms.availability.summary, { deviceList: availability.deviceList })}</p>
