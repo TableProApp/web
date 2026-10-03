@@ -1,6 +1,6 @@
 ---
 title: Chính sách hoàn tiền
-description: Mọi gói TablePro đều được hoàn tiền trong vòng {refundDays} ngày kể từ ngày mua, hoặc kể từ ngày gia hạn gần nhất với gói theo năm. Cách yêu cầu, điều gì xảy ra với license, và cách ngừng gia hạn gói thuê bao.
+description: Mọi gói TablePro đều được hoàn tiền trong {refundDays} ngày kể từ ngày mua, hoặc từ ngày gia hạn gần nhất với gói theo năm. Cách yêu cầu và điều gì xảy ra với license.
 updatedAt: "2026-10-02"
 ---
 

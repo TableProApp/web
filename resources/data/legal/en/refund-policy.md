@@ -1,6 +1,6 @@
 ---
 title: Refund policy
-description: Every TablePro plan can be refunded within {refundDays} days of purchase, or of the latest renewal for a yearly plan. How to ask, what happens to the license, and how to stop a subscription renewing.
+description: Every TablePro plan can be refunded within {refundDays} days of purchase, or of the latest renewal for a yearly plan. How to ask, and what happens to the license.
 updatedAt: "2026-10-02"
 ---
 
