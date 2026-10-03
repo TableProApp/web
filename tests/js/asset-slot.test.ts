@@ -190,6 +190,7 @@ test('a per-locale vector picks the page locale and needs no srcset widths', () 
     assert.ok(!markup.includes('-en.svg'));
     assert.ok(!/ \d+w/.test(markup));
     assert.ok(markup.includes('alt="Một sơ đồ mẫu"'));
+    assert.ok(markup.includes('max-w-[720px]'), 'a diagram stops at 720px so its labels never outsize the headings');
 });
 
 test('caption={false} suppresses the manifest caption', () => {

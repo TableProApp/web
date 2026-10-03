@@ -60,6 +60,12 @@ const PHONE_WIDTH = 'mx-auto w-[240px] md:w-[280px]';
  */
 const CROP_WIDTH = 'mx-auto w-full max-w-[343px]';
 
+/**
+ * A diagram is drawn to read at 343px, so its labels grow with its width. Above
+ * 720px they would outsize the page's headings, so it stops there and centres.
+ */
+const DIAGRAM_WIDTH = 'mx-auto w-full max-w-[720px]';
+
 /** The same cap on an art-directed picture, below 768px only, where it shows the crop. */
 const MERGED_CROP_WIDTH = 'max-md:mx-auto max-md:max-w-[343px]';
 
@@ -87,6 +93,7 @@ function placeholderBox(part: PlaceholderPart, labels: AssetSlotLabels, visibili
                 'forced-colors:border-[CanvasText]',
                 part.kind === 'phone' && PHONE_WIDTH,
                 part.kind === 'mobile-crop' && CROP_WIDTH,
+                part.kind === 'diagram' && DIAGRAM_WIDTH,
                 VISIBILITY[visibility],
             ),
             style: { aspectRatio: part.aspect },
@@ -150,6 +157,7 @@ function picture(model: PictureModel, part: SuppliedPart, visibility: Visibility
                 model.theme ? THEME_CLASS[model.theme] : 'block',
                 kind === 'phone' && PHONE_WIDTH,
                 kind === 'mobile-crop' && CROP_WIDTH,
+                kind === 'diagram' && DIAGRAM_WIDTH,
                 part.phoneCrop && MERGED_CROP_WIDTH,
                 VISIBILITY[visibility],
             ),
