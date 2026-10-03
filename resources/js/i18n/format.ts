@@ -64,3 +64,14 @@ export function joinList(items: readonly string[], style: ListStyle): string {
 
     return `${items.slice(0, -1).join(style.separator)}${style.last}${items[items.length - 1]}`;
 }
+
+/**
+ * A short phrase whose words stay on one line: every space becomes a no-break
+ * space (design-system §3.3, "&nbsp; in short fixed compounds"). For a date
+ * ("2 tháng 10 năm 2026", "October 2, 2026") or a requirement ("Apple silicon
+ * or Intel"), which otherwise wrapped to leave its last word alone on the next
+ * line. Display only, and only for a few words: a long string would overflow.
+ */
+export function keepTogether(text: string): string {
+    return text.replace(/ /g, '\u00a0');
+}

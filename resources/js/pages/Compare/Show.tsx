@@ -8,6 +8,7 @@ import { macLanguages, paidExamples, tableproFacts } from '@/components/compare/
 import type { ComparePageProps } from '@/components/compare/types';
 import SEOHead from '@/components/seo/seo-head';
 import { buttonClasses } from '@/components/ui/button';
+import DotList from '@/components/ui/dot-list';
 import FaqList from '@/components/ui/faq-list';
 import { AppleGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
@@ -15,6 +16,7 @@ import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, useI18n } from '@/i18n';
+import { keepTogether } from '@/i18n/format';
 import LandingLayout from '@/layouts/landing-layout';
 import { trackDownload } from '@/lib/analytics';
 import { docsUrl } from '@/lib/data/facts';
@@ -49,7 +51,8 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
     const facts = tableproFacts(product.id, tablepro.featuredEngines, m);
     const values = productTokens(product, dates, { ...paidExamples(m), macLanguages: macLanguages(labels.languages, m) });
     const numbers = sourceNumbers(product);
-    const checked = dates[product.checkedAt] ?? product.checkedAt;
+    // The check date never breaks across lines in the meta line or the caption.
+    const checked = keepTogether(dates[product.checkedAt] ?? product.checkedAt);
     const docsInEnglish = locale !== 'en';
 
     const pageUrl = absoluteUrl(canonicalBaseUrl, path(`/compare/${slug}`));
@@ -85,12 +88,14 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
                 title={content.header.title}
                 lead={<RichText text={content.header.lead} values={values} />}
                 meta={
-                    <>
-                        {fmt(labels.factsChecked, { date: checked })} ·{' '}
-                        <a href="#sources" className={textLinkClasses('inline')}>
-                            {labels.sourcesLink}
-                        </a>
-                    </>
+                    <DotList
+                        items={[
+                            fmt(labels.factsChecked, { date: checked }),
+                            <a key="sources" href="#sources" className={textLinkClasses('inline')}>
+                                {labels.sourcesLink}
+                            </a>,
+                        ]}
+                    />
                 }
                 actions={
                     <>

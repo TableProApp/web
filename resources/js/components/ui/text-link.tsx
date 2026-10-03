@@ -11,12 +11,18 @@ export type TextLinkKind = 'inline' | 'standalone';
  *   turning `--accent-text` on hover. Never colour alone (WCAG 1.4.1).
  * - `standalone`, a link on its own line that names where it goes ("See
  *   pricing →"): `--accent-text` at 14/500, underlined on hover.
+ *
+ * A standalone link is inline text, not a flex row. As a flex row its arrow
+ * was a separate item: when a long (often Vietnamese) label wrapped, the
+ * arrow detached and floated at the far edge of the box. Inline, the trailing
+ * `aria-hidden` arrow span sits against the last word with no break
+ * opportunity between them, and the left margin draws the gap.
  */
 const KINDS: Record<TextLinkKind, string> = {
     inline:
         'text-foreground underline decoration-muted-foreground decoration-1 underline-offset-3 hover:text-accent-text hover:decoration-accent-text',
     standalone:
-        'inline-flex items-baseline gap-1 text-sm leading-[1.3] font-medium tracking-[-0.006em] text-accent-text no-underline underline-offset-3 hover:underline',
+        'inline text-sm leading-[1.3] font-medium tracking-[-0.006em] text-accent-text no-underline underline-offset-3 hover:underline [&>span[aria-hidden=true]:last-child]:ml-1',
 };
 
 /**
@@ -80,8 +86,13 @@ export default function TextLink({
             className={textLinkClasses(kind, className)}
         >
             {children}
-            {kind === 'standalone' && !external && <span aria-hidden="true">→</span>}
-            {external && <span aria-hidden="true">{kind === 'standalone' ? '↗' : ' ↗'}</span>}
+            {/* No space before the arrow: it stays on the line of the last word. */}
+            {kind === 'standalone' && (
+                <span aria-hidden="true" className="ml-1">
+                    {external ? '↗' : '→'}
+                </span>
+            )}
+            {kind === 'inline' && external && <span aria-hidden="true">{'\u00a0↗'}</span>}
             {newTab && <span className="sr-only"> {newTabLabel}</span>}
         </a>
     );

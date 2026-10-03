@@ -7,9 +7,16 @@ import { cn } from '@/lib/utils';
  * §5.3.12). Mono at 0.875em of the surrounding text, on `--surface` with the
  * chip radius, in the text colour.
  */
+/** Up to this many characters, inline code never breaks: a flag split after `--` reads as two tokens. */
+const NOWRAP_LIMIT = 32;
+
 export function InlineCode({ children, className }: { children: ReactNode; className?: string }) {
+    const text = typeof children === 'string' ? children : null;
+    // A short token stays whole; a long one (a full command, a path) may break anywhere rather than overflow a phone.
+    const wrap = text !== null && text.length <= NOWRAP_LIMIT ? 'whitespace-nowrap' : '[overflow-wrap:anywhere]';
+
     return (
-        <code className={cn('rounded-chip bg-surface px-1.5 py-0.5 font-mono text-[0.875em] text-foreground', className)}>
+        <code className={cn('rounded-chip bg-surface px-1.5 py-0.5 font-mono text-[0.875em] text-foreground', wrap, className)}>
             {children}
         </code>
     );

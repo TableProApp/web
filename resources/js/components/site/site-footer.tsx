@@ -16,15 +16,27 @@ import ChatButton, { useChatAvailable } from './chat-button';
 import LanguageSwitcher from './language-switcher';
 import { EXTERNAL, PLATFORM_PAGES, SUPPORT_EMAIL, accountHref } from './site-links';
 
+/**
+ * A footer link: inline text in a block that is 32px tall for one line (the
+ * small role's line height plus 5px above and below), so a long label wraps
+ * like text and the row keeps the 32px rhythm. The line height follows the
+ * small role, so Vietnamese gets its 1.6.
+ */
 const LINK =
-    'inline-flex min-h-8 items-center gap-1 rounded-[2px] text-left text-sm leading-[1.4] text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground';
+    'type-small inline-block py-[5px] rounded-[2px] text-left text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground';
 
-/** A link that leaves the site, in the same tab, marked ↗. */
+/**
+ * A link that leaves the site, in the same tab, marked ↗. The arrow follows
+ * the last word with no break opportunity, so a wrapped label ("Changelog
+ * (tiếng Anh) ↗") keeps it on its last line instead of floating it at the edge.
+ */
 function External({ href, children, hrefLang }: { href: string; children: ReactNode; hrefLang?: string }) {
     return (
         <a href={href} hrefLang={hrefLang} className={LINK}>
             {children}
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true" className="ml-1">
+                ↗
+            </span>
         </a>
     );
 }
@@ -76,7 +88,7 @@ function Newsletter() {
                         placeholder={m.forms.email.placeholder}
                         value={form.email}
                         onChange={(event) => form.setEmail(event.target.value)}
-                        disabled={form.processing}
+                        readOnly={form.processing}
                         invalid={form.error !== null}
                         aria-describedby={describedBy(inputId, { error: form.error }) ?? resultId}
                         className="sm:flex-1"
@@ -123,7 +135,7 @@ function Newsletter() {
  * the consent bar on every page, because withdrawing consent must be as easy
  * as giving it. "Live chat" loads Crisp only when clicked.
  */
-export default function SiteFooter() {
+export default function SiteFooter({ newsletter = true }: { newsletter?: boolean }) {
     const { locale, m, fmt } = useI18n();
     const chat = useChatAvailable();
     const groups = m.footer.groups;
@@ -133,10 +145,12 @@ export default function SiteFooter() {
             <Container className="pt-16 pb-12">
                 <h2 className="sr-only">{m.footer.heading}</h2>
                 <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
-                    <div className="lg:col-span-5">
-                        <Newsletter />
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:col-span-7">
+                    {newsletter && (
+                        <div className="lg:col-span-5">
+                            <Newsletter />
+                        </div>
+                    )}
+                    <div className={cn('grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3', newsletter ? 'lg:col-span-7' : 'lg:col-span-12 lg:grid-cols-5')}>
                         <Group title={groups.product.title}>
                             <li>
                                 <LocaleLink href="/features" className={LINK}>

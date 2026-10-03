@@ -40,7 +40,7 @@ export default function RichText({ text, values = {}, href = null, external = {}
         tags[name] = (content) => (
             <a href={url} className={textLinkClasses('inline')}>
                 {content}
-                <span aria-hidden="true"> ↗</span>
+                <span aria-hidden="true">{'\u00a0↗'}</span>
             </a>
         );
     }

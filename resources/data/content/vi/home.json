@@ -81,7 +81,7 @@
     "safety": {
         "title": "Lớp bảo vệ khi làm việc với production",
         "body": [
-            "Trên Mac, bạn gắn tag và màu cho connection theo môi trường, rồi đặt cho mỗi connection một mức Safe Mode, từ Silent đến Read-Only, kèm Touch ID hoặc mật khẩu ở các mức nghiêm ngặt. DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi bạn, ở mọi mức. Trên iPhone và iPad, Confirm Writes hỏi trước mọi thao tác ghi, còn Read-Only từ chối chúng.",
+            "Trên Mac, bạn gắn tag và màu cho connection theo môi trường, rồi đặt cho mỗi connection một mức Safe Mode, từ Silent đến Read‑Only, kèm Touch ID hoặc mật khẩu ở các mức nghiêm ngặt. DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi bạn, ở mọi mức. Trên iPhone và iPad, Confirm Writes hỏi trước mọi thao tác ghi, còn Read‑Only từ chối chúng.",
             "Khi một connection đang mở ở Agent mode, connection đó chạy ở mức Alert hoặc nghiêm ngặt hơn. Data Rewind có thể khôi phục các giá trị mà một lần lưu gần đây đã ghi đè. Đây không phải là bản sao lưu."
         ],
         "levels": "Các mức Safe Mode",

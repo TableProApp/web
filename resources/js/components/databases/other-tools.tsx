@@ -1,3 +1,4 @@
+import DotList from '@/components/ui/dot-list';
 import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
@@ -59,7 +60,11 @@ export default function OtherTools({ content, tools, labels }: OtherToolsProps) 
                     return (
                         <div key={tool.id} id={item.anchor} className="scroll-mt-24 space-y-2">
                             <h3 className="type-h3 text-foreground">{tool.name}</h3>
-                            {facts.length > 0 && <p className="type-small text-muted-foreground">{facts.join(' · ')}</p>}
+                            {facts.length > 0 && (
+                                <p className="type-small text-muted-foreground">
+                                    <DotList items={facts} />
+                                </p>
+                            )}
                             <p className="type-body text-foreground">
                                 {tool.state === 'discontinued' && tool.version !== null && tool.released !== null && (
                                     <>{fmt(strings.discontinued, { name: tool.name, version: tool.version, date: tool.released })} </>

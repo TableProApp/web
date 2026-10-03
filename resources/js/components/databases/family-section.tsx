@@ -1,4 +1,5 @@
 import Badge from '@/components/ui/badge';
+import DotList from '@/components/ui/dot-list';
 import TextLink from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 import EngineSection from './engine-section';
@@ -44,14 +45,17 @@ export default function FamilySection({ section, engine, copy, labels, docsBase 
             points={section.points}
             values={engineValues(engine, m.common.list)}
             before={
-                <p className="type-small flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground">
-                    {facts.map((fact, index) => (
-                        <span key={index} className="inline-flex items-center gap-3">
-                            {index > 0 && <span aria-hidden="true">·</span>}
-                            {fact}
-                        </span>
-                    ))}
-                    {engine.release !== null && <Badge variant="accent">{fmt(labels.release, { version: engine.release })}</Badge>}
+                <p className="type-small text-muted-foreground">
+                    <DotList
+                        items={[
+                            ...facts,
+                            engine.release !== null && (
+                                <Badge variant="accent" className="whitespace-nowrap">
+                                    {fmt(labels.release, { version: engine.release })}
+                                </Badge>
+                            ),
+                        ]}
+                    />
                 </p>
             }
             after={

@@ -9,7 +9,7 @@
  * so the server and the browser render the same bytes (architecture §1.5).
  */
 import { interpolate } from '@/i18n/core';
-import { joinList } from '@/i18n/format';
+import { joinList, keepTogether } from '@/i18n/format';
 import type { Messages } from '@/i18n';
 import { PAID_FEATURES, paidPlatformIds, type PaidFeature } from '@/lib/data/paid-features';
 import type { PaidTierId } from '@/lib/data/pricing';
@@ -60,7 +60,7 @@ export function availability(m: Messages, captions: { mac: string; ios: string }
     return {
         macCaption: interpolate(captions.mac, {
             requirement: requirementText(mac, m.platforms),
-            architectures: architecturesText(m.platforms),
+            architectures: keepTogether(architecturesText(m.platforms)),
         }),
         iosCaption:
             ios !== null
@@ -83,9 +83,11 @@ export function availability(m: Messages, captions: { mac: string; ios: string }
 
 /** The Mac build architectures as a plain list: "Apple silicon and Intel". */
 export function macArchitectureList(m: Messages): string {
-    return joinList(
-        macPlatform().architectures.map((architecture) => m.platforms.architectures[architecture.id]),
-        m.common.list,
+    return keepTogether(
+        joinList(
+            macPlatform().architectures.map((architecture) => m.platforms.architectures[architecture.id]),
+            m.common.list,
+        ),
     );
 }
 
