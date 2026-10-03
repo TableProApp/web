@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-02"
+updatedAt: "2026-10-03"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
@@ -13,7 +13,7 @@ Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad,
 - Các query bạn chạy, kết quả trả về và mật khẩu của bạn không được gửi cho TablePro. Ngoại lệ duy nhất là những gì bạn chủ động xuất bản lên Team Library: cấu hình connection (không bao giờ gồm mật khẩu) và query đã lưu.
 - Yêu cầu gửi tới AI đi thẳng từ ứng dụng cho Mac tới nhà cung cấp AI mà bạn thiết lập, không qua chúng tôi.
 - Máy chủ của chúng tôi lưu địa chỉ IP của mọi báo cáo sử dụng và mọi lần kiểm tra license, và tra quốc gia cho mỗi báo cáo sử dụng. Chúng tôi chưa đặt thời hạn lưu cho các bản ghi này.
-- Website tải Google Analytics, công cụ này chỉ đặt cookie khi bạn cho phép, và chỉ tải chat trực tuyến khi bạn bấm nút chat.
+- Website đếm lượt xem trang bằng Cloudflare Web Analytics, công cụ này không đặt cookie. Website cũng tải Google Analytics, công cụ này chỉ đặt cookie khi bạn cho phép, và chỉ tải chat trực tuyến khi bạn bấm nút chat.
 - Việc mua license do {merchant}, merchant of record của chúng tôi, thực hiện.
 
 ## Bên chịu trách nhiệm {#controller}
@@ -110,9 +110,11 @@ Handoff chuyển mã của connection đang mở và tên của table đang mở
 
 ## Website {#website}
 
-**Lưu trữ.** Website và trang tài khoản chạy trên máy chủ của chúng tôi, phía sau Cloudflare. Như mọi máy chủ web, chúng nhận địa chỉ IP, user agent của trình duyệt và địa chỉ của từng trang bạn yêu cầu. Cloudflare cũng đo thời gian tải trang và lượt truy cập bằng Cloudflare Web Analytics, công cụ này không đặt cookie.
+**Lưu trữ.** Website và trang tài khoản chạy trên máy chủ của chúng tôi, phía sau Cloudflare. Như mọi máy chủ web, chúng nhận địa chỉ IP, user agent của trình duyệt và địa chỉ của từng trang bạn yêu cầu.
 
-**Google Analytics.** Website tải Google Analytics trên mọi trang ở chế độ Consent Mode. Cho tới khi bạn chọn **Cho phép** trong câu hỏi về cookie, công cụ này không đặt cookie nào và chỉ gửi cho Google một tín hiệu không dùng cookie cho mỗi trang, không lưu mã định danh nào trên thiết bị của bạn. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt truy cập của bạn, chẳng hạn những trang bạn xem, các lượt bấm tải về và việc bắt đầu thanh toán. Lưu trữ cho quảng cáo, cá nhân hóa quảng cáo và dữ liệu người dùng cho quảng cáo luôn bị từ chối. Google cho biết Google Analytics 4 không ghi lại và không lưu địa chỉ IP. Google giữ dữ liệu này tối đa 14 tháng. Cơ sở pháp lý: sự đồng ý của bạn đối với cookie.
+**Cloudflare Web Analytics.** Cloudflare chèn script Web Analytics của mình vào các trang của website và trang tài khoản. Trình duyệt của bạn tải script này từ `static.cloudflareinsights.com`, và script báo cho Cloudflare từng lượt xem trang: trang được xem, trang web đã dẫn bạn tới, thời gian tải trang, cùng trình duyệt, hệ điều hành và loại thiết bị của bạn. Cloudflare bổ sung quốc gia nơi kết nối của bạn xuất phát. Script này không đặt cookie và không lưu gì trong trình duyệt của bạn, và Cloudflare cho biết dịch vụ này không dùng địa chỉ IP hay thông tin trình duyệt để nhận dạng bạn (fingerprinting). Cloudflare chỉ cho chúng tôi xem số liệu tổng, chẳng hạn số lượt xem theo từng trang hoặc từng quốc gia, chứ không có bản ghi về từng người truy cập. Cơ sở pháp lý: lợi ích hợp pháp.
+
+**Google Analytics.** Website tải Google Analytics trên mọi trang ở chế độ Consent Mode. Cho tới khi bạn chọn **Cho phép** trong câu hỏi về cookie, công cụ này không đặt cookie nào và chỉ gửi cho Google một tín hiệu không dùng cookie cho mỗi trang, không lưu mã định danh nào trên thiết bị của bạn. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt truy cập của bạn, chẳng hạn những trang bạn xem, các lượt bấm tải về và việc bắt đầu thanh toán. Lưu trữ cho quảng cáo, cá nhân hóa quảng cáo và dữ liệu người dùng cho quảng cáo luôn bị từ chối. Google cho biết Google Analytics 4 không ghi lại và không lưu địa chỉ IP. Property Google Analytics của chúng tôi dùng thời hạn lưu mặc định của Google: Google xóa dữ liệu ở cấp người dùng và cấp sự kiện sau 2 tháng. Các báo cáo tiêu chuẩn của Google, vốn chứa số liệu tổng chứ không chứa mã định danh, không bị ảnh hưởng. Cơ sở pháp lý: sự đồng ý của bạn đối với cookie.
 
 **Chat trực tuyến.** Không có gì từ nhà cung cấp dịch vụ chat của chúng tôi, Crisp, được tải cho tới khi bạn bấm một nút chat. Khi bạn bấm, trình duyệt tải script của Crisp từ `client.crisp.chat`, và Crisp đặt các cookie được nêu trong mục [Cookie và bộ nhớ trình duyệt](#cookies). Crisp nhận địa chỉ IP, thông tin trình duyệt và các tin nhắn bạn viết, và giữ lại địa chỉ IP của bạn nếu bạn bắt đầu một cuộc chat. Chúng tôi chỉ cho Crisp biết ngôn ngữ của trang, ngoài ra không cung cấp thông tin nào khác về bạn. Crisp có trụ sở tại Pháp.
 
@@ -140,7 +142,7 @@ Nếu bạn đăng ký nhận ghi chú phát hành, chúng tôi lưu địa ch�
 
 ## Cookie và bộ nhớ trình duyệt {#cookies}
 
-Khi bạn chỉ đọc website công khai, website không tự đặt cookie nào; việc đăng ký nhận bản tin hoặc bắt đầu thanh toán sẽ đặt hai cookie thực sự cần thiết của trang tài khoản, được liệt kê bên dưới. Chỉ cookie của Google Analytics cần sự đồng ý của bạn, và chúng không được đặt cho tới khi bạn đồng ý. Cookie của Crisp chỉ được đặt sau khi bạn bấm một nút chat. Không thứ nào dưới đây được dùng cho quảng cáo hay được bán.
+Khi bạn chỉ đọc website công khai, website không tự đặt cookie nào; việc đăng ký nhận bản tin hoặc bắt đầu thanh toán sẽ đặt hai cookie thực sự cần thiết của trang tài khoản, được liệt kê bên dưới. Cloudflare Web Analytics không đặt cookie và không lưu gì trong trình duyệt của bạn. Chỉ cookie của Google Analytics cần sự đồng ý của bạn, và chúng không được đặt cho tới khi bạn đồng ý. Cookie của Crisp chỉ được đặt sau khi bạn bấm một nút chat. Không thứ nào dưới đây được dùng cho quảng cáo hay được bán.
 
 - **`_ga` và `_ga_<ID>`** (cookie của Google Analytics, tối đa 2 năm, chỉ khi bạn cho phép phân tích): một mã ngẫu nhiên cho trình duyệt của bạn và trạng thái của lượt truy cập hiện tại. Khi bạn từ chối, hoặc đổi câu trả lời sau đó, các cookie này bị xóa. Cơ sở pháp lý: sự đồng ý.
 - **`tablepro:analytics-consent`** (local storage, cho tới khi bạn xóa): câu trả lời của bạn cho câu hỏi về phân tích, để bạn không bị hỏi lại ở mỗi trang. Website và trang tài khoản dùng chung giá trị này. Cơ sở pháp lý: thực sự cần thiết để tôn trọng lựa chọn của bạn.
@@ -158,7 +160,7 @@ Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích 
 Với người đọc ở Khu vực Kinh tế Châu Âu (EEA) và Vương quốc Anh, cơ sở pháp lý theo GDPR và GDPR của Vương quốc Anh là:
 
 - **Hợp đồng** (Điều 6(1)(b)): bán và cung cấp license, kiểm tra license, trang tài khoản và Team Library.
-- **Lợi ích hợp pháp** (Điều 6(1)(f)): báo cáo sử dụng của ứng dụng cho Mac và việc tra quốc gia đi kèm, nhật ký các yêu cầu liên quan đến license, bảo mật và chống lạm dụng, nhật ký máy chủ web và bản ghi nguồn truy cập khi mua hàng.
+- **Lợi ích hợp pháp** (Điều 6(1)(f)): báo cáo sử dụng của ứng dụng cho Mac và việc tra quốc gia đi kèm, nhật ký các yêu cầu liên quan đến license, bảo mật và chống lạm dụng, nhật ký máy chủ web, Cloudflare Web Analytics và bản ghi nguồn truy cập khi mua hàng.
 - **Sự đồng ý** (Điều 6(1)(a)): cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và chat trực tuyến.
 - **Nghĩa vụ pháp lý** (Điều 6(1)(c)): hồ sơ thuế và kế toán, và việc trả lời các yêu cầu hợp pháp.
 
@@ -168,7 +170,7 @@ Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần t
 
 - **{merchant}**, merchant of record cho các giao dịch mua.
 - **Một nhà cung cấp dịch vụ gửi email**, để gửi liên kết đăng nhập, biên nhận từ chúng tôi, lời mời vào nhóm và bản tin.
-- **Nhà cung cấp hosting của chúng tôi và Cloudflare**, cho website, trang tài khoản và máy chủ mà các ứng dụng liên lạc.
+- **Nhà cung cấp hosting của chúng tôi và Cloudflare**, cho website, trang tài khoản và máy chủ mà các ứng dụng liên lạc. Cloudflare cũng đếm lượt xem trang bằng Cloudflare Web Analytics.
 - **Google**, cho Google Analytics trên website và trang tài khoản.
 - **Crisp**, cho chat trực tuyến, chỉ sau khi bạn mở khung chat.
 - **jsDelivr**, nơi trình duyệt của bạn tải script thanh toán của {merchant} khi bạn trỏ tới một nút Mua.
@@ -189,7 +191,8 @@ Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ li�
 - **Team Library**: cho tới khi được xuất bản lại, khi thành viên đã xuất bản bị xóa khỏi nhóm, hoặc khi bạn yêu cầu xóa. Thư viện vẫn còn sau khi license kết thúc.
 - **Liên kết đăng nhập trang tài khoản**: hết hạn sau 15 phút và sau đó bị xóa. Mỗi phiên đăng nhập kéo dài 2 giờ.
 - **Bản tin**: cho tới khi bạn hủy đăng ký, hoặc cho tới khi chúng tôi xóa địa chỉ theo yêu cầu của bạn.
-- **Google Analytics**: tối đa 14 tháng; cookie của công cụ này tồn tại tối đa 2 năm, hoặc bị xóa khi bạn từ chối.
+- **Google Analytics**: dữ liệu ở cấp người dùng và cấp sự kiện được giữ 2 tháng, thời hạn lưu mặc định của Google mà property của chúng tôi đang dùng. Cookie của công cụ này tồn tại tối đa 2 năm, hoặc bị xóa khi bạn từ chối.
+- **Cloudflare Web Analytics**: Cloudflare cho chúng tôi xem số liệu tổng về lượt xem trang trong sáu tháng gần nhất. Không có gì được lưu trong trình duyệt của bạn.
 - **Chat trực tuyến và email hỗ trợ**: được Crisp và hộp thư của chúng tôi giữ cho tới khi bị xóa. Bạn có thể yêu cầu chúng tôi xóa các cuộc chat và email của bạn.
 - **Nhật ký máy chủ web**: được giữ cho mục đích bảo mật và khắc phục sự cố. Chúng tôi chưa đặt thời hạn cố định cho các nhật ký này.
 

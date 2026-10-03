@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-02"
+updatedAt: "2026-10-03"
 ---
 
 This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
@@ -13,7 +13,7 @@ This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website a
 - The queries you run, your results and your passwords are not sent to TablePro. The exception is what you choose to publish to a Team Library: connection settings (never passwords) and saved queries.
 - AI requests go from the Mac app directly to the AI provider you set up, not to us.
 - Our server stores the IP address of every usage report and license check, and looks up a country for each usage report. We have not set a time limit for keeping these records.
-- The website loads Google Analytics, which sets cookies only if you allow them, and loads live chat only when you click a chat button.
+- The website counts page views with Cloudflare Web Analytics, which sets no cookies. It also loads Google Analytics, which sets cookies only if you allow them, and loads live chat only when you click a chat button.
 - Purchases are sold by {merchant}, our merchant of record.
 
 ## Who is responsible {#controller}
@@ -110,9 +110,11 @@ Handoff passes the ID of the open connection and the name of the open table betw
 
 ## Website {#website}
 
-**Hosting.** The website and the account portal run on our server, behind Cloudflare. Like any web server, they receive your IP address, your browser's user agent and the address of each page you request. Cloudflare also measures page loads and visits with Cloudflare Web Analytics, which sets no cookies.
+**Hosting.** The website and the account portal run on our server, behind Cloudflare. Like any web server, they receive your IP address, your browser's user agent and the address of each page you request.
 
-**Google Analytics.** The site loads Google Analytics on every page in Consent Mode. Until you choose **Allow** in the cookie question, it sets no cookies and sends Google only a cookieless signal for each page, with no identifier stored on your device. If you allow it, Google Analytics sets the `_ga` and `_ga_<ID>` cookies and measures your visits, such as the pages you view, download clicks and the start of a checkout. Advertising storage, ad personalization and ad user data are always denied. Google states that Google Analytics 4 does not log or store IP addresses. Google keeps this data for at most 14 months. Lawful basis: your consent for the cookies.
+**Cloudflare Web Analytics.** Cloudflare adds its Web Analytics script to the pages of the website and the account portal. Your browser loads it from `static.cloudflareinsights.com`, and it reports each page view to Cloudflare: the page, the site that linked to it, how long the page took to load, and your browser, operating system and type of device. Cloudflare adds the country your connection comes from. The script sets no cookies and stores nothing in your browser, and Cloudflare states that it does not use your IP address or browser details to fingerprint you. Cloudflare shows us totals, such as page views per page or per country, not a record of each visitor. Lawful basis: legitimate interest.
+
+**Google Analytics.** The site loads Google Analytics on every page in Consent Mode. Until you choose **Allow** in the cookie question, it sets no cookies and sends Google only a cookieless signal for each page, with no identifier stored on your device. If you allow it, Google Analytics sets the `_ga` and `_ga_<ID>` cookies and measures your visits, such as the pages you view, download clicks and the start of a checkout. Advertising storage, ad personalization and ad user data are always denied. Google states that Google Analytics 4 does not log or store IP addresses. Our Google Analytics property uses Google's default retention period: Google deletes the user-level and event-level data it collected after 2 months. Google's standard reports, which hold totals rather than identifiers, are not affected. Lawful basis: your consent for the cookies.
 
 **Live chat.** Nothing from our chat provider, Crisp, loads until you click a chat button. When you do, your browser loads Crisp's script from `client.crisp.chat`, and Crisp sets the cookies described under [Cookies and browser storage](#cookies). Crisp receives your IP address, your browser's details and the messages you write, and it keeps your IP address if you start a conversation. We tell Crisp the language of the page and nothing else about you. Crisp is based in France.
 
@@ -140,7 +142,7 @@ If you subscribe to release notes, we store your email address and the language 
 
 ## Cookies and browser storage {#cookies}
 
-Reading the public website sets no cookies of its own; subscribing to the newsletter or starting a checkout sets the two strictly necessary portal cookies listed below. Only the Google Analytics cookies need your consent, and they are not set until you give it. Crisp's cookies are set only after you click a chat button. Nothing here is used for advertising or sold.
+Reading the public website sets no cookies of its own; subscribing to the newsletter or starting a checkout sets the two strictly necessary portal cookies listed below. Cloudflare Web Analytics sets no cookies and stores nothing in your browser. Only the Google Analytics cookies need your consent, and they are not set until you give it. Crisp's cookies are set only after you click a chat button. Nothing here is used for advertising or sold.
 
 - **`_ga` and `_ga_<ID>`** (Google Analytics cookies, up to 2 years, only if you allow analytics): a random identifier for your browser and the state of your current visit. Declining, or changing your answer later, deletes them. Lawful basis: consent.
 - **`tablepro:analytics-consent`** (local storage, until you clear it): your answer to the analytics question, so you are not asked on every page. The website and the account portal share it. Lawful basis: strictly necessary to honor your choice.
@@ -158,7 +160,7 @@ You can change or withdraw your analytics answer at any time with **Cookie setti
 For readers in the European Economic Area and the United Kingdom, the lawful bases under the GDPR and the UK GDPR are:
 
 - **Contract** (Art. 6(1)(b)): selling and providing a license, license checks, the account portal and the Team Library.
-- **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage report and its country lookup, the logs of license requests, security and abuse prevention, web server logs and the purchase attribution record.
+- **Legitimate interest** (Art. 6(1)(f)): the Mac app's usage report and its country lookup, the logs of license requests, security and abuse prevention, web server logs, Cloudflare Web Analytics and the purchase attribution record.
 - **Consent** (Art. 6(1)(a)): Google Analytics cookies, the iPhone and iPad app's usage report, the newsletter and live chat.
 - **Legal obligation** (Art. 6(1)(c)): tax and accounting records, and answers to lawful requests.
 
@@ -168,7 +170,7 @@ We share personal data only with the services needed to run TablePro:
 
 - **{merchant}**, the merchant of record for purchases.
 - **An email delivery provider**, for sign-in links, receipts from us, team invitations and newsletters.
-- **Our hosting provider and Cloudflare**, for the website, the account portal and the server the apps talk to.
+- **Our hosting provider and Cloudflare**, for the website, the account portal and the server the apps talk to. Cloudflare also counts page views with Cloudflare Web Analytics.
 - **Google**, for Google Analytics on the website and the account portal.
 - **Crisp**, for live chat, only after you open it.
 - **jsDelivr**, which serves {merchant}'s checkout script to your browser when you point at a Buy button.
@@ -189,7 +191,8 @@ The services above operate in several countries, so your data may be processed o
 - **Team Library**: until it is published again, the member who published it is removed, or you ask us to delete it. It stays after a license ends.
 - **Account sign-in links**: they expire after 15 minutes and are then deleted. Portal sessions last 2 hours.
 - **Newsletter**: until you unsubscribe, or until we delete the address at your request.
-- **Google Analytics**: at most 14 months; its cookies last up to 2 years, or are deleted when you decline.
+- **Google Analytics**: user-level and event-level data for 2 months, Google's default retention period, which our property uses. Its cookies last up to 2 years, or are deleted when you decline.
+- **Cloudflare Web Analytics**: Cloudflare shows us the last six months of page-view totals. Nothing is stored in your browser.
 - **Live chat and support emails**: kept by Crisp and in our mailbox until deleted. Ask us to delete your conversations and emails.
 - **Web server logs**: kept for security and troubleshooting. We have not set a fixed period for them yet.
 
