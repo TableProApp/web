@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import SEOHead from '@/components/seo/seo-head';
 import Container from '@/components/ui/container';
+import DotList from '@/components/ui/dot-list';
 import LocaleLink from '@/components/ui/locale-link';
+import PageHeader from '@/components/ui/page-header';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { requirementLine } from '@/components/download/format';
 import IosCard from '@/components/download/ios-card';
@@ -10,7 +12,7 @@ import MacCard, { UI_TAGS } from '@/components/download/mac-card';
 import PageSection from '@/components/download/page-section';
 import type { DownloadPageProps } from '@/components/download/types';
 import { LOCALES, Trans, useI18n, type Messages } from '@/i18n';
-import { joinList } from '@/i18n/format';
+import { joinList, keepTogether } from '@/i18n/format';
 import { PRICING } from '@/lib/data/pricing';
 import { appStoreFirst, archHint, classifyDevice, type DeviceKind, type MacArch } from '@/lib/device';
 import { absoluteUrl, graph, iosAppNode, macAppId, macAppNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
@@ -156,25 +158,30 @@ export default function Download({ content, release, mac, ios, unreleased, links
                 })}
             />
 
-            <Container className="pt-10 pb-16 md:pt-14 md:pb-20 xl:pt-18 xl:pb-24">
-                <header className="max-w-[44rem]">
-                    <h1 className="type-h1 text-foreground">{content.header.title}</h1>
-                    <p className="type-lead mt-4 text-foreground">{content.header.lead}</p>
-                    {available && (
-                        <p className="type-small mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-muted-foreground">
-                            <span className="tabular-nums">
-                                {release.publishedAtFormatted !== null
-                                    ? fmt(m.download.release.dated, { version: release.version ?? '', date: release.publishedAtFormatted })
-                                    : fmt(m.download.release.undated, { version: release.version ?? '' })}
-                            </span>
-                            <TextLink href={release.releaseUrl} kind="standalone" external hrefLang="en">
-                                {m.download.release.notes}
-                            </TextLink>
-                        </p>
-                    )}
-                </header>
+            {/* The shared header, so the lead is muted and 56 characters wide like every other page's. */}
+            <PageHeader
+                title={content.header.title}
+                lead={content.header.lead}
+                meta={
+                    available ? (
+                        <DotList
+                            items={[
+                                <span key="version" className="tabular-nums">
+                                    {release.publishedAtFormatted !== null
+                                        ? fmt(m.download.release.dated, { version: release.version ?? '', date: keepTogether(release.publishedAtFormatted) })
+                                        : fmt(m.download.release.undated, { version: release.version ?? '' })}
+                                </span>,
+                                <TextLink key="notes" href={release.releaseUrl} kind="standalone" external hrefLang="en">
+                                    {m.download.release.notes}
+                                </TextLink>,
+                            ]}
+                        />
+                    ) : undefined
+                }
+            />
 
-                <div className="mt-10 grid items-start gap-6 lg:grid-cols-12">
+            <Container className="pb-16 md:pb-20 xl:pb-24">
+                <div className="grid items-start gap-6 lg:grid-cols-12">
                     {iosFirst ? (
                         <>
                             {iosCard}

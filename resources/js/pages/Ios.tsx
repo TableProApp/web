@@ -6,13 +6,14 @@ import { useContentTags, type SiteLinks } from '@/components/faq/content-links';
 import SEOHead from '@/components/seo/seo-head';
 import AssetSlot from '@/components/ui/asset-slot';
 import Container from '@/components/ui/container';
+import DotList from '@/components/ui/dot-list';
 import FaqList from '@/components/ui/faq-list';
 import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
-import { joinList } from '@/i18n/format';
+import { joinList, keepTogether } from '@/i18n/format';
 import type { Requirements } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
 import { absoluteUrl, graph, iosAppId, iosAppNode, organizationNode, webPageNode } from '@/lib/structured-data';
@@ -47,6 +48,8 @@ interface IosProps {
     links: SiteLinks;
     /** The organization's own profiles, for `sameAs`. */
     organizationProfiles: string[];
+    /** The header iPad slot's `sizes`, the same string its preload (`lcpAsset`) was built with. */
+    ipadSizes: string;
 }
 
 /** One block of copy: paragraphs with `{token}` slots and link tags. */
@@ -62,12 +65,17 @@ function Paragraphs({ items, tags, values }: { items: string[]; tags: Record<str
     );
 }
 
-/** Text beside its phone screens from 1024px, the screens below the text on smaller screens. */
+/**
+ * Text beside its phone screens from 1024px (text in columns 1–6, the screens
+ * from column 7 on one left edge, whether there are one or two), and below
+ * that the screens centred above their text (design-system §6.2, §8.8). A
+ * right-aligned single slot left a 340px hole between it and its text.
+ */
 function Row({ text, screens }: { text: ReactNode; screens: ReactNode }) {
     return (
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-6">{text}</div>
-            <div className="flex flex-wrap items-start gap-6 lg:col-span-6 lg:justify-end">{screens}</div>
+            <div className="order-first flex flex-wrap items-start justify-center gap-6 lg:order-none lg:col-span-6 lg:justify-start">{screens}</div>
         </div>
     );
 }
@@ -84,7 +92,7 @@ function Row({ text, screens }: { text: ReactNode; screens: ReactNode }) {
  * Every image is an `AssetSlot` placeholder from the manifest until the owner
  * supplies the captures. The App Store badge is Apple's artwork.
  */
-export default function Ios({ content, ios, macRequirements, engines, safeModeLevels, limits, links, organizationProfiles }: IosProps) {
+export default function Ios({ content, ios, macRequirements, engines, safeModeLevels, limits, links, organizationProfiles, ipadSizes }: IosProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path, format } = useI18n();
     const tags = useContentTags(links);
@@ -130,27 +138,37 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
             <SEOHead title={content.seo.title} titleTemplate={false} description={content.seo.description} jsonLd={jsonLd} />
 
             <PageHeader title={content.hero.title} lead={content.hero.lead}>
+                {/*
+                  * The badge with its requirement 8px under it (the AvailabilityLine,
+                  * design-system §5.3.18), then the other facts as one dotted line.
+                  */}
                 <div className="space-y-4">
-                    {ios?.appStoreUrl && (
-                        <AppStoreBadge
-                            href={ios.appStoreUrl}
-                            label={m.download.ios.badge}
-                            labelLang={locale === 'en' ? undefined : 'en'}
-                            location="ios-page"
-                        />
-                    )}
-                    <ul className="type-small space-y-1 text-muted-foreground">
-                        {requirement !== null && <li>{fmt(m.platforms.requires, { requirement })}</li>}
-                        {ios?.free && !ios.inAppPurchases && <li>{m.platforms.free}</li>}
-                        <li>{content.hero.noSignUp}</li>
-                        {ios?.version && (
-                            <li className="tabular-nums">
-                                {ios.publishedAtFormatted !== null
-                                    ? fmt(m.download.release.dated, { version: ios.version, date: ios.publishedAtFormatted })
-                                    : fmt(m.download.release.undated, { version: ios.version })}
-                            </li>
+                    <div className="grid justify-items-start gap-2">
+                        {ios?.appStoreUrl && (
+                            <AppStoreBadge
+                                href={ios.appStoreUrl}
+                                label={m.download.ios.badge}
+                                labelLang={locale === 'en' ? undefined : 'en'}
+                                location="ios-page"
+                            />
                         )}
-                    </ul>
+                        {requirement !== null && <p className="type-small text-muted-foreground">{fmt(m.platforms.requires, { requirement })}</p>}
+                    </div>
+                    <p className="type-small text-muted-foreground">
+                        <DotList
+                            items={[
+                                ios?.free && !ios.inAppPurchases && m.platforms.free,
+                                content.hero.noSignUp,
+                                ios?.version && (
+                                    <span className="tabular-nums">
+                                        {ios.publishedAtFormatted !== null
+                                            ? fmt(m.download.release.dated, { version: ios.version, date: keepTogether(ios.publishedAtFormatted) })
+                                            : fmt(m.download.release.undated, { version: ios.version })}
+                                    </span>
+                                ),
+                            ]}
+                        />
+                    </p>
                     <p className="type-small text-foreground">
                         <Trans text={content.hero.mac} tags={tags} />
                         {macRequirements !== null && (
@@ -162,14 +180,10 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
 
             <Container className="pb-4">
                 {/* The page's first images: eager, with high fetch priority, and the iPad is preloaded (`lcpAsset`). */}
-                <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-end">
+                <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-end">
                     <AssetSlot id="ios-connection-list" priority />
                     <div className="w-full min-w-0 lg:flex-1">
-                        <AssetSlot
-                            id="ipad-table-browse"
-                            priority
-                            sizes="(min-width: 1280px) 904px, (min-width: 1024px) calc(100vw - 376px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
-                        />
+                        <AssetSlot id="ipad-table-browse" priority sizes={ipadSizes} />
                     </div>
                 </div>
             </Container>
@@ -278,8 +292,19 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
                         </li>
                     ))}
                 </ul>
-                <p className="type-body mt-6 text-foreground">
-                    <Trans text={content.limits.mac} tags={tags} />
+                <p className="mt-6">
+                    <Trans
+                        text={content.limits.mac}
+                        tags={{
+                            ...tags,
+                            download: (text) => (
+                                <LocaleLink href="/download" className={textLinkClasses('standalone')}>
+                                    {text}
+                                    <span aria-hidden="true">→</span>
+                                </LocaleLink>
+                            ),
+                        }}
+                    />
                 </p>
             </Section>
 

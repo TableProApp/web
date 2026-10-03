@@ -87,12 +87,12 @@ html {
   scroll-padding-top: calc(5rem + var(--banner-h));
 }
 
-/* In-page anchors glide only for readers who have not asked for less motion. */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
+/*
+ * No `scroll-behavior: smooth` here. On the root it also animated Inertia's
+ * scroll reset after every visit, so a new page glided past for a second
+ * before it could be read. In-page anchors glide one jump at a time instead
+ * (resources/js/lib/anchor-glide.ts), and only without reduced motion.
+ */
 
 /*
  * ---------------------------------------------------------------------------
@@ -442,4 +442,20 @@ html {
     content: " (" attr(href) ")";
     font-size: 0.875em;
   }
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Section rhythm
+ * ---------------------------------------------------------------------------
+ *
+ * Every Section pads above and below by `--space-section` (64/80/96px). Two
+ * plain sections in a row would then sit twice that apart, which is the
+ * oversized gap the rhythm replaced. The second of a pair drops its top
+ * padding, so neighbours are exactly one rhythm apart. Bands and ruled strips
+ * have no `data-rhythm` and keep their padding inside their own ground
+ * (components/ui/section.tsx).
+ */
+section[data-rhythm="collapse"] + section[data-rhythm="collapse"] {
+  padding-top: 0;
 }

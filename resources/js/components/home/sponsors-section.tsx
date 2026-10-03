@@ -6,16 +6,21 @@ import type { HomeContent } from './types';
 
 /**
  * Logos are drawn 28px tall (design-system §5.3.18 SponsorList); the width
- * follows the file's own ratio. The list wraps instead of using fixed columns,
- * and a wordmark wider than the column scales down (`max-w-full`,
- * `object-contain`) rather than running into its neighbour at 375px.
+ * follows the file's own ratio. Two columns below 640px (a 2 × 2 grid, §8.1),
+ * a wrapping row above, and a wordmark wider than its column scales down
+ * (`max-w-full`, `object-contain`) rather than running into its neighbour.
+ *
+ * Loaded eagerly at low priority: the four files are under 35 KB together,
+ * and a lazy logo that arrived late left its white dark-mode tile empty, which
+ * read as a broken image. Low priority keeps them behind the page's own
+ * images, and keeps React's server render from preloading them.
  */
 const LOGO_HEIGHT = 28;
 
 function SponsorLogo({ sponsor }: { sponsor: Sponsor }) {
     const width = Math.round((LOGO_HEIGHT * sponsor.logo.width) / sponsor.logo.height);
     const image = (src: string, className: string) => (
-        <img src={src} alt="" width={width} height={LOGO_HEIGHT} loading="lazy" decoding="async" className={className} />
+        <img src={src} alt="" width={width} height={LOGO_HEIGHT} decoding="async" fetchPriority="low" className={className} />
     );
 
     /*
@@ -52,16 +57,17 @@ export default function SponsorsSection({ content }: { content: HomeContent['spo
             id="sponsors"
             title={content.title}
             titleStyle="h3"
-            className="border-y border-rule py-12 md:py-12 xl:py-12"
+            ruled
+            className="py-12 md:py-12 xl:py-12"
             aside={
                 <TextLink href={FACTS.links.sponsorsProgram} kind="standalone" external>
                     {content.link}
                 </TextLink>
             }
         >
-            <ul className="flex flex-wrap items-start gap-x-8 gap-y-6 sm:gap-x-12">
+            <ul className="grid grid-cols-2 items-start gap-x-6 gap-y-6 sm:flex sm:flex-wrap sm:gap-x-12">
                 {SPONSORS.sponsors.map((sponsor) => (
-                    <li key={sponsor.id} className="max-w-full">
+                    <li key={sponsor.id} className="min-w-0 max-w-full">
                         <a
                             href={sponsor.url}
                             rel="sponsored noopener"

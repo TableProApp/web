@@ -9,10 +9,11 @@ import type { FeaturePageProps } from '@/components/features/types';
 import SEOHead from '@/components/seo/seo-head';
 import { FEATURE_PAGES } from '@/components/site/site-links';
 import Badge from '@/components/ui/badge';
-import Button from '@/components/ui/button';
+import { buttonClasses } from '@/components/ui/button';
 import Callout from '@/components/ui/callout';
 import Container from '@/components/ui/container';
 import { AppleGlyph } from '@/components/ui/glyph';
+import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
 import TextLink from '@/components/ui/text-link';
@@ -93,14 +94,11 @@ export default function FeatureShow({ slug, content, labels, facts }: FeaturePag
                 lead={content.header.lead}
                 actions={
                     <>
-                        <Button
-                            href={path('/download')}
-                            variant="secondary"
-                            icon={<AppleGlyph />}
-                            onClick={() => trackDownload('feature-header', 'mac')}
-                        >
+                        {/* A client-side visit, like every other internal action; a plain <a> reloaded the whole document. */}
+                        <LocaleLink href="/download" onClick={() => trackDownload('feature-header', 'mac')} className={buttonClasses('secondary', 'md')}>
+                            <AppleGlyph />
                             {m.download.macCta}
-                        </Button>
+                        </LocaleLink>
                         <TextLink href={docsHref(FACTS.links.docs, content.header.docs)} kind="standalone" external hrefLang="en">
                             {locale === 'en' ? labels.header.docs : `${labels.header.docs} ${m.common.englishOnly}`}
                         </TextLink>
@@ -136,19 +134,22 @@ export default function FeatureShow({ slug, content, labels, facts }: FeaturePag
                 )}
             </Section>
 
-            <Container className="grid gap-12 border-t border-rule py-16 md:grid-cols-2 md:py-20">
-                <section id="docs" aria-labelledby="docs-title">
-                    <h2 id="docs-title" className="type-h3 text-foreground">
-                        {labels.sections.docs}
-                    </h2>
-                    <FeatureLinkList links={content.docs} direction="column" className="mt-4" />
-                </section>
-                <section id="related" aria-labelledby="related-title">
-                    <h2 id="related-title" className="type-h3 text-foreground">
-                        {labels.sections.related}
-                    </h2>
-                    <FeatureLinkList links={content.related} direction="column" className="mt-4" />
-                </section>
+            {/* The rule is on the content box, so it spans the content and not the gutters. */}
+            <Container>
+                <div className="grid gap-12 border-t border-rule py-16 md:grid-cols-2 md:py-20">
+                    <section id="docs" aria-labelledby="docs-title">
+                        <h2 id="docs-title" className="type-h3 text-foreground">
+                            {labels.sections.docs}
+                        </h2>
+                        <FeatureLinkList links={content.docs} direction="column" className="mt-4" />
+                    </section>
+                    <section id="related" aria-labelledby="related-title">
+                        <h2 id="related-title" className="type-h3 text-foreground">
+                            {labels.sections.related}
+                        </h2>
+                        <FeatureLinkList links={content.related} direction="column" className="mt-4" />
+                    </section>
+                </div>
             </Container>
 
             <DownloadBand labels={labels} location="feature-page" />

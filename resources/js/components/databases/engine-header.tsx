@@ -1,9 +1,11 @@
+import type { ReactNode } from 'react';
 import AppStoreBadge from '@/components/download/app-store-badge';
 import Badge from '@/components/ui/badge';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 import { buttonClasses } from '@/components/ui/button';
 import Container from '@/components/ui/container';
 import DatabaseMark from '@/components/ui/database-mark';
+import DotList from '@/components/ui/dot-list';
 import LocaleLink from '@/components/ui/locale-link';
 import TextLink from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
@@ -20,6 +22,12 @@ interface EngineHeaderProps {
     engine: EngineDetail;
     platforms: { mac: PlatformSummary | null; ios: PlatformSummary | null };
     links: DatabaseLinks;
+    /**
+     * A detail-crop lead image, placed in the text column under the actions so
+     * the facts card on the right sits beside it. A full-width window lead is
+     * rendered by the page under the header instead.
+     */
+    lead?: ReactNode;
 }
 
 /**
@@ -31,8 +39,12 @@ interface EngineHeaderProps {
  * without the engine), then the actions: Download for Mac, the App Store badge
  * only when the iPhone and iPad app offers the engine, and the setup guide.
  * Columns 9-12: the facts card. Below 1024px the card follows the actions.
+ * A detail lead image sits in columns 1-8 under the actions, beside the facts
+ * card; placed under both, it left a 250px hole under the actions and an
+ * empty right half beside the image. Columns are 32px apart (design-system
+ * §4.2).
  */
-export default function EngineHeader({ content, labels, engine, platforms, links }: EngineHeaderProps) {
+export default function EngineHeader({ content, labels, engine, platforms, links, lead }: EngineHeaderProps) {
     const { locale, m, fmt } = useI18n();
     const devices = joinList(deviceNamesFor(engine, platforms), m.common.list);
     const macDevices = joinList(platforms.mac?.deviceNames ?? [], m.common.list);
@@ -46,22 +58,28 @@ export default function EngineHeader({ content, labels, engine, platforms, links
                     items={[{ label: m.seo.breadcrumbs.databases, href: '/databases' }, { label: content.breadcrumb }]}
                     className="mb-4"
                 />
-                <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-6">
+                <div className="grid items-start gap-8 lg:grid-cols-12">
                     <div className="min-w-0 lg:col-span-8">
+                        {/* The vendor's mark when there is one; a two-letter monogram this large reads as a missing image. */}
                         <div className="flex items-start gap-4">
-                            <DatabaseMark icon={engine.icon} monogram={engine.monogram} name={engine.name} size={40} className="mt-1" />
+                            {engine.icon && <DatabaseMark icon={engine.icon} name={engine.name} size={40} className="-my-1" />}
                             <h1 className="type-h1 min-w-0 text-foreground">{fmt(content.header.title, { devices, macDevices })}</h1>
                         </div>
                         <p className="type-lead mt-4 max-w-[56ch] text-muted-foreground">
                             <RichText text={content.header.lead} />
                         </p>
-                        <p className="type-small mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground">
-                            <span>{fmt(labels.availability.devices, { devices })}</span>
-                            <span aria-hidden="true">·</span>
-                            <span>{fmt(labels.availability[engine.distribution], { name: engine.name })}</span>
-                            {engine.release !== null && (
-                                <Badge variant="accent">{fmt(labels.release, { version: engine.release })}</Badge>
-                            )}
+                        <p className="type-small mt-4 text-muted-foreground">
+                            <DotList
+                                items={[
+                                    fmt(labels.availability.devices, { devices }),
+                                    fmt(labels.availability[engine.distribution], { name: engine.name }),
+                                    engine.release !== null && (
+                                        <Badge variant="accent" className="whitespace-nowrap">
+                                            {fmt(labels.release, { version: engine.release })}
+                                        </Badge>
+                                    ),
+                                ]}
+                            />
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                             <LocaleLink href="/download" onClick={() => trackDownload(`database-${engine.id}`, 'mac')} className={buttonClasses('primary', 'md')}>
@@ -82,6 +100,7 @@ export default function EngineHeader({ content, labels, engine, platforms, links
                                 </TextLink>
                             )}
                         </div>
+                        {lead && <div className="mt-10 lg:max-w-[43.5rem]">{lead}</div>}
                     </div>
                     <FactsCard engine={engine} labels={labels} className="lg:col-span-4" />
                 </div>

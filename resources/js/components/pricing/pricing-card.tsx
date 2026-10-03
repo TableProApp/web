@@ -41,8 +41,17 @@ interface PricingCardProps {
  *
  * From 1024px the parent grid lays the cards' rows on shared tracks
  * (`grid-rows-subgrid`), so the prices, the actions and the lists line up
- * across the three cards whatever each one holds. Below that the cards stack
- * and each is its own column.
+ * across the three cards whatever each one holds. The price and what one
+ * license covers share one track: Team's seat stepper makes that track tall,
+ * and the spare height in Free and Starter then falls under their activation
+ * line, above the button, instead of between the price and the line that
+ * explains it.
+ *
+ * From 768 to 1023px the cards stack full width, so a full card has two
+ * columns inside (design-system §5.3.18): the price, activation and action on
+ * the left, what the plan includes on the right. A compact card keeps one
+ * column with its button at a readable width. Below 768px each card is one
+ * column.
  */
 export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, onSeatsChange, discountCode }: PricingCardProps) {
     const { m, plural } = useI18n();
@@ -55,25 +64,27 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
             aria-labelledby={`${id}-title`}
             className={cn(
                 'grid content-start gap-4 rounded-panel border border-rule bg-raised p-5 sm:p-6 lg:grid-rows-subgrid',
-                variant === 'full' ? 'lg:row-span-5' : 'lg:row-span-4',
+                variant === 'full' ? 'md:max-lg:grid-cols-2 md:max-lg:gap-x-8 lg:row-span-4' : 'lg:row-span-3',
             )}
         >
-            <div>
+            <div className="md:max-lg:col-span-2">
                 <Title id={`${id}-title`} className="type-h3 text-foreground">
                     {copy.name}
                 </Title>
                 <p className="type-small mt-1 text-muted-foreground">{copy.description}</p>
             </div>
 
-            <div>{tier === 'free' ? <Price amount={0} /> : <PaidPrice tier={tier} cycle={cycle} seats={seats} onSeatsChange={onSeatsChange} />}</div>
+            <div className="grid content-start gap-4 md:max-lg:col-start-1">
+                <div>{tier === 'free' ? <Price amount={0} /> : <PaidPrice tier={tier} cycle={cycle} seats={seats} onSeatsChange={onSeatsChange} />}</div>
 
-            <p className="type-small text-foreground">
-                {tier === 'free' && m.pricing.tiers.free.activation}
-                {tier === 'starter' && plural(m.pricing.tiers.starter.activation, PRICING.tiers.starter.activations)}
-                {tier === 'team' && m.pricing.tiers.team.activation}
-            </p>
+                <p className="type-small text-foreground">
+                    {tier === 'free' && m.pricing.tiers.free.activation}
+                    {tier === 'starter' && plural(m.pricing.tiers.starter.activation, PRICING.tiers.starter.activations)}
+                    {tier === 'team' && m.pricing.tiers.team.activation}
+                </p>
+            </div>
 
-            <div className="grid content-start gap-3">
+            <div className={cn('grid content-start gap-3 md:max-lg:col-start-1', variant === 'compact' && 'md:max-lg:max-w-sm')}>
                 {tier === 'free' ? (
                     <LocaleLink href="/download" onClick={() => trackDownload('pricing-free')} className={buttonClasses('secondary', 'md', 'w-full')}>
                         {m.download.macCta}
@@ -97,7 +108,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
                 )}
             </div>
 
-            {variant === 'full' && <Includes tier={tier} />}
+            {variant === 'full' && <Includes tier={tier} className="md:max-lg:col-start-2 md:max-lg:row-span-2 md:max-lg:row-start-2 md:max-lg:border-t-0 md:max-lg:pt-0" />}
         </article>
     );
 }
@@ -182,7 +193,7 @@ function IncludesItem({ children }: { children: ReactNode }) {
  * Starter and Team name their highlighted features from paid-features.json
  * and point to the full table below, which names every one of them.
  */
-function Includes({ tier }: { tier: TierId }) {
+function Includes({ tier, className }: { tier: TierId; className?: string }) {
     const { m, plural } = useI18n();
     const copy = m.pricing.tiers[tier];
 
@@ -201,7 +212,7 @@ function Includes({ tier }: { tier: TierId }) {
     const more = tier !== 'free' && paidFeaturesForTier(tier).length > highlightedFeatures(tier).length;
 
     return (
-        <div className="border-t border-rule pt-4">
+        <div className={cn('border-t border-rule pt-4', className)}>
             <p className="text-sm leading-[1.3] font-medium text-foreground">{copy.includesTitle}</p>
             <ul className="type-small mt-3 grid gap-2 text-foreground">
                 {items.map((item, index) => (

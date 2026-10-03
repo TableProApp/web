@@ -94,11 +94,18 @@ function placeholderBox(part: PlaceholderPart, labels: AssetSlotLabels, visibili
         createElement(
             'div',
             { 'aria-hidden': 'true', className: 'max-w-[52ch] text-left' },
+            // The icon and the type label are one unit whose label wraps inside it, so
+            // in a 240px phone slot the icon never sits alone on a line above the
+            // words; only the asset id drops to its own line (design-system §6.2).
             createElement(
                 'p',
                 { className: 'flex flex-wrap items-center gap-x-2 gap-y-1' },
-                createElement(ICONS[part.type], { size: 16, 'aria-hidden': true, className: 'shrink-0 text-muted-foreground' }),
-                createElement('span', { className: 'type-label text-foreground' }, label),
+                createElement(
+                    'span',
+                    { className: 'inline-flex min-w-0 items-start gap-2' },
+                    createElement(ICONS[part.type], { size: 16, 'aria-hidden': true, className: 'mt-px shrink-0 text-muted-foreground' }),
+                    createElement('span', { className: 'type-label min-w-0 text-foreground' }, label),
+                ),
                 createElement('code', { className: 'font-mono text-xs text-muted-foreground [overflow-wrap:anywhere]' }, part.id),
             ),
             createElement('p', { className: 'type-small mt-2 text-muted-foreground' }, part.description),

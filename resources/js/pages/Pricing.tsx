@@ -176,84 +176,87 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                 <PlanMatrix details={paidFeatures} />
             </Section>
 
-            <Container width="text" className="space-y-12 py-16 md:py-20 xl:py-24">
-                <ProseSection id="license" title={content.license.title}>
-                    <DescriptionList>
-                        {Object.entries(content.license.items).map(([key, item]) => (
-                            <DescriptionItem key={key} term={item.term}>
-                                {rich(item.body)}
-                            </DescriptionItem>
-                        ))}
-                    </DescriptionList>
-                    <Disclosure summary={content.license.lapse.summary}>
-                        <p>{content.license.lapse.intro}</p>
-                        <ul className="mt-3 space-y-3">
-                            {PAID_FEATURES.map((feature) => (
-                                <li key={feature.id}>
-                                    <span className="block font-medium">{feature.name}</span>
-                                    <span className="block">{paidFeatures[feature.id]?.lapse}</span>
-                                </li>
+            {/* The prose column sits on the page's left edge, under the H1, not centred (design-system §4.2). */}
+            <Container className="py-16 md:py-20 xl:py-24">
+                <div className="max-w-[44rem] space-y-12">
+                    <ProseSection id="license" title={content.license.title}>
+                        <DescriptionList>
+                            {Object.entries(content.license.items).map(([key, item]) => (
+                                <DescriptionItem key={key} term={item.term}>
+                                    {rich(item.body)}
+                                </DescriptionItem>
                             ))}
-                        </ul>
-                    </Disclosure>
-                    <p>{rich(content.license.terms)}</p>
-                </ProseSection>
+                        </DescriptionList>
+                        <Disclosure summary={content.license.lapse.summary}>
+                            <p>{content.license.lapse.intro}</p>
+                            <ul className="mt-3 space-y-3">
+                                {PAID_FEATURES.map((feature) => (
+                                    <li key={feature.id}>
+                                        <span className="block font-medium">{feature.name}</span>
+                                        <span className="block">{paidFeatures[feature.id]?.lapse}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </Disclosure>
+                        <p>{rich(content.license.terms)}</p>
+                    </ProseSection>
 
-                <ProseSection id="billing" title={content.billing.title}>
-                    <p>{rich(content.billing.merchant)}</p>
-                    <p>{rich(content.billing.renewal)}</p>
-                    <p>{rich(content.billing.portal)}</p>
-                </ProseSection>
+                    <ProseSection id="billing" title={content.billing.title}>
+                        <p>{rich(content.billing.merchant)}</p>
+                        <p>{rich(content.billing.renewal)}</p>
+                        <p>{rich(content.billing.portal)}</p>
+                    </ProseSection>
 
-                <ProseSection id="refunds" title={content.refunds.title}>
-                    <p>{rich(content.refunds.body)}</p>
-                </ProseSection>
+                    <ProseSection id="refunds" title={content.refunds.title}>
+                        <p>{rich(content.refunds.body)}</p>
+                    </ProseSection>
 
-                <ProseSection id="team" title={content.team.title}>
-                    <p>{rich(content.team.seats)}</p>
-                    <p>{rich(content.team.invites)}</p>
-                    <p>{rich(content.team.changes)}</p>
-                    <DescriptionList>
-                        <DescriptionItem term={m.pricing.prioritySupport.name}>
-                            {plural(m.pricing.prioritySupport.detail, PRICING.tiers.team.prioritySupport.responseBusinessDays)}
-                        </DescriptionItem>
-                    </DescriptionList>
-                    <p>
-                        <TextLink href={account} kind="standalone">
-                            {content.team.account}
-                        </TextLink>
-                    </p>
-                </ProseSection>
+                    <ProseSection id="team" title={content.team.title}>
+                        <p>{rich(content.team.seats)}</p>
+                        <p>{rich(content.team.invites)}</p>
+                        <p>{rich(content.team.changes)}</p>
+                        <DescriptionList>
+                            <DescriptionItem term={m.pricing.prioritySupport.name}>
+                                {plural(m.pricing.prioritySupport.detail, PRICING.tiers.team.prioritySupport.responseBusinessDays)}
+                            </DescriptionItem>
+                        </DescriptionList>
+                        <p>
+                            <TextLink href={account} kind="standalone">
+                                {content.team.account}
+                            </TextLink>
+                        </p>
+                    </ProseSection>
 
-                <ProseSection id="open-source" title={content.openSource.title}>
-                    <p>{content.openSource.body}</p>
-                    <p>{content.openSource.agpl}</p>
-                    <p>
-                        <TextLink href={FACTS.links.github} kind="standalone" external>
-                            {content.openSource.github}
-                        </TextLink>
-                    </p>
-                </ProseSection>
+                    <ProseSection id="open-source" title={content.openSource.title}>
+                        <p>{content.openSource.body}</p>
+                        <p>{content.openSource.agpl}</p>
+                        <p>
+                            <TextLink href={FACTS.links.github} kind="standalone" external>
+                                {content.openSource.github}
+                            </TextLink>
+                        </p>
+                    </ProseSection>
 
-                <section id="faq" aria-labelledby="faq-title" className="border-t border-rule pt-10 md:pt-12">
-                    <h2 id="faq-title" className="type-h2 text-foreground">
-                        {content.faq.title}
-                    </h2>
-                    <FaqList
-                        className="mt-6"
-                        items={Object.entries(content.faq.items).map(([key, item]) => ({
-                            id: key,
-                            question: item.question,
-                            answer: <p>{rich(item.answer)}</p>,
-                        }))}
-                    />
-                    <p className="mt-6">
-                        <LocaleLink href="/faq#licensing" className={textLinkClasses('standalone')}>
-                            {content.faq.more}
-                            <span aria-hidden="true">→</span>
-                        </LocaleLink>
-                    </p>
-                </section>
+                    <section id="faq" aria-labelledby="faq-title" className="border-t border-rule pt-10 md:pt-12">
+                        <h2 id="faq-title" className="type-h2 text-foreground">
+                            {content.faq.title}
+                        </h2>
+                        <FaqList
+                            className="mt-6"
+                            items={Object.entries(content.faq.items).map(([key, item]) => ({
+                                id: key,
+                                question: item.question,
+                                answer: <p>{rich(item.answer)}</p>,
+                            }))}
+                        />
+                        <p className="mt-6">
+                            <LocaleLink href="/faq#licensing" className={textLinkClasses('standalone')}>
+                                {content.faq.more}
+                                <span aria-hidden="true">→</span>
+                            </LocaleLink>
+                        </p>
+                    </section>
+                </div>
             </Container>
         </LandingLayout>
     );

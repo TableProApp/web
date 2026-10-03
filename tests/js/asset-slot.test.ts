@@ -282,3 +282,10 @@ test('the projection keeps what the supplied path needs', () => {
 function escapeHtml(text: string): string {
     return text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll("'", '&#x27;');
 }
+
+test('a placeholder keeps its type icon with its label, so a narrow phone slot never strands the icon on its own line', () => {
+    const markup = html(real, 'ios-connection-list', 'vi');
+
+    // The icon and the label share one wrapper; only the asset id is a separate item in the wrapping row.
+    assert.match(markup, /<p class="flex flex-wrap items-center gap-x-2 gap-y-1"><span class="inline-flex min-w-0 items-start gap-2"><svg[^>]*>.*?<\/svg><span class="type-label min-w-0 text-foreground">[^<]+<\/span><\/span><code /);
+});

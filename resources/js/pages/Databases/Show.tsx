@@ -58,11 +58,13 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
     const body = content.sections.filter((section) => section.id !== 'iphone');
     const members = new Map(family.map((member) => [member.id, member]));
 
-    const pageUrl = absoluteUrl(canonicalBaseUrl, path(engine.path));
+    // This page is the engine's own page, which always resolves; the hub is only the type's fallback.
+    const ownPath = engine.path ?? '/databases';
+    const pageUrl = absoluteUrl(canonicalBaseUrl, path(ownPath));
     const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
     const crumbs = [
         { name: m.seo.breadcrumbs.databases, path: path('/databases') },
-        { name: content.breadcrumb, path: path(engine.path) },
+        { name: content.breadcrumb, path: path(ownPath) },
     ];
     const docsLinks = [engine, ...family]
         .map((member) => ({ name: member.name, href: docsUrl(links.docs, member.docsSlug) }))
@@ -86,12 +88,19 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
             />
 
             <RichTextProvider scope={{ links: content.links, docsBase: links.docs, values }}>
-                <EngineHeader content={content} labels={labels} engine={engine} platforms={platforms} links={links} />
+                {/* A detail lead goes in the header's text column, beside the facts card; a window lead spans the page under it. */}
+                <EngineHeader
+                    content={content}
+                    labels={labels}
+                    engine={engine}
+                    platforms={platforms}
+                    links={links}
+                    lead={lead !== null && !leadIsWindow ? <AssetSlot id={lead} /> : undefined}
+                />
 
-                {lead !== null && (
+                {lead !== null && leadIsWindow && (
                     <Container>
-                        {/* A detail lead spans columns 1-7 of the 12-column grid (gap 32): 696 px at 1280, the detail kind's width. */}
-                        <AssetSlot id={lead} className={leadIsWindow ? undefined : 'lg:w-[calc(58.333%-13.333px)]'} />
+                        <AssetSlot id={lead} />
                     </Container>
                 )}
 

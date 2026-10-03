@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { ChevronRight, Download } from 'lucide-react';
 import Badge from '@/components/ui/badge';
 import Button from '@/components/ui/button';
@@ -56,14 +56,28 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
                 : fmt(m.download.release.badgeUndated, { version: release.version });
     }
 
-    function fileLabel(asset: ReleaseAsset): string | null {
+    /**
+     * The file name in Plex Mono, as identifiers are (design-system §3.1), and
+     * only the size in tabular figures: tabular figures in Inter spaced the
+     * name's hyphens out ("TablePro - 0.77.0 - arm64.dmg").
+     */
+    function fileLabel(asset: ReleaseAsset): ReactNode {
         if (asset.name === null) {
             return null;
         }
 
-        return asset.bytes !== null
-            ? fmt(m.download.file.sized, { name: asset.name, size: megabytes(asset.bytes, m.download.file.number) })
-            : fmt(m.download.file.unsized, { name: asset.name });
+        const template = asset.bytes !== null ? m.download.file.sized : m.download.file.unsized;
+
+        return (
+            <Trans
+                text={template.replace('{name}', '<file>{name}</file>').replace('{size}', '<size>{size}</size>')}
+                tags={{
+                    file: (text) => <span className="font-mono text-[0.75rem] [overflow-wrap:anywhere]">{text}</span>,
+                    size: (text) => <span className="tabular-nums">{text}</span>,
+                }}
+                values={{ name: asset.name, size: asset.bytes !== null ? megabytes(asset.bytes, m.download.file.number) : '' }}
+            />
+        );
     }
 
     let status = '';
@@ -111,18 +125,20 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
                             >
                                 {m.download.builds[build]}
                             </Button>
-                            {file !== null && <p className="type-caption mt-2 break-words text-muted-foreground tabular-nums">{file}</p>}
+                            {file !== null && <p className="type-caption mt-2 text-muted-foreground">{file}</p>}
                         </li>
                     );
                 })}
             </ul>
 
             {/*
-              * One line reserved, so the detected chip appears without moving
-              * anything below it. Not a live region: it changes on load, not
-              * in answer to anything the reader did.
+              * Room reserved on the server, so the detected chip appears
+              * without moving anything below it: two lines below 640px, where
+              * either sentence wraps in a phone-width card, one above. Not a
+              * live region: it changes on load, not in answer to anything the
+              * reader did.
               */}
-            <p className="type-small mt-4 min-h-[1.6em] text-foreground">
+            <p className="type-small mt-4 min-h-[3.2em] text-foreground sm:min-h-[1.6em]">
                 {status}
             </p>
 
