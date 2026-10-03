@@ -65,7 +65,7 @@ export default function EngineSection({ id, title, paragraphs, points, asset, va
                 </div>
             )}
             {slot !== null && !wide && (
-                <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-6">
+                <div className="grid items-start gap-8 lg:grid-cols-12">
                     <div className="lg:col-span-5">{body}</div>
                     <AssetSlot id={slot} className="lg:col-span-7" />
                 </div>

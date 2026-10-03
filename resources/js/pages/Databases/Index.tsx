@@ -102,7 +102,7 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
             })}
 
             <Section id="drivers" title={content.drivers.title}>
-                <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-6">
+                <div className="grid items-start gap-8 lg:grid-cols-12">
                     <div className="type-body space-y-4 text-foreground lg:col-span-5">
                         {content.drivers.paragraphs.map((paragraph, index) => (
                             <p key={index}>{fmt(paragraph, { bundled })}</p>

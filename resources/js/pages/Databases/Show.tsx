@@ -90,7 +90,8 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
 
                 {lead !== null && (
                     <Container>
-                        <AssetSlot id={lead} className={leadIsWindow ? undefined : 'lg:w-7/12'} />
+                        {/* A detail lead spans columns 1-7 of the 12-column grid (gap 32): 696 px at 1280, the detail kind's width. */}
+                        <AssetSlot id={lead} className={leadIsWindow ? undefined : 'lg:w-[calc(58.333%-13.333px)]'} />
                     </Container>
                 )}
 

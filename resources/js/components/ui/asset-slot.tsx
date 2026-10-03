@@ -14,6 +14,12 @@ interface AssetSlotProps {
     className?: string;
     /** Show the manifest caption under a supplied image. Defaults to true; placeholders never show one. */
     caption?: boolean;
+    /**
+     * Load this placement eagerly with high fetch priority although the entry
+     * is not the homepage hero: the first image under another page's header.
+     * Pass the controller's `lcpAsset` for the same id, so the head preloads it.
+     */
+    priority?: boolean;
 }
 
 /**
@@ -27,8 +33,8 @@ interface AssetSlotProps {
  * the page changes, and the geometry is identical in both modes, so there is
  * no layout shift. See docs/visual-assets.md for the briefs.
  */
-export default function AssetSlot({ id, sizes, className, caption = true }: AssetSlotProps) {
+export default function AssetSlot({ id, sizes, className, caption = true, priority }: AssetSlotProps) {
     const { locale, m } = useI18n();
 
-    return renderAssetSlot(ASSET_MANIFEST, id, { locale, labels: m.assets, sizes, className, caption });
+    return renderAssetSlot(ASSET_MANIFEST, id, { locale, labels: m.assets, sizes, className, caption, priority });
 }

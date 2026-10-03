@@ -22,7 +22,7 @@ const real = read('../../resources/data/assets.json');
 const fixture = read('../Fixtures/assets/manifest.json');
 const labels: Record<string, AssetSlotLabels> = { en, vi };
 
-function html(manifest: SlotManifestData, id: string, locale = 'en', extra: { sizes?: string; caption?: boolean } = {}): string {
+function html(manifest: SlotManifestData, id: string, locale = 'en', extra: { sizes?: string; caption?: boolean; priority?: boolean } = {}): string {
     return renderToStaticMarkup(renderAssetSlot(manifest, id, { locale, labels: labels[locale], ...extra }));
 }
 
@@ -60,6 +60,8 @@ test('a window placeholder carries its phone crop as a second box, swapped by CS
     assert.equal((markup.match(/role="img"/g) ?? []).length, 2);
     assert.match(markup, /data-asset-id="fixture-placeholder"[^>]*data-asset-status="placeholder"[^>]*class="[^"]*max-md:hidden/);
     assert.match(markup, /data-asset-id="fixture-placeholder-mobile"[^>]*data-asset-status="placeholder"[^>]*class="[^"]*md:hidden/);
+    // The crop is a 343 pt cut: centred at that width, never stretched across a wider phone or an iPad mini.
+    assert.match(markup, /data-asset-id="fixture-placeholder-mobile"[^>]*class="[^"]*mx-auto w-full max-w-\[343px\]/);
     assert.ok(markup.includes('aspect-ratio:16 / 9'));
     assert.ok(markup.includes('aspect-ratio:4 / 5'));
     assert.ok(markup.includes('Screenshot placeholder'));
@@ -102,8 +104,9 @@ test('a supplied themed window and its crop render one art-directed picture per 
 
     assert.match(markup, /^<figure [^>]*data-asset-status="supplied"/);
     assert.equal((markup.match(/<picture\b/g) ?? []).length, 2);
-    assert.match(markup, /<picture class="block dark:hidden">/);
-    assert.match(markup, /<picture class="hidden dark:block">/);
+    // Below 768px the picture shows the crop, held at its 343 px design width.
+    assert.match(markup, /<picture class="block dark:hidden max-md:mx-auto max-md:max-w-\[343px\]">/);
+    assert.match(markup, /<picture class="hidden dark:block max-md:mx-auto max-md:max-w-\[343px\]">/);
 
     // The window above 768px, in both formats, then the crop.
     assert.ok(markup.includes(
@@ -121,6 +124,23 @@ test('a supplied themed window and its crop render one art-directed picture per 
     assert.equal((markup.match(/fetchPriority="high"/gi) ?? []).length, 2);
     assert.ok(markup.includes('alt="A fixture window"'));
     assert.ok(markup.includes('<figcaption class="type-caption mt-3 text-muted-foreground">A fixture caption.</figcaption>'));
+});
+
+test('a page can load a placement with priority that the manifest loads lazily', () => {
+    const lazy = html(fixture, 'fixture-detail');
+    const first = html(fixture, 'fixture-detail', 'en', { priority: true });
+
+    assert.ok(lazy.includes('loading="lazy"'));
+    assert.ok(!/fetchPriority=/i.test(lazy));
+    // A single-theme image with priority is eager: nothing hidden could be fetched by mistake.
+    assert.ok(!first.includes('loading="lazy"'));
+    assert.match(first, /fetchPriority="high"/i);
+    // A placeholder still requests nothing, priority or not.
+    assert.ok(!/<img\b/i.test(html(fixture, 'fixture-placeholder', 'en', { priority: true })));
+});
+
+test('a picture without a crop is not capped', () => {
+    assert.ok(!html(fixture, 'fixture-detail').includes('max-w-[343px]'));
 });
 
 test('a supplied slot hides the id, the type label and the brief', () => {

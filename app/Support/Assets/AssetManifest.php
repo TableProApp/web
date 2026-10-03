@@ -201,7 +201,9 @@ final class AssetManifest
      *
      * Null for a placeholder (it requests nothing, so there is nothing to
      * preload) and for an image that is not marked `priority`, which loads
-     * lazily.
+     * lazily, unless the page passes `$priority`: a placement that renders an
+     * entry with priority although the entry is not the homepage hero (the
+     * /ios header, `<AssetSlot priority>`).
      *
      * Each srcset is the first delivered format's, with its MIME type, because
      * that is the `<source>` the browser picks in `<picture>`. A browser that
@@ -209,11 +211,11 @@ final class AssetManifest
      *
      * @return array{light: list<Preload>, dark: list<Preload>|null}|null
      */
-    public function lcpDescriptor(string $id, ?string $locale = null): ?array
+    public function lcpDescriptor(string $id, ?string $locale = null, bool $priority = false): ?array
     {
         $entry = $this->entry($id);
 
-        if (! $entry['priority'] || ! $this->isSupplied($id)) {
+        if ((! $entry['priority'] && ! $priority) || ! $this->isSupplied($id)) {
             return null;
         }
 

@@ -36,6 +36,8 @@ export interface AssetSlotViewOptions {
     className?: string;
     /** Render the manifest caption under a supplied image. Placeholders never show one. */
     caption?: boolean;
+    /** Load this placement with priority (`SlotOptions.priority`): the first image of a page that is not the homepage. */
+    priority?: boolean;
 }
 
 const ICONS: Record<SlotType, LucideIcon> = {
@@ -49,6 +51,17 @@ const ICONS: Record<SlotType, LucideIcon> = {
 
 /** Phone slots are a fixed width, centred: 240px below 768, 280px above (design-system §6.2). */
 const PHONE_WIDTH = 'mx-auto w-[240px] md:w-[280px]';
+
+/**
+ * A phone crop is a 343 pt region cut at native pixels, so it shows the Mac or
+ * iPad text at its real size only at 343 CSS px. Below 768px it is centred at
+ * that width rather than stretched across a wider column (a 430px phone, an
+ * iPad mini in portrait). `kinds.mobile-crop.sizes` says the same.
+ */
+const CROP_WIDTH = 'mx-auto w-full max-w-[343px]';
+
+/** The same cap on an art-directed picture, below 768px only, where it shows the crop. */
+const MERGED_CROP_WIDTH = 'max-md:mx-auto max-md:max-w-[343px]';
 
 /** Which breakpoint shows a part: the window above 768px, its crop below. */
 type Visibility = 'always' | 'desktop' | 'phone';
@@ -73,6 +86,7 @@ function placeholderBox(part: PlaceholderPart, labels: AssetSlotLabels, visibili
                 'flex w-full items-center justify-center rounded-xl border border-dashed border-rule-strong bg-surface p-4 sm:p-6',
                 'forced-colors:border-[CanvasText]',
                 part.kind === 'phone' && PHONE_WIDTH,
+                part.kind === 'mobile-crop' && CROP_WIDTH,
                 VISIBILITY[visibility],
             ),
             style: { aspectRatio: part.aspect },
@@ -117,8 +131,9 @@ const THEME_CLASS = {
     dark: 'hidden dark:block',
 } as const;
 
-function picture(model: PictureModel, kind: SuppliedPart['kind'], visibility: Visibility, key: string): ReactElement {
+function picture(model: PictureModel, part: SuppliedPart, visibility: Visibility, key: string): ReactElement {
     const { img } = model;
+    const { kind } = part;
 
     return createElement(
         'picture',
@@ -127,6 +142,8 @@ function picture(model: PictureModel, kind: SuppliedPart['kind'], visibility: Vi
             className: cn(
                 model.theme ? THEME_CLASS[model.theme] : 'block',
                 kind === 'phone' && PHONE_WIDTH,
+                kind === 'mobile-crop' && CROP_WIDTH,
+                part.phoneCrop && MERGED_CROP_WIDTH,
                 VISIBILITY[visibility],
             ),
         },
@@ -169,7 +186,7 @@ function part(
     return createElement(
         Fragment,
         { key },
-        ...model.pictures.map((pictureModel, index) => picture(pictureModel, model.kind, visibility, `${key}-${index}`)),
+        ...model.pictures.map((pictureModel, index) => picture(pictureModel, model, visibility, `${key}-${index}`)),
     );
 }
 
@@ -186,8 +203,8 @@ function part(
  * are never rendered in this mode (spec §9.1).
  */
 export function renderAssetSlot(manifest: SlotManifestData, id: string, options: AssetSlotViewOptions): ReactElement {
-    const { locale, labels, sizes, className, caption = true } = options;
-    const model = slotModel(manifest, id, { locale, sizes });
+    const { locale, labels, sizes, className, caption = true, priority } = options;
+    const model = slotModel(manifest, id, { locale, sizes, priority });
     const modes = [model.main.mode, model.mobile?.mode].filter((mode) => mode !== undefined);
     /*
      * `partial` only while a window and its phone crop are at different

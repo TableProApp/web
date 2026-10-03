@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Landing;
 use App\Http\Controllers\Controller;
 use App\Services\Content\SiteFacts;
 use App\Services\Releases\PlatformCatalog;
+use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\App;
@@ -20,10 +21,15 @@ use Inertia\Response;
  * `platforms.json`, the engine names from `engines.json`, the Safe Mode level
  * names and the history and result limits from `facts.json`. The page asks
  * GitHub for nothing: the Mac release does not appear on it.
+ *
+ * `lcpAsset` preloads the iPad capture under the header, the page's largest
+ * image. The page renders it and the iPhone capture beside it with priority
+ * (`<AssetSlot priority>`), although their manifest entries load lazily where
+ * they appear lower on another page. Null while the capture is a placeholder.
  */
 class IosController extends Controller
 {
-    public function __invoke(ContentRepository $content, PlatformCatalog $platforms, SiteFacts $facts): Response
+    public function __invoke(ContentRepository $content, PlatformCatalog $platforms, SiteFacts $facts, AssetManifest $assets): Response
     {
         $locale = App::getLocale();
         $ios = $platforms->find('ios');
@@ -41,6 +47,7 @@ class IosController extends Controller
             ],
             'links' => $facts->links(),
             'organizationProfiles' => $facts->organizationProfiles(),
+            'lcpAsset' => $assets->lcpDescriptor('ipad-table-browse', $locale, priority: true),
         ]);
     }
 

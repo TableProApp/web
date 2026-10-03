@@ -161,10 +161,15 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
             </PageHeader>
 
             <Container className="pb-4">
+                {/* The page's first images: eager, with high fetch priority, and the iPad is preloaded (`lcpAsset`). */}
                 <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-end">
-                    <AssetSlot id="ios-connection-list" />
+                    <AssetSlot id="ios-connection-list" priority />
                     <div className="w-full min-w-0 lg:flex-1">
-                        <AssetSlot id="ipad-table-browse" sizes="(min-width: 1280px) 904px, (min-width: 1024px) calc(100vw - 376px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" />
+                        <AssetSlot
+                            id="ipad-table-browse"
+                            priority
+                            sizes="(min-width: 1280px) 904px, (min-width: 1024px) calc(100vw - 376px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+                        />
                     </div>
                 </div>
             </Container>
@@ -238,7 +243,8 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
 
             <Section id="ipad" title={content.ipad.title}>
                 <Paragraphs items={content.ipad.paragraphs} tags={tags} values={values} />
-                <div className="mt-10">
+                {/* Columns 2-11 of the 12-column grid, the iPad kind's 1008 x 756 at 1280 and wider. */}
+                <div className="mt-10 lg:mx-auto lg:w-[calc(83.333%-5.333px)]">
                     <AssetSlot id="ipad-two-windows" />
                 </div>
             </Section>

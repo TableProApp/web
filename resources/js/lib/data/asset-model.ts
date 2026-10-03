@@ -260,6 +260,8 @@ export interface SuppliedPart {
     mode: 'supplied';
     kind: AssetKindName;
     pictures: PictureModel[];
+    /** The pictures carry the entry's phone crop below 768px (an art-directed window, detail or iPad image). */
+    phoneCrop: boolean;
 }
 
 export interface SlotModel {
@@ -276,9 +278,16 @@ export interface SlotOptions {
     locale: string;
     /** The slot's real width, when it sits in a narrower column than its kind assumes. */
     sizes?: string;
+    /**
+     * Load this placement with priority even though the entry is not marked
+     * `priority`: the first image of a page other than the homepage, such as
+     * the /ios hero, whose entries load lazily where they appear further down
+     * another page. The manifest's `priority` stays the homepage hero's.
+     */
+    priority?: boolean;
 }
 
-/** Below this width a window shows its `mobile` crop (design-system §6.3). */
+/** Below this width a slot with a `mobile` crop shows the crop (design-system §6.3). */
 export const MOBILE_MEDIA = '(min-width: 768px)';
 
 function entryFor(manifest: SlotManifestData, id: string): SlotEntry {
@@ -354,9 +363,11 @@ function largestUrl(entry: SlotEntry, source: AssetSource, variant: ThemeVariant
  * - a priority image gets `fetchpriority="high"`, and if it is the only variant it is eager;
  * - a priority pair stays lazy, because an eager pair would download both themes. The head
  *   preload in app.blade.php (`lcpAsset`) fetches the variant for the resolved theme instead.
+ *
+ * `priority` is the entry's, or the placement's when the page asks for it (`SlotOptions`).
  */
-function loadingFor(entry: SlotEntry, themed: boolean): Pick<PictureModel['img'], 'loading' | 'decoding' | 'fetchPriority'> {
-    if (!entry.priority) {
+function loadingFor(priority: boolean, themed: boolean): Pick<PictureModel['img'], 'loading' | 'decoding' | 'fetchPriority'> {
+    if (!priority) {
         return { loading: 'lazy', decoding: 'async' };
     }
 
@@ -370,6 +381,7 @@ function supplied(
     locale: string,
     sizes: string | undefined,
     crop: { entry: SlotEntry; kind: SlotKind } | null,
+    priority: boolean,
 ): SuppliedPart {
     const main = themedSources(entry, locale);
 
@@ -385,7 +397,7 @@ function supplied(
         const variant: ThemeVariant = theme ?? 'light';
         const mainSource = (variant === 'dark' ? main.sources.dark : main.sources.light) ?? main.sources.light;
         const mainSizes = sizes ?? kind.sizes ?? undefined;
-        const loading = loadingFor(entry, theme !== null);
+        const loading = loadingFor(priority, theme !== null);
 
         if (crop && cropSources) {
             const cropSource = (variant === 'dark' ? cropSources.sources.dark : cropSources.sources.light) ?? cropSources.sources.light;
@@ -423,7 +435,7 @@ function supplied(
         };
     });
 
-    return { mode: 'supplied', kind: entry.kind, pictures };
+    return { mode: 'supplied', kind: entry.kind, pictures, phoneCrop: crop !== null && cropSources !== null };
 }
 
 /**
@@ -432,13 +444,14 @@ function supplied(
  *
  * - Placeholder: the visible brief. A `mobile` crop renders as a second part,
  *   swapped in below 768px by CSS.
- * - Supplied: `<picture>` per theme variant. When the window and its crop are
+ * - Supplied: `<picture>` per theme variant. When the image and its crop are
  *   both supplied they merge into one art-directed picture, so a phone fetches
  *   only the crop.
  */
 export function slotModel(manifest: SlotManifestData, id: string, options: SlotOptions): SlotModel {
     const { locale, sizes } = options;
     const entry = entryFor(manifest, id);
+    const priority = options.priority === true || entry.priority;
     const kind = manifest.kinds[entry.kind];
     const cropEntry = entry.mobile ? entryFor(manifest, entry.mobile) : null;
     const cropKind = cropEntry ? manifest.kinds[cropEntry.kind] : null;
@@ -449,13 +462,13 @@ export function slotModel(manifest: SlotManifestData, id: string, options: SlotO
     let mobile: PlaceholderPart | SuppliedPart | null = null;
 
     if (mainSupplied && cropEntry && cropKind && cropSupplied) {
-        main = supplied(id, entry, kind, locale, sizes, { entry: cropEntry, kind: cropKind });
+        main = supplied(id, entry, kind, locale, sizes, { entry: cropEntry, kind: cropKind }, priority);
     } else {
-        main = mainSupplied ? supplied(id, entry, kind, locale, sizes, null) : placeholder(id, entry, kind, locale);
+        main = mainSupplied ? supplied(id, entry, kind, locale, sizes, null, priority) : placeholder(id, entry, kind, locale);
 
         if (cropEntry && cropKind && entry.mobile) {
             mobile = cropSupplied
-                ? supplied(entry.mobile, cropEntry, cropKind, locale, undefined, null)
+                ? supplied(entry.mobile, cropEntry, cropKind, locale, undefined, null, priority || cropEntry.priority)
                 : placeholder(entry.mobile, cropEntry, cropKind, locale);
         }
     }

@@ -80,7 +80,8 @@ it('renders in both languages from its content and the data files', function (st
             ->where('limits.history', fn(int $value): bool => $value > 0)
             ->where('limits.results', fn(int $value): bool => $value > 0)
             ->has('links.license')
-            ->has('organizationProfiles'));
+            ->has('organizationProfiles')
+            ->where('lcpAsset', null));
 })->with([
     'English' => ['/ios', 'en', 'TablePro for iPhone and iPad'],
     'Vietnamese' => ['/vi/ios', 'vi', 'TablePro cho iPhone và iPad'],
@@ -230,17 +231,26 @@ it('places every iPhone and iPad slot and only manifest ids', function (): void 
     $source = (string) file_get_contents(resource_path('js/pages/Ios.tsx'));
     $assets = json_decode((string) file_get_contents(resource_path('data/assets.json')), true)['assets'];
 
-    preg_match_all('/<AssetSlot id="([a-z0-9-]+)"/', $source, $matches);
+    preg_match_all('/<AssetSlot\s+id="([a-z0-9-]+)"/', $source, $matches);
 
     foreach ($matches[1] as $id) {
         expect($assets)->toHaveKey($id);
+    }
+
+    /* A phone crop renders through the slot of the entry that names it. */
+    $placed = $matches[1];
+
+    foreach ($matches[1] as $id) {
+        if (is_string($assets[$id]['mobile'] ?? null)) {
+            $placed[] = $assets[$id]['mobile'];
+        }
     }
 
     foreach ($assets as $id => $entry) {
         $onThisPage = collect($entry['usedOn'])->contains(fn(array $use): bool => $use['path'] === '/ios');
 
         if ($entry['slot'] && $onThisPage) {
-            expect($matches[1])->toContain($id);
+            expect($placed)->toContain($id);
         }
     }
 });
