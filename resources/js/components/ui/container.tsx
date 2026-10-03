@@ -11,11 +11,8 @@ import { cn } from '@/lib/utils';
  * - `text`, 704px: articles, legal pages, FAQ and comparison prose, about 70
  *   characters of 16px Inter per line.
  * - `narrow`, 576px: sign-in and notice pages.
- *
- * `md` is the pre-rebuild name for the reading width, kept only so the old
- * pages build until they are replaced; it renders as `text`.
  */
-export type ContainerWidth = 'wide' | 'text' | 'narrow' | 'md';
+export type ContainerWidth = 'wide' | 'text' | 'narrow';
 
 /**
  * `box-content`, so the maximum applies to the content and the gutters sit
@@ -26,7 +23,6 @@ const WIDTHS: Record<ContainerWidth, string> = {
     wide: 'max-w-[76rem]',
     text: 'max-w-[44rem]',
     narrow: 'max-w-[36rem]',
-    md: 'max-w-[44rem]',
 };
 
 interface ContainerProps {

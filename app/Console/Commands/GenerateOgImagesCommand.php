@@ -35,8 +35,8 @@ use Throwable;
  *   → `og`. English goes to `/og.png`, regenerated in place so old shares and
  *   the platform's default pick it up; Vietnamese to `/og/vi/default.png`.
  * - `feature`, `database`, `compare`: one card per page, from the `og` block
- *   of its content file. A page still on its pre-rebuild component has no
- *   such block and keeps whatever card it has.
+ *   of its content file. A page whose content has no `og` block keeps
+ *   whatever card it has.
  * - `blog`: one card per post and language it is written in, from its front
  *   matter.
  *

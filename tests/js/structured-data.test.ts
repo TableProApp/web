@@ -5,7 +5,6 @@ import { readFileSync } from 'node:fs';
 import {
     blogPostingNode,
     breadcrumbNode,
-    buildOrganizationJsonLd,
     collectionPageNode,
     graph,
     iosAppNode,
@@ -182,21 +181,12 @@ test('no builder ever emits a rating, a review, FAQPage or HowTo', () => {
         mac,
         ios,
         graph([websiteNode(en_, { description: 'x', languages: ['en', 'vi'] })]),
-        buildOrganizationJsonLd(base),
+        graph([organizationNode(base, { description: en.product.short, sameAs: [] })]),
     ]);
 
     for (const banned of ['aggregateRating', 'AggregateRating', 'ratingValue', '"review"', 'Review', 'FAQPage', 'HowTo']) {
         assert.equal(everything.includes(banned), false, `JSON-LD contains ${banned}`);
     }
-});
-
-test('the legacy organization helper describes the product without a count', () => {
-    const legacy = buildOrganizationJsonLd(base) as Record<string, unknown>;
-
-    assert.equal(legacy['@context'], 'https://schema.org');
-    assert.equal(legacy['@id'], 'https://tablepro.app/#organization');
-    assert.equal(legacy.description, en.product.short);
-    assert.doesNotMatch(String(legacy.description), /\d/);
 });
 
 test('the identity sentence names no platform, version or number in either language', () => {

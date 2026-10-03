@@ -24,7 +24,6 @@
  * - Visible content only. No `aggregateRating`, `review`, `FAQPage` or `HowTo`
  *   anywhere, and no node for a product that is not TablePro.
  */
-import englishSeo from '../i18n/messages/en/seo.ts';
 
 export const SCHEMA_ORG = 'https://schema.org';
 
@@ -444,19 +443,5 @@ export function buildBreadcrumbJsonLd(crumbs: readonly Crumb[], baseUrl: string)
             name: crumb.name,
             item: absoluteUrl(baseUrl, crumb.path),
         })),
-    };
-}
-
-/**
- * The organization as a standalone English document, for the pre-rebuild
- * homepage until its rewrite builds a `graph()` with `organizationNode()`,
- * the page's language and `facts.json` links.
- *
- * @deprecated Use `organizationNode()`.
- */
-export function buildOrganizationJsonLd(baseUrl: string, sameAs: readonly string[] = []): object {
-    return {
-        '@context': SCHEMA_ORG,
-        ...organizationNode(baseUrl, { description: englishSeo.product.short, sameAs }),
     };
 }

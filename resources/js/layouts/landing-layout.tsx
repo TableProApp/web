@@ -7,17 +7,6 @@ import { useI18n } from '@/i18n';
 import { syncTheme } from '@/lib/theme';
 
 interface Props {
-    /**
-     * Ignored. Pre-rebuild pages still pass their own header and footer
-     * elements; the layout now renders the site chrome itself, so every page,
-     * the error page included, gets the same header and footer. Delete these
-     * two props once no page passes them.
-     *
-     * @deprecated
-     */
-    header?: ReactNode;
-    /** @deprecated See `header`. */
-    footer?: ReactNode;
     children: ReactNode;
 }
 

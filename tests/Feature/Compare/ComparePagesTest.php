@@ -116,20 +116,6 @@ it('renders each comparison from its product data, its copy and the hub labels',
     }
 })->with(['en', 'vi']);
 
-it('keeps a comparison without copy on its pre-rebuild page in English, and nowhere else', function (): void {
-    foreach (CompareSlugs::ALL as $slug) {
-        if (hasCompareCopy($slug, 'en') || hasCompareCopy($slug, 'vi')) {
-            continue;
-        }
-
-        get("/compare/{$slug}")->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->component('Compare')->where('slug', $slug));
-        get("/vi/compare/{$slug}")->assertNotFound();
-    }
-})->skip(
-    fn(): bool => collect(CompareSlugs::ALL)->every(fn(string $slug): bool => hasCompareCopy($slug, 'en')),
-    'Every comparison has its copy.',
-);
-
 it('answers 410 for the retired Azimutt comparison', function (): void {
     expect(CompareSlugs::ALL)->not->toContain('azimutt');
 
