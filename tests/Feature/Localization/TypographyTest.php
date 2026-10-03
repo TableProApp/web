@@ -47,6 +47,14 @@ it('loads Plex Mono at 400 only, and no script the site does not use', function 
 });
 
 it('points every face at a font file that is installed', function (): void {
+    if (! is_dir(base_path('node_modules'))) {
+        if (getenv('REQUIRE_SSR')) {
+            $this->fail('node_modules is missing; run npm ci before the SSR suite.');
+        }
+
+        $this->markTestSkipped('Needs npm ci. The CI ssr job installs node_modules and runs this case.');
+    }
+
     preg_match_all('#url\("\.\./\.\./(node_modules/[^"]+)"\)#', stylesheet('fonts.css'), $matches);
 
     expect($matches[1])->toHaveCount(6);
