@@ -20,8 +20,8 @@ use App\Support\Localization\Locales;
  * route accepts, so a content file with no slug behind it would be a sitemap
  * URL that answers 404. `LocaleRoutingTest` pins the two lists together.
  *
- * A page with no content in any locale is not this family's yet, and `find()`
- * returns null so the registry falls through to `LegacyPages`.
+ * A page with no content in any locale is not a page: `find()` returns null,
+ * the registry knows no such page, and the route answers 404.
  */
 final class ContentCollection implements PageFamily
 {

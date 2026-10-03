@@ -6,9 +6,8 @@ namespace App\Support\Seo;
  * Every public page, and the one place each SEO surface asks about them.
  *
  * Families are consulted in the order they were registered, and the first one
- * that knows a page wins. The `SeoServiceProvider` registers the content
- * families before `LegacyPages`, so a page moves off its pre-rebuild component
- * the moment its content file lands, with no edit here.
+ * that knows a page wins (`SeoServiceProvider` sets the order). A page no
+ * family knows does not exist: `EnsurePageRenders` answers it with a 404.
  */
 final class PageRegistry
 {

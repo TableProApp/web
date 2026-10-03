@@ -4,7 +4,6 @@ use App\Http\Controllers\Landing\DatabaseController;
 use App\Support\Content\Slugs\DatabaseSlugs;
 use App\Support\Seo\RedirectMap;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
@@ -468,19 +467,6 @@ it('dates the tools the PostgreSQL page cites from comparisons.json, in the page
     'English' => ['', 'October 2, 2026'],
     'Vietnamese' => ['/vi', '2 tháng 10 năm 2026'],
 ])->skip(fn(): bool => ! is_file(resource_path('data/content/en/databases/postgresql-client.json')), 'The PostgreSQL page has no copy yet.');
-
-it('keeps a page with no copy yet on its pre-rebuild component, in English only', function (): void {
-    $missing = array_values(array_diff(DatabaseSlugs::ALL, array_keys(databasePagesFiles('en'))));
-
-    if ($missing === []) {
-        test()->markTestSkipped('Every engine page has copy.');
-    }
-
-    Http::fake(['*' => Http::response(null, 404)]);
-
-    get("/{$missing[0]}")->assertOk()->assertInertia(fn(AssertableInertia $page) => $page->component('DatabaseClient'));
-    get("/vi/{$missing[0]}")->assertNotFound();
-});
 
 it('renders every anchor a redirect or a link aims at, in both languages', function (): void {
     requireSsr();

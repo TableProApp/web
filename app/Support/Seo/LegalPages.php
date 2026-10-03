@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\File;
  * full translation (spec §0, with the English version prevailing), so it is a
  * real pair with the English page, not a duplicate.
  *
- * A document with no markdown in any locale is not this family's yet, and
- * `find()` returns null so the registry falls through to `LegacyPages`.
+ * A document with no markdown in any locale is not a page: `find()` returns
+ * null, the registry knows no such page, and the route answers 404.
  */
 final class LegalPages implements PageFamily
 {

@@ -38,16 +38,6 @@ function themeScannedSources(): array
     return $files;
 }
 
-/**
- * Pre-rebuild files that still break a rule, each deleted with the page that
- * renders it (architecture §5, phase D). An entry stops excusing anything the
- * moment its file is gone, so a reintroduced file is caught.
- */
-const THEME_RETIRING = [
-    // The legacy hero's Product Hunt hotlink, removed with the homepage rewrite.
-    'resources/js/components/landing/product-hunt-badge.tsx',
-];
-
 it('is the design system\'s script, verbatim, behind the shared header', function (): void {
     $partial = (string) file_get_contents(resource_path('views/partials/head-theme.blade.php'));
 
@@ -126,10 +116,6 @@ it('never chooses an image or a colour by the operating system\'s preference', f
     $offenders = [];
 
     foreach (themeScannedSources() as $file => $text) {
-        if (in_array($file, THEME_RETIRING, true)) {
-            continue;
-        }
-
         if (preg_match('/media=["\{]\s*["\'`]?\(prefers-color-scheme/', $text) || preg_match('/@media\s*\(prefers-color-scheme/', $text)) {
             $offenders[] = $file;
         }
@@ -142,19 +128,4 @@ it('has no data-theme attribute selector left over from an earlier draft', funct
     $offenders = array_keys(array_filter(themeScannedSources(), static fn(string $text): bool => (bool) preg_match('/\[data-theme[=\]]|data-theme=/', $text)));
 
     Assert::assertSame([], $offenders, 'The theme is the `.dark` class and `data-theme-choice`, nothing else');
-});
-
-it('excuses only files that still exist', function (): void {
-    foreach (THEME_RETIRING as $file) {
-        if (! is_file(base_path($file))) {
-            continue;
-        }
-
-        // While it exists, it must not be reachable from the site chrome.
-        foreach (['resources/js/layouts/landing-layout.tsx', 'resources/js/components/site/site-header.tsx', 'resources/js/components/site/site-footer.tsx'] as $chrome) {
-            Assert::assertStringNotContainsString(basename($file, '.tsx'), (string) file_get_contents(base_path($chrome)));
-        }
-    }
-
-    expect(THEME_RETIRING)->each->toStartWith('resources/js/components/landing/');
 });

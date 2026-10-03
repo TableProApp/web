@@ -48,23 +48,9 @@ class CompareController extends Controller
         ]);
     }
 
-    public function show(ContentRepository $content, PlatformCatalog $platforms, LandingController $legacy, string $slug): Response
+    public function show(ContentRepository $content, PlatformCatalog $platforms, string $slug): Response
     {
         $locale = App::getLocale();
-
-        /*
-         * Transitional. A slug whose copy exists in no locale is still the
-         * registry's legacy page (English only), so it keeps rendering the
-         * pre-rebuild component until its content file lands. Once every
-         * comparison has content this branch is unreachable, and cleanup
-         * deletes it with `LandingController`. A slug with copy in another
-         * locale never gets here: `EnsurePageRenders` answers that with a 404
-         * that offers the other version.
-         */
-        if (! $content->has("compare/{$slug}", $locale)) {
-            return $legacy->compare($slug);
-        }
-
         $data = $this->comparisons();
         $product = collect($this->comparedProducts($data))->firstWhere('slug', $slug);
 

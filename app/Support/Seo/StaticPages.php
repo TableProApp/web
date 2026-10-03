@@ -14,8 +14,8 @@ use App\Support\Localization\Locales;
  * the content file, not in code, so the owner can flip it once Vietnamese
  * summaries exist.
  *
- * A page with no content file in any locale is not this family's yet, and
- * `find()` returns null so the registry falls through to `LegacyPages`.
+ * A page with no content file in any locale is not a page: `find()` returns
+ * null, the registry knows no such page, and the route answers 404.
  */
 final class StaticPages implements PageFamily
 {

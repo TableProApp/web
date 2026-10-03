@@ -12,17 +12,6 @@ export interface SEOHeadProps {
     /** False for a title that already leads with the brand, such as the homepage's. */
     titleTemplate?: boolean;
     twitterCard?: 'summary' | 'summary_large_image';
-    /**
-     * @deprecated Pre-rebuild pages only, and ignored: the canonical comes from
-     * the registry. Its presence marks a legacy page whose title already
-     * carries "- TablePro", so the template is not applied twice. Removed with
-     * the legacy pages.
-     */
-    canonical?: string;
-    /** @deprecated Ignored. The card comes from the registry (`seo.ogImage`). */
-    ogImage?: string;
-    /** @deprecated Ignored. Robots come from the registry (`seo.robots`). */
-    noindex?: boolean;
 }
 
 const SITE_NAME = 'TablePro';
@@ -64,13 +53,11 @@ export default function SEOHead({
     breadcrumbs,
     titleTemplate = true,
     twitterCard = 'summary_large_image',
-    canonical: legacyCanonical,
 }: SEOHeadProps) {
     const { seo, canonicalBaseUrl } = usePage().props;
     const { m, fmt } = useI18n();
 
-    const applyTemplate = titleTemplate && legacyCanonical === undefined;
-    const fullTitle = applyTemplate ? fmt(m.seo.titleTemplate, { title }) : title;
+    const fullTitle = titleTemplate ? fmt(m.seo.titleTemplate, { title }) : title;
 
     const breadcrumbJsonLd =
         breadcrumbs && breadcrumbs.length > 0 ? buildBreadcrumbJsonLd(breadcrumbs, canonicalBaseUrl) : null;

@@ -28,10 +28,6 @@ use Inertia\Response;
  *
  * Only the fields a page renders are sent, so the evidence strings in the data
  * files never reach the browser.
- *
- * An engine page whose copy does not exist yet in any locale still renders
- * its pre-rebuild English page: the registry (`LegacyPages`) lets only that
- * case through, and `EnsurePageRenders` answers every other missing locale.
  */
 class DatabaseController extends Controller
 {
@@ -71,14 +67,9 @@ class DatabaseController extends Controller
         ]);
     }
 
-    public function show(LandingController $legacy, string $slug): Response
+    public function show(string $slug): Response
     {
         $locale = App::getLocale();
-
-        if (! $this->content->has("databases/{$slug}", $locale)) {
-            return $legacy->databaseClient($slug);
-        }
-
         $page = $this->content->page("databases/{$slug}", $locale);
         $engine = $this->engineBySlug($slug);
 
@@ -259,7 +250,9 @@ class DatabaseController extends Controller
 
     /**
      * The outbound links the pages build: docs paths are joined to `docs`, and
-     * the request form is the issue tracker's feature request template.
+     * the request form is the issue tracker's feature request template. The
+     * App Store action is null while the iPhone and iPad app is not released,
+     * as `appStoreUrl` is on /download and /ios.
      *
      * @return array{docs: string|null, request: string|null, appStore: string|null}
      */
@@ -272,7 +265,9 @@ class DatabaseController extends Controller
         return [
             'docs' => $docs !== null ? rtrim($docs, '/') : null,
             'request' => $issues !== null ? rtrim($issues, '/') . '/new?template=feature_request.yml' : null,
-            'appStore' => $this->url($this->platforms->destination('ios', 'app-store')['url'] ?? null) ?? $this->url($links['appStore'] ?? null),
+            'appStore' => $this->platforms->isReleased('ios')
+                ? ($this->url($this->platforms->destination('ios', 'app-store')['url'] ?? null) ?? $this->url($links['appStore'] ?? null))
+                : null,
         ];
     }
 

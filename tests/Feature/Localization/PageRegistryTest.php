@@ -2,7 +2,6 @@
 
 use App\Support\Content\ContentRepository;
 use App\Support\Localization\LocaleSwitcher;
-use App\Support\Seo\LegacyPages;
 use App\Support\Seo\OgImages;
 use App\Support\Seo\PageEntry;
 use App\Support\Seo\PageFamily;
@@ -84,10 +83,10 @@ it('builds each locale URL from the canonical origin, never from the request', f
     expect((new PageEntry('landing.home', [], ['en', 'vi'], ['en', 'vi'], [], 'site', null))->url('en'))->toBe('https://localhost/');
 });
 
-it('lets a static page leave its legacy component when its content lands', function (): void {
+it('knows a static page only once its content lands', function (): void {
     $registry = app(PageRegistry::class);
 
-    expect($registry->find('landing.download', [])->renderLocales)->toBe(['en']);
+    expect($registry->find('landing.download', []))->toBeNull();
 
     writeContent($this->contentDir, 'en', 'download');
     writeContent($this->contentDir, 'vi', 'download');
@@ -189,32 +188,32 @@ it('asks families in order and lists each page once', function (): void {
         }
     };
 
-    $registry = new PageRegistry([$first, new LegacyPages()]);
+    $second = new class implements PageFamily {
+        public function entries(): array
+        {
+            return [
+                new PageEntry('landing.faq', [], ['en'], ['en'], [], 'site', null),
+                new PageEntry('landing.terms', [], ['en'], ['en'], [], 'site', null),
+            ];
+        }
+
+        public function find(string $route, array $params): ?PageEntry
+        {
+            return collect($this->entries())->first(fn(PageEntry $entry): bool => $entry->route === $route && $params === []);
+        }
+    };
+
+    $registry = new PageRegistry([$first, $second]);
 
     expect($registry->find('landing.faq', [])->renderLocales)->toBe(['en', 'vi']);
     expect($registry->find('landing.terms', [])->renderLocales)->toBe(['en']);
+    expect($registry->find('landing.privacy', []))->toBeNull();
 
     $keys = array_map(fn(PageEntry $entry): string => $entry->key(), $registry->all());
 
     expect($keys)->toBe(array_values(array_unique($keys)));
     expect(collect($registry->all())->first(fn(PageEntry $entry): bool => $entry->route === 'landing.faq')->renderLocales)
         ->toBe(['en', 'vi']);
-});
-
-it('claims only pages the legacy components can draw, in English only', function (): void {
-    $legacy = new LegacyPages();
-
-    foreach ($legacy->entries() as $entry) {
-        expect($entry->renderLocales)->toBe(['en']);
-        expect($entry->indexableLocales)->toBe(['en']);
-    }
-
-    expect($legacy->find('landing.databaseClient', ['slug' => 'kafka-client']))->toBeNull();
-    expect($legacy->find('landing.blog.show', ['slug' => 'no-such-post']))->toBeNull();
-    expect($legacy->find('landing.blog.show', ['slug' => '../secrets']))->toBeNull();
-    expect($legacy->find('landing.pricing', []))->toBeNull();
-    expect($legacy->find('landing.features.index', []))->toBeNull();
-    expect($legacy->find('landing.home', ['slug' => 'x']))->toBeNull();
 });
 
 it('only ever points at an OG card that exists', function (): void {

@@ -16,7 +16,8 @@ require_once __DIR__ . '/../Seo/helpers.php';
  * pages and locales that render, at the paths `OgImages` reads. Everything
  * runs against scratch content and a scratch public directory, with a fake
  * renderer: the committed cards and `/og.png` are never touched, and no
- * Chromium is needed.
+ * Chromium is needed. The committed cards themselves, against the committed
+ * content, are checked in tests/Feature/Seo/OgCardsTest.php.
  */
 beforeEach(function (): void {
     $this->dirs = seoScratch();
@@ -76,7 +77,13 @@ it('renders every card in both languages by default', function (): void {
         expect([$card['width'], $card['height']])->toBe([1200, 630]);
     }
 
-    expect(File::exists(base_path('public/og/vi')))->toBeFalse('a test run wrote into the real public directory');
+    /*
+     * The list above is relative to the scratch public directory, so a card
+     * written into the real one would keep its absolute path and fail it. The
+     * real `public/og/vi` holds the committed Vietnamese cards, so whether it
+     * exists says nothing about this run.
+     */
+    expect(public_path())->toBe($this->public);
 });
 
 it('renders one language with --locale', function (string $locale, array $paths): void {
@@ -119,10 +126,12 @@ it('renders nothing and says so when no page has the slug', function (): void {
 
 it('skips a page with no card copy and keeps its existing card', function (): void {
     /*
-     * A page still on its pre-rebuild component has no `og` block. Its old
-     * card stays where it is until its content lands, rather than being
-     * replaced by a blank one.
+     * A page whose content has no `og` block keeps the card it has, rather
+     * than having it replaced by a blank one.
      */
+    seoWriteContent($this->dirs['content'], 'en', 'databases/mysql-client', ['seo' => ['title' => 't', 'description' => 'd']]);
+    $this->app->forgetInstance(PageRegistry::class);
+
     File::ensureDirectoryExists($this->public . '/og/database');
     File::put($this->public . '/og/database/mysql-client.png', 'old card');
 
@@ -240,20 +249,4 @@ it('gives every page a card that exists once the cards are generated', function 
     expect($images->for(app(PageRegistry::class)->find('landing.faq', []), 'en')['url'])
         ->toBe('https://localhost/og.png');
     expect($checked)->toBeGreaterThan(5);
-});
-
-it('never references a card that is not on disk, on the real site', function (): void {
-    app()->usePublicPath(base_path('public'));
-    $this->app->forgetInstance(PageRegistry::class);
-    $this->app->forgetInstance(OgImages::class);
-
-    foreach (app(PageRegistry::class)->all() as $entry) {
-        foreach ($entry->renderLocales as $locale) {
-            $image = app(OgImages::class)->for($entry, $locale);
-
-            if ($image !== null) {
-                expect(File::exists(base_path('public' . seoPathOf($image['url']))))->toBeTrue("{$entry->key()} ({$locale}) points at a missing card");
-            }
-        }
-    }
 });
