@@ -8,7 +8,7 @@
         "mobile-crop": {
             "type": "detail",
             "aspect": "4:5",
-            "sizes": "(min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+            "sizes": "343px"
         },
         "detail": {
             "type": "detail",
@@ -335,7 +335,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-safe-mode-touchid-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -345,6 +345,26 @@
             "description": {
                 "en": "A production-tagged connection in Safe Mode asking for Touch ID before a DELETE runs.",
                 "vi": "Một connection gắn tag production đang bật Safe Mode, yêu cầu Touch ID trước khi chạy câu DELETE."
+            }
+        },
+        "mac-safe-mode-touchid-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-safe-mode-touchid-mobile"
+            },
+            "description": {
+                "en": "Close-up of the Touch ID prompt over the DELETE statement.",
+                "vi": "Cận cảnh hộp thoại Touch ID phía trên câu lệnh DELETE."
             }
         },
         "mac-data-rewind-review": {
@@ -703,8 +723,8 @@
                 "base": "mac-ai-chat"
             },
             "description": {
-                "en": "AI chat on shop answering \"top 5 customers by revenue last month\" with a query ready to apply.",
-                "vi": "AI chat trên shop trả lời \"5 khách hàng có doanh thu cao nhất tháng trước\" kèm query sẵn sàng đưa vào editor."
+                "en": "AI chat on shop answering \"top 5 customers by revenue last month\" with a SQL query and its Insert button.",
+                "vi": "AI chat trên dữ liệu mẫu shop trả lời \"5 khách hàng có doanh thu cao nhất tháng trước\" kèm một query SQL và nút Insert."
             }
         },
         "mac-ai-chat-mobile": {
@@ -723,8 +743,8 @@
                 "base": "mac-ai-chat-mobile"
             },
             "description": {
-                "en": "Close-up of the chat: the answer, its query and the Apply to Editor button.",
-                "vi": "Cận cảnh khung chat: câu trả lời, query đi kèm và nút Apply to Editor."
+                "en": "Close-up of the chat: the answer, its query and the Insert button.",
+                "vi": "Cận cảnh khung chat: câu trả lời, query đi kèm và nút Insert."
             }
         },
         "mac-agent-mode": {
@@ -795,7 +815,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-connection-ssh-form-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -807,27 +827,7 @@
                 "vi": "Form connection, tab Network: SSH qua bastion.acme.internal với một jump host."
             }
         },
-        "mac-connection-library": {
-            "kind": "window",
-            "type": "screenshot",
-            "slot": true,
-            "aspect": null,
-            "priority": false,
-            "theme": "both",
-            "locale": "shared",
-            "mobile": "mac-connection-library-mobile",
-            "status": "placeholder",
-            "src": null,
-            "replacement": {
-                "dir": "public/images/features",
-                "base": "mac-connection-library"
-            },
-            "description": {
-                "en": "Welcome window: Production and Staging groups, coloured tags and the Chinook sample.",
-                "vi": "Cửa sổ Welcome: nhóm Production và Staging, tag màu và cơ sở dữ liệu mẫu Chinook."
-            }
-        },
-        "mac-connection-library-mobile": {
+        "mac-connection-ssh-form-mobile": {
             "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
@@ -840,11 +840,31 @@
             "src": null,
             "replacement": {
                 "dir": "public/images/features",
-                "base": "mac-connection-library-mobile"
+                "base": "mac-connection-ssh-form-mobile"
             },
             "description": {
-                "en": "Close-up of the connection list: the Production group with its red tag and the Chinook sample.",
-                "vi": "Cận cảnh danh sách connection: nhóm Production với tag màu đỏ và cơ sở dữ liệu mẫu Chinook."
+                "en": "Close-up of the SSH settings: the bastion host, the user, SSH Agent and the jump host row.",
+                "vi": "Cận cảnh phần cài đặt SSH: host bastion, user, SSH Agent và dòng jump host."
+            }
+        },
+        "mac-connection-library": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-connection-library"
+            },
+            "description": {
+                "en": "Welcome window: Production and Staging groups, coloured tags and the Chinook sample.",
+                "vi": "Cửa sổ Welcome: nhóm Production và Staging, tag màu và cơ sở dữ liệu mẫu Chinook."
             }
         },
         "mac-import-other-app": {
@@ -955,7 +975,7 @@
             "priority": false,
             "theme": "single",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-handoff-ios-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -967,6 +987,26 @@
                 "vi": "Handoff: table Track của Chinook đang mở trên iPhone, xuất hiện trong Dock của Mac."
             }
         },
+        "mac-handoff-ios-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/features",
+                "base": "mac-handoff-ios-mobile"
+            },
+            "description": {
+                "en": "Close-up for phones: the iPhone showing the Track table above the Handoff icon in the Mac Dock.",
+                "vi": "Bản cho điện thoại: iPhone đang mở table Track, phía trên biểu tượng Handoff trong Dock của Mac."
+            }
+        },
         "mac-engine-picker": {
             "kind": "detail",
             "type": "detail",
@@ -975,7 +1015,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-engine-picker-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -987,8 +1027,8 @@
                 "vi": "Hộp chọn loại connection theo nhóm, MongoDB trong nhóm Document được ghi Not Installed."
             }
         },
-        "mac-db-postgresql-explain": {
-            "kind": "detail",
+        "mac-engine-picker-mobile": {
+            "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
             "aspect": null,
@@ -1000,11 +1040,51 @@
             "src": null,
             "replacement": {
                 "dir": "public/images/databases",
+                "base": "mac-engine-picker-mobile"
+            },
+            "description": {
+                "en": "Close-up of the Document group, with MongoDB marked Not Installed.",
+                "vi": "Cận cảnh nhóm Document, MongoDB được ghi Not Installed."
+            }
+        },
+        "mac-db-postgresql-explain": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-postgresql-explain-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
                 "base": "mac-db-postgresql-explain"
             },
             "description": {
-                "en": "EXPLAIN ANALYZE diagram for a query on shop.orders, with cost bars.",
-                "vi": "Sơ đồ EXPLAIN ANALYZE cho một query trên shop.orders, kèm thanh chi phí."
+                "en": "EXPLAIN ANALYZE diagram for a query on shop.orders, with a cost badge on each step.",
+                "vi": "Sơ đồ EXPLAIN ANALYZE cho một query trên shop.orders, mỗi bước có một ký hiệu chi phí."
+            }
+        },
+        "mac-db-postgresql-explain-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-postgresql-explain-mobile"
+            },
+            "description": {
+                "en": "Close-up of the plan's most expensive step and its cost badge.",
+                "vi": "Cận cảnh bước tốn kém nhất của execution plan và ký hiệu chi phí của bước đó."
             }
         },
         "mac-db-mysql-query": {
@@ -1143,8 +1223,8 @@
                 "base": "mac-db-redis-keys"
             },
             "description": {
-                "en": "Redis key tree split on \":\" with type, TTL and value columns.",
-                "vi": "Cây key Redis phân theo dấu \":\" với các cột type, TTL và value."
+                "en": "Redis key tree split on \":\" with the Key, Type, TTL, Length and Value columns.",
+                "vi": "Cây key Redis phân theo dấu \":\" với các cột Key, Type, TTL, Length và Value."
             }
         },
         "mac-db-redis-keys-mobile": {
@@ -1175,7 +1255,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-sqlserver-script-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1187,8 +1267,8 @@
                 "vi": "Script T-SQL với các batch GO và kết quả PRINT trong khung Output."
             }
         },
-        "mac-db-oracle-plsql": {
-            "kind": "detail",
+        "mac-db-sqlserver-script-mobile": {
+            "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
             "aspect": null,
@@ -1200,11 +1280,51 @@
             "src": null,
             "replacement": {
                 "dir": "public/images/databases",
+                "base": "mac-db-sqlserver-script-mobile"
+            },
+            "description": {
+                "en": "Close-up of the GO lines and the PRINT messages in the Output pane.",
+                "vi": "Cận cảnh các dòng GO và thông báo PRINT trong khung Output."
+            }
+        },
+        "mac-db-oracle-plsql": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-oracle-plsql-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
                 "base": "mac-db-oracle-plsql"
             },
             "description": {
-                "en": "A PL/SQL block with DBMS_OUTPUT lines in the Output pane.",
-                "vi": "Một khối PL/SQL với các dòng DBMS_OUTPUT trong khung Output."
+                "en": "A PL/SQL block with its DBMS_OUTPUT lines under the result.",
+                "vi": "Một khối PL/SQL với các dòng DBMS_OUTPUT hiện dưới kết quả."
+            }
+        },
+        "mac-db-oracle-plsql-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-oracle-plsql-mobile"
+            },
+            "description": {
+                "en": "Close-up of the DBMS_OUTPUT.PUT_LINE call and the lines it printed.",
+                "vi": "Cận cảnh lệnh gọi DBMS_OUTPUT.PUT_LINE và các dòng mà nó in ra."
             }
         },
         "mac-db-clickhouse-parts": {
@@ -1215,7 +1335,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-clickhouse-parts-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1227,6 +1347,26 @@
                 "vi": "Tab Parts của một table MergeTree: partition, part và số dòng."
             }
         },
+        "mac-db-clickhouse-parts-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-clickhouse-parts-mobile"
+            },
+            "description": {
+                "en": "Close-up of the part list: partitions, parts, rows and the active flag.",
+                "vi": "Cận cảnh danh sách part: partition, part, số dòng và cờ active."
+            }
+        },
         "mac-db-duckdb-parquet": {
             "kind": "detail",
             "type": "detail",
@@ -1235,7 +1375,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-duckdb-parquet-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1247,8 +1387,8 @@
                 "vi": "File Parquet mở trong DuckDB dưới dạng view và được query bằng SQL."
             }
         },
-        "mac-db-cassandra-table": {
-            "kind": "detail",
+        "mac-db-duckdb-parquet-mobile": {
+            "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
             "aspect": null,
@@ -1260,11 +1400,51 @@
             "src": null,
             "replacement": {
                 "dir": "public/images/databases",
+                "base": "mac-db-duckdb-parquet-mobile"
+            },
+            "description": {
+                "en": "Close-up of the query over the Parquet file and its first result rows.",
+                "vi": "Cận cảnh query trên file Parquet và các dòng kết quả đầu tiên."
+            }
+        },
+        "mac-db-cassandra-table": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-cassandra-table-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
                 "base": "mac-db-cassandra-table"
             },
             "description": {
-                "en": "A Cassandra table browsed with CQL; scalar columns are editable.",
-                "vi": "Duyệt một table Cassandra bằng CQL; các cột scalar có thể sửa."
+                "en": "A Cassandra table opened from the sidebar, with a scalar cell being edited.",
+                "vi": "Một table Cassandra mở từ sidebar, với một ô thuộc cột scalar đang được sửa."
+            }
+        },
+        "mac-db-cassandra-table-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-cassandra-table-mobile"
+            },
+            "description": {
+                "en": "Close-up of the status cell being edited, beside the tags set column.",
+                "vi": "Cận cảnh ô status đang được sửa, cạnh cột tags kiểu set."
             }
         },
         "mac-db-redshift-ddl": {
@@ -1275,7 +1455,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-redshift-ddl-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1287,8 +1467,8 @@
                 "vi": "DDL của một table Redshift với DISTKEY và SORTKEY; tab Structure ở chế độ chỉ đọc."
             }
         },
-        "mac-db-d1-databases": {
-            "kind": "detail",
+        "mac-db-redshift-ddl-mobile": {
+            "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
             "aspect": null,
@@ -1300,11 +1480,51 @@
             "src": null,
             "replacement": {
                 "dir": "public/images/databases",
+                "base": "mac-db-redshift-ddl-mobile"
+            },
+            "description": {
+                "en": "Close-up of the DISTKEY and SORTKEY lines in the table's DDL.",
+                "vi": "Cận cảnh các dòng DISTKEY và SORTKEY trong DDL của table."
+            }
+        },
+        "mac-db-d1-databases": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-d1-databases-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
                 "base": "mac-db-d1-databases"
             },
             "description": {
-                "en": "The account's D1 databases listed in the sidebar, one of them open in the editor.",
-                "vi": "Các cơ sở dữ liệu D1 của tài khoản hiển thị ở sidebar, một cơ sở dữ liệu đang mở trong editor."
+                "en": "The database switcher listing the account's D1 databases, over a query on one of them.",
+                "vi": "Bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản, mở phía trên một query trên một trong số đó."
+            }
+        },
+        "mac-db-d1-databases-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-d1-databases-mobile"
+            },
+            "description": {
+                "en": "Close-up of the database switcher listing the account's D1 databases.",
+                "vi": "Cận cảnh bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản."
             }
         },
         "mac-db-turso-remote": {
@@ -1315,7 +1535,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-turso-remote-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1327,8 +1547,8 @@
                 "vi": "Một cơ sở dữ liệu Turso từ xa: các table trong sidebar và kết quả query."
             }
         },
-        "mac-db-dynamodb-planner": {
-            "kind": "detail",
+        "mac-db-turso-remote-mobile": {
+            "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
             "aspect": null,
@@ -1340,11 +1560,51 @@
             "src": null,
             "replacement": {
                 "dir": "public/images/databases",
+                "base": "mac-db-turso-remote-mobile"
+            },
+            "description": {
+                "en": "Close-up of the query on the remote Turso database and its first rows.",
+                "vi": "Cận cảnh query trên cơ sở dữ liệu Turso từ xa và các dòng kết quả đầu tiên."
+            }
+        },
+        "mac-db-dynamodb-planner": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-dynamodb-planner-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
                 "base": "mac-db-dynamodb-planner"
             },
             "description": {
-                "en": "The DynamoDB planner choosing Query over Scan, with estimated read capacity.",
-                "vi": "Planner của DynamoDB chọn Query thay vì Scan, kèm read capacity ước tính."
+                "en": "The DynamoDB planner running a filter as a Query on an index, with the read capacity units it consumed.",
+                "vi": "Planner của DynamoDB chạy bộ lọc dưới dạng Query trên một index, kèm số read capacity unit đã dùng."
+            }
+        },
+        "mac-db-dynamodb-planner-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-dynamodb-planner-mobile"
+            },
+            "description": {
+                "en": "Close-up of the status bar: a Query on the byStatus index and the RCU it consumed.",
+                "vi": "Cận cảnh thanh trạng thái: một Query trên index byStatus và số RCU đã dùng."
             }
         },
         "mac-db-bigquery-dry-run": {
@@ -1355,7 +1615,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-bigquery-dry-run-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1367,6 +1627,26 @@
                 "vi": "Dry Run của BigQuery từ menu Explain: số byte xử lý và chi phí ước tính."
             }
         },
+        "mac-db-bigquery-dry-run-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-bigquery-dry-run-mobile"
+            },
+            "description": {
+                "en": "Close-up of the Dry Run result: bytes processed and estimated cost.",
+                "vi": "Cận cảnh kết quả Dry Run: số byte xử lý và chi phí ước tính."
+            }
+        },
         "mac-db-snowflake-session": {
             "kind": "detail",
             "type": "detail",
@@ -1375,7 +1655,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-snowflake-session-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1387,6 +1667,26 @@
                 "vi": "Connection Snowflake với warehouse và role đặt trong Session Context, kết quả bên dưới."
             }
         },
+        "mac-db-snowflake-session-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-snowflake-session-mobile"
+            },
+            "description": {
+                "en": "Close-up of the Session Context submenu with the checked warehouse.",
+                "vi": "Cận cảnh menu con Session Context với warehouse đang được chọn."
+            }
+        },
         "mac-db-etcd-keys": {
             "kind": "detail",
             "type": "detail",
@@ -1395,7 +1695,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-etcd-keys-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1407,6 +1707,26 @@
                 "vi": "Các key etcd dưới một prefix gốc, kèm value và lease."
             }
         },
+        "mac-db-etcd-keys-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-etcd-keys-mobile"
+            },
+            "description": {
+                "en": "Close-up of etcd keys with their values and leases.",
+                "vi": "Cận cảnh các key etcd kèm value và lease."
+            }
+        },
         "mac-db-elasticsearch-console": {
             "kind": "detail",
             "type": "detail",
@@ -1415,7 +1735,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-elasticsearch-console-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1427,6 +1747,26 @@
                 "vi": "Console Query DSL: một request GET _search và các hit hiển thị thành dòng."
             }
         },
+        "mac-db-elasticsearch-console-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-elasticsearch-console-mobile"
+            },
+            "description": {
+                "en": "Close-up of the GET _search request and its first hits.",
+                "vi": "Cận cảnh request GET _search và các hit đầu tiên."
+            }
+        },
         "mac-db-surrealdb-query": {
             "kind": "detail",
             "type": "detail",
@@ -1435,7 +1775,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-surrealdb-query-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1447,6 +1787,26 @@
                 "vi": "Một query SurrealQL và các record trong data grid."
             }
         },
+        "mac-db-surrealdb-query-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-surrealdb-query-mobile"
+            },
+            "description": {
+                "en": "Close-up of the SurrealQL query and the records it returned.",
+                "vi": "Cận cảnh query SurrealQL và các record trả về."
+            }
+        },
         "mac-db-teradata-sidebar": {
             "kind": "detail",
             "type": "detail",
@@ -1455,7 +1815,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-teradata-sidebar-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1467,6 +1827,26 @@
                 "vi": "Sidebar Teradata liệt kê procedure, và macro trong mục Functions."
             }
         },
+        "mac-db-teradata-sidebar-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-teradata-sidebar-mobile"
+            },
+            "description": {
+                "en": "Close-up of the sidebar's Procedures and Functions groups.",
+                "vi": "Cận cảnh mục Procedures và Functions trong sidebar."
+            }
+        },
         "mac-db-trino-catalogs": {
             "kind": "detail",
             "type": "detail",
@@ -1475,7 +1855,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-trino-catalogs-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1487,6 +1867,26 @@
                 "vi": "Một query Trino join các table từ hai catalog."
             }
         },
+        "mac-db-trino-catalogs-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-trino-catalogs-mobile"
+            },
+            "description": {
+                "en": "Close-up of the query that joins two catalogs, with its results.",
+                "vi": "Cận cảnh query join hai catalog, kèm kết quả."
+            }
+        },
         "mac-db-beancount-bql": {
             "kind": "detail",
             "type": "detail",
@@ -1495,7 +1895,7 @@
             "priority": false,
             "theme": "both",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "mac-db-beancount-bql-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1507,8 +1907,8 @@
                 "vi": "Các table được dựng từ sổ cái Beancount và kết quả một query BQL."
             }
         },
-        "mac-db-kafka-consume": {
-            "kind": "detail",
+        "mac-db-beancount-bql-mobile": {
+            "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
             "aspect": null,
@@ -1520,11 +1920,51 @@
             "src": null,
             "replacement": {
                 "dir": "public/images/databases",
+                "base": "mac-db-beancount-bql-mobile"
+            },
+            "description": {
+                "en": "Close-up of the BQL query and its first result rows.",
+                "vi": "Cận cảnh query BQL và các dòng kết quả đầu tiên."
+            }
+        },
+        "mac-db-kafka-consume": {
+            "kind": "detail",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": "mac-db-kafka-consume-mobile",
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
                 "base": "mac-db-kafka-consume"
             },
             "description": {
                 "en": "KafkaQL CONSUME on an orders topic: partition, offset, key and value.",
                 "vi": "KafkaQL CONSUME trên topic orders: partition, offset, key và value."
+            }
+        },
+        "mac-db-kafka-consume-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "both",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/databases",
+                "base": "mac-db-kafka-consume-mobile"
+            },
+            "description": {
+                "en": "Close-up of the CONSUME statement and the messages by partition and offset.",
+                "vi": "Cận cảnh câu lệnh CONSUME và các message theo partition và offset."
             }
         },
         "ios-connection-list": {
@@ -1555,7 +1995,7 @@
             "priority": false,
             "theme": "single",
             "locale": "shared",
-            "mobile": null,
+            "mobile": "ipad-table-browse-mobile",
             "status": "placeholder",
             "src": null,
             "replacement": {
@@ -1565,6 +2005,26 @@
             "description": {
                 "en": "TablePro on iPad showing the Chinook Track table.",
                 "vi": "TablePro trên iPad hiển thị table Track của Chinook."
+            }
+        },
+        "ipad-table-browse-mobile": {
+            "kind": "mobile-crop",
+            "type": "detail",
+            "slot": true,
+            "aspect": null,
+            "priority": false,
+            "theme": "single",
+            "locale": "shared",
+            "mobile": null,
+            "status": "placeholder",
+            "src": null,
+            "replacement": {
+                "dir": "public/images/ios",
+                "base": "ipad-table-browse-mobile"
+            },
+            "description": {
+                "en": "Close-up of the iPad table browser: the first Track rows as cards.",
+                "vi": "Cận cảnh trình duyệt table trên iPad: các dòng đầu của table Track dưới dạng thẻ."
             }
         },
         "ios-table-browse": {
@@ -1643,8 +2103,8 @@
                 "base": "ios-live-activity"
             },
             "description": {
-                "en": "A running query as a Live Activity on the Lock Screen, with elapsed time and rows received.",
-                "vi": "Một query đang chạy hiển thị dạng Hoạt động trực tiếp trên Màn hình khóa, kèm thời gian đã chạy và số dòng đã nhận."
+                "en": "A running query as a Live Activity on the Lock Screen: the connection, the query, the elapsed time and the Running status.",
+                "vi": "Một query đang chạy hiển thị dạng Hoạt động trực tiếp trên Màn hình khóa: connection, câu query, thời gian đã chạy và trạng thái Running."
             }
         },
         "ios-connection-form": {
@@ -1903,7 +2363,7 @@
                 "base": "blog-tablepro-0-68-1"
             },
             "description": {
-                "en": "The Compare & Sync window: objects grouped by kind and marked by difference, and the generated ALTER script.",
+                "en": "Compare & Sync on two PostgreSQL databases: tables grouped by difference, and one table's definitions compared side by side.",
                 "vi": null
             }
         },
@@ -1923,7 +2383,7 @@
                 "base": "blog-tablepro-0-68-2"
             },
             "description": {
-                "en": "Compare & Sync in row data mode: rows side by side, key columns highlighted and differing values marked.",
+                "en": "Compare & Sync in row mode: id as the key column, each row to update with its old and new values, and the rows to insert.",
                 "vi": null
             }
         },
@@ -1943,7 +2403,7 @@
                 "base": "blog-tablepro-0-68-3"
             },
             "description": {
-                "en": "The sidebar with a PostgreSQL function selected, two overloads told apart by arguments, and the read-only source viewer.",
+                "en": "The sidebar with a PostgreSQL function selected, its overloads told apart by arguments, and the read-only source viewer.",
                 "vi": null
             }
         },
@@ -1983,7 +2443,7 @@
                 "base": "blog-tablepro-0-68-5"
             },
             "description": {
-                "en": "Settings, License pane: a masked key, the activated Macs with Release buttons, and the team seat list.",
+                "en": "Settings, License pane: the license holder, a shortened key, the activated Macs and the team member list.",
                 "vi": null
             }
         },
@@ -2003,7 +2463,7 @@
                 "base": "blog-tablepro-0-69-1"
             },
             "description": {
-                "en": "The Restore Previous Values sheet listing rows from a committed save, with rows that cannot be restored explained.",
+                "en": "The Restore Previous Values sheet for four deleted Customer rows, each marked Will restore, with the INSERT statements shown.",
                 "vi": null
             }
         },
@@ -2023,7 +2483,7 @@
                 "base": "blog-tablepro-0-69-2"
             },
             "description": {
-                "en": "The structure editor on the Constraints tab, with check constraints and a generated column's expression.",
+                "en": "The structure editor's Constraints tab on a SQLite table, listing five check constraints with their expressions.",
                 "vi": null
             }
         },
@@ -2043,7 +2503,7 @@
                 "base": "blog-tablepro-0-69-3"
             },
             "description": {
-                "en": "A new SQLite connection on the Remote File pane: SSH fields and a remote path, opened as a read-only copy.",
+                "en": "A SQLite connection's Remote File pane: open a file on an SSH server as a read-only copy, host set and path still empty.",
                 "vi": null
             }
         },
@@ -2063,7 +2523,7 @@
                 "base": "blog-tablepro-0-69-4"
             },
             "description": {
-                "en": "A table renamed inline in the sidebar tree, its name selected in an edit field.",
+                "en": "A table being renamed inline in the sidebar, its name in an edit field.",
                 "vi": null
             }
         },
@@ -2143,7 +2603,7 @@
                 "base": "blog-tablepro-0-72-1"
             },
             "description": {
-                "en": "The Backup Dump sheet listing the databases on a connection, with one ticked and Choose Destination.",
+                "en": "The Backup Database sheet listing the databases on a connection, with one ticked and Choose Destination.",
                 "vi": null
             }
         },
@@ -2223,7 +2683,7 @@
                 "base": "blog-tablepro-0-73-1"
             },
             "description": {
-                "en": "The Copy To review step: the generated PostgreSQL CREATE TABLE for a MySQL table and the approximated column types.",
+                "en": "The Copy To review step: the PostgreSQL DDL generated for a MySQL table, the expected row count and an identity-value warning.",
                 "vi": null
             }
         },
@@ -2283,7 +2743,7 @@
                 "base": "blog-tablepro-0-73-4"
             },
             "description": {
-                "en": "The SQLite rebuild review sheet with the full script, ending in a PRAGMA foreign_key_check.",
+                "en": "The SQLite rebuild preview for a new foreign key: the rebuilt table's DDL and the row copy, before anything runs.",
                 "vi": null
             }
         },

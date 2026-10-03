@@ -1,19 +1,27 @@
 # Social cards
 
-**Current state (temporary).** Every page's `og:image` is a card that `php artisan og:generate` renders from the
-templates in `resources/views/og/` (architecture §1.15): the TablePro logo and the page's own title on the site
-palette, set in Inter, with no screenshot and no app chrome.
+**Current state (temporary).** No social card is bespoke artwork yet. Every page's `og:image` is a card that
+`php artisan og:generate` renders from the templates in `resources/views/og/` (architecture §1.15): the TablePro logo
+and the page's own title on the site palette, set in Inter, with no screenshot and no app chrome. The cards are
+committed under `public/og/`; they are generated, not drawn, so they are not part of your work.
 
 - The generic card, used by every page without a card of its own (the homepage, the hubs, `/pricing`, `/download`,
   `/ios`, `/faq`, the legal pages and the blog index): `/og.png` in English and `/og/vi/default.png` in Vietnamese.
 - Page cards: `/og/{feature,database,compare}/{slug}.png` in English and `/og/vi/{feature,database,compare}/{slug}.png`
   in Vietnamese. Release posts keep their English cards at `/og/blog/{slug}.png`; no post has a Vietnamese card.
-- A page never points at a card file that does not exist, and no placeholder box is ever published as a card.
+- `App\Support\Seo\OgImages` picks, in order: the page's own card, the bespoke `og-site` card once supplied, the
+  generated generic card for the page's language, and otherwise no `og:image` at all. A page never points at a card
+  file that does not exist, and no placeholder box is ever published as a card.
+- The cards are rendered with `php artisan og:generate --type=all --locale=all` (Chromium is required; locally set
+  `PUPPETEER_EXECUTABLE_PATH`), or by the `og cards` workflow (`.github/workflows/og.yml`), which commits them.
+  Before launch, check that every card under `public/og/` comes from the current templates: a card rendered before
+  the rebuild still shows the old design and its claims.
 
 The one bespoke card planned is `og-site` below. Until you supply it, the generated generic card stays in use.
 
-Hiện tại mọi trang dùng ảnh OG do `og:generate` tạo từ template, nên bạn không cần làm gì với các ảnh đó. Phần dưới
-chỉ mô tả ảnh OG mặc định mà bạn có thể thiết kế lại sau.
+Hiện tại mọi trang dùng ảnh OG do `og:generate` tạo từ template, nên bạn không cần vẽ các ảnh đó; trước khi ra mắt
+chỉ cần chạy lại lệnh để mọi ảnh trong `public/og/` dùng template mới. Phần dưới mô tả ảnh OG mặc định 1200 × 630 mà
+bạn có thể thiết kế lại sau.
 
 ## og-site
 
