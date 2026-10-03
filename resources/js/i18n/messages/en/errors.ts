@@ -27,6 +27,11 @@ export default {
         body: 'It has not been translated yet.',
         link: 'Read it in {language}',
     },
+    /** A `/vi/account…` or `/vi/checkout…` path: the account has no language prefix. */
+    account: {
+        body: 'Your account has one address in every language. Open it here; it opens in Vietnamese.',
+        link: 'Open your account',
+    },
     languages: {
         en: 'English',
         vi: 'Vietnamese',

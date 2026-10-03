@@ -8,6 +8,11 @@ import { syncTheme } from '@/lib/theme';
 
 interface Props {
     children: ReactNode;
+    /**
+     * False on a page that carries its own newsletter form (the blog index),
+     * so the footer does not repeat the same field a screen below it.
+     */
+    footerNewsletter?: boolean;
 }
 
 /**
@@ -29,7 +34,7 @@ interface Props {
  * horizontal-scroll regressions instead of preventing them, and would break the
  * sticky header. Anything wide scrolls inside its own region.
  */
-export default function LandingLayout({ children }: Props) {
+export default function LandingLayout({ children, footerNewsletter = true }: Props) {
     const { locale, m } = useI18n();
 
     /*
@@ -60,7 +65,7 @@ export default function LandingLayout({ children }: Props) {
             <main id="main-content" tabIndex={-1} className="flex-1">
                 {children}
             </main>
-            <SiteFooter />
+            <SiteFooter newsletter={footerNewsletter} />
             <ConsentBar />
         </div>
     );

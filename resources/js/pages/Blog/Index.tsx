@@ -55,8 +55,9 @@ export default function BlogIndex({ content, posts }: Props) {
         ),
     ]);
 
+    // This page has its own newsletter card under the posts, so the footer leaves its copy out.
     return (
-        <LandingLayout>
+        <LandingLayout footerNewsletter={false}>
             <SEOHead title={content.seo.title} description={content.seo.description} jsonLd={jsonLd} />
 
             <PageHeader

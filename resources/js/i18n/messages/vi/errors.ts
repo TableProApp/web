@@ -23,6 +23,10 @@ export default {
         body: 'Trang này chưa được dịch.',
         link: 'Đọc bản {language}',
     },
+    account: {
+        body: 'Tài khoản có cùng một địa chỉ cho mọi ngôn ngữ. Bạn mở tài khoản tại đây, giao diện sẽ bằng tiếng Việt.',
+        link: 'Mở tài khoản',
+    },
     languages: {
         en: 'tiếng Anh',
         vi: 'tiếng Việt',

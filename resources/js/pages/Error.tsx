@@ -1,4 +1,6 @@
 import SEOHead from '@/components/seo/seo-head';
+import { SUPPORT_EMAIL } from '@/components/site/site-links';
+import { buttonClasses } from '@/components/ui/button';
 import LocaleLink from '@/components/ui/locale-link';
 import { useI18n, type Locale } from '@/i18n';
 import LandingLayout from '@/layouts/landing-layout';
@@ -16,13 +18,9 @@ interface Props {
     status: Status;
     /** The same page in another language, when only that version exists. */
     suggestion?: Suggestion;
+    /** `/account?locale=vi` on a 404 for `/vi/account…` or `/vi/checkout…`: the account has no locale prefix. */
+    account?: string;
 }
-
-/**
- * The support address quoted on the 500 page. It moves to `facts.json`
- * (`support.email`) once that file exists.
- */
-const SUPPORT_EMAIL = 'hello@tablepro.app';
 
 const START_PAGES = [
     ['home', '/'],
@@ -41,7 +39,7 @@ const START_PAGES = [
  * says so and links the English page, instead of showing English copy under
  * Vietnamese chrome.
  */
-export default function ErrorPage({ status, suggestion }: Props) {
+export default function ErrorPage({ status, suggestion, account }: Props) {
     const { m, fmt } = useI18n();
     const copy = {
         404: m.errors.notFound,
@@ -52,7 +50,7 @@ export default function ErrorPage({ status, suggestion }: Props) {
 
     const language = suggestion ? m.errors.languages[suggestion.locale] : null;
     const title = suggestion && language ? fmt(m.errors.translation.title, { language }) : copy.title;
-    const body = suggestion ? m.errors.translation.body : fmt(copy.body, { email: SUPPORT_EMAIL });
+    const body = suggestion ? m.errors.translation.body : account ? m.errors.account.body : fmt(copy.body, { email: SUPPORT_EMAIL });
 
     return (
         <LandingLayout>
@@ -62,15 +60,34 @@ export default function ErrorPage({ status, suggestion }: Props) {
                 <h1 className="type-h1 mt-2 text-foreground">{title}</h1>
                 <p className="type-body mt-4 text-foreground">{body}</p>
 
+                {/*
+                  * The page in the other language: its title as text in that
+                  * language, then the Button with this page's own words. A long
+                  * English post title as the button label wrapped to two
+                  * left-aligned lines against its edges.
+                  */}
                 {suggestion && language && (
-                    <p className="mt-8">
+                    <div className="mt-8">
+                        {suggestion.title !== null && (
+                            <p lang={suggestion.locale} className="type-h3 text-foreground">
+                                {suggestion.title}
+                            </p>
+                        )}
                         <a
                             href={suggestion.href}
                             hrefLang={suggestion.hreflang}
-                            lang={suggestion.locale}
-                            className="type-label inline-flex min-h-10 items-center rounded-control bg-accent px-4 text-accent-foreground transition-colors duration-(--dur-tap) hover:bg-accent-hover active:bg-accent-active"
+                            className={buttonClasses('primary', 'md', suggestion.title !== null ? 'mt-4' : undefined)}
                         >
-                            {suggestion.title ?? fmt(m.errors.translation.link, { language })}
+                            {fmt(m.errors.translation.link, { language })}
+                        </a>
+                    </div>
+                )}
+
+                {/* A plain link: the account is the other application, with its own document. */}
+                {account && (
+                    <p className="mt-8">
+                        <a href={account} className={buttonClasses('primary', 'md')}>
+                            {m.errors.account.link}
                         </a>
                     </p>
                 )}

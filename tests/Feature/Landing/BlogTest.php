@@ -224,13 +224,27 @@ it('dates a correction on each post that said something never true, and on no ot
         });
 })->with(array_keys(BLOG_PUBLISHED));
 
-it('relates posts by shared topic first, then by closeness in time', function (): void {
+it('chooses related posts by shared topic first, then by closeness in time, and lists them newest first', function (): void {
     $this->get('/blog/tablepro-0-76')
         ->assertOk()
         ->assertInertia(fn(AssertableInertia $page) => $page
-            ->where('related.0.slug', 'tablepro-0-67')
+            ->where('related.0.slug', 'tablepro-0-77')
             ->where('related.1.slug', 'tablepro-0-70')
-            ->where('related.2.slug', 'tablepro-0-77'));
+            ->where('related.2.slug', 'tablepro-0-67'));
+
+    /*
+     * A dated list out of order reads as a sorting bug (0.74 listed Sep 9,
+     * Sep 22, Sep 4 in ranking order).
+     */
+    foreach (array_keys(BLOG_PUBLISHED) as $slug) {
+        $this->get("/blog/{$slug}")->assertInertia(function (AssertableInertia $page): void {
+            $dates = array_column($page->toArray()['props']['related'], 'date');
+            $sorted = $dates;
+            rsort($sorted);
+
+            expect($dates)->toBe($sorted);
+        });
+    }
 });
 
 it('renders /vi/blog in Vietnamese, unindexed, listing the English posts as English', function (): void {

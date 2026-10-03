@@ -228,5 +228,5 @@ it('keeps the site chrome to its own link tables and catalogs', function (): voi
     // The layout renders the new chrome and nothing of the old.
     $layout = (string) file_get_contents(resource_path('js/layouts/landing-layout.tsx'));
 
-    expect($layout)->toContain('<SiteHeader />')->toContain('<SiteFooter />')->not->toContain('components/landing/');
+    expect($layout)->toContain('<SiteHeader />')->toContain('<SiteFooter newsletter={footerNewsletter} />')->not->toContain('components/landing/');
 });

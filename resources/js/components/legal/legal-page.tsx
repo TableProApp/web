@@ -152,22 +152,25 @@ export default function LegalPage({ document, chrome, links, organizationProfile
                             </Fragment>
                         ))}
 
-                        <p className="type-small mt-12 max-w-[44rem] border-t border-rule pt-6 text-muted-foreground">
-                            <Trans
-                                text={chrome.contact}
-                                values={links.email !== null ? { email: links.email } : {}}
-                                tags={{
-                                    email: (text) =>
-                                        links.email !== null ? (
-                                            <a href={`mailto:${links.email}`} className={textLinkClasses('inline')}>
-                                                {text}
-                                            </a>
-                                        ) : (
-                                            text
-                                        ),
-                                }}
-                            />
-                        </p>
+                        {/* A document that ends with its own Contact section (Privacy, Terms) does not repeat the address under it. */}
+                        {!document.toc.some((section) => section.id === 'contact') && (
+                            <p className="type-small mt-12 max-w-[44rem] border-t border-rule pt-6 text-muted-foreground">
+                                <Trans
+                                    text={chrome.contact}
+                                    values={links.email !== null ? { email: links.email } : {}}
+                                    tags={{
+                                        email: (text) =>
+                                            links.email !== null ? (
+                                                <a href={`mailto:${links.email}`} className={textLinkClasses('inline')}>
+                                                    {text}
+                                                </a>
+                                            ) : (
+                                                text
+                                            ),
+                                    }}
+                                />
+                            </p>
+                        )}
                     </div>
                 </div>
             </Container>

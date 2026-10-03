@@ -170,3 +170,19 @@ it('serves the static page for 503 while debugging, in the locale of the path', 
     $response->assertStatus(503);
     expect($response->getContent())->toContain('Đang bảo trì')->toContain('<html lang="vi"');
 });
+
+it('links the account in Vietnamese from a Vietnamese account or checkout 404', function (string $path): void {
+    /* The account has no locale prefix (spec §0); a reader who guessed one is sent to the real address (sitemap §A.7, §C.6). */
+    $this->get($path)
+        ->assertNotFound()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->component('Error')
+            ->where('locale', 'vi')
+            ->where('account', '/account?locale=vi'));
+})->with(['/vi/account', '/vi/account/login', '/vi/checkout/starter']);
+
+it('offers the account only on account and checkout paths', function (string $path): void {
+    $this->get($path)
+        ->assertNotFound()
+        ->assertInertia(fn(AssertableInertia $page) => $page->component('Error')->missing('account'));
+})->with(['/vi/khong-co-trang-nay', '/vi/accounting', '/this-page-does-not-exist']);

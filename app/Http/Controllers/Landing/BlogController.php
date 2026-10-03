@@ -101,6 +101,10 @@ class BlogController extends Controller
      * topics first, then those published closest in time, so a release post
      * links its neighbours rather than whatever happens to be newest.
      *
+     * The ranking only chooses the three. They are shown newest first, like
+     * every other dated list on the site: in ranking order the dates read
+     * Sep 9, Sep 22, Sep 4, which looks like a sorting bug.
+     *
      * @return list<Post>
      */
     private function related(Post $post): array
@@ -119,7 +123,11 @@ class BlogController extends Controller
 
         usort($candidates, static fn(Post $a, Post $b): int => $rank($a) <=> $rank($b));
 
-        return array_slice($candidates, 0, self::RELATED);
+        $chosen = array_slice($candidates, 0, self::RELATED);
+
+        usort($chosen, static fn(Post $a, Post $b): int => $b->date <=> $a->date);
+
+        return $chosen;
     }
 
     /**

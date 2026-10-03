@@ -24,6 +24,10 @@ use Throwable;
  * - JSON requests keep their JSON.
  * - If rendering the page fails, the default response stands, which for 500
  *   and 503 is the static `resources/views/errors/{status}.blade.php`.
+ * - A 404 under a prefixed locale for an account or checkout path
+ *   (`/vi/account…`, `/vi/checkout…`) links the account in that language,
+ *   `/account?locale=vi`: the account has no locale prefix (spec §0), so a
+ *   reader who guessed one is sent to the real address (sitemap §A.7, §C.6).
  */
 final class RenderErrorPage
 {
@@ -31,6 +35,11 @@ final class RenderErrorPage
      * @var list<int>
      */
     public const STATUSES = [404, 410, 500, 503];
+
+    /**
+     * Platform paths a reader might put a locale prefix in front of.
+     */
+    private const ACCOUNT_PATH = '#^([a-z]{2})/(account|checkout)(/|$)#';
 
     /**
      * Sets the locale from the path before Laravel renders anything.
@@ -77,6 +86,10 @@ final class RenderErrorPage
                 'locale' => $suggestion['locale'],
                 'href' => $suggestion['href'],
             ]);
+        }
+
+        if ($status === 404 && preg_match(self::ACCOUNT_PATH, $request->path(), $matches) === 1 && Locales::isSupported($matches[1])) {
+            $props['account'] = '/account?locale=' . $matches[1];
         }
 
         $request->attributes->set(SeoContext::ERROR_ATTRIBUTE, true);
