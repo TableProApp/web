@@ -1,7 +1,6 @@
 import type { Messages } from '../../types.ts';
 
 export default {
-    required: '(bắt buộc)',
     email: {
         label: 'Địa chỉ email',
         placeholder: 'ban@example.com',

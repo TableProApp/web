@@ -58,9 +58,6 @@ export interface Crumb {
     path: string;
 }
 
-/** @deprecated Use `Crumb`. Kept for `SEOHead`'s `breadcrumbs` prop. */
-export type BreadcrumbCrumb = Crumb;
-
 export type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
 export interface OfferInput {
@@ -425,23 +422,5 @@ export function graph(nodes: readonly (JsonLdNode | null | undefined | false)[])
     return {
         '@context': SCHEMA_ORG,
         '@graph': nodes.filter((node): node is JsonLdNode => Boolean(node)),
-    };
-}
-
-/**
- * A standalone breadcrumb document, for `SEOHead`'s `breadcrumbs` prop.
- *
- * @deprecated New pages put `breadcrumbNode()` in their `graph()` instead.
- */
-export function buildBreadcrumbJsonLd(crumbs: readonly Crumb[], baseUrl: string): object {
-    return {
-        '@context': SCHEMA_ORG,
-        '@type': 'BreadcrumbList',
-        itemListElement: crumbs.map((crumb, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            name: crumb.name,
-            item: absoluteUrl(baseUrl, crumb.path),
-        })),
     };
 }

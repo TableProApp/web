@@ -36,8 +36,3 @@ export interface SponsorsData {
  * validates the file.
  */
 export const SPONSORS = data as SponsorsData;
-
-/** The logo for the active theme; the light file serves both when there is no dark one. */
-export function sponsorLogoSrc(sponsor: Sponsor, theme: 'light' | 'dark'): string {
-    return theme === 'dark' && sponsor.logo.dark !== null ? sponsor.logo.dark : sponsor.logo.light;
-}

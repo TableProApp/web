@@ -4,7 +4,6 @@
  */
 export default {
     skipToContent: 'Skip to content',
-    newTab: '(opens in a new tab)',
     breadcrumb: 'Breadcrumb',
     permalink: 'Link to this section',
     /** The name of the scroll region around a table in an article. */

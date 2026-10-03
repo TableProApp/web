@@ -1,6 +1,5 @@
 import { Head, usePage } from '@inertiajs/react';
 import { useI18n } from '@/i18n';
-import { buildBreadcrumbJsonLd, type BreadcrumbCrumb } from '@/lib/structured-data';
 
 export interface SEOHeadProps {
     /** The page's own title. The `seo.titleTemplate` catalog entry adds the brand. */
@@ -8,7 +7,6 @@ export interface SEOHeadProps {
     description: string;
     ogType?: 'website' | 'article' | 'product';
     jsonLd?: object | object[];
-    breadcrumbs?: BreadcrumbCrumb[];
     /** False for a title that already leads with the brand, such as the homepage's. */
     titleTemplate?: boolean;
     twitterCard?: 'summary' | 'summary_large_image';
@@ -18,18 +16,6 @@ const SITE_NAME = 'TablePro';
 
 function escapeJsonLd(payload: object | object[]): string {
     return JSON.stringify(payload).replace(/<\/script/gi, '<\\/script');
-}
-
-function mergeJsonLd(base: object | object[] | undefined, extra: object | null): object[] | object | undefined {
-    if (!extra) {
-        return base;
-    }
-
-    if (!base) {
-        return extra;
-    }
-
-    return [...(Array.isArray(base) ? base : [base]), extra];
 }
 
 /**
@@ -50,19 +36,15 @@ export default function SEOHead({
     description,
     ogType = 'website',
     jsonLd,
-    breadcrumbs,
     titleTemplate = true,
     twitterCard = 'summary_large_image',
 }: SEOHeadProps) {
-    const { seo, canonicalBaseUrl } = usePage().props;
+    const { seo } = usePage().props;
     const { m, fmt } = useI18n();
 
     const fullTitle = titleTemplate ? fmt(m.seo.titleTemplate, { title }) : title;
 
-    const breadcrumbJsonLd =
-        breadcrumbs && breadcrumbs.length > 0 ? buildBreadcrumbJsonLd(breadcrumbs, canonicalBaseUrl) : null;
-    const combined = mergeJsonLd(jsonLd, breadcrumbJsonLd);
-    const jsonLdContent = combined ? escapeJsonLd(combined) : null;
+    const jsonLdContent = jsonLd ? escapeJsonLd(jsonLd) : null;
 
     return (
         <Head>

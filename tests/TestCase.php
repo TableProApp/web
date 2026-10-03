@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Vite;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -28,5 +29,26 @@ abstract class TestCase extends BaseTestCase
         $this->withoutVite();
 
         $this->app->terminating(fn() => $this->app->forgetScopedInstances());
+    }
+
+    /**
+     * `public/hot` exists while `composer dev` runs. Inertia's SSR gateway
+     * then posts every render to the Vite dev server instead of the SSR
+     * bundle, the test's stray-request guard refuses it, and every page test
+     * failed with a 500 whenever a developer had the dev server up. The fake
+     * Vite that `withoutVite()` swaps in ignores `useHotFile()`, so its hot
+     * file is pointed at a path that never exists directly, and the suite
+     * behaves the same with or without a dev server.
+     *
+     * @return $this
+     */
+    protected function withoutVite()
+    {
+        parent::withoutVite();
+
+        $vite = $this->app->make(Vite::class);
+        (fn() => $this->hotFile = storage_path('framework/testing/never-hot'))->call($vite);
+
+        return $this;
     }
 }

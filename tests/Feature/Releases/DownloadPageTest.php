@@ -86,7 +86,7 @@ it('names the featured, published engines from engines.json for the structured d
     expect($expected)->not->toBeEmpty();
 
     get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('featuredEngines', $expected));
-})->skip(fn(): bool => ! is_file(resource_path('data/engines.json')), 'engines.json does not exist yet.');
+});
 
 it('renders in Vietnamese with Vietnamese copy and a Vietnamese date', function (): void {
     fakeLiveRelease();
@@ -194,7 +194,7 @@ it('reads everything the page needs from the live platforms.json', function (): 
         expect($catalog->summary('ios')['requirements']['systems'])->not->toBeEmpty()
             ->and($catalog->destination('ios', 'app-store')['url'] ?? '')->toStartWith('https://');
     }
-})->skip(fn(): bool => ! is_file(resource_path('data/platforms.json')), 'platforms.json does not exist yet.');
+});
 
 it('keeps both page copies free of auto-start claims, URLs and retired wording', function (): void {
     $sources = [
@@ -287,7 +287,7 @@ it('server-renders both builds as links, and says nothing about a download start
         ->toContain('Download for Intel')
         ->toContain('Which Mac do I have?')
         ->toContain('v0.77.0 · October 2, 2026')
-        ->toContain('TablePro-0.77.0-arm64.dmg · 22.9 MB')
+        ->toContain('<span class="font-mono text-[0.75rem] [overflow-wrap:anywhere]">TablePro-0.77.0-arm64.dmg</span> · <span class="tabular-nums">22.9</span> MB')
         ->toContain('Requires iOS and iPadOS 18 or later')
         ->toContain('Free, with no in-app purchases')
         ->toContain('not available for Linux or Windows');
@@ -296,7 +296,7 @@ it('server-renders both builds as links, and says nothing about a download start
         ->toContain('Tải bản cho Apple silicon')
         ->toContain('Tải bản cho Intel')
         ->toContain('v0.77.0 · 2 tháng 10 năm 2026')
-        ->toContain('TablePro-0.77.0-arm64.dmg · 22,9 MB')
+        ->toContain('<span class="font-mono text-[0.75rem] [overflow-wrap:anywhere]">TablePro-0.77.0-arm64.dmg</span> · <span class="tabular-nums">22,9</span> MB')
         ->toContain('Yêu cầu iOS và iPadOS 18 trở lên')
         ->toContain('Miễn phí, không có mua hàng trong ứng dụng')
         ->toContain('cho Linux hoặc Windows');

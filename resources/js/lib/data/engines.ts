@@ -1,15 +1,13 @@
 /**
- * resources/data/engines.json, typed: every engine the Mac app's picker
+ * The shape of resources/data/engines.json: every engine the Mac app's picker
  * offers, with where the site describes it and what it can do.
  *
- * Counts are derived from this list, never typed into copy. Feature pages ask
- * the capability fields which engines to name (the EXPLAIN engines, the
- * dashboard engines, the engines without import), so no page keeps a list of
- * its own. Sentences about an engine live in `content/{locale}/engines.json`
- * and the database pages; this file holds names, ids and evidence.
+ * Types only. The pages receive the engines they show as props from the
+ * controllers (`App\Services\Content\SiteFacts`, `DatabaseController`), so the
+ * bundle never carries the whole file; the runtime helpers that once read it
+ * here had no caller left. Sentences about an engine live in
+ * `content/{locale}/engines.json` and the database pages.
  */
-import data from '@data/engines.json';
-import { needsReleaseLabel } from './platforms.ts';
 
 export type EnginePage = 'own' | 'section' | 'hub';
 
@@ -131,121 +129,4 @@ export interface Engine {
     limits: EngineLimit[];
     ios: EngineIos;
     verified: { macTag: string; iosCommit: string; date: string };
-}
-
-/**
- * The single cast from the JSON import, whose string unions TypeScript widens
- * to `string`. `tests/Feature/Data/EnginesDataTest.php` validates the file
- * against these types.
- */
-export const ENGINES = data as Engine[];
-
-const BY_ID = new Map(ENGINES.map((entry) => [entry.id, entry]));
-
-export function engine(id: string): Engine {
-    const found = BY_ID.get(id);
-
-    if (!found) {
-        throw new Error(`resources/data/engines.json has no engine "${id}".`);
-    }
-
-    return found;
-}
-
-export function publishedEngines(): Engine[] {
-    return ENGINES.filter((entry) => entry.state === 'published');
-}
-
-/** PostgreSQL, MySQL, SQL Server, SQLite, MongoDB, Redis: `{featuredEngines}` in data order. */
-export function featuredEngines(): Engine[] {
-    return publishedEngines().filter((entry) => entry.featured);
-}
-
-/** The engines the homepage meta description names. */
-export function metaEngines(): Engine[] {
-    return featuredEngines().filter((entry) => entry.meta);
-}
-
-export function ownPageEngines(): Engine[] {
-    return publishedEngines().filter((entry) => entry.page === 'own');
-}
-
-/** The engines described as sections of `parentId`'s page, in data order. */
-export function sectionsOf(parentId: string): Engine[] {
-    return publishedEngines().filter((entry) => entry.page === 'section' && entry.parent === parentId);
-}
-
-export function enginesInCategory(category: EngineCategory): Engine[] {
-    return publishedEngines().filter((entry) => entry.category === category);
-}
-
-/** Published engines for which `test` holds, in data order. */
-export function enginesWhere(test: (capabilities: EngineCapabilities, entry: Engine) => boolean): Engine[] {
-    return publishedEngines().filter((entry) => test(entry.capabilities, entry));
-}
-
-/** Engines with EXPLAIN, optionally only those drawn a given way. */
-export function explainEngines(view?: ExplainView): Engine[] {
-    return enginesWhere(
-        (capabilities) => capabilities.explain.length > 0 && (view === undefined || capabilities.explainView === view),
-    );
-}
-
-/** Engines offered in the iOS picker, in the picker's order (`platforms.ios.iosEngines`). */
-export function iosPickerEngines(order: string[]): Engine[] {
-    return order.map((id) => engine(id));
-}
-
-/** Engines iOS opens only when the connection arrives from a Mac. */
-export function iosSyncedOnlyEngines(): Engine[] {
-    return publishedEngines().filter((entry) => entry.ios.openable && !entry.ios.inPicker);
-}
-
-/** Derived counts. The UI never types these. */
-export function engineCounts(): { published: number; bundled: number; registry: number } {
-    const published = publishedEngines();
-
-    return {
-        published: published.length,
-        bundled: published.filter((entry) => entry.distribution === 'bundled').length,
-        registry: published.filter((entry) => entry.distribution === 'registry').length,
-    };
-}
-
-/** Whether the engine needs a version label because some channel still serves an older app. */
-export function engineNeedsReleaseLabel(entry: Engine): boolean {
-    return needsReleaseLabel(entry.sinceAppVersion);
-}
-
-/**
- * Where the site describes the engine, as a locale-neutral path for
- * `localePath()`: its own page, a section of its family page, or its row on
- * `/databases`.
- */
-export function enginePath(entry: Engine): string {
-    if (entry.page === 'own') {
-        return `/${entry.slug}`;
-    }
-
-    if (entry.page === 'section') {
-        return `/${engine(entry.parent ?? '').slug}#${entry.anchor}`;
-    }
-
-    return `/databases#${entry.anchor}`;
-}
-
-/**
- * The docs page for an engine. ScyllaDB and Turso have none of their own:
- * the page of the engine they share a driver with covers them.
- */
-export function docsSlugFor(entry: Engine): string | null {
-    if (entry.docsSlug !== null) {
-        return entry.docsSlug;
-    }
-
-    const sibling = ENGINES.find(
-        (other) => other.driverPlugin === entry.driverPlugin && other.docsSlug !== null && other.id !== entry.id,
-    );
-
-    return sibling?.docsSlug ?? null;
 }

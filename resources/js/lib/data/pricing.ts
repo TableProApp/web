@@ -11,7 +11,6 @@
  * changes with the locale; only the way a number is written does.
  */
 import data from '@data/pricing.json';
-import { formatUsd, type CurrencyStyle } from '../../i18n/format.ts';
 
 export type BillingCycle = 'monthly' | 'yearly' | 'lifetime';
 
@@ -86,11 +85,6 @@ export function yearlySavingsPercent(tier: PaidTierId): number {
     const twelveMonths = tierPrice(tier, 'monthly') * 12;
 
     return Math.floor(((twelveMonths - tierPrice(tier, 'yearly')) / twelveMonths) * 100);
-}
-
-/** A price as the reader's locale writes it: `$2.99`, `2,99 US$`. */
-export function formatPrice(amount: number, style: CurrencyStyle): string {
-    return formatUsd(amount, style);
 }
 
 /** A price as structured data needs it: a locale-neutral decimal string, `"2.99"`, `"24"`. */

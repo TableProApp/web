@@ -1,6 +1,9 @@
 /**
- * resources/data/comparisons.json, typed: dated, sourced facts about other
- * database tools.
+ * The shape of resources/data/comparisons.json: dated, sourced facts about
+ * other database tools. Types only: the compare pages receive their products
+ * as props from `CompareController`, and the runtime helpers that once read
+ * the file here had no caller left. `tests/Feature/Data/ComparisonsDataTest.php`
+ * validates the file against these types.
  *
  * Every competitor price, date, platform, licence and capability is typed
  * once, here, with the source it came from. The prose (short answer,
@@ -11,7 +14,6 @@
  * A row with no verified fact for a product has no cell, and the page leaves
  * it out for that product rather than guessing. There are no benchmarks.
  */
-import data from '@data/comparisons.json';
 
 export type ComparisonPlatform = 'mac' | 'windows' | 'linux' | 'ios' | 'web';
 
@@ -100,66 +102,4 @@ export interface ComparisonsData {
     /** The at-a-glance rows, in order. `price`, `licence`, `platforms` and `import` read their own fields. */
     rows: string[];
     products: ComparisonProduct[];
-}
-
-/**
- * The single cast from the JSON import, whose string unions TypeScript widens
- * to `string`. It goes through `unknown` because TypeScript infers each
- * product's `cells` as a union of differently keyed objects, which it will not
- * compare with a record. `tests/Feature/Data/ComparisonsDataTest.php`
- * validates the file against these types.
- */
-export const COMPARISONS = data as unknown as ComparisonsData;
-
-export function comparisonProduct(id: string): ComparisonProduct {
-    const found = COMPARISONS.products.find((product) => product.id === id);
-
-    if (!found) {
-        throw new Error(`resources/data/comparisons.json has no product "${id}".`);
-    }
-
-    return found;
-}
-
-/** The products with a `/compare/{slug}` page, in data order. */
-export function comparedProducts(): ComparisonProduct[] {
-    return COMPARISONS.products.filter((product) => product.slug !== null);
-}
-
-export function productBySlug(slug: string): ComparisonProduct | null {
-    return COMPARISONS.products.find((product) => product.slug === slug) ?? null;
-}
-
-/** The source a fact cites, for its footnote. */
-export function sourceOf(product: ComparisonProduct, id: string): ComparisonSource {
-    const found = product.sources.find((source) => source.id === id);
-
-    if (!found) {
-        throw new Error(`${product.id} cites a source "${id}" it does not list.`);
-    }
-
-    return found;
-}
-
-export function cellOf(product: ComparisonProduct, key: string): ComparisonCell | null {
-    return product.cells[key] ?? null;
-}
-
-/** Whether the product can be used without paying, from its prices. */
-export function hasFreeTier(product: ComparisonProduct): boolean {
-    return product.prices.some((price) => price.amount === 0);
-}
-
-/**
- * Open-source products with a comparison page, for the hub's `#open-source`
- * table. Products cited only on engine pages (pgAdmin, Adminer, …) stay out:
- * the hub compares clients a Mac user would choose instead of TablePro.
- */
-export function openSourceProducts(): ComparisonProduct[] {
-    return comparedProducts().filter((product) => product.licence.openSource);
-}
-
-/** Products the engine pages cite in their "Other tools" paragraph, which have no comparison page. */
-export function citedOnlyProducts(): ComparisonProduct[] {
-    return COMPARISONS.products.filter((product) => product.slug === null);
 }

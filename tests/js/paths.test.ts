@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 import { PLATFORM_PATHS as PROXY_PLATFORM_PATHS, upstreamFor } from '../../scripts/dev-proxy.mjs';
-import { absoluteUrl, isPlatformPath, localePath, PLATFORM_PATHS, resolveLink, splitLocale } from '../../resources/js/i18n/paths.ts';
+import { isPlatformPath, localePath, PLATFORM_PATHS, resolveLink, splitLocale } from '../../resources/js/i18n/paths.ts';
 import type { LocaleTable } from '../../resources/js/i18n/types.ts';
 
 /*
@@ -131,11 +131,4 @@ test('splitLocale reads the locale from the first segment only', () => {
     assert.deepEqual(splitLocale('/blog/vi', table), { locale: 'en', path: '/blog/vi' });
     assert.deepEqual(splitLocale('/', table), { locale: 'en', path: '/' });
     assert.deepEqual(splitLocale('/VI/blog', table), { locale: 'en', path: '/VI/blog' });
-});
-
-test('absoluteUrl joins a path to the canonical origin once', () => {
-    assert.equal(absoluteUrl('/vi/blog', 'https://tablepro.app'), 'https://tablepro.app/vi/blog');
-    assert.equal(absoluteUrl('/', 'https://tablepro.app/'), 'https://tablepro.app/');
-    assert.equal(absoluteUrl('blog', 'https://tablepro.app'), 'https://tablepro.app/blog');
-    assert.equal(absoluteUrl('https://docs.tablepro.app/x', 'https://tablepro.app'), 'https://docs.tablepro.app/x');
 });

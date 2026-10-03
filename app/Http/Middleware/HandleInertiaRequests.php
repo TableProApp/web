@@ -75,12 +75,9 @@ class HandleInertiaRequests extends Middleware
      * no shifted header behind it.
      *
      * The banner's words belong to the `banner` UI catalog in each language;
-     * config keeps only the switch, the link and the dismissal version. Until
-     * the chrome agent trims `config/banner.php`, the legacy English copy still
-     * travels with it for the pre-rebuild `SupportBanner`, and each of those
-     * keys disappears from the prop once its config value is gone.
+     * config keeps only the switch, the link and the dismissal version.
      *
-     * @return array{href: string, version: string, message?: string, messageShort?: string, cta?: string}|null
+     * @return array{href: string, version: string}|null
      */
     private function banner(): ?array
     {
@@ -88,16 +85,9 @@ class HandleInertiaRequests extends Middleware
             return null;
         }
 
-        $legacy = array_filter([
-            'message' => config('banner.message'),
-            'messageShort' => config('banner.message_short'),
-            'cta' => config('banner.cta'),
-        ], static fn(mixed $value): bool => is_string($value) && $value !== '');
-
         return [
             'href' => (string) config('banner.href'),
             'version' => (string) config('banner.version'),
-            ...$legacy,
         ];
     }
 }

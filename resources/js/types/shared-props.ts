@@ -32,13 +32,10 @@ export interface SwitcherItem {
     fallback: boolean;
 }
 
+/** The banner's switch, link and dismissal version; its words are the `banner` catalog's. */
 export interface BannerProp {
     href: string;
     version: string;
-    /** Legacy English copy, until the banner reads the `banner` catalog. */
-    message?: string;
-    messageShort?: string;
-    cta?: string;
 }
 
 export interface SharedProps {

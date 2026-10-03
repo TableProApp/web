@@ -159,7 +159,7 @@ it('gives every page the documented sections', function (): void {
             expect($item['id'])->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/');
         }
     }
-})->skip(fn(): bool => comparePageCopies() === [], 'No compare page has copy yet.');
+});
 
 it('labels every product-specific fact, and only those', function (): void {
     $products = comparedProductsBySlug();
@@ -175,7 +175,7 @@ it('labels every product-specific fact, and only those', function (): void {
             expect($row['tablepro'])->toBeString()->not->toBe('');
         }
     }
-})->skip(fn(): bool => comparePageCopies() === [], 'No compare page has copy yet.');
+});
 
 it('cites only facts the product has, links only to this site, and names only real paid features', function (): void {
     $products = comparedProductsBySlug();
@@ -213,7 +213,7 @@ it('cites only facts the product has, links only to this site, and names only re
             expect(str_contains($item['answer'], '<link>'))->toBe($item['href'] !== null, "{$locale}/{$slug} faq {$item['id']}: <link> and href go together");
         }
     }
-})->skip(fn(): bool => comparePageCopies() === [], 'No compare page has copy yet.');
+});
 
 it('states switching steps only where TablePro has an importer', function (): void {
     $importers = collect(json_decode(File::get(resource_path('data/facts.json')), true)['connectionImport'])->pluck('id')->all();
@@ -232,7 +232,7 @@ it('states switching steps only where TablePro has an importer', function (): vo
             expect($copy['switching']['docs'])->toMatch('#^/[a-z0-9/-]+$#');
         }
     }
-})->skip(fn(): bool => comparePageCopies() === [], 'No compare page has copy yet.');
+});
 
 it('uses only the tokens and tags the template fills', function (): void {
     $products = comparedProductsBySlug();
@@ -258,7 +258,7 @@ it('uses only the tokens and tags the template fills', function (): void {
             }
         }
     }
-})->skip(fn(): bool => comparePageCopies() === [], 'No compare page has copy yet.');
+});
 
 it('types no price, URL or benchmark into compare copy', function (): void {
     $files = File::glob(resource_path('data/content/{en,vi}/compare/*.json'), GLOB_BRACE) ?: [];

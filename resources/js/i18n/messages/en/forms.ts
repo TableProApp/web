@@ -6,7 +6,6 @@
  * with the license API and stays English.
  */
 export default {
-    required: '(required)',
     email: {
         label: 'Email address',
         placeholder: 'you@example.com',
