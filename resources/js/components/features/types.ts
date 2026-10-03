@@ -11,8 +11,8 @@
 /** One published engine in a list the page shows, from `engines.json`. */
 export interface EngineItem {
     name: string;
-    /** Its page, family section or `/databases` row, as a root-relative English path. */
-    href: string;
+    /** Its page, family section or `/databases` row, as a root-relative English path; null when none describes it (`EnginePaths`). */
+    href: string | null;
     /** The query language or dump tool, when the list carries one. */
     detail: string | null;
     /** The app version that added it, only while some channel still serves an older one. */

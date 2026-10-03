@@ -122,3 +122,30 @@ export async function openCheckoutOverlay(provider: CheckoutProvider, url: strin
 
     w.LemonSqueezy!.Url!.Open!(url);
 }
+
+/** How long checkout waits for the overlay script before sending the reader to the provider's own page. */
+export const SDK_WAIT_MS = 4000;
+
+/**
+ * `promise`, or a rejection after `ms`. The overlay script resolves or rejects
+ * only from its `load` and `error` events, and a connection that stalls (or a
+ * blocker that holds the request) fires neither: the Buy button spun forever
+ * with a valid checkout URL already in hand. A rejection here takes the
+ * caller's fallback to that URL instead.
+ */
+export function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+        const timer = setTimeout(() => reject(new Error(`Timed out after ${ms}ms.`)), ms);
+
+        promise.then(
+            (value) => {
+                clearTimeout(timer);
+                resolve(value);
+            },
+            (error: unknown) => {
+                clearTimeout(timer);
+                reject(error);
+            },
+        );
+    });
+}

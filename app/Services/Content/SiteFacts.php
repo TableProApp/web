@@ -2,7 +2,7 @@
 
 namespace App\Services\Content;
 
-use App\Support\Content\Slugs\DatabaseSlugs;
+use App\Support\Content\EnginePaths;
 use Illuminate\Support\Facades\File;
 
 /**
@@ -272,35 +272,8 @@ class SiteFacts
         return [
             'id' => (string) $engine['id'],
             'name' => (string) ($engine['name'] ?? $engine['id']),
-            'href' => $this->enginePath($engine, $byId),
+            'href' => EnginePaths::pathFor($engine, $byId),
         ];
-    }
-
-    /**
-     * The same rule as `enginePath()` in lib/data/engines.ts, limited to the
-     * database pages `DatabaseSlugs` routes: an engine's own page, or its
-     * section on its family's page.
-     *
-     * @param  array<string, mixed>  $engine
-     * @param  array<string, array<string, mixed>>  $byId
-     */
-    private function enginePath(array $engine, array $byId): ?string
-    {
-        $page = $engine['page'] ?? null;
-
-        if ($page === 'own' && is_string($engine['slug'] ?? null) && in_array($engine['slug'], DatabaseSlugs::ALL, true)) {
-            return '/' . $engine['slug'];
-        }
-
-        if ($page === 'section' && is_string($engine['parent'] ?? null) && is_string($engine['anchor'] ?? null)) {
-            $slug = $byId[$engine['parent']]['slug'] ?? null;
-
-            if (is_string($slug) && in_array($slug, DatabaseSlugs::ALL, true)) {
-                return '/' . $slug . '#' . $engine['anchor'];
-            }
-        }
-
-        return null;
     }
 
     /**

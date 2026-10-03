@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Landing;
 
+use App\Support\Content\EnginePaths;
 use App\Http\Controllers\Controller;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
@@ -327,15 +328,15 @@ class DatabaseController extends Controller
     }
 
     /**
+     * The engine's page, family section or hub row, or null when it has none
+     * (one rule for the whole site: `EnginePaths`). A family page's parent must
+     * be published for its section to be linked.
+     *
      * @param  array<string, mixed>  $engine
      */
-    private function path(array $engine): string
+    private function path(array $engine): ?string
     {
-        return match ($engine['page'] ?? null) {
-            'own' => '/' . $engine['slug'],
-            'section' => '/' . ($this->engineById((string) $engine['parent'])['slug'] ?? '') . '#' . $engine['anchor'],
-            default => '/databases#' . $engine['anchor'],
-        };
+        return EnginePaths::pathFor($engine, EnginePaths::byId($this->publishedEngines()));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Landing;
 
+use App\Support\Content\EnginePaths;
 use App\Http\Controllers\Controller;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Assets\AssetManifest;
@@ -64,13 +65,7 @@ class HomeController extends Controller
     private function engines(?string $floor): array
     {
         $all = array_values(array_filter($this->json('engines.json'), 'is_array'));
-        $slugs = [];
-
-        foreach ($all as $engine) {
-            if (is_string($engine['id'] ?? null) && is_string($engine['slug'] ?? null)) {
-                $slugs[$engine['id']] = $engine['slug'];
-            }
-        }
+        $byId = EnginePaths::byId($all);
 
         $engines = [];
 
@@ -79,7 +74,7 @@ class HomeController extends Controller
                 continue;
             }
 
-            $path = $this->enginePath($engine, $slugs);
+            $path = EnginePaths::pathFor($engine, $byId);
 
             if ($path === null) {
                 continue;
@@ -101,26 +96,6 @@ class HomeController extends Controller
         }
 
         return $engines;
-    }
-
-    /**
-     * Where the site describes an engine: its own page, a section of its
-     * family's page, or its row on `/databases`. Locale-neutral; the page
-     * adds the reader's locale.
-     *
-     * @param  array<string, mixed>  $engine
-     * @param  array<string, string>  $slugs
-     */
-    private function enginePath(array $engine, array $slugs): ?string
-    {
-        $anchor = is_string($engine['anchor'] ?? null) ? $engine['anchor'] : null;
-
-        return match ($engine['page'] ?? null) {
-            'own' => is_string($engine['slug'] ?? null) ? '/' . $engine['slug'] : null,
-            'section' => isset($slugs[(string) ($engine['parent'] ?? '')]) && $anchor !== null ? '/' . $slugs[(string) $engine['parent']] . '#' . $anchor : null,
-            'hub' => $anchor !== null ? '/databases#' . $anchor : null,
-            default => null,
-        };
     }
 
     /**

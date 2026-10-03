@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 import { checkoutOutcome, discountOutcome } from '../../resources/js/components/pricing/checkout-response.ts';
-import { checkoutSdkReady, loadCheckoutSdk, openCheckoutOverlay } from '../../resources/js/lib/checkout-sdk.ts';
+import { checkoutSdkReady, loadCheckoutSdk, openCheckoutOverlay, SDK_WAIT_MS, withTimeout } from '../../resources/js/lib/checkout-sdk.ts';
 
 /*
  * Checkout from the plan cards. Run with `npm run test:js`.
@@ -160,4 +160,17 @@ test('opening an overlay that is not there rejects, so the reader is sent to the
 
     await assert.rejects(openCheckoutOverlay('polar', 'https://polar.sh/checkout/abc', 'light'));
     await assert.rejects(openCheckoutOverlay('lemonsqueezy', 'https://tablepro.lemonsqueezy.com/checkout/x', 'light'));
+});
+
+test('a stalled overlay script times out, so checkout falls back to the provider page instead of spinning', async () => {
+    const stalled = new Promise<void>(() => undefined);
+
+    await assert.rejects(withTimeout(stalled, 20), /Timed out after 20ms/);
+    assert.equal(await withTimeout(Promise.resolve('loaded'), 20), 'loaded');
+    await assert.rejects(withTimeout(Promise.reject(new Error('did not load')), 20), /did not load/);
+    assert.ok(SDK_WAIT_MS >= 3000 && SDK_WAIT_MS <= 5000, 'the wait stays a few seconds');
+
+    const flow = readFileSync(new URL('../../resources/js/components/pricing/use-checkout.ts', import.meta.url), 'utf8');
+
+    assert.match(flow, /await withTimeout\(sdk, SDK_WAIT_MS\);/);
 });

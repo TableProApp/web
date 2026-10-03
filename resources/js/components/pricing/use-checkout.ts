@@ -3,7 +3,7 @@ import pricingData from '@data/pricing.json';
 import { useI18n } from '@/i18n';
 import { trackEvent } from '@/lib/analytics';
 import { currentAttribution, type Attribution } from '@/lib/attribution';
-import { loadCheckoutSdk, openCheckoutOverlay, type CheckoutProvider } from '@/lib/checkout-sdk';
+import { loadCheckoutSdk, openCheckoutOverlay, SDK_WAIT_MS, withTimeout, type CheckoutProvider } from '@/lib/checkout-sdk';
 import type { BillingCycle, PaidTierId } from '@/lib/data/pricing';
 import { checkoutOutcome } from './checkout-response';
 
@@ -123,7 +123,7 @@ export function useCheckout(provider: CheckoutProvider) {
             }
 
             try {
-                await sdk;
+                await withTimeout(sdk, SDK_WAIT_MS);
                 await openCheckoutOverlay(provider, outcome.url, overlayTheme());
             } catch {
                 window.location.assign(outcome.url);

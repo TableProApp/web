@@ -31,11 +31,15 @@ export default function EngineLists({ lists, facts }: EngineListsProps) {
             {rows.map((row) => (
                 <DescriptionItem key={row.list} term={row.label}>
                     {row.items.map((item, index) => (
-                        <Fragment key={item.href}>
+                        <Fragment key={item.name}>
                             {index > 0 && m.common.list.separator}
-                            <LocaleLink href={item.href} className={textLinkClasses('inline')}>
-                                {item.name}
-                            </LocaleLink>
+                            {item.href !== null ? (
+                                <LocaleLink href={item.href} className={textLinkClasses('inline')}>
+                                    {item.name}
+                                </LocaleLink>
+                            ) : (
+                                item.name
+                            )}
                             {item.detail !== null && <span className="text-muted-foreground"> ({item.detail})</span>}
                             {item.since !== null && (
                                 <>

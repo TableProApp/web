@@ -209,9 +209,15 @@ final class AssetManifest
      * that is the `<source>` the browser picks in `<picture>`. A browser that
      * cannot decode it skips the preload and loses nothing.
      *
+     * `$sizes` is the placement's own `sizes` when it overrides the kind's
+     * (`<AssetSlot sizes>`), and applies to the main image only, as it does in
+     * `asset-model.ts`; the phone crop keeps its kind's. A preload whose
+     * `sizes` differs from the `<img>` it stands for can choose another srcset
+     * candidate, and the reader downloads both.
+     *
      * @return array{light: list<Preload>, dark: list<Preload>|null}|null
      */
-    public function lcpDescriptor(string $id, ?string $locale = null, bool $priority = false): ?array
+    public function lcpDescriptor(string $id, ?string $locale = null, bool $priority = false, ?string $sizes = null): ?array
     {
         $entry = $this->entry($id);
 
@@ -230,8 +236,8 @@ final class AssetManifest
         $cropResolved = $crop !== null ? $this->themedSources($crop, $locale) : null;
         $themed = $entry['theme'] === 'both' && is_array($resolved[0]['dark'] ?? null);
 
-        $describe = function (string $variant) use ($id, $resolved, $crop, $cropResolved): array {
-            $preloads = [$this->preload($id, $resolved, $variant, $crop !== null ? self::WIDE_MEDIA : null)];
+        $describe = function (string $variant) use ($id, $resolved, $crop, $cropResolved, $sizes): array {
+            $preloads = [$this->preload($id, $resolved, $variant, $crop !== null ? self::WIDE_MEDIA : null, $sizes)];
 
             if ($crop !== null && $cropResolved !== null) {
                 $preloads[] = $this->preload($crop, $cropResolved, $variant, self::NARROW_MEDIA);
@@ -253,7 +259,7 @@ final class AssetManifest
      * @param  array{0: ThemedSources, 1: ?string}  $resolved
      * @return Preload
      */
-    private function preload(string $id, array $resolved, string $variant, ?string $media): array
+    private function preload(string $id, array $resolved, string $variant, ?string $media, ?string $sizes = null): array
     {
         [$sources, $fileLocale] = $resolved;
         $chosen = $variant === 'dark' && is_array($sources['dark'] ?? null) ? 'dark' : 'light';
@@ -262,7 +268,7 @@ final class AssetManifest
 
         $preload = [
             'srcset' => $this->srcset($id, $source, $chosen, $fileLocale, $format),
-            'sizes' => (string) ($this->kindOf($id)['sizes'] ?? ''),
+            'sizes' => $sizes ?? (string) ($this->kindOf($id)['sizes'] ?? ''),
             'type' => self::mimeType($format),
         ];
 

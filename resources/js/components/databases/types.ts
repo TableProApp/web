@@ -112,8 +112,12 @@ export interface EngineSummary {
     id: string;
     name: string;
     page: 'own' | 'section' | 'hub';
-    /** Where the site describes it, locale-neutral: `/mysql-client`, `/mysql-client#mariadb`, `/databases#spanner`. */
-    path: string;
+    /**
+     * Where the site describes it, locale-neutral: `/mysql-client`,
+     * `/mysql-client#mariadb`, `/databases#spanner`. Null when nothing does,
+     * such as a section of a family page that is not published (`EnginePaths`).
+     */
+    path: string | null;
     anchor: string | null;
     category: EngineCategory;
     featured: boolean;

@@ -226,6 +226,37 @@ it('serves the last good copy when both sources fail, and stops retrying for 15 
 });
 
 /*
+ * When the fresh copy expires, concurrent `/download` requests all missed the
+ * cache and each called GitHub and the appcast, with 5-second timeouts, on a
+ * host whose PHP workers are shared. One request refreshes under a lock; any
+ * request that arrives while it holds the lock serves the last good copy and
+ * calls nothing.
+ */
+it('refreshes once at a time: a request arriving mid-refresh serves the last good copy and calls nothing', function (): void {
+    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload())]);
+
+    $first = macRelease();
+    $calls = githubApiCalls();
+
+    $this->travel(16)->minutes();
+
+    $lock = Cache::lock(MacReleaseService::REFRESH_LOCK, MacReleaseService::REFRESH_LOCK_SECONDS);
+    expect($lock->get())->toBeTrue();
+
+    $during = macRelease();
+
+    expect($during->version)->toBe($first->version)
+        ->and(githubApiCalls())->toBe($calls)
+        ->and(Cache::has(MacReleaseService::FAILURE_KEY))->toBeFalse();
+
+    $lock->release();
+
+    expect(macRelease()->version)->toBe($first->version)
+        ->and(githubApiCalls())->toBe($calls + 1)
+        ->and(Cache::lock(MacReleaseService::REFRESH_LOCK, 1)->get())->toBeTrue();
+});
+
+/*
  * The deploy runs `optimize:clear` on every PHP change, and that runs
  * `cache:clear`. A last good copy kept in the cache store was gone after
  * every such deploy, so a GitHub outage on the first request afterwards

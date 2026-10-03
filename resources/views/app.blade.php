@@ -34,21 +34,28 @@
             The page's largest image, preloaded for the theme the script above
             just resolved. Only a supplied asset marked `priority` in
             resources/data/assets.json reaches here (`AssetManifest::lcpDescriptor()`),
-            as `{light: {srcset, sizes, type?}, dark: {…} | null}`. A placeholder
-            gets nothing, because it makes no image request at all.
+            as `{light: list<{srcset, sizes, type, media?}>, dark: list<…> | null}`:
+            one preload per image the viewport can show, so a window with a
+            phone crop preloads the window for 768px and up and the crop below
+            it, each under its own `media`. A placeholder gets nothing, because
+            it makes no image request at all.
         --}}
         <script>
             (function () {
                 var asset = @json($lcpAsset);
-                var variant = document.documentElement.classList.contains('dark') && asset.dark ? asset.dark : asset.light;
-                var link = document.createElement('link');
-                link.rel = 'preload';
-                link.as = 'image';
-                if (variant.type) { link.type = variant.type; }
-                link.setAttribute('imagesrcset', variant.srcset);
-                link.setAttribute('imagesizes', variant.sizes);
-                link.setAttribute('fetchpriority', 'high');
-                document.head.appendChild(link);
+                var list = document.documentElement.classList.contains('dark') && asset.dark ? asset.dark : asset.light;
+                for (var i = 0; i < list.length; i++) {
+                    var item = list[i];
+                    var link = document.createElement('link');
+                    link.rel = 'preload';
+                    link.as = 'image';
+                    if (item.type) { link.type = item.type; }
+                    if (item.media) { link.media = item.media; }
+                    link.setAttribute('imagesrcset', item.srcset);
+                    link.setAttribute('imagesizes', item.sizes);
+                    link.setAttribute('fetchpriority', 'high');
+                    document.head.appendChild(link);
+                }
             })();
         </script>
     @endif

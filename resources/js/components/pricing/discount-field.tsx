@@ -1,4 +1,4 @@
-import { useId, useState, type FormEvent } from 'react';
+import { useId, useRef, useState, type FormEvent } from 'react';
 import Button from '@/components/ui/button';
 import Disclosure from '@/components/ui/disclosure';
 import { FieldError, FieldLabel, Input } from '@/components/ui/field';
@@ -23,12 +23,19 @@ interface DiscountFieldProps {
  * is a line under the field, not a recomputed price: whether a code applies
  * to every cycle and every seat is the provider's rule, so the page says what
  * the code is worth and leaves the arithmetic to checkout.
+ *
+ * Editing the code abandons a check still in flight: each check carries a
+ * ticket, every keystroke takes a new one, and an answer whose ticket is no
+ * longer current is dropped. Otherwise the answer for the old code arrived
+ * after an edit, showed "applied" under a different code, and the next Buy
+ * sent the old one.
  */
 export default function DiscountField({ onApplied }: DiscountFieldProps) {
     const { m, fmt } = useI18n();
     const id = useId();
     const [code, setCode] = useState('');
     const [preview, setPreview] = useState<Preview>({ kind: 'idle' });
+    const ticket = useRef(0);
 
     async function apply(event: FormEvent<HTMLFormElement>): Promise<void> {
         event.preventDefault();
@@ -42,6 +49,9 @@ export default function DiscountField({ onApplied }: DiscountFieldProps) {
         setPreview({ kind: 'checking' });
         onApplied(null);
 
+        const mine = ++ticket.current;
+        const current = (): boolean => mine === ticket.current;
+
         try {
             const res = await fetch('/discount/preview', {
                 method: 'POST',
@@ -50,6 +60,10 @@ export default function DiscountField({ onApplied }: DiscountFieldProps) {
                 body: JSON.stringify({ code: trimmed }),
             });
             const outcome = discountOutcome(res.status, await res.json().catch(() => ({})));
+
+            if (!current()) {
+                return;
+            }
 
             switch (outcome.kind) {
                 case 'percent':
@@ -70,7 +84,9 @@ export default function DiscountField({ onApplied }: DiscountFieldProps) {
                     setPreview({ kind: 'error', message: m.forms.failed });
             }
         } catch {
-            setPreview({ kind: 'error', message: m.forms.network });
+            if (current()) {
+                setPreview({ kind: 'error', message: m.forms.network });
+            }
         }
     }
 
@@ -92,8 +108,10 @@ export default function DiscountField({ onApplied }: DiscountFieldProps) {
                         aria-describedby={preview.kind === 'error' ? errorId : undefined}
                         onChange={(event) => {
                             setCode(event.target.value);
+                            // Any check still in flight is for the code as it was.
+                            ticket.current++;
 
-                            if (preview.kind !== 'idle' && preview.kind !== 'checking') {
+                            if (preview.kind !== 'idle') {
                                 setPreview({ kind: 'idle' });
                                 onApplied(null);
                             }

@@ -29,6 +29,13 @@ use Inertia\Response;
  */
 class IosController extends Controller
 {
+    /**
+     * The iPad capture's `sizes` in the header row, beside the iPhone slot. The
+     * page renders the slot with it and the preload is built with it, so both
+     * pick the same srcset candidate.
+     */
+    public const IPAD_SIZES = '(min-width: 1280px) 904px, (min-width: 1024px) calc(100vw - 376px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)';
+
     public function __invoke(ContentRepository $content, PlatformCatalog $platforms, SiteFacts $facts, AssetManifest $assets): Response
     {
         $locale = App::getLocale();
@@ -47,7 +54,8 @@ class IosController extends Controller
             ],
             'links' => $facts->links(),
             'organizationProfiles' => $facts->organizationProfiles(),
-            'lcpAsset' => $assets->lcpDescriptor('ipad-table-browse', $locale, priority: true),
+            'ipadSizes' => self::IPAD_SIZES,
+            'lcpAsset' => $assets->lcpDescriptor('ipad-table-browse', $locale, priority: true, sizes: self::IPAD_SIZES),
         ]);
     }
 

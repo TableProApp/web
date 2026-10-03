@@ -2,6 +2,7 @@
 
 namespace App\Support\Seo;
 
+use App\Support\Content\EnginePaths;
 use JsonException;
 use RuntimeException;
 
@@ -134,7 +135,7 @@ final class RedirectMap
                 continue;
             }
 
-            $target = $this->engineTarget($engine, $byId);
+            $target = EnginePaths::pathFor($engine, $byId);
 
             if ($target !== null) {
                 $targets[$docsSlug] = $target;
@@ -142,54 +143,6 @@ final class RedirectMap
         }
 
         return $this->docsTargets = $targets;
-    }
-
-    /**
-     * @param  array<string, mixed>  $engine
-     * @param  array<string, array<string, mixed>>  $byId
-     */
-    private function engineTarget(array $engine, array $byId): ?string
-    {
-        $anchor = is_string($engine['anchor'] ?? null) && preg_match('/^[a-z0-9-]+$/', $engine['anchor']) === 1
-            ? $engine['anchor']
-            : null;
-
-        if ($anchor === null && ($engine['page'] ?? null) !== 'own') {
-            return null;
-        }
-
-        return match ($engine['page'] ?? null) {
-            'own' => $this->ownPage($engine),
-            'section' => $this->sectionPage($engine, $byId, (string) $anchor),
-            'hub' => '/databases#' . $anchor,
-            default => null,
-        };
-    }
-
-    /**
-     * @param  array<string, mixed>  $engine
-     * @param  array<string, array<string, mixed>>  $byId
-     */
-    private function sectionPage(array $engine, array $byId, string $anchor): ?string
-    {
-        $parentId = $engine['parent'] ?? null;
-        $parent = is_string($parentId) ? $this->ownPage($byId[$parentId] ?? []) : null;
-
-        return $parent === null ? null : $parent . '#' . $anchor;
-    }
-
-    /**
-     * @param  array<string, mixed>  $engine
-     */
-    private function ownPage(array $engine): ?string
-    {
-        $slug = $engine['slug'] ?? null;
-
-        if (($engine['page'] ?? null) !== 'own' || ! is_string($slug) || preg_match('/^[a-z0-9-]+$/', $slug) !== 1) {
-            return null;
-        }
-
-        return '/' . $slug;
     }
 
     /**

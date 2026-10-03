@@ -61,7 +61,7 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
                         description: content.seo.description,
                         about: macAppId(canonicalBaseUrl),
                         breadcrumb: `${pageUrl}#breadcrumb`,
-                        items: engines.filter((engine) => engine.page === 'own').map((engine) => ({ name: engine.name, path: path(engine.path) })),
+                        items: engines.flatMap((engine) => (engine.page === 'own' && engine.path !== null ? [{ name: engine.name, path: path(engine.path) }] : [])),
                     }),
                     breadcrumbNode(context, pageUrl, [{ name: m.seo.breadcrumbs.databases, path: path('/databases') }]),
                 ])}
