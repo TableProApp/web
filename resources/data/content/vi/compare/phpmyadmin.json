@@ -37,6 +37,14 @@
             "label": "Ngôn ngữ giao diện",
             "tablepro": "Ứng dụng Mac: {macLanguages}"
         },
+        "designer": {
+            "label": "Sơ đồ schema",
+            "tablepro": "Sơ đồ ER chỉ đọc, export ra PNG hoặc SQL, miễn phí"
+        },
+        "queryByExample": {
+            "label": "Query theo mẫu (QBE)",
+            "tablepro": "Không có"
+        },
         "nextMajor": {
             "label": "Phiên bản lớn tiếp theo",
             "tablepro": "Phiên bản Mac mới được cài qua tính năng tự cập nhật trong ứng dụng hoặc qua Homebrew"
@@ -64,6 +72,12 @@
             {
                 "text": "Giao diện của phpMyAdmin có {cells.languages.value} ngôn ngữ.",
                 "cite": ["cells.languages"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "phpMyAdmin hiển thị schema của cơ sở dữ liệu dưới dạng đồ họa với nhiều định dạng, và công cụ query theo mẫu (QBE) giúp bạn tạo các query phức tạp.",
+                "cite": ["cells.designer", "cells.queryByExample"],
                 "feature": null,
                 "href": null
             },
@@ -177,6 +191,7 @@
     ],
     "notes": {
         "phpmyadmin-databases": "MySQL và MariaDB",
+        "phpmyadmin-schema-visualization": "Hiển thị schema của cơ sở dữ liệu dưới dạng đồ họa, với nhiều định dạng",
         "phpmyadmin-in-development": "Phiên bản {version} đang được phát triển",
         "phpmyadmin-hardening": "Tài liệu của phpMyAdmin khuyên chỉ phục vụ qua HTTPS, giới hạn ai được truy cập, tắt đăng nhập bằng root và bật xác thực hai lớp"
     }

@@ -40,6 +40,10 @@
         "bundles": {
             "label": "Bundles",
             "tablepro": "Not available"
+        },
+        "sequelProMigration": {
+            "label": "Coming from Sequel Pro",
+            "tablepro": "No Sequel Pro importer. Move to Sequel Ace first, then import its connections"
         }
     },
     "stronger": {
@@ -60,6 +64,12 @@
             {
                 "text": "Bundles let you add your own commands to the app, and its user manager edits MySQL users and privileges.",
                 "cite": ["cells.bundles", "cells.userManager"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "It has a guide for moving from Sequel Pro, which copies your Sequel Pro favorites and settings into Sequel Ace.",
+                "cite": ["cells.sequelProMigration"],
                 "feature": null,
                 "href": null
             }
@@ -175,6 +185,7 @@
     "notes": {
         "sequel-ace-databases": "MySQL 5.7 or later and MariaDB 10.0 or later, and no other databases",
         "sequel-ace-no-ai-chat": "No AI chat in the app. Outside AI clients can use its MCP server.",
-        "sequel-ace-mcp-read-only": "Built in, off by default, listens only on your Mac and is read-only by default. It offers {value} tools."
+        "sequel-ace-mcp-read-only": "Built in, off by default, listens only on your Mac and is read-only by default. It offers {value} tools.",
+        "sequel-ace-sequel-pro-migration": "A guide copies Sequel Pro’s favorites and settings into Sequel Ace. Passwords need a separate script, and SSH keys must be chosen again."
     }
 }

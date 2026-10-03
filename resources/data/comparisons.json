@@ -1,5 +1,5 @@
 {
-    "checkedAt": "2026-10-02",
+    "checkedAt": "2026-10-03",
     "rows": ["platforms", "price", "licence", "databases", "ai", "mcp", "ios", "sync", "import"],
     "products": [
         {
@@ -410,7 +410,7 @@
             "id": "navicat",
             "name": "Navicat Premium",
             "slug": "navicat",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-03",
             "status": {
                 "state": "active",
                 "lastRelease": { "version": "18.0.3", "date": "2026-09-29", "source": "s3" }
@@ -472,25 +472,25 @@
                     "id": "s1",
                     "url": "https://www.navicat.com/en/products/navicat-premium",
                     "title": "Navicat Premium",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s2",
                     "url": "https://www.navicat.com/en/store/navicat-premium",
                     "title": "Navicat Premium store",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s3",
                     "url": "https://www.navicat.com/en/products/navicat-premium-release-note",
                     "title": "Navicat Premium release notes",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s4",
                     "url": "https://www.navicat.com/en/products/navicat-premium-lite",
                     "title": "Navicat Premium Lite",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s5",
@@ -508,7 +508,7 @@
                     "id": "s7",
                     "url": "https://www.navicat.com/en/store/navicat-premium-plan",
                     "title": "Navicat Premium plans",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 }
             ]
         },
@@ -516,10 +516,10 @@
             "id": "beekeeper-studio",
             "name": "Beekeeper Studio",
             "slug": "beekeeper-studio",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-03",
             "status": {
                 "state": "active",
-                "lastRelease": { "version": "6.1.4", "date": "2026-09-29", "source": "s2" }
+                "lastRelease": { "version": "6.1.5", "date": "2026-10-02", "source": "s2" }
             },
             "platforms": ["mac", "windows", "linux"],
             "platformsSource": "s1",
@@ -587,20 +587,22 @@
                     "source": "s1"
                 },
                 "diagram": { "state": "qualified", "note": "beekeeper-erd-paid", "source": "s5" },
-                "vim": { "state": "yes", "source": "s6" }
+                "vim": { "state": "yes", "source": "s6" },
+                "importExport": { "state": "qualified", "note": "beekeeper-import-export-paid", "source": "s1" },
+                "lifetimeLicense": { "state": "qualified", "note": "beekeeper-lifetime-license", "source": "s1" }
             },
             "sources": [
                 {
                     "id": "s1",
                     "url": "https://www.beekeeperstudio.io/pricing",
                     "title": "Beekeeper Studio pricing",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s2",
                     "url": "https://github.com/beekeeper-studio/beekeeper-studio/releases",
                     "title": "Beekeeper Studio releases",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s3",
@@ -612,25 +614,25 @@
                     "id": "s4",
                     "url": "https://formulae.brew.sh/api/cask/beekeeper-studio.json",
                     "title": "Homebrew cask beekeeper-studio",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s5",
                     "url": "https://docs.beekeeperstudio.io/user_guide/entity-relationship-diagrams-erd/",
                     "title": "Beekeeper Studio ER diagrams",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s6",
                     "url": "https://docs.beekeeperstudio.io/user_guide/sql_editor/editor/",
                     "title": "Beekeeper Studio SQL editor",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s7",
                     "url": "https://docs.beekeeperstudio.io/user_guide/sql-ai-shell/",
                     "title": "Beekeeper Studio AI Shell",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 }
             ]
         },
@@ -638,7 +640,7 @@
             "id": "sequel-ace",
             "name": "Sequel Ace",
             "slug": "sequel-ace",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-03",
             "status": {
                 "state": "active",
                 "lastRelease": { "version": "6.0.1", "date": "2026-09-21", "source": "s2" }
@@ -664,33 +666,34 @@
                 },
                 "macAppStore": { "state": "yes", "source": "s1" },
                 "userManager": { "state": "yes", "source": "s1" },
-                "bundles": { "state": "yes", "source": "s1" }
+                "bundles": { "state": "yes", "source": "s1" },
+                "sequelProMigration": { "state": "yes", "note": "sequel-ace-sequel-pro-migration", "source": "s5" }
             },
             "sources": [
                 {
                     "id": "s1",
                     "url": "https://github.com/Sequel-Ace/Sequel-Ace",
                     "title": "Sequel Ace repository",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s2",
                     "url": "https://github.com/Sequel-Ace/Sequel-Ace/releases",
                     "title": "Sequel Ace releases",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s3",
                     "url": "https://sequel-ace.com/get-started/mcp-server.html",
                     "title": "Sequel Ace MCP server",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
-                { "id": "s4", "url": "https://sequel-ace.com/", "title": "Sequel Ace", "retrievedAt": "2026-10-02" },
+                { "id": "s4", "url": "https://sequel-ace.com/", "title": "Sequel Ace", "retrievedAt": "2026-10-03" },
                 {
                     "id": "s5",
                     "url": "https://sequel-ace.com/get-started/migrating-from-sequel-pro.html",
                     "title": "Migrating from Sequel Pro",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 }
             ]
         },
@@ -929,7 +932,7 @@
             "id": "phpmyadmin",
             "name": "phpMyAdmin",
             "slug": "phpmyadmin",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-03",
             "status": {
                 "state": "active",
                 "lastRelease": { "version": "5.2.3", "date": "2025-10-08", "source": "s2" }
@@ -946,6 +949,8 @@
                 "databases": { "state": "qualified", "note": "phpmyadmin-databases", "source": "s1" },
                 "cpanel": { "state": "yes", "source": "s4" },
                 "languages": { "state": "qualified", "value": 98, "source": "s1" },
+                "designer": { "state": "yes", "note": "phpmyadmin-schema-visualization", "source": "s1" },
+                "queryByExample": { "state": "yes", "source": "s1" },
                 "nextMajor": { "state": "qualified", "version": "6.0", "note": "phpmyadmin-in-development", "source": "s2" },
                 "hardening": { "state": "qualified", "note": "phpmyadmin-hardening", "source": "s5" }
             },
@@ -954,31 +959,37 @@
                     "id": "s1",
                     "url": "https://www.phpmyadmin.net/",
                     "title": "phpMyAdmin",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s2",
                     "url": "https://www.phpmyadmin.net/downloads/",
                     "title": "phpMyAdmin downloads",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s3",
                     "url": "https://github.com/phpmyadmin/phpmyadmin",
                     "title": "phpMyAdmin repository",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s4",
                     "url": "https://docs.cpanel.net/cpanel/databases/phpmyadmin/",
                     "title": "phpMyAdmin in cPanel",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
                 },
                 {
                     "id": "s5",
                     "url": "https://docs.phpmyadmin.net/en/latest/setup.html",
                     "title": "phpMyAdmin installation and hardening",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-03"
+                },
+                {
+                    "id": "s6",
+                    "url": "https://www.adminer.org/en/",
+                    "title": "Adminer",
+                    "retrievedAt": "2026-10-03"
                 }
             ]
         },

@@ -37,6 +37,14 @@
             "label": "Interface languages",
             "tablepro": "Mac app: {macLanguages}"
         },
+        "designer": {
+            "label": "Schema diagram",
+            "tablepro": "A read-only ER diagram, exported as PNG or SQL, free"
+        },
+        "queryByExample": {
+            "label": "Query by example (QBE)",
+            "tablepro": "Not available"
+        },
         "nextMajor": {
             "label": "Next major version",
             "tablepro": "New Mac versions arrive through in-app updates or Homebrew"
@@ -64,6 +72,12 @@
             {
                 "text": "Its interface is available in {cells.languages.value} languages.",
                 "cite": ["cells.languages"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "It shows the database schema in several graphical formats, and its query-by-example (QBE) tool helps you build complex queries.",
+                "cite": ["cells.designer", "cells.queryByExample"],
                 "feature": null,
                 "href": null
             },
@@ -177,6 +191,7 @@
     ],
     "notes": {
         "phpmyadmin-databases": "MySQL and MariaDB",
+        "phpmyadmin-schema-visualization": "Graphical views of the database schema, in several formats",
         "phpmyadmin-in-development": "Version {version} is in development",
         "phpmyadmin-hardening": "Its documentation recommends serving it over HTTPS only, limiting who can reach it, disabling root login and turning on two-factor authentication"
     }

@@ -40,6 +40,10 @@
         "bundles": {
             "label": "Bundles",
             "tablepro": "Không có"
+        },
+        "sequelProMigration": {
+            "label": "Chuyển từ Sequel Pro",
+            "tablepro": "Không có công cụ import cho Sequel Pro. Chuyển sang Sequel Ace trước, rồi import connection từ Sequel Ace"
         }
     },
     "stronger": {
@@ -60,6 +64,12 @@
             {
                 "text": "Bundles cho phép bạn tự thêm lệnh vào ứng dụng, và trình quản lý người dùng của Sequel Ace chỉnh được user và quyền trong MySQL.",
                 "cite": ["cells.bundles", "cells.userManager"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Sequel Ace có hướng dẫn chuyển từ Sequel Pro, giúp chép favorite và các thiết lập của Sequel Pro sang Sequel Ace.",
+                "cite": ["cells.sequelProMigration"],
                 "feature": null,
                 "href": null
             }
@@ -175,6 +185,7 @@
     "notes": {
         "sequel-ace-databases": "MySQL 5.7 trở lên và MariaDB 10.0 trở lên, không hỗ trợ cơ sở dữ liệu nào khác",
         "sequel-ace-no-ai-chat": "Không có AI chat trong ứng dụng. Các AI client bên ngoài có thể dùng MCP server của Sequel Ace.",
-        "sequel-ace-mcp-read-only": "Tích hợp sẵn, mặc định tắt, chỉ lắng nghe trên máy Mac của bạn và mặc định chỉ đọc. Có {value} tool."
+        "sequel-ace-mcp-read-only": "Tích hợp sẵn, mặc định tắt, chỉ lắng nghe trên máy Mac của bạn và mặc định chỉ đọc. Có {value} tool.",
+        "sequel-ace-sequel-pro-migration": "Có hướng dẫn chép favorite và các thiết lập của Sequel Pro sang Sequel Ace. Mật khẩu cần một script riêng, còn SSH key phải được chọn lại."
     }
 }

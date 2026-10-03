@@ -35,6 +35,14 @@
         "vim": {
             "label": "Chế độ Vim",
             "tablepro": "Miễn phí, trong SQL editor, có motion, register và macro"
+        },
+        "importExport": {
+            "label": "Import, export và sao lưu",
+            "tablepro": "Miễn phí trong ứng dụng Mac: import file CSV, JSON, XLSX và SQL, export ra CSV, JSON, SQL, XLSX và các định dạng khác, cùng Backup Dump và Restore Dump với các engine có công cụ dump"
+        },
+        "lifetimeLicense": {
+            "label": "Khi gói thuê bao kết thúc",
+            "tablepro": "Gói theo tháng hoặc theo năm khóa các tính năng trả phí khi kết thúc. Gói mua một lần không có ngày hết hạn"
         }
     },
     "stronger": {
@@ -76,10 +84,16 @@
                 "href": null
             },
             {
-                "text": "<link>Trợ lý AI và MCP server</link> đều miễn phí trong ứng dụng Mac, với nhà cung cấp AI do bạn chọn. AI Shell của Beekeeper Studio có trong mọi gói trả phí.",
+                "text": "<link>Trợ lý AI và MCP server</link> đều miễn phí trong ứng dụng Mac, với nhà cung cấp AI do bạn chọn. AI Shell của Beekeeper Studio cần một gói trả phí.",
                 "cite": ["cells.ai"],
                 "feature": null,
                 "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Import, export dữ liệu</link> miễn phí trong TablePro, và sao lưu bằng công cụ dump của engine (nếu engine có) cũng vậy. Beekeeper Studio xếp Import/Export & Backup/Restore vào các gói trả phí, không có trong bản Community.",
+                "cite": ["cells.importExport"],
+                "feature": null,
+                "href": "/features/import-export"
             },
             {
                 "text": "TablePro là mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí. Bản Community của Beekeeper Studio là mã nguồn mở theo {licence}.",
@@ -124,7 +138,7 @@
             },
             {
                 "text": "Beekeeper Studio cho bạn tiếp tục dùng các phiên bản phát hành trong thời gian đã trả tiền, với gói theo tháng là sau 12 tháng. Gói TablePro theo tháng hoặc theo năm thì không: khi gói kết thúc, các tính năng trả phí bị khóa, phần còn lại của ứng dụng vẫn hoạt động. Gói mua một lần không có ngày hết hạn.",
-                "cite": [],
+                "cite": ["cells.lifetimeLicense"],
                 "feature": null,
                 "href": null
             }
@@ -166,8 +180,10 @@
     ],
     "notes": {
         "beekeeper-databases": "Bản Community có PostgreSQL, MySQL, MariaDB, SQLite, SQL Server và một số engine khác. Các gói trả phí có thêm engine, như Oracle, Cassandra và Snowflake.",
-        "beekeeper-ai-shell": "AI Shell, có trong mọi gói trả phí, không có trong bản Community",
+        "beekeeper-ai-shell": "AI Shell, chỉ có trong các gói trả phí, không có trong bản Community",
         "beekeeper-cloud-workspaces": "Cloud workspace để đồng bộ và chia sẻ connection cùng query, có từ gói {edition}",
-        "beekeeper-erd-paid": "Có trong mọi gói trả phí, không có trong bản Community"
+        "beekeeper-erd-paid": "Có trong mọi gói trả phí, không có trong bản Community",
+        "beekeeper-import-export-paid": "Import/Export & Backup/Restore, có trong mọi gói trả phí, không có trong bản Community",
+        "beekeeper-lifetime-license": "Gói theo năm, hoặc 12 tháng liên tục với gói theo tháng, cho phép bạn tiếp tục dùng các tính năng trả phí của những phiên bản phát hành trong thời gian đã trả tiền, kể cả sau khi gói thuê bao kết thúc. Cloud workspace cần gói thuê bao còn hiệu lực."
     }
 }

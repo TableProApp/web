@@ -35,6 +35,14 @@
         "vim": {
             "label": "Vim mode",
             "tablepro": "Free, in the SQL editor, with motions, registers and macros"
+        },
+        "importExport": {
+            "label": "Import, export and backup",
+            "tablepro": "Free in the Mac app: import CSV, JSON, XLSX and SQL files, export to CSV, JSON, SQL, XLSX and other formats, and Backup Dump and Restore Dump where the engine has a dump tool"
+        },
+        "lifetimeLicense": {
+            "label": "After a subscription ends",
+            "tablepro": "A monthly or yearly plan’s paid features lock when it ends. A one-time purchase has no expiry date"
         }
     },
     "stronger": {
@@ -76,10 +84,16 @@
                 "href": null
             },
             {
-                "text": "The <link>AI assistant and the MCP server</link> are free in the Mac app, with the AI provider you choose. Beekeeper Studio’s AI Shell is in every paid tier.",
+                "text": "The <link>AI assistant and the MCP server</link> are free in the Mac app, with the AI provider you choose. Beekeeper Studio’s AI Shell needs a paid tier.",
                 "cite": ["cells.ai"],
                 "feature": null,
                 "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Importing and exporting data</link> is free in TablePro, and so are backups through an engine’s own dump tool where it has one. Beekeeper Studio lists Import/Export & Backup/Restore in its paid tiers, not in Community.",
+                "cite": ["cells.importExport"],
+                "feature": null,
+                "href": "/features/import-export"
             },
             {
                 "text": "TablePro is open source under the AGPLv3, including the code of its paid features. Beekeeper Studio’s Community edition is open source under {licence}.",
@@ -124,7 +138,7 @@
             },
             {
                 "text": "Beekeeper Studio lets you keep using the versions released while you paid, on a monthly plan after 12 months. A monthly or yearly TablePro plan leaves nothing like that behind: when it ends, its paid features lock and the rest of the app keeps working. A one-time purchase has no expiry date.",
-                "cite": [],
+                "cite": ["cells.lifetimeLicense"],
                 "feature": null,
                 "href": null
             }
@@ -166,8 +180,10 @@
     ],
     "notes": {
         "beekeeper-databases": "Community covers PostgreSQL, MySQL, MariaDB, SQLite, SQL Server and others. Paid tiers add more, such as Oracle, Cassandra and Snowflake.",
-        "beekeeper-ai-shell": "AI Shell, in every paid tier, not in Community",
+        "beekeeper-ai-shell": "AI Shell, in paid tiers only, not in Community",
         "beekeeper-cloud-workspaces": "Cloud workspaces that sync and share connections and queries, from the {edition} tier",
-        "beekeeper-erd-paid": "In every paid tier, not in Community"
+        "beekeeper-erd-paid": "In every paid tier, not in Community",
+        "beekeeper-import-export-paid": "Import/Export & Backup/Restore, in every paid tier, not in Community",
+        "beekeeper-lifetime-license": "A yearly plan, or 12 months in a row on a monthly plan, lets you keep using the paid features of the versions released while you paid, after the subscription ends. Cloud workspaces need an active subscription."
     }
 }
