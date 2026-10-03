@@ -27,7 +27,7 @@ interface PlatformsSectionProps {
  * paid-features.json's.
  */
 export default function PlatformsSection({ content, availability }: PlatformsSectionProps) {
-    const { locale, m, fmt } = useI18n();
+    const { m, fmt } = useI18n();
     const mac = macPlatform();
     const ios = releasedIos();
     const macDevices = devicesOf(mac, m.common.list);
@@ -77,12 +77,7 @@ export default function PlatformsSection({ content, availability }: PlatformsSec
                         <div className="mt-auto grid justify-items-start gap-6 pt-6">
                             {availability.appStoreUrl !== null && (
                                 <div className="grid justify-items-start gap-2">
-                                    <AppStoreBadge
-                                        href={availability.appStoreUrl}
-                                        label={m.download.ios.badge}
-                                        labelLang={locale === 'en' ? undefined : 'en'}
-                                        location="home-platforms"
-                                    />
+                                    <AppStoreBadge href={availability.appStoreUrl} location="home-platforms" />
                                     {availability.iosCaption !== null && <p className="type-small text-muted-foreground">{availability.iosCaption}</p>}
                                 </div>
                             )}

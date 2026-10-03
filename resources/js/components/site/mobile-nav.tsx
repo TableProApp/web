@@ -259,7 +259,7 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
                     </div>
                     {appStoreUrl && ios && (
                         <div className="grid justify-items-start gap-2">
-                            <AppStoreBadge href={appStoreUrl} label={m.download.ios.badge} labelLang={locale === 'en' ? undefined : 'en'} location="mobile-nav" />
+                            <AppStoreBadge href={appStoreUrl} location="mobile-nav" />
                             <p className="type-small text-muted-foreground">{fmt(m.platforms.requires, { requirement: requirementLine(ios.requirements, m.platforms) })}</p>
                         </div>
                     )}

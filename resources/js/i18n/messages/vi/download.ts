@@ -1,10 +1,9 @@
 import type { Messages } from '../../types.ts';
 
 /**
- * `ios.badge` stays English on purpose: it is the accessible name of Apple's
- * badge artwork, which is English until the owner supplies Apple's Vietnamese
- * badge, and an accessible name must match the visible text. The page marks
- * it `lang="en"`. Change both together.
+ * `ios.badge` is the accessible name of Apple's Vietnamese badge artwork
+ * (public/images/app-store-*-vi.svg), so it is that file's visible text, word
+ * for word: an accessible name must match what the badge says.
  */
 export default {
     macCta: 'Tải về cho Mac',
@@ -46,7 +45,7 @@ export default {
         terminal: 'Terminal',
     },
     ios: {
-        badge: 'Download on the App Store',
+        badge: 'Tải về trên App Store',
     },
     otherPlatforms: {
         joiner: {

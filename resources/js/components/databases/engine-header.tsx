@@ -86,12 +86,7 @@ export default function EngineHeader({ content, labels, engine, platforms, links
                                 {m.download.macCta}
                             </LocaleLink>
                             {onIos && links.appStore !== null && (
-                                <AppStoreBadge
-                                    href={links.appStore}
-                                    label={m.download.ios.badge}
-                                    labelLang={locale === 'en' ? undefined : 'en'}
-                                    location={`database-${engine.id}`}
-                                />
+                                <AppStoreBadge href={links.appStore} location={`database-${engine.id}`} />
                             )}
                             {docs !== null && (
                                 <TextLink href={docs} kind="standalone" external hrefLang="en">

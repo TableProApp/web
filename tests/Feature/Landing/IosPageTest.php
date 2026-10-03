@@ -157,19 +157,45 @@ it('points to the App Store, never to the TestFlight beta it replaced', function
     expect(iosPagePlatform()['destinations'][0]['url'])->toMatch('#^https://apps\.apple\.com/app/[a-z0-9-]+/id\d+$#');
 });
 
-it('ships Apple\'s badge artwork unmodified, in both themes', function (): void {
+it('ships Apple\'s badge artwork unmodified, in both themes and both languages', function (string $suffix, string $language): void {
     /*
      * `-light` is the black badge shown on the light theme, `-dark` the white
-     * one. A changed viewBox means someone has redrawn or cropped a
+     * one. Apple's export names its language and colour in the title, so a
+     * swapped pair or the English file saved under the Vietnamese name shows
+     * here. A changed viewBox means someone has redrawn or cropped a
      * trademarked badge.
      */
-    foreach (['light', 'dark'] as $theme) {
-        $svg = (string) file_get_contents(public_path("images/app-store-{$theme}.svg"));
+    foreach (['light' => 'blk', 'dark' => 'wht'] as $theme => $colour) {
+        $svg = (string) file_get_contents(public_path("images/app-store-{$theme}{$suffix}.svg"));
 
-        expect($svg)->toContain('viewBox="0 0 119.66407 40"');
-        expect($svg)->toContain('Download_on_the_App_Store_Badge');
+        expect($svg)->toContain('viewBox="0 0 119.66407 40"')
+            ->toMatch("#<title>Download_on_the_App_Store_Badge_{$language}_RGB_{$colour}_[^<]*</title>#");
     }
-});
+})->with([
+    'English' => ['', 'US-UK'],
+    'Vietnamese' => ['-vi', 'VN'],
+]);
+
+it('shows the App Store badge in the page\'s language, labelled with its visible text', function (string $path, string $suffix, string $label): void {
+    $html = ssrHtml($path);
+
+    preg_match_all('#<a href="https://apps\.apple\.com/[^"]*"[^>]*>\s*<img src="/images/app-store-light([^"]*)\.svg" alt="([^"]*)"[^>]*>\s*<img src="/images/app-store-dark([^"]*)\.svg" alt="([^"]*)"#', $html, $badges, PREG_SET_ORDER);
+
+    // At least the hero and the closing "get" section (the mobile menu adds one), and every badge on the page parsed.
+    expect(count($badges))->toBeGreaterThanOrEqual(2)
+        ->toBe(substr_count($html, '<img src="/images/app-store-light'));
+
+    foreach ($badges as [$markup, $lightSuffix, $lightAlt, $darkSuffix, $darkAlt]) {
+        expect([$lightSuffix, $darkSuffix])->toBe([$suffix, $suffix])
+            ->and([$lightAlt, $darkAlt])->toBe([$label, $label]);
+
+        // The label is in the page's language, so the link carries no lang of its own.
+        Assert::assertStringNotContainsString(' lang=', $markup, "{$path} marks its App Store badge with a lang attribute");
+    }
+})->with([
+    'English' => ['/ios', '', 'Download on the App Store'],
+    'Vietnamese' => ['/vi/ios', '-vi', 'Tải về trên App Store'],
+]);
 
 it('names the engines and never counts them', function (string $locale): void {
     $text = iosPageText($locale);

@@ -22,7 +22,7 @@ interface IosCardProps {
  * segment, so Apple sends each reader to their own storefront.
  */
 export default function IosCard({ content, ios, className }: IosCardProps) {
-    const { locale, m, fmt } = useI18n();
+    const { m, fmt } = useI18n();
     const devices = joinList(ios.deviceNames, m.common.list);
 
     return (
@@ -36,12 +36,7 @@ export default function IosCard({ content, ios, className }: IosCardProps) {
 
             {ios.appStoreUrl !== null && (
                 <div className="mt-6">
-                    <AppStoreBadge
-                        href={ios.appStoreUrl}
-                        label={m.download.ios.badge}
-                        labelLang={locale === 'en' ? undefined : 'en'}
-                        location="download-page"
-                    />
+                    <AppStoreBadge href={ios.appStoreUrl} location="download-page" />
                 </div>
             )}
 

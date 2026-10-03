@@ -32,12 +32,11 @@ interface ActionPairProps {
  * button's height, so the two captions start on one line. Side by side from
  * 640px, stacked below, each caption under its own action.
  *
- * The badge's accessible name is its visible text. Apple's artwork is English
- * until the owner supplies the Vietnamese badge, so on other locales the link
- * is marked `lang="en"`.
+ * The badge is Apple's artwork in the page's language, and its accessible name
+ * is that artwork's visible text (see app-store-badge.tsx).
  */
 export default function ActionPair({ location, macCaption, macExtra, ios, className }: ActionPairProps) {
-    const { locale, m } = useI18n();
+    const { m } = useI18n();
 
     return (
         <div className={cn('flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-x-10', className)}>
@@ -52,7 +51,7 @@ export default function ActionPair({ location, macCaption, macExtra, ios, classN
             {ios !== null && (
                 <div className="grid justify-items-start gap-2">
                     <div className="flex h-12 items-center">
-                        <AppStoreBadge href={ios.url} label={m.download.ios.badge} labelLang={locale === 'en' ? undefined : 'en'} location={location} />
+                        <AppStoreBadge href={ios.url} location={location} />
                     </div>
                     <p className="type-small text-muted-foreground">{ios.caption}</p>
                 </div>

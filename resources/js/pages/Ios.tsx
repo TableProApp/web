@@ -145,12 +145,7 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
                 <div className="space-y-4">
                     <div className="grid justify-items-start gap-2">
                         {ios?.appStoreUrl && (
-                            <AppStoreBadge
-                                href={ios.appStoreUrl}
-                                label={m.download.ios.badge}
-                                labelLang={locale === 'en' ? undefined : 'en'}
-                                location="ios-page"
-                            />
+                            <AppStoreBadge href={ios.appStoreUrl} location="ios-page" />
                         )}
                         {requirement !== null && <p className="type-small text-muted-foreground">{fmt(m.platforms.requires, { requirement })}</p>}
                     </div>
@@ -318,12 +313,7 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
             <Section id="get" title={content.get.title} width="text">
                 <div className="space-y-4">
                     {ios?.appStoreUrl && (
-                        <AppStoreBadge
-                            href={ios.appStoreUrl}
-                            label={m.download.ios.badge}
-                            labelLang={locale === 'en' ? undefined : 'en'}
-                            location="ios-page-end"
-                        />
+                        <AppStoreBadge href={ios.appStoreUrl} location="ios-page-end" />
                     )}
                     {requirement !== null && <p className="type-small text-muted-foreground">{fmt(m.platforms.requires, { requirement })}</p>}
                 </div>
