@@ -67,7 +67,7 @@
             "id": "move-data",
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
-                "<importData>Import</importData> file CSV, TSV, JSON, JSONL hoặc XLSX vào một collection. <export>Export</export> collection hoặc kết quả query ra {exportFormats}.",
+                "<importData>Import</importData> file {importFormats} vào một collection. <export>Export</export> collection hoặc kết quả query ra {exportFormats}.",
                 "Bản export MQL là một file <code>.js</code> gồm các lệnh <code>insertMany</code> chạy được trong mongosh, kèm index và validator của từng collection nếu bạn chọn. Giá trị ở cấp cao nhất giữ nguyên kiểu, nhưng giá trị có kiểu nằm trong subdocument hay mảng, như một ObjectId trong mảng, được ghi thành chuỗi: với những collection đó, hãy export ra JSON hoặc sao lưu bằng mongodump."
             ]
         }

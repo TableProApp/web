@@ -67,7 +67,7 @@
             "id": "move-data",
             "title": "Move data",
             "paragraphs": [
-                "<importData>Import</importData> CSV, TSV, JSON, JSONL or XLSX files into a collection. <export>Export</export> collections or results as {exportFormats}.",
+                "<importData>Import</importData> {importFormats} files into a collection. <export>Export</export> collections or results as {exportFormats}.",
                 "An MQL export is a <code>.js</code> file of <code>insertMany</code> calls that runs in mongosh, with each collection’s indexes and validator if you tick them. Top-level values keep their type, but a typed value nested in a subdocument or array, such as an ObjectId inside an array, is written as a string: export those collections as JSON or back them up with mongodump instead."
             ]
         }
