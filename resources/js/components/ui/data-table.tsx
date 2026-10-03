@@ -40,12 +40,18 @@ interface DataTableProps {
     /**
      * Shows the caption as a muted line above the table, for a table that
      * needs one in sight ("Compared on 2 October 2026. Sources below."). Hidden
-     * by default.
+     * by default. The visible line sits above the scroll region, so it never
+     * scrolls or clips with a table wider than the screen; the `<caption>`
+     * itself stays in the table for screen readers, and the visible copy is
+     * hidden from them so they hear it once. Plain text only when visible.
      */
     captionVisible?: boolean;
     /**
      * Keeps the first column in place while the rest scrolls sideways, for
-     * comparison and plan tables wider than the screen.
+     * comparison and plan tables wider than the screen. The sticky cells are
+     * painted with `--table-ground` (the page background unless an ancestor,
+     * such as a `surface` band, sets it), so the column matches the cells
+     * beside it and only covers what scrolls under it.
      */
     stickyFirstColumn?: boolean;
     /** On the `<table>`: a minimum width, for one. */
@@ -63,25 +69,45 @@ interface DataTableProps {
  * it and scroll it. Tables are never turned into `display: block`, which strips
  * their roles in Safari; on a phone, the caller folds secondary columns into
  * the first cell instead.
+ *
+ * The region is `position: relative` on purpose. Cells carry visually hidden
+ * words (`sr-only` is `position: absolute`), and an absolutely positioned box
+ * is clipped by an `overflow` ancestor only when that ancestor, or something
+ * inside it, is its containing block. Without it, the hidden words in a
+ * column scrolled out of view escaped the region and widened the whole page
+ * on a phone (design-system §4.4: `scrollWidth` equals the viewport).
  */
 export default function DataTable({ caption, captionVisible = false, stickyFirstColumn = false, className, wrapperClassName, children }: DataTableProps) {
     const captionId = useId();
 
-    return (
-        <div role="region" aria-labelledby={captionId} tabIndex={0} className={cn('overflow-x-auto focus-visible:outline-offset-2', wrapperClassName)}>
+    const region = (
+        <div role="region" aria-labelledby={captionId} tabIndex={0} className={cn('relative overflow-x-auto focus-visible:outline-offset-2', wrapperClassName)}>
             <table
                 className={cn(
                     'w-full border-collapse',
                     stickyFirstColumn &&
-                        '[&_tbody_tr>*:first-child]:sticky [&_tbody_tr>*:first-child]:left-0 [&_tbody_tr>*:first-child]:z-[1] [&_tbody_tr>*:first-child]:bg-raised [&_thead_tr>*:first-child]:sticky [&_thead_tr>*:first-child]:left-0 [&_thead_tr>*:first-child]:z-[1]',
+                        '[&_tbody_tr>*:first-child]:sticky [&_tbody_tr>*:first-child]:left-0 [&_tbody_tr>*:first-child]:z-[1] [&_tbody_tr>*:first-child]:bg-[color:var(--table-ground,var(--background))] [&_thead_tr>*:first-child]:sticky [&_thead_tr>*:first-child]:left-0 [&_thead_tr>*:first-child]:z-[1]',
                     className,
                 )}
             >
-                <caption id={captionId} className={captionVisible ? 'type-small mb-3 caption-top text-left text-muted-foreground' : 'sr-only'}>
+                <caption id={captionId} className="sr-only">
                     {caption}
                 </caption>
                 {children}
             </table>
         </div>
+    );
+
+    if (!captionVisible) {
+        return region;
+    }
+
+    return (
+        <>
+            <p aria-hidden="true" className="type-small mb-3 text-muted-foreground">
+                {caption}
+            </p>
+            {region}
+        </>
     );
 }

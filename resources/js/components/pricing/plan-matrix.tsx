@@ -10,6 +10,11 @@ import type { PaidFeatureCopy } from './types';
 
 const TIERS: readonly TierId[] = ['free', 'starter', 'team'];
 
+/** The feature column: a little less padding on a phone, where every pixel goes to the plan columns. */
+const FEATURE_CELL = 'max-sm:pr-2 max-sm:pl-3';
+/** A plan column: 64px on a phone (6px padding), 18% from 640px; the mark or word centred. */
+const PLAN_CELL = 'w-16 text-center max-sm:px-1.5 sm:w-[18%]';
+
 /** A cell's content: a plain yes or no, or a short visible word. */
 type Value = boolean | string;
 
@@ -33,9 +38,14 @@ interface PlanMatrixProps {
  *
  * Each feature is named here once and links to the section of its feature
  * page that describes it. A cell carries its meaning in words as well as a
- * mark (`Availability`), so a screen reader never meets an empty cell. The
- * first column stays in place while the plan columns scroll on a narrow
- * screen.
+ * mark (`Availability`), so a screen reader never meets an empty cell.
+ *
+ * All four columns fit a 343px phone (design-system §8.6): below 640px each
+ * plan column is 64px with 6px of padding and its glyph centred, the feature's
+ * one-line detail is already a caption under its name, and the Macs row's
+ * words wrap inside their column. Nothing scrolls, so no plan is ever off
+ * screen. The first column stays sticky for the rare narrow window where it
+ * would.
  */
 export default function PlanMatrix({ details, className }: PlanMatrixProps) {
     const { m, plural } = useI18n();
@@ -78,14 +88,14 @@ export default function PlanMatrix({ details, className }: PlanMatrixProps) {
 
     return (
         <div className={className}>
-            <DataTable caption={m.pricing.matrix.caption} captionVisible stickyFirstColumn className="min-w-[36rem]">
+            <DataTable caption={m.pricing.matrix.caption} captionVisible stickyFirstColumn>
                 <thead>
                     <tr>
-                        <th scope="col" className={TABLE_HEAD_CELL}>
+                        <th scope="col" className={cn(TABLE_HEAD_CELL, FEATURE_CELL)}>
                             {m.pricing.matrix.feature}
                         </th>
                         {TIERS.map((tier) => (
-                            <th key={tier} scope="col" className={cn(TABLE_HEAD_CELL, 'w-[18%] text-center')}>
+                            <th key={tier} scope="col" className={cn(TABLE_HEAD_CELL, PLAN_CELL)}>
                                 {m.pricing.tiers[tier].name}
                             </th>
                         ))}
@@ -94,7 +104,7 @@ export default function PlanMatrix({ details, className }: PlanMatrixProps) {
                 <tbody>
                     {rows.map((row) => (
                         <tr key={row.key} className={TABLE_ROW}>
-                            <th scope="row" className={TABLE_ROW_HEADER}>
+                            <th scope="row" className={cn(TABLE_ROW_HEADER, FEATURE_CELL)}>
                                 <span className="block">{row.name}</span>
                                 {row.detail && <span className="type-caption mt-1 block font-normal text-pretty text-muted-foreground">{row.detail}</span>}
                             </th>
@@ -102,7 +112,7 @@ export default function PlanMatrix({ details, className }: PlanMatrixProps) {
                                 const value = row.values[tier];
 
                                 return (
-                                    <td key={tier} className={cn(TABLE_CELL, 'text-center')}>
+                                    <td key={tier} className={cn(TABLE_CELL, PLAN_CELL, 'break-words')}>
                                         <Availability
                                             included={value !== false}
                                             labels={m.controls.availability}

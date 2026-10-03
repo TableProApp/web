@@ -30,10 +30,10 @@
     "atAGlance": {
         "title": "Tổng quan",
         "lead": "Nền tảng, mã nguồn và giá của từng ứng dụng được so sánh ở đây. Giá là giá niêm yết bằng USD, chưa gồm thuế.",
-        "caption": "Các ứng dụng được so sánh, kiểm tra ngày {date}. Nguồn được liệt kê bên dưới bảng."
+        "caption": "Các ứng dụng được so sánh, kiểm tra ngày {date}. Nguồn được liệt kê ở cuối trang."
     },
     "openSource": {
-        "title": "Các client mã nguồn mở trên Mac",
+        "title": "Các client mã nguồn mở trên Mac",
         "lead": "Các ứng dụng này công bố mã nguồn theo một license mã nguồn mở. Sequel Pro không còn được duy trì, còn phpMyAdmin chạy trên web server và bạn mở bằng trình duyệt.",
         "caption": "Các client mã nguồn mở, kiểm tra ngày {date}."
     },
@@ -90,7 +90,8 @@
             "edition": "Trong bản {edition}",
             "since": "Từ phiên bản {version}",
             "sinceDated": "Từ phiên bản {version}, ngày {date}",
-            "source": "Nguồn"
+            "source": "Nguồn",
+            "none": "Không áp dụng"
         },
         "platforms": {
             "mac": "Mac",

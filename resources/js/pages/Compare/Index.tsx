@@ -1,5 +1,6 @@
 import { usePage } from '@inertiajs/react';
-import { CellContent } from '@/components/compare/comparison-table';
+import type { ReactNode } from 'react';
+import { CellContent, FoldedCells, WIDE_COLUMN, WIDER_COLUMN } from '@/components/compare/comparison-table';
 import {
     currencyStyle,
     dateLabel,
@@ -25,10 +26,11 @@ import Section from '@/components/ui/section';
 import StatusBadge from '@/components/ui/status-badge';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, useI18n } from '@/i18n';
-import { formatUsd, joinList } from '@/i18n/format';
+import { formatUsd, joinList, keepTogether } from '@/i18n/format';
 import LandingLayout from '@/layouts/landing-layout';
 import { docsUrl, FACTS } from '@/lib/data/facts';
 import { absoluteUrl, collectionPageNode, graph } from '@/lib/structured-data';
+import { cn } from '@/lib/utils';
 
 /**
  * `/compare` and `/vi/compare` (sitemap §A.4, §E.8): the comparisons in one
@@ -52,7 +54,8 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
         plural: (node, count, values) => plural(node, count, values),
     };
     const facts = tableproFacts(null, tablepro.featuredEngines, m);
-    const checked = dateLabel(dates, checkedAt);
+    // The check date never breaks across lines in the meta line or the captions.
+    const checked = keepTogether(dateLabel(dates, checkedAt));
     const numbered = numberSources(products);
     const numbersOf = (id: string) => numbered.find((entry) => entry.productId === id)?.numbers ?? new Map<string, number>();
     const openSource = products.filter((product) => product.licence.openSource);
@@ -116,6 +119,29 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
         },
     } satisfies Record<string, CellView>;
 
+    const tableproCells: CellView[] = [tableproRow.platforms, tableproRow.licence, tableproRow.free, tableproRow.paid];
+
+    const glanceHeadings = [labels.hub.platforms, labels.hub.openSource, labels.hub.free, labels.hub.paid];
+
+    const glanceCells = (product: HubProduct): CellView[] => [
+        {
+            mark: 'none',
+            lines: [{ text: platformNames(product.platforms, labels) }],
+            sources: product.platformsSource ? [product.platformsSource] : [],
+        },
+        product.licence.openSource && product.licence.name !== null
+            ? {
+                  mark: 'yes',
+                  lines: [{ text: product.licence.edition ? `${product.licence.name} (${product.licence.edition})` : product.licence.name }],
+                  sources: [product.licence.source],
+              }
+            : { mark: 'no', lines: [{ text: labels.licence.no }], sources: [product.licence.source] },
+        freeCell(product),
+        paidCell(product),
+    ];
+
+    const openSourceHeadings = [labels.hub.license, labels.hub.platforms, labels.hub.status, labels.hub.latest];
+
     const productLink = (product: HubProduct) =>
         product.slug !== null ? (
             <LocaleLink href={`/compare/${product.slug}`} className={textLinkClasses('inline')}>
@@ -168,64 +194,36 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
             </Section>
 
             <Section id="at-a-glance" title={content.atAGlance.title} lead={content.atAGlance.lead}>
-                <DataTable caption={fmt(content.atAGlance.caption, { date: checked })} captionVisible stickyFirstColumn className="min-w-[52rem]">
+                {/* Below 1024px the four value columns fold under each client's name (design-system §5.3.10): five columns need about 832px. */}
+                <DataTable caption={fmt(content.atAGlance.caption, { date: checked })} captionVisible stickyFirstColumn className="lg:min-w-[52rem]">
                     <thead>
                         <tr>
                             <th scope="col" className={TABLE_HEAD_CELL}>
                                 {labels.hub.client}
                             </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {labels.hub.platforms}
-                            </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {labels.hub.openSource}
-                            </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {labels.hub.free}
-                            </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {labels.hub.paid}
-                            </th>
+                            {glanceHeadings.map((heading) => (
+                                <th key={heading} scope="col" className={cn(TABLE_HEAD_CELL, WIDER_COLUMN)}>
+                                    {heading}
+                                </th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className={TABLE_ROW}>
-                            <th scope="row" className={TABLE_ROW_HEADER}>
-                                {m.common.brand}
-                            </th>
-                            {[tableproRow.platforms, tableproRow.licence, tableproRow.free, tableproRow.paid].map((view, index) => (
-                                <td key={index} className={TABLE_CELL}>
-                                    <CellContent view={view} productId="tablepro" numbers={new Map()} labels={labels} />
-                                </td>
-                            ))}
-                        </tr>
-                        {products.map((product) => {
-                            const numbers = numbersOf(product.id);
-                            const cells: CellView[] = [
-                                {
-                                    mark: 'none',
-                                    lines: [{ text: platformNames(product.platforms, labels) }],
-                                    sources: product.platformsSource ? [product.platformsSource] : [],
-                                },
-                                product.licence.openSource && product.licence.name !== null
-                                    ? {
-                                          mark: 'yes',
-                                          lines: [{ text: product.licence.edition ? `${product.licence.name} (${product.licence.edition})` : product.licence.name }],
-                                          sources: [product.licence.source],
-                                      }
-                                    : { mark: 'no', lines: [{ text: labels.licence.no }], sources: [product.licence.source] },
-                                freeCell(product),
-                                paidCell(product),
-                            ];
+                        {[
+                            { id: 'tablepro', name: m.common.brand as ReactNode, numbers: new Map<string, number>(), cells: tableproCells },
+                            ...products.map((product) => ({ id: product.id, name: productLink(product), numbers: numbersOf(product.id), cells: glanceCells(product) })),
+                        ].map((row) => {
+                            const content = row.cells.map((view) => <CellContent view={view} productId={row.id} numbers={row.numbers} labels={labels} />);
 
                             return (
-                                <tr key={product.id} className={TABLE_ROW}>
+                                <tr key={row.id} className={TABLE_ROW}>
                                     <th scope="row" className={TABLE_ROW_HEADER}>
-                                        {productLink(product)}
+                                        {row.name}
+                                        <FoldedCells from="lg" cells={glanceHeadings.map((heading, index) => ({ heading, content: content[index] }))} />
                                     </th>
-                                    {cells.map((view, index) => (
-                                        <td key={index} className={TABLE_CELL}>
-                                            <CellContent view={view} productId={product.id} numbers={numbers} labels={labels} />
+                                    {content.map((cell, index) => (
+                                        <td key={index} className={cn(TABLE_CELL, WIDER_COLUMN)}>
+                                            {cell}
                                         </td>
                                     ))}
                                 </tr>
@@ -236,127 +234,74 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
             </Section>
 
             <Section id="open-source" title={content.openSource.title} lead={content.openSource.lead}>
-                <DataTable caption={fmt(content.openSource.caption, { date: checked })} captionVisible stickyFirstColumn className="min-w-[44rem]">
+                {/* Below 640px the four value columns fold under each client's name (design-system §5.3.10). */}
+                <DataTable caption={fmt(content.openSource.caption, { date: checked })} captionVisible stickyFirstColumn className="sm:min-w-[44rem]">
                     <thead>
                         <tr>
                             <th scope="col" className={TABLE_HEAD_CELL}>
                                 {labels.hub.client}
                             </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {labels.hub.license}
-                            </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {labels.hub.platforms}
-                            </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {labels.hub.status}
-                            </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
-                                {labels.hub.latest}
-                            </th>
+                            {openSourceHeadings.map((heading) => (
+                                <th key={heading} scope="col" className={cn(TABLE_HEAD_CELL, WIDE_COLUMN)}>
+                                    {heading}
+                                </th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className={TABLE_ROW}>
-                            <th scope="row" className={TABLE_ROW_HEADER}>
-                                {m.common.brand}
-                            </th>
-                            <td className={TABLE_CELL}>{facts.licence}</td>
-                            <td className={TABLE_CELL}>{facts.devices}</td>
-                            <td className={TABLE_CELL}>
-                                <StatusBadge status="success">{labels.status.active}</StatusBadge>
-                            </td>
-                            <td className={`${TABLE_CELL} tabular-nums`}>
-                                {tablepro.mac !== null && fmt(labels.hub.latestValue, { version: tablepro.mac.version, date: dateLabel(dates, tablepro.mac.date) })}
-                            </td>
-                        </tr>
-                        {openSource.map((product) => {
-                            const numbers = numbersOf(product.id);
+                        {[
+                            {
+                                id: 'tablepro',
+                                name: m.common.brand as ReactNode,
+                                cells: [
+                                    facts.licence,
+                                    facts.devices,
+                                    <StatusBadge status="success">{labels.status.active}</StatusBadge>,
+                                    <span className="tabular-nums">
+                                        {tablepro.mac !== null && fmt(labels.hub.latestValue, { version: tablepro.mac.version, date: dateLabel(dates, tablepro.mac.date) })}
+                                    </span>,
+                                ] as ReactNode[],
+                            },
+                            ...openSource.map((product) => {
+                                const numbers = numbersOf(product.id);
+                                const view = (text: string, sources: string[]) => (
+                                    <CellContent view={{ mark: 'none', lines: [{ text }], sources }} productId={product.id} numbers={numbers} labels={labels} />
+                                );
 
-                            return (
-                                <tr key={product.id} className={TABLE_ROW}>
-                                    <th scope="row" className={TABLE_ROW_HEADER}>
-                                        {productLink(product)}
-                                    </th>
-                                    <td className={TABLE_CELL}>
-                                        <CellContent
-                                            view={{
-                                                mark: 'none',
-                                                lines: [{ text: product.licence.edition ? `${product.licence.name} (${product.licence.edition})` : (product.licence.name ?? '') }],
-                                                sources: [product.licence.source],
-                                            }}
-                                            productId={product.id}
-                                            numbers={numbers}
-                                            labels={labels}
-                                        />
+                                return {
+                                    id: product.id,
+                                    name: productLink(product),
+                                    cells: [
+                                        view(product.licence.edition ? `${product.licence.name} (${product.licence.edition})` : (product.licence.name ?? ''), [product.licence.source]),
+                                        view(platformNames(product.platforms, labels), product.platformsSource ? [product.platformsSource] : []),
+                                        <StatusBadge status={product.status.state === 'active' ? 'success' : 'neutral'}>{labels.status[product.status.state]}</StatusBadge>,
+                                        <span className="tabular-nums">
+                                            {view(
+                                                fmt(labels.hub.latestValue, {
+                                                    version: product.status.lastRelease.version,
+                                                    date: dateLabel(dates, product.status.lastRelease.date),
+                                                }),
+                                                [product.status.lastRelease.source],
+                                            )}
+                                        </span>,
+                                    ] as ReactNode[],
+                                };
+                            }),
+                        ].map((row) => (
+                            <tr key={row.id} className={TABLE_ROW}>
+                                <th scope="row" className={TABLE_ROW_HEADER}>
+                                    {row.name}
+                                    <FoldedCells cells={openSourceHeadings.map((heading, index) => ({ heading, content: row.cells[index] }))} />
+                                </th>
+                                {row.cells.map((cell, index) => (
+                                    <td key={index} className={cn(TABLE_CELL, WIDE_COLUMN)}>
+                                        {cell}
                                     </td>
-                                    <td className={TABLE_CELL}>
-                                        <CellContent
-                                            view={{
-                                                mark: 'none',
-                                                lines: [{ text: platformNames(product.platforms, labels) }],
-                                                sources: product.platformsSource ? [product.platformsSource] : [],
-                                            }}
-                                            productId={product.id}
-                                            numbers={numbers}
-                                            labels={labels}
-                                        />
-                                    </td>
-                                    <td className={TABLE_CELL}>
-                                        <StatusBadge status={product.status.state === 'active' ? 'success' : 'neutral'}>{labels.status[product.status.state]}</StatusBadge>
-                                    </td>
-                                    <td className={`${TABLE_CELL} tabular-nums`}>
-                                        <CellContent
-                                            view={{
-                                                mark: 'none',
-                                                lines: [
-                                                    {
-                                                        text: fmt(labels.hub.latestValue, {
-                                                            version: product.status.lastRelease.version,
-                                                            date: dateLabel(dates, product.status.lastRelease.date),
-                                                        }),
-                                                    },
-                                                ],
-                                                sources: [product.status.lastRelease.source],
-                                            }}
-                                            productId={product.id}
-                                            numbers={numbers}
-                                            labels={labels}
-                                        />
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                                ))}
+                            </tr>
+                        ))}
                     </tbody>
                 </DataTable>
-
-                <div className="mt-10 max-w-[44rem]">
-                    <h3 id="hub-sources" className="type-h3 text-foreground">
-                        {labels.sections.sources}
-                    </h3>
-                    <div className="mt-4 space-y-4">
-                        {numbered
-                            .filter((entry) => entry.sources.length > 0)
-                            .map((entry) => {
-                                const product = products.find((candidate) => candidate.id === entry.productId);
-
-                                return (
-                                    <div key={entry.productId}>
-                                        <p className="type-small font-medium text-foreground">{product?.name}</p>
-                                        <SourceList
-                                            productId={entry.productId}
-                                            sources={entry.sources}
-                                            dates={dates}
-                                            start={entry.start}
-                                            retrievedTemplate={(date) => fmt(labels.sources.retrieved, { date })}
-                                            label={product?.name ?? labels.sections.sources}
-                                            className="mt-1"
-                                        />
-                                    </div>
-                                );
-                            })}
-                    </div>
-                </div>
             </Section>
 
             <Section id="switching" title={content.switching.title} width="text">
@@ -387,6 +332,32 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
                             <RichText text={paragraph} external={{ issues: FACTS.links.issues }} />
                         </p>
                     ))}
+                </div>
+            </Section>
+
+            {/* Last, after both tables whose markers it numbers, as the captions say: "Sources are listed at the end of the page". */}
+            <Section id="sources" title={labels.sections.sources} width="text">
+                <div className="space-y-4">
+                    {numbered
+                        .filter((entry) => entry.sources.length > 0)
+                        .map((entry) => {
+                            const product = products.find((candidate) => candidate.id === entry.productId);
+
+                            return (
+                                <div key={entry.productId}>
+                                    <p className="type-small font-medium text-foreground">{product?.name}</p>
+                                    <SourceList
+                                        productId={entry.productId}
+                                        sources={entry.sources}
+                                        dates={dates}
+                                        start={entry.start}
+                                        retrievedTemplate={(date) => fmt(labels.sources.retrieved, { date })}
+                                        label={product?.name ?? labels.sections.sources}
+                                        className="mt-1"
+                                    />
+                                </div>
+                            );
+                        })}
                 </div>
             </Section>
         </LandingLayout>

@@ -19,8 +19,10 @@ interface DatabaseMarkProps {
 
 const BOX = { 24: 'size-6', 32: 'size-8', 40: 'size-10' } as const;
 /**
- * The footprint of a mark without a dark variant: the mark plus 4px each side,
- * in both themes, so the tile that appears in dark mode moves nothing.
+ * The footprint of every mark: the mark plus 4px each side, in both themes and
+ * in every branch, so the tile that appears in dark mode moves nothing and a
+ * name beside a monogram starts where a name beside a vendor mark does (a
+ * 24px monogram box beside 32px image tiles shifted those names 8px left).
  */
 const TILE = { 24: 'size-8', 32: 'size-10', 40: 'size-12' } as const;
 
@@ -40,15 +42,15 @@ const TILE = { 24: 'size-8', 32: 'size-10', 40: 'size-12' } as const;
 export default function DatabaseMark({ icon, iconDark, monogram, name, size = 24, className }: DatabaseMarkProps) {
     if (!icon) {
         return (
-            <span
-                aria-hidden="true"
-                className={cn(
-                    'inline-grid shrink-0 place-items-center rounded-chip border border-rule bg-surface font-mono text-[0.8125rem] leading-none text-muted-foreground',
-                    BOX[size],
-                    className,
-                )}
-            >
-                {monogram ?? name.slice(0, 2)}
+            <span aria-hidden="true" className={cn('inline-grid shrink-0 place-items-center', TILE[size], className)}>
+                <span
+                    className={cn(
+                        'inline-grid place-items-center rounded-chip border border-rule bg-surface font-mono text-[0.8125rem] leading-none text-muted-foreground',
+                        BOX[size],
+                    )}
+                >
+                    {monogram ?? name.slice(0, 2)}
+                </span>
             </span>
         );
     }
@@ -59,7 +61,7 @@ export default function DatabaseMark({ icon, iconDark, monogram, name, size = 24
 
     if (iconDark) {
         return (
-            <span aria-hidden="true" className={cn('inline-flex shrink-0', className)}>
+            <span aria-hidden="true" className={cn('inline-grid shrink-0 place-items-center', TILE[size], className)}>
                 {image(icon, 'dark:hidden')}
                 {image(iconDark, 'hidden dark:block')}
             </span>

@@ -17,6 +17,7 @@ import { FACTS } from '@/lib/data/facts';
 import { featureHref, PAID_FEATURES } from '@/lib/data/paid-features';
 import type { PaidTierId } from '@/lib/data/pricing';
 import { absoluteUrl, collectionPageNode, graph, organizationNode, organizationProfiles } from '@/lib/structured-data';
+import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
 const TIERS: readonly PaidTierId[] = ['starter', 'team'];
@@ -117,38 +118,52 @@ export default function FeatureIndex({ content, pages, facts }: FeatureHubProps)
             </Section>
 
             <Section id="paid" title={content.paid.title} lead={content.paid.lead}>
-                <DataTable caption={content.paid.caption} className="min-w-[32rem]">
+                {/* Below 640px, Plan and "Described on" fold into the feature's row header (design-system §5.3.10). */}
+                <DataTable caption={content.paid.caption} className="sm:min-w-[32rem]">
                     <thead>
                         <tr>
                             <th scope="col" className={TABLE_HEAD_CELL}>
                                 {content.paid.columns.feature}
                             </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
+                            <th scope="col" className={cn(TABLE_HEAD_CELL, 'hidden sm:table-cell')}>
                                 {content.paid.columns.plan}
                             </th>
-                            <th scope="col" className={TABLE_HEAD_CELL}>
+                            <th scope="col" className={cn(TABLE_HEAD_CELL, 'hidden sm:table-cell')}>
                                 {content.paid.columns.page}
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {PAID_FEATURES.map((feature) => (
-                            <tr key={feature.id} className={TABLE_ROW}>
-                                <th scope="row" className={TABLE_ROW_HEADER}>
-                                    {feature.name}
-                                </th>
-                                <td className={TABLE_CELL}>{fmt(labels.availability.plan, { tier: labels.tiers[feature.tier] })}</td>
-                                <td className={TABLE_CELL}>
-                                    {pages.includes(feature.page.path.replace('/features/', '')) ? (
-                                        <LocaleLink href={featureHref(feature)} className={textLinkClasses('inline')}>
-                                            {pageTitle(feature.page.path)}
-                                        </LocaleLink>
-                                    ) : (
-                                        pageTitle(feature.page.path)
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
+                        {PAID_FEATURES.map((feature) => {
+                            const plan = (
+                                <Badge variant="accent" className="whitespace-nowrap">
+                                    {fmt(labels.availability.plan, { tier: labels.tiers[feature.tier] })}
+                                </Badge>
+                            );
+                            const page = pages.includes(feature.page.path.replace('/features/', '')) ? (
+                                <LocaleLink href={featureHref(feature)} className={textLinkClasses('inline')}>
+                                    {pageTitle(feature.page.path)}
+                                </LocaleLink>
+                            ) : (
+                                pageTitle(feature.page.path)
+                            );
+
+                            return (
+                                <tr key={feature.id} className={TABLE_ROW}>
+                                    <th scope="row" className={TABLE_ROW_HEADER}>
+                                        {feature.name}
+                                        <span className="type-caption mt-1.5 grid justify-items-start gap-1.5 font-normal text-muted-foreground sm:hidden">
+                                            {plan}
+                                            <span className="block">
+                                                {content.paid.columns.page}: {page}
+                                            </span>
+                                        </span>
+                                    </th>
+                                    <td className={cn(TABLE_CELL, 'hidden sm:table-cell')}>{plan}</td>
+                                    <td className={cn(TABLE_CELL, 'hidden sm:table-cell')}>{page}</td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </DataTable>
                 <p className="mt-6">
