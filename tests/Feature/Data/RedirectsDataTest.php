@@ -78,6 +78,41 @@ it('is a list of entries, each with a reason', function (): void {
     }
 });
 
+it('retires exactly the URLs the disposition table retires', function (): void {
+    /*
+     * Sitemap §C.2-§C.6 decide every retired URL from evidence: a 301 only
+     * where a genuine replacement exists, a 410 where none does, and nothing
+     * for a URL that never existed. This map is that table as data, so an
+     * entry added or dropped without the table changing is a decision nobody
+     * recorded. The docs-style `/databases/{docsSlug}` paths are derived from
+     * engines.json and are not listed (see below).
+     */
+    $table = [
+        '/blog/cloudflare-d1-mac' => [301, '/cloudflare-d1-client'],
+        '/blog/mcp-database-claude' => [301, '/features/ai-mcp#mcp'],
+        '/blog/mongodb-native-vs-compass' => [301, '/mongodb-client#compass'],
+        '/blog/open-source-db-clients-2026' => [301, '/compare#open-source'],
+        '/cockroachdb-client' => [301, '/postgresql-client#cockroachdb'],
+        '/compare/azimutt' => [410, null],
+        '/docs' => [301, 'https://docs.tablepro.app/'],
+        '/docs/raycast' => [301, 'https://docs.tablepro.app/external-api/raycast'],
+        '/mariadb-client' => [301, '/mysql-client#mariadb'],
+        '/pglite-client' => [301, '/postgresql-client#pglite'],
+        '/scylladb-client' => [301, '/cassandra-client#scylladb'],
+        '/sitemap-index.xml' => [301, '/sitemap.xml'],
+    ];
+
+    $map = [];
+
+    foreach (seoRedirectEntries() as $entry) {
+        $map[$entry['from']] = [$entry['status'], $entry['to'] ?? null];
+    }
+
+    ksort($map);
+
+    expect($map)->toBe($table);
+});
+
 it('gives a 301 a target and a 410 none', function (array $entry): void {
     expect($entry['status'])->toBeIn([301, 410]);
 

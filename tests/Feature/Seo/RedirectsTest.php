@@ -209,6 +209,78 @@ it('never guesses: unknown paths stay 404 and nothing goes to the homepage', fun
     'a retired post in Vietnamese' => ['/vi/blog/mcp-database-claude'],
 ]);
 
+it('answers 404 for every URL the disposition table says never existed or has no replacement', function (string $path): void {
+    /*
+     * Sitemap §C lists these with their evidence: probed slugs that were
+     * never routed, release numbers with no post, feeds that never existed,
+     * one-day README assets, the platform's old mail previews, an `/en`
+     * prefix nobody used, and platform paths under `/vi`. None gets a guessed
+     * redirect, and none may quietly start answering.
+     */
+    $this->get($path)->assertNotFound()->assertHeaderMissing('Location');
+})->with([
+    '/libsql-client',
+    '/sap-hana-client',
+    '/hana-client',
+    '/mssql-client',
+    '/postgres-client',
+    '/blog/tablepro-0-66',
+    '/blog/tablepro-0-71',
+    '/blog/tablepro-0-75',
+    '/feed',
+    '/blog/feed',
+    '/rss',
+    '/rss.xml',
+    '/atom.xml',
+    '/feed.xml',
+    '/blog/rss.xml',
+    '/sitemap-0.xml',
+    '/docs/logo/logo.png',
+    '/docs/images/hero-dark.png',
+    '/mail-preview',
+    '/mail-preview/waitlist-launch',
+    '/images/connections-dark.png',
+    '/sponsors/nimbus.svg',
+    '/en',
+    '/en/download',
+    '/vi/account',
+    '/vi/account/login',
+    '/vi/checkout',
+]);
+
+it('lands every redirect on an element its fragment names', function (): void {
+    /*
+     * A 301 to `/mysql-client#mariadb` is only a genuine replacement if the
+     * page has that section: a missing id drops the reader at the top of a
+     * long page with no sign of what they came for.
+     */
+    $targets = [];
+
+    foreach (seoRedirectEntries() as $entry) {
+        if ($entry['status'] === 301 && str_starts_with($entry['to'], '/') && str_contains($entry['to'], '#')) {
+            $targets[$entry['to']] = $entry['from'];
+        }
+    }
+
+    foreach (app(RedirectMap::class)->docsSlugTargets() as $docsSlug => $target) {
+        if (str_contains($target, '#')) {
+            $targets[$target] = "/databases/{$docsSlug}";
+        }
+    }
+
+    expect($targets)->not->toBeEmpty();
+
+    $documents = [];
+
+    foreach ($targets as $target => $from) {
+        [$path, $fragment] = explode('#', $target, 2);
+        $path = substr($path, 0, strcspn($path, '?'));
+        $documents[$path] ??= Dom\HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR);
+
+        expect($documents[$path]->getElementById($fragment))->not->toBeNull("{$from} → {$target}: {$path} has no element with id=\"{$fragment}\"");
+    }
+});
+
 it('leaves double slashes alone, so they stay 404', function (string $uri): void {
     $response = redirectsThroughMiddleware($uri);
 
