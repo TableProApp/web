@@ -1,5 +1,5 @@
 /* Shared with TableProApp/web and TableProApp/license at resources/js/components/shared/theme-control.tsx. Change both in the same release. See docs/shared-files.md. */
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent } from 'react';
 import { Check, Monitor, Moon, Sun } from 'lucide-react';
 import { applyTheme, readTheme, THEME_CHANGE_EVENT, THEME_CHOICES, type ThemeChoice } from '@/lib/theme';
 import { cn } from '@/lib/utils';
@@ -124,8 +124,27 @@ function ThemeMenu({ labels, className }: { labels: ThemeControlLabels; classNam
         requestAnimationFrame(() => focusItem(index));
     }
 
+    function close(): void {
+        setOpen(false);
+        trigger.current?.focus();
+    }
+
+    /**
+     * The menu-button keyboard pattern (WAI-ARIA APG): Enter, Space and
+     * ArrowDown open the menu with focus on the checked option, ArrowUp on the
+     * last. Enter and Space are handled here, not left to the native click, so
+     * focus moves into the menu; a pointer click still only toggles it.
+     */
     function onTriggerKeyDown(event: KeyboardEvent<HTMLButtonElement>): void {
-        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+
+            if (open) {
+                setOpen(false);
+            } else {
+                openAt(THEME_CHOICES.indexOf(choice));
+            }
+        } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
             event.preventDefault();
             openAt(event.key === 'ArrowDown' ? THEME_CHOICES.indexOf(choice) : THEME_CHOICES.length - 1);
         }
@@ -140,19 +159,38 @@ function ThemeMenu({ labels, className }: { labels: ThemeControlLabels; classNam
         } else if (event.key === 'Home' || event.key === 'End') {
             event.preventDefault();
             focusItem(event.key === 'Home' ? 0 : THEME_CHOICES.length - 1);
-        } else if (event.key === 'Escape') {
-            event.preventDefault();
-            setOpen(false);
-            trigger.current?.focus();
         } else if (event.key === 'Tab') {
+            setOpen(false);
+        }
+    }
+
+    /** Escape closes from anywhere in the control, the button included, and returns focus to the button. */
+    function onRootKeyDown(event: KeyboardEvent<HTMLDivElement>): void {
+        if (event.key === 'Escape' && open) {
+            event.preventDefault();
+            event.stopPropagation();
+            close();
+        }
+    }
+
+    /**
+     * Focus moving to something outside the control closes the menu, so it
+     * never stays open over the page behind a keyboard reader's back. A blur
+     * with no new target (a click on nothing focusable, or Safari's click on a
+     * button, which does not focus it) is left to the pointer handler above,
+     * so a click on an option is never swallowed by the menu closing first.
+     */
+    function onRootBlur(event: FocusEvent<HTMLDivElement>): void {
+        const next = event.relatedTarget as Node | null;
+
+        if (open && next !== null && root.current && !root.current.contains(next)) {
             setOpen(false);
         }
     }
 
     function select(next: ThemeChoice): void {
         choose(next);
-        setOpen(false);
-        trigger.current?.focus();
+        close();
     }
 
     // The name carries the choice only once it is known, so the server and the
@@ -160,7 +198,7 @@ function ThemeMenu({ labels, className }: { labels: ThemeControlLabels; classNam
     const name = mounted ? labels.current.replace('{choice}', labels[choice]) : labels.label;
 
     return (
-        <div ref={root} className={cn('relative', className)}>
+        <div ref={root} onKeyDown={onRootKeyDown} onBlur={onRootBlur} className={cn('relative', className)}>
             <button
                 ref={trigger}
                 type="button"

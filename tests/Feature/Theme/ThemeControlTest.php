@@ -70,8 +70,9 @@ it('offers three radio choices in the menu and three radios in the segmented for
         ->toContain('type="radio"')
         ->toContain('<legend className="sr-only">{labels.label}</legend>');
 
-    // Escape closes the menu and returns focus to its button.
-    expect($source)->toMatch("/event\.key === 'Escape'\) \{\s*event\.preventDefault\(\);\s*setOpen\(false\);\s*trigger\.current\?\.focus\(\);/");
+    // Escape closes the menu and returns focus to its button, from anywhere in the control.
+    expect($source)->toMatch("/event\.key === 'Escape' && open\) \{\s*event\.preventDefault\(\);\s*event\.stopPropagation\(\);\s*close\(\);/")
+        ->toMatch('/function close\(\): void \{\s*setOpen\(false\);\s*trigger\.current\?\.focus\(\);/');
 });
 
 it('draws the current choice from the head script\'s attribute, so the first paint is right', function (): void {
@@ -127,3 +128,18 @@ it('renders the same markup whatever the theme, named in the page language', fun
     'English' => ['/download', 'en'],
     'Vietnamese' => ['/vi/download', 'vi'],
 ]);
+
+it('follows the menu button keyboard pattern: Enter and Space open into the menu, and Escape closes it from the button too', function (): void {
+    /*
+     * Enter and Space used to fire the native click, which only toggled the
+     * menu and left focus on the button; Escape was handled on the menu alone,
+     * so with focus on the button it did nothing and the menu stayed open.
+     */
+    $source = themeControlSource();
+
+    expect($source)->toContain("if (event.key === 'Enter' || event.key === ' ') {")
+        ->toContain('openAt(THEME_CHOICES.indexOf(choice));')
+        ->toContain('onKeyDown={onRootKeyDown}')
+        ->toContain("if (event.key === 'Escape' && open) {")
+        ->toContain('onBlur={onRootBlur}');
+});

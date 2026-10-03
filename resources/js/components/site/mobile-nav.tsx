@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import { usePage } from '@inertiajs/react';
 import { ChevronDown, X } from 'lucide-react';
 import AppStoreBadge from '@/components/download/app-store-badge';
 import { requirementLine } from '@/components/download/format';
@@ -10,7 +11,15 @@ import { useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './language-switcher';
-import { EXTERNAL, FEATURE_PAGES, PLATFORM_PAGES, accountHref, releasedPlatform } from './site-links';
+import { EXTERNAL, FEATURE_PAGES, PLATFORM_PAGES, accountHref, basePath, releasedPlatform, sectionOf } from './site-links';
+
+/**
+ * The current row: the text weight steps up and a 2px indicator bar sits in
+ * the gutter beside it (the system highlight in forced colours), never colour
+ * alone, as the desktop header's bottom bar does (design-system §5.2).
+ */
+const CURRENT_ROW =
+    'relative font-semibold before:absolute before:inset-y-2.5 before:-left-3 before:w-0.5 before:rounded-full before:bg-accent-indicator forced-colors:before:bg-[Highlight]';
 
 const mac = releasedPlatform('mac');
 const ios = releasedPlatform('ios');
@@ -40,6 +49,9 @@ interface MobileNavProps {
  */
 export default function MobileNav({ id, open, onClose }: MobileNavProps) {
     const { locale, m, fmt } = useI18n();
+    const { url } = usePage();
+    const path = basePath(url);
+    const section = sectionOf(url);
     const dialog = useRef<HTMLDialogElement>(null);
     const opener = useRef<HTMLElement | null>(null);
     const [featuresOpen, setFeaturesOpen] = useState(false);
@@ -110,6 +122,20 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
         'flex min-h-12 w-full items-center gap-2 rounded-control text-lg leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-accent-text';
     const subRow = 'flex min-h-11 items-center rounded-control text-base leading-[1.3] text-foreground hover:text-accent-text';
 
+    /** `aria-current`: `page` on the page itself, `true` on the row of the section it belongs to. */
+    const currentOf = (href: string, inSection = false): 'page' | 'true' | undefined => (path === href ? 'page' : inSection ? 'true' : undefined);
+    const inFeatures = path === '/features' || path.startsWith('/features/');
+    const link = (href: string, inSection = false) => {
+        const current = currentOf(href, inSection);
+
+        return { 'aria-current': current, className: cn(row, current !== undefined && CURRENT_ROW) };
+    };
+    const subLink = (href: string) => {
+        const current = currentOf(href);
+
+        return { 'aria-current': current, className: cn(subRow, current !== undefined && CURRENT_ROW) };
+    };
+
     return (
         <dialog
             ref={dialog}
@@ -144,20 +170,21 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
                             aria-expanded={featuresOpen}
                             aria-controls={featuresId}
                             onClick={() => setFeaturesOpen((value) => !value)}
-                            className={cn(row, 'cursor-pointer justify-between')}
+                            aria-current={inFeatures ? 'true' : undefined}
+                            className={cn(row, 'cursor-pointer justify-between', inFeatures && CURRENT_ROW)}
                         >
                             {m.nav.features}
                             <ChevronDown className={cn('size-5 shrink-0 text-muted-foreground transition-transform duration-(--dur-state)', featuresOpen && 'rotate-180')} aria-hidden="true" />
                         </button>
                         <ul id={featuresId} hidden={!featuresOpen} className="mb-2 grid border-l border-rule pl-4">
                             <li>
-                                <LocaleLink href="/features" onClick={onClose} className={subRow}>
+                                <LocaleLink href="/features" onClick={onClose} {...subLink('/features')}>
                                     {m.nav.featureLinks.all}
                                 </LocaleLink>
                             </li>
                             {FEATURE_PAGES.map((page) => (
                                 <li key={page.key}>
-                                    <LocaleLink href={page.href} onClick={onClose} className={subRow}>
+                                    <LocaleLink href={page.href} onClick={onClose} {...subLink(page.href)}>
                                         {m.nav.featureLinks[page.key]}
                                     </LocaleLink>
                                 </li>
@@ -165,18 +192,18 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
                         </ul>
                     </li>
                     <li>
-                        <LocaleLink href="/databases" onClick={onClose} className={row}>
+                        <LocaleLink href="/databases" onClick={onClose} {...link('/databases', section === 'databases')}>
                             {m.nav.databases}
                         </LocaleLink>
                     </li>
                     <li>
-                        <LocaleLink href="/pricing" onClick={onClose} className={row}>
+                        <LocaleLink href="/pricing" onClick={onClose} {...link('/pricing')}>
                             {m.nav.pricing}
                         </LocaleLink>
                     </li>
                     {PLATFORM_PAGES.map((page) => (
                         <li key={page.id}>
-                            <LocaleLink href={page.href} onClick={onClose} className={row}>
+                            <LocaleLink href={page.href} onClick={onClose} {...link(page.href)}>
                                 {joinList(page.deviceNames, m.common.shortList)}
                             </LocaleLink>
                         </li>
@@ -188,12 +215,12 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
                         </a>
                     </li>
                     <li>
-                        <LocaleLink href="/blog" onClick={onClose} className={row}>
+                        <LocaleLink href="/blog" onClick={onClose} {...link('/blog', section === 'blog')}>
                             {m.nav.blog}
                         </LocaleLink>
                     </li>
                     <li>
-                        <LocaleLink href="/faq" onClick={onClose} className={row}>
+                        <LocaleLink href="/faq" onClick={onClose} {...link('/faq')}>
                             {m.nav.faq}
                         </LocaleLink>
                     </li>

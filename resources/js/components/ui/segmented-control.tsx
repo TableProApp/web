@@ -32,9 +32,11 @@ interface SegmentedControlProps<T extends string> {
  * "1 of 3" come from the browser.
  *
  * The track is `--surface-strong` with a 10px radius and 2px of padding, so the
- * 8px segments nest concentrically. The checked segment is `--raised` with a
- * hairline and the text colour (19.80:1 light, 15.29:1 dark); the others are
- * muted on the track (5.18:1, 6.38:1). Nothing inverts, so no badge or caption
+ * 8px segments nest concentrically. The checked segment is
+ * `--segment-selected`, a step lighter than the track in both themes (white in
+ * light; 1.36:1 above the track in dark, where `--raised` would sit below it),
+ * with a hairline and the text colour (19.80:1 light, 10.76:1 dark); the
+ * others are muted on the track (5.18:1, 6.38:1). Nothing inverts, so no badge or caption
  * can ever sit on a ground that flips in dark mode (design-system §2.4).
  *
  * Selection is styled from `:checked`, which the server renders, so the control
@@ -54,7 +56,7 @@ export default function SegmentedControl<T extends string>({ legend, value, opti
                         className={cn(
                             'inline-flex min-h-9 cursor-pointer items-center gap-2 rounded-control border border-transparent px-4 text-sm leading-[1.3] font-medium text-muted-foreground',
                             'transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground',
-                            'has-[:checked]:border-rule has-[:checked]:bg-raised has-[:checked]:text-foreground has-[:checked]:shadow-[0_1px_2px_oklch(0_0_0/0.06)] dark:has-[:checked]:shadow-none',
+                            'has-[:checked]:border-rule has-[:checked]:bg-segment-selected has-[:checked]:text-foreground has-[:checked]:shadow-[0_1px_2px_oklch(0_0_0/0.06)] dark:has-[:checked]:shadow-none',
                             'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus',
                         )}
                     >

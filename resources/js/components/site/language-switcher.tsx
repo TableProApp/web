@@ -1,6 +1,7 @@
-import { useEffect, useId, useRef, useState, type KeyboardEvent, type MouseEvent } from 'react';
+import { useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent, type MouseEvent } from 'react';
 import { usePage } from '@inertiajs/react';
 import { Check, ChevronDown, Globe } from 'lucide-react';
+import DotList from '@/components/ui/dot-list';
 import { messagesFor, useI18n } from '@/i18n';
 import type { SwitcherItem } from '@/types/shared-props';
 import { cn } from '@/lib/utils';
@@ -55,14 +56,23 @@ function keepFragment(item: SwitcherItem) {
     };
 }
 
+/**
+ * Under an option with no equivalent page, in that option's language: what is
+ * missing and, when the option leads to the blog list (an English-only
+ * release post), where it goes instead, so the click holds no surprise
+ * ("Bài viết này chỉ có bằng tiếng Anh · Xem danh sách Blog", sitemap §B.4).
+ */
 function FallbackNote({ item, className }: { item: SwitcherItem; className?: string }) {
     if (!item.fallback) {
         return null;
     }
 
+    const copy = messagesFor(item.locale).controls.language;
+    const toBlog = /\/blog\/?$/.test(item.href.replace(/[?#].*$/, ''));
+
     return (
         <span lang={item.locale} className={cn('type-caption block text-muted-foreground', className)}>
-            {messagesFor(item.locale).controls.language.fallback}
+            {toBlog ? <DotList items={[copy.fallbackPost, copy.fallbackBlog]} /> : copy.fallback}
         </span>
     );
 }
@@ -159,10 +169,19 @@ function LanguageMenu({ items, className }: { items: SwitcherItem[]; className?:
         }
     }
 
+    /** Focus moving to something outside closes the panel, as the theme menu does; a blur to nothing is left to the pointer handler. */
+    function onBlur(event: FocusEvent<HTMLDivElement>): void {
+        const next = event.relatedTarget as Node | null;
+
+        if (open && next !== null && root.current && !root.current.contains(next)) {
+            setOpen(false);
+        }
+    }
+
     const name = fmt(m.controls.language.current, { language: current.native });
 
     return (
-        <div ref={root} className={cn('relative', className)} onKeyDown={onPanelKeyDown}>
+        <div ref={root} className={cn('relative', className)} onKeyDown={onPanelKeyDown} onBlur={onBlur}>
             <button
                 ref={trigger}
                 type="button"

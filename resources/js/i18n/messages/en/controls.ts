@@ -12,6 +12,9 @@ export default {
         current: 'Language: {language}',
         /** Shown, in the target language, under an option that has no equivalent page. */
         fallback: 'No English version of this page',
+        /** The same, when the option leads to the blog list instead: what is missing, then where it goes (sitemap §B.4). */
+        fallbackPost: 'This post is not in English',
+        fallbackBlog: 'See the blog list',
     },
     theme: {
         label: 'Theme',
@@ -34,14 +37,6 @@ export default {
         included: 'Included',
         notIncluded: 'Not included',
     },
-    /** `FootnoteMarker` and `FootnoteList` under tables and comparisons. */
-    footnotes: {
-        marker: 'Note',
-        list: 'Notes',
-        back: 'Back to where this note is cited',
-    },
     dismiss: 'Dismiss',
     close: 'Close',
-    cancel: 'Cancel',
-    working: 'Working…',
 };

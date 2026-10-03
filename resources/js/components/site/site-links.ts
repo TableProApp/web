@@ -123,3 +123,12 @@ export function sectionOf(url: string): Section {
 export function basePath(url: string): string {
     return splitLocale(url, LOCALES).path.replace(/[?#].*$/, '');
 }
+
+/**
+ * The label inside a 64px nav link. The link keeps the full header height as
+ * its target, but the focus ring is drawn here, around the words: on the
+ * link itself it was a rectangle the height of the header that touched its
+ * top edge and crossed its bottom rule (design-system §5.2, §7.2).
+ */
+export const NAV_LABEL =
+    '-mx-1.5 inline-flex items-center gap-1 rounded-control px-1.5 py-1 group-focus-visible:outline-2 group-focus-visible:outline-offset-0 group-focus-visible:outline-focus forced-colors:group-focus-visible:outline-[Highlight]';

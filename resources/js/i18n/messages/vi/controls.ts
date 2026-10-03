@@ -6,6 +6,8 @@ export default {
         inlineLabel: 'Ngôn ngữ:',
         current: 'Ngôn ngữ: {language}',
         fallback: 'Trang này chưa có bản tiếng Việt',
+        fallbackPost: 'Bài viết này chỉ có bằng tiếng Anh',
+        fallbackBlog: 'Xem danh sách Blog',
     },
     theme: {
         label: 'Giao diện',
@@ -28,13 +30,6 @@ export default {
         included: 'Có',
         notIncluded: 'Không có',
     },
-    footnotes: {
-        marker: 'Ghi chú',
-        list: 'Ghi chú',
-        back: 'Quay lại chỗ đánh dấu ghi chú này',
-    },
     dismiss: 'Ẩn thông báo',
     close: 'Đóng',
-    cancel: 'Hủy',
-    working: 'Đang xử lý…',
 } satisfies Messages['controls'];

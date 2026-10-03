@@ -11,10 +11,10 @@ import { cn } from '@/lib/utils';
 import FeaturesMenu from './features-menu';
 import LanguageSwitcher from './language-switcher';
 import MobileNav from './mobile-nav';
-import { EXTERNAL, accountHref, basePath, sectionOf } from './site-links';
+import { EXTERNAL, NAV_LABEL, accountHref, basePath, sectionOf } from './site-links';
 
 const NAV_LINK =
-    'relative inline-flex h-16 items-center gap-1 text-sm leading-[1.3] font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground';
+    'group relative inline-flex h-16 items-center text-sm leading-[1.3] font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground focus-visible:outline-none';
 
 /** The 2px current-section mark on the header's bottom edge; the system highlight in forced colours. */
 const CURRENT_MARK =
@@ -27,7 +27,7 @@ function NavLink({ href, current, exact, children }: { href: string; current: bo
             aria-current={current ? (exact ? 'page' : 'true') : undefined}
             className={cn(NAV_LINK, current ? CURRENT_MARK : 'text-muted-foreground')}
         >
-            {children}
+            <span className={NAV_LABEL}>{children}</span>
         </LocaleLink>
     );
 }
@@ -81,8 +81,10 @@ export default function SiteHeader() {
                         </li>
                         <li>
                             <a href={EXTERNAL.docs} hrefLang="en" aria-label={m.nav.docsLabel} className={cn(NAV_LINK, 'text-muted-foreground')}>
-                                {m.nav.docs}
-                                <span aria-hidden="true">↗</span>
+                                <span className={NAV_LABEL}>
+                                    {m.nav.docs}
+                                    <span aria-hidden="true">↗</span>
+                                </span>
                             </a>
                         </li>
                         <li>

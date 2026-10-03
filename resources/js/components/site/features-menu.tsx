@@ -1,10 +1,10 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent } from 'react';
 import { ChevronDown } from 'lucide-react';
 import LocaleLink from '@/components/ui/locale-link';
 import { joinList } from '@/i18n/format';
 import { useI18n } from '@/i18n';
 import { cn } from '@/lib/utils';
-import { FEATURE_PAGES, PLATFORM_PAGES } from './site-links';
+import { FEATURE_PAGES, NAV_LABEL, PLATFORM_PAGES } from './site-links';
 
 interface FeaturesMenuProps {
     /** The page is in the Features section: the button carries the current-section mark. */
@@ -20,7 +20,11 @@ interface FeaturesMenuProps {
  * panel of ordinary links (All features, the seven feature pages, and the
  * platform pages from data). Links keep their link semantics, Tab moves through
  * them, Escape closes the panel and puts focus back on the button, and a click
- * outside closes it.
+ * outside or focus moving outside closes it.
+ *
+ * Escape is handled on this menu's own root, not on the document: a
+ * document-level handler also fired when the reader had tabbed on to another
+ * header control and opened that, and took focus back here.
  */
 export default function FeaturesMenu({ current, path }: FeaturesMenuProps) {
     const { m } = useI18n();
@@ -40,21 +44,27 @@ export default function FeaturesMenu({ current, path }: FeaturesMenuProps) {
             }
         };
 
-        const onKeyDown = (event: globalThis.KeyboardEvent): void => {
-            if (event.key === 'Escape') {
-                setOpen(false);
-                trigger.current?.focus();
-            }
-        };
-
         document.addEventListener('pointerdown', onPointerDown);
-        document.addEventListener('keydown', onKeyDown);
 
-        return () => {
-            document.removeEventListener('pointerdown', onPointerDown);
-            document.removeEventListener('keydown', onKeyDown);
-        };
+        return () => document.removeEventListener('pointerdown', onPointerDown);
     }, [open]);
+
+    function onKeyDown(event: KeyboardEvent<HTMLDivElement>): void {
+        if (event.key === 'Escape' && open) {
+            event.preventDefault();
+            setOpen(false);
+            trigger.current?.focus();
+        }
+    }
+
+    /** Focus moving to something outside closes the panel; a blur to nothing is left to the pointer handler. */
+    function onBlur(event: FocusEvent<HTMLDivElement>): void {
+        const next = event.relatedTarget as Node | null;
+
+        if (open && next !== null && root.current && !root.current.contains(next)) {
+            setOpen(false);
+        }
+    }
 
     const links = [
         { key: 'all', href: '/features', label: m.nav.featureLinks.all },
@@ -68,7 +78,7 @@ export default function FeaturesMenu({ current, path }: FeaturesMenuProps) {
         );
 
     return (
-        <div ref={root} className="relative flex h-16 items-center">
+        <div ref={root} onKeyDown={onKeyDown} onBlur={onBlur} className="relative flex h-16 items-center">
             <button
                 ref={trigger}
                 type="button"
@@ -76,14 +86,16 @@ export default function FeaturesMenu({ current, path }: FeaturesMenuProps) {
                 aria-controls={panelId}
                 onClick={() => setOpen((value) => !value)}
                 className={cn(
-                    'relative inline-flex h-16 cursor-pointer items-center gap-1 text-sm leading-[1.3] font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground',
+                    'group relative inline-flex h-16 cursor-pointer items-center text-sm leading-[1.3] font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground focus-visible:outline-none',
                     current
                         ? 'text-foreground after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:bg-accent-indicator forced-colors:after:bg-[Highlight]'
                         : 'text-muted-foreground',
                 )}
             >
-                {m.nav.features}
-                <ChevronDown className={cn('size-4 shrink-0 transition-transform duration-(--dur-state)', open && 'rotate-180')} aria-hidden="true" />
+                <span className={NAV_LABEL}>
+                    {m.nav.features}
+                    <ChevronDown className={cn('size-4 shrink-0 transition-transform duration-(--dur-state)', open && 'rotate-180')} aria-hidden="true" />
+                </span>
             </button>
             <div
                 id={panelId}

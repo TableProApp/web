@@ -24,6 +24,8 @@
   --color-surface: var(--surface);
   --color-surface-strong: var(--surface-strong);
   --color-raised: var(--raised);
+  --color-segment-selected: var(--segment-selected);
+  --color-control-disabled: var(--control-disabled);
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
   --color-foreground: var(--foreground);
@@ -85,6 +87,11 @@
   --code-border: var(--rule);
   --inline-code-background: var(--surface);
 
+  /* The checked segment rises out of its track: white on light grey. */
+  --segment-selected: var(--raised);
+  /* A disabled control sinks: the track grey under a dimmed glyph. */
+  --control-disabled: var(--surface-strong);
+
   color-scheme: light;
 }
 
@@ -117,6 +124,15 @@
   --danger-foreground: oklch(1 0 0);
   --overlay: oklch(0 0 0 / 0.45);
   --overlay-shadow: 0 1px 2px oklch(0 0 0 / 0.5), 0 8px 24px oklch(0 0 0 / 0.5), 0 0 0 1px var(--rule);
+
+  /*
+   * In dark, `--raised` (0.235) is darker than the `--surface-strong` track
+   * (0.25), so a raised segment read as pressed in. The checked segment takes
+   * a step above the track instead (1.36:1 against it), and a disabled control
+   * sinks to the page ground rather than matching an enabled one.
+   */
+  --segment-selected: oklch(0.34 0 0);
+  --control-disabled: var(--background);
 
   color-scheme: dark;
 }
@@ -323,12 +339,12 @@
   display: block;
 }
 
-/* The selected segment: `--raised` with a hairline and the text colour, on the `--surface-strong` track. */
+/* The selected segment: `--segment-selected` with a hairline and the text colour, on the `--surface-strong` track. */
 :root:not([data-theme-choice]) .theme-segment[data-theme-option="light"],
 [data-theme-choice="light"] .theme-segment[data-theme-option="light"],
 [data-theme-choice="dark"] .theme-segment[data-theme-option="dark"],
 [data-theme-choice="system"] .theme-segment[data-theme-option="system"] {
-  background-color: var(--raised);
+  background-color: var(--segment-selected);
   border-color: var(--rule);
   color: var(--foreground);
   box-shadow: 0 1px 2px oklch(0 0 0 / 0.06);

@@ -56,7 +56,7 @@ export default function Stepper({ id, value, min, max, onChange, label, decrease
 
     const button =
         'inline-flex size-10 shrink-0 cursor-pointer items-center justify-center text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) pointer-coarse:size-11 focus-visible:-outline-offset-2 ' +
-        'hover:bg-surface active:bg-surface-strong disabled:cursor-not-allowed disabled:bg-surface-strong disabled:text-muted-foreground';
+        'hover:bg-surface active:bg-surface-strong disabled:cursor-not-allowed disabled:bg-control-disabled disabled:text-muted-foreground';
 
     return (
         <div

@@ -54,7 +54,7 @@ export default function NewsletterSignup({ title, body, className }: NewsletterS
                         placeholder={m.forms.email.placeholder}
                         value={form.email}
                         onChange={(event) => form.setEmail(event.target.value)}
-                        disabled={form.processing}
+                        readOnly={form.processing}
                         invalid={form.error !== null}
                         aria-describedby={describedBy(inputId, { error: form.error }) ?? resultId}
                         className="sm:flex-1"

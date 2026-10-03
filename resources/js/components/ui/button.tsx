@@ -83,7 +83,12 @@ interface ButtonProps extends AriaAttributes {
     title?: string;
     /** A real `disabled` on a button; `aria-disabled` and no href on a link. Say why nearby. */
     disabled?: boolean;
-    /** Busy: `aria-busy`, disabled, and a spinner in place of the leading icon. The label stays. */
+    /**
+     * Busy: `aria-busy`, a spinner in place of the leading icon, and the label
+     * stays. A busy `<button>` is `aria-disabled` and ignores clicks (a submit
+     * included) but keeps its focus: a real `disabled` would drop the focus of
+     * the reader who just pressed it to `<body>` (WCAG 2.4.3).
+     */
     loading?: boolean;
     /** The leading icon. The spinner takes its place while loading, so the width holds. */
     icon?: ReactNode;
@@ -172,9 +177,10 @@ export default function Button({
             name={name}
             value={value}
             form={form}
-            disabled={inert}
+            disabled={disabled}
+            aria-disabled={(loading && !disabled) || undefined}
             aria-busy={loading || undefined}
-            onClick={onClick}
+            onClick={loading ? (event: MouseEvent<HTMLButtonElement>) => event.preventDefault() : onClick}
             onPointerEnter={onPointerEnter}
             onFocus={onFocus}
             className={classes}
