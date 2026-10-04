@@ -1,7 +1,7 @@
 /**
  * The feature pages' props and the shape of their content files.
  *
- * `App\Http\Controllers\Landing\FeatureController` sends these props.
+ * `App\Http\Controllers\FeatureController` sends these props.
  * README.md in this directory documents the content schema for authors, and
  * `tests/Feature/Features/FeatureContentTest.php` validates every file in
  * `resources/data/content/{locale}/features/` against it, so the page can

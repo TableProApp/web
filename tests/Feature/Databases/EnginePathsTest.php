@@ -48,8 +48,8 @@ it('is the only copy of the rule', function (string $file): void {
     expect($source)->toContain('EnginePaths::pathFor(')
         ->and($source)->not->toMatch('/private function (enginePath|engineTarget|sectionPage|ownPage)\(/');
 })->with([
-    'app/Http/Controllers/Landing/HomeController.php',
-    'app/Http/Controllers/Landing/DatabaseController.php',
+    'app/Http/Controllers/HomeController.php',
+    'app/Http/Controllers/DatabaseController.php',
     'app/Services/Content/SiteFacts.php',
     'app/Support/Features/FeatureFacts.php',
     'app/Support/Seo/RedirectMap.php',

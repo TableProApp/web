@@ -1,5 +1,5 @@
 /**
- * The props `App\Http\Controllers\Landing\DatabaseController` sends, and the
+ * The props `App\Http\Controllers\DatabaseController` sends, and the
  * shape of the database pages' copy. README.md in this folder documents the
  * content schema; `tests/Feature/Databases/DatabasePagesTest.php` validates
  * every content file against it, so these types and the files cannot drift.

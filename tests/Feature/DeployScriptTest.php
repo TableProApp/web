@@ -261,7 +261,7 @@ it('lets its own scratch directories past the cleanliness check, and nothing els
     'keeps the previous asset build' => ['?? public/build-old/', false],
     'keeps a half-finished SSR build' => ['?? bootstrap/ssr-next/', false],
     'keeps a half-finished asset build' => ['?? public/build-next/', false],
-    'blocks an edited controller' => [' M app/Http/Controllers/Landing/LandingController.php', true],
+    'blocks an edited controller' => [' M app/Http/Controllers/LandingController.php', true],
     'blocks an edited component' => [' M resources/js/pages/Home.tsx', true],
     'blocks a stray untracked file' => ['?? .env.backup', true],
     'blocks an untracked build directory that is not one of ours' => ['?? public/uploads-old/', true],

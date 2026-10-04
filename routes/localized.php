@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\Landing\BlogController;
-use App\Http\Controllers\Landing\CompareController;
-use App\Http\Controllers\Landing\DatabaseController;
-use App\Http\Controllers\Landing\DownloadController;
-use App\Http\Controllers\Landing\FaqController;
-use App\Http\Controllers\Landing\FeatureController;
-use App\Http\Controllers\Landing\HomeController;
-use App\Http\Controllers\Landing\IosController;
-use App\Http\Controllers\Landing\LegalController;
-use App\Http\Controllers\Landing\PricingController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CompareController;
+use App\Http\Controllers\DatabaseController;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IosController;
+use App\Http\Controllers\LegalController;
+use App\Http\Controllers\PricingController;
 use App\Support\Content\Slugs\CompareSlugs;
 use App\Support\Content\Slugs\DatabaseSlugs;
 use App\Support\Content\Slugs\FeatureSlugs;

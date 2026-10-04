@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Landing;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Services\Content\SiteFacts;
 use App\Services\Legal\LegalDocuments;
 use App\Support\Content\ContentRepository;

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Landing;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Support\Content\ContentRepository;
 use App\Support\Content\Slugs\FeatureSlugs;
 use App\Support\Features\FeatureFacts;

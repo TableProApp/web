@@ -1,5 +1,5 @@
 /**
- * The props `App\Http\Controllers\Landing\HomeController` sends, and the type
+ * The props `App\Http\Controllers\HomeController` sends, and the type
  * of the page copy. The copy's shape is the English file's:
  * `ContentParityTest` holds every other locale to the same keys.
  */

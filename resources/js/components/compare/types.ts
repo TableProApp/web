@@ -1,7 +1,7 @@
 /**
  * The compare pages' props and copy (schema documented in ./README.md).
  *
- * `App\Http\Controllers\Landing\CompareController` sends these. Facts about
+ * `App\Http\Controllers\CompareController` sends these. Facts about
  * other products arrive as their `resources/data/comparisons.json` entry;
  * TablePro's own column is never stored there and is derived on the page from
  * pricing, platforms, paid features and facts (./model.ts).

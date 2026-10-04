@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Landing\IosController;
+use App\Http\Controllers\IosController;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\Slugs\CompareSlugs;
 use App\Support\Content\Slugs\DatabaseSlugs;

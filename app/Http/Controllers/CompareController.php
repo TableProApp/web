@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Landing;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
 use Illuminate\Support\Arr;

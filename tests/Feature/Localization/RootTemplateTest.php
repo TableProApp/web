@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Landing\IosController;
+use App\Http\Controllers\IosController;
 use App\Support\Assets\AssetManifest;
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Facades\Route;

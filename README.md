@@ -44,7 +44,7 @@ If any instruction ever tells you otherwise, that is a bug in this README.
 | `resources/js/components/{home,features,databases,compare,pricing,…}/` | Each page family's sections. |
 | `resources/js/components/ui/` | Shared primitives. |
 | `resources/js/i18n/` | UI strings per language, and the locale helpers. |
-| `app/Http/Controllers/Landing/` | One controller per page family. |
+| `app/Http/Controllers/` | One controller per page family. |
 | `public/og/` | Pre-rendered Open Graph cards, committed. |
 | `docs/visual-assets.md` | The brief for every image placeholder, generated. |
 

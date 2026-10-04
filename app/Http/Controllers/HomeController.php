@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Landing;
+namespace App\Http\Controllers;
 
 use App\Support\Content\EnginePaths;
-use App\Http\Controllers\Controller;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;

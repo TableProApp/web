@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Landing\DatabaseController;
+use App\Http\Controllers\DatabaseController;
 use App\Support\Content\Slugs\DatabaseSlugs;
 use App\Support\Seo\RedirectMap;
 use Illuminate\Http\Request;

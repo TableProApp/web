@@ -1,5 +1,5 @@
 /**
- * The props `App\Http\Controllers\Landing\DownloadController` sends, and the
+ * The props `App\Http\Controllers\DownloadController` sends, and the
  * page copy's type. The copy's shape is the English file's: `ContentParityTest`
  * holds every other locale to the same keys.
  */
