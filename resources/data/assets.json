@@ -72,7 +72,7 @@
                 686
             ],
             "sizes": "343px",
-            "note": "Shown only below 768px, centred at 343 px wide (never stretched). Cut at native pixels from the same 2x capture as the entry that names it (a window, a detail or an iPad capture), so a 686 px cut is a 343 pt region and the Mac or iPad text keeps its real size on a phone; an illustration's crop is a tall recomposition of the same captures. 1:1 is allowed as an aspect override."
+            "note": "Shown only below 768px, centred at 343 px wide (never stretched). Cut at native pixels from the same 2x capture as the entry that names it (a window, a detail or an iPad capture), so a 686 px cut is a 343 pt region and the Mac or iPad text keeps its real size on a phone; an illustration's crop is a tall recomposition of the same captures. When no native cut holds what the brief asks for, the crop may be scaled down uniformly, never below 0.6x; its brief records the scale. 1:1 is allowed as an aspect override."
         },
         "detail": {
             "type": "detail",
@@ -993,8 +993,35 @@
                 "dir": "public/images/features",
                 "base": "mac-edit-preview-sql"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
             "legacySource": [
                 "/images/features/data-grid-light.png",
                 "/images/features/data-grid-dark.png"
@@ -1017,7 +1044,7 @@
                     "section": "edit"
                 }
             ],
-            "aspect": null,
+            "aspect": "1:1",
             "priority": false,
             "theme": "both",
             "locale": "shared",
@@ -1035,8 +1062,33 @@
                 "dir": "public/images/features",
                 "base": "mac-edit-preview-sql-mobile"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                }
+            },
             "legacySource": null
         },
         "mac-grid-highlight-rules": {
@@ -1382,8 +1434,35 @@
                 "dir": "public/images/features",
                 "base": "mac-structure-ddl-preview"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
             "legacySource": [
                 "/images/blog/structure-constraints-tab.png"
             ]
@@ -1401,7 +1480,7 @@
                     "section": "structure"
                 }
             ],
-            "aspect": null,
+            "aspect": "1:1",
             "priority": false,
             "theme": "both",
             "locale": "shared",
@@ -1419,8 +1498,33 @@
                 "dir": "public/images/features",
                 "base": "mac-structure-ddl-preview-mobile"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                }
+            },
             "legacySource": null
         },
         "mac-er-diagram": {
@@ -2605,16 +2709,41 @@
                 "vi": "Form connection, tab Network: SSH qua bastion.acme.internal với một jump host."
             },
             "alt": {
-                "en": "The connection form on its Network tab, with an SSH tunnel through bastion.acme.internal and one jump host.",
-                "vi": "Form connection ở tab Network, với SSH tunnel qua bastion.acme.internal và một jump host."
+                "en": "The SSH settings of a connection form: host bastion.acme.internal, user deploy, key authentication, and one jump host.",
+                "vi": "Phần cài đặt SSH trong form connection: host bastion.acme.internal, user deploy, xác thực bằng key và một jump host."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-connection-ssh-form"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                },
+                "dark": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                }
+            },
             "legacySource": [
                 "/images/blog/connection-editor-sections.png"
             ]
@@ -2654,8 +2783,33 @@
                 "dir": "public/images/features",
                 "base": "mac-connection-ssh-form-mobile"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                }
+            },
             "legacySource": null
         },
         "mac-connection-library": {
@@ -3120,8 +3274,33 @@
                 "dir": "public/images/databases",
                 "base": "mac-engine-picker"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                },
+                "dark": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                }
+            },
             "legacySource": null
         },
         "mac-engine-picker-mobile": {
@@ -3137,7 +3316,7 @@
                     "section": "drivers"
                 }
             ],
-            "aspect": null,
+            "aspect": "1:1",
             "priority": false,
             "theme": "both",
             "locale": "shared",
@@ -3147,16 +3326,41 @@
                 "vi": "Cận cảnh nhóm Document, MongoDB được ghi Not Installed."
             },
             "alt": {
-                "en": "Close-up of the database type chooser's Document group, with the MongoDB tile captioned Not Installed.",
-                "vi": "Cận cảnh nhóm Document trong hộp chọn loại cơ sở dữ liệu, ô MongoDB có dòng chú thích Not Installed."
+                "en": "Close-up of the database type chooser, with Elasticsearch, MongoDB, SurrealDB and Typesense under Document, each marked Not Installed.",
+                "vi": "Cận cảnh hộp chọn loại cơ sở dữ liệu, với Elasticsearch, MongoDB, SurrealDB và Typesense trong nhóm Document, mỗi mục được ghi Not Installed."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/databases",
                 "base": "mac-engine-picker-mobile"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                }
+            },
             "legacySource": null
         },
         "mac-db-postgresql-explain": {

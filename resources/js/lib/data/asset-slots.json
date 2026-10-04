@@ -522,36 +522,90 @@
             "theme": "both",
             "locale": "shared",
             "mobile": "mac-edit-preview-sql-mobile",
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-edit-preview-sql"
             },
-            "description": {
-                "en": "Four staged price edits in shop.products and the Preview SQL sheet with their UPDATE statements.",
-                "vi": "Bốn thay đổi giá đang chờ lưu trong shop.products và hộp thoại Preview SQL với các câu UPDATE tương ứng."
-            }
+            "alt": {
+                "en": "The products table with four price edits waiting to be saved, and the Preview SQL sheet listing the matching UPDATE statements.",
+                "vi": "Table products với bốn thay đổi giá đang chờ lưu, và hộp thoại Preview SQL liệt kê các câu UPDATE tương ứng."
+            },
+            "caption": null
         },
         "mac-edit-preview-sql-mobile": {
             "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
-            "aspect": null,
+            "aspect": "1:1",
             "priority": false,
             "theme": "both",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-edit-preview-sql-mobile"
             },
-            "description": {
-                "en": "Close-up of the Preview SQL sheet: the UPDATE statements for the four staged edits.",
-                "vi": "Cận cảnh hộp thoại Preview SQL: các câu UPDATE cho bốn thay đổi đang chờ lưu."
-            }
+            "alt": {
+                "en": "Close-up of the Preview SQL sheet listing four UPDATE statements for staged price edits.",
+                "vi": "Cận cảnh hộp thoại Preview SQL liệt kê bốn câu UPDATE cho các thay đổi giá đang chờ lưu."
+            },
+            "caption": null
         },
         "mac-grid-highlight-rules": {
             "kind": "detail",
@@ -792,36 +846,90 @@
             "theme": "both",
             "locale": "shared",
             "mobile": "mac-structure-ddl-preview-mobile",
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-structure-ddl-preview"
             },
-            "description": {
-                "en": "Structure tab of shop.reviews with a staged CHECK constraint and a new index, the DDL preview open.",
-                "vi": "Tab Structure của shop.reviews với CHECK constraint và index mới đang chờ lưu, bản xem trước DDL đang mở."
-            }
+            "alt": {
+                "en": "The Structure tab of the reviews table with a new CHECK constraint and a new index waiting to be saved, and the DDL preview open.",
+                "vi": "Tab Structure của table reviews với một CHECK constraint và một index mới đang chờ lưu, bản xem trước DDL đang mở."
+            },
+            "caption": null
         },
         "mac-structure-ddl-preview-mobile": {
             "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
-            "aspect": null,
+            "aspect": "1:1",
             "priority": false,
             "theme": "both",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-structure-ddl-preview-mobile"
             },
-            "description": {
-                "en": "Close-up of the DDL preview: the statements for the staged constraint and index.",
-                "vi": "Cận cảnh bản xem trước DDL: các câu lệnh cho constraint và index đang chờ lưu."
-            }
+            "alt": {
+                "en": "Close-up of a DDL preview with the statements that add a CHECK constraint and an index to the reviews table.",
+                "vi": "Cận cảnh bản xem trước DDL với các câu lệnh thêm một CHECK constraint và một index vào table reviews."
+            },
+            "caption": null
         },
         "mac-er-diagram": {
             "kind": "window",
@@ -1664,16 +1772,42 @@
             "theme": "both",
             "locale": "shared",
             "mobile": "mac-connection-ssh-form-mobile",
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                },
+                "dark": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-connection-ssh-form"
             },
-            "description": {
-                "en": "Connection form, Network tab: SSH through bastion.acme.internal with one jump host.",
-                "vi": "Form connection, tab Network: SSH qua bastion.acme.internal với một jump host."
-            }
+            "alt": {
+                "en": "The SSH settings of a connection form: host bastion.acme.internal, user deploy, key authentication, and one jump host.",
+                "vi": "Phần cài đặt SSH trong form connection: host bastion.acme.internal, user deploy, xác thực bằng key và một jump host."
+            },
+            "caption": null
         },
         "mac-connection-ssh-form-mobile": {
             "kind": "mobile-crop",
@@ -1684,16 +1818,42 @@
             "theme": "both",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                }
+            },
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-connection-ssh-form-mobile"
             },
-            "description": {
-                "en": "Close-up of the SSH settings: the bastion host, the user, SSH Agent and the jump host row.",
-                "vi": "Cận cảnh phần cài đặt SSH: host bastion, user, SSH Agent và dòng jump host."
-            }
+            "alt": {
+                "en": "Close-up of the SSH tunnel settings, with host bastion.acme.internal, user deploy, SSH Agent authentication and one jump host.",
+                "vi": "Cận cảnh phần cài đặt SSH tunnel, với host bastion.acme.internal, user deploy, xác thực bằng SSH Agent và một jump host."
+            },
+            "caption": null
         },
         "mac-connection-library": {
             "kind": "detail",
@@ -2006,36 +2166,88 @@
             "theme": "both",
             "locale": "shared",
             "mobile": "mac-engine-picker-mobile",
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                },
+                "dark": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                }
+            },
             "replacement": {
                 "dir": "public/images/databases",
                 "base": "mac-engine-picker"
             },
-            "description": {
-                "en": "The new-connection type chooser grouped by category, with MongoDB under Document marked Not Installed.",
-                "vi": "Hộp chọn loại connection theo nhóm, MongoDB trong nhóm Document được ghi Not Installed."
-            }
+            "alt": {
+                "en": "The database type chooser for a new connection, with engines grouped by category and MongoDB marked Not Installed.",
+                "vi": "Hộp chọn loại cơ sở dữ liệu cho connection mới, các engine được chia theo nhóm, MongoDB được ghi Not Installed."
+            },
+            "caption": null
         },
         "mac-engine-picker-mobile": {
             "kind": "mobile-crop",
             "type": "detail",
             "slot": true,
-            "aspect": null,
+            "aspect": "1:1",
             "priority": false,
             "theme": "both",
             "locale": "shared",
             "mobile": null,
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 686
+                }
+            },
             "replacement": {
                 "dir": "public/images/databases",
                 "base": "mac-engine-picker-mobile"
             },
-            "description": {
-                "en": "Close-up of the Document group, with MongoDB marked Not Installed.",
-                "vi": "Cận cảnh nhóm Document, MongoDB được ghi Not Installed."
-            }
+            "alt": {
+                "en": "Close-up of the database type chooser, with Elasticsearch, MongoDB, SurrealDB and Typesense under Document, each marked Not Installed.",
+                "vi": "Cận cảnh hộp chọn loại cơ sở dữ liệu, với Elasticsearch, MongoDB, SurrealDB và Typesense trong nhóm Document, mỗi mục được ghi Not Installed."
+            },
+            "caption": null
         },
         "mac-db-postgresql-explain": {
             "kind": "detail",
