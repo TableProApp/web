@@ -1,0 +1,87 @@
+{
+    "seo": {
+        "title": "GUI etcd cho {devices}",
+        "description": "Duyệt key etcd theo prefix, sửa value và lease ngay trong data grid, chạy các lệnh kiểu etcdctl như get, put, watch và lease, có TLS và SSH tunnel."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "GUI etcd"
+    },
+    "engine": "etcd",
+    "breadcrumb": "etcd",
+    "header": {
+        "title": "GUI etcd cho {devices}",
+        "lead": "Duyệt key của cluster theo prefix, sửa value và lease ngay trong data grid, và chạy các lệnh kiểu etcdctl như <code>get --prefix</code>, <code>lease grant</code> hay <code>member list</code> trong editor."
+    },
+    "asset": "mac-db-etcd-keys",
+    "links": {
+        "network": "/features/connections#network",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối",
+            "paragraphs": [
+                "Nhập host và client port. etcd không có khái niệm cơ sở dữ liệu nên form không có ô Cơ sở dữ liệu (Database). Hãy trỏ vào client port: peer port không phục vụ JSON gateway, nên connection trỏ vào đó sẽ không bao giờ mở được. Form chỉ nhận một endpoint và không tự chuyển sang member khác, vì vậy hãy chọn một member đang chạy.",
+                "Với cluster không bật xác thực, hãy để trống <ui>Tên người dùng (Username)</ui> và <ui>Mật khẩu (Password)</ui>. User không có role <code>root</code> vẫn kết nối và duyệt được những key mà role của nó cho phép, còn <code>endpoint status</code> và các lệnh <code>user</code>, <code>role</code> sẽ báo permission denied.",
+                "TLS được đặt ở <ui>Chế độ TLS (TLS Mode)</ui> trong phần Nâng cao (Advanced), không phải ở mục SSL, và mặc định là Đã tắt (Disabled). Chế độ Bắt buộc, bỏ qua xác minh (Required, skip verify) mã hóa mà không kiểm tra chứng chỉ, Xác minh CA (Verify CA) kiểm tra chứng chỉ theo file CA bạn chỉ định, còn Xác minh danh tính (Verify Identity) kiểm tra thêm hostname. Thêm chứng chỉ và khóa của client để dùng mutual TLS.",
+                "Cluster nằm sau bastion thì đi qua <network>SSH tunnel</network>. URL <code>etcd://</code> và <code>etcds://</code> đều import được, và không scheme nào tự bật TLS."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Duyệt key và chạy lệnh",
+            "paragraphs": [
+                "Đặt <ui>Tiền tố gốc (Key Prefix Root)</ui>, chẳng hạn <code>/app</code>, để giới hạn connection trong một nhánh key. Sidebar nhóm key theo đoạn đường dẫn đầu tiên bên dưới tiền tố đó, và mỗi key là một dòng gồm value, version, mod revision, create revision và lease.",
+                "Khi lưu, mỗi thay đổi được gửi đi dưới dạng lệnh. Value hoặc lease mới sẽ put lại key, đặt lease thành NULL sẽ gỡ lease, còn đổi tên key sẽ put tên mới rồi xóa key cũ. Các cột revision do etcd quản lý, nên sửa một cột trong số đó sẽ chặn thao tác lưu và nêu tên cột.",
+                "Editor nhận lệnh kiểu etcdctl, có autocomplete cho cả lệnh lẫn flag: <code>get</code> với <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> và các tùy chọn sắp xếp, <code>put</code> với <code>--lease</code>, <code>del</code>, <code>watch</code>, các lệnh con của <code>lease</code>, <code>member list</code>, <code>endpoint status</code> và <code>health</code>, <code>compaction</code>, cùng các lệnh <code>auth</code>, <code>user</code> và <code>role</code>. Lệnh nào khác sẽ bị báo là lệnh không xác định và không được gửi tới server.",
+                "Driver etcd không mở được session chỉ đọc, nên <safeMode>Safe Mode</safeMode> coi mọi lệnh là thao tác ghi: ở mức Alert và Safe Mode, lệnh nào cũng hỏi trước, còn mức Read-Only chặn tất cả."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Lease và cluster",
+            "paragraphs": [
+                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> với <code>--keys</code>, <code>list</code> và <code>keep-alive</code> dùng để quản lý lease, còn <code>compaction</code> cắt bớt lịch sử revision. Vì etcd không có Server Dashboard, bạn xem tình trạng cluster bằng <code>member list</code>, <code>endpoint status</code> và <code>endpoint health</code> ngay trong editor.",
+                "Chạy <code>auth enable</code> từ editor sẽ bật xác thực cho cả cluster. Connection đã lưu tên người dùng và mật khẩu vẫn hoạt động bình thường; connection không có thông tin đăng nhập thì phải mở lại kèm thông tin đó."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "TablePro không có import cho etcd. Bạn có thể <export>export</export> key hoặc kết quả của một lệnh ra CSV, JSON hoặc XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "lease-ids",
+            "question": "Vì sao lease ID lại trỏ sang một lease khác?",
+            "answer": "Lease ID nhận cả dạng thập phân lẫn hex, và dạng hex được nhận ra nhờ có chữ cái. Với ID hex chỉ gồm chữ số, hãy thêm tiền tố <code>0x</code>, như <code>--lease=0x69407712</code>, nếu không nó sẽ bị đọc là số thập phân và trỏ tới lease khác."
+        },
+        {
+            "id": "binary-values",
+            "question": "Tôi có sửa được value nhị phân không?",
+            "answer": "Không. Value không phải UTF-8 hợp lệ hiển thị trong data grid dưới dạng base64 có đánh dấu, và text bạn gõ được gửi đi dưới dạng UTF-8. Hãy ghi value nhị phân bằng <code>etcdctl</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Xem và chỉnh sửa dữ liệu an toàn",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Connection, tunnel và thông tin đăng nhập",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Redis, một không gian key khác",
+            "href": "/redis-gui"
+        }
+    ]
+}

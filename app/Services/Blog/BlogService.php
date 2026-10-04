@@ -2,98 +2,195 @@
 
 namespace App\Services\Blog;
 
+use App\Support\Content\MarkdownRenderer;
+use App\Support\Localization\Locales;
+use App\Support\Seo\BlogPosts;
 use Carbon\CarbonImmutable;
+use DateTimeInterface;
 use Illuminate\Support\Facades\File;
-use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
-use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
-use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
-use League\CommonMark\Extension\Table\TableExtension;
-use League\CommonMark\MarkdownConverter;
-use League\CommonMark\Environment\Environment;
-use Phiki\Adapters\CommonMark\PhikiExtension;
-use Phiki\Theme\Theme;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
+/**
+ * Reads the blog's markdown: `resources/blog/{slug}.md` in the default
+ * language, `resources/blog/{locale}/{slug}.md` for a translation with the
+ * same slug.
+ *
+ * Each locale's glob is non-recursive, so a translation never leaks into the
+ * English list. A post renders in exactly the languages it has a file in;
+ * there is no fallback to another language's body. Whether a URL is a page at
+ * all (a merged post that now redirects is not) is the page registry's
+ * decision, which `BlogController` asks before it lists anything.
+ *
+ * Listing reads front matter only. The markdown body is rendered once, for
+ * the post being shown, through the shared `MarkdownRenderer`.
+ */
 class BlogService
 {
-    private const WORDS_PER_MINUTE = 200;
+    /**
+     * Posts parsed this request, by "{locale}/{slug}". Null for a missing file.
+     *
+     * @var array<string, Post|null>
+     */
+    private array $parsed = [];
+
+    /**
+     * Raw markdown bodies, by "{locale}/{slug}".
+     *
+     * @var array<string, string>
+     */
+    private array $bodies = [];
 
     public function __construct(
         private readonly string $blogDirectory,
+        private readonly MarkdownRenderer $renderer = new MarkdownRenderer(),
     ) {}
 
     /**
+     * Every post written in a locale, newest first.
+     *
      * @return list<Post>
      */
-    public function all(): array
+    public function all(string $locale): array
     {
-        if (! File::isDirectory($this->blogDirectory)) {
+        if (! Locales::isSupported($locale)) {
             return [];
         }
 
-        $files = File::glob($this->blogDirectory . '/*.md');
+        $posts = [];
 
-        $posts = array_map(fn(string $file): Post => $this->parseFile($file), $files);
+        foreach (File::glob($this->localeDirectory($locale) . '/*.md') ?: [] as $file) {
+            $post = $this->find(pathinfo($file, PATHINFO_FILENAME), $locale);
 
-        usort($posts, fn(Post $a, Post $b): int => $b->date->getTimestamp() <=> $a->date->getTimestamp());
+            if ($post !== null) {
+                $posts[] = $post;
+            }
+        }
 
-        return $posts;
+        return self::newestFirst($posts);
     }
 
-    public function find(string $slug): ?Post
+    /**
+     * What a locale's blog index lists, newest first: the posts written in
+     * that locale, plus every default-locale post that has no translation in
+     * it. On `/vi/blog` that is the English release posts, which the page
+     * labels as English and links at their English URLs.
+     *
+     * @return list<Post>
+     */
+    public function listing(string $locale): array
     {
-        if (! preg_match('/^[a-z0-9-]+$/', $slug)) {
+        $posts = $this->all($locale);
+
+        if ($locale === Locales::default()) {
+            return $posts;
+        }
+
+        $translated = array_map(static fn(Post $post): string => $post->slug, $posts);
+
+        foreach ($this->all(Locales::default()) as $original) {
+            if (! in_array($original->slug, $translated, true)) {
+                $posts[] = $original;
+            }
+        }
+
+        return self::newestFirst($posts);
+    }
+
+    /**
+     * One post in one language, or null when it was not written in it.
+     */
+    public function find(string $slug, string $locale): ?Post
+    {
+        if (! BlogPosts::isSlug($slug) || ! Locales::isSupported($locale)) {
             return null;
         }
 
-        $path = $this->blogDirectory . '/' . $slug . '.md';
+        $key = $locale . '/' . $slug;
+
+        if (! array_key_exists($key, $this->parsed)) {
+            $this->parsed[$key] = $this->parse($slug, $locale);
+        }
+
+        return $this->parsed[$key];
+    }
+
+    /**
+     * The languages a post is written in, default first.
+     *
+     * @return list<string>
+     */
+    public function locales(string $slug): array
+    {
+        return array_values(array_filter(
+            Locales::codes(),
+            fn(string $locale): bool => $this->find($slug, $locale) !== null,
+        ));
+    }
+
+    /**
+     * The post's body as HTML.
+     *
+     * - Headings without an explicit `{#id}` keep the `content-…` ids the
+     *   blog has always had, because links to `/blog/{slug}#content-…` are out
+     *   in the world and a fragment cannot be redirected.
+     * - Each h2 and h3 gets a `#` permalink after it, with an empty
+     *   `aria-label`. The page fills the label from the `a11y.permalink`
+     *   catalog entry in the post's language (`labelPermalinks()` in
+     *   resources/js/components/blog/article-body.ts), so the words live in
+     *   one place.
+     * - `<asset-slot id="…"></asset-slot>` blocks pass through for the page to
+     *   replace with `AssetSlot`.
+     */
+    public function html(Post $post): string
+    {
+        $body = $this->bodies[$post->locale . '/' . $post->slug] ?? '';
+
+        return $this->renderer->render($body, '', MarkdownRenderer::BLOG_ID_PREFIX);
+    }
+
+    private function parse(string $slug, string $locale): ?Post
+    {
+        $path = $this->localeDirectory($locale) . '/' . $slug . '.md';
 
         if (! File::isFile($path)) {
             return null;
         }
 
-        return $this->parseFile($path);
-    }
-
-    private function parseFile(string $path): Post
-    {
         $document = YamlFrontMatter::parseFile($path);
+        $release = $document->matter('release');
 
-        $slug = (string) ($document->matter('slug') ?? pathinfo($path, PATHINFO_FILENAME));
-        $body = $document->body();
-
-        $wordCount = $this->countWords($body);
+        $this->bodies[$locale . '/' . $slug] = $document->body();
 
         return new Post(
             slug: $slug,
+            locale: $locale,
             title: (string) $document->matter('title'),
             description: (string) $document->matter('description'),
             date: $this->parseDate($document->matter('date')),
-            author: (string) ($document->matter('author') ?? 'TablePro Team'),
             tags: $this->normalizeTags($document->matter('tags')),
-            body: $body,
-            bodyHtml: $this->renderMarkdown($body),
-            readingMinutes: max(1, (int) ceil($wordCount / self::WORDS_PER_MINUTE)),
-            wordCount: $wordCount,
-            ogPunchline: $document->matter('ogPunchline') ? (string) $document->matter('ogPunchline') : null,
+            release: is_string($release) && trim($release) !== '' ? trim($release) : null,
         );
+    }
+
+    private function localeDirectory(string $locale): string
+    {
+        return $locale === Locales::default() ? $this->blogDirectory : $this->blogDirectory . '/' . $locale;
     }
 
     private function parseDate(mixed $value): CarbonImmutable
     {
-        if ($value instanceof \DateTimeInterface) {
-            return CarbonImmutable::instance($value);
+        if ($value instanceof DateTimeInterface) {
+            return CarbonImmutable::instance($value)->startOfDay();
         }
 
         if (is_int($value)) {
-            return CarbonImmutable::createFromTimestamp($value);
+            return CarbonImmutable::createFromTimestamp($value)->startOfDay();
         }
 
-        return CarbonImmutable::parse((string) $value);
+        return CarbonImmutable::parse((string) $value)->startOfDay();
     }
 
     /**
-     * @param  mixed  $tags
      * @return list<string>
      */
     private function normalizeTags(mixed $tags): array
@@ -103,41 +200,21 @@ class BlogService
         }
 
         return array_values(array_filter(
-            array_map(static fn(mixed $t): ?string => is_string($t) ? trim($t) : null, $tags),
-            static fn(?string $t): bool => $t !== null && $t !== '',
+            array_map(static fn(mixed $tag): ?string => is_string($tag) ? trim($tag) : null, $tags),
+            static fn(?string $tag): bool => $tag !== null && $tag !== '',
         ));
     }
 
-    private function renderMarkdown(string $body): string
+    /**
+     * Newest first; posts from the same day by slug, so the order is stable.
+     *
+     * @param  list<Post>  $posts
+     * @return list<Post>
+     */
+    private static function newestFirst(array $posts): array
     {
-        $environment = new Environment([
-            'html_input' => 'allow',
-            'allow_unsafe_links' => false,
-            'heading_permalink' => [
-                'symbol' => '#',
-                'html_class' => 'heading-permalink',
-                'insert' => 'after',
-            ],
-        ]);
+        usort($posts, static fn(Post $a, Post $b): int => [$b->date->getTimestamp(), $a->slug] <=> [$a->date->getTimestamp(), $b->slug]);
 
-        $environment->addExtension(new CommonMarkCoreExtension());
-        $environment->addExtension(new GithubFlavoredMarkdownExtension());
-        $environment->addExtension(new TableExtension());
-        $environment->addExtension(new HeadingPermalinkExtension());
-        $environment->addExtension(new PhikiExtension(theme: [
-            'light' => Theme::GithubLightDefault,
-            'dark' => Theme::GithubDarkDefault,
-        ]));
-
-        $converter = new MarkdownConverter($environment);
-
-        return (string) $converter->convert($body);
-    }
-
-    private function countWords(string $body): int
-    {
-        $words = preg_split('/\s+/', strip_tags($body), -1, PREG_SPLIT_NO_EMPTY) ?: [];
-
-        return count($words);
+        return $posts;
     }
 }

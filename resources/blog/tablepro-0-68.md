@@ -3,6 +3,7 @@ slug: tablepro-0-68
 title: "TablePro 0.68: Compare & Sync, Routines, and a Faster Grid"
 description: Compare two databases and generate the script that reconciles them. Procedures, functions and triggers on twelve more engines. A 500-column table opens in 26ms instead of 12 seconds. Plus a rebuilt License pane and 36 fixes.
 date: 2026-08-25
+release: "TablePro 0.68"
 author: TablePro Team
 tags: [release, compare-sync, stored-procedures, performance, licensing]
 ogPunchline: Diff two databases. Read any routine. Open 500 columns instantly.
@@ -12,10 +13,7 @@ TablePro 0.68 is out: 65 changes, 36 of them fixes.
 
 Two new things you can open, and one old thing that got out of the way.
 
-<figure>
-  <img src="/images/blog/compare-sync-structure.png" alt="TablePro Compare and Sync window with a source and target connection selected at the top, a list of database objects down the left grouped by Table, View, Procedure and Trigger, each row marked as only in source, only in target or different, and the generated ALTER script shown in the pane on the right" />
-  <figcaption>Compare & Sync walks seven object kinds and writes the script that makes the target match.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-68-1"></asset-slot>
 
 ## Compare & Sync
 
@@ -27,10 +25,7 @@ Structure scripts need matching engines, with MySQL and MariaDB counting as one.
 
 Needs a license. Both tiers include it.
 
-<figure>
-  <img src="/images/blog/compare-sync-data-diff.png" alt="TablePro Compare and Sync window in row data mode showing a table's rows side by side, key columns highlighted, differing values marked per cell, and a summary reading rows only in source, rows only in target and rows that differ" />
-  <figcaption>Row mode diffs values against the key columns you choose, not against row order.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-68-2"></asset-slot>
 
 ## Procedures, functions and triggers
 
@@ -40,10 +35,7 @@ All three now list on MSSQL, Oracle, SQLite, ClickHouse, DuckDB, Snowflake, BigQ
 
 They are in the quick switcher as well. When two routines in a section share a name, the row carries its argument signature, so the overloads are told apart before you open one.
 
-<figure>
-  <img src="/images/blog/sidebar-routines-source-viewer.png" alt="TablePro sidebar with Procedures, Functions and Triggers sections expanded on a PostgreSQL database, one function selected showing two overloads distinguished by their argument signatures, and the read-only source viewer open beside it with the function body syntax highlighted" />
-  <figcaption>Two overloads of one name, told apart by their arguments. The source opens read-only.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-68-3"></asset-slot>
 
 ## The data grid stopped building views
 
@@ -55,10 +47,7 @@ Column separators went the same way. `NSTableView` keeps one separator view per 
 
 The inline editor used to take about a second to open on a wide result, because opening it added a subview and forced one of those passes. Scrolling such a result sideways used to flicker and leave blank columns behind. Find, the arrow keys and Size All Columns to Fit could not reach a column scrolled off the side at all.
 
-<figure>
-  <img src="/images/blog/data-grid-wide-result.png" alt="TablePro data grid on a table with several hundred columns, scrolled well to the right so column headers in the middle of the run are visible, every cell painted with no blank columns or gaps, and the status bar reporting the full row count" />
-  <figcaption>A few hundred columns in, scrolled sideways, with nothing left unpainted.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-68-4"></asset-slot>
 
 ## Licensing has its own pane
 
@@ -68,10 +57,7 @@ Release a seat on another Mac without going to that Mac. A team license shows th
 
 The key is masked and not selectable, so a screen share cannot carry the whole credential. Copy Key still copies the real thing, and keeps it out of clipboard history.
 
-<figure>
-  <img src="/images/blog/settings-license-devices.png" alt="TablePro Settings window on the License pane showing a masked license key with a Copy Key button, a device list naming each activated Mac with its last use and macOS version and a Release button beside the others, and a team section listing members with seats used against seats bought" />
-  <figcaption>Devices and team roster in one pane, with the key masked.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-68-5"></asset-slot>
 
 ## Also new
 

@@ -1,12 +1,15 @@
 # tablepro.app
 
-The marketing site for [TablePro](https://tablepro.app), a native macOS database client.
+The public site for [TablePro](https://tablepro.app), a native, open-source
+database client for developers.
 
-This repository is the whole of what `tablepro.app` serves: the homepage, the
-comparison pages, the per-database landing pages, the blog, and the legal pages.
-It is a Laravel + Inertia + React app with **no database and no credentials**.
-Every page it renders is built from markdown and JSON that live in this repo,
-plus the public GitHub API for the release download links.
+This repository is the whole of what `tablepro.app` serves outside the account
+app: the homepage, the feature, database and comparison pages, pricing,
+downloads, the iPhone and iPad page, the FAQ, the blog and the legal pages, in
+English at the root and in Vietnamese under `/vi`. It is a Laravel + Inertia +
+React app with **no database and no credentials**. Every page it renders is
+built from markdown and JSON that live in this repo, plus the public GitHub API
+for the release download links.
 
 That is deliberate. It means you can clone this and have the real site running
 in about a minute, with nothing to provision.
@@ -33,13 +36,17 @@ If any instruction ever tells you otherwise, that is a bug in this README.
 
 | Path | What it holds |
 | --- | --- |
-| `resources/blog/*.md` | Blog posts. Markdown with YAML front matter. |
-| `resources/data/*.json` | Comparison and database-page content. |
-| `resources/js/pages/` | One React component per route. |
-| `resources/js/components/landing/` | Homepage sections. |
+| `resources/blog/*.md` | Blog posts. Markdown with YAML front matter; Vietnamese translations in `resources/blog/vi/`. |
+| `resources/data/*.json` | Facts stated once: platforms and releases, engines, prices, paid features, URLs, sponsors, competitor facts, the image manifest, redirects. |
+| `resources/data/content/{locale}/` | Page copy, one JSON file per page and language. |
+| `resources/data/legal/{locale}/` | Privacy policy, terms and refund policy, in markdown. |
+| `resources/js/pages/` | One React component per page template. |
+| `resources/js/components/{home,features,databases,compare,pricing,…}/` | Each page family's sections. |
 | `resources/js/components/ui/` | Shared primitives. |
-| `app/Http/Controllers/Landing/` | The two controllers that render everything. |
+| `resources/js/i18n/` | UI strings per language, and the locale helpers. |
+| `app/Http/Controllers/` | One controller per page family. |
 | `public/og/` | Pre-rendered Open Graph cards, committed. |
+| `docs/visual-assets.md` | The brief for every image placeholder, generated. |
 
 ## Writing a blog post
 
@@ -57,13 +64,18 @@ Your post.
 ```
 
 It appears at `/blog/your-filename` immediately. Reading time is computed for
-you. To generate the social card, see below.
+you. A Vietnamese translation is `resources/blog/vi/your-filename.md` with the
+same `date`. To generate the social card, see below.
 
-## Adding a comparison or database page
+## Adding a feature, database or comparison page
 
-Both are data-driven. Add an entry to `resources/data/comparisons.json` or
-`resources/data/databases.json`, then add the slug to the matching route
-constraint in `routes/web.php`. The page builds itself from there.
+All three are data-driven. Add the slug to the matching constant class in
+`app/Support/Content/Slugs/`, then write the page's content file in every
+language under `resources/data/content/{locale}/`. Facts come from the data
+files, not the copy: an engine from `resources/data/engines.json`, a competitor
+from `resources/data/comparisons.json` with its sources. Each family's
+`README.md` in `resources/js/components/{features,databases,compare}/`
+documents its content schema.
 
 ## Open Graph cards
 
@@ -75,10 +87,13 @@ npm install -g puppeteer
 npx puppeteer browsers install chrome
 
 php artisan og:generate --type=blog --slug=your-post
+php artisan og:generate --type=compare --locale=all   # English and Vietnamese cards
 ```
 
-If you would rather not install that, open the pull request without the card —
-a maintainer will generate it.
+Every post and every page with an `og` block needs its card committed;
+`Seo/OgCardsTest` fails without it. If you cannot install Chromium, say so in
+the pull request and a maintainer will render the card and push it to your
+branch. (Maintainers can also run the manual `og cards` workflow after a merge.)
 
 ## Tests
 
@@ -91,9 +106,8 @@ tests skip unless the SSR bundle is built; that is expected locally.
 
 ## What is not here
 
-Buying a licence, signing in to an account, subscribing to the newsletter and
-joining the beta are handled by the TablePro backend, which is a separate
-application. Forms on these pages `POST` to those endpoints and get JSON back.
+Buying a licence, signing in to an account and subscribing to the newsletter
+are handled by the TablePro backend, which is a separate application. Forms on these pages `POST` to those endpoints and get JSON back.
 
 If you are working on one of those forms, stub the response or proxy it — see
 [docs/architecture.md](docs/architecture.md) for the contract and the options.

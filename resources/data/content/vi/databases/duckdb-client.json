@@ -1,0 +1,110 @@
+{
+    "seo": {
+        "title": "Client DuckDB cho {devices}",
+        "description": "Mở file DuckDB, query file Parquet, CSV và JSON ngay tại chỗ, làm việc in-memory, và sao lưu ra file DuckDB hoặc thư mục Parquet mà không phải cài thêm gì."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client DuckDB"
+    },
+    "engine": "duckdb",
+    "breadcrumb": "DuckDB",
+    "header": {
+        "title": "Client DuckDB cho {devices}",
+        "lead": "Mở một file cơ sở dữ liệu DuckDB, hoặc trỏ tới một file Parquet, CSV hay JSON và query nó bằng SQL ngay tại chỗ. DuckDB chạy bên trong driver, nên không có server nào chạy trừ khi bạn kết nối tới một server."
+    },
+    "asset": "mac-db-duckdb-parquet",
+    "links": {
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Mở file",
+            "paragraphs": [
+                "Chọn một file <code>.duckdb</code> hoặc <code>.ddb</code>, hoặc nhập đường dẫn tới một file chưa tồn tại để tạo mới. Nhập <code>:memory:</code> nếu bạn cần một cơ sở dữ liệu chỉ tồn tại trong phiên làm việc. File được mở như DuckDB dù tên file là gì, vì DuckDB đánh dấu file của mình ngay ở những byte đầu tiên.",
+                "Chọn một file <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> hoặc <code>.ndjson</code>, file sẽ mở thành các view chỉ đọc trong một cơ sở dữ liệu in-memory, một view tên <code>file</code> và một view mang tên của file. File trên đĩa được giữ nguyên từng byte; muốn đổi nội dung, hãy tạo một table từ file đó trong một cơ sở dữ liệu <code>.duckdb</code>.",
+                "Nhấp đúp vào file <code>.duckdb</code> trong Finder để mở bằng TablePro. File Parquet có TablePro trong mục Mở bằng (Open With), và file Parquet chọn bằng <ui>Tệp > Mở tệp (File > Open File)</ui> sẽ mở thành connection DuckDB thay vì mở trong <dataFiles>cửa sổ Data Files</dataFiles>.",
+                "Chế độ <ui>Từ xa (Quack, thử nghiệm)</ui> (Remote (Quack, experimental)) kết nối tới một server DuckDB khởi chạy bằng <code>quack_serve</code> và gắn server đó dưới một alias, như <code>remotedb</code>; bạn gọi table của nó bằng tên qua alias đó. Lần kết nối từ xa đầu tiên sẽ tải extension <code>quack</code> từ DuckDB."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query và chỉnh sửa",
+            "paragraphs": [
+                "Connection nào cũng đọc được file ngay bằng SQL, như <code>SELECT * FROM 'data.csv'</code> hay <code>read_parquet('events.parquet')</code>. <code>ATTACH</code> thêm một file DuckDB khác và nó xuất hiện trong sidebar như cơ sở dữ liệu thứ hai, còn <code>Cmd+K</code> chuyển qua lại giữa chúng mà không cần kết nối lại. DuckDB không giữ file đã attach sau khi bạn kết nối lại.",
+                "<explain>EXPLAIN</explain> được vẽ thành sơ đồ execution plan. Các dòng trong table được sửa với <editing>Preview SQL</editing> hiển thị trước từng câu lệnh, còn view đọc từ file dữ liệu vẫn chỉ đọc."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Cấu trúc",
+            "paragraphs": [
+                "<structure>Tab Structure</structure> sửa table và hiển thị DDL trước khi chạy. Ở đây mỗi cơ sở dữ liệu là một file, nên ứng dụng không tạo hay xóa cơ sở dữ liệu; <code>ATTACH</code> là cách để mở thêm file thứ hai."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Chia sẻ file và sao lưu",
+            "paragraphs": [
+                "Khi TablePro đang giữ một file, CLI <code>duckdb</code>, một notebook hay một lần chạy dbt đều không mở được file đó. Hãy đặt <ui>Release the File Lock After</ui> để trả file lại sau một số phút không hoạt động và lấy lại ở query tiếp theo, hoặc bật <ui>Open the File Read-Only</ui> để nhiều tiến trình cùng đọc. <ui>Release File Lock</ui> trong menu Cơ sở dữ liệu (Database) trả file ngay lập tức mà vẫn giữ các tab của bạn. Việc trả file bị từ chối, kèm lý do, khi session còn một transaction đang mở, một temporary table, một cơ sở dữ liệu đã attach hoặc một setting đã đổi.",
+                "<dashboard>Server Dashboard</dashboard> hiển thị dung lượng cơ sở dữ liệu, kích thước block, tổng số block, giới hạn bộ nhớ và số thread.",
+                "<backup>Backup Dump</backup> không cần cài gì, vì {dumpTool} tự ghi bản sao lưu qua connection đang mở. Hãy chọn một file <code>.duckdb</code> nếu sau này muốn khôi phục vào TablePro, hoặc một thư mục gồm <code>schema.sql</code>, <code>load.sql</code> và mỗi table một file Parquet, mà pandas, Spark và BigQuery đọc trực tiếp được. Restore Dump dừng ở đối tượng đầu tiên có tên đã tồn tại."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "<importData>Import</importData> nhận file {importFormats}, còn khi export, table và kết quả query được ghi ra {exportFormats}. <export>Plugin Parquet export</export>, cài từ Cài đặt > Plugin (Settings > Plugins), bổ sung định dạng Parquet, mỗi table một file. Xem thêm về <files>làm việc với file như cơ sở dữ liệu</files>."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone và iPad",
+            "paragraphs": [
+                "Trên iPhone và iPad, DuckDB có sẵn trong ứng dụng. File bạn chọn trong ứng dụng Tệp được mở ngay tại chỗ chứ không bị sao chép, hoặc bạn chọn Cơ sở dữ liệu trong bộ nhớ (In-Memory Database) để có một cơ sở dữ liệu nháp. Bạn xem table dưới dạng thẻ và chạy SQL trong tab Truy vấn (Query). Kết nối Từ xa (Quack) chỉ có trên Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "version",
+            "question": "TablePro dùng phiên bản DuckDB nào?",
+            "answer": "DuckDB {engineVersion}, được biên dịch sẵn trong driver. Phiên bản này không phụ thuộc vào bản DuckDB nào bạn đã cài trên máy."
+        },
+        {
+            "id": "csv-or-data-files",
+            "question": "Nên mở file CSV bằng DuckDB hay trong cửa sổ Data Files?",
+            "answer": "Hãy mở trong <dataFiles>cửa sổ Data Files</dataFiles> khi bạn muốn xem qua, làm sạch rồi lưu lại file. Hãy mở bằng DuckDB khi cần join file đó với các file hay table khác bằng SQL; ở đó file chỉ đọc."
+        }
+    ],
+    "related": [
+        {
+            "label": "Import, export và file dữ liệu",
+            "href": "/features/import-export#files"
+        },
+        {
+            "label": "SQLite, cho file cơ sở dữ liệu của ứng dụng",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "ClickHouse, cho server phân tích",
+            "href": "/clickhouse-client"
+        },
+        {
+            "label": "TablePro cho iPhone và iPad",
+            "href": "/ios"
+        }
+    ]
+}

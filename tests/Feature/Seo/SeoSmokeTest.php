@@ -1,84 +1,79 @@
 <?php
 
+use App\Support\Localization\Locales;
+use App\Support\Seo\PageRegistry;
+use Illuminate\Support\Facades\Http;
+use Inertia\Testing\AssertableInertia;
+use PHPUnit\Framework\Assert;
 
-use function Pest\Laravel\withoutVite;
-
+/**
+ * Every page the registry lists answers, in exactly the locales it lists.
+ *
+ * The registry is what the sitemap, hreflang and the language switcher
+ * advertise, so a page it lists that does not render is a broken link in all
+ * three at once. And a locale it does not list must not render either: that
+ * is how a Vietnamese URL would end up wrapping English copy.
+ */
 beforeEach(function (): void {
-    withoutVite();
+    Http::fake(['api.github.com/*' => Http::response([], 200)]);
 });
 
-function getOnWebDomain(string $path)
-{
-    return test()->get('http://' . config('app.web_domain') . $path);
-}
+it('renders every registry page in each locale it renders in', function (): void {
+    $checked = 0;
 
-dataset('comparisonSlugs', function (): array {
-    $entries = json_decode(file_get_contents(__DIR__ . '/../../../resources/data/comparisons.json'), true);
+    foreach (app(PageRegistry::class)->all() as $entry) {
+        foreach ($entry->renderLocales as $locale) {
+            $path = $entry->url($locale, false);
+            $response = $this->get($path);
 
-    return array_map(static fn(array $entry): array => [$entry['slug']], $entries);
+            Assert::assertSame(200, $response->getStatusCode(), "{$path} does not render");
+
+            $response->assertInertia(fn(AssertableInertia $page) => $page
+                ->where('locale', $locale)
+                ->where('seo.robots', $entry->robots($locale)));
+
+            $component = $response->viewData('page')['component'] ?? null;
+
+            Assert::assertIsString($component, "{$path} names no component");
+            Assert::assertNotSame('Error', $component, "{$path} renders the error page");
+            Assert::assertFileExists(resource_path("js/pages/{$component}.tsx"), "{$path} renders a component that does not exist");
+            Assert::assertStringContainsString('<html lang="' . $locale . '"', (string) $response->getContent(), "{$path} has the wrong document language");
+
+            $checked++;
+        }
+    }
+
+    expect($checked)->toBeGreaterThan(0);
 });
 
-dataset('databaseSlugs', function (): array {
-    $entries = json_decode(file_get_contents(__DIR__ . '/../../../resources/data/databases.json'), true);
+it('answers 404 in every locale a registry page does not render in', function (): void {
+    $checked = 0;
 
-    return array_map(static fn(array $entry): array => [$entry['slug']], $entries);
+    foreach (app(PageRegistry::class)->all() as $entry) {
+        foreach (array_diff(Locales::codes(), $entry->renderLocales) as $locale) {
+            $path = $entry->url($locale, false);
+            $response = $this->get($path);
+
+            Assert::assertSame(404, $response->getStatusCode(), "{$path} answers although the page does not render in {$locale}");
+
+            $response->assertInertia(fn(AssertableInertia $page) => $page
+                ->component('Error')
+                ->where('locale', $locale)
+                ->where('seo.robots', 'noindex, follow'));
+
+            $checked++;
+        }
+    }
+
+    expect($checked)->toBeGreaterThan(0);
 });
 
-it('serves a Compare Inertia response for slug [%s]', function (string $slug): void {
-    getOnWebDomain('/compare/' . $slug)
-        ->assertOk()
-        ->assertInertia(
-            fn($page) => $page->component('Compare')
-                ->where('slug', $slug)
-                ->has('downloadUrls'),
-        );
-})->with('comparisonSlugs');
-
-it('serves a DatabaseClient Inertia response for slug [%s]', function (string $slug): void {
-    getOnWebDomain('/' . $slug)
-        ->assertOk()
-        ->assertInertia(
-            fn($page) => $page->component('DatabaseClient')
-                ->where('slug', $slug)
-                ->has('downloadUrls'),
-        );
-})->with('databaseSlugs');
-
-it('serves the download, faq, privacy, terms, and refund-policy landing pages', function (string $url, string $component): void {
-    getOnWebDomain($url)
-        ->assertOk()
-        ->assertInertia(fn($page) => $page->component($component));
+it('answers 404 for a slug outside the route constraints', function (string $path): void {
+    $this->get($path)->assertNotFound();
 })->with([
-    ['/download', 'Download'],
-    ['/faq', 'Faq'],
-    ['/privacy', 'Privacy'],
-    ['/terms', 'Terms'],
-    ['/refund-policy', 'RefundPolicy'],
+    '/compare/unknown-tool',
+    '/some-bogus-slug',
+    '/features/not-a-feature',
+    '/vi/compare/unknown-tool',
+    '/blog/not-a-post',
 ]);
-
-
-it('keeps the comparison data shape stable with required SEO fields', function (): void {
-    $entries = json_decode(file_get_contents(__DIR__ . '/../../../resources/data/comparisons.json'), true);
-
-    expect($entries)->toHaveCount(11);
-
-    foreach ($entries as $entry) {
-        expect($entry)
-            ->toHaveKeys(['slug', 'name', 'tagline', 'description', 'verdict', 'keywords']);
-        expect($entry['description'])->toBeString()->not->toBeEmpty();
-        expect($entry['verdict'])->toBeString()->not->toBeEmpty();
-    }
-});
-
-
-it('keeps the database data shape stable with required SEO fields', function (): void {
-    $entries = json_decode(file_get_contents(__DIR__ . '/../../../resources/data/databases.json'), true);
-
-    expect($entries)->toHaveCount(26);
-
-    foreach ($entries as $entry) {
-        expect($entry)
-            ->toHaveKeys(['slug', 'name', 'tagline', 'description', 'icon', 'keywords']);
-        expect($entry['description'])->toBeString()->not->toBeEmpty();
-    }
-});

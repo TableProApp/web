@@ -1,0 +1,396 @@
+/* Shared with TableProApp/web and TableProApp/license at resources/css/tokens.css. Change both in the same release. See docs/shared-files.md. */
+
+/*
+ * The visual contract both apps paint with: colour, theme, type roles, radii,
+ * motion, focus and reduced motion. Values come from the design system
+ * (docs/rebuild/design/design-system.md §2–§4 and §7). Every colour pair it
+ * names is computed in both themes there, and the contrast test parses the two
+ * blocks below, so a value changes here and in that table together.
+ *
+ * Neutrals carry no hue, so a Mac screenshot reads true on them. The brand hue
+ * is 55 in every brand token; only lightness and chroma move.
+ *
+ * Tokens are opaque except `--overlay`, which carries no text, so every ratio
+ * is one defined number rather than whatever sits behind a translucent rule.
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-raised: var(--raised);
+  --color-segment-selected: var(--segment-selected);
+  --color-control-disabled: var(--control-disabled);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-indicator: var(--accent-indicator);
+  --color-focus: var(--focus);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-danger-fill: var(--danger-fill);
+  --color-danger-fill-hover: var(--danger-fill-hover);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-overlay: var(--overlay);
+
+  --shadow-overlay: var(--overlay-shadow);
+}
+
+/* Radii: chips, controls, panels. No pills. */
+@theme {
+  --radius-chip: 6px;
+  --radius-control: 8px;
+  --radius-panel: 12px;
+}
+
+/* Light, the default for anyone who has not chosen. */
+:root {
+  --background: oklch(1 0 0);
+  --surface: oklch(0.975 0 0);
+  --surface-strong: oklch(0.95 0 0);
+  --raised: oklch(1 0 0);
+  --rule: oklch(0.91 0 0);
+  --rule-strong: oklch(0.62 0 0);
+  --foreground: oklch(0.145 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.72 0.178 55);
+  --accent-hover: oklch(0.75 0.172 55);
+  --accent-active: oklch(0.68 0.167 55);
+  --accent-foreground: oklch(0.16 0.039 55);
+  --accent-text: oklch(0.52 0.125 55);
+  --accent-subtle: oklch(0.965 0.02 55);
+  --accent-indicator: oklch(0.62 0.152 55);
+  --focus: var(--accent-text);
+  --success: oklch(0.5 0.13 150);
+  --warning: oklch(0.5 0.1 70);
+  --danger: oklch(0.52 0.2 27);
+  --danger-fill: oklch(0.52 0.2 27);
+  --danger-fill-hover: oklch(0.48 0.19 27);
+  --danger-foreground: oklch(1 0 0);
+  --overlay: oklch(0 0 0 / 0.45);
+  --overlay-shadow: 0 1px 2px oklch(0 0 0 / 0.06), 0 8px 24px oklch(0 0 0 / 0.1);
+
+  --code-background: var(--raised);
+  --code-border: var(--rule);
+  --inline-code-background: var(--surface);
+
+  /* The checked segment rises out of its track: white on light grey. */
+  --segment-selected: var(--raised);
+  /* A disabled control sinks: the track grey under a dimmed glyph. */
+  --control-disabled: var(--surface-strong);
+
+  color-scheme: light;
+}
+
+/*
+ * Dark: elevation reads as lighter surfaces, background < surface < raised <
+ * surface-strong. The four accent fills and the danger fills are theme-invariant.
+ */
+.dark {
+  --background: oklch(0.18 0 0);
+  --surface: oklch(0.21 0 0);
+  --surface-strong: oklch(0.25 0 0);
+  --raised: oklch(0.235 0 0);
+  --rule: oklch(0.3 0 0);
+  --rule-strong: oklch(0.55 0 0);
+  --foreground: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.72 0 0);
+  --accent: oklch(0.72 0.178 55);
+  --accent-hover: oklch(0.75 0.172 55);
+  --accent-active: oklch(0.68 0.167 55);
+  --accent-foreground: oklch(0.16 0.039 55);
+  --accent-text: oklch(0.8 0.13 55);
+  --accent-subtle: oklch(0.26 0.04 55);
+  --accent-indicator: oklch(0.72 0.178 55);
+  --focus: var(--accent-text);
+  --success: oklch(0.78 0.15 150);
+  --warning: oklch(0.8 0.14 80);
+  --danger: oklch(0.72 0.16 25);
+  --danger-fill: oklch(0.52 0.2 27);
+  --danger-fill-hover: oklch(0.48 0.19 27);
+  --danger-foreground: oklch(1 0 0);
+  --overlay: oklch(0 0 0 / 0.45);
+  --overlay-shadow: 0 1px 2px oklch(0 0 0 / 0.5), 0 8px 24px oklch(0 0 0 / 0.5), 0 0 0 1px var(--rule);
+
+  /*
+   * In dark, `--raised` (0.235) is darker than the `--surface-strong` track
+   * (0.25), so a raised segment read as pressed in. The checked segment takes
+   * a step above the track instead (1.36:1 against it), and a disabled control
+   * sinks to the page ground rather than matching an enabled one.
+   */
+  --segment-selected: oklch(0.34 0 0);
+  --control-disabled: var(--background);
+
+  color-scheme: dark;
+}
+
+/*
+ * Line heights per language.
+ *
+ * `@theme inline` copies token values into each utility, so a `:lang(vi)`
+ * override of a `--text-*--line-height` token would change nothing. The type
+ * roles below read these variables instead. Vietnamese stacks a tone mark over
+ * a vowel mark: a stacked capital under a descender needs 1.303em, so display,
+ * h1 and h2 get 1.3 in Vietnamese. `:lang()` matches through inheritance, so an
+ * English quotation marked `lang="en"` on a Vietnamese page gets English
+ * metrics back. This block must stay after `:root`.
+ */
+:root,
+:lang(en) {
+  --lh-display: 1.1;
+  --lh-h1: 1.15;
+  --lh-h2: 1.2;
+  --lh-h3: 1.35;
+  --lh-lead: 1.55;
+  --lh-body: 1.6;
+  --lh-small: 1.55;
+  --lh-caption: 1.45;
+}
+
+:lang(vi) {
+  --lh-display: 1.3;
+  --lh-h1: 1.3;
+  --lh-h2: 1.3;
+  --lh-h3: 1.4;
+  --lh-lead: 1.6;
+  --lh-body: 1.6;
+  --lh-small: 1.6;
+  --lh-caption: 1.5;
+}
+
+/*
+ * Type roles. Sizes step up at `md` (768px) and `xl` (1280px). Tracking
+ * follows Inter's dynamic-metrics curve. Nothing is smaller than 12px, and no
+ * role is uppercase or letter-spaced, in either language.
+ */
+@utility type-display {
+  font-size: 2.25rem;
+  line-height: var(--lh-display);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+
+  @variant md {
+    font-size: 3rem;
+  }
+
+  @variant xl {
+    font-size: 3.5rem;
+  }
+}
+
+@utility type-h1 {
+  font-size: 1.875rem;
+  line-height: var(--lh-h1);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+
+  @variant md {
+    font-size: 2.25rem;
+  }
+
+  @variant xl {
+    font-size: 2.5rem;
+  }
+}
+
+@utility type-h2 {
+  font-size: 1.5rem;
+  line-height: var(--lh-h2);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+
+  @variant md {
+    font-size: 1.75rem;
+  }
+
+  @variant xl {
+    font-size: 1.875rem;
+  }
+}
+
+@utility type-h3 {
+  font-size: 1.125rem;
+  line-height: var(--lh-h3);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+
+  @variant md {
+    font-size: 1.25rem;
+  }
+}
+
+@utility type-lead {
+  font-size: 1.125rem;
+  line-height: var(--lh-lead);
+  font-weight: 400;
+  letter-spacing: -0.014em;
+  text-wrap: pretty;
+
+  @variant md {
+    font-size: 1.25rem;
+  }
+}
+
+@utility type-body {
+  font-size: 1rem;
+  line-height: var(--lh-body);
+  font-weight: 400;
+  letter-spacing: -0.011em;
+}
+
+@utility type-small {
+  font-size: 0.875rem;
+  line-height: var(--lh-small);
+  font-weight: 400;
+  letter-spacing: -0.006em;
+}
+
+@utility type-caption {
+  font-size: 0.8125rem;
+  line-height: var(--lh-caption);
+  font-weight: 400;
+  letter-spacing: -0.003em;
+}
+
+@utility type-label {
+  font-size: 0.875rem;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+}
+
+@utility type-mono {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@layer base {
+  /*
+   * Decorative borders default to the hairline, so a bare `border` draws
+   * `--rule` rather than `currentColor`. Control outlines ask for
+   * `--rule-strong` by name.
+   */
+  *,
+  ::before,
+  ::after,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--rule);
+  }
+
+  /*
+   * One ring for every focusable thing, 4.94–9.70:1 against every ground.
+   * Never removed and never replaced by a box-shadow ring. A programmatic focus
+   * target (`tabindex="-1"`, such as `<main>` after the skip link) is not a
+   * control and draws none.
+   */
+  :where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+/*
+ * Forced colours (Windows contrast themes): the ring and the state bars take
+ * the system highlight, and nothing relies on a background alone. Filled
+ * buttons and badges keep a transparent 1px border, which the system paints.
+ */
+@media (forced-colors: active) {
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+/*
+ * The theme control (components/shared/theme-control.tsx) renders all three
+ * icons and all three options. Which icon shows, and which option looks
+ * selected, follows `html[data-theme-choice]`, which the head script sets
+ * before paint. So the control is right on the first frame without the server
+ * knowing the theme, and stays right after `applyTheme()` changes it.
+ */
+.theme-choice-icon {
+  display: none;
+}
+
+:root:not([data-theme-choice]) .theme-choice-icon[data-choice="light"],
+[data-theme-choice="light"] .theme-choice-icon[data-choice="light"],
+[data-theme-choice="dark"] .theme-choice-icon[data-choice="dark"],
+[data-theme-choice="system"] .theme-choice-icon[data-choice="system"] {
+  display: block;
+}
+
+/* The selected segment: `--segment-selected` with a hairline and the text colour, on the `--surface-strong` track. */
+:root:not([data-theme-choice]) .theme-segment[data-theme-option="light"],
+[data-theme-choice="light"] .theme-segment[data-theme-option="light"],
+[data-theme-choice="dark"] .theme-segment[data-theme-option="dark"],
+[data-theme-choice="system"] .theme-segment[data-theme-option="system"] {
+  background-color: var(--segment-selected);
+  border-color: var(--rule);
+  color: var(--foreground);
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.06);
+}
+
+/* Light only: a shadow does not separate layers on a dark ground. */
+.dark .theme-segment[data-theme-option] {
+  box-shadow: none;
+}
+
+/* Motion confirms what the reader did; it never performs on its own. */
+@theme {
+  --ease-feedback: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-panel: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-tap: 120ms;
+  --dur-state: 200ms;
+  --dur-panel: 240ms;
+}
+
+/*
+ * Reduced motion collapses all of it. `animation-delay`, `animation-timeline`
+ * and `transition-delay` are here because collapsing a duration leaves a delay
+ * holding its start state, and a progress-based timeline ignores duration
+ * entirely. Anything that loops needs its own branch: an iteration count of 1
+ * freezes a loop mid-transform rather than stopping it.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-timeline: none !important;
+    transition-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* One frame without transitions while the theme changes (lib/theme.ts). */
+.theme-switching,
+.theme-switching * {
+  transition: none !important;
+}

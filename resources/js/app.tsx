@@ -1,5 +1,6 @@
 import { createInertiaApp } from '@inertiajs/react';
 import { hydrateRoot } from 'react-dom/client';
+import { installAnchorGlide } from '@/lib/anchor-glide';
 import { captureAttribution } from '@/lib/attribution';
 
 /*
@@ -8,6 +9,9 @@ import { captureAttribution } from '@/lib/attribution';
  * navigation, and a campaign tag read after that has already been stripped.
  */
 captureAttribution();
+
+// Smooth scrolling for same-page anchors only; Inertia's scroll reset after a visit stays instant.
+installAnchorGlide(window);
 
 createInertiaApp({
     setup({ el, App, props }) {

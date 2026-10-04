@@ -1,290 +1,89 @@
 import { usePage } from '@inertiajs/react';
-import LandingLayout from '@/layouts/landing-layout';
-import Header from '@/components/landing/header';
-import Hero from '@/components/landing/hero';
-import SpecStrip from '@/components/landing/spec-strip';
-import DatabaseGrid from '@/components/landing/database-grid';
-import Workbench from '@/components/landing/workbench';
-import Guardrails from '@/components/landing/guardrails';
-import DownloadRail from '@/components/landing/download-rail';
-import SwitchFrom from '@/components/landing/switch-from';
-import Pricing from '@/components/landing/pricing';
-import FooterCTA from '@/components/landing/footer-cta';
-import Footer from '@/components/landing/footer';
+import AiSection from '@/components/home/ai-section';
+import { availability as availabilityFor } from '@/components/home/availability';
+import DatabasesSection from '@/components/home/databases-section';
+import Hero from '@/components/home/hero';
+import OpenSourceSection from '@/components/home/open-source-section';
+import PlatformsSection from '@/components/home/platforms-section';
+import SafetySection from '@/components/home/safety-section';
+import SponsorsSection from '@/components/home/sponsors-section';
+import { homeJsonLd } from '@/components/home/structured-data';
+import SwitchSection from '@/components/home/switch-section';
+import type { HomePageProps } from '@/components/home/types';
+import WorkflowsSection from '@/components/home/workflows-section';
+import PricingSection from '@/components/pricing/pricing-section';
 import SEOHead from '@/components/seo/seo-head';
-import { buildOrganizationJsonLd } from '@/lib/structured-data';
-import { GITHUB_REPO_URL } from '@/data/links';
-import { STARTER_PRICE, TEAM_SEAT_PRICE } from '@/data/pricing';
-import { ENGINE_COUNT } from '@/data/engines';
-
-interface LatestRelease {
-    version: string | null;
-    publishedAt: string | null;
-    countLast30Days: number | null;
-}
-
-interface DownloadStats {
-    /** DMG downloads across the app releases GitHub returned. Null when the API is unreachable. */
-    total: number | null;
-    releases: number;
-}
-
-interface Props {
-    downloadUrls: { arm64: string; x86_64: string };
-    githubStars?: number | null;
-    latestRelease?: LatestRelease | null;
-    downloads?: DownloadStats | null;
-    paymentProvider: string;
-    teamMinSeats: number;
-}
+import { LOCALES, useI18n } from '@/i18n';
+import { examplesText } from '@/lib/data/paid-features';
+import LandingLayout from '@/layouts/landing-layout';
 
 /**
- * Keyword-first, like every other template on this site.
+ * `/` and `/vi` (sitemap §A.1, §D; positioning; design-system §8.1).
  *
- * The old title led with the brand and spent its tail on "for 25 Databases",
- * which nobody types, while omitting `free` and `open source` — the two
- * modifiers TablePro owns outright against TablePlus, DataGrip and Navicat.
- * `Compare.tsx` is already `${name} Alternative for Mac - Free & Native |
- * TablePro` and `DatabaseClient.tsx` is `${name} GUI Client for Mac - Free &
- * Native | TablePro`; the homepage was the only page doing it backwards.
+ * Ten sections in the order a first-time reader asks their questions: what it
+ * is and where it runs, whether it supports their database, who sponsors it
+ * (third, by the owner's decision), what they would do with it, whether it is
+ * safe on production, what the AI can touch, how the Mac and iPhone apps
+ * relate, how to bring connections over, what costs money, and where the code
+ * is. Section ids are English in every language, and the older ids
+ * (`#mcp`, `#mobile`, `#compare`, `#license`) are empty anchors inside the
+ * sections that replaced them. `#pricing` is where shipped Mac builds land
+ * with `/?ref=…#pricing`.
  *
- * 52 characters, against a desktop cutoff around 580px.
+ * Copy is `content/{locale}/home.json`. Every platform, requirement, engine,
+ * format, plan and price comes from resources/data, so nothing here is typed
+ * twice and nothing is counted by hand.
  */
-const HOME_TITLE = 'TablePro - Free, Open Source Database Client for Mac';
+/** Positioning §5: a homepage title longer than this falls back to the "for developers" form. */
+const TITLE_LIMIT = 60;
 
-/**
- * 144 characters. The old one was 156 and truncated mid-word at "…Free and open
- * sour" on desktop; on mobile the whole snippet became five database names that
- * /mysql-client and its 25 siblings already own with their own descriptions.
- *
- * Sentence one is byte-identical to the hero's opening sentence, so the snippet
- * and the landing experience say the same thing — and it is the sentence an
- * answer engine lifts for "what is TablePro".
- */
-const HOME_DESCRIPTION =
-    `TablePro is a free, open source database client for macOS. ${ENGINE_COUNT} engines through native drivers, in a 20 MB Swift app that opens in under a second.`;
+export default function Home({ content, engines, iosEngines, checkout }: HomePageProps) {
+    const { canonicalBaseUrl } = usePage().props;
+    const { locale, m, fmt, path } = useI18n();
 
-const FEATURE_LIST = [
-    `${ENGINE_COUNT} databases through native drivers`,
-    'SQL editor with tree-sitter highlighting and Vim mode',
-    'Editable data grid with deferred commit',
-    '13 AI providers, bring your own key',
-    'Built-in MCP server with 16 tools',
-    'Six-level Safe Mode with Touch ID',
-    'Built-in SSH tunnels with jump hosts',
-    'ER diagrams and EXPLAIN visualization',
-    'Users and roles management',
-    /*
-     * The three paid features that are product rather than plumbing. They were
-     * absent from this list for as long as it shipped, so the SoftwareApplication
-     * node described a strictly smaller app than the one on the download page.
-     */
-    'Compare & Sync between two databases',
-    'Query Insights over local query history',
-    'Charts from query results',
-    'Data Rewind for rows already saved',
-    'iCloud Sync with an iPhone and iPad app',
-];
-
-function buildAppJsonLd(
-    canonicalBaseUrl: string,
-    teamMinSeats: number,
-    latestRelease?: LatestRelease | null,
-    githubStars?: number | null,
-): object {
-    const base = canonicalBaseUrl.replace(/\/$/, '');
-
-    const offer = (name: string, price: number, seatMin?: number) => ({
-        '@type': 'Offer',
-        name,
-        price: String(price),
-        priceCurrency: 'USD',
-        url: `${base}/#pricing`,
-        availability: 'https://schema.org/InStock',
-        ...(seatMin
-            ? { eligibleQuantity: { '@type': 'QuantitativeValue', minValue: seatMin, unitText: 'seat' } }
-            : {}),
-    });
-
-    const data: Record<string, unknown> = {
-        '@context': 'https://schema.org',
-        '@type': 'SoftwareApplication',
-        '@id': `${base}/#app`,
-        name: 'TablePro',
-        alternateName: 'TablePro Database Client',
-        applicationCategory: 'DeveloperApplication',
-        applicationSubCategory: 'Database Client',
-        /*
-         * `macOS`, not `macOS 14+, iOS 18+`. One node cannot stand for two
-         * applications, and this one's downloadUrl is a Mac-only page. The
-         * floor moves to softwareRequirements, where it belongs.
-         */
-        operatingSystem: 'macOS',
-        softwareRequirements: 'macOS 14.0 or later, Apple Silicon or Intel',
-        description: HOME_DESCRIPTION,
-        disambiguatingDescription:
-            `TablePro is a native macOS GUI client for ${ENGINE_COUNT} database engines, written in Swift rather than Electron or Java, and released as open source under AGPLv3.`,
-        // Every URL from canonicalBaseUrl. Four of these used to hardcode the
-        // production origin while `screenshot` did not, so one object carried
-        // two origins on any non-production host.
-        url: base,
-        downloadUrl: `${base}/download`,
-        installUrl: `${base}/download`,
-        fileSize: '20 MB',
-        license: `${GITHUB_REPO_URL}/blob/main/LICENSE`,
-        isAccessibleForFree: true,
-        screenshot: `${base}/images/app-light.png`,
-        featureList: FEATURE_LIST,
-        publisher: { '@id': `${base}/#organization` },
-        author: { '@id': `${base}/#organization` },
-        /*
-         * Seven real price points, enumerated, instead of `offerCount: '4'`
-         * against a highPrice with no indication that Team is priced per seat.
-         */
-        offers: {
-            '@type': 'AggregateOffer',
-            priceCurrency: 'USD',
-            lowPrice: '0',
-            highPrice: String(STARTER_PRICE.lifetime),
-            offerCount: 7,
-            url: `${base}/#pricing`,
-            offers: [
-                {
-                    '@type': 'Offer',
-                    name: 'Free',
-                    price: '0',
-                    priceCurrency: 'USD',
-                    url: `${base}/download`,
-                    availability: 'https://schema.org/InStock',
-                },
-                offer('Starter, monthly', STARTER_PRICE.monthly),
-                offer('Starter, yearly', STARTER_PRICE.yearly),
-                offer('Starter, lifetime', STARTER_PRICE.lifetime),
-                offer('Team, per seat, monthly', TEAM_SEAT_PRICE.monthly, teamMinSeats),
-                offer('Team, per seat, yearly', TEAM_SEAT_PRICE.yearly, teamMinSeats),
-                offer('Team, per seat, lifetime', TEAM_SEAT_PRICE.lifetime, teamMinSeats),
-            ],
-        },
-    };
-
-    if (latestRelease?.version) {
-        data.softwareVersion = latestRelease.version;
-    }
-
-    /*
-     * `dateModified` only. `datePublished` was set to the *latest* release
-     * date, so the markup asserted the app was first published last week — and
-     * the claim moved forward again on every release.
-     */
-    if (latestRelease?.publishedAt) {
-        data.dateModified = latestRelease.publishedAt;
-        data.releaseNotes = 'https://docs.tablepro.app/changelog';
-    }
-
-    /*
-     * The honest popularity signal. Not `aggregateRating`: a star is not a
-     * review, and StaleClaimsTest forbids the string in this file for exactly
-     * that reason. This says "N people starred this", which is true.
-     */
-    if (githubStars && githubStars > 0) {
-        data.interactionStatistic = {
-            '@type': 'InteractionCounter',
-            interactionType: 'https://schema.org/LikeAction',
-            userInteractionCount: githubStars,
-        };
-    }
-
-    return data;
-}
-
-export default function Home({
-    downloadUrls,
-    githubStars,
-    latestRelease,
-    downloads,
-    paymentProvider,
-    teamMinSeats,
-}: Props) {
-    const { canonicalBaseUrl } = usePage<{ canonicalBaseUrl: string }>().props;
+    const availability = availabilityFor(m, { mac: content.hero.macCaption, ios: content.hero.iosCaption });
+    const featuredEngines = engines.filter((engine) => engine.featured).map((engine) => engine.name);
+    const macApp = m.platforms.app.mac;
+    const iosApp = m.platforms.app.ios;
+    /* The platforms in the title come from platforms.json, so it follows the apps that ship. */
+    const listedTitle = fmt(content.seo.title, { deviceList: availability.deviceList });
+    const title = listedTitle.length <= TITLE_LIMIT ? listedTitle : content.seo.titleFallback;
 
     return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} githubStars={githubStars} />} footer={<Footer />}>
+        <LandingLayout>
             <SEOHead
-                title={HOME_TITLE}
-                description={HOME_DESCRIPTION}
-                canonical="/"
-                /*
-                 * No FAQPage. Google retired the FAQ rich result on 7 May 2026,
-                 * so the markup earns nothing in Search — and it published a
-                 * second FAQPage entity on this domain, competing with /faq,
-                 * which serves a strict superset of the same questions. /faq
-                 * owns that entity uncontested now.
-                 */
-                jsonLd={[
-                    buildAppJsonLd(canonicalBaseUrl, teamMinSeats, latestRelease, githubStars),
-                    buildOrganizationJsonLd(canonicalBaseUrl),
-                ]}
+                title={title}
+                titleTemplate={false}
+                description={content.seo.description}
+                jsonLd={homeJsonLd({
+                    baseUrl: canonicalBaseUrl,
+                    inLanguage: LOCALES.supported[locale].hreflang,
+                    m,
+                    fmt,
+                    path,
+                    featuredEngines,
+                })}
             />
 
-            {/*
-              * Six headed sections, one headless spec rail and two download
-              * rails, down from nine headed sections.
-              *
-              * The rule that produced the old order still holds — a section
-              * earns an H2 only if it owns a data artifact — but three sections
-              * were spending a full header stack on an artifact that needed no
-              * introduction, or splitting one argument across two:
-              *
-              * - `SpecStrip` headlined six numbers that argue for themselves. It
-              *   is a labelled region under the hero plate now, with no heading.
-              * - `AgentsMcp` and `Safety` were one argument in two halves, kept
-              *   adjacent on purpose. `Guardrails` is that argument whole.
-              * - `License` and `Pricing` answered "what does it add" and "what
-              *   does it cost" under separate eyebrows. The plan matrix is an
-              *   artifact inside Pricing now, the way the comparison table is an
-              *   artifact inside Migration.
-              *
-              * Nothing was deleted to get there; every id still resolves.
-              *
-              * The two grounds alternate strictly from `databases` down, so
-              * peripheral vision has a section boundary to read over ten
-              * thousand pixels of scroll. `raised` goes to Databases, Migration
-              * and Pricing.
-              */}
-            <Hero githubStars={githubStars} latestRelease={latestRelease} />
-            <SpecStrip latestRelease={latestRelease} downloads={downloads} />
-            <DatabaseGrid />
-
-            {/* Conviction peaks at the screenshots, so a download follows them. */}
-            <Workbench />
-            <DownloadRail
-                location="workbench"
-                note="Open a database and press ⌘⏎."
+            <Hero content={content.hero} availability={availability} featuredEngines={featuredEngines.join(', ')} />
+            <DatabasesSection content={content.databases} engines={engines} iosEngines={iosEngines} availability={availability} macApp={macApp} />
+            <SponsorsSection content={content.sponsors} />
+            <WorkflowsSection content={content.workflows} engines={engines} macApp={macApp} iosDevices={availability.iosDevices} />
+            <SafetySection content={content.safety} paidTemplate={content.workflows.paid} />
+            <AiSection content={content.ai} />
+            <PlatformsSection content={content.platforms} availability={availability} />
+            <SwitchSection content={content.switch} macApp={macApp} />
+            <PricingSection
+                checkout={checkout}
+                title={content.pricing.title}
+                lead={fmt(content.pricing.lead, {
+                    macApp,
+                    iosApp,
+                    starterExamples: examplesText('starter', m.common.list),
+                    teamExamples: examplesText('team', m.common.list),
+                })}
             />
-
-            {/*
-              * "Moving costs you nothing", then the numbers that say why you
-              * would — one section, two artifacts. `SwitchFrom` renders the
-              * comparison table itself; two header stacks for one argument was
-              * the largest block of pure chrome on the page.
-              */}
-            <SwitchFrom />
-
-            {/*
-              * The most alarming claim on the page — "let an agent query your
-              * database" — and its answer, in the same section. Adjacency used
-              * to do that job across two header stacks; one section does it
-              * without spending them.
-              */}
-            <Guardrails />
-            <DownloadRail
-                location="safety"
-                note="Safe Mode is on before you connect anything."
-            />
-
-            {/* What a license adds, then what it costs. One section, in that order. */}
-            <Pricing paymentProvider={paymentProvider} teamMinSeats={teamMinSeats} />
-            <FooterCTA />
+            <OpenSourceSection content={content.openSource} availability={availability} />
         </LandingLayout>
     );
 }

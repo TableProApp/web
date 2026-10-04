@@ -1,0 +1,131 @@
+{
+    "seo": {
+        "title": "Chỉnh sửa dữ liệu với Preview SQL và Safe Mode",
+        "description": "Lọc và sửa dòng trong data grid, xem trước câu lệnh SQL trước khi lưu và đặt mức Safe Mode cho từng connection. Data Rewind khôi phục giá trị đã bị ghi đè."
+    },
+    "og": {
+        "kicker": "Chỉnh sửa dữ liệu",
+        "title": "Xem và chỉnh sửa dữ liệu an toàn"
+    },
+    "header": {
+        "title": "Xem và chỉnh sửa dữ liệu an toàn",
+        "lead": "Dành cho lúc bạn làm việc trực tiếp với từng dòng: tìm đúng dòng cần sửa, đổi vài giá trị, và làm việc đó trên cơ sở dữ liệu production mà không gặp bất ngờ. Thay đổi chỉ được gửi đi khi bạn lưu, và mỗi connection quyết định TablePro thận trọng tới mức nào trước khi chạy một câu lệnh.",
+        "docs": "/features/change-tracking"
+    },
+    "sections": [
+        {
+            "id": "browse",
+            "title": "Tìm đúng dòng bạn cần",
+            "paragraphs": [
+                "Sắp xếp và phân trang chạy trên server, nên một table lớn mở ra ngay ở trang đầu. Khi table có trên {countEstimate} dòng, tổng số dòng là con số ước tính, kèm Count Exactly khi bạn cần số chính xác."
+            ],
+            "blocks": [
+                {
+                    "id": "filters",
+                    "title": "Bộ lọc và highlight rules",
+                    "paragraphs": [
+                        "Thanh lọc (<kbd>⌘⇧F</kbd>) tạo mệnh đề WHERE từ {filterOperatorCount} toán tử, từ = và BETWEEN tới REGEX, hoặc nhận một điều kiện SQL viết tay. Lưu bộ lọc cho từng table và dùng lại sau mà không cần chạy ngay. Highlight rules tô màu dòng hoặc ô theo giá trị, giống định dạng có điều kiện trong bảng tính, và chỉ được lưu trên máy Mac này."
+                    ],
+                    "asset": "mac-grid-highlight-rules"
+                },
+                {
+                    "id": "foreign-keys",
+                    "title": "Khóa ngoại và JSON",
+                    "paragraphs": [
+                        "Đi theo khóa ngoại tới dòng được tham chiếu trong một tab mới, hoặc xem nhanh dòng đó trong popover. Khi sửa một cột khóa ngoại, bộ chọn giá trị liệt kê các dòng được tham chiếu theo những cột bạn chọn, chẳng hạn họ và tên của khách hàng. Giá trị JSON mở trong trình xem có dạng cây để duyệt và chế độ văn bản để sửa."
+                    ],
+                    "asset": "mac-fk-picker"
+                }
+            ]
+        },
+        {
+            "id": "edit",
+            "title": "Sửa dữ liệu, rồi lưu một lần",
+            "paragraphs": [
+                "Thay đổi trên ô, dòng mới và dòng bị xóa được giữ lại trong tab, có đánh dấu, cho tới khi bạn bấm <kbd>⌘S</kbd>; trước đó không có gì được gửi đi. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) liệt kê các câu lệnh với giá trị đã điền sẵn. Khi lưu, TablePro gửi các câu lệnh với tham số bind, trong một transaction nếu engine cho phép, và kiểm tra từng câu lệnh có thay đổi đúng số dòng dự kiến không; nếu có câu không khớp, lần lưu được rollback."
+            ],
+            "points": [
+                "Trình sửa ô theo kiểu dữ liệu của cột: chọn ngày giờ, danh sách giá trị ENUM và SET, mảng, JSON, trình sửa hex cho dữ liệu nhị phân, và trình xem ảnh.",
+                "Undo và redo trong từng tab cho tới khi bạn lưu.",
+                "Có thể sửa trực tiếp kết quả query khi query chỉ đọc từ một table, không có JOIN, CTE hay UNION.",
+                "Sao chép dòng dưới dạng CSV, JSON, Markdown, danh sách IN, hoặc câu lệnh INSERT và UPDATE."
+            ],
+            "asset": "mac-edit-preview-sql"
+        },
+        {
+            "id": "safe-mode",
+            "title": "Safe Mode cho connection production",
+            "paragraphs": [
+                "Mỗi connection có một mức Safe Mode: {macSafeModeLevels}. Connection mới bắt đầu ở mức {macSafeModeDefault}, câu lệnh chạy ngay như bạn viết. Alert hỏi lại trước khi chạy câu lệnh ghi, hai mức Safe Mode và Safe Mode (Full) còn yêu cầu Touch ID hoặc mật khẩu máy Mac, các mức có hậu tố (Full) hỏi cả trước câu lệnh đọc, còn Read-Only từ chối câu lệnh ghi và tắt chỉnh sửa. Safe Mode miễn phí.",
+                "Ở mọi mức, DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi trước. Một số yếu tố tự nâng mức Safe Mode của connection trong thời gian chúng có hiệu lực: engine chỉ cho phép đọc, Agent mode (nâng lên ít nhất là Alert), và mức tối thiểu do tổ chức của bạn đặt qua hệ thống quản lý thiết bị (MDM)."
+            ],
+            "asset": "mac-safe-mode-touchid",
+            "links": [
+                { "label": "Safe Mode và các chính sách khác của connection", "href": "/features/connections#policies" },
+                { "label": "Agent mode", "href": "/features/ai-mcp#agent-mode" }
+            ]
+        },
+        {
+            "id": "data-rewind",
+            "title": "Data Rewind",
+            "paragraphs": [
+                "Data Rewind giữ lại các giá trị mà một lần lưu đã ghi đè, để <ui>Khôi phục giá trị trước đó</ui> (Restore Previous Values) có thể đặt chúng trở lại. Trước khi khôi phục, một bảng xem lại cho biết điều gì sẽ xảy ra với từng dòng, kể cả những dòng đã thay đổi sau lần lưu của bạn, và việc khôi phục chạy qua Safe Mode, trong một transaction nếu engine cho phép. Chính lần khôi phục đó cũng có thể được khôi phục lại.",
+                "Các giá trị cũ được giữ trên máy Mac này trong {rewindDays} ngày, mã hóa bằng một khóa lưu trong Keychain, và không bao giờ được đồng bộ. Khi gói trả phí kết thúc, TablePro ngừng ghi lại các lần lưu và <ui>Khôi phục giá trị trước đó</ui> chỉ hiện thông báo."
+            ],
+            "paid": ["data-rewind"],
+            "asset": "mac-data-rewind-review"
+        },
+        {
+            "id": "documents-and-keys",
+            "title": "Document và key",
+            "paragraphs": [
+                "Không phải engine nào cũng lưu dữ liệu theo dòng. Với MongoDB, bạn thêm và sửa nguyên document dưới dạng Extended JSON, xóa một field khỏi document, và đổi tên hoặc xóa một field trên cả collection từ tab Structure. Với Redis, bạn đổi tên key, đặt TTL và sửa giá trị string ngay trong data grid, thêm key kiểu string, hash, list, set hoặc sorted set, còn các kiểu khác thì thay đổi bằng lệnh trong editor."
+            ],
+            "links": [
+                { "label": "MongoDB trong TablePro", "href": "/mongodb-client" },
+                { "label": "Redis trong TablePro", "href": "/redis-gui" }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "Trên iPhone và iPad",
+            "paragraphs": [
+                "Trong ứng dụng cho iPhone và iPad, các dòng hiển thị dạng thẻ, có thể sắp xếp, tìm kiếm và lọc với AND và OR, và chạm vào một khóa ngoại để xem nhanh dòng được tham chiếu. Bạn có thể sửa một dòng, đặt giá trị thành NULL hoặc DEFAULT, thêm dòng và vuốt để xóa; muốn sửa và xóa, table cần có khóa chính.",
+                "Safe Mode trên iPhone và iPad có các mức riêng: {iosSafeModeLevels}, với {iosSafeModeDefault} là mặc định cho connection mới. Thay đổi chờ lưu, Preview SQL, highlight rules và Data Rewind chỉ có trong ứng dụng Mac."
+            ],
+            "links": [
+                { "label": "Xem và sửa dữ liệu trên iPhone và iPad", "href": "/ios#browse" },
+                { "label": "Safe Mode trên iPhone và iPad", "href": "/ios#safe-mode" }
+            ]
+        }
+    ],
+    "availability": [
+        { "label": "Sắp xếp, phân trang và bộ lọc", "ios": "yes" },
+        { "label": "Bộ lọc đã lưu và highlight rules", "ios": "no" },
+        { "label": "Đi theo khóa ngoại và bộ chọn giá trị", "ios": "partial", "iosNote": "Chạm để xem nhanh dòng được tham chiếu" },
+        { "label": "Sửa, thêm và xóa dòng", "ios": "partial", "iosNote": "Trình sửa từng dòng; cần khóa chính" },
+        { "label": "Thay đổi chờ lưu, Preview SQL và undo", "ios": "no" },
+        { "label": "Safe Mode", "ios": "partial", "iosNote": "{iosSafeModeLevels}" },
+        { "label": "Touch ID hoặc mật khẩu trước câu lệnh ghi", "ios": "no" },
+        { "label": "Data Rewind", "paid": "data-rewind", "ios": "no" },
+        { "label": "Document MongoDB và key Redis", "ios": "no" }
+    ],
+    "limits": [
+        "Data Rewind không phải là bản sao lưu. Tính năng này không hoàn tác trigger, cascade hay thay đổi từ bên ngoài TablePro, và không khôi phục được dòng không có khóa chính, giá trị lớn hơn {rewindMaxValue} MB hay giá trị do server tính ra.",
+        "UPDATE không có WHERE là một câu lệnh ghi bình thường: chỉ được hỏi lại từ mức Alert trở lên.",
+        "Trên {everyStatementWrites}, Safe Mode coi mọi câu lệnh là câu lệnh ghi, nên Alert hỏi cả trước khi đọc và Read-Only chặn luôn việc đọc.",
+        "Kết quả của query có JOIN, CTE hay UNION chỉ đọc trong data grid; hãy mở chính table đó để sửa."
+    ],
+    "docs": [
+        { "label": "Data grid", "docs": "/features/data-grid" },
+        { "label": "Bộ lọc", "docs": "/features/filtering" },
+        { "label": "Theo dõi thay đổi và Preview SQL", "docs": "/features/change-tracking" },
+        { "label": "Data Rewind", "docs": "/features/change-tracking#restoring-a-save" },
+        { "label": "Safe Mode", "docs": "/features/safe-mode" }
+    ],
+    "related": [
+        { "label": "Query", "href": "/features/querying" },
+        { "label": "Schema", "href": "/features/schema" },
+        { "label": "Gói trả phí bổ sung những gì", "href": "/pricing#features" }
+    ]
+}

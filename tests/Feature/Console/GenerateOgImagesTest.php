@@ -1,117 +1,252 @@
 <?php
 
 use App\Services\Og\OgImageRenderer;
+use App\Services\Og\OgImageRenderException;
+use App\Support\Seo\OgFonts;
+use App\Support\Seo\OgImages;
+use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\File;
 
+require_once __DIR__ . '/../Seo/helpers.php';
+
 /**
- * These tests need an empty public/og to count what the command renders, but
- * that directory holds ~18 MB of committed production cards. Move it aside for
- * the duration instead of deleting it, or a test run silently stages the
- * removal of every OG image in the repo.
+ * `og:generate` (architecture §1.15, sitemap §C.7).
+ *
+ * The cards come from the page registry, so a card exists for exactly the
+ * pages and locales that render, at the paths `OgImages` reads. Everything
+ * runs against scratch content and a scratch public directory, with a fake
+ * renderer: the committed cards and `/og.png` are never touched, and no
+ * Chromium is needed. The committed cards themselves, against the committed
+ * content, are checked in tests/Feature/Seo/OgCardsTest.php.
  */
-function ogBackupPath(): string
-{
-    return storage_path('framework/testing/og-backup');
-}
-
 beforeEach(function (): void {
-    File::deleteDirectory(ogBackupPath());
+    $this->dirs = seoScratch();
+    $this->public = seoScratchPublic();
 
-    if (File::isDirectory(public_path('og'))) {
-        File::moveDirectory(public_path('og'), ogBackupPath());
-    }
+    File::put($this->dirs['root'] . '/fonts.css', '@font-face { font-family: "Inter Variable"; src: url(data:font/woff2;base64,AAAA) format("woff2"); }');
+    $this->app->instance(OgFonts::class, new OgFonts($this->dirs['root'] . '/fonts.css'));
+
+    $content = $this->dirs['content'];
+
+    seoWriteContent($content, 'en', 'home', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => '', 'title' => 'TablePro is a native, open-source database client for developers.']]);
+    seoWriteContent($content, 'vi', 'home', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => '', 'title' => 'TablePro là database client native, mã nguồn mở, dành cho lập trình viên.']]);
+    seoWriteContent($content, 'en', 'features/querying', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => 'Querying', 'title' => 'Write <SQL> & run it']]);
+    seoWriteContent($content, 'vi', 'features/querying', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['kicker' => 'Query', 'title' => 'Viết query và chạy ngay']]);
+    seoWriteContent($content, 'en', 'compare/tableplus', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['title' => 'TablePro or TablePlus']]);
+    seoWriteContent($content, 'en', 'databases/index', ['seo' => ['title' => 't', 'description' => 'd'], 'og' => ['title' => 'Hubs use the site card']]);
+    seoWriteContent($content, 'en', 'faq', ['seo' => ['title' => 't', 'description' => 'd']]);
+
+    seoWriteMarkdown($this->dirs['blog'] . '/tablepro-0-77.md', ['title' => 'TablePro 0.77', 'ogPunchline' => 'Folders in the sidebar.', 'date' => '2026-10-02']);
+    seoWriteMarkdown($this->dirs['blog'] . '/a-guide.md', ['title' => 'A guide', 'description' => 'What it covers.', 'date' => '2026-03-01']);
+    seoWriteMarkdown($this->dirs['blog'] . '/vi/a-guide.md', ['title' => 'Một hướng dẫn', 'description' => 'Nội dung chính.', 'date' => '2026-03-01']);
+
+    $this->app->forgetInstance(PageRegistry::class);
+
+    $this->rendered = [];
+    $rendered = &$this->rendered;
+
+    $this->mock(OgImageRenderer::class, function ($mock) use (&$rendered): void {
+        $mock->shouldReceive('render')->andReturnUsing(function (string $html, string $outputPath, int $width = 1200, int $height = 630) use (&$rendered): void {
+            $rendered[str_replace($this->public, '', $outputPath)] = ['html' => $html, 'width' => $width, 'height' => $height];
+            File::ensureDirectoryExists(dirname($outputPath));
+            File::put($outputPath, seoPngBytes());
+        });
+    });
 });
 
 afterEach(function (): void {
-    File::deleteDirectory(public_path('og'));
-
-    if (File::isDirectory(ogBackupPath())) {
-        File::moveDirectory(ogBackupPath(), public_path('og'));
-    }
+    File::deleteDirectory($this->dirs['root']);
+    File::deleteDirectory($this->public);
 });
 
-it('renders one OG image per slug when --slug is provided', function (): void {
-    $captured = [];
-
-    $this->mock(OgImageRenderer::class, function ($mock) use (&$captured): void {
-        $mock->shouldReceive('render')
-            ->andReturnUsing(function (string $html, string $outputPath, int $width = 1200, int $height = 630) use (&$captured): void {
-                $captured[] = ['html' => $html, 'outputPath' => $outputPath, 'width' => $width, 'height' => $height];
-                File::ensureDirectoryExists(dirname($outputPath));
-                File::put($outputPath, "stub-png-bytes-{$width}x{$height}");
-            });
-    });
-
-    $this->artisan('og:generate', ['--slug' => 'dbeaver'])
-        ->assertSuccessful();
-
-    expect($captured)->toHaveCount(1);
-    expect($captured[0]['outputPath'])->toEndWith('public/og/compare/dbeaver.png');
-    expect($captured[0]['html'])->toContain('DBeaver');
-    expect($captured[0]['width'])->toBe(1200);
-    expect($captured[0]['height'])->toBe(630);
-    expect(File::exists(public_path('og/compare/dbeaver.png')))->toBeTrue();
-});
-
-it('renders compare, database, and blog sets when --type=all and no slug', function (): void {
-    $rendered = [];
-
-    $this->mock(OgImageRenderer::class, function ($mock) use (&$rendered): void {
-        $mock->shouldReceive('render')
-            ->andReturnUsing(function (string $html, string $outputPath) use (&$rendered): void {
-                $rendered[] = $outputPath;
-                File::ensureDirectoryExists(dirname($outputPath));
-                File::put($outputPath, 'stub');
-            });
-    });
-
-    $comparisonCount = count(json_decode(File::get(resource_path('data/comparisons.json')), true));
-    $databaseCount = count(json_decode(File::get(resource_path('data/databases.json')), true));
-    $blogCount = count(app(\App\Services\Blog\BlogService::class)->all());
-
+it('renders every card in both languages by default', function (): void {
     $this->artisan('og:generate')->assertSuccessful();
 
-    expect(count($rendered))->toBe($comparisonCount + $databaseCount + $blogCount);
+    expect(array_keys($this->rendered))->toEqualCanonicalizing([
+        '/og.png',
+        '/og/vi/default.png',
+        '/og/feature/querying.png',
+        '/og/vi/feature/querying.png',
+        '/og/compare/tableplus.png',
+        '/og/blog/tablepro-0-77.png',
+        '/og/blog/a-guide.png',
+        '/og/vi/blog/a-guide.png',
+    ]);
 
-    foreach ($rendered as $path) {
-        expect($path)->toMatch('#/og/(compare|database|blog)/[a-z0-9-]+\.png$#');
+    foreach ($this->rendered as $card) {
+        expect([$card['width'], $card['height']])->toBe([1200, 630]);
     }
+
+    /*
+     * The list above is relative to the scratch public directory, so a card
+     * written into the real one would keep its absolute path and fail it. The
+     * real `public/og/vi` holds the committed Vietnamese cards, so whether it
+     * exists says nothing about this run.
+     */
+    expect(public_path())->toBe($this->public);
 });
 
-it('only renders the compare set when --type=compare', function (): void {
+it('renders one language with --locale', function (string $locale, array $paths): void {
+    $this->artisan('og:generate', ['--locale' => $locale])->assertSuccessful();
+
+    expect(array_keys($this->rendered))->toEqualCanonicalizing($paths);
+})->with([
+    'English' => ['en', ['/og.png', '/og/feature/querying.png', '/og/compare/tableplus.png', '/og/blog/tablepro-0-77.png', '/og/blog/a-guide.png']],
+    'Vietnamese' => ['vi', ['/og/vi/default.png', '/og/vi/feature/querying.png', '/og/vi/blog/a-guide.png']],
+]);
+
+it('renders one set with --type, and one page with --slug', function (array $options, array $paths): void {
+    $this->artisan('og:generate', $options)->assertSuccessful();
+
+    expect(array_keys($this->rendered))->toEqualCanonicalizing($paths);
+})->with([
+    'the generic cards' => [['--type' => 'site'], ['/og.png', '/og/vi/default.png']],
+    'the feature cards in English' => [['--type' => 'feature', '--locale' => 'en'], ['/og/feature/querying.png']],
+    'the blog cards' => [['--type' => 'blog'], ['/og/blog/tablepro-0-77.png', '/og/blog/a-guide.png', '/og/vi/blog/a-guide.png']],
+    'one page, every language' => [['--slug' => 'querying'], ['/og/feature/querying.png', '/og/vi/feature/querying.png']],
+    'one post, one language' => [['--slug' => 'a-guide', '--locale' => 'vi'], ['/og/vi/blog/a-guide.png']],
+]);
+
+it('rejects an unknown type or language before rendering anything', function (array $options): void {
+    $this->artisan('og:generate', $options)->assertExitCode(2);
+
+    expect($this->rendered)->toBe([]);
+})->with([
+    'type' => [['--type' => 'banana']],
+    'locale' => [['--locale' => 'fr']],
+]);
+
+it('renders nothing and says so when no page has the slug', function (): void {
+    $this->artisan('og:generate', ['--slug' => 'does-not-exist'])
+        ->expectsOutputToContain("No page with slug 'does-not-exist'")
+        ->assertSuccessful();
+
+    expect($this->rendered)->toBe([]);
+});
+
+it('skips a page with no card copy and keeps its existing card', function (): void {
+    /*
+     * A page whose content has no `og` block keeps the card it has, rather
+     * than having it replaced by a blank one.
+     */
+    seoWriteContent($this->dirs['content'], 'en', 'databases/mysql-client', ['seo' => ['title' => 't', 'description' => 'd']]);
+    $this->app->forgetInstance(PageRegistry::class);
+
+    File::ensureDirectoryExists($this->public . '/og/database');
+    File::put($this->public . '/og/database/mysql-client.png', 'old card');
+
+    $this->artisan('og:generate', ['--type' => 'database'])
+        ->expectsOutputToContain('skipped')
+        ->assertSuccessful();
+
+    expect($this->rendered)->toBe([]);
+    expect(File::get($this->public . '/og/database/mysql-client.png'))->toBe('old card');
+});
+
+it('fills each card from its own language, escaped, with the page address', function (): void {
+    $this->artisan('og:generate')->assertSuccessful();
+
+    $site = $this->rendered['/og/vi/default.png']['html'];
+    $feature = $this->rendered['/og/feature/querying.png']['html'];
+    $featureVi = $this->rendered['/og/vi/feature/querying.png']['html'];
+    $compare = $this->rendered['/og/compare/tableplus.png']['html'];
+
+    expect($site)
+        ->toContain('<html lang="vi">')
+        ->toContain('TablePro là database client native, mã nguồn mở, dành cho lập trình viên.')
+        ->toContain('localhost/vi<');
+
+    expect($feature)
+        ->toContain('<html lang="en">')
+        ->toContain('Write &lt;SQL&gt; &amp; run it')
+        ->not->toContain('<SQL>')
+        ->toContain('localhost/features/querying');
+
+    expect($featureVi)->toContain('<p class="kicker">Query</p>')->toContain('Viết query và chạy ngay')->toContain('localhost/vi/features/querying');
+
+    // A page with no kicker of its own takes its family's label.
+    expect($compare)->toContain(trans('og.family.compare', [], 'en'));
+});
+
+it('dates a post in the language of its card', function (): void {
+    $this->artisan('og:generate', ['--type' => 'blog'])->assertSuccessful();
+
+    expect($this->rendered['/og/blog/tablepro-0-77.png']['html'])
+        ->toContain('Folders in the sidebar.')
+        ->toContain('October 2, 2026')
+        ->toContain(trans('og.author', [], 'en'));
+
+    expect($this->rendered['/og/blog/a-guide.png']['html'])->toContain('What it covers.');
+
+    expect($this->rendered['/og/vi/blog/a-guide.png']['html'])
+        ->toContain('<html lang="vi">')
+        ->toContain('Một hướng dẫn')
+        ->toContain('tháng 3')
+        ->toContain(trans('og.author', [], 'vi'));
+});
+
+it('embeds the fonts and the logo, so a card never depends on the machine', function (): void {
+    $this->artisan('og:generate', ['--type' => 'site', '--locale' => 'en'])->assertSuccessful();
+
+    expect($this->rendered['/og.png']['html'])
+        ->toContain('data:font/woff2;base64,AAAA')
+        ->toContain('data:image/png;base64,' . base64_encode(File::get($this->public . '/logo.png')))
+        ->not->toContain('<img src="/')
+        ->not->toContain('<link');
+});
+
+it('fails before rendering when a font is missing', function (): void {
+    File::put($this->dirs['root'] . '/fonts.css', '@font-face { src: url("missing.woff2"); }');
+
+    $this->artisan('og:generate')->assertFailed();
+
+    expect($this->rendered)->toBe([]);
+});
+
+it('reports a card that fails to render and still renders the rest', function (): void {
     $rendered = [];
 
     $this->mock(OgImageRenderer::class, function ($mock) use (&$rendered): void {
-        $mock->shouldReceive('render')
-            ->andReturnUsing(function (string $html, string $outputPath) use (&$rendered): void {
-                $rendered[] = $outputPath;
-                File::ensureDirectoryExists(dirname($outputPath));
-                File::put($outputPath, 'stub');
-            });
+        $mock->shouldReceive('render')->andReturnUsing(function (string $html, string $outputPath) use (&$rendered): void {
+            if (str_ends_with($outputPath, '/og.png')) {
+                throw new OgImageRenderException('Chromium went away');
+            }
+
+            $rendered[] = $outputPath;
+        });
     });
 
-    $this->artisan('og:generate', ['--type' => 'compare'])->assertSuccessful();
-
-    expect($rendered)->not->toBeEmpty();
-    foreach ($rendered as $path) {
-        expect($path)->toContain('/og/compare/');
-    }
-});
-
-it('warns when --slug does not match any entry', function (): void {
-    $this->mock(OgImageRenderer::class, function ($mock): void {
-        $mock->shouldNotReceive('render');
-    });
-
-    $this->artisan('og:generate', ['--slug' => 'does-not-exist'])
-        ->assertSuccessful();
-});
-
-it('rejects an invalid --type value', function (): void {
-    $this->mock(OgImageRenderer::class, function ($mock): void {
-        $mock->shouldNotReceive('render');
-    });
-
-    $this->artisan('og:generate', ['--type' => 'banana'])
+    $this->artisan('og:generate', ['--type' => 'site'])
+        ->expectsOutputToContain('Chromium went away')
         ->assertFailed();
+
+    expect($rendered)->toHaveCount(1);
+});
+
+it('gives every page a card that exists once the cards are generated', function (): void {
+    /*
+     * What the head references is checked against the disk, so a share never
+     * points at a 404. Pages with copy get their own card; every other page in
+     * the registry gets its language's generic card.
+     */
+    $this->artisan('og:generate')->assertSuccessful();
+
+    $images = app(OgImages::class);
+    $checked = 0;
+
+    foreach (app(PageRegistry::class)->all() as $entry) {
+        foreach ($entry->renderLocales as $locale) {
+            $image = $images->for($entry, $locale);
+
+            expect($image)->not->toBeNull("{$entry->key()} ({$locale}) has no card");
+            expect(File::exists($this->public . seoPathOf($image['url'])))->toBeTrue();
+            $checked++;
+        }
+    }
+
+    expect($images->for(app(PageRegistry::class)->find('landing.features.show', ['slug' => 'querying']), 'vi')['url'])
+        ->toBe('https://localhost/og/vi/feature/querying.png');
+    expect($images->for(app(PageRegistry::class)->find('landing.faq', []), 'en')['url'])
+        ->toBe('https://localhost/og.png');
+    expect($checked)->toBeGreaterThan(5);
 });

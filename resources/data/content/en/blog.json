@@ -1,0 +1,28 @@
+{
+    "seo": {
+        "title": "Blog",
+        "description": "Release announcements from the TablePro team: what each version adds and fixes, newest first."
+    },
+    "og": {
+        "kicker": "Blog",
+        "title": "Release announcements from the TablePro team"
+    },
+    "header": {
+        "title": "Blog",
+        "lead": "Release announcements, newest first. Each version's complete notes are in the <changelog>changelog</changelog>."
+    },
+    "newsletter": {
+        "title": "Get release posts by email",
+        "body": "Occasional emails with release notes. Every email has an unsubscribe link."
+    },
+    "corrections": {
+        "tablepro-0-74": {
+            "date": "2026-10-02",
+            "text": "The Map view loads its map tiles from Apple, so this post overstates what stays on your Mac. Your rows stay on the Mac; Apple serves the map tiles for the area on screen."
+        },
+        "tablepro-for-iphone": {
+            "date": "2026-10-02",
+            "text": "Version 1.0 does not refuse a connection that goes through an SSH jump host, as this post said. Jump hosts are not supported on iPhone and iPad, so open those connections on the Mac. On Oracle, as on SQLite, DuckDB and SQL Server, only a save of more than one statement runs inside a transaction. Only DuckDB can run in memory; a SQLite file is copied into the app."
+        }
+    }
+}

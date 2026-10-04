@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Client Trino cho {devices}",
+        "description": "Query xuyên các catalog của Trino, đăng nhập bằng mật khẩu, JWT hoặc chứng chỉ client qua TLS, đọc plan logical và distributed, và hủy query đang chạy."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client Trino"
+    },
+    "engine": "trino",
+    "breadcrumb": "Trino",
+    "header": {
+        "title": "Client Trino cho {devices}",
+        "lead": "Join các table từ nhiều catalog trong một query, đọc plan mà Trino sẽ chạy, và dừng một query chạy quá lâu ngay trên coordinator. Thao tác ghi làm được gì tùy vào connector đứng sau mỗi catalog."
+    },
+    "asset": "mac-db-trino-catalogs",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối và đăng nhập",
+            "paragraphs": [
+                "Nhập host, port của coordinator và <ui>Tên người dùng (Username)</ui>, tức user dùng để chạy query của bạn. <ui>Catalog</ui> và <ui>Schema</ui> chỉ là điểm bắt đầu, không bắt buộc; để trống Catalog để duyệt mọi catalog. <ui>Múi giờ (Time Zone)</ui> theo chuẩn IANA trong phần Tùy chọn (Options) đặt múi giờ cho session.",
+                "Đăng nhập bằng mật khẩu, gửi qua HTTP Basic cho xác thực LDAP hoặc password file, hoặc bằng JWT access token, gửi dưới dạng bearer. Cả hai chỉ được gửi qua TLS: khi SSL ở Đã tắt (Disabled), connection có một trong hai sẽ bị từ chối trước khi gửi bất cứ thứ gì. Chứng chỉ và khóa của client trong phần SSL thêm mutual TLS.",
+                "SSL mặc định là Đã tắt, tức HTTP thường; mọi chế độ khác đều bắt buộc TLS và không quay về HTTP thường, còn port 443 tự bật Xác minh danh tính (Verify Identity). Lệnh chuyển hướng từ proxy đứng trước coordinator không bao giờ được làm theo; thông báo lỗi nêu rõ nó trỏ tới đâu. Coordinator nằm sau bastion thì đi qua <network>SSH tunnel</network>, và URL <code>trino://</code> được đưa vào bằng <ui>Nhập từ URL… (Import from URL…)</ui>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query xuyên catalog",
+            "paragraphs": [
+                "Connection mở trên một catalog và schema, nhưng query nào cũng có thể ghi đầy đủ <code>catalog.schema.table</code>, chẳng hạn để join một table Hive với một table PostgreSQL. Sidebar mở từng catalog thành schema rồi table, với materialized view nằm cạnh table và view, và số dòng lấy từ <code>SHOW STATS</code>.",
+                "<code>bigint</code> và <code>decimal</code> được đọc thành text chính xác, không qua số thực dấu phẩy động. <code>varbinary</code> hiển thị dạng hex, <code>array</code>, <code>map</code> và <code>row</code> dạng JSON, còn timestamp giữ nguyên giá trị server trả về.",
+                "<explain>Explain</explain> có các lựa chọn Logical, Distributed, IO, Validate và Analyze. Validate kiểm tra query mà không chạy, Analyze chạy thật và báo thời gian thực tế, và mọi plan đều trả về dưới dạng text thô.",
+                "<code>SET SESSION</code> giữ hiệu lực tới hết connection. <ui>Truy vấn > Hủy truy vấn (Query > Cancel Query)</ui> yêu cầu coordinator dừng query đang chạy, và đó là cách để dừng nó: timeout query của connection không áp dụng cho Trino.",
+                "<editing>Thay đổi trên ô</editing> thành INSERT, UPDATE và DELETE, mỗi giá trị mang kiểu Trino của nó. Trino không báo khóa chính, nên mỗi thay đổi khớp theo mọi cột của dòng như lúc đọc, và không có transaction để rollback. Sửa một trong hai dòng giống hệt nhau sẽ đổi cả hai; hãy kiểm tra dữ liệu trùng trước."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Cấu trúc",
+            "paragraphs": [
+                "<structure>Tab Structure</structure> tạo table, thêm, xóa, đổi tên và đổi kiểu cột, ở chế độ autocommit. Thay đổi có chạy được hay không là do connector của catalog quyết định, và đổi kiểu cột là thao tác ít connector chấp nhận nhất."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "TablePro không có import cho Trino. Bạn có thể <export>export</export> table hoặc kết quả query ra {exportFormats}."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "not-supported",
+            "question": "Vì sao một câu lệnh hợp lệ lại trả về NOT_SUPPORTED?",
+            "answer": "Connector đứng sau catalog đó không hỗ trợ thao tác này, dù ngữ pháp của Trino cho phép. Connector chỉ đọc sẽ từ chối mọi thao tác ghi. Hãy xem tài liệu của chính connector để biết nó hỗ trợ những gì."
+        },
+        {
+            "id": "encrypted-key",
+            "question": "Tôi có dùng được khóa client đã mã hóa không?",
+            "answer": "Không. Connection Trino không có ô passphrase cho khóa. Hãy ghi một bản đã giải mã bằng <code>openssl pkey -in encrypted.key -out client.key</code> rồi chọn file đó."
+        }
+    ],
+    "related": [
+        {
+            "label": "Viết, chạy và phân tích query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Connection, tunnel và thông tin đăng nhập",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Teradata, một data warehouse",
+            "href": "/teradata-client"
+        },
+        {
+            "label": "Snowflake, một cloud warehouse",
+            "href": "/snowflake-client"
+        }
+    ]
+}

@@ -1,0 +1,118 @@
+{
+    "seo": {
+        "title": "SQLite client for {devices}",
+        "description": "Open SQLite files on your Mac or over SSH, load extensions such as sqlite-vec and SpatiaLite, and change structure through table rebuilds you review first."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "SQLite client"
+    },
+    "engine": "sqlite",
+    "breadcrumb": "SQLite",
+    "header": {
+        "title": "SQLite client for {devices}",
+        "lead": "Open a database file from Finder, from a drag or from an SSH server, query it with the SQLite the app carries, and change its structure through rebuild scripts you review before they run."
+    },
+    "asset": "mac-db-sqlite-chinook",
+    "links": {
+        "remoteFiles": "docs:/connections/remote-database-files",
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "copy": "/features/schema#copy",
+        "explain": "/features/querying#performance"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Open a database file",
+            "paragraphs": [
+                "Pick a file in the connection form, or drag it onto a TablePro window or the Dock icon. A path to a file that does not exist yet creates it on connect. A file opens as SQLite when its first bytes say <code>SQLite format 3</code>, whatever its name.",
+                "Finder lists TablePro under Open With for .db, .sqlite, .sqlite3 and similar files. A database in a folder macOS protects, such as Messages or Safari history, needs Full Disk Access first, and the app that owns it usually has to quit.",
+                "A database on another machine opens through the <remoteFiles>Remote File pane</remoteFiles>. On the Server runs your statements against the live file over SSH, with nothing installed on the host beyond <code>python3</code>. As a Read-Only Copy fetches a snapshot over SFTP and opens it read-only.",
+                "To look around first, choose Help > Open Sample Database. It opens Chinook, a small sample of a digital music store that comes with the app."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query and edit",
+            "paragraphs": [
+                "The driver carries its own SQLite, so your SQL runs on the same version whatever macOS you have. <explain>EXPLAIN QUERY PLAN</explain> is drawn as a diagram.",
+                "Load extensions such as sqlite-vec and SpatiaLite per connection, in the order you list them, and their functions and virtual tables work in the editor, the sidebar and the Structure tab. The <code>load_extension()</code> SQL function stays refused, and a list that arrives through sync, an imported connection or a link loads nothing until you approve it.",
+                "Row edits are staged until you save, with <editing>Preview SQL</editing> showing every statement first. When another program changes the file, the sidebar reloads on its own."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "Renaming a table or a column, adding or dropping a column and, from SQLite 3.53, adding or dropping a CHECK run as ALTER TABLE. Other <structure>Structure tab</structure> changes, such as a column’s type or a foreign key, rebuild the table: TablePro writes the script, copies the rows with their rowids, restores the indexes and triggers, and runs it only after you confirm.",
+                "Changing a column’s type re-reads its values through the new affinity, so <code>'007'</code> becomes <code>7</code> in an INTEGER column; the review sheet says so before anything runs. A virtual table, such as an FTS5 table, cannot be rebuilt, and the save names it.",
+                "Triggers can be read and edited from the sidebar."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Maintain and back up",
+            "paragraphs": [
+                "Table maintenance runs VACUUM, ANALYZE, REINDEX and an integrity check, each shown as SQL before it runs. The Server Dashboard shows the file’s size, page count, page size, journal mode and cache size.",
+                "<backup>Backup Dump</backup> writes the database to a .sql file with {dumpTool}, and Restore Dump runs such a file against a database."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Move data",
+            "paragraphs": [
+                "<importData>Import</importData> {importFormats} files, or open a CSV, JSON or XLSX file in the <dataFiles>Data Files window</dataFiles> and import it from there. Tables and results export as {exportFormats}.",
+                "<copy>Copy To</copy> moves tables and their rows into another connection, such as a PostgreSQL server, and lists every column type it has to approximate. See also <files>working with files as databases</files>."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone and iPad",
+            "paragraphs": [
+                "On iPhone and iPad, pick a database file or create a new one, or open the Chinook sample from Open Sample Database. You browse tables as cards, filter them, edit rows that have a primary key and run SQL in the Query tab."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "encrypted",
+            "question": "Can TablePro open an encrypted SQLite database?",
+            "answer": "No. SQLCipher and SEE files do not open, because the bundled SQLite takes no key. Decrypt the file with the sqlcipher tool first."
+        },
+        {
+            "id": "version",
+            "question": "Which SQLite version does TablePro use?",
+            "answer": "SQLite {engineVersion}, built into the driver. It does not depend on the version that comes with macOS."
+        },
+        {
+            "id": "framework-files",
+            "question": "Can I open my app’s development database?",
+            "answer": "Yes. Open the file where your framework keeps it, such as <code>db/development.sqlite3</code> in Rails or <code>db.sqlite3</code> in Django. Files under <code>~/Library</code>, including iOS Simulator containers, need Full Disk Access."
+        }
+    ],
+    "related": [
+        {
+            "label": "Import, export and data files",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Cloudflare D1, SQLite over HTTP",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "Turso and libSQL",
+            "href": "/turso-client"
+        },
+        {
+            "label": "DuckDB, for analytical files",
+            "href": "/duckdb-client"
+        }
+    ]
+}

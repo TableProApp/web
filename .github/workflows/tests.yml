@@ -50,6 +50,13 @@ jobs:
       - name: Generate application key
         run: php artisan key:generate
 
+      # docs/visual-assets.md and resources/js/lib/data/asset-slots.json are
+      # generated from resources/data/assets.json and docs/rebuild/assets/*.md.
+      # A manifest or brief edit without `php artisan assets:handoff` would
+      # ship a stale owner handoff, or pages still showing the old slot state.
+      - name: Asset handoff is current
+        run: php artisan assets:handoff --check
+
       - name: Tests
         run: ./vendor/bin/pest
 
@@ -83,11 +90,11 @@ jobs:
       - name: Build
         run: npm run build
 
-  # HomepageRenderTest is the only test that needs a built SSR bundle and a
-  # running SSR service, and it skips itself when either is missing. The `php`
-  # job above provides neither, so every assertion in that file silently
-  # skipped on every run. This job is the one place it actually executes;
-  # REQUIRE_SSR turns those skips into failures so it cannot go quiet again.
+  # Every case behind `requireSsr()` (tests/Support/ssr.php) needs a built SSR
+  # bundle and a running SSR service, and skips itself when either is missing.
+  # The `php` job above provides neither, so those cases skip there. This job
+  # is the one place they execute; REQUIRE_SSR turns those skips into failures
+  # so they cannot go quiet again.
   ssr:
     runs-on: ubuntu-latest
 
@@ -158,13 +165,10 @@ jobs:
 
       # The whole suite, not one file.
       #
-      # This ran only HomepageRenderTest.php, which left 43 of 222 tests
-      # skipping on every push: the `php` job above builds no bundles, so every
-      # `ssrHtml()` assertion short-circuits there, and this job — the one place
-      # they could execute — was scoped to a single file. All of
-      # LandingStructureTest, ProductHuntBadgeTest and TopBannerTest, plus the
-      # rendered halves of LandingSeoTest, FundingModelTest and
-      # LicenseFeaturesTest, were green-by-skip for their whole lives.
+      # This once ran only HomepageRenderTest.php, which left every other
+      # SSR-rendered assertion skipping on every push: the `php` job above
+      # builds no bundles, so every `ssrHtml()` / `requireSsr()` assertion
+      # short-circuits there, and this job is the one place they execute.
       #
       # REQUIRE_SSR turns a skip into a failure, so this cannot go quiet again.
       - name: SSR render tests

@@ -3,6 +3,7 @@ slug: tablepro-for-iphone
 title: "TablePro for iPhone and iPad"
 description: The iOS app is on the App Store. Ten engines with every driver built in, SSH tunnels, Face ID, and the same connections you already use on the Mac. Free, with no in-app purchases.
 date: 2026-09-22
+release: "TablePro for iPhone and iPad 1.0"
 author: TablePro Team
 tags: [release, ios, ipados, icloud-sync]
 ogPunchline: Ten engines on the phone. Every driver built in.
@@ -12,10 +13,7 @@ TablePro for iPhone and iPad is on the App Store. It is free, there are no in-ap
 
 It is not the Mac app on a smaller screen. It opens the same connections, and then it does the part of the job that makes sense on a phone: read a table, check a row, run a query you already know you need.
 
-<figure>
-  <img src="/images/blog/tablepro-for-iphone-table.png" alt="The Chinook Track table open in TablePro on iPhone, listing TrackId, Name, AlbumId and MediaTypeId for the first rows, with a pager reading 1-100 of 3503 and Tables, Query, History and Info along the bottom" />
-  <figcaption>The bundled Chinook database, two taps from the connection list. There is something to read before you have set up a server.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-for-iphone-1"></asset-slot>
 
 ## Ten engines, nothing to install
 

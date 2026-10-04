@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Client Teradata cho {devices}",
+        "description": "Đăng nhập Teradata Vantage bằng TD2 hoặc TDNEGO, qua session thường hoặc TLS, duyệt cơ sở dữ liệu, user, procedure và macro, tạo và sửa table."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client Teradata"
+    },
+    "engine": "teradata",
+    "breadcrumb": "Teradata",
+    "header": {
+        "title": "Client Teradata cho {devices}",
+        "lead": "Đăng nhập bằng TD2 hoặc TDNEGO, duyệt cơ sở dữ liệu và user cùng table, view, procedure và macro của chúng, rồi query và sửa dữ liệu qua một driver Swift native, không cần cài phần mềm client nào của Teradata."
+    },
+    "asset": "mac-db-teradata-sidebar",
+    "links": {
+        "network": "/features/connections#network",
+        "objects": "/features/schema#objects",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối và đăng nhập",
+            "paragraphs": [
+                "Nhập host, tên người dùng và mật khẩu. Mọi hệ thống Vantage chấp nhận đăng nhập TD2 đều dùng được, và phiên bản không bị kiểm tra. <ui>Logon Mechanism</ui> trong phần Tùy chọn (Options) nhận <code>TD2</code> hoặc <code>TDNEGO</code>, còn ô <ui>Cơ sở dữ liệu (Database)</ui> chỉ cần điền khi bạn muốn một cơ sở dữ liệu mặc định khác với của tài khoản.",
+                "Port mặc định mang một session thường, không mã hóa. Chọn bất kỳ chế độ SSL nào cũng sẽ chuyển session sang endpoint WebSocket của gateway ở port 443, và port này không đổi được. Xác minh CA (Verify CA) cần một chứng chỉ CA, còn Xác minh danh tính (Verify Identity) kiểm tra chuỗi chứng chỉ và hostname theo chứng chỉ đó, hoặc theo kho tin cậy của hệ thống nếu bạn không đặt.",
+                "Hãy để <ui>Transaction Mode</ui> ở <code>DEFAULT</code>, trừ khi script cần quy tắc commit và phân biệt hoa thường kiểu ANSI hoặc TERA cho session. Hệ thống nằm sau bastion thì đi qua <network>SSH tunnel</network>. <ui>Nhập từ URL… (Import from URL…)</ui> nhận URL <code>teradata://</code>, nhưng macOS không mở các URL này như liên kết."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query và chỉnh sửa",
+            "paragraphs": [
+                "Trong Teradata, cả cơ sở dữ liệu lẫn user đều là namespace, nên cả hai nằm ở tầng trên cùng của sidebar cùng table và view của chúng. Tab gắn với cơ sở dữ liệu thứ hai vẫn giữ nguyên session và chạy <code>DATABASE</code> trước các câu lệnh của nó.",
+                "Stored procedure được liệt kê trong sidebar, còn macro nằm trong mục Functions, và mỗi mục đều mở <objects>mã nguồn trong một tab chỉ đọc</objects>.",
+                "Teradata không có <code>LIMIT</code>, nên trang đầu của table được lấy bằng <code>TOP</code>, các trang sau bằng <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> trả về plan của Teradata dưới dạng text thô. Thay đổi trên các dòng được giữ ở trạng thái chờ lưu, và <editing>Preview SQL</editing> hiển thị trước từng câu lệnh."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "Tạo table và sửa cột từ <structure>tab Structure</structure>. Phần DDL của table cho thấy toàn bộ định nghĩa, kể cả các ràng buộc."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "Đưa file {importFormats} vào bằng <importData>Import</importData>, và lưu table hoặc kết quả query ra {exportFormats}. <copy>Copy To</copy> chuyển table, dữ liệu của chúng hoặc cả hai sang một connection Teradata khác; bản sao sang engine khác sẽ bị từ chối."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "logon-mechanism",
+            "question": "Vì sao Logon Mechanism tôi nhập bị bỏ qua?",
+            "answer": "Hãy viết hoa. Giá trị mà driver không nhận ra, chẳng hạn <code>tdnego</code> viết thường, sẽ được đọc thành <code>TD2</code>."
+        },
+        {
+            "id": "tls-check",
+            "question": "Làm sao biết session đã được mã hóa?",
+            "answer": "Hãy thử với chế độ Bắt buộc, bỏ qua xác minh (Required, skip verify) hoặc một chế độ xác minh. Chế độ Ưu tiên (Preferred) quay về session thường khi port TLS không truy cập được, nên với chế độ này, một lần bắt tay TLS thất bại trông vẫn như kết nối thành công."
+        }
+    ],
+    "related": [
+        {
+            "label": "Viết, chạy và phân tích query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema, so sánh và đồng bộ",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Snowflake, một warehouse khác",
+            "href": "/snowflake-client"
+        },
+        {
+            "label": "Trino, cho query xuyên catalog",
+            "href": "/trino-client"
+        }
+    ]
+}

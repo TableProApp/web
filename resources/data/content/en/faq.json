@@ -1,0 +1,318 @@
+{
+    "seo": {
+        "title": "Frequently asked questions",
+        "description": "Answers about TablePro: what is free and what a license adds, which Macs, iPhones and databases it supports, what the apps send, teams and refunds."
+    },
+    "og": {
+        "kicker": "FAQ",
+        "title": "Frequently asked questions"
+    },
+    "header": {
+        "title": "Frequently asked questions",
+        "lead": "Short answers about the apps, licenses, privacy and accounts, with links to the page that covers each one in full."
+    },
+    "breadcrumb": "FAQ",
+    "jump": "Questions by topic",
+    "languages": {
+        "en": "English",
+        "vi": "Vietnamese",
+        "ko": "Korean",
+        "zh-Hans": "Simplified Chinese",
+        "zh-Hant": "Traditional Chinese",
+        "tr": "Turkish"
+    },
+    "groups": [
+        {
+            "id": "general",
+            "title": "General",
+            "items": [
+                {
+                    "id": "what-is-tablepro",
+                    "question": "What is TablePro?",
+                    "answer": [
+                        "TablePro is a native, open-source database client for developers. On the Mac you connect to {featuredEngines} and more, write and run queries, browse and edit data, and change schemas. The iPhone and iPad app is a separate, smaller app for working with your databases away from your desk.",
+                        "The <features>features page</features> walks through what each part does."
+                    ]
+                },
+                {
+                    "id": "native",
+                    "question": "What does “native” mean here?",
+                    "answer": [
+                        "Each TablePro app is written in Swift for its own platform. On the Mac it uses AppKit and SwiftUI, the Keychain and Touch ID. On iPhone and iPad it uses Face ID, widgets, Shortcuts and Live Activities. The database drivers are native too, with no JDBC."
+                    ]
+                },
+                {
+                    "id": "is-it-free",
+                    "question": "Is TablePro free?",
+                    "answer": [
+                        "The Mac app is free to download and use, with no trial period or time limit. A Starter or Team license adds optional features to the Mac app; the <pricing>pricing page</pricing> lists them. Connecting to any supported engine needs no license, and neither do the AI assistant, the MCP server or Safe Mode.",
+                        "The iPhone and iPad app is free, with no in-app purchases, and needs no license."
+                    ]
+                },
+                {
+                    "id": "open-source",
+                    "question": "Is TablePro open source?",
+                    "answer": [
+                        "Yes. Both apps are open source under the AGPLv3, including the code for the paid features, in one <source>repository on GitHub</source>. A build you make from the source checks for a license in the same way as the builds we publish."
+                    ]
+                },
+                {
+                    "id": "work-use",
+                    "question": "Can I use TablePro at work?",
+                    "answer": [
+                        "Yes, in a company of any size. The AGPL places no conditions on running TablePro. They apply to distributing it, and to offering a modified version to others over a network. The <agpl>licence text</agpl> has the details."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "platforms",
+            "title": "Platforms",
+            "items": [
+                {
+                    "id": "mac-requirements",
+                    "question": "Which Macs does TablePro run on?",
+                    "answer": [
+                        "TablePro for Mac needs {macRequirement}. There are separate builds for Apple silicon and Intel; the <download>download page</download> has both, and Homebrew installs the right one for you."
+                    ]
+                },
+                {
+                    "id": "iphone-ipad",
+                    "question": "Is there an app for iPhone and iPad?",
+                    "answer": [
+                        "Yes. TablePro for iPhone and iPad is on the App Store, needs {iosRequirement} and is free, with no in-app purchases. It connects to {iosEngines}, with SSH tunnels, Safe Mode and Face ID, and lets you browse and edit tables and run queries.",
+                        "It is a separate app built for the phone and tablet, not a copy of the Mac app: it has no AI assistant, no MCP server and no saved queries, for example. The <ios>iPhone and iPad page</ios> lists what it does and what it leaves out."
+                    ]
+                },
+                {
+                    "id": "windows-linux",
+                    "question": "Is there a version for Windows or Linux?",
+                    "answer": [
+                        "No. There is no Windows version. A Linux prototype exists, but there is nothing to install and no release date."
+                    ]
+                },
+                {
+                    "id": "languages",
+                    "question": "Which languages are the apps in?",
+                    "answer": [
+                        "The Mac app’s interface is available in {macLanguages}. In languages other than English, some screens still show English text. The iPhone and iPad app is available in {iosLanguages}.",
+                        "This website is in English and Vietnamese. The <docs>documentation</docs> is in English."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "databases",
+            "title": "Databases",
+            "items": [
+                {
+                    "id": "supported-databases",
+                    "question": "Which databases can I connect to?",
+                    "answer": [
+                        "On the Mac: {featuredEngines} and more, including document, key-value, search, streaming and analytical engines. The <databases>databases page</databases> lists every engine with what TablePro supports for it.",
+                        "The iPhone and iPad app connects to {iosEngines}."
+                    ]
+                },
+                {
+                    "id": "drivers",
+                    "question": "Do I have to install database drivers?",
+                    "answer": [
+                        "No. Drivers for {bundledEngines} come with the Mac app. Every other driver downloads the first time you choose its engine, which needs an internet connection, and they update separately from the app. Before a driver loads, the app checks it against its published checksum and its code signature.",
+                        "On iPhone and iPad the drivers are built into the app, so nothing downloads there."
+                    ]
+                },
+                {
+                    "id": "ssh-ssl",
+                    "question": "Can I connect through SSH or with SSL?",
+                    "answer": [
+                        "Yes. On the Mac, SSH tunnels sign in with a password, a key or an SSH agent, including 1Password’s, and can go through jump hosts. SSL/TLS can verify the server’s certificate. A connection can also go through Cloudflare Access, the Cloud SQL Auth Proxy, a SOCKS5 proxy or a command such as kubectl port-forward. The <connections>connections page</connections> covers each option.",
+                        "On iPhone and iPad, SSH tunnels sign in with a password or a private key, and jump hosts are not supported."
+                    ]
+                },
+                {
+                    "id": "passwords",
+                    "question": "Where are my passwords stored?",
+                    "answer": [
+                        "On the Mac, in the macOS Keychain. A connection can instead read its password when it connects: from a file, an environment variable, a shell command, 1Password, HashiCorp Vault or AWS Secrets Manager. On iPhone and iPad, passwords are kept in the device’s Keychain.",
+                        "With iCloud Sync on, passwords sync only if you also turn on <ui>Passwords</ui> under Sync Categories on the Mac, or <ui>Sync Passwords</ui> on iPhone and iPad, which uses iCloud Keychain."
+                    ]
+                },
+                {
+                    "id": "import-connections",
+                    "question": "Can I bring my connections from another app?",
+                    "answer": [
+                        "Yes. The Mac app imports connections from {importApps}, including their saved passwords. Importing is free."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "licensing",
+            "title": "Pricing and licenses",
+            "items": [
+                {
+                    "id": "what-a-license-adds",
+                    "question": "What does a license add?",
+                    "answer": [
+                        "A Starter license adds {starterFeatures} to the Mac app. Team includes everything in Starter and adds {teamFeatures}, for sharing connections and queries with your team. The <pricing>pricing page</pricing> describes each one."
+                    ]
+                },
+                {
+                    "id": "cost",
+                    "question": "How much does a license cost?",
+                    "answer": [
+                        "Starter and Team are each sold monthly, yearly or as a one-time purchase, with prices in US dollars. Team is priced per seat, with a minimum of {teamMinSeats} seats. The current prices and totals are on the <pricing>pricing page</pricing>."
+                    ]
+                },
+                {
+                    "id": "how-many-macs",
+                    "question": "How many Macs does a license cover?",
+                    "answer": [
+                        "A Starter license works on {starterActivations} Macs. A Team license has between {teamMinSeats} and {teamMaxSeats} seats, and each seat is one activated Mac. An iPhone or iPad never uses one: that app has no license.",
+                        "To move a license to another Mac, remove the old one in <account>your account</account>."
+                    ]
+                },
+                {
+                    "id": "subscription-ends",
+                    "question": "What happens when my subscription ends?",
+                    "answer": [
+                        "The paid features lock: iCloud Sync pauses, for example, and connections from Linked Folders or the Team Library are hidden. Everything else keeps working, and your connections, queries and settings stay on your Mac as they are. Renewing turns the paid features back on.",
+                        "A one-time purchase has no expiry date. Nothing changes on iPhone or iPad."
+                    ]
+                },
+                {
+                    "id": "offline",
+                    "question": "Does a license work offline?",
+                    "answer": [
+                        "Yes. The Mac app checks the license’s signature on your Mac every time it starts, and checks with our server every {revalidateDays} days. If it can’t reach the server, the paid features keep working for {graceDays} days after the last successful check.",
+                        "Some things need the internet by nature: downloading a driver the first time, updates, and AI providers that run in the cloud."
+                    ]
+                },
+                {
+                    "id": "payment",
+                    "question": "Who handles the payment?",
+                    "answer": [
+                        "{merchant} is our merchant of record: you buy the license from {merchant}, which takes the payment, calculates any sales tax or VAT at checkout and emails your receipt. Your invoices, payment method and subscription are in <portal>{merchant}’s customer portal</portal>, which you sign in to with the email you bought with."
+                    ]
+                },
+                {
+                    "id": "refunds",
+                    "question": "Can I get a refund?",
+                    "answer": [
+                        "Yes, on every plan, within {refundDays} days of purchase, or, for a yearly plan, of its most recent renewal. The <refundPolicy>refund policy</refundPolicy> explains how to ask and what happens to the license."
+                    ]
+                },
+                {
+                    "id": "lost-license-key",
+                    "question": "I lost my license key. Where is it?",
+                    "answer": [
+                        "In the email we sent when you bought it, and in <account>your account</account>: sign in with the email you used to buy, and your licenses are listed with their keys."
+                    ]
+                },
+                {
+                    "id": "priority-support",
+                    "question": "What is priority support?",
+                    "answer": [
+                        "It comes with a Team license: emails from Team customers are answered first, within one business day. The <termsSupport>terms</termsSupport> describe support for every plan."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "privacy",
+            "title": "Privacy and network",
+            "items": [
+                {
+                    "id": "what-is-sent",
+                    "question": "What do the apps send to TablePro?",
+                    "answer": [
+                        "With no license activated, the only request the Mac app makes to TablePro is a daily usage report, on by default and switchable in <ui>Settings > General > Privacy</ui>. It carries a hashed machine ID and facts about the app, such as its version, its language and the types of database you connect to, and never hostnames, usernames, passwords, queries or rows.",
+                        "With a license, the Mac app also checks it every {revalidateDays} days, sending the key, the same machine ID, your Mac’s name and the app and macOS versions. On iPhone and iPad, nothing goes to TablePro unless you turn on Share Usage Data. The <privacy>privacy policy</privacy> has the full list, including what our server stores."
+                    ]
+                },
+                {
+                    "id": "sign-up",
+                    "question": "Do I need to sign up?",
+                    "answer": [
+                        "No sign-up is needed to use either app. If you buy a license, <account>your account</account> shows your licenses, activated Macs and team seats; you sign in to it with a link we email to the address you bought with."
+                    ]
+                },
+                {
+                    "id": "ai-data",
+                    "question": "Does the AI assistant send my data to TablePro?",
+                    "answer": [
+                        "No. The AI assistant is in the Mac app, and its requests go straight to the provider you add, never through TablePro. By default a request includes the database type and name, table and column definitions from the schema, and the current query; result rows are sent only if you turn that on. {localAiProviders} run on your own Mac. The <aiMcp>AI and MCP page</aiMcp> has the details."
+                    ]
+                },
+                {
+                    "id": "icloud-data",
+                    "question": "What does iCloud Sync store, and where?",
+                    "answer": [
+                        "iCloud Sync is off until you turn it on. Synced connections, and on the Mac the other categories you choose, go to a private database in your own iCloud account, which TablePro cannot read. Passwords sync only if you also turn on <ui>Passwords</ui> under Sync Categories on the Mac, or <ui>Sync Passwords</ui> on iPhone and iPad.",
+                        "On the Mac, iCloud Sync is part of a Starter or Team license. On iPhone and iPad it is free."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "account",
+            "title": "Account and team",
+            "items": [
+                {
+                    "id": "sign-in",
+                    "question": "How do I sign in to my account?",
+                    "answer": [
+                        "Go to <account>your account</account> and enter the email you bought with. We email you a sign-in link that works once and expires soon after. Only the address that bought a license can sign in; team members join with an invitation code in the Mac app."
+                    ]
+                },
+                {
+                    "id": "members",
+                    "question": "How do I add or remove team members?",
+                    "answer": [
+                        "In <account>your account</account>, invite someone by email. They receive a code to enter in TablePro on their Mac, under <ui>Settings > License</ui>, and their Mac takes one seat. Removing a member frees their seat, signs out their Macs and deletes what they published to the Team Library."
+                    ]
+                },
+                {
+                    "id": "seats",
+                    "question": "How do I change the number of seats?",
+                    "answer": [
+                        "On a monthly or yearly Team subscription, change it in <account>your account</account>; the change shows on your next invoice. For a one-time Team license, email <email>{email}</email>."
+                    ]
+                },
+                {
+                    "id": "cancel",
+                    "question": "How do I cancel a subscription?",
+                    "answer": [
+                        "Cancel it in <account>your account</account> or in <portal>{merchant}’s customer portal</portal>. It is not charged again, and the license keeps working until the end of the period you paid for. You can resume it before then."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "switching",
+            "title": "Switching from another app",
+            "items": [
+                {
+                    "id": "switch-connections",
+                    "question": "Do I have to set up my connections again?",
+                    "answer": [
+                        "No. TablePro imports connections from {importApps}, with their saved passwords, SSH tunnels and SSL settings."
+                    ]
+                },
+                {
+                    "id": "compare",
+                    "question": "How does TablePro compare with other database clients?",
+                    "answer": [
+                        "The <compare>comparisons</compare> set TablePro beside other clients, with the date each fact was checked, and say where each one fits better."
+                    ]
+                }
+            ]
+        }
+    ],
+    "contact": {
+        "title": "Didn’t find your answer?",
+        "body": "Email <email>{email}</email>, or report a problem on <issues>GitHub</issues>.",
+        "chat": "Start a live chat",
+        "chatNote": "The chat loads only when you click."
+    }
+}

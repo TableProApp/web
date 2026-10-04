@@ -46,55 +46,46 @@ app read as a web app.
 
 ## What the window shows
 
-Always the bundled sample database — never a real connection. `File > Try Sample
-Database` opens a Chinook SQLite. This is not a privacy nicety: it is what makes
-a capture reproducible after a release, by anyone, without leaking internal
+Sample data only — never a real connection, host or customer. The bundled
+Chinook sample opens from **Help > Open Sample Database** (or **Open Sample
+Database** in the Welcome window). Some scenes need another sample instead, such
+as the `shop` schema or a fictional host under `*.acme.internal`; each image's
+brief names its dataset. This is not a privacy nicety: it is what makes a
+capture reproducible after a release, by anyone, without leaking internal
 table names.
 
-| Shot | Frame |
-|---|---|
-| `app-{light,dark}.png` (hero) | Sidebar open on the Chinook connection. A multi-line SELECT joining `Track`, `Album` and `Artist` in the editor, already run, with the result grid filled and the row count visible. |
-| `features/sql-editor-{light,dark}.png` | Same query, but a multi-statement batch, with the result tabs visible below. |
-| `features/data-grid-{light,dark}.png` | `Track` table with two or three cells edited so the pending-changes count shows in the toolbar. This is the point of the shot — the edits have *not* been committed. |
-| `features/ai-assistant-{light,dark}.png` | The assistant panel showing a before/after diff of a rewritten query with the numbered explanation steps. |
+Which scene each image shows, its crop, its export size and where the files go
+are in [`docs/visual-assets.md`](visual-assets.md), one brief per image. Keep
+the same connection, table and query across releases: a shot that changes
+content every release cannot be compared, and re-cropping becomes a recurring
+cost.
 
-Keep the same connection, same table and same query across releases. A shot that
-changes content every release cannot be compared, and re-cropping becomes a
-recurring cost.
+## Deriving the web assets and wiring them up
 
-## Deriving the web assets
+Every image slot is an entry in `resources/data/assets.json`, rendered by
+`<AssetSlot>`. Nothing in a component names an image file, so a new capture
+never needs a code change:
 
-`ThemedImage` serves one file per theme and picks the density itself. Generate
-both rungs from the 2432px capture:
+1. Capture per the above, light and dark from the same frame when the brief
+   says both.
+2. Export the delivered files from the 2x master at each width the brief's
+   "Replace with" row lists, in AVIF and WebP, named
+   `{dir}/{id}-{light|dark}-{width}.{format}` (with `-{locale}` after the
+   theme for an image made per language). For example:
 
-```bash
-cd public/images
-for f in app-light app-dark; do
-  cwebp -q 92 -resize 2432 0 "${f}.png" -o "${f}-2432.webp"
-  cwebp -q 92 -resize 1216 0 "${f}.png" -o "${f}-1216.webp"
-done
-```
+   ```bash
+   magick mac-hero-window-light.png -resize 1216x -quality 60 public/images/home/mac-hero-window-light-1216.avif
+   cwebp -q 92 -resize 1216 0 mac-hero-window-light.png -o public/images/home/mac-hero-window-light-1216.webp
+   ```
 
-`-q 92`, not `-lossless`. Lossless is roughly twice the bytes here, and the
-hero has always shipped lossy WebP — this keeps the whole site on one setting.
+3. In the manifest entry, set `"status": "supplied"` and fill `src` with the
+   widths, formats and true pixel size of each variant. Check the proposed
+   `alt` and `caption` against the real image.
+4. Run `php artisan assets:handoff`, then
+   `php artisan test --compact --filter=AssetManifestTest`, which checks that
+   every file exists at its true size and within the kind's byte budget.
 
-Stop at 2x. Nobody ships 3x for desktop: it costs about 2.25x the bytes of 2x
-for nothing visible on a Mac display, all of which are 2x.
-
-Then wire it up, and **change both places in the same commit** or the preload
-commits to a file the parser never reaches:
-
-- the component's `webpSrcSet`
-- `resources/views/app.blade.php`, which preloads the hero before Inertia boots
-
-## Adding a new screenshot
-
-1. Capture per the above.
-2. Generate the 1216/2432 rungs.
-3. Pass `webpSrcSet` — not just `src`. `ThemedImage` has always supported the
-   ladder; the workbench section went four releases without using it and shipped
-   4.46 MB of PNG.
-4. Pass `sizes` **only** alongside a `webpSrcSet`. On its own it does nothing:
-   `themed-image.tsx` applies it to a `<source>` that only exists when a srcSet
-   was given, so a lone `sizes` is inert and reads as optimization that is not
-   there.
+The slot keeps its geometry, so the page does not shift when the image
+arrives, and a supplied `priority` image (the hero) gets its head preload from
+the manifest. Stop at 2x for Mac captures: 3x costs about 2.25x the bytes of
+2x for nothing visible on a Mac display.

@@ -1,0 +1,29 @@
+{
+    "seo": {
+        "title": "Blog",
+        "description": "Các bài thông báo phát hành phiên bản mới của TablePro, viết bằng tiếng Anh, bài mới nhất ở trên cùng.",
+        "indexable": false
+    },
+    "og": {
+        "kicker": "Blog",
+        "title": "Thông báo phát hành từ đội ngũ TablePro"
+    },
+    "header": {
+        "title": "Blog",
+        "lead": "Các bài thông báo phát hành phiên bản mới, bài mới nhất ở trên cùng. Các bài này chỉ có bằng tiếng Anh. Ghi chú đầy đủ của từng phiên bản nằm trong <changelog>changelog</changelog> (tiếng Anh)."
+    },
+    "newsletter": {
+        "title": "Nhận bài thông báo phát hành qua email",
+        "body": "Thỉnh thoảng một email, viết bằng tiếng Anh, về các bản phát hành. Email nào cũng có liên kết hủy đăng ký."
+    },
+    "corrections": {
+        "tablepro-0-74": {
+            "date": "2026-10-02",
+            "text": "Map view tải map tile từ Apple, nên bài viết này nói quá về những gì được giữ lại trên máy Mac của bạn. Các dòng dữ liệu của bạn vẫn ở trên máy Mac; map tile cho vùng đang hiển thị là do Apple cung cấp."
+        },
+        "tablepro-for-iphone": {
+            "date": "2026-10-02",
+            "text": "Phiên bản 1.0 không từ chối connection đi qua SSH jump host như bài viết này đã nói. Jump host không được hỗ trợ trên iPhone và iPad, nên hãy mở những connection đó trên máy Mac. Trên Oracle, cũng như trên SQLite, DuckDB và SQL Server, chỉ lần lưu gồm nhiều hơn một câu lệnh mới chạy trong một transaction. Chỉ DuckDB chạy được trong bộ nhớ; file SQLite được sao chép vào ứng dụng."
+        }
+    }
+}

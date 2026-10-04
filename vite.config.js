@@ -18,6 +18,14 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'resources/js'),
+            /*
+             * The locale-neutral data files and the per-locale page copy. A
+             * page types its `content` prop with
+             * `typeof import('@data/content/en/home.json')`, which bundles
+             * nothing; a module that imports a data file for its values does
+             * bundle it, so keep those imports to small files.
+             */
+            '@data': path.resolve(__dirname, 'resources/data'),
         },
     },
 });

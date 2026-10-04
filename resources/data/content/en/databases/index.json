@@ -1,0 +1,186 @@
+{
+    "seo": {
+        "title": "Supported databases",
+        "description": "The databases TablePro connects to, by kind: the query language, whether the driver comes with the Mac app or downloads, and which open on iPhone and iPad."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "Databases TablePro connects to"
+    },
+    "header": {
+        "title": "Databases TablePro connects to",
+        "lead": "Native drivers for {count} databases, {featured} among them. Each row says what you query the engine with, where its driver comes from and whether it opens on iPhone and iPad."
+    },
+    "jump": "Categories",
+    "categories": {
+        "relational": {
+            "title": "Relational",
+            "intro": "SQL databases with tables, keys and transactions. Several of them share the MySQL or PostgreSQL driver."
+        },
+        "analytical": {
+            "title": "Analytical and warehouse",
+            "intro": "Warehouses, columnar engines and federated query engines, where a scan costs time or money."
+        },
+        "cloud": {
+            "title": "Cloud and serverless",
+            "intro": "SQL services reached over HTTP with an account token, and libSQL files on your Mac."
+        },
+        "document": {
+            "title": "Document",
+            "intro": "Document and multi-model databases, each queried in its own language."
+        },
+        "key-value": {
+            "title": "Key-value",
+            "intro": "Keys and their values, read and written with commands or PartiQL."
+        },
+        "wide-column": {
+            "title": "Wide-column",
+            "intro": "CQL tables partitioned across a cluster."
+        },
+        "search": {
+            "title": "Search and vector",
+            "intro": "Search and vector engines, queried through their own request consoles."
+        },
+        "streaming": {
+            "title": "Streaming",
+            "intro": "A log rather than a table: read and write messages with KafkaQL."
+        },
+        "coordination": {
+            "title": "Coordination",
+            "intro": "etcd’s key space, with leases and cluster members."
+        },
+        "files": {
+            "title": "Files",
+            "intro": "Databases kept in files that open in place, with no server to run."
+        }
+    },
+    "table": {
+        "caption": "{category}: each engine, its query language, its driver and whether it opens on iPhone and iPad",
+        "engine": "Database",
+        "queryLanguage": "Query language",
+        "driver": "Driver",
+        "ios": "iPhone & iPad",
+        "notes": "Notes"
+    },
+    "drivers": {
+        "title": "How drivers are delivered",
+        "paragraphs": [
+            "The drivers for {bundled} come with the Mac app and connect with nothing else installed.",
+            "Every other driver is a signed plugin that downloads the first time you pick its engine, before the connection form opens. That first download needs an internet connection.",
+            "Before a downloaded driver is installed, TablePro checks its SHA-256 checksum against the plugin registry and checks its code signature.",
+            "Plugins update on their own schedule, so a driver fix can arrive without an app update. A driver that is in use is updated after you restart the app.",
+            "The iPhone and iPad app has its drivers built in, so nothing downloads there."
+        ],
+        "asset": "mac-engine-picker",
+        "docs": {
+            "label": "Plugins and driver updates",
+            "path": "/features/plugins"
+        }
+    },
+    "iphone": {
+        "title": "On iPhone and iPad",
+        "picker": "The iPhone and iPad app connects to {engines}.",
+        "synced": "Connections to {engines} open there only when they come from a Mac, through iCloud Sync or an exported connection file.",
+        "others": "Connections to other engines sync to iPhone and iPad and appear in the list, but they do not open there.",
+        "link": "TablePro for iPhone and iPad"
+    },
+    "license": {
+        "title": "No database needs a license",
+        "body": "Connecting to any engine on this page is free. A Starter or Team plan adds optional features to the Mac app, and none of them is tied to a particular database.",
+        "link": "See pricing"
+    },
+    "missing": {
+        "title": "Missing your database?",
+        "body": "New engines arrive as driver plugins. If the one you use is not listed, ask for it on GitHub.",
+        "link": "Request a database on GitHub"
+    },
+    "docs": {
+        "label": "Setup guides for each database",
+        "path": "/databases"
+    },
+    "labels": {
+        "facts": {
+            "title": "At a glance",
+            "queryLanguage": "Query language",
+            "driver": "Driver",
+            "sharedWith": "Shared with {engines}",
+            "connect": "Connect with",
+            "defaultPort": "Default port",
+            "minimumVersion": "Minimum version",
+            "enforced": "{version}, enforced: older servers are refused",
+            "documented": "{version}, documented",
+            "embedded": "Built-in engine",
+            "embeddedValue": "{name} {version}",
+            "ios": "iPhone and iPad"
+        },
+        "connect": {
+            "file": "A file",
+            "network": "Host and port",
+            "api": "The service’s API",
+            "ssh": "SSH tunnel",
+            "ssl": "SSL/TLS",
+            "awsIam": "AWS IAM",
+            "cloudSqlProxy": "Cloud SQL Auth Proxy"
+        },
+        "driver": {
+            "bundled": "Comes with the Mac app",
+            "registry": "Downloads on first use"
+        },
+        "ios": {
+            "picker": "Opens",
+            "synced": "Opens when synced from a Mac",
+            "none": "Does not open"
+        },
+        "availability": {
+            "devices": "Works on {devices}",
+            "bundled": "Driver comes with the Mac app",
+            "registry": "Driver downloads the first time you pick {name}"
+        },
+        "release": "New in {version}",
+        "docs": "{name} setup guide",
+        "sections": {
+            "limits": "Limits",
+            "limitsOf": "{name} limits",
+            "iphone": "iPhone and iPad",
+            "faq": "Questions about {name}",
+            "related": "Related"
+        },
+        "iphone": {
+            "picker": "{name} is offered when you create a connection in the iPhone and iPad app, and the app connects to it directly.",
+            "synced": "The iPhone and iPad app opens {name} connections only when they come from a Mac, through iCloud Sync or an exported connection file. You can’t create one there.",
+            "none": "The iPhone and iPad app has no {name} driver. {name} connections synced from a Mac appear in its list but do not open.",
+            "link": "TablePro for iPhone and iPad"
+        },
+        "family": {
+            "port": "Default port {port}"
+        },
+        "otherTools": {
+            "title": "Other tools",
+            "released": "Version {version}, released {date}",
+            "discontinued": "{name} is discontinued. Its last release, {version}, came out on {date}.",
+            "free": "Free",
+            "openSource": "Open source ({licence})",
+            "closedSource": "Closed source",
+            "platforms": "Platforms: {platforms}",
+            "compare": "TablePro vs {name}",
+            "checked": "Facts about other tools checked {date}.",
+            "sources": "Sources"
+        },
+        "platformNames": {
+            "mac": "Mac",
+            "windows": "Windows",
+            "linux": "Linux",
+            "ios": "iPhone and iPad",
+            "web": "Web"
+        },
+        "number": {
+            "decimal": ".",
+            "group": ","
+        },
+        "download": {
+            "title": "Get TablePro",
+            "mac": "The Mac app is free to download and use. A Starter or Team plan adds optional features.",
+            "ios": "The iPhone and iPad app is on the App Store."
+        }
+    }
+}

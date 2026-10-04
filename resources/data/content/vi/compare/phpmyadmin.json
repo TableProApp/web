@@ -1,0 +1,198 @@
+{
+    "seo": {
+        "title": "TablePro vs phpMyAdmin: công cụ web hay ứng dụng trên Mac",
+        "description": "phpMyAdmin chạy trên web server và mở bằng trình duyệt. TablePro chạy trên máy Mac, kết nối trực tiếp hoặc qua SSH. So sánh cơ sở dữ liệu, cài đặt và truy cập."
+    },
+    "og": {
+        "kicker": "So sánh",
+        "title": "TablePro vs phpMyAdmin"
+    },
+    "header": {
+        "title": "TablePro vs phpMyAdmin",
+        "lead": "phpMyAdmin là công cụ web miễn phí, mã nguồn mở cho MySQL và MariaDB. Công cụ này được cài trên web server, và có sẵn trong cPanel. TablePro là ứng dụng mã nguồn mở cho máy Mac, có ứng dụng riêng cho iPhone và iPad, kết nối tới cơ sở dữ liệu trực tiếp hoặc qua SSH tunnel."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Bạn không muốn cài gì lên server, mà làm việc từ máy Mac, kết nối trực tiếp hoặc qua SSH.",
+            "Bạn còn dùng PostgreSQL, SQL Server, SQLite, Redis hay các engine khác.",
+            "Bạn muốn mỗi connection có một mức Safe Mode, như Read-Only cho production, hoặc hỏi Touch ID trước khi ghi.",
+            "Bạn thường xuyên đưa dữ liệu vào và ra. Import file CSV, JSON, XLSX hay SQL và export đều miễn phí.",
+            "Bạn muốn có trợ lý AI và MCP server, miễn phí trong ứng dụng Mac."
+        ],
+        "competitor": [
+            "Hosting của bạn có sẵn phpMyAdmin trong cPanel, và bạn không có quyền SSH hay truy cập cơ sở dữ liệu từ xa.",
+            "Bạn muốn làm việc từ bất kỳ máy tính nào có trình duyệt, không phải cài gì lên máy đó.",
+            "Bạn hoặc nhóm của bạn cần giao diện bằng một ngôn ngữ mà ứng dụng TablePro cho Mac không có."
+        ]
+    },
+    "glance": {
+        "intro": "phpMyAdmin là ứng dụng web, nên nhiều dòng trong bảng mô tả server mà nó chạy trên đó, không phải máy tính của bạn. Phiên bản ổn định hiện tại là {status.version}, còn phiên bản {cells.nextMajor.version} đang được phát triển."
+    },
+    "rows": {
+        "cpanel": {
+            "label": "Có sẵn trong cPanel",
+            "tablepro": "Không. TablePro chạy trên máy Mac và kết nối tới server"
+        },
+        "languages": {
+            "label": "Ngôn ngữ giao diện",
+            "tablepro": "Ứng dụng Mac: {macLanguages}"
+        },
+        "designer": {
+            "label": "Sơ đồ schema",
+            "tablepro": "Sơ đồ ER chỉ đọc, export ra PNG hoặc SQL, miễn phí"
+        },
+        "queryByExample": {
+            "label": "Query theo mẫu (QBE)",
+            "tablepro": "Không có"
+        },
+        "nextMajor": {
+            "label": "Phiên bản lớn tiếp theo",
+            "tablepro": "Phiên bản Mac mới được cài qua tính năng tự cập nhật trong ứng dụng hoặc qua Homebrew"
+        },
+        "hardening": {
+            "label": "Bảo mật bản cài đặt",
+            "tablepro": "Không cài gì lên server. Cơ sở dữ liệu vẫn cần quy tắc truy cập riêng"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "phpMyAdmin chạy trong trình duyệt, nên bạn mở được từ bất kỳ máy tính nào mà không phải cài gì lên máy đó.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "cPanel có sẵn phpMyAdmin, nên tài khoản hosting dùng cPanel có thể dùng ngay.",
+                "cite": ["cells.cpanel"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Giao diện của phpMyAdmin có {cells.languages.value} ngôn ngữ.",
+                "cite": ["cells.languages"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "phpMyAdmin hiển thị schema của cơ sở dữ liệu dưới dạng đồ họa với nhiều định dạng, và công cụ query theo mẫu (QBE) giúp bạn tạo các query phức tạp.",
+                "cite": ["cells.designer", "cells.queryByExample"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "phpMyAdmin miễn phí và là mã nguồn mở theo license GPL, không có gói trả phí.",
+                "cite": ["licence", "prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Không cài gì lên server. TablePro chạy trên máy Mac và kết nối tới MySQL trực tiếp hoặc qua <link>SSH tunnel</link>, có hỗ trợ jump host trên Mac.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/connections#network"
+            },
+            {
+                "text": "Không có bản cài đặt web nào cần bảo mật và cập nhật. Tài liệu của phpMyAdmin hướng dẫn cách bảo mật bản cài đặt của nó, với HTTPS, quy tắc truy cập và xác thực hai lớp.",
+                "cite": ["cells.hardening"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Mỗi connection có một mức <link>Safe Mode</link>, từ Silent tới Read-Only, dùng Touch ID ở các mức nghiêm ngặt hơn.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "Một ứng dụng dùng cho MySQL, MariaDB và nhiều engine khác, trong đó có PostgreSQL, SQL Server, SQLite và Redis. Xem danh sách <link>cơ sở dữ liệu được hỗ trợ</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>Import và export</link> chạy ngay trên máy Mac: đưa vào từ file CSV, JSON, XLSX và SQL, xuất ra CSV, JSON, SQL, XLSX, Markdown, HTML và XML.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/import-export"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro cần một đường kết nối tới cơ sở dữ liệu: port của cơ sở dữ liệu mở cho máy Mac của bạn, hoặc quyền SSH vào server. Nếu gói hosting của bạn không có cách nào trong hai cách này, hãy dùng phpMyAdmin ở đó.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro là ứng dụng cho Mac, iPhone và iPad. Bạn không mở được TablePro từ trình duyệt trên một máy tính bất kỳ.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Giao diện ứng dụng Mac chỉ có {macLanguages}.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Một số tính năng phải trả phí. Gói Starter bổ sung những tính năng như {starterExamples}, trong khi phpMyAdmin không có gói trả phí.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro không có công cụ import từ phpMyAdmin. Hãy dùng thông tin MySQL hoặc SSH mà nhà cung cấp hosting đưa cho bạn: điền vào form connection, hoặc dán URL bắt đầu bằng mysql:// vào <ui>Tệp > Nhập > Nhập từ URL…</ui> (File > Import > Import from URL…).",
+        "steps": [],
+        "after": [
+            "Nếu mã nguồn của website có trên máy Mac, <ui>Tệp > Nhập > Mở thư mục dự án…</ui> (File > Import > Open Project Folder…) sẽ đọc thiết lập cơ sở dữ liệu từ các file như wp-config.php hay .env và mở form connection đã điền sẵn.",
+            "Với cơ sở dữ liệu production, hãy đặt mức Safe Mode cho connection trước khi bắt đầu làm việc.",
+            "File SQL bạn export từ phpMyAdmin có thể import vào bất kỳ connection MySQL hay MariaDB nào, dù đã nén gzip hay chưa."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "access",
+            "question": "Tôi cần nhà cung cấp hosting cho phép gì để dùng TablePro?",
+            "answer": "Một cách để tới được cơ sở dữ liệu: hosting cho phép truy cập MySQL từ xa từ địa chỉ của bạn, hoặc cho bạn quyền SSH vào server. TablePro kết nối được theo cả hai cách. Nếu gói hosting không có cách nào, hãy tiếp tục dùng phpMyAdmin ở đó.",
+            "href": null
+        },
+        {
+            "id": "sql-import",
+            "question": "TablePro có import được file SQL tôi export từ phpMyAdmin không?",
+            "answer": "Có. Tính năng import nhận file .sql và .sql.gz, rồi chạy các câu lệnh trong file trên connection bạn chọn. <link>Tìm hiểu về import và export</link>.",
+            "href": "/features/import-export"
+        },
+        {
+            "id": "adminer",
+            "question": "Còn Adminer thì sao?",
+            "answer": "Adminer là một công cụ web mã nguồn mở khác, chỉ gồm một file PHP. Ngoài MySQL và MariaDB, Adminer còn kết nối tới PostgreSQL, SQLite, SQL Server và Oracle. Giống phpMyAdmin, Adminer chạy trên server của bạn, nên bản cài đặt cũng cần được bảo vệ cẩn thận như vậy.",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "TablePro có miễn phí như phpMyAdmin không?",
+            "answer": "Với công việc trên MySQL và MariaDB thì có: ứng dụng TablePro cho Mac dùng miễn phí và là mã nguồn mở theo giấy phép AGPLv3, với mọi engine được hỗ trợ, trợ lý AI và MCP server. Khác với phpMyAdmin, TablePro có thêm gói trả phí: Starter và Team bổ sung các tính năng tùy chọn như {starterExamples}. <link>Xem bảng giá</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "phpmyadmin-databases": "MySQL và MariaDB",
+        "phpmyadmin-schema-visualization": "Hiển thị schema của cơ sở dữ liệu dưới dạng đồ họa, với nhiều định dạng",
+        "phpmyadmin-in-development": "Phiên bản {version} đang được phát triển",
+        "phpmyadmin-hardening": "Tài liệu của phpMyAdmin khuyên chỉ phục vụ qua HTTPS, giới hạn ai được truy cập, tắt đăng nhập bằng root và bật xác thực hai lớp"
+    }
+}

@@ -52,19 +52,30 @@ it('rebuilds the bundles for a component, a stylesheet or a dependency', functio
 })->with([
     'resources/js/pages/Home.tsx',
     'resources/js/components/ui/button.tsx',
+    'resources/js/i18n/messages/vi/nav.ts',
     'resources/css/app.css',
+    'resources/css/tokens.css',
     'vite.config.js',
     'package.json',
     'package-lock.json',
     'tsconfig.json',
+    // Page copy and legal text are read by PHP, but the pages are typed
+    // against them and data files under resources/data are bundled.
+    'resources/data/content/vi/home.json',
+    'resources/data/legal/vi/privacy.md',
+    'resources/data/locales.json',
 ]);
 
-it('does not rebuild the bundles for prose, templates or PHP', function (string $path) {
+it('does not rebuild the bundles for prose, templates, translations or PHP', function (string $path) {
     expect(deployMatches('FRONTEND_CHANGED', $path))->toBeFalse();
 })->with([
     'resources/blog/mcp-database-claude.md',
+    'resources/blog/vi/mcp-database-claude.md',
     'resources/views/app.blade.php',
+    'resources/views/partials/head-theme.blade.php',
     'app/Http/Controllers/LandingController.php',
+    'lang/vi/og.php',
+    'lang/en/errors.php',
     'docs/deployment.md',
 ]);
 
@@ -81,14 +92,27 @@ it('rebuilds the bundles for every data file the front end imports', function ()
      */
     $imported = [];
 
-    foreach (glob(base_path('resources/js/**/*.{ts,tsx}'), GLOB_BRACE) ?: [] as $file) {
-        preg_match_all("#from '[^']*data/([a-z0-9-]+\.json)'#i", file_get_contents($file), $found);
+    /*
+     * Recursive, both ways. PHP's glob() reads `**` as `*`, so the first version
+     * of this scan looked one directory deep and never saw a component; and the
+     * import pattern has to accept the `@data/` alias and nested paths such as
+     * `content/en/home.json`.
+     */
+    $sources = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(base_path('resources/js'), FilesystemIterator::SKIP_DOTS));
+
+    foreach ($sources as $file) {
+        if (! in_array($file->getExtension(), ['ts', 'tsx'], true)) {
+            continue;
+        }
+
+        preg_match_all("#(?:from|import\\() ?'(?:@data/|[^']*/data/)([a-z0-9/-]+\.json)'#i", file_get_contents($file->getPathname()), $found);
         $imported = array_merge($imported, $found[1]);
     }
 
     $imported = array_values(array_unique($imported));
 
     expect($imported)->not->toBeEmpty('Expected the front end to import at least one data file');
+    expect($imported)->toContain('locales.json');
 
     foreach ($imported as $json) {
         expect(deployMatches('FRONTEND_CHANGED', "resources/data/{$json}"))->toBeTrue(
@@ -96,10 +120,14 @@ it('rebuilds the bundles for every data file the front end imports', function ()
         );
     }
 
-    // And every file sitting in that directory, so an unimported one still
-    // rebuilds rather than depending on someone noticing it became bundled.
-    foreach (glob(base_path('resources/data/*.json')) as $file) {
-        expect(deployMatches('FRONTEND_CHANGED', 'resources/data/' . basename($file)))->toBeTrue();
+    // And every file in that tree, so an unimported one still rebuilds rather
+    // than depending on someone noticing it became bundled.
+    $data = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(resource_path('data'), FilesystemIterator::SKIP_DOTS));
+
+    foreach ($data as $file) {
+        $relative = 'resources/data/' . substr($file->getPathname(), strlen(resource_path('data')) + 1);
+
+        expect(deployMatches('FRONTEND_CHANGED', $relative))->toBeTrue("{$relative} does not trigger a front-end rebuild");
     }
 });
 
@@ -122,19 +150,33 @@ it('treats a Blade template as PHP, so the caches drop and FPM reloads', functio
 })->with([
     'resources/views/app.blade.php',
     'resources/views/og/blog.blade.php',
+    'resources/views/partials/head-theme.blade.php',
+    'resources/views/errors/503.blade.php',
     'app/Http/Controllers/LandingController.php',
     'config/inertia.php',
     'routes/web.php',
+    'routes/localized.php',
     'bootstrap/app.php',
     'composer.lock',
+    /*
+     * lang/ files are PHP arrays held by opcache like any other PHP file, and
+     * locales.json decides which route groups routes/web.php mounts, so a new
+     * locale has to rebuild the route cache.
+     */
+    'lang/vi/og.php',
+    'lang/en/errors.php',
+    'resources/data/locales.json',
 ]);
 
-it('leaves PHP alone for a page component or a blog post', function (string $path) {
+it('leaves PHP alone for a page component, a blog post or page copy', function (string $path) {
     expect(deployMatches('PHP_CHANGED', $path))->toBeFalse();
 })->with([
     'resources/js/pages/Home.tsx',
     'resources/css/app.css',
     'resources/blog/mcp-database-claude.md',
+    'resources/blog/vi/mcp-database-claude.md',
+    'resources/data/content/vi/home.json',
+    'resources/data/engines.json',
     'package.json',
 ]);
 
@@ -142,9 +184,14 @@ it('regenerates the sitemap when the pages it enumerates change', function (stri
     expect(deployMatches('CONTENT_CHANGED', $path))->toBeTrue();
 })->with([
     'resources/blog/mcp-database-claude.md',
+    'resources/blog/vi/mcp-database-claude.md',
     'resources/data/databases.json',
     'resources/data/comparisons.json',
+    'resources/data/content/vi/home.json',
+    'resources/data/legal/vi/privacy.md',
+    'resources/data/locales.json',
     'routes/web.php',
+    'routes/localized.php',
 ]);
 
 it('names an FPM service to reload, because this host does not revalidate', function () {
@@ -214,7 +261,7 @@ it('lets its own scratch directories past the cleanliness check, and nothing els
     'keeps the previous asset build' => ['?? public/build-old/', false],
     'keeps a half-finished SSR build' => ['?? bootstrap/ssr-next/', false],
     'keeps a half-finished asset build' => ['?? public/build-next/', false],
-    'blocks an edited controller' => [' M app/Http/Controllers/Landing/LandingController.php', true],
+    'blocks an edited controller' => [' M app/Http/Controllers/LandingController.php', true],
     'blocks an edited component' => [' M resources/js/pages/Home.tsx', true],
     'blocks a stray untracked file' => ['?? .env.backup', true],
     'blocks an untracked build directory that is not one of ours' => ['?? public/uploads-old/', true],

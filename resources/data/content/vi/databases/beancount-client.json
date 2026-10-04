@@ -1,0 +1,79 @@
+{
+    "seo": {
+        "title": "Query sổ cái Beancount bằng SQL trên {devices}",
+        "description": "Mở sổ cái Beancount thành các table SQL chỉ đọc gồm transaction, posting, số dư và metadata, đọc cả các file include, và chạy BQL qua rledger."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Query sổ cái Beancount bằng SQL"
+    },
+    "engine": "beancount",
+    "breadcrumb": "Beancount",
+    "header": {
+        "title": "Query sổ cái Beancount bằng SQL trên {devices}",
+        "lead": "Mở một file <code>.beancount</code> và query transaction, posting, số dư và metadata của nó như các table SQL, hoặc gửi BQL tới rledger. Sổ cái vẫn là file text mà bạn sửa trong editor của mình."
+    },
+    "asset": "mac-db-beancount-bql",
+    "links": {
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export",
+        "files": "/features/import-export#files"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Mở sổ cái",
+            "paragraphs": [
+                "TablePro chạy <code>rledger</code> hoặc Python Beancount để đọc sổ cái. Nếu bạn chưa cài backend nào, hãy chọn rledger: khi có cả hai, rledger được ưu tiên, BQL chỉ chạy qua rledger, và chỉ rledger điền kết quả kiểm tra vào table <code>diagnostics</code>.",
+                "Chọn file bằng <ui>Duyệt… (Browse…)</ui> trong form connection. Đường dẫn tới sổ cái là toàn bộ connection, không có host, port, mật khẩu hay cơ sở dữ liệu. File <code>.beancount</code> cũng mở được từ Finder, và URL <code>beancount:///path/to/main.beancount</code> import được.",
+                "Ứng dụng mở từ Finder không kế thừa <code>PATH</code> của shell. Nếu backend chạy được trong Terminal mà không chạy được ở đây, hãy chỉ đường dẫn tới nó bằng <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> hoặc <code>TABLEPRO_BEANCOUNT_PYTHON</code>, rồi mở lại ứng dụng.",
+                "Backend Python chạy các plugin đi kèm Beancount và bỏ qua mọi chỉ thị <code>plugin</code> khác, vốn là mã của bên thứ ba, cho tới khi bạn bật <ui>Chạy plugin sổ cái (Run Ledger Plugins)</ui> cho connection đó. Các plugin bị bỏ qua được liệt kê trong <code>diagnostics</code>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query sổ cái",
+            "paragraphs": [
+                "Các table bao gồm transaction và posting, account, số dư và balance assertion, giá và commodity, mọi chỉ thị khác, metadata, tag và link, cùng các file nguồn của sổ cái. Posting join với transaction qua <code>transaction_id</code>, còn account join theo tên.",
+                "Số tiền đã qua bước booking: phép tính, giá vốn (cost) và giá (price) đều đã được tính xong, còn giá vốn của posting và giá ghi kèm nằm ở các cột riêng. Transaction, posting và một số table chỉ thị có cột <code>source_location</code> như <code>main.beancount:42</code>, nên mỗi dòng dẫn ngược về đúng dòng trong file.",
+                "Thêm tiền tố <code>BQL:</code> vào query để gửi nó tới rledger thay vì các table. Duyệt, đếm dòng và phân trang đều dùng được trên kết quả BQL; tham số SQL thì không.",
+                "Các chỉ thị <code>include</code> đều được đọc theo, cả đường dẫn cụ thể lẫn glob, và mọi file sổ cái cùng tài liệu được tham chiếu đều được theo dõi. Lưu một thay đổi trong editor của bạn, và query kế tiếp sẽ đọc được nó mà không cần kết nối lại. Connection luôn ở mức <safeMode>Safe Mode</safeMode> Read-Only, nên INSERT, UPDATE, DELETE và mọi thay đổi schema đều bị từ chối."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "Export table hoặc kết quả query ra {exportFormats}. <files>Các loại file khác mà TablePro mở như cơ sở dữ liệu</files> gồm SQLite, DuckDB và Parquet."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "errors",
+            "question": "Sổ cái có lỗi thì còn mở được không?",
+            "answer": "Qua rledger thì được. Sổ cái vẫn được dựng thành table ngay cả khi kiểm tra thất bại, và mỗi vấn đề là một dòng trong <code>diagnostics</code>, kèm file, dòng, mức độ và thông báo."
+        },
+        {
+            "id": "several-ledgers",
+            "question": "Một connection có mở được nhiều sổ cái không?",
+            "answer": "Mỗi connection là một file sổ cái, không chuyển qua lại được. Một file chính include các file còn lại sẽ đưa tất cả vào, kể cả qua glob."
+        }
+    ],
+    "related": [
+        {
+            "label": "DuckDB, cho file phân tích",
+            "href": "/duckdb-client"
+        },
+        {
+            "label": "SQLite, cơ sở dữ liệu trong một file",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Import, export và file dữ liệu",
+            "href": "/features/import-export"
+        }
+    ]
+}

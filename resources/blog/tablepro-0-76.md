@@ -3,6 +3,7 @@ slug: tablepro-0-76
 title: "TablePro 0.76: One AI Session for the Whole Window"
 description: Agent mode hands one AI session the connection window, with its sessions, its conversation and the SQL it ran. Plus a window that opens CSV, JSON and Excel files as tables, MongoDB documents edited whole, and tools from your own MCP servers.
 date: 2026-09-28
+release: "TablePro 0.76"
 author: TablePro Team
 tags: [release, agent-mode, data-files, mongodb, mcp]
 ogPunchline: The chat becomes the window. CSV and Excel open as tables.
@@ -12,10 +13,7 @@ TablePro 0.76 is out: 592 changes, 450 of them fixes.
 
 The new work is Agent mode, a window for data files, and MongoDB documents you edit whole. Most of the fixes land in MongoDB, SQL Server, Redis and DynamoDB, and in how Safe Mode decides where a statement ends.
 
-<figure>
-  <img src="/images/blog/agent-mode-window.png" alt="TablePro connection window in Agent mode on the Chinook sample database, with one session on the left marked Waiting on you, a conversation in the middle where the assistant checked prices by genre and now proposes UPDATE Track SET UnitPrice = 1.29 for every Rock track on a card with Run, Always Allow and Reject buttons, and a Result column on the right listing the SELECT as Ran and the UPDATE as Waiting" />
-  <figcaption>The price check ran after one click. The UPDATE waits on its card, and the result column keeps both.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-76-1"></asset-slot>
 
 ## One session, the whole window
 
@@ -31,10 +29,7 @@ Agent mode and the next section are the work of [@J2TeamNNL](https://github.com/
 
 TablePro has been an MCP server for other apps. Now it can call one. Add a server you run in **Settings > Integrations**, tick the connections it may reach, and a session can ask it for a ticket or a runbook in the same turn it writes SQL.
 
-<figure>
-  <img src="/images/blog/mcp-outside-servers-settings.png" alt="TablePro Settings open on Integrations, with Enable MCP Server switched off above an Outside MCP Servers list holding Runbooks at runbooks.internal.example/mcp allowed on 2 connections and Incident Tracker allowed on none, and an Add Server button below them" />
-  <figcaption>A server reaches nothing until a connection is ticked, and every call to it still waits for Run or Reject.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-76-2"></asset-slot>
 
 Every call waits for you, whatever the server says about its own tools, and **Always Allow** does not cover them. The address has to be HTTPS unless the server runs on this Mac, and the token stays in this Mac's Keychain.
 
@@ -42,10 +37,7 @@ Every call waits for you, whatever the server says about its own tools, and **Al
 
 Double-click a CSV and it opens in its own window as a table, with the grid's filter bar, a search across every column, and Find & Replace over the whole file. TSV, pipe-separated, `.txt` and `.dat` files open the same way. JSON and JSON Lines open and edit as a table, and Excel workbooks and `.csv.gz` files open read-only.
 
-<figure>
-  <img src="/images/blog/data-files-window.png" alt="A Data Files window on orders.csv with columns order_id, customer, city, status, total and ordered_at, searched for Hanoi, with the status bar reading 2,498 of 20,000 rows and 6 columns on the left and Comma, UTF-8, LF on the right" />
-  <figcaption>The status bar names the delimiter, encoding and line ending the file was read with, and Save writes them back.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-76-3"></asset-slot>
 
 The file is not read into memory. On a 12-core Apple silicon Mac, a 1 GB CSV of 6.9 million rows opens in about 0.4 seconds and filters in about 0.3. **Edit > Data** holds Fill Down, Trim Whitespace, Change Case and Remove Duplicate Rows, clicking a top value in a column's statistics filters the file, and **Import into Table** hands the rows to an open connection.
 
@@ -53,10 +45,7 @@ The file is not read into memory. On a 12-core Apple silicon Mac, a 1 GB CSV of 
 
 A cell edits one value. To add, rename or remove fields, select a row and choose **Edit > Edit Document…**. The sheet reads the document from the server again and saves your text as a whole-document replace, in the order you wrote it. If someone changed the document after the sheet opened, nothing is saved and the sheet says so. **Insert Document…** takes a new one the same way.
 
-<figure>
-  <img src="/images/blog/mongodb-insert-document.png" alt="Insert Document sheet over an empty events collection, holding a document with a name, a channel, a sentAt date written as $date, a recipients count and a tags array, with a hint to quote every field name and Cancel and Insert buttons" />
-  <figcaption>Insert Document takes Extended JSON, so a date and an ObjectId are written the way MongoDB stores them.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-76-4"></asset-slot>
 
 **Remove Field** removes a field from a cell, and **Set NULL** stores null instead of deleting the field. The Structure tab renames or removes a field across a collection, carries the validator along, and refuses a change that would break an index or a view.
 

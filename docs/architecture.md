@@ -7,17 +7,98 @@ database and no credentials: every page is built from markdown in
 ## What it serves
 
 ```
-/                        homepage
-/download  /ios  /faq    product pages
+/                          homepage
+/download  /ios  /pricing  /faq
+/features  /features/{slug}
+/databases /{database}-client  /{database}-gui
+/compare   /compare/{slug}
 /privacy  /terms  /refund-policy
-/blog  /blog/{slug}      markdown in resources/blog
-/compare/{slug}          data in resources/data/comparisons.json
-/{database}-client       data in resources/data/databases.json
+/blog  /blog/{slug}        markdown in resources/blog
+/vi/…                      every page above, in Vietnamese, where it exists
 /robots.txt  /sitemap.xml
 ```
 
 Pages resolve by convention from `resources/js/pages`, so adding a file is
 enough — Inertia is configured without an explicit `resolve`.
+
+### Languages
+
+English is at the root and Vietnamese under `/vi`, with the same slugs. The
+locale comes from the URL alone: no cookie, no session, no `Accept-Language`,
+no IP lookup, no `Vary` on language and no redirect between languages. A
+crawler or a reader reaches each language by its URL.
+
+```
+resources/data/locales.json      the allowlist: code, native name, prefix, hreflang, og, Intl tag
+routes/localized.php             every page, declared once
+routes/web.php                   mounts localized.php once per locale:
+                                   /…     names landing.*      middleware locale:en, page
+                                   /vi/…  names vi.landing.*   middleware locale:vi, page
+```
+
+`locale:{code}` (`SetLocale`) sets the application locale from the route group.
+`page` (`EnsurePageRenders`) asks `App\Support\Seo\PageRegistry` whether the
+page renders in that locale. A page renders in a locale when its content exists
+there (`resources/data/content/{locale}/…`, `resources/data/legal/{locale}/…`,
+`resources/blog/vi/…`); until then the URL answers a branded 404 that links the
+version that does exist. So `/vi/blog/{slug}` for an English-only release post
+is a 404 offering the English post, never the English body under Vietnamese
+chrome. A page with content in no locale is no page at all: the registry does
+not know it and the route answers 404.
+
+The same registry feeds the shared `seo` prop (robots, canonical, hreflang,
+`og:locale`, OG card), the `localization.switcher` prop and the sitemap, so they
+cannot disagree. A page can render in a locale without being indexed there:
+`/vi/blog` lists English posts, so its content file sets `seo.indexable: false`
+and it carries `noindex, follow` with no canonical and no alternates.
+
+Errors render the `Error` page in the locale of the path (404 and 410 always,
+500 and 503 with debug off), with `noindex, follow`.
+`resources/views/errors/{500,503}.blade.php` are static fallbacks that need no
+build.
+
+UI strings are typed catalogs in `resources/js/i18n/messages/{locale}/`; page
+copy is per-locale JSON; server-rendered strings are in `lang/{locale}/`. The
+CLAUDE.md "Languages" section has the rules for writing them.
+
+### Where the content lives
+
+```
+resources/data/*.json                 locale-neutral facts: locales, platforms, engines,
+                                      pricing, paid-features, facts, sponsors, comparisons,
+                                      assets, redirects
+resources/data/content/{locale}/      page copy: home, download, ios, pricing, faq, blog,
+                                      legal, engines, paid-features, and one file per
+                                      page under features/, databases/, compare/
+resources/data/legal/{locale}/*.md    privacy, terms, refund policy
+resources/blog/*.md                   posts (English); resources/blog/vi/*.md their translations
+lang/{locale}/*.php                   OG card labels and the static error pages
+resources/js/i18n/messages/{locale}/  UI chrome catalogs, typed
+```
+
+A fact is stated once, in data, and copy refers to it: a price comes from
+`pricing.json`, an engine's capabilities from `engines.json`, a release version
+or requirement from `platforms.json`, a URL from `facts.json`. Counts are
+derived, never typed. A feature newer than the oldest Mac build still served
+(`platforms.json` → `mac.floorVersion`, which trails while Homebrew catches up)
+carries a "0.77"-style label from its `sinceAppVersion`; bumping the floor
+removes every such label at once.
+
+A database, comparison or feature page exists when its slug is in the constant
+class in `app/Support/Content/Slugs/` (the route constraint) and its content
+file exists in a locale. `LocaleRoutingTest` holds the two lists together.
+
+### Retired URLs
+
+Redirects and 410s are not routes. `App\Http\Middleware\CanonicalizeRequest`
+runs first in the global stack, for `GET` and `HEAD` only. It drops a trailing
+slash and a leading `/index.php`, then looks the clean path up in
+`resources/data/redirects.json` (each entry is a `301` with a `to`, or a `410`)
+and in the `/databases/{docsSlug}` rule. The answer is a single hop that keeps
+the query string, so `/mariadb-client/?ref=x` goes straight to
+`/mysql-client?ref=x#mariadb`; a 410 renders the branded Error page. An unknown
+path is a 404, never a redirect to the homepage. A retired URL is never also a
+page: the registry drops every path the map answers.
 
 ## What it does not serve
 
@@ -35,19 +116,49 @@ Two consequences worth knowing before you write code here:
 - `csrf_token()` throws, and there is no CSRF meta tag. Nothing should add one.
 - `session()`, `redirect()->back()->with(...)` and Inertia's `useForm().post()`
   do not work. Forms use plain `fetch` and keep their result in React state —
-  see `useEmailForm` in `resources/js/hooks/use-email-form.ts`, whose
-  remaining caller is the footer newsletter.
+  see `useEmailForm` in `resources/js/hooks/use-email-form.ts`, used by the
+  footer and blog newsletter forms.
 
 ## The endpoints the pages call
 
-All anonymous, all rate limited, none needs a token.
+All anonymous, all rate limited, none needs a token. They are the platform's
+paths, so they are always called at the root, never under `/vi`: nginx routes
+them by prefix, and `/vi/checkout` would never reach the platform. The page's
+language travels in the body instead.
 
 | Endpoint | Sends | Returns |
 | --- | --- | --- |
-| `POST /checkout` | `{tier, cycle, seats?, discount_code?, attribution?}` | `{url}` — passed to the checkout SDK |
+| `POST /checkout` | `{tier, cycle, seats?, discount_code?, attribution?, locale}` | `{url}` — passed to the checkout SDK |
 | `POST /discount/preview` | `{code}` | `{valid, amount_type?, amount?}` |
-| `POST /newsletter/subscribe` | `{email}` | `{type, message}` |
-| `GET /api/newsletter/stats` | — | `{count}` |
+| `POST /newsletter/subscribe` | `{email, locale}` | `{type, message}` |
+
+Every call is a plain `fetch` with `credentials: 'omit'`. The platform answers
+from its session-backed `web` group, so a same-origin request with credentials
+would send and store `tablepro-session` and `XSRF-TOKEN` on public pages;
+`omit` does neither. `PublicContractsTest` holds every call to it.
+
+`locale` lets the platform send the buyer's or subscriber's emails in the
+language of the page they came from. It is never inferred from anything else,
+and it says nothing about currency or region: prices are USD everywhere.
+
+The plan cards on `/pricing` and the homepage's `#pricing` section receive a
+`checkout` page prop from `App\Support\Pricing\Checkout`:
+`{provider, couponField}`. `provider` is `PAYMENT_PROVIDER` (`polar` or
+`lemonsqueezy`), which must match the platform's own setting, because the cards
+open the overlay of whichever provider's URL `POST /checkout` returns. Polar's
+checkout takes a discount code itself, so under Polar the cards show no code
+field and never call `/discount/preview`.
+
+`GET /api/newsletter/stats` is no longer called. The old footer fetched it for a
+subscriber count, and the footer no longer shows one. The endpoint stays on the
+platform as a contract for anyone else.
+
+Links to the account are plain `<a href="/account?locale={locale}">`: a
+different application, so never an Inertia `<Link>`, and never prefixed.
+`<LocaleLink>` and `localePath()` treat every platform path that way
+(`PLATFORM_PATHS` in `resources/js/i18n/paths.ts`, the same pattern as
+`scripts/dev-proxy.mjs`), and never append `locale` themselves, because a
+signed `/thank-you?order=…` URL must arrive exactly as it was signed.
 
 Checkout takes a tier and billing cycle rather than a product identifier, which
 is why no payment-provider identifier appears anywhere in this repository.
@@ -93,7 +204,13 @@ not recorded at all, precisely so it cannot take that slot.
 The record lives in `localStorage` under `tablepro:attribution`, because this
 app has no session and sets no cookies. It is disclosed on `/privacy`.
 
-Three things the backend end of this contract has to do:
+What the backend does with it today is **nothing**: the platform ignores the
+field and passes none of it to Polar or Lemon Squeezy. The privacy policy says
+exactly that. The `checkout_started`
+analytics event is the only part of this that reports anything.
+
+If the backend ever starts keeping it, three things hold, and the privacy
+policy changes first:
 
 1. **Tolerate its absence.** It is missing for every reader who arrived
    untagged, and for every browser that refuses storage. It is not a validation
@@ -105,9 +222,6 @@ Three things the backend end of this contract has to do:
 3. **Persist it against the license, not just the checkout session.** Storing it
    as provider metadata is what carries it through to the webhook; the
    attribution is only worth collecting if it survives to sit beside the sale.
-
-Until that end exists, the field is sent and ignored, and the `checkout_started`
-analytics event is the only part of this that reports anything.
 
 ## Analytics and consent
 
@@ -149,24 +263,99 @@ event-scoped custom dimension under Admin → Custom definitions. Page changes
 between Inertia visits are counted by enhanced measurement's "page changes
 based on browser history events", which must stay on in the web stream.
 
+## Third-party scripts
+
+Two third-party scripts load unasked: the Google tag in Consent Mode above,
+and Cloudflare Web Analytics.
+
+- **Cloudflare Web Analytics** is a Cloudflare dashboard setting for
+  tablepro.app. Cloudflare injects its beacon (`static.cloudflareinsights.com`)
+  at the edge into every page here and in the account portal; this repository
+  never adds it, so no test here sees it. It sets no cookies, and the privacy
+  policy discloses it (Website, retention and recipients sections).
+
+- **Crisp** loads only when a reader clicks a chat button
+  (`resources/js/lib/crisp.ts`). Before that click it sets nothing; the privacy
+  policy says what it sets after.
+- **The Polar or Lemon Squeezy checkout SDK** loads at checkout intent, not on
+  every page. `resources/js/lib/checkout-sdk.ts` injects one script tag on the
+  first `pointerenter` or focus of a buy button (or on the click itself), and
+  the click awaits it before opening the overlay; if it cannot load, the reader
+  goes to the provider's checkout page instead. The script URLs, version
+  pinned, are `checkoutSdk` in `resources/data/pricing.json`.
+- **Product Hunt** is a plain text link ("TablePro on Product Hunt", URL in
+  `facts.json` → `links.productHunt`): no badge image, no hotlink, no request.
+
 ## Working on these forms locally
 
-`php artisan serve` runs only this app, so those paths return 404 on your
-machine. In order of convenience:
+`php artisan serve` runs only this app, so the platform's paths return 404 on
+your machine. To exercise a journey that crosses between the two apps, run both
+behind one origin, the way nginx does in production:
 
-1. **Stub it.** Short-circuit the fetch or point it at a local JSON file.
-   Enough for any styling or copy work.
-2. **Proxy it.** Add a Vite proxy for those paths while you work. Do not commit
-   it.
-3. **Ignore it.** If your change does not touch a form, none of this affects you.
+```bash
+php artisan serve --port=8000                      # this repository
+(cd ../license && php artisan serve --port=8001)   # the platform
+npm run dev:proxy                                  # http://localhost:8080
+```
+
+`scripts/dev-proxy.mjs` sends `/account`, `/checkout`, `/webhooks`,
+`/newsletter`, `/beta`, `/discount`, `/thank-you`, `/api/newsletter` and
+`/platform-build` to the platform and everything else here, with
+`X-Forwarded-*` headers. Set `WEB_DOMAIN=localhost` in both `.env` files (the
+platform's routes are domain-scoped and domain matching ignores the port) and
+use built assets in both. Keep payments mocked and mail on the `log` driver: no
+real checkout, message or customer data.
+
+For styling or copy work that does not touch a form, stub the fetch instead, or
+ignore it.
+
+## Images
+
+Every content image (screenshots, crops, phone captures, diagrams, blog
+figures) is a slot in one manifest, `resources/data/assets.json`. Its `kinds`
+fix the geometry and export rules; each entry carries the owner-handoff fields
+and a `status`, the only render switch. `<AssetSlot id>`
+(`resources/js/components/ui/asset-slot.tsx`) renders a `placeholder` as a
+labelled, described box of the final aspect ratio, with no `<img>` and no
+request, and a `supplied` entry as `<picture>` sources with light and dark
+variants. Markdown places a slot with `<asset-slot id="…"></asset-slot>`. A
+supplied `priority` asset gets a head preload through the `lcpAsset` page prop.
+
+The browser bundle carries only `resources/js/lib/data/asset-slots.json`, the
+render slice of the manifest. `php artisan assets:handoff` writes it, together
+with the owner's brief, `docs/visual-assets.md`, from the manifest and the
+per-family fragments in `docs/rebuild/assets/`. Both files are generated: edit
+the manifest or a fragment and rerun the command. `assets:handoff --check` runs
+in CI and fails on a stale file.
 
 ## Build and deploy
 
 `npm run build` produces both the client and SSR bundles. `scripts/deploy.sh`
-installs, builds, regenerates the sitemap and caches config.
+installs, builds, regenerates the sitemap and caches config and routes. Because
+`resources/data/locales.json` decides which route groups exist, a change to it
+rebuilds the route cache like any PHP change (docs/deployment.md).
 
 The sitemap is generated on the host because it carries a `lastmod` date. Open
 Graph cards are the opposite — they are committed under `public/og/`, so
-nothing in production needs a browser engine. Regenerate them through the
-`og cards` workflow rather than on a schedule; a scheduled run would rewrite
-tracked files and leave the deploy checkout dirty.
+nothing in production needs a browser engine. `php artisan og:generate
+--type={site|blog|database|compare|feature|all} --locale={en|vi|all}` renders
+them from each page's content (`og` block, or the post's front matter):
+English at `public/og/{type}/{slug}.png` and the generic `public/og.png`,
+Vietnamese under `public/og/vi/`. A page with no card of its own, or whose own
+card file is missing, falls back to its language's generic card: the bespoke
+`og-site` card (`public/og/bespoke/og-site-{locale}.png`, an owner asset in
+`resources/data/assets.json`) once that entry is supplied and the locale's file
+exists, else the generated one. Only when no generic card exists does the page
+emit no `og:image`, rather than a broken one. `Seo/OgCardsTest` fails in either case. Regenerate them through
+the `og cards` workflow rather than on a schedule; a scheduled run would
+rewrite tracked files and leave the deploy checkout dirty.
+
+Release facts (versions, dates, requirements and the App Store price) are data
+in `platforms.json`, not fetched per page. `php artisan release:check` compares
+them with GitHub, the Sparkle appcast, Homebrew and the App Store, and exits
+non-zero on any drift or unreadable source. It needs the network, so it is run by hand before a launch
+or after a release, never in the test suite.
+
+A few files are byte-identical with the platform app: the design tokens, the
+fonts, the theme partial and the consent and theme modules.
+`docs/shared-files.md` lists them and how to change them.

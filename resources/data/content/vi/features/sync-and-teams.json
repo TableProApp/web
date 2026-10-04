@@ -1,0 +1,140 @@
+{
+    "seo": {
+        "title": "iCloud Sync và chia sẻ connection cho nhóm",
+        "description": "Giữ connection, nhóm và tag giống nhau trên máy Mac, iPhone và iPad bằng iCloud Sync, chia sẻ file connection, và xuất bản lên thư viện của nhóm."
+    },
+    "og": {
+        "kicker": "Đồng bộ và làm việc nhóm",
+        "title": "Đồng bộ giữa các thiết bị và chia sẻ với nhóm của bạn"
+    },
+    "header": {
+        "title": "Đồng bộ giữa các thiết bị và chia sẻ với nhóm của bạn",
+        "lead": "Dành cho lúc bạn dùng TablePro trên nhiều thiết bị, hoặc khi nhiều người cần cùng một bộ connection. iCloud Sync giữ các máy Mac, iPhone và iPad của chính bạn luôn khớp nhau; file connection, Linked Folders và các tính năng Team giúp chia sẻ connection và query với người khác.",
+        "docs": "/features/icloud-sync"
+    },
+    "sections": [
+        {
+            "id": "icloud-sync",
+            "title": "iCloud Sync",
+            "paragraphs": [
+                "iCloud Sync giữ thư viện của bạn giống nhau trên mọi máy Mac, iPhone và iPad đăng nhập cùng tài khoản iCloud. Dữ liệu được lưu trong một cơ sở dữ liệu riêng tư thuộc tài khoản đó, và tính năng này tắt cho tới khi bạn bật trên từng thiết bị. Trên iPhone và iPad, iCloud Sync miễn phí; máy Mac cần một gói có kèm tính năng này.",
+                "Mật khẩu chỉ được đồng bộ khi bạn bật thêm mục <ui>Mật khẩu</ui> (Passwords) trong Danh mục đồng bộ trên Mac, hoặc <ui>Đồng bộ mật khẩu</ui> (Sync Passwords) trên iPhone và iPad, đi qua iCloud Keychain; trên Mac, tùy chọn này còn mang theo các secret khác mà TablePro lưu trong Keychain, như API key của nhà cung cấp AI và license key. Đánh dấu một connection là <ui>Chỉ cục bộ</ui> (Local only) để giữ nó, cùng các mục yêu thích và query đã lưu của nó, trên một máy Mac."
+            ],
+            "points": [
+                "Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm connection và tag, cài đặt, SSH profile, table và cơ sở dữ liệu yêu thích, query đã lưu kèm nội dung SQL, và thư mục table.",
+                "Trên iPhone và iPad: connection, nhóm connection và tag.",
+                "Một connection được đồng bộ mang theo host, port, tên người dùng, tên cơ sở dữ liệu, thiết lập SSH và SSL, startup command, pre-connect script và AI rules.",
+                "Không bao giờ được đồng bộ: lịch sử query, Data Rewind, nguồn mật khẩu, tunnel command và mức External Clients của từng connection."
+            ],
+            "paid": ["icloud-sync"],
+            "asset": "diagram-icloud-sync"
+        },
+        {
+            "id": "handoff",
+            "title": "Handoff",
+            "paragraphs": [
+                "Mở một connection hoặc một table trong TablePro trên iPhone hay iPad, máy Mac sẽ gợi ý mở tiếp nó trong Dock, và ngược lại. Handoff mở lại đúng connection đã lưu, nên connection đó phải có trên cả hai thiết bị: iCloud Sync đưa nó sang, còn bản import từ file được coi là một connection khác. Giữa các thiết bị của bạn, qua Apple, Handoff truyền ID của connection và tên table đang mở; khi chưa mở table nào, tên connection (hoặc host nếu connection không có tên) được truyền thay cho tên table."
+            ],
+            "paid": ["icloud-sync"],
+            "asset": "mac-handoff-ios"
+        },
+        {
+            "id": "share",
+            "title": "Chia sẻ một connection",
+            "paragraphs": [
+                "Export connection ra file <code>.tablepro</code> để gửi cho đồng nghiệp hoặc để cạnh mã nguồn. File chứa các connection kèm nhóm connection, tag và thiết lập SSH của chúng, không có mật khẩu. Encrypted Export thêm mật khẩu vào và mã hóa toàn bộ file bằng một passphrase với AES-256-GCM. Import một file, dù có mã hóa hay không, đều miễn phí trên Mac cũng như trên iPhone và iPad.",
+                "Trên iPhone và iPad, export kèm mật khẩu được bảo vệ bằng passphrase là miễn phí. Một connection cũng có thể được gửi đi dưới dạng liên kết <code>tablepro://import</code>, mang theo host, port, tên người dùng, tên cơ sở dữ liệu cùng thiết lập SSH và SSL, không bao giờ kèm mật khẩu."
+            ],
+            "paid": ["encrypted-export"],
+            "links": [{ "label": "Import connection từ các client khác", "href": "/features/connections#import" }]
+        },
+        {
+            "id": "linked-folders",
+            "title": "Linked Folders",
+            "paragraphs": [
+                "Thêm một thư mục, chẳng hạn một bản checkout Git hay một ổ đĩa dùng chung, và TablePro liệt kê mỗi file <code>.tablepro</code> trong đó thành một connection, cập nhật danh sách khi file được thêm hoặc thay đổi. Connection liên kết chỉ đọc trong TablePro: muốn sửa thì bạn sửa file của nó. File đã mã hóa bị bỏ qua, nên thư mục dùng chung chỉ chứa thiết lập, không chứa mật khẩu, và startup command cùng tunnel command trong file liên kết đều bị bỏ qua.",
+                "Linked Folders theo dõi file connection. Linked SQL folder, một phần miễn phí của query đã lưu, là tính năng khác: nó giữ một thư mục file <code>.sql</code> khớp với các query đã lưu của bạn."
+            ],
+            "paid": ["linked-folders"],
+            "links": [{ "label": "Query đã lưu và linked SQL folder", "href": "/features/querying#history" }]
+        },
+        {
+            "id": "team",
+            "title": "Team Catalog và Team Library",
+            "paragraphs": [
+                "Có hai cách để mọi người trong một license Team dùng chung connection: một qua thư mục bạn đã chia sẻ sẵn, một qua server của TablePro."
+            ],
+            "blocks": [
+                {
+                    "id": "team-catalog",
+                    "title": "Team Catalog",
+                    "paragraphs": [
+                        "<ui>Chia sẻ > Xuất bản lên danh mục nhóm…</ui> (Share > Publish to Team Catalog…) ghi các connection bạn chọn, không kèm mật khẩu, thành file <code>.tablepro</code> trong một thư mục dùng chung. Thành viên nhóm thêm thư mục đó làm Linked Folder, nên catalog đi qua ổ đĩa dùng chung hay repository bạn đã có, không đi qua TablePro."
+                    ],
+                    "paid": ["team-catalog"]
+                },
+                {
+                    "id": "team-library",
+                    "title": "Team Library",
+                    "paragraphs": [
+                        "<ui>Chia sẻ > Xuất bản lên thư viện nhóm…</ui> (Share > Publish to Team Library…) trên một connection, và <ui>Xuất bản truy vấn đã lưu cho nhóm…</ui> (Publish Saved Queries to Team…) trong sidebar Favorites, tải connection và query đã lưu lên server của TablePro, và mọi máy Mac trong license sẽ tải chúng về; các query hiện trong sidebar Favorites kèm tên người đã xuất bản chúng. Thứ được tải lên là thiết lập connection và nội dung SQL của query, không bao giờ có mật khẩu, và máy Mac của thành viên nhóm bỏ qua startup command và tunnel command trong những gì nhận về, nên không có gì tự chạy trên máy của họ. Xuất bản lại sẽ thay thế những gì bạn đã xuất bản trước đó."
+                    ],
+                    "paid": ["team-library"],
+                    "asset": "mac-team-library",
+                    "links": [{ "label": "Team Library gửi gì cho TablePro", "href": "/privacy#library" }]
+                }
+            ]
+        },
+        {
+            "id": "seats",
+            "title": "Seat, lời mời và tài khoản của bạn",
+            "paragraphs": [
+                "License Team tính giá theo seat, và mỗi seat là một máy Mac được kích hoạt, không phải một người. Bạn mời thành viên nhóm từ tài khoản trên web; mỗi người nhận qua email một mã dùng một lần để nhập vào <ui>Cài đặt > Giấy phép</ui> (Settings > License) trên máy Mac của họ, và mỗi lời mời cần một seat còn trống. Ứng dụng cho biết ai đang ở trong nhóm, nhưng seat và lời mời được quản lý trên web.",
+                "Với gói thuê bao theo tháng hoặc theo năm đang hoạt động, bạn tự thay đổi số seat; với gói mua một lần, hãy liên hệ bộ phận hỗ trợ. Xóa một người khỏi nhóm sẽ giải phóng seat ngay và xóa những gì họ đã xuất bản lên Team Library; máy Mac của họ mất các tính năng trả phí ở lần kiểm tra license kế tiếp, trong vòng {licenseCheckDays} ngày. Trang tài khoản dành cho người đã mua license."
+            ],
+            "links": [
+                { "label": "Giá gói Team", "href": "/pricing#team" },
+                { "label": "Tài khoản của bạn", "href": "/account?locale=vi" }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "Trên iPhone và iPad",
+            "paragraphs": [
+                "Ứng dụng cho iPhone và iPad đồng bộ connection, nhóm connection và tag qua iCloud, dùng được Handoff, và import, export file <code>.tablepro</code>, kèm mật khẩu được bảo vệ bằng passphrase nếu bạn muốn. Linked Folders, Team Catalog và Team Library chỉ có trong ứng dụng Mac."
+            ],
+            "links": [{ "label": "TablePro cho iPhone và iPad khi dùng cùng máy Mac", "href": "/ios#mac" }]
+        }
+    ],
+    "availability": [
+        { "label": "iCloud Sync", "paid": "icloud-sync", "ios": "partial", "iosNote": "Connection, nhóm và tag; miễn phí" },
+        { "label": "Đồng bộ mật khẩu qua iCloud Keychain", "paid": "icloud-sync", "ios": "yes" },
+        { "label": "Chọn mục đồng bộ và giữ connection ở chế độ Chỉ cục bộ", "paid": "icloud-sync", "ios": "no" },
+        { "label": "Handoff, khi bật iCloud Sync", "paid": "icloud-sync", "ios": "yes" },
+        { "label": "Export và import file .tablepro", "ios": "yes" },
+        { "label": "Encrypted Export kèm mật khẩu", "paid": "encrypted-export", "ios": "yes" },
+        { "label": "Linked Folders", "paid": "linked-folders", "ios": "no" },
+        { "label": "Team Catalog", "paid": "team-catalog", "ios": "no" },
+        { "label": "Team Library", "paid": "team-library", "ios": "no" }
+    ],
+    "limits": [
+        "Khi gói trả phí trên Mac kết thúc, iCloud Sync tạm dừng và cho biết lý do, connection từ Linked Folders và Team Library biến mất khỏi danh sách, các lệnh xuất bản lên Team Catalog và Team Library bị ẩn, và Encrypted Export mất tùy chọn kèm mật khẩu.",
+        "Sửa một connection đã đồng bộ trên iPhone hoặc iPad có thể thay đổi những thiết lập mà ứng dụng ở đó không có: một mức Safe Mode chặt hơn trên Mac, như Safe Mode (Full), quay về thành Alert, và jump host SSH có thể bị mất qua lần đồng bộ đó. Hãy sửa các connection này trên Mac.",
+        "Nếu license Team kết thúc hoặc bị tạm ngưng, những gì đã xuất bản lên Team Library vẫn nằm trên server của TablePro cho tới khi bạn yêu cầu xóa."
+    ],
+    "docs": [
+        { "label": "iCloud Sync", "docs": "/features/icloud-sync" },
+        { "label": "Handoff", "docs": "/features/handoff" },
+        { "label": "File connection và Encrypted Export", "docs": "/features/connection-sharing#export" },
+        { "label": "Linked Folders", "docs": "/features/connection-sharing#linked-folders" },
+        { "label": "Team Catalog", "docs": "/features/connection-sharing#team-catalog" },
+        { "label": "Team Library", "docs": "/features/favorites#team-library" },
+        { "label": "Gói Team và seat", "docs": "/features/team#seats" }
+    ],
+    "related": [
+        { "label": "TablePro cho iPhone và iPad", "href": "/ios" },
+        { "label": "Connection, tunnel và thông tin đăng nhập", "href": "/features/connections" },
+        { "label": "Gói trả phí bổ sung những gì", "href": "/pricing#features" },
+        { "label": "Quyền riêng tư: iCloud Sync và Handoff", "href": "/privacy#icloud" }
+    ]
+}

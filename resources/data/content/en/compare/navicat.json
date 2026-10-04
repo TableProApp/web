@@ -1,0 +1,182 @@
+{
+    "seo": {
+        "title": "TablePro vs Navicat: a proprietary or an open-source client",
+        "description": "Navicat Premium is a perpetual license or a subscription, with a free Lite edition. TablePro is open source and free to use. Compare prices, AI and apps."
+    },
+    "og": {
+        "kicker": "Compare",
+        "title": "TablePro vs Navicat"
+    },
+    "header": {
+        "title": "TablePro vs Navicat",
+        "lead": "Navicat Premium is a client for Windows, macOS and Linux, sold per user as a perpetual license or a monthly or yearly subscription, with a free Premium Lite edition. TablePro is an open-source client with a native app for the Mac and another for iPhone and iPad. It is free to use, and paid plans add optional features to the Mac app."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "You want a free app that already includes the AI assistant, the MCP server and Safe Mode, with a paid plan only for features such as {starterExamples}.",
+            "You want an open-source client. TablePro is open source under the AGPLv3, including the code of its paid features.",
+            "You want one free iPhone and iPad app for several engines, rather than separate paid apps for single engines.",
+            "You use engines Navicat Premium does not list, such as ClickHouse, DuckDB or Cassandra."
+        ],
+        "competitor": [
+            "You work on Windows or Linux as well as the Mac.",
+            "You design schemas in a data modeling tool. Navicat includes one in Premium Enterprise.",
+            "You keep connections, queries and models in sync with colleagues through Navicat Cloud, or through Navicat On-Prem Server on your own server."
+        ]
+    },
+    "glance": {
+        "intro": "Navicat Premium is sold per user, as a perpetual license with a year of maintenance or as a monthly or yearly subscription, and Premium Lite is free. Both products have an AI assistant: Navicat added its own in version {cells.ai.version}, released {cells.ai.date}."
+    },
+    "rows": {
+        "schemaSync": {
+            "label": "Structure synchronization",
+            "tablepro": "Compare & Sync, for structure and data, in Starter"
+        },
+        "dataModeling": {
+            "label": "Data modeling",
+            "tablepro": "No modeling tool. A read-only ER diagram, exported as PNG or SQL, free"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Navicat Premium runs on Windows, macOS and Linux.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium Enterprise adds a data modeling tool. TablePro’s ER diagram only shows a schema that already exists.",
+                "cite": ["cells.dataModeling"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Navicat Cloud, or Navicat On-Prem Server if everything must stay in-house, keeps connection settings, queries and models in sync and shares them with the people you invite.",
+                "cite": ["cells.sync"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium Lite is free for commercial and non-commercial use, if its core features cover your work.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro is open source under the AGPLv3, including the code of its paid features. Navicat is closed source.",
+                "cite": ["licence"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "The free app connects to every supported engine and includes the AI assistant, the MCP server and Safe Mode. <link>Paid plans</link> add features such as {starterExamples}.",
+                "cite": [],
+                "feature": null,
+                "href": "/pricing"
+            },
+            {
+                "text": "Both synchronize structure. TablePro’s <link>Compare & Sync</link> compares the structure or the data of two databases and generates a script for the differences, holding back statements that destroy data until you allow them. It is part of Starter.",
+                "cite": ["cells.schemaSync"],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "One free <link>app for iPhone and iPad</link> connects to several engines, with no in-app purchases. Navicat sells separate apps for single engines, such as Navicat for MySQL.",
+                "cite": ["cells.ios"],
+                "feature": null,
+                "href": "/ios"
+            },
+            {
+                "text": "TablePro connects to the engines Navicat Premium lists and to <link>others it does not</link>, such as ClickHouse, DuckDB, Cassandra and Elasticsearch.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": "/databases"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "There is no TablePro app for Windows or Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "There is no data modeling tool. The <link>ER diagram</link> is a read-only view of an existing schema, which you can export as PNG or SQL.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/schema#er-diagram"
+            },
+            {
+                "text": "There is no task scheduler, so comparisons, exports and backups run only when you start them.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro’s one iPhone and iPad app covers several engines, but it does less than the Mac app: it has no AI assistant, no MCP server and no autocomplete.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "A Navicat perpetual license keeps working after its year of maintenance, and so does a TablePro one-time purchase. A monthly or yearly TablePro plan does not: when it ends, its paid features lock and the rest of the app keeps working.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro imports Navicat connections from a file you export in Navicat, so the move starts there. Navicat’s own settings are not read or changed.",
+        "steps": [
+            "In Navicat, choose <ui>File > Export Connections…</ui>, select the connections, turn on <ui>Export Password</ui> and save the .ncx file.",
+            "In TablePro, choose <ui>File > Import > Import from Other App…</ui>",
+            "Select Navicat, turn on <ui>Include passwords</ui>, click <ui>Continue</ui> and choose the .ncx file. TablePro decrypts the saved passwords, so there is nothing to approve in the Keychain.",
+            "Review the list, decide what happens to any duplicates, and click <ui>Import</ui>. SSH tunnel and SSL settings come across. A connection to a database TablePro does not support arrives unchecked.",
+            "Before you remove Navicat, open a connection that had a password to check that it came across."
+        ],
+        "after": [
+            "Connections arrive without their Navicat groups, so sort them into groups in TablePro.",
+            "The .ncx file protects passwords with a key built into Navicat, so anyone who has the file can read them. Delete it once the import is done.",
+            "Queries, models, snippets and Navicat Cloud projects stay in Navicat."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "premium-lite",
+            "question": "Navicat Premium Lite is free too. How is TablePro different?",
+            "answer": "Both are free for commercial work. Premium Lite has Navicat’s core features. TablePro’s free app connects to every supported engine and includes the AI assistant, the MCP server and Safe Mode, and a Starter or Team plan adds features such as {starterExamples}.",
+            "href": null
+        },
+        {
+            "id": "one-time",
+            "question": "Can I pay once for TablePro, as with a Navicat license?",
+            "answer": "Yes. Starter and Team can be paid monthly, yearly or once, and a one-time purchase has no expiry date. A Navicat Premium perpetual license is paid once and includes a year of maintenance. <link>See pricing</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "iphone",
+            "question": "Which engines does the iPhone and iPad app open?",
+            "answer": "One free app connects to MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite and DuckDB, among others, with no in-app purchases. It has fewer features than the Mac app. <link>About the iPhone and iPad app</link>.",
+            "href": "/ios"
+        }
+    ],
+    "notes": {
+        "navicat-lite-commercial-use": "A free edition with the core features, for commercial and non-commercial use",
+        "navicat-one-year-maintenance": "Paid once, with a year of maintenance: upgrades and technical support. Each edition is also sold as a monthly or yearly subscription.",
+        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis and Snowflake, including their cloud services",
+        "navicat-ios-per-engine-apps": "Separate paid apps for single engines, such as Navicat for MySQL and Navicat for PostgreSQL. There is no Navicat Premium app for iPhone.",
+        "navicat-cloud": "Navicat Cloud, or Navicat On-Prem Server on your own server, syncs connection settings, queries and models and shares them with people you invite"
+    }
+}

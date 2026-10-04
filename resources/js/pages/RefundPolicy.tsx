@@ -1,57 +1,6 @@
-import LandingLayout from '@/layouts/landing-layout';
-import Header from '@/components/landing/header';
-import Footer from '@/components/landing/footer';
-import Container from '@/components/ui/container';
-import SEOHead from '@/components/seo/seo-head';
-import { PageHeader } from '@/components/ui/section-shell';
-import { FullLine } from '@/components/ui/full-line';
-import { PROSE_LINK } from '@/components/ui/prose-link';
+import LegalPage, { type LegalPageProps } from '@/components/legal/legal-page';
 
-interface Props {
-    downloadUrls: { arm64: string; x86_64: string };
-}
-
-export default function RefundPolicy({ downloadUrls }: Props) {
-    return (
-        <LandingLayout header={<Header downloadUrls={downloadUrls} />} footer={<Footer />}>
-            <SEOHead
-                title="Refund Policy - TablePro"
-                description="7-day money-back guarantee on all paid TablePro plans."
-                canonical="/refund-policy"
-                breadcrumbs={[
-                    { name: 'Home', path: '/' },
-                    { name: 'Refund Policy', path: '/refund-policy' },
-                ]}
-            />
-                <PageHeader
-                    label="Legal"
-                    headline="Refund Policy"
-                    lede="Last updated: September 2026"
-                />
-<div className="h-6 sm:h-8 lg:h-10" />
-
-                <Container width="md">
-                    <FullLine />
-                    <div className="space-y-4 p-6 text-sm text-muted-foreground sm:p-8">
-                        <p>
-                            7-day money-back guarantee on all paid plans. The window starts on the date of purchase, or on the most recent renewal for yearly subscriptions.
-                        </p>
-                        <p>
-                            To request a refund, email{' '}
-                            <a href="mailto:hello@tablepro.app" className={PROSE_LINK}>hello@tablepro.app</a>{' '}
-                            with the email or License Key from your purchase. Eligible refunds are processed within 5 business days to the original payment method.
-                        </p>
-                        <p>
-                            After a refund, the License Key is suspended and any active machines deactivate. The app reverts to the free tier. Your data on your Mac is not touched.
-                        </p>
-                        <p>
-                            Please contact us before opening a chargeback. Disputes raised without contacting us first result in immediate suspension of the License Key.
-                        </p>
-                    </div>
-                    <FullLine />
-                </Container>
-
-                <div className="h-12 sm:h-16 lg:h-24" />
-        </LandingLayout>
-    );
+/** `/refund-policy` and `/vi/refund-policy` (sitemap §A.6): `resources/data/legal/{locale}/refund-policy.md`. */
+export default function RefundPolicy(props: LegalPageProps) {
+    return <LegalPage {...props} />;
 }

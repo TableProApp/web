@@ -1,0 +1,73 @@
+[
+    {
+        "from": "/mariadb-client",
+        "to": "/mysql-client#mariadb",
+        "status": 301,
+        "reason": "Merged into the MySQL family page: same driver and workflow (sitemap §C.3)."
+    },
+    {
+        "from": "/cockroachdb-client",
+        "to": "/postgresql-client#cockroachdb",
+        "status": 301,
+        "reason": "Merged into the PostgreSQL family page: PostgreSQL driver, differences fit in a section (sitemap §C.3)."
+    },
+    {
+        "from": "/pglite-client",
+        "to": "/postgresql-client#pglite",
+        "status": 301,
+        "reason": "Merged into the PostgreSQL family page: PostgreSQL driver, the difference is setup (sitemap §C.3)."
+    },
+    {
+        "from": "/scylladb-client",
+        "to": "/cassandra-client#scylladb",
+        "status": 301,
+        "reason": "Merged into the Cassandra family page: one driver, mostly duplicate copy (sitemap §C.3)."
+    },
+    {
+        "from": "/compare/azimutt",
+        "status": 410,
+        "reason": "A web schema explorer, a different category with no genuine replacement on this site (sitemap §C.4, objection 1)."
+    },
+    {
+        "from": "/blog/mcp-database-claude",
+        "to": "/features/ai-mcp#mcp",
+        "status": 301,
+        "reason": "Guide merged into the AI and MCP feature page, which links the docs setup (sitemap §C.5)."
+    },
+    {
+        "from": "/blog/cloudflare-d1-mac",
+        "to": "/cloudflare-d1-client",
+        "status": 301,
+        "reason": "Guide merged into the Cloudflare D1 engine page, same intent (sitemap §C.5)."
+    },
+    {
+        "from": "/blog/mongodb-native-vs-compass",
+        "to": "/mongodb-client#compass",
+        "status": 301,
+        "reason": "Guide merged into the MongoDB engine page's Compass section (sitemap §C.5)."
+    },
+    {
+        "from": "/blog/open-source-db-clients-2026",
+        "to": "/compare#open-source",
+        "status": 301,
+        "reason": "Guide merged into the comparison hub's open-source section, which carries dated status (sitemap §C.5)."
+    },
+    {
+        "from": "/docs",
+        "to": "https://docs.tablepro.app/",
+        "status": 301,
+        "reason": "Linked from old README revisions; the documentation lives on its own site (sitemap §C.6)."
+    },
+    {
+        "from": "/docs/raycast",
+        "to": "https://docs.tablepro.app/external-api/raycast",
+        "status": 301,
+        "reason": "The live Raycast extension's Pair command links here (raycast/extensions, extensions/tablepro/src/pair.tsx:187)."
+    },
+    {
+        "from": "/sitemap-index.xml",
+        "to": "/sitemap.xml",
+        "status": 301,
+        "reason": "The Astro-era sitemap, advertised in robots.txt from 2026-03-11 to 03-23 (sitemap §C.2)."
+    }
+]

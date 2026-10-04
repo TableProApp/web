@@ -2,56 +2,71 @@
 
 namespace App\Services\Blog;
 
+use App\Support\Localization\LocalizedUrl;
 use Carbon\CarbonImmutable;
 
-class Post
+/**
+ * One blog post in one language.
+ *
+ * `locale` is the language the post is written in, which is the language of
+ * its URL: `resources/blog/{slug}.md` is the English post at `/blog/{slug}`,
+ * `resources/blog/vi/{slug}.md` its Vietnamese translation at
+ * `/vi/blog/{slug}`. Release posts exist in English only.
+ *
+ * `date` is the original publication date from the front matter, and never
+ * changes. `release` names what a release post announced ("TablePro 0.74"),
+ * for the archive note above it; null for a post that announced no release.
+ * `tags` only rank related posts; the pages do not print them. The body is
+ * not held here: `BlogService::html()` renders it for the one post shown.
+ */
+final readonly class Post
 {
     /**
      * @param  list<string>  $tags
      */
     public function __construct(
-        public readonly string $slug,
-        public readonly string $title,
-        public readonly string $description,
-        public readonly CarbonImmutable $date,
-        public readonly string $author,
-        public readonly array $tags,
-        public readonly string $body,
-        public readonly string $bodyHtml,
-        public readonly int $readingMinutes,
-        public readonly int $wordCount,
-        public readonly ?string $ogPunchline = null,
+        public string $slug,
+        public string $locale,
+        public string $title,
+        public string $description,
+        public CarbonImmutable $date,
+        public array $tags,
+        public ?string $release,
     ) {}
 
+    /**
+     * The post's root-relative URL in its own language.
+     */
     public function url(): string
     {
-        return '/blog/' . $this->slug;
-    }
-
-    public function ogImagePath(): string
-    {
-        return '/og/blog/' . $this->slug . '.png';
+        return LocalizedUrl::path('/blog/' . $this->slug, $this->locale);
     }
 
     /**
-     * @return array<string, mixed>
+     * The publication date as a page in `$locale` writes it: "September 13,
+     * 2026", "13 tháng 9 năm 2026". Formatted here, never in the browser, so
+     * the server and the client render the same bytes.
      */
-    public function toArray(): array
+    public function dateFormatted(string $locale): string
+    {
+        return $this->date->locale($locale)->isoFormat('LL');
+    }
+
+    /**
+     * What a list of posts shows for this one, on a page in `$pageLocale`.
+     *
+     * @return array{slug: string, locale: string, title: string, description: string, date: string, dateFormatted: string, url: string}
+     */
+    public function summary(string $pageLocale): array
     {
         return [
             'slug' => $this->slug,
+            'locale' => $this->locale,
             'title' => $this->title,
             'description' => $this->description,
-            'date' => $this->date->toIso8601String(),
-            'dateFormatted' => $this->date->format('F j, Y'),
-            'author' => $this->author,
-            'tags' => $this->tags,
-            'bodyHtml' => $this->bodyHtml,
-            'readingMinutes' => $this->readingMinutes,
-            'wordCount' => $this->wordCount,
+            'date' => $this->date->toDateString(),
+            'dateFormatted' => $this->dateFormatted($pageLocale),
             'url' => $this->url(),
-            'ogImage' => $this->ogImagePath(),
-            'ogPunchline' => $this->ogPunchline,
         ];
     }
 }

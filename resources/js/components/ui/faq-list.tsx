@@ -1,51 +1,48 @@
+import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import type { FaqItem } from '@/data/faqs';
-import { ITEM_TITLE } from '@/components/ui/grid-cell';
 
-function Column({ items, className }: { items: FaqItem[]; className?: string }) {
-    return (
-        <div className={className}>
-            {items.map((faq, i) => (
-                <div
-                    key={faq.question}
-                    className={cn('p-6 sm:p-8', i < items.length - 1 && 'border-b border-rule')}
-                >
-                    <h3 className={ITEM_TITLE}>{faq.question}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{faq.answer}</p>
-                </div>
-            ))}
-        </div>
-    );
+/** One question and its answer. The answer is a string from content, or a node with links in it. */
+export interface FaqListItem {
+    question: string;
+    answer: ReactNode;
+    /** A stable, locale-neutral id for linking to one question (`/faq#lost-license-key`). */
+    id?: string;
+}
+
+interface FaqListProps {
+    items: FaqListItem[];
+    /**
+     * The questions' element. `h3` under a section's `h2` (the default); `h2`
+     * on a page whose questions sit directly under its `h1`. The style is the
+     * `h3` role either way: the outline decides the level, not the size.
+     */
+    headingLevel?: 'h2' | 'h3' | 'h4';
+    className?: string;
 }
 
 /**
- * Questions and answers, both visible.
+ * Questions and answers, every answer visible (design-system §5.3.7).
  *
- * The site used to present these two ways: an open two-column grid on the
- * homepage and `/faq`, and a `<details>` accordion on the comparison and
- * database pages — byte-identical between those two, and invalid in both, since
- * a `<dl>` may contain only `<dt>`, `<dd>` and `<div>`.
+ * One column at the reading width. Not an accordion: an answer behind a
+ * disclosure is one that Ctrl+F cannot find, a search engine ranks lower and a
+ * skimming reader never sees, and these lists are short enough not to need
+ * collapsing.
  *
- * Open won. These pages carry three to eight questions, so there is nothing to
- * collapse for, and an answer behind a disclosure is an answer a search engine
- * ranks lower and a skimming reader never sees. The disclosure also gave the
- * only affordance on the page that changed shape on click without saying so.
- *
- * Two columns above md when there is enough to split; one below, and one always
- * when there are three or fewer.
+ * Each item is separated by a hairline with 24px of padding; the answer sits
+ * 8px under its question, in the text colour, not muted, because it is what
+ * the reader came for.
  */
-export default function FaqList({ items }: { items: FaqItem[] }) {
-    const split = items.length > 3;
-    const mid = Math.ceil(items.length / 2);
-
-    if (!split) {
-        return <Column items={items} />;
-    }
+export default function FaqList({ items, headingLevel = 'h3', className }: FaqListProps) {
+    const Heading = headingLevel;
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2">
-            <Column items={items.slice(0, mid)} className="border-b border-rule md:border-r md:border-b-0" />
-            <Column items={items.slice(mid)} />
+        <div className={cn('max-w-[44rem] border-t border-rule', className)}>
+            {items.map((item) => (
+                <div key={item.id ?? item.question} id={item.id} className="scroll-mt-24 border-b border-rule py-6">
+                    <Heading className="type-h3 text-foreground">{item.question}</Heading>
+                    <div className="type-body mt-2 space-y-4 text-foreground">{typeof item.answer === 'string' ? <p>{item.answer}</p> : item.answer}</div>
+                </div>
+            ))}
         </div>
     );
 }

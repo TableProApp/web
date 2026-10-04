@@ -3,6 +3,7 @@ slug: tablepro-0-74
 title: "TablePro 0.74: Draw a Geometry Column on a Map"
 description: A result holding geometry gets a Map segment, drawn on Apple's own tiles with nothing leaving your Mac. Plus highlight rules, marks for invisible characters, three new databases, and the end of commands running on the wrong database.
 date: 2026-09-13
+release: "TablePro 0.74"
 author: TablePro Team
 tags: [release, spatial, postgis, highlight-rules, spanner]
 ogPunchline: PostGIS on Apple's tiles. No tile server sees your rows.
@@ -12,10 +13,7 @@ TablePro 0.74 is out: 270 changes, 228 of them fixes.
 
 The new work is spatial results, row colouring and invisible characters. The fixes are mostly one thing: commands that ran against the wrong database.
 
-<figure>
-  <img src="/images/blog/results-map-geometry.png" alt="TablePro on the Map segment for a PostGIS table of San Francisco service areas, with fifteen blue polygons, four transit lines and six depot pins drawn over an Apple Maps street view, a line above the map reading Drawing 25 shapes in SRID 4326, 3 rows in other coordinate systems are not drawn, a Fit to Result button on the right, and Data, Structure, JSON, Chart and Map segments along the bottom with Map selected" />
-  <figcaption>The line above the map says what was drawn and what was skipped. Three rows here are in a state-plane coordinate system, so they are counted rather than placed.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-74-1"></asset-slot>
 
 ## A map for spatial rows
 
@@ -35,10 +33,7 @@ The structure editor was worse, because it reads while you type. **Ref Table** c
 
 On MySQL and MariaDB the driver used the session's database for catalog reads outright, so a read of an object in another database answered about the current one's same-named object. All of it now names the database it means. A pooled metadata connection is also put back on the database it was asked for.
 
-<figure>
-  <img src="/images/blog/highlight-rules-grid.png" alt="TablePro Highlight Rules popover over an invoice grid, listing three rules with a column, an operator, a value and a colour each, with US invoice rows tinted green, Canadian rows blue, and individual customer ID cells orange" />
-  <figcaption>Rules run top to bottom and the first match colours the row. A cell rule tints its own cell over the row's colour.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-74-2"></asset-slot>
 
 ## Colour rows by what is in them
 
@@ -48,10 +43,7 @@ Rules read the stored value, not the text a **Display As** format shows, so a nu
 
 Rules belong to the table, scoped to the connection, database and schema, and follow it through a rename.
 
-<figure>
-  <img src="/images/blog/sql-editor-invisible-characters.png" alt="TablePro SQL editor holding a query pasted from a chat thread, with an orange BS box before SELECT on line 2, an outlined no-break space after zone on line 4, an orange ZWSP box after name on line 5, and orange underlines beneath the curly quotes around downtown and beneath a full-width greater-than sign on line 6" />
-  <figcaption>A mark is the character itself: select it, arrow past it, or delete it like any other text. The underlines are the separate warning for characters that are visible but wrong.</figcaption>
-</figure>
+<asset-slot id="blog-tablepro-0-74-3"></asset-slot>
 
 ## Characters you cannot see
 

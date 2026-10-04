@@ -1,0 +1,86 @@
+{
+    "seo": {
+        "title": "Client SurrealDB cho {devices}",
+        "description": "Đăng nhập SurrealDB ở cấp Root, Namespace, Database, Record hoặc Token, chạy script SurrealQL, duyệt namespace và cơ sở dữ liệu, sửa record theo từng field."
+    },
+    "og": {
+        "kicker": "Cơ sở dữ liệu",
+        "title": "Client SurrealDB"
+    },
+    "engine": "surrealdb",
+    "breadcrumb": "SurrealDB",
+    "header": {
+        "title": "Client SurrealDB cho {devices}",
+        "lead": "Đăng nhập đúng cấp mà user của bạn được định nghĩa, chạy script SurrealQL, và sửa record theo từng field, với record link, datetime và decimal giữ nguyên kiểu của chúng."
+    },
+    "asset": "mac-db-surrealdb-query",
+    "links": {
+        "network": "/features/connections#network",
+        "filters": "/features/data-editing#filters",
+        "explain": "/features/querying#performance",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Kết nối và đăng nhập",
+            "paragraphs": [
+                "SurrealDB không đoán được từ thông tin đăng nhập rằng user được định nghĩa ở cấp nào, nên <ui>Cấp xác thực (Auth Level)</ui> phải nêu rõ cấp đó, và form sẽ hỏi phần còn lại. Root cần tên người dùng và mật khẩu, Namespace cần thêm namespace, Database cần thêm cả cơ sở dữ liệu. Record Access cần namespace, cơ sở dữ liệu, phương thức truy cập trong <code>DEFINE ACCESS</code> và các ô đăng nhập của nó. Token nhận một JWT bạn đã có, kể cả token của SurrealDB Cloud.",
+                "Driver trao đổi CBOR qua endpoint HTTP RPC, nên record link, datetime, duration, decimal và UUID giữ nguyên kiểu. Liên kết <code>surrealdb://</code> mở form connection đã điền sẵn, và server ở xa có thể kết nối qua <network>SSH tunnel</network>.",
+                "SSL mặc định là Đã tắt (Disabled), tức HTTP thường; mọi chế độ khác dùng HTTPS. Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ theo kho tin cậy của hệ thống, còn file CA đặt trong phần SSL/TLS sẽ bị bỏ qua, nên hãy cài CA riêng vào macOS trước."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SurrealQL và record",
+            "paragraphs": [
+                "Editor chạy nguyên cả script SurrealQL, kể cả lệnh <code>RELATE</code> giữa hai record, có autocomplete cho các câu lệnh thông dụng. <explain>Explain và Explain Full</explain> chạy lại query hiện tại với <code>EXPLAIN</code> để cho thấy query được xử lý thế nào và có dùng index hay không; plan trả về dưới dạng text thô.",
+                "Namespace nằm ở tầng trên cùng của sidebar, cơ sở dữ liệu nằm bên trong. Đổi namespace hay cơ sở dữ liệu đều không phải kết nối lại, vì hai giá trị này đi kèm từng request. Chỉ user root mới thấy mọi namespace.",
+                "Sửa một ô sẽ chạy <code>UPDATE</code> chỉ đặt lại những field bạn đã chạm vào, dưới dạng tham số có kiểu, nên <code>int</code> vẫn là <code>int</code>, còn field tính toán <code>FUTURE</code> và thay đổi của người khác được giữ nguyên. Để trống <code>id</code> ở dòng mới để SurrealDB tự sinh, hoặc nhập <code>table:id</code>. Table <code>SCHEMALESS</code> lấy cột từ các record đã tải về.",
+                "<filters>Bộ lọc</filters> được chuyển thành SurrealQL, và dòng SQL thô (Raw SQL) nhận một điều kiện, chẳng hạn một phép duyệt đồ thị. Điều kiện có thao tác ghi, có <code>;</code> hay comment, hoặc gọi vào <code>fn::</code> hay <code>http::</code> sẽ bị từ chối; hãy chạy nó trong editor."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "Tab Structure chỉ đọc. Hãy tạo và sửa field, index bằng <code>DEFINE FIELD</code> và <code>DEFINE INDEX</code> trong editor. Namespace hay cơ sở dữ liệu được xóa từ menu của nó, và khi chọn nhiều mục, bạn chỉ phải xác nhận một lần cho tất cả."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Di chuyển dữ liệu",
+            "paragraphs": [
+                "TablePro không có import cho SurrealDB. Bạn có thể <export>export</export> table hoặc kết quả query ra CSV, JSON hoặc XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "transactions",
+            "question": "Tôi có chạy transaction được không?",
+            "answer": "Được, trong phạm vi một query. HTTP RPC không mang transaction từ request này sang request khác, nên hãy gửi <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> trong cùng một query của editor."
+        },
+        {
+            "id": "relations",
+            "question": "Làm sao đổi in hoặc out của một relation?",
+            "answer": "Không làm được từ data grid: thao tác lưu dừng lại, nêu tên field và giữ mọi thay đổi ở trạng thái chờ lưu. <code>UPDATE</code> cũng không di chuyển được relation, nên hãy xóa nó rồi <code>RELATE</code> cặp mới."
+        }
+    ],
+    "related": [
+        {
+            "label": "MongoDB, một cơ sở dữ liệu document khác",
+            "href": "/mongodb-client"
+        },
+        {
+            "label": "Các ngôn ngữ query ngoài SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Xem và chỉnh sửa dữ liệu an toàn",
+            "href": "/features/data-editing"
+        }
+    ]
+}

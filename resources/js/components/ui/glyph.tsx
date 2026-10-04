@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface GlyphProps {
@@ -28,7 +29,7 @@ export function AppleGlyph({ className }: GlyphProps) {
  * The "included" tick.
  *
  * Three copies existed and they did not agree on colour: two used
- * `--primary-strong`, one used bare `--primary` at 2.62:1 — the exact failure
+ * the text accent, one used the bare fill at 2.62:1 — the exact failure
  * `SectionLabel` was created to stop, surviving in a glyph that is the sole
  * carrier of meaning in a comparison column.
  *
@@ -39,7 +40,7 @@ export function AppleGlyph({ className }: GlyphProps) {
 export function CheckGlyph({ className }: GlyphProps) {
     return (
         <svg
-            className={cn('size-4 text-primary-strong', className)}
+            className={cn('size-4 text-accent-text', className)}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -67,21 +68,57 @@ export function CrossGlyph({ className }: GlyphProps) {
     );
 }
 
+export interface AvailabilityLabels {
+    /** "Included" / "Có". */
+    included: string;
+    /** "Not included" / "Không có". */
+    notIncluded: string;
+}
+
+/** English, for the pre-rebuild callers. Localized pages pass `labels` from the `controls` catalog. */
+const ENGLISH: AvailabilityLabels = { included: 'Included', notIncluded: 'Not included' };
+
+interface AvailabilityProps {
+    included: boolean;
+    labels?: AvailabilityLabels;
+    /**
+     * Partial or conditional: a short visible word ("Mac only", "Partial")
+     * shown instead of a glyph. Pair it with a footnote marker that says what
+     * the condition is. Never a bare glyph for a "yes, but".
+     */
+    partial?: ReactNode;
+}
+
 /**
- * Availability in a comparison cell: the glyph plus the word.
+ * Availability in a table cell (design-system §5.3.8): the mark plus the
+ * word.
  *
- * This pair exists as one component because separating them is exactly how the
- * bug keeps coming back. Both glyphs are `aria-hidden`, so a cell holding only
- * one announces as empty — and an empty cell in a comparison table does not
- * read as "no answer", it reads as "not included". The pricing table shipped
- * that way, was fixed, and Compare then lost the same fix when its local
- * wrappers were replaced.
+ * - Included: a 16px check in `--accent-text` (5.15:1 or better on every
+ *   ground) and a visually hidden "Included".
+ * - Not included: an en dash in the muted colour and a visually hidden "Not
+ *   included".
+ * - Partial: the visible word itself.
+ *
+ * The mark and the word are one component because separating them is exactly
+ * how the bug keeps coming back: both marks are `aria-hidden`, so a cell
+ * holding only one announces as empty, and an empty cell in a comparison does
+ * not read as "no answer", it reads as "not included".
  */
-export function Availability({ included }: { included: boolean }) {
+export function Availability({ included, labels = ENGLISH, partial }: AvailabilityProps) {
+    if (partial !== undefined && partial !== null && partial !== false) {
+        return <span className="text-sm leading-[1.4] text-foreground">{partial}</span>;
+    }
+
     return (
         <>
-            <span className="sr-only">{included ? 'Included' : 'Not included'}</span>
-            {included ? <CheckGlyph /> : <CrossGlyph />}
+            <span className="sr-only">{included ? labels.included : labels.notIncluded}</span>
+            {included ? (
+                <CheckGlyph className="inline-block text-accent-text" />
+            ) : (
+                <span aria-hidden="true" className="text-muted-foreground">
+                    –
+                </span>
+            )}
         </>
     );
 }

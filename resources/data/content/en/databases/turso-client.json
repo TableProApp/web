@@ -1,0 +1,103 @@
+{
+    "seo": {
+        "title": "Turso and libSQL client for {devices}",
+        "description": "Open Turso databases by URL and token, self-hosted sqld servers or libSQL files on your Mac. Query in SQLite syntax; change tables, indexes and triggers."
+    },
+    "og": {
+        "kicker": "Databases",
+        "title": "Turso and libSQL client"
+    },
+    "engine": "turso",
+    "breadcrumb": "Turso and libSQL",
+    "header": {
+        "title": "Turso and libSQL client for {devices}",
+        "lead": "Connect to a Turso database with its URL and a token, query it in SQLite syntax, and change its tables, indexes and triggers. The same driver opens self-hosted sqld servers and libSQL files on your Mac."
+    },
+    "asset": "mac-db-turso-remote",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "sqlite": "/sqlite-client",
+        "libsql": "#libsql",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connect to Turso",
+            "paragraphs": [
+                "Pick Turso in the connection type list and leave <ui>Connection Mode</ui> on <ui>Remote (Turso)</ui>. Paste the database’s HTTPS URL, which ends in <code>.turso.io</code>, and put a token in the field labelled <ui>API Token</ui>, which is kept in the macOS Keychain. The Turso dashboard shows both, and so do <code>turso db show my-db --url</code> and <code>turso db tokens create my-db</code>.",
+                "A <code>libsql://</code> URL is rewritten to HTTPS, and importing one creates a remote connection. There is no host, port or database field, because the URL names one database. The connection is encrypted when its URL uses HTTPS rather than plain HTTP, and there is no SSH tunnel."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Query and edit",
+            "paragraphs": [
+                "libSQL speaks SQLite’s syntax, so browsing, <explain>EXPLAIN QUERY PLAN</explain> diagrams, <editing>staged edits with Preview SQL</editing> and export behave as they do on <sqlite>SQLite</sqlite>.",
+                "A remote connection runs no transaction. Each statement is its own HTTP request and commits on its own, and <code>BEGIN</code> fails with “Transactions are not supported in this mode”. Transactional work needs a local libSQL file, described in the <libsql>libSQL section</libsql>.",
+                "Remote mode loads no SQLite extensions: a Turso database runs the ones its server was built with. When Turso throttles a connection, the error says how many seconds to wait before retrying."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tables, indexes and triggers",
+            "paragraphs": [
+                "The <structure>Structure tab</structure> creates tables, adds and drops columns and indexes, and creates, edits and drops triggers. Tables, but not views, can be renamed from the sidebar.",
+                "For a column reorder or a foreign key change on a remote database, TablePro writes the rebuild script for you to read and run yourself. It cannot run the script for you, because the rebuild would need one transaction across separate HTTP requests."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Move data",
+            "paragraphs": [
+                "TablePro has no import for Turso or libSQL; load data with the Turso CLI or an import on your sqld server. To take data out, <export>export</export> a table or a query result as {exportFormats}."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "libsql",
+            "title": "libSQL",
+            "paragraphs": [
+                "Choose libSQL for a self-hosted sqld server or a file on this Mac. In Remote mode it reaches any sqld that serves the Hrana v2 pipeline endpoint, including one running on this Mac, which listens on port 8080 by default. Leave the token empty for a server started without <code>--auth-jwt-key-file</code>, or give it a JWT that matches the server’s key.",
+                "<ui>Local File</ui> mode opens a libSQL file with the SQLite engine the driver carries, and a path that does not exist yet is created, folders included. A local file runs transactions, loads SQLite extensions from the connection’s Extensions list, and runs a column reorder or foreign key rebuild once you confirm it.",
+                "Statements only libSQL understands, such as <code>ALTER TABLE … ALTER COLUMN</code>, fail on a local file, because the SQLite engine receives them. Encrypted libSQL files do not open. Never open a file that a running app is syncing as a Turso embedded replica: access from two programs at once can corrupt it.",
+                "<backup>Backup Dump and Restore Dump</backup> run {dumpTool} on a local libSQL file."
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "remote-or-local",
+            "question": "Should I pick Remote or Local File?",
+            "answer": "Remote, for a Turso database or a sqld server you reach by URL. Local File, for a libSQL file on this Mac, which also gives you transactions, SQLite extensions and backups."
+        },
+        {
+            "id": "turso-cli",
+            "question": "Do I need the Turso CLI installed?",
+            "answer": "No. The Turso dashboard shows the database URL and creates tokens too. The CLI is useful for loading data from the terminal, since TablePro has no import for Turso."
+        }
+    ],
+    "related": [
+        {
+            "label": "SQLite, the engine libSQL builds on",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Cloudflare D1, SQLite over Cloudflare’s API",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "Structure editing and rebuild scripts",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "Export and backups",
+            "href": "/features/import-export"
+        }
+    ]
+}

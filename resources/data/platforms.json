@@ -1,0 +1,74 @@
+{
+    "verifiedAt": "2026-10-02",
+    "platforms": [
+        {
+            "id": "mac",
+            "status": "released",
+            "deviceNames": ["Mac"],
+            "page": null,
+            "requirements": {
+                "systems": ["macOS"],
+                "minVersion": "13.0",
+                "displayVersion": "13",
+                "releaseName": "Ventura"
+            },
+            "architectures": [
+                { "id": "arm64", "assetTemplate": "TablePro-{version}-arm64.dmg" },
+                { "id": "x86_64", "assetTemplate": "TablePro-{version}-x86_64.dmg" }
+            ],
+            "universalBinary": false,
+            "destinations": [
+                {
+                    "kind": "dmg",
+                    "urlTemplate": "https://github.com/TableProApp/TablePro/releases/download/v{version}/TablePro-{version}-{arch}.dmg"
+                },
+                {
+                    "kind": "homebrew",
+                    "command": "brew install --cask tablepro",
+                    "url": "https://formulae.brew.sh/cask/tablepro"
+                },
+                {
+                    "kind": "releases",
+                    "url": "https://github.com/TableProApp/TablePro/releases"
+                }
+            ],
+            "release": {
+                "version": "0.77.1",
+                "build": "135",
+                "publishedAt": "2026-10-03"
+            },
+            "floorVersion": "0.77.1",
+            "appLanguages": ["en", "vi", "zh-Hans", "zh-Hant", "ko", "tr"]
+        },
+        {
+            "id": "ios",
+            "status": "released",
+            "deviceNames": ["iPhone", "iPad"],
+            "page": "/ios",
+            "requirements": {
+                "systems": ["iOS", "iPadOS"],
+                "minVersion": "18.0",
+                "displayVersion": "18",
+                "releaseName": null
+            },
+            "destinations": [
+                {
+                    "kind": "app-store",
+                    "url": "https://apps.apple.com/app/tablepro/id6761621829",
+                    "appId": "6761621829"
+                }
+            ],
+            "release": {
+                "version": "1.0",
+                "build": "22",
+                "publishedAt": "2026-09-22"
+            },
+            "iosEngines": ["mysql", "mariadb", "tidb", "oceanbase", "postgresql", "sqlite", "duckdb", "redis", "sqlserver", "oracle"],
+            "storefrontExclusions": ["at", "be", "bg", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gr", "hr", "hu", "ie", "it", "li", "lt", "lu", "lv", "mt", "nl", "pl", "pt", "ro", "se", "si", "sk"],
+            "price": { "amount": 0, "inAppPurchases": false },
+            "appLanguages": ["en", "vi", "ko", "zh-Hans", "zh-Hant"]
+        },
+        { "id": "linux", "status": "prototype" },
+        { "id": "windows", "status": "none" }
+    ]
+}

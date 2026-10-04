@@ -1,321 +1,70 @@
 @import "tailwindcss";
 /*
- * `@fontsource-variable/inter` resolves to the `wght` axis (48,256 B latin).
- * `opsz` (72,920 B latin) adds the optical-size axis, which is what lets 11px
- * mono labels and a 60px headline be drawn with the metrics each size wants.
- * Both keep the full `font-weight: 100 900` range.
- *
- * IBM Plex Mono is imported per weight on purpose. The package's own
- * `index.css` ships weight 400 and nothing else, so the 35 `font-mono
- * font-semibold` call sites — every section eyebrow on the site — were being
- * synthesised into faux bold by the browser.
+ * The shared foundation first: the hand-ordered font faces and the design
+ * tokens, both byte-identical in the account app (docs/shared-files.md).
+ * Everything below is this site's own.
  */
-@import "@fontsource-variable/inter/opsz.css";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/600.css";
+@import "./fonts.css";
+@import "./tokens.css";
 
-@custom-variant dark (&:is(.dark *));
-
+/*
+ * ---------------------------------------------------------------------------
+ * Retiring names
+ * ---------------------------------------------------------------------------
+ *
+ * The pre-rebuild pages still name a few old colour utilities until their
+ * replacements land. Each old name now points at a token from tokens.css, so
+ * those pages paint with the new palette and the contrast the design system
+ * computed; none of them declares a colour of its own. No new code uses these
+ * names. Delete each line once `grep` finds no use of it in resources/js.
+ *
+ *   primary            → accent             (fill)
+ *   primary-foreground → accent-foreground  (text on the fill)
+ *   primary-strong     → accent-text        (accent as text)
+ *   muted              → surface-strong     (a filled chip or track)
+ *   muted-foreground-subtle → muted-foreground
+ *   popover            → raised; its foreground → foreground
+ *   surface-raised     → surface
+ */
 @theme inline {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-foreground);
+  --color-primary-strong: var(--accent-text);
+  --color-muted: var(--surface-strong);
+  --color-muted-foreground-subtle: var(--muted-foreground);
+  --color-popover: var(--raised);
+  --color-popover-foreground: var(--foreground);
+  --color-surface-raised: var(--surface);
 
-  /*
-   * Size, line-height and letter-spacing are one token, never three.
-   *
-   * Every tracking value is the output of Inter's own dynamic-metrics curve,
-   * `-0.0223 + 0.185 * e^(-0.1745 * px)`, evaluated at that size. They are the
-   * typeface designer's numbers rather than taste, and declaring them here is
-   * what stops `text-4xl tracking-tight` being retyped by hand at every call
-   * site with a slightly different guess.
-   *
-   * The one thing this replaces rather than systematises: the h1 carried
-   * `tracking-tighter` (-0.05em), roughly double the tightest value the curve
-   * ever reaches and tighter than any reference site sets Inter.
-   *
-   * Mono labels are exempt. `tracking-widest` on 11px uppercase is a different
-   * problem — the curve models optical compensation for a proportional text
-   * face, not letterspacing for small caps.
-   */
-  --text-2xs: 0.6875rem;
-  --text-2xs--line-height: 1.45;
-  --text-2xs--letter-spacing: 0.0048em;
-  --text-xs: 0.75rem;
-  --text-xs--line-height: 1.5;
-  --text-xs--letter-spacing: 0.0005em;
-  --text-sm: 0.875rem;
-  /*
-   * 1.625, not the 1.55 the curve suggests. Ninety-four elements overrode it
-   * with `leading-relaxed`, and the overrides were right: `text-sm` is the
-   * site's body copy rung, and 14px prose wants more air than a 14px table
-   * cell. A scale that every prose paragraph has to argue with is not a scale,
-   * so the scale changed rather than the ninety-four.
-   */
-  --text-sm--line-height: 1.625;
-  --text-sm--letter-spacing: -0.0062em;
-  --text-base: 1rem;
-  --text-base--line-height: 1.6;
-  --text-base--letter-spacing: -0.011em;
-  --text-lg: 1.125rem;
-  --text-lg--line-height: 1.55;
-  --text-lg--letter-spacing: -0.0143em;
-  --text-xl: 1.25rem;
-  --text-xl--line-height: 1.4;
-  --text-xl--letter-spacing: -0.0167em;
-  --text-2xl: 1.5rem;
-  --text-2xl--line-height: 1.3;
-  --text-2xl--letter-spacing: -0.0195em;
-  --text-3xl: 1.875rem;
-  --text-3xl--line-height: 1.15;
-  --text-3xl--letter-spacing: -0.0213em;
-  --text-4xl: 2.25rem;
-  --text-4xl--line-height: 1.1;
-  --text-4xl--letter-spacing: -0.022em;
-  --text-5xl: 3rem;
-  --text-5xl--line-height: 1.05;
-  --text-5xl--letter-spacing: -0.0223em;
-  --text-6xl: 3.75rem;
-  --text-6xl--line-height: 1;
-  --text-6xl--letter-spacing: -0.0223em;
-
-  /* Only the two rungs anything actually uses, plus the keycap. */
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-key: 4px;
-
-  /*
-   * Two rule weights, and the distinction is not decorative: vertical and
-   * column separators are stable structure and take --rule-strong; horizontal
-   * and row separators are data and take --rule. That is how a real grid draws.
-   *
-   * These replace `gray-950/5` + `dark:white/10` written out at 92 call sites,
-   * which also meant the dark rule sat ~13% heavier than its light counterpart
-   * for no reason. Dark is 0.08 here so the two match optically.
-   */
-  /*
-   * One step off the base ground. Serves both the raised section tone and any
-   * inset panel — a code block, a segmented-control track — because those are
-   * the same visual idea seen from opposite sides, and they were previously
-   * five different raw alpha pairs.
-   */
-  --color-surface-raised: var(--surface-raised);
-
-  --color-rule: var(--rule);
-  --color-rule-strong: var(--rule-strong);
-
-  /* Motion. Two curves, four durations, and 320ms is the ceiling. */
-  --ease-feedback: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-panel: cubic-bezier(0.32, 0.72, 0, 1);
-  --dur-tap: 120ms;
-  --dur-row: 160ms;
-  --dur-state: 220ms;
-  --dur-panel: 320ms;
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary-strong: var(--primary-strong);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted-foreground-subtle: var(--muted-foreground-subtle);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-}
-
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  /*
-   * Chroma is clamped to the sRGB ceiling at each lightness and hue, computed
-   * rather than eyeballed: L 0.72 / H 55 tops out at C 0.1783, L 0.52 / H 45 at
-   * C 0.1487. Above the ceiling a browser clips on sRGB but renders the fuller
-   * colour on P3, so the same token was two different colours depending on the
-   * display. Hue is deliberately unchanged.
-   */
-  --primary: oklch(0.72 0.178 55);
-  /*
-   * Darkened from L 0.25 to 0.16, which takes it from 6.18:1 on --primary to
-   * 7.45:1 — past AAA rather than sitting between the two thresholds.
-   *
-   * Every use of this token is the same pairing on the same fill: the primary
-   * Button, the two checkout buttons in Pricing, the skip link, and the top
-   * banner. Text and fill share hue 55, and a same-hue pair reads flatter than
-   * its ratio suggests, because there is no hue separation doing any of the
-   * work — which is why 6.18:1 was reported as hard to read even though it
-   * cleared AA by 1.68.
-   *
-   * Not black. Chroma stays at 0.04 so the mark still belongs to the fill it
-   * sits on; pure black measures 8.02:1 and reads as a different design.
-   * L 0.16 / C 0.04 / H 55 is inside the sRGB gamut, checked rather than
-   * assumed — the note below records what happens when it is not.
-   *
-   * The headroom is the point. `--muted-foreground` was raised for the same
-   * reason: at 4.73:1 it "cleared AA by 0.23, so it had no headroom at all",
-   * and every opacity modifier stacked on it failed outright.
-   */
-  --primary-foreground: oklch(0.16 0.04 55);
-  /* Text-only accent. --primary is tuned for fills; at small type it reads ~2.2:1 on white. */
-  --primary-strong: oklch(0.52 0.148 45);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  /*
-   * Raised from L 0.556 (4.73:1) to 0.52 (5.51:1). The old value cleared AA by
-   * 0.23, so it had no headroom at all: every opacity modifier stacked on it
-   * failed outright — /50 measured 1.65:1, /60 1.90:1, /70 2.23:1.
-   *
-   * `--muted-foreground-subtle` exists so those modifiers can be deleted rather
-   * than re-tuned. It is a real token that passes AA on its own (4.96:1), not
-   * an alpha applied to another one.
-   */
-  --muted-foreground: oklch(0.52 0 0);
-  --muted-foreground-subtle: oklch(0.545 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.72 0.178 55);
-  --rule: oklch(0.145 0 0 / 0.07);
-  --rule-strong: oklch(0.145 0 0 / 0.14);
-  --surface-raised: oklch(0.975 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.72 0.178 55);
-  /* Theme-invariant, like --primary: one fill, one mark, both grounds. */
-  --primary-foreground: oklch(0.16 0.04 55);
-  /* L 0.80 / H 58 tops out at C 0.1371 — this was the worst offender, 0.0129 over. */
-  --primary-strong: oklch(0.8 0.137 58);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --muted-foreground-subtle: oklch(0.64 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.72 0.178 55);
-  --rule: oklch(1 0 0 / 0.08);
-  --rule-strong: oklch(1 0 0 / 0.16);
-  --surface-raised: oklch(0.185 0 0);
-}
-
-/*
- * The product screenshot.
- *
- * `shadow-sm` is a 3px blur. On an image rendered 1216px wide that is an order
- * of magnitude too small, which is why the hero read as a sticker laid on the
- * page rather than a window sitting above it. Every reference Mac-app site
- * converged on the same shape instead: a big soft ambient drop, and no single
- * blur anywhere.
- *
- * `drop-shadow` rather than `box-shadow` because the captures carry real
- * transparent macOS squircle corners — verified, the shipped PNGs have an alpha
- * channel — so the shadow follows the actual silhouette. A box-shadow would
- * draw a rectangle behind a rounded image, and CSS `border-radius` is a
- * circular arc that cannot reproduce a continuous corner anyway. That is also
- * why the border and radius come off: the image already has the corners, and a
- * 1px rule tracing a squircle with an arc is visibly wrong at the join.
- *
- * Warm-tinted rather than neutral black, so it sits in the page's own light
- * instead of muddying it. Three stacked is the practical paint limit.
- */
-.app-plate {
-  filter:
-    drop-shadow(0 1px 1px oklch(0.145 0.004 55 / 0.04))
-    drop-shadow(0 6px 8px oklch(0.145 0.004 55 / 0.05))
-    drop-shadow(0 24px 32px oklch(0.145 0.004 55 / 0.07));
-}
-
-.dark .app-plate {
-  filter:
-    drop-shadow(0 1px 1px oklch(0 0 0 / 0.3))
-    drop-shadow(0 8px 16px oklch(0 0 0 / 0.35))
-    drop-shadow(0 32px 48px oklch(0 0 0 / 0.3));
-}
-
-/*
- * The second ground.
- *
- * Sixteen sections shared one background, so over roughly ten thousand pixels
- * of scroll the only rhythm device was hairline density — a reader could not
- * tell from peripheral vision whether they had moved from Architecture to
- * Agents to Mobile. `--card`, `--secondary` and `--accent` were all declared
- * and used zero times.
- *
- * Two grounds, not five. The discipline is the point: `raised` goes only to the
- * sections that are already conceptually inset.
- *
- * This has to sit after `.dark`, because `[data-tone="raised"]` and `.dark` are
- * both specificity (0,1,0) and source order breaks the tie. It only needs one
- * rule because `--surface-raised` is itself theme-swapped above.
- *
- * Every foreground token was checked against this surface rather than assumed:
- * the tightest is `--muted-foreground-subtle` at 4.61:1, which still clears AA.
- */
-[data-tone="raised"] {
-  --background: var(--surface-raised);
-  background-color: var(--background);
+  /* The retired 11px rung renders at the 12px minimum; the old 4px key radius at the chip radius. */
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1.5;
+  --radius-key: var(--radius-chip);
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   body {
-    @apply bg-background text-foreground;
-  }
-  :where(a, button, input, select, summary, [tabindex]):focus-visible {
-    outline: 2px solid var(--primary-strong);
-    outline-offset: 2px;
-    border-radius: inherit;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }
 
 /*
- * The top banner, and the four measurements that have to agree with it.
+ * ---------------------------------------------------------------------------
+ * The banner, the sticky header and anchor scrolling
+ * ---------------------------------------------------------------------------
  *
- * `--banner-h` is the single source. The banner sets its own height from it,
- * the fixed header hangs below it, `<main>` pads past both, and
- * `scroll-padding-top` keeps an anchor from landing underneath the pair. Four
- * copies of one number is four chances to move three of them, and this file
- * already carried a comment claiming `5rem` allowed for "the PPP banner" — a
- * banner that has never existed in this repository.
+ * `--banner-h` is the single source for the optional banner's height. The
+ * banner and the header stick to the top together (landing-layout.tsx), so an
+ * anchor has to clear both: the 64px header plus 16px of air, plus the banner
+ * while it is shown.
  *
- * Zero by default, so every dependent measurement collapses to what it was
- * before the banner existed. `html.has-banner` is added server-side in
- * `app.blade.php` when the config enables it, and removed there before first
- * paint when the reader has dismissed the current version — so a dismissed
- * banner never flashes, and a disabled one reserves nothing.
- *
- * Visibility lives here rather than in React state for the same reason: the
- * element is server-rendered whenever config allows it, and CSS decides whether
- * it is seen. State would resolve one paint too late.
+ * Zero by default, so a disabled or dismissed banner leaves nothing behind.
+ * `html.has-banner` is stamped server-side in app.blade.php when the config
+ * enables it, and removed there before first paint when the reader dismissed
+ * the current version, so a dismissed banner never flashes and a disabled one
+ * reserves nothing. Visibility lives here rather than in React state for the
+ * same reason: state would resolve one paint too late.
  */
 :root {
   --banner-h: 0px;
@@ -326,7 +75,7 @@
 }
 
 html.has-banner {
-  --banner-h: 2.75rem;
+  --banner-h: 2.5rem;
 }
 
 html.has-banner .support-banner {
@@ -334,376 +83,379 @@ html.has-banner .support-banner {
   height: var(--banner-h);
 }
 
-/*
- * Anchor scrolling clears the fixed header, and the banner when it is shown.
- *
- * The `5rem` base is the 64px header plus 16px of slack, which is why sections
- * carry a matching `scroll-mt-20`. Adding `--banner-h` keeps the gap between
- * the header's lower edge and the anchored heading identical whether or not the
- * banner is up, rather than silently eating 44px of it.
- */
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: calc(5rem + var(--banner-h));
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-delay: 0s !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    animation-timeline: none !important;
-    transition-delay: 0s !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 /*
- * `animation-delay` and `animation-timeline` are part of the block above for
- * reasons that are easy to miss:
- *
- * - Collapsing `animation-duration` does nothing to the delay. Under `both`
- *   fill the `backwards` half holds the `from` state for the whole delay, so a
- *   staggered reveal still makes elements pop in one at a time — precisely the
- *   effect the setting exists to prevent.
- * - A progress-based `animation-timeline` ignores duration entirely, so a
- *   0.01ms duration does not disable it.
- * - `transition-delay` is the same omission as `animation-delay`: collapsing a
- *   transition's duration still leaves it holding its start value for the whole
- *   delay.
- *
- * `animation-iteration-count: 1` is also not an off switch: it truncates a loop
- * to a single 0.01ms pass, freezing it mid-transform. Anything that loops needs
- * its own reduced-motion branch rather than relying on this block.
+ * No `scroll-behavior: smooth` here. On the root it also animated Inertia's
+ * scroll reset after every visit, so a new page glided past for a second
+ * before it could be read. In-page anchors glide one jump at a time instead
+ * (resources/js/lib/anchor-glide.ts), and only without reduced motion.
  */
 
 /*
- * The accent tint scale, recorded because it was seven values in two syntaxes.
+ * ---------------------------------------------------------------------------
+ * Final Mac window captures
+ * ---------------------------------------------------------------------------
  *
- *   /5   a surface marked as the featured one — the Starter card, the TablePro
- *        column in either comparison table
- *   /10  a filled chip or step marker, and the selected state of a control
- *
- * `safety.tsx` keeps its own /[0.02] /[0.04] /[0.06] ladder. That is not drift:
- * the tint there encodes how far up the six-level ladder a row sits, so the
- * steps have to be finer than the scale above and have to be evenly spaced.
+ * A supplied Mac capture keeps its real transparent squircle corners, so its
+ * shadow is a `drop-shadow` that follows the silhouette rather than a box.
+ * Neutral, never coloured, and only on a real image: a placeholder slot has no
+ * shadow (design-system §4.5, §7.3).
  */
-
-/*
- * Row selection, borrowed from the product's own grid.
- *
- * `hover:bg-gray-950/[2.5%]` was written out seventeen times and is the single
- * most generic interaction in the Tailwind ecosystem. Users of DataGrip,
- * TablePlus and Sequel Ace have row selection in their hands rather than their
- * heads; they recognise it well below conscious brand evaluation, which makes
- * it the cheapest identity this page can buy.
- *
- * Three things this fixes beyond the look:
- *
- * - `:focus-visible` resolves to the same treatment, so keyboard users see what
- *   pointer users see. Before, focus had no row-level feedback at all.
- * - The dark lift rises from 2.5% to 5%. At 2.5% it was four times weaker than
- *   the `white/10` border around it, so the affordance disappeared into its own
- *   frame.
- * - `any-hover: hover` means touch devices never get a stuck-on state after a
- *   tap.
- *
- * Transform and opacity only. The bar scales from the top edge, which is the
- * direction a grid stamps a selection.
- */
-[data-row] {
-  position: relative;
-  transition: background-color var(--dur-row) var(--ease-feedback);
+.app-plate {
+  filter:
+    drop-shadow(0 1px 1px oklch(0 0 0 / 0.04))
+    drop-shadow(0 6px 8px oklch(0 0 0 / 0.05))
+    drop-shadow(0 24px 32px oklch(0 0 0 / 0.07));
 }
 
-[data-row]::before {
-  content: "";
-  position: absolute;
-  inset-block: 0;
-  left: 0;
-  width: 2px;
-  background: var(--primary);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 180ms var(--ease-panel);
-  pointer-events: none;
-}
-
-[data-row]:focus-visible::before,
-[data-row][aria-selected="true"]::before {
-  transform: scaleY(1);
+.dark .app-plate {
+  filter:
+    drop-shadow(0 1px 1px oklch(0 0 0 / 0.3))
+    drop-shadow(0 8px 16px oklch(0 0 0 / 0.35))
+    drop-shadow(0 32px 48px oklch(0 0 0 / 0.3));
 }
 
 /*
- * LedgerRow already draws a 2px bar at left:0 when its `accent` prop is set —
- * the Ask/Edit/Agent ladder uses it to encode magnitude. The hover bar would
- * land on the same two pixels in the same colour, so a hover would overwrite a
- * meaningful indicator with a transient one. Those rows keep the tint and drop
- * the bar.
+ * ---------------------------------------------------------------------------
+ * Long-form prose: blog posts and legal pages
+ * ---------------------------------------------------------------------------
+ *
+ * The rendered markdown inside `.blog-article` (design-system §5.3.19). The
+ * body is `--foreground`, not muted: it is what the reader came for. Headings
+ * use the type roles' sizes and the per-language line heights from tokens.css,
+ * so Vietnamese headings get room for stacked marks here too.
  */
-[data-row][data-accent]::before {
-  content: none;
-}
-
-[data-row][aria-selected="true"] {
-  background-color: color-mix(in oklab, var(--primary) 5%, transparent);
-}
-
-@media (any-hover: hover) {
-  [data-row]:hover {
-    background-color: color-mix(in oklab, var(--primary) 4%, transparent);
-  }
-
-  [data-row]:hover::before {
-    transform: scaleY(1);
-  }
-}
-
-/*
- * The row-number gutter.
- *
- * 2.5rem is what the page already reserved either side of the content, and it
- * is also what a row-number column has been in every data grid ever shipped,
- * including TablePro's own. Numbering the rules turns a 10,000px scroll into
- * something with a continuous position signal, and it replaces the 45-degree
- * hatch that was the page's most generic element.
- *
- * A CSS counter rather than a prop threaded down from Home.tsx: SectionShell
- * emits three rules, the hero eight and pricing eighteen, so hand-numbering
- * would silently renumber the whole page the moment anyone added one. The
- * counter is correct by construction and costs nothing under SSR — it resolves
- * at paint.
- *
- * Anchoring. A FullLine is -ml-[100vw] w-[200vw], so an absolutely positioned
- * child at `left: L` lands at `parent.content-left - 100vw + L`. To put the box
- * in the gutter we need `L = 100vw - 2.5rem - (parent.content-left -
- * main.left)`, and that last term is not constant: about half the FullLines on
- * the site sit directly inside a section, where it is zero, and the rest sit
- * inside a Container, where it is Container's own horizontal padding.
- *
- * Shipped without that term the two populations rendered 32px apart, and the
- * Container half landed *inside* the content column rather than in the gutter.
- * `--rule-inset` is how Container declares its padding to the rules nested in
- * it; anything outside a Container falls back to 0 and was always correct.
- *
- * The other half of the arithmetic: the layout's middle column is
- * `minmax(0, 80rem)`, matching Container's own max-width. At the old
- * `--breakpoint-2xl` (96rem) the column outgrew the container from 1360px
- * upward — 80rem of content plus two 40px gutters — so the container floated
- * free of it and these numbers would drift inward with it. Changing either
- * value breaks this.
- *
- * Numbering starts at lg, one breakpoint after the gutter columns appear at md.
- * That is not an oversight: at 768-1023px the gutter is 40px of a much narrower
- * viewport, and an ordinal there crowds the content rail. The columns are not
- * empty in that band — they carry the same hairline frame as the rest of the
- * page — they simply do not carry numbers yet.
- */
-main {
-  counter-reset: rule;
-}
-
-/* Container declares its own padding so nested rules can subtract it. */
-.rule-inset-host {
-  --rule-inset: 1rem;
-}
-
-@media (width >= 40rem) {
-  .rule-inset-host {
-    --rule-inset: 1.5rem;
-  }
-}
-
-@media (width >= 64rem) {
-  .rule-inset-host {
-    --rule-inset: 2rem;
-  }
-
-  .rule-numbered {
-    counter-increment: rule;
-  }
-
-  .rule-numbered::before {
-    content: counter(rule, decimal-leading-zero);
-    position: absolute;
-    left: calc(100vw - 2.5rem - var(--rule-inset, 0px));
-    top: -0.6em;
-    width: 1.75rem;
-    text-align: right;
-    font-family: var(--font-mono);
-    font-size: var(--text-2xs);
-    font-variant-numeric: tabular-nums slashed-zero;
-    line-height: 1;
-    color: var(--muted-foreground);
-    pointer-events: none;
-  }
-}
-
-/* Blog article typography */
 .blog-article {
-  color: var(--muted-foreground);
+  color: var(--foreground);
   font-size: 1rem;
-  line-height: 1.75;
+  line-height: var(--lh-body);
+  letter-spacing: -0.011em;
 }
+
 .blog-article > * + * {
-  margin-top: 1.25em;
-}
-.blog-article h2 {
-  color: var(--foreground);
-  font-size: var(--text-3xl);
-  line-height: var(--text-3xl--line-height);
-  letter-spacing: var(--text-3xl--letter-spacing);
-  font-weight: 700;
-  margin-top: 2.5em;
-  margin-bottom: 0.75em;
-  scroll-margin-top: 6rem;
-}
-.blog-article h3 {
-  color: var(--foreground);
-  font-size: var(--text-xl);
-  line-height: var(--text-xl--line-height);
-  letter-spacing: var(--text-xl--letter-spacing);
-  font-weight: 600;
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-}
-.blog-article p {
   margin-top: 1em;
 }
+
+.blog-article h2 {
+  font-size: 1.5rem;
+  line-height: var(--lh-h2);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  text-wrap: balance;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+
+  @variant md {
+    font-size: 1.75rem;
+  }
+
+  @variant xl {
+    font-size: 1.875rem;
+  }
+}
+
+.blog-article h3 {
+  font-size: 1.125rem;
+  line-height: var(--lh-h3);
+  letter-spacing: -0.015em;
+  font-weight: 600;
+  text-wrap: balance;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+
+  @variant md {
+    font-size: 1.25rem;
+  }
+}
+
+.blog-article h2 + *,
+.blog-article h3 + * {
+  margin-top: 0;
+}
+
 .blog-article a {
   color: var(--foreground);
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration-line: underline;
+  text-decoration-color: var(--muted-foreground);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur-tap) var(--ease-feedback), text-decoration-color var(--dur-tap) var(--ease-feedback);
 }
+
 .blog-article a:hover {
-  /* --primary is a fill token: 2.62:1 on white. Body links need the text half. */
-  color: var(--primary-strong);
+  color: var(--accent-text);
+  text-decoration-color: var(--accent-text);
 }
+
 .blog-article ul,
 .blog-article ol {
-  margin-top: 1em;
-  padding-left: 1.5em;
+  padding-left: 1.5rem;
 }
-.blog-article ul { list-style-type: disc; }
-.blog-article ol { list-style-type: decimal; }
-.blog-article li { margin-top: 0.5em; }
+
+.blog-article ul {
+  list-style-type: disc;
+}
+
+.blog-article ol {
+  list-style-type: decimal;
+}
+
+.blog-article li + li {
+  margin-top: 0.5rem;
+}
+
+.blog-article li::marker {
+  color: var(--muted-foreground);
+}
+
+.blog-article strong {
+  font-weight: 600;
+}
+
 .blog-article code {
-  background-color: color-mix(in oklch, var(--foreground) 6%, transparent);
-  border-radius: 0.25rem;
+  background-color: var(--inline-code-background);
+  border-radius: var(--radius-chip);
   padding: 0.125rem 0.375rem;
   font-family: var(--font-mono);
   font-size: 0.875em;
   color: var(--foreground);
 }
+
 .blog-article pre {
-  background-color: color-mix(in oklch, var(--foreground) 4%, transparent);
-  border: 1px solid color-mix(in oklch, var(--foreground) 6%, transparent);
-  border-radius: 0.5rem;
-  padding: 1rem 1.25rem;
+  background-color: var(--code-background);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-panel);
+  padding: 1rem;
   overflow-x: auto;
-  margin-top: 1.5em;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
+
 .blog-article pre code {
   background-color: transparent;
   padding: 0;
-  font-size: 0.875rem;
+  font-size: inherit;
+  color: inherit;
+}
+
+.blog-article blockquote {
+  border-left: 3px solid var(--rule-strong);
+  padding-left: 1rem;
   color: var(--foreground);
 }
-.blog-article blockquote {
-  border-left: 3px solid var(--primary);
-  padding-left: 1rem;
-  margin-top: 1.5em;
-  color: var(--muted-foreground);
-  font-style: italic;
-}
+
 .blog-article hr {
   border: 0;
-  border-top: 1px solid color-mix(in oklch, var(--foreground) 8%, transparent);
-  margin: 2.5em 0;
+  border-top: 1px solid var(--rule);
+  margin: 3rem 0;
 }
-.blog-article strong {
-  color: var(--foreground);
-  font-weight: 600;
+
+/*
+ * Nothing in an article may widen the page: the layout clips nothing, so a
+ * wide element would scroll the whole document at 375px. A long identifier or
+ * URL in running text breaks where it must. Inside a table it stays whole,
+ * because the table scrolls in its own region instead (below).
+ */
+.blog-article :is(code, a) {
+  overflow-wrap: anywhere;
 }
+
+.blog-article table :is(code, a) {
+  overflow-wrap: normal;
+}
+
+/*
+ * The focusable scroll region `wrapProseTables()` puts around every table
+ * (resources/js/components/ui/prose-html.ts), as `<DataTable>` does. Its
+ * focus ring is the global `[tabindex]` one in tokens.css.
+ */
+.blog-article .prose-table {
+  overflow-x: auto;
+}
+
 .blog-article table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.5em;
   font-size: 0.875rem;
+  line-height: 1.55;
 }
+
 .blog-article th,
 .blog-article td {
-  border: 1px solid color-mix(in oklch, var(--foreground) 8%, transparent);
-  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  padding: 0.75rem 1rem;
   text-align: left;
+  vertical-align: top;
 }
+
 .blog-article th {
-  background-color: color-mix(in oklch, var(--foreground) 3%, transparent);
+  background-color: var(--surface);
   font-weight: 600;
-  color: var(--foreground);
 }
+
 .blog-article figure {
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-block: 2rem;
 }
+
 .blog-article figure img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0.5rem;
-  border: 1px solid color-mix(in oklch, var(--foreground) 8%, transparent);
 }
+
 .blog-article figcaption {
-  margin-top: 0.75em;
+  margin-top: 0.75rem;
   font-size: 0.8125rem;
-  font-style: italic;
-  text-align: center;
-  line-height: 1.5;
+  line-height: var(--lh-caption);
+  color: var(--muted-foreground);
 }
+
+/*
+ * The heading permalink. The markdown renderer places it as the heading's next
+ * sibling, outside the heading, so the heading's accessible name is its text
+ * alone and not "Data we keep#". CSS floats it back up into the left gutter
+ * beside the heading's last line: pulled up by that line's height plus the
+ * heading's bottom margin, and with a negative margin box, so it pushes no
+ * text aside and adds no height.
+ *
+ * Hidden below 640px, where the 16px gutter cannot hold it. Shown on hover or
+ * focus of the heading; always shown, muted, where there is no hover.
+ */
 .blog-article .heading-permalink {
-  opacity: 0;
-  margin-left: 0.5em;
-  color: var(--primary-strong);
-  font-weight: 400;
+  display: none;
 }
-.blog-article h2:hover .heading-permalink,
-.blog-article h3:hover .heading-permalink {
+
+.blog-article h2 + .heading-permalink {
+  --permalink-line: calc(1.5rem * var(--lh-h2));
+  --permalink-gap: 1rem;
+
+  @variant md {
+    --permalink-line: calc(1.75rem * var(--lh-h2));
+  }
+
+  @variant xl {
+    --permalink-line: calc(1.875rem * var(--lh-h2));
+  }
+}
+
+.blog-article h3 + .heading-permalink {
+  --permalink-line: calc(1.125rem * var(--lh-h3));
+  --permalink-gap: 0.5rem;
+
+  @variant md {
+    --permalink-line: calc(1.25rem * var(--lh-h3));
+  }
+}
+
+@media (width >= 40rem) {
+  .blog-article .heading-permalink {
+    display: block;
+    float: left;
+    width: 1rem;
+    height: var(--permalink-line);
+    margin-top: calc(-1 * (var(--permalink-line) + var(--permalink-gap)));
+    margin-left: -1.5rem;
+    border-radius: 2px;
+    color: var(--muted-foreground);
+    font-weight: 400;
+    line-height: var(--permalink-line);
+    text-align: center;
+    text-decoration: none;
+    opacity: 0;
+  }
+}
+
+.blog-article .heading-permalink + * {
+  margin-top: 0;
+}
+
+.blog-article :is(h2, h3):hover + .heading-permalink,
+.blog-article .heading-permalink:hover,
+.blog-article .heading-permalink:focus-visible {
   opacity: 1;
 }
 
-/* Phiki syntax highlighting (dual-theme) */
+@media (hover: none) {
+  .blog-article .heading-permalink {
+    opacity: 1;
+  }
+}
+
+/*
+ * Phiki's dual theme. Its light colours sit on `--code-background` (the white
+ * `--raised`), where its lowest, the comment grey, measures 4.55:1; on
+ * `--surface` it would fail at 4.24:1. The dark colours swap in on `.dark`,
+ * never on the media query, so code follows the reader's explicit choice.
+ */
 .blog-article pre.phiki {
-  border: 1px solid color-mix(in oklch, var(--foreground) 8%, transparent);
-  border-radius: 0.5rem;
-  padding: 1rem 1.25rem;
-  overflow-x: auto;
-  margin-top: 1.5em;
+  background-color: var(--code-background) !important;
 }
-.blog-article pre.phiki code {
-  background-color: transparent;
-  padding: 0;
-  font-size: 0.875rem;
-  font-family: var(--font-mono);
-  line-height: 1.6;
-  color: inherit;
-}
+
 .blog-article pre.phiki .line {
   display: block;
   min-height: 1.6em;
 }
+
 .dark .blog-article pre.phiki {
-  background-color: var(--phiki-dark-background-color) !important;
+  background-color: var(--code-background) !important;
   color: var(--phiki-dark-color) !important;
 }
+
 .dark .blog-article pre.phiki .token {
   color: var(--phiki-dark-color, inherit) !important;
 }
-.dark .blog-article pre.phiki span[style*='--phiki-dark-background-color'] {
+
+.dark .blog-article pre.phiki span[style*="--phiki-dark-background-color"] {
   background-color: var(--phiki-dark-background-color) !important;
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Print
+ * ---------------------------------------------------------------------------
+ *
+ * Legal pages and articles print as text: no chrome, black on white, and the
+ * address after each external link.
+ */
+@media print {
+  .support-banner,
+  .blog-article .heading-permalink {
+    display: none !important;
+  }
+
+  :root,
+  :root.dark {
+    --background: #fff;
+    --surface: #fff;
+    --raised: #fff;
+    --foreground: #000;
+    --muted-foreground: #444;
+    --rule: #ccc;
+    color-scheme: light;
+  }
+
+  .blog-article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.875em;
+  }
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Section rhythm
+ * ---------------------------------------------------------------------------
+ *
+ * Every Section pads above and below by `--space-section` (64/80/96px). Two
+ * plain sections in a row would then sit twice that apart, which is the
+ * oversized gap the rhythm replaced. The second of a pair drops its top
+ * padding, so neighbours are exactly one rhythm apart. Bands and ruled strips
+ * have no `data-rhythm` and keep their padding inside their own ground
+ * (components/ui/section.tsx).
+ */
+section[data-rhythm="collapse"] + section[data-rhythm="collapse"] {
+  padding-top: 0;
 }

@@ -2,185 +2,98 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Blog\BlogService;
-use Carbon\Carbon;
+use App\Support\Localization\Locales;
+use App\Support\Seo\LastModified;
+use App\Support\Seo\PageEntry;
+use App\Support\Seo\PageRegistry;
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
+/**
+ * Writes `public/sitemap.xml` from the page registry.
+ *
+ * One `<url>` per page and indexable locale, the same set the head marks
+ * `index, follow`, so the sitemap and the pages cannot disagree:
+ *
+ * - A translated page lists every translation as an `xhtml:link` alternate,
+ *   itself included, plus `x-default` pointing at the English URL. These are
+ *   exactly the head's alternates (`SitemapAlternatesTest`).
+ * - An untranslated page (an English-only release post, `/blog`) has none.
+ * - A page that renders but is not indexed (`/vi/blog`) is absent, as are
+ *   redirect and 410 sources (the registry never lists them), error pages and
+ *   every platform path (the registry never knows them).
+ * - `lastmod` is the last change to the files that drive the page in that
+ *   locale (`LastModified`); `changefreq` and `priority` are omitted, because
+ *   search engines ignore them.
+ */
+#[Signature('sitemap:generate')]
+#[Description('Generate public/sitemap.xml from the page registry, with hreflang alternates')]
 class GenerateSitemapCommand extends Command
 {
-    protected $signature = 'sitemap:generate';
-
-    protected $description = 'Generate the sitemap for the public landing pages';
-
-    public function __construct(
-        private readonly BlogService $blog,
-    ) {
-        parent::__construct();
-    }
-
-    public function handle(): int
+    public function handle(PageRegistry $registry, LastModified $lastModified): int
     {
-        $baseUrl = 'https://' . config('app.web_domain');
+        $sitemap = Sitemap::create();
+        $count = 0;
 
-        /*
-         * One `Carbon::now()` used to stamp all 43 non-blog URLs, so every
-         * deploy advanced `lastmod` on every page whether or not anything
-         * changed. A crawler that sees a whole sitemap move every time learns
-         * to ignore the field — including for the pages that genuinely did
-         * change. Each URL now carries the mtime of whatever actually drives
-         * it, which is the same discipline the blog entries already had.
-         */
-        $databaseData = $this->dataModifiedAt('databases.json');
-        $comparisonData = $this->dataModifiedAt('comparisons.json');
-        $homepage = $this->sourceModifiedAt('resources/js/pages/Home.tsx');
+        foreach ($registry->all() as $entry) {
+            foreach (Locales::codes() as $locale) {
+                if (! $entry->isIndexable($locale)) {
+                    continue;
+                }
 
-        $sitemap = Sitemap::create()
-            ->add(
-                Url::create($baseUrl . '/')
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(1.0)
-                    ->setLastModificationDate($homepage),
-            )
-            ->add(
-                Url::create($baseUrl . '/blog')
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(0.8)
-                    ->setLastModificationDate($this->latestPostDate()),
-            )
-            ->add(
-                Url::create($baseUrl . '/download')
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(0.9)
-                    ->setLastModificationDate($this->sourceModifiedAt('resources/js/pages/Download.tsx')),
-            )
-            /*
-             * Weekly at 0.9, matching /download rather than the 0.8 monthly the
-             * database pages get. It is the other half of the same question —
-             * how do I get this — and it changes on the app's release cadence,
-             * not on a content edit here.
-             */
-            ->add(
-                Url::create($baseUrl . '/ios')
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(0.9)
-                    ->setLastModificationDate($this->sourceModifiedAt('resources/js/pages/Ios.tsx')),
-            )
-            ->add(
-                Url::create($baseUrl . '/privacy')
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                    ->setPriority(0.5)
-                    ->setLastModificationDate($this->sourceModifiedAt('resources/js/pages/Privacy.tsx')),
-            )
-            ->add(
-                Url::create($baseUrl . '/terms')
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                    ->setPriority(0.5)
-                    ->setLastModificationDate($this->sourceModifiedAt('resources/js/pages/Terms.tsx')),
-            )
-            ->add(
-                Url::create($baseUrl . '/refund-policy')
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                    ->setPriority(0.5)
-                    ->setLastModificationDate($this->sourceModifiedAt('resources/js/pages/RefundPolicy.tsx')),
-            )
-            ->add(
-                Url::create($baseUrl . '/faq')
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                    ->setPriority(0.7)
-                    ->setLastModificationDate($this->sourceModifiedAt('resources/js/data/faqs.ts')),
-            );
+                $url = Url::create($entry->url($locale));
 
-        foreach ($this->loadSlugs('databases.json') as $slug) {
-            $sitemap->add(
-                Url::create($baseUrl . '/' . $slug)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                    ->setPriority(0.8)
-                    ->setLastModificationDate($databaseData),
-            );
-        }
+                foreach (self::alternates($registry, $entry, $locale) as $hreflang => $href) {
+                    $url->addAlternate($href, $hreflang);
+                }
 
-        foreach ($this->loadSlugs('comparisons.json') as $slug) {
-            $sitemap->add(
-                Url::create($baseUrl . '/compare/' . $slug)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                    ->setPriority(0.8)
-                    ->setLastModificationDate($comparisonData),
-            );
-        }
+                $modified = $lastModified->forEntry($entry, $locale);
 
-        foreach ($this->blog->all() as $post) {
-            $sitemap->add(
-                Url::create($baseUrl . '/blog/' . $post->slug)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                    ->setPriority(0.7)
-                    ->setLastModificationDate($post->date),
-            );
+                if ($modified !== null) {
+                    $url->setLastModificationDate($modified);
+                }
+
+                $sitemap->add($url);
+                $count++;
+            }
         }
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
 
-        $this->components->info('Sitemap generated successfully.');
+        $this->components->info("Sitemap generated with {$count} URLs.");
 
         return self::SUCCESS;
     }
 
-    /** The mtime of a data file, which is what drives the pages built from it. */
-    private function dataModifiedAt(string $file): Carbon
-    {
-        return $this->modifiedAt(resource_path('data/' . $file));
-    }
-
-    /** The mtime of a source file, relative to the project root. */
-    private function sourceModifiedAt(string $relative): Carbon
-    {
-        return $this->modifiedAt(base_path($relative));
-    }
-
-    /** Falls back to now for a file that is missing, which is the safe direction. */
-    private function modifiedAt(string $path): Carbon
-    {
-        $mtime = file_exists($path) ? filemtime($path) : false;
-
-        return $mtime === false ? Carbon::now() : Carbon::createFromTimestamp($mtime);
-    }
-
-    /** The index lists posts, so it is as fresh as the newest one. */
-    private function latestPostDate(): Carbon
-    {
-        $dates = array_map(
-            static fn($post): Carbon => Carbon::parse($post->date),
-            $this->blog->all(),
-        );
-
-        return empty($dates) ? Carbon::now() : max($dates);
-    }
-
     /**
-     * @return list<string>
+     * The hreflang alternates of a page in a locale: each translation, itself
+     * included, then `x-default`. Empty when the page has no translation.
+     *
+     * The same rule as `SeoContext`, which builds the head's alternates.
+     *
+     * @return array<string, string> hreflang => absolute URL
      */
-    private function loadSlugs(string $file): array
+    public static function alternates(PageRegistry $registry, PageEntry $entry, string $locale): array
     {
-        $path = resource_path('data/' . $file);
+        $cluster = $entry->hreflangCluster();
 
-        if (! file_exists($path)) {
-            $this->components->warn("Data file not found: {$path}");
-
+        if (! in_array($locale, $cluster, true)) {
             return [];
         }
 
-        $entries = json_decode((string) file_get_contents($path), true);
+        $alternates = [];
 
-        if (! is_array($entries)) {
-            $this->components->warn("Invalid JSON in {$path}");
-
-            return [];
+        foreach ($registry->alternates($entry) as $code => $href) {
+            $alternates[Locales::definition($code)['hreflang']] = $href;
         }
 
-        return array_values(array_filter(array_map(
-            static fn(array $entry): ?string => is_string($entry['slug'] ?? null) ? $entry['slug'] : null,
-            $entries,
-        )));
+        if (in_array(Locales::default(), $cluster, true)) {
+            $alternates['x-default'] = $entry->url(Locales::default());
+        }
+
+        return $alternates;
     }
 }

@@ -1,0 +1,63 @@
+{
+    "seo": {
+        "title": "Tải TablePro cho Mac",
+        "description": "Tải TablePro cho Mac, có bản riêng cho Apple silicon và Intel, hoặc cài bằng Homebrew. Ứng dụng cho iPhone và iPad có trên App Store."
+    },
+    "og": {
+        "kicker": "Tải về",
+        "title": "Tải TablePro"
+    },
+    "header": {
+        "title": "Tải TablePro",
+        "lead": "Tải bản ứng dụng Mac phù hợp với chip của máy bạn, hoặc cài bằng Homebrew. Ứng dụng cho iPhone và iPad có trên App Store."
+    },
+    "mac": {
+        "otherWays": "Cách cài đặt khác",
+        "homebrew": {
+            "title": "Homebrew",
+            "body": "Homebrew tự cài bản phù hợp với chip của máy Mac. Sau đó, ứng dụng tự cập nhật.",
+            "trails": "Bản trên Homebrew được cập nhật riêng nên có thể chưa kịp lên phiên bản mới nhất. Nếu Homebrew cài bản cũ hơn, hãy chọn <ui>TablePro > Kiểm tra cập nhật…</ui> (TablePro > Check for Updates…) để lên bản mới nhất."
+        },
+        "releases": "Mọi bản build trên GitHub Releases",
+        "source": "Build từ mã nguồn (AGPLv3)"
+    },
+    "ios": {
+        "body": "Một ứng dụng riêng cho {devices}, có bộ tính năng của riêng mình.",
+        "link": "TablePro cho {devices}"
+    },
+    "install": {
+        "title": "Cài đặt và mở lần đầu",
+        "steps": [
+            "Mở file .dmg vừa tải trong thư mục Tải về (Downloads).",
+            "Kéo TablePro vào thư mục Ứng dụng (Applications).",
+            "Mở TablePro từ thư mục Ứng dụng. Vì ứng dụng được tải từ internet, macOS sẽ hỏi xác nhận ở lần mở đầu tiên. Hãy chọn <ui>Mở</ui> (Open).",
+            "Thêm một connection, hoặc chọn <ui>Trợ giúp > Mở cơ sở dữ liệu mẫu</ui> (Help > Open Sample Database) để xem thử trước. Lệnh này mở Chinook, một cơ sở dữ liệu SQLite nhỏ đi kèm ứng dụng."
+        ],
+        "signing": "Cả hai bản build đều được ký bằng Developer ID và được Apple notarize, nên bạn không cần thay đổi cài đặt bảo mật nào để mở TablePro.",
+        "drivers": "Driver cho các cơ sở dữ liệu phổ biến có sẵn trong ứng dụng. Các driver khác được tải về ở lần đầu bạn chọn cơ sở dữ liệu đó (cần kết nối internet) và được cập nhật độc lập với ứng dụng.",
+        "databases": "Cơ sở dữ liệu được hỗ trợ",
+        "guide": {
+            "label": "Đọc hướng dẫn cài đặt (tiếng Anh)",
+            "path": "/installation"
+        }
+    },
+    "updates": {
+        "title": "Cập nhật",
+        "paragraphs": [
+            "TablePro kiểm tra bản cập nhật mỗi ngày một lần. Bản mới được tải về trong nền và được cài vào lần tới bạn thoát ứng dụng.",
+            "Phần lớn bản phát hành được gửi tới máy Mac theo từng đợt, trong khoảng một ngày rưỡi. Muốn nhận sớm hơn, hãy chọn <ui>TablePro > Kiểm tra cập nhật…</ui> (TablePro > Check for Updates…).",
+            "Bạn có thể tắt tự động kiểm tra hoặc tự động cài bản cập nhật trong <ui>Cài đặt > Tổng quát</ui> (Settings > General). Yêu cầu kiểm tra cập nhật được gửi tới GitHub, nơi đăng các bản phát hành, và mọi bản cập nhật đều được ký và xác minh trước khi cài."
+        ]
+    },
+    "otherPlatforms": {
+        "title": "Nền tảng khác",
+        "body": "Hiện không có bản TablePro cho {platforms}, cũng không có ngày phát hành dự kiến.",
+        "faq": "Câu hỏi về nền tảng trong phần Câu hỏi thường gặp"
+    },
+    "olderVersions": {
+        "title": "Phiên bản cũ và ghi chú phát hành",
+        "body": "Mọi bản phát hành, kèm ghi chú và cả hai file DMG, đều có trên GitHub Releases. Changelog liệt kê những gì đã thay đổi trong từng phiên bản.",
+        "releases": "Tất cả bản phát hành trên GitHub",
+        "changelog": "Changelog (tiếng Anh)"
+    }
+}
