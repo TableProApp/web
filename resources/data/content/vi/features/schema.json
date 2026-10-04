@@ -66,7 +66,7 @@
             "id": "copy",
             "title": "Copy To, Duplicate Database và Transfer To",
             "paragraphs": [
-                "Copy To gửi table, view, routine và trigger, dưới dạng cấu trúc, dữ liệu hoặc cả hai, sang một cơ sở dữ liệu trên bất kỳ connection đã lưu nào, kể cả connection dùng engine khác. Trước khi ghi bất cứ thứ gì, bước xem lại liệt kê câu lệnh DDL, số dòng dự kiến của từng table và mọi kiểu cột sẽ được chuyển gần đúng, ví dụ <code>TINYINT(1)</code> của MariaDB sang PostgreSQL thành <code>BOOLEAN</code>. Mệnh đề WHERE và giới hạn số dòng cho từng table giúp bạn chỉ sao chép một phần.",
+                "Copy To gửi table, view, routine và trigger, dưới dạng cấu trúc, dữ liệu hoặc cả hai, sang một cơ sở dữ liệu trên bất kỳ connection đã lưu nào, kể cả connection dùng engine khác. Trước khi ghi bất cứ thứ gì, bước xem lại liệt kê câu lệnh DDL, số dòng dự kiến của từng table và mọi kiểu cột bị thay đổi khi chuyển, ví dụ cột <code>ENUM</code> của MariaDB sang PostgreSQL thành <code>VARCHAR</code> và mất danh sách giá trị cho phép. Mệnh đề WHERE và giới hạn số dòng cho từng table giúp bạn chỉ sao chép một phần.",
                 "Duplicate Database sao chép nguyên một cơ sở dữ liệu với tên mới trên cùng connection. Transfer To chuyển dòng thẳng vào một table có sẵn trên một connection khác đang mở, có ghép cột và không cần file trung gian. Cả ba đều miễn phí."
             ],
             "asset": "mac-copy-to-review"

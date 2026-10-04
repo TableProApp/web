@@ -66,7 +66,7 @@
             "id": "copy",
             "title": "Copy To, Duplicate Database and Transfer To",
             "paragraphs": [
-                "Copy To sends tables, views, routines and triggers, as structure, data or both, to another database on any saved connection, including one running a different engine. Before anything is written, a review lists the DDL, the rows each table expects and every column type that will be approximated, such as <code>TINYINT(1)</code> from MariaDB arriving in PostgreSQL as <code>BOOLEAN</code>. A WHERE clause and a row limit per table copy part of a table.",
+                "Copy To sends tables, views, routines and triggers, as structure, data or both, to another database on any saved connection, including one running a different engine. Before anything is written, a review lists the DDL, the rows each table expects and every column type that changes on the way, such as an <code>ENUM</code> column from MariaDB arriving in PostgreSQL as <code>VARCHAR</code> without its list of allowed values. A WHERE clause and a row limit per table copy part of a table.",
                 "Duplicate Database copies a whole database under a new name on the same connection. Transfer To moves rows straight into an existing table on another open connection, with a column mapping and no file in between. All three are free."
             ],
             "asset": "mac-copy-to-review"
