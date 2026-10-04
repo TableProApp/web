@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Symfony\Component\Process\Process;
+
 /**
  * scripts/deploy.sh decides what work a release needs by matching the changed
  * paths against four patterns. Getting one of those patterns wrong does not
@@ -45,6 +47,26 @@ function deployPattern(string $flag): string
 function deployMatches(string $flag, string $path): bool
 {
     return preg_match('#' . deployPattern($flag) . '#', $path) === 1;
+}
+
+/**
+ * Runs the script's own `changed` function, under the script's shell options,
+ * against a list of changed paths, and reports whether it matched.
+ */
+function runChanged(string $paths, string $pattern): bool
+{
+    $matched = preg_match('/^changed\(\) \{.*\}$/m', (string) file_get_contents(base_path('scripts/deploy.sh')), $definition);
+
+    expect($matched)->toBe(1, 'scripts/deploy.sh has no one-line changed() function');
+
+    $process = new Process(
+        ['bash', '-c', "set -euo pipefail\n{$definition[0]}\nchanged \"\$PATTERN\""],
+        null,
+        ['CHANGED_FILES' => $paths, 'PATTERN' => $pattern],
+    );
+    $process->run();
+
+    return $process->getExitCode() === 0;
 }
 
 it('rebuilds the bundles for a component, a stylesheet or a dependency', function (string $path) {
@@ -370,4 +392,16 @@ it('rebuilds when the artifacts are older than the sources, whatever the diff sa
     $definedAt = strpos($script, 'bundles_are_stale() {');
     expect($definedAt)->not->toBeFalse();
     expect($definedAt)->toBeLessThan(strrpos($script, 'bundles_are_stale;'));
+});
+
+it('still sees a PHP change in a release whose path list outgrows a pipe buffer', function (): void {
+    $images = array_map(
+        fn(int $i): string => "public/images/features/mac-figure-{$i}-light-1216.avif",
+        range(1, 3000),
+    );
+    $paths = implode("\n", ['app/Http/Controllers/HomeController.php', ...$images]);
+
+    expect(strlen($paths))->toBeGreaterThan(65536)
+        ->and(runChanged($paths, deployPattern('PHP_CHANGED')))->toBeTrue()
+        ->and(runChanged($paths, deployPattern('CONTENT_CHANGED')))->toBeFalse();
 });

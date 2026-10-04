@@ -170,7 +170,12 @@ else
     CHANGED_FILES="$(git diff --name-only "$PREV_COMMIT" "$CURR_COMMIT")"
 fi
 
-changed() { printf '%s\n' "$CHANGED_FILES" | grep -qE "$1"; }
+# A here-string, not `printf | grep -q`: grep -q exits on its first match, and
+# under `set -o pipefail` the printf it leaves writing to a closed pipe fails
+# the whole test once the list outgrows the pipe buffer (64 KB, about 1,000
+# paths). That reported php=false for a 1,584-file release, so it shipped
+# without rebuilding the caches or reloading PHP-FPM.
+changed() { grep -qE "$1" <<< "$CHANGED_FILES"; }
 
 FRONTEND_CHANGED=false
 COMPOSER_CHANGED=false
