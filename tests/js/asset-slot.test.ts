@@ -295,7 +295,10 @@ function escapeHtml(text: string): string {
 }
 
 test('a placeholder keeps its type icon with its label, so a narrow phone slot never strands the icon on its own line', () => {
-    const markup = html(real, 'ios-connection-list', 'vi');
+    // Rendered as a placeholder whatever its status, so supplying the screenshot does not retire the check.
+    const entry = real.assets['ios-connection-list'];
+    const asPlaceholder: AssetManifestData = { ...real, assets: { ...real.assets, 'ios-connection-list': { ...entry, status: 'placeholder', src: null } } };
+    const markup = html(asPlaceholder, 'ios-connection-list', 'vi');
 
     // The icon and the label share one wrapper; only the asset id is a separate item in the wrapping row.
     assert.match(markup, /<p class="flex flex-wrap items-center gap-x-2 gap-y-1"><span class="inline-flex min-w-0 items-start gap-2"><svg[^>]*>.*?<\/svg><span class="type-label min-w-0 text-foreground">[^<]+<\/span><\/span><code /);

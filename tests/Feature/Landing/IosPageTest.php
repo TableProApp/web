@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Landing\IosController;
+use App\Support\Assets\AssetManifest;
 use App\Support\Content\Slugs\CompareSlugs;
 use App\Support\Content\Slugs\DatabaseSlugs;
 use App\Support\Content\Slugs\FeatureSlugs;
@@ -61,6 +63,11 @@ function iosPageText(string $locale): string
 it('renders in both languages from its content and the data files', function (string $path, string $locale, string $title): void {
     $ios = iosPagePlatform();
     $engines = collect(json_decode((string) file_get_contents(resource_path('data/engines.json')), true))->keyBy('id');
+    // The iPad capture under the header is preloaded exactly while it is supplied.
+    $assets = app(AssetManifest::class);
+    $lcp = $assets->lcpDescriptor('ipad-table-browse', $locale, priority: true, sizes: IosController::IPAD_SIZES);
+
+    expect($lcp === null)->toBe(! $assets->isSupplied('ipad-table-browse'));
 
     get($path)
         ->assertOk()
@@ -81,7 +88,7 @@ it('renders in both languages from its content and the data files', function (st
             ->where('limits.results', fn(int $value): bool => $value > 0)
             ->has('links.license')
             ->has('organizationProfiles')
-            ->where('lcpAsset', null));
+            ->where('lcpAsset', $lcp));
 })->with([
     'English' => ['/ios', 'en', 'TablePro for iPhone and iPad'],
     'Vietnamese' => ['/vi/ios', 'vi', 'TablePro cho iPhone và iPad'],

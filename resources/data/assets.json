@@ -731,16 +731,43 @@
                 "vi": "Query Insights trong 7 ngày qua, một dạng query được đánh dấu Got Slower."
             },
             "alt": {
-                "en": "Query Insights over the last 7 days, listing query shapes with one marked Got Slower.",
-                "vi": "Query Insights trong 7 ngày qua, liệt kê các dạng query, một dạng được đánh dấu Got Slower."
+                "en": "Query Insights over the last 7 days, with a chart of succeeded and failed queries per day above the Most Run, Slowest and Got Slower lists, where one query shape is marked Got Slower.",
+                "vi": "Query Insights trong 7 ngày qua, với biểu đồ số query thành công và thất bại mỗi ngày phía trên các mục Most Run, Slowest và Got Slower, trong đó một dạng query được đánh dấu Got Slower."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-query-insights"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                },
+                "dark": {
+                    "widths": [
+                        720,
+                        1216,
+                        2432
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2432,
+                    "height": 1368
+                }
+            },
             "legacySource": null
         },
         "mac-query-insights-mobile": {
@@ -774,8 +801,33 @@
                 "dir": "public/images/features",
                 "base": "mac-query-insights-mobile"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                }
+            },
             "legacySource": null
         },
         "mac-result-chart": {
@@ -1136,16 +1188,41 @@
                 "vi": "Một connection gắn tag production đang bật Safe Mode, yêu cầu Touch ID trước khi chạy câu DELETE."
             },
             "alt": {
-                "en": "A Touch ID prompt over a DELETE statement on a connection tagged production, with Safe Mode on.",
-                "vi": "Hộp thoại Touch ID hiện ra trước câu lệnh DELETE trên một connection gắn tag production đang bật Safe Mode."
+                "en": "A Touch ID prompt that Safe Mode shows before a DELETE on the orders table runs, on a connection marked with the red production colour.",
+                "vi": "Hộp thoại Touch ID mà Safe Mode hiện ra trước khi câu lệnh DELETE trên table orders chạy, trên một connection được đánh dấu bằng màu đỏ của production."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-safe-mode-touchid"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                },
+                "dark": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                }
+            },
             "legacySource": null
         },
         "mac-safe-mode-touchid-mobile": {
@@ -1183,8 +1260,33 @@
                 "dir": "public/images/features",
                 "base": "mac-safe-mode-touchid-mobile"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                },
+                "dark": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                }
+            },
             "legacySource": null
         },
         "mac-data-rewind-review": {
@@ -1598,16 +1700,41 @@
                 "vi": "Copy To từ MariaDB shop sang PostgreSQL shop_pg, liệt kê các kiểu dữ liệu được chuyển gần đúng trước khi sao chép."
             },
             "alt": {
-                "en": "The Copy To review from a MariaDB database to PostgreSQL, listing each column type that will be approximated, such as TINYINT(1) to boolean.",
-                "vi": "Bước xem lại của Copy To từ MariaDB sang PostgreSQL, liệt kê từng kiểu cột sẽ được chuyển gần đúng, ví dụ TINYINT(1) sang boolean."
+                "en": "The Copy To review from MariaDB to PostgreSQL: the expected rows of each table, two enum columns under Type changes because their lists of allowed values are not carried over, and the CREATE TABLE script.",
+                "vi": "Bước xem lại của Copy To từ MariaDB sang PostgreSQL: số dòng dự kiến của từng table, hai cột enum trong mục Type changes vì danh sách giá trị cho phép không được mang sang, và script CREATE TABLE."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-copy-to-review"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                },
+                "dark": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                }
+            },
             "legacySource": [
                 "/images/blog/copy-to-cross-engine-review.png"
             ]
@@ -1639,8 +1766,8 @@
                 "vi": "Users & Roles trên MySQL: app_reader được cấp SELECT trên một cột, bản xem trước SQL đang mở."
             },
             "alt": {
-                "en": "Users & Roles on a MySQL server, with the app_reader user granted SELECT on a single column and the SQL preview showing the GRANT.",
-                "vi": "Users & Roles trên một server MySQL: user app_reader được cấp SELECT trên một cột, bản xem trước SQL hiển thị câu GRANT."
+                "en": "Users & Roles on a MySQL server, with the SQL Preview showing the GRANT that gives the app_reader user SELECT on the total column of shop.orders.",
+                "vi": "Users & Roles trên một server MySQL, hộp thoại SQL Preview hiển thị câu GRANT cấp cho user app_reader quyền SELECT trên cột total của shop.orders."
             },
             "caption": null,
             "replacement": {
@@ -2029,8 +2156,33 @@
                 "dir": "public/images/features",
                 "base": "mac-import-mapping"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                },
+                "dark": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                }
+            },
             "legacySource": [
                 "/images/blog/import-match-columns.png"
             ]
@@ -2058,16 +2210,41 @@
                 "vi": "Hộp thoại Export chọn định dạng XLSX cho ba table của shop."
             },
             "alt": {
-                "en": "The Export dialog with three tables selected and XLSX chosen as the format.",
-                "vi": "Hộp thoại Export với ba table được chọn và định dạng XLSX."
+                "en": "The Export dialog with the orders table ticked among the schema's tables and views, and XLSX chosen as the format.",
+                "vi": "Hộp thoại Export với table orders được chọn trong danh sách table và view của schema, định dạng XLSX đã được chọn."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/features",
                 "base": "mac-export-dialog"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                },
+                "dark": {
+                    "widths": [
+                        696,
+                        1392
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 1392,
+                    "height": 1044
+                }
+            },
             "legacySource": [
                 "/images/blog/export-object-tree.png"
             ]
@@ -4095,8 +4272,8 @@
                 "vi": "Một table Cassandra mở từ sidebar, với một ô thuộc cột scalar đang được sửa."
             },
             "alt": {
-                "en": "A Cassandra table opened from the sidebar in the data grid, with a cell in a text column being edited and a set column shown as a collection.",
-                "vi": "Một table Cassandra mở từ sidebar trong data grid, một ô thuộc cột text đang được sửa và một cột set hiển thị dưới dạng collection."
+                "en": "A Cassandra table opened from the sidebar in the data grid, with a changed status value marked as pending until it is saved and a set column shown as a collection.",
+                "vi": "Một table Cassandra mở từ sidebar trong data grid, một giá trị status vừa sửa được đánh dấu đang chờ cho tới khi lưu, và một cột set hiển thị dưới dạng collection."
             },
             "caption": null,
             "replacement": {
@@ -4155,8 +4332,8 @@
                 "vi": "Cận cảnh ô status đang được sửa, cạnh cột tags kiểu set."
             },
             "alt": {
-                "en": "Close-up of a Cassandra row in the data grid, its status cell being changed to shipped and its tags column showing a set.",
-                "vi": "Cận cảnh một dòng Cassandra trong data grid, ô status đang được đổi thành shipped và cột tags hiển thị một set."
+                "en": "Close-up of Cassandra rows in the data grid, one status cell changed to shipped and marked as pending, beside the tags column showing a set.",
+                "vi": "Cận cảnh các dòng Cassandra trong data grid, một ô status đã đổi thành shipped và được đánh dấu đang chờ lưu, cạnh cột tags hiển thị một set."
             },
             "caption": null,
             "replacement": {
@@ -5437,8 +5614,22 @@
                 "dir": "public/images/ios",
                 "base": "ios-connection-list"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": [
                 "/images/ios-screenshot-light.png",
                 "/images/ios-screenshot-dark.png"
@@ -5475,8 +5666,22 @@
                 "dir": "public/images/ios",
                 "base": "ipad-table-browse"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        720,
+                        1008,
+                        2016
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 2016,
+                    "height": 1511
+                }
+            },
             "legacySource": null
         },
         "ipad-table-browse-mobile": {
@@ -5510,8 +5715,21 @@
                 "dir": "public/images/ios",
                 "base": "ipad-table-browse-mobile"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        343,
+                        686
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 686,
+                    "height": 858
+                }
+            },
             "legacySource": null
         },
         "ios-table-browse": {
@@ -5545,8 +5763,22 @@
                 "dir": "public/images/ios",
                 "base": "ios-table-browse"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": [
                 "/images/ios/table-light.png",
                 "/images/ios/table-dark.png",
@@ -5576,16 +5808,30 @@
                 "vi": "Sửa một track, đặt Composer thành NULL, kèm liên kết tới album liên quan."
             },
             "alt": {
-                "en": "A Chinook track open for editing on iPhone, with Composer set to NULL and a link to its album.",
-                "vi": "Một track của Chinook đang được sửa trên iPhone, Composer đặt thành NULL, kèm liên kết tới album."
+                "en": "A Chinook track open for editing on iPhone, with Composer set to NULL before saving.",
+                "vi": "Một track của Chinook đang được sửa trên iPhone, Composer được đặt thành NULL trước khi lưu."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/ios",
                 "base": "ios-row-edit"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": [
                 "/images/ios/row-light.png",
                 "/images/ios/row-dark.png"
@@ -5622,8 +5868,22 @@
                 "dir": "public/images/ios",
                 "base": "ios-query"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": null
         },
         "ios-live-activity": {
@@ -5684,16 +5944,30 @@
                 "vi": "Connection PostgreSQL mới với Safe Mode Read-Only, SSL và SSH tunnel."
             },
             "alt": {
-                "en": "A new PostgreSQL connection form on iPhone with Safe Mode set to Read-Only, SSL on and an SSH tunnel.",
-                "vi": "Form connection PostgreSQL mới trên iPhone với Safe Mode đặt ở Read-Only, bật SSL và có SSH tunnel."
+                "en": "A new connection form on iPhone with SSL set to Verify Identity and an SSH tunnel to bastion.acme.internal that signs in with a private key.",
+                "vi": "Form connection mới trên iPhone với SSL đặt ở Verify Identity và SSH tunnel tới bastion.acme.internal, đăng nhập bằng private key."
             },
             "caption": null,
             "replacement": {
                 "dir": "public/images/ios",
                 "base": "ios-connection-form"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": null
         },
         "ios-safe-mode-confirm": {
@@ -5727,8 +6001,22 @@
                 "dir": "public/images/ios",
                 "base": "ios-safe-mode-confirm"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": null
         },
         "ipad-two-windows": {
@@ -5797,8 +6085,22 @@
                 "dir": "public/images/ios",
                 "base": "ios-widgets"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": null
         },
         "ios-shortcuts-add-rows": {
@@ -5832,8 +6134,22 @@
                 "dir": "public/images/ios",
                 "base": "ios-shortcuts-add-rows"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": null
         },
         "ios-settings-privacy": {
@@ -5867,8 +6183,22 @@
                 "dir": "public/images/ios",
                 "base": "ios-settings-privacy"
             },
-            "status": "placeholder",
-            "src": null,
+            "status": "supplied",
+            "src": {
+                "light": {
+                    "widths": [
+                        280,
+                        560,
+                        840
+                    ],
+                    "formats": [
+                        "avif",
+                        "webp"
+                    ],
+                    "width": 840,
+                    "height": 1821
+                }
+            },
             "legacySource": null
         },
         "blog-tablepro-0-67-1": {
@@ -6679,7 +7009,7 @@
                     "section": "figure-1"
                 }
             ],
-            "aspect": "2400:1500",
+            "aspect": "1408:1068",
             "priority": false,
             "theme": "single",
             "locale": "shared",
@@ -6712,7 +7042,7 @@
                         "webp"
                     ],
                     "width": 1408,
-                    "height": 880
+                    "height": 1068
                 }
             },
             "legacySource": [
