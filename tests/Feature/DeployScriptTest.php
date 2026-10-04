@@ -59,10 +59,15 @@ function runChanged(string $paths, string $pattern): bool
 
     expect($matched)->toBe(1, 'scripts/deploy.sh has no one-line changed() function');
 
+    /*
+     * The list goes in on stdin: Linux caps a single environment string at
+     * 128 KB, and the list has to be larger than a pipe buffer to mean anything.
+     */
     $process = new Process(
-        ['bash', '-c', "set -euo pipefail\n{$definition[0]}\nchanged \"\$PATTERN\""],
+        ['bash', '-c', "set -euo pipefail\nCHANGED_FILES=\"\$(cat)\"\n{$definition[0]}\nchanged \"\$PATTERN\""],
         null,
-        ['CHANGED_FILES' => $paths, 'PATTERN' => $pattern],
+        ['PATTERN' => $pattern],
+        $paths,
     );
     $process->run();
 
