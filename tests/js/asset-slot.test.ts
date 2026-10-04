@@ -10,10 +10,11 @@ import vi from '../../resources/js/i18n/messages/vi/assets.ts';
 
 /*
  * <AssetSlot> rendered through react-dom/server, with no build and no SSR
- * process: against every entry of the real manifest (all placeholders today),
- * and against an isolated fixture that takes the supplied path without any
- * image on disk. The PHP side (AssetManifest: file names, validation, the LCP
- * preload) is held to the same fixture in tests/Feature/Assets/AssetManifestTest.php.
+ * process: against every entry of the real manifest (placeholders and supplied
+ * pictures), and against an isolated fixture that takes the supplied path
+ * without any image on disk. The PHP side (AssetManifest: file names,
+ * validation, the LCP preload) is held to the same fixture in
+ * tests/Feature/Assets/AssetManifestTest.php.
  */
 const read = (path: string): AssetManifestData =>
     JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8')) as AssetManifestData;
@@ -26,16 +27,25 @@ function html(manifest: SlotManifestData, id: string, locale = 'en', extra: { si
     return renderToStaticMarkup(renderAssetSlot(manifest, id, { locale, labels: labels[locale], ...extra }));
 }
 
-test('every real slot renders as a labelled placeholder that requests nothing', () => {
+test('every real slot renders as a labelled placeholder that requests nothing, or as a picture once supplied', () => {
     let rendered = 0;
 
     for (const [id, entry] of Object.entries(real.assets)) {
-        if (!entry.slot || entry.status !== 'placeholder') {
+        if (!entry.slot) {
             continue;
         }
 
         for (const locale of ['en', 'vi']) {
             const markup = html(real, id, locale);
+
+            if (entry.status !== 'placeholder') {
+                assert.match(markup, /^<figure [^>]*data-asset-status="supplied"/, `${id} (${locale}) is not marked as supplied`);
+                assert.ok(/<picture\b/.test(markup), `${id} (${locale}) renders no <picture>`);
+                assert.ok(!markup.includes('data-asset-id') && !markup.includes('role="img"'), `${id} (${locale}) keeps the placeholder box`);
+                rendered++;
+                continue;
+            }
+
             const description = entry.description[locale] ?? entry.description.en;
             const label = labels[locale].types[entry.type as keyof AssetSlotLabels['types']];
 
