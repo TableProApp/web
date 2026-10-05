@@ -17,7 +17,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'resources/js'),
+            '@': path.resolve(import.meta.dirname, 'resources/js'),
             /*
              * The locale-neutral data files and the per-locale page copy. A
              * page types its `content` prop with
@@ -25,7 +25,7 @@ export default defineConfig({
              * nothing; a module that imports a data file for its values does
              * bundle it, so keep those imports to small files.
              */
-            '@data': path.resolve(__dirname, 'resources/data'),
+            '@data': path.resolve(import.meta.dirname, 'resources/data'),
         },
     },
 });
