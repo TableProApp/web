@@ -52,8 +52,8 @@ string arrives as a prop, so each app passes its own words in its own language.
 | `resources/js/lib/theme.ts` | `2c8b2af95cb12329a87a11743281af2506917ccbd57cc109629b51e4505d9765` | Reading, applying and syncing the theme choice across tabs and both apps (`theme` key; `tablepro:theme-change` event) |
 | `resources/js/components/shared/theme-control.tsx` | `3f093a0c661f07088ca94154d303a5c91b0a4fd47d9f71e5af6567d834245884` | ThemeControl, `menu` and `segmented` variants; labels arrive as props |
 | `resources/js/lib/consent.ts` | `1c276dfffeb65b67e01601e2d17bffeb854542573797c9c69f4bc8e21ae51aeb` | The analytics consent record (`tablepro:analytics-consent`), applying and withdrawing it, and the "Cookie settings" reopen event |
-| `resources/js/components/shared/consent-bar.tsx` | `78ed697999f59dfe7d717b08242e680418b5c594538741640fc21a470b4f564c` | The consent bar: one question, a privacy link, equal Allow and Decline; labels and the privacy URL arrive as props |
-| `resources/js/lib/crisp.ts` | `67ce17eb0e052e4f2a31b4c6433d6489064441bcd6e3c197b690fb3e21ba161c` | Click-to-load chat: nothing loads, and nothing is set, before a reader clicks a chat button |
+| `resources/js/components/shared/consent-bar.tsx` | `e52f45bc0a981a7f1951130d7f3568ad5959168e3d76834835bda61e7581d33c` | The consent bar: one question, a privacy link, equal Allow and Decline; labels and the privacy URL arrive as props; `data-consent-bar` lets the chat launcher keep clear of it |
+| `resources/js/lib/crisp.ts` | `c4ec29c33038d47153c6768376aeb23ba10d760f79b06bc8f739a6ce3d1ed2f9` | Chat on every page: the loader arrives after the load event and an idle moment, a chat button opens it, and the launcher hides while the consent bar covers its corner |
 
 ### UI primitives
 

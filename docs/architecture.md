@@ -274,9 +274,13 @@ and Cloudflare Web Analytics.
   never adds it, so no test here sees it. It sets no cookies, and the privacy
   policy discloses it (Website, retention and recipients sections).
 
-- **Crisp** loads only when a reader clicks a chat button
-  (`resources/js/lib/crisp.ts`). Before that click it sets nothing; the privacy
-  policy says what it sets after.
+- **Crisp** is on every page here and in the account portal. Each layout calls
+  `loadChatWhenIdle()` (`resources/js/lib/crisp.ts`), which adds the loader
+  after the load event, once the browser is idle, so it is never in the server
+  render and never delays the first paint. A "Live chat" button opens the same
+  widget. While the consent bar covers the bottom-right corner (on a phone it
+  spans the width), the launcher is hidden. Crisp sets its `crisp-client/`
+  cookies as soon as it loads; the privacy policy describes them.
 - **The Polar or Lemon Squeezy checkout SDK** loads at checkout intent, not on
   every page. `resources/js/lib/checkout-sdk.ts` injects one script tag on the
   first `pointerenter` or focus of a buy button (or on the click itself), and

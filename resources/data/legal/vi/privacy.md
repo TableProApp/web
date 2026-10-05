@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-03"
+updatedAt: "2026-10-05"
 ---
 
 Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
@@ -13,7 +13,7 @@ Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad,
 - Các query bạn chạy, kết quả trả về và mật khẩu của bạn không được gửi cho TablePro. Ngoại lệ duy nhất là những gì bạn chủ động xuất bản lên Team Library: cấu hình connection (không bao giờ gồm mật khẩu) và query đã lưu.
 - Yêu cầu gửi tới AI đi thẳng từ ứng dụng cho Mac tới nhà cung cấp AI mà bạn thiết lập, không qua chúng tôi.
 - Máy chủ của chúng tôi lưu địa chỉ IP của mọi báo cáo sử dụng và mọi lần kiểm tra license, và tra quốc gia cho mỗi báo cáo sử dụng. Chúng tôi chưa đặt thời hạn lưu cho các bản ghi này.
-- Website đếm lượt xem trang bằng Cloudflare Web Analytics, công cụ này không đặt cookie. Website cũng tải Google Analytics, công cụ này chỉ đặt cookie khi bạn cho phép, và chỉ tải chat trực tuyến khi bạn bấm nút chat.
+- Website đếm lượt xem trang bằng Cloudflare Web Analytics, công cụ này không đặt cookie. Website cũng tải Google Analytics, công cụ này chỉ đặt cookie khi bạn cho phép. Mọi trang cũng tải chat trực tuyến của chúng tôi, Crisp, và Crisp đặt cookie riêng của mình.
 - Việc mua license do {merchant}, merchant of record của chúng tôi, thực hiện.
 
 ## Bên chịu trách nhiệm {#controller}
@@ -116,7 +116,7 @@ Handoff chuyển mã của connection đang mở và tên của table đang mở
 
 **Google Analytics.** Website tải Google Analytics trên mọi trang ở chế độ Consent Mode. Cho tới khi bạn chọn **Cho phép** trong câu hỏi về cookie, công cụ này không đặt cookie nào và chỉ gửi cho Google một tín hiệu không dùng cookie cho mỗi trang, không lưu mã định danh nào trên thiết bị của bạn. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt truy cập của bạn, chẳng hạn những trang bạn xem, các lượt bấm tải về và việc bắt đầu thanh toán. Lưu trữ cho quảng cáo, cá nhân hóa quảng cáo và dữ liệu người dùng cho quảng cáo luôn bị từ chối. Google cho biết Google Analytics 4 không ghi lại và không lưu địa chỉ IP. Property Google Analytics của chúng tôi dùng thời hạn lưu mặc định của Google: Google xóa dữ liệu ở cấp người dùng và cấp sự kiện sau 2 tháng. Các báo cáo tiêu chuẩn của Google, vốn chứa số liệu tổng chứ không chứa mã định danh, không bị ảnh hưởng. Cơ sở pháp lý: sự đồng ý của bạn đối với cookie.
 
-**Chat trực tuyến.** Không có gì từ nhà cung cấp dịch vụ chat của chúng tôi, Crisp, được tải cho tới khi bạn bấm một nút chat. Khi bạn bấm, trình duyệt tải script của Crisp từ `client.crisp.chat`, và Crisp đặt các cookie được nêu trong mục [Cookie và bộ nhớ trình duyệt](#cookies). Crisp nhận địa chỉ IP, thông tin trình duyệt và các tin nhắn bạn viết, và giữ lại địa chỉ IP của bạn nếu bạn bắt đầu một cuộc chat. Chúng tôi chỉ cho Crisp biết ngôn ngữ của trang, ngoài ra không cung cấp thông tin nào khác về bạn. Crisp có trụ sở tại Pháp.
+**Chat trực tuyến.** Mọi trang của website và trang tài khoản đều có nút chat của nhà cung cấp dịch vụ chat của chúng tôi, Crisp. Sau khi trang tải xong, trình duyệt tải script của Crisp từ `client.crisp.chat`, và Crisp đặt các cookie được nêu trong mục [Cookie và bộ nhớ trình duyệt](#cookies). Crisp nhận địa chỉ IP, thông tin trình duyệt, địa chỉ các trang bạn xem và các tin nhắn bạn viết, và giữ lại địa chỉ IP của bạn nếu bạn bắt đầu một cuộc chat. Chúng tôi chỉ cho Crisp biết ngôn ngữ của trang, ngoài ra không cung cấp thông tin nào khác về bạn. Crisp có trụ sở tại Pháp.
 
 **Script thanh toán.** Khi bạn trỏ chuột hoặc dùng phím Tab tới một nút Mua, trình duyệt tải script thanh toán của {merchant} từ jsDelivr (`cdn.jsdelivr.net`), và jsDelivr nhận địa chỉ IP cùng thông tin trình duyệt của bạn. Bản thân trang thanh toán của {merchant} chỉ mở khi bạn bấm.
 
@@ -142,13 +142,13 @@ Nếu bạn đăng ký nhận ghi chú phát hành, chúng tôi lưu địa ch�
 
 ## Cookie và bộ nhớ trình duyệt {#cookies}
 
-Khi bạn chỉ đọc website công khai, website không tự đặt cookie nào; việc đăng ký nhận bản tin hoặc bắt đầu thanh toán sẽ đặt hai cookie thực sự cần thiết của trang tài khoản, được liệt kê bên dưới. Cloudflare Web Analytics không đặt cookie và không lưu gì trong trình duyệt của bạn. Chỉ cookie của Google Analytics cần sự đồng ý của bạn, và chúng không được đặt cho tới khi bạn đồng ý. Cookie của Crisp chỉ được đặt sau khi bạn bấm một nút chat. Không thứ nào dưới đây được dùng cho quảng cáo hay được bán.
+Khi bạn chỉ đọc website công khai, website không tự đặt cookie nào; việc đăng ký nhận bản tin hoặc bắt đầu thanh toán sẽ đặt hai cookie thực sự cần thiết của trang tài khoản, được liệt kê bên dưới. Cloudflare Web Analytics không đặt cookie và không lưu gì trong trình duyệt của bạn. Cookie của Google Analytics không được đặt cho tới khi bạn cho phép. Crisp đặt cookie của mình trên mọi trang sau khi khung chat được tải. Không thứ nào dưới đây được dùng cho quảng cáo hay được bán.
 
 - **`_ga` và `_ga_<ID>`** (cookie của Google Analytics, tối đa 2 năm, chỉ khi bạn cho phép phân tích): một mã ngẫu nhiên cho trình duyệt của bạn và trạng thái của lượt truy cập hiện tại. Khi bạn từ chối, hoặc đổi câu trả lời sau đó, các cookie này bị xóa. Cơ sở pháp lý: sự đồng ý.
 - **`tablepro:analytics-consent`** (local storage, cho tới khi bạn xóa): câu trả lời của bạn cho câu hỏi về phân tích, để bạn không bị hỏi lại ở mỗi trang. Website và trang tài khoản dùng chung giá trị này. Cơ sở pháp lý: thực sự cần thiết để tôn trọng lựa chọn của bạn.
 - **`tablepro:attribution`** (local storage, 90 ngày): bản ghi lần truy cập đầu tiên được mô tả trong mục [Website](#website). Bản ghi không chứa mã định danh nào của bạn và chỉ được gửi kèm yêu cầu thanh toán, nơi máy chủ của chúng tôi bỏ nó đi. Cơ sở pháp lý: lợi ích hợp pháp.
 - **`theme`** và **`tablepro:banner-dismissed`** (local storage, cho tới khi bạn xóa): giao diện bạn chọn (sáng, tối hoặc theo hệ thống) và thông báo nào bạn đã đóng. Cơ sở pháp lý: lợi ích hợp pháp.
-- **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; chỉ sau khi bạn bấm nút chat): giữ cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: sự đồng ý, thể hiện qua việc bạn mở khung chat.
+- **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; được đặt trên mọi trang sau khi khung chat được tải): giữ khung chat và cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: lợi ích hợp pháp, để hỗ trợ bạn trên mọi trang.
 - **`tablepro-session` và `XSRF-TOKEN`** (cookie của trang tài khoản, 2 giờ): giữ trạng thái đăng nhập và bảo vệ các biểu mẫu của trang tài khoản trước tấn công giả mạo yêu cầu liên trang (CSRF). Các trang khác của trang tài khoản, như trang xác nhận mua hàng và các trang bản tin, cũng đặt hai cookie này, và việc đăng ký nhận bản tin hay bắt đầu thanh toán hoặc kiểm tra mã giảm giá từ bất kỳ trang nào của website này cũng vậy. Cơ sở pháp lý: thực sự cần thiết.
 
 Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích bất cứ lúc nào bằng **Cài đặt cookie** ở chân mọi trang, hoặc tại đây:
@@ -160,8 +160,8 @@ Bạn có thể thay đổi hoặc rút lại câu trả lời về phân tích 
 Với người đọc ở Khu vực Kinh tế Châu Âu (EEA) và Vương quốc Anh, cơ sở pháp lý theo GDPR và GDPR của Vương quốc Anh là:
 
 - **Hợp đồng** (Điều 6(1)(b)): bán và cung cấp license, kiểm tra license, trang tài khoản và Team Library.
-- **Lợi ích hợp pháp** (Điều 6(1)(f)): báo cáo sử dụng của ứng dụng cho Mac và việc tra quốc gia đi kèm, nhật ký các yêu cầu liên quan đến license, bảo mật và chống lạm dụng, nhật ký máy chủ web, Cloudflare Web Analytics và bản ghi nguồn truy cập khi mua hàng.
-- **Sự đồng ý** (Điều 6(1)(a)): cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và chat trực tuyến.
+- **Lợi ích hợp pháp** (Điều 6(1)(f)): báo cáo sử dụng của ứng dụng cho Mac và việc tra quốc gia đi kèm, nhật ký các yêu cầu liên quan đến license, bảo mật và chống lạm dụng, nhật ký máy chủ web, Cloudflare Web Analytics, bản ghi nguồn truy cập khi mua hàng và khung chat trực tuyến trên mọi trang.
+- **Sự đồng ý** (Điều 6(1)(a)): cookie của Google Analytics, báo cáo sử dụng của ứng dụng cho iPhone và iPad, bản tin và các cuộc chat bạn bắt đầu trong chat trực tuyến.
 - **Nghĩa vụ pháp lý** (Điều 6(1)(c)): hồ sơ thuế và kế toán, và việc trả lời các yêu cầu hợp pháp.
 
 ## Bên nhận dữ liệu {#sharing}
@@ -172,7 +172,7 @@ Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần t
 - **Một nhà cung cấp dịch vụ gửi email**, để gửi liên kết đăng nhập, biên nhận từ chúng tôi, lời mời vào nhóm và bản tin.
 - **Nhà cung cấp hosting của chúng tôi và Cloudflare**, cho website, trang tài khoản và máy chủ mà các ứng dụng liên lạc. Cloudflare cũng đếm lượt xem trang bằng Cloudflare Web Analytics.
 - **Google**, cho Google Analytics trên website và trang tài khoản.
-- **Crisp**, cho chat trực tuyến, chỉ sau khi bạn mở khung chat.
+- **Crisp**, cho chat trực tuyến trên mọi trang của website và trang tài khoản.
 - **jsDelivr**, nơi trình duyệt của bạn tải script thanh toán của {merchant} khi bạn trỏ tới một nút Mua.
 - **ip-api.com, ipinfo.io và geoplugin.net**, nhận địa chỉ IP từ các báo cáo sử dụng để tra quốc gia.
 - **GitHub**, nơi lưu nguồn cập nhật, danh mục plugin và các bản tải về.

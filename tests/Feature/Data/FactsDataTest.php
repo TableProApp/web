@@ -307,7 +307,7 @@ it('keeps external URLs in data files, not in components, catalogs or content', 
      * keeps the file name still cannot add a new one.
      */
     $allowed = [
-        // A script source, not a link (architecture §1.12: Crisp loads on click).
+        // A script source, not a link: the chat loader every page adds once it is idle.
         'js/lib/crisp.ts' => ['https://client.crisp.chat/l.js'],
     ];
 

@@ -42,8 +42,9 @@ interface ConsentBarProps {
  * **It never hides what it sits on.** Compact (one sentence, one row of
  * buttons), bottom-left, last in the DOM so it is the last tab stop, and while
  * it is open it sets `scroll-padding-bottom` to its own height so a focused
- * element is never scrolled underneath it. Chat loads only on click, so no
- * launcher competes for the corner before then.
+ * element is never scrolled underneath it. Where it reaches the bottom-right
+ * corner (on a phone it spans the width), the chat launcher hides until it
+ * closes (`lib/crisp.ts` finds it by `data-consent-bar`).
  */
 export default function ConsentBar({ labels, privacyHref }: ConsentBarProps) {
     const [open, setOpen] = useState(false);
@@ -101,6 +102,7 @@ export default function ConsentBar({ labels, privacyHref }: ConsentBarProps) {
     return (
         <section
             ref={bar}
+            data-consent-bar
             aria-label={labels.label}
             className="fixed right-4 bottom-4 left-4 z-60 rounded-panel border border-rule bg-raised p-4 text-foreground shadow-overlay sm:right-auto sm:w-[26rem] print:hidden"
         >
