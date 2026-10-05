@@ -16,6 +16,21 @@ require_once __DIR__ . '/../Seo/helpers.php';
  * public directory, so a run never leaves a file in `public/`.
  */
 it('writes public/sitemap.xml and nothing else', function (): void {
+    /*
+     * The real public/sitemap.xml is gitignored, and every deploy that touches
+     * content regenerates it, so the production checkout always has one.
+     * Asserting it is absent made the suite fail there. What this test means is
+     * that the run leaves it alone: still absent if it was absent, the same
+     * bytes and modification time if it was there.
+     */
+    $fingerprint = function (string $path): ?array {
+        clearstatcache(true, $path);
+
+        return is_file($path) ? [hash_file('sha256', $path), filemtime($path)] : null;
+    };
+
+    $real = base_path('public/sitemap.xml');
+    $before = $fingerprint($real);
     $public = seoScratchPublic();
 
     $this->artisan('sitemap:generate')
@@ -23,7 +38,7 @@ it('writes public/sitemap.xml and nothing else', function (): void {
         ->assertSuccessful();
 
     expect(File::exists($public . '/sitemap.xml'))->toBeTrue();
-    expect(File::exists(base_path('public/sitemap.xml')))->toBeFalse();
+    expect($fingerprint($real))->toBe($before, 'sitemap:generate touched the real public/sitemap.xml');
     expect(File::get($public . '/sitemap.xml'))->toContain('xmlns:xhtml="http://www.w3.org/1999/xhtml"');
 
     File::deleteDirectory($public);
