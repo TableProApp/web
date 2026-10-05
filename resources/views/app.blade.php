@@ -60,8 +60,14 @@
         </script>
     @endif
 
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    {{--
+        The icons are small on purpose: every first visit downloads them. The
+        tab icon and the manifest's are the 256px logo, about 13 KB as an
+        8-bit palette PNG (it was 156 KB at 16 bits per channel). iOS asks for
+        a 180px icon, and also probes `/apple-touch-icon.png` on its own.
+    --}}
+    <link rel="icon" type="image/png" sizes="256x256" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
     {{--
