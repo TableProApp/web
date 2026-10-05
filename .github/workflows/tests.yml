@@ -13,15 +13,26 @@ permissions:
 
 jobs:
   php:
-    runs-on: ubuntu-latest
+    # Named by PHP version alone, so the check names branch protection may
+    # require ("php (8.4)", "php (8.5)") survive the move to an OS matrix.
+    name: php (${{ matrix.php-version }})
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        php-version: ["8.4", "8.5"]
+        include:
+          # Production: Ubuntu 26.04, whose archive ships PHP 8.5 only.
+          - php-version: "8.5"
+            os: ubuntu-26.04
+          # The Ubuntu 24.04 host (PHP 8.4) until it is retired. composer.json
+          # allows ^8.4 for that cut-over; drop this leg, and raise the
+          # constraint to ^8.5, once nothing deploys there.
+          - php-version: "8.4"
+            os: ubuntu-24.04
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -35,7 +46,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Composer downloads
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: composer-${{ runner.os }}-${{ hashFiles('composer.lock') }}
@@ -43,6 +54,11 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      # Reads composer.lock, not vendor/, so it reports on exactly what a
+      # deploy installs. Fails on a known advisory or an abandoned package.
+      - name: Audit dependencies
+        run: composer audit --locked
 
       - name: Copy environment file
         run: cp .env.example .env
@@ -61,11 +77,11 @@ jobs:
         run: ./vendor/bin/pest
 
   frontend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Node
         uses: actions/setup-node@v7
@@ -96,16 +112,16 @@ jobs:
   # is the one place they execute; REQUIRE_SSR turns those skips into failures
   # so they cannot go quiet again.
   ssr:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.4"
+          php-version: "8.5"
           tools: composer:v2
           coverage: none
 
@@ -120,7 +136,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Composer downloads
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: composer-${{ runner.os }}-${{ hashFiles('composer.lock') }}
