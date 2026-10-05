@@ -2,8 +2,8 @@
 
 `main` deploys itself. A push that turns the tests workflow green triggers
 `.github/workflows/deploy.yml`, which opens one SSH connection to the server as
-`ubuntu`; the server runs `sudo -n /var/www/tablepro.app/scripts/deploy.sh` and
-nothing else.
+`ubuntu`; the server runs `sudo -n -u www-data /var/www/tablepro.app/scripts/deploy.sh`
+and nothing else.
 
 Everything below exists because that sentence hides three things worth knowing.
 
@@ -156,29 +156,44 @@ a second later, when new assets are served alongside the old SSR bundle.
 ## Deploying by hand
 
 Root cannot log in over SSH. Log in as `ubuntu` with your own key (not the
-deploy key, which cannot open a shell) and run the script through `sudo`,
+deploy key, which cannot open a shell) and run the script as `www-data`,
 exactly as the forced command does:
 
 ```bash
 ssh -p <port> ubuntu@<host>
-sudo /var/www/tablepro.app/scripts/deploy.sh
-sudo FORCE=1 /var/www/tablepro.app/scripts/deploy.sh
+sudo -u www-data /var/www/tablepro.app/scripts/deploy.sh
+sudo -u www-data FORCE=1 /var/www/tablepro.app/scripts/deploy.sh
 ```
 
 It reads `APP_PATH`, `BRANCH`, `WEB_USER`, `SUPERVISOR_PROGRAM`, `SMOKE_URL`,
-`FORCE` and `FPM_SERVICE` from the environment if you need to point it somewhere
-else. `sudo` drops the caller's environment, so give them on the `sudo` command
-line, as `FORCE=1` above. It refuses to run if the server's working tree is
-dirty, because merging over someone's live edit is how that edit disappears.
+`FORCE`, `FPM_SERVICE` and `DEPLOY_CACHE_DIR` from the environment if you need
+to point it somewhere else. `sudo` drops the caller's environment, so give them
+on the `sudo` command line, as `FORCE=1` above. It refuses to run if the
+server's working tree is dirty, because merging over someone's live edit is how
+that edit disappears.
 
 It does not depend on where or how it was started. It works from an absolute
-`APP_PATH` (and refuses a relative one), takes `HOME` from the password database
-rather than from the caller, so root's npm and Composer caches stay under
-`/root`, and adds the standard directories to `PATH`. git refuses a checkout
-owned by another user ("dubious ownership"), and the checkout belongs to
-`www-data`; the script trusts `APP_PATH` for git itself, in command scope, so a
-deploy needs no `safe.directory` line in any `.gitconfig`. It still ends by
-handing the whole checkout back to `www-data`.
+`APP_PATH` (and refuses a relative one) and adds the standard directories to
+`PATH`. Then, as `www-data`:
+
+- git, Composer, npm, Vite and artisan all run as `www-data`. It owns the
+  checkout, so git needs no `safe.directory` and nothing needs handing back.
+- Composer's and npm's caches, and `HOME`, live under `DEPLOY_CACHE_DIR`
+  (`/var/cache/tablepro-deploy`), because `www-data`'s home, `/var/www`, is not
+  writable. The script stops before touching git if that directory is missing
+  or not writable, or if any file in the checkout belongs to another user.
+- It reaches root for exactly two commands, through `sudo -n`:
+  `/usr/bin/supervisorctl restart tablepro-web-ssr` after swapping the bundles,
+  and `/usr/bin/systemctl reload php8.5-fpm` after a PHP change. If sudo refuses
+  either, the deploy fails and says which, and swapped bundles are put back.
+
+Run as root (from `sudo -i`), it still works the way it always did: `HOME` from
+the password database, `APP_PATH` trusted for git in command scope (git refuses
+a checkout another user owns, "dubious ownership"), the two commands run
+directly, and the whole checkout handed back to `www-data` at the end. Prefer
+`sudo -u www-data`: a root run that stops halfway leaves root-owned files
+behind, and the next deploy refuses to start until someone runs
+`sudo chown -R www-data:www-data /var/www/tablepro.app`.
 
 It finishes by fetching `APP_URL` and checking two things: that the answer is
 200, and that the HTML contains a server-rendered `<h1>`. The second check is
@@ -246,27 +261,23 @@ Create it:
 ssh-keygen -t ed25519 -N '' -C 'tablepro-web-deploy' -f ./deploy_key
 ```
 
-Root SSH login is disabled, so the key belongs to `ubuntu` and the forced
-command goes through `sudo`. Install the public half in
-`/home/ubuntu/.ssh/authorized_keys`, on one line:
+Root SSH login is disabled, so the key belongs to `ubuntu`, and the forced
+command runs the script as `www-data`, the user that owns the checkout. Install
+the public half in `/home/ubuntu/.ssh/authorized_keys`, on one line:
 
 ```
-command="sudo -n /var/www/tablepro.app/scripts/deploy.sh",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAA... tablepro-web-deploy
+command="sudo -n -u www-data /var/www/tablepro.app/scripts/deploy.sh",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAA... tablepro-web-deploy
 ```
 
-`sudo -n` never prompts: with no rule letting `ubuntu` run the script without a
-password it fails at once, and the workflow goes red, rather than hanging on a
-prompt nobody can answer. Ubuntu's cloud images normally give `ubuntu`
-`NOPASSWD:ALL` in `/etc/sudoers.d/90-cloud-init-users`; check that it is there.
-If that is ever narrowed, keep at least:
+`sudo -n` never prompts: with no rule letting `ubuntu` run the script as
+`www-data` without a password it fails at once, and the workflow goes red,
+rather than hanging on a prompt nobody can answer. Ubuntu's cloud images
+normally give `ubuntu` `NOPASSWD:ALL` in `/etc/sudoers.d/90-cloud-init-users`;
+check that it is there. If that is ever narrowed, keep at least:
 
 ```
-ubuntu ALL=(root) NOPASSWD: /var/www/tablepro.app/scripts/deploy.sh
+ubuntu ALL=(www-data) NOPASSWD: /var/www/tablepro.app/scripts/deploy.sh
 ```
-
-The script then runs as root, as it always has: it reloads PHP-FPM, restarts
-the SSR program and hands the checkout back to `www-data`, none of which needs
-a sudo rule of its own.
 
 Note that `command=` names the copy of the script already on disk, so a change
 to `deploy.sh` takes effect on the deploy *after* the one that ships it.
@@ -290,6 +301,52 @@ first connection and make checking pointless.
 
 Revoke by deleting that line from `/home/ubuntu/.ssh/authorized_keys`.
 Deleting the GitHub secret alone leaves a working key in circulation.
+
+### Why it runs as `www-data`, not root
+
+The checkout, this script included, is writable by `www-data`, and PHP-FPM
+serves every request as `www-data`. When the deploy ran as root, anything that
+could write one file as that user could rewrite `deploy.sh` and have the next
+deploy run it as root. Now the deploy runs as `www-data` throughout, and the
+root it can reach is two fixed commands that at worst reload PHP-FPM or restart
+an SSR process.
+
+### What the server needs for it
+
+A sudoers drop-in, `/etc/sudoers.d/tablepro-deploy`, owned by root, mode `0440`,
+holding exactly:
+
+```
+www-data ALL=(root) NOPASSWD: /usr/bin/systemctl reload php8.5-fpm, /usr/bin/supervisorctl restart tablepro-web-ssr, /usr/bin/supervisorctl restart tablepro-inertia-ssr
+```
+
+sudo matches each command line literally — path, verb and unit — and
+`scripts/deploy.sh` runs exactly the first two (`tests/Feature/DeployScriptTest.php`
+checks its calls against the rule above). The third restarts the platform app's
+SSR program (see "The SSR process"). A PHP upgrade renames the FPM unit, and
+this rule has to follow it; a deploy prints the unit it reloads.
+
+Install it through `visudo -c`, so a typo cannot break sudo for everyone:
+
+```bash
+echo 'www-data ALL=(root) NOPASSWD: /usr/bin/systemctl reload php8.5-fpm, /usr/bin/supervisorctl restart tablepro-web-ssr, /usr/bin/supervisorctl restart tablepro-inertia-ssr' > /tmp/tablepro-deploy
+sudo visudo -cf /tmp/tablepro-deploy && sudo install -o root -g root -m 0440 /tmp/tablepro-deploy /etc/sudoers.d/tablepro-deploy
+rm /tmp/tablepro-deploy
+```
+
+And the cache directory, owned by `www-data`:
+
+```bash
+sudo install -d -o www-data -g www-data -m 0750 /var/cache/tablepro-deploy
+```
+
+Check both as `www-data`; the first lists the three commands without asking
+for a password:
+
+```bash
+sudo -u www-data sudo -n -l
+sudo -u www-data test -w /var/cache/tablepro-deploy && echo writable
+```
 
 ### Why this workflow may hold a secret when `tests.yml` may not
 
@@ -339,10 +396,17 @@ cd /var/www/tablepro.app
 git reset --hard <previous-commit>
 composer install --no-dev -q && npm ci --silent && npm run build
 php artisan optimize
+chown -R www-data:www-data /var/www/tablepro.app
+systemctl reload php8.5-fpm
 supervisorctl restart tablepro-web-ssr
 ```
 
-git run by hand does not get the script's `safe.directory`, and refuses the
+The `chown` is not optional: everything a root shell writes belongs to root,
+and the next deploy, running as `www-data`, refuses a checkout holding files it
+does not own. The FPM reload is what makes PHP-FPM serve the older PHP at all
+(see "The server is shared").
+
+git run as root does not get the script's `safe.directory`, and refuses the
 `www-data`-owned checkout. Trust it once per host, system-wide:
 
 ```bash
