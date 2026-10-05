@@ -3,11 +3,11 @@
 use PHPUnit\Framework\Assert;
 
 /**
- * Third parties load only when a reader asks for them (architecture §1.12).
+ * No third-party script is in a document this app serves (architecture §1.12).
  *
- * - Crisp's loader set `crisp-client/session` cookies on `.tablepro.app` on
- *   every page before anyone had chosen anything. It now loads on a click of a
- *   "Live chat" button and never with the page.
+ * - Crisp's chat loader is added by the page itself, once it has loaded and
+ *   the browser is idle (`lib/crisp.ts`), so it is never in the server render
+ *   and never delays the first paint. Its launcher is then on every page.
  * - The Polar or Lemon Squeezy checkout SDK loaded on every page; it now loads
  *   at checkout intent, from a module, never from the document.
  * - The Product Hunt badge was a hotlink that set `__cf_bm` before consent.
@@ -20,8 +20,7 @@ use PHPUnit\Framework\Assert;
  * (`static.cloudflareinsights.com`) at the edge; it is a Cloudflare setting,
  * not in this repository, so no test here can see it, and the privacy policy
  * discloses it (docs/architecture.md, Third-party scripts). Executing the
- * click-to-load behaviour is `tests/js/crisp.test.ts`; this file holds the
- * documents.
+ * chat's timing is `tests/js/crisp.test.ts`; this file holds the documents.
  */
 
 const THIRD_PARTY_HOSTS = ['client.crisp.chat', '@polar-sh/checkout', 'lemon.js', 'lemonsqueezy.com', 'producthunt.com'];
@@ -92,14 +91,15 @@ it('serves documents whose only external script is the analytics tag', function 
         Assert::assertStringNotContainsString($host, $html, "{$path} mentions {$host} before anyone asked for it");
     }
 
-    // The website id travels as a page prop for the click handler, and nothing loads with it.
+    // The website id travels as a page prop for the page to load the chat with, and the document loads nothing.
     Assert::assertStringContainsString('crisp-test-id', $html);
 })->with(['/download', '/vi/download']);
 
-it('opens chat only from a click', function (): void {
+it('loads chat only from an effect, and opens it only from a click', function (): void {
     /*
-     * Every module that imports the chat helper calls it from a click handler
-     * and nowhere else: not in an effect, not at import time, not on hover.
+     * Every module that imports the chat helper opens the chat from a click
+     * handler and nowhere else, and loads it only inside an effect, so the
+     * loader never runs during the server render or at import time.
      */
     $importers = [];
     $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(resource_path('js'), FilesystemIterator::SKIP_DOTS));
@@ -119,6 +119,12 @@ it('opens chat only from a click', function (): void {
         $clicks = preg_match_all('/onClick=\{\(\) => openChat\(/', $text);
 
         Assert::assertSame($calls, $clicks, "{$name} calls openChat() outside a click handler");
+
+        $loads = substr_count($text, 'loadChatWhenIdle(');
+        $effects = preg_match_all('/useEffect\(\(\) => loadChatWhenIdle\(/', $text);
+
+        Assert::assertSame($loads, $effects, "{$name} calls loadChatWhenIdle() outside an effect");
+        Assert::assertStringNotContainsString('loadChat(', str_replace('loadChatWhenIdle(', '', $text), "{$name} loads the chat without waiting for the page");
     }
 });
 

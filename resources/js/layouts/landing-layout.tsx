@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode } from 'react';
+import { useLiveChat } from '@/components/site/chat-button';
 import ConsentBar from '@/components/site/consent-bar';
 import SiteFooter from '@/components/site/site-footer';
 import SiteHeader from '@/components/site/site-header';
@@ -27,6 +28,9 @@ interface Props {
  * 4. The footer, a `contentinfo` landmark for the same reason.
  * 5. The consent bar, last, so it is the last tab stop on the page.
  *
+ * Crisp's chat launcher joins every page once it has loaded and the browser is
+ * idle (`useLiveChat`, `lib/crisp.ts`); it is not part of the server render.
+ *
  * There is no toast region: nothing on the public site calls `toast()`, and
  * Sonner's region carried an English landmark name onto every /vi page.
  *
@@ -49,6 +53,8 @@ export default function LandingLayout({ children, footerNewsletter = true }: Pro
 
     /* Another tab, or the account app, changed the theme; or the system did while "System" is chosen. */
     useEffect(() => syncTheme(), []);
+
+    useLiveChat();
 
     return (
         <div className="flex min-h-dvh flex-col bg-background text-foreground">

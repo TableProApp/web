@@ -111,10 +111,11 @@
         </script>
     @endif
     {{--
-        No third-party script loads here unasked. Crisp loads only when a reader
-        clicks a chat button (resources/js/lib/crisp.ts), so it sets nothing
-        before that. The Polar or Lemon Squeezy checkout SDK loads at checkout
-        intent (resources/js/lib/checkout-sdk.ts), not on every page.
+        No third-party script is in this template. Crisp's chat loader is added
+        by the page once it has loaded and the browser is idle
+        (resources/js/lib/crisp.ts), so it never delays the first render. The
+        Polar or Lemon Squeezy checkout SDK loads at checkout intent
+        (resources/js/lib/checkout-sdk.ts), not on every page.
     --}}
     @if(config('analytics.google.measurement_id'))
         {{--

@@ -133,7 +133,8 @@ function Newsletter() {
  * page's last content heading. Five groups link the hubs, not every engine and
  * comparison: each hub lists all of its children. "Cookie settings" reopens
  * the consent bar on every page, because withdrawing consent must be as easy
- * as giving it. "Live chat" loads Crisp only when clicked.
+ * as giving it. "Live chat" opens the conversation in the chat launcher that
+ * every page carries.
  */
 export default function SiteFooter({ newsletter = true }: { newsletter?: boolean }) {
     const { locale, m, fmt } = useI18n();
