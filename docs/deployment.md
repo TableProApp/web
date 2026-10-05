@@ -363,8 +363,66 @@ out of a fork's reach:
 
 ## Caching
 
-nginx sends nothing for HTML — Laravel's own `no-cache, private` stands, which
-is correct for server-rendered pages.
+### Pages
+
+Every page is the same for every reader: the locale is in the path, and there
+is no session, cookie, CSRF token or anything read from the reader's headers or
+location. So the HTML may sit in Cloudflare's cache. `CacheHtmlAtEdge` (on the
+`web` group, and applied by `RenderErrorPage` to the error pages) sends
+
+```
+Cache-Control: public, max-age=0, s-maxage=600, stale-while-revalidate=3600
+Vary: X-Inertia
+```
+
+on every `GET` or `HEAD` that is not an Inertia visit and answers HTML with a
+200, 404 or 410, as long as it sets no cookie. Browsers still revalidate every
+time (`max-age=0`); the edge may answer for ten minutes and serve the previous
+copy while it fetches the next. Inertia visits (JSON at the same URL), redirects
+and 5xx responses keep Laravel's own headers.
+
+Nothing is cached until a **Cache Rule** says so, because Cloudflare does not
+cache HTML by default. Cloudflare also ignores `Vary`, so the rule must keep
+Inertia visits away from the cache, or a cached page would be handed to the
+JSON request at the same URL, or the reverse. In the dashboard, Caching → Cache
+Rules, for the tablepro.app zone, in this order:
+
+1. **Bypass Inertia visits.** Expression:
+
+   ```
+   (http.host eq "tablepro.app" and any(lower(http.request.headers.names[*])[*] eq "x-inertia"))
+   ```
+
+   Cache eligibility: *Bypass cache*.
+
+2. **Cache the public site.** Expression:
+
+   ```
+   (http.host eq "tablepro.app"
+    and not any(lower(http.request.headers.names[*])[*] eq "x-inertia")
+    and not starts_with(http.request.uri.path, "/account")
+    and not starts_with(http.request.uri.path, "/checkout")
+    and not starts_with(http.request.uri.path, "/webhooks")
+    and not starts_with(http.request.uri.path, "/newsletter")
+    and not starts_with(http.request.uri.path, "/beta")
+    and not starts_with(http.request.uri.path, "/discount")
+    and not starts_with(http.request.uri.path, "/thank-you")
+    and not starts_with(http.request.uri.path, "/api/newsletter")
+    and not starts_with(http.request.uri.path, "/platform-build")
+    and http.request.uri.path ne "/up")
+   ```
+
+   Cache eligibility: *Eligible for cache*. Edge TTL: *Use cache-control header
+   if present, use default Cloudflare caching behavior if not*. Browser TTL:
+   *Respect origin*. Leave the cache key alone: the query string stays in it,
+   so `?ref=` links keep their own copy and the page's own URL.
+
+The platform paths are the ones nginx sends to the account app (the same list
+as `LocalizedUrl::PLATFORM_PATHS`); they hold sessions and must never be
+shared. `starts_with` is used rather than a regular expression because regex
+matching in rules needs a Business plan.
+
+### Assets
 
 Hashed assets are a different matter, and the origin used to say nothing about
 them at all, so **Cloudflare** filled the gap with its four-hour default. Every

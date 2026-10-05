@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Http\Middleware\CacheHtmlAtEdge;
 use App\Support\Localization\Locales;
 use App\Support\Localization\LocaleSwitcher;
 use App\Support\Seo\SeoContext;
@@ -28,6 +29,9 @@ use Throwable;
  *   (`/vi/account…`, `/vi/checkout…`) links the account in that language,
  *   `/account?locale=vi`: the account has no locale prefix (spec §0), so a
  *   reader who guessed one is sent to the real address (sitemap §A.7, §C.6).
+ * - A 404 or 410 page is as public as any other page, so it carries the same
+ *   shared-cache header (`CacheHtmlAtEdge`). A URL that matches no route never
+ *   reaches the `web` group that sets it, so it is applied here too.
  */
 final class RenderErrorPage
 {
@@ -95,7 +99,7 @@ final class RenderErrorPage
         $request->attributes->set(SeoContext::ERROR_ATTRIBUTE, true);
 
         try {
-            return $response->render('Error', $props)->withSharedData()->toResponse($request);
+            return CacheHtmlAtEdge::apply($request, $response->render('Error', $props)->withSharedData()->toResponse($request));
         } catch (Throwable $e) {
             report($e);
 

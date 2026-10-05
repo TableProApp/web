@@ -1,6 +1,7 @@
 <?php
 
 use App\Exceptions\RenderErrorPage;
+use App\Http\Middleware\CacheHtmlAtEdge;
 use App\Http\Middleware\CanonicalizeRequest;
 use App\Http\Middleware\EnsurePageRenders;
 use App\Http\Middleware\HandleInertiaRequests;
@@ -65,6 +66,16 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->web(append: [
             HandleInertiaRequests::class,
+        ]);
+
+        /*
+         * First in the group, so it sees the response last: after Inertia has
+         * set `Vary: X-Inertia` and after a route middleware's 404 has been
+         * rendered. Pages that match no route never reach the group;
+         * `RenderErrorPage` marks those itself.
+         */
+        $middleware->web(prepend: [
+            CacheHtmlAtEdge::class,
         ]);
 
         $middleware->alias([
