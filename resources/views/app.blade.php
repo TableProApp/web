@@ -191,8 +191,17 @@
             })();
         </script>
     @endif
+    {{--
+        The page's own chunk is an entry here too, so its modulepreload and
+        those of everything it imports go out with the document. Otherwise
+        the browser learns of them only once app.tsx has run and asked
+        Inertia for the page, a round trip later, and hydration waits for it.
+        A component with no file (none today: SeoSmokeTest renders every page)
+        is left to the runtime rather than failing the manifest lookup.
+    --}}
+    @php($pageEntry = 'resources/js/pages/' . ($page['component'] ?? '') . '.tsx')
     @viteReactRefresh
-    @vite(['resources/css/app.css', 'resources/js/app.tsx'])
+    @vite(array_values(array_filter(['resources/css/app.css', 'resources/js/app.tsx', is_file(base_path($pageEntry)) ? $pageEntry : null])))
 </head>
 <body class="bg-background text-foreground antialiased">
     @inertia
