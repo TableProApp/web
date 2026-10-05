@@ -14,8 +14,9 @@ use PHPUnit\Framework\Assert;
  *   The homepage now names Product Hunt in a plain text link (spec §0): an
  *   anchor the reader follows, which makes no request until it is clicked.
  *
- * Google Analytics is the one third-party script this repository puts in the
- * document, and it runs in Consent Mode (AnalyticsConsentTest). In production
+ * Google Analytics runs in Consent Mode, and its script is added by the head
+ * after the load event, once the browser is idle, so the served document
+ * loads no external script at all (AnalyticsConsentTest). In production
  * Cloudflare also injects its Web Analytics beacon
  * (`static.cloudflareinsights.com`) at the edge; it is a Cloudflare setting,
  * not in this repository, so no test here can see it, and the privacy policy
@@ -74,7 +75,7 @@ it('loads no third-party script from the document template', function (): void {
     }
 });
 
-it('serves documents whose only external script is the analytics tag', function (string $path): void {
+it('serves documents that load no external script, the analytics tag included', function (string $path): void {
     config(['analytics.google.measurement_id' => 'G-TEST123', 'services.crisp.website_id' => 'crisp-test-id']);
 
     $html = $this->get($path)->assertOk()->getContent();
@@ -82,10 +83,11 @@ it('serves documents whose only external script is the analytics tag', function 
     preg_match_all('/<script[^>]*\ssrc="([^"]+)"/', $html, $sources);
 
     foreach ($sources[1] as $source) {
-        if (str_starts_with($source, 'http') || str_starts_with($source, '//')) {
-            Assert::assertStringStartsWith('https://www.googletagmanager.com/gtag/js?id=', $source, "{$path} loads {$source}");
-        }
+        Assert::assertFalse(str_starts_with($source, 'http') || str_starts_with($source, '//'), "{$path} loads {$source} from the document");
     }
+
+    // The tag's URL is in the head's loader, which adds it after the load event.
+    Assert::assertStringContainsString('var src = "https://www.googletagmanager.com/gtag/js?id=G-TEST123"', $html);
 
     foreach (THIRD_PARTY_HOSTS as $host) {
         Assert::assertStringNotContainsString($host, $html, "{$path} mentions {$host} before anyone asked for it");

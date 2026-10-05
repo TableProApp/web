@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Process;
 use PHPUnit\Framework\Assert;
 
 /**
@@ -32,6 +33,92 @@ it('loads the tag with the configured measurement id', function (): void {
 
     expect($html)->toContain('https://www.googletagmanager.com/gtag/js?id=G-TEST123');
     expect($html)->toContain("gtag('config', \"G-TEST123\")");
+});
+
+/*
+ * Google's script is about 180 KB, and it was the heaviest request on every
+ * page. The document requests nothing from Google; the head script adds the
+ * tag after the load event, once the browser is idle, as the chat loader
+ * does, and `gtag()` queues every call until it arrives.
+ */
+it('puts no Google script in the document, only the loader that adds it later', function (string $path, int $status): void {
+    config(['analytics.google.measurement_id' => 'G-TEST123']);
+
+    $html = $this->get($path)->assertStatus($status)->getContent();
+
+    expect($html)->not->toMatch('#<script[^>]*\ssrc="https://www\.googletagmanager\.com#')
+        ->and(strpos($html, 'var src = "https://www.googletagmanager.com/gtag/js?id=G-TEST123"'))->toBeGreaterThan(strpos($html, "gtag('config'"));
+})->with([
+    'a page' => ['/download', 200],
+    'a Vietnamese page' => ['/vi/pricing', 200],
+    'the error page' => ['/no-such-page', 404],
+]);
+
+/**
+ * Runs the head's analytics script in node against a stand-in window, then
+ * fires the load event and the idle callback, and reports what happened at
+ * each step. Executed rather than grepped, like the LCP preload script.
+ *
+ * @return array{beforeLoad: list<string>, afterLoad: list<string>, afterIdle: list<string>, idleTimeout: int|null, timeoutDelay: int|null, listenedForLoad: bool, queue: list<list<mixed>>}
+ */
+function runAnalyticsScript(string $html, bool $idleCallback, string $readyState = 'loading'): array
+{
+    preg_match_all('#<script>(.*?)</script>#s', $html, $scripts);
+    $script = collect($scripts[1])->first(fn(string $body): bool => str_contains($body, 'googletagmanager.com'));
+
+    expect($script)->not->toBeNull();
+
+    $stub = 'globalThis.window = globalThis;'
+        . 'const added = []; let onLoad = null; let idle = null; let timeout = null;'
+        . 'globalThis.localStorage = { getItem: (key) => key === "tablepro:analytics-consent" ? "granted" : null };'
+        . 'globalThis.document = { readyState: ' . json_encode($readyState) . ', createElement: () => ({}), head: { appendChild: (node) => added.push(node.src) } };'
+        . 'globalThis.addEventListener = (type, listener) => { if (type === "load") { onLoad = listener; } };'
+        . ($idleCallback ? 'globalThis.requestIdleCallback = (callback, options) => { idle = [callback, options.timeout]; };' : '')
+        . 'globalThis.setTimeout = (callback, delay) => { timeout = [callback, delay]; };';
+
+    $run = 'const listenedForLoad = onLoad !== null;'
+        . 'const beforeLoad = [...added];'
+        . 'onLoad?.();'
+        . 'const afterLoad = [...added];'
+        . '(idle ?? timeout)?.[0]();'
+        . 'process.stdout.write(JSON.stringify({ beforeLoad, afterLoad, afterIdle: added, idleTimeout: idle?.[1] ?? null, timeoutDelay: timeout?.[1] ?? null, listenedForLoad, queue: window.dataLayer.map((args) => Array.from(args)) }));';
+
+    $result = Process::input($stub . $script . ';' . $run)->run(['node', '-']);
+
+    expect($result->successful())->toBeTrue($result->errorOutput());
+
+    return json_decode($result->output(), true, flags: JSON_THROW_ON_ERROR);
+}
+
+it('requests Google\'s script only after the load event and an idle moment, with every call queued', function (bool $idleCallback): void {
+    config(['analytics.google.measurement_id' => 'G-TEST123']);
+
+    $run = runAnalyticsScript($this->get('/download')->getContent(), $idleCallback);
+    $tag = 'https://www.googletagmanager.com/gtag/js?id=G-TEST123';
+
+    expect($run['listenedForLoad'])->toBeTrue()
+        ->and($run['beforeLoad'])->toBe([])
+        ->and($run['afterLoad'])->toBe([])
+        ->and($run['afterIdle'])->toBe([$tag]);
+
+    // The idle callback waits at most four seconds; Safari, which has none, waits two after the load.
+    expect($idleCallback ? $run['idleTimeout'] : $run['timeoutDelay'])->toBe($idleCallback ? 4000 : 2000);
+
+    // The calls the tag replays when it arrives, in the order the contract needs.
+    expect(array_column($run['queue'], 0))->toBe(['consent', 'consent', 'js', 'config'])
+        ->and($run['queue'][0][1])->toBe('default')
+        ->and($run['queue'][1])->toBe(['consent', 'update', ['analytics_storage' => 'granted']])
+        ->and($run['queue'][3])->toBe(['config', 'G-TEST123']);
+})->with(['with an idle callback' => true, 'without one (Safari)' => false]);
+
+it('waits only for idle when the page has already loaded', function (): void {
+    config(['analytics.google.measurement_id' => 'G-TEST123']);
+
+    $run = runAnalyticsScript($this->get('/download')->getContent(), true, 'complete');
+
+    expect($run['listenedForLoad'])->toBeFalse()
+        ->and($run['beforeLoad'])->toBe([])
+        ->and($run['afterIdle'])->toBe(['https://www.googletagmanager.com/gtag/js?id=G-TEST123']);
 });
 
 it('renders no tag when no measurement id is configured', function (): void {
