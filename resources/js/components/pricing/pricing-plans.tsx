@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CellGrid from '@/components/ui/cell-grid';
 import { useI18n } from '@/i18n';
 import { PRICING, type BillingCycle, type TierId } from '@/lib/data/pricing';
 import BillingCycleControl from './billing-cycle-control';
@@ -27,6 +28,9 @@ interface PricingPlansProps {
  * Yearly is selected first, as before the rebuild, and Team starts at its
  * minimum seats. Both render on the server, so the block reads the same
  * before and after hydration.
+ *
+ * The cards are joined cells of the page grid (design-system §4.7), so the
+ * block belongs in a wide section.
  */
 export default function PricingPlans({ checkout, variant = 'full', headingLevel = 'h3', className }: PricingPlansProps) {
     const { m, fmt } = useI18n();
@@ -45,7 +49,7 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
         <div className={className}>
             <BillingCycleControl value={cycle} onChange={setCycle} />
 
-            <div className="mt-6 grid items-stretch gap-6 lg:grid-cols-3">
+            <CellGrid className="mt-6 items-stretch lg:grid-cols-3">
                 {TIERS.map((tier) => (
                     <PricingCard
                         key={tier}
@@ -59,7 +63,7 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
                         discountCode={discountCode}
                     />
                 ))}
-            </div>
+            </CellGrid>
 
             <div className="mt-6 grid gap-3">
                 {checkout.couponField ? (

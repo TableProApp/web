@@ -135,6 +135,9 @@ function Newsletter() {
  * the consent bar on every page, because withdrawing consent must be as easy
  * as giving it. "Live chat" opens the conversation in the chat launcher that
  * every page carries.
+ *
+ * Its top rule is the page frame's last join, so it carries the frame's end
+ * marks where that rule meets the rails (`data-join-mark`, design-system §4.7).
  */
 export default function SiteFooter({ newsletter = true }: { newsletter?: boolean }) {
     const { locale, m, fmt } = useI18n();
@@ -142,7 +145,7 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
     const groups = m.footer.groups;
 
     return (
-        <footer className="border-t border-rule bg-surface print:hidden">
+        <footer data-join-mark className="border-t border-rule bg-surface print:hidden">
             <Container className="pt-16 pb-12">
                 <h2 className="sr-only">{m.footer.heading}</h2>
                 <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">

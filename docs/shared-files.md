@@ -117,7 +117,7 @@ which are updated in the same change as the copies:
 - The Google Analytics head block. The account app adds `page_location`
   redaction for its signed URLs. Each repository pins the same consent order in
   its own test.
-- `SiteHeader`, `SiteFooter`, `MobileNav`, `SupportBanner` and the language
+- `SiteHeader`, `SiteFooter`, `MobileNav`, `SupportBanner`, `FrameRails` and the language
   switcher (`resources/js/components/site/*` here). They hold each app's own
   links and strings, the public ones link through `LocaleLink` (an Inertia
   link, which must never run in the account app), and the account switcher
@@ -126,7 +126,7 @@ which are updated in the same change as the copies:
 - The public-only primitives, which read this site's data or locale helpers:
   `locale-link`, `breadcrumbs`, `page-header`, `section`, `card`, `disclosure`,
   `segmented-control`, `faq-list`, `code`, `kbd`, `glyph` (Availability),
-  `database-mark`, `dot-list`, `prose-article` and `asset-slot`. Where the
+  `database-mark`, `dot-list`, `prose-article`, `asset-slot` and `cell-grid`. Where the
   account app needs the same thing (a page header, a card), it builds its own
   file to the same specification (design-system §9, item 2).
 - `resources/js/lib/utils.ts`. It is the same small file in both repositories

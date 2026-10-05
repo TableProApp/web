@@ -29,7 +29,7 @@ export default function OpenSourceSection({ content, availability }: OpenSourceS
     const { m, fmt } = useI18n();
 
     return (
-        <Section id="open-source" title={content.title}>
+        <Section id="open-source" title={content.title} flush>
             <div className="max-w-[44rem]">
                 <p className="type-body text-foreground">{content.body}</p>
                 <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
@@ -47,7 +47,7 @@ export default function OpenSourceSection({ content, availability }: OpenSourceS
             </div>
 
             <p className="type-body mt-10 font-medium text-foreground">{fmt(m.platforms.availability.summary, { deviceList: availability.deviceList })}</p>
-            <PlatformActions location="footer-cta" availability={availability} className="mt-4" />
+            <PlatformActions location="footer-cta" availability={availability} className="mt-6" />
         </Section>
     );
 }

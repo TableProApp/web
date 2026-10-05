@@ -16,15 +16,20 @@ interface FeatureRowProps {
     layout: 'window' | 'detail';
     /** The heading level the outline needs: `h3` inside a section, `h2` when the row is the section. */
     headingLevel?: 'h2' | 'h3';
-    className?: string;
 }
 
 /**
  * One workflow on the homepage (design-system §8.1 FeatureRow): a heading,
  * a few sentences, the paid-plan marker from data, a link named after its
- * feature page, and one image slot. Never a card grid.
+ * feature page, and one image slot.
+ *
+ * It renders cells of the section's 12-column `CellGrid`, not a wrapper of
+ * its own (design-system §4.7): a `window` row is one full-width cell, text
+ * above its window; a `detail` row is two cells from 1024px, the text in five
+ * columns and its crop in seven, with one line between them. Below 1024px the
+ * two stack, divided by a horizontal line.
  */
-export default function FeatureRow({ id, title, children, media, layout, headingLevel = 'h3', className }: FeatureRowProps) {
+export default function FeatureRow({ id, title, children, media, layout, headingLevel = 'h3' }: FeatureRowProps) {
     const Heading = headingLevel;
     const heading = (
         <Heading id={id} className={cn(headingLevel === 'h2' ? 'type-h2' : 'type-h3', 'text-balance text-foreground')}>
@@ -34,18 +39,18 @@ export default function FeatureRow({ id, title, children, media, layout, heading
 
     if (layout === 'detail') {
         return (
-            <div className={cn('grid gap-8 lg:grid-cols-12 lg:items-center', className)}>
-                <div className="lg:col-span-5">
+            <>
+                <div className="flex flex-col justify-center lg:col-span-5">
                     {heading}
                     <div className="mt-3">{children}</div>
                 </div>
-                <div className="lg:col-span-7">{media}</div>
-            </div>
+                <div className="flex flex-col justify-center lg:col-span-7">{media}</div>
+            </>
         );
     }
 
     return (
-        <div className={className}>
+        <div className="lg:col-span-12">
             <div className="max-w-[40rem]">
                 {heading}
                 <div className="mt-3">{children}</div>

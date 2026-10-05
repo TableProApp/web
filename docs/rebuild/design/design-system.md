@@ -5,7 +5,7 @@ Decided 2026-10-02. This document is the visual contract for both web apps:
 - **Public site:** `TableProApp/web`
 - **Account and transactional screens:** `TableProApp/license`
 
-It replaces the "Result Set" ledger system: numbered rules, gutter rails, `FullLine`, `GridCell` borders, mono uppercase eyebrows and split-colour headlines. Values marked as tokens are locked. Templates are wireframe-level, and copy shown in them is placeholder wording. The content documents own the final copy.
+It replaces the "Result Set" ledger system: numbered rules, gutter rails, `FullLine`, `GridCell` borders, mono uppercase eyebrows and split-colour headlines. The page frame (§4.7, decided 2026-10-06) later brought back rails and full-bleed rules in a different form. Values marked as tokens are locked. Templates are wireframe-level, and copy shown in them is placeholder wording. The content documents own the final copy.
 
 **Inputs read:**
 
@@ -39,9 +39,10 @@ The page sketches in §8 add layout to the sitemap's structure. Where a sketch a
 | Theme | Light by default. Light / Dark / System control in both apps. Shared `localStorage.theme`. Driven by the theme class, never by the OS media query, and painted with no flash |
 | Type | Inter Variable for everything except code and identifiers, which use IBM Plex Mono 400. Running copy is 16px. Tables and cards use 14px. Nothing is smaller than 12px. Vietnamese headings get line-height 1.3. Labels are never uppercase or tracked |
 | Width | Content column 1216px (Container 1280 minus 32px gutters), reading column 704px, narrow 576px. Gutters 16 / 24 / 32 |
-| Rhythm | Section spacing 64 / 80 / 96px, replacing the old stacked spacers of up to 184px between sections |
+| Rhythm | Section spacing 64 / 80 / 96px, replacing the old stacked spacers of up to 184px between sections. The frame's join sits in the middle of it (§4.3) |
 | Shape | Buttons and inputs are 8px rounded rectangles (pills retired). Cards, code blocks and image slots use 12px. Shadows only on floating layers |
-| Removed | Rule ordinals, the gutter rails, `FullLine`, `Ledger`, `GridCell`, `SectionLabel` eyebrows, the spec strip, the giant footer wordmark, the row-selection bar on static content, the Product Hunt hotlink |
+| Frame | The page is drawn as a grid (§4.7): 1px `--rule` rails on the wide Container's outer edge from 1280px, a full-bleed join between every two blocks of `<main>`, neutral marks where the frame starts and ends, and shared-border cells for sets of like items. Solid and static. No hatching, graph paper, numbered gutters or accent lines |
+| Removed | Rule ordinals, the old gutter rails (the page frame replaces them, §4.7), `FullLine`, `Ledger`, `GridCell`, `SectionLabel` eyebrows, the spec strip, the giant footer wordmark, the row-selection bar on static content, the Product Hunt hotlink |
 | Images | Every content image is an `AssetSlot`: IDs from sitemap §A.8, one manifest per app with architecture §1.9's schema, and geometry, types and labels from §6. A dashed neutral slot shows the type label, the asset ID and a short localized description. Mac windows are **16:9** (2432 × 1368 export), detail crops **4:3**, and every window gets a 4:5 phone crop |
 | Shared code | Architecture §3's list is the only source of byte-identical files: tokens, fonts, the theme script and control, consent and Crisp always; the UI primitives wherever their imports resolve in both repos. Everything else is a separate file per repo, built to this spec. The license app has its own slim shells and language switcher, never the public header |
 | Motion | Feedback only, 120–240ms. Nothing animates on scroll. Reduced motion collapses all of it |
@@ -52,7 +53,7 @@ The page sketches in §8 add layout to the sitemap's structure. Where a sketch a
 
 1. **The product is the picture; the page stays quiet.** Real screenshots of the app carry the visual interest. HTML never imitates app chrome ("grammar, not costume"): no traffic lights, fake sidebars, fake result grids or dashboards. Until real images exist, placeholders say plainly that they are placeholders.
 2. **Use native conventions, not invention.** TablePro sells a native client, so the site uses controls a Mac or iPhone user already knows: a segmented control for the billing cycle, disclosure triangles for optional detail, real tables, and a sidebar in the account. Labels are the conventional ones: Features, Databases, Pricing, Download, Docs, Account.
-3. **Tables for tabular facts, prose for explanation.** Engines, plans, comparisons, machines and seats are captioned `<table>`s built from data. Explanations get a reading measure and air. The old rule "grids are for data" survives; the decorative ledger framing around prose does not.
+3. **Tables for tabular facts, prose for explanation.** Engines, plans, comparisons, machines and seats are captioned `<table>`s built from data. Explanations get a reading measure and air. The old rule "grids are for data" survives; the decorative ledger framing around prose does not. The page frame (§4.7) draws the layout's own structure, the column and one line between blocks, on every page including prose pages; it never rules the paragraphs inside a block.
 4. **One accent, used for action and location.** Orange hue 55 marks the primary action, the current location, keyboard focus and the logo. It never colours headings, dividers, section backgrounds, gradients or glows. Accent text goes through a darker token computed for contrast.
 5. **Facts render from data, through one component each.** Requirements, availability, versions, prices, seats, engines and paid features render only through `AvailabilityLine`, `PlatformCard`, `PricingCard`, `PlanMatrix` and `EngineTable`, which read `resources/data/*.json`. No count is typed into prose; name things instead of counting them.
 6. **Two languages and two themes, by construction.** Every colour pair is computed in both themes (§2.3). Vietnamese gets the line-height its stacked diacritics need (§3.3). No label relies on uppercase with letter-spacing. Layouts absorb longer Vietnamese strings without truncation.
@@ -420,7 +421,7 @@ Text always sits on the left. There is no zigzag alternation.
 
 | Token | < 768 | 768–1279 | ≥ 1280 | Notes |
 |---|---|---|---|---|
-| `--space-section` (section padding-block) | 64 | 80 | 96 | Was up to 184px of stacked spacers between sections |
+| `--space-section` (between two sections' content) | 64 | 80 | 96 | Was up to 184px of stacked spacers. Each section pads half of it on both sides, with the frame's join between (§4.7) |
 | `--space-page-top` (below the 64px header, above the H1) | 40 | 56 | 72 | |
 | `--space-page-header-bottom` | 32 | 40 | 48 | H1 block to the first content |
 | `--space-heading` (H2 block to section content) | 24 | 32 | 40 | |
@@ -428,6 +429,8 @@ Text always sits on the left. There is no zigzag alternation.
 | Item gap in lists of cards | 16 | 24 | 32 | Equals the grid gap |
 
 **Bands.** A page has at most one `surface` band, plus the footer. The section immediately before the footer is never `surface`, so two bands never merge.
+
+**Joins.** Every block of `<main>` (the hero, a PageHeader, a Section, a page's own content block) pads 32 / 40 / 48px above and below, so the full-bleed join between two blocks (§4.7) has the same air on both sides and two blocks' content sits one `--space-section` apart. A band or strip uses the same padding inside its own ground. A section whose content ends in cells drops its bottom padding (`flush`), so its last cell closes on the join.
 
 ### 4.4 Breakpoints and what changes at each
 
@@ -468,6 +471,8 @@ These are Tailwind defaults: `sm` 640, `md` 768, `lg` 1024, `xl` 1280, `2xl` 153
 
 | Layer | z-index |
 |---|---|
+| page frame rails (§4.7) | 30 |
+| page frame marks (§4.7) | 31 |
 | sticky header | 40 |
 | menus and popovers | 50 |
 | consent bar | 60 |
@@ -480,7 +485,38 @@ Dialogs use the native top layer (`<dialog>.showModal()`).
 
 All of these are deleted: the `landing-layout.tsx` 3-column grid with two gutter columns and two container rails, `ruled-frame.tsx`, `FullLine` / `AccentLine`, the `.rule-numbered` counter, `--rule-inset`, `GridCell` / `cellBorders`, `Ledger`, and `[data-tone]`.
 
-The new layout is a plain stack: skip link, banner, header, `<main>`, footer, consent bar, with `Container` and `Section` inside. Tests that pin the ordinals (`LandingStructureTest.php:24-50`) are replaced with tests for headings, landmarks and no-overflow.
+The layout is a stack: skip link, banner, header, `<main>`, footer, consent bar, with `Container` and `Section` inside. Tests that pin the ordinals (`LandingStructureTest.php:24-50`) are replaced with tests for headings, landmarks and no-overflow.
+
+The page frame (§4.7) draws that stack as a grid without laying it out as one. Its rails are not the deleted ones: they are an overlay on the Container's own box rather than grid columns, so they cannot detach from the content, collapse with a row span, or need `overflow-x: hidden`.
+
+### 4.7 Page frame
+
+Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (Laravel, Vercel, Tailwind CSS, Zed, Supabase, Raycast, Linear and others): the Laravel-style frame, with cells, marks, frames on prose pages, rails from 1280px and horizontals only below that. It reverses the "gutter rails" entry of the Removed row; everything else in that row stays removed.
+
+**Rails.** `FrameRails` (`components/site/frame-rails.tsx`): two 1px `--rule` verticals on the wide Container's outer edge, the 80rem box that 76rem of content and two 2rem gutters fill. At 1440 they are at x = 80 and 1359; at 1280 they meet the screen edges. Below 1280 there are no rails. The layout root draws them over the whole page, banner and footer included, and the site header draws its own stretch because it is an opaque sticky layer above the page. Each rail is its own 1px element, so a browser that promotes it to a layer promotes a sliver.
+
+**Joins.** A 1px `--rule` top border on every block of `<main>` after the first, drawn in app.css by position (`main > * + *`), at every width and full-bleed. A template cannot leave one out, so every block of `<main>` must be full width: a narrow Container goes inside a full-width block. No block draws a rule of its own beside the join. The banner's, header's and footer's own rules complete the set. An anchor lands a block's top on the header's bottom rule (`scroll-margin-top: -1rem` against the root's 5rem `scroll-padding-top`), so a jump to `/#pricing` shows one line, not two.
+
+**Marks.** An 11px cross in `--rule-strong` (3.64:1 light, 3.84:1 dark), centred where a join meets a rail: at the frame's start (the first join), at its end (the footer's rule) and on at most one section a page chooses with `mark`. Six per page at most; the homepage marks `#pricing`. From 82rem only, so a mark never overhangs the screen, also with a classic scrollbar.
+
+**Cells.** `CellGrid` (`components/ui/cell-grid.tsx`): cells that share one 1px `--rule` line, drawn as each cell's 1px spread shadow, with no gaps and no corners. The grid reaches the Container's outer edge, so from 1280 its outer lines land on the rails and below 1280 it runs to the screen edge, leaving only horizontals on a phone. Cell padding puts content back on the page's left edge. Use it only in a wide section, for content that already is a set of like items:
+
+- the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (a detail row is two cells, 5 / 7), the safety row, the platform block, the plans and the closing actions
+- `/pricing`: the plans (`PricingPlans` is the same component)
+- a feature page: the documentation and related-pages row
+
+Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Cards stay cards where a block holds a single object (the database facts card, the download page's platform cards, account panels).
+
+**Lists at a join.** A `dl`, `FaqList`, `PostList` or other list marked `data-rule-list` that ends a block drops its last rule, because the join below closes it; a list inside a card keeps it.
+
+**Rules that hold the frame together:**
+
+- Neutral and solid only. The accent never colours a line or a mark, and a dashed edge still means a placeholder (§6.2).
+- Static. Nothing in the frame animates.
+- Decoration only: rails and marks are `aria-hidden`, take no pointer, and are hidden in forced colours and in print. Joins are borders, so they stay in both, like the header's rule. Cell lines are shadows, which forced colours removes.
+- No `vw` widths and no overflow clipping anywhere in the frame.
+
+`PageFrameTest` holds the markup and CSS. The geometry was measured in a browser on every template at 390, 768, 1024, 1280, 1366, 1440 and 1920px: no horizontal scroll, rails on the Container edge, cell lines on the rails, one join per block boundary, at most six marks.
 
 ---
 
@@ -501,9 +537,11 @@ Repo key:
 | `Button` | Shared\* | **Refactor** | `ui/button.tsx` (both, byte-identical) | Variants `primary`, `secondary`, `quiet`, `danger`. Sizes `sm`/`md`/`lg`. 8px radius. Loading state. Hover becomes token fills, not `opacity-90` |
 | `TextLink` | Shared\* | **Refactor** | `ui/prose-link.tsx` (`PROSE_LINK`) | `inline` and `standalone` kinds. Cross-app links are always a plain `<a>` |
 | `Container` | Shared\* | **Refactor** | `ui/container.tsx` | Widths `wide` / `text` / `narrow`. Drop `rule-inset-host` |
-| `Section` | P | **Replace** | `ui/section-shell.tsx` (`SectionShell`, `SectionHeader`) | `<section aria-labelledby>`, H2 + optional lead, tone `base` / `surface`. No eyebrow, no rules, no muted second line |
+| `Section` | P | **Replace** | `ui/section-shell.tsx` (`SectionShell`, `SectionHeader`) | `<section aria-labelledby>`, H2 + optional lead, tone `base` / `surface`. Half-rhythm padding around the frame's joins; `flush` ends on the join, `mark` marks it (§4.7). No eyebrow, no muted second line |
+| `FrameRails` | P | **New** | — | The page frame's rails (§4.7), over the page and in the header |
+| `CellGrid` | P | **New** | — | Shared-border cells reaching the rails (§4.7). Wide sections only |
 | `PageHeader` | P+A | **Replace** | `section-shell.tsx` `PageHeader`; A `screen-header.tsx`, `notice-page.tsx` header | Breadcrumbs, H1, lead, meta line, actions. Variants `marketing` (`h1`), `utility` (`h1`, compact top), `screen` (account: H1 in the `h2` style) |
-| `Card` | P+A | **New** (sparingly) | — | Only for pricing, platform, account license and settings panels, and the database facts card. No feature grids or bento |
+| `Card` | P+A | **New** (sparingly) | — | Only for a block that holds one object: the download page's platform cards, account license and settings panels, and the database facts card. A set of like items is a `CellGrid` (§4.7), never a grid of cards |
 | `DataTable` | Shared\* | **Refactor** | `ui/data-table.tsx` (both) | Caption required, `visible` or `sr-only`. Scroll region, priority columns, numeric alignment. No row-selection bar |
 | `DescriptionList` | Shared\* | **Replace** | `ui/ledger.tsx` (both) | `<dl>` key/value rows: database facts, license details |
 | `Badge` | Shared\* | **Refactor** | A `ui/badge.tsx` | Variants `neutral`, `accent`, `outline`. 13px/500, sentence case |
@@ -841,7 +879,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 **PlatformCard** (download page, the homepage's `#platforms`):
 
-- A Card with:
+- On the download page a Card, and on the homepage a cell of `#platforms`' `CellGrid` (§4.7), with:
   - platform name (`h2` semantic, `h3` style)
   - a version Badge `neutral` "v0.77.0 · 2 Oct 2026" (from the release service, locale-formatted)
   - the requirement line
@@ -851,6 +889,8 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Future platforms get **no** card and no dead button.
 
 **PricingCard** (three across at ≥ 1024, equal width and emphasis):
+
+- Joined cells of one `CellGrid` (§4.7): no border, corner or fill of their own.
 
 - Tier name (`h3` style) and a one-line `small` muted description.
 - Price at `h1` size, weight 600, tabular, with the unit in `small` muted beside it ("/ month", "/ year", "once"; Team "per seat").
@@ -1289,10 +1329,10 @@ The ten sections, their ids, aliases and slots are sitemap §D's. `HomepageRende
 
 ```
 SiteHeader
-§1  HERO  #top                                                      pt 72 · pb 64
+§1  HERO  #top                                                      pt 72 · pb 48
     cols 1–8 │ H1 (display), ≤ 2 lines
              │ Lead (body-lg, muted, 56ch): names engines, no counts
-             │ [Download for Mac] lg primary            [ App Store badge ]
+    cells 6 │ 6 [Download for Mac] lg primary          [ App Store badge ]           (rail to rail, §4.7)
              │ macOS 13 Ventura or later ·              iPhone and iPad ·
              │ Apple silicon or Intel                   iOS and iPadOS 18 or later
              │ Other ways to install →  (/download#mac, the section holding the Homebrew command)
@@ -1300,24 +1340,24 @@ SiteHeader
              │ See pricing →  (localePath('/#pricing'): /#pricing or /vi#pricing)
     cols 1–12 ▒ mac-hero-window  16:9  1216×684        (< 768: ▒ mac-hero-window-mobile  4:5)
 §2  DATABASES  #databases
-    H2 + lead (cols 1–7) · EngineList (featured engines, named by category, with marks)
+    H2 + lead (cols 1–7) · EngineList (featured engines as cells, 2 / 3 / 6 across; the list by category rail to rail)
     one small line: built-in drivers vs drivers downloaded on first pick · the engines that open on iPhone (names)
     Supported databases →  (/databases)
-§3  SPONSORS  #sponsors                         compact: pt/pb 48 · 1px --rule above and below
-    H2 (h3 style) · SponsorList (the 4 verified sponsors) · Sponsor TablePro ↗
-§4  WORKFLOWS  #features                        H2 + lead, then five FeatureRows (H3 each), in this order
+§3  SPONSORS  #sponsors                         compact · flush: the logo cells close on the next join
+    H2 (h3 style) · SponsorList (the 4 verified sponsors, cells 2 × 2, four across from 768) · Sponsor TablePro ↗
+§4  WORKFLOWS  #features                        H2 + lead, then five FeatureRows (H3 each) as cells, flush, in this order
     Query                                  ▒ mac-query-autocomplete      window row   Querying →
     Edit data                              ▒ mac-edit-preview-sql        window row   Data editing →
     Schemas and sync (Compare & Sync: Starter)  ▒ mac-compare-sync-structure  window row   Schema →
     Files                                  ▒ mac-data-files-window       window row   Import & export →
     Connect                                ▒ mac-connection-ssh-form     detail row   Connections →
 §5  PRODUCTION SAFETY  #safety
-    H2, detail-row layout: Safe Mode levels named · DROP, TRUNCATE and WHERE-less DELETE always ask · Read-Only · Touch ID
+    H2, detail-row layout as two cells, flush: Safe Mode levels named · DROP, TRUNCATE and WHERE-less DELETE always ask · Read-Only · Touch ID
                 · Agent mode raises the floor          ▒ mac-safe-mode-touchid (4:3)    Safe Mode →
 §6  AI AND MCP  #ai   (alias #mcp)
     H2, window-row layout: providers named · Agent mode · local MCP server, off by default · permission layers in one line · free
                                                        ▒ mac-ai-chat                    AI & MCP →
-§7  MAC, IPHONE AND IPAD  #platforms   (alias #mobile)       tone: surface (the page's one band)
+§7  MAC, IPHONE AND IPAD  #platforms   (alias #mobile)       tone: surface (the page's one band) · cells, flush
     cols 1–6  PlatformCard Mac: the full workbench · requirement · [Download for Mac] secondary
     cols 7–12 PlatformCard iPhone and iPad: browse, edit, query and SSH on the go · free · App Store badge + caption
               ▒ ios-connection-list (280 wide, 9:19.5) · TablePro for iPhone and iPad →
@@ -1325,12 +1365,12 @@ SiteHeader
 §8  COMING FROM ANOTHER APP  #switch   (alias #compare)
     text at text width: importers named (passwords where true) · Open Project Folder
     Compare TablePro with other clients →  (/compare)
-§9  PRICING  #pricing   (alias #license)
+§9  PRICING  #pricing   (alias #license)               marked join (§4.7)
     H2 + lead (free core · optional paid features on Mac · open source) · BillingCycleControl + caption
-    PricingCard ×3 (compact: no Includes list) · Compare plans →  (/pricing) · Prices in USD … line
+    PricingCard ×3 as joined cells (compact: no Includes list) · Compare plans →  (/pricing) · Prices in USD … line
 §10 OPEN SOURCE AND GET STARTED  #open-source                 background, not surface
     AGPLv3 · View on GitHub ↗ · one sentence on how the project is funded
-    PlatformActions: [Download for Mac] primary + AvailabilityLine · App Store badge + AvailabilityLine
+    PlatformActions as cells, flush on the footer's rule: [Download for Mac] primary + AvailabilityLine · App Store badge + AvailabilityLine
 SiteFooter
 ```
 
@@ -1346,7 +1386,7 @@ Its link is a standalone link whose text is the destination page's name in the F
 - **375:**
   - The hero stacks; each action keeps its caption.
   - The hero slot uses its mobile crop.
-  - EngineList in 2 columns; sponsors 2 × 2.
+  - EngineList in 2 columns; sponsors 2 × 2. No rails: cells run to the screen edge and only horizontals remain.
   - FeatureRows stack text, then slot. Window slots show their `mobile` crops (§6.3).
   - The platform cards stack, with the phone slot 240 wide.
   - Pricing cards stack.
@@ -1762,6 +1802,16 @@ Confirm no mark touches the line above. Also check:
 
 **Consent bar height** ≤ 120px at 375 × 812, ≤ 96px at 1440.
 
+**Page frame** (§4.7), at 390, 768, 1024, 1280, 1366, 1440 and 1920:
+
+- no horizontal scroll on any template
+- both rails on the Container's outer edge, the header's stretch on the same columns
+- every cell grid's outer lines on the rails from 1280, at the screen edge below
+- one full-bleed join per block boundary, none doubled by a block's own rule
+- at most six marks, none overhanging the screen
+- an anchor jump shows one line under the header, not two
+- checked again with the Crisp launcher loaded, in Safari and Firefox
+
 **Homepage and links:**
 
 - `/` and `/vi` render sitemap §D's ten section ids in order, Sponsors third, and every alias (`#mcp`, `#mobile`, `#compare`, `#license`) scrolls to its section.
@@ -1783,7 +1833,7 @@ Confirm no mark touches the line above. Also check:
 
 ### 11.1 Tensions
 
-**No decision here breaks the spec.** Six tensions are resolved explicitly here, so that nobody resolves them silently later:
+**No decision here breaks the spec.** Seven tensions are resolved explicitly here, so that nobody resolves them silently later:
 
 1. **Brand hue.** The light text accent changes from hue 45 to 55, and visibly so: `#ab4501`, a redder rust, becomes `#9e5209`, more amber. Spec §0 says "keep brand hue 55; only contrast and gamut may be refined", and the drift away from 55 was the deviation. All brand tokens now share hue 55.
 2. **"Save 33%".** The spec forbids *inventing* savings. This one is arithmetic on published prices (33.1% Starter, 33.3% Team), so it stays, as a computed caption rather than a badge (§2.4). If the saving statement is ever dropped, the caption shows only "Billed once a year".
@@ -1791,6 +1841,7 @@ Confirm no mark touches the line above. Also check:
 4. **Sponsors third.** Kept, as a compact strip between Databases and the workflow sections, so the explanation is interrupted as little as possible.
 5. **Light default for OS-dark visitors.** This is a product decision (spec §0). It changes what dark-OS visitors see on first load, which is why the theme control sits in the header rather than only in the footer.
 6. **Footer newsletter stats.** The design does not need `/api/newsletter/stats`. Sitemap §B.3 settles it: the footer shows no subscriber count and does not call the endpoint, whose contract stays unchanged.
+7. **Grid lines and a quiet page.** The owner asked for the grid-line look (§4.7) on 2026-10-06. It stays compatible with "the page stays quiet" by being neutral, static and at `--rule` weight, by drawing structure that already exists (the column, the block boundaries, sets of like items) and by leaving prose sections unlined. A frame that needed hatching, graph paper or accent marks to be seen would break §1.1 and §1.4.
 
 ---
 

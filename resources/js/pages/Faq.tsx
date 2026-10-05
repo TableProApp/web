@@ -121,54 +121,56 @@ export default function Faq({ content, platforms, facts, links, organizationProf
                 breadcrumbs={[{ label: m.common.home, href: '/' }, { label: content.breadcrumb }]}
             />
 
-            <Container width="text" className="pb-16 md:pb-20 xl:pb-24">
-                <nav aria-labelledby="faq-topics">
-                    <h2 id="faq-topics" className="type-label text-muted-foreground">
-                        {content.jump}
-                    </h2>
-                    <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                        {content.groups.map((group) => (
-                            <li key={group.id}>
-                                <a href={`#${group.id}`} className={textLinkClasses('standalone')}>
-                                    {group.title}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-
-                {content.groups.map((group) => (
-                    <section key={group.id} id={group.id} aria-labelledby={`${group.id}-title`} className="mt-12 md:mt-16">
-                        <h2 id={`${group.id}-title`} className="type-h2 text-foreground">
-                            {group.title}
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container width="text">
+                    <nav aria-labelledby="faq-topics">
+                        <h2 id="faq-topics" className="type-label text-muted-foreground">
+                            {content.jump}
                         </h2>
-                        <FaqList
-                            className="mt-4"
-                            items={group.items.map((item) => ({
-                                id: item.id,
-                                question: item.question,
-                                answer: item.answer.map((paragraph, index) => (
-                                    <p key={index}>
-                                        <Trans text={paragraph} tags={tags} values={values} />
-                                    </p>
-                                )),
-                            }))}
-                        />
-                    </section>
-                ))}
+                        <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                            {content.groups.map((group) => (
+                                <li key={group.id}>
+                                    <a href={`#${group.id}`} className={textLinkClasses('standalone')}>
+                                        {group.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
 
-                <Callout className="mt-12 md:mt-16" title={content.contact.title}>
-                    <p>
-                        <Trans text={content.contact.body} tags={tags} values={values} />
-                    </p>
-                    {chat && (
+                    {content.groups.map((group) => (
+                        <section key={group.id} id={group.id} aria-labelledby={`${group.id}-title`} className="mt-12 md:mt-16">
+                            <h2 id={`${group.id}-title`} className="type-h2 text-foreground">
+                                {group.title}
+                            </h2>
+                            <FaqList
+                                className="mt-4"
+                                items={group.items.map((item) => ({
+                                    id: item.id,
+                                    question: item.question,
+                                    answer: item.answer.map((paragraph, index) => (
+                                        <p key={index}>
+                                            <Trans text={paragraph} tags={tags} values={values} />
+                                        </p>
+                                    )),
+                                }))}
+                            />
+                        </section>
+                    ))}
+
+                    <Callout className="mt-12 md:mt-16" title={content.contact.title}>
                         <p>
-                            <ChatButton className={textLinkClasses('standalone', 'cursor-pointer')}>{content.contact.chat}</ChatButton>{' '}
-                            <span className="text-muted-foreground">{content.contact.chatNote}</span>
+                            <Trans text={content.contact.body} tags={tags} values={values} />
                         </p>
-                    )}
-                </Callout>
-            </Container>
+                        {chat && (
+                            <p>
+                                <ChatButton className={textLinkClasses('standalone', 'cursor-pointer')}>{content.contact.chat}</ChatButton>{' '}
+                                <span className="text-muted-foreground">{content.contact.chatNote}</span>
+                            </p>
+                        )}
+                    </Callout>
+                </Container>
+            </div>
         </LandingLayout>
     );
 }

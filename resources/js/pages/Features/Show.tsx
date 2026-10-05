@@ -11,6 +11,7 @@ import { FEATURE_PAGES } from '@/components/site/site-links';
 import Badge from '@/components/ui/badge';
 import { buttonClasses } from '@/components/ui/button';
 import Callout from '@/components/ui/callout';
+import CellGrid from '@/components/ui/cell-grid';
 import Container from '@/components/ui/container';
 import { AppleGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
@@ -134,23 +135,25 @@ export default function FeatureShow({ slug, content, labels, facts }: FeaturePag
                 )}
             </Section>
 
-            {/* The rule is on the content box, so it spans the content and not the gutters. */}
-            <Container>
-                <div className="grid gap-12 border-t border-rule py-16 md:grid-cols-2 md:py-20">
-                    <section id="docs" aria-labelledby="docs-title">
-                        <h2 id="docs-title" className="type-h3 text-foreground">
-                            {labels.sections.docs}
-                        </h2>
-                        <FeatureLinkList links={content.docs} direction="column" className="mt-4" />
-                    </section>
-                    <section id="related" aria-labelledby="related-title">
-                        <h2 id="related-title" className="type-h3 text-foreground">
-                            {labels.sections.related}
-                        </h2>
-                        <FeatureLinkList links={content.related} direction="column" className="mt-4" />
-                    </section>
-                </div>
-            </Container>
+            {/* Documentation and related pages: two cells between the page frame's joins (design-system §4.7). */}
+            <div>
+                <Container>
+                    <CellGrid className="md:grid-cols-2">
+                        <section id="docs" aria-labelledby="docs-title">
+                            <h2 id="docs-title" className="type-h3 text-foreground">
+                                {labels.sections.docs}
+                            </h2>
+                            <FeatureLinkList links={content.docs} direction="column" className="mt-4" />
+                        </section>
+                        <section id="related" aria-labelledby="related-title">
+                            <h2 id="related-title" className="type-h3 text-foreground">
+                                {labels.sections.related}
+                            </h2>
+                            <FeatureLinkList links={content.related} direction="column" className="mt-4" />
+                        </section>
+                    </CellGrid>
+                </Container>
+            </div>
 
             <DownloadBand labels={labels} location="feature-page" />
         </LandingLayout>

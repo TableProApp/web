@@ -30,13 +30,15 @@ interface FaqListProps {
  *
  * Each item is separated by a hairline with 24px of padding; the answer sits
  * 8px under its question, in the text colour, not muted, because it is what
- * the reader came for.
+ * the reader came for. `data-rule-list` lets the page frame drop the last
+ * hairline when the list ends a section, where the frame's join closes it
+ * (design-system §4.7).
  */
 export default function FaqList({ items, headingLevel = 'h3', className }: FaqListProps) {
     const Heading = headingLevel;
 
     return (
-        <div className={cn('max-w-[44rem] border-t border-rule', className)}>
+        <div data-rule-list className={cn('max-w-[44rem] border-t border-rule', className)}>
             {items.map((item) => (
                 <div key={item.id ?? item.question} id={item.id} className="scroll-mt-24 border-b border-rule py-6">
                     <Heading className="type-h3 text-foreground">{item.question}</Heading>
