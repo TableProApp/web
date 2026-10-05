@@ -32,14 +32,26 @@
 #
 # HOW IT IS STARTED
 #   The deploy key logs in as `ubuntu`, and its forced command runs
-#   `sudo -n /var/www/tablepro.app/scripts/deploy.sh` (docs/deployment.md, "The
-#   deploy key"). So the script runs as root, under sudo, from whatever directory
-#   and environment the SSH session had. Nothing below depends on either.
+#   `sudo -n -u www-data /var/www/tablepro.app/scripts/deploy.sh`
+#   (docs/deployment.md, "The deploy key"). So the script runs as www-data, the
+#   user that owns the checkout, from whatever directory and environment the SSH
+#   session had. Nothing below depends on either.
+#
+#   It used to run as root, from a tree www-data can write. Anything able to
+#   write as www-data — PHP-FPM serves every request as that user — could edit
+#   this file and wait for the next deploy to run it as root. Now git, composer,
+#   npm, vite and artisan all run unprivileged, and the two steps that need root,
+#   the PHP-FPM reload and the SSR restart, go through `sudo -n` by absolute path
+#   with exact arguments, which is all the sudoers rule allows.
+#
+#   Started as root (a human in `sudo -i`), it still works as it always did: it
+#   runs those two commands itself and ends by handing the checkout back to
+#   www-data.
 #
 # USAGE
-#   sudo /var/www/tablepro.app/scripts/deploy.sh
-#   sudo FORCE=1 /var/www/tablepro.app/scripts/deploy.sh    # rebuild even if the commit is unchanged
-#   sudo APP_PATH=/var/www/tablepro.app BRANCH=main /var/www/tablepro.app/scripts/deploy.sh
+#   sudo -u www-data /var/www/tablepro.app/scripts/deploy.sh
+#   sudo -u www-data FORCE=1 /var/www/tablepro.app/scripts/deploy.sh    # rebuild even if the commit is unchanged
+#   sudo -u www-data APP_PATH=/var/www/tablepro.app BRANCH=main /var/www/tablepro.app/scripts/deploy.sh
 #
 #   sudo drops the caller's environment, so a variable has to be given on the
 #   sudo command line, as above, to reach the script.
@@ -49,17 +61,9 @@ set -euo pipefail
 step() { printf '\n\033[1m==> %s\033[0m\n' "$1"; }
 fail() { printf '\033[31merror: %s\033[0m\n' "$1" >&2; exit 1; }
 
-# How much of the caller's environment sudo keeps is a matter of its policy. A
-# HOME still pointing at /home/ubuntu would have root write its npm and Composer
-# caches into that user's home, where they later break the user's own npm, and
-# read that user's git configuration. So the standard directories go on PATH
-# whatever PATH arrived with, and HOME comes from the password database for the
-# user this actually runs as. (getent is Linux-only; elsewhere HOME is left as
-# it is.)
+# How much of the caller's environment sudo keeps is a matter of its policy, so
+# the standard directories go on PATH whatever PATH arrived with.
 export PATH="${PATH:+$PATH:}/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-if home_dir="$(getent passwd "$(id -u)" 2>/dev/null | cut -d: -f6)" && [ -n "$home_dir" ]; then
-    export HOME="$home_dir"
-fi
 
 APP_PATH="${APP_PATH:-/var/www/tablepro.app}"
 BRANCH="${BRANCH:-main}"
@@ -67,6 +71,7 @@ WEB_USER="${WEB_USER:-www-data}"
 SUPERVISOR_PROGRAM="${SUPERVISOR_PROGRAM:-tablepro-web-ssr}"
 SMOKE_URL="${SMOKE_URL:-}"
 FORCE="${FORCE:-}"
+DEPLOY_CACHE_DIR="${DEPLOY_CACHE_DIR:-/var/cache/tablepro-deploy}"
 
 # Every relative path below is relative to APP_PATH, after the `cd` further
 # down. A relative APP_PATH would itself depend on the caller's directory.
@@ -75,15 +80,49 @@ case "$APP_PATH" in
     *) fail "APP_PATH must be an absolute path, got: $APP_PATH" ;;
 esac
 
-# The checkout belongs to $WEB_USER (see "Restoring ownership" below), so git,
-# running as root, refuses it as "dubious ownership". Under sudo it compares the
-# owner with the calling user, ubuntu, which does not match either. Trusting
-# this one path here, in command scope, means a deploy does not depend on a
-# safe.directory line in somebody's ~/.gitconfig. It extends no new trust: the
-# script already runs this tree's PHP as root.
-export GIT_CONFIG_COUNT=1
-export GIT_CONFIG_KEY_0=safe.directory
-export GIT_CONFIG_VALUE_0="$APP_PATH"
+if [ "$(id -u)" -eq 0 ]; then
+    AS_ROOT=true
+else
+    AS_ROOT=false
+fi
+
+if [ "$AS_ROOT" = true ]; then
+    # A HOME still pointing at /home/ubuntu would have root write its npm and
+    # Composer caches into that user's home, where they later break the user's
+    # own npm, and read that user's git configuration. So HOME comes from the
+    # password database. (getent is Linux-only; elsewhere HOME is left as it is.)
+    if home_dir="$(getent passwd "$(id -u)" 2>/dev/null | cut -d: -f6)" && [ -n "$home_dir" ]; then
+        export HOME="$home_dir"
+    fi
+
+    # The checkout belongs to $WEB_USER (see "Restoring ownership" below), so
+    # git, running as root, refuses it as "dubious ownership". Under sudo it
+    # compares the owner with the calling user, which does not match either.
+    # Trusting this one path here, in command scope, means a root deploy does not
+    # depend on a safe.directory line in somebody's ~/.gitconfig. It extends no
+    # new trust: as root the script already runs this tree's PHP as root.
+    export GIT_CONFIG_COUNT=1
+    export GIT_CONFIG_KEY_0=safe.directory
+    export GIT_CONFIG_VALUE_0="$APP_PATH"
+else
+    # www-data's home is /var/www, which it cannot write, so npm and Composer
+    # keep their caches in a directory of their own. HOME points there too, so
+    # nothing else that writes under it falls back to /var/www. Root creates it
+    # once, owned by the deploying user (docs/deployment.md, "The deploy key").
+    case "$DEPLOY_CACHE_DIR" in
+        /*) ;;
+        *) fail "DEPLOY_CACHE_DIR must be an absolute path, got: $DEPLOY_CACHE_DIR" ;;
+    esac
+    if [ ! -d "$DEPLOY_CACHE_DIR" ] || [ ! -w "$DEPLOY_CACHE_DIR" ]; then
+        fail "$DEPLOY_CACHE_DIR is not a directory $(id -un) can write. Create it once, as root: install -d -o $(id -un) -g $(id -gn) -m 0750 $DEPLOY_CACHE_DIR"
+    fi
+
+    export HOME="$DEPLOY_CACHE_DIR/home"
+    export COMPOSER_HOME="$DEPLOY_CACHE_DIR/composer"
+    export COMPOSER_CACHE_DIR="$DEPLOY_CACHE_DIR/composer/cache"
+    export npm_config_cache="$DEPLOY_CACHE_DIR/npm"
+    mkdir -p "$HOME" "$COMPOSER_CACHE_DIR" "$npm_config_cache"
+fi
 
 # This host sets opcache.validate_timestamps=0 in the FPM ini, so PHP compiles a
 # file once and never looks at it again. Without this reload a deploy that
@@ -105,11 +144,56 @@ FPM_SERVICE="${FPM_SERVICE:-php${PHP_MINOR}-fpm}"
 cd "$APP_PATH" || fail "no such directory: $APP_PATH"
 [ -f artisan ] || fail "$APP_PATH is not a Laravel application"
 
+# Run as anyone but root, the script rewrites the checkout in place and cannot
+# chown, so every file in it has to be this user's already. A root run that
+# stopped before "Restoring ownership" leaves root-owned files behind; name the
+# first one here rather than fail on it halfway through `npm ci`.
+if [ "$AS_ROOT" = false ]; then
+    foreign="$(find "$APP_PATH" ! -user "$(id -u)" -print -quit 2>/dev/null || true)"
+    if [ -n "$foreign" ]; then
+        fail "$foreign is not owned by $(id -un). Hand the checkout back once, as root: chown -R $(id -un):$(id -gn) $APP_PATH"
+    fi
+fi
+
 PREV_COMMIT="$(git rev-parse HEAD)"
 
+# The two steps that need root. As root they run as they always have. As
+# anyone else they go through `sudo -n`, by absolute path and with exact
+# arguments, because that is all the sudoers rule allows (docs/deployment.md,
+# "The deploy key"): sudo matches the command line literally, and -n makes a
+# missing rule fail at once instead of waiting on a password nobody can type.
+# A failure returns non-zero, so `set -e` stops the deploy and the EXIT trap
+# below puts swapped bundles back.
+reload_fpm() {
+    if [ "$AS_ROOT" = true ]; then
+        systemctl reload "$FPM_SERVICE"
+    else
+        sudo -n /usr/bin/systemctl reload "$FPM_SERVICE" \
+            || sudo_failed "/usr/bin/systemctl reload $FPM_SERVICE"
+    fi
+}
+
+restart_ssr() {
+    if [ "$AS_ROOT" = true ]; then
+        supervisorctl restart "$SUPERVISOR_PROGRAM"
+    else
+        sudo -n /usr/bin/supervisorctl restart "$SUPERVISOR_PROGRAM" \
+            || sudo_failed "/usr/bin/supervisorctl restart $SUPERVISOR_PROGRAM"
+    fi
+}
+
+sudo_failed() {
+    printf '\033[31merror: sudo -n %s failed.\033[0m\n' "$1" >&2
+    printf '  Either sudo refused it, because no NOPASSWD rule in /etc/sudoers.d/tablepro-deploy\n' >&2
+    printf '  lets %s run exactly that command line, or the command itself failed.\n' "$(id -un)" >&2
+    return 1
+}
+
+# Meant for a root shell, so it ends by handing the checkout back to $WEB_USER:
+# root-owned files left in it would stop the next unprivileged deploy.
 rollback_command() {
-    printf '  cd %s && git reset --hard %s && composer install --no-dev -q && npm ci --silent && npm run build && php artisan optimize && supervisorctl restart %s\n' \
-        "$APP_PATH" "$PREV_COMMIT" "$SUPERVISOR_PROGRAM"
+    printf '  cd %s && git reset --hard %s && composer install --no-dev -q && npm ci --silent && npm run build && php artisan optimize && chown -R %s:%s %s && systemctl reload %s && supervisorctl restart %s\n' \
+        "$APP_PATH" "$PREV_COMMIT" "$WEB_USER" "$WEB_USER" "$APP_PATH" "$FPM_SERVICE" "$SUPERVISOR_PROGRAM"
 }
 
 # Guarding on EXIT rather than ERR on purpose: `fail` exits directly, and an ERR
@@ -126,7 +210,7 @@ on_exit() {
         if [ -d bootstrap/ssr-old ]; then
             rm -rf bootstrap/ssr && mv bootstrap/ssr-old bootstrap/ssr
         fi
-        supervisorctl restart "$SUPERVISOR_PROGRAM" || true
+        restart_ssr || true
         printf 'The code is still at the new commit. To go all the way back, from a root shell (sudo -i):\n' >&2
         rollback_command >&2
     fi
@@ -324,7 +408,7 @@ if [ "$FRONTEND_CHANGED" = true ]; then
     # The window between the swap and this restart is the only moment the new
     # assets are served alongside the old SSR bundle, so it is kept short.
     step "Restarting the SSR process"
-    supervisorctl restart "$SUPERVISOR_PROGRAM"
+    restart_ssr
 fi
 
 if [ "$PHP_CHANGED" = true ]; then
@@ -334,7 +418,7 @@ if [ "$PHP_CHANGED" = true ]; then
 
     if [ -n "$FPM_SERVICE" ]; then
         step "Reloading $FPM_SERVICE"
-        systemctl reload "$FPM_SERVICE"
+        reload_fpm
     fi
 fi
 
@@ -344,11 +428,11 @@ if [ "$CONTENT_CHANGED" = true ] || [ "$PHP_CHANGED" = true ]; then
 fi
 
 step "Restoring ownership"
-if [ "$(id -u)" -eq 0 ]; then
+if [ "$AS_ROOT" = true ]; then
     chown -R "$WEB_USER:$WEB_USER" "$APP_PATH"
     echo "    $APP_PATH now owned by $WEB_USER"
 else
-    echo "    skipped: not running as root, so ownership is already whoever ran this"
+    echo "    skipped: running as $(id -un), which already owns everything it wrote"
 fi
 
 step "Smoke test"

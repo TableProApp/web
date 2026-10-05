@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\File;
 use Symfony\Component\Process\Process;
 
 /**
@@ -72,6 +73,209 @@ function runChanged(string $paths, string $pattern): bool
     $process->run();
 
     return $process->getExitCode() === 0;
+}
+
+/**
+ * Stand-ins for every tool scripts/deploy.sh would use to reach the system or
+ * the network. Each records how it was called in $STUB_CALLS; composer and npm
+ * also record, in $STUB_ENV, where they would keep their caches. `identity`
+ * holds `id` and `getent`, put on PATH only by a run that pretends to be
+ * another user.
+ *
+ * Written once per run of the suite and parameterised through the environment,
+ * because macOS checks every new executable the first time it runs, and stubs
+ * written afresh for each test cost about two seconds a test.
+ *
+ * @return array{tools: string, identity: string}
+ */
+function deployStubs(): array
+{
+    static $stubs = null;
+
+    if ($stubs !== null) {
+        return $stubs;
+    }
+
+    $root = sys_get_temp_dir() . '/tablepro-deploy-stubs-' . bin2hex(random_bytes(6));
+    $record = fn(string $name): string => "#!/usr/bin/env bash\nprintf '%s\\n' \"{$name} \$*\" >> \"\$STUB_CALLS\"\n";
+
+    $scripts = [
+        'tools/systemctl' => $record('systemctl'),
+        'tools/supervisorctl' => $record('supervisorctl'),
+        'tools/chown' => $record('chown'),
+        'tools/sudo' => $record('sudo') . "if [ -n \"\${STUB_SUDO_REFUSES:-}\" ]; then\n    echo 'sudo: a password is required' >&2\n    exit 1\nfi\n",
+        'tools/composer' => $record('composer') . "printf 'composer HOME=%s COMPOSER_HOME=%s COMPOSER_CACHE_DIR=%s\\n' \"\$HOME\" \"\${COMPOSER_HOME:-}\" \"\${COMPOSER_CACHE_DIR:-}\" >> \"\$STUB_ENV\"\n",
+        'tools/npm' => $record('npm') . "printf 'npm HOME=%s npm_config_cache=%s\\n' \"\$HOME\" \"\${npm_config_cache:-}\" >> \"\$STUB_ENV\"\n",
+        // `npx vite build [--ssr] --outDir <dir>`: leave what a good build leaves.
+        'tools/npx' => $record('npx') . <<<'BASH'
+            out=""; ssr=false
+            while [ $# -gt 0 ]; do
+                case "$1" in
+                    --outDir) out="$2"; shift 2 ;;
+                    --ssr) ssr=true; shift ;;
+                    *) shift ;;
+                esac
+            done
+            mkdir -p "$out"
+            if [ "$ssr" = true ]; then
+                echo 'export {};' > "$out/ssr.js"
+            else
+                printf '{"resources/js/app.tsx":{"file":"assets/app-new.js"}}' > "$out/manifest.json"
+            fi
+
+            BASH,
+        // The script reads the PHP version with `php -r`; that is the real PHP.
+        'tools/php' => "#!/usr/bin/env bash\nif [ \"\$1\" = -r ]; then\n    exec '" . PHP_BINARY . "' \"\$@\"\nfi\n" . substr($record('php'), strlen("#!/usr/bin/env bash\n")),
+        'identity/id' => "#!/usr/bin/env bash\ncase \"\$*\" in\n    -u) echo \"\$STUB_UID\" ;;\n    -un|-gn) echo \"\$STUB_USER\" ;;\n    *) exec /usr/bin/id \"\$@\" ;;\nesac\n",
+        'identity/getent' => "#!/usr/bin/env bash\necho \"\$STUB_USER:x:\$STUB_UID:\$STUB_UID::\$STUB_HOME:/bin/bash\"\n",
+    ];
+
+    foreach ($scripts as $path => $body) {
+        File::ensureDirectoryExists(dirname("{$root}/{$path}"));
+        file_put_contents("{$root}/{$path}", $body);
+        chmod("{$root}/{$path}", 0755);
+    }
+
+    register_shutdown_function(fn() => (new Illuminate\Filesystem\Filesystem())->deleteDirectory($root));
+
+    return $stubs = ['tools' => "{$root}/tools", 'identity' => "{$root}/identity"];
+}
+
+/**
+ * Runs the real scripts/deploy.sh end to end against a throwaway checkout, from
+ * `/` and under `env -i`, as the forced command starts it, with deployStubs()
+ * first on PATH.
+ *
+ * `origin` is one commit ahead of the checkout, changing a component, a PHP file
+ * and composer.lock, so a single run takes both steps that need root: the SSR
+ * restart after the bundle swap, and the PHP-FPM reload.
+ *
+ * @param  array{root?: bool, owner?: int, sudoRefuses?: bool, cacheDir?: string, env?: array<string, string>}  $options
+ * @return array{exit: int, output: string, errors: string, calls: list<string>, privileged: list<string>, env: list<string>, sandbox: string, app: string, cache: string}
+ */
+function runDeployInSandbox(array $options = []): array
+{
+    $sandbox = sys_get_temp_dir() . '/tablepro-deploy-' . bin2hex(random_bytes(6));
+    $seed = "{$sandbox}/seed";
+    $origin = "{$sandbox}/origin.git";
+    $app = "{$sandbox}/app";
+    $cache = "{$sandbox}/cache";
+    $calls = "{$sandbox}/calls.log";
+    $envLog = "{$sandbox}/env.log";
+    $stubs = deployStubs();
+
+    foreach ([$seed . '/app', $seed . '/resources/js', $cache] as $directory) {
+        mkdir($directory, 0755, true);
+    }
+
+    // www-data's home, /var/www, which it cannot write.
+    mkdir("{$sandbox}/home", 0555);
+
+    $git = function (string $cwd, string ...$arguments): void {
+        (new Process(['git', '-c', 'user.name=Deploy Test', '-c', 'user.email=deploy@example.test', '-c', 'commit.gpgsign=false', ...$arguments], $cwd))->mustRun();
+    };
+
+    file_put_contents("{$seed}/artisan", "<?php\n");
+    file_put_contents("{$seed}/composer.lock", "{}\n");
+    file_put_contents("{$seed}/app/Example.php", "<?php\n");
+    file_put_contents("{$seed}/resources/js/app.tsx", "export {};\n");
+    file_put_contents("{$seed}/.gitignore", implode("\n", ['/public/build', '/public/build-next', '/public/build-old', '/bootstrap/ssr', '/bootstrap/ssr-next', '/bootstrap/ssr-old']) . "\n");
+
+    $git($seed, 'init', '-q', '-b', 'main');
+    $git($seed, 'add', '-A');
+    $git($seed, 'commit', '-q', '-m', 'A');
+    $git($sandbox, 'clone', '-q', '--bare', $seed, $origin);
+    $git($sandbox, 'clone', '-q', $origin, $app);
+
+    file_put_contents("{$seed}/composer.lock", "{\"changed\": true}\n");
+    file_put_contents("{$seed}/app/Example.php", "\n// changed\n", FILE_APPEND);
+    file_put_contents("{$seed}/resources/js/app.tsx", "// changed\n", FILE_APPEND);
+    $git($seed, 'commit', '-q', '-am', 'B');
+    $git($seed, 'push', '-q', $origin, 'main');
+
+    // The live bundles a failed deploy has to put back.
+    foreach (["{$app}/public/build", "{$app}/bootstrap/ssr"] as $live) {
+        mkdir($live, 0755, true);
+        file_put_contents("{$live}/PREVIOUS", "previous release\n");
+    }
+
+    $path = "{$stubs['tools']}:" . dirname(PHP_BINARY) . ':/usr/bin:/bin';
+    $environment = [
+        'HOME' => "{$sandbox}/home",
+        'APP_PATH' => $app,
+        'DEPLOY_CACHE_DIR' => $options['cacheDir'] ?? $cache,
+        'STUB_CALLS' => $calls,
+        'STUB_ENV' => $envLog,
+    ];
+
+    if ($options['sudoRefuses'] ?? false) {
+        $environment['STUB_SUDO_REFUSES'] = '1';
+    }
+
+    if (($options['root'] ?? false) || isset($options['owner'])) {
+        $uid = ($options['root'] ?? false) ? 0 : $options['owner'];
+
+        mkdir("{$sandbox}/root-home");
+        $path = "{$stubs['identity']}:{$path}";
+        $environment += ['STUB_UID' => (string) $uid, 'STUB_USER' => $uid === 0 ? 'root' : 'www-data', 'STUB_HOME' => "{$sandbox}/root-home"];
+    }
+
+    $command = ['/usr/bin/env', '-i', "PATH={$path}"];
+
+    foreach ([...$environment, ...($options['env'] ?? [])] as $key => $value) {
+        $command[] = "{$key}={$value}";
+    }
+
+    $process = new Process([...$command, 'bash', base_path('scripts/deploy.sh')], '/');
+    $process->setTimeout(60);
+    $process->run();
+
+    $lines = fn(string $file): array => is_file($file) ? array_values(array_filter(explode("\n", (string) file_get_contents($file)))) : [];
+    $recorded = $lines($calls);
+
+    return [
+        'exit' => (int) $process->getExitCode(),
+        'output' => $process->getOutput(),
+        'errors' => $process->getErrorOutput(),
+        'calls' => $recorded,
+        'privileged' => array_values(array_filter($recorded, fn(string $call): bool => preg_match('/^(sudo|systemctl|supervisorctl|chown) /', $call) === 1)),
+        'env' => $lines($envLog),
+        'sandbox' => $sandbox,
+        'app' => $app,
+        'cache' => $environment['DEPLOY_CACHE_DIR'],
+    ];
+}
+
+/**
+ * The FPM unit the script derives from the CLI that runs it: the PHP running
+ * this suite, since the sandbox's `php -r` is the real one.
+ */
+function expectedFpmService(): string
+{
+    return 'php' . PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '-fpm';
+}
+
+/**
+ * The commands the server's sudoers drop-in lets www-data run, as documented.
+ *
+ * @return list<string>
+ */
+function documentedSudoersCommands(): array
+{
+    $matched = preg_match('/^www-data ALL=\(root\) NOPASSWD: (.+)$/m', (string) file_get_contents(base_path('docs/deployment.md')), $rule);
+
+    expect($matched)->toBe(1, 'docs/deployment.md does not spell out the www-data sudoers rule');
+
+    return explode(', ', $rule[1]);
+}
+
+/**
+ * Whether the suite itself runs as root, where the script would take its root
+ * path whatever the test meant to exercise.
+ */
+function suiteRunsAsRoot(): bool
+{
+    return function_exists('posix_geteuid') && posix_geteuid() === 0;
 }
 
 it('rebuilds the bundles for a component, a stylesheet or a dependency', function (string $path) {
@@ -250,13 +454,179 @@ it('reloads the FPM of the PHP version that ran the release, not a hard-coded on
     expect($process->getOutput())->toBe(PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION);
 });
 
+it('refuses a relative APP_PATH before it touches anything', function (): void {
+    /*
+     * Every relative path in the script hangs off the `cd "$APP_PATH"`, so a
+     * relative APP_PATH would make the deploy depend on the caller's
+     * directory. The check runs before git, composer or npm is called, so
+     * running the real script here is safe.
+     */
+    $process = new Process(['bash', base_path('scripts/deploy.sh')], sys_get_temp_dir(), ['APP_PATH' => 'var/www/tablepro.app']);
+    $process->run();
+
+    expect($process->getExitCode())->toBe(1)
+        ->and($process->getErrorOutput())->toContain('APP_PATH must be an absolute path');
+});
+
 /*
- * The deploy key logs in as `ubuntu` and its forced command runs the script
- * through `sudo -n`, so it starts as root from the SSH session's directory and
- * with whatever environment sudo's policy lets through. None of that may change
- * what it does.
+ * The deploy key logs in as `ubuntu`, and its forced command runs the script as
+ * www-data: `sudo -n -u www-data .../deploy.sh`. It used to run as root, from a
+ * tree www-data can write, so anything that could write as www-data — which
+ * PHP-FPM serves every request as — could edit the script and have the next
+ * deploy run it as root. Now everything runs as www-data except two commands,
+ * which go through `sudo -n` exactly as the sudoers drop-in names them.
  */
-describe('started through sudo by another user', function (): void {
+describe('run as www-data, by the deploy key', function (): void {
+    beforeEach(function (): void {
+        if (suiteRunsAsRoot()) {
+            $this->markTestSkipped('The suite runs as root, so the script takes its root path.');
+        }
+    });
+
+    afterEach(function (): void {
+        if (isset($this->run)) {
+            File::deleteDirectory($this->run['sandbox']);
+        }
+    });
+
+    it('reaches root only through sudo -n, with the exact commands the sudoers rule names', function (): void {
+        $this->run = runDeployInSandbox();
+
+        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+            ->and($this->run['privileged'])->toBe([
+                'sudo -n /usr/bin/supervisorctl restart tablepro-web-ssr',
+                'sudo -n /usr/bin/systemctl reload ' . expectedFpmService(),
+            ]);
+    });
+
+    it('asks sudo for nothing the documented sudoers drop-in does not allow', function (): void {
+        /*
+         * sudo matches the command line literally, so a script that called
+         * `systemctl restart`, or systemctl by another path, would be refused
+         * on the server while every test here still passed. The rule on the
+         * server is the one docs/deployment.md spells out; production's unit
+         * is php8.5-fpm.
+         */
+        $this->run = runDeployInSandbox(['env' => ['FPM_SERVICE' => 'php8.5-fpm']]);
+
+        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+            ->and($this->run['privileged'])->not->toBeEmpty();
+
+        foreach ($this->run['privileged'] as $call) {
+            expect($call)->toStartWith('sudo -n /');
+            expect(documentedSudoersCommands())->toContain(substr($call, strlen('sudo -n ')));
+        }
+    });
+
+    it('leaves ownership alone, because it already owns what it wrote', function (): void {
+        $this->run = runDeployInSandbox();
+
+        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+            ->and(preg_grep('/^chown /', $this->run['calls']))->toBeEmpty()
+            ->and($this->run['output'])->toContain('skipped: running as');
+    });
+
+    it('keeps the npm and Composer caches in DEPLOY_CACHE_DIR, not in its unwritable home', function (): void {
+        $this->run = runDeployInSandbox();
+        $cache = $this->run['cache'];
+
+        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+            ->and($this->run['env'])->toBe([
+                "composer HOME={$cache}/home COMPOSER_HOME={$cache}/composer COMPOSER_CACHE_DIR={$cache}/composer/cache",
+                "npm HOME={$cache}/home npm_config_cache={$cache}/npm",
+            ])
+            ->and("{$cache}/composer/cache")->toBeDirectory()
+            ->and("{$cache}/npm")->toBeDirectory();
+    });
+
+    it('stops before git when the cache directory is missing or not writable', function (string $problem): void {
+        $directory = sys_get_temp_dir() . '/tablepro-deploy-cache-' . bin2hex(random_bytes(6));
+
+        if ($problem === 'read-only') {
+            mkdir($directory, 0555);
+        }
+
+        try {
+            $this->run = runDeployInSandbox(['cacheDir' => $directory]);
+        } finally {
+            File::deleteDirectory($directory);
+        }
+
+        expect($this->run['exit'])->toBe(1)
+            ->and($this->run['errors'])->toContain("{$directory} is not a directory")
+            ->and($this->run['errors'])->toContain('Create it once, as root: install -d -o ')
+            ->and($this->run['output'])->not->toContain('Pulling')
+            ->and($this->run['calls'])->toBe([]);
+    })->with(['missing', 'read-only']);
+
+    it('refuses a checkout it does not own, rather than fail halfway through npm ci', function (): void {
+        /*
+         * A root run that stops before "Restoring ownership" leaves root-owned
+         * files in the checkout. Simulated here by a user id that owns none of it.
+         */
+        $this->run = runDeployInSandbox(['owner' => 4242]);
+
+        expect($this->run['exit'])->toBe(1)
+            ->and($this->run['errors'])->toContain("{$this->run['app']} is not owned by www-data")
+            ->and($this->run['errors'])->toContain("chown -R www-data:www-data {$this->run['app']}")
+            ->and($this->run['output'])->not->toContain('Pulling')
+            ->and($this->run['calls'])->toBe([]);
+    });
+
+    it('fails loudly when sudo refuses, and puts the previous bundles back', function (): void {
+        $this->run = runDeployInSandbox(['sudoRefuses' => true]);
+        $app = $this->run['app'];
+
+        expect($this->run['exit'])->toBe(1)
+            ->and($this->run['errors'])->toContain('sudo -n /usr/bin/supervisorctl restart tablepro-web-ssr failed')
+            ->and($this->run['errors'])->toContain('/etc/sudoers.d/tablepro-deploy')
+            ->and($this->run['errors'])->toContain('putting the previous bundles back')
+            ->and("{$app}/public/build/PREVIOUS")->toBeFile()
+            ->and("{$app}/bootstrap/ssr/PREVIOUS")->toBeFile()
+            ->and("{$app}/public/build-old")->not->toBeDirectory()
+            ->and("{$app}/bootstrap/ssr-old")->not->toBeDirectory();
+
+        // It stopped at the refusal: no FPM reload was attempted after it.
+        expect(preg_grep('/systemctl/', $this->run['calls']))->toBeEmpty();
+    });
+});
+
+/*
+ * A human can still run the script as root, from `sudo -i`. Then it does what
+ * it always did: the two privileged commands directly, and the whole checkout
+ * handed back to www-data at the end, so the next unprivileged deploy can
+ * write to it.
+ */
+describe('run as root, by a human', function (): void {
+    afterEach(function (): void {
+        if (isset($this->run)) {
+            File::deleteDirectory($this->run['sandbox']);
+        }
+    });
+
+    it('runs the privileged steps itself and hands the checkout back to the web user', function (): void {
+        $this->run = runDeployInSandbox(['root' => true]);
+
+        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+            ->and($this->run['privileged'])->toBe([
+                'supervisorctl restart tablepro-web-ssr',
+                'systemctl reload ' . expectedFpmService(),
+                "chown -R www-data:www-data {$this->run['app']}",
+            ]);
+    });
+
+    it('keeps root caches under root\'s own home and leaves DEPLOY_CACHE_DIR alone', function (): void {
+        $this->run = runDeployInSandbox(['root' => true]);
+        $home = "{$this->run['sandbox']}/root-home";
+
+        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+            ->and($this->run['env'])->toBe([
+                "composer HOME={$home} COMPOSER_HOME= COMPOSER_CACHE_DIR=",
+                "npm HOME={$home} npm_config_cache=",
+            ])
+            ->and("{$this->run['cache']}/npm")->not->toBeDirectory();
+    });
+
     it('takes HOME from the password database, not from the caller', function (): void {
         $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
 
@@ -267,26 +637,13 @@ describe('started through sudo by another user', function (): void {
         expect(strpos($script, 'export PATH='))->toBeLessThan(strpos($script, 'getent passwd'));
     });
 
-    it('refuses a relative APP_PATH before it touches anything', function (): void {
-        /*
-         * Every relative path in the script hangs off the `cd "$APP_PATH"`, so a
-         * relative APP_PATH would make the deploy depend on the caller's
-         * directory. The check runs before git, composer or npm is called, so
-         * running the real script here is safe.
-         */
-        $process = new Process(['bash', base_path('scripts/deploy.sh')], sys_get_temp_dir(), ['APP_PATH' => 'var/www/tablepro.app']);
-        $process->run();
-
-        expect($process->getExitCode())->toBe(1)
-            ->and($process->getErrorOutput())->toContain('APP_PATH must be an absolute path');
-    });
-
     it('trusts the checkout for git itself, before the first git command', function (): void {
         /*
          * The checkout belongs to www-data. git running as root rejects it as
          * "dubious ownership", and under sudo compares the owner with the calling
-         * user instead, which does not match either. Without this the deploy
+         * user instead, which does not match either. Without this a root deploy
          * would depend on a safe.directory line in some user's ~/.gitconfig.
+         * www-data owns the checkout, so its deploys need none.
          */
         $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
         $code = (string) preg_replace('/^\s*#.*$/m', '', $script);
@@ -301,12 +658,14 @@ describe('started through sudo by another user', function (): void {
         expect(strpos($code, 'GIT_CONFIG_VALUE_0'))->toBeLessThan($first[0][1]);
     });
 
-    it('still hands the checkout back to the web user when it runs as root', function (): void {
-        $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
-
-        expect($script)
-            ->toContain('WEB_USER="${WEB_USER:-www-data}"')
-            ->toMatch('/if \[ "\$\(id -u\)" -eq 0 \]; then\n\s+chown -R "\$WEB_USER:\$WEB_USER" "\$APP_PATH"/');
+    it('prints a rollback for a root shell that hands the checkout back too', function (): void {
+        /*
+         * Run from `sudo -i`, the rollback writes vendor/, node_modules/ and the
+         * bundles as root. Left that way, the next www-data deploy could not
+         * rewrite them.
+         */
+        expect((string) file_get_contents(base_path('scripts/deploy.sh')))
+            ->toMatch('/^rollback_command\(\) \{\n.*chown -R %s:%s %s.*\n\s+"\$APP_PATH" "\$PREV_COMMIT" "\$WEB_USER" "\$WEB_USER" "\$APP_PATH"/m');
     });
 });
 
