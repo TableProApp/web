@@ -54,15 +54,15 @@
  * The banner, the sticky header and anchor scrolling
  * ---------------------------------------------------------------------------
  *
- * `--banner-h` is the single source for the optional banner's height. The
- * banner and the header stick to the top together (landing-layout.tsx), so an
- * anchor has to clear both: the 64px header plus 16px of air, plus the banner
- * while it is shown.
+ * `--banner-h` is the single source for the license banner's height. The
+ * banner sits above the sticky header and scrolls away with the page
+ * (landing-layout.tsx), so an anchor only has to clear the header: 64px plus
+ * 16px of air.
  *
  * Zero by default, so a disabled or dismissed banner leaves nothing behind.
- * `html.has-banner` is stamped server-side in app.blade.php when the config
- * enables it, and removed there before first paint when the reader dismissed
- * the current version, so a dismissed banner never flashes and a disabled one
+ * `html.has-banner` is stamped server-side in app.blade.php on every page that
+ * shows it, and removed there before first paint while the reader's dismissal
+ * lasts (lib/banner.ts), so a dismissed banner never flashes and a disabled one
  * reserves nothing. Visibility lives here rather than in React state for the
  * same reason: state would resolve one paint too late.
  */
@@ -84,7 +84,7 @@ html.has-banner .support-banner {
 }
 
 html {
-  scroll-padding-top: calc(5rem + var(--banner-h));
+  scroll-padding-top: 5rem;
 }
 
 /*

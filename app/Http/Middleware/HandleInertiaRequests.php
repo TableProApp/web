@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Banner;
 use App\Support\Localization\LocaleSwitcher;
 use App\Support\Localization\LocalizedUrl;
 use App\Support\Seo\SeoContext;
@@ -60,34 +61,8 @@ class HandleInertiaRequests extends Middleware
                 'switcher' => app(LocaleSwitcher::class)->forRequest($request),
             ],
             'seo' => fn(): array => app(SeoContext::class)->forRequest($request),
-            'banner' => $this->banner(),
+            'banner' => Banner::forRequest($request),
             'crispWebsiteId' => config('services.crisp.website_id') ?: null,
-        ];
-    }
-
-    /**
-     * The top banner, or null when it is switched off.
-     *
-     * Shared rather than passed per page, because every page renders it.
-     *
-     * Null rather than `['enabled' => false]`: the component renders nothing
-     * for null, so a disabled banner leaves no element, no reserved height and
-     * no shifted header behind it.
-     *
-     * The banner's words belong to the `banner` UI catalog in each language;
-     * config keeps only the switch, the link and the dismissal version.
-     *
-     * @return array{href: string, version: string}|null
-     */
-    private function banner(): ?array
-    {
-        if (! config('banner.enabled')) {
-            return null;
-        }
-
-        return [
-            'href' => (string) config('banner.href'),
-            'version' => (string) config('banner.version'),
         ];
     }
 }
