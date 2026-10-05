@@ -96,8 +96,8 @@ export GIT_CONFIG_VALUE_0="$APP_PATH"
 #
 # The service defaults to the FPM of the CLI's own PHP version: the CLI runs
 # composer and artisan for the same release, so the two have to agree anyway.
-# That is php8.4-fpm on the Ubuntu 24.04 host and php8.5-fpm on Ubuntu 26.04,
-# whose archive ships no other PHP. Set FPM_SERVICE to name another unit.
+# On this host, Ubuntu 26.04, whose archive ships no other PHP, that is
+# php8.5-fpm. Set FPM_SERVICE to name another unit.
 command -v php > /dev/null || fail "php is not on PATH ($PATH)"
 PHP_MINOR="$(php -r 'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;')"
 FPM_SERVICE="${FPM_SERVICE:-php${PHP_MINOR}-fpm}"

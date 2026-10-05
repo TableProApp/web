@@ -34,12 +34,11 @@ A dozen other sites share the same host and the same PHP-FPM master, so a reload
 is not free — but it is required, and this is the trap on this host:
 
 ```
-/etc/php/<version>/cli/php.ini    opcache.validate_timestamps  On
-/etc/php/<version>/fpm/php.ini    opcache.validate_timestamps  0
+/etc/php/8.5/cli/php.ini    opcache.validate_timestamps  On
+/etc/php/8.5/fpm/php.ini    opcache.validate_timestamps  0
 ```
 
-`<version>` is 8.4 on the Ubuntu 24.04 host (ondrej PPA) and 8.5 on Ubuntu
-26.04, whose archive ships PHP 8.5 only.
+The host runs Ubuntu 26.04, whose archive ships PHP 8.5 only.
 
 `php -i` reads the **CLI** ini and says `On`. FPM says `0`, which means it
 compiles each file once and never looks at the file again. A deploy that changes
@@ -52,10 +51,11 @@ under `public/`, fetched over HTTP, then deleted. Beware `opcache.file_update_pr
 (2 seconds by default) when probing: a file written and requested immediately is
 never cached at all, so a naive probe reports that everything reloads fine.
 
-`scripts/deploy.sh` therefore reloads `php<version>-fpm` whenever PHP changed,
-where `<version>` is the PHP CLI's own (`php -r 'echo PHP_MAJOR_VERSION, ".",
-PHP_MINOR_VERSION;'`): the CLI runs Composer and artisan for the same release,
-so the two have to agree anyway. Set `FPM_SERVICE` to name another unit.
+`scripts/deploy.sh` therefore reloads `php<version>-fpm` (`php8.5-fpm` here)
+whenever PHP changed, where `<version>` is the PHP CLI's own (`php -r 'echo
+PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;'`): the CLI runs Composer and artisan
+for the same release, so the two have to agree anyway. Set `FPM_SERVICE` to name
+another unit.
 
 ## It only does the work the diff calls for
 

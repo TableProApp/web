@@ -233,8 +233,8 @@ it('reloads the FPM of the PHP version that ran the release, not a hard-coded on
      * The default used to be php8.4-fpm. Ubuntu 26.04 ships PHP 8.5 only, so
      * there `systemctl reload php8.4-fpm` fails after the bundles are swapped,
      * and the EXIT trap rolls a good release back. The CLI runs composer and
-     * artisan for the same release, so its version names the right unit on the
-     * old host and the new one alike.
+     * artisan for the same release, so its version names the right unit
+     * whichever PHP the host runs.
      */
     $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
 
