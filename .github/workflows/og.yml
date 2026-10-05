@@ -43,9 +43,12 @@ jobs:
           tools: composer:v2
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "22"
+          node-version-file: .node-version
+          # This job holds a write token, so keep setup-node's automatic npm
+          # cache off, as its README advises for such workflows.
+          package-manager-cache: false
 
       - name: Resolve the Composer cache directory
         id: composer-cache
