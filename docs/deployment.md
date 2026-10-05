@@ -145,6 +145,15 @@ Before the rename, three things must hold, or the live bundles are left alone:
 - it contains an entry for `resources/js/app.tsx`
 - `bootstrap/ssr-next/ssr.js` exists
 
+Just before the rename, the previous release's hashed files are copied into
+the new build, so a page that still names them keeps loading: a page cached at
+the edge before the purge, a stale copy Cloudflare serves while it revalidates,
+or a tab left open. Every file the outgoing `manifest.json` names retires at
+that moment and its mtime is set to now; a file an earlier deploy carried keeps
+the moment it retired and is dropped once that is more than
+`ASSET_RETENTION_HOURS` (default 72) ago. Hashed names never collide, so this
+costs only disk.
+
 After the rename, any failure puts the previous bundles back from
 `public/build-old` and `bootstrap/ssr-old` and restarts SSR. The code stays at
 the new commit; the script prints the command to revert that too rather than
@@ -282,7 +291,8 @@ ubuntu ALL=(www-data) NOPASSWD: /var/www/tablepro.app/scripts/deploy.sh
 Note that `command=` names the copy of the script already on disk, so a change
 to `deploy.sh` takes effect on the deploy *after* the one that ships it.
 
-Then set five repository secrets:
+Then set five repository secrets (two more, for the cache purge, are under
+"Caching"):
 
 | Secret | Value |
 | --- | --- |
@@ -361,6 +371,9 @@ out of a fork's reach:
    the runner or sent to the server.
 3. The forced command means the key grants one action, not a shell.
 
+The Cloudflare token is the other secret here. It can only purge the zone's
+cache, it is used on the runner, and it is never sent to the server.
+
 ## Caching
 
 ### Pages
@@ -421,6 +434,25 @@ The platform paths are the ones nginx sends to the account app (the same list
 as `LocalizedUrl::PLATFORM_PATHS`); they hold sessions and must never be
 shared. `starts_with` is used rather than a regular expression because regex
 matching in rules needs a Business plan.
+
+**After a deploy**, `.github/workflows/deploy.yml` purges the zone from the
+runner, once `scripts/deploy.sh` has succeeded. It needs two repository
+secrets; without them it prints a notice and skips, so deploys work before they
+exist:
+
+| Secret | Value |
+| --- | --- |
+| `CLOUDFLARE_ZONE_ID` | the tablepro.app zone's ID (zone Overview, API section) |
+| `CLOUDFLARE_CACHE_PURGE_TOKEN` | an API token with only *Zone → Cache Purge → Purge*, for that zone |
+
+It purges everything (`purge_everything`), which every plan allows, so the
+other hosts in the zone lose their cached copies too and refetch them. A failed
+purge turns the run red but leaves the release live: pages catch up within ten
+minutes, and the previous assets are still on disk for anything cached before.
+
+The deploy's own smoke test goes through Cloudflare with a query string no
+reader sends (`?deploy-smoke=<time>`), so it never reads a page cached before
+the release it is checking.
 
 ### Assets
 
