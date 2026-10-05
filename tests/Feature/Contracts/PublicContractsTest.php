@@ -137,6 +137,9 @@ it('keeps the analytics event names and their parameters', function (): void {
         'download_click' => ['location', 'platform'],
         'checkout_started' => ['tier', 'cycle'],
         'newsletter_signup_clicked' => ['source'],
+        'license_banner_view' => ['version'],
+        'license_banner_click' => ['version'],
+        'license_banner_dismiss' => ['version', 'reason'],
     ];
 
     foreach ($names as $name => $sets) {
@@ -172,7 +175,7 @@ it('keeps the four storage keys both apps read', function (): void {
     Assert::assertSame('tablepro:analytics-consent', $key('lib/consent.ts', 'CONSENT_STORAGE_KEY'));
     Assert::assertSame('theme', $key('lib/theme.ts', 'THEME_STORAGE_KEY'));
     Assert::assertSame('tablepro:attribution', $key('lib/attribution.ts', 'ATTRIBUTION_STORAGE_KEY'));
-    Assert::assertSame('tablepro:banner-dismissed', $key('components/site/support-banner.tsx', 'BANNER_STORAGE_KEY'));
+    Assert::assertSame('tablepro:banner-dismissed', $key('lib/banner.ts', 'BANNER_STORAGE_KEY'));
 
     $blade = (string) file_get_contents(resource_path('views/app.blade.php'));
     $partial = (string) file_get_contents(resource_path('views/partials/head-theme.blade.php'));

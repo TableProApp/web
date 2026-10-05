@@ -780,7 +780,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - Right: LanguageSwitcher, ThemeControl, Account (`quiet`, a plain `<a>` to `/account?locale={locale}`), **Download** (`primary` `sm`, to `/download`).
 - < 1024: logo, Download (`primary` `sm`), Menu button (44 × 44, `aria-expanded`, `aria-controls`).
 - Internal hrefs go through `LocaleLink`, which is why this component never moves to the license repo (§9).
-- `scroll-padding-top: 80px` plus the banner height, so anchors and focused elements clear the header (WCAG 2.4.11).
+- `scroll-padding-top: 80px`, so anchors and focused elements clear the header (WCAG 2.4.11). The banner scrolls away, so it adds nothing.
 
 **MobileNav** (items and order from sitemap §B.2):
 
@@ -793,9 +793,10 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 **SupportBanner:**
 
-- 40px `--surface` band with a 1px `--rule` bottom border; text `small` `--foreground`; link `standalone`.
-- Dismiss is a 32px `quiet` icon button labelled "Dismiss" / "Ẩn thông báo".
-- Mechanics unchanged: `--banner-h`, `has-banner` and the dismissal key.
+- The license banner (decided 2026-10-05): on by default on every public page except Pricing, above the sticky header, scrolling away with the page.
+- 40px `--surface` band with a 1px `--rule` bottom border; text `small` `--foreground`; link `standalone`. From 1024px the sentence and "Get a license"; below, the short link alone; from 1280px also "Have a license? Hide this".
+- Dismiss is a 32px `quiet` icon button labelled "Dismiss" / "Ẩn thông báo". Closing it hides the bar for 30 days at that version; "Have a license?" and a purchase hide it for a year at every version (`lib/banner.ts`).
+- Mechanics: `--banner-h`, `has-banner` stamped server-side on the pages that show it, and the dismissal record settled before first paint.
 
 **SiteFooter:**
 
@@ -1244,7 +1245,7 @@ The ceiling drops from 320ms to 240ms, and `--dur-row` goes with the row bar.
 - **Order:** skip link ("Skip to content" / "Chuyển đến nội dung chính", `--accent` fill, 7.42:1) → banner → header → `<main tabindex="-1">` → footer → consent bar (last in DOM).
 - **Menus and dialogs:** menus close on Escape and return focus; dialogs are native modals.
 - **Focus is never obscured** (WCAG 2.4.11):
-  - `scroll-padding-top` clears the sticky header and banner.
+  - `scroll-padding-top` clears the sticky header.
   - `scroll-padding-bottom` clears the consent bar while it is open.
 - **Forced colours** (`@media (forced-colors: active)`):
   - Buttons and Badges keep a transparent 1px border, so they show as outlined.

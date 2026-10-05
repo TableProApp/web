@@ -21,8 +21,9 @@ interface Props {
  * (design-system §4.6, §7.2).
  *
  * 1. The skip link, first in the document.
- * 2. The optional banner and the header, sticky together at the top. The
- *    header is a real `banner` landmark because it sits outside `<main>`.
+ * 2. The license banner, which scrolls away with the page, then the sticky
+ *    header. The header is a real `banner` landmark because it sits outside
+ *    `<main>`.
  * 3. `<main id="main-content" tabIndex={-1}>`, so the skip link moves focus
  *    into it rather than only scrolling.
  * 4. The footer, a `contentinfo` landmark for the same reason.
@@ -64,8 +65,8 @@ export default function LandingLayout({ children, footerNewsletter = true }: Pro
             >
                 {m.a11y.skipToContent}
             </a>
+            <SupportBanner />
             <div className="sticky top-0 z-40">
-                <SupportBanner />
                 <SiteHeader />
             </div>
             <main id="main-content" tabIndex={-1} className="flex-1">

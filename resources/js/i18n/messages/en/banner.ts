@@ -1,20 +1,21 @@
 /**
- * The `banner` namespace: the optional standing line above the header.
+ * The `banner` namespace: the license banner above the header.
  *
  * `config/banner.php` holds only the switch, the link and the dismissal
- * version; the words live here, in each language. It is off by default. The
- * copy states a fact and links to it. It never pleads, and it never says the
- * whole app is free.
+ * version; the words live here, in each language. The line is addressed to a
+ * regular user and says what a license adds and what it pays for. It states a
+ * fact and never pleads, and it never says the whole app is free.
  *
  * Length limits, held by TopBannerTest in both languages: the band is one
  * 40px line and nothing in it may be truncated (design-system §3.3). From
  * 1024px the line is `message` and the `cta` link, together within 110
  * characters, and `cta` within 20; below 1024px the link alone reads `short`,
- * within 32.
+ * within 32. `licensed` shows from 1280px, within 26.
  */
 export default {
     label: 'Announcement',
-    message: 'TablePro is free to use. Paid plans add optional features to the Mac app.',
-    short: 'See what paid plans add',
-    cta: 'See pricing',
+    message: 'Use TablePro every day? A license adds the paid features and funds the next release.',
+    short: 'Get a license, fund TablePro',
+    cta: 'Get a license',
+    licensed: 'Have a license? Hide this',
 };

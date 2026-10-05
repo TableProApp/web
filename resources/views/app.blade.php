@@ -4,19 +4,19 @@
     or for an error page the locale of its path. The locale lives in the URL
     alone, so this is right on the first byte and never needs JavaScript.
 
-    `has-banner` decides, before a single pixel is painted, whether the top
-    banner is seen and how much room the header and <main> leave for it. It is
-    set here rather than in React because `--banner-h` has to be settled by the
-    time the first frame renders: resolving it in state would drop the header
-    44px on every load for every reader who had already dismissed the bar. The
-    script further down removes it again when this browser has dismissed the
-    current banner version.
+    `has-banner` decides, before a single pixel is painted, whether the license
+    banner is seen and how much room it takes above the header. It is set here
+    rather than in React because `--banner-h` has to be settled by the time the
+    first frame renders: resolving it in state would drop the header 40px on
+    every load for every reader who had already closed the bar. It is set only
+    on pages that show the banner (App\Support\Banner), and the script further
+    down removes it again while this browser's dismissal lasts.
 
     No `overflow-x: hidden` on <html> or <body>: it masked horizontal-scroll
     regressions instead of preventing them. Anything wide scrolls inside its
     own region.
 --}}
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"@if(config('banner.enabled')) class="has-banner"@endif>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"@if(\App\Support\Banner::shownOn(request())) class="has-banner"@endif>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,23 +87,27 @@
     @endif
 
     @inertiaHead
-    @if(config('banner.enabled'))
+    @if(\App\Support\Banner::shownOn(request()))
         {{--
             The banner dismissal, before first paint.
 
-            Version-matched: a reader who closed the previous message has not
-            read this one, so bumping `banner.version` brings the bar back
-            without touching anyone's storage. Wrapped, because localStorage
+            The record is `{"version", "until"}` (resources/js/lib/banner.ts,
+            `isBannerDismissed`, which this mirrors and tests/js/banner.test.ts
+            runs against). It hides the bar until `until` for the version the
+            reader closed, or for every version when it is "*": a reader who
+            has a license, or just bought one. Bumping `banner.version` brings
+            the bar back for a new message. Wrapped, because localStorage
             throws outright in a private window rather than returning null —
             and a banner is not worth a blank page.
 
-            Emitted only when the banner is on, so a switched-off banner leaves
-            no element, no class, no reserved height and no dead script.
+            Emitted only where the banner is shown, so elsewhere there is no
+            element, no class, no reserved height and no dead script.
         --}}
         <script>
             (function () {
                 try {
-                    if (localStorage.getItem('tablepro:banner-dismissed') === @json((string) config('banner.version'))) {
+                    var record = JSON.parse(localStorage.getItem('tablepro:banner-dismissed') || 'null');
+                    if (record && typeof record.until === 'number' && record.until > Date.now() && (record.version === '*' || record.version === @json((string) config('banner.version')))) {
                         document.documentElement.classList.remove('has-banner');
                     }
                 } catch (e) {}
