@@ -11,6 +11,7 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route as Router;
+use Inertia\Middleware\EnsureDeferredCallbacksRun;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
 
@@ -333,6 +334,16 @@ it('canonicalises every request before routing, matched or not', function (): vo
      * First in the global stack, not in the `web` group: a retired path such
      * as `/mariadb-client` matches no route, so group middleware never sees it.
      * Its position is the contract.
+     *
+     * inertia-laravel 3.4 prepends `EnsureDeferredCallbacksRun` once the kernel
+     * resolves, ahead of anything the app prepends. It reads only the response
+     * (a 409 client redirect) and passes the request through untouched, so it
+     * is left out: nothing that looks at the request runs before this one.
      */
-    expect(app(Kernel::class)->getGlobalMiddleware()[0])->toBe(CanonicalizeRequest::class);
+    $global = array_values(array_diff(
+        app(Kernel::class)->getGlobalMiddleware(),
+        [EnsureDeferredCallbacksRun::class],
+    ));
+
+    expect($global[0])->toBe(CanonicalizeRequest::class);
 });
