@@ -258,6 +258,12 @@ sudo tail -f /var/log/supervisor/tablepro-web-ssr.log
 `Error: Page not found: auth/login` in that log is a scanner, not a bug. This
 app has no such page.
 
+It listens on `127.0.0.1` only (`resources/js/ssr.tsx`; `INERTIA_SSR_HOST`
+overrides it). Inertia's default is every interface, and the server answers
+`/render` and `/shutdown` to anyone who reaches the port, so without a firewall
+in front of it anyone could stop it. Check with
+`sudo ss -ltnp | grep 13715`: the local address must be `127.0.0.1:13715`.
+
 ## The scheduler
 
 Two jobs run on the server's schedule (`routes/console.php`): `release:refresh`
