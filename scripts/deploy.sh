@@ -30,12 +30,36 @@
 #   reverting dependencies too is a decision for a human, so the script prints
 #   the command rather than guessing.
 #
+# HOW IT IS STARTED
+#   The deploy key logs in as `ubuntu`, and its forced command runs
+#   `sudo -n /var/www/tablepro.app/scripts/deploy.sh` (docs/deployment.md, "The
+#   deploy key"). So the script runs as root, under sudo, from whatever directory
+#   and environment the SSH session had. Nothing below depends on either.
+#
 # USAGE
-#   ./scripts/deploy.sh
-#   FORCE=1 ./scripts/deploy.sh          # rebuild even if the commit is unchanged
-#   APP_PATH=/var/www/tablepro.app BRANCH=main ./scripts/deploy.sh
+#   sudo /var/www/tablepro.app/scripts/deploy.sh
+#   sudo FORCE=1 /var/www/tablepro.app/scripts/deploy.sh    # rebuild even if the commit is unchanged
+#   sudo APP_PATH=/var/www/tablepro.app BRANCH=main /var/www/tablepro.app/scripts/deploy.sh
+#
+#   sudo drops the caller's environment, so a variable has to be given on the
+#   sudo command line, as above, to reach the script.
 #
 set -euo pipefail
+
+step() { printf '\n\033[1m==> %s\033[0m\n' "$1"; }
+fail() { printf '\033[31merror: %s\033[0m\n' "$1" >&2; exit 1; }
+
+# How much of the caller's environment sudo keeps is a matter of its policy. A
+# HOME still pointing at /home/ubuntu would have root write its npm and Composer
+# caches into that user's home, where they later break the user's own npm, and
+# read that user's git configuration. So the standard directories go on PATH
+# whatever PATH arrived with, and HOME comes from the password database for the
+# user this actually runs as. (getent is Linux-only; elsewhere HOME is left as
+# it is.)
+export PATH="${PATH:+$PATH:}/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+if home_dir="$(getent passwd "$(id -u)" 2>/dev/null | cut -d: -f6)" && [ -n "$home_dir" ]; then
+    export HOME="$home_dir"
+fi
 
 APP_PATH="${APP_PATH:-/var/www/tablepro.app}"
 BRANCH="${BRANCH:-main}"
@@ -44,21 +68,39 @@ SUPERVISOR_PROGRAM="${SUPERVISOR_PROGRAM:-tablepro-web-ssr}"
 SMOKE_URL="${SMOKE_URL:-}"
 FORCE="${FORCE:-}"
 
+# Every relative path below is relative to APP_PATH, after the `cd` further
+# down. A relative APP_PATH would itself depend on the caller's directory.
+case "$APP_PATH" in
+    /*) ;;
+    *) fail "APP_PATH must be an absolute path, got: $APP_PATH" ;;
+esac
+
+# The checkout belongs to $WEB_USER (see "Restoring ownership" below), so git,
+# running as root, refuses it as "dubious ownership". Under sudo it compares the
+# owner with the calling user, ubuntu, which does not match either. Trusting
+# this one path here, in command scope, means a deploy does not depend on a
+# safe.directory line in somebody's ~/.gitconfig. It extends no new trust: the
+# script already runs this tree's PHP as root.
+export GIT_CONFIG_COUNT=1
+export GIT_CONFIG_KEY_0=safe.directory
+export GIT_CONFIG_VALUE_0="$APP_PATH"
+
 # This host sets opcache.validate_timestamps=0 in the FPM ini, so PHP compiles a
 # file once and never looks at it again. Without this reload a deploy that
 # changes PHP or a Blade template leaves the old bytecode serving traffic
 # indefinitely, and the site looks deployed while running the previous release.
 #
-# Do not check this with `php -i`: the CLI loads /etc/php/8.4/cli/php.ini, which
-# on this host says On while FPM says Off. The only honest way to read it is
-# through FPM itself.
+# Do not check this with `php -i`: the CLI loads /etc/php/<version>/cli/php.ini,
+# which on this host says On while FPM says Off. The only honest way to read it
+# is through FPM itself.
 #
-# Set FPM_SERVICE= (empty) to skip, but only on a host where FPM genuinely
-# revalidates timestamps.
-FPM_SERVICE="${FPM_SERVICE:-php8.4-fpm}"
-
-step() { printf '\n\033[1m==> %s\033[0m\n' "$1"; }
-fail() { printf '\033[31merror: %s\033[0m\n' "$1" >&2; exit 1; }
+# The service defaults to the FPM of the CLI's own PHP version: the CLI runs
+# composer and artisan for the same release, so the two have to agree anyway.
+# That is php8.4-fpm on the Ubuntu 24.04 host and php8.5-fpm on Ubuntu 26.04,
+# whose archive ships no other PHP. Set FPM_SERVICE to name another unit.
+command -v php > /dev/null || fail "php is not on PATH ($PATH)"
+PHP_MINOR="$(php -r 'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;')"
+FPM_SERVICE="${FPM_SERVICE:-php${PHP_MINOR}-fpm}"
 
 cd "$APP_PATH" || fail "no such directory: $APP_PATH"
 [ -f artisan ] || fail "$APP_PATH is not a Laravel application"
@@ -85,7 +127,7 @@ on_exit() {
             rm -rf bootstrap/ssr && mv bootstrap/ssr-old bootstrap/ssr
         fi
         supervisorctl restart "$SUPERVISOR_PROGRAM" || true
-        printf 'The code is still at the new commit. To go all the way back:\n' >&2
+        printf 'The code is still at the new commit. To go all the way back, from a root shell (sudo -i):\n' >&2
         rollback_command >&2
     fi
 
@@ -368,5 +410,5 @@ fi
 
 printf '\n\033[32mDeployed %s (was %s)\033[0m\n' \
     "$(git rev-parse --short HEAD)" "$(git rev-parse --short "$PREV_COMMIT")"
-printf 'Roll back with:\n'
+printf 'Roll back with, from a root shell (sudo -i):\n'
 rollback_command

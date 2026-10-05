@@ -224,7 +224,90 @@ it('regenerates the sitemap when the pages it enumerates change', function (stri
 it('names an FPM service to reload, because this host does not revalidate', function () {
     $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
 
-    expect($script)->toMatch('/^FPM_SERVICE="\$\{FPM_SERVICE:-php[0-9.]+-fpm\}"$/m');
+    // Either a fixed `php8.x-fpm`, or the FPM of the CLI's own PHP version.
+    expect($script)->toMatch('/^FPM_SERVICE="\$\{FPM_SERVICE:-php(?:[0-9.]+|\$\{PHP_MINOR\})-fpm\}"$/m');
+});
+
+it('reloads the FPM of the PHP version that ran the release, not a hard-coded one', function (): void {
+    /*
+     * The default used to be php8.4-fpm. Ubuntu 26.04 ships PHP 8.5 only, so
+     * there `systemctl reload php8.4-fpm` fails after the bundles are swapped,
+     * and the EXIT trap rolls a good release back. The CLI runs composer and
+     * artisan for the same release, so its version names the right unit on the
+     * old host and the new one alike.
+     */
+    $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
+
+    expect($script)
+        ->toContain('PHP_MINOR="$(php -r \'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;\')"')
+        ->toContain('FPM_SERVICE="${FPM_SERVICE:-php${PHP_MINOR}-fpm}"')
+        ->not->toMatch('/FPM_SERVICE:-php8\.[0-9]-fpm/');
+
+    // And the expression really yields the `8.x` the unit names carry.
+    $process = new Process(['php', '-r', 'echo PHP_MAJOR_VERSION, ".", PHP_MINOR_VERSION;']);
+    $process->mustRun();
+
+    expect($process->getOutput())->toBe(PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION);
+});
+
+/*
+ * The deploy key logs in as `ubuntu` and its forced command runs the script
+ * through `sudo -n`, so it starts as root from the SSH session's directory and
+ * with whatever environment sudo's policy lets through. None of that may change
+ * what it does.
+ */
+describe('started through sudo by another user', function (): void {
+    it('takes HOME from the password database, not from the caller', function (): void {
+        $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
+
+        expect($script)->toContain('getent passwd "$(id -u)"');
+        expect($script)->toMatch('/^\s*export HOME="\$home_dir"$/m');
+
+        // PATH is extended first, so getent, id and cut are found at all.
+        expect(strpos($script, 'export PATH='))->toBeLessThan(strpos($script, 'getent passwd'));
+    });
+
+    it('refuses a relative APP_PATH before it touches anything', function (): void {
+        /*
+         * Every relative path in the script hangs off the `cd "$APP_PATH"`, so a
+         * relative APP_PATH would make the deploy depend on the caller's
+         * directory. The check runs before git, composer or npm is called, so
+         * running the real script here is safe.
+         */
+        $process = new Process(['bash', base_path('scripts/deploy.sh')], sys_get_temp_dir(), ['APP_PATH' => 'var/www/tablepro.app']);
+        $process->run();
+
+        expect($process->getExitCode())->toBe(1)
+            ->and($process->getErrorOutput())->toContain('APP_PATH must be an absolute path');
+    });
+
+    it('trusts the checkout for git itself, before the first git command', function (): void {
+        /*
+         * The checkout belongs to www-data. git running as root rejects it as
+         * "dubious ownership", and under sudo compares the owner with the calling
+         * user instead, which does not match either. Without this the deploy
+         * would depend on a safe.directory line in some user's ~/.gitconfig.
+         */
+        $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
+        $code = (string) preg_replace('/^\s*#.*$/m', '', $script);
+
+        expect($code)
+            ->toContain('export GIT_CONFIG_KEY_0=safe.directory')
+            ->toContain('export GIT_CONFIG_VALUE_0="$APP_PATH"');
+
+        preg_match('/^.*\bgit (?!config)[a-z-]+/m', $code, $first, PREG_OFFSET_CAPTURE);
+
+        expect($first)->not->toBeEmpty('Expected the script to run git');
+        expect(strpos($code, 'GIT_CONFIG_VALUE_0'))->toBeLessThan($first[0][1]);
+    });
+
+    it('still hands the checkout back to the web user when it runs as root', function (): void {
+        $script = (string) file_get_contents(base_path('scripts/deploy.sh'));
+
+        expect($script)
+            ->toContain('WEB_USER="${WEB_USER:-www-data}"')
+            ->toMatch('/if \[ "\$\(id -u\)" -eq 0 \]; then\n\s+chown -R "\$WEB_USER:\$WEB_USER" "\$APP_PATH"/');
+    });
 });
 
 it('verifies the new bundles before it moves them into place', function (string $guard) {

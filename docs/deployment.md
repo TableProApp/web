@@ -1,8 +1,9 @@
 # How this app gets deployed
 
 `main` deploys itself. A push that turns the tests workflow green triggers
-`.github/workflows/deploy.yml`, which opens one SSH connection to the server;
-the server runs `scripts/deploy.sh` and nothing else.
+`.github/workflows/deploy.yml`, which opens one SSH connection to the server as
+`ubuntu`; the server runs `sudo -n /var/www/tablepro.app/scripts/deploy.sh` and
+nothing else.
 
 Everything below exists because that sentence hides three things worth knowing.
 
@@ -33,9 +34,12 @@ A dozen other sites share the same host and the same PHP-FPM master, so a reload
 is not free — but it is required, and this is the trap on this host:
 
 ```
-/etc/php/8.4/cli/php.ini    opcache.validate_timestamps  On
-/etc/php/8.4/fpm/php.ini    opcache.validate_timestamps  0
+/etc/php/<version>/cli/php.ini    opcache.validate_timestamps  On
+/etc/php/<version>/fpm/php.ini    opcache.validate_timestamps  0
 ```
+
+`<version>` is 8.4 on the Ubuntu 24.04 host (ondrej PPA) and 8.5 on Ubuntu
+26.04, whose archive ships PHP 8.5 only.
 
 `php -i` reads the **CLI** ini and says `On`. FPM says `0`, which means it
 compiles each file once and never looks at the file again. A deploy that changes
@@ -48,8 +52,10 @@ under `public/`, fetched over HTTP, then deleted. Beware `opcache.file_update_pr
 (2 seconds by default) when probing: a file written and requested immediately is
 never cached at all, so a naive probe reports that everything reloads fine.
 
-`scripts/deploy.sh` therefore reloads `php8.4-fpm` whenever PHP changed. Set
-`FPM_SERVICE=` empty only on a host where FPM genuinely revalidates.
+`scripts/deploy.sh` therefore reloads `php<version>-fpm` whenever PHP changed,
+where `<version>` is the PHP CLI's own (`php -r 'echo PHP_MAJOR_VERSION, ".",
+PHP_MINOR_VERSION;'`): the CLI runs Composer and artisan for the same release,
+so the two have to agree anyway. Set `FPM_SERVICE` to name another unit.
 
 ## It only does the work the diff calls for
 
@@ -149,15 +155,30 @@ a second later, when new assets are served alongside the old SSR bundle.
 
 ## Deploying by hand
 
+Root cannot log in over SSH. Log in as `ubuntu` with your own key (not the
+deploy key, which cannot open a shell) and run the script through `sudo`,
+exactly as the forced command does:
+
 ```bash
-ssh -p <port> root@<host>
-cd /var/www/tablepro.app && ./scripts/deploy.sh
+ssh -p <port> ubuntu@<host>
+sudo /var/www/tablepro.app/scripts/deploy.sh
+sudo FORCE=1 /var/www/tablepro.app/scripts/deploy.sh
 ```
 
 It reads `APP_PATH`, `BRANCH`, `WEB_USER`, `SUPERVISOR_PROGRAM`, `SMOKE_URL`,
 `FORCE` and `FPM_SERVICE` from the environment if you need to point it somewhere
-else. It refuses to run if the server's working tree is dirty, because merging
-over someone's live edit is how that edit disappears.
+else. `sudo` drops the caller's environment, so give them on the `sudo` command
+line, as `FORCE=1` above. It refuses to run if the server's working tree is
+dirty, because merging over someone's live edit is how that edit disappears.
+
+It does not depend on where or how it was started. It works from an absolute
+`APP_PATH` (and refuses a relative one), takes `HOME` from the password database
+rather than from the caller, so root's npm and Composer caches stay under
+`/root`, and adds the standard directories to `PATH`. git refuses a checkout
+owned by another user ("dubious ownership"), and the checkout belongs to
+`www-data`; the script trusts `APP_PATH` for git itself, in command scope, so a
+deploy needs no `safe.directory` line in any `.gitconfig`. It still ends by
+handing the whole checkout back to `www-data`.
 
 It finishes by fetching `APP_URL` and checking two things: that the answer is
 200, and that the HTML contains a server-rendered `<h1>`. The second check is
@@ -184,7 +205,7 @@ runs before `git pull`, and the pinned SSH command runs **the copy of
 hand:
 
 ```bash
-cd /var/www/tablepro.app && rm -rf public/build-old bootstrap/ssr-old
+sudo rm -rf /var/www/tablepro.app/public/build-old /var/www/tablepro.app/bootstrap/ssr-old
 ```
 
 Then re-run the workflow. Nothing else needs doing: those directories are the
@@ -205,9 +226,9 @@ Both exist, both run `inertia:start-ssr`, and restarting the wrong one restarts
 someone else's site.
 
 ```bash
-supervisorctl status tablepro-web-ssr
-supervisorctl restart tablepro-web-ssr
-tail -f /var/log/supervisor/tablepro-web-ssr.log
+sudo supervisorctl status tablepro-web-ssr
+sudo supervisorctl restart tablepro-web-ssr
+sudo tail -f /var/log/supervisor/tablepro-web-ssr.log
 ```
 
 `Error: Page not found: auth/login` in that log is a scanner, not a bug. This
@@ -225,11 +246,27 @@ Create it:
 ssh-keygen -t ed25519 -N '' -C 'tablepro-web-deploy' -f ./deploy_key
 ```
 
-Install the public half on the server, on one line:
+Root SSH login is disabled, so the key belongs to `ubuntu` and the forced
+command goes through `sudo`. Install the public half in
+`/home/ubuntu/.ssh/authorized_keys`, on one line:
 
 ```
-command="/var/www/tablepro.app/scripts/deploy.sh",no-agent-forwarding,no-port-forwarding,no-pty,no-user-rc,no-X11-forwarding ssh-ed25519 AAAA... tablepro-web-deploy
+command="sudo -n /var/www/tablepro.app/scripts/deploy.sh",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAA... tablepro-web-deploy
 ```
+
+`sudo -n` never prompts: with no rule letting `ubuntu` run the script without a
+password it fails at once, and the workflow goes red, rather than hanging on a
+prompt nobody can answer. Ubuntu's cloud images normally give `ubuntu`
+`NOPASSWD:ALL` in `/etc/sudoers.d/90-cloud-init-users`; check that it is there.
+If that is ever narrowed, keep at least:
+
+```
+ubuntu ALL=(root) NOPASSWD: /var/www/tablepro.app/scripts/deploy.sh
+```
+
+The script then runs as root, as it always has: it reloads PHP-FPM, restarts
+the SSR program and hands the checkout back to `www-data`, none of which needs
+a sudo rule of its own.
 
 Note that `command=` names the copy of the script already on disk, so a change
 to `deploy.sh` takes effect on the deploy *after* the one that ships it.
@@ -242,14 +279,17 @@ Then set five repository secrets:
 | `DEPLOY_KNOWN_HOSTS` | `ssh-keyscan -p <port> <host>` output, pinned |
 | `DEPLOY_HOST` | server address |
 | `DEPLOY_PORT` | SSH port |
-| `DEPLOY_USER` | user the `authorized_keys` entry belongs to |
+| `DEPLOY_USER` | `ubuntu`, the user the `authorized_keys` entry belongs to |
+
+Moving to a new host means new `DEPLOY_HOST`, `DEPLOY_PORT` and
+`DEPLOY_KNOWN_HOSTS` values too; `deploy.yml` itself does not change.
 
 `DEPLOY_KNOWN_HOSTS` is pinned rather than discovered at run time because
 `ssh-keyscan` trusts whatever answers it, which would accept an impostor on the
 first connection and make checking pointless.
 
-Revoke by deleting that line from `authorized_keys`. Deleting the GitHub secret
-alone leaves a working key in circulation.
+Revoke by deleting that line from `/home/ubuntu/.ssh/authorized_keys`.
+Deleting the GitHub secret alone leaves a working key in circulation.
 
 ### Why this workflow may hold a secret when `tests.yml` may not
 
@@ -292,7 +332,7 @@ browser that had already loaded them, and the hero images are due to be replaced
 ## Rolling back
 
 `scripts/deploy.sh` prints the exact command when it finishes, with the previous
-commit already filled in. The shape of it:
+commit already filled in. Run it from a root shell (`sudo -i`). The shape of it:
 
 ```bash
 cd /var/www/tablepro.app
@@ -300,6 +340,13 @@ git reset --hard <previous-commit>
 composer install --no-dev -q && npm ci --silent && npm run build
 php artisan optimize
 supervisorctl restart tablepro-web-ssr
+```
+
+git run by hand does not get the script's `safe.directory`, and refuses the
+`www-data`-owned checkout. Trust it once per host, system-wide:
+
+```bash
+sudo git config --system --add safe.directory /var/www/tablepro.app
 ```
 
 The previous bundles also survive one deploy at `public/build-old` and
