@@ -18,7 +18,8 @@
             "title": "Quản lý thư viện connection",
             "paragraphs": [
                 "Mỗi connection được chỉnh trong một form gồm các tab Tổng quát, Mạng, Tùy chọn và Giao diện (General, Network, Options, Appearance). Import một URL kết nối, kể cả URL <code>jdbc:</code> và URL <code>+ssh</code> có kèm chặng SSH, form sẽ tự điền; nếu clipboard đang có sẵn một URL như vậy, form sẽ gợi ý <ui>Dùng URL trong clipboard</ui> (Use clipboard URL).",
-                "Gán cho connection một màu, bao nhiêu tag tùy ý và một vị trí trong các nhóm lồng nhau, rồi đánh dấu yêu thích những connection bạn dùng nhiều nhất. Môi trường được quản lý bằng tag: local, development, production và testing có sẵn, và bạn có thể thêm tag riêng. Khi thư viện còn trống, TablePro gợi ý <ui>Mở cơ sở dữ liệu mẫu</ui> (Open Sample Database), một bản SQLite của Chinook đi kèm ứng dụng."
+                "Gán cho connection một màu, bao nhiêu tag tùy ý và một vị trí trong các nhóm lồng nhau, rồi đánh dấu yêu thích những connection bạn dùng nhiều nhất. Môi trường được quản lý bằng tag: local, development, production và testing có sẵn, và bạn có thể thêm tag riêng. Khi thư viện còn trống, TablePro gợi ý <ui>Mở cơ sở dữ liệu mẫu</ui> (Open Sample Database), một bản SQLite của Chinook đi kèm ứng dụng.",
+                "Mở nhiều connection trong cùng một cửa sổ. Dải connection ở mép trái cửa sổ chuyển qua lại giữa chúng, và mỗi connection quay về đúng tab bạn dùng gần nhất. <ui>Mở trong cửa sổ mới</ui> (Open in New Window) đặt một connection cạnh connection khác."
             ],
             "asset": "mac-connection-library"
         },

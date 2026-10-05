@@ -332,3 +332,13 @@ it('never frames a paid feature as unlocked', function (string $locale, string $
 
     return $files;
 });
+
+it('tells the connections page reader that one window holds several connections', function (string $locale, string $strip, string $newWindow): void {
+    $organize = collect(featureSchemaContent($locale, 'connections')['sections'])->firstWhere('id', 'organize');
+    $text = implode(' ', $organize['paragraphs']);
+
+    expect($text)->toContain($strip)->toContain("<ui>{$newWindow}</ui>");
+})->with([
+    'en' => ['en', 'connections strip', 'Open in New Window'],
+    'vi' => ['vi', 'Dải connection', 'Mở trong cửa sổ mới'],
+]);
