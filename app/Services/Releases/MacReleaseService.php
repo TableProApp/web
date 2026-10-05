@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
+use function Illuminate\Support\defer;
+
 /**
  * The current Mac release, for the download buttons (architecture §1.13).
  *
@@ -22,30 +24,26 @@ use Illuminate\Support\Facades\Storage;
  * `urlTemplate`). Never the first item of the full releases list, which plugin
  * releases crowd.
  *
- * Caching, so the unauthenticated API (60 calls an hour per IP, on a host
- * shared with other sites) sees at most four calls an hour in every state,
- * healthy or not:
+ * **A request never waits for GitHub.** `release:refresh`, scheduled every 15
+ * minutes (routes/console.php), calls the sources; a page only reads what it
+ * stored. That keeps the unauthenticated API (60 calls an hour per IP, on a
+ * host shared with other sites) at four calls an hour, healthy or not, and no
+ * reader waits up to ten seconds for two 5-second timeouts when a copy expires.
  *
- * - a fresh copy for 15 minutes under `releases:mac`;
- * - when both sources fail, a 15-minute failure marker stops every request in
- *   that window from retrying, and the last good copy is served. The marker
- *   is as long as the fresh copy, so an outage costs no more calls than a
- *   healthy hour (architecture §1.13 "Rate"; its 5-minute marker would allow
- *   twelve);
- * - every success also writes the last good copy to
+ * - Each refresh stores the release under `releases:mac` for 30 minutes, twice
+ *   the schedule, so the copy never lapses while the scheduler runs.
+ * - Every success also writes the last good copy to
  *   `storage/app/private/releases/mac-last-good.json`, kept until the next
  *   success. It is a file and not a cache entry because the deploy runs
- *   `optimize:clear`, whose `cache:clear` empties the cache store: a copy kept
- *   there "forever" was gone after every PHP deploy, exactly when a cold
- *   cache makes the first request depend on GitHub;
- * - with no good copy ever, the release is `unavailable`: both buttons open
- *   GitHub's latest-release page and no version is shown;
- * - one request refreshes at a time. When the fresh copy expires, the first
- *   request takes a short lock and calls the sources; every request that
- *   arrives meanwhile serves the last good copy instead of calling them too.
- *   Without it, each concurrent `/download` request missed the cache, called
- *   GitHub and then the appcast with 5-second timeouts, and held a PHP worker
- *   on a shared host for up to 10 seconds.
+ *   `optimize:clear`, whose `cache:clear` empties the cache store.
+ * - When both sources fail, a 15-minute failure marker is stored and the last
+ *   good copy keeps being served.
+ * - When `releases:mac` is missing (after `cache:clear`, or if the scheduler
+ *   has stopped), a request serves the last good copy, or `unavailable` if
+ *   there never was one (both buttons open GitHub's latest-release page and no
+ *   version is shown), and asks for one refresh after its response has been
+ *   sent (`defer()`): never while the failure marker stands, and under a lock,
+ *   so concurrent requests start one refresh between them.
  *
  * `Cache::remember()` is deliberately not used: it never stores `null`, which
  * is how the pre-rebuild controller retried a failing API on every request.
@@ -64,7 +62,8 @@ class MacReleaseService
 
     public const FAILURE_KEY = 'releases:mac:failed';
 
-    public const FRESH_SECONDS = 900;
+    /** How long a refreshed copy is served: twice the 15-minute schedule. */
+    public const FRESH_SECONDS = 1800;
 
     public const FAILURE_SECONDS = 900;
 
@@ -80,6 +79,10 @@ class MacReleaseService
         private readonly SparkleAppcast $appcast,
     ) {}
 
+    /**
+     * The release a page shows, read from what the last refresh stored. Never
+     * calls a source.
+     */
     public function latest(): MacRelease
     {
         $fresh = $this->cached(self::CACHE_KEY);
@@ -88,17 +91,7 @@ class MacReleaseService
             return $fresh;
         }
 
-        if (! Cache::has(self::FAILURE_KEY)) {
-            $lock = Cache::lock(self::REFRESH_LOCK, self::REFRESH_LOCK_SECONDS);
-
-            if ($lock->get()) {
-                try {
-                    return $this->refresh() ?? $this->fallback();
-                } finally {
-                    $lock->release();
-                }
-            }
-        }
+        $this->refreshAfterResponse();
 
         return $this->fallback();
     }
@@ -106,28 +99,59 @@ class MacReleaseService
     /**
      * Calls the sources once, under the refresh lock: GitHub, then the
      * appcast. Stores what answered, or the failure marker when nothing did.
+     *
+     * Null when nothing answered, or when another refresh holds the lock.
      */
-    private function refresh(): ?MacRelease
+    public function refresh(): ?MacRelease
     {
-        // Another request may have refreshed between the cache miss and the lock.
-        $fresh = $this->cached(self::CACHE_KEY);
+        $lock = Cache::lock(self::REFRESH_LOCK, self::REFRESH_LOCK_SECONDS);
 
-        if ($fresh !== null) {
-            return $fresh;
-        }
-
-        $release = $this->fromGitHub() ?? $this->fromAppcast();
-
-        if ($release === null) {
-            Cache::put(self::FAILURE_KEY, true, self::FAILURE_SECONDS);
-
+        if (! $lock->get()) {
             return null;
         }
 
-        Cache::put(self::CACHE_KEY, $release->toArray(), self::FRESH_SECONDS);
-        $this->keepLastGood($release);
+        try {
+            $release = $this->fromGitHub() ?? $this->fromAppcast();
 
-        return $release;
+            if ($release === null) {
+                Cache::put(self::FAILURE_KEY, true, self::FAILURE_SECONDS);
+
+                return null;
+            }
+
+            Cache::put(self::CACHE_KEY, $release->toArray(), self::FRESH_SECONDS);
+            Cache::forget(self::FAILURE_KEY);
+            $this->keepLastGood($release);
+
+            return $release;
+        } finally {
+            $lock->release();
+        }
+    }
+
+    /**
+     * Whether the last refresh found no source answering.
+     */
+    public function failing(): bool
+    {
+        return Cache::has(self::FAILURE_KEY);
+    }
+
+    /**
+     * Asks for one refresh once the response has gone out, for a copy that is
+     * missing. Named, so a request that reads the release twice asks once.
+     */
+    private function refreshAfterResponse(): void
+    {
+        if ($this->failing()) {
+            return;
+        }
+
+        defer(function (): void {
+            if ($this->cached(self::CACHE_KEY) === null && ! $this->failing()) {
+                $this->refresh();
+            }
+        }, self::REFRESH_LOCK);
     }
 
     /**

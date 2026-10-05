@@ -258,6 +258,29 @@ sudo tail -f /var/log/supervisor/tablepro-web-ssr.log
 `Error: Page not found: auth/login` in that log is a scanner, not a bug. This
 app has no such page.
 
+## The scheduler
+
+Two jobs run on the server's schedule (`routes/console.php`): `release:refresh`
+every 15 minutes, which fetches the current Mac release from GitHub (or the
+Sparkle appcast) for the download buttons, and `sitemap:generate` daily.
+
+A page never calls GitHub: `/download` reads what the last refresh stored, so
+no reader waits on a slow or failing API. If the stored copy is missing (after
+the deploy's `cache:clear`, or if the scheduler has stopped), the page serves
+the last good copy from `storage/app/private/releases/mac-last-good.json` and
+asks for one refresh after its response has gone out. That keeps the page
+current without the scheduler, but the scheduler is what keeps every reader off
+the refresh path, so it must run.
+
+It needs one cron entry, as `www-data`, in `/etc/cron.d/tablepro-web`:
+
+```
+* * * * * www-data cd /var/www/tablepro.app && /usr/bin/php artisan schedule:run >> /dev/null 2>&1
+```
+
+Check it with `sudo -u www-data php artisan schedule:list`, and that
+`sudo -u www-data php artisan release:refresh` prints the current version.
+
 ## The deploy key
 
 The workflow authenticates with a key that **cannot open a shell**. Its entry in

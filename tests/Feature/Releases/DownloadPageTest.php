@@ -3,6 +3,7 @@
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -29,12 +30,18 @@ beforeEach(function (): void {
     bindReleaseFixturePlatforms();
 });
 
+/**
+ * A live release, fetched the way the server fetches it: by the scheduled
+ * `release:refresh`. Pages only read what it stored.
+ */
 function fakeLiveRelease(): void
 {
     Http::fake([
         RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload()),
         RELEASES_FAKE_APPCAST => Http::response(appcastXml()),
     ]);
+
+    Artisan::call('release:refresh');
 }
 
 it('renders in English with the live release, the platform facts and the copy', function (): void {
@@ -118,6 +125,31 @@ it('is a translated pair, indexed in both locales', function (): void {
         ->where('seo.robots', 'index, follow')
         ->where('seo.canonical', fn(string $url): bool => str_ends_with($url, '/vi/download'))
         ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->sort()->values()->all() === ['en', 'vi']));
+});
+
+/*
+ * A page never waits on GitHub. With nothing stored yet (a fresh server, or
+ * the cache just cleared and no last good copy), the page answers at once
+ * without a version, and the refresh it leaves for after its response gives
+ * the next reader the release.
+ */
+it('answers without waiting on GitHub when nothing is stored, and the next page has the release', function (): void {
+    Http::fake([
+        RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload()),
+        RELEASES_FAKE_APPCAST => Http::response(appcastXml()),
+    ]);
+
+    get('/download')
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page->where('release.source', 'unavailable'));
+
+    get('/vi/download')
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('release.source', 'github')
+            ->where('release.version', '0.77.0'));
+
+    expect(Http::recorded(fn(Request $request): bool => str_contains($request->url(), 'api.github.com'))->count())->toBe(1);
 });
 
 it('falls back to GitHub’s latest-release page, with no version, when no source answers', function (): void {
