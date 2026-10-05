@@ -60,8 +60,14 @@
         </script>
     @endif
 
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    {{--
+        The icons are small on purpose: every first visit downloads them. The
+        tab icon and the manifest's are the 256px logo, about 13 KB as an
+        8-bit palette PNG (it was 156 KB at 16 bits per channel). iOS asks for
+        a 180px icon, and also probes `/apple-touch-icon.png` on its own.
+    --}}
+    <link rel="icon" type="image/png" sizes="256x256" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
     {{--
@@ -119,7 +125,8 @@
         by the page once it has loaded and the browser is idle
         (resources/js/lib/crisp.ts), so it never delays the first render. The
         Polar or Lemon Squeezy checkout SDK loads at checkout intent
-        (resources/js/lib/checkout-sdk.ts), not on every page.
+        (resources/js/lib/checkout-sdk.ts), not on every page. Google's tag is
+        added the same way as the chat, by the script below.
     --}}
     @if(config('analytics.google.measurement_id'))
         {{--
@@ -133,8 +140,14 @@
             cookies rather than as a stranger. The storage key is shared with
             `resources/js/lib/consent.ts` and with the account portal, which
             lives on this same origin and so reads the same choice.
+
+            Google's script (about 180 KB) is requested only after the load
+            event, once the browser is idle, or two seconds after the load where
+            there is no idle callback (Safari), as the chat loader is. Until it
+            arrives, `gtag()` queues every call in `dataLayer`, the consent
+            calls from `consent.ts` included, and the script replays the queue
+            in order. A reader who leaves before then is not counted.
         --}}
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('analytics.google.measurement_id') }}"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
@@ -151,10 +164,44 @@
             } catch (e) {}
             gtag('js', new Date());
             gtag('config', @json(config('analytics.google.measurement_id')));
+
+            (function () {
+                var src = @json('https://www.googletagmanager.com/gtag/js?id=' . config('analytics.google.measurement_id'), JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT);
+
+                function load() {
+                    var script = document.createElement('script');
+                    script.async = true;
+                    script.src = src;
+                    document.head.appendChild(script);
+                }
+
+                function whenIdle() {
+                    if (typeof window.requestIdleCallback === 'function') {
+                        window.requestIdleCallback(load, { timeout: 4000 });
+                    } else {
+                        setTimeout(load, 2000);
+                    }
+                }
+
+                if (document.readyState === 'complete') {
+                    whenIdle();
+                } else {
+                    window.addEventListener('load', whenIdle, { once: true });
+                }
+            })();
         </script>
     @endif
+    {{--
+        The page's own chunk is an entry here too, so its modulepreload and
+        those of everything it imports go out with the document. Otherwise
+        the browser learns of them only once app.tsx has run and asked
+        Inertia for the page, a round trip later, and hydration waits for it.
+        A component with no file (none today: SeoSmokeTest renders every page)
+        is left to the runtime rather than failing the manifest lookup.
+    --}}
+    @php($pageEntry = 'resources/js/pages/' . ($page['component'] ?? '') . '.tsx')
     @viteReactRefresh
-    @vite(['resources/css/app.css', 'resources/js/app.tsx'])
+    @vite(array_values(array_filter(['resources/css/app.css', 'resources/js/app.tsx', is_file(base_path($pageEntry)) ? $pageEntry : null])))
 </head>
 <body class="bg-background text-foreground antialiased">
     @inertia

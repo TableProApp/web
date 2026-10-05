@@ -230,11 +230,15 @@ cookies and needed no consent; GA4 sets `_ga` and `_ga_<stream>`, which in the
 EEA and UK need the reader's permission first. So the tag runs in **Consent
 Mode**, and nothing about it is optional:
 
-1. **`app.blade.php` loads the tag with every storage type denied**, then reads
-   `tablepro:analytics-consent` from `localStorage` and grants
+1. **`app.blade.php` declares the tag with every storage type denied**, then
+   reads `tablepro:analytics-consent` from `localStorage` and grants
    `analytics_storage` if the reader said yes before — all ahead of
    `gtag('config')`, so a returning reader's first page view carries its
    cookies. Until then GA receives a cookieless ping per page and sets nothing.
+   Google's script itself (about 180 KB) is added only after the load event,
+   once the browser is idle (two seconds after the load in Safari), the way the
+   chat loader is; `gtag()` queues every call in `dataLayer` until it arrives,
+   and it replays them in order. A reader who leaves before then is not counted.
 2. **`ConsentBar` asks**, once, after hydration. Allow and Decline are the same
    button at the same weight; that is a legal requirement, not a style choice.
 3. **`resources/js/lib/consent.ts` applies the answer** to the running tag and,
@@ -270,7 +274,7 @@ based on browser history events", which must stay on in the web stream.
 ## Third-party scripts
 
 Two third-party scripts load unasked: the Google tag in Consent Mode above,
-and Cloudflare Web Analytics.
+added after the page has loaded, and Cloudflare Web Analytics.
 
 - **Cloudflare Web Analytics** is a Cloudflare dashboard setting for
   tablepro.app. Cloudflare injects its beacon (`static.cloudflareinsights.com`)

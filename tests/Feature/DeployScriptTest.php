@@ -121,7 +121,22 @@ function deployStubs(): array
                 echo 'export {};' > "$out/ssr.js"
             else
                 printf '{"resources/js/app.tsx":{"file":"assets/app-new.js"}}' > "$out/manifest.json"
+                mkdir -p "$out/assets"
+                echo 'built now' > "$out/assets/app-new.js"
             fi
+
+            BASH,
+        // `curl -s -o <file> -w '%{http_code}' <url>`, the smoke test: a page this release rendered.
+        'tools/curl' => $record('curl') . <<<'BASH'
+            out=""
+            while [ $# -gt 0 ]; do
+                case "$1" in
+                    -o) out="$2"; shift 2 ;;
+                    *) shift ;;
+                esac
+            done
+            printf '<h1>TablePro</h1><script type="module" src="/build/assets/app-new.js"></script>' > "$out"
+            printf '200'
 
             BASH,
         // The script reads the PHP version with `php -r`; that is the real PHP.
@@ -150,7 +165,10 @@ function deployStubs(): array
  * and composer.lock, so a single run takes both steps that need root: the SSR
  * restart after the bundle swap, and the PHP-FPM reload.
  *
- * @param  array{root?: bool, owner?: int, sudoRefuses?: bool, cacheDir?: string, env?: array<string, string>}  $options
+ * `previousAssets` seeds the live `public/build/assets`: each file's age in
+ * hours, its content, and whether the live manifest names it.
+ *
+ * @param  array{root?: bool, owner?: int, sudoRefuses?: bool, cacheDir?: string, env?: array<string, string>, previousAssets?: array<string, array{hoursAgo?: float, live?: bool, content?: string}>}  $options
  * @return array{exit: int, output: string, errors: string, calls: list<string>, privileged: list<string>, env: list<string>, sandbox: string, app: string, cache: string}
  */
 function runDeployInSandbox(array $options = []): array
@@ -197,6 +215,24 @@ function runDeployInSandbox(array $options = []): array
     foreach (["{$app}/public/build", "{$app}/bootstrap/ssr"] as $live) {
         mkdir($live, 0755, true);
         file_put_contents("{$live}/PREVIOUS", "previous release\n");
+    }
+
+    $manifest = [];
+
+    foreach ($options['previousAssets'] ?? [] as $name => $asset) {
+        $file = "{$app}/public/build/assets/{$name}";
+
+        File::ensureDirectoryExists(dirname($file));
+        file_put_contents($file, $asset['content'] ?? "{$name}\n");
+        touch($file, time() - (int) round(($asset['hoursAgo'] ?? 0) * 3600));
+
+        if ($asset['live'] ?? false) {
+            $manifest["resources/js/{$name}"] = ['file' => "assets/{$name}"];
+        }
+    }
+
+    if ($manifest !== []) {
+        file_put_contents("{$app}/public/build/manifest.json", json_encode($manifest, JSON_UNESCAPED_SLASHES));
     }
 
     $path = "{$stubs['tools']}:" . dirname(PHP_BINARY) . ':/usr/bin:/bin';
@@ -851,4 +887,197 @@ it('still sees a PHP change in a release whose path list outgrows a pipe buffer'
     expect(strlen($paths))->toBeGreaterThan(65536)
         ->and(runChanged($paths, deployPattern('PHP_CHANGED')))->toBeTrue()
         ->and(runChanged($paths, deployPattern('CONTENT_CHANGED')))->toBeFalse();
+});
+
+/*
+ * Pages are cached at the edge, and an open tab or a page cached before the
+ * purge still names the previous release's hashed JS and CSS. Moving the old
+ * build out of `public/build` made every one of those a 404. The outgoing
+ * release's files are copied into the new build; files carried by earlier
+ * deploys follow until ASSET_RETENTION_HOURS have passed since they retired.
+ */
+describe('keeping the previous release\'s assets', function (): void {
+    afterEach(function (): void {
+        if (isset($this->run)) {
+            File::deleteDirectory($this->run['sandbox']);
+        }
+    });
+
+    it('keeps the outgoing assets servable, and lets carried ones go after the retention', function (): void {
+        $this->run = runDeployInSandbox(['previousAssets' => [
+            // Built ten days ago and live until now: it retires with this deploy.
+            'app-old.js' => ['live' => true, 'hoursAgo' => 240],
+            // A name the new build has too: the new build's file wins.
+            'app-new.js' => ['live' => true, 'hoursAgo' => 240, 'content' => "the previous build\n"],
+            // Carried by an earlier deploy, retired five hours ago.
+            'Pricing-retired.js' => ['hoursAgo' => 5],
+            // Carried by an earlier deploy, retired past the 72-hour retention.
+            'Home-expired.js' => ['hoursAgo' => 100],
+        ]]);
+        $assets = "{$this->run['app']}/public/build/assets";
+
+        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+            ->and((string) file_get_contents("{$assets}/app-new.js"))->toBe("built now\n")
+            ->and("{$assets}/app-old.js")->toBeFile()
+            ->and("{$assets}/Pricing-retired.js")->toBeFile()
+            ->and("{$assets}/Home-expired.js")->not->toBeFile()
+            ->and($this->run['output'])->toContain('kept 2 earlier asset(s) for up to 72h, dropped 1 older one(s)');
+
+        // Retiring now restarts the clock; a file carried before keeps the moment it retired.
+        expect(filemtime("{$assets}/app-old.js"))->toBeGreaterThan(time() - 120)
+            ->and(abs(filemtime("{$assets}/Pricing-retired.js") - (time() - 5 * 3600)))->toBeLessThan(120);
+
+        // The live manifest is the new build's, and the old build is still there to roll back to.
+        expect((string) file_get_contents("{$this->run['app']}/public/build/manifest.json"))->toContain('assets/app-new.js')->not->toContain('app-old.js')
+            ->and("{$this->run['app']}/public/build-old/assets/app-old.js")->toBeFile();
+    });
+
+    it('takes the retention from ASSET_RETENTION_HOURS', function (): void {
+        $this->run = runDeployInSandbox([
+            'env' => ['ASSET_RETENTION_HOURS' => '4'],
+            'previousAssets' => [
+                'app-old.js' => ['live' => true, 'hoursAgo' => 240],
+                'Pricing-retired.js' => ['hoursAgo' => 5],
+            ],
+        ]);
+        $assets = "{$this->run['app']}/public/build/assets";
+
+        expect($this->run['exit'])->toBe(0, $this->run['errors'])
+            ->and("{$assets}/app-old.js")->toBeFile()
+            ->and("{$assets}/Pricing-retired.js")->not->toBeFile();
+    });
+
+    it('refuses a retention that is not a whole number of hours, before it touches anything', function (string $hours): void {
+        $process = new Process(['bash', base_path('scripts/deploy.sh')], sys_get_temp_dir(), ['APP_PATH' => '/nonexistent/tablepro.app', 'ASSET_RETENTION_HOURS' => $hours]);
+        $process->run();
+
+        expect($process->getExitCode())->toBe(1)
+            ->and($process->getErrorOutput())->toContain('ASSET_RETENTION_HOURS must be a whole number of hours');
+    })->with(['three', '-1', '1.5', '72h']);
+});
+
+/*
+ * The smoke test goes through Cloudflare like a reader. Pages are cached
+ * there, and the workflow purges only after this script returns, so the bare
+ * URL could answer with the previous release and fail a good deploy, which
+ * the EXIT trap would then roll back. A query string no reader sends is a
+ * cache key nothing has filled.
+ */
+it('smoke-tests a URL the edge has never cached', function (string $url, string $expected): void {
+    $run = runDeployInSandbox(['env' => ['SMOKE_URL' => $url]]);
+
+    try {
+        $requests = array_values(preg_grep('/^curl /', $run['calls']));
+
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and($requests)->not->toBeEmpty()
+            ->and($requests[0])->toMatch($expected)
+            ->and($run['output'])->toContain('serving assets/app-new.js');
+    } finally {
+        File::deleteDirectory($run['sandbox']);
+    }
+})->with([
+    'a bare URL' => ['https://tablepro.example', '#\shttps://tablepro\.example\?deploy-smoke=\d+$#'],
+    'a URL with a query' => ['https://tablepro.example/?ref=ci', '#\shttps://tablepro\.example/\?ref=ci&deploy-smoke=\d+$#'],
+]);
+
+/**
+ * The deploy workflow's steps, by name.
+ *
+ * @return array<string, array<string, mixed>>
+ */
+function deployWorkflowSteps(): array
+{
+    $workflow = Symfony\Component\Yaml\Yaml::parseFile(base_path('.github/workflows/deploy.yml'));
+    $steps = [];
+
+    foreach ($workflow['jobs']['deploy']['steps'] as $step) {
+        $steps[$step['name']] = $step;
+    }
+
+    return $steps;
+}
+
+/**
+ * Runs the purge step's script on this machine, with `curl` answering `$body`.
+ *
+ * @param  array<string, string>  $env
+ * @return array{exit: int, output: string, errors: string, calls: list<string>}
+ */
+function runPurgeStep(array $env, string $body = ''): array
+{
+    $root = sys_get_temp_dir() . '/tablepro-purge-' . bin2hex(random_bytes(6));
+    $calls = "{$root}/calls.log";
+
+    File::ensureDirectoryExists($root);
+    file_put_contents("{$root}/curl", "#!/usr/bin/env bash\nprintf '%s\\n' \"curl \$*\" >> \"\$STUB_CALLS\"\nprintf '%s' \"\$STUB_BODY\"\n");
+    chmod("{$root}/curl", 0755);
+
+    try {
+        $process = new Process(
+            ['/usr/bin/env', '-i', "PATH={$root}:/usr/bin:/bin", "STUB_CALLS={$calls}", "STUB_BODY={$body}", ...array_map(fn(string $key, string $value): string => "{$key}={$value}", array_keys($env), $env), 'bash', '-c', deployWorkflowSteps()["Purge Cloudflare's cache"]['run']],
+        );
+        $process->run();
+
+        return [
+            'exit' => (int) $process->getExitCode(),
+            'output' => $process->getOutput(),
+            'errors' => $process->getErrorOutput(),
+            'calls' => is_file($calls) ? array_values(array_filter(explode("\n", (string) file_get_contents($calls)))) : [],
+        ];
+    } finally {
+        File::deleteDirectory($root);
+    }
+}
+
+describe('purging Cloudflare after a deploy', function (): void {
+    it('purges from the runner, after the deploy, and never hands the token to the server', function (): void {
+        $steps = deployWorkflowSteps();
+
+        expect(array_keys($steps))->toBe(['Deploy over SSH', "Purge Cloudflare's cache"]);
+
+        // No `if:`, so it runs only when the deploy step succeeded.
+        expect($steps["Purge Cloudflare's cache"])->not->toHaveKey('if')
+            ->and($steps["Purge Cloudflare's cache"]['env'])->toBe([
+                'CLOUDFLARE_ZONE_ID' => '${{ secrets.CLOUDFLARE_ZONE_ID }}',
+                'CLOUDFLARE_CACHE_PURGE_TOKEN' => '${{ secrets.CLOUDFLARE_CACHE_PURGE_TOKEN }}',
+            ]);
+
+        $deploy = $steps['Deploy over SSH'];
+
+        expect(array_keys($deploy['env']))->each->not->toStartWith('CLOUDFLARE')
+            ->and($deploy['run'])->not->toContain('CLOUDFLARE');
+    });
+
+    it('passes with a notice when either secret is missing, and calls nothing', function (array $env): void {
+        $run = runPurgeStep($env);
+
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and($run['output'])->toContain('::notice::')
+            ->and($run['calls'])->toBe([]);
+    })->with([
+        'neither' => [[]],
+        'no token' => [['CLOUDFLARE_ZONE_ID' => 'zone123']],
+        'no zone' => [['CLOUDFLARE_CACHE_PURGE_TOKEN' => 'token456']],
+    ]);
+
+    it('purges the whole zone with the token as a bearer', function (): void {
+        $run = runPurgeStep(['CLOUDFLARE_ZONE_ID' => 'zone123', 'CLOUDFLARE_CACHE_PURGE_TOKEN' => 'token456'], '{"success":true,"errors":[],"messages":[],"result":{"id":"zone123"}}');
+
+        expect($run['exit'])->toBe(0, $run['errors'])
+            ->and($run['calls'])->toHaveCount(1)
+            ->and($run['calls'][0])->toContain('-X POST https://api.cloudflare.com/client/v4/zones/zone123/purge_cache')
+            ->and($run['calls'][0])->toContain('-H Authorization: Bearer token456')
+            ->and($run['calls'][0])->toContain('--data {"purge_everything":true}');
+    });
+
+    it('fails the run, visibly, when Cloudflare refuses the purge', function (string $body): void {
+        $run = runPurgeStep(['CLOUDFLARE_ZONE_ID' => 'zone123', 'CLOUDFLARE_CACHE_PURGE_TOKEN' => 'token456'], $body);
+
+        expect($run['exit'])->toBe(1)
+            ->and($run['errors'])->toContain('::error::Cloudflare did not purge the cache');
+    })->with([
+        'refused' => ['{"success":false,"errors":[{"code":10000,"message":"Authentication error"}]}'],
+        'no answer' => [''],
+    ]);
 });

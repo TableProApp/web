@@ -24,6 +24,15 @@
 #   manifest, an entry for the application's own entry point, and an SSR bundle.
 #   If any is missing the live build is left exactly where it was.
 #
+# WHY THE PREVIOUS ASSETS OUTLIVE THEIR RELEASE
+#   Pages are cached at the edge for up to ten minutes, and served stale for an
+#   hour more while Cloudflare revalidates (docs/deployment.md, "Caching"). A
+#   cached page, an open tab or a purge that failed still names the previous
+#   release's hashed JS and CSS. So before the swap, every file the outgoing
+#   manifest names is copied into the new build, and earlier carried files
+#   follow until ASSET_RETENTION_HOURS have passed since they left a live
+#   manifest. Hashed names never collide, so keeping them costs only disk.
+#
 # WHAT HAPPENS IF A LATER STEP FAILS
 #   Once the swap has happened the site is already serving new assets, so any
 #   later failure puts the previous ones back. The code stays at the new commit;
@@ -72,12 +81,17 @@ SUPERVISOR_PROGRAM="${SUPERVISOR_PROGRAM:-tablepro-web-ssr}"
 SMOKE_URL="${SMOKE_URL:-}"
 FORCE="${FORCE:-}"
 DEPLOY_CACHE_DIR="${DEPLOY_CACHE_DIR:-/var/cache/tablepro-deploy}"
+ASSET_RETENTION_HOURS="${ASSET_RETENTION_HOURS:-72}"
 
 # Every relative path below is relative to APP_PATH, after the `cd` further
 # down. A relative APP_PATH would itself depend on the caller's directory.
 case "$APP_PATH" in
     /*) ;;
     *) fail "APP_PATH must be an absolute path, got: $APP_PATH" ;;
+esac
+
+case "$ASSET_RETENTION_HOURS" in
+    '' | *[!0-9]*) fail "ASSET_RETENTION_HOURS must be a whole number of hours, got: $ASSET_RETENTION_HOURS" ;;
 esac
 
 if [ "$(id -u)" -eq 0 ]; then
@@ -180,6 +194,46 @@ restart_ssr() {
         sudo -n /usr/bin/supervisorctl restart "$SUPERVISOR_PROGRAM" \
             || sudo_failed "/usr/bin/supervisorctl restart $SUPERVISOR_PROGRAM"
     fi
+}
+
+# Copies the outgoing release's hashed assets into the new build, so HTML that
+# still names them keeps working after the swap. A file the live manifest names
+# retires now: it is copied and its mtime set to now. A file an earlier deploy
+# carried keeps its mtime, the moment it retired, and is dropped once that is
+# older than ASSET_RETENTION_HOURS. A name the new build also has is its own.
+carry_previous_assets() {
+    local file name kept=0 dropped=0
+    local minutes=$((ASSET_RETENTION_HOURS * 60))
+
+    if [ ! -d public/build/assets ]; then
+        echo "    no previous assets to keep"
+        return 0
+    fi
+
+    mkdir -p public/build-next/assets
+
+    for file in public/build/assets/*; do
+        [ -f "$file" ] || continue
+        name="${file##*/}"
+
+        if [ -e "public/build-next/assets/$name" ]; then
+            continue
+        fi
+
+        if grep -qF "\"assets/$name\"" public/build/manifest.json 2>/dev/null; then
+            cp -p "$file" "public/build-next/assets/$name"
+            touch "public/build-next/assets/$name"
+        elif [ -n "$(find "$file" -mmin "-$minutes" -print)" ]; then
+            cp -p "$file" "public/build-next/assets/$name"
+        else
+            dropped=$((dropped + 1))
+            continue
+        fi
+
+        kept=$((kept + 1))
+    done
+
+    echo "    kept $kept earlier asset(s) for up to ${ASSET_RETENTION_HOURS}h, dropped $dropped older one(s)"
 }
 
 sudo_failed() {
@@ -392,6 +446,9 @@ if [ "$FRONTEND_CHANGED" = true ]; then
         || fail "bootstrap/ssr-next/ssr.js is missing — live build left alone"
     echo "    manifest $(wc -c < public/build-next/manifest.json) bytes, ssr.js present"
 
+    step "Keeping the previous release's assets servable"
+    carry_previous_assets
+
     step "Swapping in the new bundles"
     rm -rf public/build-old bootstrap/ssr-old
     if [ -d public/build ]; then
@@ -443,13 +500,22 @@ fi
 if [ -z "$SMOKE_URL" ]; then
     echo "    skipped: no APP_URL in .env and no SMOKE_URL set"
 else
+    # Through Cloudflare, like a reader, but never from its cache: pages are
+    # cached at the edge, and the purge runs in the workflow after this script
+    # returns, so the bare URL could still answer with the previous release's
+    # HTML. A query string no one else sends is a cache key no one has filled.
+    case "$SMOKE_URL" in
+        *\?*) SMOKE_FETCH="$SMOKE_URL&deploy-smoke=$(date +%s)" ;;
+        *) SMOKE_FETCH="$SMOKE_URL?deploy-smoke=$(date +%s)" ;;
+    esac
+
     smoke_file="$(mktemp)"
     status=000
 
     # The SSR process may have just restarted; give it a moment to bind its port
     # before deciding the site is broken.
     for _ in $(seq 1 15); do
-        status="$(curl -s -o "$smoke_file" -w '%{http_code}' "$SMOKE_URL" || echo 000)"
+        status="$(curl -s -o "$smoke_file" -w '%{http_code}' "$SMOKE_FETCH" || echo 000)"
         if [ "$status" = "200" ]; then
             break
         fi

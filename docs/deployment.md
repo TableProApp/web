@@ -145,6 +145,15 @@ Before the rename, three things must hold, or the live bundles are left alone:
 - it contains an entry for `resources/js/app.tsx`
 - `bootstrap/ssr-next/ssr.js` exists
 
+Just before the rename, the previous release's hashed files are copied into
+the new build, so a page that still names them keeps loading: a page cached at
+the edge before the purge, a stale copy Cloudflare serves while it revalidates,
+or a tab left open. Every file the outgoing `manifest.json` names retires at
+that moment and its mtime is set to now; a file an earlier deploy carried keeps
+the moment it retired and is dropped once that is more than
+`ASSET_RETENTION_HOURS` (default 72) ago. Hashed names never collide, so this
+costs only disk.
+
 After the rename, any failure puts the previous bundles back from
 `public/build-old` and `bootstrap/ssr-old` and restarts SSR. The code stays at
 the new commit; the script prints the command to revert that too rather than
@@ -249,6 +258,35 @@ sudo tail -f /var/log/supervisor/tablepro-web-ssr.log
 `Error: Page not found: auth/login` in that log is a scanner, not a bug. This
 app has no such page.
 
+It listens on `127.0.0.1` only (`resources/js/ssr.tsx`; `INERTIA_SSR_HOST`
+overrides it). Inertia's default is every interface, and the server answers
+`/render` and `/shutdown` to anyone who reaches the port, so without a firewall
+in front of it anyone could stop it. Check with
+`sudo ss -ltnp | grep 13715`: the local address must be `127.0.0.1:13715`.
+
+## The scheduler
+
+Two jobs run on the server's schedule (`routes/console.php`): `release:refresh`
+every 15 minutes, which fetches the current Mac release from GitHub (or the
+Sparkle appcast) for the download buttons, and `sitemap:generate` daily.
+
+A page never calls GitHub: `/download` reads what the last refresh stored, so
+no reader waits on a slow or failing API. If the stored copy is missing (after
+the deploy's `cache:clear`, or if the scheduler has stopped), the page serves
+the last good copy from `storage/app/private/releases/mac-last-good.json` and
+asks for one refresh after its response has gone out. That keeps the page
+current without the scheduler, but the scheduler is what keeps every reader off
+the refresh path, so it must run.
+
+It needs one cron entry, as `www-data`, in `/etc/cron.d/tablepro-web`:
+
+```
+* * * * * www-data cd /var/www/tablepro.app && /usr/bin/php artisan schedule:run >> /dev/null 2>&1
+```
+
+Check it with `sudo -u www-data php artisan schedule:list`, and that
+`sudo -u www-data php artisan release:refresh` prints the current version.
+
 ## The deploy key
 
 The workflow authenticates with a key that **cannot open a shell**. Its entry in
@@ -282,7 +320,8 @@ ubuntu ALL=(www-data) NOPASSWD: /var/www/tablepro.app/scripts/deploy.sh
 Note that `command=` names the copy of the script already on disk, so a change
 to `deploy.sh` takes effect on the deploy *after* the one that ships it.
 
-Then set five repository secrets:
+Then set five repository secrets (two more, for the cache purge, are under
+"Caching"):
 
 | Secret | Value |
 | --- | --- |
@@ -361,10 +400,90 @@ out of a fork's reach:
    the runner or sent to the server.
 3. The forced command means the key grants one action, not a shell.
 
+The Cloudflare token is the other secret here. It can only purge the zone's
+cache, it is used on the runner, and it is never sent to the server.
+
 ## Caching
 
-nginx sends nothing for HTML — Laravel's own `no-cache, private` stands, which
-is correct for server-rendered pages.
+### Pages
+
+Every page is the same for every reader: the locale is in the path, and there
+is no session, cookie, CSRF token or anything read from the reader's headers or
+location. So the HTML may sit in Cloudflare's cache. `CacheHtmlAtEdge` (on the
+`web` group, and applied by `RenderErrorPage` to the error pages) sends
+
+```
+Cache-Control: public, max-age=0, s-maxage=600, stale-while-revalidate=3600
+Vary: X-Inertia
+```
+
+on every `GET` or `HEAD` that is not an Inertia visit and answers HTML with a
+200, 404 or 410, as long as it sets no cookie. Browsers still revalidate every
+time (`max-age=0`); the edge may answer for ten minutes and serve the previous
+copy while it fetches the next. Inertia visits (JSON at the same URL), redirects
+and 5xx responses keep Laravel's own headers.
+
+Nothing is cached until a **Cache Rule** says so, because Cloudflare does not
+cache HTML by default. Cloudflare also ignores `Vary`, so the rule must keep
+Inertia visits away from the cache, or a cached page would be handed to the
+JSON request at the same URL, or the reverse. In the dashboard, Caching → Cache
+Rules, for the tablepro.app zone, in this order:
+
+1. **Bypass Inertia visits.** Expression:
+
+   ```
+   (http.host eq "tablepro.app" and any(lower(http.request.headers.names[*])[*] eq "x-inertia"))
+   ```
+
+   Cache eligibility: *Bypass cache*.
+
+2. **Cache the public site.** Expression:
+
+   ```
+   (http.host eq "tablepro.app"
+    and not any(lower(http.request.headers.names[*])[*] eq "x-inertia")
+    and not starts_with(http.request.uri.path, "/account")
+    and not starts_with(http.request.uri.path, "/checkout")
+    and not starts_with(http.request.uri.path, "/webhooks")
+    and not starts_with(http.request.uri.path, "/newsletter")
+    and not starts_with(http.request.uri.path, "/beta")
+    and not starts_with(http.request.uri.path, "/discount")
+    and not starts_with(http.request.uri.path, "/thank-you")
+    and not starts_with(http.request.uri.path, "/api/newsletter")
+    and not starts_with(http.request.uri.path, "/platform-build")
+    and http.request.uri.path ne "/up")
+   ```
+
+   Cache eligibility: *Eligible for cache*. Edge TTL: *Use cache-control header
+   if present, use default Cloudflare caching behavior if not*. Browser TTL:
+   *Respect origin*. Leave the cache key alone: the query string stays in it,
+   so `?ref=` links keep their own copy and the page's own URL.
+
+The platform paths are the ones nginx sends to the account app (the same list
+as `LocalizedUrl::PLATFORM_PATHS`); they hold sessions and must never be
+shared. `starts_with` is used rather than a regular expression because regex
+matching in rules needs a Business plan.
+
+**After a deploy**, `.github/workflows/deploy.yml` purges the zone from the
+runner, once `scripts/deploy.sh` has succeeded. It needs two repository
+secrets; without them it prints a notice and skips, so deploys work before they
+exist:
+
+| Secret | Value |
+| --- | --- |
+| `CLOUDFLARE_ZONE_ID` | the tablepro.app zone's ID (zone Overview, API section) |
+| `CLOUDFLARE_CACHE_PURGE_TOKEN` | an API token with only *Zone → Cache Purge → Purge*, for that zone |
+
+It purges everything (`purge_everything`), which every plan allows, so the
+other hosts in the zone lose their cached copies too and refetch them. A failed
+purge turns the run red but leaves the release live: pages catch up within ten
+minutes, and the previous assets are still on disk for anything cached before.
+
+The deploy's own smoke test goes through Cloudflare with a query string no
+reader sends (`?deploy-smoke=<time>`), so it never reads a page cached before
+the release it is checking.
+
+### Assets
 
 Hashed assets are a different matter, and the origin used to say nothing about
 them at all, so **Cloudflare** filled the gap with its four-hour default. Every

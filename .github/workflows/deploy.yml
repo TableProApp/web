@@ -14,6 +14,10 @@ name: deploy
 #      authorized_keys pins it to a single forced command, so the most a leaked
 #      copy could do is deploy main, which is what it is for.
 #
+# The second secret, the Cloudflare token, can do one thing: purge the cache of
+# the tablepro.app zone. It is used on the runner after the deploy and is never
+# sent to the server.
+#
 # See docs/deployment.md for how the key is created and how to revoke it.
 
 on:
@@ -80,3 +84,39 @@ jobs:
               -o StrictHostKeyChecking=yes \
               -o ConnectTimeout=20 \
               "$DEPLOY_USER@$DEPLOY_HOST"
+
+      # Pages are cached at Cloudflare for up to ten minutes (docs/deployment.md,
+      # "Caching"), so readers see a release once the cache is emptied. This runs
+      # only after the deploy succeeded, and only here: the token never reaches
+      # the server. The previous release's hashed assets stay on the server for
+      # days, so a page cached before the purge still loads.
+      #
+      # Without both secrets it says so and passes, so deploys keep working
+      # before the token exists. `purge_everything` works on every Cloudflare
+      # plan and needs no list of URLs to keep in step with the site; it also
+      # empties the cache of any other host in the zone, which only costs those
+      # hosts a refetch.
+      - name: Purge Cloudflare's cache
+        env:
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_CACHE_PURGE_TOKEN: ${{ secrets.CLOUDFLARE_CACHE_PURGE_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${CLOUDFLARE_ZONE_ID:-}" ] || [ -z "${CLOUDFLARE_CACHE_PURGE_TOKEN:-}" ]; then
+            echo "::notice::CLOUDFLARE_ZONE_ID or CLOUDFLARE_CACHE_PURGE_TOKEN is not set, so Cloudflare's cache was not purged. See docs/deployment.md."
+            exit 0
+          fi
+
+          response="$(curl -sS --max-time 30 --retry 3 --retry-all-errors \
+            -X POST "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CLOUDFLARE_CACHE_PURGE_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' || true)"
+
+          if ! printf '%s' "$response" | grep -Eq '"success"[[:space:]]*:[[:space:]]*true'; then
+            echo "::error::Cloudflare did not purge the cache. The release is live at the origin; cached pages catch up within ten minutes, or within the hour Cloudflare may serve them stale. Response: ${response:-none}" >&2
+            exit 1
+          fi
+
+          echo "Purged Cloudflare's cache for the zone."
