@@ -13,22 +13,15 @@ permissions:
 
 jobs:
   php:
-    # Named by PHP version alone, so the check names branch protection may
-    # require ("php (8.4)", "php (8.5)") survive the move to an OS matrix.
+    # Named by PHP version alone, so the check branch protection requires,
+    # "php (8.5)", stays put when the matrix changes.
     name: php (${{ matrix.php-version }})
-    runs-on: ${{ matrix.os }}
+    # Production: Ubuntu 26.04, whose archive ships PHP 8.5 only.
+    runs-on: ubuntu-26.04
     strategy:
       fail-fast: false
       matrix:
-        include:
-          # Production: Ubuntu 26.04, whose archive ships PHP 8.5 only.
-          - php-version: "8.5"
-            os: ubuntu-26.04
-          # The Ubuntu 24.04 host (PHP 8.4) until it is retired. composer.json
-          # allows ^8.4 for that cut-over; drop this leg, and raise the
-          # constraint to ^8.5, once nothing deploys there.
-          - php-version: "8.4"
-            os: ubuntu-24.04
+        php-version: ["8.5"]
 
     steps:
       - name: Checkout code
