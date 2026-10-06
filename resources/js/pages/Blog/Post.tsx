@@ -10,6 +10,7 @@ import Callout from '@/components/ui/callout';
 import Container from '@/components/ui/container';
 import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
+import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
@@ -157,29 +158,6 @@ export default function BlogPost({ post, correction, related }: Props) {
                             </div>
 
                             <Article html={post.bodyHtml} locale={post.locale} className="mt-10" />
-
-                            <div className="mt-12 flex flex-col items-start gap-4 border-t border-rule pt-8 sm:flex-row sm:items-center sm:justify-between">
-                                <p className="type-body text-foreground">
-                                    {fmt(m.platforms.availability.summary, { deviceList: deviceList(m.common.list) })}
-                                </p>
-                                <LocaleLink
-                                    href="/download"
-                                    className={buttonClasses('secondary', 'md', 'shrink-0')}
-                                    onClick={() => trackDownload('blog-post', 'mac')}
-                                >
-                                    {m.download.macCta}
-                                </LocaleLink>
-                            </div>
-
-                            {related.length > 0 && (
-                                <section aria-labelledby="related-posts" className="mt-16">
-                                    <h2 id="related-posts" className="type-h2 text-foreground">
-                                        {m.blog.post.related}
-                                    </h2>
-                                    {/* The post's last block: the page frame's join below closes the list (design-system §4.7). */}
-                                    <PostList posts={related} headingLevel="h3" descriptions={false} className="mt-4 border-b-transparent" />
-                                </section>
-                            )}
                         </div>
 
                         {toc && (
@@ -190,6 +168,24 @@ export default function BlogPost({ post, correction, related }: Props) {
                     </div>
                 </Container>
             </div>
+
+            {/* The apps and the related posts are blocks of their own, so their rules are the page frame's joins (design-system §4.7). */}
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container>
+                    <div className="flex max-w-[44rem] flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+                        <p className="type-body text-foreground">{fmt(m.platforms.availability.summary, { deviceList: deviceList(m.common.list) })}</p>
+                        <LocaleLink href="/download" className={buttonClasses('secondary', 'md', 'shrink-0')} onClick={() => trackDownload('blog-post', 'mac')}>
+                            {m.download.macCta}
+                        </LocaleLink>
+                    </div>
+                </Container>
+            </div>
+
+            {related.length > 0 && (
+                <Section id="related" title={m.blog.post.related}>
+                    <PostList posts={related} headingLevel="h3" descriptions={false} />
+                </Section>
+            )}
         </LandingLayout>
     );
 }

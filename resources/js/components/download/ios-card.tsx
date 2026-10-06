@@ -16,7 +16,8 @@ interface IosCardProps {
 /**
  * The iPhone and iPad card (`#ios`): the App Store badge, the requirement, the
  * price facts, and a link to `/ios`, where the app's own scope is explained.
- * It is a separate app, not a copy of the Mac app, and the card says so.
+ * It is a separate app, not a copy of the Mac app, and the card says so. Like
+ * the Mac card, it is a cell of the download page's `CellGrid` (§4.7).
  *
  * Every fact here is from platforms.json. The App Store URL has no country
  * segment, so Apple sends each reader to their own storefront.
@@ -26,7 +27,7 @@ export default function IosCard({ content, ios, className }: IosCardProps) {
     const devices = joinList(ios.deviceNames, m.common.list);
 
     return (
-        <section id="ios" aria-labelledby="ios-title" className={cn('scroll-mt-24 rounded-panel border border-rule bg-raised p-5 sm:p-6', className)}>
+        <section id="ios" aria-labelledby="ios-title" className={cn('scroll-mt-24', className)}>
             <h2 id="ios-title" className="type-h3 text-foreground">
                 {devices}
             </h2>

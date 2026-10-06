@@ -71,7 +71,7 @@ export default function AvailabilityTable({ rows, labels, values }: Availability
     }
 
     return (
-        <DataTable caption={labels.availability.caption} className="sm:min-w-[36rem]">
+        <DataTable wrapperClassName="frame-table" caption={labels.availability.caption} className="sm:min-w-[36rem]">
             <thead>
                 <tr>
                     <th scope="col" className={TABLE_HEAD_CELL}>

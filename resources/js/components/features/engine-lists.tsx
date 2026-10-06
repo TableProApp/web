@@ -10,6 +10,8 @@ import type { EngineListRef, Facts } from './types';
 interface EngineListsProps {
     lists: EngineListRef[];
     facts: Facts;
+    /** How the rows reach the frame: `frame-rows-text` in a section, `cell-rows` in a cell (design-system §4.7). */
+    className?: string;
 }
 
 /**
@@ -18,7 +20,7 @@ interface EngineListsProps {
  * describes it, with its query language or dump tool when the list carries
  * one. A list that comes back empty is left out rather than shown blank.
  */
-export default function EngineLists({ lists, facts }: EngineListsProps) {
+export default function EngineLists({ lists, facts, className }: EngineListsProps) {
     const { m } = useI18n();
     const rows = lists.map((list) => ({ ...list, items: engineItems(facts, list.list) })).filter((row) => row.items.length > 0);
 
@@ -27,7 +29,7 @@ export default function EngineLists({ lists, facts }: EngineListsProps) {
     }
 
     return (
-        <DescriptionList>
+        <DescriptionList className={className}>
             {rows.map((row) => (
                 <DescriptionItem key={row.list} term={row.label}>
                     {row.items.map((item, index) => (

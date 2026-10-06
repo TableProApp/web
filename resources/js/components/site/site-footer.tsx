@@ -280,7 +280,7 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                     </div>
                 </div>
 
-                <div className="mt-12 flex flex-col gap-6 border-t border-rule pt-6 lg:flex-row lg:items-center lg:justify-between">
+                <div className="-mx-(--cell-bleed) mt-12 flex flex-col gap-6 border-t border-rule px-(--cell-bleed) pt-6 lg:flex-row lg:items-center lg:justify-between">
                     <p className="type-small text-muted-foreground">{fmt(m.footer.bottom.copyright, { year: new Date().getFullYear() })}</p>
                     <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8">
                         <LanguageSwitcher variant="list" />

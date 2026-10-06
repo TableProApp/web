@@ -161,6 +161,7 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
                 {content.faq.length > 0 && (
                     <Section id="faq" title={fmt(labels.sections.faq, { name: engine.name })} width="text">
                         <FaqList
+                            className="frame-rows-text"
                             items={content.faq.map((entry) => ({
                                 id: entry.id,
                                 question: entry.question,

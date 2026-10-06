@@ -88,7 +88,7 @@ export default function PlanMatrix({ details, className }: PlanMatrixProps) {
 
     return (
         <div className={className}>
-            <DataTable caption={m.pricing.matrix.caption} captionVisible stickyFirstColumn>
+            <DataTable wrapperClassName="frame-table" caption={m.pricing.matrix.caption} captionVisible stickyFirstColumn>
                 <thead>
                     <tr>
                         <th scope="col" className={cn(TABLE_HEAD_CELL, FEATURE_CELL)}>

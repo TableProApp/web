@@ -77,9 +77,9 @@ export default function DatabasesSection({ content, engines, iosEngines, availab
             )}
 
             <h3 className="type-h3 mt-10 text-foreground">{content.byType}</h3>
-            <DescriptionList className="mt-4 -mx-(--cell-bleed)">
+            <DescriptionList className="frame-rows mt-4">
                 {categories.map(({ category, engines: group }) => (
-                    <DescriptionItem key={category} term={content.categories[category]} className="px-(--cell-bleed)">
+                    <DescriptionItem key={category} term={content.categories[category]}>
                         <ul className="flex flex-wrap gap-x-4 gap-y-1">
                             {group.map((engine) => (
                                 <li key={engine.id} className="inline-flex items-center gap-1.5">

@@ -23,10 +23,13 @@ interface FaqListProps {
 /**
  * Questions and answers, every answer visible (design-system §5.3.7).
  *
- * One column at the reading width. Not an accordion: an answer behind a
- * disclosure is one that Ctrl+F cannot find, a search engine ranks lower and a
- * skimming reader never sees, and these lists are short enough not to need
- * collapsing.
+ * One column, whose measure the caller sets: `frame-rows-text` in a section
+ * runs each row from rail to rail with its text at the reading width
+ * (design-system §4.7), and a cell keeps it inside the cell.
+ *
+ * Not an accordion: an answer behind a disclosure is one that Ctrl+F cannot
+ * find, a search engine ranks lower and a skimming reader never sees, and
+ * these lists are short enough not to need collapsing.
  *
  * Each item is separated by a hairline with 24px of padding; the answer sits
  * 8px under its question, in the text colour, not muted, because it is what
@@ -38,7 +41,7 @@ export default function FaqList({ items, headingLevel = 'h3', className }: FaqLi
     const Heading = headingLevel;
 
     return (
-        <div data-rule-list className={cn('max-w-[44rem] border-t border-rule', className)}>
+        <div data-rule-list className={cn('border-t border-rule', className)}>
             {items.map((item) => (
                 <div key={item.id ?? item.question} id={item.id} className="scroll-mt-24 border-b border-rule py-6">
                     <Heading className="type-h3 text-foreground">{item.question}</Heading>

@@ -189,3 +189,83 @@ it('keeps the frame from clipping or widening the page', function (string $file)
 
     expect($code)->not->toMatch('/\d+vw\b|w-screen|overflow-x:\s*(?:hidden|clip)|overflow-x-(?:hidden|clip)/');
 })->with(['css/app.css', 'js/components/site/frame-rails.tsx', 'js/components/ui/cell-grid.tsx', 'js/layouts/landing-layout.tsx']);
+
+it('ends every inner rule on the frame: rail to rail, wall to wall, or inside a card', function (string $path): void {
+    /*
+     * The owner's complaint after the first frame: list and table rules that
+     * stopped 32px short of the rails, or at the 704px reading measure, read
+     * as loose lines in open space. Every ruled list and every table in
+     * <main> now reaches the rails (`frame-rows`, `frame-rows-text`,
+     * `frame-table`), or the walls of the cell it sits in (`cell-rows`), or
+     * lives inside a card whose edge closes it. A blog article's own tables
+     * are typography inside the reading column and stay as they are.
+     */
+    $xpath = frameXPath(ssrHtml($path));
+    $reaches = ['frame-rows', 'frame-rows-text', 'cell-rows', 'frame-table'];
+    $ruled = $xpath->query('//main//dl | //main//*[@data-rule-list] | //main//*[@role="region"][table]');
+
+    foreach ($ruled as $element) {
+        if (array_intersect($reaches, frameClasses($element)) !== []) {
+            continue;
+        }
+
+        for ($node = $element->parentNode; $node instanceof DOMElement; $node = $node->parentNode) {
+            $classes = frameClasses($node);
+
+            if (in_array('rounded-panel', $classes, true) || in_array('blog-article', $classes, true)) {
+                continue 2;
+            }
+        }
+
+        Assert::fail("{$path}: a <{$element->nodeName}> with rules stops short of the frame; give it frame-rows, frame-rows-text, cell-rows or frame-table");
+    }
+
+    expect(true)->toBeTrue();
+})->with(frameTemplates());
+
+it('reaches the rails from any measure with container units, and keeps the text where it was', function (): void {
+    $css = frameCss();
+
+    expect($css)->toMatch('/\.frame-rows,\s*\.frame-rows-text \{[^}]*margin-left: calc\(var\(--cell-bleed\) \* -1\);[^}]*margin-right: calc\(\(100cqw - 100%\) \* -1 - var\(--cell-bleed\)\);/s')
+        ->toMatch('/\.frame-rows-text \{\s*--row-room: calc\(100cqw - min\(44rem, 100cqw\)\);/')
+        ->toMatch('/:is\(\.frame-rows, \.frame-rows-text\) > \* \{\s*padding-left: var\(--cell-bleed\);\s*padding-right: calc\(var\(--row-room\) \+ var\(--cell-bleed\)\);/')
+        ->toMatch('/\.frame-table :is\(th, td\):first-child \{\s*padding-left: var\(--cell-bleed\);/')
+        ->toMatch('/\.frame-table thead \+ tbody > tr:first-child \{\s*border-top-style: none;/')
+        ->toMatch('/\.cell-rows > \* \{\s*padding-inline: var\(--cell-bleed\);/');
+
+    // Container units need a size container whose content box is the page's content column.
+    expect((string) file_get_contents(resource_path('js/components/ui/section.tsx')))->toContain('<Container className="@container">');
+});
+
+it('separates the pricing and download topics with joins, not with rules inside one block', function (string $path, array $ids): void {
+    $xpath = frameXPath(ssrHtml($path));
+
+    foreach ($ids as $id) {
+        expect($xpath->query("//main/section[@id=\"{$id}\"]")->length)->toBe(1, "{$path}: #{$id} is a block of its own, so the frame's join separates it");
+    }
+})->with([
+    'pricing' => ['/pricing', ['license', 'billing', 'refunds', 'team', 'open-source', 'faq']],
+    'download' => ['/download', ['install', 'updates', 'older-versions']],
+    'post' => ['/blog/tablepro-0-77', ['related']],
+]);
+
+it('sets each FAQ topic beside its questions, as two cells', function (): void {
+    $xpath = frameXPath(ssrHtml('/faq'));
+    $topics = $xpath->query('//main//section[@aria-labelledby]/*[contains(concat(" ", normalize-space(@class), " "), " cell-grid ")]');
+
+    expect($topics->length)->toBeGreaterThan(1);
+
+    foreach ($topics as $grid) {
+        expect($xpath->query('./*', $grid)->length)->toBe(2, 'A topic is its heading cell and its questions cell');
+        expect($xpath->query('.//*[@data-rule-list]', $grid)->item(0)?->getAttribute('class'))->toContain('cell-rows');
+    }
+});
+
+it('opens the blog index list on the frame\'s join', function (): void {
+    $xpath = frameXPath(ssrHtml('/blog'));
+    $list = $xpath->query('//main/*[2]//ol[@data-rule-list]')->item(0);
+
+    expect($list)->not->toBeNull();
+    expect(frameClasses($list))->toContain('frame-rows', 'border-t-0');
+    expect(frameClasses($xpath->query('//main/*[2]')->item(0)))->not->toContain('pt-8');
+});

@@ -172,7 +172,7 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
             <PageHeader title={content.header.title} lead={content.header.lead} meta={fmt(labels.factsChecked, { date: checked })} />
 
             <Section id="by-situation" title={content.bySituation.title} lead={content.bySituation.lead} width="text">
-                <ul data-rule-list className="border-t border-rule">
+                <ul data-rule-list className="frame-rows-text border-t border-rule">
                     {products
                         .filter((product) => product.slug !== null)
                         .map((product) => {
@@ -195,7 +195,7 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
 
             <Section id="at-a-glance" title={content.atAGlance.title} lead={content.atAGlance.lead}>
                 {/* Below 1024px the four value columns fold under each client's name (design-system §5.3.10): five columns need about 832px. */}
-                <DataTable caption={fmt(content.atAGlance.caption, { date: checked })} captionVisible stickyFirstColumn className="lg:min-w-[52rem]">
+                <DataTable wrapperClassName="frame-table" caption={fmt(content.atAGlance.caption, { date: checked })} captionVisible stickyFirstColumn className="lg:min-w-[52rem]">
                     <thead>
                         <tr>
                             <th scope="col" className={TABLE_HEAD_CELL}>
@@ -235,7 +235,7 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
 
             <Section id="open-source" title={content.openSource.title} lead={content.openSource.lead}>
                 {/* Below 640px the four value columns fold under each client's name (design-system §5.3.10). */}
-                <DataTable caption={fmt(content.openSource.caption, { date: checked })} captionVisible stickyFirstColumn className="sm:min-w-[44rem]">
+                <DataTable wrapperClassName="frame-table" caption={fmt(content.openSource.caption, { date: checked })} captionVisible stickyFirstColumn className="sm:min-w-[44rem]">
                     <thead>
                         <tr>
                             <th scope="col" className={TABLE_HEAD_CELL}>

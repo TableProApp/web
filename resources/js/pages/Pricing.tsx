@@ -81,24 +81,6 @@ function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines,
     ]);
 }
 
-interface ProseSectionProps {
-    id: string;
-    title: string;
-    children: ReactNode;
-}
-
-/** One reading-width section below the table: a ruled `<h2>` and its body. The first takes the page frame's join for its rule. */
-function ProseSection({ id, title, children }: ProseSectionProps) {
-    return (
-        <section id={id} aria-labelledby={`${id}-title`} className="border-t border-rule pt-10 first:border-t-0 first:pt-0 md:pt-12 md:first:pt-0">
-            <h2 id={`${id}-title`} className="type-h2 text-foreground">
-                {title}
-            </h2>
-            <div className="type-body mt-4 space-y-4 text-foreground">{children}</div>
-        </section>
-    );
-}
-
 /**
  * `/pricing` and `/vi/pricing` (sitemap §A.1, §E.5; design-system §8.6).
  *
@@ -176,90 +158,95 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                 <PlanMatrix details={paidFeatures} />
             </Section>
 
-            {/* The prose column sits on the page's left edge, under the H1, not centred (design-system §4.2). */}
-            <div className="py-8 md:py-10 xl:py-12">
-                <Container>
-                    <div className="max-w-[44rem] space-y-12">
-                        <ProseSection id="license" title={content.license.title}>
-                            <DescriptionList>
-                                {Object.entries(content.license.items).map(([key, item]) => (
-                                    <DescriptionItem key={key} term={item.term}>
-                                        {rich(item.body)}
-                                    </DescriptionItem>
-                                ))}
-                            </DescriptionList>
-                            <Disclosure summary={content.license.lapse.summary}>
-                                <p>{content.license.lapse.intro}</p>
-                                <ul className="mt-3 space-y-3">
-                                    {PAID_FEATURES.map((feature) => (
-                                        <li key={feature.id}>
-                                            <span className="block font-medium">{feature.name}</span>
-                                            <span className="block">{paidFeatures[feature.id]?.lapse}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </Disclosure>
-                            <p>{rich(content.license.terms)}</p>
-                        </ProseSection>
+            {/*
+              * The prose after the table: each topic is a section of its own at the
+              * reading measure, so the page frame's joins separate them, and their
+              * lists run from rail to rail (design-system §4.7).
+              */}
+            <Section id="license" title={content.license.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <DescriptionList className="frame-rows-text">
+                        {Object.entries(content.license.items).map(([key, item]) => (
+                            <DescriptionItem key={key} term={item.term}>
+                                {rich(item.body)}
+                            </DescriptionItem>
+                        ))}
+                    </DescriptionList>
+                    <Disclosure summary={content.license.lapse.summary}>
+                        <p>{content.license.lapse.intro}</p>
+                        <ul className="mt-3 space-y-3">
+                            {PAID_FEATURES.map((feature) => (
+                                <li key={feature.id}>
+                                    <span className="block font-medium">{feature.name}</span>
+                                    <span className="block">{paidFeatures[feature.id]?.lapse}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </Disclosure>
+                    <p>{rich(content.license.terms)}</p>
+                </div>
+            </Section>
 
-                        <ProseSection id="billing" title={content.billing.title}>
-                            <p>{rich(content.billing.merchant)}</p>
-                            <p>{rich(content.billing.renewal)}</p>
-                            <p>{rich(content.billing.portal)}</p>
-                        </ProseSection>
+            <Section id="billing" title={content.billing.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <p>{rich(content.billing.merchant)}</p>
+                    <p>{rich(content.billing.renewal)}</p>
+                    <p>{rich(content.billing.portal)}</p>
+                </div>
+            </Section>
 
-                        <ProseSection id="refunds" title={content.refunds.title}>
-                            <p>{rich(content.refunds.body)}</p>
-                        </ProseSection>
+            <Section id="refunds" title={content.refunds.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <p>{rich(content.refunds.body)}</p>
+                </div>
+            </Section>
 
-                        <ProseSection id="team" title={content.team.title}>
-                            <p>{rich(content.team.seats)}</p>
-                            <p>{rich(content.team.invites)}</p>
-                            <p>{rich(content.team.changes)}</p>
-                            <DescriptionList>
-                                <DescriptionItem term={m.pricing.prioritySupport.name}>
-                                    {plural(m.pricing.prioritySupport.detail, PRICING.tiers.team.prioritySupport.responseBusinessDays)}
-                                </DescriptionItem>
-                            </DescriptionList>
-                            <p>
-                                <TextLink href={account} kind="standalone">
-                                    {content.team.account}
-                                </TextLink>
-                            </p>
-                        </ProseSection>
+            <Section id="team" title={content.team.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <p>{rich(content.team.seats)}</p>
+                    <p>{rich(content.team.invites)}</p>
+                    <p>{rich(content.team.changes)}</p>
+                    <DescriptionList className="frame-rows-text">
+                        <DescriptionItem term={m.pricing.prioritySupport.name}>
+                            {plural(m.pricing.prioritySupport.detail, PRICING.tiers.team.prioritySupport.responseBusinessDays)}
+                        </DescriptionItem>
+                    </DescriptionList>
+                    <p>
+                        <TextLink href={account} kind="standalone">
+                            {content.team.account}
+                        </TextLink>
+                    </p>
+                </div>
+            </Section>
 
-                        <ProseSection id="open-source" title={content.openSource.title}>
-                            <p>{content.openSource.body}</p>
-                            <p>{content.openSource.agpl}</p>
-                            <p>
-                                <TextLink href={FACTS.links.github} kind="standalone" external>
-                                    {content.openSource.github}
-                                </TextLink>
-                            </p>
-                        </ProseSection>
+            <Section id="open-source" title={content.openSource.title} width="text">
+                <div className="type-body space-y-4 text-foreground">
+                    <p>{content.openSource.body}</p>
+                    <p>{content.openSource.agpl}</p>
+                    <p>
+                        <TextLink href={FACTS.links.github} kind="standalone" external>
+                            {content.openSource.github}
+                        </TextLink>
+                    </p>
+                </div>
+            </Section>
 
-                        <section id="faq" aria-labelledby="faq-title" className="border-t border-rule pt-10 md:pt-12">
-                            <h2 id="faq-title" className="type-h2 text-foreground">
-                                {content.faq.title}
-                            </h2>
-                            <FaqList
-                                className="mt-6"
-                                items={Object.entries(content.faq.items).map(([key, item]) => ({
-                                    id: key,
-                                    question: item.question,
-                                    answer: <p>{rich(item.answer)}</p>,
-                                }))}
-                            />
-                            <p className="mt-6">
-                                <LocaleLink href="/faq#licensing" className={textLinkClasses('standalone')}>
-                                    {content.faq.more}
-                                    <span aria-hidden="true">→</span>
-                                </LocaleLink>
-                            </p>
-                        </section>
-                    </div>
-                </Container>
-            </div>
+            <Section id="faq" title={content.faq.title} width="text">
+                <FaqList
+                    className="frame-rows-text"
+                    items={Object.entries(content.faq.items).map(([key, item]) => ({
+                        id: key,
+                        question: item.question,
+                        answer: <p>{rich(item.answer)}</p>,
+                    }))}
+                />
+                <p className="mt-6">
+                    <LocaleLink href="/faq#licensing" className={textLinkClasses('standalone')}>
+                        {content.faq.more}
+                        <span aria-hidden="true">→</span>
+                    </LocaleLink>
+                </p>
+            </Section>
         </LandingLayout>
     );
 }

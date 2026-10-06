@@ -320,7 +320,7 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
                     {requirement !== null && <p className="type-small text-muted-foreground">{fmt(m.platforms.requires, { requirement })}</p>}
                 </div>
                 <FaqList
-                    className="mt-10"
+                    className="frame-rows-text mt-10"
                     items={content.get.faq.map((item) => ({
                         question: item.question,
                         answer: <p><Trans text={item.answer} tags={tags} values={values} /></p>,

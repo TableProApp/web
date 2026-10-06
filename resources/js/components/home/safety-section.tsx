@@ -45,7 +45,7 @@ export default function SafetySection({ content, paidTemplate }: SafetySectionPr
                     <p className="type-small mt-6 font-medium text-foreground">
                         {content.levels}
                     </p>
-                    <DescriptionList className="mt-2">
+                    <DescriptionList className="cell-rows mt-2">
                         <DescriptionItem term={devicesOf(macPlatform(), m.common.shortList)}>
                             {joinList(
                                 FACTS.safeMode.mac.levels.map((level) => level.name),
