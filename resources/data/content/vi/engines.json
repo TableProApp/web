@@ -2,8 +2,7 @@
     "postgresql": {
         "tagline": "Giá trị array, jsonb và PostGIS, sơ đồ EXPLAIN, Users & Roles và sao lưu bằng pg_dump.",
         "limits": {
-            "column-reorder-script-only": "Đổi thứ tự cột sẽ tạo một script dựng lại table. TablePro hiển thị script đó nhưng không bao giờ tự chạy.",
-            "session-state-per-database": "Mỗi cơ sở dữ liệu bạn mở giữ connection riêng, nên đổi cơ sở dữ liệu không phải kết nối lại. Temp table, thiết lập session hay transaction đang mở ở lại với cơ sở dữ liệu đã tạo ra nó."
+            "column-reorder-script-only": "Đổi thứ tự cột sẽ tạo một script dựng lại table. TablePro hiển thị script đó nhưng không bao giờ tự chạy."
         }
     },
     "mysql": {

@@ -34,7 +34,7 @@
             "id": "connect",
             "title": "Connect",
             "paragraphs": [
-                "Give TablePro a host, a port, a user and a database, or paste a <code>postgresql://</code> or <code>postgres://</code> URL. PostgreSQL needs the database to connect, and each database you open after that gets a connection of its own.",
+                "Give TablePro a host, a port, a user and a database, or paste a <code>postgresql://</code> or <code>postgres://</code> URL. PostgreSQL needs the database to connect.",
                 "New connections start with SSL set to Preferred, libpq’s <code>sslmode=prefer</code>. Choose Verify CA or Verify Identity to check the server’s certificate.",
                 "Turn on Use ~/.pgpass to read the password from <code>~/.pgpass</code>. The form reports what it found, including a file whose permissions would make libpq ignore it.",
                 "Reach a private server through an <network>SSH tunnel, with jump hosts if you need them, a SOCKS5 proxy, a Cloudflare Access tunnel or a tunnel command</network> such as kubectl port-forward. On Amazon RDS and Aurora, sign in with <cloudAuth>AWS IAM</cloudAuth> as a role granted <code>rds_iam</code>. For Google Cloud SQL, TablePro downloads and runs the Cloud SQL Auth Proxy.",
@@ -97,7 +97,7 @@
                 "CockroachDB uses the PostgreSQL driver that comes with the app, so there is nothing to install. New clusters start with the <code>defaultdb</code> database.",
                 "For CockroachDB Cloud, copy the host, user, password and database from the Cloud console, put the cluster routing value, <code>--cluster=your-cluster</code>, in Connection Options, and set SSL Mode to Verify Identity. For a local insecure node, set SSL Mode to Disabled.",
                 "Table and view DDL comes from CockroachDB’s own SHOW CREATE. EXPLAIN and EXPLAIN ANALYZE text plans are parsed into the plan tree, and the Server Dashboard lists sessions and active queries.",
-                "As on PostgreSQL, each database you open keeps a connection of its own, so changing database does not reconnect. Foreign key checks cannot be deferred."
+                "Foreign key checks cannot be deferred."
             ]
         },
         {
@@ -131,11 +131,6 @@
             "id": "hosted",
             "question": "Does TablePro work with hosted PostgreSQL, such as Amazon RDS?",
             "answer": "Yes. A hosted server is a host and a port like any other. On RDS and Aurora you can also sign in with AWS IAM, and for Google Cloud SQL TablePro runs the Cloud SQL Auth Proxy."
-        },
-        {
-            "id": "switch-database",
-            "question": "Does changing database reconnect?",
-            "answer": "No. PostgreSQL has no in-place USE, so each database you open keeps a connection of its own, and changing database moves between them. Each one keeps its open transaction, temporary tables and SET values until you close it or disconnect."
         },
         {
             "id": "column-order",

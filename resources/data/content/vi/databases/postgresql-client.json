@@ -34,7 +34,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập host, port, user và cơ sở dữ liệu, hoặc dán một URL <code>postgresql://</code> hay <code>postgres://</code>. PostgreSQL cần biết cơ sở dữ liệu thì mới kết nối được, và mỗi cơ sở dữ liệu bạn mở sau đó có connection riêng.",
+                "Nhập host, port, user và cơ sở dữ liệu, hoặc dán một URL <code>postgresql://</code> hay <code>postgres://</code>. PostgreSQL cần biết cơ sở dữ liệu thì mới kết nối được.",
                 "Connection mới để SSL ở chế độ Ưu tiên (Preferred), tức <code>sslmode=prefer</code> của libpq. Hãy chọn Xác minh CA (Verify CA) hoặc Xác minh danh tính (Verify Identity) để kiểm tra chứng chỉ của server.",
                 "Bật Sử dụng ~/.pgpass (Use ~/.pgpass) để đọc mật khẩu từ <code>~/.pgpass</code>. Form cho biết nó tìm thấy gì, kể cả trường hợp quyền truy cập của file khiến libpq bỏ qua file đó.",
                 "Tới server nội bộ qua <network>SSH tunnel (kèm jump host nếu cần), SOCKS5 proxy, Cloudflare Access tunnel hoặc tunnel command</network>, chẳng hạn kubectl port-forward. Trên Amazon RDS và Aurora, bạn đăng nhập bằng <cloudAuth>AWS IAM</cloudAuth> với một role được cấp <code>rds_iam</code>. Với Google Cloud SQL, TablePro tự tải và chạy Cloud SQL Auth Proxy.",
@@ -97,7 +97,7 @@
                 "CockroachDB dùng driver PostgreSQL có sẵn trong ứng dụng, nên không cần cài thêm gì. Cluster mới bắt đầu với cơ sở dữ liệu <code>defaultdb</code>.",
                 "Với CockroachDB Cloud, hãy chép host, user, mật khẩu và cơ sở dữ liệu từ Cloud console, đặt giá trị định tuyến cluster <code>--cluster=your-cluster</code> vào Tùy chọn kết nối (Connection Options), và đặt Chế độ SSL (SSL Mode) là Xác minh danh tính (Verify Identity). Với một node chạy cục bộ ở chế độ insecure, hãy đặt Chế độ SSL là Đã tắt (Disabled).",
                 "DDL của table và view lấy từ câu SHOW CREATE của chính CockroachDB. Execution plan dạng văn bản của EXPLAIN và EXPLAIN ANALYZE được phân tích thành cây plan, và Server Dashboard liệt kê session cùng các query đang chạy.",
-                "Như trên PostgreSQL, mỗi cơ sở dữ liệu bạn mở giữ connection riêng, nên đổi cơ sở dữ liệu không phải kết nối lại. Việc kiểm tra khóa ngoại không hoãn được."
+                "Việc kiểm tra khóa ngoại không hoãn được."
             ]
         },
         {
@@ -131,11 +131,6 @@
             "id": "hosted",
             "question": "TablePro có dùng được với PostgreSQL được host sẵn, như Amazon RDS không?",
             "answer": "Có. Server được host sẵn cũng chỉ là một host và một port như mọi server khác. Trên RDS và Aurora, bạn còn đăng nhập được bằng AWS IAM, và với Google Cloud SQL, TablePro tự chạy Cloud SQL Auth Proxy."
-        },
-        {
-            "id": "switch-database",
-            "question": "Đổi cơ sở dữ liệu có phải kết nối lại không?",
-            "answer": "Không. PostgreSQL không có lệnh USE để đổi tại chỗ, nên mỗi cơ sở dữ liệu bạn mở giữ connection riêng, và đổi cơ sở dữ liệu là chuyển giữa các connection đó. Mỗi connection giữ transaction đang mở, temporary table và giá trị SET cho tới khi bạn đóng nó hoặc ngắt kết nối."
         },
         {
             "id": "column-order",
