@@ -1,3 +1,4 @@
+/* Shared with TableProApp/web and TableProApp/license at resources/js/components/shared/frame-rails.tsx. Change both in the same release. See docs/shared-files.md. */
 /**
  * The page frame's two rails: 1px `--rule` verticals on the wide Container's
  * outer edge, from 1280px (design-system §4.7).
@@ -9,7 +10,7 @@
  * `Container` (76rem plus two 2rem gutters) fills at 1280 and wider; at 1440
  * that is x = 80 and x = 1359.
  *
- * Below 1280 there are no rails, only the horizontal joins (app.css). Each rail
+ * Below 1280 there are no rails, only the horizontal joins (frame.css). Each rail
  * is its own 1px element rather than the border of a page-sized box, so a
  * browser that promotes it to a layer promotes a sliver, not the whole page.
  * Decoration only: hidden from assistive technology, from forced colours and

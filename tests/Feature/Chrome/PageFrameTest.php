@@ -45,7 +45,7 @@ function frameClasses(DOMElement $element): array
 
 function frameCss(): string
 {
-    return (string) file_get_contents(resource_path('css/app.css'));
+    return (string) file_get_contents(resource_path('css/frame.css'));
 }
 
 it('draws the rails once over the page and once in the header, as decoration only', function (): void {
@@ -66,7 +66,7 @@ it('draws the rails once over the page and once in the header, as decoration onl
      * detach from the content, which is how the previous frame failed above
      * about 1616px.
      */
-    expect((string) file_get_contents(resource_path('js/components/site/frame-rails.tsx')))->toContain('max-w-[80rem]');
+    expect((string) file_get_contents(resource_path('js/components/shared/frame-rails.tsx')))->toContain('max-w-[80rem]');
     expect((string) file_get_contents(resource_path('js/components/ui/container.tsx')))->toContain("wide: 'max-w-[76rem]'")->toContain('lg:px-8');
 });
 
@@ -95,7 +95,7 @@ it('joins every two blocks of main with one full-bleed rule', function (string $
 it('draws the join in CSS, by position, and lands anchors behind the header\'s rule', function (): void {
     expect(frameCss())->toMatch('/main > \* \+ \* \{\s*border-top: 1px solid var\(--rule\);/')
         ->toContain('scroll-margin-top: -1rem;')
-        ->toContain('scroll-padding-top: 5rem;');
+        ->and((string) file_get_contents(resource_path('css/app.css')))->toContain('scroll-padding-top: 5rem;');
 });
 
 it('marks every join by position, so no page picks which joins get one', function (string $path): void {
@@ -188,7 +188,7 @@ it('keeps the frame from clipping or widening the page', function (string $file)
     $code = (string) preg_replace('#/\*.*?\*/#s', '', (string) file_get_contents(resource_path($file)));
 
     expect($code)->not->toMatch('/\d+vw\b|w-screen|overflow-x:\s*(?:hidden|clip)|overflow-x-(?:hidden|clip)/');
-})->with(['css/app.css', 'js/components/site/frame-rails.tsx', 'js/components/ui/cell-grid.tsx', 'js/layouts/landing-layout.tsx']);
+})->with(['css/app.css', 'css/frame.css', 'js/components/shared/frame-rails.tsx', 'js/components/ui/cell-grid.tsx', 'js/layouts/landing-layout.tsx']);
 
 it('ends every inner rule on the frame: rail to rail, wall to wall, or inside a card', function (string $path): void {
     /*

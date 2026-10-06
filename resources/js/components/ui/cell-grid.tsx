@@ -1,3 +1,4 @@
+/* Shared with TableProApp/web and TableProApp/license at resources/js/components/ui/cell-grid.tsx. Change both in the same release. See docs/shared-files.md. */
 import type { ElementType, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -25,7 +26,7 @@ interface CellGridProps {
  * the page's left edge. Every direct child is a cell and draws its lines with
  * a 1px spread shadow, so neighbours share a line instead of doubling it, and
  * a short last row leaves blank page rather than a block of line colour
- * (app.css, `.cell-grid`).
+ * (frame.css, `.cell-grid`).
  *
  * Use it only in a wide section, for content that already is a set of like
  * items. Prose keeps its reading measure and stays unlined.

@@ -9,7 +9,7 @@ import { useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 import FeaturesMenu from './features-menu';
-import FrameRails from './frame-rails';
+import FrameRails from '@/components/shared/frame-rails';
 import LanguageSwitcher from './language-switcher';
 import MobileNav from './mobile-nav';
 import { EXTERNAL, NAV_LABEL, accountHref, basePath, sectionOf } from './site-links';
