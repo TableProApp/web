@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { useLiveChat } from '@/components/site/chat-button';
 import ConsentBar from '@/components/site/consent-bar';
+import FrameRails from '@/components/site/frame-rails';
 import SiteFooter from '@/components/site/site-footer';
 import SiteHeader from '@/components/site/site-header';
 import SupportBanner from '@/components/site/support-banner';
@@ -17,8 +18,8 @@ interface Props {
 }
 
 /**
- * The public page frame: a plain stack, in reading and tab order
- * (design-system §4.6, §7.2).
+ * The public page frame: a stack in reading and tab order, drawn as a grid
+ * (design-system §4.6, §4.7, §7.2).
  *
  * 1. The skip link, first in the document.
  * 2. The license banner, which scrolls away with the page, then the sticky
@@ -28,6 +29,11 @@ interface Props {
  *    into it rather than only scrolling.
  * 4. The footer, a `contentinfo` landmark for the same reason.
  * 5. The consent bar, last, so it is the last tab stop on the page.
+ *
+ * The grid is drawn, not laid out: the rails are a decorative overlay on this
+ * `relative` root (`FrameRails`, from 1280px), and a full-bleed hairline joins
+ * every two blocks of `<main>` (app.css). Neither moves content or takes a
+ * tab stop.
  *
  * Crisp's chat launcher joins every page once it has loaded and the browser is
  * idle (`useLiveChat`, `lib/crisp.ts`); it is not part of the server render.
@@ -58,7 +64,7 @@ export default function LandingLayout({ children, footerNewsletter = true }: Pro
     useLiveChat();
 
     return (
-        <div className="flex min-h-dvh flex-col bg-background text-foreground">
+        <div className="relative flex min-h-dvh flex-col bg-background text-foreground">
             <a
                 href="#main-content"
                 className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:inline-flex focus:min-h-10 focus:items-center focus:rounded-control focus:bg-accent focus:px-4 focus:text-sm focus:font-medium focus:text-accent-foreground"
@@ -73,6 +79,7 @@ export default function LandingLayout({ children, footerNewsletter = true }: Pro
                 {children}
             </main>
             <SiteFooter newsletter={footerNewsletter} />
+            <FrameRails />
             <ConsentBar />
         </div>
     );

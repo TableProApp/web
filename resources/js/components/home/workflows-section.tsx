@@ -1,4 +1,5 @@
 import AssetSlot from '@/components/ui/asset-slot';
+import CellGrid from '@/components/ui/cell-grid';
 import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
@@ -40,6 +41,9 @@ interface WorkflowsSectionProps {
  * mentions with their plan, one image slot and a link to its feature page.
  * Engine, format and tool names come from engines.json and facts.json, so no
  * row types a list the data already holds, and none types a count.
+ *
+ * The rows are cells of one grid that closes on the next join
+ * (design-system §4.7).
  */
 export default function WorkflowsSection({ content, engines, macApp, iosDevices }: WorkflowsSectionProps) {
     const { m, fmt } = useI18n();
@@ -68,6 +72,7 @@ export default function WorkflowsSection({ content, engines, macApp, iosDevices 
     return (
         <Section
             id="features"
+            flush
             title={content.title}
             lead={lead}
             aside={
@@ -77,7 +82,7 @@ export default function WorkflowsSection({ content, engines, macApp, iosDevices 
                 </LocaleLink>
             }
         >
-            <div className="space-y-16 md:space-y-20">
+            <CellGrid className="lg:grid-cols-12">
                 {content.rows.map((row) => {
                     const config = ROWS[row.id];
 
@@ -112,7 +117,7 @@ export default function WorkflowsSection({ content, engines, macApp, iosDevices 
                         </FeatureRow>
                     );
                 })}
-            </div>
+            </CellGrid>
         </Section>
     );
 }

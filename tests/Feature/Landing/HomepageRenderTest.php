@@ -414,16 +414,17 @@ describe('server-rendered', function (): void {
         expect($html)->not->toContain('aria-label="Notifications');
 
         /*
-         * Two columns below 640px, the 2 × 2 of design-system §8.1, and a
-         * wrapping row above. A wide wordmark once overflowed a fixed column at
-         * 375px, so each item may shrink (`min-w-0`) and each logo scales down
-         * (`max-w-full`). The logos load eagerly at low priority, so a late lazy
-         * load never leaves the white dark-mode tile empty, and React does not
-         * preload them ahead of the page's own images.
+         * A wall of cells: two across below 768px, the 2 × 2 of design-system
+         * §8.1, and four across from 768 (§4.7). A wide wordmark once
+         * overflowed a fixed column at 375px, so each item may shrink
+         * (`min-w-0`) and each logo scales down (`max-w-full`). The logos load
+         * eagerly at low priority, so a late lazy load never leaves the white
+         * dark-mode tile empty, and React does not preload them ahead of the
+         * page's own images.
          */
         preg_match('#<section[^>]*id="sponsors".*?</section>#s', $html, $sponsors);
 
-        expect($sponsors[0] ?? '')->toContain('grid grid-cols-2')->toContain('sm:flex sm:flex-wrap')->toContain('min-w-0 max-w-full')
+        expect($sponsors[0] ?? '')->toContain('cell-grid grid-cols-2 md:grid-cols-4')->toContain('min-w-0 max-w-full')
             ->toContain('fetchPriority="low"')->not->toContain('loading="lazy"');
     })->with([
         ['/', 'TablePro: native database client for Mac, iPhone and iPad', 'TablePro on Product Hunt'],

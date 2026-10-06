@@ -1,3 +1,4 @@
+import CellGrid from '@/components/ui/cell-grid';
 import Section from '@/components/ui/section';
 import TextLink from '@/components/ui/text-link';
 import { FACTS } from '@/lib/data/facts';
@@ -50,6 +51,10 @@ function SponsorLogo({ sponsor }: { sponsor: Sponsor }) {
  * Only the sponsors verified as current are listed (resources/data/sponsors.json
  * records when and how). Each link is `rel="sponsored noopener"` and named by
  * the sponsor's visible name under its logo.
+ *
+ * The logos are a wall of cells that closes on the next join (design-system
+ * §4.7): two across on a phone, four from 768px. A fifth sponsor starts a
+ * second row and leaves the rest of it blank page, not a block of line colour.
  */
 export default function SponsorsSection({ content }: { content: HomeContent['sponsors'] }) {
     return (
@@ -57,15 +62,14 @@ export default function SponsorsSection({ content }: { content: HomeContent['spo
             id="sponsors"
             title={content.title}
             titleStyle="h3"
-            ruled
-            className="py-12 md:py-12 xl:py-12"
+            flush
             aside={
                 <TextLink href={FACTS.links.sponsorsProgram} kind="standalone" external>
                     {content.link}
                 </TextLink>
             }
         >
-            <ul className="grid grid-cols-2 items-start gap-x-6 gap-y-6 sm:flex sm:flex-wrap sm:gap-x-12">
+            <CellGrid as="ul" density="compact" className="grid-cols-2 md:grid-cols-4">
                 {SPONSORS.sponsors.map((sponsor) => (
                     <li key={sponsor.id} className="min-w-0 max-w-full">
                         <a
@@ -80,7 +84,7 @@ export default function SponsorsSection({ content }: { content: HomeContent['spo
                         </a>
                     </li>
                 ))}
-            </ul>
+            </CellGrid>
         </Section>
     );
 }

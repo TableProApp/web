@@ -1,4 +1,5 @@
 import AssetSlot from '@/components/ui/asset-slot';
+import CellGrid from '@/components/ui/cell-grid';
 import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
 import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
@@ -19,7 +20,8 @@ interface SafetySectionProps {
 /**
  * Section 5, `#safety`: "Can I point it at production without fear?"
  * (sitemap §D; positioning §7 P4). A detail row: text in columns 1-5, the
- * Touch ID crop in columns 6-12.
+ * Touch ID crop in columns 6-12, as two cells that close on the next join
+ * (design-system §4.7).
  *
  * Stated with its limits: DROP, TRUNCATE and DELETE without WHERE ask at every
  * level, and other writes wait only at the stricter ones; Data Rewind is not a
@@ -31,9 +33,9 @@ export default function SafetySection({ content, paidTemplate }: SafetySectionPr
     const ios = releasedIos();
 
     return (
-        <Section id="safety" title={content.title}>
-            <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
-                <div className="lg:col-span-5">
+        <Section id="safety" title={content.title} flush>
+            <CellGrid className="lg:grid-cols-12">
+                <div className="flex flex-col justify-center lg:col-span-5">
                     {content.body.map((paragraph) => (
                         <p key={paragraph} className="type-body mt-3 text-foreground first:mt-0">
                             {paragraph}
@@ -73,10 +75,10 @@ export default function SafetySection({ content, paidTemplate }: SafetySectionPr
                         </LocaleLink>
                     </p>
                 </div>
-                <div className="lg:col-span-7">
+                <div className="flex flex-col justify-center lg:col-span-7">
                     <AssetSlot id="mac-safe-mode-touchid" />
                 </div>
-            </div>
+            </CellGrid>
         </Section>
     );
 }

@@ -36,7 +36,8 @@ interface PricingCardProps {
  * covers, the action, and (on `/pricing`) what the plan includes.
  *
  * The three cards are equal: same width, same `secondary` buttons, no badge
- * and no highlighted card. No plan is "most popular", and the price is the
+ * and no highlighted card. Each is a cell of the plans' `CellGrid`, so it has
+ * no border, corner or fill of its own (design-system §4.7). No plan is "most popular", and the price is the
  * focal point.
  *
  * From 1024px the parent grid lays the cards' rows on shared tracks
@@ -63,7 +64,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
         <article
             aria-labelledby={`${id}-title`}
             className={cn(
-                'grid content-start gap-4 rounded-panel border border-rule bg-raised p-5 sm:p-6 lg:grid-rows-subgrid',
+                'grid content-start gap-4 lg:grid-rows-subgrid',
                 variant === 'full' ? 'md:max-lg:grid-cols-2 md:max-lg:gap-x-8 lg:row-span-4' : 'lg:row-span-3',
             )}
         >

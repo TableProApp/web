@@ -180,95 +180,97 @@ export default function Download({ content, release, mac, ios, unreleased, links
                 }
             />
 
-            <Container className="pb-16 md:pb-20 xl:pb-24">
-                <div className="grid items-start gap-6 lg:grid-cols-12">
-                    {iosFirst ? (
-                        <>
-                            {iosCard}
-                            {macCard}
-                        </>
-                    ) : (
-                        <>
-                            {macCard}
-                            {iosCard}
-                        </>
-                    )}
-                </div>
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container>
+                    <div className="grid items-start gap-6 lg:grid-cols-12">
+                        {iosFirst ? (
+                            <>
+                                {iosCard}
+                                {macCard}
+                            </>
+                        ) : (
+                            <>
+                                {macCard}
+                                {iosCard}
+                            </>
+                        )}
+                    </div>
 
-                <div className="mt-16 max-w-[44rem] space-y-12 md:mt-20">
-                    <PageSection id="install" title={content.install.title}>
-                        <ol className="type-body list-decimal space-y-3 pl-6 text-foreground marker:text-muted-foreground">
-                            {content.install.steps.map((step, index) => (
-                                <li key={index} className="pl-1">
-                                    <Trans text={step} tags={UI_TAGS} />
-                                </li>
-                            ))}
-                        </ol>
-                        <p className="type-body text-foreground">{content.install.signing}</p>
-                        <p className="type-body text-foreground">{content.install.drivers}</p>
-                        <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                            <li>
-                                <LocaleLink href="/databases" className={textLinkClasses('standalone')}>
-                                    {content.install.databases}
-                                    <span aria-hidden="true">→</span>
-                                </LocaleLink>
-                            </li>
-                            {links.docs !== null && (
+                    <div className="mt-16 max-w-[44rem] space-y-12 md:mt-20">
+                        <PageSection id="install" title={content.install.title}>
+                            <ol className="type-body list-decimal space-y-3 pl-6 text-foreground marker:text-muted-foreground">
+                                {content.install.steps.map((step, index) => (
+                                    <li key={index} className="pl-1">
+                                        <Trans text={step} tags={UI_TAGS} />
+                                    </li>
+                                ))}
+                            </ol>
+                            <p className="type-body text-foreground">{content.install.signing}</p>
+                            <p className="type-body text-foreground">{content.install.drivers}</p>
+                            <ul className="flex flex-wrap gap-x-6 gap-y-2">
                                 <li>
-                                    <TextLink
-                                        href={links.docs.replace(/\/+$/, '') + content.install.guide.path}
-                                        kind="standalone"
-                                        external
-                                        hrefLang="en"
-                                    >
-                                        {content.install.guide.label}
-                                    </TextLink>
+                                    <LocaleLink href="/databases" className={textLinkClasses('standalone')}>
+                                        {content.install.databases}
+                                        <span aria-hidden="true">→</span>
+                                    </LocaleLink>
                                 </li>
-                            )}
-                        </ul>
-                    </PageSection>
-
-                    <PageSection id="updates" title={content.updates.title}>
-                        {content.updates.paragraphs.map((paragraph, index) => (
-                            <p key={index} className="type-body text-foreground">
-                                <Trans text={paragraph} tags={UI_TAGS} />
-                            </p>
-                        ))}
-                    </PageSection>
-
-                    {unreleasedNames.length > 0 && (
-                        <PageSection id="other-platforms" title={content.otherPlatforms.title}>
-                            <p className="type-body text-foreground">
-                                {fmt(content.otherPlatforms.body, { platforms: joinList(unreleasedNames, m.download.otherPlatforms.joiner) })}
-                            </p>
-                            <p>
-                                <LocaleLink href="/faq#platforms" className={textLinkClasses('standalone')}>
-                                    {content.otherPlatforms.faq}
-                                    <span aria-hidden="true">→</span>
-                                </LocaleLink>
-                            </p>
+                                {links.docs !== null && (
+                                    <li>
+                                        <TextLink
+                                            href={links.docs.replace(/\/+$/, '') + content.install.guide.path}
+                                            kind="standalone"
+                                            external
+                                            hrefLang="en"
+                                        >
+                                            {content.install.guide.label}
+                                        </TextLink>
+                                    </li>
+                                )}
+                            </ul>
                         </PageSection>
-                    )}
 
-                    <PageSection id="older-versions" title={content.olderVersions.title}>
-                        <p className="type-body text-foreground">{content.olderVersions.body}</p>
-                        <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                            <li>
-                                <TextLink href={release.releasesUrl} kind="standalone" external>
-                                    {content.olderVersions.releases}
-                                </TextLink>
-                            </li>
-                            {links.changelog !== null && (
+                        <PageSection id="updates" title={content.updates.title}>
+                            {content.updates.paragraphs.map((paragraph, index) => (
+                                <p key={index} className="type-body text-foreground">
+                                    <Trans text={paragraph} tags={UI_TAGS} />
+                                </p>
+                            ))}
+                        </PageSection>
+
+                        {unreleasedNames.length > 0 && (
+                            <PageSection id="other-platforms" title={content.otherPlatforms.title}>
+                                <p className="type-body text-foreground">
+                                    {fmt(content.otherPlatforms.body, { platforms: joinList(unreleasedNames, m.download.otherPlatforms.joiner) })}
+                                </p>
+                                <p>
+                                    <LocaleLink href="/faq#platforms" className={textLinkClasses('standalone')}>
+                                        {content.otherPlatforms.faq}
+                                        <span aria-hidden="true">→</span>
+                                    </LocaleLink>
+                                </p>
+                            </PageSection>
+                        )}
+
+                        <PageSection id="older-versions" title={content.olderVersions.title}>
+                            <p className="type-body text-foreground">{content.olderVersions.body}</p>
+                            <ul className="flex flex-wrap gap-x-6 gap-y-2">
                                 <li>
-                                    <TextLink href={links.changelog} kind="standalone" external hrefLang="en">
-                                        {content.olderVersions.changelog}
+                                    <TextLink href={release.releasesUrl} kind="standalone" external>
+                                        {content.olderVersions.releases}
                                     </TextLink>
                                 </li>
-                            )}
-                        </ul>
-                    </PageSection>
-                </div>
-            </Container>
+                                {links.changelog !== null && (
+                                    <li>
+                                        <TextLink href={links.changelog} kind="standalone" external hrefLang="en">
+                                            {content.olderVersions.changelog}
+                                        </TextLink>
+                                    </li>
+                                )}
+                            </ul>
+                        </PageSection>
+                    </div>
+                </Container>
+            </div>
         </LandingLayout>
     );
 }

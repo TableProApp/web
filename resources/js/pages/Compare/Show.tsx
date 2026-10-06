@@ -111,7 +111,7 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
                 }
             />
 
-            <Section id="short-answer" title={labels.shortAnswer.title} className="pt-0 md:pt-0 xl:pt-0">
+            <Section id="short-answer" title={labels.shortAnswer.title}>
                 <div className="grid gap-10 md:grid-cols-2 md:gap-8">
                     {[
                         { id: 'choose-tablepro', title: labels.shortAnswer.tablepro, items: content.shortAnswer.tablepro },

@@ -171,8 +171,8 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
 
             <PageHeader title={content.header.title} lead={content.header.lead} meta={fmt(labels.factsChecked, { date: checked })} />
 
-            <Section id="by-situation" title={content.bySituation.title} lead={content.bySituation.lead} width="text" className="pt-0 md:pt-0 xl:pt-0">
-                <ul className="border-t border-rule">
+            <Section id="by-situation" title={content.bySituation.title} lead={content.bySituation.lead} width="text">
+                <ul data-rule-list className="border-t border-rule">
                     {products
                         .filter((product) => product.slug !== null)
                         .map((product) => {

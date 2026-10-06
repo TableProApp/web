@@ -28,10 +28,11 @@ interface SectionProps {
      */
     width?: ContainerWidth;
     /**
-     * A hairline above and below, for a compact strip such as the sponsors.
-     * A ruled section keeps its own padding on both sides of its rules.
+     * The content ends on the section's bottom line: no padding below it, so a
+     * cell grid closing the section shares its last rule with the join to the
+     * next block (design-system §4.7).
      */
-    ruled?: boolean;
+    flush?: boolean;
     /** `h3` for a compact section such as the sponsors strip, whose H2 takes the smaller role. */
     titleStyle?: 'h2' | 'h3';
     /** Anything aligned with the heading on the right from 768px: a standalone link. */
@@ -51,34 +52,30 @@ const MEASURES: Record<ContainerWidth, string | undefined> = {
  * A page section (design-system §5.1, replacing `SectionShell`).
  *
  * A `<section>` named by its H2, the heading and an optional lead, then the
- * content. No eyebrow, no rules, no muted second line.
+ * content. No eyebrow, no muted second line.
  *
  * Spacing is the section rhythm, `--space-section`: 64px on phones, 80 from
- * 768px and 96 from 1280px between one section and the next, applied once.
- * Each section pads above and below, and a plain section that directly
- * follows another plain section drops its top padding (`data-rhythm`, app.css),
- * so two neighbours are one rhythm apart rather than two. A band (`surface`)
- * or a ruled strip keeps its padding on both sides, inside its own ground.
- * 24, 32 and 40px separate the heading block from the content.
+ * 768px and 96 from 1280px between one section's content and the next. The
+ * page frame's join, a full-bleed hairline (app.css, design-system §4.7),
+ * sits in the middle of it: every section pads half the rhythm above and
+ * below, so the line has the same air on both sides at every join, bands and
+ * strips included. 24, 32 and 40px separate the heading block from the
+ * content.
  *
  * A `surface` band also sets `--table-ground`, so a sticky table column on it
  * is painted with the band and not the page.
- *
- * Anchors clear the sticky header through `scroll-padding-top` on the root
- * (app.css), so a section needs no scroll margin of its own.
  */
-export default function Section({ id, title, lead, tone = 'base', width = 'wide', ruled = false, titleStyle = 'h2', aside, className, children }: SectionProps) {
+export default function Section({ id, title, lead, tone = 'base', width = 'wide', flush = false, titleStyle = 'h2', aside, className, children }: SectionProps) {
     const headingId = `${id}-title`;
 
     return (
         <section
             id={id}
             aria-labelledby={headingId}
-            data-rhythm={tone === 'base' && !ruled ? 'collapse' : undefined}
             className={cn(
-                'py-16 md:py-20 xl:py-24',
+                'py-8 md:py-10 xl:py-12',
+                flush && 'pb-0 md:pb-0 xl:pb-0',
                 tone === 'surface' && 'bg-surface [--table-ground:var(--surface)]',
-                ruled && 'border-y border-rule',
                 className,
             )}
         >

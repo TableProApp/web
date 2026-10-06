@@ -87,10 +87,10 @@ interface ProseSectionProps {
     children: ReactNode;
 }
 
-/** One reading-width section below the table: a ruled `<h2>` and its body. */
+/** One reading-width section below the table: a ruled `<h2>` and its body. The first takes the page frame's join for its rule. */
 function ProseSection({ id, title, children }: ProseSectionProps) {
     return (
-        <section id={id} aria-labelledby={`${id}-title`} className="border-t border-rule pt-10 md:pt-12">
+        <section id={id} aria-labelledby={`${id}-title`} className="border-t border-rule pt-10 first:border-t-0 first:pt-0 md:pt-12 md:first:pt-0">
             <h2 id={`${id}-title`} className="type-h2 text-foreground">
                 {title}
             </h2>
@@ -163,7 +163,7 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
 
             <PageHeader title={content.header.title} lead={content.header.lead} />
 
-            <section id="plans" aria-labelledby="plans-title" className="pb-16 md:pb-20 xl:pb-24">
+            <section id="plans" aria-labelledby="plans-title" className="py-8 md:py-10 xl:py-12">
                 <Container>
                     <h2 id="plans-title" className="sr-only">
                         {content.plans.title}
@@ -177,87 +177,89 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
             </Section>
 
             {/* The prose column sits on the page's left edge, under the H1, not centred (design-system §4.2). */}
-            <Container className="py-16 md:py-20 xl:py-24">
-                <div className="max-w-[44rem] space-y-12">
-                    <ProseSection id="license" title={content.license.title}>
-                        <DescriptionList>
-                            {Object.entries(content.license.items).map(([key, item]) => (
-                                <DescriptionItem key={key} term={item.term}>
-                                    {rich(item.body)}
-                                </DescriptionItem>
-                            ))}
-                        </DescriptionList>
-                        <Disclosure summary={content.license.lapse.summary}>
-                            <p>{content.license.lapse.intro}</p>
-                            <ul className="mt-3 space-y-3">
-                                {PAID_FEATURES.map((feature) => (
-                                    <li key={feature.id}>
-                                        <span className="block font-medium">{feature.name}</span>
-                                        <span className="block">{paidFeatures[feature.id]?.lapse}</span>
-                                    </li>
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container>
+                    <div className="max-w-[44rem] space-y-12">
+                        <ProseSection id="license" title={content.license.title}>
+                            <DescriptionList>
+                                {Object.entries(content.license.items).map(([key, item]) => (
+                                    <DescriptionItem key={key} term={item.term}>
+                                        {rich(item.body)}
+                                    </DescriptionItem>
                                 ))}
-                            </ul>
-                        </Disclosure>
-                        <p>{rich(content.license.terms)}</p>
-                    </ProseSection>
+                            </DescriptionList>
+                            <Disclosure summary={content.license.lapse.summary}>
+                                <p>{content.license.lapse.intro}</p>
+                                <ul className="mt-3 space-y-3">
+                                    {PAID_FEATURES.map((feature) => (
+                                        <li key={feature.id}>
+                                            <span className="block font-medium">{feature.name}</span>
+                                            <span className="block">{paidFeatures[feature.id]?.lapse}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </Disclosure>
+                            <p>{rich(content.license.terms)}</p>
+                        </ProseSection>
 
-                    <ProseSection id="billing" title={content.billing.title}>
-                        <p>{rich(content.billing.merchant)}</p>
-                        <p>{rich(content.billing.renewal)}</p>
-                        <p>{rich(content.billing.portal)}</p>
-                    </ProseSection>
+                        <ProseSection id="billing" title={content.billing.title}>
+                            <p>{rich(content.billing.merchant)}</p>
+                            <p>{rich(content.billing.renewal)}</p>
+                            <p>{rich(content.billing.portal)}</p>
+                        </ProseSection>
 
-                    <ProseSection id="refunds" title={content.refunds.title}>
-                        <p>{rich(content.refunds.body)}</p>
-                    </ProseSection>
+                        <ProseSection id="refunds" title={content.refunds.title}>
+                            <p>{rich(content.refunds.body)}</p>
+                        </ProseSection>
 
-                    <ProseSection id="team" title={content.team.title}>
-                        <p>{rich(content.team.seats)}</p>
-                        <p>{rich(content.team.invites)}</p>
-                        <p>{rich(content.team.changes)}</p>
-                        <DescriptionList>
-                            <DescriptionItem term={m.pricing.prioritySupport.name}>
-                                {plural(m.pricing.prioritySupport.detail, PRICING.tiers.team.prioritySupport.responseBusinessDays)}
-                            </DescriptionItem>
-                        </DescriptionList>
-                        <p>
-                            <TextLink href={account} kind="standalone">
-                                {content.team.account}
-                            </TextLink>
-                        </p>
-                    </ProseSection>
+                        <ProseSection id="team" title={content.team.title}>
+                            <p>{rich(content.team.seats)}</p>
+                            <p>{rich(content.team.invites)}</p>
+                            <p>{rich(content.team.changes)}</p>
+                            <DescriptionList>
+                                <DescriptionItem term={m.pricing.prioritySupport.name}>
+                                    {plural(m.pricing.prioritySupport.detail, PRICING.tiers.team.prioritySupport.responseBusinessDays)}
+                                </DescriptionItem>
+                            </DescriptionList>
+                            <p>
+                                <TextLink href={account} kind="standalone">
+                                    {content.team.account}
+                                </TextLink>
+                            </p>
+                        </ProseSection>
 
-                    <ProseSection id="open-source" title={content.openSource.title}>
-                        <p>{content.openSource.body}</p>
-                        <p>{content.openSource.agpl}</p>
-                        <p>
-                            <TextLink href={FACTS.links.github} kind="standalone" external>
-                                {content.openSource.github}
-                            </TextLink>
-                        </p>
-                    </ProseSection>
+                        <ProseSection id="open-source" title={content.openSource.title}>
+                            <p>{content.openSource.body}</p>
+                            <p>{content.openSource.agpl}</p>
+                            <p>
+                                <TextLink href={FACTS.links.github} kind="standalone" external>
+                                    {content.openSource.github}
+                                </TextLink>
+                            </p>
+                        </ProseSection>
 
-                    <section id="faq" aria-labelledby="faq-title" className="border-t border-rule pt-10 md:pt-12">
-                        <h2 id="faq-title" className="type-h2 text-foreground">
-                            {content.faq.title}
-                        </h2>
-                        <FaqList
-                            className="mt-6"
-                            items={Object.entries(content.faq.items).map(([key, item]) => ({
-                                id: key,
-                                question: item.question,
-                                answer: <p>{rich(item.answer)}</p>,
-                            }))}
-                        />
-                        <p className="mt-6">
-                            <LocaleLink href="/faq#licensing" className={textLinkClasses('standalone')}>
-                                {content.faq.more}
-                                <span aria-hidden="true">→</span>
-                            </LocaleLink>
-                        </p>
-                    </section>
-                </div>
-            </Container>
+                        <section id="faq" aria-labelledby="faq-title" className="border-t border-rule pt-10 md:pt-12">
+                            <h2 id="faq-title" className="type-h2 text-foreground">
+                                {content.faq.title}
+                            </h2>
+                            <FaqList
+                                className="mt-6"
+                                items={Object.entries(content.faq.items).map(([key, item]) => ({
+                                    id: key,
+                                    question: item.question,
+                                    answer: <p>{rich(item.answer)}</p>,
+                                }))}
+                            />
+                            <p className="mt-6">
+                                <LocaleLink href="/faq#licensing" className={textLinkClasses('standalone')}>
+                                    {content.faq.more}
+                                    <span aria-hidden="true">→</span>
+                                </LocaleLink>
+                            </p>
+                        </section>
+                    </div>
+                </Container>
+            </div>
         </LandingLayout>
     );
 }

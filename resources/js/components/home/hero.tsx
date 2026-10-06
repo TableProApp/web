@@ -23,13 +23,17 @@ interface HeroProps {
  * databases section; "See pricing" to `#pricing`, where shipped Mac builds
  * already send people with `/?ref=…#pricing`.
  *
+ * The two actions are a row of cells across the page grid, the hero's one
+ * piece of the frame (design-system §4.7); the headline above them stays
+ * unlined.
+ *
  * The window below is the page's one priority image. While it is a
  * placeholder it requests nothing; once supplied, the controller's `lcpAsset`
  * preloads the variant the reader's theme and width show.
  */
 export default function Hero({ content, availability, featuredEngines }: HeroProps) {
     return (
-        <section id="top" aria-labelledby="top-title" className="pt-12 pb-16 md:pt-16 xl:pt-18">
+        <section id="top" aria-labelledby="top-title" className="pt-12 pb-8 md:pt-16 md:pb-10 xl:pt-18 xl:pb-12">
             <Container>
                 <div className="max-w-[50rem]">
                     <h1 id="top-title" className="type-display text-balance text-foreground">
@@ -48,33 +52,33 @@ export default function Hero({ content, availability, featuredEngines }: HeroPro
                             }}
                         />
                     </p>
-
-                    <PlatformActions
-                        location="hero"
-                        availability={availability}
-                        className="mt-8"
-                        macExtra={
-                            <LocaleLink href="/download#mac" className={textLinkClasses('standalone', 'mt-1')}>
-                                {content.otherWays}
-                                <span aria-hidden="true">→</span>
-                            </LocaleLink>
-                        }
-                    />
-
-                    <p className="type-small mt-8 max-w-[60ch] text-muted-foreground">
-                        <Trans
-                            text={content.business}
-                            values={{ paidPlatformApps: availability.paidPlatformApps }}
-                            tags={{
-                                pricing: (text) => (
-                                    <a href="#pricing" className={textLinkClasses('inline')}>
-                                        {text}
-                                    </a>
-                                ),
-                            }}
-                        />
-                    </p>
                 </div>
+
+                <PlatformActions
+                    location="hero"
+                    availability={availability}
+                    className="mt-8 md:mt-10"
+                    macExtra={
+                        <LocaleLink href="/download#mac" className={textLinkClasses('standalone', 'mt-1')}>
+                            {content.otherWays}
+                            <span aria-hidden="true">→</span>
+                        </LocaleLink>
+                    }
+                />
+
+                <p className="type-small mt-8 max-w-[60ch] text-muted-foreground">
+                    <Trans
+                        text={content.business}
+                        values={{ paidPlatformApps: availability.paidPlatformApps }}
+                        tags={{
+                            pricing: (text) => (
+                                <a href="#pricing" className={textLinkClasses('inline')}>
+                                    {text}
+                                </a>
+                            ),
+                        }}
+                    />
+                </p>
 
                 <div className="mt-12 md:mt-16">
                     <AssetSlot id="mac-hero-window" />

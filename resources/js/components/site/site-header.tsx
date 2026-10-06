@@ -9,6 +9,7 @@ import { useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 import FeaturesMenu from './features-menu';
+import FrameRails from './frame-rails';
 import LanguageSwitcher from './language-switcher';
 import MobileNav from './mobile-nav';
 import { EXTERNAL, NAV_LABEL, accountHref, basePath, sectionOf } from './site-links';
@@ -47,6 +48,9 @@ function NavLink({ href, current, exact, children }: { href: string; current: bo
  * reader's language. Account is a plain link to the platform app with the
  * language in its query; Docs is English only, and says so on Vietnamese
  * pages.
+ *
+ * The header is an opaque sticky layer above the page, so it draws its own
+ * stretch of the page frame's rails (`FrameRails`, design-system §4.7).
  */
 export default function SiteHeader() {
     const { locale, m } = useI18n();
@@ -57,7 +61,7 @@ export default function SiteHeader() {
     const closeMenu = useCallback(() => setMenuOpen(false), []);
 
     return (
-        <header className="border-b border-rule bg-background print:hidden">
+        <header className="relative border-b border-rule bg-background print:hidden">
             <Container className="flex h-16 items-center gap-8">
                 <LocaleLink href="/" className="flex shrink-0 items-center gap-2 rounded-control">
                     <img src="/images/logo.png" alt="" width={28} height={28} className="size-7" />
@@ -118,6 +122,7 @@ export default function SiteHeader() {
                     </button>
                 </div>
             </Container>
+            <FrameRails />
             <MobileNav id="site-menu" open={menuOpen} onClose={closeMenu} />
         </header>
     );

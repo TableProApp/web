@@ -76,17 +76,19 @@ export default function BlogIndex({ content, posts }: Props) {
                 }
             />
 
-            <Container className="pb-16 md:pb-20 xl:pb-24">
-                <div className="max-w-[44rem]">
-                    {posts.length > 0 ? (
-                        <PostList posts={posts} headingLevel="h2" />
-                    ) : (
-                        <p className="type-body text-muted-foreground">{m.blog.index.empty}</p>
-                    )}
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container>
+                    <div className="max-w-[44rem]">
+                        {posts.length > 0 ? (
+                            <PostList posts={posts} headingLevel="h2" />
+                        ) : (
+                            <p className="type-body text-muted-foreground">{m.blog.index.empty}</p>
+                        )}
 
-                    <NewsletterSignup title={content.newsletter.title} body={content.newsletter.body} className="mt-12" />
-                </div>
-            </Container>
+                        <NewsletterSignup title={content.newsletter.title} body={content.newsletter.body} className="mt-12" />
+                    </div>
+                </Container>
+            </div>
         </LandingLayout>
     );
 }

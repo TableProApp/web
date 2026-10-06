@@ -173,15 +173,17 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
                 </div>
             </PageHeader>
 
-            <Container className="pb-4">
-                {/* The page's first images: eager, with high fetch priority, and the iPad is preloaded (`lcpAsset`). */}
-                <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-end">
-                    <AssetSlot id="ios-connection-list" priority />
-                    <div className="w-full min-w-0 lg:flex-1">
-                        <AssetSlot id="ipad-table-browse" priority sizes={ipadSizes} />
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container>
+                    {/* The page's first images: eager, with high fetch priority, and the iPad is preloaded (`lcpAsset`). A block of their own, between two joins. */}
+                    <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-end">
+                        <AssetSlot id="ios-connection-list" priority />
+                        <div className="w-full min-w-0 lg:flex-1">
+                            <AssetSlot id="ipad-table-browse" priority sizes={ipadSizes} />
+                        </div>
                     </div>
-                </div>
-            </Container>
+                </Container>
+            </div>
 
             <Section id="databases" title={content.databases.title} lead={content.databases.lead}>
                 <ul className="grid max-w-[44rem] grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3">

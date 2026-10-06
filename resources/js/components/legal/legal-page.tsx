@@ -108,72 +108,74 @@ export default function LegalPage({ document, chrome, links, organizationProfile
                 breadcrumbs={[{ label: m.common.home, href: '/' }, { label: document.title }]}
             />
 
-            <Container className="pb-16 md:pb-20 xl:pb-24">
-                <div className="xl:grid xl:grid-cols-12 xl:gap-8">
-                    {document.toc.length > 1 && (
-                        <nav aria-labelledby="legal-toc" className="hidden xl:col-span-3 xl:block">
-                            <div className="sticky top-24">
-                                <h2 id="legal-toc" className="type-label text-muted-foreground">
-                                    {chrome.toc}
-                                </h2>
-                                <div className="type-small mt-3">{toc}</div>
-                            </div>
-                        </nav>
-                    )}
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container>
+                    <div className="xl:grid xl:grid-cols-12 xl:gap-8">
+                        {document.toc.length > 1 && (
+                            <nav aria-labelledby="legal-toc" className="hidden xl:col-span-3 xl:block">
+                                <div className="sticky top-24">
+                                    <h2 id="legal-toc" className="type-label text-muted-foreground">
+                                        {chrome.toc}
+                                    </h2>
+                                    <div className="type-small mt-3">{toc}</div>
+                                </div>
+                            </nav>
+                        )}
 
-                    <div className="min-w-0 xl:col-span-7 xl:col-start-4">
-                        {locale !== 'en' && (
-                            <Callout title={chrome.notice.title} className="mb-8 max-w-[44rem]">
-                                <p>
+                        <div className="min-w-0 xl:col-span-7 xl:col-start-4">
+                            {locale !== 'en' && (
+                                <Callout title={chrome.notice.title} className="mb-8 max-w-[44rem]">
+                                    <p>
+                                        <Trans
+                                            text={chrome.notice.body}
+                                            tags={{
+                                                english: (text) => (
+                                                    <LocaleLink href={document.path} locale="en" className={textLinkClasses('inline')}>
+                                                        {text}
+                                                    </LocaleLink>
+                                                ),
+                                            }}
+                                        />
+                                    </p>
+                                </Callout>
+                            )}
+
+                            {document.toc.length > 1 && (
+                                <Disclosure summary={chrome.toc} className="mb-8 xl:hidden">
+                                    {toc}
+                                </Disclosure>
+                            )}
+
+                            {chunks.map((chunk, index) => (
+                                <Fragment key={index}>
+                                    {index > 0 && control !== undefined && <div className="my-6">{control}</div>}
+                                    <ProseArticle html={chunk} />
+                                </Fragment>
+                            ))}
+
+                            {/* A document that ends with its own Contact section (Privacy, Terms) does not repeat the address under it. */}
+                            {!document.toc.some((section) => section.id === 'contact') && (
+                                <p className="type-small mt-12 max-w-[44rem] border-t border-rule pt-6 text-muted-foreground">
                                     <Trans
-                                        text={chrome.notice.body}
+                                        text={chrome.contact}
+                                        values={links.email !== null ? { email: links.email } : {}}
                                         tags={{
-                                            english: (text) => (
-                                                <LocaleLink href={document.path} locale="en" className={textLinkClasses('inline')}>
-                                                    {text}
-                                                </LocaleLink>
-                                            ),
+                                            email: (text) =>
+                                                links.email !== null ? (
+                                                    <a href={`mailto:${links.email}`} className={textLinkClasses('inline')}>
+                                                        {text}
+                                                    </a>
+                                                ) : (
+                                                    text
+                                                ),
                                         }}
                                     />
                                 </p>
-                            </Callout>
-                        )}
-
-                        {document.toc.length > 1 && (
-                            <Disclosure summary={chrome.toc} className="mb-8 xl:hidden">
-                                {toc}
-                            </Disclosure>
-                        )}
-
-                        {chunks.map((chunk, index) => (
-                            <Fragment key={index}>
-                                {index > 0 && control !== undefined && <div className="my-6">{control}</div>}
-                                <ProseArticle html={chunk} />
-                            </Fragment>
-                        ))}
-
-                        {/* A document that ends with its own Contact section (Privacy, Terms) does not repeat the address under it. */}
-                        {!document.toc.some((section) => section.id === 'contact') && (
-                            <p className="type-small mt-12 max-w-[44rem] border-t border-rule pt-6 text-muted-foreground">
-                                <Trans
-                                    text={chrome.contact}
-                                    values={links.email !== null ? { email: links.email } : {}}
-                                    tags={{
-                                        email: (text) =>
-                                            links.email !== null ? (
-                                                <a href={`mailto:${links.email}`} className={textLinkClasses('inline')}>
-                                                    {text}
-                                                </a>
-                                            ) : (
-                                                text
-                                            ),
-                                    }}
-                                />
-                            </p>
-                        )}
+                            )}
+                        </div>
                     </div>
-                </div>
-            </Container>
+                </Container>
+            </div>
         </LandingLayout>
     );
 }

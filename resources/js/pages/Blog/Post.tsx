@@ -121,72 +121,75 @@ export default function BlogPost({ post, correction, related }: Props) {
                 meta={<time dateTime={post.date}>{post.dateFormatted}</time>}
             />
 
-            <Container className="pb-16 md:pb-20 xl:pb-24">
-                <div className="xl:grid xl:grid-cols-12 xl:gap-8">
-                    <div className="max-w-[44rem] xl:col-span-8">
-                        <div className="space-y-4">
-                            <Callout>
-                                <p>
-                                    <Trans
-                                        text={archive}
-                                        values={{ date: post.dateFormatted, release: post.release ?? '' }}
-                                        tags={{
-                                            features: (text) => (
-                                                <LocaleLink href="/features" className={textLinkClasses('inline')}>
-                                                    {text}
-                                                </LocaleLink>
-                                            ),
-                                            changelog: (text) => (
-                                                <TextLink href={EXTERNAL.changelog} external hrefLang={changelogLang}>
-                                                    {text}
-                                                </TextLink>
-                                            ),
-                                        }}
-                                    />
-                                </p>
-                            </Callout>
-
-                            {correction && (
-                                <Callout tone="warning" title={fmt(m.blog.post.correction, { date: correction.dateFormatted })}>
-                                    <p>{correction.text}</p>
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container>
+                    <div className="xl:grid xl:grid-cols-12 xl:gap-8">
+                        <div className="max-w-[44rem] xl:col-span-8">
+                            <div className="space-y-4">
+                                <Callout>
+                                    <p>
+                                        <Trans
+                                            text={archive}
+                                            values={{ date: post.dateFormatted, release: post.release ?? '' }}
+                                            tags={{
+                                                features: (text) => (
+                                                    <LocaleLink href="/features" className={textLinkClasses('inline')}>
+                                                        {text}
+                                                    </LocaleLink>
+                                                ),
+                                                changelog: (text) => (
+                                                    <TextLink href={EXTERNAL.changelog} external hrefLang={changelogLang}>
+                                                        {text}
+                                                    </TextLink>
+                                                ),
+                                            }}
+                                        />
+                                    </p>
                                 </Callout>
+
+                                {correction && (
+                                    <Callout tone="warning" title={fmt(m.blog.post.correction, { date: correction.dateFormatted })}>
+                                        <p>{correction.text}</p>
+                                    </Callout>
+                                )}
+
+                                {toc && <TableOfContents headings={headings} label={m.blog.post.toc} variant="inline" className="xl:hidden" />}
+                            </div>
+
+                            <Article html={post.bodyHtml} locale={post.locale} className="mt-10" />
+
+                            <div className="mt-12 flex flex-col items-start gap-4 border-t border-rule pt-8 sm:flex-row sm:items-center sm:justify-between">
+                                <p className="type-body text-foreground">
+                                    {fmt(m.platforms.availability.summary, { deviceList: deviceList(m.common.list) })}
+                                </p>
+                                <LocaleLink
+                                    href="/download"
+                                    className={buttonClasses('secondary', 'md', 'shrink-0')}
+                                    onClick={() => trackDownload('blog-post', 'mac')}
+                                >
+                                    {m.download.macCta}
+                                </LocaleLink>
+                            </div>
+
+                            {related.length > 0 && (
+                                <section aria-labelledby="related-posts" className="mt-16">
+                                    <h2 id="related-posts" className="type-h2 text-foreground">
+                                        {m.blog.post.related}
+                                    </h2>
+                                    {/* The post's last block: the page frame's join below closes the list (design-system §4.7). */}
+                                    <PostList posts={related} headingLevel="h3" descriptions={false} className="mt-4 border-b-transparent" />
+                                </section>
                             )}
-
-                            {toc && <TableOfContents headings={headings} label={m.blog.post.toc} variant="inline" className="xl:hidden" />}
                         </div>
 
-                        <Article html={post.bodyHtml} locale={post.locale} className="mt-10" />
-
-                        <div className="mt-12 flex flex-col items-start gap-4 border-t border-rule pt-8 sm:flex-row sm:items-center sm:justify-between">
-                            <p className="type-body text-foreground">
-                                {fmt(m.platforms.availability.summary, { deviceList: deviceList(m.common.list) })}
-                            </p>
-                            <LocaleLink
-                                href="/download"
-                                className={buttonClasses('secondary', 'md', 'shrink-0')}
-                                onClick={() => trackDownload('blog-post', 'mac')}
-                            >
-                                {m.download.macCta}
-                            </LocaleLink>
-                        </div>
-
-                        {related.length > 0 && (
-                            <section aria-labelledby="related-posts" className="mt-16">
-                                <h2 id="related-posts" className="type-h2 text-foreground">
-                                    {m.blog.post.related}
-                                </h2>
-                                <PostList posts={related} headingLevel="h3" descriptions={false} className="mt-4" />
-                            </section>
+                        {toc && (
+                            <aside className="hidden xl:col-span-3 xl:col-start-10 xl:block">
+                                <TableOfContents headings={headings} label={m.blog.post.toc} variant="sidebar" />
+                            </aside>
                         )}
                     </div>
-
-                    {toc && (
-                        <aside className="hidden xl:col-span-3 xl:col-start-10 xl:block">
-                            <TableOfContents headings={headings} label={m.blog.post.toc} variant="sidebar" />
-                        </aside>
-                    )}
-                </div>
-            </Container>
+                </Container>
+            </div>
         </LandingLayout>
     );
 }

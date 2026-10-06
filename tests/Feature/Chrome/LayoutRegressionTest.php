@@ -77,9 +77,17 @@ it('puts every section on the page grid\'s left edge, whatever its measure', fun
     expect(layoutSource('js/pages/Pricing.tsx'))->not->toContain('<Container width="text"');
 });
 
-it('spaces neighbouring sections one rhythm apart, not two', function (): void {
-    expect(layoutSource('js/components/ui/section.tsx'))->toContain("data-rhythm={tone === 'base' && !ruled ? 'collapse' : undefined}");
-    expect(layoutSource('css/app.css'))->toMatch('/section\[data-rhythm="collapse"\] \+ section\[data-rhythm="collapse"\] \{\s*padding-top: 0;/');
+it('spaces neighbouring sections one rhythm apart, with the join in the middle', function (): void {
+    /*
+     * Every section pads half the rhythm on each side, so two neighbours are
+     * one rhythm apart and the page frame's join (app.css) has the same air
+     * above and below it. The old collapse rule took the top padding away from
+     * the second section, which would put the join flush on its heading.
+     */
+    expect(layoutSource('js/components/ui/section.tsx'))->toContain("'py-8 md:py-10 xl:py-12'")
+        ->toContain("flush && 'pb-0 md:pb-0 xl:pb-0'")
+        ->not->toContain('data-rhythm');
+    expect(layoutSource('css/app.css'))->not->toContain('data-rhythm');
 });
 
 it('keeps a link\'s arrow on the line of its last word', function (): void {

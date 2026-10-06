@@ -13,7 +13,8 @@ interface PlatformActionsProps {
 
 /**
  * The homepage's two ways to get TablePro, with the captions the homepage
- * resolves from data (positioning §3.2): the shared `ActionPair` row.
+ * resolves from data (positioning §3.2): the shared `ActionPair` row, in cells
+ * of the page grid (design-system §4.7).
  */
 export default function PlatformActions({ location, availability, macExtra, className }: PlatformActionsProps) {
     return (
@@ -22,6 +23,7 @@ export default function PlatformActions({ location, availability, macExtra, clas
             macCaption={availability.macCaption}
             macExtra={macExtra}
             ios={availability.appStoreUrl !== null && availability.iosCaption !== null ? { url: availability.appStoreUrl, caption: availability.iosCaption } : null}
+            cells
             className={className}
         />
     );
