@@ -79,6 +79,20 @@ resolves in the account app without a dependency change.
 | `resources/js/components/ui/empty-state.tsx` | `b1edcad8a5368d93a4677ec8f2e827a68b37127817742d3d642ea496bfcb3bad` | EmptyState: a title, one sentence, one action |
 | `resources/js/components/ui/notice-page.tsx` | `ccb2385ad844df40d910dbc81748d0d057a1db576bffb5b2dcd75664700e5c52` | NoticePage: the narrow page body for 404/410, thank-you, newsletter and error pages |
 
+### The page frame
+
+The grid both apps draw their pages on (design-system §4.7): rails on the wide
+Container's outer edge from 1280px, a full-bleed join between every two blocks
+of `<main>` with a mark where it meets a rail, cells that share one line, and
+the utilities that end an inner rule on a rail or a cell wall. Shared so a
+reader crossing from a public page to the account sees the lines stay put.
+
+| Path | sha256 | Contents |
+| --- | --- | --- |
+| `resources/css/frame.css` | `0e4b2e3d24df72b11f6e342af09683c79aee4b2674ce30664e07335a9f893ee2` | Joins, marks, `--cell-bleed`, `.cell-grid`, `.frame-table`, `.frame-rows`, `.frame-rows-text`, `.cell-rows` and the end-of-block list rule; imported by each app's `app.css` after `tokens.css` |
+| `resources/js/components/shared/frame-rails.tsx` | `5c160940a164990668b755fe6981cb0012cc3404a2e3e80a9efe5256eeeb2714` | FrameRails: the two rails, rendered over the layout root and again inside the opaque sticky header |
+| `resources/js/components/ui/cell-grid.tsx` | `d3eec968285cc034e0766e7b0e0d3c0783a143268955ba80ea020005c3c8e165` | CellGrid: cells that share one 1px line, `compact` and `regular` density |
+
 ### Adopting them in the account app
 
 The account app's own files at these paths predate the design system and have
@@ -117,7 +131,7 @@ which are updated in the same change as the copies:
 - The Google Analytics head block. The account app adds `page_location`
   redaction for its signed URLs. Each repository pins the same consent order in
   its own test.
-- `SiteHeader`, `SiteFooter`, `MobileNav`, `SupportBanner`, `FrameRails` and the language
+- `SiteHeader`, `SiteFooter`, `MobileNav`, `SupportBanner` and the language
   switcher (`resources/js/components/site/*` here). They hold each app's own
   links and strings, the public ones link through `LocaleLink` (an Inertia
   link, which must never run in the account app), and the account switcher
@@ -126,7 +140,7 @@ which are updated in the same change as the copies:
 - The public-only primitives, which read this site's data or locale helpers:
   `locale-link`, `breadcrumbs`, `page-header`, `section`, `card`, `disclosure`,
   `segmented-control`, `faq-list`, `code`, `kbd`, `glyph` (Availability),
-  `database-mark`, `dot-list`, `prose-article`, `asset-slot` and `cell-grid`. Where the
+  `database-mark`, `dot-list`, `prose-article` and `asset-slot`. Where the
   account app needs the same thing (a page header, a card), it builds its own
   file to the same specification (design-system §9, item 2).
 - `resources/js/lib/utils.ts`. It is the same small file in both repositories

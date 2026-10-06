@@ -15,7 +15,7 @@ import { GLIDE_TIMEOUT_MS, glideTarget, installAnchorGlide, type GlideWindow } f
 const css = (path: string): string => readFileSync(new URL(path, import.meta.url), 'utf8');
 
 test('no stylesheet makes scrolling smooth globally', () => {
-    for (const path of ['../../resources/css/app.css', '../../resources/css/tokens.css']) {
+    for (const path of ['../../resources/css/app.css', '../../resources/css/tokens.css', '../../resources/css/frame.css']) {
         const rules = css(path).replace(/\/\*[\s\S]*?\*\//g, '');
 
         assert.ok(!/scroll-behavior:\s*smooth/.test(rules), `${path} sets scroll-behavior: smooth`);

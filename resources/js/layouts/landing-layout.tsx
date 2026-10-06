@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { useLiveChat } from '@/components/site/chat-button';
 import ConsentBar from '@/components/site/consent-bar';
-import FrameRails from '@/components/site/frame-rails';
+import FrameRails from '@/components/shared/frame-rails';
 import SiteFooter from '@/components/site/site-footer';
 import SiteHeader from '@/components/site/site-header';
 import SupportBanner from '@/components/site/support-banner';
@@ -32,7 +32,7 @@ interface Props {
  *
  * The grid is drawn, not laid out: the rails are a decorative overlay on this
  * `relative` root (`FrameRails`, from 1280px), and a full-bleed hairline joins
- * every two blocks of `<main>` (app.css). Neither moves content or takes a
+ * every two blocks of `<main>` (frame.css). Neither moves content or takes a
  * tab stop.
  *
  * Crisp's chat launcher joins every page once it has loaded and the browser is

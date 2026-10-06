@@ -56,7 +56,7 @@ const MEASURES: Record<ContainerWidth, string | undefined> = {
  *
  * Spacing is the section rhythm, `--space-section`: 64px on phones, 80 from
  * 768px and 96 from 1280px between one section's content and the next. The
- * page frame's join, a full-bleed hairline (app.css, design-system §4.7),
+ * page frame's join, a full-bleed hairline (frame.css, design-system §4.7),
  * sits in the middle of it: every section pads half the rhythm above and
  * below, so the line has the same air on both sides at every join, bands and
  * strips included. 24, 32 and 40px separate the heading block from the
@@ -66,7 +66,7 @@ const MEASURES: Record<ContainerWidth, string | undefined> = {
  * is painted with the band and not the page.
  *
  * The Container is a size container, so a ruled list inside a narrower measure
- * can still reach the rails (`.frame-rows`, app.css) while its text keeps the
+ * can still reach the rails (`.frame-rows`, frame.css) while its text keeps the
  * measure.
  */
 export default function Section({ id, title, lead, tone = 'base', width = 'wide', flush = false, titleStyle = 'h2', aside, className, children }: SectionProps) {

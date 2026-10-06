@@ -1,0 +1,236 @@
+/* Shared with TableProApp/web and TableProApp/license at resources/css/frame.css. Change both in the same release. See docs/shared-files.md. */
+
+/*
+ * ---------------------------------------------------------------------------
+ * The page frame (design-system §4.7)
+ * ---------------------------------------------------------------------------
+ *
+ * The page is drawn as a grid without being laid out as one, the same way on
+ * the public site and in the account app, which import this file after
+ * tokens.css:
+ *
+ * - Rails: `FrameRails` (components/shared/frame-rails.tsx), 1px verticals
+ *   on the wide Container's outer edge, from 1280px. Below that, only
+ *   horizontals.
+ * - Joins: a full-bleed hairline between every two blocks of `<main>`, at
+ *   every width. It is drawn here, by position, so no template can leave one
+ *   out. A block pads half the section rhythm on each side, so the line sits
+ *   in the middle of it (a block of cells pads nothing: its cells do), and
+ *   every block is full width, so the line runs from screen edge to edge.
+ * - Marks: a neutral 11px cross wherever a join meets a rail: every join in
+ *   `<main>` and the footer's rule (`data-join-mark`). One rule a reader can
+ *   see: a line that crosses the whole page is marked where it crosses the
+ *   frame; a line inside the frame never is.
+ * - Cells: `.cell-grid`, below.
+ *
+ * Neutral and solid only: the accent never colours a line, and a dashed edge
+ * means a placeholder image (§6.2). Nothing here animates.
+ */
+main > * + * {
+  border-top: 1px solid var(--rule);
+  /*
+   * An anchor would land a section 16px under the header (`scroll-padding-top`
+   * is 5rem), showing its join as a second line below the header's rule. One
+   * rem less puts the join behind that rule.
+   */
+  scroll-margin-top: -1rem;
+}
+
+/*
+ * A list that ends a block drops its last rule: the join right below closes
+ * it, instead of a second line half a rhythm above. "Ends" means the list
+ * closes every element between it and the block, at any of six depths; a
+ * `dl` or anything marked `data-rule-list` qualifies, unless it sits inside a
+ * card, whose own edge closes it.
+ */
+:is(
+  main > * > :is(dl, [data-rule-list]):not(.rounded-panel *):last-child,
+  main > * > :last-child > :is(dl, [data-rule-list]):not(.rounded-panel *):last-child,
+  main > * > :last-child > :last-child > :is(dl, [data-rule-list]):not(.rounded-panel *):last-child,
+  main > * > :last-child > :last-child > :last-child > :is(dl, [data-rule-list]):not(.rounded-panel *):last-child,
+  main > * > :last-child > :last-child > :last-child > :last-child > :is(dl, [data-rule-list]):not(.rounded-panel *):last-child,
+  main > * > :last-child > :last-child > :last-child > :last-child > :last-child > :is(dl, [data-rule-list]):not(.rounded-panel *):last-child
+) {
+  border-bottom-color: transparent;
+
+  & > :last-child {
+    border-bottom-color: transparent;
+  }
+}
+
+/*
+ * Inner lines end on a vertical. A rule inside the frame runs from rail to
+ * rail (from screen edge to screen edge below 1280px) or from wall to wall
+ * inside a cell; it never stops in open space. The content keeps its place:
+ * the row pads it back to the page's left edge, and to the reading measure
+ * where it had one.
+ *
+ * - `.frame-table`, on a DataTable's scroll region in a wide section: the
+ *   region reaches the rails, and the first and last cells pad their text
+ *   back to the content edges.
+ * - `.frame-rows`, on a ruled list (a `dl`, a FaqList, a PostList, a list of
+ *   rows) inside an `@container` Container: the list reaches the rails from
+ *   whatever measure it sits in, using container units for the room to its
+ *   right. `.frame-rows-text` does the same and keeps each row's content at
+ *   the 44rem reading measure.
+ * - `.cell-rows`, on a ruled list inside a cell: wall to wall.
+ *
+ * Unlayered, so the row padding wins over the cells' own `px-*` utilities.
+ */
+.frame-table {
+  margin-inline: calc(var(--cell-bleed) * -1);
+}
+
+.frame-table :is(th, td):first-child {
+  padding-left: var(--cell-bleed);
+}
+
+.frame-table :is(th, td):last-child {
+  padding-right: var(--cell-bleed);
+}
+
+/* One rule under the header row: the first body row's top rule would sit on the header's and draw it 2px. */
+.frame-table thead + tbody > tr:first-child {
+  border-top-style: none;
+}
+
+.frame-rows,
+.frame-rows-text {
+  --row-room: 0px;
+
+  margin-left: calc(var(--cell-bleed) * -1);
+  margin-right: calc((100cqw - 100%) * -1 - var(--cell-bleed));
+}
+
+.frame-rows-text {
+  --row-room: calc(100cqw - min(44rem, 100cqw));
+}
+
+:is(.frame-rows, .frame-rows-text) > * {
+  padding-left: var(--cell-bleed);
+  padding-right: calc(var(--row-room) + var(--cell-bleed));
+}
+
+.cell-rows {
+  margin-inline: calc(var(--cell-bleed) * -1);
+}
+
+.cell-rows > * {
+  padding-inline: var(--cell-bleed);
+}
+
+/*
+ * The marks need 5px either side of a rail inside the page, which a 1280px
+ * frame only leaves from about 1292px; 82rem also covers a window whose
+ * classic scrollbar takes 17px of it.
+ */
+@media (min-width: 82rem) {
+  main > * + *,
+  [data-join-mark] {
+    position: relative;
+  }
+
+  main > * + *::before,
+  main > * + *::after,
+  [data-join-mark]::before,
+  [data-join-mark]::after {
+    content: "";
+    position: absolute;
+    z-index: 31;
+    top: -6px;
+    width: 11px;
+    height: 11px;
+    background-color: var(--rule-strong);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11'%3E%3Cpath d='M5 0h1v11H5zM0 5h11v1H0z'/%3E%3C/svg%3E") no-repeat;
+    pointer-events: none;
+  }
+
+  main > * + *::before,
+  [data-join-mark]::before {
+    left: calc(50% - 40rem - 5px);
+  }
+
+  main > * + *::after,
+  [data-join-mark]::after {
+    left: calc(50% + 40rem - 6px);
+  }
+}
+
+@media (forced-colors: active), print {
+  main > * + *::before,
+  main > * + *::after,
+  [data-join-mark]::before,
+  [data-join-mark]::after {
+    display: none;
+  }
+}
+
+/*
+ * Cells. `--cell-bleed` reaches the wide Container's outer edge: the gutter
+ * below 1280px, so a cell grid runs to the screen edge, and 1px less from
+ * 1280, so its outer lines fall on the rails rather than beside them. It is
+ * also each cell's inline padding, which puts cell content back on the page's
+ * left edge.
+ */
+:root {
+  --cell-bleed: 1rem;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --cell-bleed: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --cell-bleed: 2rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --cell-bleed: calc(2rem - 1px);
+  }
+}
+
+@layer components {
+  .cell-grid {
+    --cell-pad-y: 2rem;
+
+    display: grid;
+    gap: 1px;
+    margin-inline: calc(var(--cell-bleed) * -1);
+  }
+
+  /*
+   * A 1px spread shadow is each cell's line: two neighbours paint the same
+   * 1px gap, so lines never double, and a short last row leaves page showing
+   * rather than a block of line colour.
+   */
+  .cell-grid > * {
+    min-width: 0;
+    padding: var(--cell-pad-y) var(--cell-bleed);
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+
+  .cell-grid[data-density="compact"] {
+    --cell-pad-y: 1.25rem;
+  }
+
+  @media (min-width: 48rem) {
+    .cell-grid {
+      --cell-pad-y: 2.5rem;
+    }
+
+    .cell-grid[data-density="compact"] {
+      --cell-pad-y: 1.5rem;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .cell-grid {
+      --cell-pad-y: 3rem;
+    }
+  }
+}
