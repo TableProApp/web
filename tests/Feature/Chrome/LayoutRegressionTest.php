@@ -122,6 +122,27 @@ it('draws the header nav focus ring around the label, not the 64px link', functi
     expect(layoutSource('js/components/site/features-menu.tsx'))->toContain('<span className={NAV_LABEL}>');
 });
 
+it('opens the Features panel on mouse hover, and only for a mouse', function (): void {
+    /*
+     * The owner asked for the panel to open on hover rather than only on a
+     * click. A short delay each way keeps a pointer crossing the nav from
+     * opening it and a curved path into the panel from closing it. Touch and
+     * pen send pointer events too, and opening on them would fight the tap
+     * that follows, so they keep the click. A click on a panel that hover
+     * opened pins it open instead of closing it under the pointer. Checked in
+     * a browser: hover, leave, click after hover, keyboard and touch.
+     */
+    $menu = layoutSource('js/components/site/features-menu.tsx');
+
+    expect($menu)->toContain('onPointerEnter={onPointerEnter}')
+        ->toContain('onPointerLeave={onPointerLeave}')
+        ->toContain("if (event.pointerType !== 'mouse') {")
+        ->toContain('export const HOVER_OPEN_DELAY = 80;')
+        ->toContain('export const HOVER_CLOSE_DELAY = 150;')
+        ->toContain('if (open && openedByHover.current) {')
+        ->toContain('aria-expanded={open}');
+});
+
 it('builds every download band from the one action row', function (string $file): void {
     expect(layoutSource($file))->toContain('<ActionPair');
 })->with([

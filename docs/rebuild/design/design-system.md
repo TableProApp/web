@@ -828,7 +828,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - 64px, `position: sticky`, `--background` fill (opaque, no blur), 1px `--rule` bottom border, `wide` container.
 - Left: the logo (`/images/logo.png` at 28px + "TablePro" at 18/600), linking to `/` or `/vi`.
 - ≥ 1024 (items and order from sitemap §B.1):
-  - Nav: **Features ▾** · Databases · Pricing · Docs ↗ · Blog. Features is a `<button aria-expanded>` that opens a disclosure panel (`--raised`, `--shadow-overlay`, 12px radius) listing All features, the seven feature pages (Querying, Data editing, Schema, Import & export, AI & MCP, Connections, Sync & teams) and iPhone & iPad. Escape closes it and returns focus.
+  - Nav: **Features ▾** · Databases · Pricing · Docs ↗ · Blog. Features is a `<button aria-expanded>` that opens a disclosure panel (`--raised`, `--shadow-overlay`, 12px radius) listing All features, the seven feature pages (Querying, Data editing, Schema, Import & export, AI & MCP, Connections, Sync & teams) and iPhone & iPad. Escape closes it and returns focus. With a mouse it also opens on hover, 80ms after the pointer rests on the button, and closes 150ms after it leaves the button and the panel; a click on a panel that hover opened pins it open. Touch and pen keep the click (decided 2026-10-06).
   - Right: LanguageSwitcher, ThemeControl, Account (`quiet`, a plain `<a>` to `/account?locale={locale}`), **Download** (`primary` `sm`, to `/download`).
 - < 1024: logo, Download (`primary` `sm`), Menu button (44 × 44, `aria-expanded`, `aria-controls`).
 - Internal hrefs go through `LocaleLink`, which is why this component never moves to the license repo (§9).
