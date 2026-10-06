@@ -41,7 +41,7 @@ The page sketches in §8 add layout to the sitemap's structure. Where a sketch a
 | Width | Content column 1216px (Container 1280 minus 32px gutters), reading column 704px, narrow 576px. Gutters 16 / 24 / 32 |
 | Rhythm | Section spacing 64 / 80 / 96px, replacing the old stacked spacers of up to 184px between sections. The frame's join sits in the middle of it (§4.3) |
 | Shape | Buttons and inputs are 8px rounded rectangles (pills retired). Cards, code blocks and image slots use 12px. Shadows only on floating layers |
-| Frame | The page is drawn as a grid (§4.7): 1px `--rule` rails on the wide Container's outer edge from 1280px, a full-bleed join between every two blocks of `<main>`, neutral marks where the frame starts and ends, and shared-border cells for sets of like items. Solid and static. No hatching, graph paper, numbered gutters or accent lines |
+| Frame | The page is drawn as a grid (§4.7): 1px `--rule` rails on the wide Container's outer edge from 1280px, a full-bleed join between every two blocks of `<main>`, a neutral mark wherever a join meets a rail, and shared-border cells for sets of like items. Solid and static. No hatching, graph paper, numbered gutters or accent lines |
 | Removed | Rule ordinals, the old gutter rails (the page frame replaces them, §4.7), `FullLine`, `Ledger`, `GridCell`, `SectionLabel` eyebrows, the spec strip, the giant footer wordmark, the row-selection bar on static content, the Product Hunt hotlink |
 | Images | Every content image is an `AssetSlot`: IDs from sitemap §A.8, one manifest per app with architecture §1.9's schema, and geometry, types and labels from §6. A dashed neutral slot shows the type label, the asset ID and a short localized description. Mac windows are **16:9** (2432 × 1368 export), detail crops **4:3**, and every window gets a 4:5 phone crop |
 | Shared code | Architecture §3's list is the only source of byte-identical files: tokens, fonts, the theme script and control, consent and Crisp always; the UI primitives wherever their imports resolve in both repos. Everything else is a separate file per repo, built to this spec. The license app has its own slim shells and language switcher, never the public header |
@@ -497,7 +497,7 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 
 **Joins.** A 1px `--rule` top border on every block of `<main>` after the first, drawn in app.css by position (`main > * + *`), at every width and full-bleed. A template cannot leave one out, so every block of `<main>` must be full width: a narrow Container goes inside a full-width block. No block draws a rule of its own beside the join. The banner's, header's and footer's own rules complete the set. An anchor lands a block's top on the header's bottom rule (`scroll-margin-top: -1rem` against the root's 5rem `scroll-padding-top`), so a jump to `/#pricing` shows one line, not two.
 
-**Marks.** An 11px cross in `--rule-strong` (3.64:1 light, 3.84:1 dark), centred where a join meets a rail: at the frame's start (the first join), at its end (the footer's rule) and on at most one section a page chooses with `mark`. Six per page at most; the homepage marks `#pricing`. From 82rem only, so a mark never overhangs the screen, also with a classic scrollbar.
+**Marks.** An 11px cross in `--rule-strong` (3.64:1 light, 3.84:1 dark), centred wherever a join meets a rail: every join in `<main>`, by position, and the footer's rule (`data-join-mark`). The rule a reader can see is that a line crossing the whole page is marked where it crosses the frame, and a line inside the frame (a cell's, a list's) never is. The first version marked only the frame's start, its end and the homepage's `#pricing`; on 2026-10-06 the owner chose every join instead, because a few marked joins among unmarked ones read as an omission. The homepage carries 20 marks and `/databases` 32. From 82rem only, so a mark never overhangs the screen, also with a classic scrollbar.
 
 **Cells.** `CellGrid` (`components/ui/cell-grid.tsx`): cells that share one 1px `--rule` line, drawn as each cell's 1px spread shadow, with no gaps and no corners. The grid reaches the Container's outer edge, so from 1280 its outer lines land on the rails and below 1280 it runs to the screen edge, leaving only horizontals on a phone. Cell padding puts content back on the page's left edge. Use it only in a wide section, for content that already is a set of like items:
 
@@ -516,7 +516,7 @@ Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Car
 - Decoration only: rails and marks are `aria-hidden`, take no pointer, and are hidden in forced colours and in print. Joins are borders, so they stay in both, like the header's rule. Cell lines are shadows, which forced colours removes.
 - No `vw` widths and no overflow clipping anywhere in the frame.
 
-`PageFrameTest` holds the markup and CSS. The geometry was measured in a browser on every template at 390, 768, 1024, 1280, 1366, 1440 and 1920px: no horizontal scroll, rails on the Container edge, cell lines on the rails, one join per block boundary, at most six marks.
+`PageFrameTest` holds the markup and CSS. The geometry was measured in a browser on every template at 390, 768, 1024, 1280, 1366, 1440 and 1920px: no horizontal scroll, rails on the Container edge, cell lines on the rails, one join per block boundary, two marks per join.
 
 ---
 
@@ -537,7 +537,7 @@ Repo key:
 | `Button` | Shared\* | **Refactor** | `ui/button.tsx` (both, byte-identical) | Variants `primary`, `secondary`, `quiet`, `danger`. Sizes `sm`/`md`/`lg`. 8px radius. Loading state. Hover becomes token fills, not `opacity-90` |
 | `TextLink` | Shared\* | **Refactor** | `ui/prose-link.tsx` (`PROSE_LINK`) | `inline` and `standalone` kinds. Cross-app links are always a plain `<a>` |
 | `Container` | Shared\* | **Refactor** | `ui/container.tsx` | Widths `wide` / `text` / `narrow`. Drop `rule-inset-host` |
-| `Section` | P | **Replace** | `ui/section-shell.tsx` (`SectionShell`, `SectionHeader`) | `<section aria-labelledby>`, H2 + optional lead, tone `base` / `surface`. Half-rhythm padding around the frame's joins; `flush` ends on the join, `mark` marks it (§4.7). No eyebrow, no muted second line |
+| `Section` | P | **Replace** | `ui/section-shell.tsx` (`SectionShell`, `SectionHeader`) | `<section aria-labelledby>`, H2 + optional lead, tone `base` / `surface`. Half-rhythm padding around the frame's joins; `flush` ends on the join (§4.7). No eyebrow, no muted second line |
 | `FrameRails` | P | **New** | — | The page frame's rails (§4.7), over the page and in the header |
 | `CellGrid` | P | **New** | — | Shared-border cells reaching the rails (§4.7). Wide sections only |
 | `PageHeader` | P+A | **Replace** | `section-shell.tsx` `PageHeader`; A `screen-header.tsx`, `notice-page.tsx` header | Breadcrumbs, H1, lead, meta line, actions. Variants `marketing` (`h1`), `utility` (`h1`, compact top), `screen` (account: H1 in the `h2` style) |
@@ -1365,7 +1365,7 @@ SiteHeader
 §8  COMING FROM ANOTHER APP  #switch   (alias #compare)
     text at text width: importers named (passwords where true) · Open Project Folder
     Compare TablePro with other clients →  (/compare)
-§9  PRICING  #pricing   (alias #license)               marked join (§4.7)
+§9  PRICING  #pricing   (alias #license)
     H2 + lead (free core · optional paid features on Mac · open source) · BillingCycleControl + caption
     PricingCard ×3 as joined cells (compact: no Includes list) · Compare plans →  (/pricing) · Prices in USD … line
 §10 OPEN SOURCE AND GET STARTED  #open-source                 background, not surface
@@ -1808,7 +1808,7 @@ Confirm no mark touches the line above. Also check:
 - both rails on the Container's outer edge, the header's stretch on the same columns
 - every cell grid's outer lines on the rails from 1280, at the screen edge below
 - one full-bleed join per block boundary, none doubled by a block's own rule
-- at most six marks, none overhanging the screen
+- two marks on every join and on the footer's rule, none on a cell or list line, none overhanging the screen
 - an anchor jump shows one line under the header, not two
 - checked again with the Crisp launcher loaded, in Safari and Firefox
 

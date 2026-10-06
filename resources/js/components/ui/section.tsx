@@ -33,12 +33,6 @@ interface SectionProps {
      * next block (design-system §4.7).
      */
     flush?: boolean;
-    /**
-     * Marks where this section's top join meets the rails. A page carries at
-     * most six marks: the frame's start and end take four (app.css), so one
-     * section on a page may set this.
-     */
-    mark?: boolean;
     /** `h3` for a compact section such as the sponsors strip, whose H2 takes the smaller role. */
     titleStyle?: 'h2' | 'h3';
     /** Anything aligned with the heading on the right from 768px: a standalone link. */
@@ -71,14 +65,13 @@ const MEASURES: Record<ContainerWidth, string | undefined> = {
  * A `surface` band also sets `--table-ground`, so a sticky table column on it
  * is painted with the band and not the page.
  */
-export default function Section({ id, title, lead, tone = 'base', width = 'wide', flush = false, mark = false, titleStyle = 'h2', aside, className, children }: SectionProps) {
+export default function Section({ id, title, lead, tone = 'base', width = 'wide', flush = false, titleStyle = 'h2', aside, className, children }: SectionProps) {
     const headingId = `${id}-title`;
 
     return (
         <section
             id={id}
             aria-labelledby={headingId}
-            data-join-mark={mark ? '' : undefined}
             className={cn(
                 'py-8 md:py-10 xl:py-12',
                 flush && 'pb-0 md:pb-0 xl:pb-0',

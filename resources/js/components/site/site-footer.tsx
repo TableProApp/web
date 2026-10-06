@@ -136,8 +136,9 @@ function Newsletter() {
  * as giving it. "Live chat" opens the conversation in the chat launcher that
  * every page carries.
  *
- * Its top rule is the page frame's last join, so it carries the frame's end
- * marks where that rule meets the rails (`data-join-mark`, design-system §4.7).
+ * Its top rule is the page frame's last join, so it carries the marks where
+ * that rule meets the rails, like every join in `<main>` (`data-join-mark`,
+ * design-system §4.7).
  */
 export default function SiteFooter({ newsletter = true }: { newsletter?: boolean }) {
     const { locale, m, fmt } = useI18n();

@@ -75,7 +75,6 @@ export default function Home({ content, engines, iosEngines, checkout }: HomePag
             <SwitchSection content={content.switch} macApp={macApp} />
             <PricingSection
                 checkout={checkout}
-                mark
                 title={content.pricing.title}
                 lead={fmt(content.pricing.lead, {
                     macApp,

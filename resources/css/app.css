@@ -457,9 +457,10 @@ html {
  *   every width. It is drawn here, by position, so no template can leave one
  *   out. Section, PageHeader and the hero pad half the section rhythm on each
  *   side, so the line sits in the middle of it.
- * - Marks: a neutral 11px cross where a join meets a rail, at the frame's
- *   start (the first join), its end (the footer's rule) and on at most one
- *   section a page chooses (`data-join-mark`). Six at most.
+ * - Marks: a neutral 11px cross wherever a join meets a rail: every join in
+ *   `<main>` and the footer's rule (`data-join-mark`). One rule a reader can
+ *   see: a line that crosses the whole page is marked where it crosses the
+ *   frame; a line inside the frame never is.
  * - Cells: `.cell-grid`, below.
  *
  * Neutral and solid only: the accent never colours a line, and a dashed edge
@@ -503,13 +504,13 @@ main > * + * {
  * classic scrollbar takes 17px of it.
  */
 @media (min-width: 82rem) {
-  main > :nth-child(2),
+  main > * + *,
   [data-join-mark] {
     position: relative;
   }
 
-  main > :nth-child(2)::before,
-  main > :nth-child(2)::after,
+  main > * + *::before,
+  main > * + *::after,
   [data-join-mark]::before,
   [data-join-mark]::after {
     content: "";
@@ -523,20 +524,20 @@ main > * + * {
     pointer-events: none;
   }
 
-  main > :nth-child(2)::before,
+  main > * + *::before,
   [data-join-mark]::before {
     left: calc(50% - 40rem - 5px);
   }
 
-  main > :nth-child(2)::after,
+  main > * + *::after,
   [data-join-mark]::after {
     left: calc(50% + 40rem - 6px);
   }
 }
 
 @media (forced-colors: active), print {
-  main > :nth-child(2)::before,
-  main > :nth-child(2)::after,
+  main > * + *::before,
+  main > * + *::after,
   [data-join-mark]::before,
   [data-join-mark]::after {
     display: none;

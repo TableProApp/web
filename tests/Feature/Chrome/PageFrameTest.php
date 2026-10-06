@@ -5,8 +5,8 @@ use PHPUnit\Framework\Assert;
 /*
  * The page frame (design-system §4.7): two rails on the wide Container's outer
  * edge from 1280px, a full-bleed join between every two blocks of `<main>`,
- * at most six marks where joins meet the rails, and cell grids whose outer
- * lines land on the rails.
+ * a mark wherever a join meets a rail, and cell grids whose outer lines land
+ * on the rails.
  *
  * The geometry was measured in a browser when the frame landed (390 to
  * 1920px, every template): rails on the Container edge, cell lines on the
@@ -98,27 +98,32 @@ it('draws the join in CSS, by position, and lands anchors behind the header\'s r
         ->toContain('scroll-padding-top: 5rem;');
 });
 
-it('marks the frame\'s start and end, and lets a page mark one section more', function (string $path): void {
+it('marks every join by position, so no page picks which joins get one', function (string $path): void {
+    /*
+     * The rule a reader can see: a line that crosses the whole page is marked
+     * where it crosses the frame, and a line inside the frame never is. A
+     * per-section switch once marked one join out of nine, which read as an
+     * omission everywhere else.
+     */
     $xpath = frameXPath(ssrHtml($path));
 
-    expect($xpath->query('//footer[@data-join-mark]')->length)->toBe(1, "{$path}: the footer's rule is the frame's end");
-    expect($xpath->query('//main/*[@data-join-mark]')->length)->toBeLessThanOrEqual(1, "{$path}: the start and end take four marks, so one section at most may add two");
-
-    if ($path === '/' || $path === '/vi') {
-        expect($xpath->query('//main/section[@id="pricing"][@data-join-mark]')->length)->toBe(1);
-    }
+    expect($xpath->query('//footer[@data-join-mark]')->length)->toBe(1, "{$path}: the footer's rule is the last join and is marked like the others");
+    expect($xpath->query('//main//*[@data-join-mark]')->length)->toBe(0, "{$path}: joins in <main> are marked by position, not by a switch");
 })->with(frameTemplates());
 
 it('shows marks only where a 1280px frame leaves them room, and never in forced colours or print', function (): void {
     $css = frameCss();
-    $marks = substr($css, (int) strpos($css, '@media (min-width: 82rem)'));
+    $start = (int) strpos($css, '@media (min-width: 82rem)');
+    $marks = substr($css, $start, (int) strpos($css, '@media (forced-colors: active), print {') - $start);
 
-    expect($marks)->toContain('main > :nth-child(2)::before')
+    expect($marks)->toContain('main > * + *::before')
+        ->toContain('main > * + *::after')
         ->toContain('[data-join-mark]::after')
+        ->not->toContain('.cell-grid')
         ->toContain('background-color: var(--rule-strong);')
         ->toContain('left: calc(50% - 40rem - 5px);')
         ->toContain('left: calc(50% + 40rem - 6px);');
-    expect(substr($marks, 0, (int) strpos($marks, '@media (forced-colors: active), print {')))->not->toContain('var(--accent');
+    expect($marks)->not->toContain('var(--accent');
     expect($css)->toContain('@media (forced-colors: active), print {');
 });
 

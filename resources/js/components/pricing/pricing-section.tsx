@@ -20,8 +20,6 @@ interface PricingSectionProps {
     title?: ReactNode;
     lead?: ReactNode;
     tone?: 'base' | 'surface';
-    /** Mark where this section's join meets the rails (`Section`'s `mark`). */
-    mark?: boolean;
 }
 
 /**
@@ -33,14 +31,13 @@ interface PricingSectionProps {
  * It is the target of the Mac app's `/?ref=…#pricing` links, so it renders
  * `id="pricing"` on `/` and on `/vi`, and keeps `#license` as an alias.
  */
-export default function PricingSection({ checkout, id = 'pricing', aliasId = 'license', title, lead, tone = 'base', mark = false }: PricingSectionProps) {
+export default function PricingSection({ checkout, id = 'pricing', aliasId = 'license', title, lead, tone = 'base' }: PricingSectionProps) {
     const { m } = useI18n();
 
     return (
         <Section
             id={id}
             tone={tone}
-            mark={mark}
             title={title ?? m.pricing.section.title}
             lead={lead ?? m.pricing.section.lead}
             aside={
