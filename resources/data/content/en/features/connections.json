@@ -18,7 +18,8 @@
             "title": "Keep a library of connections",
             "paragraphs": [
                 "Each connection is edited in one form with General, Network, Options and Appearance tabs. Import a connection URL, including <code>jdbc:</code> URLs and <code>+ssh</code> URLs that carry an SSH hop, and the form fills itself in; when one is already on your clipboard, the form offers <ui>Use clipboard URL</ui>.",
-                "Give a connection a colour, as many tags as you like and a place in nested groups, and star the ones you use most as favorites. Environments are tags: local, development, production and testing are built in, and you can add your own. An empty library offers <ui>Open Sample Database</ui>, a bundled SQLite copy of Chinook."
+                "Give a connection a colour, as many tags as you like and a place in nested groups, and star the ones you use most as favorites. Environments are tags: local, development, production and testing are built in, and you can add your own. An empty library offers <ui>Open Sample Database</ui>, a bundled SQLite copy of Chinook.",
+                "Open several connections in one window. The connections strip down its left edge moves between them, and each connection comes back on the tab you last used there. <ui>Open in New Window</ui> puts one beside another."
             ],
             "asset": "mac-connection-library"
         },
