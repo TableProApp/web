@@ -71,7 +71,7 @@ export default function FeatureIndex({ content, pages, facts }: FeatureHubProps)
             <PageHeader title={content.header.title} lead={content.header.lead} />
 
             <Section id="areas" title={content.areas.title} lead={content.areas.lead}>
-                <ul data-rule-list className="border-t border-rule">
+                <ul data-rule-list className="frame-rows border-t border-rule">
                     {areas.map((area) => {
                         const paid = PAID_FEATURES.filter((feature) => feature.page.path === area.href);
 
@@ -119,7 +119,7 @@ export default function FeatureIndex({ content, pages, facts }: FeatureHubProps)
 
             <Section id="paid" title={content.paid.title} lead={content.paid.lead}>
                 {/* Below 640px, Plan and "Described on" fold into the feature's row header (design-system §5.3.10). */}
-                <DataTable caption={content.paid.caption} className="sm:min-w-[32rem]">
+                <DataTable wrapperClassName="frame-table" caption={content.paid.caption} className="sm:min-w-[32rem]">
                     <thead>
                         <tr>
                             <th scope="col" className={TABLE_HEAD_CELL}>

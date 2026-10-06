@@ -32,6 +32,11 @@ const TITLE_LINK = 'rounded-[2px] transition-colors duration-(--dur-tap) ease-(-
  * Posts as rows: the date, the title as the link, and the description
  * (design-system §8.9). No thumbnails and no tags.
  *
+ * Each row runs from rail to rail (`.frame-rows`, design-system §4.7), so its
+ * rules end on the frame rather than in open space; the date sits in its own
+ * column from 768px and the title and description keep the reading measure.
+ * The list must sit in a Section or another `@container` Container.
+ *
  * A post in another language than the page, which today means an English
  * release post on `/vi/blog`, keeps its own language: its title and
  * description carry `lang`, `LocaleLink` sends it to its own URL with
@@ -45,33 +50,35 @@ export default function PostList({ posts, headingLevel, descriptions = true, cla
     const Heading = headingLevel;
 
     return (
-        <ol data-rule-list className={cn('divide-y divide-rule border-y border-rule', className)}>
+        <ol data-rule-list className={cn('frame-rows divide-y divide-rule border-y border-rule', className)}>
             {posts.map((post) => {
                 const lang = post.locale !== locale ? post.locale : undefined;
 
                 return (
-                    <li key={`${post.locale}-${post.slug}`} className="py-6">
-                        <p className="type-caption text-muted-foreground">
+                    <li key={`${post.locale}-${post.slug}`} className="grid gap-1 py-6 md:grid-cols-[minmax(0,13rem)_minmax(0,44rem)] md:gap-8">
+                        <p className="type-caption text-muted-foreground md:pt-1">
                             <time dateTime={post.date}>{post.dateFormatted}</time>
                         </p>
-                        <Heading className="type-h3 mt-1 text-foreground">
-                            <LocaleLink href={post.url} locale={post.locale} className={TITLE_LINK}>
-                                {post.title}
-                            </LocaleLink>
-                            {lang === DEFAULT_LOCALE && (
-                                <>
-                                    {/* A real space, so the heading's text reads "… Sidebar (tiếng Anh)" to screen readers and copy. */}{' '}
-                                    <span className="type-small ml-1 font-normal whitespace-nowrap text-muted-foreground">
-                                        {m.common.englishOnly}
-                                    </span>
-                                </>
+                        <div className="min-w-0">
+                            <Heading className="type-h3 text-foreground">
+                                <LocaleLink href={post.url} locale={post.locale} className={TITLE_LINK}>
+                                    {post.title}
+                                </LocaleLink>
+                                {lang === DEFAULT_LOCALE && (
+                                    <>
+                                        {/* A real space, so the heading's text reads "… Sidebar (tiếng Anh)" to screen readers and copy. */}{' '}
+                                        <span className="type-small ml-1 font-normal whitespace-nowrap text-muted-foreground">
+                                            {m.common.englishOnly}
+                                        </span>
+                                    </>
+                                )}
+                            </Heading>
+                            {descriptions && (
+                                <p lang={lang} className="type-small mt-2 text-muted-foreground">
+                                    {post.description}
+                                </p>
                             )}
-                        </Heading>
-                        {descriptions && (
-                            <p lang={lang} className="type-small mt-2 text-muted-foreground">
-                                {post.description}
-                            </p>
-                        )}
+                        </div>
                     </li>
                 );
             })}

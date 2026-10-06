@@ -45,7 +45,7 @@ export default function EngineTable({ caption, engines, copy, table, labels, doc
     const { locale, m, fmt } = useI18n();
 
     return (
-        <DataTable caption={caption} className="table-fixed">
+        <DataTable wrapperClassName="frame-table" caption={caption} className="table-fixed">
             <thead>
                 <tr>
                     <th scope="col" className={cn(TABLE_HEAD_CELL, 'md:w-[38%] lg:w-[22%]')}>

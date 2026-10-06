@@ -205,6 +205,7 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
             {content.faq.length > 0 && (
                 <Section id="faq" title={labels.sections.faq} width="text">
                     <FaqList
+                        className="frame-rows-text"
                         items={content.faq.map((item) => ({
                             id: item.id,
                             question: item.question,

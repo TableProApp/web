@@ -213,7 +213,7 @@ function Includes({ tier, className }: { tier: TierId; className?: string }) {
     const more = tier !== 'free' && paidFeaturesForTier(tier).length > highlightedFeatures(tier).length;
 
     return (
-        <div className={cn('border-t border-rule pt-4', className)}>
+        <div className={cn('-mx-(--cell-bleed) border-t border-rule px-(--cell-bleed) pt-4', className)}>
             <p className="text-sm leading-[1.3] font-medium text-foreground">{copy.includesTitle}</p>
             <ul className="type-small mt-3 grid gap-2 text-foreground">
                 {items.map((item, index) => (

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import AssetSlot from '@/components/ui/asset-slot';
+import CellGrid from '@/components/ui/cell-grid';
 import Section from '@/components/ui/section';
 import { assetEntry, isAssetId } from '@/lib/data/assets';
 import { needsReleaseLabel } from '@/lib/data/platforms';
@@ -17,8 +18,13 @@ interface BlockBodyProps {
     values: Record<string, string>;
 }
 
+interface BlockTextProps extends BlockBodyProps {
+    /** Where the text sits: at the reading measure in the section, or in a cell beside a crop. */
+    place: 'measure' | 'cell';
+}
+
 /** The words of a block: paragraphs, points, engine lists and links, at reading width. */
-function BlockText({ block, facts, values }: BlockBodyProps) {
+function BlockText({ block, facts, values, place }: BlockTextProps) {
     return (
         <div className="space-y-4">
             {block.paragraphs.map((paragraph, index) => (
@@ -35,37 +41,54 @@ function BlockText({ block, facts, values }: BlockBodyProps) {
                     ))}
                 </ul>
             )}
-            {block.engines !== undefined && block.engines.length > 0 && <EngineLists lists={block.engines} facts={facts} />}
+            {block.engines !== undefined && block.engines.length > 0 && (
+                <EngineLists lists={block.engines} facts={facts} className={place === 'cell' ? 'cell-rows' : 'frame-rows-text'} />
+            )}
             {block.links !== undefined && <FeatureLinkList links={block.links} className="pt-2" />}
         </div>
     );
 }
 
+/** A block whose crop sits beside its text, so it renders as two cells. */
+function isBeside(block: FeatureBlock): boolean {
+    return block.asset !== undefined && isAssetId(block.asset) && slotLayout(assetEntry(block.asset).kind) === 'beside';
+}
+
 /**
  * The text and the block's one slot (design-system §8.2): a detail crop sits
- * beside the text from 1024px, in columns 6–12; a 16:9 window or diagram runs
- * full width below it. Without a slot the text keeps the reading width.
+ * beside the text from 1024px, as two cells of the page grid, 5 and 7 columns
+ * (§4.7); a 16:9 window or diagram runs full width below it. Without a slot
+ * the text keeps the reading width.
  */
 function BlockBody({ block, facts, values }: BlockBodyProps) {
-    const text = <BlockText block={block} facts={facts} values={values} />;
     const asset = block.asset !== undefined && isAssetId(block.asset) ? block.asset : null;
 
-    if (asset === null) {
-        return <div className="max-w-[44rem]">{text}</div>;
+    if (asset !== null && isBeside(block)) {
+        return (
+            <CellGrid className="lg:grid-cols-12">
+                <div className="lg:col-span-5">
+                    <BlockText block={block} facts={facts} values={values} place="cell" />
+                </div>
+                <div className="lg:col-span-7">
+                    <AssetSlot id={asset} />
+                </div>
+            </CellGrid>
+        );
     }
 
-    if (slotLayout(assetEntry(asset).kind) === 'beside') {
-        return (
-            <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
-                <div className="max-w-[44rem] lg:col-span-5">{text}</div>
-                <AssetSlot id={asset} className="lg:col-span-7" />
-            </div>
-        );
+    const text = (
+        <div className="max-w-[44rem]">
+            <BlockText block={block} facts={facts} values={values} place="measure" />
+        </div>
+    );
+
+    if (asset === null) {
+        return text;
     }
 
     return (
         <>
-            <div className="max-w-[44rem]">{text}</div>
+            {text}
             <AssetSlot id={asset} className="mt-8 md:mt-10" />
         </>
     );
@@ -88,9 +111,11 @@ interface FeatureSectionProps {
 export default function FeatureSection({ section, facts, values, labels }: FeatureSectionProps) {
     const markers = <Markers paid={section.paid} since={section.since} labels={labels} />;
     const hasOwnText = section.paragraphs.length > 0 || (section.points?.length ?? 0) > 0;
+    const last = section.blocks !== undefined && section.blocks.length > 0 ? section.blocks[section.blocks.length - 1] : section;
 
+    /* A section that ends in cells closes them on its join (design-system §4.7). */
     return (
-        <Section id={section.id} title={section.title} lead={hasMarkers(section) ? markers : undefined}>
+        <Section id={section.id} title={section.title} lead={hasMarkers(section) ? markers : undefined} flush={isBeside(last)}>
             {hasOwnText && <BlockBody block={section} facts={facts} values={values} />}
             {section.blocks?.map((block, index) => (
                 <SubBlock key={block.id ?? index} block={block} facts={facts} values={values} labels={labels} first={!hasOwnText && index === 0} />

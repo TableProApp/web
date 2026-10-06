@@ -71,10 +71,13 @@ it('puts every section on the page grid\'s left edge, whatever its measure', fun
      */
     $section = layoutSource('js/components/ui/section.tsx');
 
-    expect($section)->toContain('<Container>')
+    expect($section)->toContain('<Container className="@container">')
         ->not->toContain('<Container width={width}>')
         ->toContain("text: 'max-w-[44rem]'");
+
     expect(layoutSource('js/pages/Pricing.tsx'))->not->toContain('<Container width="text"');
+    // The FAQ was the last page with a centred column; its header and topics now start on the left edge too.
+    expect(layoutSource('js/pages/Faq.tsx'))->not->toContain('width="text"');
 });
 
 it('spaces neighbouring sections one rhythm apart, with the join in the middle', function (): void {

@@ -163,7 +163,7 @@ export default function ComparisonTable({ caption, productId, productName, brand
         });
 
     return (
-        <DataTable caption={caption} captionVisible stickyFirstColumn className="table-fixed sm:min-w-[40rem]">
+        <DataTable wrapperClassName="frame-table" caption={caption} captionVisible stickyFirstColumn className="table-fixed sm:min-w-[40rem]">
             <thead>
                 <tr>
                     <th scope="col" className={cn(TABLE_HEAD_CELL, 'sm:w-[9.5rem] md:w-[12rem]')}>

@@ -64,6 +64,10 @@ const MEASURES: Record<ContainerWidth, string | undefined> = {
  *
  * A `surface` band also sets `--table-ground`, so a sticky table column on it
  * is painted with the band and not the page.
+ *
+ * The Container is a size container, so a ruled list inside a narrower measure
+ * can still reach the rails (`.frame-rows`, app.css) while its text keeps the
+ * measure.
  */
 export default function Section({ id, title, lead, tone = 'base', width = 'wide', flush = false, titleStyle = 'h2', aside, className, children }: SectionProps) {
     const headingId = `${id}-title`;
@@ -79,7 +83,7 @@ export default function Section({ id, title, lead, tone = 'base', width = 'wide'
                 className,
             )}
         >
-            <Container>
+            <Container className="@container">
                 <div className={MEASURES[width]}>
                     <div className={cn(aside && 'md:flex md:items-end md:justify-between md:gap-8')}>
                         <div className="min-w-0">

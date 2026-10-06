@@ -32,7 +32,8 @@ interface MacCardProps {
 /**
  * The Mac card (`#mac`): the release badge, both builds, the help for choosing
  * one, and the other ways to install (design-system §5.3.18 `PlatformCard`,
- * §8.7).
+ * §8.7). It is a cell of the download page's `CellGrid`, so it draws no box of
+ * its own, and its inner rule runs from wall to wall (§4.7).
  *
  * Both DMG links are rendered on the server with their real URLs. The
  * browser's hint can only make one of them primary; with no hint both stay
@@ -89,7 +90,7 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
     }
 
     return (
-        <section id="mac" aria-labelledby="mac-title" className={cn('scroll-mt-24 rounded-panel border border-rule bg-raised p-5 sm:p-6', className)}>
+        <section id="mac" aria-labelledby="mac-title" className={cn('scroll-mt-24', className)}>
             <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                 <h2 id="mac-title" className="type-h3 text-foreground">
                     {mac.deviceNames[0] ?? 'Mac'}
@@ -180,7 +181,7 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
 
             {!available && <Callout className="mt-6">{m.download.release.unavailable}</Callout>}
 
-            <div className="mt-8 border-t border-rule pt-6">
+            <div className="-mx-(--cell-bleed) mt-8 border-t border-rule px-(--cell-bleed) pt-6">
                 <h3 className="type-h3 text-foreground">{content.mac.otherWays}</h3>
 
                 {mac.homebrewCommand !== null && (

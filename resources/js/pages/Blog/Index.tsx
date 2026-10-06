@@ -76,15 +76,16 @@ export default function BlogIndex({ content, posts }: Props) {
                 }
             />
 
-            <div className="py-8 md:py-10 xl:py-12">
-                <Container>
-                    <div className="max-w-[44rem]">
-                        {posts.length > 0 ? (
-                            <PostList posts={posts} headingLevel="h2" />
-                        ) : (
-                            <p className="type-body text-muted-foreground">{m.blog.index.empty}</p>
-                        )}
+            {/* The list opens on the page frame's join, which is its first rule (design-system §4.7). */}
+            <div className="pb-8 md:pb-10 xl:pb-12">
+                <Container className="@container">
+                    {posts.length > 0 ? (
+                        <PostList posts={posts} headingLevel="h2" className="border-t-0" />
+                    ) : (
+                        <p className="type-body pt-8 text-muted-foreground md:pt-10 xl:pt-12">{m.blog.index.empty}</p>
+                    )}
 
+                    <div className="max-w-[44rem]">
                         <NewsletterSignup title={content.newsletter.title} body={content.newsletter.body} className="mt-12" />
                     </div>
                 </Container>

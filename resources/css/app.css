@@ -499,6 +499,67 @@ main > * + * {
 }
 
 /*
+ * Inner lines end on a vertical. A rule inside the frame runs from rail to
+ * rail (from screen edge to screen edge below 1280px) or from wall to wall
+ * inside a cell; it never stops in open space. The content keeps its place:
+ * the row pads it back to the page's left edge, and to the reading measure
+ * where it had one.
+ *
+ * - `.frame-table`, on a DataTable's scroll region in a wide section: the
+ *   region reaches the rails, and the first and last cells pad their text
+ *   back to the content edges.
+ * - `.frame-rows`, on a ruled list (a `dl`, a FaqList, a PostList, a list of
+ *   rows) inside an `@container` Container: the list reaches the rails from
+ *   whatever measure it sits in, using container units for the room to its
+ *   right. `.frame-rows-text` does the same and keeps each row's content at
+ *   the 44rem reading measure.
+ * - `.cell-rows`, on a ruled list inside a cell: wall to wall.
+ *
+ * Unlayered, so the row padding wins over the cells' own `px-*` utilities.
+ */
+.frame-table {
+  margin-inline: calc(var(--cell-bleed) * -1);
+}
+
+.frame-table :is(th, td):first-child {
+  padding-left: var(--cell-bleed);
+}
+
+.frame-table :is(th, td):last-child {
+  padding-right: var(--cell-bleed);
+}
+
+/* One rule under the header row: the first body row's top rule would sit on the header's and draw it 2px. */
+.frame-table thead + tbody > tr:first-child {
+  border-top-style: none;
+}
+
+.frame-rows,
+.frame-rows-text {
+  --row-room: 0px;
+
+  margin-left: calc(var(--cell-bleed) * -1);
+  margin-right: calc((100cqw - 100%) * -1 - var(--cell-bleed));
+}
+
+.frame-rows-text {
+  --row-room: calc(100cqw - min(44rem, 100cqw));
+}
+
+:is(.frame-rows, .frame-rows-text) > * {
+  padding-left: var(--cell-bleed);
+  padding-right: calc(var(--row-room) + var(--cell-bleed));
+}
+
+.cell-rows {
+  margin-inline: calc(var(--cell-bleed) * -1);
+}
+
+.cell-rows > * {
+  padding-inline: var(--cell-bleed);
+}
+
+/*
  * The marks need 5px either side of a rail inside the page, which a 1280px
  * frame only leaves from about 1292px; 82rem also covers a window whose
  * classic scrollbar takes 17px of it.

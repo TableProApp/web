@@ -5,6 +5,7 @@ import { requirementLine } from '@/components/download/format';
 import SEOHead from '@/components/seo/seo-head';
 import ChatButton, { useChatAvailable } from '@/components/site/chat-button';
 import Callout from '@/components/ui/callout';
+import CellGrid from '@/components/ui/cell-grid';
 import Container from '@/components/ui/container';
 import FaqList from '@/components/ui/faq-list';
 import PageHeader from '@/components/ui/page-header';
@@ -12,6 +13,7 @@ import { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import type { Requirements } from '@/lib/data/platforms';
+import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
 type FaqContent = typeof import('@data/content/en/faq.json');
@@ -115,50 +117,65 @@ export default function Faq({ content, platforms, facts, links, organizationProf
 
             <PageHeader
                 variant="utility"
-                width="text"
                 title={content.header.title}
                 lead={content.header.lead}
                 breadcrumbs={[{ label: m.common.home, href: '/' }, { label: content.breadcrumb }]}
-            />
+            >
+                <nav aria-labelledby="faq-topics">
+                    <h2 id="faq-topics" className="type-label text-muted-foreground">
+                        {content.jump}
+                    </h2>
+                    <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                        {content.groups.map((group) => (
+                            <li key={group.id}>
+                                <a href={`#${group.id}`} className={textLinkClasses('standalone')}>
+                                    {group.title}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </PageHeader>
 
-            <div className="py-8 md:py-10 xl:py-12">
-                <Container width="text">
-                    <nav aria-labelledby="faq-topics">
-                        <h2 id="faq-topics" className="type-label text-muted-foreground">
-                            {content.jump}
-                        </h2>
-                        <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                            {content.groups.map((group) => (
-                                <li key={group.id}>
-                                    <a href={`#${group.id}`} className={textLinkClasses('standalone')}>
+            {/*
+              * One row of two cells per topic (design-system §4.7): the topic beside
+              * its questions, whose rules run from the cell divider to the rail.
+              * Each topic is its own grid; 1px between grids lets two neighbours
+              * share one line.
+              */}
+            <div>
+                <Container>
+                    {content.groups.map((group, index) => (
+                        <section key={group.id} id={group.id} aria-labelledby={`${group.id}-title`} className={cn(index > 0 && 'mt-px')}>
+                            <CellGrid className="lg:grid-cols-12">
+                                <div className="lg:col-span-4">
+                                    <h2 id={`${group.id}-title`} className="type-h2 text-foreground lg:sticky lg:top-24">
                                         {group.title}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
-
-                    {content.groups.map((group) => (
-                        <section key={group.id} id={group.id} aria-labelledby={`${group.id}-title`} className="mt-12 md:mt-16">
-                            <h2 id={`${group.id}-title`} className="type-h2 text-foreground">
-                                {group.title}
-                            </h2>
-                            <FaqList
-                                className="mt-4"
-                                items={group.items.map((item) => ({
-                                    id: item.id,
-                                    question: item.question,
-                                    answer: item.answer.map((paragraph, index) => (
-                                        <p key={index}>
-                                            <Trans text={paragraph} tags={tags} values={values} />
-                                        </p>
-                                    )),
-                                }))}
-                            />
+                                    </h2>
+                                </div>
+                                <div className="py-0 md:py-0 xl:py-0 lg:col-span-8">
+                                    <FaqList
+                                        className="cell-rows border-t-0 [&>*:last-child]:border-b-0"
+                                        items={group.items.map((item) => ({
+                                            id: item.id,
+                                            question: item.question,
+                                            answer: item.answer.map((paragraph, paragraphIndex) => (
+                                                <p key={paragraphIndex}>
+                                                    <Trans text={paragraph} tags={tags} values={values} />
+                                                </p>
+                                            )),
+                                        }))}
+                                    />
+                                </div>
+                            </CellGrid>
                         </section>
                     ))}
+                </Container>
+            </div>
 
-                    <Callout className="mt-12 md:mt-16" title={content.contact.title}>
+            <div className="py-8 md:py-10 xl:py-12">
+                <Container>
+                    <Callout className="max-w-[44rem]" title={content.contact.title}>
                         <p>
                             <Trans text={content.contact.body} tags={tags} values={values} />
                         </p>

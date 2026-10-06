@@ -503,9 +503,21 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 
 - the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (a detail row is two cells, 5 / 7), the safety row, the platform block, the plans and the closing actions
 - `/pricing`: the plans (`PricingPlans` is the same component)
-- a feature page: the documentation and related-pages row
+- `/download`: the Mac and iPhone and iPad platforms
+- `/faq`: one row per topic, the topic beside its questions
+- a feature page: every block whose crop sits beside its text (5 / 7), and the documentation and related-pages row
 
-Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Cards stay cards where a block holds a single object (the database facts card, the download page's platform cards, account panels).
+Prose sections (`#ai`, `#switch`, articles) stay unlined inside their joins. Cards stay cards where a block holds a single object (the database facts card, callouts, code blocks, account panels).
+
+**Inner lines end on a vertical.** Decided 2026-10-06, after the first frame shipped with table and list rules that stopped 32px short of the rails, or at the 704px reading measure, and read as loose lines in open space. A survey of framed sites found none that does that: Laravel Cloud and Forge run every table row from rail to rail with the text padded back to the heading edge, and lists either reach the rails, sit inside a cell, or use no rules at all. So every rule inside the frame runs from rail to rail (screen edge to screen edge below 1280px) or from wall to wall inside a cell, and the content keeps its place:
+
+- `frame-table` on a DataTable's scroll region: the region reaches the rails, the first and last cells pad their text back to the content edges (the first column's text now starts on the heading edge), and the header row has one rule, not the 2px of its own rule plus the first row's.
+- `frame-rows` on a ruled list in a wide section, and `frame-rows-text` on one at the reading measure: the list reaches the rails from whatever measure it sits in, using container units (`Section`'s Container is a size container), and each row keeps its text at the measure. Used by DescriptionList rows, FaqList items, PostList rows and the feature and comparison lists.
+- `cell-rows` on a ruled list inside a cell, and the same bleed on a single divider in a cell (a plan's "Includes", the Mac card's "Other ways to install"): wall to wall.
+- Topics within one subject are blocks of their own, so the frame's joins separate them: `/pricing`'s license, billing, refunds, Team, open source and FAQ, `/download`'s install, updates and older versions, and a blog post's related posts.
+- A list that opens a block starts on its join (the blog index), and a list inside a card keeps its own inset rules, closed by the card's edge.
+
+`PageFrameTest` fails any `dl`, ruled list or table in `<main>` that does none of these, outside a card or a blog article's own prose.
 
 **Lists at a join.** A `dl`, `FaqList`, `PostList` or other list marked `data-rule-list` that ends a block drops its last rule, because the join below closes it; a list inside a card keeps it.
 
@@ -685,7 +697,7 @@ Repo key:
 
 #### 5.3.7 FaqList
 
-- One column at `text` width.
+- One column. In a section its rows run from rail to rail with their text at `text` width (`frame-rows-text`, §4.7); on `/faq` it fills the questions cell beside its topic, with rows from the cell divider to the rail.
 - Each item:
   - The question is an `h3` (or `h2` on `/faq` under group headings, which use the `h2` style).
   - The answer is `body` in `--foreground`, 8px below its question.
@@ -721,6 +733,7 @@ Repo key:
 - `<table>` with a required `<caption>`. It is `sr-only` by default; `visible` renders it as a `small` muted line above the table (comparisons: "Compared on 2 October 2026. Sources below.").
 - Header cells: `th` at 14/600 `--foreground` on `--surface`, with a 1px `--rule` bottom border, sentence case.
 - Body cells: 14/1.55 `--foreground`; 12px vertical and 16px horizontal padding; 1px `--rule` row separators.
+- **In the frame** (§4.7), every public table is `frame-table`: rows run from rail to rail, the first and last columns pad their text to the content edges, and the header row draws a single rule.
 - Row headers: `th scope="row"` at 500.
 - Numbers right-aligned with tabular figures.
 - **No zebra striping and no hover bar on static tables.** The `[data-row]` row-selection treatment is retired. Its `::before` on a `<tr>` also generated an anonymous table cell that pushed every `<td>` one column right.
@@ -737,6 +750,7 @@ Repo key:
 - A `<dl>` of rows, each a `<div>` holding a `dt` and a `dd`.
 - **Wide layout:** two columns; `dt` is 14/500 `--muted-foreground` (about 1/3), `dd` is 14 `--foreground`. Rows are separated by a 1px `--rule` with 12px padding.
 - **Below 640:** `dt` stacks above `dd`.
+- **In the frame** (§4.7): rows run from rail to rail (`frame-rows`, or `frame-rows-text` at the reading measure), or from wall to wall in a cell (`cell-rows`). Inside a card, rows keep the card's inset.
 - **Used for:** database facts and license details.
 - It replaces `Ledger`.
 
@@ -879,7 +893,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 **PlatformCard** (download page, the homepage's `#platforms`):
 
-- On the download page a Card, and on the homepage a cell of `#platforms`' `CellGrid` (§4.7), with:
+- A cell of a `CellGrid` (§4.7), on the download page and in the homepage's `#platforms`, with:
   - platform name (`h2` semantic, `h3` style)
   - a version Badge `neutral` "v0.77.0 · 2 Oct 2026" (from the release service, locale-formatted)
   - the requirement line
@@ -1483,6 +1497,8 @@ PageHeader    H1 "Pricing" · one line from data: the Mac app is free; a paid pl
               PlanMatrix  visible caption · each paid feature (linked to its feature-page anchor) + Macs + Priority support
                           + "Everything else in the app"
               Note        The iPhone and iPad app has no paid features.
+              Each topic below is a Section of its own at `text` width, separated by the frame's joins (§4.7);
+              its DescriptionList and FaqList rows run from rail to rail.
 #license      How licenses work (prose from licensing facts, including what happens when a subscription ends)
 #billing      Polar, USD, tax and receipts; "Billing & invoices" in Account for Polar purchases
 #refunds      7 days on every plan → Refund policy
@@ -1515,6 +1531,8 @@ PageHeader (utility)  H1 · current release: v{ver} · {date} · Release notes �
 │ Callout warning while the cask lags (from data)      │ │                                               │
 │ GitHub Releases ↗ · Build from source (AGPLv3) ↗     │ │                                               │
 └──────────────────────────────────────────────────────┘ └───────────────────────────────────────────────┘
+The two platforms are cells of one CellGrid between two joins, so neither draws a box; the Mac cell's "Other ways to install"
+rule runs from wall to wall. Each topic below is a Section of its own at `text` width, behind a join (§4.7).
 #install          Install and first run: ordered list (drag to Applications; notarized; drivers download the first time
                   you pick an engine, which needs a network; the sample database)
 #updates          Daily check; the Settings toggle
@@ -1552,7 +1570,8 @@ At 375 the phone slot (240) sits above its text.
 
 ```
 PageHeader   H1 · one line: release announcements; every version's notes are in the docs changelog ↗
-List         per post, newest first: <time> (caption) · H2 (h3 style) title link · description (small, muted, ≤ 200 chars)
+List         opens on the frame's join; per post, newest first, one row from rail to rail (§4.7): <time> (caption) in its
+             own column from 768 · H2 (h3 style) title link · description (small, muted, ≤ 200 chars) at the reading measure
              /vi/blog: a Vietnamese intro saying the posts are in English; each entry lang="en", Badge "tiếng Anh",
              link to /blog/{slug} hreflang="en"
 Newsletter   inline signup (newsletter_signup_clicked{source:'blog'})
@@ -1571,8 +1590,8 @@ Callout note         the dated archive note from the template ("Describes TableP
                      today's app"), plus an editor's correction only where a claim was never true (sitemap §E.6)
 ProseArticle         paragraphs · H2/H3 · CodeBlocks · tables · ▒ blog-{slug}-{n} (one ID per figure) · Callouts
                      ≥ 1280 and > 4 H2s: TableOfContents in cols 10–12
-End                  current CTA block from platforms.json (one-line download prompt with a secondary button)
-                     · Related posts (3 links)
+End                  two blocks after the article, each behind a join (§4.7): the current CTA from platforms.json
+                     (one-line download prompt with a secondary button) · #related: Related posts (3 rows, rail to rail)
 ```
 
 Release posts keep their original dates and meaning. They have no `/vi` URL: `/vi/blog/{slug}` is a 404 that links the English post (sitemap §A.7).
@@ -1593,10 +1612,11 @@ Print styles apply.
 ### 8.12 FAQ (`/faq`)
 
 ```
-PageHeader   H1 · lead
-Jump links   sitemap §A.1's categories and ids: #general · #platforms · #databases · #licensing · #privacy · #account · #switching
-per group    H2 · FaqList (questions h3, answers visible, text width)
-Callout note Didn't find it? Email us · Live chat (loads only when clicked)
+PageHeader   H1 · lead · jump links: sitemap §A.1's categories and ids: #general · #platforms · #databases · #licensing ·
+             #privacy · #account · #switching
+per group    one row of two cells (§4.7): H2 in cols 1–4 (sticky from 1024) │ FaqList in cols 5–12, rows from the cell
+             divider to the rail (questions h3, answers visible). Below 1024 the heading cell stacks above its questions
+Callout note a block of its own: Didn't find it? Email us · Live chat (loads only when clicked)
 ```
 
 ### 8.13 404 and 410 (both apps)
@@ -1810,6 +1830,7 @@ Confirm no mark touches the line above. Also check:
 - one full-bleed join per block boundary, none doubled by a block's own rule
 - two marks on every join and on the footer's rule, none on a cell or list line, none overhanging the screen
 - an anchor jump shows one line under the header, not two
+- every list and table rule inside the frame ends on a rail or a cell wall, or sits inside a card (`PageFrameTest`)
 - checked again with the Crisp launcher loaded, in Safari and Firefox
 
 **Homepage and links:**
