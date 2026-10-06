@@ -3,7 +3,7 @@
         "tagline": "Arrays, jsonb and PostGIS values, EXPLAIN diagrams, Users & Roles and pg_dump backups.",
         "limits": {
             "column-reorder-script-only": "Reordering columns writes a script that rebuilds the table. TablePro shows the script and never runs it.",
-            "database-switch-reconnects": "Changing database means reconnecting. A tab bound to another database runs on its own connection, so it shares no temp tables, session settings or open transaction with the editor."
+            "session-state-per-database": "Each database you open keeps a connection of its own, so changing database does not reconnect. A temp table, session setting or open transaction stays with the database it was made on."
         }
     },
     "mysql": {

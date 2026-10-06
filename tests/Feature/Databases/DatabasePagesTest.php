@@ -346,6 +346,29 @@ it('types no count, number-led claim or banned phrase into database copy', funct
     }
 })->with(['en', 'vi']);
 
+/*
+ * Each PostgreSQL database the user opens keeps a connection of its own
+ * (TableProApp/TablePro#3271), so changing database no longer reconnects and
+ * the old claim must not come back in either language.
+ */
+it('never says changing a PostgreSQL database reconnects', function (string $locale, string $claim): void {
+    $engines = json_decode((string) file_get_contents(resource_path("data/content/{$locale}/engines.json")), true, 512, JSON_THROW_ON_ERROR);
+    $copy = [
+        ...databasePagesStrings($engines, "content/{$locale}/engines.json"),
+        ...databasePagesStrings(databasePagesFiles($locale)['postgresql-client'], "content/{$locale}/databases/postgresql-client.json"),
+    ];
+
+    foreach ($copy as $path => $text) {
+        expect(preg_match($claim, $text))->toBe(0, "{$path} says changing database reconnects");
+    }
+
+    $postgresql = collect(databasePagesEngines())->firstWhere('id', 'postgresql');
+    expect(array_column($postgresql['limits'], 'id'))->toContain('session-state-per-database')->not->toContain('database-switch-reconnects');
+})->with([
+    'en' => ['en', '/changing database (later )?(means reconnecting|reconnects)|why does changing database reconnect/iu'],
+    'vi' => ['vi', '/đổi cơ sở dữ liệu (nghĩa là|sẽ) kết nối lại|thì phải kết nối lại|lại phải kết nối lại/iu'],
+]);
+
 it('keeps the hub in the sitemap’s category order with every label both languages need', function (string $locale): void {
     $hub = json_decode((string) file_get_contents(resource_path("data/content/{$locale}/databases/index.json")), true, 512, JSON_THROW_ON_ERROR);
 

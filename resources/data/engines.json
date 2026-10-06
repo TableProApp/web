@@ -47,9 +47,9 @@
                 "evidence": "Plugins/PostgreSQLDriverPlugin/PostgreSQLPluginDriver+ColumnReorder.swift:13-43"
             },
             {
-                "id": "database-switch-reconnects",
+                "id": "session-state-per-database",
                 "value": null,
-                "evidence": "TablePro/Core/Plugins/PluginMetadataRegistry+CuratedDefaults.swift:399 @v0.76.1"
+                "evidence": "TablePro/Core/Database/SessionLanes.swift:9-15 @97d2ad285"
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
