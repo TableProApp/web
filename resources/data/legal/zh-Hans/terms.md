@@ -25,11 +25,11 @@ Mac 应用可免费下载使用，无需注册。许可证为 Mac 应用增加�
 
 ## 购买许可证 {#purchases}
 
-许可证由我们的名义销售商和经销商 {merchant}（Polar Software, Inc.）销售。您根据 {merchant} 的购买者条款向 {merchant} 购买许可证，TablePro 则根据本条款授予您使用权。{merchant} 负责收款、计算并缴纳销售税或增值税，以及发送收据和发票。价格以美元计，并列于[定价页面](/pricing)。
+许可证由我们的名义销售商和经销商 {merchant}（Polar Software, Inc.）销售。您根据 {merchant} 的购买者条款向 {merchant} 购买许可证，TablePro 则根据本条款授予您使用权。{merchant} 负责收款、计算并缴纳销售税或增值税，以及发送收据和发票。价格以美元计，并列于[定价页面](/zh-Hans/pricing)。
 
 月付和年付方案会自动续订，直到您取消。您可在账户门户或 {merchant} 客户门户中取消；已取消的方案不会再次扣款，且可继续使用至已付费期间结束。一次性购买只需支付一次，且无到期日。
 
-退款详情请参阅[退款政策](/refund-policy)。
+退款详情请参阅[退款政策](/zh-Hans/refund-policy)。
 
 ## 使用许可证 {#license}
 
@@ -103,7 +103,7 @@ Mac 应用每隔 {revalidateDays} 天向我们的服务器验证许可证。若�
 
 ## 隐私 {#privacy}
 
-我们处理个人数据的方式载于[隐私政策](/privacy)。
+我们处理个人数据的方式载于[隐私政策](/zh-Hans/privacy)。
 
 ## 条款变更 {#changes}
 

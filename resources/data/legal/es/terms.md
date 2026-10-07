@@ -25,11 +25,11 @@ La app para Mac se puede descargar y usar gratis sin registrarse. Una Licencia a
 
 ## Comprar una licencia {#purchases}
 
-Las licencias las vende {merchant} (Polar Software, Inc.), nuestro comerciante registrado y revendedor. Compras una Licencia a {merchant} según las condiciones para compradores de {merchant}, y TablePro te concede el derecho a usarla según estas condiciones. {merchant} recibe el pago, calcula y paga los impuestos sobre ventas o el IVA y envía recibos y facturas. Los precios se indican en dólares estadounidenses y aparecen en la [página de precios](/pricing).
+Las licencias las vende {merchant} (Polar Software, Inc.), nuestro comerciante registrado y revendedor. Compras una Licencia a {merchant} según las condiciones para compradores de {merchant}, y TablePro te concede el derecho a usarla según estas condiciones. {merchant} recibe el pago, calcula y paga los impuestos sobre ventas o el IVA y envía recibos y facturas. Los precios se indican en dólares estadounidenses y aparecen en la [página de precios](/es/pricing).
 
 Los planes mensuales y anuales se renuevan automáticamente hasta que los canceles. Puedes cancelarlos en el portal de cuentas o en el portal de clientes de {merchant}; un plan cancelado no vuelve a cobrarse y sigue funcionando hasta el final del periodo pagado. Una compra de pago único se paga una sola vez y no tiene fecha de caducidad.
 
-Los reembolsos se describen en la [política de reembolso](/refund-policy).
+Los reembolsos se describen en la [política de reembolso](/es/refund-policy).
 
 ## Usar una licencia {#license}
 
@@ -103,7 +103,7 @@ Las secciones que por su naturaleza sobreviven a la terminación, incluidas la e
 
 ## Privacidad {#privacy}
 
-El tratamiento de los datos personales se describe en la [política de privacidad](/privacy).
+El tratamiento de los datos personales se describe en la [política de privacidad](/es/privacy).
 
 ## Cambios en estas condiciones {#changes}
 

@@ -1,10 +1,10 @@
 ---
 title: Politique de remboursement
-description: Toutes les offres TablePro peuvent être remboursées dans les {refundDays} jours suivant l’achat ou le dernier renouvellement d’une offre annuelle. Demande et conséquences pour la licence.
+description: Toute offre TablePro est remboursable dans les {refundDays} jours suivant l’achat ou le dernier renouvellement annuel. Demande et effets sur la licence.
 updatedAt: "2026-10-02"
 ---
 
-Toutes les offres payantes peuvent être remboursées sous {refundDays} jours : Starter et Team, mensuelles, annuelles et à paiement unique. Les {refundDays} jours commencent à la date d’achat ou, pour un abonnement annuel, à la date de son dernier renouvellement. Les offres figurent sur la [page des tarifs](/pricing#refunds).
+Toutes les offres payantes peuvent être remboursées sous {refundDays} jours : Starter et Team, mensuelles, annuelles et à paiement unique. Les {refundDays} jours commencent à la date d’achat ou, pour un abonnement annuel, à la date de son dernier renouvellement. Les offres figurent sur la [page des tarifs](/fr/pricing#refunds).
 
 ## Demander un remboursement {#request}
 

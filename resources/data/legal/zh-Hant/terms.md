@@ -25,11 +25,11 @@ Mac App 可免費下載使用，無需註冊。授權為 Mac App 增加選用功
 
 ## 購買授權 {#purchases}
 
-授權由我們的交易登記銷售商與經銷商 {merchant}（Polar Software, Inc.）銷售。您依據 {merchant} 的購買者條款向 {merchant} 購買授權，TablePro 則依據本條款授予您使用權。{merchant} 負責收款、計算並繳納銷售稅或加值稅，以及寄送收據和發票。價格以美元計，並列於[價格方案頁面](/pricing)。
+授權由我們的交易登記銷售商與經銷商 {merchant}（Polar Software, Inc.）銷售。您依據 {merchant} 的購買者條款向 {merchant} 購買授權，TablePro 則依據本條款授予您使用權。{merchant} 負責收款、計算並繳納銷售稅或加值稅，以及寄送收據和發票。價格以美元計，並列於[價格方案頁面](/zh-Hant/pricing)。
 
 月付與年付方案會自動續訂，直到您取消。您可在帳戶入口網站或 {merchant} 客戶入口網站中取消；已取消的方案不會再次扣款，且可繼續使用至已付費期間結束。一次性購買只需支付一次，且無到期日。
 
-退款詳情請參閱[退款政策](/refund-policy)。
+退款詳情請參閱[退款政策](/zh-Hant/refund-policy)。
 
 ## 使用授權 {#license}
 
@@ -103,7 +103,7 @@ Mac App 每隔 {revalidateDays} 天向我們的伺服器驗證授權。若無法
 
 ## 隱私權 {#privacy}
 
-我們處理個人資料的方式載於[隱私權政策](/privacy)。
+我們處理個人資料的方式載於[隱私權政策](/zh-Hant/privacy)。
 
 ## 條款變更 {#changes}
 

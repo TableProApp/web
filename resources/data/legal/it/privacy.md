@@ -1,6 +1,6 @@
 ---
 title: Informativa sulla privacy
-description: Quali dati raccolgono le app, il sito web e il portale account di TablePro, a chi vengono inviati, per quanto tempo vengono conservati e come modificarli o eliminarli.
+description: Quali dati raccolgono le app, il sito web e il portale account di TablePro, dove vanno, per quanto tempo restano e come modificarli o eliminarli.
 updatedAt: "2026-10-05"
 ---
 
@@ -128,7 +128,7 @@ La consultazione del sito non imposta cookie propri. Iscriversi alla newsletter 
 
 Le licenze sono vendute da {merchant} (Polar Software, Inc.), il nostro merchant of record e rivenditore. Acquisti da {merchant} secondo i suoi termini per gli acquirenti e la sua informativa sulla privacy. {merchant} riceve il pagamento, calcola e versa eventuali imposte sulle vendite o IVA, invia ricevute e fatture e gestisce problemi e controversie relativi ai pagamenti. Raccoglie nome, indirizzo email, indirizzo di fatturazione e dati di pagamento. Non vediamo mai i dati completi della tua carta.
 
-Da {merchant} riceviamo il tuo indirizzo email, il nome e l'indirizzo di fatturazione come li hai inseriti, ciò che hai acquistato, gli importi, gli ID degli ordini e degli abbonamenti e le modifiche successive, come rinnovi, disdette e rimborsi. Comunichiamo a {merchant} la lingua della pagina da cui hai acquistato affinché le nostre email ti arrivino in quella lingua. Fatture, ricevute, metodo di pagamento e abbonamento sono nel [portale clienti di {merchant}]({portal}), a cui accedi con l'indirizzo email usato per l'acquisto. I rimborsi sono descritti nella [politica di rimborso](/refund-policy) e le possibilità offerte dalla licenza nei [termini di servizio](/terms).
+Da {merchant} riceviamo il tuo indirizzo email, il nome e l'indirizzo di fatturazione come li hai inseriti, ciò che hai acquistato, gli importi, gli ID degli ordini e degli abbonamenti e le modifiche successive, come rinnovi, disdette e rimborsi. Comunichiamo a {merchant} la lingua della pagina da cui hai acquistato affinché le nostre email ti arrivino in quella lingua. Fatture, ricevute, metodo di pagamento e abbonamento sono nel [portale clienti di {merchant}]({portal}), a cui accedi con l'indirizzo email usato per l'acquisto. I rimborsi sono descritti nella [politica di rimborso](/it/refund-policy) e le possibilità offerte dalla licenza nei [termini di servizio](/it/terms).
 
 ## Portale account {#account}
 

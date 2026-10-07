@@ -1,10 +1,10 @@
 ---
 title: Erstattungsrichtlinie
-description: Jeder TablePro-Tarif kann innerhalb von {refundDays} Tagen nach dem Kauf oder der letzten Verlängerung eines jährlichen Tarifs erstattet werden. Antrag und Folgen für die Lizenz.
+description: Jeder TablePro-Tarif ist bis {refundDays} Tage nach dem Kauf oder der letzten Verlängerung eines Jahrestarifs erstattbar. Antrag und Folgen für die Lizenz.
 updatedAt: "2026-10-02"
 ---
 
-Jeder bezahlte Tarif kann innerhalb von {refundDays} Tagen erstattet werden: Starter und Team, monatlich, jährlich und als einmaliger Kauf. Die {refundDays} Tage beginnen am Kaufdatum oder bei einem jährlichen Abonnement am Datum der letzten Verlängerung. Die Tarife findest du auf der [Preisseite](/pricing#refunds).
+Jeder bezahlte Tarif kann innerhalb von {refundDays} Tagen erstattet werden: Starter und Team, monatlich, jährlich und als einmaliger Kauf. Die {refundDays} Tage beginnen am Kaufdatum oder bei einem jährlichen Abonnement am Datum der letzten Verlängerung. Die Tarife findest du auf der [Preisseite](/de/pricing#refunds).
 
 ## Eine Erstattung beantragen {#request}
 

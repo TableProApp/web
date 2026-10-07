@@ -128,7 +128,7 @@ Ler o site não define cookies próprios. Inscrever-se na newsletter, iniciar ch
 
 As licenças são vendidas por {merchant} (Polar Software, Inc.), nosso vendedor responsável e revendedor. Você compra de {merchant} sob seus próprios termos para compradores e política de privacidade. {merchant} recebe o pagamento, calcula e recolhe tributos sobre vendas ou IVA, envia recibos e faturas e trata problemas e disputas de pagamento. Coleta nome, email, endereço de cobrança e detalhes de pagamento. Nunca vemos os dados completos do cartão.
 
-De {merchant}, recebemos email, nome e endereço de cobrança conforme inseridos, o que comprou, valores, IDs de pedido e assinatura e mudanças posteriores, como renovações, cancelamentos e reembolsos. Informamos a {merchant} o idioma da página de compra para que nossos emails cheguem nesse idioma. Faturas, recibos, forma de pagamento e assinatura estão no [portal do cliente de {merchant}]({portal}), acessado com o email usado na compra. Os reembolsos são descritos na [política de reembolso](/refund-policy), e o que a licença permite nos [termos de serviço](/terms).
+De {merchant}, recebemos email, nome e endereço de cobrança conforme inseridos, o que comprou, valores, IDs de pedido e assinatura e mudanças posteriores, como renovações, cancelamentos e reembolsos. Informamos a {merchant} o idioma da página de compra para que nossos emails cheguem nesse idioma. Faturas, recibos, forma de pagamento e assinatura estão no [portal do cliente de {merchant}]({portal}), acessado com o email usado na compra. Os reembolsos são descritos na [política de reembolso](/pt-BR/refund-policy), e o que a licença permite nos [termos de serviço](/pt-BR/terms).
 
 ## Portal da conta {#account}
 

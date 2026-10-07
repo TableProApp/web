@@ -25,11 +25,11 @@ Aplikasi Mac gratis diunduh dan digunakan tanpa pendaftaran. Lisensi menambahkan
 
 ## Pembelian lisensi {#purchases}
 
-Lisensi dijual oleh {merchant} (Polar Software, Inc.), merchant of record dan reseller kami. Anda membeli Lisensi dari {merchant} sesuai ketentuan pembeli {merchant}, dan TablePro memberikan hak penggunaan sesuai ketentuan ini. {merchant} menerima pembayaran, menghitung dan membayar pajak penjualan atau PPN, serta mengirim tanda terima dan faktur. Harga dalam dolar AS dan tercantum di [halaman harga](/pricing).
+Lisensi dijual oleh {merchant} (Polar Software, Inc.), merchant of record dan reseller kami. Anda membeli Lisensi dari {merchant} sesuai ketentuan pembeli {merchant}, dan TablePro memberikan hak penggunaan sesuai ketentuan ini. {merchant} menerima pembayaran, menghitung dan membayar pajak penjualan atau PPN, serta mengirim tanda terima dan faktur. Harga dalam dolar AS dan tercantum di [halaman harga](/id/pricing).
 
 Paket bulanan dan tahunan diperpanjang otomatis hingga Anda membatalkannya. Pembatalan dapat dilakukan dalam portal akun atau portal pelanggan {merchant}; paket yang dibatalkan tidak ditagih lagi dan tetap berfungsi hingga akhir periode yang dibayar. Pembelian sekali bayar dibayar satu kali dan tidak memiliki tanggal kedaluwarsa.
 
-Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/refund-policy).
+Pengembalian dana dijelaskan dalam [kebijakan pengembalian dana](/id/refund-policy).
 
 ## Penggunaan lisensi {#license}
 
@@ -103,7 +103,7 @@ Bagian yang secara sifat tetap berlaku setelah pengakhiran, termasuk penafian ja
 
 ## Privasi {#privacy}
 
-Penanganan data pribadi dijelaskan dalam [kebijakan privasi](/privacy).
+Penanganan data pribadi dijelaskan dalam [kebijakan privasi](/id/privacy).
 
 ## Perubahan ketentuan ini {#changes}
 

@@ -4,7 +4,7 @@ description: 所有 TablePro 方案均可在购买后 {refundDays} 天内退款�
 updatedAt: "2026-10-02"
 ---
 
-所有付费方案均可在 {refundDays} 天内退款，包括 Starter 和 Team 的月付、年付和一次性购买。{refundDays} 天自购买日期起算；对于年付订阅，则自最近一次续订日期起算。方案详情请查看[定价页面](/pricing#refunds)。
+所有付费方案均可在 {refundDays} 天内退款，包括 Starter 和 Team 的月付、年付和一次性购买。{refundDays} 天自购买日期起算；对于年付订阅，则自最近一次续订日期起算。方案详情请查看[定价页面](/zh-Hans/pricing#refunds)。
 
 ## 如何申请退款 {#request}
 

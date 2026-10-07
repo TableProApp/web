@@ -25,11 +25,11 @@ L’application Mac est gratuite à télécharger et à utiliser sans inscriptio
 
 ## Acheter une licence {#purchases}
 
-Les licences sont vendues par {merchant} (Polar Software, Inc.), notre vendeur officiel et revendeur. Vous achetez une Licence auprès de {merchant}, selon les conditions d’achat de {merchant}, et TablePro vous accorde le droit de l’utiliser selon les présentes conditions. {merchant} encaisse le paiement, calcule et reverse la taxe sur les ventes ou la TVA, et envoie reçus et factures. Les prix sont en dollars américains et figurent sur la [page des tarifs](/pricing).
+Les licences sont vendues par {merchant} (Polar Software, Inc.), notre vendeur officiel et revendeur. Vous achetez une Licence auprès de {merchant}, selon les conditions d’achat de {merchant}, et TablePro vous accorde le droit de l’utiliser selon les présentes conditions. {merchant} encaisse le paiement, calcule et reverse la taxe sur les ventes ou la TVA, et envoie reçus et factures. Les prix sont en dollars américains et figurent sur la [page des tarifs](/fr/pricing).
 
 Les offres mensuelles et annuelles se renouvellent automatiquement jusqu’à résiliation. Vous pouvez les résilier dans le portail de comptes ou le portail client de {merchant} ; une offre résiliée n’est plus facturée et reste active jusqu’à la fin de la période payée. Un achat à paiement unique est réglé une seule fois et n’a pas de date d’expiration.
 
-Les remboursements sont décrits dans la [politique de remboursement](/refund-policy).
+Les remboursements sont décrits dans la [politique de remboursement](/fr/refund-policy).
 
 ## Utiliser une licence {#license}
 
@@ -103,7 +103,7 @@ Les sections qui, par leur nature, survivent à la résiliation, notamment l’e
 
 ## Confidentialité {#privacy}
 
-Le traitement des données personnelles est décrit dans la [politique de confidentialité](/privacy).
+Le traitement des données personnelles est décrit dans la [politique de confidentialité](/fr/privacy).
 
 ## Modification de ces conditions {#changes}
 

@@ -1,10 +1,10 @@
 ---
 title: Kebijakan pengembalian dana
-description: Semua paket TablePro dapat dikembalikan dananya dalam {refundDays} hari setelah pembelian atau perpanjangan terakhir paket tahunan. Cara meminta dan dampaknya pada lisensi.
+description: Semua paket TablePro bisa dikembalikan dananya dalam {refundDays} hari sejak pembelian atau perpanjangan tahunan terakhir. Cara meminta dan dampaknya pada lisensi.
 updatedAt: "2026-10-02"
 ---
 
-Semua paket berbayar dapat dikembalikan dananya dalam {refundDays} hari: Starter dan Team, bulanan, tahunan, dan sekali bayar. Periode {refundDays} hari dimulai pada tanggal pembelian atau, untuk langganan tahunan, pada tanggal perpanjangan terbaru. Paket tersedia di [halaman harga](/pricing#refunds).
+Semua paket berbayar dapat dikembalikan dananya dalam {refundDays} hari: Starter dan Team, bulanan, tahunan, dan sekali bayar. Periode {refundDays} hari dimulai pada tanggal pembelian atau, untuk langganan tahunan, pada tanggal perpanjangan terbaru. Paket tersedia di [halaman harga](/id/pricing#refunds).
 
 ## Cara meminta pengembalian dana {#request}
 

@@ -1,6 +1,6 @@
 ---
 title: Datenschutzerklärung
-description: Welche Daten die TablePro-Apps, die Website und das Kontoportal erfassen, wohin sie gelangen, wie lange sie aufbewahrt werden und wie du sie ändern oder löschen kannst.
+description: Welche Daten die TablePro-Apps, die Website und das Kontoportal erfassen, wohin sie gehen, wie lange sie bleiben und wie du sie änderst oder löschst.
 updatedAt: "2026-10-05"
 ---
 
@@ -128,7 +128,7 @@ Das Lesen der Website setzt keine eigenen Cookies. Das Abonnieren des Newsletter
 
 Lizenzen werden von {merchant} (Polar Software, Inc.), unserem verantwortlichen Verkäufer und Wiederverkäufer, verkauft. Du kaufst bei {merchant} nach dessen Käuferbedingungen und Datenschutzerklärung. {merchant} nimmt Zahlungen entgegen, berechnet und entrichtet anfallende Verkaufs- oder Mehrwertsteuer, sendet Belege und Rechnungen und bearbeitet Zahlungsprobleme und Streitigkeiten. Dabei werden Name, E-Mail-Adresse, Rechnungsadresse und Zahlungsdaten erfasst. Wir sehen niemals deine vollständigen Kartendaten.
 
-Von {merchant} erhalten wir deine E-Mail-Adresse, Name und Rechnungsadresse wie von dir eingegeben, deinen Kauf, die Beträge, Bestell- und Abonnement-IDs sowie spätere Änderungen wie Verlängerungen, Kündigungen und Erstattungen. Wir teilen {merchant} die Sprache deiner Kaufseite mit, damit unsere E-Mails dich in dieser Sprache erreichen. Rechnungen, Belege, Zahlungsmethode und Abonnement findest du im [Kundenportal von {merchant}]({portal}); die Anmeldung erfolgt mit der beim Kauf verwendeten E-Mail-Adresse. Erstattungen sind in der [Erstattungsrichtlinie](/refund-policy) beschrieben, der Umfang einer Lizenz in den [Nutzungsbedingungen](/terms).
+Von {merchant} erhalten wir deine E-Mail-Adresse, Name und Rechnungsadresse wie von dir eingegeben, deinen Kauf, die Beträge, Bestell- und Abonnement-IDs sowie spätere Änderungen wie Verlängerungen, Kündigungen und Erstattungen. Wir teilen {merchant} die Sprache deiner Kaufseite mit, damit unsere E-Mails dich in dieser Sprache erreichen. Rechnungen, Belege, Zahlungsmethode und Abonnement findest du im [Kundenportal von {merchant}]({portal}); die Anmeldung erfolgt mit der beim Kauf verwendeten E-Mail-Adresse. Erstattungen sind in der [Erstattungsrichtlinie](/de/refund-policy) beschrieben, der Umfang einer Lizenz in den [Nutzungsbedingungen](/de/terms).
 
 ## Kontoportal {#account}
 

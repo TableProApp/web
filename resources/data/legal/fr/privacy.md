@@ -1,6 +1,6 @@
 ---
 title: Politique de confidentialité
-description: Ce que collectent les applications, le site web et le portail de comptes TablePro, où ces données vont, combien de temps elles sont conservées et comment les modifier ou les supprimer.
+description: Ce que collectent les apps, le site et le portail de comptes TablePro, où vont ces données, leur durée de conservation, comment les modifier ou supprimer.
 updatedAt: "2026-10-05"
 ---
 
@@ -128,7 +128,7 @@ Consulter le site ne dépose aucun cookie propre. S’abonner à la newsletter, 
 
 Les licences sont vendues par {merchant} (Polar Software, Inc.), notre vendeur officiel et revendeur. Vous achetez auprès de {merchant} selon ses propres conditions d’achat et sa politique de confidentialité. {merchant} encaisse les paiements, calcule et reverse la taxe sur les ventes ou la TVA, envoie reçus et factures et gère problèmes et litiges de paiement. Il collecte nom, adresse e-mail, adresse de facturation et données de paiement. Nous ne voyons jamais les coordonnées complètes de votre carte.
 
-De {merchant}, nous recevons votre adresse e-mail, votre nom et adresse de facturation tels que saisis, votre achat, les montants, les identifiants de commande et d’abonnement, puis les changements comme renouvellements, résiliations et remboursements. Nous indiquons à {merchant} la langue de la page d’achat pour que nos e-mails vous parviennent dans cette langue. Factures, reçus, moyen de paiement et abonnement figurent dans le [portail client de {merchant}]({portal}), auquel vous accédez avec l’adresse e-mail de l’achat. Les remboursements sont décrits dans la [politique de remboursement](/refund-policy), et les droits d’une licence dans les [conditions d’utilisation](/terms).
+De {merchant}, nous recevons votre adresse e-mail, votre nom et adresse de facturation tels que saisis, votre achat, les montants, les identifiants de commande et d’abonnement, puis les changements comme renouvellements, résiliations et remboursements. Nous indiquons à {merchant} la langue de la page d’achat pour que nos e-mails vous parviennent dans cette langue. Factures, reçus, moyen de paiement et abonnement figurent dans le [portail client de {merchant}]({portal}), auquel vous accédez avec l’adresse e-mail de l’achat. Les remboursements sont décrits dans la [politique de remboursement](/fr/refund-policy), et les droits d’une licence dans les [conditions d’utilisation](/fr/terms).
 
 ## Portail de comptes {#account}
 

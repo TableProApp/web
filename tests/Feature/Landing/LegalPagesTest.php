@@ -261,6 +261,31 @@ it('keeps the refund window from pricing.json and tells a subscriber how to stop
     Assert::assertStringNotContainsStringIgnoringCase('machines deactivate', $source);
 })->with(['en', 'vi']);
 
+it('links each document to pages in its own language', function (string $locale): void {
+    $prefix = Locales::prefixFor($locale);
+    $offences = [];
+
+    foreach (['privacy', 'terms', 'refund-policy'] as $document) {
+        preg_match_all('/\]\((\/[^)\s]*)\)/', legalSource($document, $locale), $links);
+
+        foreach ($links[1] as $href) {
+            // The platform's paths carry the language in `?locale=`, never a prefix.
+            if (preg_match('#^/account(\?|$)#', $href) === 1) {
+                continue;
+            }
+
+            $segment = explode('/', ltrim($href, '/'))[0];
+            $inLocale = $prefix === null ? ! in_array($segment, Locales::codes(), true) : $segment === $prefix;
+
+            if (! $inLocale) {
+                $offences[] = "{$document}.md links {$href}";
+            }
+        }
+    }
+
+    expect($offences)->toBe([]);
+})->with(fn(): array => array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']));
+
 it('notes on Vietnamese pages that the English version prevails', function (): void {
     $chrome = json_decode((string) file_get_contents(resource_path('data/content/vi/legal.json')), true);
 

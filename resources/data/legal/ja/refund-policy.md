@@ -4,7 +4,7 @@ description: TablePro のすべてのプランは、購入から {refundDays} �
 updatedAt: "2026-10-02"
 ---
 
-すべての有料プランで {refundDays} 日以内の返金に対応します。Starter と Team の月払い、年払い、買い切りが対象です。{refundDays} 日の期間は、購入日、または年払いサブスクリプションの場合は直近の更新日から始まります。各プランは[料金ページ](/pricing#refunds)をご覧ください。
+すべての有料プランで {refundDays} 日以内の返金に対応します。Starter と Team の月払い、年払い、買い切りが対象です。{refundDays} 日の期間は、購入日、または年払いサブスクリプションの場合は直近の更新日から始まります。各プランは[料金ページ](/ja/pricing#refunds)をご覧ください。
 
 ## 返金の申請方法 {#request}
 
