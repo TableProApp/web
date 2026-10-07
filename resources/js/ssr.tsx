@@ -1,6 +1,7 @@
 import { createInertiaApp } from '@inertiajs/react';
 import createServer from '@inertiajs/react/server';
 import ReactDOMServer from 'react-dom/server';
+import { resolvePage } from '@/resolve-page';
 
 /*
  * Configurable so a host running more than one Inertia application can give
@@ -24,20 +25,7 @@ createServer(
     (page) =>
         createInertiaApp({
             page,
-            /*
-             * `resolve` is absent on purpose: @inertiajs/vite only injects it
-             * into a createInertiaApp() call that has neither `pages` nor
-             * `resolve`, so writing one here would suppress the injection and
-             * leave the bundle with no page map at all.
-             *
-             * That absence is also why this line needs suppressing. Of the
-             * three published overloads, the two that accept `render` both
-             * require `resolve`, so resolution falls through to the third,
-             * which declares `render?: undefined`. The suppression is
-             * @ts-expect-error rather than @ts-ignore so that the day Inertia
-             * types the injected form, this stops compiling and gets deleted.
-             */
-            // @ts-expect-error -- see above
+            resolve: resolvePage,
             render: ReactDOMServer.renderToString,
             setup: ({ App, props }) => <App {...props} />,
         }),

@@ -1,0 +1,206 @@
+{
+    "seo": {
+        "title": "Edição de dados com Preview SQL e Safe Mode",
+        "description": "Filtre e edite linhas, confira o SQL antes de salvar e defina o Safe Mode por conexão. Data Rewind recupera os valores substituídos ao salvar."
+    },
+    "og": {
+        "kicker": "Edição de dados",
+        "title": "Explore e edite dados com segurança"
+    },
+    "header": {
+        "title": "Explore e edite dados com segurança",
+        "lead": "Para trabalhar diretamente com linhas: encontrar as necessárias, alterar alguns valores e fazer isso em um banco de produção sem surpresas. As edições aguardam até você salvar, e cada conexão define o cuidado que TablePro toma antes de executar uma instrução.",
+        "docs": "/features/change-tracking"
+    },
+    "sections": [
+        {
+            "id": "browse",
+            "title": "Encontre as linhas necessárias",
+            "paragraphs": [
+                "A ordenação e a paginação são feitas no servidor; uma tabela grande abre na primeira página. Acima de {countEstimate} linhas, a contagem é estimada, com Contar Exatamente disponível quando você precisa do número real."
+            ],
+            "blocks": [
+                {
+                    "id": "filters",
+                    "title": "Filtros e regras de destaque",
+                    "paragraphs": [
+                        "A barra de filtros (<kbd>⌘⇧F</kbd>) cria uma cláusula WHERE com {filterOperatorCount} operadores, de = e BETWEEN a REGEX, ou aceita uma condição SQL bruta. Salve um filtro de uma tabela e recupere-o depois sem executá-lo. As regras de destaque colorem linhas ou células conforme seus valores, como a formatação condicional de uma planilha, e permanecem neste Mac."
+                    ],
+                    "asset": "mac-grid-highlight-rules"
+                },
+                {
+                    "id": "foreign-keys",
+                    "title": "Chaves estrangeiras e JSON",
+                    "paragraphs": [
+                        "Siga uma chave estrangeira até a linha referenciada em uma nova aba ou veja uma prévia em um popover. Ao editar uma coluna de chave estrangeira, o seletor de valores lista as linhas referenciadas pelas colunas escolhidas, como o sobrenome e o nome de um cliente. Valores JSON abrem em um visualizador com uma árvore para navegação e um modo de texto para edição."
+                    ],
+                    "asset": "mac-fk-picker"
+                }
+            ]
+        },
+        {
+            "id": "edit",
+            "title": "Altere os dados e salve uma vez",
+            "paragraphs": [
+                "Edições de células, novas linhas e exclusões ficam marcadas na aba até você pressionar <kbd>⌘S</kbd>; nada é enviado antes. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) lista as instruções com os valores preenchidos. Ao salvar, elas são enviadas com parâmetros vinculados, em uma transação quando o mecanismo permite, e é verificado se cada instrução alterou o número esperado de linhas; caso contrário, o salvamento é revertido."
+            ],
+            "points": [
+                "Editores de células conforme o tipo da coluna: seletor de data e hora, listas ENUM e SET, arrays, JSON, editor hexadecimal para valores binários e visualizador de imagens.",
+                "Desfazer e refazer em cada aba até salvar.",
+                "Resultados de consultas podem ser editados quando a consulta lê uma única tabela, sem join, CTE nem UNION.",
+                "Copie linhas como CSV, JSON, Markdown, lista IN ou instruções INSERT e UPDATE."
+            ],
+            "asset": "mac-edit-preview-sql"
+        },
+        {
+            "id": "safe-mode",
+            "title": "Modo Seguro para conexões de produção",
+            "paragraphs": [
+                "Cada conexão tem um nível de Modo Seguro: {macSafeModeLevels}. Novas conexões começam em {macSafeModeDefault}, onde as instruções são executadas como escritas. Alerta pede confirmação antes de gravar; os níveis Modo Seguro também pedem Touch ID ou a senha do Mac, os níveis Completos pedem confirmação antes de ler e Somente Leitura recusa gravações e desativa a edição. O Modo Seguro é gratuito.",
+                "Em todos os níveis, DROP, TRUNCATE e DELETE sem WHERE param e pedem confirmação primeiro. Algumas condições elevam o nível da conexão enquanto se aplicam: um mecanismo somente leitura, o modo Agente, que o eleva a pelo menos Alerta, e um nível mínimo definido pela sua organização via gerenciamento de dispositivos (MDM)."
+            ],
+            "asset": "mac-safe-mode-touchid",
+            "links": [
+                {
+                    "label": "Modo Seguro e outras políticas de conexão",
+                    "href": "/features/connections#policies"
+                },
+                {
+                    "label": "Modo Agente",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "data-rewind",
+            "title": "Recuperação de Dados",
+            "paragraphs": [
+                "Recuperação de Dados guarda os valores substituídos ao salvar para que <ui>Restore Previous Values</ui> possa restaurá-los. Primeiro, uma tela de revisão mostra o que acontecerá com cada linha, incluindo linhas alteradas após seu salvamento; a restauração passa pelo Modo Seguro, em uma transação quando o mecanismo permite. Uma restauração também pode ser restaurada.",
+                "Os valores salvos permanecem neste Mac por {rewindDays} dias, criptografados com uma chave armazenada nas Chaves, e nunca são sincronizados. Quando um plano termina, TablePro para de registrar salvamentos, e <ui>Restore Previous Values</ui> passa a mostrar um alerta."
+            ],
+            "paid": [
+                "data-rewind"
+            ],
+            "asset": "mac-data-rewind-review"
+        },
+        {
+            "id": "documents-and-keys",
+            "title": "Documentos e chaves",
+            "paragraphs": [
+                "Nem todo mecanismo armazena linhas. No MongoDB, você insere e edita documentos inteiros como Extended JSON, remove um campo de um documento e renomeia ou remove um campo em toda uma coleção pela aba Estrutura. No Redis, você renomeia chaves, define TTLs e edita valores string na grade, adiciona chaves string, hash, list, set ou sorted-set e altera os outros tipos com comandos no editor."
+            ],
+            "links": [
+                {
+                    "label": "MongoDB no TablePro",
+                    "href": "/mongodb-client"
+                },
+                {
+                    "label": "Redis no TablePro",
+                    "href": "/redis-gui"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "No iPhone e iPad",
+            "paragraphs": [
+                "No app para iPhone e iPad, as linhas aparecem como cartões que você pode ordenar, pesquisar e filtrar com AND e OR; tocar em uma chave estrangeira mostra a prévia da linha referenciada. Você pode editar uma linha, definir um valor como NULL ou DEFAULT, inserir linhas e excluí-las com um gesto; edição e exclusão exigem uma chave primária.",
+                "O Modo Seguro nesses dispositivos tem níveis próprios, {iosSafeModeLevels}, com {iosSafeModeDefault} como padrão para novas conexões. Edições pendentes, Prévia SQL, regras de destaque e Recuperação de Dados estão apenas no app para Mac."
+            ],
+            "links": [
+                {
+                    "label": "Navegação e edição no iPhone e iPad",
+                    "href": "/ios#browse"
+                },
+                {
+                    "label": "Modo Seguro no iPhone e iPad",
+                    "href": "/ios#safe-mode"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "Ordenação, paginação e filtros",
+            "ios": "yes"
+        },
+        {
+            "label": "Filtros salvos e regras de destaque",
+            "ios": "no"
+        },
+        {
+            "label": "Navegação por chaves estrangeiras e seletor de valores",
+            "ios": "partial",
+            "iosNote": "Toque para ver a prévia da linha referenciada"
+        },
+        {
+            "label": "Editar, inserir e excluir linhas",
+            "ios": "partial",
+            "iosNote": "Editor de linhas; exige chave primária"
+        },
+        {
+            "label": "Edições pendentes, Prévia SQL e desfazer",
+            "ios": "no"
+        },
+        {
+            "label": "Modo Seguro",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "Touch ID ou senha antes de gravar",
+            "ios": "no"
+        },
+        {
+            "label": "Recuperação de Dados",
+            "paid": "data-rewind",
+            "ios": "no"
+        },
+        {
+            "label": "Documentos MongoDB e chaves Redis",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Recuperação de Dados não é um backup. Não desfaz triggers, cascatas nem mudanças feitas fora do TablePro e não pode restaurar linhas sem chave primária, valores acima de {rewindMaxValue} MB nem valores calculados pelo servidor.",
+        "UPDATE sem WHERE é uma gravação comum: pede confirmação apenas no nível Alerta ou mais rigoroso.",
+        "Em {everyStatementWrites}, o Modo Seguro considera toda instrução uma gravação, portanto Alerta também pede confirmação antes de ler e Somente Leitura bloqueia as leituras.",
+        "O resultado de um join, CTE ou UNION é somente leitura na grade; abra a tabela para editá-la."
+    ],
+    "docs": [
+        {
+            "label": "Grade de dados",
+            "docs": "/features/data-grid"
+        },
+        {
+            "label": "Filtragem",
+            "docs": "/features/filtering"
+        },
+        {
+            "label": "Rastreamento de alterações e Prévia SQL",
+            "docs": "/features/change-tracking"
+        },
+        {
+            "label": "Recuperação de Dados",
+            "docs": "/features/change-tracking#restoring-a-save"
+        },
+        {
+            "label": "Modo Seguro",
+            "docs": "/features/safe-mode"
+        }
+    ],
+    "related": [
+        {
+            "label": "Consultas",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Esquema",
+            "href": "/features/schema"
+        },
+        {
+            "label": "O que um plano pago adiciona",
+            "href": "/pricing#features"
+        }
+    ]
+}

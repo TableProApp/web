@@ -1,0 +1,137 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 SQL Server 用戶端",
+        "description": "執行含 GO 批次和 PRINT 輸出的 T-SQL，透過 SQL 登入、Kerberos 或 Microsoft Entra ID 驗證，並將 SQL Server 備份為 .bacpac。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "SQL Server 用戶端"
+    },
+    "engine": "sqlserver",
+    "breadcrumb": "SQL Server",
+    "header": {
+        "title": "適用於 {devices} 的 SQL Server 用戶端",
+        "lead": "逐批次執行 T-SQL 指令碼，依 SQL Server Management Studio 的方式處理 GO 和 PRINT，並使用 SQL Server 登入、Kerberos 或 Microsoft Entra ID 工作帳號驗證。Windows、Linux、Docker 伺服器及 Azure SQL Database 均以相同方式連線。"
+    },
+    "asset": "mac-db-sqlserver-script",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "連線",
+            "paragraphs": [
+                "提供主機和 TCP 連接埠，再選擇 <ui>Authentication</ui>，表單會隨之調整：SQL Server 使用者密碼、Kerberos Windows Authentication 或 Microsoft Entra ID。屬於單一資料庫的登入，例如 Azure SQL contained user，也需填寫 Database。",
+                "Kerberos 使用認證資訊快取中的現有票證，或根據輸入的主體和密碼請求票證。票證為伺服器註冊的 SPN 簽發，因此請用主機名稱而非 IP 連線。TablePro 從不執行 <code>kinit</code> 或編輯 <code>/etc/krb5.conf</code>。",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> 使用裝置代碼流程登入，遵循多因素驗證和 Conditional Access。需在 Azure 註冊 App 並填寫用戶端 ID；權杖儲存在登入鑰匙圈中，標記為僅限此裝置，並在背景重新整理。",
+                "新連線預設為 Preferred，在 SQL Server 上僅加密登入。要加密整個工作階段，請選 Required 或更嚴格等級；Verify CA、Verify Identity 使用 macOS 系統根憑證驗證。TablePro 也可為 Google Cloud SQL 執行 Cloud SQL Auth Proxy，並透過 <network>SSH 通道</network>存取私有網路伺服器。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "指令碼、批次與編輯",
+            "paragraphs": [
+                "指令碼依僅含 <code>GO</code> 的行分隔，像 sqlcmd 一樣逐批次傳送伺服器；<code>GO 5</code> 將前一批次執行五次。每個結果集在獨立分頁開啟，<code>PRINT</code> 輸出和資訊訊息顯示在 Output 檢視。",
+                "若失敗需復原之前的批次，請在指令碼加入 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>；指令碼留下未結束交易時會在結尾提示。執行在首個失敗批次停止，錯誤指出編輯器中的行號。",
+                "每個工作階段以篩選索引、索引檢視表和計算欄位索引所需的 SET 選項開啟，例如啟用 <code>ANSI_NULLS</code> 和 <code>QUOTED_IDENTIFIER</code>。因此 <code>col = NULL</code> 不符合任何紀錄，請用 <code>IS NULL</code> 比較。",
+                "資料表在側欄 schema 下巢狀顯示，<code>Cmd+K</code> 無須重新連線即可切換資料庫。列編輯暫存並提供 <editing>Preview SQL</editing>，新列的 IDENTITY 欄位交給伺服器產生，<code>nvarchar(max)</code> 值完整讀取。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "結構",
+            "paragraphs": [
+                "<structure>Structure 分頁</structure> 暫存欄位、索引、外部索引鍵和條件約束的修改，在執行前顯示 T-SQL。可從側欄刪除 schema，但 SQL Server 拒絕刪除仍含物件的 schema；建立請在編輯器使用 CREATE SCHEMA。",
+                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 比較兩個 SQL Server schema 或資料，儲存每個陳述式後附 <code>GO</code> 行的指令碼，可直接用於 sqlcmd 或 SQL Server Management Studio。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "監控與備份",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> 顯示使用者工作階段、運作時間和資料庫大小，列出所有其他工作階段及執行超過一秒的查詢，並透過 <ui>Terminate Session</ui> 終止工作階段。SQL Server 不提供 Cancel Query。",
+                "<backup>Backup Dump</backup> 使用從 Microsoft 下載的 {dumpTool} 寫入 <code>.bacpac</code>，Restore Dump 載入空資料庫。SqlPackage 僅在命令列接收密碼，Mac 上其他程序可以讀取，因此 TablePro 會在啟動前詢問。Windows 或 Entra 驗證無須傳遞密碼。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "<importData>匯入</importData> {importFormats} 檔案。含 <code>GO</code> 行的 <code>.sql</code> 檔案像 sqlcmd 一樣逐批次執行。資料表或結果匯出為 {exportFormats}；SQL 匯出在每個陳述式後加 <code>GO</code> 行，使其各自作為獨立批次執行。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 與 iPad",
+            "paragraphs": [
+                "iPhone 與 iPad 上可透過 SQL Server 登入，依卡片瀏覽資料表、編輯有主索引鍵的列，並在 Query 分頁執行 T-SQL。不提供 Windows Authentication。Microsoft Entra ID 連線需透過 iCloud Sync 或匯出的連線檔案從 Mac 匯入，開啟時登入 Microsoft。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "ssms",
+                "text": "SQL Server Management Studio 是 Microsoft 自有 SQL Server、Azure SQL 工具。SQL Server Agent 工作、Always On 可用性群組、即時查詢統計及效能調校等 TablePro 未涵蓋的管理任務可選用它。",
+                "notes": [
+                    "ssms-github-copilot-component"
+                ]
+            },
+            {
+                "product": "azure-data-studio",
+                "text": "Azure Data Studio 曾是 Microsoft 的 SQL Server、Azure SQL 查詢編輯器，提供 SQL Server Agent、Profiler 等任務擴充功能。",
+                "notes": [
+                    "ads-retired-successor"
+                ]
+            }
+        ],
+        "notes": {
+            "ssms-github-copilot-component": "SQL Server Management Studio 的 GitHub Copilot 是透過 Visual Studio Installer 新增的獨立元件。",
+            "ads-retired-successor": "Microsoft 已將其退役，不再提供更新或安全修正，並引導使用者使用 Visual Studio Code 的 MSSQL 擴充功能，可無須轉換開啟相同查詢、指令碼和資料庫專案。"
+        }
+    },
+    "faq": [
+        {
+            "id": "azure-sql",
+            "question": "支援 Azure SQL Database 嗎？",
+            "answer": "支援。主機使用 <code>yourserver.database.windows.net</code>，SSL 設為 Required 或更嚴格等級，透過 SQL 登入或 Microsoft Entra ID 驗證。contained user 也需填寫 Database。"
+        },
+        {
+            "id": "declare",
+            "question": "為什麼指令碼報錯「Must declare the scalar variable」？",
+            "answer": "讀取變數的陳述式與其 <code>DECLARE</code> 在不同批次執行：兩者間有 <code>GO</code> 行，或 <code>Cmd+Enter</code> 僅執行了游標所在陳述式。請選取兩個陳述式或執行整份指令碼。"
+        },
+        {
+            "id": "freetds",
+            "question": "需要 FreeTDS 或 ODBC 驅動程式嗎？",
+            "answer": "不需要。驅動程式基於 FreeTDS 並內建它，無須其他安裝，也不讀取自有 <code>freetds.conf</code>。僅 Backup Dump、Restore Dump 需要自有工具 {dumpTool}。"
+        }
+    ],
+    "related": [
+        {
+            "label": "連線、通道與登入",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "結構、比較與同步",
+            "href": "/features/schema"
+        },
+        {
+            "label": "匯入、匯出與備份",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "適用於 iPhone 與 iPad 的 TablePro",
+            "href": "/ios#security"
+        }
+    ]
+}

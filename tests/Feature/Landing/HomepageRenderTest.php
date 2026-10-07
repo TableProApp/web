@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use App\Support\Assets\AssetManifest;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\File;
@@ -104,18 +105,18 @@ describe('props and copy', function (): void {
         expect($response->getContent())->toContain('<html lang="vi"');
     });
 
-    it('is a translated pair, indexed and self-canonical in both locales', function (): void {
+    it('indexes every complete translation with its own canonical', function (): void {
         $entry = app(PageRegistry::class)->find('landing.home', []);
 
         expect($entry)->not->toBeNull()
-            ->and($entry->renderLocales)->toBe(['en', 'vi'])
-            ->and($entry->indexableLocales)->toBe(['en', 'vi'])
-            ->and($entry->hreflangCluster())->toBe(['en', 'vi']);
+            ->and($entry->renderLocales)->toBe(Locales::codes())
+            ->and($entry->indexableLocales)->toBe(Locales::codes())
+            ->and($entry->hreflangCluster())->toBe(Locales::codes());
 
         get('/vi')->assertInertia(fn(AssertableInertia $page) => $page
             ->where('seo.robots', 'index, follow')
             ->where('seo.canonical', fn(string $url): bool => str_ends_with($url, '/vi'))
-            ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->sort()->values()->all() === ['en', 'vi']));
+            ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->sort()->values()->all() === collect(Locales::codes())->sort()->values()->all()));
     });
 
     it('preloads the hero only once it is supplied', function (): void {

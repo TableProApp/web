@@ -1,0 +1,100 @@
+{
+    "seo": {
+        "title": "Precios",
+        "description": "TablePro es gratis. Starter y Equipo añaden funciones para Mac con pago mensual, anual o único. Precios en dólares estadounidenses."
+    },
+    "og": {
+        "kicker": "Precios",
+        "title": "Gratis. Los planes de pago añaden funciones opcionales."
+    },
+    "header": {
+        "title": "Precios",
+        "lead": "La app para Mac se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Un plan Starter o Team añade funciones opcionales. La app para iPhone y iPad es gratis, sin compras dentro de la app."
+    },
+    "plans": {
+        "title": "Planes"
+    },
+    "features": {
+        "title": "Qué añade un plan de pago",
+        "lead": "Estas son las únicas funciones que requieren un plan de pago y todas están en la app para Mac. Team incluye todo lo de Starter. Conectar a cualquier motor compatible no requiere licencia, ni tampoco el asistente de IA, el servidor MCP o el modo seguro."
+    },
+    "license": {
+        "title": "Cómo funcionan las licencias",
+        "items": {
+            "macs": {
+                "term": "Mac",
+                "body": "Una licencia Starter se activa en hasta {activations} Mac. En Team, cada puesto corresponde a un Mac activado, incluido el del comprador. La app para iPhone y iPad nunca usa una licencia ni un puesto."
+            },
+            "activate": {
+                "term": "Activación",
+                "body": "Introduce tu clave de licencia en TablePro en tu Mac, en <ui>Ajustes > Licencia</ui>. Para usarla en otro Mac, elimina el anterior en la página Máquinas de <account>tu cuenta</account>."
+            },
+            "checks": {
+                "term": "Comprobaciones",
+                "body": "TablePro comprueba la firma de la licencia cada vez que se abre y confirma la licencia con el servidor de TablePro cada {revalidateDays} días. Si tu Mac no puede conectar con el servidor, las funciones de pago siguen funcionando durante {graceDays} días. La confirmación envía la clave de licencia, un identificador de máquina con hash, el nombre del Mac y las versiones de la app y de macOS."
+            },
+            "ends": {
+                "term": "Cuando termina un plan",
+                "body": "Si termina un plan mensual o anual, las funciones de pago se detienen y el resto de la app sigue funcionando como en Gratis."
+            },
+            "oneTime": {
+                "term": "Pago único",
+                "body": "La compra de pago único se paga una sola vez y no tiene fecha de caducidad."
+            }
+        },
+        "lapse": {
+            "summary": "Qué ocurre con cada función de pago al terminar un plan",
+            "intro": "Cada función de pago se detiene de una forma distinta:"
+        },
+        "terms": "Las <terms>condiciones del servicio</terms> especifican qué permite una licencia."
+    },
+    "billing": {
+        "title": "Facturación",
+        "merchant": "{merchant} es el comerciante registrado de TablePro. Te vende el plan, recibe el pago, calcula los impuestos sobre ventas o el IVA según tu dirección de facturación y envía el recibo y la factura por correo. Los precios se indican en dólares estadounidenses.",
+        "renewal": "Los planes mensuales y anuales se renuevan automáticamente hasta que los canceles en <account>tu cuenta</account> o en el portal de clientes de {merchant}. Tras cancelar, el plan sigue funcionando hasta el final del periodo pagado y puedes reanudarlo antes de esa fecha. Si falla un pago de renovación, {merchant} te envía un enlace para actualizar tu tarjeta y vuelve a intentar cobrar durante unas tres semanas.",
+        "portal": "Para compras realizadas a través de {merchant}, las facturas, los recibos, el método de pago y la cancelación están en el <portal>portal de clientes de {merchant}</portal>, al que accedes con el correo usado al comprar. <account>Facturación y facturas</account> en tu cuenta también lo abre."
+    },
+    "refunds": {
+        "title": "Reembolsos",
+        "body": "Todos los planes se pueden reembolsar en los {refundDays} días siguientes a la compra o, en los planes anuales, a la última renovación. La <link>política de reembolso</link> explica cómo solicitarlo y qué ocurre con la licencia."
+    },
+    "team": {
+        "title": "Planes Team",
+        "seats": "El precio de un plan Team es por puesto, de {min} a {max} puestos. Cada puesto corresponde a un Mac activado, incluido el del comprador, así que quien trabaja en dos Mac usa dos puestos.",
+        "invites": "Quien compró el plan gestiona el equipo en su cuenta. Invita a sus compañeros por correo, y cada invitación es un código de un solo uso que caduca al cabo de una semana y requiere un puesto libre.",
+        "changes": "En un plan Team mensual o anual, cambias el número de puestos en tu cuenta y la diferencia aparece en la siguiente factura. Para añadir puestos a una compra Team de pago único, escribe a <email>{email}</email>.",
+        "account": "Gestiona tu equipo en tu cuenta"
+    },
+    "openSource": {
+        "title": "Código abierto",
+        "body": "TablePro es de código abierto bajo AGPLv3, incluido el código de sus funciones de pago. Una compilación desde el código fuente comprueba la licencia igual que la app publicada.",
+        "agpl": "La AGPL no impone condiciones para ejecutar TablePro, tampoco en el trabajo ni en empresas de cualquier tamaño. Sus condiciones se aplican a su distribución y a ofrecer una versión modificada a otros a través de una red.",
+        "github": "Ver en GitHub"
+    },
+    "faq": {
+        "title": "Preguntas sobre los planes",
+        "more": "Más preguntas sobre planes y licencias",
+        "items": {
+            "free": {
+                "question": "¿TablePro es gratis?",
+                "answer": "Sí. La app para Mac se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Un plan Starter o Team añade funciones opcionales a la app para Mac. La app para iPhone y iPad es gratis, sin compras dentro de la app."
+            },
+            "ios-license": {
+                "question": "¿Necesito una licencia para la app de iPhone y iPad?",
+                "answer": "No. No tiene funciones de pago y nunca pide una licencia. iCloud Sync es gratis en iPhone y iPad; para sincronizar con un Mac, este necesita Starter o Team."
+            },
+            "seats": {
+                "question": "¿Un puesto Team equivale a una persona?",
+                "answer": "No. Un puesto corresponde a un Mac activado. Quien trabaja en dos Mac usa dos puestos."
+            },
+            "offline": {
+                "question": "¿Las funciones de pago necesitan conexión a internet?",
+                "answer": "Solo de vez en cuando. La licencia se confirma con el servidor de TablePro cada {revalidateDays} días y las funciones de pago siguen funcionando durante {graceDays} días sin conexión."
+            },
+            "lost-key": {
+                "question": "¿Dónde encuentro mi clave de licencia?",
+                "answer": "Está en el correo que recibiste tras comprar. También puedes entrar en <account>tu cuenta</account> con el correo usado para la compra: allí está tu clave, junto con todos los Mac donde está activada."
+            }
+        }
+    }
+}

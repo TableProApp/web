@@ -1,0 +1,103 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 Turso、libSQL 用戶端",
+        "description": "透過 URL、權杖開啟 Turso、自行託管 sqld 或 Mac 上的 libSQL 檔案，以 SQLite 語法查詢，修改資料表、索引和觸發程序。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "Turso、libSQL 用戶端"
+    },
+    "engine": "turso",
+    "breadcrumb": "Turso 與 libSQL",
+    "header": {
+        "title": "適用於 {devices} 的 Turso、libSQL 用戶端",
+        "lead": "使用 URL 和權杖連線 Turso 資料庫，以 SQLite 語法查詢，修改資料表、索引和觸發程序。同一驅動程式也可開啟自行託管 sqld 伺服器和 Mac 上的 libSQL 檔案。"
+    },
+    "asset": "mac-db-turso-remote",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "sqlite": "/sqlite-client",
+        "libsql": "#libsql",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "連線 Turso",
+            "paragraphs": [
+                "連線類型選擇 Turso，<ui>Connection Mode</ui> 保持 <ui>Remote (Turso)</ui>。貼上以 <code>.turso.io</code> 結尾的資料庫 HTTPS URL，將權杖填入 <ui>API Token</ui>，儲存在 macOS 鑰匙圈。Turso 儀表板可取得兩者，也可用 <code>turso db show my-db --url</code>、<code>turso db tokens create my-db</code>。",
+                "<code>libsql://</code> URL 會改寫為 HTTPS，匯入後建立遠端連線。URL 指定單一資料庫，因此無主機、連接埠或資料庫欄位。使用 HTTPS 而非明文 HTTP 時連線加密，不提供 SSH 通道。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查詢與編輯",
+            "paragraphs": [
+                "libSQL 使用 SQLite 語法，瀏覽、<explain>EXPLAIN QUERY PLAN</explain> 圖、<editing>含 Preview SQL 的暫存編輯</editing>和匯出與 <sqlite>SQLite</sqlite> 相同。",
+                "遠端連線不執行交易。每個陳述式為獨立 HTTP 請求並各自提交，<code>BEGIN</code> 會報錯「Transactions are not supported in this mode」。交易工作需使用 <libsql>libSQL 一節</libsql>介紹的本機檔案。",
+                "遠端模式不載入 SQLite 擴充功能，Turso 資料庫執行伺服器建置時包含的擴充功能。Turso 限流時，錯誤說明重試前需等待多少秒。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "資料表、索引與觸發程序",
+            "paragraphs": [
+                "<structure>Structure 分頁</structure> 可建立資料表、新增和刪除欄位及索引，建立、編輯和刪除觸發程序。側欄可重新命名資料表，但不能重新命名檢視表。",
+                "遠端資料庫調整欄位順序或修改外部索引鍵時，TablePro 產生重建指令碼供自行檢閱執行。重建需要跨多個 HTTP 請求的單一交易，因此不能代為執行。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "TablePro 不提供 Turso、libSQL 匯入；請用 Turso CLI 或 sqld 伺服器的匯入功能載入。要取出資料，可將資料表或查詢結果<export>匯出</export>為 {exportFormats}。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "libsql",
+            "title": "libSQL",
+            "paragraphs": [
+                "自行託管 sqld 或此 Mac 上的檔案請選擇 libSQL。Remote 模式可存取任何提供 Hrana v2 pipeline 端點的 sqld，包括預設接聽 8080 連接埠的本機伺服器。未使用 <code>--auth-jwt-key-file</code> 啟動的伺服器可留空權杖，否則提供符合伺服器金鑰的 JWT。",
+                "<ui>Local File</ui> 使用驅動程式內建 SQLite 開啟 libSQL 檔案，不存在的路徑連同檔案夾一起建立。本機檔案支援交易、從連線 Extensions 清單載入 SQLite 擴充功能，並在確認後執行欄位重排或外部索引鍵重建。",
+                "<code>ALTER TABLE … ALTER COLUMN</code> 等僅 libSQL 理解的陳述式，在本機檔案上會失敗，因為執行者是 SQLite。加密 libSQL 檔案無法開啟。切勿開啟執行中的 App 正在作為 Turso 嵌入式複本同步的檔案，兩個程式同時存取可能導致損毀。",
+                "<backup>Backup Dump 和 Restore Dump</backup> 對本機 libSQL 檔案執行 {dumpTool}。"
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "remote-or-local",
+            "question": "應選 Remote 還是 Local File？",
+            "answer": "透過 URL 存取的 Turso 或 sqld 選 Remote；此 Mac 上的 libSQL 檔案選 Local File，後者也支援交易、SQLite 擴充功能和備份。"
+        },
+        {
+            "id": "turso-cli",
+            "question": "需要安裝 Turso CLI 嗎？",
+            "answer": "不需要。Turso 儀表板也可顯示資料庫 URL 並建立權杖。因 TablePro 不提供 Turso 匯入，CLI 適合從終端機載入資料。"
+        }
+    ],
+    "related": [
+        {
+            "label": "SQLite，libSQL 的基礎引擎",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Cloudflare D1，透過 Cloudflare API 使用 SQLite",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "結構編輯與重建指令碼",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "匯出與備份",
+            "href": "/features/import-export"
+        }
+    ]
+}

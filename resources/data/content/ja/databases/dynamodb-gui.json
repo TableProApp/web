@@ -1,0 +1,106 @@
+{
+    "seo": {
+        "title": "{devices} 用 Amazon DynamoDB GUI",
+        "description": "フィルターから Query か Scan を選ぶプランナーで DynamoDB テーブルを閲覧。型を保って項目を編集し、PartiQL や API リクエストを実行できます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Amazon DynamoDB GUI"
+    },
+    "engine": "dynamodb",
+    "breadcrumb": "Amazon DynamoDB",
+    "header": {
+        "title": "{devices} 用 Amazon DynamoDB GUI",
+        "lead": "キーやインデックスでテーブルを閲覧し、各読み取りの消費容量を確認。型を失わず項目を編集し、エディタで PartiQL や DynamoDB API リクエストを実行できます。"
+    },
+    "asset": "mac-db-dynamodb-planner",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "permissions": "docs:/databases/dynamodb#iam-permissions",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "<ui>Auth Method</ui> と <ui>AWS Region</ui> を選ぶと、その地域のテーブルをサイドバーに表示します。方式は任意のセッショントークン付きアクセスキー、AWS CLI と同様に <code>~/.aws/config</code> と <code>~/.aws/credentials</code> から読むプロファイル、または期限切れ時にログインを求める <cloudAuth>AWS IAM Identity Center</cloudAuth> プロファイルです。",
+                "プロファイルは <code>credential_process</code> ヘルパーと <code>role_arn</code> チェーンを解決し、期限切れの一時認証情報を再取得してリクエストを一回再試行します。すべて HTTPS と Signature Version 4 で署名するため、SSL 設定や SSH トンネルはありません。中国や European Sovereign Cloud など別の AWS パーティションも独自のエンドポイントに接続し、カスタム指定は不要です。",
+                "DynamoDB Local は <code>docker run -p 8000:8000 amazon/dynamodb-local</code> を実行し、<ui>DynamoDB Local (no credentials)</ui> を選びます。ポート 8000 は <ui>Custom Endpoint</ui> を空欄にします。カスタムエンドポイントの平文 HTTP はこの Mac 上でのみ許可します。設定ガイドに <permissions>各作業に必要な IAM アクション</permissions> を載せています。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "項目の読み取り、絞り込みと編集",
+            "paragraphs": [
+                "テーブルを開く、絞り込む、ページを送る操作は一つのプランナーを使います。パーティションキーを = で指定するとそのパーティションの Query、インデックスのキーに合うフィルターはそのインデックスの Query、それ以外はテーブル全体を読み各項目分の料金がかかる Scan です。ステータスバーは選んだ読み取り、返った件数、取得のために読んだ件数と消費した読み取り容量ユニットを表示します。",
+                "ソートキーの <filters>フィルター</filters> は =、<、<=、>、>=、BETWEEN や STARTS WITH ならキー条件に加えます。それ以外は読み取り後に DynamoDB が適用する FilterExpression になり、行は絞れても料金は下がりません。入れ子属性は <code>address.city</code> や <code>items[0].sku</code> などのパスで絞り込みます。",
+                "一つのパーティションの Query でソートキーヘッダーをクリックすると DynamoDB がその順で返します。それ以外のソートはすべての一致項目を読めた場合グリッドで行い、揃わない場合はステータスバーで知らせます。次のページは前の終了位置から続きます。グリッド下の総件数は DynamoDB 自身の件数で、<ui>Count Exactly</ui> はフィルターに合う全項目を読み、その分すべて課金されます。",
+                "テーブルはキーだけを宣言するため、カラムは項目から取ります。キー属性、先頭項目のサンプルで見つかった属性と表示中ページの属性です。map、list と set は JSON で表示して JSON エディタで開き、数値はすべての桁を保持します。",
+                "変更した各行は一つの PartiQL 文で保存し、<editing>すべての値は型を保ちます</editing>。Number は Number、<code>02134</code> などの String は String、JSON で編集した String Set は String Set です。更新は変更する各属性をグリッドが読んだ値と照合し、他の人の変更を上書きせず失敗します。<ui>Set NULL</ui> は属性を削除します。",
+                "エディタは名前を二重引用符、文字列を単一引用符で囲む PartiQL、または <code>Query</code>、<code>BatchWriteItem</code>、<code>TransactWriteItems</code> などの DynamoDB アクション名と JSON リクエストを受け付けます。他のアクション名は拒否します。項目はグリッド、その他の応答は JSON で表示します。制限されたリクエストはバックオフで再試行し、<code>⌘.</code> は実行中の文を停止します。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "テーブルとインデックス",
+            "paragraphs": [
+                "<ui>New Table…</ui> はパーティション・ソートキー、オンデマンドかプロビジョンド容量、テーブルクラス、削除保護とセカンダリインデックスのフォームを開き、<ui>Preview</ui> は送信前の <code>CreateTable</code> を表示します。ローカルセカンダリインデックスはテーブル作成時のここでのみ定義できます。",
+                "Structure タブはグローバルセカンダリインデックスを追加・削除します。DynamoDB が <code>UpdateTable</code> 一回につき一つだけ許可するため、保存ごとに一つ変更します。属性はここでは編集せず、項目に書けばカラムになります。DDL タブは Time to Live と point-in-time recovery を含む、再作成用 <code>CreateTable</code> を表示します。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "テーブル設定",
+            "paragraphs": [
+                "テーブルを右クリックして <ui>Maintenance</ui> を選ぶと、point-in-time recovery、削除保護、stream、テーブルクラス、オンデマンド容量への切り替えと Time to Live の無効化を設定できます。テーブル削除は <code>DeleteTable</code> を送り、削除保護が有効なら失敗します。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "DynamoDB のインポートはありません。エディタの PartiQL <code>INSERT</code> や <code>BatchWriteItem</code> で項目を書き、後者は未処理項目を再送して書けなかったものを報告します。Export ダイアログからテーブルや結果をファイルに <export>エクスポート</export> できます。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "avoid-scans",
+            "question": "読み取りでテーブル全体をスキャンしないようにするには？",
+            "answer": "パーティションキーを = で絞るか、グローバルインデックスのパーティションキーと各ソートキーを絞ると Query になります。グローバルインデックスの閲覧は全属性を投影するものだけなので、keys-only はエディタで <code>IndexName</code> を指定した <code>Query</code> を実行します。"
+        },
+        {
+            "id": "change-key",
+            "question": "項目のキーを変更するには？",
+            "answer": "キー属性はその場で編集できません。キー以外の全属性をコピーする <ui>Duplicate Row</ui> を使い、新しいキーを入れて保存してから元の行を削除します。"
+        },
+        {
+            "id": "transactions",
+            "question": "グリッド編集は一つのトランザクションで保存しますか？",
+            "answer": "いいえ。変更した各行を個別に書きます。同時に成功させる必要のある書き込みはエディタの <code>ExecuteTransaction</code> や <code>TransactWriteItems</code> にまとめます。"
+        }
+    ],
+    "related": [
+        {
+            "label": "エンジンごとのフィルター",
+            "href": "/features/data-editing#filters"
+        },
+        {
+            "label": "AWS、Google と Microsoft のログイン",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "Redis：キーとコマンド",
+            "href": "/redis-gui"
+        },
+        {
+            "label": "Cassandra と Amazon Keyspaces",
+            "href": "/cassandra-client"
+        }
+    ]
+}

@@ -1,0 +1,126 @@
+{
+    "seo": {
+        "title": "MongoDB per {devices}",
+        "description": "Interroga MongoDB in una shell JavaScript stile mongosh, modifica Extended JSON, rinomina campi nelle collezioni e connettiti ad Atlas tramite SRV."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Client MongoDB"
+    },
+    "engine": "mongodb",
+    "breadcrumb": "MongoDB",
+    "header": {
+        "title": "Client MongoDB per {devices}",
+        "lead": "Scrivi query come in mongosh, esplora collezioni nella griglia e inserisci o modifica interi documenti come Extended JSON. Rinomina o rimuovi un campo in una collezione, vedendo ogni istruzione prima dell’esecuzione."
+    },
+    "asset": "mac-db-mongodb-document",
+    "links": {
+        "network": "/features/connections#network",
+        "editing": "/features/data-editing#documents-and-keys",
+        "filters": "/features/data-editing#filters",
+        "safeMode": "/features/data-editing#safe-mode",
+        "map": "/features/querying#map",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti",
+            "paragraphs": [
+                "Elenca un host o più coppie <code>host:port</code> per un replica set e il primario viene trovato automaticamente. Puoi anche incollare un URL <code>mongodb://</code> o <code>mongodb+srv://</code>. Accedi con SCRAM-SHA-1, SCRAM-SHA-256, X.509 o AWS IAM e imposta <ui>Auth Database</ui> quando l’utente è definito in <code>admin</code> ma esplori un altro database.",
+                "Un host che termina con <code>.mongodb.net</code> attiva automaticamente SRV e TLS, come richiesto da MongoDB Atlas. Aggiungi prima l’indirizzo IP all’elenco di accesso del cluster: il traffico da un indirizzo non presente va in timeout anziché fallire subito.",
+                "Le nuove connessioni iniziano con TLS disattivato e il driver non offre fallback, quindi Preferred si comporta come Required. Read Preference e Write Concern si impostano per connessione e write concern accompagna ogni inserimento, aggiornamento ed eliminazione dalla shell o da un salvataggio nella griglia.",
+                "Tramite un <network>tunnel SSH</network> viene usato solo il primo host dell’elenco, quindi scoperta del replica set e failover sono disattivati per quella sessione."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Interroga e modifica documenti",
+            "paragraphs": [
+                "La scheda delle query è una shell JavaScript che accetta sintassi mongosh: chiavi senza apici, regex letterali, <code>ISODate()</code>, variabili, cicli e <code>forEach</code>. Funziona dentro TablePro senza altre installazioni e una variabile definita rimane disponibile in ogni scheda della connessione fino alla disconnessione. Il completamento offre collezioni, metodi, percorsi di campi annidati e operatori <code>$</code> validi al cursore.",
+                "Una collezione si apre come griglia, con campi di primo livello come colonne e oggetti annidati come Extended JSON. Una cella modificata mantiene il tipo del campo, quindi una data rimane data e un ObjectId rimane ObjectId; una modifica in un oggetto annidato scrive solo il percorso cambiato, come <code>address.city</code>.",
+                "<editing>Insert Document ed Edit Document</editing> accettano un intero documento come Extended JSON. Edit Document lo legge di nuovo dal server e, se qualcuno lo ha modificato o eliminato dopo l’apertura della schermata, non salva nulla e lo segnala. <ui>Remove Field</ui> su una cella invia <code>$unset</code>.",
+                "La <filters>barra dei filtri</filters> accede a oggetti annidati e array di oggetti, quindi <code>customer.country</code> e <code>items.sku</code> filtrano direttamente. Un campo contenente GeoJSON si apre nella <map>vista Map</map>.",
+                "<safeMode>Safe Mode</safeMode> considera ogni istruzione su una connessione MongoDB una scrittura, perché il driver non può aprire una sessione in sola lettura. I livelli Alert e Safe Mode confermano ciascuna e Read-Only le blocca tutte."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Collezioni, indici e validatori",
+            "paragraphs": [
+                "La <structure>scheda Structure</structure> elenca ogni indice con i campi in ordine di chiave e il tipo, come hashed, text, 2dsphere o wildcard. Show DDL scrive le chiamate <code>createIndex</code> che li ricreano, con ogni opzione riportata dal server.",
+                "Rinomina o rimuovi un campo nell’intera collezione dalla stessa scheda. Ogni modifica è un <code>updateMany</code>, mostrato in Preview SQL, e un campo dichiarato dal validatore <code>$jsonSchema</code> cambia anche lì. Il salvataggio viene rifiutato prima di qualsiasi scrittura quando un indice, indice di ricerca o vista usa ancora il nome.",
+                "<ui>New Table</ui> crea una collezione i cui campi diventano un validatore <code>$jsonSchema</code>, poi crea gli indici elencati. Viste e collezioni time-series compaiono nella barra laterale e le viste si aprono in sola lettura."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Crea un backup",
+            "paragraphs": [
+                "<backup>Backup Dump</backup> scrive ogni database selezionato in un archivio compresso con gzip usando {dumpTool}, con host, Auth Database, SRV e TLS della connessione; il dump può essere limitato a singole collezioni. Restore Dump esegue mongorestore nel database scelto e mantiene ciò che è già presente. Installa prima MongoDB Database Tools sul Mac."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "<importData>Importa</importData> file {importFormats} in una collezione. <export>Esporta</export> collezioni o risultati in {exportFormats}.",
+                "Un’esportazione MQL è un file <code>.js</code> di chiamate <code>insertMany</code> eseguibile in mongosh, con indici e validatore di ogni collezione se li selezioni. I valori di primo livello mantengono il tipo, ma un valore tipizzato annidato in un sottodocumento o array, come un ObjectId in un array, viene scritto come stringa: esporta quelle collezioni in JSON o eseguine un backup con mongodump."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "mongodb-compass",
+                "anchor": "compass",
+                "text": "MongoDB Compass è l’interfaccia grafica di MongoDB. Costruisce pipeline di aggregazione una fase alla volta con anteprima dopo ogni fase, analizza lo schema di una collezione da un campione di documenti e rappresenta piani explain. Sceglilo per costruire pipeline visivamente o studiare la struttura di una collezione; TablePro è adatto quando MongoDB è uno dei diversi database usati nella stessa app.",
+                "notes": [
+                    "compass-natural-language"
+                ]
+            }
+        ],
+        "notes": {
+            "compass-natural-language": "Può anche scrivere una query a partire da una domanda in linguaggio naturale."
+        }
+    },
+    "faq": [
+        {
+            "id": "mongosh",
+            "question": "La scheda delle query è mongosh?",
+            "answer": "No. È una shell che accetta sintassi mongosh e funziona dentro TablePro con JavaScriptCore. La maggior parte del codice mongosh si esegue senza modifiche. Una differenza: un intero fuori dall’intervallo a 32 bit viene memorizzato come intero a 64 bit, mentre mongosh lo memorizza come double; usa <code>Double()</code> per ottenere lo stesso comportamento."
+        },
+        {
+            "id": "query-plan",
+            "question": "Come vedo un piano di query?",
+            "answer": "Aggiungi <code>.explain(\"executionStats\")</code> al cursore nella scheda delle query. Il piano torna come documento; le connessioni MongoDB non hanno un diagramma del piano."
+        },
+        {
+            "id": "users",
+            "question": "Come elenco gli utenti del database?",
+            "answer": "Esegui <code>db.runCommand({usersInfo: 1})</code>. La shell non interpreta <code>db.getUsers()</code> o <code>db.createUser()</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Esplora e modifica i dati in sicurezza",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Linguaggi di query oltre SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Importazione, esportazione e backup",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Confronta TablePro con altri client di database",
+            "href": "/compare"
+        }
+    ]
+}

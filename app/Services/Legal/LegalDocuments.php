@@ -53,7 +53,7 @@ class LegalDocuments
 
     public function path(string $document, string $locale): string
     {
-        if (! in_array($document, self::DOCUMENTS, true) || preg_match('/^[a-z]{2}$/', $locale) !== 1) {
+        if (! in_array($document, self::DOCUMENTS, true) || preg_match('/^[a-z]{2}(?:-[A-Z][a-z]{3})?(?:-[A-Z]{2})?$/', $locale) !== 1) {
             throw new InvalidArgumentException("Unknown legal document [{$document}] or locale [{$locale}].");
         }
 

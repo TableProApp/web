@@ -1,0 +1,239 @@
+{
+    "seo": {
+        "title": "支持自动补全和 EXPLAIN 的 SQL 编辑器",
+        "description": "在 TablePro 中使用感知结构的自动补全和参数编写 SQL，搜索查询历史、保存查询，并以图形查看 EXPLAIN 执行计划。"
+    },
+    "og": {
+        "kicker": "查询",
+        "title": "编写、运行和理解查询"
+    },
+    "header": {
+        "title": "编写、运行和理解查询",
+        "lead": "面向在实际数据库上编写 SQL 的用户：参考结构编写查询，运行一条语句或整个脚本，保存值得保留的查询，并找出变慢的原因。本页介绍的功能均在 Mac 应用中，最后一节介绍 iPhone 和 iPad。",
+        "docs": "/features/sql-editor"
+    },
+    "sections": [
+        {
+            "id": "editor",
+            "title": "了解数据库结构的编辑器",
+            "paragraphs": [
+                "自动补全在输入时读取连接的结构：FROM 和 JOIN 后的表、别名对应的列，以及语句前面定义的 CTE 或子查询的列。语法高亮使用 tree-sitter；<kbd>⌘⇧L</kbd> 格式化光标所在语句，同时保留注释。",
+                "<kbd>⌘⏎</kbd> 运行光标所在语句或选中内容，<kbd>⌘⇧⏎</kbd> 运行全部，<kbd>⌘⌥⏎</kbd> 不限行数运行，<kbd>⌘.</kbd> 取消。普通语句批次在同一事务中执行，任一语句失败即回滚；例外包括自行管理事务的脚本、SQL Server 脚本、VACUUM 等不能放入事务的语句，以及会自行提交的 MySQL、MariaDB 和 Oracle DDL。"
+            ],
+            "points": [
+                "编辑器侧栏中的语句标记各有独立运行按钮。",
+                "支持正则表达式的查找和替换。",
+                "Vim 模式支持移动、寄存器和宏，使用 <code>:w</code> 运行查询。",
+                "在查询标签页中打开、编辑和保存 <code>.sql</code> 文件。"
+            ],
+            "asset": "mac-query-autocomplete"
+        },
+        {
+            "id": "history",
+            "title": "参数、历史和已保存查询",
+            "paragraphs": [
+                "在查询中写入 <code>:customer_id</code>，TablePro 会在运行前询问其值和类型，并在驱动支持时使用原生参数绑定。",
+                "每次运行的查询都会进入本地历史（<kbd>⌘Y</kbd>），支持全文搜索及来源、失败和时间范围筛选。默认保存 {historyEntries} 条记录，保留 {historyDays} 天，从不同步。",
+                "以 <code>dau</code> 等关键字保存查询，然后在编辑器中输入关键字展开。已保存查询保留版本历史。关联 SQL 文件夹将 <code>.sql</code> 文件夹与侧栏双向同步，并显示各文件的 Git 状态字母；该功能免费，与用于共享连接文件的 Starter 功能 Linked Folders 相互独立。"
+            ],
+            "asset": "mac-query-parameters-history"
+        },
+        {
+            "id": "open-quickly",
+            "title": "快速打开和标签页",
+            "paragraphs": [
+                "Open Quickly（<kbd>⌘⇧O</kbd>）在所有已打开连接中查找表、视图和系统表，也搜索已保存和最近的查询。每个标签页保留自己的 SQL、排序、筛选和列宽，退出并重新打开应用后会恢复；<kbd>⌃Tab</kbd> 可在最近使用的标签页间切换。"
+            ]
+        },
+        {
+            "id": "performance",
+            "title": "查看、对比和跟踪执行计划",
+            "paragraphs": [],
+            "blocks": [
+                {
+                    "id": "explain",
+                    "title": "EXPLAIN 和 EXPLAIN Compare",
+                    "paragraphs": [
+                        "<kbd>⌥⌘E</kbd> 将查询计划显示为图形、带成本条的树或引擎原始输出。选择同一查询的早前运行作为基准，Compare 会说明是否变慢以及计划是否改变；小于 {explainNoise}% 的差异视为噪声。两项功能均免费。"
+                    ],
+                    "engines": [
+                        {
+                            "label": "以图形和树显示计划",
+                            "list": "explainDiagram"
+                        },
+                        {
+                            "label": "以文本显示计划",
+                            "list": "explainText"
+                        },
+                        {
+                            "label": "试运行成本估算",
+                            "list": "explainCost"
+                        },
+                        {
+                            "label": "不支持 EXPLAIN 的 SQL 引擎",
+                            "list": "explainNoneSql"
+                        }
+                    ],
+                    "asset": "mac-explain-compare"
+                },
+                {
+                    "id": "query-insights",
+                    "title": "查询分析",
+                    "paragraphs": [
+                        "Query Insights 读取此 Mac 的查询历史，并按运行次数、速度最慢、失败以及比上一期间变慢的查询进行排名。查询按结构归类，因此使用不同值运行的同一语句只算一种。数据在 Mac 上计算，从不上传。"
+                    ],
+                    "paid": [
+                        "query-insights"
+                    ],
+                    "asset": "mac-query-insights"
+                }
+            ]
+        },
+        {
+            "id": "results",
+            "title": "以图表和地图查看结果",
+            "paragraphs": [
+                "结果可在同一标签页中从网格切换到图表或地图，也可切回。"
+            ],
+            "blocks": [
+                {
+                    "id": "result-charts",
+                    "title": "结果图表",
+                    "paragraphs": [
+                        "将结果绘制为柱状图、折线图、面积图或散点图，日期使用时间轴，所选列的每个值对应一个系列。图表从前 {chartInspectedRows} 行中最多绘制 {chartPoints} 个点和 {chartSeries} 个系列，未全部绘制时工具栏会提示。"
+                    ],
+                    "paid": [
+                        "result-charts"
+                    ],
+                    "asset": "mac-result-chart"
+                },
+                {
+                    "id": "map",
+                    "title": "地图视图",
+                    "paragraphs": [
+                        "当列存储 WKT、WKB、GeoJSON、ClickHouse 元组或 Elasticsearch geo_point 几何值时，地图视图会将其绘制到 Apple 地图上，选择图形也会选择对应行。行数据保留在 Mac 上，地图瓦片由 Apple 提供。地图视图免费。"
+                    ],
+                    "asset": "mac-result-map"
+                }
+            ]
+        },
+        {
+            "id": "other-languages",
+            "title": "不使用 SQL 的引擎",
+            "paragraphs": [
+                "对于不使用 SQL 的连接，编辑器接受该引擎自己的语言，各引擎页面介绍具体支持范围。MongoDB 编辑器是在 TablePro 内运行的 mongosh 风格 JavaScript shell，并非 mongosh 本身。"
+            ],
+            "engines": [
+                {
+                    "label": "各引擎的查询语言",
+                    "list": "otherLanguages"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "在 iPhone 和 iPad 上",
+            "paragraphs": [
+                "iPhone 和 iPad 应用的 Query 标签页提供 SQL 高亮、Run 和 Stop（使用键盘时为 <kbd>⌘↩</kbd>），以及此设备最近运行的 {historyEntriesIos} 条查询历史。可以将结果复制或分享为 JSON、CSV 或 SQL INSERT 语句。",
+                "不提供自动补全、格式化、参数、EXPLAIN 或已保存查询，最多保留 {resultBufferIos} 行结果，因此请添加 LIMIT 来查看所需部分。"
+            ],
+            "links": [
+                {
+                    "label": "在 iPhone 和 iPad 上查询",
+                    "href": "/ios#query"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "支持自动补全和格式化的 SQL 编辑器",
+            "ios": "partial",
+            "iosNote": "高亮、Run 和 Stop；不支持自动补全"
+        },
+        {
+            "label": "查询参数",
+            "ios": "no"
+        },
+        {
+            "label": "查询历史",
+            "ios": "partial",
+            "iosNote": "设备上最近 {historyEntriesIos} 条查询"
+        },
+        {
+            "label": "已保存查询和关联 SQL 文件夹",
+            "ios": "no"
+        },
+        {
+            "label": "快速打开",
+            "ios": "no"
+        },
+        {
+            "label": "EXPLAIN 和 EXPLAIN Compare",
+            "ios": "no"
+        },
+        {
+            "label": "查询分析",
+            "paid": "query-insights",
+            "ios": "no"
+        },
+        {
+            "label": "结果图表",
+            "paid": "result-charts",
+            "ios": "no"
+        },
+        {
+            "label": "地图视图",
+            "ios": "no"
+        },
+        {
+            "label": "复制或分享结果",
+            "ios": "yes"
+        }
+    ],
+    "limits": [
+        "除非在 Settings 中将上限提高至最多 {rowCapMax} 行，或使用 <kbd>⌘⌥⏎</kbd> 运行，否则查询最多返回 {rowCap} 行。手写的 LIMIT 始终优先。",
+        "查询历史和 Query Insights 仅涵盖此 Mac，其他 Mac 或 iPhone 上运行的查询不会包含在内。",
+        "<code>tablepro</code> shell 命令在应用中打开连接和文件，不会从终端执行查询。"
+    ],
+    "docs": [
+        {
+            "label": "SQL 编辑器",
+            "docs": "/features/sql-editor"
+        },
+        {
+            "label": "查询参数",
+            "docs": "/features/query-parameters"
+        },
+        {
+            "label": "查询历史",
+            "docs": "/features/query-history"
+        },
+        {
+            "label": "EXPLAIN 可视化",
+            "docs": "/features/explain-visualization"
+        },
+        {
+            "label": "查询分析",
+            "docs": "/features/query-insights"
+        },
+        {
+            "label": "数据网格中的图表和地图",
+            "docs": "/features/data-grid#chart-mode"
+        }
+    ],
+    "related": [
+        {
+            "label": "数据编辑",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "支持的数据库",
+            "href": "/databases"
+        },
+        {
+            "label": "付费方案提供的功能",
+            "href": "/pricing#features"
+        }
+    ]
+}

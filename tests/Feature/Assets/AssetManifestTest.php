@@ -2,6 +2,7 @@
 
 use App\Support\Assets\AssetManifest;
 use App\Support\Assets\AssetReferences;
+use App\Support\Localization\Locales;
 use Dom\HTMLDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -282,7 +283,7 @@ describe('every entry', function (): void {
         }
     });
 
-    it('writes Vietnamese text for every entry a Vietnamese page shows', function (): void {
+    it('writes native text for every entry a localized page shows', function (string $locale): void {
         foreach ((new AssetManifest())->assets() as $id => $entry) {
             $englishOnly = collect($entry['usedOn'])->every(fn(array $use): bool => str_starts_with($use['path'], '/blog/'));
 
@@ -291,23 +292,24 @@ describe('every entry', function (): void {
                     continue;
                 }
 
-                $vi = $entry[$field]['vi'] ?? null;
+                $text = $entry[$field][$locale] ?? null;
 
                 if ($englishOnly) {
-                    Assert::assertTrue($vi === null || is_string($vi), "{$id}: {$field}.vi must be text or null");
+                    Assert::assertTrue($text === null || is_string($text), "{$id}: {$field}.{$locale} must be text or null");
 
                     continue;
                 }
 
-                Assert::assertIsString($vi, "{$id} is shown on a Vietnamese page but has no {$field}.vi");
-                Assert::assertNotSame('', trim($vi), "{$id} has an empty {$field}.vi");
+                Assert::assertIsString($text, "{$id} is shown on a localized page but has no {$field}.{$locale}");
+                Assert::assertNotSame('', trim($text), "{$id} has an empty {$field}.{$locale}");
             }
         }
-    });
+    })->with(array_keys((json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true))['supported']));
 
     it('keeps the visible brief short, NFC and free of asset ids', function (): void {
         $assets = (new AssetManifest())->assets();
-        $limits = ['en' => 160, 'vi' => 200];
+        $limits = array_fill_keys(Locales::codes(), 200);
+        $limits['en'] = 160;
 
         foreach ($assets as $id => $entry) {
             foreach ($limits as $locale => $limit) {
@@ -713,7 +715,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
     });
 
     /*
-     * The bundle imports this slice, not the 120 KB manifest with the owner's
+     * The bundle imports geometry and selected text, excluding the owner's
      * handoff fields (architecture §1.4 asks a shared-chunk addition to stay
      * near 10 KB gzipped). A manifest edit without `php artisan assets:handoff`
      * would leave the site rendering the old state, so a stale slice fails
@@ -732,23 +734,27 @@ describe('the supplied path, on an isolated fixture', function (): void {
         expect(array_keys($projection['assets']))->toBe($slots);
 
         foreach ($projection['assets'] as $id => $entry) {
-            $text = $entry['status'] === 'supplied' ? ['alt', 'caption'] : ['description'];
-
-            expect(array_keys($entry))->toBe([...['kind', 'type', 'slot', 'aspect', 'priority', 'theme', 'locale', 'mobile', 'status', 'src', 'replacement'], ...$text], $id);
+            expect(array_keys($entry))->toBe(['kind', 'type', 'slot', 'aspect', 'priority', 'theme', 'locale', 'mobile', 'status', 'src', 'replacement'], $id);
         }
 
         /*
-         * What the bundle pays, minified and gzipped. The whole manifest is
-         * about 26 KB. The slice is about 11.2 KB while every slot is a
-         * placeholder, 16.6 KB with 113 of the 146 slots supplied, and an
-         * estimated 17.1 KB once every slot is supplied, because alt text,
-         * captions and sources run longer than the briefs they replace. The
-         * ceiling holds in both states, so supplying art never fails this;
-         * the guard is against shipping the owner's fields again.
+         * Each page downloads shared geometry and only its active language's
+         * rendering text. Keep the existing ceiling as languages are added,
+         * including supplied alt text and captions; owner fields stay out.
          */
         $minified = json_encode($projection, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
 
-        expect(strlen((string) gzencode($minified, 9)))->toBeLessThan(18_432);
+        $metadataBytes = strlen((string) gzencode($minified, 9));
+
+        foreach (Locales::codes() as $locale) {
+            $path = resource_path('js/lib/data/asset-locales/' . $locale . '.json');
+            expect($path)->toBeFile();
+            Assert::assertSame($manifest->slotTextProjectionJson($locale), (string) file_get_contents($path), "Asset text for {$locale} is stale. Run: php artisan assets:handoff");
+            $copy = $manifest->slotTextProjection($locale);
+            expect(array_keys($copy))->toBe($slots);
+            $copyBytes = strlen((string) gzencode(json_encode($copy, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), 9));
+            expect($metadataBytes + $copyBytes)->toBeLessThan(18_432, "{$locale} downloads too much asset data");
+        }
     });
 
     it('uses the same breakpoint as the art-directed picture', function (): void {

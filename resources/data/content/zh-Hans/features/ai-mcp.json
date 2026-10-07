@@ -1,0 +1,217 @@
+{
+    "seo": {
+        "title": "AI SQL 助手和本地 MCP 服务器",
+        "description": "使用自选 AI 提供商解释、优化和修复 SQL，并让 Claude Code 等 MCP 客户端通过本地 MCP 服务器使用已保存连接。"
+    },
+    "og": {
+        "kicker": "AI 和 MCP",
+        "title": "AI 助手和 MCP 服务器"
+    },
+    "header": {
+        "title": "AI 助手和 MCP 服务器",
+        "lead": "面向希望使用自选模型协助 SQL，或让 AI 客户端操作数据库的开发者：询问结构、审查或修复查询，或让 Claude Code、Cursor 使用已保存连接。所有功能均可选且仅在 Mac 应用中提供，添加提供商或连接客户端前不会向模型发送任何内容。",
+        "docs": "/features/ai-assistant"
+    },
+    "sections": [
+        {
+            "id": "assistant",
+            "title": "使用自选提供商",
+            "paragraphs": [
+                "助手支持这些提供商：{aiProviders}。根据提供商，可粘贴 API 密钥、使用已有账户登录，或在 Mac 上运行模型。TablePro 不经营自己的 AI 服务：请求直接发送给提供商，添加前不发送任何内容。",
+                "每条消息包含连接中表的结构，受所设上限限制，以及编辑器中的查询。结果行仅在 <ui>Settings > AI</ui> 中启用后才发送。每个连接还有 AI 策略，Never 会禁止助手和 MCP 客户端访问。"
+            ],
+            "asset": "mac-ai-chat"
+        },
+        {
+            "id": "in-the-editor",
+            "title": "审查、解释、优化和修复",
+            "paragraphs": [
+                "将光标放在语句中，选择 Review with AI（<kbd>⌥⇧⌘L</kbd>）审查正确性、成本和安全性，Explain（<kbd>⌘L</kbd>）逐步解释，或 Optimize（<kbd>⌥⌘L</kbd>）建议改写或索引；查询失败时，错误横幅提供 Fix with AI。请求包含语句所引用表的结构，语句本身不会执行。<ui>Apply to Editor</ui> 仅在确认后替换语句。",
+                "行内建议在输入时显示虚影文本，默认关闭。AI Rules 可为连接固定纯文本说明，例如哪些列绝不能选择，并随每条消息发送。"
+            ]
+        },
+        {
+            "id": "agent-mode",
+            "title": "聊天模式和 Agent 模式",
+            "paragraphs": [
+                "聊天有三种模式。默认 Ask 查阅结构，不执行任何内容。Edit 可执行查询，Agent 还可执行 DROP、TRUNCATE 等破坏性语句。在新连接默认安全模式 {macSafeModeDefault} 下，Edit 和 Agent 的写入无需询问；从 Alert 到 Safe Mode (Full)，每次都等待 Run，Read-Only 则拒绝。破坏性语句始终等待点击，不能预先批准。",
+                "Agent 模式（<kbd>⌥⇧⌘A</kbd>）让一个会话占用整个窗口，显示该连接的会话、对话，以及建议和运行的 SQL。开启期间，连接保持 Alert 或更严格级别，点击 Run 前不会执行写入。这是提醒而非锁定，一个快捷键就能关闭。会话保存在此 Mac 上。"
+            ],
+            "asset": "mac-agent-mode",
+            "links": [
+                {
+                    "label": "安全模式级别",
+                    "href": "/features/data-editing#safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "MCP 服务器",
+            "paragraphs": [
+                "内置 MCP 服务器让 AI 客户端通过 TablePro 已保存连接工作，从不看到密码。它仅监听 {mcpHost}，无远程模式，在手动开启或已配置客户端启动前保持关闭。",
+                "工具涵盖连接、结构发现、数据读写、数据库和对象、服务器管理以及应用自身的标签页和历史，并根据实时结构构建提示和资源。每次调用都进入 Mac 上的活动日志，语句记录为摘要而非文本；客户端运行的查询也会出现在查询历史中。"
+            ],
+            "asset": "mac-mcp-settings",
+            "blocks": [
+                {
+                    "id": "connect",
+                    "title": "连接客户端",
+                    "paragraphs": [
+                        "<ui>Settings > Integrations</ui> 提供 {mcpSetupClients} 的设置步骤和可复制片段。附带的 <code>tablepro-mcp</code> 桥接也支持 {mcpBridgeClients}：它按需启动 TablePro 并发现服务器，因此客户端配置无需端口或令牌。官方 Raycast 扩展则与应用配对，由你在 Mac 上批准。",
+                        "典型请求：让客户端找出使用同一邮箱地址的用户。它可调用 <code>list_tables</code> 和 <code>describe_table</code>，发现列名为 <code>email_address</code>，再通过已保存连接执行一条 SELECT，无需将结构粘贴到聊天中。"
+                    ]
+                },
+                {
+                    "id": "permissions",
+                    "title": "客户端允许执行的操作",
+                    "paragraphs": [
+                        "每次调用都经过以下所有检查，以最严格的限制为准。"
+                    ],
+                    "points": [
+                        "令牌范围：Read Only、Read & Write 或 Full Access，可限制为指定名称的连接。桥接自动获得 Read & Write 令牌，因此使用桥接的客户端无法执行破坏性语句。",
+                        "每个连接的 External Clients：Blocked、Read Only（默认）或 Read & Write。被阻止的连接甚至不会列出。",
+                        "连接批准：客户端首次访问连接时，Mac 上的对话框会询问。可选择每次询问、每个连接询问一次，或不再询问。",
+                        "AI 策略：设为 Never 的连接也拒绝 MCP 客户端。",
+                        "安全模式：写入按连接级别确认，DROP 或 TRUNCATE 每次都需要 Full Access 令牌和你的批准。读写文件或在服务器上运行代码的语句会被拒绝。"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "outside-servers",
+            "title": "外部 MCP 服务器",
+            "paragraphs": [
+                "也可反向使用：TablePro 的 AI 会话通过 Streamable HTTP 调用你运行的 MCP 服务器工具，除非服务器在此 Mac 上，否则必须使用 HTTPS。可选择每个服务器在哪些连接上提供。每次调用都显示卡片并等待点击，不接受长期批准。服务器地址和令牌仅保存在此 Mac 上。"
+            ]
+        },
+        {
+            "id": "automation",
+            "title": "聊天之外的自动化",
+            "paragraphs": [
+                "AppleScript 可在连接的 External Clients 级别和安全模式限制内连接、运行查询和打开表。<code>tablepro://</code> 链接打开连接、表或查询标签页；链接中的查询在确认后填入，从不自行运行。<code>postgresql://</code> 等数据库 URL 以连接形式打开。",
+                "<code>tablepro</code> shell 命令在应用中打开这些 URL 和文件，不从终端运行查询。官方 Raycast 扩展搜索连接、表和查询历史，并通过已配对应用运行查询。"
+            ]
+        },
+        {
+            "id": "privacy",
+            "title": "数据发送到哪里",
+            "paragraphs": [
+                "提示、结构上下文和所有附件发送给所选提供商，适用你与该提供商之间的账户条款。使用 Ollama、llama.cpp、MLX 或自行运行的 OpenAI 兼容服务器时，内容留在自己的机器上。TablePro 不接收任何内容，Mac 应用的每日使用报告也不包含 AI 或 MCP 信息。",
+                "添加 GitHub Copilot 时，向 GitHub 发送遥测的选项默认开启；可在 Copilot 设置处关闭。"
+            ],
+            "links": [
+                {
+                    "label": "Mac 应用发送的内容",
+                    "href": "/privacy#mac-app"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 和 iPad 不提供",
+            "paragraphs": [
+                "iPhone 和 iPad 应用不提供 AI 助手、Agent 模式或 MCP 服务器。本页所有功能都在 Mac 应用中。"
+            ],
+            "links": [
+                {
+                    "label": "iPhone 和 iPad 应用的功能",
+                    "href": "/ios"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "使用自选提供商的 AI 聊天",
+            "ios": "no"
+        },
+        {
+            "label": "AI 审查、解释、优化和修复",
+            "ios": "no"
+        },
+        {
+            "label": "行内建议和 AI 规则",
+            "ios": "no"
+        },
+        {
+            "label": "Agent 模式",
+            "ios": "no"
+        },
+        {
+            "label": "MCP 服务器",
+            "ios": "no"
+        },
+        {
+            "label": "外部 MCP 服务器",
+            "ios": "no"
+        },
+        {
+            "label": "AppleScript 和 <code>tablepro</code> shell 命令",
+            "ios": "no"
+        },
+        {
+            "label": "Raycast 扩展",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Cursor 无法调用 TablePro 工具，因此以 Cursor 为提供商时，Edit 和 Agent 不运行查询。本地模型仅在模型支持时调用工具。",
+        "Claude Agent 使用 Claude Code 登录，并通过必须开启的 MCP 服务器访问结构。它依赖 Claude Code，可能因 Claude Code 更新而失效。",
+        "MCP 服务器仅监听 {mcpHost}。从其他机器访问需要自行转发端口，并承担由此暴露访问的责任。",
+        "Mac 应用没有快捷指令操作，可通过 AppleScript、链接或 MCP 服务器自动化。",
+        "Agent 会话和外部 MCP 服务器仅保留在设置它们的 Mac 上，不同步。"
+    ],
+    "docs": [
+        {
+            "label": "AI 助手",
+            "docs": "/features/ai-assistant"
+        },
+        {
+            "label": "Agent 模式",
+            "docs": "/features/agent-mode"
+        },
+        {
+            "label": "MCP 服务器",
+            "docs": "/features/mcp"
+        },
+        {
+            "label": "MCP 客户端",
+            "docs": "/external-api/mcp-clients"
+        },
+        {
+            "label": "MCP 令牌和范围",
+            "docs": "/external-api/tokens"
+        },
+        {
+            "label": "外部 MCP 服务器",
+            "docs": "/features/mcp-outside-servers"
+        },
+        {
+            "label": "AppleScript",
+            "docs": "/external-api/applescript"
+        },
+        {
+            "label": "Raycast 扩展",
+            "docs": "/external-api/raycast"
+        }
+    ],
+    "related": [
+        {
+            "label": "安全模式",
+            "href": "/features/data-editing#safe-mode"
+        },
+        {
+            "label": "连接策略",
+            "href": "/features/connections#policies"
+        },
+        {
+            "label": "Mac 应用发送的内容",
+            "href": "/privacy#mac-app"
+        },
+        {
+            "label": "对比 TablePro 和其他客户端",
+            "href": "/compare"
+        }
+    ]
+}

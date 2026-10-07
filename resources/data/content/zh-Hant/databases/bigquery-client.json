@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 Google BigQuery 用戶端",
+        "description": "透過服務帳號、ADC 或 OAuth 查詢 BigQuery，Dry Run 檢查位元組數和成本，Max Bytes Billed 限制支出，並匯出至 Cloud Storage。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "Google BigQuery 用戶端"
+    },
+    "engine": "bigquery",
+    "breadcrumb": "Google BigQuery",
+    "header": {
+        "title": "適用於 {devices} 的 Google BigQuery 用戶端",
+        "lead": "對專案資料集撰寫 GoogleSQL，執行前查看掃描量，並限制工作計費。可在格線編輯列，將資料表卸載至 Cloud Storage 而不經 Mac。"
+    },
+    "asset": "mac-db-bigquery-dry-run",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "登入 Google Cloud",
+            "paragraphs": [
+                "選擇 <ui>Auth Method</ui> 並填寫 <ui>Project ID</ui>，需用 ID 而非專案名稱或編號。<ui>Application Default Credentials</ui> 讀取 <code>gcloud auth application-default login</code> 寫入的檔案，已設定 gcloud 時最方便。<ui>Service Account Key</ui> 接受 .json 金鑰檔案或貼上 JSON。",
+                "Google Account (OAuth) 使用在 Google Cloud Console 建立的桌面 OAuth 用戶端透過瀏覽器登入。更新權杖儲存在鑰匙圈，每個用戶端一個，後續連線無須瀏覽器。一個 OAuth 用戶端登入一個 Google 帳號，第二個帳號需第二個用戶端或自有更新權杖。",
+                "全部透過 BigQuery REST API，無主機、連接埠、連線 URL 或 SSH 通道。<ui>Location</ui> 設定每個工作傳送的處理位置。詳見<cloudAuth>雲端帳號登入</cloudAuth>。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查詢與成本控制",
+            "paragraphs": [
+                "執行前在 <explain>Explain</explain> 選單選擇 <ui>Dry Run (Cost)</ui>，結果列出預計處理和計費位元組數、快取命中標記和美元估計成本，查詢本身不執行。",
+                "執行後狀態列顯示處理位元組數、計費位元組數和隨需費率估算，並標記快取命中。需硬上限時，在連線 Advanced 分頁設定 <ui>Max Bytes Billed</ui>，BigQuery 會拒絕超出計費的工作而不執行。",
+                "完成、引用和格式化遵循 GoogleSQL，資料表名稱用反引號，STRUCT、ARRAY 欄位顯示為 JSON。資料集代替資料庫，列在側欄，<code>⌘K</code> 切換，每個分頁保持初始資料集。工作輪詢至查詢逾時後取消，No limit 時等待完成。",
+                "儲存格、插入和刪除透過<editing>格線</editing>操作。UPDATE、DELETE 依宣告主索引鍵比對，無主索引鍵則比對除 ARRAY、JSON、GEOGRAPHY 外所有欄位，因此相同列會一起修改。宣告 <code>PRIMARY KEY (…) NOT ENFORCED</code> 可精確編輯一列。分割資料表請在編輯器寫含分割區篩選的 UPDATE、DELETE。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "資料集與 DDL",
+            "paragraphs": [
+                "DDL 從編輯器執行，例如 <code>CREATE SCHEMA</code>、<code>ALTER TABLE … ADD COLUMN</code>、<code>DROP COLUMN</code>、<code>CREATE OR REPLACE VIEW</code>。<ui>New Database…</ui> 使用 <code>CREATE SCHEMA</code> 建立資料集，資料表可從側欄重新命名。DDL 分頁從 <code>INFORMATION_SCHEMA.TABLES</code> 讀取定義，叢集和分割區顯示在 Indexes。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "TablePro 不提供 BigQuery 匯入。可將資料表或查詢結果以 {exportFormats} <export>匯出</export>至 Mac。",
+                "<backup>Server-Side Export</backup> 用 <code>EXPORT DATA</code> 將資料表卸載至 <code>gs://</code> 前綴，以 CSV、Parquet 或換行分隔 JSON 分片儲存。使用你的連線和權限執行，面板等待完成，不在 Mac 寫入檔案。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "roles",
+            "question": "BigQuery 連線需要哪些 IAM 角色？",
+            "answer": "執行查詢需 <code>roles/bigquery.user</code>，讀取需 <code>roles/bigquery.dataViewer</code>，修改需 <code>roles/bigquery.dataEditor</code>。"
+        },
+        {
+            "id": "deep-pages",
+            "question": "為什麼要篩選而非翻到資料表的深處？",
+            "answer": "每個靠後的頁面都會從資料表開頭重新掃描。請用篩選或 WHERE 子句縮小列範圍，而非深入翻頁。"
+        }
+    ],
+    "related": [
+        {
+            "label": "AWS、Google 與 Microsoft 雲端登入",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "匯出、備份與伺服器端匯出",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "Amazon Redshift，另一種資料倉儲",
+            "href": "/redshift-client"
+        },
+        {
+            "label": "Snowflake，另一種雲端資料倉儲",
+            "href": "/snowflake-client"
+        }
+    ]
+}

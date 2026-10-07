@@ -1,0 +1,118 @@
+{
+    "seo": {
+        "title": "{devices} 用 SQLite クライアント",
+        "description": "Mac や SSH 経由で SQLite ファイルを開き、sqlite-vec、SpatiaLite などの拡張を読み込み、事前確認するテーブル再構築で構造を変更できます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "SQLite クライアント"
+    },
+    "engine": "sqlite",
+    "breadcrumb": "SQLite",
+    "header": {
+        "title": "{devices} 用 SQLite クライアント",
+        "lead": "Finder、ドラッグや SSH サーバーからデータベースファイルを開き、アプリに同梱した SQLite で問い合わせます。構造の変更は、実行前に確認する再構築スクリプトで行います。"
+    },
+    "asset": "mac-db-sqlite-chinook",
+    "links": {
+        "remoteFiles": "docs:/connections/remote-database-files",
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "copy": "/features/schema#copy",
+        "explain": "/features/querying#performance"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "データベースファイルを開く",
+            "paragraphs": [
+                "接続フォームでファイルを選ぶか、TablePro のウィンドウや Dock アイコンにドラッグします。存在しないファイルのパスは接続時に作成します。名前に関係なく、先頭バイトが <code>SQLite format 3</code> なら SQLite として開きます。",
+                "Finder は .db、.sqlite、.sqlite3 などのファイルの「このアプリケーションで開く」に TablePro を表示します。Messages や Safari の履歴など macOS が保護するフォルダのデータベースには、先にフルディスクアクセスが必要で、通常は所有するアプリも終了させる必要があります。",
+                "別のマシンのデータベースは <remoteFiles>Remote File ペイン</remoteFiles> で開きます。On the Server は SSH 経由で実ファイルに文を実行し、ホストには <code>python3</code> 以外のインストールは不要です。As a Read-Only Copy は SFTP でスナップショットを取得し、読み取り専用で開きます。",
+                "まず試すには Help > Open Sample Database を選んでください。アプリに同梱したデジタル音楽ストアの小さなサンプル Chinook を開きます。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "クエリと編集",
+            "paragraphs": [
+                "ドライバーは独自の SQLite を同梱し、macOS のバージョンに関係なく同じバージョンで SQL を実行します。<explain>EXPLAIN QUERY PLAN</explain> は図で表示します。",
+                "sqlite-vec や SpatiaLite などの拡張を接続ごとに記載順で読み込めます。関数や仮想テーブルはエディタ、サイドバーと Structure タブで使えます。SQL 関数 <code>load_extension()</code> は引き続き拒否します。同期、接続のインポートやリンクで届いたリストは、承認するまで何も読み込みません。",
+                "行の編集は保存まで保留し、<editing>Preview SQL</editing> がすべての文を先に表示します。他のプログラムがファイルを変更すると、サイドバーは自動的に再読み込みします。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "構造",
+            "paragraphs": [
+                "テーブルやカラムの名前変更、カラムの追加・削除、SQLite 3.53 以降の CHECK の追加・削除は ALTER TABLE で実行します。カラム型や外部キーなど、他の <structure>Structure タブ</structure> の変更はテーブルを再構築します。TablePro がスクリプトを生成し、rowid とともに行をコピーし、インデックスとトリガーを復元して、確認した場合のみ実行します。",
+                "カラム型を変更すると新しい型アフィニティで値を読み直し、例えば INTEGER カラムでは <code>'007'</code> が <code>7</code> になります。確認シートで実行前に知らせます。FTS5 などの仮想テーブルは再構築できず、保存時に対象の名前を表示します。",
+                "トリガーはサイドバーから閲覧・編集できます。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "保守とバックアップ",
+            "paragraphs": [
+                "テーブル保守は VACUUM、ANALYZE、REINDEX と整合性検査を実行し、それぞれ実行前に SQL を表示します。Server Dashboard はファイルサイズ、ページ数、ページサイズ、ジャーナルモードとキャッシュサイズを表示します。",
+                "<backup>Backup Dump</backup> は {dumpTool} でデータベースを .sql ファイルに書き込み、Restore Dump はそのファイルをデータベースに実行します。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "{importFormats} ファイルを <importData>インポート</importData> するか、CSV、JSON、XLSX を <dataFiles>Data Files ウィンドウ</dataFiles> で開いてそこからインポートできます。テーブルと結果は {exportFormats} にエクスポートします。",
+                "<copy>Copy To</copy> はテーブルと行を PostgreSQL サーバーなど別の接続へ送り、近似変換が必要なすべてのカラム型を表示します。<files>ファイルをデータベースとして扱う方法</files>も参照してください。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone と iPad",
+            "paragraphs": [
+                "iPhone と iPad ではデータベースファイルを選ぶか新規作成し、Open Sample Database から Chinook サンプルも開けます。カードでテーブルを閲覧し、絞り込み、主キーのある行の編集、Query タブで SQL の実行ができます。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "encrypted",
+            "question": "暗号化した SQLite データベースを開けますか？",
+            "answer": "開けません。同梱 SQLite は鍵を受け取らないため、SQLCipher と SEE ファイルには対応しません。先に sqlcipher ツールで復号してください。"
+        },
+        {
+            "id": "version",
+            "question": "どの SQLite バージョンを使いますか？",
+            "answer": "ドライバー内蔵の SQLite {engineVersion} です。macOS に付属するバージョンには依存しません。"
+        },
+        {
+            "id": "framework-files",
+            "question": "アプリの開発用データベースを開けますか？",
+            "answer": "はい。Rails の <code>db/development.sqlite3</code>、Django の <code>db.sqlite3</code> など、フレームワークが保存するファイルを開いてください。iOS Simulator コンテナなど <code>~/Library</code> 配下のファイルにはフルディスクアクセスが必要です。"
+        }
+    ],
+    "related": [
+        {
+            "label": "インポート、エクスポートとデータファイル",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Cloudflare D1、HTTP 経由の SQLite",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "Turso と libSQL",
+            "href": "/turso-client"
+        },
+        {
+            "label": "分析ファイル向け DuckDB",
+            "href": "/duckdb-client"
+        }
+    ]
+}

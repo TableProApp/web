@@ -167,7 +167,7 @@ it('keeps the legal pages\' titles and descriptions within the same bounds (guar
 
     expect($files)->not->toBe([])
         ->and($offences)->toBe([], "legal/{$locale}:\n  " . implode("\n  ", $offences));
-})->with(['en', 'vi']);
+})->with(fn(): array => array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']));
 
 /**
  * Points the platform catalog and the fact services at a copy of

@@ -9,9 +9,9 @@ use App\Support\Localization\LocalizedUrl;
  */
 it('reads the allowlist from resources/data/locales.json', function (): void {
     expect(Locales::default())->toBe('en');
-    expect(Locales::codes())->toBe(['en', 'vi']);
+    expect(Locales::codes())->toBe(['en', 'vi', 'es', 'de', 'fr', 'ja', 'pt-BR', 'zh-Hans', 'ko', 'zh-Hant', 'it', 'id']);
     expect(Locales::isSupported('vi'))->toBeTrue();
-    expect(Locales::isSupported('fr'))->toBeFalse();
+    expect(Locales::isSupported('xx'))->toBeFalse();
     expect(Locales::isSupported('VI'))->toBeFalse();
     expect(Locales::prefixFor('en'))->toBeNull();
     expect(Locales::prefixFor('vi'))->toBe('vi');
@@ -25,7 +25,7 @@ it('reads the allowlist from resources/data/locales.json', function (): void {
 });
 
 it('refuses a locale it does not support', function (): void {
-    Locales::definition('fr');
+    Locales::definition('xx');
 })->throws(RuntimeException::class);
 
 it('finds the locale of a path no route matched', function (string $path, string $locale): void {
@@ -41,6 +41,10 @@ it('finds the locale of a path no route matched', function (string $path, string
     ['/vietnam', 'en'],
     ['blog/vi', 'en'],
     ['VI/blog', 'en'],
+    ['/pt-BR/download', 'pt-BR'],
+    ['/zh-Hans/blog', 'zh-Hans'],
+    ['/zh-Hant', 'zh-Hant'],
+    ['/zh-hant', 'en'],
 ]);
 
 it('names routes per locale and strips the prefix back off', function (): void {
@@ -69,6 +73,8 @@ it('prefixes a path with a locale, keeping its query and fragment', function (st
     ['/download#mac', 'vi', '/vi/download#mac'],
     ['/compare/tableplus?x=1', 'vi', '/vi/compare/tableplus?x=1'],
     ['/download', 'en', '/download'],
+    ['/download', 'pt-BR', '/pt-BR/download'],
+    ['/pricing?plan=pro#plans', 'zh-Hant', '/zh-Hant/pricing?plan=pro#plans'],
 ]);
 
 it('never prefixes a path the platform app answers', function (string $path): void {

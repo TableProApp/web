@@ -1,0 +1,188 @@
+{
+    "seo": {
+        "title": "TablePro vs DBeaver: klien native atau Java",
+        "description": "DBeaver memakai Java dan JDBC di Windows, macOS, dan Linux. TablePro native untuk Mac, iPhone, dan iPad. Bandingkan database, AI, MCP, dan harga."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs DBeaver"
+    },
+    "header": {
+        "title": "TablePro vs DBeaver",
+        "lead": "DBeaver adalah klien untuk Windows, macOS, dan Linux, dibangun di atas Java. Edisi Community gratis dan sumber terbuka, dan edisi berbayarnya menambah fitur. TablePro adalah klien sumber terbuka dengan aplikasi native untuk Mac dan aplikasi lain untuk iPhone dan iPad, serta fitur berbayar opsional di Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda ingin MongoDB, Redis, atau Cassandra tanpa membayar. Setiap mesin yang didukung gratis di TablePro, sedangkan DBeaver Community tidak menyertakan database NoSQL.",
+            "Anda ingin aplikasi Mac yang tidak memerlukan Java. TablePro ditulis dalam Swift, dan driver databasenya native, tanpa JDBC.",
+            "Anda ingin asisten AI dengan penyedia pilihan Anda, tanpa biaya. Chat AI DBeaver Community hanya bekerja dengan OpenAI dan GitHub Copilot.",
+            "Anda ingin server MCP yang dapat digunakan klien AI dengan koneksi Anda, gratis dalam aplikasi Mac.",
+            "Anda juga ingin aplikasi untuk iPhone dan iPad."
+        ],
+        "competitor": [
+            "Anda bekerja di Windows atau Linux selain Mac.",
+            "Anda membutuhkan mesin yang drivernya tidak tersedia di TablePro. DBeaver Community terhubung ke mesin apa pun yang memiliki driver JDBC.",
+            "Anda membutuhkan pembuat kueri visual, diagram ER yang dapat diedit, atau tugas terjadwal. Edisi berbayar DBeaver memilikinya."
+        ]
+    },
+    "glance": {
+        "intro": "DBeaver memiliki edisi Community gratis dan edisi berbayar yang ditagih per pengguna, sehingga beberapa baris menjelaskan edisi yang diperlukan untuk suatu fitur."
+    },
+    "rows": {
+        "diagram": {
+            "label": "Diagram ER",
+            "tablepro": "Diagram ER hanya baca, dapat diekspor sebagai PNG atau SQL, gratis"
+        },
+        "queryBuilder": {
+            "label": "Pembuat kueri visual",
+            "tablepro": "Tidak tersedia"
+        },
+        "scheduler": {
+            "label": "Tugas terjadwal",
+            "tablepro": "Tidak tersedia"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DBeaver berjalan di Windows, macOS, dan Linux, sehingga satu klien mencakup komputer yang Anda gunakan.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Community terhubung ke mesin apa pun yang memiliki driver JDBC, termasuk mesin yang drivernya tidak tersedia di TablePro.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Edisi berbayar menambahkan pembuat kueri visual, pengeditan diagram ER, tugas terjadwal, dan sinkronisasi Git untuk proyek.",
+                "cite": [
+                    "cells.queryBuilder",
+                    "cells.diagram",
+                    "cells.scheduler",
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Setiap mesin yang didukung gratis, termasuk MongoDB, Redis, Cassandra, dan database nonrelasional lainnya. DBeaver menawarkan database NoSQL hanya pada edisi berbayar.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro adalah aplikasi Mac yang ditulis dalam Swift, dengan driver database native. DBeaver dibangun di atas Java, dan unduhannya menyertakan runtime Java.",
+                "cite": [
+                    "technology"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Asisten AI dan server MCP</link> gratis dalam aplikasi Mac. Anda memilih penyedia AI, dan server MCP memungkinkan klien seperti Claude Code atau Cursor menggunakan koneksi tersimpan tanpa melihat kata sandi.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Compare & Sync</link> membandingkan struktur atau data dua database dan menyinkronkan perbedaannya. Fitur ini termasuk Starter.",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "Tersedia <link>aplikasi iPhone dan iPad gratis</link>, tanpa pembelian dalam aplikasi.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro hanya terhubung ke mesin yang memiliki driver. Tidak ada koneksi JDBC generik, jadi periksa <link>database yang didukung</link> terlebih dahulu.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "Diagram ER adalah cuplikan hanya baca, dan tidak ada pembuat kueri visual atau penjadwal tugas.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro membaca koneksi dalam workspace DBeaver Anda, dari Community atau edisi berbayar mana pun. DBeaver tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "steps": [
+            "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
+            "Pilih DBeaver dan aktifkan <ui>Include passwords</ui>. TablePro mendekripsi kata sandi yang disimpan DBeaver, jadi tidak ada yang perlu disetujui di Keychain.",
+            "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Folder menjadi grup, dan pengaturan tunnel SSH ikut dipindahkan. Koneksi ke database yang tidak didukung TablePro masuk tanpa dicentang.",
+            "Sebelum menghapus DBeaver, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
+        ],
+        "after": [
+            "Skrip SQL, riwayat kueri, dan pintasan keyboard tetap di DBeaver."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "java",
+            "question": "Apakah TablePro memerlukan Java?",
+            "answer": "Tidak. TablePro ditulis dalam Swift dan berkomunikasi dengan database melalui driver native. Driver database umum disertakan dalam aplikasi, dan yang lain diunduh saat pertama kali Anda memilih database tersebut.",
+            "href": null
+        },
+        {
+            "id": "speed",
+            "question": "Bagaimana perbandingan kecepatan dan penggunaan memori dengan DBeaver?",
+            "answer": "Halaman ini tidak membuat klaim kecepatan atau memori, karena kedua proyek tidak menerbitkan pengukuran yang dapat direproduksi orang lain. Yang dapat Anda periksa adalah unduhan DBeaver menyertakan runtime Java, dan TablePro tidak memerlukannya.",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "Apakah TablePro gratis seperti DBeaver Community?",
+            "answer": "Ya untuk setiap mesin yang didukung, asisten AI, dan server MCP: TablePro gratis digunakan dan sumber terbuka dengan AGPLv3. DBeaver menjual fitur tambahannya sebagai edisi terpisah, sedangkan TablePro menawarkannya sebagai paket Starter dan Team untuk aplikasi Mac, dengan fitur seperti {starterExamples}. <link>Lihat harga</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "unsupported",
+            "question": "Apa yang terjadi pada koneksi DBeaver yang tidak dapat dibuka TablePro?",
+            "answer": "Koneksi muncul dalam daftar impor, tanpa dicentang, dengan alasan di sampingnya. Tidak ada yang diimpor untuk koneksi tersebut kecuali Anda mencentangnya.",
+            "href": null
+        }
+    ],
+    "notes": {
+        "dbeaver-bundled-jdk": "Unduhan menyertakan runtime Java sendiri",
+        "dbeaver-databases": "Community terhubung ke mesin apa pun yang memiliki driver JDBC, tetapi tidak ke database NoSQL seperti MongoDB, Redis, atau Cassandra. Edisi berbayar menambahkannya.",
+        "dbeaver-ai-community-providers": "Dalam {edition}, chat AI dengan OpenAI atau GitHub Copilot. Edisi berbayar menambahkan lebih banyak penyedia serta penjelasan kueri dan kesalahan.",
+        "dbeaver-mcp-client": "Edisi berbayar dapat menggunakan server MCP sebagai klien. Aplikasi desktop tidak menjalankan server MCP sendiri.",
+        "dbeaver-git-sync": "Sinkronisasi Git untuk proyek, dalam {edition} dan edisi di atasnya",
+        "dbeaver-erd-edit-paid": "Hanya lihat dalam Community. Pengeditan tersedia dalam edisi Enterprise, Ultimate, dan Team.",
+        "dbeaver-query-builder-paid": "Dalam setiap edisi berbayar, bukan Community",
+        "dbeaver-task-scheduler": "Dalam edisi Enterprise, Ultimate, dan Team"
+    }
+}

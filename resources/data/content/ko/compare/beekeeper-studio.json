@@ -1,0 +1,210 @@
+{
+    "seo": {
+        "title": "TablePro vs Beekeeper Studio: 네이티브와 Electron",
+        "description": "Beekeeper Studio는 Windows, macOS, Linux용 Electron 오픈 소스 클라이언트입니다. 네이티브 TablePro와 요금제, 엔진, AI, 가져오기를 비교하세요."
+    },
+    "og": {
+        "kicker": "비교",
+        "title": "TablePro vs Beekeeper Studio"
+    },
+    "header": {
+        "title": "TablePro vs Beekeeper Studio",
+        "lead": "Beekeeper Studio와 TablePro는 모두 오픈 소스 데이터베이스 클라이언트입니다. Beekeeper Studio는 {technology}를 기반으로 Windows, macOS, Linux에서 동일하게 작동하며 무료 Community 에디션 위에 유료 등급을 제공합니다. TablePro는 Mac과 iPhone·iPad 각각에 네이티브 앱을 제공하고 Mac에서는 선택형 유료 기능을 추가할 수 있습니다."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Oracle, Cassandra, Snowflake를 무료로 사용하고 싶습니다. TablePro는 지원하는 모든 엔진이 무료이지만 Beekeeper Studio는 이러한 엔진을 유료 등급에서 추가합니다.",
+            "유료 등급 없이 AI 어시스턴트와 MCP 서버를 원합니다. Mac 앱에서 둘 다 무료이며 AI 제공자를 선택할 수 있습니다.",
+            "Swift로 만든 네이티브 Mac 앱을 원하며 유료 기능의 코드도 오픈 소스이길 바랍니다.",
+            "iPhone·iPad용 앱도 원합니다."
+        ],
+        "competitor": [
+            "Windows나 Linux에서도 작업하며 각 환경에서 같은 클라이언트를 원합니다.",
+            "TablePro가 지원하지 않는 Firebird, SQL Anywhere, GreengageDB에 연결합니다.",
+            "{cells.sync.edition} 등급부터 제공되는 클라우드 워크스페이스로 연결과 쿼리를 동기화하고 공유하고 싶습니다."
+        ]
+    },
+    "glance": {
+        "intro": "두 클라이언트 모두 오픈 소스이며 SQL 편집기에 Vim 모드가 있습니다. ER 다이어그램도 각각 제공하며 TablePro에서는 무료이고 Beekeeper Studio에서는 모든 유료 등급에 포함됩니다."
+    },
+    "rows": {
+        "diagram": {
+            "label": "ER 다이어그램",
+            "tablepro": "PNG 또는 SQL로 내보낼 수 있는 무료 읽기 전용 ER 다이어그램"
+        },
+        "vim": {
+            "label": "Vim 모드",
+            "tablepro": "SQL 편집기에서 무료, 이동 명령·레지스터·매크로 지원"
+        },
+        "importExport": {
+            "label": "가져오기, 내보내기, 백업",
+            "tablepro": "Mac 앱에서 무료: CSV, JSON, XLSX, SQL 파일 가져오기, CSV, JSON, SQL, XLSX 등으로 내보내기, 엔진에 덤프 도구가 있는 경우 Backup Dump와 Restore Dump"
+        },
+        "lifetimeLicense": {
+            "label": "구독 종료 후",
+            "tablepro": "월간·연간 요금제는 종료 시 유료 기능이 잠깁니다. 일회성 구매는 만료일 없음"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Beekeeper Studio는 Windows, macOS, Linux에서 같은 기능을 제공하므로 하나의 클라이언트로 모든 컴퓨터를 사용할 수 있습니다.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Firebird, SQL Anywhere, GreengageDB처럼 TablePro가 지원하지 않는 엔진에도 연결합니다.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "{cells.sync.edition} 등급부터 클라우드 워크스페이스로 연결과 쿼리를 동기화하고 지원하는 모든 플랫폼의 동료와 공유할 수 있습니다.",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro는 Swift로 만든 Mac 앱으로 네이티브 데이터베이스 드라이버를 사용합니다. Beekeeper Studio는 {technology}를 기반으로 합니다. 둘 다 Apple silicon과 Intel Mac용 빌드를 따로 제공합니다.",
+                "cite": [
+                    "technology",
+                    "mac"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro에서는 Oracle, Cassandra, Snowflake를 포함해 지원하는 모든 엔진이 무료입니다. Beekeeper Studio Community 에디션은 PostgreSQL, MySQL, SQL Server, SQLite 등을 지원하며 유료 등급에서 Oracle, Cassandra, Snowflake 등을 추가합니다.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI 어시스턴트와 MCP 서버</link>는 Mac 앱에서 무료이며 AI 제공자를 선택할 수 있습니다. Beekeeper Studio의 AI Shell은 유료 등급이 필요합니다.",
+                "cite": [
+                    "cells.ai"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "TablePro의 <link>데이터 가져오기와 내보내기</link>는 무료이며 엔진 자체 덤프 도구가 있다면 이를 통한 백업도 무료입니다. Beekeeper Studio는 Import/Export & Backup/Restore를 Community가 아닌 유료 등급에 포함합니다.",
+                "cite": [
+                    "cells.importExport"
+                ],
+                "feature": null,
+                "href": "/features/import-export"
+            },
+            {
+                "text": "TablePro는 유료 기능의 코드까지 AGPLv3로 공개합니다. Beekeeper Studio Community 에디션은 {licence}로 공개됩니다.",
+                "cite": [
+                    "licence"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>iCloud 동기화</link>는 Mac과 iPhone 또는 iPad 사이의 연결을 맞춰 줍니다. Mac에서는 Starter에 포함되며 iPhone과 iPad에서는 무료입니다.",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "무료 <link>iPhone·iPad 앱</link>이 있으며 앱 내 구입은 없습니다. Beekeeper Studio에는 모바일 앱이 없습니다.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro에는 Windows나 Linux용 앱이 없습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro는 드라이버가 있는 엔진에만 연결합니다. 전환하기 전에 <link>지원 데이터베이스</link>를 확인하세요.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "ER 다이어그램은 무료지만 읽기 전용입니다. 테이블을 그려서 바꾸는 것이 아니라 Structure 탭에서 변경합니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Beekeeper Studio는 결제 기간에 출시된 버전을 계속 사용할 수 있으며 월간 요금제에서는 12개월 후에 이 권리가 생깁니다. TablePro 월간·연간 요금제는 그런 권리를 남기지 않습니다. 종료되면 유료 기능은 잠기고 나머지 앱 기능은 계속 작동합니다. 일회성 구매는 만료일이 없습니다.",
+                "cite": [
+                    "cells.lifetimeLicense"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro는 Beekeeper Studio가 Mac의 로컬 워크스페이스에 저장한 연결을 읽습니다. Beekeeper Studio를 열어 둘 필요가 없으며 파일도 변경하지 않습니다.",
+        "steps": [
+            "TablePro에서 <ui>File > Import > Import from Other App…</ui>를 선택합니다.",
+            "Beekeeper Studio를 선택하고 <ui>Include passwords</ui>를 켭니다. TablePro가 SSH 암호와 키 암호 문구를 포함해 Beekeeper Studio에 저장된 암호를 복호화하므로 키체인에서 승인할 것은 없습니다.",
+            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>Import</ui>를 클릭합니다. 폴더는 그룹이 되고 연결 색상과 SSL 설정이 이전되며 SSH 배스천 호스트는 점프 호스트가 됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
+            "Beekeeper Studio를 삭제하기 전에 암호가 있던 연결을 열어 암호가 이전되었는지 확인합니다."
+        ],
+        "after": [
+            "Beekeeper Studio 클라우드 워크스페이스의 연결은 가져오지 않으며 로컬 워크스페이스의 연결만 가져옵니다.",
+            "저장된 쿼리, 쿼리 기록, 키보드 단축키는 Beekeeper Studio에 남습니다."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "apple-silicon",
+            "question": "TablePro는 Apple silicon에서 네이티브로 실행되나요?",
+            "answer": "네. TablePro는 Apple silicon과 Intel Mac용 빌드를 따로 제공하며 <link>다운로드 페이지</link>에서 둘 다 받을 수 있습니다.",
+            "href": "/download"
+        },
+        {
+            "id": "free-engines",
+            "question": "어떤 엔진을 무료로 사용할 수 있나요?",
+            "answer": "TablePro는 지원하는 모든 엔진과 AI 어시스턴트, MCP 서버, 안전 모드가 무료입니다. Starter 또는 Team 요금제는 엔진이 아니라 {starterExamples} 같은 기능을 추가합니다. Beekeeper Studio Community 에디션은 일반적인 엔진 일부를 지원하며 유료 등급에서 다른 엔진을 추가합니다.",
+            "href": null
+        },
+        {
+            "id": "vim",
+            "question": "Beekeeper Studio에서 Vim 모드를 씁니다. TablePro에도 있나요?",
+            "answer": "네, 무료입니다. <ui>Settings > Editor > Vim mode</ui>를 켜면 이동 명령, 레지스터, 매크로를 사용할 수 있으며 :w는 쿼리를 실행합니다.",
+            "href": null
+        }
+    ],
+    "notes": {
+        "beekeeper-databases": "Community는 PostgreSQL, MySQL, MariaDB, SQLite, SQL Server 등을 지원합니다. 유료 등급은 Oracle, Cassandra, Snowflake 등을 추가합니다.",
+        "beekeeper-ai-shell": "AI Shell은 유료 등급에만 제공되며 Community에는 없음",
+        "beekeeper-cloud-workspaces": "{edition} 등급부터 연결과 쿼리를 동기화하고 공유하는 클라우드 워크스페이스",
+        "beekeeper-erd-paid": "모든 유료 등급에 포함되며 Community에는 없음",
+        "beekeeper-import-export-paid": "Import/Export & Backup/Restore는 모든 유료 등급에 포함되며 Community에는 없음",
+        "beekeeper-lifetime-license": "연간 요금제 또는 월간 요금제의 12개월 연속 이용 시, 결제 기간에 출시된 버전의 유료 기능을 구독 종료 후에도 계속 사용할 수 있습니다. 클라우드 워크스페이스는 활성 구독이 필요합니다."
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "seo": {
+        "title": "在 {devices} 上用 SQL 查詢 Beancount 帳本",
+        "description": "將 Beancount 帳本開啟為交易、分錄、餘額和中繼資料的唯讀 SQL 資料表，處理 include，並透過 rledger 執行 BQL。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "用 SQL 查詢 Beancount 帳本"
+    },
+    "engine": "beancount",
+    "breadcrumb": "Beancount",
+    "header": {
+        "title": "在 {devices} 上用 SQL 查詢 Beancount 帳本",
+        "lead": "開啟 <code>.beancount</code>，將交易、分錄、餘額和中繼資料作為 SQL 資料表查詢，或向 rledger 傳送 BQL。帳本仍為文字檔，使用自己的編輯器修改。"
+    },
+    "asset": "mac-db-beancount-bql",
+    "links": {
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export",
+        "files": "/features/import-export#files"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "開啟帳本",
+            "paragraphs": [
+                "TablePro 執行 <code>rledger</code> 或 Python Beancount 讀取帳本。需要選擇時請安裝 rledger：兩者並存時優先使用它，只有它能執行 BQL，並將驗證輸出填入 <code>diagnostics</code> 資料表。",
+                "在連線表單用 <ui>Browse…</ui> 選擇檔案。帳本路徑就是整個連線，無主機、連接埠、密碼或資料庫。<code>.beancount</code> 也可從 Finder 開啟，並支援匯入 <code>beancount:///path/to/main.beancount</code> URL。",
+                "從 Finder 開啟的 App 不繼承 shell 的 <code>PATH</code>。若後端在 Terminal 可執行但在此不可用，請用 <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> 或 <code>TABLEPRO_BEANCOUNT_PYTHON</code> 指定並重新啟動。",
+                "Python 後端執行 Beancount 附帶外掛程式，其他 <code>plugin</code> 指令屬於第三方程式碼，在連線中啟用 <ui>Run Ledger Plugins</ui> 前會跳過。跳過的外掛程式列在 <code>diagnostics</code>。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查詢帳本",
+            "paragraphs": [
+                "資料表涵蓋交易和分錄、帳戶、餘額及餘額斷言、價格和商品、所有其他指令、中繼資料、標籤、連結及來源檔案。分錄透過 <code>transaction_id</code> 聯結交易，帳戶依名稱聯結。",
+                "金額已完成記帳、算術、成本和價格解析，分錄成本和行內價格有獨立欄位。交易、分錄及若干指令資料表含 <code>source_location</code>，例如 <code>main.beancount:42</code>，可從紀錄追溯來源檔案行。",
+                "查詢前加 <code>BQL:</code> 將其傳送給 rledger 而非資料表。BQL 結果支援瀏覽、列數和分頁，不支援 SQL 參數。",
+                "<code>include</code> 支援具體路徑和 glob，所有帳本檔案及參照文件均被監控。在編輯器儲存後，下次查詢無須重新連線即可讀取。連線始終處於 <safeMode>安全模式</safeMode> Read-Only，拒絕 INSERT、UPDATE、DELETE 和結構修改。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "資料表或查詢結果可匯出為 {exportFormats}。<files>TablePro 可作為資料庫開啟的其他檔案</files>包括 SQLite、DuckDB 和 Parquet。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "errors",
+            "question": "有錯誤的帳本還能開啟嗎？",
+            "answer": "透過 rledger 可以。驗證失敗時仍映射帳本，每個問題作為 <code>diagnostics</code> 中的一列，含檔案、行號、嚴重程度和訊息。"
+        },
+        {
+            "id": "several-ledgers",
+            "question": "一個連線能開啟多個帳本嗎？",
+            "answer": "一個連線對應一個帳本檔案，無法切換。主檔案若 include 其他檔案，會全部載入，也支援 glob。"
+        }
+    ],
+    "related": [
+        {
+            "label": "用於分析檔案的 DuckDB",
+            "href": "/duckdb-client"
+        },
+        {
+            "label": "SQLite，單一檔案資料庫",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "匯入、匯出與資料檔案",
+            "href": "/features/import-export"
+        }
+    ]
+}

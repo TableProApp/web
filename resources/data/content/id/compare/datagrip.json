@@ -1,0 +1,195 @@
+{
+    "seo": {
+        "title": "TablePro vs DataGrip: IDE atau klien native",
+        "description": "DataGrip adalah IDE JetBrains, gratis hanya untuk penggunaan nonkomersial. TablePro adalah klien native sumber terbuka. Bandingkan AI, MCP, Git, dan impor."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs DataGrip"
+    },
+    "header": {
+        "title": "TablePro vs DataGrip",
+        "lead": "DataGrip adalah IDE database JetBrains untuk Windows, macOS, dan Linux, dibangun di atas {technology}. Gratis untuk penggunaan nonkomersial, dan berlangganan tahunan atau bulanan untuk pekerjaan lain. TablePro adalah klien sumber terbuka dengan aplikasi native untuk Mac dan aplikasi lain untuk iPhone dan iPad. Gratis digunakan untuk pekerjaan apa pun, dan paket berbayar menambahkan fitur opsional pada aplikasi Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda ingin klien untuk pekerjaan berbayar tanpa harus membayar. TablePro gratis digunakan untuk pekerjaan apa pun, dan paket berbayar menambahkan fitur seperti {starterExamples}.",
+            "Anda ingin asisten AI yang mengirim permintaan langsung ke penyedia yang Anda tambahkan, tanpa layanan AI atau kredit milik TablePro sebagai perantara. Gratis dalam aplikasi Mac, begitu pula server MCP.",
+            "Anda lebih memilih aplikasi Mac yang ditulis dalam Swift daripada IDE lengkap.",
+            "Anda juga ingin aplikasi untuk iPhone dan iPad."
+        ],
+        "competitor": [
+            "Anda bekerja di Windows atau Linux selain Mac.",
+            "Anda ingin IDE dengan pemeriksaan kode dan kontrol versi dalam jendela yang sama dengan kueri.",
+            "Pekerjaan Anda nonkomersial, seperti belajar, proyek hobi, atau pekerjaan sumber terbuka tanpa manfaat komersial. DataGrip gratis untuk itu, dengan semua fitur.",
+            "Anda terhubung ke mesin yang tidak didukung TablePro, seperti Firebird, Informix, atau Databricks."
+        ]
+    },
+    "glance": {
+        "intro": "Harga DataGrip dihitung per pengguna. Untuk individu, harga tahunan turun pada tahun kedua dan ketiga. Kedua produk memiliki asisten AI dan server MCP; server MCP DataGrip hadir pada versi {cells.mcp.version}."
+    },
+    "rows": {
+        "vcs": {
+            "label": "Kontrol versi",
+            "tablepro": "Gratis untuk folder SQL tertaut: huruf status Git, riwayat commit setiap berkas dengan diff berdampingan, Restore This Version, dan Discard Changes. Tanpa staging, commit, push, atau branch"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DataGrip berjalan di Windows, macOS, dan Linux, sehingga IDE yang sama mengikuti Anda di berbagai komputer.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Ini adalah IDE. Kontrol versi seperti Git berada di samping kueri, dan mesin dengan dukungan lengkap mendapat pemeriksaan kode serta perbaikan cepat.",
+                "cite": [
+                    "cells.vcs",
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Terhubung ke mesin yang tidak didukung TablePro, seperti Firebird, Informix, dan Databricks, dengan dukungan dasar melalui driver JDBC-nya.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Penggunaan nonkomersial gratis, dengan semua fitur versi berbayar.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro gratis digunakan untuk pekerjaan apa pun, termasuk komersial, tanpa masa uji coba atau batas waktu. Aplikasi Mac mengirim <link>laporan penggunaan</link> harian ke TablePro, aktif secara default, yang dapat Anda nonaktifkan di Pengaturan. Lisensi gratis DataGrip hanya untuk penggunaan nonkomersial, dan mengumpulkan statistik penggunaan yang tidak dapat Anda nonaktifkan.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": "/privacy#mac-usage-report"
+            },
+            {
+                "text": "TablePro adalah aplikasi Mac yang ditulis dalam Swift, dengan driver database native. DataGrip dibangun di atas {technology}.",
+                "cite": [
+                    "technology"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Asisten AI</link> gratis dalam aplikasi Mac dan bekerja dengan penyedia pilihan Anda, di cloud atau Mac Anda; TablePro tidak mengoperasikan layanan AI dan tidak menjual kredit AI. DataGrip menggunakan JetBrains AI, yang memiliki layanan sendiri dengan kuota kredit serta menerima kunci penyedia Anda atau model lokal.",
+                "cite": [
+                    "cells.ai"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Keduanya memiliki server MCP. <link>Server TablePro</link> gratis, hanya mendengarkan di Mac Anda, dan memungkinkan setiap koneksi menentukan tindakan yang boleh dilakukan aplikasi eksternal: Blocked, Read Only, atau Read & Write.",
+                "cite": [
+                    "cells.mcp"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp#mcp"
+            },
+            {
+                "text": "<link>Compare & Sync</link> membandingkan struktur atau data dua database dan menulis skrip untuk menyelaraskan satu dengan yang lain. Fitur ini termasuk Starter.",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "Tersedia <link>aplikasi iPhone dan iPad gratis</link>, tanpa pembelian dalam aplikasi. DataGrip tidak memiliki aplikasi seluler.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro adalah klien, bukan IDE. <link>Folder SQL tertaut</link> menampilkan status serta riwayat Git setiap berkas, tetapi staging, commit, push, dan branch dilakukan di alat Git Anda sendiri.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#history"
+            },
+            {
+                "text": "TablePro hanya terhubung ke mesin yang memiliki driver, tanpa koneksi JDBC generik. Periksa <link>database yang didukung</link> terlebih dahulu.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro membaca sumber data global DataGrip dan sumber data proyek terbaru Anda. DataGrip tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "steps": [
+            "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
+            "Pilih DataGrip. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi yang disimpan DataGrip dalam Keychain macOS, termasuk kata sandi SSH dan frasa sandi kunci.",
+            "macOS meminta kata sandi login Anda sekali untuk setiap kata sandi tersimpan. Pilih <ui>Always Allow</ui> pada setiap permintaan.",
+            "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Grup, tunnel SSH, dan pengaturan SSL ikut dipindahkan. Koneksi ke mesin yang tidak didukung TablePro masuk tanpa dicentang.",
+            "Sebelum menghapus DataGrip, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
+        ],
+        "after": [
+            "Konsol, berkas sementara, riwayat kueri, dan pintasan keyboard tetap di DataGrip.",
+            "Kata sandi yang dilindungi kata sandi utama DataGrip tidak dapat dibaca. Koneksi tersebut masuk tanpa kata sandi, dan Anda mengaturnya di TablePro."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "commercial-use",
+            "question": "Bisakah saya menggunakan aplikasi TablePro gratis untuk pekerjaan berbayar?",
+            "answer": "Ya. Aplikasi Mac gratis digunakan untuk pekerjaan apa pun, tanpa masa uji coba atau batas waktu. DataGrip gratis hanya untuk penggunaan nonkomersial, jadi membuat produk komersial atau menyediakan layanan berbayar memerlukan langganan.",
+            "href": null
+        },
+        {
+            "id": "ai-provider",
+            "question": "Apakah asisten AI TablePro memerlukan paket seperti JetBrains AI?",
+            "answer": "Tidak. TablePro tidak mengoperasikan layanan AI sendiri. Anda menambahkan penyedia: kunci API, akun yang sudah dimiliki, atau model yang berjalan di Mac Anda. Tidak ada yang dikirim sampai Anda menambahkannya. <link>Cara kerja asisten AI</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "mcp",
+            "question": "DataGrip juga memiliki server MCP. Apa yang dilakukan server TablePro?",
+            "answer": "Server memungkinkan klien seperti Claude Code dan Cursor menggunakan koneksi TablePro tersimpan tanpa melihat kata sandi. Hanya mendengarkan di 127.0.0.1, setiap koneksi bersifat Read Only untuk aplikasi eksternal sampai Anda mengubahnya, dan gratis. DataGrip memiliki server sendiri sejak versi {cells.mcp.version}.",
+            "href": null
+        },
+        {
+            "id": "jdbc-url",
+            "question": "Bisakah saya menempel URL JDBC dari DataGrip?",
+            "answer": "Ya, untuk mesin yang didukung TablePro. <ui>File > Import > Import from URL…</ui> membaca URL jdbc: serta postgres:// dan mysql://. Untuk memindahkan semua sumber data sekaligus, gunakan pengimpor yang dijelaskan di atas.",
+            "href": null
+        }
+    ],
+    "notes": {
+        "datagrip-non-commercial-telemetry": "Untuk belajar, proyek hobi, pembuatan konten, dan pekerjaan sumber terbuka tanpa manfaat komersial, dengan semua fitur. Diaktifkan melalui JetBrains Account, dan statistik penggunaan dikumpulkan tanpa opsi untuk menonaktifkan.",
+        "datagrip-databases": "Dukungan lengkap, dengan pemeriksaan kode dan perbaikan cepat, untuk mesin utama. Mesin lain, seperti DuckDB, Firebird, Informix, dan Databricks, mendapat dukungan dasar melalui driver JDBC: penyorotan dan penelusuran objek, tanpa pemeriksaan kesalahan.",
+        "datagrip-ai-quota": "JetBrains AI: tingkat gratis dengan kuota kredit AI kecil yang berulang, paket AI berbayar untuk lebih banyak penggunaan layanan JetBrains sendiri, atau kunci penyedia Anda atau model lokal."
+    }
+}

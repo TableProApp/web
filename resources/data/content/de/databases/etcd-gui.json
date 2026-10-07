@@ -1,0 +1,87 @@
+{
+    "seo": {
+        "title": "etcd-Oberfläche für {devices}",
+        "description": "Schlüssel nach Präfix ansehen, Werte und Leases ändern, get, put, watch und lease im etcdctl-Stil ausführen, mit TLS und SSH-Tunneln."
+    },
+    "og": {
+        "kicker": "Datenbanken",
+        "title": "Grafische Oberfläche für etcd"
+    },
+    "engine": "etcd",
+    "breadcrumb": "etcd",
+    "header": {
+        "title": "Grafische Oberfläche für etcd auf {devices}",
+        "lead": "Durchsuche die Schlüssel eines Clusters nach Präfix, ändere Werte und Leases im Raster und führe im Editor Befehle im etcdctl-Stil wie <code>get --prefix</code>, <code>lease grant</code> und <code>member list</code> aus."
+    },
+    "asset": "mac-db-etcd-keys",
+    "links": {
+        "network": "/features/connections#network",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Verbinden",
+            "paragraphs": [
+                "Gib TablePro einen Host und den Client-Port. etcd hat keine Datenbanken, daher gibt es kein Datenbankfeld. Verwende den Client-Port: Der Peer-Port bietet kein JSON-Gateway, und eine darauf gerichtete Verbindung öffnet nie. Das Formular nimmt einen Endpunkt und bietet kein Failover; wähle daher ein erreichbares Mitglied.",
+                "Lasse <ui>Benutzername</ui> und <ui>Passwort</ui> bei einem Cluster ohne Authentifizierung leer. Ein Benutzer ohne <code>root</code>-Rolle verbindet sich und durchsucht die Schlüssel seiner Rollen; <code>endpoint status</code> sowie <code>user</code>- und <code>role</code>-Befehle antworten dagegen mit Zugriff verweigert.",
+                "TLS wird mit <ui>TLS-Modus</ui> in den erweiterten Feldern festgelegt, nicht in einem SSL-Abschnitt, und beginnt deaktiviert. Erforderlich (Prüfung überspringen) verschlüsselt ohne Prüfung; CA prüfen prüft das Zertifikat gegen die angegebene CA-Datei, und Identität prüfen ergänzt den Hostnamen. Client-Zertifikat und Schlüssel fügen gegenseitiges TLS hinzu.",
+                "Erreiche einen Cluster hinter einem Bastion-Host über einen <network>SSH-Tunnel</network>. <code>etcd://</code>- und <code>etcds://</code>-URLs lassen sich importieren; keine aktiviert TLS von selbst."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Schlüssel durchsuchen und Befehle ausführen",
+            "paragraphs": [
+                "Setze <ui>Schlüsselpräfix-Wurzel</ui>, etwa <code>/app</code>, um eine Verbindung auf einen Teilbaum zu begrenzen. Die Seitenleiste gruppiert Schlüssel nach ihrem ersten Pfadsegment darunter; jeder Schlüssel ist eine Zeile mit Wert, Version, Änderungs- und Erstellungsrevision sowie Lease.",
+                "Das Speichern einer Änderung sendet Befehle. Ein neuer Wert oder Lease schreibt den Schlüssel erneut; ein NULL-Lease entfernt den Lease, und beim Umbenennen wird der neue Name geschrieben und der alte gelöscht. Revisionsspalten gehören etcd; ihre Bearbeitung stoppt daher das Speichern und nennt die Spalte.",
+                "Der Editor nimmt Befehle im etcdctl-Stil mit Vervollständigung für Befehle und Optionen entgegen: <code>get</code> mit <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> und Sortierung, <code>put</code> mit <code>--lease</code>, <code>del</code>, <code>watch</code>, die <code>lease</code>-Unterbefehle, <code>member list</code>, <code>endpoint status</code> und <code>health</code>, <code>compaction</code> sowie <code>auth</code>-, <code>user</code>- und <code>role</code>-Befehle. Alles andere kommt als unbekannter Befehl zurück, ohne den Server zu erreichen.",
+                "Der etcd-Treiber kann keine schreibgeschützte Sitzung öffnen, daher behandelt <safeMode>Sicherer Modus</safeMode> jeden Befehl als Schreibzugriff: Auf den Stufen Warnung und Sicherer Modus fragt jeder Befehl zuerst nach; Nur lesen blockiert alle."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Leases und Cluster",
+            "paragraphs": [
+                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> mit <code>--keys</code>, <code>list</code> und <code>keep-alive</code> verwalten Leases; <code>compaction</code> kürzt den Revisionsverlauf. <code>member list</code>, <code>endpoint status</code> und <code>endpoint health</code> berichten im Editor über den Cluster, da es kein Server-Dashboard für etcd gibt.",
+                "<code>auth enable</code> im Editor aktiviert die Authentifizierung für den gesamten Cluster. Eine Verbindung mit Benutzername und Passwort funktioniert weiter; eine ohne beides muss mit Zugangsdaten neu geöffnet werden."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Daten übertragen",
+            "paragraphs": [
+                "Es gibt keinen Import. <export>Exportiere</export> Schlüssel oder das Ergebnis eines Befehls als CSV, JSON oder XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "lease-ids",
+            "question": "Warum verweist eine Lease-ID auf einen anderen Lease?",
+            "answer": "Lease-IDs akzeptieren Dezimal- oder Hexwerte; Hex wird an Buchstaben erkannt. Stelle einer nur aus Ziffern bestehenden Hex-ID <code>0x</code> voran, etwa <code>--lease=0x69407712</code>, sonst wird sie als Dezimalwert gelesen und verweist auf einen anderen Lease."
+        },
+        {
+            "id": "binary-values",
+            "question": "Kann ich Binärwerte bearbeiten?",
+            "answer": "Nein. Ein ungültiger UTF-8-Wert wird im Raster als entsprechend markiertes base64 angezeigt; eingegebener Text wird als UTF-8 gesendet. Schreibe Binärwerte mit <code>etcdctl</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Daten sicher durchsuchen und bearbeiten",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Verbindungen, Tunnel und Zugangsdaten",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Redis, ein weiterer Schlüsselraum",
+            "href": "/redis-gui"
+        }
+    ]
+}

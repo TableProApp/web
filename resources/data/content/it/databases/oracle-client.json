@@ -1,0 +1,116 @@
+{
+    "seo": {
+        "title": "Oracle Database per {devices}",
+        "description": "Connettiti a Oracle senza Instant Client, esegui PL/SQL e script SQL*Plus, leggi DBMS_OUTPUT e avvia esportazioni Data Pump sul server."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Client Oracle Database"
+    },
+    "engine": "oracle",
+    "breadcrumb": "Oracle",
+    "header": {
+        "title": "Client Oracle Database per {devices}",
+        "lead": "Il driver implementa il protocollo TNS di Oracle in Swift, quindi Instant Client e gli altri componenti Oracle non servono sul Mac. Esegui SQL e PL/SQL, inclusi script per SQL*Plus, e leggi l’output di DBMS_OUTPUT accanto a ogni risultato."
+    },
+    "asset": "mac-db-oracle-plsql",
+    "links": {
+        "network": "/features/connections#network",
+        "parameters": "/features/querying#history",
+        "editing": "/features/data-editing#edit",
+        "safeMode": "/features/data-editing#safe-mode",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "importData": "/features/import-export#import",
+        "serverExport": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti",
+            "paragraphs": [
+                "Inserisci host, porta del listener e Service Name oppure passa <ui>Connection Type</ui> a SID per un’istanza senza servizio. Accedi con nome utente e password, come Normal o con ruolo SYSDBA o SYSOPER.",
+                "Native Network Encryption non richiede configurazione: quando il server la richiede, vengono offerti AES con checksum SHA-2 e l’impostazione <ui>Network Encryption</ui> cambia ciò che offre TablePro. Per TLS scegli Required per TCPS oppure Verify CA o Verify Identity con un certificato CA. Le nuove connessioni iniziano con SSL disattivato e Preferred rimane su TCP non cifrato.",
+                "Su Oracle Autonomous Database copia host, porta e nome del servizio dalla stringa di connessione TLS, non da quella mTLS, e imposta SSL su Required o Verify CA. I file wallet non vengono mai letti, quindi il database deve accettare TLS senza TLS reciproco.",
+                "Un listener RAC SCAN, un server condiviso o un bilanciatore di carico davanti al database non richiedono configurazione e un <network>tunnel SSH</network> raggiunge un listener su una rete privata."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SQL, PL/SQL e transazioni",
+            "paragraphs": [
+                "Un blocco PL/SQL o un’unità memorizzata viene eseguito come una sola istruzione, indipendentemente dal numero di punti e virgola: posiziona il cursore al suo interno ed eseguilo. Gli script per SQL*Plus o SQL Developer funzionano senza modifiche, con una riga contenente solo <code>/</code> che termina l’unità precedente. Un’unità che non compila fallisce con gli errori di Oracle, uno per riga con relativa posizione.",
+                "Le righe di <code>DBMS_OUTPUT.PUT_LINE</code> compaiono con il risultato dell’istruzione che le ha stampate, senza richiedere <code>SET SERVEROUTPUT ON</code>. In un blocco anonimo, <code>:name</code> è un <parameters>parametro di query</parameters> da compilare in un pannello.",
+                "Ogni istruzione viene confermata quando riesce. Inizia con <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> o <code>LOCK TABLE</code> per mantenere le modifiche in attesa e tutto ciò che segue aspetta il tuo <code>COMMIT</code> o <code>ROLLBACK</code>, salvataggi della griglia inclusi.",
+                "Ogni utente è uno schema e <code>Cmd+K</code> cambia quello attivo senza riconnettersi. Le modifiche alle righe restano in attesa con <editing>Preview SQL</editing>. Un blocco che elimina o tronca, anche tramite <code>EXECUTE IMMEDIATE</code>, attiva l’<safeMode>avviso di query pericolosa</safeMode> prima dell’esecuzione."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Schema",
+            "paragraphs": [
+                "La <structure>scheda Structure</structure> scrive <code>ALTER TABLE</code> per aggiungere, rinominare, modificare ed eliminare colonne e creare indici, con nomi sensibili alle maiuscole delimitati da doppi apici. Le informazioni della tabella includono anche chiavi primarie, chiavi esterne e il DDL CREATE TABLE.",
+                "Una tabella partizionata elenca sotto di sé le partizioni, ciascuna con la posizione, e le sottopartizioni sono annidate sotto la propria partizione. Interrogane una con <code>SELECT * FROM orders PARTITION (p2024)</code>.",
+                "<compareSync>Compare & Sync</compareSync>, incluso nel piano {compareSyncTier}, confronta due schemi Oracle o i loro dati e salva uno script con una riga <code>/</code> dopo ogni unità, pronto per SQL*Plus o SQLcl."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Esporta sul server",
+            "paragraphs": [
+                "<serverExport>Server-Side Export</serverExport> avvia un job Data Pump che scrive una tabella in un oggetto <code>DIRECTORY</code> sul server, con i tuoi privilegi. Nulla viene salvato sul Mac. Il job continua dopo che la schermata ne ha segnalato l’avvio: seguilo in <code>DBA_DATAPUMP_JOBS</code>."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "<importData>Importa</importData> file {importFormats}; quando un file di dati crea una nuova tabella, il nome proposto è maiuscolo e rispetta il limite di lunghezza di Oracle. Esporta tabelle o risultati in {exportFormats}. Un’esportazione SQL aggiunge una riga <code>/</code> dopo ogni routine e trigger, così SQL*Plus può ripristinarli."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone e iPad",
+            "paragraphs": [
+                "Su iPhone e iPad il driver Oracle è incluso nell’app. Il modulo accetta Service Name o SID, ruoli SYSDBA e SYSOPER e l’impostazione Network Encryption. Esplora le tabelle come schede, modifica righe con chiave primaria ed esegui SQL nella scheda Query; creazione e modifica delle tabelle rimangono sul Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "pluggable-database",
+            "question": "Perché non vedo nessuna tabella della mia applicazione?",
+            "answer": "Probabilmente ti sei connesso al database contenitore. Un database pluggable ha un proprio nome di servizio, come <code>XEPDB1</code> dentro <code>XE</code>. Esegui <code>lsnrctl services</code> sul server per elencare i nomi serviti dal listener."
+        },
+        {
+            "id": "sqlplus-commands",
+            "question": "Perché SET SERVEROUTPUT ON fallisce?",
+            "answer": "Comandi SQL*Plus come <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code> ed <code>EXEC</code> non sono SQL, quindi il server li rifiuta. Eliminali: l’output è attivo fin dalla connessione. Scrivi <code>EXEC p</code> come <code>BEGIN p; END;</code>."
+        },
+        {
+            "id": "password-verifier",
+            "question": "Si connette un account con un vecchio verificatore di password 10G?",
+            "answer": "Sì, anche se Oracle ha deprecato l’hashing basato su DES che usa. Cambia la password con <code>ALTER USER … IDENTIFIED BY</code> e controlla che <code>password_versions</code> in <code>dba_users</code> contenga poi 11G o 12C."
+        }
+    ],
+    "related": [
+        {
+            "label": "Scrivi, esegui e comprendi le query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Backup ed esportazione sul server",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "Schema, confronto e sincronizzazione",
+            "href": "/features/schema"
+        },
+        {
+            "label": "TablePro per iPhone e iPad",
+            "href": "/ios"
+        }
+    ]
+}

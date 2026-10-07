@@ -1,0 +1,118 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 SQLite 客户端",
+        "description": "打开 Mac 本地或 SSH 上的 SQLite 文件，加载 sqlite-vec、SpatiaLite 等扩展，并在预先审查后重建表修改结构。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "SQLite 客户端"
+    },
+    "engine": "sqlite",
+    "breadcrumb": "SQLite",
+    "header": {
+        "title": "适用于 {devices} 的 SQLite 客户端",
+        "lead": "从 Finder、拖放或 SSH 服务器打开数据库文件，使用应用内置 SQLite 查询，并通过执行前审查的重建脚本修改结构。"
+    },
+    "asset": "mac-db-sqlite-chinook",
+    "links": {
+        "remoteFiles": "docs:/connections/remote-database-files",
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "copy": "/features/schema#copy",
+        "explain": "/features/querying#performance"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "打开数据库文件",
+            "paragraphs": [
+                "在连接表单选择文件，或拖到 TablePro 窗口或 Dock 图标。不存在的文件路径会在连接时创建。无论文件名是什么，开头字节为 <code>SQLite format 3</code> 时便以 SQLite 打开。",
+                "Finder 会在 .db、.sqlite、.sqlite3 等文件的“打开方式”中列出 TablePro。Messages、Safari 历史等受 macOS 保护文件夹中的数据库，需要先授予完全磁盘访问权限，通常还需退出所属应用。",
+                "其他机器上的数据库通过 <remoteFiles>Remote File 面板</remoteFiles>打开。On the Server 通过 SSH 对实时文件执行语句，主机除 <code>python3</code> 外无需安装任何内容。As a Read-Only Copy 经 SFTP 获取快照并只读打开。",
+                "可先选择 Help > Open Sample Database，打开应用附带的小型数字音乐商店示例 Chinook。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查询和编辑",
+            "paragraphs": [
+                "驱动内置 SQLite，不论 macOS 版本，SQL 均在同一版本运行。<explain>EXPLAIN QUERY PLAN</explain> 绘制为图形。",
+                "可按列出顺序为每个连接加载 sqlite-vec、SpatiaLite 等扩展，其函数和虚拟表可用于编辑器、侧栏和 Structure 标签页。SQL 函数 <code>load_extension()</code> 仍被拒绝，通过同步、导入连接或链接传入的列表，在批准前不会加载任何扩展。",
+                "行编辑暂存至保存，<editing>Preview SQL</editing> 先显示所有语句。其他程序修改文件时，侧栏会自动重新加载。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "结构",
+            "paragraphs": [
+                "重命名表或列、添加或删除列，以及 SQLite 3.53 起添加或删除 CHECK，使用 ALTER TABLE 执行。列类型、外键等其他 <structure>Structure 标签页</structure>修改会重建表：TablePro 生成脚本，连同 rowid 复制行，恢复索引和触发器，仅在确认后运行。",
+                "修改列类型会按新的类型亲和性重新读取值，例如 INTEGER 列中 <code>'007'</code> 变成 <code>7</code>，执行前审查面板会说明。FTS5 等虚拟表无法重建，保存时会指明其名称。",
+                "可从侧栏查看和编辑触发器。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "维护和备份",
+            "paragraphs": [
+                "表维护运行 VACUUM、ANALYZE、REINDEX 和完整性检查，每项执行前均显示 SQL。Server Dashboard 显示文件大小、页数、页大小、日志模式和缓存大小。",
+                "<backup>Backup Dump</backup> 使用 {dumpTool} 将数据库写入 .sql 文件，Restore Dump 对数据库运行此类文件。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "<importData>导入</importData> {importFormats} 文件，或在 <dataFiles>Data Files 窗口</dataFiles>打开 CSV、JSON、XLSX 后从中导入。表和结果导出为 {exportFormats}。",
+                "<copy>Copy To</copy> 将表和行移动到 PostgreSQL 服务器等其他连接，列出所有需要近似转换的列类型。另见<files>将文件作为数据库处理</files>。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 和 iPad",
+            "paragraphs": [
+                "iPhone 和 iPad 上可选择或创建数据库文件，也可从 Open Sample Database 打开 Chinook 示例。按卡片浏览表、筛选、编辑有主键的行，并在 Query 标签页运行 SQL。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "encrypted",
+            "question": "能打开加密的 SQLite 数据库吗？",
+            "answer": "不能。内置 SQLite 不接受密钥，因此 SQLCipher、SEE 文件无法打开。请先用 sqlcipher 工具解密文件。"
+        },
+        {
+            "id": "version",
+            "question": "使用哪个 SQLite 版本？",
+            "answer": "驱动内置 SQLite {engineVersion}，不依赖 macOS 附带版本。"
+        },
+        {
+            "id": "framework-files",
+            "question": "能打开应用的开发数据库吗？",
+            "answer": "可以。打开框架保存的文件，例如 Rails 的 <code>db/development.sqlite3</code> 或 Django 的 <code>db.sqlite3</code>。<code>~/Library</code> 下的文件，包括 iOS Simulator 容器，需要完全磁盘访问权限。"
+        }
+    ],
+    "related": [
+        {
+            "label": "导入、导出和数据文件",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Cloudflare D1，通过 HTTP 使用 SQLite",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "Turso 和 libSQL",
+            "href": "/turso-client"
+        },
+        {
+            "label": "用于分析文件的 DuckDB",
+            "href": "/duckdb-client"
+        }
+    ]
+}

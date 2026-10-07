@@ -1,0 +1,161 @@
+{
+    "seo": {
+        "title": "PostgreSQL per {devices}",
+        "description": "Connettiti a PostgreSQL via SSH, SSL/TLS, AWS IAM o ~/.pgpass e a CockroachDB e PGlite con lo stesso driver. Diagrammi EXPLAIN e backup pg_dump."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Client PostgreSQL"
+    },
+    "engine": "postgresql",
+    "breadcrumb": "PostgreSQL",
+    "header": {
+        "title": "Client PostgreSQL per {devices}",
+        "lead": "Lavora con schemi, array, jsonb e PostGIS, leggi piani EXPLAIN come diagrammi e gestisci ruoli, sessioni, manutenzione e backup. Lo stesso driver supporta anche Amazon Redshift, CockroachDB e PGlite."
+    },
+    "asset": "mac-db-postgresql-explain",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "results": "/features/querying#results",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "redshift": "/redshift-client"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti",
+            "paragraphs": [
+                "Fornisci host, porta, utente e database a TablePro oppure incolla un URL <code>postgresql://</code> o <code>postgres://</code>. PostgreSQL richiede il database per connettersi.",
+                "Le nuove connessioni iniziano con SSL su Preferred, il <code>sslmode=prefer</code> di libpq. Scegli Verify CA o Verify Identity per verificare il certificato del server.",
+                "Attiva Use ~/.pgpass per leggere la password da <code>~/.pgpass</code>. Il modulo segnala ciò che ha trovato, incluso un file con permessi che farebbero sì che libpq lo ignori.",
+                "Raggiungi un server privato tramite un <network>tunnel SSH, con jump host se necessari, proxy SOCKS5, tunnel Cloudflare Access o comando di tunnel</network> come kubectl port-forward. Su Amazon RDS e Aurora accedi con <cloudAuth>AWS IAM</cloudAuth> come ruolo con <code>rds_iam</code>. Per Google Cloud SQL, TablePro scarica ed esegue Cloud SQL Auth Proxy.",
+                "Qualsiasi opzione di connessione accettata da libpq, come <code>-c application_name=reporting</code>, va in Connection Options."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Esegui query e modifica",
+            "paragraphs": [
+                "L’editor SQL completa nomi di tabelle e colonne dallo schema. <explain>EXPLAIN ed EXPLAIN ANALYZE</explain> usano FORMAT JSON e vengono rappresentati come diagramma o albero del piano; EXPLAIN Compare mostra se un piano è diventato più lento dopo una modifica.",
+                "jsonb viene formattato e uuid, inet, timestamptz, interval e bytea mantengono la propria rappresentazione. Le colonne array aprono un editor di liste in cui aggiungi, rimuovi, riordini e imposti a null singoli elementi; le colonne enum offrono le proprie etichette.",
+                "I valori geometry e geography di PostGIS vengono letti come EWKT con SRID e un risultato con geometria si apre nella <results>vista Map</results>. Le tessere della mappa provengono da Apple; le righe rimangono sul Mac.",
+                "Le modifiche alle righe restano in attesa del salvataggio, con <editing>Preview SQL</editing> che mostra prima ogni istruzione; i salvataggi usano parametri associati. Le righe di una vista materializzata sono in sola lettura: aggiornala dal menu, in modo concorrente quando ha l’indice univoco richiesto da PostgreSQL."
+            ],
+            "asset": "mac-result-map"
+        },
+        {
+            "id": "schema",
+            "title": "Schemi e struttura",
+            "paragraphs": [
+                "Ogni schema accessibile è elencato. Crea e modifica schemi da una schermata che scrive CREATE SCHEMA, proprietario, commento e permessi USAGE e CREATE e li mostra prima dell’esecuzione.",
+                "La <structure>scheda Structure</structure> prepara modifiche a colonne, indici, chiavi esterne, vincoli CHECK e colonne generate. Le tabelle partizionate elencano le partizioni con i limiti, annidate se una partizione è a sua volta partizionata. Enum, tipi compositi, domini e intervalli sono elencati sotto Types e le etichette enum possono essere aggiunte e rinominate.",
+                "La definizione di una vista viene ricostruita con ogni tabella qualificata dallo schema e un indice rimasto non valido dopo una creazione concorrente fallita viene indicato nella scheda Indexes.",
+                "<compareSync>Compare & Sync</compareSync>, incluso nel piano {compareSyncTier}, confronta due schemi PostgreSQL o i loro dati e scrive lo script per allinearli, escludendo modifiche che farebbero perdere dati."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Amministra",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> mostra l’origine di ogni privilegio prima di concederlo o revocarlo e prepara ogni istruzione come SQL.",
+                "Il Server Dashboard mostra sessioni, connessioni, rapporto di hit della cache, dimensione del database e query lente. Annulla una query con <code>pg_cancel_backend</code> o termina una sessione con <code>pg_terminate_backend</code>. Un ruolo che non è superutente né membro di <code>pg_monitor</code> vede le altre sessioni senza le query.",
+                "La manutenzione delle tabelle esegue VACUUM con opzioni FULL, ANALYZE e VERBOSE, oltre ad ANALYZE, REINDEX e CLUSTER, e mostra prima l’istruzione.",
+                "<backup>Backup Dump e Restore Dump</backup> eseguono i tuoi {dumpTool} e pg_restore tramite il tunnel SSH della connessione. Installali con Homebrew; per un backup di un server PostgreSQL 9.1 usa pg_dump 14 o precedente."
+            ],
+            "asset": "mac-server-dashboard-postgresql"
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "<importData>Importa</importData> file {importFormats}; un file di dati viene caricato in una tabella con mappatura colonna per colonna e scegli cosa accade se una riga fallisce. Esporta una tabella o un risultato in {exportFormats}; un’esportazione SQL mantiene i commenti di tabelle, viste e viste materializzate.",
+                "<copy>Copy To</copy> invia tabelle, dati o entrambi a un’altra connessione PostgreSQL o di un altro motore ed elenca ogni tipo di colonna che deve approssimare."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone e iPad",
+            "paragraphs": [
+                "Su iPhone e iPad cambi database e schema dalla barra degli strumenti, esplori tabelle come schede, modifichi righe con chiave primaria ed esegui SQL nella scheda Query. SSL va da Required a Verify Identity, i tunnel SSH accedono con password o chiave e i jump host non sono supportati."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "cockroachdb",
+            "title": "CockroachDB",
+            "paragraphs": [
+                "CockroachDB usa il driver PostgreSQL incluso nell’app, quindi non serve installare nulla. I nuovi cluster iniziano con il database <code>defaultdb</code>.",
+                "Per CockroachDB Cloud copia host, utente, password e database dalla console Cloud, inserisci il valore di instradamento del cluster, <code>--cluster=your-cluster</code>, in Connection Options e imposta SSL Mode su Verify Identity. Per un nodo locale non sicuro, imposta SSL Mode su Disabled.",
+                "Il DDL di tabelle e viste proviene dal comando SHOW CREATE di CockroachDB. I piani testuali EXPLAIN ed EXPLAIN ANALYZE vengono interpretati come albero del piano e il Server Dashboard elenca sessioni e query attive.",
+                "I controlli delle chiavi esterne non possono essere differiti."
+            ]
+        },
+        {
+            "engine": "pglite",
+            "title": "PGlite",
+            "paragraphs": [
+                "PGlite è PostgreSQL compilato in WebAssembly e non è raggiungibile finché non avvii il suo server socket: <code>npx @electric-sql/pglite-socket</code>, con <code>--db=./my-pgdata</code> per mantenere i dati sul disco.",
+                "Connettiti a <code>127.0.0.1</code> anziché localhost. Il server socket non verifica mai una password e non offre TLS, quindi il modulo non richiede nessuno dei due.",
+                "I cataloghi di PGlite sono completi, quindi modifica della struttura, Users & Roles e diagrammi EXPLAIN funzionano come su un server. Espone un database, <code>postgres</code>."
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "pgadmin",
+                "text": "pgAdmin è il consolidato strumento di amministrazione open source per PostgreSQL, con debugger, confronto degli schemi e backup e ripristino.",
+                "notes": [
+                    "pgadmin-erd-design"
+                ]
+            },
+            {
+                "product": "postico",
+                "text": "Postico 2 è un’app per Mac dedicata a PostgreSQL, centrata su esplorazione e modifica. La sua documentazione non include attività amministrative come backup e ripristino, gestione utenti e monitoraggio."
+            }
+        ],
+        "notes": {
+            "pgadmin-erd-design": "Il suo strumento ERD progetta uno schema e genera l’SQL, mentre il diagramma ER di TablePro legge soltanto uno schema esistente."
+        }
+    },
+    "faq": [
+        {
+            "id": "hosted",
+            "question": "TablePro funziona con PostgreSQL ospitato, come Amazon RDS?",
+            "answer": "Sì. Un server ospitato usa host e porta come qualsiasi altro. Su RDS e Aurora puoi accedere anche con AWS IAM e per Google Cloud SQL TablePro esegue Cloud SQL Auth Proxy."
+        },
+        {
+            "id": "column-order",
+            "question": "Posso riordinare le colonne?",
+            "answer": "TablePro scrive lo script che ricostruisce la tabella con il nuovo ordine delle colonne e te lo mostra, ma non lo esegue mai. Leggilo e poi eseguilo quando la tabella può essere riscritta."
+        }
+    ],
+    "related": [
+        {
+            "label": "Scrivi, esegui e comprendi le query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema, confronto e sincronizzazione",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Amazon Redshift, sullo stesso driver",
+            "href": "/redshift-client"
+        },
+        {
+            "label": "Confronta TablePro con altri client di database",
+            "href": "/compare"
+        }
+    ]
+}

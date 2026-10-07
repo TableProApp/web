@@ -1,0 +1,102 @@
+{
+    "seo": {
+        "title": "ClickHouse para {devices}",
+        "description": "Consulte ClickHouse por HTTP ou HTTPS, leia planos EXPLAIN, pipelines e estimativas, gerencie partes e partições MergeTree e acompanhe mutações."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Cliente de ClickHouse"
+    },
+    "engine": "clickhouse",
+    "breadcrumb": "ClickHouse",
+    "header": {
+        "title": "Cliente de ClickHouse para {devices}",
+        "lead": "Execute SQL analítico pela interface HTTP do ClickHouse, leia o plano, o pipeline ou a estimativa de linhas de uma consulta e gerencie partes e partições MergeTree pela aba Parts da tabela. Consultas longas informam as linhas lidas durante a execução, e Stop as encerra no servidor."
+    },
+    "asset": "mac-db-clickhouse-parts",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "map": "/features/querying#map",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conecte-se",
+            "paragraphs": [
+                "Informe o host, a porta HTTP, um usuário e, se quiser, um banco. Alternar o banco acontece na mesma conexão, e uma aba aberta permanece no banco em que começou. <ui>View > Sidebar as Tree</ui> mostra os bancos do servidor como uma árvore que você expande no local.",
+                "Escolha qualquer modo SSL para usar HTTPS. As portas 443 ou 8443, usada pelo ClickHouse Cloud, ativam Verify Identity, que verifica o certificado com o arquivo CA ou o repositório de confiança do sistema. Verify CA exige um arquivo CA, e um certificado e uma chave de cliente acessam servidores que exigem TLS mútuo.",
+                "Sem TLS, acesse um servidor remoto por um <network>túnel SSH</network> em vez de enviar HTTP sem criptografia pela rede."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Consulte e edite",
+            "paragraphs": [
+                "Cada consulta leva seu próprio ID e solicita progresso, portanto uma consulta longa informa as linhas lidas durante a execução. Stop envia <code>KILL QUERY</code> para esse ID, e o timeout de consulta da conexão chega ao servidor.",
+                "O <explain>menu Explain</explain> oferece Plan, Pipeline, AST, Syntax e Estimate. A saída indentada é apresentada como diagrama ou árvore, e Estimate mostra as linhas, marcas e partes que uma consulta leria.",
+                "As edições na grade são enviadas como <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> e <code>ALTER TABLE … DELETE</code>, primeiro com <editing>Preview SQL</editing>. ClickHouse executa atualizações e exclusões como mutações em segundo plano, portanto salvar significa que foram aceitas, ainda não aplicadas; <code>system.mutations</code> mostra o progresso. Uma view materializada abre somente para leitura.",
+                "Um resultado com tuplas de ponto ou anel do ClickHouse abre na <map>visualização Map</map>. Uma consulta com sua própria cláusula <code>FORMAT</code> mostra a saída bruta do servidor em uma coluna, portanto omita a cláusula para obter uma grade."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tabelas, partes e partições",
+            "paragraphs": [
+                "Uma tabela abre com as abas Structure, Indexes, DDL e Parts. Indexes mostra a chave de ordenação e os índices data-skipping, e DDL mostra o <code>CREATE TABLE</code> completo, incluindo mecanismo e configurações.",
+                "Parts lista cada parte de <code>system.parts</code> com partição, linhas, tamanho no disco, data de modificação e indicação de atividade, e permite executar Optimize, Drop Partition e Detach Partition.",
+                "A <structure>aba Structure</structure> adiciona, modifica e remove colunas e remove índices data-skipping. A chave de ordenação e a chave primária são fixadas na criação da tabela, portanto adicione um índice data-skipping com <code>ALTER TABLE … ADD INDEX</code> e recrie a tabela para outras alterações."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Monitore",
+            "paragraphs": [
+                "O <dashboard>Server Dashboard</dashboard> mostra consultas ativas, merges ativos, mutações de partes e uso de disco, lista as outras sessões com <ui>Terminate Session</ui> em cada uma e lê as consultas lentas de <code>system.query_log</code>: as consultas concluídas mais recentes que demoraram mais de um segundo."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "Carregue arquivos {importFormats} com <importData>Import</importData> e exporte tabelas ou resultados de consultas como {exportFormats}. Uma coluna com pelo menos um valor que não é UTF-8 válido aparece em hexadecimal na grade; selecione <code>toValidUTF8(column)</code> para lê-la como texto."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "settings",
+            "question": "Como altero uma configuração para uma consulta?",
+            "answer": "Coloque-a em uma cláusula <code>SETTINGS</code> na própria consulta, como <code>SELECT … SETTINGS max_threads = 4</code>. Cada instrução é uma requisição HTTP independente, sem sessão, portanto um <code>SET</code> separado não permanece para a próxima."
+        },
+        {
+            "id": "native-port",
+            "question": "Por que a porta 9000 não conecta?",
+            "answer": "A porta 9000 é a porta TCP nativa de ClickHouse, que TablePro não usa. Conecte à porta HTTP ou à 8443 para HTTPS no ClickHouse Cloud e confira se a interface HTTP do servidor está ativa: uma requisição a <code>/ping</code> nessa porta responde <code>Ok.</code>"
+        }
+    ],
+    "related": [
+        {
+            "label": "Planos EXPLAIN e desempenho de consultas",
+            "href": "/features/querying#performance"
+        },
+        {
+            "label": "Esquema, comparação e sincronização",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Importação, exportação e arquivos de dados",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "DuckDB, para arquivos analíticos",
+            "href": "/duckdb-client"
+        }
+    ]
+}

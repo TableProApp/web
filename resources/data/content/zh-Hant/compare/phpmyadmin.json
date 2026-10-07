@@ -1,0 +1,214 @@
+{
+    "seo": {
+        "title": "TablePro vs phpMyAdmin：Web 工具或 Mac App",
+        "description": "phpMyAdmin 執行於 Web 伺服器，在瀏覽器開啟。TablePro 執行於 Mac，直接或經 SSH 連線。比較資料庫、設定和存取。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs phpMyAdmin"
+    },
+    "header": {
+        "title": "TablePro vs phpMyAdmin",
+        "lead": "phpMyAdmin 是 MySQL、MariaDB 的免費開放原始碼 Web 工具，安裝在 Web 伺服器，cPanel 已包含。TablePro 是 Mac 開放原始碼 App，有獨立 iPhone、iPad App，直接或經 SSH 通道連線資料庫。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "希望伺服器不安裝任何軟體，從 Mac 直接或經 SSH 工作。",
+            "也使用 PostgreSQL、SQL Server、SQLite、Redis 等引擎。",
+            "希望每個連線都有安全模式層級，如正式環境 Read-Only，或寫入前 Touch ID。",
+            "經常移入移出資料。CSV、JSON、XLSX、SQL 檔案匯入匯出免費。",
+            "希望 Mac App 內免費 AI 助手和 MCP 伺服器。"
+        ],
+        "competitor": [
+            "主機商在 cPanel 提供，且無 SSH 或資料庫遠端存取。",
+            "希望從任何有瀏覽器的電腦工作，無須安裝。",
+            "個人或團隊需要 TablePro Mac App 不提供的介面語言。"
+        ]
+    },
+    "glance": {
+        "intro": "phpMyAdmin 是 Web 應用程式，因此多列描述執行伺服器而非個人電腦。目前穩定版為 {status.version}，{cells.nextMajor.version} 正在開發。"
+    },
+    "rows": {
+        "cpanel": {
+            "label": "cPanel 內建",
+            "tablepro": "否，在 Mac 執行並連線伺服器"
+        },
+        "languages": {
+            "label": "介面語言",
+            "tablepro": "Mac App：{macLanguages}"
+        },
+        "designer": {
+            "label": "結構圖",
+            "tablepro": "免費唯讀 ER 圖，匯出 PNG 或 SQL"
+        },
+        "queryByExample": {
+            "label": "範例查詢（QBE）",
+            "tablepro": "不提供"
+        },
+        "nextMajor": {
+            "label": "下一主要版本",
+            "tablepro": "新 Mac 版本經 App 內更新或 Homebrew 提供"
+        },
+        "hardening": {
+            "label": "安裝安全",
+            "tablepro": "伺服器無安裝，資料庫仍需自身存取規則"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "執行於瀏覽器，任何電腦均無須安裝即可存取。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "cPanel 已包含，cPanel 託管帳號可直接使用。",
+                "cite": [
+                    "cells.cpanel"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "介面提供 {cells.languages.value} 種語言。",
+                "cite": [
+                    "cells.languages"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "以多種圖形格式顯示資料庫結構，QBE 工具協助建構複雜查詢。",
+                "cite": [
+                    "cells.designer",
+                    "cells.queryByExample"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "依 GPL 免費開放原始碼，無付費方案。",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "伺服器無須安裝。TablePro 在 Mac 執行，直接或經 <link>SSH 通道</link>連線 MySQL，Mac 支援跳板主機。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/connections#network"
+            },
+            {
+                "text": "沒有需保護更新的 Web 安裝。phpMyAdmin 文件說明透過 HTTPS、存取規則和雙因素登入保護其安裝。",
+                "cite": [
+                    "cells.hardening"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "每連線有從 Silent 到 Read-Only 的<link>安全模式</link>，嚴格層級使用 Touch ID。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "一個 App 支援 MySQL、MariaDB、PostgreSQL、SQL Server、SQLite、Redis 等引擎。查看<link>支援的資料庫</link>。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>匯入匯出</link>在 Mac 執行：匯入 CSV、JSON、XLSX、SQL，匯出 CSV、JSON、SQL、XLSX、Markdown、HTML、XML。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/import-export"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 需能存取資料庫：向 Mac 開放連接埠或伺服器 SSH。託管方案兩者均無時，用 phpMyAdmin 存取。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "它是 Mac、iPhone、iPad App，無法從任意電腦瀏覽器開啟。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Mac App 介面僅提供 {macLanguages}。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "部分功能付費，Starter 加入 {starterExamples} 等，phpMyAdmin 無付費方案。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 無 phpMyAdmin 匯入工具。用主機商提供的 MySQL、SSH 資訊填寫表單，或將 mysql:// URL 貼上至 <ui>File > Import > Import from URL…</ui>。",
+        "steps": [],
+        "after": [
+            "網站程式碼在 Mac 時，<ui>File > Import > Open Project Folder…</ui> 從 wp-config.php、.env 等檔案讀取資料庫設定，開啟填好的表單。",
+            "正式環境資料庫請開始前設定連線安全模式層級。",
+            "phpMyAdmin 匯出的 SQL 檔案無論 gzip 與否，均可匯入任意 MySQL、MariaDB 連線。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "access",
+            "question": "使用 TablePro 需主機商提供什麼？",
+            "answer": "一種資料庫存取方式：主機商允許此位址遠端 MySQL，或伺服器 SSH。TablePro 兩者均可連線。方案兩者都無時繼續用 phpMyAdmin。",
+            "href": null
+        },
+        {
+            "id": "sql-import",
+            "question": "能匯入 phpMyAdmin 匯出的 SQL 檔案嗎？",
+            "answer": "可以，接受 .sql、.sql.gz 檔案，在所選連線執行陳述式。<link>了解匯入匯出</link>。",
+            "href": "/features/import-export"
+        },
+        {
+            "id": "adminer",
+            "question": "Adminer 呢？",
+            "answer": "Adminer 是另一個開放原始碼 Web 工具，以單一 PHP 檔案提供。除 MySQL、MariaDB，也連線 PostgreSQL、SQLite、SQL Server、Oracle。像 phpMyAdmin 一樣在伺服器執行，安裝需同樣維護保護。",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "TablePro 像 phpMyAdmin 一樣免費嗎？",
+            "answer": "MySQL、MariaDB 工作免費：TablePro Mac App 依 AGPLv3 開放原始碼，含所有支援引擎、AI 助手、MCP 伺服器。與 phpMyAdmin 不同也有付費方案，Starter、Team 加入 {starterExamples} 等選用功能。<link>查看價格</link>。",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "phpmyadmin-databases": "MySQL 與 MariaDB",
+        "phpmyadmin-schema-visualization": "多種格式的資料庫結構圖形檢視",
+        "phpmyadmin-in-development": "版本 {version} 正在開發",
+        "phpmyadmin-hardening": "文件建議僅用 HTTPS、限制可存取者、停用 root 登入並開啟雙因素驗證"
+    }
+}

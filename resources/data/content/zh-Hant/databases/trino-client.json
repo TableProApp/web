@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 Trino 用戶端",
+        "description": "跨 Trino catalog 查詢，透過 TLS 密碼、JWT 或用戶端憑證驗證，查看邏輯和分散式計畫，並取消查詢。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "Trino 用戶端"
+    },
+    "engine": "trino",
+    "breadcrumb": "Trino",
+    "header": {
+        "title": "適用於 {devices} 的 Trino 用戶端",
+        "lead": "在一個查詢中聯結不同 catalog 的資料表，查看 Trino 將執行的計畫，並在 coordinator 上停止失控查詢。寫入能力取決於各 catalog 後的 connector。"
+    },
+    "asset": "mac-db-trino-catalogs",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "連線與登入",
+            "paragraphs": [
+                "填寫 coordinator 主機、連接埠及執行查詢的 <ui>Username</ui>。<ui>Catalog</ui>、<ui>Schema</ui> 為可選起點，Catalog 留空可瀏覽全部。Options 中的 IANA <ui>Time Zone</ui> 設定工作階段時區。",
+                "密碼以 HTTP Basic 傳送，用於 LDAP 或密碼檔案驗證；JWT 存取權杖以 bearer 認證資訊傳送。兩者僅透過 TLS，SSL Disabled 下含此認證資訊的連線在傳送前即拒絕。SSL 面板的用戶端憑證和金鑰新增雙向 TLS。",
+                "SSL 預設為 Disabled，即明文 HTTP；其他模式強制 TLS，不退回明文，443 連接埠啟用 Verify Identity。不跟隨 coordinator 前代理的重新導向，錯誤指出目標位址。堡壘主機後的 coordinator 可透過 <network>SSH 通道</network>存取，並用 <ui>Import from URL…</ui> 匯入 <code>trino://</code> URL。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "跨 catalog 查詢",
+            "paragraphs": [
+                "連線在某個 catalog、schema 開啟，查詢仍可完整指定 <code>catalog.schema.table</code>，例如聯結 Hive 和 PostgreSQL 資料表。側欄將各 catalog 展開為 schema 和資料表，具體化檢視表與資料表、檢視表並列，列數來自 <code>SHOW STATS</code>。",
+                "<code>bigint</code>、<code>decimal</code> 以精確文字而非浮點數讀取。<code>varbinary</code> 顯示為十六進位，<code>array</code>、<code>map</code>、<code>row</code> 為 JSON，時間戳記保留伺服器傳回值。",
+                "<explain>Explain</explain> 提供 Logical、Distributed、IO、Validate、Analyze。Validate 不執行而驗證，Analyze 執行並報告實際耗時，所有計畫均為原始文字。",
+                "<code>SET SESSION</code> 在連線剩餘期間保持。<ui>Query > Cancel Query</ui> 通知 coordinator 終止執行中的查詢，這是停止查詢的方法，因為連線查詢逾時不傳至 Trino。",
+                "<editing>儲存格編輯</editing>轉換為 INSERT、UPDATE、DELETE，每個值含 Trino 型別。Trino 不報告主索引鍵，因此依讀取時整列所有欄位比對，沒有交易可復原。編輯兩個相同列中的一個會同時修改兩個，請先檢查重複。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "結構",
+            "paragraphs": [
+                "<structure>Structure 分頁</structure>自動提交建立資料表、新增、刪除、重新命名和變更欄位型別的操作。能否執行取決於 catalog connector，其中型別修改被最少 connector 支援。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "沒有匯入。可將資料表或結果<export>匯出</export>為 {exportFormats}。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "not-supported",
+            "question": "為什麼有效陳述式傳回 NOT_SUPPORTED？",
+            "answer": "無論 Trino 語法允許什麼，catalog 後的 connector 未實作該操作。唯讀 connector 拒絕所有寫入，請查閱 connector 自身文件的支援範圍。"
+        },
+        {
+            "id": "encrypted-key",
+            "question": "可以使用加密用戶端金鑰嗎？",
+            "answer": "不可以。Trino 連線沒有金鑰通關密語欄位，請用 <code>openssl pkey -in encrypted.key -out client.key</code> 寫出解密副本並選擇該檔案。"
+        }
+    ],
+    "related": [
+        {
+            "label": "撰寫、執行與理解查詢",
+            "href": "/features/querying"
+        },
+        {
+            "label": "連線、通道與認證資訊",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Teradata，資料倉儲",
+            "href": "/teradata-client"
+        },
+        {
+            "label": "Snowflake，雲端資料倉儲",
+            "href": "/snowflake-client"
+        }
+    ]
+}

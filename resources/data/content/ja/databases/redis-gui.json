@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "{macDevices} 用 Redis GUI",
+        "description": "Redis キーをコロンで区切ったツリーで閲覧し、名前、TTL と文字列値を編集。Standalone、Sentinel、Cluster に redis-cli 形式の引用符でコマンドを実行できます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Redis GUI"
+    },
+    "engine": "redis",
+    "breadcrumb": "Redis",
+    "header": {
+        "title": "{macDevices} 用 Redis GUI",
+        "lead": "コロンで区切ったキーのツリーを閲覧し、型、TTL と長さを一目で確認。単独サーバー、Sentinel 管理のプライマリーや Redis Cluster で redis-cli と同じ引用符の Redis コマンドを実行できます。"
+    },
+    "asset": "mac-db-redis-keys",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "editing": "/features/data-editing#documents-and-keys",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "<ui>Connection Mode</ui> を選びます。Standalone はホストとポート、Sentinel は一つ以上の Sentinel ノードとプライマリーグループ名を指定し、クォーラムからプライマリーを見つけ、フェイルオーバー後も追従します。Cluster は接続可能なメンバーをシードとしてシャードマップを読み、各コマンドをそのキーの所有シャードに送ります。",
+                "パスワードでログインするか、Username を入力して Redis 6 ACL ユーザーでログインします。Amazon ElastiCache は <cloudAuth>AWS IAM</cloudAuth> 方式を選ぶと短期トークンをパスワードにします。ElastiCache IAM には TLS が必要です。",
+                "新規接続の TLS は無効です。Upstash、Redis Cloud などは TLS が必要で、<code>rediss://</code> URL の貼り付けは有効にします。平文へのフォールバックがないため Preferred は Required と同じです。Valkey サーバーも Redis と同じ方法で接続します。",
+                "サイドバーは <code>db0</code> から番号付きデータベースを表示し、クリックするとその場で閲覧します。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "キーとコマンド",
+            "paragraphs": [
+                "キー名はコロンか Options タブで指定した区切り文字でフォルダーに分けます。各グリッド行は Key、Type、TTL、Length と Value を持ちます。文字列は全体、hash、list、set、sorted set や stream は最初の項目を表示し、Length は件数を示します。gzip データなど有効な UTF-8 でない値は十六進エディタで開きます。",
+                "<editing>グリッド</editing> でキー名の編集は <code>RENAME</code>、TTL は <code>EXPIRE</code> または <code>PERSIST</code>、文字列値は <code>SET</code> を実行します。Add Row は選んだ型を <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> か <code>SET</code> で書きます。フィルターバーはサーバーの <code>SCAN MATCH</code> と <code>SCAN TYPE</code> で Redis glob によるキー名と型を絞り込みます。",
+                "エディタは一文一コマンドを redis-cli の引用符形式で受け付け、認識しないものもそのまま送ります。<code>DB 3 GET key</code> はセッションを移さず別のデータベースで一つのコマンドを実行します。<code>MULTI</code> 内は各コマンドが <code>QUEUED</code> を返し、<code>EXEC</code> が全応答を順に返します。",
+                "<safeMode>セーフモード</safeMode> は <code>GET</code> も含むすべての Redis コマンドを書き込みとするため、Alert と Safe Mode は毎回確認し、Read-Only はすべてブロックします。<code>FLUSHDB</code> と <code>FLUSHALL</code> は Silent でも実行前に確認します。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "キーやコマンド結果を {exportFormats} で <export>エクスポート</export> できます。Redis のインポートはなく、エディタのコマンドでデータを取り込みます。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone と iPad",
+            "paragraphs": [
+                "iPhone と iPad は Query タブで Redis コマンドを実行できますが、キーの閲覧はできません。接続はパスワード、ファイル・貼り付けテキスト・PKCS#12 バンドルからの CA やクライアント証明書を使う TLS、パスワードか鍵で認証する SSH トンネルに対応します。Sentinel と Cluster は Mac のみです。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "redis-insight",
+                "text": "Redis Insight は Redis 公式ツールです。キーのブラウザーとコマンド Workbench に加え、Pub/Sub ワークスペース、コマンドプロファイラー、スローログ調査とメモリー分析があります。Redis の運用を監視・調整する時に向いています。TablePro は日常使う SQL データベースとともに Redis を扱う時に適しています。",
+                "notes": [
+                    "redis-insight-copilot"
+                ]
+            }
+        ],
+        "notes": {
+            "redis-insight-copilot": "Redis Copilot は Redis の質問に答え、自然言語から検索クエリを作成します。"
+        }
+    },
+    "faq": [
+        {
+            "id": "acl-scan",
+            "question": "ACL ユーザーのキーツリーが空なのはなぜですか？",
+            "answer": "キーツリーは <code>SCAN</code> でキー名、<code>TYPE</code> で型を読みます。<code>ACL SETUSER app +scan +type</code> などで両方を許可し、サイドバーの <ui>Keys</ui> を右クリックして <ui>Refresh</ui> を選びます。"
+        },
+        {
+            "id": "select",
+            "question": "SELECT がサイドバーを変えないのはなぜですか？",
+            "answer": "<code>SELECT</code> はエディタのセッションだけを移し、以後のコマンドはそのデータベースで動きますが、サイドバーとキーツリーはクリックした位置のままです。両方移すにはサイドバーでデータベースをクリックするか、一つのコマンドに <code>DB</code> と番号を付けます。"
+        },
+        {
+            "id": "managed",
+            "question": "管理サービスに存在しないデータベースが表示されるのはなぜですか？",
+            "answer": "Upstash、Redis Cloud や ElastiCache は <code>CONFIG</code> を拒否するため、TablePro はデータベース数を取得できず既定の範囲を表示します。一つだけのサービスでは <code>db0</code> 以外を開くとサーバーのエラーになります。"
+        }
+    ],
+    "related": [
+        {
+            "label": "安全にデータを閲覧して編集",
+            "href": "/features/data-editing#documents-and-keys"
+        },
+        {
+            "label": "接続、トンネルと認証情報",
+            "href": "/features/connections"
+        },
+        {
+            "label": "iPhone と iPad 用 TablePro",
+            "href": "/ios"
+        },
+        {
+            "label": "TablePro と他のデータベースクライアントを比較",
+            "href": "/compare"
+        }
+    ]
+}

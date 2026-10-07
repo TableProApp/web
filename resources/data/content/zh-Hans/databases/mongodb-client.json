@@ -1,0 +1,126 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 MongoDB 客户端",
+        "description": "在 mongosh 风格 JavaScript shell 查询 MongoDB，以 Extended JSON 编辑文档，重命名整个集合的字段，通过 SRV 连接 Atlas。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "MongoDB 客户端"
+    },
+    "engine": "mongodb",
+    "breadcrumb": "MongoDB",
+    "header": {
+        "title": "适用于 {devices} 的 MongoDB 客户端",
+        "lead": "按 mongosh 语法写查询，在网格分页浏览集合，以 Extended JSON 插入或编辑整个文档。重命名或移除整个集合的字段，每个语句均在执行前显示。"
+    },
+    "asset": "mac-db-mongodb-document",
+    "links": {
+        "network": "/features/connections#network",
+        "editing": "/features/data-editing#documents-and-keys",
+        "filters": "/features/data-editing#filters",
+        "safeMode": "/features/data-editing#safe-mode",
+        "map": "/features/querying#map",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接",
+            "paragraphs": [
+                "列一个主机或副本集的多个 <code>host:port</code>，自动找到主节点。也可粘贴 <code>mongodb://</code>、<code>mongodb+srv://</code> URL。以 SCRAM-SHA-1、SCRAM-SHA-256、X.509 或 AWS IAM 登录；用户定义在 <code>admin</code> 但浏览其他数据库时设置 <ui>Auth Database</ui>。",
+                "以 <code>.mongodb.net</code> 结尾的主机自动开启 MongoDB Atlas 所需的 SRV 和 TLS。请先将 IP 加入集群访问列表：未列出地址的流量会超时，而非立即失败。",
+                "新连接 TLS 关闭，驱动无回退，所以 Preferred 等同 Required。Read Preference、Write Concern 按连接设置，写关注随 shell 或网格保存的每次插入、更新、删除发送。",
+                "通过 <network>SSH 隧道</network>仅用列表首个主机，该会话关闭副本集发现和故障转移。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查询和编辑文档",
+            "paragraphs": [
+                "查询标签页是接受 mongosh 语法的 JavaScript shell：无引号键、正则字面量、<code>ISODate()</code>、变量、循环和 <code>forEach</code>。在 TablePro 内运行无需另装软件，定义的变量在断开前可用于连接的所有标签页。补全提供集合、方法、嵌套字段路径及光标处有效的 <code>$</code> 运算符。",
+                "集合以网格打开，顶层字段为列，嵌套对象为 Extended JSON。编辑单元格保留字段类型，日期仍为日期，ObjectId 仍为 ObjectId；嵌套对象编辑仅写入 <code>address.city</code> 等改动路径。",
+                "<editing>Insert Document 和 Edit Document</editing> 接受整个 Extended JSON 文档。Edit Document 重新从服务器读取；面板打开后若他人修改或删除，不保存任何内容并提示。单元格 <ui>Remove Field</ui> 发送 <code>$unset</code>。",
+                "<filters>筛选栏</filters>可访问嵌套对象和对象数组，直接筛选 <code>customer.country</code>、<code>items.sku</code>。GeoJSON 字段在<map>地图视图</map>打开。",
+                "驱动无法打开只读会话，所以<safeMode>安全模式</safeMode>将 MongoDB 连接的所有语句视为写入。Alert、Safe Mode 级别逐条确认，Read-Only 全部阻止。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "集合、索引和验证器",
+            "paragraphs": [
+                "<structure>Structure 标签页</structure>按键顺序列出各索引字段及 hashed、text、2dsphere、wildcard 等类型。Show DDL 生成重建它们的 <code>createIndex</code> 调用，含服务器报告的所有选项。",
+                "在同一标签页重命名或移除整个集合的字段。每次修改为一个 <code>updateMany</code>，在 Preview SQL 显示，<code>$jsonSchema</code> 验证器声明的字段也同步修改。索引、搜索索引或视图仍使用该名称时，任何写入前即拒绝保存。",
+                "<ui>New Table</ui> 创建集合，将字段转为 <code>$jsonSchema</code> 验证器，再建立所列索引。视图和时间序列集合显示在侧栏，视图以只读打开。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "备份",
+            "paragraphs": [
+                "<backup>Backup Dump</backup> 用 {dumpTool} 将勾选的每个数据库写入 gzip 归档，使用连接的主机、Auth Database、SRV、TLS 设置，可限定单个集合。Restore Dump 向所选数据库运行 mongorestore，保留现有内容。请先在 Mac 安装 MongoDB Database Tools。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "将 {importFormats} 文件<importData>导入</importData>集合，将集合或结果<export>导出</export>为 {exportFormats}。",
+                "MQL 导出为可在 mongosh 运行的 <code>insertMany</code> 调用 <code>.js</code> 文件，勾选时含各集合索引和验证器。顶层值保留类型，但子文档或数组内的类型化值（例如数组内 ObjectId）写为字符串；此类集合请导出 JSON 或用 mongodump 备份。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "mongodb-compass",
+                "anchor": "compass",
+                "text": "MongoDB Compass 是 MongoDB 官方 GUI，逐阶段构建聚合管道，每阶段后预览，从文档样本分析集合结构，并绘制执行计划。需要可视化构建管道或研究单一集合结构时选择它；MongoDB 是同一应用中使用的多种数据库之一时，TablePro 更合适。",
+                "notes": [
+                    "compass-natural-language"
+                ]
+            }
+        ],
+        "notes": {
+            "compass-natural-language": "也可根据自然语言问题编写查询。"
+        }
+    },
+    "faq": [
+        {
+            "id": "mongosh",
+            "question": "查询标签页是 mongosh 吗？",
+            "answer": "不是。它是接受 mongosh 语法、在 TablePro 内由 JavaScriptCore 运行的 shell。大多数 mongosh 代码直接运行。一个区别：超出 32 位范围的整数存为 64 位整数，mongosh 则存 double；用 <code>Double()</code> 包裹以保持一致。"
+        },
+        {
+            "id": "query-plan",
+            "question": "如何查看查询计划？",
+            "answer": "在查询标签页的游标链接 <code>.explain(\"executionStats\")</code>。计划返回为文档；MongoDB 连接无计划图。"
+        },
+        {
+            "id": "users",
+            "question": "如何列出数据库用户？",
+            "answer": "运行 <code>db.runCommand({usersInfo: 1})</code>。shell 不解析 <code>db.getUsers()</code> 或 <code>db.createUser()</code>。"
+        }
+    ],
+    "related": [
+        {
+            "label": "安全浏览和编辑数据",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "SQL 以外的查询语言",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "导入、导出和备份",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "对比 TablePro 和其他数据库客户端",
+            "href": "/compare"
+        }
+    ]
+}

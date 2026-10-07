@@ -1,0 +1,29 @@
+{
+    "seo": {
+        "title": "博客",
+        "description": "TablePro 团队的版本发布公告：按最新优先的顺序介绍各版本新增功能和修复内容。",
+        "indexable": false
+    },
+    "og": {
+        "kicker": "博客",
+        "title": "TablePro 团队的版本发布公告"
+    },
+    "header": {
+        "title": "博客",
+        "lead": "版本发布公告，最新内容优先。各版本的完整说明请查看<changelog>更新日志</changelog>。"
+    },
+    "newsletter": {
+        "title": "通过邮件接收版本文章",
+        "body": "不定期发送发行说明邮件。每封邮件均包含退订链接。"
+    },
+    "corrections": {
+        "tablepro-0-74": {
+            "date": "2026-10-02",
+            "text": "Map 视图从 Apple 加载地图瓦片，因此此文章对仅留在 Mac 上的信息范围描述过度。您的行数据留在 Mac 上；屏幕所显示区域的地图瓦片由 Apple 提供。"
+        },
+        "tablepro-for-iphone": {
+            "date": "2026-10-02",
+            "text": "与此文章的说法不同，1.0 版不会拒绝经过 SSH 跳板机的连接。iPhone 和 iPad 不支持跳板机，因此请在 Mac 上打开这类连接。Oracle 与 SQLite、DuckDB 和 SQL Server 一样，只有包含多条语句的保存操作才在事务内执行。只有 DuckDB 可在内存中运行；SQLite 文件会被复制到应用中。"
+        }
+    }
+}

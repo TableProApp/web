@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Teradata-Client für {devices}",
+        "description": "Teradata Vantage mit TD2 oder TDNEGO per Klartext oder TLS anmelden, Datenbanken, Benutzer, Prozeduren und Makros ansehen und Tabellen ändern."
+    },
+    "og": {
+        "kicker": "Datenbanken",
+        "title": "Teradata-Client"
+    },
+    "engine": "teradata",
+    "breadcrumb": "Teradata",
+    "header": {
+        "title": "Teradata-Client für {devices}",
+        "lead": "Melde dich mit TD2 oder TDNEGO an, durchsuche Datenbanken und Benutzer mit Tabellen, Sichten, Prozeduren und Makros und frage und bearbeite über einen nativen Swift-Treiber ohne Teradata-Clientinstallation."
+    },
+    "asset": "mac-db-teradata-sidebar",
+    "links": {
+        "network": "/features/connections#network",
+        "objects": "/features/schema#objects",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Verbinden und anmelden",
+            "paragraphs": [
+                "Gib Host, Benutzername und Passwort ein. Jedes Vantage-System mit TD2-Anmeldung funktioniert, ohne Versionsprüfung. <ui>Anmeldemechanismus</ui> unter Optionen nimmt <code>TD2</code> oder <code>TDNEGO</code>; <ui>Datenbank</ui> ist nur für einen anderen Standard als den deines Kontos nötig.",
+                "Der Standardport trägt eine Klartextsitzung. Jeder SSL-Modus verschiebt sie auf den WebSocket-Endpunkt des Gateways auf dem unveränderbaren Port 443. CA prüfen braucht ein CA-Zertifikat; Identität prüfen prüft Kette und Hostnamen dagegen oder ohne Zertifikat gegen den System-Vertrauensspeicher.",
+                "Lasse <ui>Transaktionsmodus</ui> auf <code>DEFAULT</code>, sofern ein Skript keine ANSI- oder TERA-Commit-Regeln und Groß-/Kleinschreibung in der Sitzung braucht. Erreiche ein System hinter einem Bastion-Host per <network>SSH-Tunnel</network>. <ui>Aus URL importieren…</ui> nimmt <code>teradata://</code>-URLs an, die macOS nicht als Links öffnet."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Abfragen und bearbeiten",
+            "paragraphs": [
+                "Datenbank und Benutzer sind in Teradata beide Namensräume und erscheinen oben in der Seitenleiste mit ihren Tabellen und Sichten. Ein an eine zweite Datenbank gebundener Tab behält dieselbe Sitzung und führt vor seinen Anweisungen <code>DATABASE</code> aus.",
+                "Gespeicherte Prozeduren stehen in der Seitenleiste, Makros unter Funktionen; beide öffnen ihren <objects>Quelltext in einem schreibgeschützten Tab</objects>.",
+                "Teradata hat kein <code>LIMIT</code>: Die erste Tabellenseite nutzt <code>TOP</code>, spätere <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> liefert den Plan als Rohtext. Zeilenänderungen warten bis zum Speichern; <editing>SQL-Vorschau</editing> zeigt vorher jede Anweisung."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Struktur",
+            "paragraphs": [
+                "Erstelle Tabellen und ändere Spalten im <structure>Struktur-Tab</structure>. Die DDL-Ansicht zeigt die vollständige Definition samt Bedingungen."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Daten übertragen",
+            "paragraphs": [
+                "Lade {importFormats}-Dateien mit <importData>Importieren</importData> und speichere Tabellen oder Ergebnisse als {exportFormats}. <copy>Kopieren nach</copy> sendet Tabellen, Zeilen oder beides an eine andere Teradata-Verbindung; Kopieren zu einer anderen Engine wird abgelehnt."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "logon-mechanism",
+            "question": "Warum wird mein Anmeldemechanismus ignoriert?",
+            "answer": "Schreibe ihn groß. Ein unbekannter Wert wie das kleingeschriebene <code>tdnego</code> wird als <code>TD2</code> gelesen."
+        },
+        {
+            "id": "tls-check",
+            "question": "Wie erkenne ich eine verschlüsselte Sitzung?",
+            "answer": "Teste mit Erforderlich (Prüfung überspringen) oder einem Prüfmodus. Bevorzugt fällt bei unerreichbarem TLS-Port auf Klartext zurück, sodass ein fehlgeschlagener Handshake wie erfolgreiches Verbinden aussieht."
+        }
+    ],
+    "related": [
+        {
+            "label": "Abfragen schreiben, ausführen und verstehen",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema, Vergleich und Synchronisierung",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Snowflake, ein weiteres Data Warehouse",
+            "href": "/snowflake-client"
+        },
+        {
+            "label": "Trino für Abfragen über Kataloge hinweg",
+            "href": "/trino-client"
+        }
+    ]
+}

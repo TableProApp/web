@@ -1,0 +1,99 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 Snowflake 客户端",
+        "description": "使用密钥对、浏览器 SSO、OAuth 或密码加验证码登录 Snowflake，无需重连切换仓库和角色，并卸载到 stage。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "Snowflake 客户端"
+    },
+    "engine": "snowflake",
+    "breadcrumb": "Snowflake",
+    "header": {
+        "title": "适用于 {devices} 的 Snowflake 客户端",
+        "lead": "按账户要求的方式登录，无需重连切换会话的仓库和角色，再查询、编辑表并卸载到 stage。"
+    },
+    "asset": "mac-db-snowflake-session",
+    "links": {
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接和登录",
+            "paragraphs": [
+                "填写账户标识符，例如 <code>myorg-myaccount</code> 或旧式 <code>xy12345.us-east-1</code>，即 <code>.snowflakecomputing.com</code> 前的部分。所有请求经 HTTPS 发送至账户端点，因此无主机、SSL 区域或 SSH 面板。",
+                "选择 <ui>Auth Method</ui> 后仅显示所需字段。密钥对使用 PKCS#8 私钥为每次连接签名，因此 Mac 时钟必须准确。浏览器 SSO 前往身份提供商，OAuth 令牌按粘贴内容使用且从不刷新。账户强制 MFA 时，密码需配合 <ui>MFA Passcode (TOTP)</ui> 中的当前验证码。",
+                "账户开启 <code>ALLOW_CLIENT_MFA_CACHING</code> 时，一次新验证码即可：Snowflake 返回 MFA 令牌，TablePro 保存在<credentials>钥匙串</credentials>。启用 <code>ALLOW_ID_TOKEN</code> 时，浏览器 SSO 保存登录令牌，后续连接跳过浏览器直到 Snowflake 拒绝。",
+                "Snowflake 无 URL scheme。可在 <ui>CLI Connection Name</ui> 指定配置节，连接时从 <code>~/.snowflake/connections.toml</code> 读取所有留空字段。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "仓库、角色和查询",
+            "paragraphs": [
+                "<ui>Database > Session Context</ui> 用 <code>USE WAREHOUSE</code>、<code>USE ROLE</code> 无需重连切换仓库或角色。一个 TablePro 连接对应一个 Snowflake 会话，空闲时仍保持。绑定第二个数据库的标签页在同一会话中先执行 <code>USE DATABASE</code>。",
+                "侧栏按数据库和 schema 分组对象。对象列表来自不需仓库的 <code>SHOW</code> 命令，列详情来自需要仓库的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 返回 Snowflake 原始文本计划。",
+                "<editing>网格编辑</editing>在服务器绑定值，VARIANT、OBJECT、ARRAY 单元格通过 <code>PARSE_JSON</code> 发送。编辑按声明主键定位，无主键则按所有列。Snowflake 从不强制键约束，重复键意味着编辑或删除影响所有匹配行，请先检查重复。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "结构",
+            "paragraphs": [
+                "DDL 视图来自 <code>GET_DDL</code>。<structure>Structure 标签页</structure> 可添加、重命名、删除列，设置 NOT NULL、注释和主键，扩宽 VARCHAR，并在小数位数相同的情况下修改 NUMBER 精度。",
+                "Snowflake 会拒绝的修改在执行前即被拒绝，包括缩窄 VARCHAR、其他类型修改及将列默认值改为新值。清除默认值可以执行。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "通过连接<importData>导入</importData> {importFormats}，将表或结果以 {exportFormats} 导出到 Mac。",
+                "要不经 Mac 卸载表，选择 <ui>File > Server-Side Export…</ui>，指定 stage，可带或不带 <code>@</code>。<backup>Server-Side Export</backup> 以自有权限运行 <code>COPY INTO</code>，写入 gzip 压缩 CSV、Parquet 或 JSON；面板等待完成，不写入 Mac。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "no-columns",
+            "question": "为什么侧栏显示表但不显示列？",
+            "answer": "列详情来自需要运行中仓库的 <code>INFORMATION_SCHEMA</code>。请在连接或 Session Context 设置 <ui>Warehouse</ui>。数据库对象完全不显示时，需要向连接角色授予 <code>USAGE</code>。"
+        },
+        {
+            "id": "timestamp-ltz",
+            "question": "为什么 TIMESTAMP_LTZ 显示为 UTC？",
+            "answer": "TablePro 以标记 <code>Z</code> 的 UTC 时间读取，不转换为会话的 <code>TIMEZONE</code>。"
+        },
+        {
+            "id": "jwt-invalid",
+            "question": "密钥对登录提示 JWT 无效，应检查什么？",
+            "answer": "令牌包含账户 locator 和时间戳。检查账户标识符和 Mac 时钟，再确认已用 <code>ALTER USER … SET RSA_PUBLIC_KEY</code> 为用户注册公钥。"
+        }
+    ],
+    "related": [
+        {
+            "label": "导入、导出和数据文件",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "编写、运行和理解查询",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Google BigQuery，另一种云数据仓库",
+            "href": "/bigquery-client"
+        },
+        {
+            "label": "Trino，跨 catalog 查询",
+            "href": "/trino-client"
+        }
+    ]
+}

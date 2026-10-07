@@ -1,0 +1,186 @@
+{
+    "seo": {
+        "title": "支持的数据库",
+        "description": "按类别查看 TablePro 支持的数据库、查询语言、Mac 驱动是否内置或需下载，以及 iPhone、iPad 是否可打开。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "TablePro 可连接的数据库"
+    },
+    "header": {
+        "title": "TablePro 可连接的数据库",
+        "lead": "为 {count} 种数据库提供原生驱动，包括 {featured}。每行说明引擎的查询语言、驱动来源，以及能否在 iPhone 和 iPad 上打开。"
+    },
+    "jump": "类别",
+    "categories": {
+        "relational": {
+            "title": "关系型",
+            "intro": "包含表、键和事务的 SQL 数据库，其中一些共用 MySQL 或 PostgreSQL 驱动。"
+        },
+        "analytical": {
+            "title": "分析和数据仓库",
+            "intro": "扫描会消耗时间或费用的数据仓库、列式引擎和联合查询引擎。"
+        },
+        "cloud": {
+            "title": "云端和无服务器",
+            "intro": "使用账户令牌通过 HTTP 访问的 SQL 服务，以及 Mac 上的 libSQL 文件。"
+        },
+        "document": {
+            "title": "文档",
+            "intro": "各自使用专有语言查询的文档和多模型数据库。"
+        },
+        "key-value": {
+            "title": "键值",
+            "intro": "通过命令或 PartiQL 读写的键和值。"
+        },
+        "wide-column": {
+            "title": "宽列",
+            "intro": "在集群中分区的 CQL 表。"
+        },
+        "search": {
+            "title": "搜索和向量",
+            "intro": "通过各自请求控制台查询的搜索和向量引擎。"
+        },
+        "streaming": {
+            "title": "流式处理",
+            "intro": "以日志而非表存储，通过 KafkaQL 读写消息。"
+        },
+        "coordination": {
+            "title": "协调",
+            "intro": "包含租约和集群成员的 etcd 键空间。"
+        },
+        "files": {
+            "title": "文件",
+            "intro": "存储在可直接打开的文件中的数据库，无需运行服务器。"
+        }
+    },
+    "table": {
+        "caption": "{category}：每种引擎、查询语言、驱动及能否在 iPhone、iPad 上打开",
+        "engine": "数据库",
+        "queryLanguage": "查询语言",
+        "driver": "驱动",
+        "ios": "iPhone 和 iPad",
+        "notes": "说明"
+    },
+    "drivers": {
+        "title": "驱动如何提供",
+        "paragraphs": [
+            "{bundled} 的驱动随 Mac 应用内置，无需安装其他软件即可连接。",
+            "其余驱动均为签名插件，首次选择引擎时在连接表单打开前下载。首次下载需要联网。",
+            "安装下载的驱动前，TablePro 将 SHA-256 校验和与插件注册表核对，并验证代码签名。",
+            "插件按独立周期更新，因此驱动修复无需应用更新即可到达。正在使用的驱动会在重启应用后更新。",
+            "iPhone 和 iPad 应用内置驱动，无需下载。"
+        ],
+        "asset": "mac-engine-picker",
+        "docs": {
+            "label": "插件和驱动更新",
+            "path": "/features/plugins"
+        }
+    },
+    "iphone": {
+        "title": "在 iPhone 和 iPad 上",
+        "picker": "iPhone 和 iPad 应用可连接 {engines}。",
+        "synced": "{engines} 连接仅在通过 iCloud Sync 或导出的连接文件从 Mac 导入时可打开。",
+        "others": "其他引擎连接会同步至 iPhone 和 iPad 并显示在列表中，但无法打开。",
+        "link": "适用于 iPhone 和 iPad 的 TablePro"
+    },
+    "license": {
+        "title": "连接任何数据库都无需许可证",
+        "body": "连接本页任何引擎都免费。Starter 或 Team 方案为 Mac 应用添加可选功能，这些功能均不依赖特定数据库。",
+        "link": "查看价格"
+    },
+    "missing": {
+        "title": "没有你的数据库？",
+        "body": "新引擎以驱动插件形式加入。若使用的引擎未列出，请在 GitHub 提出请求。",
+        "link": "在 GitHub 请求支持数据库"
+    },
+    "docs": {
+        "label": "各数据库设置指南",
+        "path": "/databases"
+    },
+    "labels": {
+        "facts": {
+            "title": "概览",
+            "queryLanguage": "查询语言",
+            "driver": "驱动",
+            "sharedWith": "与 {engines} 共用",
+            "connect": "连接方式",
+            "defaultPort": "默认端口",
+            "minimumVersion": "最低版本",
+            "enforced": "{version}，强制执行：拒绝旧版服务器",
+            "documented": "{version}，文档所述",
+            "embedded": "内置引擎",
+            "embeddedValue": "{name} {version}",
+            "ios": "iPhone 和 iPad"
+        },
+        "connect": {
+            "file": "文件",
+            "network": "主机和端口",
+            "api": "服务 API",
+            "ssh": "SSH 隧道",
+            "ssl": "SSL/TLS",
+            "awsIam": "AWS IAM",
+            "cloudSqlProxy": "Cloud SQL Auth Proxy"
+        },
+        "driver": {
+            "bundled": "随 Mac 应用内置",
+            "registry": "首次使用时下载"
+        },
+        "ios": {
+            "picker": "可打开",
+            "synced": "从 Mac 同步后可打开",
+            "none": "无法打开"
+        },
+        "availability": {
+            "devices": "适用于 {devices}",
+            "bundled": "Mac 应用内置驱动",
+            "registry": "首次选择 {name} 时下载驱动"
+        },
+        "release": "{version} 新增",
+        "docs": "{name} 设置指南",
+        "sections": {
+            "limits": "限制",
+            "limitsOf": "{name} 限制",
+            "iphone": "iPhone 和 iPad",
+            "faq": "关于 {name} 的问题",
+            "related": "相关内容"
+        },
+        "iphone": {
+            "picker": "iPhone 和 iPad 应用创建连接时可选择 {name}，应用直接连接。",
+            "synced": "iPhone 和 iPad 应用仅打开通过 iCloud Sync 或导出的连接文件从 Mac 导入的 {name} 连接，无法在移动端创建。",
+            "none": "iPhone 和 iPad 应用没有 {name} 驱动。从 Mac 同步的 {name} 连接会显示在列表中，但无法打开。",
+            "link": "适用于 iPhone 和 iPad 的 TablePro"
+        },
+        "family": {
+            "port": "默认端口 {port}"
+        },
+        "otherTools": {
+            "title": "其他工具",
+            "released": "版本 {version}，发布于 {date}",
+            "discontinued": "{name} 已停止维护，最终版本 {version} 于 {date} 发布。",
+            "free": "免费",
+            "openSource": "开源（{licence}）",
+            "closedSource": "闭源",
+            "platforms": "平台：{platforms}",
+            "compare": "TablePro 与 {name} 对比",
+            "checked": "其他工具的信息核实于 {date}。",
+            "sources": "来源"
+        },
+        "platformNames": {
+            "mac": "Mac",
+            "windows": "Windows",
+            "linux": "Linux",
+            "ios": "iPhone 和 iPad",
+            "web": "网页"
+        },
+        "number": {
+            "decimal": ".",
+            "group": ","
+        },
+        "download": {
+            "title": "获取 TablePro",
+            "mac": "Mac 应用可免费下载和使用。Starter 或 Team 方案添加可选功能。",
+            "ios": "iPhone 和 iPad 应用可在 App Store 获取。"
+        }
+    }
+}

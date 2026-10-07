@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Teradata untuk {devices}",
+        "description": "Masuk ke Teradata Vantage dengan TD2 atau TDNEGO, dengan atau tanpa TLS. Telusuri database, pengguna, prosedur, dan makro, serta buat dan ubah tabel."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien Teradata"
+    },
+    "engine": "teradata",
+    "breadcrumb": "Teradata",
+    "header": {
+        "title": "Klien Teradata untuk {devices}",
+        "lead": "Masuk dengan TD2 atau TDNEGO, telusuri database dan pengguna beserta tabel, view, prosedur, dan makronya, serta jalankan kueri dan edit melalui driver native Swift tanpa memasang perangkat lunak klien Teradata."
+    },
+    "asset": "mac-db-teradata-sidebar",
+    "links": {
+        "network": "/features/connections#network",
+        "objects": "/features/schema#objects",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan dan masuk",
+            "paragraphs": [
+                "Masukkan host, nama pengguna, dan kata sandi. Semua sistem Vantage yang menerima login TD2 dapat digunakan, tanpa pemeriksaan versi. <ui>Logon Mechanism</ui> pada bagian Options menerima <code>TD2</code> atau <code>TDNEGO</code>, dan <ui>Database</ui> hanya diperlukan untuk database default yang berbeda dari default akun Anda.",
+                "Port default menggunakan sesi tanpa enkripsi. Mode SSL apa pun memindahkan sesi ke endpoint WebSocket gateway pada port 443, yang tidak dapat diubah. Verify CA memerlukan sertifikat CA, dan Verify Identity memeriksa rantai serta nama host terhadap sertifikat tersebut atau, jika tidak ada, penyimpanan kepercayaan sistem.",
+                "Biarkan <ui>Transaction Mode</ui> pada <code>DEFAULT</code> kecuali skrip memerlukan aturan commit dan sensitivitas huruf besar-kecil ANSI atau TERA pada sesi. Akses sistem di balik bastion melalui <network>tunnel SSH</network>. <ui>Import from URL…</ui> menerima URL <code>teradata://</code>, yang tidak dibuka macOS sebagai tautan."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Jalankan kueri dan edit",
+            "paragraphs": [
+                "Database dan pengguna sama-sama merupakan namespace di Teradata, sehingga keduanya muncul di bagian atas bilah samping dengan tabel dan view-nya. Tab yang terkait dengan database kedua tetap menggunakan sesi yang sama dan menjalankan <code>DATABASE</code> sebelum pernyataannya.",
+                "Prosedur tersimpan tercantum di bilah samping, dan makro berada di bawah Functions; masing-masing membuka <objects>kode sumbernya dalam tab hanya baca</objects>.",
+                "Teradata tidak memiliki <code>LIMIT</code>, sehingga halaman pertama tabel menggunakan <code>TOP</code> dan halaman berikutnya menggunakan <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> mengembalikan rencana Teradata sebagai teks mentah. Perubahan baris menunggu hingga Anda menyimpan, dan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Struktur",
+            "paragraphs": [
+                "Buat tabel dan ubah kolomnya dari <structure>tab Structure</structure>. Tampilan DDL tabel menampilkan definisi lengkap, termasuk constraint."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "Muat berkas {importFormats} dengan <importData>Import</importData>, dan simpan tabel atau hasil sebagai {exportFormats}. <copy>Copy To</copy> mengirim tabel, barisnya, atau keduanya ke koneksi Teradata lain; penyalinan ke mesin berbeda ditolak."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "logon-mechanism",
+            "question": "Mengapa mekanisme login saya diabaikan?",
+            "answer": "Ketik dengan huruf besar. Nilai yang tidak dikenali driver, seperti <code>tdnego</code> dalam huruf kecil, dibaca sebagai <code>TD2</code>."
+        },
+        {
+            "id": "tls-check",
+            "question": "Bagaimana saya mengetahui bahwa sesi terenkripsi?",
+            "answer": "Uji dengan Required (skip verify) atau mode verifikasi. Preferred beralih ke sesi tanpa enkripsi jika port TLS tidak dapat diakses, sehingga handshake yang gagal tetap terlihat sebagai koneksi berhasil."
+        }
+    ],
+    "related": [
+        {
+            "label": "Tulis, jalankan, dan pahami kueri",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Skema, perbandingan, dan sinkronisasi",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Snowflake, data warehouse lainnya",
+            "href": "/snowflake-client"
+        },
+        {
+            "label": "Trino, untuk kueri lintas katalog",
+            "href": "/trino-client"
+        }
+    ]
+}

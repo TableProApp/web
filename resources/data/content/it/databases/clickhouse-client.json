@@ -1,0 +1,102 @@
+{
+    "seo": {
+        "title": "ClickHouse per {devices}",
+        "description": "Interroga ClickHouse via HTTP o HTTPS, leggi piani EXPLAIN, pipeline e stime, gestisci parti e partizioni MergeTree e monitora le mutazioni."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Client ClickHouse"
+    },
+    "engine": "clickhouse",
+    "breadcrumb": "ClickHouse",
+    "header": {
+        "title": "Client ClickHouse per {devices}",
+        "lead": "Esegui SQL analitico tramite l’interfaccia HTTP di ClickHouse, leggi piano, pipeline o stima delle righe di una query e gestisci parti e partizioni MergeTree dalla scheda Parts della tabella. Le query lunghe riportano le righe lette durante l’esecuzione e Stop le termina sul server."
+    },
+    "asset": "mac-db-clickhouse-parts",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "map": "/features/querying#map",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti",
+            "paragraphs": [
+                "Fornisci host, porta HTTP, utente e, se vuoi, database. Il cambio di database avviene sulla stessa connessione e una scheda aperta rimane sul database iniziale. <ui>View > Sidebar as Tree</ui> mostra i database del server come albero da espandere sul posto.",
+                "Scegli qualsiasi modalità SSL per passare a HTTPS. Le porte 443 o 8443, quella usata da ClickHouse Cloud, attivano Verify Identity, che verifica il certificato rispetto al file CA o all’archivio di certificati attendibili del sistema. Verify CA richiede un file CA e un certificato e una chiave client consentono di raggiungere server che richiedono TLS reciproco.",
+                "Senza TLS, raggiungi un server remoto tramite un <network>tunnel SSH</network> anziché inviare HTTP non cifrato sulla rete."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Esegui query e modifica",
+            "paragraphs": [
+                "Ogni query ha un proprio ID e richiede aggiornamenti sul progresso, quindi una query lunga riporta le righe lette durante l’esecuzione. Stop invia <code>KILL QUERY</code> per quell’ID e il timeout delle query della connessione raggiunge il server.",
+                "Il <explain>menu Explain</explain> offre Plan, Pipeline, AST, Syntax ed Estimate. L’output indentato viene rappresentato come diagramma o albero ed Estimate mostra righe, mark e parti che la query leggerebbe.",
+                "Le modifiche nella griglia vengono inviate come <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> e <code>ALTER TABLE … DELETE</code>, con <editing>Preview SQL</editing> prima. ClickHouse esegue aggiornamenti ed eliminazioni come mutazioni in background, quindi un salvataggio significa accettato, non ancora applicato; <code>system.mutations</code> mostra il progresso. Una vista materializzata si apre in sola lettura.",
+                "Un risultato con tuple di punti o anelli ClickHouse si apre nella <map>vista Map</map>. Una query con una propria clausola <code>FORMAT</code> mostra l’output non elaborato del server in una colonna, quindi ometti la clausola per ottenere una griglia."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tabelle, parti e partizioni",
+            "paragraphs": [
+                "Una tabella si apre con le schede Structure, Indexes, DDL e Parts. Indexes mostra la chiave di ordinamento e gli indici data-skipping e DDL mostra l’intero <code>CREATE TABLE</code>, motore e impostazioni inclusi.",
+                "Parts elenca ogni parte da <code>system.parts</code> con partizione, righe, dimensione sul disco, ora di modifica e indicatore di attività e consente di eseguire Optimize, Drop Partition e Detach Partition.",
+                "La <structure>scheda Structure</structure> aggiunge, modifica ed elimina colonne ed elimina indici data-skipping. Chiave di ordinamento e chiave primaria vengono fissate alla creazione della tabella, quindi aggiungi un indice data-skipping con <code>ALTER TABLE … ADD INDEX</code> e ricrea la tabella per altre modifiche."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Monitora",
+            "paragraphs": [
+                "Il <dashboard>Server Dashboard</dashboard> mostra query attive, merge attivi, mutazioni delle parti e uso del disco, elenca le altre sessioni con <ui>Terminate Session</ui> per ciascuna e legge l’elenco delle query lente da <code>system.query_log</code>: le query concluse più recenti durate oltre un secondo."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "Carica file {importFormats} con <importData>Import</importData> ed esporta tabelle o risultati delle query in {exportFormats}. Una colonna con anche un solo valore non UTF-8 valido appare in esadecimale nella griglia; seleziona <code>toValidUTF8(column)</code> per leggerla come testo."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "settings",
+            "question": "Come modifico un’impostazione per una query?",
+            "answer": "Inseriscila in una clausola <code>SETTINGS</code> nella query stessa, per esempio <code>SELECT … SETTINGS max_threads = 4</code>. Ogni istruzione è una richiesta HTTP autonoma senza sessione, quindi un <code>SET</code> separato scompare alla successiva."
+        },
+        {
+            "id": "native-port",
+            "question": "Perché la porta 9000 non si connette?",
+            "answer": "La porta 9000 è la porta TCP nativa di ClickHouse, che TablePro non usa. Connettiti alla porta HTTP oppure alla 8443 per HTTPS su ClickHouse Cloud e verifica che l’interfaccia HTTP del server sia attiva: una richiesta a <code>/ping</code> su quella porta risponde <code>Ok.</code>"
+        }
+    ],
+    "related": [
+        {
+            "label": "Piani EXPLAIN e prestazioni delle query",
+            "href": "/features/querying#performance"
+        },
+        {
+            "label": "Schema, confronto e sincronizzazione",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Importazione, esportazione e file di dati",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "DuckDB, per file analitici",
+            "href": "/duckdb-client"
+        }
+    ]
+}

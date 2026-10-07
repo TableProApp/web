@@ -1,0 +1,214 @@
+{
+    "seo": {
+        "title": "TablePro vs phpMyAdmin：Web ツールか Mac アプリか",
+        "description": "phpMyAdmin は Web サーバーで動きブラウザーで開きます。TablePro は Mac から直接か SSH で接続。対応データベース、設定とアクセスを比較します。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs phpMyAdmin"
+    },
+    "header": {
+        "title": "TablePro vs phpMyAdmin",
+        "lead": "phpMyAdmin は MySQL と MariaDB 向けの無料オープンソース Web ツールで、Web サーバーにインストールし、cPanel に含まれます。TablePro は Mac 用のオープンソースアプリで、別の iPhone・iPad アプリがあり、データベースに直接か SSH トンネルで接続します。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "サーバーには何もインストールせず、Mac から直接か SSH で接続して作業したい。",
+            "PostgreSQL、SQL Server、SQLite、Redis なども使う。",
+            "本番接続を Read-Only にしたり、書き込み前に Touch ID を求めたり、接続ごとのセーフモードが欲しい。",
+            "データを頻繁に出し入れする。CSV、JSON、XLSX や SQL のインポート・エクスポートは無料です。",
+            "Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。"
+        ],
+        "competitor": [
+            "ホストが cPanel で提供し、データベースへの SSH やリモートアクセスはない。",
+            "ブラウザーのあるどのコンピューターからも、何もインストールせず作業したい。",
+            "自分やチームが TablePro Mac アプリにはない言語のインターフェイスを必要とする。"
+        ]
+    },
+    "glance": {
+        "intro": "phpMyAdmin は Web アプリのため、表のいくつかは自分のコンピューターではなく稼働するサーバーを説明します。現在の安定版は {status.version}、{cells.nextMajor.version} は開発中です。"
+    },
+    "rows": {
+        "cpanel": {
+            "label": "cPanel に同梱",
+            "tablepro": "いいえ。Mac で動きサーバーに接続"
+        },
+        "languages": {
+            "label": "インターフェイス言語",
+            "tablepro": "Mac アプリ：{macLanguages}"
+        },
+        "designer": {
+            "label": "スキーマ図",
+            "tablepro": "無料の読み取り専用 ER 図、PNG や SQL にエクスポート"
+        },
+        "queryByExample": {
+            "label": "例によるクエリ（QBE）",
+            "tablepro": "非対応"
+        },
+        "nextMajor": {
+            "label": "次のメジャーバージョン",
+            "tablepro": "新しい Mac 版はアプリ内更新や Homebrew で提供"
+        },
+        "hardening": {
+            "label": "インストールの保護",
+            "tablepro": "サーバーにインストール不要。データベース自身のアクセス規則は必要"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "ブラウザーで動くため、どのコンピューターからも何もインストールせずアクセスできます。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "cPanel に含まれるため、cPanel のホスティングアカウントですぐに使えます。",
+                "cite": [
+                    "cells.cpanel"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "インターフェイスは {cells.languages.value} 言語で使えます。",
+                "cite": [
+                    "cells.languages"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "データベーススキーマを複数の図形式で表示し、QBE ツールで複雑なクエリを構築できます。",
+                "cite": [
+                    "cells.designer",
+                    "cells.queryByExample"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "GPL の無料オープンソースで、有料プランはありません。",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "サーバーには何もインストールしません。TablePro は Mac から MySQL に直接か <link>SSH トンネル</link>で接続し、Mac は踏み台も使えます。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/connections#network"
+            },
+            {
+                "text": "保護・更新する Web インストールはありません。phpMyAdmin のドキュメントは HTTPS、アクセス規則と二要素ログインで保護する方法を説明します。",
+                "cite": [
+                    "cells.hardening"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "接続ごとに Silent から Read-Only まで <link>セーフモード</link>を設定し、厳しいレベルは Touch ID を使います。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "一つのアプリで MySQL、MariaDB、PostgreSQL、SQL Server、SQLite と Redis などに対応します。<link>対応データベース</link>をご覧ください。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>インポートとエクスポート</link>は Mac で実行し、CSV、JSON、XLSX と SQL を取り込み、CSV、JSON、SQL、XLSX、Markdown、HTML と XML を書き出します。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/import-export"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro がデータベースに接続するには、Mac からデータベースのポートへアクセスできるか、サーバーへ SSH 接続できる必要があります。ホスティングプランがどちらも提供しない場合は、phpMyAdmin を使います。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Mac、iPhone と iPad のアプリであり、どのコンピューターのブラウザーからも開けるものではありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Mac アプリのインターフェイスは {macLanguages} のみです。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "一部の機能は有料です。Starter は {starterExamples} などを追加しますが、phpMyAdmin は有料プランがありません。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro に phpMyAdmin のインポーターはありません。ホストの MySQL・SSH 情報を使いフォームを入力するか、mysql:// URL を <ui>File > Import > Import from URL…</ui> に貼り付けます。",
+        "steps": [],
+        "after": [
+            "サイトのコードが Mac にあれば、<ui>File > Import > Open Project Folder…</ui> が wp-config.php や .env などの設定を読み、入力済み接続フォームを開きます。",
+            "本番データベースは始める前に接続のセーフモードを設定します。",
+            "phpMyAdmin の SQL エクスポートは gzip 圧縮の有無に関わらず MySQL・MariaDB 接続にインポートできます。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "access",
+            "question": "TablePro の利用にホストから何が必要ですか？",
+            "answer": "自分のアドレスから許可されるリモート MySQL かサーバーへの SSH という、どちらかのアクセス方法が必要です。TablePro は両方使えます。どちらもないプランなら phpMyAdmin を使い続けてください。",
+            "href": null
+        },
+        {
+            "id": "sql-import",
+            "question": "phpMyAdmin の SQL エクスポートをインポートできますか？",
+            "answer": "はい。.sql と .sql.gz を受け付け、選んだ接続で文を実行します。<link>インポートとエクスポートについて</link>。",
+            "href": "/features/import-export"
+        },
+        {
+            "id": "adminer",
+            "question": "Adminer はどうですか？",
+            "answer": "Adminer は単一 PHP ファイルの別のオープンソース Web ツールで、MySQL・MariaDB に加え PostgreSQL、SQLite、SQL Server と Oracle に接続します。phpMyAdmin と同じくサーバーで動くため、インストールは同様に保護する必要があります。",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "TablePro も phpMyAdmin のように無料ですか？",
+            "answer": "MySQL・MariaDB の作業は無料です。TablePro Mac アプリは全対応エンジン、AI アシスタントと MCP サーバーを含む AGPLv3 のオープンソースです。phpMyAdmin と違い有料プランもあり、Starter と Team は {starterExamples} など任意の機能を追加します。<link>料金を見る</link>。",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "phpmyadmin-databases": "MySQL と MariaDB",
+        "phpmyadmin-schema-visualization": "複数の形式のデータベーススキーマ図",
+        "phpmyadmin-in-development": "{version} は開発中",
+        "phpmyadmin-hardening": "ドキュメントは HTTPS のみ、アクセス制限、root ログイン無効化と二要素認証を推奨"
+    }
+}

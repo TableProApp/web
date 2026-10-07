@@ -1,0 +1,112 @@
+{
+    "seo": {
+        "title": "{devices} 用 Amazon Redshift クライアント",
+        "description": "PostgreSQL ドライバーで Redshift クラスタと Serverless ワークグループをクエリ。DISTKEY、SORTKEY、外部スキーマを確認し、pg_dump でバックアップ。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Amazon Redshift クライアント"
+    },
+    "engine": "redshift",
+    "breadcrumb": "Amazon Redshift",
+    "header": {
+        "title": "{devices} 用 Amazon Redshift クライアント",
+        "lead": "アプリ同梱の PostgreSQL ドライバーでプロビジョンドクラスタや Serverless ワークグループに問い合わせ、各テーブルの分散方式とソートキーを確認し、自分のスキーマと並んで Spectrum や datashare のスキーマを閲覧できます。"
+    },
+    "asset": "mac-db-redshift-ddl",
+    "links": {
+        "network": "/features/connections#network",
+        "credentials": "/features/connections#credentials",
+        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "postgresql": "/postgresql-client",
+        "icloudSync": "/features/sync-and-teams#icloud-sync",
+        "share": "/features/sync-and-teams#share"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "ホストにはクラスタエンドポイント、Redshift Serverless ならワークグループエンドポイントを使い、どちらも同じポートで待ち受けます。データベースは必須で、すべてのクラスタには作成時に <code>dev</code> が用意されます。<code>redshift://</code> URL のインポートでフォームを入力できます。",
+                "新規接続は SSL を Preferred にし、バージョン検査は行わないため、AWS が稼働させているクラスタなら接続できます。パスワードはキーチェーンに保存するか <code>~/.pgpass</code> から読み取り、接続の <credentials>認証情報オプション</credentials> の二つです。公開アクセスできないクラスタには、VPC 内の踏み台への <network>SSH トンネル</network> でアクセスします。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "クエリと編集",
+            "paragraphs": [
+                "クエリと <editing>Preview SQL 付きの行編集保留</editing> は、同じドライバーを使う <postgresql>PostgreSQL</postgresql> と同じように動作します。有効なデータベース以外に紐付いたタブは、そのために二つ目の接続を開きます。",
+                "テーブル情報は <code>svv_table_info</code> から分散方式、ソートキーとサイズを読み取り、DDL タブは DISTKEY、SORTKEY、DISTSTYLE、ENCODE を書き出します。外部キーは表示しますが Redshift は強制しないため、違反する行も防げません。",
+                "<explain>EXPLAIN と EXPLAIN VERBOSE</explain> は Redshift のプランを図ではなくテキストで返します。",
+                "<code>CREATE EXTERNAL SCHEMA</code> で作ったスキーマは、S3 上の Spectrum、フェデレーテッドクエリ、データベース間参照や datashare を問わず、独自スキーマと並んで External と表示します。テーブルは通常どおり閲覧、絞り込み、並べ替えとエクスポートができますが、Redshift が UPDATE と DELETE を受け付けないため読み取り専用です。行数は表示せず、カラム型は外部カタログの報告をそのまま読みます。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "スキーマ",
+            "paragraphs": [
+                "Redshift に管理対象のインデックス、enum、シーケンスやトリガーはありません。DISTKEY と SORTKEY がインデックスに相当する役割を果たし、Structure に Triggers タブはありません。ルーチンはサイドバーに表示しません。",
+                "サイドバーからテーブル、データベースとスキーマを名前変更し、所有者付きのスキーマを作成できます。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "監視とバックアップ",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> はセッションと遅いクエリを一覧表示し、接続数、キャッシュヒット率、データベースサイズ、稼働時間と実行中のクエリをメトリクスとして示します。Cancel Query は <code>pg_cancel_backend</code>、Terminate Session は <code>pg_terminate_backend</code> を、それぞれ確認後に送ります。",
+                "Redshift には Maintenance メニューも Users & Roles もありません。VACUUM、ANALYZE と GRANT は SQL エディタで実行します。",
+                "<backup>Backup Dump と Restore Dump</backup> は Mac の {dumpTool} と pg_restore を実行し、SSH トンネルがある場合はそれを通します。先に Homebrew の libpq でインストールしてください。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "<importData>インポート</importData> は Mac の {importFormats} ファイルを Redshift テーブルに読み込みます。テーブルやクエリ結果は {exportFormats} にエクスポートし、外部テーブルも通常どおりエクスポートできます。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone と iPad",
+            "paragraphs": [
+                "Redshift 接続を iPhone や iPad に持ち込むには、Mac の {icloudSyncTier} プランに含まれる <icloudSync>iCloud Sync</icloudSync> を有効にするか、<share>接続をエクスポート</share>したファイルをデバイスで開きます。その後はアプリ内蔵の PostgreSQL ドライバーで、カードの閲覧、絞り込み、並べ替え、Query タブでの SQL 実行ができます。iCloud Sync のパスワードはパスワード同期を有効にした場合のみ届きます。エクスポートでは {encryptedExportTier} プランのパスワード付き暗号化ファイルを使います。証明書は各デバイスに残ります。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "serverless",
+            "question": "Redshift Serverless に対応しますか？",
+            "answer": "はい。ホストにワークグループエンドポイントを入れ、プロビジョンドクラスタと同様にポート、データベースとユーザーを指定します。"
+        },
+        {
+            "id": "pg-dump",
+            "question": "pg_dump は Redshift に対応しますか？",
+            "answer": "Redshift が報告する PostgreSQL バージョンへの対応を表明する pg_dump リリースはありません。PostgreSQL ではサーバーに合うものを選びますが、Redshift ではインストール済みの pg_dump を実行するため、頼る前に小さなスキーマでバックアップを試してください。"
+        }
+    ],
+    "related": [
+        {
+            "label": "同じドライバーの PostgreSQL",
+            "href": "/postgresql-client"
+        },
+        {
+            "label": "サーバーダッシュボードとスキーマツール",
+            "href": "/features/schema"
+        },
+        {
+            "label": "バックアップ、インポートとエクスポート",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "別のウェアハウス Google BigQuery",
+            "href": "/bigquery-client"
+        }
+    ]
+}

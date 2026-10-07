@@ -1,0 +1,106 @@
+{
+    "seo": {
+        "title": "Amazon DynamoDB GUI per {devices}",
+        "description": "Esplora DynamoDB con Query o Scan scelti dai filtri, modifica gli elementi mantenendone i tipi ed esegui PartiQL o richieste API."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Interfaccia grafica Amazon DynamoDB"
+    },
+    "engine": "dynamodb",
+    "breadcrumb": "Amazon DynamoDB",
+    "header": {
+        "title": "Interfaccia grafica Amazon DynamoDB per {devices}",
+        "lead": "Esplora tabelle tramite chiavi e indici, verifica la capacità consumata da ogni lettura, modifica gli elementi senza perderne i tipi ed esegui PartiQL o richieste API DynamoDB nell’editor."
+    },
+    "asset": "mac-db-dynamodb-planner",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "permissions": "docs:/databases/dynamodb#iam-permissions",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti",
+            "paragraphs": [
+                "Scegli un <ui>Auth Method</ui> e una <ui>AWS Region</ui> e la barra laterale elenca le tabelle della regione. I metodi sono una chiave di accesso con token di sessione facoltativo, un profilo da <code>~/.aws/config</code> e <code>~/.aws/credentials</code> letto come dalla AWS CLI oppure un profilo <cloudAuth>AWS IAM Identity Center</cloudAuth>, che apre la richiesta di accesso quando la sessione è scaduta.",
+                "I profili risolvono helper <code>credential_process</code> e catene <code>role_arn</code>; le credenziali temporanee scadute vengono recuperate di nuovo e la richiesta viene riprovata una volta. Ogni richiesta usa HTTPS con firma Signature Version 4, quindi non ci sono impostazioni SSL né tunnel SSH. Una regione in un’altra partizione AWS, come Cina o European Sovereign Cloud, raggiunge il proprio endpoint senza uno personalizzato.",
+                "Per DynamoDB Local esegui <code>docker run -p 8000:8000 amazon/dynamodb-local</code> e scegli <ui>DynamoDB Local (no credentials)</ui>; lascia <ui>Custom Endpoint</ui> vuoto per la porta 8000. Un endpoint personalizzato può usare HTTP non cifrato solo su questo Mac. La guida di configurazione elenca <permissions>le azioni IAM richieste da ogni attività</permissions>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Leggi, filtra e modifica elementi",
+            "paragraphs": [
+                "Apertura, filtri e paginazione di una tabella passano dallo stesso pianificatore. Fissa la chiave di partizione con = per eseguire Query su una partizione; filtri compatibili con le chiavi di un indice eseguono Query su quell’indice; tutto il resto esegue Scan, che legge l’intera tabella e fattura ogni elemento letto. La barra di stato indica la lettura scelta, quanti elementi sono tornati, quanti DynamoDB ne ha letti per trovarli e le unità di capacità consumate.",
+                "Un <filters>filtro</filters> sulla chiave di ordinamento entra nella condizione di chiave quando usa =, <, <=, >, >=, BETWEEN o STARTS WITH. Gli altri filtri diventano FilterExpression, applicata da DynamoDB dopo la lettura, quindi riducono le righe senza ridurre il costo. Filtra un attributo annidato con un percorso come <code>address.city</code> o <code>items[0].sku</code>.",
+                "Fare clic sull’intestazione della chiave di ordinamento in una Query di una partizione fa restituire gli elementi in quell’ordine. Qualsiasi altro ordinamento avviene nella griglia quando la lettura contiene tutti gli elementi corrispondenti e la barra di stato segnala quando non è così. La pagina successiva continua da dove si è fermata la precedente. Il totale sotto la griglia è il conteggio di DynamoDB; <ui>Count Exactly</ui> legge tutti gli elementi corrispondenti ai filtri e la lettura viene fatturata interamente.",
+                "Una tabella dichiara solo le chiavi, quindi le colonne provengono dagli elementi: attributi delle chiavi, attributi trovati in un campione dei primi elementi e quelli della pagina visibile. Mappe, liste e set appaiono come JSON e si aprono nell’editor JSON; i numeri mantengono ogni cifra.",
+                "Ogni riga modificata viene salvata come un’istruzione PartiQL e <editing>ogni valore mantiene il proprio tipo</editing>: Number rimane Number, una String come <code>02134</code> rimane String e uno String Set modificato come JSON torna come String Set. Un aggiornamento verifica ogni attributo modificato rispetto al valore caricato dalla griglia, quindi fallisce anziché sovrascrivere la modifica di qualcun altro. <ui>Set NULL</ui> rimuove l’attributo.",
+                "L’editor accetta PartiQL, con doppi apici sui nomi e apici singoli sulle stringhe, oppure il nome di un’azione DynamoDB seguito dal JSON della richiesta, come <code>Query</code>, <code>BatchWriteItem</code> o <code>TransactWriteItems</code>. Qualsiasi altro nome di azione viene rifiutato. Gli elementi tornano nella griglia e le altre risposte come JSON. Le richieste limitate vengono riprovate con backoff e <code>⌘.</code> ferma un’istruzione in esecuzione."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tabelle e indici",
+            "paragraphs": [
+                "<ui>New Table…</ui> apre un modulo per chiavi di partizione e ordinamento, capacità on demand o provisionata, classe della tabella, protezione dall’eliminazione e indici secondari e <ui>Preview</ui> mostra la richiesta <code>CreateTable</code> prima dell’invio. Un indice secondario locale può essere definito solo lì, alla creazione della tabella.",
+                "Nella scheda Structure aggiungi o elimini un indice secondario globale, una modifica per salvataggio, perché DynamoDB accetta una modifica di indice per richiesta <code>UpdateTable</code>. Gli attributi non si modificano lì: scrivine uno in un elemento e appare come colonna. La scheda DDL mostra la richiesta <code>CreateTable</code> che ricrea la tabella, con impostazioni Time to Live e ripristino point-in-time."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Impostazioni della tabella",
+            "paragraphs": [
+                "Fai clic destro su una tabella e scegli <ui>Maintenance</ui> per ripristino point-in-time, protezione dall’eliminazione, stream, classe della tabella, passaggio alla capacità on demand e disattivazione di Time to Live. Eliminare una tabella invia <code>DeleteTable</code>, che fallisce mentre la protezione dall’eliminazione è attiva."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "L’importazione non è disponibile per DynamoDB. Scrivi elementi dall’editor con un <code>INSERT</code> PartiQL o una richiesta <code>BatchWriteItem</code>, che reinvia gli elementi non elaborati e segnala quelli che non ha potuto scrivere. <export>Esporta</export> una tabella o un risultato in un file dalla finestra Export."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "avoid-scans",
+            "question": "Come evito che una lettura scandisca l’intera tabella?",
+            "answer": "Filtra sulla chiave di partizione con = oppure sulla chiave di partizione di un indice globale con un filtro su ogni chiave di ordinamento e la lettura usa Query. Un indice globale viene usato per l’esplorazione solo se proietta tutti gli attributi, quindi interroga un indice di sole chiavi dall’editor con una richiesta <code>Query</code> che specifichi <code>IndexName</code>."
+        },
+        {
+            "id": "change-key",
+            "question": "Come modifico la chiave di un elemento?",
+            "answer": "Un attributo di chiave non può essere modificato sul posto. Usa <ui>Duplicate Row</ui>, che copia tutti gli attributi tranne le chiavi, assegna alla copia la nuova chiave, salva e poi elimina l’originale."
+        },
+        {
+            "id": "transactions",
+            "question": "Le modifiche nella griglia vengono salvate in un’unica transazione?",
+            "answer": "No. Ogni riga modificata viene scritta separatamente. Inserisci le scritture che devono riuscire insieme in una richiesta <code>ExecuteTransaction</code> o <code>TransactWriteItems</code> nell’editor."
+        }
+    ],
+    "related": [
+        {
+            "label": "Filtri tra motori",
+            "href": "/features/data-editing#filters"
+        },
+        {
+            "label": "Accesso AWS, Google e Microsoft",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "Redis, chiavi e comandi",
+            "href": "/redis-gui"
+        },
+        {
+            "label": "Cassandra e Amazon Keyspaces",
+            "href": "/cassandra-client"
+        }
+    ]
+}

@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "Redis GUI per {macDevices}",
+        "description": "Esplora chiavi Redis ad albero, modifica nomi, TTL e stringhe ed esegui comandi con la sintassi redis-cli su Standalone, Sentinel e Cluster."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Interfaccia grafica Redis"
+    },
+    "engine": "redis",
+    "breadcrumb": "Redis",
+    "header": {
+        "title": "Interfaccia grafica Redis per {macDevices}",
+        "lead": "Esplora le chiavi in un albero diviso ai due punti, leggi tipo, TTL e lunghezza di ogni chiave a colpo d’occhio ed esegui comandi Redis con la delimitazione di redis-cli su un singolo server, un primario gestito da Sentinel o un Redis Cluster."
+    },
+    "asset": "mac-db-redis-keys",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "editing": "/features/data-editing#documents-and-keys",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti",
+            "paragraphs": [
+                "Scegli un <ui>Connection Mode</ui>. Standalone richiede host e porta. Sentinel richiede uno o più nodi Sentinel e il nome del gruppo primario, segue il quorum fino al primario e lo segue dopo un failover. Cluster usa qualsiasi membro raggiungibile come punto iniziale, legge la mappa degli shard e invia ogni comando allo shard che possiede la chiave.",
+                "Accedi con una password oppure compila Username per usare un utente ACL di Redis 6. Su Amazon ElastiCache scegli una modalità <cloudAuth>AWS IAM</cloudAuth> e un token di breve durata diventa la password; IAM di ElastiCache richiede TLS attivo.",
+                "Le nuove connessioni iniziano con TLS disattivato. Upstash, Redis Cloud e servizi simili lo richiedono e un URL <code>rediss://</code> incollato lo attiva. Non c’è fallback in chiaro, quindi Preferred si comporta come Required. I server Valkey si connettono come Redis.",
+                "La barra laterale elenca ogni database numerato da <code>db0</code> in poi e un clic su uno lo esplora sulla stessa connessione."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Chiavi e comandi",
+            "paragraphs": [
+                "I nomi delle chiavi si dividono in cartelle a ogni due punti o al separatore impostato nella scheda Options. Ogni chiave è una riga con Key, Type, TTL, Length e Value. Una stringa appare intera; hash, liste, set, set ordinati o stream mostrano le prime voci e Length ne indica il numero totale. Un valore non UTF-8 valido, come un payload gzip, si apre nell’editor esadecimale.",
+                "<editing>Nella griglia</editing>, modificare il nome di una chiave esegue <code>RENAME</code>, il TTL esegue <code>EXPIRE</code> o <code>PERSIST</code> e un valore stringa esegue <code>SET</code>. Add Row scrive il tipo scelto con <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code> o <code>SET</code>. La barra dei filtri abbina i nomi delle chiavi con pattern glob Redis e limita per tipo, usando <code>SCAN MATCH</code> e <code>SCAN TYPE</code> sul server.",
+                "L’editor accetta un comando per istruzione, delimitato come in redis-cli, e invia i comandi che non riconosce così come sono scritti. <code>DB 3 GET key</code> esegue un comando su un altro database senza spostare la sessione e in un blocco <code>MULTI</code> ogni comando risponde <code>QUEUED</code> finché <code>EXEC</code> non restituisce tutte le risposte in ordine.",
+                "<safeMode>Safe Mode</safeMode> considera ogni comando Redis una scrittura, <code>GET</code> incluso, quindi i livelli Alert e Safe Mode confermano ciascuno e Read-Only li blocca tutti. <code>FLUSHDB</code> e <code>FLUSHALL</code> chiedono conferma prima dell’esecuzione anche a livello Silent."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "<export>Esporta</export> chiavi o risultati dei comandi in {exportFormats}. L’importazione non è disponibile per Redis: carica i dati con comandi nell’editor."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone e iPad",
+            "paragraphs": [
+                "Su iPhone e iPad esegui comandi Redis nella scheda Query; l’esplorazione delle chiavi non è disponibile nell’app per iPhone e iPad. Una connessione richiede password, TLS con un certificato CA o client da file, testo incollato o pacchetto PKCS#12 e un tunnel SSH con accesso tramite password o chiave. Le connessioni Sentinel e Cluster sono disponibili solo sul Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "redis-insight",
+                "text": "Redis Insight è lo strumento ufficiale di Redis. Oltre all’esplorazione delle chiavi e a un Workbench di comandi, offre uno spazio Pub/Sub, un profiler dei comandi, ispezione del log delle operazioni lente e analisi della memoria. Sceglilo per monitorare e ottimizzare un’installazione Redis; TablePro è adatto quando Redis affianca i database SQL con cui lavori ogni giorno.",
+                "notes": [
+                    "redis-insight-copilot"
+                ]
+            }
+        ],
+        "notes": {
+            "redis-insight-copilot": "Il suo Redis Copilot risponde a domande su Redis e crea query di ricerca dal linguaggio naturale."
+        }
+    },
+    "faq": [
+        {
+            "id": "acl-scan",
+            "question": "Perché l’albero delle chiavi è vuoto per il mio utente ACL?",
+            "answer": "L’albero legge i nomi delle chiavi con <code>SCAN</code> e i tipi con <code>TYPE</code>. Concedi entrambi, per esempio <code>ACL SETUSER app +scan +type</code>, poi fai clic destro su <ui>Keys</ui> nella barra laterale e scegli <ui>Refresh</ui>."
+        },
+        {
+            "id": "select",
+            "question": "Perché SELECT non cambia la barra laterale?",
+            "answer": "<code>SELECT</code> sposta solo la sessione dell’editor, quindi i comandi successivi usano quel database mentre barra laterale e albero delle chiavi rimangono dove hai fatto clic. Fai clic su un database nella barra laterale per spostare entrambi oppure aggiungi a un comando il prefisso <code>DB</code> e il numero del database."
+        },
+        {
+            "id": "managed",
+            "question": "Perché un servizio Redis gestito elenca database che non possiede?",
+            "answer": "Servizi come Upstash, Redis Cloud ed ElastiCache rifiutano <code>CONFIG</code>, quindi TablePro non può leggere quanti database contengono ed elenca un intervallo predefinito. Su un servizio con un solo database, quelli diversi da <code>db0</code> mostrano l’errore del server quando vengono aperti."
+        }
+    ],
+    "related": [
+        {
+            "label": "Esplora e modifica i dati in sicurezza",
+            "href": "/features/data-editing#documents-and-keys"
+        },
+        {
+            "label": "Connessioni, tunnel e credenziali",
+            "href": "/features/connections"
+        },
+        {
+            "label": "TablePro per iPhone e iPad",
+            "href": "/ios"
+        },
+        {
+            "label": "Confronta TablePro con altri client di database",
+            "href": "/compare"
+        }
+    ]
+}

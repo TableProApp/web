@@ -1,0 +1,189 @@
+{
+    "seo": {
+        "title": "TablePro vs Postico: PostgreSQL y otros motores",
+        "description": "Compara TablePro y Postico 2 para Mac: PostgreSQL, otros motores, precios, administración del servidor, sincronización y configuración."
+    },
+    "og": {
+        "kicker": "Comparar",
+        "title": "TablePro vs Postico"
+    },
+    "header": {
+        "title": "TablePro vs Postico",
+        "lead": "Postico 2 es una app para Mac dedicada a PostgreSQL y las bases de datos que usan su protocolo, con licencias de pago único. TablePro es un cliente de código abierto para PostgreSQL y otros motores, con una app independiente para iPhone y iPad y funciones de pago opcionales en el Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "También trabajas con MySQL, SQL Server, SQLite, Redis o MongoDB, además de PostgreSQL.",
+            "También administras el servidor. Usuarios y roles, un panel del servidor que permite finalizar sesiones, VACUUM y las copias de seguridad con pg_dump son gratuitos en la app para Mac.",
+            "Optimizas consultas. EXPLAIN muestra el plan como diagrama y la comparación de EXPLAIN contrasta un plan nuevo con una referencia.",
+            "Quieres una app gratuita para iPhone y iPad que se conecte a PostgreSQL.",
+            "Quieres el asistente de IA y el servidor MCP sin coste."
+        ],
+        "competitor": [
+            "Solo usas PostgreSQL, Redshift, CockroachDB o Greenplum y quieres una app diseñada para ese trabajo.",
+            "Quieres una versión de la Mac App Store o una licencia con precio para uso personal, comercial, en equipo o estudiantil.",
+            "Quieres sincronizar la configuración de tus servidores mediante iCloud o Dropbox."
+        ]
+    },
+    "glance": {
+        "intro": "Postico 2 ofrece licencias de pago único para uso personal, comercial, en equipo y estudiantil, y su versión de evaluación no tiene límite de tiempo. TablePro es gratuito y sus planes de pago añaden funciones opcionales."
+    },
+    "rows": {
+        "administration": {
+            "label": "Administración del servidor",
+            "tablepro": "Gratis en la app para Mac: usuarios y roles, panel del servidor, mantenimiento como VACUUM y copias de seguridad con pg_dump, que debes instalar"
+        },
+        "macAppStore": {
+            "label": "Mac App Store",
+            "tablepro": "No está en la Mac App Store. Descárgalo desde este sitio o instálalo con Homebrew"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Postico 2 está diseñado para PostgreSQL y las bases de datos que usan su protocolo, incluida Greenplum, que TablePro no admite.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "La licencia se paga una sola vez, con precios para uso personal, comercial, en equipo y estudiantil, y hay una versión en la Mac App Store.",
+                "cite": [
+                    "prices",
+                    "cells.macAppStore"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "La versión de evaluación no tiene límite de tiempo, aunque algunas funciones permanecen desactivadas hasta que compres una licencia.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "La configuración de los servidores se sincroniza mediante iCloud o Dropbox.",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Un solo cliente cubre PostgreSQL y otros motores, desde MySQL y SQL Server hasta Redis, MongoDB y DuckDB. Consulta las <link>bases de datos compatibles</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "La <link>administración del servidor</link> está incluida en la app gratuita: usuarios y roles con permisos hasta el nivel de columna, un panel del servidor con sesiones y consultas lentas, y VACUUM con vista previa del SQL. Postico indica que no está diseñado para estas tareas.",
+                "cite": [
+                    "cells.administration"
+                ],
+                "feature": null,
+                "href": "/features/schema#administer"
+            },
+            {
+                "text": "<link>EXPLAIN</link> muestra el plan como diagrama, árbol o texto sin procesar, y la comparación de EXPLAIN contrasta un plan nuevo con una referencia. Ambos son gratuitos.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "<link>Sincronización con iCloud</link> mantiene conexiones entre Macs e iPhone o iPad. Es parte de Starter en Mac y gratis en iPhone y iPad.",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "Una <link>app gratuita para iPhone y iPad</link> se conecta a PostgreSQL, sin compras dentro de la app.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Greenplum no está entre los motores compatibles.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Redshift y CockroachDB se conectan, pero la estructura de sus tablas es de solo lectura en TablePro.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Para cambiar la posición de una columna de PostgreSQL, TablePro genera un script de reconstrucción que debes ejecutar. No lo ejecuta por su cuenta.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Postico 2 solo ofrece licencias de pago único. Un plan mensual o anual de TablePro bloquea sus funciones de pago al finalizar, aunque el resto de la app sigue funcionando; Starter y Team también están disponibles como compras de pago único sin fecha de caducidad.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro no tiene importador para Postico. Añade cada servidor como conexión de TablePro: completa el formulario de conexión o pega una URL que empiece por postgresql:// en <ui>Archivo > Importar > Importar desde URL…</ui>",
+        "steps": [],
+        "after": [
+            "Si un proyecto guarda la URL de su base de datos en un archivo .env o un esquema Prisma, <ui>Archivo > Importar > Abrir carpeta de proyecto…</ui> la lee y abre el formulario de conexión ya completado.",
+            "Las contraseñas se guardan en el llavero de macOS. TablePro también lee ~/.pgpass para las conexiones PostgreSQL.",
+            "El historial empieza de cero en TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "redshift-cockroachdb",
+            "question": "¿TablePro funciona con Redshift y CockroachDB como Postico?",
+            "answer": "Sí, ambos se conectan y la estructura de sus tablas es de solo lectura en TablePro. Greenplum, también compatible con Postico, no está entre los motores de TablePro.",
+            "href": null
+        },
+        {
+            "id": "icloud-sync",
+            "question": "¿La sincronización con iCloud de TablePro es gratuita?",
+            "answer": "En la app para iPhone y iPad, sí. En el Mac forma parte de Starter. Postico 2 sincroniza la configuración de los servidores mediante iCloud o Dropbox.",
+            "href": null
+        },
+        {
+            "id": "admin",
+            "question": "¿Puedo gestionar roles y sesiones en TablePro?",
+            "answer": "Sí, en la app para Mac y gratis. Usuarios y roles concede y revoca permisos con vista previa del SQL, y el panel del servidor lista las sesiones y permite finalizarlas. <link>Consulta las herramientas del servidor</link>.",
+            "href": "/features/schema#administer"
+        },
+        {
+            "id": "license",
+            "question": "¿Necesito una licencia para usar TablePro con PostgreSQL?",
+            "answer": "No. PostgreSQL y todos los demás motores compatibles son gratuitos, al igual que el asistente de IA y el servidor MCP. Un plan Starter o Team añade funciones opcionales a la app para Mac, como {starterExamples}. <link>Consulta los precios</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "postico-evaluation": "Versión de evaluación sin límite de tiempo. Algunas funciones están desactivadas hasta que compres una licencia.",
+        "postico-vat-included": "IVA incluido",
+        "postico-plus-vat": "Más IVA",
+        "postico-databases": "PostgreSQL, Amazon Redshift, Greenplum y CockroachDB. Otras bases de datos que usan el protocolo PostgreSQL pueden conectarse, pero la mayoría de las funciones no funcionarán.",
+        "postico-sync-icloud-dropbox": "La configuración de los servidores se sincroniza mediante iCloud o Dropbox",
+        "postico-no-admin": "Postico indica que no está diseñado para copias de seguridad y restauración, gestión de usuarios y permisos ni supervisión de bases de datos"
+    }
+}

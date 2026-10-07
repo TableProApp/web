@@ -1,0 +1,118 @@
+{
+    "seo": {
+        "title": "SQLite para {devices}",
+        "description": "Abra arquivos SQLite no Mac ou por SSH, carregue sqlite-vec e SpatiaLite e altere a estrutura com scripts de reconstrução revisados antes de executar."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Cliente de SQLite"
+    },
+    "engine": "sqlite",
+    "breadcrumb": "SQLite",
+    "header": {
+        "title": "Cliente de SQLite para {devices}",
+        "lead": "Abra um arquivo de banco de dados pelo Finder, arrastando-o ou acessando um servidor SSH, consulte-o com o SQLite incluído no app e altere sua estrutura com scripts de reconstrução que você revisa antes da execução."
+    },
+    "asset": "mac-db-sqlite-chinook",
+    "links": {
+        "remoteFiles": "docs:/connections/remote-database-files",
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "copy": "/features/schema#copy",
+        "explain": "/features/querying#performance"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Abra um arquivo de banco de dados",
+            "paragraphs": [
+                "Escolha um arquivo no formulário de conexão ou arraste-o para uma janela do TablePro ou para o ícone no Dock. Um caminho para um arquivo que ainda não existe cria esse arquivo ao conectar. Um arquivo abre como SQLite quando seus primeiros bytes dizem <code>SQLite format 3</code>, independentemente do nome.",
+                "O Finder lista TablePro em Abrir Com para arquivos .db, .sqlite, .sqlite3 e similares. Um banco em uma pasta protegida pelo macOS, como Mensagens ou histórico do Safari, exige primeiro Acesso Total ao Disco, e geralmente é preciso encerrar o app que o utiliza.",
+                "Um banco em outra máquina abre pelo <remoteFiles>painel Remote File</remoteFiles>. On the Server executa suas instruções no arquivo ativo por SSH, sem instalar nada no host além de <code>python3</code>. As a Read-Only Copy busca um snapshot por SFTP e o abre somente para leitura.",
+                "Para explorar primeiro, escolha Help > Open Sample Database. Ele abre Chinook, um pequeno exemplo de loja de música digital incluído no app."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Consulte e edite",
+            "paragraphs": [
+                "O driver inclui seu próprio SQLite, portanto seu SQL usa a mesma versão independentemente do macOS. <explain>EXPLAIN QUERY PLAN</explain> é apresentado como um diagrama.",
+                "Carregue extensões como sqlite-vec e SpatiaLite por conexão, na ordem em que você as lista, e suas funções e tabelas virtuais funcionam no editor, na barra lateral e na aba Structure. A função SQL <code>load_extension()</code> continua bloqueada, e uma lista recebida por sincronização, importação de conexão ou link não carrega nada até você aprová-la.",
+                "As edições de linhas ficam pendentes até salvar, com <editing>Preview SQL</editing> mostrando cada instrução antes da execução. Quando outro programa altera o arquivo, a barra lateral recarrega automaticamente."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Estrutura",
+            "paragraphs": [
+                "Renomear uma tabela ou coluna, adicionar ou remover uma coluna e, a partir do SQLite 3.53, adicionar ou remover uma restrição CHECK usa ALTER TABLE. Outras alterações na <structure>aba Structure</structure>, como o tipo de uma coluna ou uma chave estrangeira, reconstroem a tabela: TablePro escreve o script, copia as linhas com seus rowids, restaura índices e triggers e só o executa depois da sua confirmação.",
+                "Alterar o tipo de uma coluna relê seus valores com a nova afinidade, portanto <code>'007'</code> se torna <code>7</code> em uma coluna INTEGER; a tela de revisão informa isso antes de qualquer execução. Uma tabela virtual, como uma tabela FTS5, não pode ser reconstruída, e o salvamento informa seu nome.",
+                "Os triggers podem ser lidos e editados pela barra lateral."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Faça manutenção e backups",
+            "paragraphs": [
+                "A manutenção de tabelas executa VACUUM, ANALYZE, REINDEX e uma verificação de integridade, cada um mostrado como SQL antes da execução. O Server Dashboard mostra o tamanho do arquivo, a quantidade e o tamanho das páginas, o modo de journal e o tamanho do cache.",
+                "<backup>Backup Dump</backup> grava o banco em um arquivo .sql com {dumpTool}, e Restore Dump executa um arquivo desse tipo em um banco de dados."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "<importData>Importe</importData> arquivos {importFormats}, ou abra um arquivo CSV, JSON ou XLSX na <dataFiles>janela Data Files</dataFiles> e importe por ela. Tabelas e resultados são exportados como {exportFormats}.",
+                "<copy>Copy To</copy> transfere tabelas e suas linhas para outra conexão, como um servidor PostgreSQL, e lista cada tipo de coluna que precisa aproximar. Veja também <files>como trabalhar com arquivos como bancos de dados</files>."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone e iPad",
+            "paragraphs": [
+                "No iPhone e iPad, escolha um arquivo de banco de dados ou crie um novo, ou abra o exemplo Chinook por Open Sample Database. Navegue por tabelas como cartões, filtre-as, edite linhas que tenham chave primária e execute SQL na aba Query."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "encrypted",
+            "question": "TablePro pode abrir um banco SQLite criptografado?",
+            "answer": "Não. Arquivos SQLCipher e SEE não abrem, pois o SQLite incluído não aceita uma chave. Primeiro descriptografe o arquivo com a ferramenta sqlcipher."
+        },
+        {
+            "id": "version",
+            "question": "Qual versão de SQLite TablePro usa?",
+            "answer": "SQLite {engineVersion}, integrado ao driver. Ele não depende da versão que acompanha o macOS."
+        },
+        {
+            "id": "framework-files",
+            "question": "Posso abrir o banco de desenvolvimento do meu app?",
+            "answer": "Sim. Abra o arquivo onde seu framework o mantém, como <code>db/development.sqlite3</code> no Rails ou <code>db.sqlite3</code> no Django. Arquivos em <code>~/Library</code>, incluindo contêineres do Simulador iOS, exigem Acesso Total ao Disco."
+        }
+    ],
+    "related": [
+        {
+            "label": "Importação, exportação e arquivos de dados",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Cloudflare D1, SQLite por HTTP",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "Turso e libSQL",
+            "href": "/turso-client"
+        },
+        {
+            "label": "DuckDB, para arquivos analíticos",
+            "href": "/duckdb-client"
+        }
+    ]
+}

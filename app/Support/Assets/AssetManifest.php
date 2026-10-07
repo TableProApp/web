@@ -121,12 +121,10 @@ final class AssetManifest
      * `assets:handoff` writes to `resources/js/lib/data/asset-slots.json` for
      * the bundle.
      *
-     * The whole manifest is about 120 KB (22 KB gzipped), and most of it is
-     * for the owner: `usedOn`, `handoffPriority`, `legacySource`, the kinds'
+     * The full manifest includes all languages and owner-only metadata: `usedOn`, `handoffPriority`, `legacySource`, the kinds'
      * export rules and notes. A page needs only the slot entries' render
-     * fields, and of the text only what the entry's state shows: the
-     * description while it is a placeholder, the alt text and caption once it
-     * is supplied. Bespoke social cards are not slots and are left out.
+     * fields. The active language's text is a separate projection, loaded
+     * before the page renders. Bespoke social cards are not slots and are left out.
      *
      * @return array{kinds: array<string, array{type: string, aspect: ?string, sizes: ?string}>, assets: array<string, array<string, mixed>>}
      */
@@ -159,17 +157,61 @@ final class AssetManifest
                 'replacement' => $entry['replacement'],
             ];
 
-            if ($entry['status'] === 'supplied') {
-                $slot['alt'] = $entry['alt'];
-                $slot['caption'] = $entry['caption'];
-            } else {
-                $slot['description'] = $entry['description'];
-            }
-
             $assets[$id] = $slot;
         }
 
         return ['kinds' => $kinds, 'assets' => $assets];
+    }
+
+    /**
+     * Only the active language's rendering text, loaded separately from geometry.
+     * English editorial assets keep their English text in every locale bundle.
+     *
+     * @return array<string, array<string, array<string, string>|null>>
+     */
+    public function slotTextProjection(string $locale): array
+    {
+        if (! Locales::isSupported($locale)) {
+            throw new RuntimeException("Unsupported asset locale [{$locale}].");
+        }
+
+        $assets = [];
+
+        foreach ($this->assets() as $id => $entry) {
+            if (! $entry['slot']) {
+                continue;
+            }
+
+            $englishOnly = collect($entry['usedOn'])->every(fn(array $use): bool => str_starts_with($use['path'], '/blog/'));
+            $fields = $entry['status'] === 'supplied' ? ['alt', 'caption'] : ['description'];
+            $text = [];
+
+            foreach ($fields as $field) {
+                if ($entry[$field] === null) {
+                    $text[$field] = null;
+
+                    continue;
+                }
+
+                $language = $englishOnly ? Locales::default() : $locale;
+                $line = $entry[$field][$language] ?? null;
+
+                if (! is_string($line) || trim($line) === '') {
+                    throw new RuntimeException("Asset [{$id}] is missing {$field}.{$language}.");
+                }
+
+                $text[$field] = [$language => $line];
+            }
+
+            $assets[$id] = $text;
+        }
+
+        return $assets;
+    }
+
+    public function slotTextProjectionJson(string $locale): string
+    {
+        return json_encode($this->slotTextProjection($locale), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . "\n";
     }
 
     /**

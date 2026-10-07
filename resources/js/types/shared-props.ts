@@ -38,7 +38,7 @@ export interface BannerProp {
     version: string;
 }
 
-export interface SharedProps {
+export interface SharedProps extends Record<string, unknown> {
     canonicalBaseUrl: string;
     locale: Locale;
     localization: { switcher: SwitcherItem[] };

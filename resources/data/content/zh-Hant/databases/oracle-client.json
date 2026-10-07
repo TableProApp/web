@@ -1,0 +1,116 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 Oracle Database 用戶端",
+        "description": "無須 Instant Client 連線 Oracle Database，執行 PL/SQL、SQL*Plus 指令碼，讀取 DBMS_OUTPUT，在伺服器啟動 Data Pump 匯出。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "Oracle Database 用戶端"
+    },
+    "engine": "oracle",
+    "breadcrumb": "Oracle",
+    "header": {
+        "title": "適用於 {devices} 的 Oracle Database 用戶端",
+        "lead": "驅動程式用 Swift 實作 Oracle TNS 通訊協定，Mac 無須 Instant Client 或其他 Oracle 軟體。執行 SQL、PL/SQL，包括為 SQL*Plus 編寫的指令碼，並在各結果旁讀取 DBMS_OUTPUT 輸出。"
+    },
+    "asset": "mac-db-oracle-plsql",
+    "links": {
+        "network": "/features/connections#network",
+        "parameters": "/features/querying#history",
+        "editing": "/features/data-editing#edit",
+        "safeMode": "/features/data-editing#safe-mode",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "importData": "/features/import-export#import",
+        "serverExport": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "連線",
+            "paragraphs": [
+                "輸入主機、監聽連接埠及 Service Name，無服務的執行個體將 <ui>Connection Type</ui> 切為 SID。用使用者名稱密碼以 Normal、SYSDBA 或 SYSOPER 角色登入。",
+                "Native Network Encryption 無須設定：伺服器要求時提供帶 SHA-2 總和檢查碼的 AES，<ui>Network Encryption</ui> 改變 TablePro 提供的選項。TLS 選擇用於 TCPS 的 Required，或帶 CA 憑證的 Verify CA、Verify Identity。新連線 SSL 關閉，Preferred 仍用明文 TCP。",
+                "Oracle Autonomous Database 請從 TLS 連線字串（非 mTLS）複製主機、連接埠和服務名稱，SSL 設 Required 或 Verify CA。從不讀取錢包檔案，所以資料庫必須接受不帶雙向 TLS 的 TLS。",
+                "RAC SCAN 監聽器、共用伺服器或資料庫前的負載平衡器無須設定；私有網路監聽器透過 <network>SSH 通道</network>存取。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SQL、PL/SQL 與交易",
+            "paragraphs": [
+                "PL/SQL 區塊或儲存單元無論含多少分號都作為一個陳述式執行，游標置於其中即可。SQL*Plus 或 SQL Developer 指令碼無須修改，單獨 <code>/</code> 列結束上方單元。編譯失敗顯示 Oracle 原始錯誤，每列附位置。",
+                "<code>DBMS_OUTPUT.PUT_LINE</code> 列與列印它的陳述式結果一起顯示，無須 <code>SET SERVEROUTPUT ON</code>。匿名區塊中的 <code>:name</code> 是在面板填寫的<parameters>查詢參數</parameters>。",
+                "各陳述式成功即提交。用 <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> 或 <code>LOCK TABLE</code> 開始保留改動，其後包括格線儲存均等待 <code>COMMIT</code> 或 <code>ROLLBACK</code>。",
+                "每個使用者是一個 schema，<code>Cmd+K</code> 無須重新連線切換使用中 schema。列編輯暫存並可 <editing>Preview SQL</editing>。執行 drop 或 truncate 的區塊即使透過 <code>EXECUTE IMMEDIATE</code>，也在執行前觸發<safeMode>危險查詢警告</safeMode>。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "結構",
+            "paragraphs": [
+                "<structure>Structure 分頁</structure>用 <code>ALTER TABLE</code> 新增、重新命名、修改、刪除欄位及建立索引，對區分大小寫的名稱加雙引號。資料表資訊還含主索引鍵、外部索引鍵和 CREATE TABLE DDL。",
+                "分割區資料表下列出各分割區及位置，子分割區巢狀於所屬分割區內。用 <code>SELECT * FROM orders PARTITION (p2024)</code> 查詢一個分割區。",
+                "{compareSyncTier} 方案的 <compareSync>Compare & Sync</compareSync> 比較兩個 Oracle schema 或其資料，儲存每個單元後帶 <code>/</code> 列的指令碼，可用於 SQL*Plus 或 SQLcl。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "在伺服器匯出",
+            "paragraphs": [
+                "<serverExport>Server-Side Export</serverExport> 以自有權限啟動 Data Pump 工作，將資料表寫入伺服器的 <code>DIRECTORY</code> 物件，Mac 不接收檔案。面板報告已啟動後工作仍執行，請在 <code>DBA_DATAPUMP_JOBS</code> 追蹤。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "<importData>匯入</importData> {importFormats} 檔案；資料檔案建立新資料表時，建議名稱大寫且符合 Oracle 長度限制。資料表或結果匯出為 {exportFormats}。SQL 匯出在每個常式和觸發程序後加 <code>/</code> 列，供 SQL*Plus 還原。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 與 iPad",
+            "paragraphs": [
+                "iPhone、iPad 的 Oracle 驅動程式內建於 App。連線表單接受 Service Name 或 SID、SYSDBA、SYSOPER 角色及 Network Encryption 設定。以卡片瀏覽資料表，編輯有主索引鍵的列，在 Query 分頁執行 SQL；建立修改資料表仍在 Mac。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "pluggable-database",
+            "question": "為什麼看不到應用程式的任何資料表？",
+            "answer": "可能連線到了容器資料庫。可插拔資料庫有獨立服務名稱，例如 <code>XE</code> 內的 <code>XEPDB1</code>。在伺服器執行 <code>lsnrctl services</code> 列出監聽器回應的名稱。"
+        },
+        {
+            "id": "sqlplus-commands",
+            "question": "為什麼 SET SERVEROUTPUT ON 失敗？",
+            "answer": "<code>SET SERVEROUTPUT ON</code>、<code>SHOW ERRORS</code>、<code>EXEC</code> 等 SQL*Plus 指令不是 SQL，伺服器拒絕它們。請刪除：連線即開啟輸出。將 <code>EXEC p</code> 寫為 <code>BEGIN p; END;</code>。"
+        },
+        {
+            "id": "password-verifier",
+            "question": "舊 10G 密碼驗證器的帳號能連線嗎？",
+            "answer": "可以，但 Oracle 已淘汰其 DES 雜湊。用 <code>ALTER USER … IDENTIFIED BY</code> 修改密碼，再檢查 <code>dba_users</code> 的 <code>password_versions</code> 含 11G 或 12C。"
+        }
+    ],
+    "related": [
+        {
+            "label": "撰寫、執行與理解查詢",
+            "href": "/features/querying"
+        },
+        {
+            "label": "備份與伺服器端匯出",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "結構、比較與同步",
+            "href": "/features/schema"
+        },
+        {
+            "label": "適用於 iPhone 與 iPad 的 TablePro",
+            "href": "/ios"
+        }
+    ]
+}

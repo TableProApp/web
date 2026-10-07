@@ -1,0 +1,161 @@
+{
+    "seo": {
+        "title": "{devices} 用 PostgreSQL クライアント",
+        "description": "SSH、SSL/TLS、AWS IAM、~/.pgpass で PostgreSQL に接続。同じドライバーで CockroachDB と PGlite、EXPLAIN 図、pg_dump バックアップも対応。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "PostgreSQL クライアント"
+    },
+    "engine": "postgresql",
+    "breadcrumb": "PostgreSQL",
+    "header": {
+        "title": "{devices} 用 PostgreSQL クライアント",
+        "lead": "スキーマ、配列、jsonb と PostGIS を操作し、EXPLAIN プランを図で確認。ロール、セッション、保守とバックアップを管理できます。同じドライバーは Amazon Redshift、CockroachDB と PGlite にも対応します。"
+    },
+    "asset": "mac-db-postgresql-explain",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "results": "/features/querying#results",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "redshift": "/redshift-client"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "ホスト、ポート、ユーザーとデータベースを指定するか、<code>postgresql://</code> または <code>postgres://</code> URL を貼り付けます。PostgreSQL への接続にはデータベース指定が必要です。",
+                "新規接続の SSL は Preferred、libpq の <code>sslmode=prefer</code> で始まります。サーバー証明書を検証するには Verify CA または Verify Identity を選んでください。",
+                "Use ~/.pgpass を有効にすると <code>~/.pgpass</code> からパスワードを読み取ります。フォームには検出結果を表示し、権限によって libpq がファイルを無視する場合も知らせます。",
+                "プライベートサーバーには、<network>必要に応じて踏み台ホストを使う SSH トンネル、SOCKS5 プロキシ、Cloudflare Access トンネルやトンネルコマンド</network>（kubectl port-forward など）でアクセスできます。Amazon RDS と Aurora では <code>rds_iam</code> を付与したロールで <cloudAuth>AWS IAM</cloudAuth> 認証できます。Google Cloud SQL では TablePro が Cloud SQL Auth Proxy をダウンロードして実行します。",
+                "<code>-c application_name=reporting</code> など、libpq が接続オプションとして受け付けるものは Connection Options に入力します。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "クエリと編集",
+            "paragraphs": [
+                "SQL エディタはスキーマからテーブル名とカラム名を補完します。<explain>EXPLAIN と EXPLAIN ANALYZE</explain> は FORMAT JSON で実行し、プラン図やツリーで表示します。EXPLAIN Compare は変更後にプランが遅くなったかを示します。",
+                "jsonb は整形し、uuid、inet、timestamptz、interval と bytea はそれぞれの形式で表示します。配列カラムはリストエディタで開き、個々の要素を追加、削除、並べ替え、NULL にできます。enum カラムでは定義済みのラベルを選べます。",
+                "PostGIS の geometry と geography 値は SRID 付き EWKT として読み取り、ジオメトリを含む結果は <results>地図ビュー</results> で開けます。地図タイルは Apple が提供し、行データは Mac に残ります。",
+                "行の編集は保存まで保留し、<editing>Preview SQL</editing> が文をすべて先に表示します。保存にはバインドパラメータを使います。マテリアライズドビューの行は読み取り専用です。メニューから更新でき、PostgreSQL が要求する一意インデックスがあれば並行更新できます。"
+            ],
+            "asset": "mac-result-map"
+        },
+        {
+            "id": "schema",
+            "title": "スキーマと構造",
+            "paragraphs": [
+                "アクセスできるすべてのスキーマを一覧表示します。作成・編集シートは CREATE SCHEMA、所有者、コメント、USAGE と CREATE の権限付与を生成し、実行前に表示します。",
+                "<structure>Structure タブ</structure> はカラム、インデックス、外部キー、CHECK 制約と生成カラムの変更を保留します。パーティションテーブルには境界付きのパーティションを表示し、さらに分割されている場合は入れ子にします。enum、複合型、ドメイン、範囲型は Types 配下に表示し、enum のラベルを追加・名前変更できます。",
+                "ビューの定義はすべてのテーブルにスキーマ修飾を付けて再生成します。並行作成に失敗して無効になったインデックスは、Indexes タブで名前を表示します。",
+                "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は、二つの PostgreSQL スキーマまたはデータを比較し、一方を他方に揃えるスクリプトを生成します。データを失う変更は保留します。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "管理",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> は権限の付与・取り消し前に各権限の由来を表示し、すべての文を SQL として保留します。",
+                "Server Dashboard はセッション、接続数、キャッシュヒット率、データベースサイズと遅いクエリを表示します。<code>pg_cancel_backend</code> でクエリをキャンセルし、<code>pg_terminate_backend</code> でセッションを終了します。スーパーユーザーでも <code>pg_monitor</code> のメンバーでもないロールは、他のセッションのクエリを見られません。",
+                "テーブル保守は FULL、ANALYZE、VERBOSE オプション付きの VACUUM と、ANALYZE、REINDEX、CLUSTER を実行し、先に文を表示します。",
+                "<backup>Backup Dump と Restore Dump</backup> は、接続の SSH トンネル経由で自分の {dumpTool} と pg_restore を実行します。Homebrew でインストールしてください。PostgreSQL 9.1 サーバーのバックアップには pg_dump 14 以前を使います。"
+            ],
+            "asset": "mac-server-dashboard-postgresql"
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "{importFormats} ファイルを <importData>インポート</importData> できます。データファイルはカラムごとに対応付けたテーブルに読み込み、行が失敗したときの処理も選べます。テーブルや結果を {exportFormats} にエクスポートでき、SQL エクスポートはテーブル、ビューとマテリアライズドビューのコメントを保持します。",
+                "<copy>Copy To</copy> は、テーブル、データまたは両方を PostgreSQL や異なるエンジンの別の接続へ送り、近似変換が必要なすべてのカラム型を表示します。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone と iPad",
+            "paragraphs": [
+                "iPhone と iPad ではツールバーからデータベースとスキーマを切り替え、カード表示でテーブルを閲覧し、主キーのある行を編集し、Query タブで SQL を実行できます。SSL は Required から Verify Identity、SSH トンネルはパスワードや鍵に対応します。踏み台ホストには対応しません。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "cockroachdb",
+            "title": "CockroachDB",
+            "paragraphs": [
+                "CockroachDB はアプリに同梱した PostgreSQL ドライバーを使い、インストールは不要です。新しいクラスタは <code>defaultdb</code> データベースで始まります。",
+                "CockroachDB Cloud では Cloud コンソールからホスト、ユーザー、パスワードとデータベースをコピーし、クラスタのルーティング値 <code>--cluster=your-cluster</code> を Connection Options に入れ、SSL Mode を Verify Identity にします。ローカルの安全でないノードでは SSL Mode を Disabled にします。",
+                "テーブルとビューの DDL は CockroachDB 独自の SHOW CREATE から取得します。EXPLAIN と EXPLAIN ANALYZE のテキストプランを解析してプランツリーにし、Server Dashboard はセッションと実行中のクエリを一覧表示します。",
+                "外部キーの検査は遅延できません。"
+            ]
+        },
+        {
+            "engine": "pglite",
+            "title": "PGlite",
+            "paragraphs": [
+                "PGlite は PostgreSQL を WebAssembly にコンパイルしたものです。ソケットサーバー <code>npx @electric-sql/pglite-socket</code> を起動するまで接続できません。<code>--db=./my-pgdata</code> を指定するとデータをディスクに保持します。",
+                "localhost ではなく <code>127.0.0.1</code> に接続します。ソケットサーバーはパスワードを検査せず TLS もないため、フォームはどちらも求めません。",
+                "PGlite のカタログは完全なため、構造編集、Users & Roles と EXPLAIN 図はサーバーと同様に動作します。公開するデータベースは <code>postgres</code> 一つです。"
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "pgadmin",
+                "text": "pgAdmin は長年使われている PostgreSQL 用のオープンソース管理ツールで、デバッガー、スキーマ差分、バックアップと復元を備えます。",
+                "notes": [
+                    "pgadmin-erd-design"
+                ]
+            },
+            {
+                "product": "postico",
+                "text": "Postico 2 は閲覧と編集を中心にした PostgreSQL 用 Mac アプリです。公式ドキュメントでもバックアップと復元、ユーザー管理、監視などの管理機能は対象外としています。"
+            }
+        ],
+        "notes": {
+            "pgadmin-erd-design": "pgAdmin の ERD ツールはスキーマを設計して SQL を生成しますが、TablePro の ER 図はスキーマを読み取るだけです。"
+        }
+    },
+    "faq": [
+        {
+            "id": "hosted",
+            "question": "Amazon RDS などのホスト型 PostgreSQL に対応しますか？",
+            "answer": "はい。ホスト型のサーバーも通常と同じホストとポートで接続します。RDS と Aurora は AWS IAM でも認証でき、Google Cloud SQL は TablePro が Cloud SQL Auth Proxy を実行します。"
+        },
+        {
+            "id": "column-order",
+            "question": "カラムの順序を変更できますか？",
+            "answer": "TablePro は新しいカラム順でテーブルを再構築するスクリプトを生成して表示しますが、実行しません。内容を確認し、テーブルを書き換えてよいときに自分で実行してください。"
+        }
+    ],
+    "related": [
+        {
+            "label": "クエリを書き、実行し、理解する",
+            "href": "/features/querying"
+        },
+        {
+            "label": "スキーマ、比較と同期",
+            "href": "/features/schema"
+        },
+        {
+            "label": "同じドライバーの Amazon Redshift",
+            "href": "/redshift-client"
+        },
+        {
+            "label": "TablePro と他のデータベースクライアントを比較",
+            "href": "/compare"
+        }
+    ]
+}

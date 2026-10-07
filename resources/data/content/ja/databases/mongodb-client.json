@@ -1,0 +1,126 @@
+{
+    "seo": {
+        "title": "{devices} 用 MongoDB クライアント",
+        "description": "mongosh 形式の JavaScript シェルで MongoDB を問い合わせ、Extended JSON で文書を編集。コレクション全体のフィールド名を変更し、SRV で Atlas に接続できます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "MongoDB クライアント"
+    },
+    "engine": "mongodb",
+    "breadcrumb": "MongoDB",
+    "header": {
+        "title": "{devices} 用 MongoDB クライアント",
+        "lead": "mongosh の形式でクエリを書き、グリッドでコレクションをページ送りして、文書全体を Extended JSON で追加・編集します。コレクション全体のフィールド名の変更や削除も、実行前に各文を表示します。"
+    },
+    "asset": "mac-db-mongodb-document",
+    "links": {
+        "network": "/features/connections#network",
+        "editing": "/features/data-editing#documents-and-keys",
+        "filters": "/features/data-editing#filters",
+        "safeMode": "/features/data-editing#safe-mode",
+        "map": "/features/querying#map",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "一つのホストかレプリカセットの複数の <code>host:port</code> を指定するとプライマリーを検出します。<code>mongodb://</code> や <code>mongodb+srv://</code> URL も貼り付けられます。SCRAM-SHA-1、SCRAM-SHA-256、X.509 や AWS IAM でログインし、ユーザーが <code>admin</code> に定義され、別のデータベースを閲覧する時は <ui>Auth Database</ui> を設定します。",
+                "<code>.mongodb.net</code> で終わるホストは MongoDB Atlas が要求する SRV と TLS を自動で有効にします。先に IP アドレスをクラスタのアクセスリストに追加してください。未登録のアドレスからの通信は即時失敗ではなくタイムアウトします。",
+                "新規接続の TLS は無効で、ドライバーにフォールバックがないため Preferred は Required と同じ動作です。Read Preference と Write Concern は接続単位で設定し、書き込み保証はシェルやグリッド保存からのすべての追加、更新・削除に付けます。",
+                "<network>SSH トンネル</network> は一覧の最初のホストだけを使うため、そのセッションではレプリカセットの検出とフェイルオーバーを無効にします。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "文書のクエリと編集",
+            "paragraphs": [
+                "クエリタブは mongosh 構文を受け付ける JavaScript シェルで、引用符なしのキー、正規表現リテラル、<code>ISODate()</code>、変数、ループと <code>forEach</code> に対応します。TablePro 内で実行するため追加インストールは不要です。定義した変数は切断までその接続の全タブで使えます。補完はコレクション、メソッド、入れ子のフィールドパスとカーソル位置で有効な <code>$</code> 演算子を提示します。",
+                "コレクションは最上位フィールドをカラム、入れ子オブジェクトを Extended JSON とするグリッドで開きます。編集セルは型を保持し、日付は日付、ObjectId は ObjectId のままです。入れ子の編集は <code>address.city</code> など変更したパスだけを書き込みます。",
+                "<editing>Insert Document と Edit Document</editing> は文書全体を Extended JSON で受け付けます。Edit Document はサーバーから再取得し、シートを開いてから他の人が変更・削除していれば何も保存せず通知します。セルの <ui>Remove Field</ui> は <code>$unset</code> を送ります。",
+                "<filters>フィルターバー</filters> は入れ子オブジェクトやオブジェクトの配列に対応し、<code>customer.country</code> と <code>items.sku</code> を直接絞り込めます。GeoJSON のフィールドは <map>マップビュー</map> で開きます。",
+                "ドライバーが読み取り専用セッションを開けないため、<safeMode>セーフモード</safeMode> は MongoDB のすべての文を書き込みとして扱います。Alert と Safe Mode レベルは毎回確認し、Read-Only はすべてブロックします。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "コレクション、インデックスとバリデーター",
+            "paragraphs": [
+                "<structure>Structure タブ</structure> は各インデックスのフィールドをキー順に表示し、hashed、text、2dsphere や wildcard などの種類を示します。Show DDL はサーバーが返す全オプションを含む、再構築用の <code>createIndex</code> 呼び出しを生成します。",
+                "同じタブでコレクション全体のフィールド名を変更・削除します。各変更は一つの <code>updateMany</code> で Preview SQL に表示し、<code>$jsonSchema</code> バリデーターのフィールド宣言も変更します。インデックス、検索インデックスやビューがまだ名前を使っていれば、書き込み前に保存を拒否します。",
+                "<ui>New Table</ui> はフィールドを <code>$jsonSchema</code> バリデーターにしたコレクションを作成し、指定のインデックスを構築します。ビューと時系列コレクションはサイドバーに表示し、ビューは読み取り専用で開きます。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "バックアップ",
+            "paragraphs": [
+                "<backup>Backup Dump</backup> は選んだ各データベースを {dumpTool} で gzip アーカイブに保存し、接続のホスト、Auth Database、SRV と TLS 設定を使います。個別コレクションにも限定できます。Restore Dump は選んだデータベースで mongorestore を実行し、既存の内容を保持します。先に Mac に MongoDB Database Tools をインストールしてください。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "{importFormats} ファイルをコレクションに <importData>インポート</importData> し、コレクションや結果を {exportFormats} で <export>エクスポート</export> します。",
+                "MQL エクスポートは mongosh で動く <code>insertMany</code> 呼び出しの <code>.js</code> ファイルで、選択すれば各コレクションのインデックスとバリデーターも含みます。最上位の値は型を保ちますが、サブ文書や配列内の型付き値（配列内の ObjectId など）は文字列にします。そのようなコレクションは JSON でエクスポートするか mongodump でバックアップしてください。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "mongodb-compass",
+                "anchor": "compass",
+                "text": "MongoDB Compass は MongoDB 公式の GUI です。集約パイプラインを段階ごとに構築して各段階後にプレビューし、文書サンプルからコレクションのスキーマを分析して実行プランを描きます。パイプラインを視覚的に構成する、または一つのコレクションの構造を調べる時に向いています。TablePro は複数のデータベースとともに同じアプリで MongoDB を使う時に適しています。",
+                "notes": [
+                    "compass-natural-language"
+                ]
+            }
+        ],
+        "notes": {
+            "compass-natural-language": "自然言語の質問からクエリを書くこともできます。"
+        }
+    },
+    "faq": [
+        {
+            "id": "mongosh",
+            "question": "クエリタブは mongosh ですか？",
+            "answer": "違います。mongosh 構文を受け付け、TablePro 内の JavaScriptCore で動くシェルです。多くの mongosh コードはそのまま動きます。違いの一つは、32 ビット範囲外の整数を 64 ビット整数として保存する点です。mongosh は double とするため、同じにするには <code>Double()</code> で囲みます。"
+        },
+        {
+            "id": "query-plan",
+            "question": "クエリプランを見るには？",
+            "answer": "クエリタブのカーソルに <code>.explain(\"executionStats\")</code> をつなぎます。プランは文書として返り、MongoDB 接続にはプランの図はありません。"
+        },
+        {
+            "id": "users",
+            "question": "データベースユーザーを一覧表示するには？",
+            "answer": "<code>db.runCommand({usersInfo: 1})</code> を実行します。シェルは <code>db.getUsers()</code> や <code>db.createUser()</code> を解析しません。"
+        }
+    ],
+    "related": [
+        {
+            "label": "安全にデータを閲覧して編集",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "SQL 以外のクエリ言語",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "インポート、エクスポートとバックアップ",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "TablePro と他のデータベースクライアントを比較",
+            "href": "/compare"
+        }
+    ]
+}

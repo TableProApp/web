@@ -6,7 +6,10 @@ database client for developers.
 This repository is the whole of what `tablepro.app` serves outside the account
 app: the homepage, the feature, database and comparison pages, pricing,
 downloads, the iPhone and iPad page, the FAQ, the blog and the legal pages, in
-English at the root and in Vietnamese under `/vi`. It is a Laravel + Inertia +
+English at the root, with localized routes for Vietnamese, Spanish, German,
+French, Japanese, Brazilian Portuguese, Simplified Chinese, Korean, Traditional
+Chinese, Italian and Indonesian. Locale codes and URL prefixes are declared in
+`resources/data/locales.json`. It is a Laravel + Inertia +
 React app with **no database and no credentials**. Every page it renders is
 built from markdown and JSON that live in this repo, plus the public GitHub API
 for the release download links.
@@ -87,7 +90,7 @@ npm install -g puppeteer
 npx puppeteer browsers install chrome
 
 php artisan og:generate --type=blog --slug=your-post
-php artisan og:generate --type=compare --locale=all   # English and Vietnamese cards
+php artisan og:generate --type=compare --locale=all   # cards for every supported language
 ```
 
 Every post and every page with an `og` block needs its card committed;

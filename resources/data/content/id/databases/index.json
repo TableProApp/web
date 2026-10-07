@@ -1,0 +1,186 @@
+{
+    "seo": {
+        "title": "Database yang didukung",
+        "description": "Lihat database yang didukung TablePro, bahasa kueri, driver bawaan atau unduhan, serta ketersediaannya di iPhone dan iPad."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Database yang dapat dihubungkan dengan TablePro"
+    },
+    "header": {
+        "title": "Database yang dapat dihubungkan dengan TablePro",
+        "lead": "Driver native untuk {count} database, termasuk {featured}. Setiap baris menjelaskan bahasa kueri mesin, asal driver, dan apakah koneksinya dapat dibuka di iPhone dan iPad."
+    },
+    "jump": "Kategori",
+    "categories": {
+        "relational": {
+            "title": "Relasional",
+            "intro": "Database SQL dengan tabel, kunci, dan transaksi. Beberapa menggunakan driver MySQL atau PostgreSQL yang sama."
+        },
+        "analytical": {
+            "title": "Analitik dan data warehouse",
+            "intro": "Data warehouse, mesin kolumnar, dan mesin kueri terfederasi, tempat pemindaian membutuhkan waktu atau biaya."
+        },
+        "cloud": {
+            "title": "Cloud dan serverless",
+            "intro": "Layanan SQL yang diakses melalui HTTP dengan token akun, serta berkas libSQL di Mac Anda."
+        },
+        "document": {
+            "title": "Dokumen",
+            "intro": "Database dokumen dan multimodel, masing-masing dengan bahasa kuerinya sendiri."
+        },
+        "key-value": {
+            "title": "Kunci-nilai",
+            "intro": "Kunci dan nilainya, dibaca dan ditulis menggunakan perintah atau PartiQL."
+        },
+        "wide-column": {
+            "title": "Kolom lebar",
+            "intro": "Tabel CQL yang dipartisi di seluruh cluster."
+        },
+        "search": {
+            "title": "Pencarian dan vektor",
+            "intro": "Mesin pencarian dan vektor, dengan kueri melalui konsol permintaannya sendiri."
+        },
+        "streaming": {
+            "title": "Streaming",
+            "intro": "Log alih-alih tabel: baca dan tulis pesan menggunakan KafkaQL."
+        },
+        "coordination": {
+            "title": "Koordinasi",
+            "intro": "Ruang kunci etcd, dengan lease dan anggota cluster."
+        },
+        "files": {
+            "title": "Berkas",
+            "intro": "Database dalam berkas yang dibuka langsung, tanpa menjalankan server."
+        }
+    },
+    "table": {
+        "caption": "{category}: setiap mesin, bahasa kueri, driver, dan ketersediaannya di iPhone dan iPad",
+        "engine": "Database",
+        "queryLanguage": "Bahasa kueri",
+        "driver": "Driver",
+        "ios": "iPhone dan iPad",
+        "notes": "Catatan"
+    },
+    "drivers": {
+        "title": "Cara driver didistribusikan",
+        "paragraphs": [
+            "Driver untuk {bundled} disertakan dalam aplikasi Mac dan dapat terhubung tanpa memasang apa pun lagi.",
+            "Setiap driver lainnya berupa plugin bertanda tangan yang diunduh saat Anda pertama kali memilih mesinnya, sebelum formulir koneksi terbuka. Unduhan pertama memerlukan koneksi internet.",
+            "Sebelum memasang driver yang diunduh, TablePro memeriksa checksum SHA-256 terhadap registri plugin dan memverifikasi tanda tangan kodenya.",
+            "Plugin memiliki jadwal pembaruan sendiri, sehingga perbaikan driver dapat tersedia tanpa pembaruan aplikasi. Driver yang sedang digunakan diperbarui setelah aplikasi dimulai ulang.",
+            "Aplikasi iPhone dan iPad memiliki driver bawaan, sehingga tidak ada unduhan di sana."
+        ],
+        "asset": "mac-engine-picker",
+        "docs": {
+            "label": "Plugin dan pembaruan driver",
+            "path": "/features/plugins"
+        }
+    },
+    "iphone": {
+        "title": "Di iPhone dan iPad",
+        "picker": "Aplikasi iPhone dan iPad terhubung ke {engines}.",
+        "synced": "Koneksi ke {engines} hanya dapat dibuka di sana jika berasal dari Mac, melalui iCloud Sync atau berkas koneksi yang diekspor.",
+        "others": "Koneksi ke mesin lainnya disinkronkan ke iPhone dan iPad dan ditampilkan dalam daftar, tetapi tidak dapat dibuka di sana.",
+        "link": "TablePro untuk iPhone dan iPad"
+    },
+    "license": {
+        "title": "Tidak ada database yang memerlukan lisensi",
+        "body": "Terhubung ke mesin mana pun pada halaman ini gratis. Paket Starter atau Team menambahkan fitur opsional pada aplikasi Mac, dan tidak ada fitur yang terikat pada database tertentu.",
+        "link": "Lihat harga"
+    },
+    "missing": {
+        "title": "Database Anda belum tersedia?",
+        "body": "Mesin baru hadir sebagai plugin driver. Jika mesin yang Anda gunakan belum tercantum, mintalah melalui GitHub.",
+        "link": "Minta dukungan database di GitHub"
+    },
+    "docs": {
+        "label": "Panduan konfigurasi setiap database",
+        "path": "/databases"
+    },
+    "labels": {
+        "facts": {
+            "title": "Sekilas",
+            "queryLanguage": "Bahasa kueri",
+            "driver": "Driver",
+            "sharedWith": "Digunakan bersama {engines}",
+            "connect": "Hubungkan melalui",
+            "defaultPort": "Port default",
+            "minimumVersion": "Versi minimum",
+            "enforced": "{version}, diwajibkan: server yang lebih lama ditolak",
+            "documented": "{version}, didokumentasikan",
+            "embedded": "Mesin bawaan",
+            "embeddedValue": "{name} {version}",
+            "ios": "iPhone dan iPad"
+        },
+        "connect": {
+            "file": "Berkas",
+            "network": "Host dan port",
+            "api": "API layanan",
+            "ssh": "Tunnel SSH",
+            "ssl": "SSL/TLS",
+            "awsIam": "AWS IAM",
+            "cloudSqlProxy": "Cloud SQL Auth Proxy"
+        },
+        "driver": {
+            "bundled": "Disertakan dalam aplikasi Mac",
+            "registry": "Diunduh saat pertama kali digunakan"
+        },
+        "ios": {
+            "picker": "Opens",
+            "synced": "Terbuka jika disinkronkan dari Mac",
+            "none": "Tidak terbuka"
+        },
+        "availability": {
+            "devices": "Berfungsi di {devices}",
+            "bundled": "Driver disertakan dalam aplikasi Mac",
+            "registry": "Driver diunduh saat Anda pertama kali memilih {name}"
+        },
+        "release": "Baru pada {version}",
+        "docs": "Panduan pengaturan {name}",
+        "sections": {
+            "limits": "Batasan",
+            "limitsOf": "Batasan {name}",
+            "iphone": "iPhone dan iPad",
+            "faq": "Pertanyaan tentang {name}",
+            "related": "Terkait"
+        },
+        "iphone": {
+            "picker": "{name} tersedia saat Anda membuat koneksi dalam aplikasi iPhone dan iPad, dan aplikasi terhubung langsung ke mesin tersebut.",
+            "synced": "Aplikasi iPhone dan iPad hanya membuka koneksi {name} yang berasal dari Mac, melalui iCloud Sync atau berkas koneksi yang diekspor. Anda tidak dapat membuatnya di sana.",
+            "none": "Aplikasi iPhone dan iPad tidak memiliki driver {name}. Koneksi {name} yang disinkronkan dari Mac muncul dalam daftar tetapi tidak dapat dibuka.",
+            "link": "TablePro untuk iPhone dan iPad"
+        },
+        "family": {
+            "port": "Port default {port}"
+        },
+        "otherTools": {
+            "title": "Alat lainnya",
+            "released": "Versi {version}, dirilis {date}",
+            "discontinued": "{name} telah dihentikan. Rilis terakhirnya, {version}, diterbitkan pada {date}.",
+            "free": "Gratis",
+            "openSource": "Sumber terbuka ({licence})",
+            "closedSource": "Sumber tertutup",
+            "platforms": "Platform: {platforms}",
+            "compare": "TablePro vs {name}",
+            "checked": "Fakta tentang alat lain diperiksa pada {date}.",
+            "sources": "Sumber"
+        },
+        "platformNames": {
+            "mac": "Mac",
+            "windows": "Windows",
+            "linux": "Linux",
+            "ios": "iPhone dan iPad",
+            "web": "Web"
+        },
+        "number": {
+            "decimal": ",",
+            "group": "."
+        },
+        "download": {
+            "title": "Unduh TablePro",
+            "mac": "Aplikasi Mac gratis untuk diunduh dan digunakan. Paket Starter atau Team menambahkan fitur opsional.",
+            "ios": "Aplikasi iPhone dan iPad tersedia di App Store."
+        }
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Cloudflare D1 untuk {devices}",
+        "description": "Hubungkan Cloudflare D1 dengan ID akun dan token API, berpindah antar-database, lalu gunakan dialek SQLite dengan diagram rencana kueri."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien Cloudflare D1"
+    },
+    "engine": "cloudflare-d1",
+    "breadcrumb": "Cloudflare D1",
+    "header": {
+        "title": "Klien Cloudflare D1 untuk {devices}",
+        "lead": "Akses database D1 dalam akun Cloudflare melalui satu koneksi, jalankan kueri dengan dialek SQLite melalui API Cloudflare, serta kelola tabel, indeks, dan trigger di tab Structure."
+    },
+    "asset": "mac-db-d1-databases",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "credentials": "/features/connections#credentials",
+        "sqlite": "/sqlite-client"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan dengan token API",
+            "paragraphs": [
+                "Koneksi D1 memerlukan tiga nilai: nama atau UUID database, ID akun Cloudflare, dan token API. Token dimasukkan pada bidang <ui>API Token</ui> dan disimpan di <credentials>Keychain macOS</credentials>. Tidak ada host, port, pengaturan SSL, atau tunnel SSH karena setiap permintaan menuju API Cloudflare melalui HTTPS.",
+                "Buat token dari templat Custom token dengan izin <ui>Account > D1 > Edit</ui>, lalu salin saat Cloudflare menampilkannya karena token hanya ditampilkan sekali. Token tersebut dapat mengakses setiap database D1 dalam akun, bukan hanya database yang Anda hubungkan.",
+                "Mengimpor URL <code>d1://account-id/database-name</code> mengisi akun dan database; token tidak pernah disertakan dalam URL, jadi tempel token setelahnya."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Berpindah database dan jalankan kueri",
+            "paragraphs": [
+                "Pemilih database di toolbar mencantumkan database D1 dalam akun dan berpindah di antaranya tanpa membuka ulang koneksi. Pemilih juga dapat membuat dan menghapus database. Setiap tab tetap pada database tempat tab dibuka.",
+                "Kueri menggunakan dialek SQLite. <explain>EXPLAIN QUERY PLAN</explain> digambar sebagai diagram, dan perubahan baris menunggu di grid sampai Anda menyimpan, dengan <editing>Preview SQL</editing> menampilkan pernyataan terlebih dahulu.",
+                "Tulis setiap pernyataan agar dapat berdiri sendiri: pengaturan <code>PRAGMA</code> atau tabel sementara yang dibuat satu pernyataan hilang pada pernyataan berikutnya, dan setiap pernyataan langsung melakukan commit saat berjalan, tanpa rollback. Saat Cloudflare membatasi permintaan, kesalahan menyertakan waktu tunggu yang diminta sebelum mencoba lagi."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tabel, indeks, dan trigger",
+            "paragraphs": [
+                "<structure>Tab Structure</structure> membuat dan menghapus tabel, menambah dan menghapus kolom, serta membuat dan menghapus indeks, termasuk indeks parsial dengan kondisi WHERE; Preview SQL menampilkan DDL sebelum Anda menyimpan. Tab Triggers membuat, mengedit, dan menghapus trigger, dan tabel dapat diganti namanya dari bilah samping.",
+                "Mengurutkan ulang kolom atau mengubah foreign key berarti membangun ulang tabel. Pada D1, TablePro menulis skrip pembangunan ulang dan menyerahkannya kepada Anda untuk dijalankan karena setiap pernyataan adalah permintaan terpisah dan tidak ada transaksi yang dapat menyatukan pembangunan ulang."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "TablePro tidak menyediakan impor untuk D1. Muat berkas SQL dengan <code>wrangler d1 execute</code> dan opsi <code>--file</code>, lalu telusuri hasilnya di sini. <export>Export</export> menulis tabel D1 atau hasil kueri sebagai {exportFormats}."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "sessions",
+            "question": "Apakah TablePro menggunakan Sessions API D1?",
+            "answer": "Tidak. Setiap pernyataan dikirim sebagai permintaan tersendiri, tanpa sesi atau bookmark, sehingga tidak ada data sesi yang diteruskan dari satu pernyataan ke berikutnya, baik dalam satu tab maupun lintas tab."
+        },
+        {
+            "id": "wrangler",
+            "question": "Apakah saya perlu memasang Wrangler?",
+            "answer": "Tidak untuk menelusuri, menjalankan kueri, atau mengedit: TablePro berkomunikasi langsung dengan API Cloudflare. Wrangler hanya diperlukan untuk memuat berkas SQL karena TablePro tidak menyediakan impor untuk D1."
+        }
+    ],
+    "related": [
+        {
+            "label": "SQLite, dialek yang digunakan D1",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Turso dan libSQL, SQLite melalui HTTP",
+            "href": "/turso-client"
+        },
+        {
+            "label": "Pengeditan struktur dan skrip pembangunan ulang",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "Koneksi dan kredensial",
+            "href": "/features/connections"
+        }
+    ]
+}

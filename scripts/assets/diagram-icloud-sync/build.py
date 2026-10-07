@@ -1,4 +1,4 @@
-"""Builds diagram-icloud-sync-{light,dark}-{en,vi}.svg.
+"""Builds diagram-icloud-sync-{light,dark}-{locale}.svg.
 
 Text is outlined from the site's own Inter (fontsource-variable 5.3.0, opsz 14),
 shaped with hb-shape so kerning matches the browser, because an SVG shown
@@ -7,10 +7,11 @@ through <img> cannot use the page's web fonts.
 
 from __future__ import annotations
 
+import argparse
+import html
 import json
 import math
 import subprocess
-import sys
 import unicodedata
 from pathlib import Path
 
@@ -19,7 +20,14 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 
 HERE = Path(__file__).parent
-OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "out"
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("output", nargs="?", type=Path, default=HERE / "out")
+parser.add_argument("--translations", type=Path)
+parser.add_argument("--fonts", type=Path, default=HERE / "fonts")
+args = parser.parse_args()
+OUT = args.output
+FONT_DIR = args.fonts
+CURRENT_LOCALE = "en"
 OUT.mkdir(parents=True, exist_ok=True)
 
 W, H = 1216, 684
@@ -68,6 +76,10 @@ TEXT = {
     },
 }
 
+if args.translations:
+    for code, translated in json.loads(args.translations.read_text(encoding="utf-8")).items():
+        TEXT[code] = {"mac": ["Mac"], "keychain": "iCloud Keychain", **translated}
+
 # ---------------------------------------------------------------- text outlining
 
 VI_RANGES = [(0x0102, 0x0103), (0x0110, 0x0111), (0x0128, 0x0129), (0x0168, 0x0169), (0x01A0, 0x01A1),
@@ -78,6 +90,8 @@ VI_RANGES = [(0x0102, 0x0103), (0x0110, 0x0111), (0x0128, 0x0129), (0x0168, 0x01
 def subset_for(ch: str) -> str:
     """The fontsource subset whose unicode-range serves this character on the site."""
     cp = ord(ch)
+    if CURRENT_LOCALE in ("ja", "ko", "zh-Hans", "zh-Hant") and cp > 0xFF:
+        return "noto-" + CURRENT_LOCALE
     if any(a <= cp <= b for a, b in VI_RANGES):
         return "vietnamese"
     if cp <= 0xFF:
@@ -88,10 +102,14 @@ def subset_for(ch: str) -> str:
 FONTS: dict[tuple[str, int], TTFont] = {}
 
 
+def font_path(sub: str, weight: int) -> Path:
+    return FONT_DIR / (f"{sub}-{weight}.otf" if sub.startswith("noto-") else f"inter-{sub}-{weight}.ttf")
+
+
 def font(sub: str, weight: int) -> TTFont:
     key = (sub, weight)
     if key not in FONTS:
-        FONTS[key] = TTFont(HERE / "fonts" / f"inter-{sub}-{weight}.ttf")
+        FONTS[key] = TTFont(font_path(sub, weight))
     return FONTS[key]
 
 
@@ -105,8 +123,11 @@ def glyph_id(sub: str, weight: int, name: str) -> str | None:
         return GLYPH_IDS[key]
     f = font(sub, weight)
     gs = f.getGlyphSet()
+    if name.startswith("gid") and name[3:].isdigit():
+        name = f.getGlyphOrder()[int(name[3:])]
     pen = SVGPathPen(gs, ntos=lambda v: str(round(v)) if abs(v - round(v)) < 0.05 else f"{v:.1f}")
-    gs[name].draw(TransformPen(pen, (1, 0, 0, -1, 0, 0)))
+    scale = UPEM / f["head"].unitsPerEm
+    gs[name].draw(TransformPen(pen, (scale, 0, 0, -scale, 0, 0)))
     d = pen.getCommands()
     if not d:
         GLYPH_IDS[key] = None
@@ -135,10 +156,12 @@ def shape(text: str, weight: int):
     placed = []
     for sub, chunk in runs(text):
         res = subprocess.run(
-            ["hb-shape", "--output-format=json", str(HERE / "fonts" / f"inter-{sub}-{weight}.ttf"), chunk],
+            ["hb-shape", "--output-format=json", f"--font-size={UPEM}", str(font_path(sub, weight)), chunk],
             check=True, capture_output=True, text=True,
         ).stdout
         for g in json.loads(res):
+            if g["g"] in (".notdef", "gid0"):
+                raise ValueError(f"Missing glyph in {sub}: {chunk!r}")
             placed.append((sub, g["g"], pen_x + g["dx"], g["dy"]))
             pen_x += g["ax"]
     return placed, pen_x
@@ -216,6 +239,8 @@ def cloud(cx: float, cy: float):
 
 
 def build(locale: str, theme: str) -> str:
+    global CURRENT_LOCALE
+    CURRENT_LOCALE = locale
     t = TEXT[locale]
     c = PALETTE[theme]
     fg, muted = c["fg"], c["muted"]
@@ -223,6 +248,16 @@ def build(locale: str, theme: str) -> str:
 
     cols = {"mac": 232, "icloud": 608, "devices": 984}
     line_h = 54
+    dashed_lines = []
+    line = ""
+    for word in t["dashed"].split():
+        candidate = word if not line else line + " " + word
+        if line and shape(candidate, 500)[1] * K > W - 128:
+            dashed_lines.append(line)
+            line = word
+        else:
+            line = candidate
+    dashed_lines.append(line)
 
     # Vertical rhythm, top to bottom, then centred on the canvas.
     solid_base = 0.0
@@ -232,7 +267,7 @@ def build(locale: str, theme: str) -> str:
     l2 = l1 + line_h
     yb = l2 + DESC + 34 + 38  # dashed bus (centre of the pill)
     dashed_base = yb + 38 + 30 + CAP
-    top, bottom = solid_base - CAP, dashed_base + DESC
+    top, bottom = solid_base - CAP, dashed_base + DESC + (len(dashed_lines) - 1) * line_h
     shift = (H - (bottom - top)) / 2 - top
     solid_base += shift; yc += shift; l1 += shift; l2 += shift; yb += shift; dashed_base += shift
 
@@ -314,9 +349,11 @@ def build(locale: str, theme: str) -> str:
     s_svg, s0, s1 = text_el(t["solid"], cols["icloud"], solid_base, 500, fg)
     parts.append(s_svg)
     bboxes["solid-label"] = (s0, solid_base - CAP, s1, solid_base + DESC)
-    d_svg, d0, d1 = text_el(t["dashed"], cols["icloud"], dashed_base, 500, fg)
-    parts.append(d_svg)
-    bboxes["dashed-label"] = (d0, dashed_base - CAP, d1, dashed_base + DESC)
+    for i, line in enumerate(dashed_lines):
+        baseline = dashed_base + i * line_h
+        d_svg, d0, d1 = text_el(line, cols["icloud"], baseline, 500, fg)
+        parts.append(d_svg)
+        bboxes[f"dashed-label-{i}"] = (d0, baseline - CAP, d1, baseline + DESC)
 
     for node in ("mac", "icloud", "devices"):
         for i, line in enumerate(t[node]):
@@ -333,7 +370,7 @@ def build(locale: str, theme: str) -> str:
     svg = (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
         f'role="img" aria-labelledby="t d" lang="{locale}">'
-        f'<title id="t">{t["title"]}</title><desc id="d">{t["desc"]}</desc>'
+        f'<title id="t">{html.escape(t["title"])}</title><desc id="d">{html.escape(t["desc"])}</desc>'
         f"<defs>{defs}</defs>"
         + "".join(parts)
         + "</svg>\n"
@@ -345,7 +382,7 @@ def build(locale: str, theme: str) -> str:
 
 if __name__ == "__main__":
     report = {}
-    for locale in ("en", "vi"):
+    for locale in (json.loads(args.translations.read_text()) if args.translations else TEXT):
         for theme in ("light", "dark"):
             svg, boxes = build(locale, theme)
             name = f"diagram-icloud-sync-{theme}-{locale}.svg"

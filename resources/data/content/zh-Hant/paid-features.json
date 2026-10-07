@@ -1,0 +1,42 @@
+{
+    "compare-sync": {
+        "detail": "比較兩個資料庫的結構或資料，並在執行前檢閱同步指令碼。",
+        "lapse": "開啟時會顯示要求授權的提示。"
+    },
+    "query-insights": {
+        "detail": "根據此 Mac 的歷史紀錄，查看執行最多、最慢以及變慢的查詢。",
+        "lapse": "檢視保留，但會被授權提示覆蓋。"
+    },
+    "result-charts": {
+        "detail": "根據結果集繪製長條圖、折線圖、區域圖與散佈圖。",
+        "lapse": "圖表保留，但會被授權提示覆蓋。"
+    },
+    "data-rewind": {
+        "detail": "還原儲存修改前列中的值。",
+        "lapse": "不再記錄儲存操作，還原時會顯示提示。"
+    },
+    "icloud-sync": {
+        "detail": "在多台 Mac 之間，以及與 iPhone 和 iPad App 同步連線和設定。",
+        "lapse": "同步暫停，Settings 會說明原因。"
+    },
+    "linked-folders": {
+        "detail": "從 Git 儲存庫或團隊雲端硬碟等共用檔案夾中的 .tablepro 檔案讀取連線。",
+        "lapse": "連結檔案夾中的連線會從連線清單中移除。"
+    },
+    "encrypted-export": {
+        "detail": "在 .tablepro 匯出檔中包含密碼，並用通關密語加密。",
+        "lapse": "匯出時無法再選擇包含密碼。一般匯出和匯入加密檔案仍可使用。"
+    },
+    "environment-variables": {
+        "detail": "在主機、使用者等連線欄位中使用 $VAR，TablePro 會在連線時填入其值。",
+        "lapse": "$VAR 不再取代，也不會提示；連線將使用原樣文字。"
+    },
+    "team-catalog": {
+        "detail": "將不含密碼的連線發佈至共用檔案夾，團隊透過 Linked Folders 讀取。",
+        "lapse": "發佈指令會被隱藏。"
+    },
+    "team-library": {
+        "detail": "透過 TablePro 伺服器與團隊共用連線和已儲存查詢。密碼從不上傳。",
+        "lapse": "團隊連線和查詢會被隱藏，直到 Team 方案重新生效。"
+    }
+}

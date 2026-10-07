@@ -25,7 +25,8 @@ See `docs/architecture.md` before touching anything that posts data.
 
 ## Languages
 
-English lives at the root and Vietnamese under `/vi`, with the same slugs. The
+English lives at the root; every other supported language uses its prefix in
+`resources/data/locales.json`, with the same slugs. The
 locale is a function of the URL and nothing else: no cookie, no session, no
 `Accept-Language`, no IP, no redirect between languages.
 
@@ -33,7 +34,7 @@ locale is a function of the URL and nothing else: no cookie, no session, no
   `App\Support\Localization\Locales`, TypeScript through `@data/locales.json`.
 - Every page route is declared once, in `routes/localized.php`, which
   `routes/web.php` mounts once per locale. English keeps the plain route names
-  (`landing.compare`); Vietnamese gets the same names behind `vi.`.
+  (`landing.compare`); each translated language gets the same names behind its locale code.
 - A route existing is never enough for a page to answer. `App\Support\Seo\PageRegistry`
   says which locales each page **renders** in (it has content there) and which
   it is **indexed** in, and the `page` middleware answers 404 everywhere else.
@@ -96,7 +97,7 @@ vendor/bin/pint                 # fix code style before finishing
 npm run check:shared -- ../license   # diff the files shared with the account app
 php artisan sitemap:generate
 WEB_DOMAIN=tablepro.app php artisan og:generate --type=blog --slug=my-post   # needs Chromium (PUPPETEER_EXECUTABLE_PATH); cards print WEB_DOMAIN
-php artisan og:generate --type=compare --locale=all  # types: site|blog|database|compare|feature|all; locales: en|vi|all
+php artisan og:generate --type=compare --locale=all  # types: site|blog|database|compare|feature|all; locales: a supported locale code or all
                                 # commit public/og; delete a retired page's card (Seo/OgCardsTest fails on a missing or orphaned card)
 php artisan assets:handoff      # after editing assets.json or docs/rebuild/assets/*.md
 php artisan assets:handoff --check   # what CI runs: fails on a stale generated file
@@ -149,11 +150,11 @@ fake GitHub with `Http::fake()`. Tests that assert on rendered markup go behind
   until the owner supplies the file. A new slot or a changed description is a
   manifest edit plus a brief in `docs/rebuild/assets/{family}.md`; then run
   `php artisan assets:handoff`, which regenerates `docs/visual-assets.md` and
-  the bundle's `resources/js/lib/data/asset-slots.json`. Never hand-edit either.
+  the bundle's `resources/js/lib/data/asset-slots.json` and `asset-locales/*.json`. Never hand-edit generated files.
 
 ## Frontend
 
-- Pages resolve by convention from `resources/js/pages`. Inertia is configured
-  without an explicit `resolve`, so adding a file is enough.
+- Pages resolve by convention from `resources/js/pages`. `resolve-page.ts` loads
+  the selected language's asset catalog before client or SSR rendering.
 - SSR is enabled; `npm run build` builds both bundles.
 - `@/` maps to `resources/js`; `@data/` maps to `resources/data`.

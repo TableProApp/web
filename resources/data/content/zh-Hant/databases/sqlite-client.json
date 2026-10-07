@@ -1,0 +1,118 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 SQLite 用戶端",
+        "description": "開啟 Mac 本機或 SSH 上的 SQLite 檔案，載入 sqlite-vec、SpatiaLite 等擴充功能，並在預先檢閱後重建資料表修改結構。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "SQLite 用戶端"
+    },
+    "engine": "sqlite",
+    "breadcrumb": "SQLite",
+    "header": {
+        "title": "適用於 {devices} 的 SQLite 用戶端",
+        "lead": "從 Finder、拖放或 SSH 伺服器開啟資料庫檔案，使用 App 內建 SQLite 查詢，並透過執行前檢閱的重建指令碼修改結構。"
+    },
+    "asset": "mac-db-sqlite-chinook",
+    "links": {
+        "remoteFiles": "docs:/connections/remote-database-files",
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "copy": "/features/schema#copy",
+        "explain": "/features/querying#performance"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "開啟資料庫檔案",
+            "paragraphs": [
+                "在連線表單選擇檔案，或拖到 TablePro 視窗或 Dock 圖像。不存在的檔案路徑會在連線時建立。無論檔名是什麼，開頭位元組為 <code>SQLite format 3</code> 時便以 SQLite 開啟。",
+                "Finder 會在 .db、.sqlite、.sqlite3 等檔案的「打開檔案的應用程式」中列出 TablePro。Messages、Safari 歷史等受 macOS 保護檔案夾中的資料庫，需要先授予完整磁碟存取權，通常也需結束所屬 App。",
+                "其他機器上的資料庫透過 <remoteFiles>Remote File 面板</remoteFiles>開啟。On the Server 透過 SSH 對即時檔案執行陳述式，主機除 <code>python3</code> 外無須安裝任何內容。As a Read-Only Copy 經 SFTP 取得快照並唯讀開啟。",
+                "可先選擇 Help > Open Sample Database，開啟 App 附帶的小型數位音樂商店範例 Chinook。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查詢與編輯",
+            "paragraphs": [
+                "驅動程式內建 SQLite，不論 macOS 版本，SQL 均在同一版本執行。<explain>EXPLAIN QUERY PLAN</explain> 繪製為圖形。",
+                "可依列出順序為每個連線載入 sqlite-vec、SpatiaLite 等擴充功能，其函式和虛擬資料表可用於編輯器、側欄和 Structure 分頁。SQL 函式 <code>load_extension()</code> 仍被拒絕，透過同步、匯入連線或連結傳入的清單，在核准前不會載入任何擴充功能。",
+                "列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示所有陳述式。其他程式修改檔案時，側欄會自動重新載入。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "結構",
+            "paragraphs": [
+                "重新命名資料表或欄位、新增或刪除欄位，以及 SQLite 3.53 起新增或刪除 CHECK，使用 ALTER TABLE 執行。欄位型別、外部索引鍵等其他 <structure>Structure 分頁</structure>修改會重建資料表：TablePro 產生指令碼，連同 rowid 複製列，還原索引和觸發程序，僅在確認後執行。",
+                "修改欄位型別會依新的型別親和性重新讀取值，例如 INTEGER 欄位中 <code>'007'</code> 變成 <code>7</code>，執行前檢閱面板會說明。FTS5 等虛擬資料表無法重建，儲存時會指明其名稱。",
+                "可從側欄查看和編輯觸發程序。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "維護與備份",
+            "paragraphs": [
+                "資料表維護執行 VACUUM、ANALYZE、REINDEX 和完整性檢查，每項執行前均顯示 SQL。Server Dashboard 顯示檔案大小、頁數、頁大小、日誌模式和快取大小。",
+                "<backup>Backup Dump</backup> 使用 {dumpTool} 將資料庫寫入 .sql 檔案，Restore Dump 對資料庫執行此類檔案。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "<importData>匯入</importData> {importFormats} 檔案，或在 <dataFiles>Data Files 視窗</dataFiles>開啟 CSV、JSON、XLSX 後從中匯入。資料表和結果匯出為 {exportFormats}。",
+                "<copy>Copy To</copy> 將資料表和列移動至 PostgreSQL 伺服器等其他連線，列出所有需要近似轉換的欄位型別。另見<files>將檔案作為資料庫處理</files>。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 與 iPad",
+            "paragraphs": [
+                "iPhone 與 iPad 上可選擇或建立資料庫檔案，也可從 Open Sample Database 開啟 Chinook 範例。依卡片瀏覽資料表、篩選、編輯有主索引鍵的列，並在 Query 分頁執行 SQL。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "encrypted",
+            "question": "能開啟加密的 SQLite 資料庫嗎？",
+            "answer": "不能。內建 SQLite 不接受金鑰，因此 SQLCipher、SEE 檔案無法開啟。請先用 sqlcipher 工具解密檔案。"
+        },
+        {
+            "id": "version",
+            "question": "使用哪個 SQLite 版本？",
+            "answer": "驅動程式內建 SQLite {engineVersion}，不依賴 macOS 附帶版本。"
+        },
+        {
+            "id": "framework-files",
+            "question": "能開啟 App 的開發資料庫嗎？",
+            "answer": "可以。開啟框架儲存的檔案，例如 Rails 的 <code>db/development.sqlite3</code> 或 Django 的 <code>db.sqlite3</code>。<code>~/Library</code> 下的檔案，包括 iOS Simulator 容器，需要完整磁碟存取權。"
+        }
+    ],
+    "related": [
+        {
+            "label": "匯入、匯出與資料檔案",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Cloudflare D1，透過 HTTP 使用 SQLite",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "Turso 與 libSQL",
+            "href": "/turso-client"
+        },
+        {
+            "label": "用於分析檔案的 DuckDB",
+            "href": "/duckdb-client"
+        }
+    ]
+}

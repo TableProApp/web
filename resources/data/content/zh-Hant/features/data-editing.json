@@ -1,0 +1,206 @@
+{
+    "seo": {
+        "title": "使用 SQL 預覽與安全模式編輯資料表資料",
+        "description": "篩選和編輯列，儲存前檢閱 SQL，並為每個連線設定安全模式。Data Rewind 可還原儲存時被取代的值。"
+    },
+    "og": {
+        "kicker": "資料編輯",
+        "title": "安全瀏覽與編輯資料"
+    },
+    "header": {
+        "title": "安全瀏覽與編輯資料",
+        "lead": "直接處理列：找到所需紀錄，修改幾個值，在正式環境資料庫上操作也避免意外。編輯暫存至儲存時才執行，每個連線決定 TablePro 在執行陳述式前採取何種謹慎措施。",
+        "docs": "/features/change-tracking"
+    },
+    "sections": [
+        {
+            "id": "browse",
+            "title": "尋找所需的列",
+            "paragraphs": [
+                "排序與分頁在伺服器上執行，因此大型資料表從第一頁開啟。超過 {countEstimate} 列後，列數為估計值，需要實際數量時可使用 Count Exactly。"
+            ],
+            "blocks": [
+                {
+                    "id": "filters",
+                    "title": "篩選與標示規則",
+                    "paragraphs": [
+                        "篩選列（<kbd>⌘⇧F</kbd>）使用從 =、BETWEEN 到 REGEX 的 {filterOperatorCount} 個運算子建立 WHERE 子句，也可接受原始 SQL 條件。可為資料表儲存篩選，並在以後載入而不立即執行。標示規則根據值為列或儲存格著色，類似試算表中的條件式格式，設定僅儲存在此 Mac 上。"
+                    ],
+                    "asset": "mac-grid-highlight-rules"
+                },
+                {
+                    "id": "foreign-keys",
+                    "title": "外部索引鍵與 JSON",
+                    "paragraphs": [
+                        "可沿外部索引鍵在新分頁開啟參照列，或在浮動視窗中預覽。編輯外部索引鍵欄位時，值選擇器依所選欄位列出被參照列，例如客戶的姓和名。JSON 值在檢視器中開啟，樹狀模式便於瀏覽，文字模式用於編輯。"
+                    ],
+                    "asset": "mac-fk-picker"
+                }
+            ]
+        },
+        {
+            "id": "edit",
+            "title": "修改資料後統一儲存",
+            "paragraphs": [
+                "儲存格編輯、新增列和刪除在分頁中標記並暫存，按下 <kbd>⌘S</kbd> 前不會傳送任何修改。<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）列出已填入值的陳述式。儲存時以繫結參數傳送，在引擎允許時於同一交易中執行，並檢查每個陳述式修改的列數是否符合預期；任一不符即復原儲存。"
+            ],
+            "points": [
+                "依欄位型別提供儲存格編輯器：日期時間選擇器、ENUM 和 SET 清單、陣列、JSON、二進位值十六進位編輯器及圖片檢視器。",
+                "儲存前可在每個分頁中復原與重做。",
+                "讀取單一資料表且不含 JOIN、CTE 或 UNION 的查詢結果可以編輯。",
+                "將列複製為 CSV、JSON、Markdown、IN 清單或 INSERT、UPDATE 陳述式。"
+            ],
+            "asset": "mac-edit-preview-sql"
+        },
+        {
+            "id": "safe-mode",
+            "title": "正式環境連線的安全模式",
+            "paragraphs": [
+                "每個連線都有安全模式等級：{macSafeModeLevels}。新連線預設為 {macSafeModeDefault}，直接執行陳述式。Alert 在寫入前詢問，Safe Mode 等級還要求 Touch ID 或 Mac 密碼，Full 等級在讀取前也詢問，Read-Only 拒絕寫入並關閉編輯。安全模式免費。",
+                "所有等級下，DROP、TRUNCATE 和無 WHERE 的 DELETE 都會停止並先詢問。某些條件在生效期間會提高連線等級，例如唯讀引擎、將等級至少提高至 Alert 的 Agent 模式，以及組織透過裝置管理（MDM）設定的最低等級。"
+            ],
+            "asset": "mac-safe-mode-touchid",
+            "links": [
+                {
+                    "label": "安全模式與其他連線政策",
+                    "href": "/features/connections#policies"
+                },
+                {
+                    "label": "Agent 模式",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "data-rewind",
+            "title": "資料回溯",
+            "paragraphs": [
+                "Data Rewind 保留儲存時被取代的值，可透過 <ui>Restore Previous Values</ui> 還原。檢閱面板先顯示每列將發生的變化，包括儲存後又被修改的列；還原遵循安全模式，在引擎允許時於同一交易中執行。還原操作本身也可還原。",
+                "儲存的值使用鑰匙圈中的金鑰加密，在此 Mac 上保留 {rewindDays} 天，從不同步。方案結束後，TablePro 停止記錄儲存操作，<ui>Restore Previous Values</ui> 將顯示提示而不再還原。"
+            ],
+            "paid": [
+                "data-rewind"
+            ],
+            "asset": "mac-data-rewind-review"
+        },
+        {
+            "id": "documents-and-keys",
+            "title": "文件與鍵",
+            "paragraphs": [
+                "並非所有引擎都儲存列。MongoDB 可用 Extended JSON 插入和編輯整份文件、從文件移除欄位，並在 Structure 分頁為整個集合重新命名或移除欄位。Redis 可在格線中重新命名鍵、設定 TTL 和編輯字串值，新增 string、hash、list、set 或 sorted-set 鍵，其他型別透過編輯器指令修改。"
+            ],
+            "links": [
+                {
+                    "label": "在 TablePro 中使用 MongoDB",
+                    "href": "/mongodb-client"
+                },
+                {
+                    "label": "在 TablePro 中使用 Redis",
+                    "href": "/redis-gui"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "在 iPhone 與 iPad 上",
+            "paragraphs": [
+                "iPhone 與 iPad App 將列顯示為卡片，支援排序、搜尋及 AND、OR 篩選，點一下外部索引鍵可預覽參照列。可編輯列，將值設為 NULL 或 DEFAULT，插入列並滑動刪除；編輯和刪除需要主索引鍵。",
+                "行動版安全模式有自己的等級 {iosSafeModeLevels}，新連線預設為 {iosSafeModeDefault}。暫存編輯、Preview SQL、標示規則與 Data Rewind 僅在 Mac App 中提供。"
+            ],
+            "links": [
+                {
+                    "label": "在 iPhone 與 iPad 上瀏覽與編輯",
+                    "href": "/ios#browse"
+                },
+                {
+                    "label": "iPhone 與 iPad 上的安全模式",
+                    "href": "/ios#safe-mode"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "排序、分頁與篩選",
+            "ios": "yes"
+        },
+        {
+            "label": "已儲存篩選與標示規則",
+            "ios": "no"
+        },
+        {
+            "label": "外部索引鍵導覽與值選擇器",
+            "ios": "partial",
+            "iosNote": "點一下預覽參照列"
+        },
+        {
+            "label": "編輯、插入與刪除列",
+            "ios": "partial",
+            "iosNote": "列編輯器；需要主索引鍵"
+        },
+        {
+            "label": "暫存編輯、Preview SQL 與復原",
+            "ios": "no"
+        },
+        {
+            "label": "安全模式",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "寫入前要求 Touch ID 或密碼",
+            "ios": "no"
+        },
+        {
+            "label": "資料回溯",
+            "paid": "data-rewind",
+            "ios": "no"
+        },
+        {
+            "label": "MongoDB 文件與 Redis 鍵",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Data Rewind 不是備份。它不能復原觸發程序、串聯操作或 TablePro 外部的修改，也無法還原無主索引鍵的列、超過 {rewindMaxValue} MB 的值或伺服器計算的值。",
+        "無 WHERE 的 UPDATE 屬於一般寫入，僅在 Alert 或更嚴格等級下先詢問。",
+        "在 {everyStatementWrites} 上，安全模式將每個陳述式視為寫入，因此 Alert 在讀取前也詢問，Read-Only 則阻止讀取。",
+        "JOIN、CTE 或 UNION 的結果在格線中唯讀；請開啟資料表進行編輯。"
+    ],
+    "docs": [
+        {
+            "label": "資料格線",
+            "docs": "/features/data-grid"
+        },
+        {
+            "label": "篩選",
+            "docs": "/features/filtering"
+        },
+        {
+            "label": "變更追蹤與 SQL 預覽",
+            "docs": "/features/change-tracking"
+        },
+        {
+            "label": "資料回溯",
+            "docs": "/features/change-tracking#restoring-a-save"
+        },
+        {
+            "label": "安全模式",
+            "docs": "/features/safe-mode"
+        }
+    ],
+    "related": [
+        {
+            "label": "查詢",
+            "href": "/features/querying"
+        },
+        {
+            "label": "結構",
+            "href": "/features/schema"
+        },
+        {
+            "label": "付費方案提供的功能",
+            "href": "/pricing#features"
+        }
+    ]
+}

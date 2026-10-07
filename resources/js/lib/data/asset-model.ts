@@ -32,8 +32,8 @@ export type ImageFormat = 'avif' | 'webp' | 'png' | 'svg';
 
 export type ThemeVariant = 'light' | 'dark';
 
-/** Text in each locale. English is required; another locale may be null where the page is English only. */
-export type LocalizedText = { en: string } & Record<string, string | null>;
+/** Source text or one selected locale; editorial figures can carry English only. */
+export type LocalizedText = Record<string, string | null>;
 
 /** One delivered image: every width in every format, all sharing one shape. */
 export interface AssetSource {
@@ -144,7 +144,13 @@ export function entryAspect(entry: SlotEntry, kind: SlotKind): string {
 
 /** The locale's text, falling back to English where a locale is not written (English-only posts). */
 export function localized(text: LocalizedText, locale: string): string {
-    return text[locale] ?? text.en;
+    const line = text[locale] ?? text.en;
+
+    if (typeof line !== 'string') {
+        throw new Error(`Missing asset text for ${locale}`);
+    }
+
+    return line;
 }
 
 export function mimeType(format: ImageFormat): string {

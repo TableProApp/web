@@ -1,0 +1,85 @@
+{
+    "seo": {
+        "title": "Apache Kafka untuk {devices}",
+        "description": "Baca topik Kafka dari pesan terbaru, terlama, offset, atau waktu, periksa lag consumer, dan hasilkan pesan dengan KafkaQL melalui SASL dan TLS."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien Apache Kafka"
+    },
+    "engine": "kafka",
+    "breadcrumb": "Apache Kafka",
+    "header": {
+        "title": "Klien Apache Kafka untuk {devices}",
+        "lead": "Baca topik dari posisi awal pilihan Anda, lihat seberapa jauh setiap grup consumer tertinggal, dan hasilkan pesan uji, semuanya menggunakan KafkaQL. Topik adalah log, sehingga grid membaca pesan dan tidak pernah mengeditnya."
+    },
+    "asset": "mac-db-kafka-consume",
+    "links": {
+        "network": "/features/connections#network",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Masukkan host dan port satu broker; anggota cluster lainnya ditemukan melaluinya, dan <ui>Additional Bootstrap Servers</ui> mencantumkan broker yang dicoba jika broker pertama tidak menjawab. Satu koneksi adalah satu cluster, sehingga tidak ada bidang Database, dan bilah samping langsung menampilkan topiknya.",
+                "<ui>Security Protocol</ui> adalah PLAINTEXT, SSL, SASL_PLAINTEXT, atau SASL_SSL, dan <ui>SASL Mechanism</ui> adalah PLAIN, SCRAM-SHA-256, atau SCRAM-SHA-512. PLAIN cocok untuk Confluent Cloud; SCRAM untuk Amazon MSK dan broker yang dihosting sendiri. Dengan SSL atau SASL_SSL tanpa mode SSL yang dipilih, rantai sertifikat dan nama host diverifikasi. CA pribadi dimasukkan ke <ui>CA Certificate</ui>, dan sertifikat serta kunci klien menambahkan TLS timbal balik.",
+                "Melalui <network>tunnel SSH</network>, koneksi tetap pada broker bootstrap, sehingga hanya membaca partisi yang dipimpin broker tersebut. <ui>Import from URL…</ui> menerima URL <code>kafka://</code>, yang tidak dibuka macOS sebagai tautan."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Baca, periksa, dan hasilkan",
+            "paragraphs": [
+                "Membuka topik menampilkan pesan terbaru, dengan pesan paling baru di akhir, beserta partisi, offset, timestamp, kunci, nilai, header, dan ukuran. Pesan dari partisi berbeda diselingi berdasarkan timestamp untuk membantu pembacaan; partisi dan offset mengidentifikasi pesan. Kunci atau nilai yang bukan UTF-8 ditampilkan sebagai heksadesimal, dan tombstone tetap dibedakan dari pesan kosong.",
+                "KafkaQL mengganti pengurutan dan filter dengan posisi awal: <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code>, atau <code>FROM TIME</code> dengan timestamp ISO 8601, secara opsional dibatasi pada beberapa partisi. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code>, dan <code>DESCRIBE TOPIC</code> mencakup bagian cluster lainnya.",
+                "<code>DESCRIBE GROUP</code> adalah laporan lag: offset yang di-commit, offset akhir, dan selisihnya per partisi. Partisi yang belum pernah di-commit grup tidak menampilkan lag, alih-alih angka yang dihitung dari nol, dan <code>SHOW GROUPS</code> menandai daftar terpotong jika broker tidak dapat diakses.",
+                "<code>PRODUCE INTO</code> menulis pesan dengan kunci, header, dan partisi opsional. Pesan berkunci tanpa partisi ditempatkan seperti yang dilakukan producer Kafka sendiri. Batch gzip, snappy, lz4, dan zstd didekompresi saat dibaca, tanpa pengaturan yang perlu dipilih.",
+                "Sel tidak dapat diedit, baris tidak dapat dihapus, dan kolom tidak dapat diurutkan karena Kafka tidak memiliki pembaruan, penghapusan per pesan, atau pengurutan di server, dan grid menonaktifkan kontrol tersebut. Setiap halaman melanjutkan dari akhir halaman sebelumnya, sehingga topik yang menerima tulisan baru tidak pernah mengulangi atau melewatkan pesan."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Topik",
+            "paragraphs": [
+                "Menghapus topik dari bilah samping atau dengan <code>DROP TOPIC</code> adalah satu-satunya tindakan destruktif. Cluster menghapus log setelahnya, sehingga topik mungkin tetap muncul sebentar dalam daftar. Truncate tidak tersedia: Kafka menghapus record berdasarkan retensi atau offset per partisi, dan keduanya tidak mengosongkan topik."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "Impor tidak tersedia; masukkan pesan ke topik menggunakan <code>PRODUCE INTO</code>. <export>Ekspor</export> pesan yang dibaca kueri sebagai CSV, JSON, atau XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "advertised-addresses",
+            "question": "Mengapa topik dimuat tetapi pesan mengalami timeout?",
+            "answer": "Cluster mengumumkan alamat yang tidak dapat diakses Mac ini, seperti nama host kontainer atau IP pribadi. Perbaiki <code>advertised.listeners</code>, atau atur <ui>Broker Addresses</ui> agar hanya menggunakan alamat bootstrap."
+        },
+        {
+            "id": "msk-iam",
+            "question": "Apakah autentikasi IAM Amazon MSK berfungsi?",
+            "answer": "Tidak. Mekanisme SASL yang tersedia adalah PLAIN, SCRAM-SHA-256, dan SCRAM-SHA-512, jadi buat pengguna SCRAM pada cluster MSK dan hubungkan menggunakan SASL_SSL."
+        }
+    ],
+    "related": [
+        {
+            "label": "Bahasa kueri selain SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Koneksi, tunnel, dan kredensial",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Database yang didukung",
+            "href": "/databases"
+        }
+    ]
+}

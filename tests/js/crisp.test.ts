@@ -264,3 +264,13 @@ test('Crisp is given the language and nothing about the reader', () => {
         'no user:email, user:nickname, session data or similar is pushed',
     );
 });
+
+
+for (const [locale, expected] of [['pt-BR', 'pt-br'], ['zh-Hans', 'zh'], ['zh-Hant', 'zh-tw']]) {
+    test(`the ${locale} page requests Crisp's supported regional language`, () => {
+        const browser = installBrowser({ readyState: 'complete' });
+        loadChatWhenIdle('website-id', locale);
+        browser.idle();
+        assert.deepEqual(browser.window.CRISP_RUNTIME_CONFIG, { locale: expected });
+    });
+}

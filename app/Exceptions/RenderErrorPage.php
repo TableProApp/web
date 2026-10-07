@@ -43,7 +43,7 @@ final class RenderErrorPage
     /**
      * Platform paths a reader might put a locale prefix in front of.
      */
-    private const ACCOUNT_PATH = '#^([a-z]{2})/(account|checkout)(/|$)#';
+    private const ACCOUNT_PATH = '#^([a-z]{2}(?:-[A-Z][a-z]{3})?(?:-[A-Z]{2})?)/(account|checkout)(/|$)#';
 
     /**
      * Sets the locale from the path before Laravel renders anything.

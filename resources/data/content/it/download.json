@@ -1,0 +1,63 @@
+{
+    "seo": {
+        "title": "Scarica TablePro per Mac",
+        "description": "Scarica TablePro per Mac, con build separate per Apple silicon e Intel, oppure installalo con Homebrew. L’app per iPhone e iPad è su App Store."
+    },
+    "og": {
+        "kicker": "Download",
+        "title": "Scarica TablePro"
+    },
+    "header": {
+        "title": "Scarica TablePro",
+        "lead": "Scarica l’app per Mac adatta al chip del tuo Mac oppure installala con Homebrew. L’app per iPhone e iPad è su App Store."
+    },
+    "mac": {
+        "otherWays": "Altri modi per installare",
+        "homebrew": {
+            "title": "Homebrew",
+            "body": "Homebrew installa la build per il chip del tuo Mac. Poi l’app si mantiene aggiornata da sola.",
+            "trails": "La copia di Homebrew viene aggiornata separatamente e può essere in ritardo rispetto a un nuovo rilascio. Se installa una versione precedente, scegli <ui>TablePro > Check for Updates…</ui> per ottenere quella attuale."
+        },
+        "releases": "Tutte le build su GitHub Releases",
+        "source": "Compila dal sorgente (AGPLv3)"
+    },
+    "ios": {
+        "body": "Un’app separata realizzata per {devices}, con un proprio insieme di funzionalità.",
+        "link": "TablePro per {devices}"
+    },
+    "install": {
+        "title": "Installazione e primo avvio",
+        "steps": [
+            "Apri il file .dmg scaricato dalla cartella Download.",
+            "Trascina TablePro nella cartella Applicazioni.",
+            "Apri TablePro da Applicazioni. Poiché proviene da internet, macOS chiede conferma al primo avvio. Scegli <ui>Open</ui>.",
+            "Aggiungi una connessione oppure scegli <ui>Help > Open Sample Database</ui> per esplorare prima l’app. Si apre Chinook, un piccolo database SQLite incluso nell’app."
+        ],
+        "signing": "Entrambe le build sono firmate con un Developer ID e autenticate da Apple, quindi non devi modificare alcuna impostazione di sicurezza per aprire TablePro.",
+        "drivers": "I driver per i database più comuni sono inclusi nell’app. Gli altri vengono scaricati la prima volta che scegli quel database, operazione che richiede una connessione internet, e si aggiornano separatamente dall’app.",
+        "databases": "Database supportati",
+        "guide": {
+            "label": "Leggi la guida all’installazione",
+            "path": "/installation"
+        }
+    },
+    "updates": {
+        "title": "Aggiornamenti",
+        "paragraphs": [
+            "TablePro controlla gli aggiornamenti una volta al giorno. Una nuova versione viene scaricata in background e installata la prossima volta che chiudi l’app.",
+            "La maggior parte dei rilasci raggiunge i Mac gradualmente in circa un giorno e mezzo. Per ottenerne uno prima, scegli <ui>TablePro > Check for Updates…</ui>",
+            "Puoi disattivare i controlli o le installazioni automatiche in <ui>Settings > General</ui>. I controlli degli aggiornamenti si rivolgono a GitHub, dove vengono pubblicati i rilasci, e ogni aggiornamento viene firmato e verificato prima dell’installazione."
+        ]
+    },
+    "otherPlatforms": {
+        "title": "Altre piattaforme",
+        "body": "TablePro non è disponibile per {platforms} e non c’è una data di rilascio.",
+        "faq": "Domande sulle piattaforme nelle FAQ"
+    },
+    "olderVersions": {
+        "title": "Versioni precedenti e note di rilascio",
+        "body": "Ogni rilascio, con le note e le due immagini disco, si trova su GitHub Releases. Il registro delle modifiche elenca le novità di ogni versione.",
+        "releases": "Tutti i rilasci su GitHub",
+        "changelog": "Registro delle modifiche"
+    }
+}

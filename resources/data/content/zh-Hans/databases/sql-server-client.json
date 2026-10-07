@@ -1,0 +1,137 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 SQL Server 客户端",
+        "description": "运行含 GO 批次和 PRINT 输出的 T-SQL，通过 SQL 登录、Kerberos 或 Microsoft Entra ID 认证，并将 SQL Server 备份为 .bacpac。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "SQL Server 客户端"
+    },
+    "engine": "sqlserver",
+    "breadcrumb": "SQL Server",
+    "header": {
+        "title": "适用于 {devices} 的 SQL Server 客户端",
+        "lead": "逐批次运行 T-SQL 脚本，按 SQL Server Management Studio 的方式处理 GO 和 PRINT，并使用 SQL Server 登录、Kerberos 或 Microsoft Entra ID 工作账户认证。Windows、Linux、Docker 服务器及 Azure SQL Database 均以相同方式连接。"
+    },
+    "asset": "mac-db-sqlserver-script",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接",
+            "paragraphs": [
+                "提供主机和 TCP 端口，再选择 <ui>Authentication</ui>，表单会随之调整：SQL Server 用户密码、Kerberos Windows Authentication 或 Microsoft Entra ID。属于单个数据库的登录，例如 Azure SQL contained user，还需填写 Database。",
+                "Kerberos 使用凭据缓存中的现有票据，或根据输入的主体和密码请求票据。票据为服务器注册的 SPN 签发，因此请用主机名而非 IP 连接。TablePro 从不运行 <code>kinit</code> 或编辑 <code>/etc/krb5.conf</code>。",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> 使用设备代码流程登录，遵循多因素认证和 Conditional Access。需在 Azure 注册应用并填写客户端 ID；令牌保存在登录钥匙串中，标记为仅限此设备，并在后台刷新。",
+                "新连接默认为 Preferred，在 SQL Server 上仅加密登录。要加密整个会话，请选 Required 或更严格级别；Verify CA、Verify Identity 使用 macOS 系统根证书验证。TablePro 也可为 Google Cloud SQL 运行 Cloud SQL Auth Proxy，并通过 <network>SSH 隧道</network>访问私有网络服务器。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "脚本、批次和编辑",
+            "paragraphs": [
+                "脚本按仅含 <code>GO</code> 的行分隔，像 sqlcmd 一样逐批次发送服务器；<code>GO 5</code> 将前一批次运行五次。每个结果集在独立标签页打开，<code>PRINT</code> 输出和信息消息显示在 Output 视图。",
+                "若失败需回滚之前的批次，请在脚本加入 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>；脚本留下未结束事务时会在结尾提示。运行在首个失败批次停止，错误指出编辑器中的行号。",
+                "每个会话以筛选索引、索引视图和计算列索引所需的 SET 选项打开，例如启用 <code>ANSI_NULLS</code> 和 <code>QUOTED_IDENTIFIER</code>。因此 <code>col = NULL</code> 不匹配任何记录，请用 <code>IS NULL</code> 比较。",
+                "表在侧栏 schema 下嵌套显示，<code>Cmd+K</code> 无需重新连接即可切换数据库。行编辑暂存并提供 <editing>Preview SQL</editing>，新行的 IDENTITY 列交给服务器生成，<code>nvarchar(max)</code> 值完整读取。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "结构",
+            "paragraphs": [
+                "<structure>Structure 标签页</structure> 暂存列、索引、外键和约束的修改，在执行前显示 T-SQL。可从侧栏删除 schema，但 SQL Server 拒绝删除仍含对象的 schema；创建请在编辑器使用 CREATE SCHEMA。",
+                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 对比两个 SQL Server schema 或数据，保存每条语句后附 <code>GO</code> 行的脚本，可直接用于 sqlcmd 或 SQL Server Management Studio。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "监控和备份",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> 显示用户会话、运行时间和数据库大小，列出所有其他会话及运行超过一秒的查询，并通过 <ui>Terminate Session</ui> 终止会话。SQL Server 不提供 Cancel Query。",
+                "<backup>Backup Dump</backup> 使用从 Microsoft 下载的 {dumpTool} 写入 <code>.bacpac</code>，Restore Dump 载入空数据库。SqlPackage 仅在命令行接收密码，Mac 上其他进程可以读取，因此 TablePro 会在启动前询问。Windows 或 Entra 认证无需传递密码。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "<importData>导入</importData> {importFormats} 文件。含 <code>GO</code> 行的 <code>.sql</code> 文件像 sqlcmd 一样逐批次运行。表或结果导出为 {exportFormats}；SQL 导出在每条语句后加 <code>GO</code> 行，使其各自作为独立批次运行。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 和 iPad",
+            "paragraphs": [
+                "iPhone 和 iPad 上可通过 SQL Server 登录，按卡片浏览表、编辑有主键的行，并在 Query 标签页运行 T-SQL。不提供 Windows Authentication。Microsoft Entra ID 连接需通过 iCloud Sync 或导出的连接文件从 Mac 导入，打开时登录 Microsoft。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "ssms",
+                "text": "SQL Server Management Studio 是 Microsoft 自有 SQL Server、Azure SQL 工具。SQL Server Agent 作业、Always On 可用性组、实时查询统计及性能调优等 TablePro 未涵盖的管理任务可选用它。",
+                "notes": [
+                    "ssms-github-copilot-component"
+                ]
+            },
+            {
+                "product": "azure-data-studio",
+                "text": "Azure Data Studio 曾是 Microsoft 的 SQL Server、Azure SQL 查询编辑器，提供 SQL Server Agent、Profiler 等任务扩展。",
+                "notes": [
+                    "ads-retired-successor"
+                ]
+            }
+        ],
+        "notes": {
+            "ssms-github-copilot-component": "SQL Server Management Studio 的 GitHub Copilot 是通过 Visual Studio Installer 添加的独立组件。",
+            "ads-retired-successor": "Microsoft 已将其退役，不再提供更新或安全修复，并引导用户使用 Visual Studio Code 的 MSSQL 扩展，可无需转换打开相同查询、脚本和数据库项目。"
+        }
+    },
+    "faq": [
+        {
+            "id": "azure-sql",
+            "question": "支持 Azure SQL Database 吗？",
+            "answer": "支持。主机使用 <code>yourserver.database.windows.net</code>，SSL 设为 Required 或更严格级别，通过 SQL 登录或 Microsoft Entra ID 认证。contained user 还需填写 Database。"
+        },
+        {
+            "id": "declare",
+            "question": "为什么脚本报错“Must declare the scalar variable”？",
+            "answer": "读取变量的语句与其 <code>DECLARE</code> 在不同批次运行：两者间有 <code>GO</code> 行，或 <code>Cmd+Enter</code> 仅运行了光标所在语句。请选择两条语句或运行整个脚本。"
+        },
+        {
+            "id": "freetds",
+            "question": "需要 FreeTDS 或 ODBC 驱动吗？",
+            "answer": "不需要。驱动基于 FreeTDS 并内置它，无需其他安装，也不读取自有 <code>freetds.conf</code>。仅 Backup Dump、Restore Dump 需要自有工具 {dumpTool}。"
+        }
+    ],
+    "related": [
+        {
+            "label": "连接、隧道和登录",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "结构、对比和同步",
+            "href": "/features/schema"
+        },
+        {
+            "label": "导入、导出和备份",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "适用于 iPhone 和 iPad 的 TablePro",
+            "href": "/ios#security"
+        }
+    ]
+}

@@ -1,0 +1,210 @@
+{
+    "seo": {
+        "title": "TablePro vs Beekeeper Studio: native atau Electron",
+        "description": "Beekeeper Studio adalah klien Electron sumber terbuka untuk Windows, macOS, dan Linux. TablePro native dan sumber terbuka. Bandingkan paket, mesin, dan AI."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs Beekeeper Studio"
+    },
+    "header": {
+        "title": "TablePro vs Beekeeper Studio",
+        "lead": "Beekeeper Studio dan TablePro sama-sama klien database sumber terbuka. Beekeeper Studio dibangun di atas {technology} dan bekerja dengan cara yang sama di Windows, macOS, dan Linux, dengan tingkat berbayar di atas edisi Community gratisnya. TablePro memiliki aplikasi native untuk Mac dan aplikasi lain untuk iPhone dan iPad, serta fitur berbayar opsional di Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda ingin Oracle, Cassandra, atau Snowflake tanpa membayar. Setiap mesin yang didukung gratis di TablePro, sedangkan Beekeeper Studio menambahkannya pada tingkat berbayar.",
+            "Anda ingin asisten AI dan server MCP tanpa tingkat berbayar. Keduanya gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda.",
+            "Anda ingin aplikasi Mac native yang ditulis dalam Swift, dengan kode fitur berbayarnya juga sumber terbuka.",
+            "Anda juga ingin aplikasi untuk iPhone dan iPad."
+        ],
+        "competitor": [
+            "Anda juga bekerja di Windows atau Linux dan ingin klien yang sama pada masing-masing.",
+            "Anda terhubung ke Firebird, SQL Anywhere, atau GreengageDB, yang tidak didukung TablePro.",
+            "Anda ingin menyinkronkan dan berbagi koneksi serta kueri melalui workspace cloud, mulai tingkat {cells.sync.edition}."
+        ]
+    },
+    "glance": {
+        "intro": "Kedua klien sumber terbuka dan memiliki mode Vim dalam editor SQL. Masing-masing memiliki diagram ER: gratis di TablePro, dan pada setiap tingkat berbayar Beekeeper Studio."
+    },
+    "rows": {
+        "diagram": {
+            "label": "Diagram ER",
+            "tablepro": "Diagram ER hanya baca, dapat diekspor sebagai PNG atau SQL, gratis"
+        },
+        "vim": {
+            "label": "Mode Vim",
+            "tablepro": "Gratis dalam editor SQL, dengan gerakan, register, dan makro"
+        },
+        "importExport": {
+            "label": "Impor, ekspor, dan pencadangan",
+            "tablepro": "Gratis dalam aplikasi Mac: impor berkas CSV, JSON, XLSX, dan SQL, ekspor ke CSV, JSON, SQL, XLSX, serta format lain, dan Backup Dump serta Restore Dump jika mesin memiliki alat dump"
+        },
+        "lifetimeLicense": {
+            "label": "Setelah langganan berakhir",
+            "tablepro": "Fitur berbayar paket bulanan atau tahunan terkunci saat berakhir. Pembelian sekali bayar tidak memiliki tanggal kedaluwarsa"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Beekeeper Studio memiliki fitur yang sama di Windows, macOS, dan Linux, sehingga satu klien mencakup setiap komputer yang Anda gunakan.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Terhubung ke mesin yang tidak didukung TablePro, seperti Firebird, SQL Anywhere, dan GreengageDB.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Mulai tingkat {cells.sync.edition}, workspace cloud menyinkronkan dan berbagi koneksi serta kueri dengan rekan pada platform mana pun yang didukung.",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro adalah aplikasi Mac yang ditulis dalam Swift, dengan driver database native. Beekeeper Studio dibangun di atas {technology}. Keduanya menawarkan build terpisah untuk Mac Apple silicon dan Intel.",
+                "cite": [
+                    "technology",
+                    "mac"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Setiap mesin yang didukung gratis di TablePro, termasuk Oracle, Cassandra, dan Snowflake. Edisi Community Beekeeper Studio mencakup mesin seperti PostgreSQL, MySQL, SQL Server, dan SQLite, dan tingkat berbayarnya menambahkan mesin lain, seperti Oracle, Cassandra, dan Snowflake.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Asisten AI dan server MCP</link> gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda. AI Shell Beekeeper Studio memerlukan tingkat berbayar.",
+                "cite": [
+                    "cells.ai"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Mengimpor dan mengekspor data</link> gratis di TablePro, begitu pula pencadangan melalui alat dump mesin sendiri jika tersedia. Beekeeper Studio mencantumkan Import/Export & Backup/Restore pada tingkat berbayar, bukan Community.",
+                "cite": [
+                    "cells.importExport"
+                ],
+                "feature": null,
+                "href": "/features/import-export"
+            },
+            {
+                "text": "TablePro sumber terbuka dengan AGPLv3, termasuk kode fitur berbayarnya. Edisi Community Beekeeper Studio sumber terbuka dengan {licence}.",
+                "cite": [
+                    "licence"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>iCloud Sync</link> menjaga koneksi tetap sinkron antara Mac dan iPhone atau iPad Anda. Fitur termasuk Starter di Mac, dan gratis di iPhone serta iPad.",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "Tersedia <link>aplikasi iPhone dan iPad gratis</link>, tanpa pembelian dalam aplikasi. Beekeeper Studio tidak memiliki aplikasi seluler.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro hanya terhubung ke mesin yang memiliki driver. Periksa <link>database yang didukung</link> sebelum beralih.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "Diagram ER gratis tetapi hanya baca: Anda mengubah tabel di tab Structure, bukan dengan menggambarnya.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Beekeeper Studio memungkinkan Anda tetap memakai versi yang dirilis selama Anda membayar, pada paket bulanan setelah 12 bulan. Paket TablePro bulanan atau tahunan tidak menyisakan hal serupa: saat berakhir, fitur berbayar terkunci dan aplikasi lainnya tetap berfungsi. Pembelian sekali bayar tidak memiliki tanggal kedaluwarsa.",
+                "cite": [
+                    "cells.lifetimeLicense"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro membaca koneksi yang disimpan Beekeeper Studio di Mac Anda, dalam workspace lokalnya. Beekeeper Studio tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "steps": [
+            "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
+            "Pilih Beekeeper Studio dan aktifkan <ui>Include passwords</ui>. TablePro mendekripsi kata sandi yang disimpan Beekeeper Studio, termasuk kata sandi SSH dan frasa sandi kunci, jadi tidak ada yang perlu disetujui di Keychain.",
+            "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Folder menjadi grup, warna koneksi dan pengaturan SSL ikut dipindahkan, serta host bastion SSH menjadi jump host. Koneksi ke mesin yang tidak didukung TablePro masuk tanpa dicentang.",
+            "Sebelum menghapus Beekeeper Studio, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
+        ],
+        "after": [
+            "Koneksi dalam workspace cloud Beekeeper Studio tidak diimpor, hanya koneksi dalam workspace lokal.",
+            "Kueri tersimpan, riwayat kueri, dan pintasan keyboard tetap di Beekeeper Studio."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "apple-silicon",
+            "question": "Apakah TablePro berjalan secara native di Apple silicon?",
+            "answer": "Ya. TablePro memiliki build terpisah untuk Mac Apple silicon dan Intel, dan <link>halaman unduh</link> menawarkan keduanya.",
+            "href": "/download"
+        },
+        {
+            "id": "free-engines",
+            "question": "Mesin apa yang dapat saya gunakan tanpa membayar?",
+            "answer": "Di TablePro, setiap mesin yang didukung gratis, beserta asisten AI, server MCP, dan Safe Mode. Paket Starter atau Team menambahkan fitur seperti {starterExamples}, bukan mesin. Edisi Community Beekeeper Studio mencakup sekumpulan mesin umum, dan tingkat berbayarnya menambahkan yang lain.",
+            "href": null
+        },
+        {
+            "id": "vim",
+            "question": "Saya menggunakan mode Vim di Beekeeper Studio. Apakah TablePro memilikinya?",
+            "answer": "Ya, dan gratis. Aktifkan <ui>Settings > Editor > Vim mode</ui> untuk gerakan, register, dan makro; :w menjalankan kueri.",
+            "href": null
+        }
+    ],
+    "notes": {
+        "beekeeper-databases": "Community mencakup PostgreSQL, MySQL, MariaDB, SQLite, SQL Server, dan mesin lain. Tingkat berbayar menambahkan lebih banyak mesin, seperti Oracle, Cassandra, dan Snowflake.",
+        "beekeeper-ai-shell": "AI Shell, hanya pada tingkat berbayar, bukan Community",
+        "beekeeper-cloud-workspaces": "Workspace cloud yang menyinkronkan dan berbagi koneksi serta kueri, mulai tingkat {edition}",
+        "beekeeper-erd-paid": "Pada setiap tingkat berbayar, bukan Community",
+        "beekeeper-import-export-paid": "Import/Export & Backup/Restore, pada setiap tingkat berbayar, bukan Community",
+        "beekeeper-lifetime-license": "Paket tahunan, atau 12 bulan berturut-turut pada paket bulanan, memungkinkan Anda terus memakai fitur berbayar dari versi yang dirilis selama Anda membayar, setelah langganan berakhir. Workspace cloud memerlukan langganan aktif."
+    }
+}

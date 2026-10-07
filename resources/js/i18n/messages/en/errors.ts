@@ -29,12 +29,22 @@ export default {
     },
     /** A `/vi/account…` or `/vi/checkout…` path: the account has no language prefix. */
     account: {
-        body: 'Your account has one address in every language. Open it here; it opens in Vietnamese.',
+        body: 'Your account has one address in every language. Open it here in your selected language.',
         link: 'Open your account',
     },
     languages: {
         en: 'English',
         vi: 'Vietnamese',
+        es: 'Spanish',
+        de: 'German',
+        fr: 'French',
+        ja: 'Japanese',
+        'pt-BR': 'Brazilian Portuguese',
+        'zh-Hans': 'Simplified Chinese',
+        ko: 'Korean',
+        'zh-Hant': 'Traditional Chinese',
+        it: 'Italian',
+        id: 'Indonesian',
     },
     linksLabel: 'Pages to start from',
     links: {

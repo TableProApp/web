@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "Cassandra e ScyllaDB para {devices}",
+        "description": "Execute CQL em Cassandra, ScyllaDB e Amazon Keyspaces com TLS, TLS mútuo ou SigV4. Explore keyspaces e tabelas e edite linhas por chave primária."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Cliente de Cassandra e ScyllaDB"
+    },
+    "engine": "cassandra",
+    "breadcrumb": "Cassandra e ScyllaDB",
+    "header": {
+        "title": "Cliente de Cassandra e ScyllaDB para {devices}",
+        "lead": "Explore keyspaces e tabelas, execute CQL no editor e edite linhas gravadas pela chave primária completa. O mesmo driver se conecta a ScyllaDB e Amazon Keyspaces."
+    },
+    "asset": "mac-db-cassandra-table",
+    "links": {
+        "network": "/features/connections#network",
+        "awsIam": "docs:/connections/aws-iam",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "cassandraGuide": "docs:/databases/cassandra"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conecte-se",
+            "paragraphs": [
+                "Informe um ponto de contato e sua porta ao TablePro, além de usuário e senha quando o cluster tem um autenticador configurado. Não há campo keyspace: escolha um na barra lateral após conectar, ou coloque-o no caminho de uma URL <code>cassandra://</code> ou <code>cql://</code> e importe-a. Alternar keyspaces acontece na mesma conexão e exclui os keyspaces de sistema da lista, enquanto abas já abertas permanecem nos próprios keyspaces.",
+                "TLS está desativado em uma conexão nova. Preferred e Required criptografam sem verificar o certificado, pois o driver não tem TLS oportunista. Verify CA e Verify Identity exigem um arquivo de certificado CA e nunca usam as raízes do sistema como alternativa. Para TLS mútuo, adicione um certificado de cliente, sua chave e a frase secreta da chave. Um cluster em rede privada é acessado por um <network>túnel SSH</network>.",
+                "Amazon Keyspaces entra com SigV4 em vez de senha. Use o endpoint regional, como <code>cassandra.us-east-1.amazonaws.com</code> na porta 9142, defina Authentication como <awsIam>um modo AWS IAM</awsIam> (chave de acesso, perfil ou AWS IAM Identity Center), deixe usuário e senha vazios e ative TLS, pois Keyspaces recusa texto simples."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Explore e execute CQL",
+            "paragraphs": [
+                "Abra uma tabela pela barra lateral para lê-la na grade. Listas, conjuntos, mapas e tuplas aparecem como coleções, um tipo definido pelo usuário como seus campos, um <code>duration</code> como <code>1d2h30m</code>, um vetor como lista de números e um blob em hexadecimal. Resultados no editor CQL são somente leitura, portanto as linhas são alteradas pela tabela aberta na barra lateral.",
+                "CQL não tem OFFSET, portanto as páginas são lidas a partir da primeira linha: Next e Previous em páginas já exibidas custam uma leitura cada, e saltar para uma página distante lê todas as anteriores. As linhas chegam na ordem dos tokens, e um cabeçalho de coluna não as reordena, pois CQL só ordena por colunas de clustering dentro de uma partição. Nada é contado ao abrir uma tabela; <ui>Count Exactly</ui> executa <code>SELECT COUNT(*)</code>, que lê todas as partições.",
+                "Os <filters>filtros</filters> adicionam <code>ALLOW FILTERING</code>, portanto o servidor lê todas as partições, a menos que o filtro fixe toda a chave de partição. Contém, começa com e termina com são enviados como LIKE, que Cassandra só aceita em uma coluna com índice SASI ou SAI. Operadores que CQL não expressa, como diferente de ou is NULL, são recusados pelo nome, e condições se unem apenas com AND, pois CQL não tem OR.",
+                "Um <editing>valor editado</editing> é enviado com o tipo CQL da coluna, e um valor que não pode ser interpretado interrompe todo o salvamento. Cada linha é gravada por uma instrução própria, identificada pela chave primária completa. <ui>Add Row</ui> grava <code>INSERT … IF NOT EXISTS</code>, portanto uma linha nova nunca sobrescreve outra que já possui sua chave. Uma coluna de chave não pode ser alterada no local: exclua a linha e adicione-a novamente.",
+                "Colunas contador precisam de <code>UPDATE … SET c = c + 1</code> no editor CQL; o servidor rejeita o UPDATE simples gerado por uma edição na grade. O timeout de conexão vem de Options da conexão, enquanto requisições CQL mantêm o timeout fixo do driver, que o timeout de consulta do app não altera."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Keyspaces e tabelas",
+            "paragraphs": [
+                "A <structure>aba Structure</structure> lista o tipo CQL de cada coluna, marca colunas de chave de partição e clustering como chave primária e mostra os índices secundários da tabela. Ela adiciona e remove colunas; todas as outras alterações, inclusive índices, usam uma instrução CQL no editor.",
+                "A aba DDL reconstrói <code>CREATE TABLE</code> da lista de colunas, portanto omite opções como compactação, ordem de clustering e separação entre chaves de partição e clustering. Leia a definição completa com <code>DESCRIBE TABLE</code> no cqlsh. Funções e agregações definidas pelo usuário são listadas em Functions."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "TablePro não tem importação para Cassandra ou ScyllaDB. <export>Exporte</export> uma tabela ou um resultado CQL como {exportFormats}."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "scylladb",
+            "title": "ScyllaDB",
+            "paragraphs": [
+                "ScyllaDB tem sua própria entrada na lista de tipos de conexão e usa o driver Cassandra pelo mesmo protocolo nativo CQL, portanto conexão, navegação, edição e as limitações acima se aplicam como descrito. Uma URL <code>scylladb://</code> ou <code>scylla://</code> cria uma conexão ScyllaDB.",
+                "Uma diferença aparece na barra de filtros: ScyllaDB aceita o LIKE enviado por contém, começa com e termina com em qualquer coluna, enquanto Cassandra exige índice SASI ou SAI. ScyllaDB é configurado conforme o <cassandraGuide>guia de configuração de Cassandra</cassandraGuide>."
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "cluster-status",
+            "question": "TablePro mostra o status dos nós ou do anel?",
+            "answer": "Não. Não há Server Dashboard para Cassandra ou ScyllaDB. Verifique os nós com <code>nodetool status</code> e use TablePro para keyspaces, tabelas e CQL."
+        },
+        {
+            "id": "views-and-types",
+            "question": "Como vejo views materializadas e tipos definidos pelo usuário?",
+            "answer": "Eles não aparecem na barra lateral, portanto consulte o keyspace <code>system_schema</code> no editor CQL, por exemplo <code>SELECT * FROM system_schema.views</code> ou <code>system_schema.types</code>."
+        },
+        {
+            "id": "cassandra-2",
+            "question": "TablePro se conecta a Cassandra 2.x?",
+            "answer": "Não. O driver lê o esquema de <code>system_schema</code>, que Cassandra 2.x não possui, portanto a conexão falha."
+        }
+    ],
+    "related": [
+        {
+            "label": "Filtros, paginação e edições pendentes",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Conexões, túneis e autenticação AWS",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Amazon DynamoDB, outro mecanismo com assinatura AWS",
+            "href": "/dynamodb-gui"
+        },
+        {
+            "label": "Bancos de dados compatíveis",
+            "href": "/databases#wide-column"
+        }
+    ]
+}

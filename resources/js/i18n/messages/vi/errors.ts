@@ -30,6 +30,16 @@ export default {
     languages: {
         en: 'tiếng Anh',
         vi: 'tiếng Việt',
+        es: 'tiếng Tây Ban Nha',
+        de: 'tiếng Đức',
+        fr: 'tiếng Pháp',
+        ja: 'tiếng Nhật',
+        'pt-BR': 'tiếng Bồ Đào Nha (Brazil)',
+        'zh-Hans': 'tiếng Trung giản thể',
+        ko: 'tiếng Hàn',
+        'zh-Hant': 'tiếng Trung phồn thể',
+        it: 'tiếng Ý',
+        id: 'tiếng Indonesia',
     },
     linksLabel: 'Các trang để bắt đầu',
     links: {

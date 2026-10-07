@@ -1,0 +1,232 @@
+{
+    "seo": {
+        "title": "结构编辑、ER 图和数据库对比",
+        "description": "通过 DDL 预览修改表结构，以 ER 图查看结构，对比两个数据库生成同步脚本，并将表复制到其他引擎。"
+    },
+    "og": {
+        "kicker": "结构",
+        "title": "结构、对比和同步"
+    },
+    "header": {
+        "title": "结构、对比和同步",
+        "lead": "用于修改数据库结构并保持两个数据库一致：查看 DDL 编辑表，了解表间关系，让预发布环境与开发环境一致，或将表复制到其他服务器或引擎。本页介绍的功能均在 Mac 应用中，最后一节介绍 iPhone 和 iPad。",
+        "docs": "/features/table-structure"
+    },
+    "sections": [
+        {
+            "id": "structure",
+            "title": "修改结构前先查看 DDL",
+            "paragraphs": [
+                "Structure 标签页可在网格中编辑表的列、索引、外键和 CHECK 约束。修改暂存至保存时才执行，<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）在执行前显示 ALTER TABLE 语句。删除项目、修改类型、添加 NOT NULL 或修改主键的操作会先征求确认，即使连接的安全模式级别为 {macSafeModeDefault}。",
+                "索引可使用 <code>lower(email)</code> 等表达式键。New Table 以相同方式创建表，并提供实时 SQL 预览。对于不能直接修改外键的 SQLite、libSQL、Turso 和 Cloudflare D1，TablePro 生成表重建脚本供审查；SQLite 和本地 libSQL 文件在确认后执行，Turso、远程 libSQL 和 D1 则需自行运行。"
+            ],
+            "engines": [
+                {
+                    "label": "结构只读",
+                    "list": "schemaReadOnly"
+                },
+                {
+                    "label": "仅支持部分结构修改",
+                    "list": "schemaPartial"
+                }
+            ],
+            "asset": "mac-structure-ddl-preview"
+        },
+        {
+            "id": "er-diagram",
+            "title": "了解表间关系",
+            "paragraphs": [
+                "<ui>View ER Diagram</ui> 绘制当前结构的表和外键，根据主键和唯一键计算乌鸦脚表示法中的关系基数。<code>product_tags</code> 等关联表会折叠为一条多对多连线。可将图导出为 PNG、复制为图片，或导出为包含外键的 CREATE TABLE SQL 语句。",
+                "图表是用于查看和分享的快照。表需在 Structure 标签页修改，不能在画布上修改。"
+            ],
+            "asset": "mac-er-diagram"
+        },
+        {
+            "id": "objects",
+            "title": "侧栏中的例程、触发器和文件夹",
+            "paragraphs": [
+                "引擎支持时，侧栏在每个结构下列出存储过程、函数和触发器，并以只读标签页打开其源码，可复制或在编辑器中打开。Redshift、CockroachDB、PGlite 和 SAP HANA 不列出这些对象。PostgreSQL 分区显示在父表下。"
+            ],
+            "blocks": [
+                {
+                    "id": "table-folders",
+                    "title": "表和视图的文件夹",
+                    "paragraphs": [
+                        "在侧栏列表或树形布局中，拖动表和视图或使用 <ui>Move to</ui> 将其归入文件夹。筛选框也会搜索文件夹内部。文件夹仅存在于 TablePro 中，不改变服务器；启用 iCloud Sync 后会同步到其他 Mac。"
+                    ],
+                    "since": "0.77.0"
+                }
+            ]
+        },
+        {
+            "id": "compare-sync",
+            "title": "对比与同步",
+            "paragraphs": [
+                "选择源和目标，可为两台服务器或同一服务器上的两个数据库，Compare & Sync 会列出所有存在差异的表，也可包含视图、例程和触发器。数据模式按键匹配行并标记每个不同值，支持每表筛选和行数限制，以便比较大表的一部分。",
+                "生成的脚本按外键顺序排列，并针对目标原生客户端编写。删除列、缩小类型或删除行等破坏数据的语句，会暂缓到本次运行明确允许后才执行；Read-Only 连接不能选为目标。保存对比后可一键重跑。"
+            ],
+            "paid": [
+                "compare-sync"
+            ],
+            "asset": "mac-compare-sync-structure"
+        },
+        {
+            "id": "copy",
+            "title": "Copy To、Duplicate Database 和 Transfer To",
+            "paragraphs": [
+                "Copy To 将表、视图、例程和触发器以结构、数据或两者的形式发送到任意已保存连接上的其他数据库，也支持不同引擎。写入前的审查会列出 DDL、各表预计行数以及迁移时改变的每个列类型，例如 MariaDB 的 <code>ENUM</code> 列迁入 PostgreSQL 后变为 <code>VARCHAR</code>，不保留允许值列表。可通过每表 WHERE 子句和行数限制仅复制部分数据。",
+                "Duplicate Database 在同一连接中以新名称复制整个数据库。Transfer To 根据列映射，直接将行传入另一个已打开连接上的现有表，无需中间文件。三项功能均免费。"
+            ],
+            "asset": "mac-copy-to-review"
+        },
+        {
+            "id": "administer",
+            "title": "用户、会话和维护",
+            "paragraphs": [
+                "PostgreSQL 的 VACUUM、REINDEX 或 MySQL 的 OPTIMIZE、CHECK 等表维护操作会在执行前显示 SQL。引擎支持时，可在侧栏创建、删除和重命名数据库及结构。"
+            ],
+            "blocks": [
+                {
+                    "id": "users-roles",
+                    "title": "用户和角色",
+                    "paragraphs": [
+                        "Users & Roles 以树形显示每个用户从服务器到单列的权限。授权和撤销先作为暂存修改，并在执行前展示 SQL，因此无需手写 GRANT。"
+                    ],
+                    "engines": [
+                        {
+                            "label": "用户和角色",
+                            "list": "usersRoles"
+                        }
+                    ],
+                    "asset": "mac-users-roles-mysql"
+                },
+                {
+                    "id": "server-dashboard",
+                    "title": "服务器仪表盘",
+                    "paragraphs": [
+                        "Server Dashboard 按所选间隔刷新实时会话、服务器指标和慢查询。引擎允许时，可从对应行取消运行中的查询或终止会话，两项操作均遵循连接的安全模式。在 SQLite、DuckDB 和 Typesense 上仅显示指标。"
+                    ],
+                    "engines": [
+                        {
+                            "label": "服务器仪表盘",
+                            "list": "dashboard"
+                        }
+                    ],
+                    "asset": "mac-server-dashboard-postgresql"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "在 iPhone 和 iPad 上",
+            "paragraphs": [
+                "iPhone 和 iPad 应用以只读方式显示表的列、索引和外键。SQL 引擎的表列表可清空或删除表，除非连接设为 Read-Only。",
+                "结构编辑、ER 图、Compare & Sync、Copy To、Users & Roles 和 Server Dashboard 仅在 Mac 应用中提供。"
+            ],
+            "links": [
+                {
+                    "label": "iPhone 和 iPad 上的表",
+                    "href": "/ios#browse"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "带 DDL 预览的结构编辑",
+            "ios": "partial",
+            "iosNote": "列、索引和外键只读"
+        },
+        {
+            "label": "新建表",
+            "ios": "no"
+        },
+        {
+            "label": "清空和删除表",
+            "ios": "yes"
+        },
+        {
+            "label": "ER 图",
+            "ios": "no"
+        },
+        {
+            "label": "例程、触发器和表文件夹",
+            "ios": "no"
+        },
+        {
+            "label": "对比与同步",
+            "paid": "compare-sync",
+            "ios": "no"
+        },
+        {
+            "label": "Copy To、Duplicate Database 和 Transfer To",
+            "ios": "no"
+        },
+        {
+            "label": "用户和角色",
+            "ios": "no"
+        },
+        {
+            "label": "服务器仪表盘和表维护",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Compare & Sync 仅在相同引擎的两个数据库之间生成结构脚本，MySQL 与 MariaDB 视为同一引擎。其他组合只能只读对比，MongoDB 结构从不生成脚本；跨引擎同步数据时会提醒检查值的写入方式。将表移至其他引擎请使用 Copy To。",
+        "调整列顺序时，SQLite 和本地 libSQL 文件会在确认后重建表。PostgreSQL、Turso、远程 libSQL 和 Cloudflare D1 则由 TablePro 生成重建脚本，需自行运行。",
+        "ER 图只读，不能用于设计结构。",
+        "Server Dashboard 可显示的会话和查询文本取决于连接账户的权限。"
+    ],
+    "docs": [
+        {
+            "label": "表结构",
+            "docs": "/features/table-structure"
+        },
+        {
+            "label": "ER 图",
+            "docs": "/features/er-diagram"
+        },
+        {
+            "label": "存储过程、函数和触发器",
+            "docs": "/features/routines-triggers"
+        },
+        {
+            "label": "对比与同步",
+            "docs": "/features/compare-sync"
+        },
+        {
+            "label": "复制和克隆",
+            "docs": "/features/copy-objects"
+        },
+        {
+            "label": "用户和角色",
+            "docs": "/features/users-roles"
+        },
+        {
+            "label": "服务器仪表盘",
+            "docs": "/features/server-dashboard"
+        },
+        {
+            "label": "表操作和维护",
+            "docs": "/features/table-operations"
+        }
+    ],
+    "related": [
+        {
+            "label": "导入、导出和数据文件",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "在 TablePro 中使用 PostgreSQL",
+            "href": "/postgresql-client"
+        },
+        {
+            "label": "在 TablePro 中使用 MySQL 和 MariaDB",
+            "href": "/mysql-client"
+        },
+        {
+            "label": "付费方案提供的功能",
+            "href": "/pricing#features"
+        }
+    ]
+}

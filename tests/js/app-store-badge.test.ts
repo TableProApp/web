@@ -1,5 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import metadata from '../../resources/data/app-store-badges.json' with { type: 'json' };
+import localeTable from '../../resources/data/locales.json' with { type: 'json' };
 import { readFileSync } from 'node:fs';
 import { renderToStaticMarkup } from 'react-dom/server';
 
@@ -27,7 +30,7 @@ const cases = {
 const svg = (url: string): string => readFileSync(new URL(`../../public${url}`, import.meta.url), 'utf8');
 
 test('every locale names a badge pair', () => {
-    assert.deepEqual(Object.keys(APP_STORE_BADGE_ARTWORK).sort(), Object.keys(cases).sort());
+    assert.deepEqual(Object.keys(APP_STORE_BADGE_ARTWORK).sort(), Object.keys(localeTable.supported).sort());
 });
 
 for (const [locale, expected] of Object.entries(cases) as [keyof typeof cases, (typeof cases)[keyof typeof cases]][]) {
@@ -52,7 +55,7 @@ for (const [locale, expected] of Object.entries(cases) as [keyof typeof cases, (
 
         for (const image of images) {
             assert.match(image, new RegExp(`alt="${expected.visible}"`));
-            assert.match(image, /width="120" height="40" loading="lazy" decoding="async"/);
+            assert.match(image, /width="119.66407" height="40" loading="lazy" decoding="async"/);
         }
     });
 
@@ -74,3 +77,15 @@ test('the Vietnamese files are not the English ones', () => {
     assert.notEqual(svg(APP_STORE_BADGE_ARTWORK.vi.light), svg(APP_STORE_BADGE_ARTWORK.en.light));
     assert.notEqual(svg(APP_STORE_BADGE_ARTWORK.vi.dark), svg(APP_STORE_BADGE_ARTWORK.en.dark));
 });
+
+for (const [locale, pair] of Object.entries(metadata)) {
+    test(`${locale}: official artwork retains its geometry and upstream checksum`, () => {
+        for (const [theme, art] of Object.entries(pair)) {
+            const contents = svg(art.path);
+            assert.equal(createHash('sha256').update(contents).digest('hex'), art.sha256, `${locale} ${theme}: artwork changed`);
+            assert.ok(contents.includes(`<title>${art.title}</title>`));
+            assert.ok(contents.includes(`viewBox="0 0 ${art.width} 40"`));
+            assert.doesNotMatch(contents, /<script\b|<text\b/);
+        }
+    });
+}

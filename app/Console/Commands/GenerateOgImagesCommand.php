@@ -49,7 +49,7 @@ use Throwable;
 #[Signature('og:generate
     {--type=all : Card set to render (site|blog|database|compare|feature|all)}
     {--slug= : Render only the page with this slug}
-    {--locale=all : Language of the cards (en|vi|all)}')]
+    {--locale=all : Supported language code, or all}')]
 #[Description('Render the Open Graph cards for the public pages, in each language they exist in.')]
 class GenerateOgImagesCommand extends Command
 {

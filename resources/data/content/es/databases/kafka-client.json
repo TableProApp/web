@@ -1,0 +1,85 @@
+{
+    "seo": {
+        "title": "Cliente Kafka para {devices}",
+        "description": "Lee Kafka desde el mensaje más reciente o antiguo, offset o fecha; comprueba el retraso y produce pruebas con KafkaQL por SASL y TLS."
+    },
+    "og": {
+        "kicker": "Bases de datos",
+        "title": "Cliente Apache Kafka"
+    },
+    "engine": "kafka",
+    "breadcrumb": "Apache Kafka",
+    "header": {
+        "title": "Cliente Apache Kafka para {devices}",
+        "lead": "Lee un topic desde la posición que elijas, comprueba el retraso de cada grupo de consumidores y produce un mensaje de prueba con KafkaQL. Un topic es un registro: la cuadrícula lee mensajes y nunca los edita."
+    },
+    "asset": "mac-db-kafka-consume",
+    "links": {
+        "network": "/features/connections#network",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conectar",
+            "paragraphs": [
+                "Introduce el host y puerto de un broker; a partir de él se descubre el resto del clúster. <ui>Servidores bootstrap adicionales</ui> enumera brokers que probar si el primero no responde. Una conexión corresponde a un clúster, así que no hay campo Base de datos y la barra lateral muestra sus topics directamente.",
+                "<ui>Protocolo de seguridad</ui> es PLAINTEXT, SSL, SASL_PLAINTEXT o SASL_SSL; <ui>Mecanismo SASL</ui> es PLAIN, SCRAM-SHA-256 o SCRAM-SHA-512. PLAIN sirve para Confluent Cloud; SCRAM, para Amazon MSK y brokers propios. Con SSL o SASL_SSL sin modo SSL elegido, se verifican la cadena de certificados y el host. Una CA privada va en <ui>Certificado CA</ui>; un certificado de cliente y clave añaden TLS mutuo.",
+                "Con un <network>túnel SSH</network>, la conexión permanece en el broker bootstrap, así que solo lee las particiones que este lidera. <ui>Importar desde URL…</ui> acepta URL <code>kafka://</code>, que macOS no abre como enlaces."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Lee, inspecciona y produce",
+            "paragraphs": [
+                "Abrir un topic muestra sus mensajes más recientes, con el más nuevo al final, junto con partición, offset, fecha, clave, valor, cabeceras y tamaños. Los mensajes de distintas particiones se intercalan por fecha para facilitar la lectura; partición y offset identifican el mensaje. Claves o valores que no sean UTF-8 se muestran en hexadecimal; un tombstone sigue distinguiéndose de un mensaje vacío.",
+                "KafkaQL sustituye ordenación y filtros por una posición inicial: <code>CONSUME \"orders\" FROM NEWEST</code>, <code>FROM OLDEST</code>, <code>FROM OFFSET</code> o <code>FROM TIME</code> con fecha ISO 8601, opcionalmente limitada a algunas particiones. <code>SHOW TOPICS</code>, <code>SHOW BROKERS</code>, <code>SHOW GROUPS</code>, <code>SHOW CLUSTER</code> y <code>DESCRIBE TOPIC</code> cubren el resto del clúster.",
+                "<code>DESCRIBE GROUP</code> muestra el retraso: offset confirmado, offset final y diferencia por partición. Una partición en la que el grupo nunca confirmó un offset no muestra retraso, en lugar de contar desde cero; <code>SHOW GROUPS</code> marca la lista como truncada si un broker no es accesible.",
+                "<code>PRODUCE INTO</code> escribe un mensaje con clave, cabeceras y partición opcionales. Un mensaje con clave sin partición se coloca donde lo pondría el productor de Kafka. Los lotes gzip, snappy, lz4 y zstd se descomprimen al leerlos, sin elegir ningún ajuste.",
+                "No se pueden editar celdas, borrar filas ni ordenar columnas, porque Kafka no tiene actualización, eliminación por mensaje ni ordenación en el servidor; la cuadrícula atenúa esos controles. Cada página continúa donde terminó la anterior, por lo que un topic que recibe mensajes nunca repite ni omite ninguno."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Topics",
+            "paragraphs": [
+                "Eliminar un topic desde la barra lateral o con <code>DROP TOPIC</code> es la única acción destructiva. El clúster borra el registro después, así que el topic puede permanecer un momento en la lista. No se ofrece Vaciar: Kafka elimina registros por retención o por offset en cada partición, y ninguno vacía un topic."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Transfiere datos",
+            "paragraphs": [
+                "No hay importación; escribe mensajes en un topic con <code>PRODUCE INTO</code>. <export>Exporta</export> los mensajes leídos por una consulta como CSV, JSON o XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "advertised-addresses",
+            "question": "¿Por qué cargan los topics pero los mensajes agotan el tiempo?",
+            "answer": "El clúster anuncia direcciones inaccesibles desde este Mac, como un host de contenedor o IP privada. Corrige <code>advertised.listeners</code> o configura <ui>Direcciones de brokers</ui> para usar solo la dirección bootstrap."
+        },
+        {
+            "id": "msk-iam",
+            "question": "¿Funciona la autenticación IAM de Amazon MSK?",
+            "answer": "No. Los mecanismos SASL disponibles son PLAIN, SCRAM-SHA-256 y SCRAM-SHA-512; crea un usuario SCRAM en el clúster MSK y conecta con SASL_SSL."
+        }
+    ],
+    "related": [
+        {
+            "label": "Lenguajes de consulta distintos de SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Conexiones, túneles y credenciales",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Bases de datos compatibles",
+            "href": "/databases"
+        }
+    ]
+}

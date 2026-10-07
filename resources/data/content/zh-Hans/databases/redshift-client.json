@@ -1,0 +1,112 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 Amazon Redshift 客户端",
+        "description": "通过 PostgreSQL 驱动查询 Redshift 集群和 Serverless 工作组，查看 DISTKEY、SORTKEY、浏览外部 schema，并用 pg_dump 备份。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "Amazon Redshift 客户端"
+    },
+    "engine": "redshift",
+    "breadcrumb": "Amazon Redshift",
+    "header": {
+        "title": "适用于 {devices} 的 Amazon Redshift 客户端",
+        "lead": "使用应用内置 PostgreSQL 驱动查询预置集群或 Serverless 工作组，查看每表分布方式和排序键，并在自有 schema 旁浏览 Spectrum 和 datashare schema。"
+    },
+    "asset": "mac-db-redshift-ddl",
+    "links": {
+        "network": "/features/connections#network",
+        "credentials": "/features/connections#credentials",
+        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "postgresql": "/postgresql-client",
+        "icloudSync": "/features/sync-and-teams#icloud-sync",
+        "share": "/features/sync-and-teams#share"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接",
+            "paragraphs": [
+                "主机使用集群端点，Redshift Serverless 使用工作组端点，两者监听相同端口。数据库必填，每个集群创建时都有名为 <code>dev</code> 的数据库。导入 <code>redshift://</code> URL 可填充表单。",
+                "新连接 SSL 为 Preferred，不检查版本，因此 AWS 仍运行的任何集群都可连接。密码存入钥匙串或从 <code>~/.pgpass</code> 读取，是连接的两种<credentials>凭据选项</credentials>。无法公开访问的集群通过通往其 VPC 堡垒机的 <network>SSH 隧道</network>访问。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查询和编辑",
+            "paragraphs": [
+                "查询和<editing>带 Preview SQL 的暂存行编辑</editing>通过同一驱动，与 <postgresql>PostgreSQL</postgresql> 相同。绑定非当前数据库的标签页会为其打开第二个连接。",
+                "表信息从 <code>svv_table_info</code> 读取分布方式、排序键和大小，DDL 标签页输出 DISTKEY、SORTKEY、DISTSTYLE、ENCODE。外键会列出，但 Redshift 不强制执行，因此不会阻止违反外键的行。",
+                "<explain>EXPLAIN 和 EXPLAIN VERBOSE</explain> 返回 Redshift 文本计划，不绘制图形。",
+                "用 <code>CREATE EXTERNAL SCHEMA</code> 创建的 schema，无论是 S3 上的 Spectrum、联合查询、跨数据库引用或 datashare，均与自有 schema 并列且标为 External。表可正常浏览、筛选、排序、导出，但因 Redshift 不接受 UPDATE、DELETE 而只读。不会显示行数，列类型按外部目录报告读取。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "结构",
+            "paragraphs": [
+                "Redshift 无索引、枚举、序列或触发器可管理：DISTKEY、SORTKEY 承担索引作用，Structure 中无 Triggers 标签页，侧栏不列出例程。",
+                "可从侧栏重命名表、数据库和 schema，并创建指定所有者的 schema。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "监控和备份",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> 列出会话和慢查询，显示连接、缓存命中率、数据库大小、运行时间和活动查询指标。Cancel Query 发送 <code>pg_cancel_backend</code>，Terminate Session 发送 <code>pg_terminate_backend</code>，两者均先确认。",
+                "Redshift 无 Maintenance 菜单或 Users & Roles，请在 SQL 编辑器运行 VACUUM、ANALYZE、GRANT。",
+                "<backup>Backup Dump 和 Restore Dump</backup> 在 Mac 运行 {dumpTool} 和 pg_restore，有 SSH 隧道时通过它连接。请先用 Homebrew 的 libpq 安装。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "<importData>导入</importData>将 Mac 上的 {importFormats} 文件加载到 Redshift 表。表或查询结果可导出为 {exportFormats}，外部表与其他表一样可导出。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 和 iPad",
+            "paragraphs": [
+                "将 Redshift 连接带到 iPhone、iPad，可启用 Mac 的 {icloudSyncTier} 方案中的 <icloudSync>iCloud Sync</icloudSync>，或<share>导出连接</share>文件在设备打开。之后使用内置 PostgreSQL 驱动，按卡片浏览、筛选排序表，在 Query 标签页运行 SQL。密码仅在密码同步开启时通过 iCloud Sync 传递，或通过 {encryptedExportTier} 方案中含密码的加密导出文件传递。证书保留在各设备上。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "serverless",
+            "question": "支持 Redshift Serverless 吗？",
+            "answer": "支持。主机填写工作组端点，像预置集群一样填写端口、数据库和用户。"
+        },
+        {
+            "id": "pg-dump",
+            "question": "pg_dump 支持 Redshift 吗？",
+            "answer": "没有 pg_dump 版本声称支持 Redshift 报告的 PostgreSQL 版本。TablePro 对 PostgreSQL 选择匹配服务器的版本，对 Redshift 则运行已安装的 pg_dump，因此依赖前请先尝试备份小型 schema。"
+        }
+    ],
+    "related": [
+        {
+            "label": "使用同一驱动的 PostgreSQL",
+            "href": "/postgresql-client"
+        },
+        {
+            "label": "服务器仪表盘和结构工具",
+            "href": "/features/schema"
+        },
+        {
+            "label": "备份、导入和导出",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Google BigQuery，另一种数据仓库",
+            "href": "/bigquery-client"
+        }
+    ]
+}

@@ -1,0 +1,175 @@
+{
+    "seo": {
+        "title": "Mac 上的 Sequel Pro 替代方案：Sequel Ace 與 TablePro",
+        "description": "Sequel Pro 最後於 2016 年發行，在 Apple silicon 需 Rosetta。Sequel Ace 繼續開發，TablePro 可匯入 Sequel Ace 連線。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "Mac 上的 Sequel Pro 替代方案"
+    },
+    "header": {
+        "title": "Mac 上的 Sequel Pro 替代方案",
+        "lead": "Sequel Pro 已停止開發，最後發行為 2016 年 Intel 版本，Homebrew 已移除，檢查本頁時網站也無法存取。Sequel Ace 為 MySQL 和 MariaDB 繼續開發。如果想以一個用戶端連線更多資料庫，TablePro 也是選項，可匯入 Sequel Ace 連線。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "除了 MySQL、MariaDB，也使用 PostgreSQL、SQL Server、SQLite、Redis 或 MongoDB。",
+            "希望在 Mac App 免費使用 AI 助手和 MCP 伺服器，自選 AI 供應商。",
+            "希望有免費 iPhone、iPad App 連線 MySQL 和 MariaDB。",
+            "願意學習不同介面，希望 Sequel Ace 連線連同密碼遷移。"
+        ],
+        "competitor": [
+            "希望繼續用熟悉的 Sequel Pro 介面，免費且持續維護。",
+            "僅使用 MySQL 和 MariaDB。",
+            "從 Mac App Store 安裝 App。"
+        ],
+        "competitorTitle": "適合選擇 Sequel Ace 的情況"
+    },
+    "glance": {
+        "intro": "Sequel Pro 最後發行是 {status.date} 的 {status.version}。表中並列顯示目前狀況和 TablePro。與持續維護的後繼者比較請看 TablePro vs Sequel Ace。"
+    },
+    "rows": {
+        "homebrew": {
+            "label": "Homebrew",
+            "tablepro": "透過 Homebrew 的 tablepro cask 安裝"
+        },
+        "website": {
+            "label": "網站",
+            "tablepro": "可存取，有發行說明和文件"
+        },
+        "rosetta": {
+            "label": "Apple silicon",
+            "tablepro": "Apple silicon 獨立版本，無須 Rosetta"
+        },
+        "successor": {
+            "label": "後繼專案",
+            "tablepro": "獨立專案，匯入 Sequel Ace 連線，不匯入 Sequel Pro 連線"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Sequel Pro 免費且依 MIT 授權開放原始碼。",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "其程式碼在 Sequel Ace 中延續，該維護中的後繼專案保留其 MySQL、MariaDB 介面。",
+                "cite": [
+                    "cells.successor"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 持續維護，有 Apple silicon、Intel 獨立版本。Sequel Pro 最後發行是 Intel 版本，在 Apple silicon 需 Rosetta。",
+                "cite": [
+                    "status",
+                    "cells.rosetta"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "連線 <link>MySQL 和 MariaDB</link>，也連線 PostgreSQL、SQL Server、SQLite、Redis、MongoDB 等其他引擎。",
+                "cite": [],
+                "feature": null,
+                "href": "/mysql-client"
+            },
+            {
+                "text": "匯入 Sequel Ace 連線和密碼，所以 Sequel Ace 可作為中間步驟。參見 <link>TablePro vs Sequel Ace</link>。",
+                "cite": [],
+                "feature": null,
+                "href": "/compare/sequel-ace"
+            },
+            {
+                "text": "<link>AI 助手和 MCP 伺服器</link>在 Mac App 中免費。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 無法直接讀取 Sequel Pro 收藏，需先經 Sequel Ace。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "介面與 Sequel Pro 不同，需重新學習部分操作位置。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "MySQL、MariaDB 僅透過 TCP 連線，不透過本機 socket 檔案。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "部分功能付費，Starter 加入 {starterExamples} 等功能。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 無 Sequel Pro 匯入工具。可行路徑經 Sequel Ace：先遷移收藏到 Sequel Ace，再從 Sequel Ace 匯入 TablePro。",
+        "steps": [],
+        "after": [
+            "在 Sequel Ace 依「從 Sequel Pro 遷移」指南複製收藏檔案和偏好設定。指南說明密碼不會自動遷移，並提供指令碼；SSH 金鑰需重新選擇。",
+            "TablePro 選擇 <ui>File > Import > Import from Other App…</ui>，選 Sequel Ace 並開啟 <ui>Include passwords</ui>。",
+            "移除任何一個 App 前，開啟原有密碼的連線，檢查是否遷移。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "apple-silicon",
+            "question": "Sequel Pro 能在 Apple silicon 執行嗎？",
+            "answer": "僅經 Rosetta，因為 {status.version} 是 Intel 版本。Apple 表示從 macOS 28 起，Rosetta 僅保留給某些舊遊戲。",
+            "href": null
+        },
+        {
+            "id": "import",
+            "question": "能匯入 Sequel Pro 收藏嗎？",
+            "answer": "無法直接匯入。依 Sequel Ace 遷移指南複製，再從 Sequel Ace 匯入。指南說明密碼不會自動遷移，請匯入前在 Sequel Ace 檢查或在 TablePro 輸入。",
+            "href": null
+        },
+        {
+            "id": "which",
+            "question": "應該遷移至 Sequel Ace 還是 TablePro？",
+            "answer": "想要免費、持續維護的 MySQL、MariaDB Sequel Pro 介面，選 Sequel Ace。也使用其他引擎、需要 iPhone、iPad App 或內建 AI 助手，選 TablePro。<link>比較 TablePro 和 Sequel Ace</link>。",
+            "href": "/compare/sequel-ace"
+        },
+        {
+            "id": "heidisql",
+            "question": "HeidiSQL 現在也是 Mac 的選項嗎？",
+            "answer": "Apple silicon Mac 可以。免費 MySQL、MariaDB 等資料庫用戶端 HeidiSQL 自 2026 年 1 月發行 Mac 版本，無 Intel Mac 版。<link>比較 TablePro 和 HeidiSQL</link>。",
+            "href": "/compare/heidisql"
+        }
+    ],
+    "notes": {
+        "sequel-pro-databases": "MySQL 與 MariaDB",
+        "sequel-pro-cask-removed": "Homebrew 以停止開發為由停用 cask，轉而推薦 Sequel Ace，於 {date} 移除",
+        "sequel-pro-site-down": "檢查時 sequelpro.com 無法載入，存放庫未關閉的議題也報告網站停機",
+        "sequel-pro-rosetta": "Intel 版本，在 Apple silicon 需 Rosetta。Apple 表示 macOS 28 起僅保留給某些舊遊戲。",
+        "sequel-pro-successor": "Sequel Ace，自稱 Sequel Pro 的「續篇」，基於其程式碼"
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Teradata para {devices}",
+        "description": "Conecte ao Teradata Vantage com TD2 ou TDNEGO, com ou sem TLS. Explore bancos, usuários, procedimentos e macros, crie e altere tabelas."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Cliente de Teradata"
+    },
+    "engine": "teradata",
+    "breadcrumb": "Teradata",
+    "header": {
+        "title": "Cliente de Teradata para {devices}",
+        "lead": "Entre com TD2 ou TDNEGO, navegue por bancos de dados e usuários com suas tabelas, views, procedimentos e macros, e consulte e edite com um driver nativo em Swift, sem instalar software cliente de Teradata."
+    },
+    "asset": "mac-db-teradata-sidebar",
+    "links": {
+        "network": "/features/connections#network",
+        "objects": "/features/schema#objects",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conecte-se e entre",
+            "paragraphs": [
+                "Informe o host, o nome de usuário e a senha. Qualquer sistema Vantage que aceite login TD2 funciona, sem verificação de versão. <ui>Logon Mechanism</ui> na seção Options aceita <code>TD2</code> ou <code>TDNEGO</code>, e <ui>Database</ui> só é necessário para usar um banco padrão diferente do da sua conta.",
+                "A porta padrão transporta uma sessão sem criptografia. Qualquer modo SSL transfere a sessão para o endpoint WebSocket do gateway na porta 443, que não pode ser alterada. Verify CA exige um certificado de CA, e Verify Identity verifica a cadeia e o nome do host com esse certificado ou, na ausência dele, com o repositório de confiança do sistema.",
+                "Deixe <ui>Transaction Mode</ui> em <code>DEFAULT</code>, a menos que um script precise das regras de commit e da diferenciação entre maiúsculas e minúsculas de ANSI ou TERA na sessão. Acesse um sistema protegido por um bastion usando um <network>túnel SSH</network>. <ui>Import from URL…</ui> aceita URLs <code>teradata://</code>, que o macOS não abre como links."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Consulte e edite",
+            "paragraphs": [
+                "No Teradata, tanto um banco de dados quanto um usuário são namespaces, portanto ambos aparecem no topo da barra lateral com suas tabelas e views. Uma aba vinculada a um segundo banco de dados mantém a mesma sessão e executa <code>DATABASE</code> antes das instruções.",
+                "Os procedimentos armazenados são listados na barra lateral, e as macros ficam em Functions, cada um abrindo seu <objects>código-fonte em uma aba somente leitura</objects>.",
+                "Teradata não tem <code>LIMIT</code>, portanto a primeira página de uma tabela usa <code>TOP</code>, e as páginas seguintes usam <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> retorna o plano do Teradata como texto bruto. As edições de linhas aguardam o salvamento, e <editing>Preview SQL</editing> mostra cada instrução antes da execução."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Estrutura",
+            "paragraphs": [
+                "Crie tabelas e altere suas colunas na <structure>aba Structure</structure>. A visualização DDL de uma tabela mostra a definição completa, incluindo as restrições."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "Carregue arquivos {importFormats} com <importData>Import</importData> e salve uma tabela ou um resultado como {exportFormats}. <copy>Copy To</copy> envia tabelas, suas linhas ou ambos para outra conexão Teradata; cópias para outro mecanismo são recusadas."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "logon-mechanism",
+            "question": "Por que meu mecanismo de login é ignorado?",
+            "answer": "Digite-o em maiúsculas. Um valor que o driver não reconhece, como <code>tdnego</code> em minúsculas, é interpretado como <code>TD2</code>."
+        },
+        {
+            "id": "tls-check",
+            "question": "Como sei se a sessão está criptografada?",
+            "answer": "Teste com Required (skip verify) ou um modo de verificação. Preferred volta a uma sessão sem criptografia quando a porta TLS não pode ser acessada, portanto nesse modo uma falha de handshake ainda parece uma conexão bem-sucedida."
+        }
+    ],
+    "related": [
+        {
+            "label": "Escreva, execute e entenda consultas",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Esquema, comparação e sincronização",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Snowflake, outro data warehouse",
+            "href": "/snowflake-client"
+        },
+        {
+            "label": "Trino, para consultas entre catálogos",
+            "href": "/trino-client"
+        }
+    ]
+}

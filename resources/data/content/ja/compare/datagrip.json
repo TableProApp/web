@@ -1,0 +1,195 @@
+{
+    "seo": {
+        "title": "TablePro vs DataGrip：IDE とネイティブクライアント",
+        "description": "DataGrip は非商用利用のみ無料の JetBrains 製 IDE。TablePro はオープンソースのネイティブクライアントです。価格、AI、MCP、Git、移行を比較します。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs DataGrip"
+    },
+    "header": {
+        "title": "TablePro vs DataGrip",
+        "lead": "DataGrip は {technology} を基盤とする、Windows、macOS、Linux 用の JetBrains 製データベース IDE です。非商用利用は無料で、その他の作業には月額・年額のサブスクリプションが必要です。TablePro は Mac と iPhone・iPad それぞれにネイティブアプリを持つオープンソースクライアントです。どの用途でも無料で利用でき、有料プランは Mac アプリに任意の機能を追加します。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "有料の仕事にも無料で使えるクライアントが欲しい。TablePro はどの用途でも無料で、有料プランは {starterExamples} などの機能を追加する。",
+            "追加したプロバイダーへ直接リクエストを送り、TablePro 独自の AI サービスやクレジットを介さない AI アシスタントが欲しい。Mac アプリでは MCP サーバーとともに無料で使える。",
+            "フル IDE よりも、Swift で書かれた Mac アプリを使いたい。",
+            "iPhone・iPad 用のアプリも欲しい。"
+        ],
+        "competitor": [
+            "Mac に加え、Windows や Linux でも作業している。",
+            "クエリと同じウィンドウでコード検査やバージョン管理ができる IDE を使いたい。",
+            "学習、趣味のプロジェクト、商業的利益のないオープンソース活動など、非商用の作業をしている。DataGrip はその用途なら全機能が無料。",
+            "Firebird、Informix、Databricks など、TablePro 非対応のエンジンに接続する。"
+        ]
+    },
+    "glance": {
+        "intro": "DataGrip はユーザー単位の価格設定です。個人向けの年額料金は 2 年目と 3 年目に下がります。両製品に AI アシスタントと MCP サーバーがあり、DataGrip の MCP サーバーはバージョン {cells.mcp.version} で追加されました。"
+    },
+    "rows": {
+        "vcs": {
+            "label": "バージョン管理",
+            "tablepro": "リンクした SQL フォルダーでは無料：Git 状態の文字表示、各ファイルのコミット履歴と左右比較、Restore This Version、Discard Changes。ステージング、コミット、プッシュ、ブランチ操作はなし"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DataGrip は Windows、macOS、Linux で動作するため、複数のコンピューターで同じ IDE を使えます。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "IDE として、Git などのバージョン管理をクエリと並べて使えます。完全対応のエンジンではコード検査とクイックフィックスも利用できます。",
+                "cite": [
+                    "cells.vcs",
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Firebird、Informix、Databricks など、TablePro 非対応のエンジンにも JDBC ドライバー経由の基本サポートで接続できます。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "非商用利用は無料で、有料版の全機能を使えます。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro は商用を含むどの用途でも無料で、試用期間や時間制限はありません。Mac アプリは既定で毎日 <link>利用状況レポート</link>を TablePro に送信し、設定で無効にできます。DataGrip の無料ライセンスは非商用専用で、無効にできない利用統計を収集します。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": "/privacy#mac-usage-report"
+            },
+            {
+                "text": "TablePro は Swift で書かれた Mac アプリで、ネイティブのデータベースドライバーを使います。DataGrip は {technology} を基盤としています。",
+                "cite": [
+                    "technology"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI アシスタント</link>は Mac アプリで無料です。クラウド上でも Mac 上でも、選んだプロバイダーと連携します。TablePro は AI サービスを運営せず、AI クレジットも販売しません。DataGrip は JetBrains AI を使い、クレジット枠付きの独自サービスに加えて、自分のプロバイダーキーやローカルモデルも利用できます。",
+                "cite": [
+                    "cells.ai"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "両製品に MCP サーバーがあります。<link>TablePro のサーバー</link>は無料で、Mac 上でのみ待ち受けます。接続ごとに外部アプリの権限を Blocked、Read Only、Read & Write から選べます。",
+                "cite": [
+                    "cells.mcp"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp#mcp"
+            },
+            {
+                "text": "<link>Compare & Sync</link> は二つのデータベースの構造またはデータを比較し、一方をもう一方に合わせるスクリプトを生成します。Starter に含まれます。",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "無料の <link>iPhone・iPad アプリ</link>があり、アプリ内課金はありません。DataGrip にはモバイルアプリがありません。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro には Windows・Linux 用アプリがありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro は IDE ではなくクライアントです。<link>リンクした SQL フォルダー</link>で各ファイルの Git 状態と履歴を見られますが、ステージング、コミット、プッシュ、ブランチ操作は別の Git ツールで行います。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#history"
+            },
+            {
+                "text": "TablePro はドライバーを持つエンジンにのみ接続でき、汎用 JDBC 接続はありません。まず<link>対応データベース</link>を確認してください。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro は DataGrip のグローバルデータソースと最近のプロジェクトのデータソースを読み取ります。DataGrip を開いておく必要はなく、ファイルも変更しません。",
+        "steps": [
+            "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",
+            "DataGrip を選び、<ui>Include passwords</ui> をオンにして、macOS キーチェーンに保存されたパスワードを読み取ります。SSH パスワードと鍵のパスフレーズも含みます。",
+            "macOS は保存されたパスワードごとに一度、ログインパスワードを求めます。各ダイアログで <ui>Always Allow</ui> を選びます。",
+            "一覧を確認し、重複の扱いを決めて <ui>Import</ui> をクリックします。グループ、SSH トンネル、SSL 設定も引き継がれます。TablePro 非対応のエンジンへの接続はチェックされていません。",
+            "DataGrip を削除する前に、パスワード付きだった接続を開き、引き継がれたことを確認します。"
+        ],
+        "after": [
+            "コンソール、スクラッチファイル、クエリ履歴、キーボードショートカットは DataGrip に残ります。",
+            "DataGrip がマスターパスワードで保護しているパスワードは読み取れません。その接続はパスワードなしで取り込まれるため、TablePro で設定します。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "commercial-use",
+            "question": "無料の TablePro を有料の仕事に使えますか？",
+            "answer": "はい。Mac アプリはどの用途でも無料で、試用期間や時間制限はありません。DataGrip が無料なのは非商用利用のみで、商用製品の開発や有料サービスの提供にはサブスクリプションが必要です。",
+            "href": null
+        },
+        {
+            "id": "ai-provider",
+            "question": "TablePro の AI アシスタントも JetBrains AI のようなプランが必要ですか？",
+            "answer": "いいえ。TablePro は独自の AI サービスを運営しません。API キー、既存のアカウント、Mac 上のモデルなど、プロバイダーを追加します。追加するまでは何も送信されません。<link>AI アシスタントの仕組み</link>。",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "mcp",
+            "question": "DataGrip にも MCP サーバーがあります。TablePro のサーバーは何をしますか？",
+            "answer": "Claude Code や Cursor などのクライアントが、パスワードを見ずに保存済みの TablePro 接続を使えるようにします。127.0.0.1 でのみ待ち受け、変更しない限り各接続は外部アプリから読み取り専用で、無料です。DataGrip もバージョン {cells.mcp.version} から提供しています。",
+            "href": null
+        },
+        {
+            "id": "jdbc-url",
+            "question": "DataGrip の JDBC URL を貼り付けられますか？",
+            "answer": "TablePro 対応のエンジンなら可能です。<ui>File > Import > Import from URL…</ui> は postgres:// や mysql:// に加え、jdbc: URL も読み取ります。すべてのデータソースをまとめて移すには、上記のインポート機能を使います。",
+            "href": null
+        }
+    ],
+    "notes": {
+        "datagrip-non-commercial-telemetry": "学習、趣味のプロジェクト、コンテンツ制作、商業的利益のないオープンソース活動に、全機能を提供します。JetBrains Account で有効化し、無効にできない利用統計が収集されます。",
+        "datagrip-databases": "主なエンジンにはコード検査とクイックフィックスを含む完全サポート。DuckDB、Firebird、Informix、Databricks などには JDBC ドライバー経由の基本サポートがあり、強調表示とオブジェクト閲覧はできますが、エラーチェックはありません。",
+        "datagrip-ai-quota": "JetBrains AI：少量の AI クレジット枠が定期的に補充される無料枠、JetBrains 独自サービスをより多く使うための有料 AI プラン、または自分のプロバイダーキーやローカルモデル。"
+    }
+}

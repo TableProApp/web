@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use App\Support\Pricing\Checkout;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\File;
@@ -113,13 +114,13 @@ it('asks for a discount code only where the provider\'s checkout does not', func
     'an unknown value falls back to the configuration default' => ['stripe', ['provider' => 'lemonsqueezy', 'couponField' => true]],
 ]);
 
-it('is a translated pair, indexed in both languages', function (): void {
+it('indexes every complete translation', function (): void {
     $entry = app(PageRegistry::class)->find('landing.pricing', []);
 
     expect($entry)->not->toBeNull();
-    expect($entry->renderLocales)->toBe(['en', 'vi']);
-    expect($entry->indexableLocales)->toBe(['en', 'vi']);
-    expect($entry->hreflangCluster())->toBe(['en', 'vi']);
+    expect($entry->renderLocales)->toBe(Locales::codes());
+    expect($entry->indexableLocales)->toBe(Locales::codes());
+    expect($entry->hreflangCluster())->toBe(Locales::codes());
 });
 
 it('fills every slot in its copy from data, and marks up only what the page renders', function (): void {

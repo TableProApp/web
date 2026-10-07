@@ -1,0 +1,318 @@
+{
+    "seo": {
+        "title": "자주 묻는 질문",
+        "description": "TablePro의 무료 기능과 라이선스 추가 기능, 지원 Mac·iPhone·데이터베이스, 앱이 전송하는 정보, 팀 및 환불에 관한 답변입니다."
+    },
+    "og": {
+        "kicker": "자주 묻는 질문",
+        "title": "자주 묻는 질문"
+    },
+    "header": {
+        "title": "자주 묻는 질문",
+        "lead": "앱, 라이선스, 개인정보 및 계정에 관한 짧은 답변과 자세히 설명하는 페이지의 링크를 제공합니다."
+    },
+    "breadcrumb": "자주 묻는 질문",
+    "jump": "주제별 질문",
+    "languages": {
+        "en": "영어",
+        "vi": "베트남어",
+        "ko": "한국어",
+        "zh-Hans": "중국어 간체",
+        "zh-Hant": "중국어 번체",
+        "tr": "튀르키예어"
+    },
+    "groups": [
+        {
+            "id": "general",
+            "title": "일반",
+            "items": [
+                {
+                    "id": "what-is-tablepro",
+                    "question": "TablePro는 무엇인가요?",
+                    "answer": [
+                        "TablePro는 개발자를 위한 네이티브 오픈 소스 데이터베이스 클라이언트입니다. Mac에서는 {featuredEngines} 등에 연결하고 쿼리를 작성·실행하고 데이터를 탐색·편집하고 스키마를 변경할 수 있습니다. iPhone 및 iPad 앱은 책상 밖에서 데이터베이스 작업을 위한 별도의 더 작은 앱입니다.",
+                        "<features>기능 페이지</features>에서 각 부분의 기능을 설명합니다."
+                    ]
+                },
+                {
+                    "id": "native",
+                    "question": "여기서 “네이티브”는 무슨 뜻인가요?",
+                    "answer": [
+                        "각 TablePro 앱은 해당 플랫폼용으로 Swift로 작성됩니다. Mac에서는 AppKit, SwiftUI, 키체인 및 Touch ID를 사용하며 iPhone과 iPad에서는 Face ID, 위젯, 단축어 및 실시간 현황을 사용합니다. 데이터베이스 드라이버도 네이티브이며 JDBC를 사용하지 않습니다."
+                    ]
+                },
+                {
+                    "id": "is-it-free",
+                    "question": "TablePro는 무료인가요?",
+                    "answer": [
+                        "Mac 앱은 무료로 다운로드하고 사용할 수 있으며 체험 기간이나 시간 제한이 없습니다. Starter 또는 Team 라이선스는 Mac 앱에 선택 기능을 추가하며 <pricing>요금 페이지</pricing>에 목록이 있습니다. 지원하는 모든 엔진 연결, AI 어시스턴트, MCP 서버 및 안전 모드에는 라이선스가 필요하지 않습니다.",
+                        "iPhone 및 iPad 앱은 무료이고 앱 내 구입이 없으며 라이선스가 필요하지 않습니다."
+                    ]
+                },
+                {
+                    "id": "open-source",
+                    "question": "TablePro는 오픈 소스인가요?",
+                    "answer": [
+                        "네. 두 앱 모두 유료 기능 코드를 포함해 AGPLv3로 공개되며 하나의 <source>GitHub 저장소</source>에 있습니다. 소스에서 직접 빌드해도 당사가 배포하는 빌드와 같은 방식으로 라이선스를 확인합니다."
+                    ]
+                },
+                {
+                    "id": "work-use",
+                    "question": "업무에 TablePro를 사용해도 되나요?",
+                    "answer": [
+                        "네. 회사 규모와 관계없이 사용할 수 있습니다. AGPL은 TablePro 실행에 조건을 부과하지 않습니다. 조건은 배포하거나 수정된 버전을 네트워크를 통해 다른 사람에게 제공할 때 적용됩니다. 자세한 내용은 <agpl>라이선스 본문</agpl>을 참고하세요."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "platforms",
+            "title": "플랫폼",
+            "items": [
+                {
+                    "id": "mac-requirements",
+                    "question": "어떤 Mac에서 TablePro를 사용할 수 있나요?",
+                    "answer": [
+                        "Mac용 TablePro는 {macRequirement}가 필요합니다. Apple silicon과 Intel용 빌드가 각각 있으며 <download>다운로드 페이지</download>에서 둘 다 받을 수 있습니다. Homebrew는 알맞은 빌드를 설치합니다."
+                    ]
+                },
+                {
+                    "id": "iphone-ipad",
+                    "question": "iPhone 및 iPad 앱이 있나요?",
+                    "answer": [
+                        "네. iPhone 및 iPad용 TablePro는 App Store에서 제공되며 {iosRequirement}가 필요하고 무료이며 앱 내 구입이 없습니다. {iosEngines}에 연결하고 SSH 터널, 안전 모드 및 Face ID를 지원하며 테이블 탐색·편집과 쿼리 실행이 가능합니다.",
+                        "휴대폰과 태블릿용으로 만든 별도 앱이며 Mac 앱의 복사본이 아닙니다. 예를 들어 AI 어시스턴트, MCP 서버 및 저장된 쿼리는 없습니다. <ios>iPhone 및 iPad 페이지</ios>에 제공 기능과 없는 기능이 나와 있습니다."
+                    ]
+                },
+                {
+                    "id": "windows-linux",
+                    "question": "Windows 또는 Linux 버전이 있나요?",
+                    "answer": [
+                        "아니요. Windows 버전은 없습니다. Linux 프로토타입은 있지만 설치 가능한 버전과 출시 일정은 없습니다."
+                    ]
+                },
+                {
+                    "id": "languages",
+                    "question": "앱은 어떤 언어로 제공되나요?",
+                    "answer": [
+                        "Mac 앱의 인터페이스는 {macLanguages}로 제공됩니다. 영어 외 언어에서는 일부 화면에 영어 텍스트가 남아 있습니다. iPhone 및 iPad 앱은 {iosLanguages}로 제공됩니다.",
+                        "이 웹사이트와 계정 포털은 여러 언어로 제공됩니다. <docs>문서</docs>는 영어입니다."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "databases",
+            "title": "데이터베이스",
+            "items": [
+                {
+                    "id": "supported-databases",
+                    "question": "어떤 데이터베이스에 연결할 수 있나요?",
+                    "answer": [
+                        "Mac에서는 {featuredEngines} 등 문서, 키-값, 검색, 스트리밍 및 분석 엔진에 연결할 수 있습니다. <databases>데이터베이스 페이지</databases>에는 모든 엔진과 각 엔진에서 TablePro가 지원하는 기능이 나와 있습니다.",
+                        "iPhone 및 iPad 앱은 {iosEngines}에 연결합니다."
+                    ]
+                },
+                {
+                    "id": "drivers",
+                    "question": "데이터베이스 드라이버를 설치해야 하나요?",
+                    "answer": [
+                        "아니요. {bundledEngines} 드라이버는 Mac 앱에 포함됩니다. 다른 드라이버는 엔진을 처음 선택할 때 다운로드되므로 인터넷 연결이 필요하며 앱과 별도로 업데이트됩니다. 앱은 드라이버를 로드하기 전에 공개된 체크섬과 코드 서명을 검증합니다.",
+                        "iPhone 및 iPad에서는 드라이버가 앱에 내장되어 있어 다운로드하지 않습니다."
+                    ]
+                },
+                {
+                    "id": "ssh-ssl",
+                    "question": "SSH 또는 SSL로 연결할 수 있나요?",
+                    "answer": [
+                        "네. Mac의 SSH 터널은 비밀번호, 키 또는 1Password를 포함한 SSH 에이전트로 로그인하며 점프 호스트를 사용할 수 있습니다. SSL/TLS는 서버 인증서를 검증할 수 있습니다. Cloudflare Access, Cloud SQL Auth Proxy, SOCKS5 프록시 또는 kubectl port-forward 같은 명령으로도 연결할 수 있습니다. <connections>연결 페이지</connections>에서 각 옵션을 설명합니다.",
+                        "iPhone 및 iPad의 SSH 터널은 비밀번호 또는 개인 키로 로그인하며 점프 호스트는 지원하지 않습니다."
+                    ]
+                },
+                {
+                    "id": "passwords",
+                    "question": "비밀번호는 어디에 저장되나요?",
+                    "answer": [
+                        "Mac에서는 macOS 키체인에 저장합니다. 연결할 때 파일, 환경 변수, 셸 명령, 1Password, HashiCorp Vault 또는 AWS Secrets Manager에서 비밀번호를 읽도록 설정할 수도 있습니다. iPhone 및 iPad에서는 기기의 키체인에 보관합니다.",
+                        "iCloud 동기화를 켜도 Mac의 Sync Categories에서 <ui>Passwords</ui> 또는 iPhone·iPad의 <ui>Sync Passwords</ui>를 추가로 켜야 iCloud 키체인으로 비밀번호가 동기화됩니다."
+                    ]
+                },
+                {
+                    "id": "import-connections",
+                    "question": "다른 앱의 연결을 가져올 수 있나요?",
+                    "answer": [
+                        "네. Mac 앱은 {importApps}에서 저장된 비밀번호를 포함해 연결을 가져옵니다. 가져오기는 무료입니다."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "licensing",
+            "title": "요금 및 라이선스",
+            "items": [
+                {
+                    "id": "what-a-license-adds",
+                    "question": "라이선스는 어떤 기능을 추가하나요?",
+                    "answer": [
+                        "Starter 라이선스는 Mac 앱에 {starterFeatures}를 추가합니다. Team은 Starter의 모든 기능에 더해 팀에서 연결과 쿼리를 공유하는 {teamFeatures}를 제공합니다. <pricing>요금 페이지</pricing>에서 각 기능을 설명합니다."
+                    ]
+                },
+                {
+                    "id": "cost",
+                    "question": "라이선스는 얼마인가요?",
+                    "answer": [
+                        "Starter와 Team은 각각 월간, 연간 또는 일회성 구매로 판매되며 가격은 미국 달러 기준입니다. Team은 좌석당 요금이며 최소 {teamMinSeats}좌석입니다. 현재 요금과 총액은 <pricing>요금 페이지</pricing>에서 확인하세요."
+                    ]
+                },
+                {
+                    "id": "how-many-macs",
+                    "question": "라이선스 하나로 Mac 몇 대를 사용할 수 있나요?",
+                    "answer": [
+                        "Starter 라이선스는 Mac {starterActivations}대에서 작동합니다. Team 라이선스는 {teamMinSeats}~{teamMaxSeats}좌석이며 각 좌석은 활성화된 Mac 한 대입니다. iPhone과 iPad는 좌석을 사용하지 않으며 해당 앱에는 라이선스가 없습니다.",
+                        "다른 Mac으로 라이선스를 옮기려면 <account>계정</account>에서 이전 Mac을 제거하세요."
+                    ]
+                },
+                {
+                    "id": "subscription-ends",
+                    "question": "구독이 종료되면 어떻게 되나요?",
+                    "answer": [
+                        "유료 기능이 잠깁니다. 예를 들어 iCloud 동기화가 일시 중지되고 Linked Folders 또는 Team Library의 연결이 숨겨집니다. 나머지는 계속 작동하며 연결, 쿼리 및 설정은 Mac에 그대로 남습니다. 갱신하면 유료 기능이 다시 켜집니다.",
+                        "일회성 구매는 만료일이 없습니다. iPhone과 iPad는 달라지는 것이 없습니다."
+                    ]
+                },
+                {
+                    "id": "offline",
+                    "question": "라이선스는 오프라인에서 작동하나요?",
+                    "answer": [
+                        "네. Mac 앱은 시작할 때마다 Mac에서 라이선스 서명을 검증하고 {revalidateDays}일마다 서버에서 확인합니다. 서버에 연결할 수 없으면 마지막 확인에 성공한 날부터 {graceDays}일 동안 유료 기능이 계속 작동합니다.",
+                        "처음 드라이버를 다운로드하거나 업데이트하거나 클라우드 AI 제공업체를 사용하는 등 일부 기능은 특성상 인터넷이 필요합니다."
+                    ]
+                },
+                {
+                    "id": "payment",
+                    "question": "누가 결제를 처리하나요?",
+                    "answer": [
+                        "{merchant}는 공식 판매자입니다. {merchant}에서 라이선스를 구매하며 해당 업체가 결제를 받고 결제 시 판매세 또는 VAT를 계산하고 영수증을 이메일로 보냅니다. 청구서, 결제 수단 및 구독은 <portal>{merchant} 고객 포털</portal>에서 관리하며 구매에 사용한 이메일로 로그인합니다."
+                    ]
+                },
+                {
+                    "id": "refunds",
+                    "question": "환불받을 수 있나요?",
+                    "answer": [
+                        "네. 모든 플랜에서 구매 후 {refundDays}일 이내, 연간 플랜은 최근 갱신 후 같은 기간 이내에 가능합니다. 신청 방법과 라이선스 처리 방식은 <refundPolicy>환불 정책</refundPolicy>에 설명되어 있습니다."
+                    ]
+                },
+                {
+                    "id": "lost-license-key",
+                    "question": "라이선스 키를 잃어버렸습니다. 어디에서 찾나요?",
+                    "answer": [
+                        "구매 시 보낸 이메일과 <account>계정</account>에 있습니다. 구매에 사용한 이메일로 로그인하면 라이선스와 키가 표시됩니다."
+                    ]
+                },
+                {
+                    "id": "priority-support",
+                    "question": "우선 지원이란 무엇인가요?",
+                    "answer": [
+                        "Team 라이선스에 포함됩니다. Team 고객의 이메일을 우선 처리하며 영업일 기준 1일 이내에 답변합니다. 각 플랜의 지원은 <termsSupport>약관</termsSupport>에 설명되어 있습니다."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "privacy",
+            "title": "개인정보 및 네트워크",
+            "items": [
+                {
+                    "id": "what-is-sent",
+                    "question": "앱은 TablePro에 무엇을 전송하나요?",
+                    "answer": [
+                        "라이선스를 활성화하지 않으면 Mac 앱이 TablePro에 보내는 요청은 하루 한 번의 사용 보고서뿐입니다. 기본적으로 켜져 있으며 <ui>Settings > General > Privacy</ui>에서 변경할 수 있습니다. 해시된 기기 ID와 앱 버전, 언어, 연결하는 데이터베이스 유형 등을 포함하며 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 포함하지 않습니다.",
+                        "라이선스가 있으면 Mac 앱은 {revalidateDays}일마다 키, 같은 기기 ID, Mac 이름 및 앱·macOS 버전을 보내 확인합니다. iPhone 및 iPad는 Share Usage Data를 켜지 않으면 TablePro에 아무것도 보내지 않습니다. 서버에 저장되는 내용까지 포함한 전체 목록은 <privacy>개인정보 처리방침</privacy>에 있습니다."
+                    ]
+                },
+                {
+                    "id": "sign-up",
+                    "question": "가입해야 하나요?",
+                    "answer": [
+                        "두 앱 모두 가입 없이 사용할 수 있습니다. 라이선스를 구매하면 <account>계정</account>에 라이선스, 활성화된 Mac 및 팀 좌석이 표시되며 구매에 사용한 이메일로 보내는 링크로 로그인합니다."
+                    ]
+                },
+                {
+                    "id": "ai-data",
+                    "question": "AI 어시스턴트가 데이터를 TablePro에 보내나요?",
+                    "answer": [
+                        "아니요. AI 어시스턴트는 Mac 앱에 있으며 요청은 추가한 제공업체로 직접 전송되어 TablePro를 거치지 않습니다. 기본적으로 데이터베이스 유형과 이름, 스키마의 테이블·열 정의 및 현재 쿼리가 포함됩니다. 결과 행은 해당 옵션을 켤 때만 전송됩니다. {localAiProviders}는 본인의 Mac에서 실행됩니다. <aiMcp>AI 및 MCP 페이지</aiMcp>에 자세한 내용이 있습니다."
+                    ]
+                },
+                {
+                    "id": "icloud-data",
+                    "question": "iCloud 동기화는 무엇을 어디에 저장하나요?",
+                    "answer": [
+                        "iCloud 동기화는 사용자가 켤 때까지 꺼져 있습니다. 동기화된 연결과 Mac에서 선택한 다른 범주는 본인의 iCloud 계정 내 비공개 데이터베이스로 전송되며 TablePro는 읽을 수 없습니다. 비밀번호는 Mac의 Sync Categories에서 <ui>Passwords</ui> 또는 iPhone·iPad의 <ui>Sync Passwords</ui>를 추가로 켜야 동기화됩니다.",
+                        "Mac의 iCloud 동기화는 Starter 또는 Team 라이선스에 포함됩니다. iPhone 및 iPad에서는 무료입니다."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "account",
+            "title": "계정 및 팀",
+            "items": [
+                {
+                    "id": "sign-in",
+                    "question": "계정에 어떻게 로그인하나요?",
+                    "answer": [
+                        "<account>계정</account>에서 구매에 사용한 이메일을 입력하세요. 한 번만 사용할 수 있으며 곧 만료되는 로그인 링크를 이메일로 보냅니다. 라이선스를 구매한 주소만 로그인할 수 있고 팀원은 Mac 앱에서 초대 코드로 참여합니다."
+                    ]
+                },
+                {
+                    "id": "members",
+                    "question": "팀원을 어떻게 추가하거나 제거하나요?",
+                    "answer": [
+                        "<account>계정</account>에서 이메일로 초대하세요. 상대방은 받은 코드를 Mac의 TablePro에서 <ui>Settings > License</ui>에 입력하고 Mac은 한 좌석을 사용합니다. 구성원을 제거하면 좌석이 확보되고 해당 Mac은 로그아웃되며 Team Library에 게시한 내용이 삭제됩니다."
+                    ]
+                },
+                {
+                    "id": "seats",
+                    "question": "좌석 수를 어떻게 변경하나요?",
+                    "answer": [
+                        "월간 또는 연간 Team 구독은 <account>계정</account>에서 변경하며 다음 청구서에 반영됩니다. 일회성 Team 라이선스는 <email>{email}</email>로 이메일을 보내주세요."
+                    ]
+                },
+                {
+                    "id": "cancel",
+                    "question": "구독을 어떻게 취소하나요?",
+                    "answer": [
+                        "<account>계정</account> 또는 <portal>{merchant} 고객 포털</portal>에서 취소하세요. 다시 청구되지 않으며 라이선스는 결제한 기간이 끝날 때까지 작동합니다. 그 전에 재개할 수 있습니다."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "switching",
+            "title": "다른 앱에서 전환",
+            "items": [
+                {
+                    "id": "switch-connections",
+                    "question": "연결을 다시 설정해야 하나요?",
+                    "answer": [
+                        "아니요. TablePro는 {importApps}에서 저장된 비밀번호, SSH 터널 및 SSL 설정을 포함해 연결을 가져옵니다."
+                    ]
+                },
+                {
+                    "id": "compare",
+                    "question": "다른 데이터베이스 클라이언트와 TablePro는 어떻게 다른가요?",
+                    "answer": [
+                        "<compare>비교 페이지</compare>는 TablePro와 다른 클라이언트를 나란히 비교하고 각 정보를 확인한 날짜와 각 제품이 더 적합한 상황을 설명합니다."
+                    ]
+                }
+            ]
+        }
+    ],
+    "contact": {
+        "title": "답을 찾지 못하셨나요?",
+        "body": "<email>{email}</email>로 이메일을 보내거나 <issues>GitHub</issues>에서 문제를 신고하세요.",
+        "chat": "실시간 채팅 시작",
+        "chatNote": "채팅은 각 페이지의 로딩이 완료된 후 로드됩니다."
+    }
+}

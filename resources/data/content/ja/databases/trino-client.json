@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "{devices} 用 Trino クライアント",
+        "description": "Trino のカタログをまたいでクエリ。TLS 上のパスワード、JWT やクライアント証明書で認証し、論理・分散プランを確認してクエリをキャンセルできます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Trino クライアント"
+    },
+    "engine": "trino",
+    "breadcrumb": "Trino",
+    "header": {
+        "title": "{devices} 用 Trino クライアント",
+        "lead": "一つのクエリで異なるカタログのテーブルを結合し、Trino が実行するプランを確認し、暴走したクエリをコーディネーターで停止できます。書き込みでできることは、各カタログのコネクターによって異なります。"
+    },
+    "asset": "mac-db-trino-catalogs",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続と認証",
+            "paragraphs": [
+                "コーディネーターのホスト、ポートと、クエリを実行する <ui>Username</ui> を入力します。<ui>Catalog</ui> と <ui>Schema</ui> は開始位置として任意指定し、Catalog を空欄にすればすべて閲覧できます。Options の IANA <ui>Time Zone</ui> はセッションのタイムゾーンを設定します。",
+                "パスワードは LDAP や password-file 認証用の HTTP Basic、JWT アクセストークンは Bearer 認証情報として送ります。どちらも TLS のみで送り、SSL Disabled のまま保持する接続は送信前に拒否します。SSL ペインのクライアント証明書と鍵で相互 TLS を追加できます。",
+                "SSL は平文 HTTP の Disabled で始まります。他のモードはすべて TLS を強制し、平文へフォールバックしません。443 ポートは Verify Identity を有効にします。コーディネーター前のプロキシのリダイレクトは追跡せず、エラーに転送先を表示します。踏み台の背後には <network>SSH トンネル</network> を使い、<ui>Import from URL…</ui> で <code>trino://</code> URL を取り込めます。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "カタログをまたいでクエリ",
+            "paragraphs": [
+                "接続は一つのカタログとスキーマで開きますが、Hive と PostgreSQL のテーブルを結合するなど、クエリで <code>catalog.schema.table</code> を完全指定できます。サイドバーは各カタログをスキーマとテーブルに展開し、テーブル・ビューと並んでマテリアライズドビューを表示します。行数は <code>SHOW STATS</code> から取得します。",
+                "<code>bigint</code> と <code>decimal</code> は浮動小数点ではなく正確なテキストとして読み取ります。<code>varbinary</code> は 16 進、<code>array</code>、<code>map</code>、<code>row</code> は JSON で表示し、タイムスタンプはサーバーが返した値を保持します。",
+                "<explain>Explain</explain> は Logical、Distributed、IO、Validate、Analyze を提供します。Validate は実行せず検査し、Analyze は実行して実測時間を報告します。プランはすべて生のテキストで返ります。",
+                "<code>SET SESSION</code> は接続中維持します。<ui>Query > Cancel Query</ui> はコーディネーターに実行中クエリの終了を要求します。接続のクエリタイムアウトは Trino に伝わらないため、停止にはこの操作を使います。",
+                "<editing>セルの編集</editing> は各値に Trino の型を付けた INSERT、UPDATE、DELETE になります。Trino は主キーを報告しないため、読み取った行の全カラムで特定し、ロールバック用のトランザクションもありません。同一の二行の一方を編集すると両方が変わります。先に重複を確認してください。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "構造",
+            "paragraphs": [
+                "<structure>Structure タブ</structure> は自動コミットでテーブル作成とカラムの追加、削除、名前変更、型変更を行います。実行できるかはカタログのコネクター次第で、型変更に対応するものは特に少数です。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "インポートはありません。テーブルや結果を {exportFormats} に <export>エクスポート</export> できます。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "not-supported",
+            "question": "正しい文が NOT_SUPPORTED になるのはなぜですか？",
+            "answer": "Trino の文法で許されても、そのカタログのコネクターが操作を実装していないためです。読み取り専用コネクターはすべての書き込みを拒否します。対応内容はコネクター自身のドキュメントを確認してください。"
+        },
+        {
+            "id": "encrypted-key",
+            "question": "暗号化したクライアント鍵は使えますか？",
+            "answer": "使えません。Trino 接続には鍵のパスフレーズ欄がありません。<code>openssl pkey -in encrypted.key -out client.key</code> で復号したコピーを書き、そのファイルを選んでください。"
+        }
+    ],
+    "related": [
+        {
+            "label": "クエリを書き、実行し、理解する",
+            "href": "/features/querying"
+        },
+        {
+            "label": "接続、トンネルと認証情報",
+            "href": "/features/connections"
+        },
+        {
+            "label": "データウェアハウス Teradata",
+            "href": "/teradata-client"
+        },
+        {
+            "label": "クラウドウェアハウス Snowflake",
+            "href": "/snowflake-client"
+        }
+    ]
+}

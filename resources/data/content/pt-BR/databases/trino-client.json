@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Trino para {devices}",
+        "description": "Consulte vários catálogos Trino, entre com senha, JWT ou certificado por TLS, leia planos lógicos e distribuídos e cancele consultas."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Cliente de Trino"
+    },
+    "engine": "trino",
+    "breadcrumb": "Trino",
+    "header": {
+        "title": "Cliente de Trino para {devices}",
+        "lead": "Una tabelas de catálogos diferentes em uma consulta, leia o plano que Trino executará e pare uma consulta descontrolada no coordenador. O que uma gravação pode fazer depende do conector de cada catálogo."
+    },
+    "asset": "mac-db-trino-catalogs",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conecte-se e entre",
+            "paragraphs": [
+                "Informe o host e a porta do coordenador e um <ui>Username</ui>, o usuário usado para executar suas consultas. <ui>Catalog</ui> e <ui>Schema</ui> são pontos de partida opcionais; deixe Catalog vazio para explorar todos os catálogos. Um <ui>Time Zone</ui> da IANA na seção Options define o fuso da sessão.",
+                "Entre com uma senha, enviada como HTTP Basic para autenticação LDAP ou por arquivo de senhas, ou com um token de acesso JWT enviado como credencial bearer. Ambos são enviados apenas por TLS: com SSL Disabled, uma conexão que contém um deles é recusada antes de enviar qualquer dado. Um certificado e uma chave de cliente no painel SSL adicionam TLS mútuo.",
+                "SSL começa em Disabled, que usa HTTP sem criptografia; todos os outros modos exigem TLS sem fallback para texto simples, e a porta 443 ativa Verify Identity. Um redirecionamento de um proxy à frente do coordenador nunca é seguido; o erro informa o destino. Acesse um coordenador protegido por um bastion por um <network>túnel SSH</network> e importe uma URL <code>trino://</code> por <ui>Import from URL…</ui>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Consulte vários catálogos",
+            "paragraphs": [
+                "Uma conexão abre em um catálogo e esquema, e qualquer consulta ainda pode usar o nome completo <code>catalog.schema.table</code>, por exemplo para unir uma tabela Hive a uma PostgreSQL. A barra lateral expande cada catálogo em esquemas e tabelas, com views materializadas junto a tabelas e views e contagens de linhas de <code>SHOW STATS</code>.",
+                "<code>bigint</code> e <code>decimal</code> são lidos como texto exato, não como ponto flutuante. <code>varbinary</code> aparece em hexadecimal, <code>array</code>, <code>map</code> e <code>row</code> em JSON, e timestamps mantêm o valor retornado pelo servidor.",
+                "<explain>Explain</explain> oferece Logical, Distributed, IO, Validate e Analyze. Validate verifica uma consulta sem executá-la, Analyze a executa e informa os tempos reais, e todos os planos retornam como texto bruto.",
+                "<code>SET SESSION</code> permanece em vigor pelo restante da conexão. <ui>Query > Cancel Query</ui> pede ao coordenador para encerrar a consulta em execução, e essa é a forma de pará-la: o timeout de consulta da conexão não chega ao Trino.",
+                "As <editing>edições de células</editing> viram INSERT, UPDATE e DELETE, com cada valor levando seu tipo Trino. Trino não informa chaves primárias, portanto uma edição identifica a linha por todas as colunas como foram lidas, sem transação para revertê-la. Editar uma de duas linhas idênticas altera ambas; primeiro verifique se há duplicatas."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Estrutura",
+            "paragraphs": [
+                "A <structure>aba Structure</structure> cria tabelas e adiciona, remove, renomeia e altera o tipo de colunas, com autocommit. A execução de uma alteração depende do conector do catálogo, e a alteração de tipo é a aceita por menos conectores."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "Não há importação. <export>Exporte</export> uma tabela ou um resultado como {exportFormats}."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "not-supported",
+            "question": "Por que uma instrução válida retorna NOT_SUPPORTED?",
+            "answer": "O conector desse catálogo não implementa a operação, independentemente do que a gramática de Trino permite. Um conector somente leitura recusa todas as gravações. Confira a documentação do conector para saber o que ele suporta."
+        },
+        {
+            "id": "encrypted-key",
+            "question": "Posso usar uma chave de cliente criptografada?",
+            "answer": "Não. Conexões Trino não têm um campo para a frase secreta da chave. Grave uma cópia descriptografada com <code>openssl pkey -in encrypted.key -out client.key</code> e escolha esse arquivo."
+        }
+    ],
+    "related": [
+        {
+            "label": "Escreva, execute e entenda consultas",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Conexões, túneis e credenciais",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Teradata, um data warehouse",
+            "href": "/teradata-client"
+        },
+        {
+            "label": "Snowflake, um data warehouse na nuvem",
+            "href": "/snowflake-client"
+        }
+    ]
+}

@@ -28,14 +28,14 @@ it('declares a supported default locale with no prefix', function (): void {
 
 it('describes each locale completely and consistently', function (): void {
     foreach (localesData()['supported'] as $code => $locale) {
-        expect($code)->toMatch('/^[a-z]{2}$/', "{$code} is not an ISO 639-1 code");
+        expect($code)->toMatch('/^[a-z]{2}(?:-[A-Z][a-z]{3})?(?:-[A-Z]{2})?$/', "{$code} is not a supported BCP 47 language tag");
         expect(array_keys($locale))->toBe(['native', 'prefix', 'hreflang', 'og', 'intl'], "{$code} has the wrong fields");
 
         expect($locale['native'])->toBeString()->not->toBe('');
         expect(Normalizer::isNormalized($locale['native'], Normalizer::FORM_C))->toBeTrue("{$code} native name is not NFC");
         expect($locale['hreflang'])->toBe($code);
-        expect($locale['og'])->toMatch('/^' . $code . '_[A-Z]{2}$/');
-        expect($locale['intl'])->toMatch('/^' . $code . '-[A-Z]{2}$/');
+        expect($locale['og'])->toMatch('/^' . substr($code, 0, 2) . '_[A-Z]{2}$/');
+        expect($locale['intl'])->toMatch('/^' . preg_quote($code, '/') . '(?:-[A-Z]{2})?$/');
 
         if ($code !== localesData()['default']) {
             expect($locale['prefix'])->toBe($code, "{$code} must be served under /{$code}");

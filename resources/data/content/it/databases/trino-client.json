@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Trino per {devices}",
+        "description": "Interroga cataloghi Trino, accedi con password, JWT o certificato client via TLS, leggi piani logici e distribuiti e annulla le query."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Client Trino"
+    },
+    "engine": "trino",
+    "breadcrumb": "Trino",
+    "header": {
+        "title": "Client Trino per {devices}",
+        "lead": "Unisci tabelle di cataloghi diversi in una query, leggi il piano che Trino eseguirà e ferma una query fuori controllo sul coordinatore. Le operazioni di scrittura dipendono dal connettore di ogni catalogo."
+    },
+    "asset": "mac-db-trino-catalogs",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti e accedi",
+            "paragraphs": [
+                "Inserisci host e porta del coordinatore e un <ui>Username</ui>, l’utente con cui vengono eseguite le query. <ui>Catalog</ui> e <ui>Schema</ui> sono punti di partenza facoltativi; lascia Catalog vuoto per esplorare ogni catalogo. Un <ui>Time Zone</ui> IANA nella sezione Options imposta il fuso della sessione.",
+                "Accedi con una password, inviata come HTTP Basic per l’autenticazione LDAP o tramite file di password, oppure con un token di accesso JWT inviato come credenziale bearer. Entrambi viaggiano solo su TLS: con SSL Disabled, una connessione che ne contiene uno viene rifiutata prima di inviare qualsiasi dato. Un certificato e una chiave client nel pannello SSL aggiungono TLS reciproco.",
+                "SSL è inizialmente Disabled, cioè HTTP non cifrato; ogni altra modalità impone TLS senza fallback in chiaro e la porta 443 attiva Verify Identity. Un reindirizzamento da un proxy davanti al coordinatore non viene mai seguito; l’errore ne indica la destinazione. Raggiungi un coordinatore dietro un bastion tramite un <network>tunnel SSH</network> e importa un URL <code>trino://</code> con <ui>Import from URL…</ui>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Esegui query su più cataloghi",
+            "paragraphs": [
+                "Una connessione si apre su un catalogo e uno schema e qualsiasi query può comunque usare il nome completo <code>catalog.schema.table</code>, per esempio per unire una tabella Hive e una PostgreSQL. La barra laterale espande ogni catalogo in schemi e tabelle, con viste materializzate accanto a tabelle e viste e conteggi delle righe da <code>SHOW STATS</code>.",
+                "<code>bigint</code> e <code>decimal</code> vengono letti come testo esatto, non come virgola mobile. <code>varbinary</code> appare in esadecimale, <code>array</code>, <code>map</code> e <code>row</code> in JSON e i timestamp mantengono il valore restituito dal server.",
+                "<explain>Explain</explain> offre Logical, Distributed, IO, Validate e Analyze. Validate verifica una query senza eseguirla, Analyze la esegue e riporta i tempi effettivi e ogni piano viene restituito come testo non elaborato.",
+                "<code>SET SESSION</code> resta valido per il resto della connessione. <ui>Query > Cancel Query</ui> chiede al coordinatore di terminare la query in esecuzione ed è il modo per fermarla: il timeout delle query della connessione non raggiunge Trino.",
+                "Le <editing>modifiche delle celle</editing> diventano INSERT, UPDATE e DELETE, con ogni valore associato al proprio tipo Trino. Trino non segnala chiavi primarie, quindi una modifica identifica la riga usando tutte le colonne così come sono state lette, senza una transazione per annullarla. Modificare una di due righe identiche cambia entrambe: controlla prima i duplicati."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Struttura",
+            "paragraphs": [
+                "La <structure>scheda Structure</structure> crea tabelle e aggiunge, elimina, rinomina e cambia il tipo delle colonne, in autocommit. L’esecuzione dipende dal connettore del catalogo e il cambio di tipo è l’operazione accettata da meno connettori."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "L’importazione non è disponibile. <export>Esporta</export> una tabella o un risultato in {exportFormats}."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "not-supported",
+            "question": "Perché un’istruzione valida restituisce NOT_SUPPORTED?",
+            "answer": "Il connettore di quel catalogo non implementa l’operazione, indipendentemente da ciò che consente la grammatica di Trino. Un connettore in sola lettura rifiuta ogni scrittura. Consulta la documentazione del connettore per sapere cosa supporta."
+        },
+        {
+            "id": "encrypted-key",
+            "question": "Posso usare una chiave client cifrata?",
+            "answer": "No. Le connessioni Trino non hanno un campo per la passphrase della chiave. Scrivi una copia decifrata con <code>openssl pkey -in encrypted.key -out client.key</code> e scegli quel file."
+        }
+    ],
+    "related": [
+        {
+            "label": "Scrivi, esegui e comprendi le query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Connessioni, tunnel e credenziali",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Teradata, un data warehouse",
+            "href": "/teradata-client"
+        },
+        {
+            "label": "Snowflake, un data warehouse cloud",
+            "href": "/snowflake-client"
+        }
+    ]
+}

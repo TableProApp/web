@@ -1,0 +1,87 @@
+{
+    "seo": {
+        "title": "Interfaz etcd para {devices}",
+        "description": "Explora claves etcd por prefijo, edita valores y arrendamientos y ejecuta get, put, watch y lease al estilo etcdctl, con TLS y túneles SSH."
+    },
+    "og": {
+        "kicker": "Bases de datos",
+        "title": "Interfaz gráfica de etcd"
+    },
+    "engine": "etcd",
+    "breadcrumb": "etcd",
+    "header": {
+        "title": "Interfaz gráfica de etcd para {devices}",
+        "lead": "Explora las claves de un clúster por prefijo, cambia valores y arrendamientos en una cuadrícula y ejecuta comandos al estilo etcdctl, como <code>get --prefix</code>, <code>lease grant</code> y <code>member list</code>, en el editor."
+    },
+    "asset": "mac-db-etcd-keys",
+    "links": {
+        "network": "/features/connections#network",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conectar",
+            "paragraphs": [
+                "Indica un host y el puerto de cliente. etcd no tiene bases de datos, así que no hay campo Base de datos. Usa el puerto de cliente: el puerto de pares no ofrece gateway JSON y una conexión dirigida allí nunca se abre. El formulario acepta un solo endpoint y no conmuta a otro si falla; elige un miembro disponible.",
+                "Deja <ui>Nombre de usuario</ui> y <ui>Contraseña</ui> vacíos si el clúster no tiene autenticación. Un usuario sin el rol <code>root</code> puede conectar y explorar las claves cubiertas por sus roles, mientras <code>endpoint status</code> y los comandos <code>user</code> y <code>role</code> responden con permiso denegado.",
+                "TLS se configura con <ui>Modo TLS</ui> en los campos Avanzado, no en una sección SSL, y empieza Desactivado. Obligatorio (omitir verificación) cifra sin comprobar, Verificar CA comprueba el certificado con el archivo de CA indicado, y Verificar identidad añade el nombre de host. Un certificado de cliente y su clave añaden TLS mutuo.",
+                "Accede a un clúster detrás de un bastión mediante un <network>túnel SSH</network>. Se pueden importar URL <code>etcd://</code> y <code>etcds://</code>; ninguna activa TLS por sí sola."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Explora claves y ejecuta comandos",
+            "paragraphs": [
+                "Configura <ui>Raíz de prefijo de claves</ui>, como <code>/app</code>, para limitar una conexión a un subárbol. La barra lateral agrupa las claves por el primer segmento de ruta bajo esa raíz, y cada clave es una fila con valor, versión, revisiones de modificación y creación, y arrendamiento.",
+                "Guardar una edición envía comandos. Un valor o arrendamiento nuevo vuelve a escribir la clave; un arrendamiento NULL lo elimina; renombrar una clave escribe el nombre nuevo y borra el antiguo. Las columnas de revisión pertenecen a etcd, así que editarlas detiene el guardado e indica la columna.",
+                "El editor acepta comandos al estilo etcdctl, con autocompletado de comandos y opciones: <code>get</code> con <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> y ordenación; <code>put</code> con <code>--lease</code>; <code>del</code>; <code>watch</code>; subcomandos <code>lease</code>; <code>member list</code>; <code>endpoint status</code> y <code>health</code>; <code>compaction</code>; y comandos <code>auth</code>, <code>user</code> y <code>role</code>. Cualquier otro devuelve comando desconocido sin llegar al servidor.",
+                "El controlador etcd no puede abrir una sesión de solo lectura, así que <safeMode>Modo seguro</safeMode> considera todo comando una escritura: en los niveles Alerta y Modo seguro pide permiso cada vez, y Solo lectura los bloquea todos."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Arrendamientos y clúster",
+            "paragraphs": [
+                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> con <code>--keys</code>, <code>list</code> y <code>keep-alive</code> gestionan arrendamientos; <code>compaction</code> recorta el historial de revisiones. <code>member list</code>, <code>endpoint status</code> y <code>endpoint health</code> informan sobre el clúster desde el editor, ya que no hay Panel del servidor para etcd.",
+                "Ejecutar <code>auth enable</code> desde el editor activa la autenticación en todo el clúster. Una conexión con usuario y contraseña sigue funcionando; una que no tenga ninguno debe reabrirse con credenciales."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Transfiere datos",
+            "paragraphs": [
+                "No hay importación. <export>Exporta</export> claves o el resultado de un comando como CSV, JSON o XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "lease-ids",
+            "question": "¿Por qué un ID de arrendamiento apunta a otro arrendamiento?",
+            "answer": "Los ID aceptan decimal o hexadecimal; el hexadecimal se reconoce por sus letras. Antepon <code>0x</code> a un ID hexadecimal que solo contenga dígitos, como <code>--lease=0x69407712</code>; de lo contrario se lee como decimal y corresponde a otro arrendamiento."
+        },
+        {
+            "id": "binary-values",
+            "question": "¿Puedo editar valores binarios?",
+            "answer": "No. Un valor que no sea UTF-8 válido se muestra como base64 en la cuadrícula, identificado como tal; el texto que escribas se envía como UTF-8. Escribe valores binarios con <code>etcdctl</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Explora y edita datos de forma segura",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Conexiones, túneles y credenciales",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Redis, otro espacio de claves",
+            "href": "/redis-gui"
+        }
+    ]
+}

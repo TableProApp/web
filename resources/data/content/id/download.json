@@ -1,0 +1,63 @@
+{
+    "seo": {
+        "title": "Unduh TablePro untuk Mac",
+        "description": "Unduh TablePro untuk Mac, dengan build terpisah untuk Apple silicon dan Intel, atau instal dengan Homebrew. Aplikasi iPhone dan iPad tersedia di App Store."
+    },
+    "og": {
+        "kicker": "Unduh",
+        "title": "Unduh TablePro"
+    },
+    "header": {
+        "title": "Unduh TablePro",
+        "lead": "Unduh aplikasi Mac sesuai chip Mac Anda, atau instal dengan Homebrew. Aplikasi iPhone dan iPad tersedia di App Store."
+    },
+    "mac": {
+        "otherWays": "Cara instalasi lainnya",
+        "homebrew": {
+            "title": "Homebrew",
+            "body": "Homebrew menginstal build sesuai chip Mac Anda. Setelah itu, aplikasi memperbarui dirinya sendiri.",
+            "trails": "Salinan Homebrew diperbarui secara terpisah dan mungkin tertinggal dari rilis terbaru. Jika versi lama terinstal, pilih <ui>TablePro > Check for Updates…</ui> untuk mendapatkan versi saat ini."
+        },
+        "releases": "Semua build di GitHub Releases",
+        "source": "Build dari kode sumber (AGPLv3)"
+    },
+    "ios": {
+        "body": "Aplikasi terpisah yang dibuat untuk {devices}, dengan fitur tersendiri.",
+        "link": "TablePro untuk {devices}"
+    },
+    "install": {
+        "title": "Instalasi dan penggunaan pertama",
+        "steps": [
+            "Buka file .dmg yang diunduh dari folder Unduhan.",
+            "Seret TablePro ke folder Aplikasi.",
+            "Buka TablePro dari Aplikasi. Karena berasal dari internet, macOS meminta konfirmasi saat pertama dibuka. Pilih <ui>Open</ui>.",
+            "Tambahkan koneksi, atau pilih <ui>Help > Open Sample Database</ui> untuk mencoba terlebih dahulu. Ini membuka Chinook, database SQLite kecil yang disertakan dalam aplikasi."
+        ],
+        "signing": "Kedua build ditandatangani dengan Developer ID dan dinotarisasi Apple, sehingga Anda tidak perlu mengubah pengaturan keamanan untuk membuka TablePro.",
+        "drivers": "Driver database umum disertakan dalam aplikasi. Driver lainnya diunduh saat Anda pertama memilih database tersebut, yang memerlukan koneksi internet, dan diperbarui secara terpisah dari aplikasi.",
+        "databases": "Database yang didukung",
+        "guide": {
+            "label": "Baca panduan instalasi",
+            "path": "/installation"
+        }
+    },
+    "updates": {
+        "title": "Pembaruan",
+        "paragraphs": [
+            "TablePro memeriksa pembaruan sekali sehari. Versi baru diunduh di latar belakang dan diinstal saat Anda menutup aplikasi berikutnya.",
+            "Sebagian besar rilis menjangkau Mac secara bertahap selama sekitar satu setengah hari. Untuk mendapatkannya lebih awal, pilih <ui>TablePro > Check for Updates…</ui>",
+            "Anda dapat menonaktifkan pemeriksaan atau instalasi otomatis di <ui>Settings > General</ui>. Pemeriksaan pembaruan mengakses GitHub, tempat rilis dipublikasikan, dan setiap pembaruan ditandatangani serta diverifikasi sebelum diinstal."
+        ]
+    },
+    "otherPlatforms": {
+        "title": "Platform lainnya",
+        "body": "TablePro belum tersedia untuk {platforms} dan belum ada tanggal rilis.",
+        "faq": "Pertanyaan platform di pertanyaan umum"
+    },
+    "olderVersions": {
+        "title": "Versi lama dan catatan rilis",
+        "body": "Setiap rilis beserta catatan dan kedua disk image tersedia di GitHub Releases. Catatan perubahan mencantumkan perubahan dalam setiap versi.",
+        "releases": "Semua rilis di GitHub",
+        "changelog": "Catatan perubahan"
+    }
+}

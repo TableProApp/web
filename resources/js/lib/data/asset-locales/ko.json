@@ -1,0 +1,931 @@
+{
+    "mac-hero-window": {
+        "alt": {
+            "ko": "Mac의 TablePro 창이 PostgreSQL 샘플 데이터베이스에 연결되어 있습니다. 사이드바에는 orders 테이블, SQL 편집기에는 쿼리, 아래에는 결과 행이 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-hero-window-mobile": {
+        "alt": {
+            "ko": "orders 테이블의 쿼리와 결과의 첫 행들을 보여 주는 TablePro SQL 편집기의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-query-autocomplete": {
+        "alt": {
+            "ko": "recent_orders라는 CTE를 users에 조인하는 쿼리가 있는 TablePro SQL 편집기와 CTE의 열을 표시하는 자동 완성 목록."
+        },
+        "caption": null
+    },
+    "mac-query-autocomplete-mobile": {
+        "alt": {
+            "ko": "TablePro SQL 편집기에서 CTE의 열을 제안하는 자동 완성 목록의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-query-parameters-history": {
+        "alt": {
+            "ko": ":customer_id와 :since 매개변수를 사용하는 쿼리, 값을 입력하는 패널, 쿼리 기록 서랍."
+        },
+        "caption": null
+    },
+    "mac-explain-compare": {
+        "alt": {
+            "ko": "orders 쿼리의 EXPLAIN Compare. 실행 계획이 Index Scan에서 Seq Scan으로 바뀌고 쿼리가 기준보다 느려진 것을 보여 줍니다."
+        },
+        "caption": null
+    },
+    "mac-query-insights": {
+        "alt": {
+            "ko": "최근 7일의 Query Insights. Most Run, Slowest, Got Slower 목록 위에 일별 성공 및 실패 쿼리 차트가 있고, 한 쿼리 형태가 Got Slower로 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-query-insights-mobile": {
+        "alt": {
+            "ko": "Query Insights에서 Got Slower로 표시된 쿼리 형태와 실행 시간 변화의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-result-chart": {
+        "alt": {
+            "ko": "orders 테이블의 월별 매출 선 차트로, 주문 상태마다 선 하나가 있습니다."
+        },
+        "caption": null
+    },
+    "mac-result-map": {
+        "alt": {
+            "ko": "PostGIS 테이블의 거주 지역을 지도에 표시하는 Map 뷰. 선택된 지점인 파리가 행 검사기에 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-edit-preview-sql": {
+        "alt": {
+            "ko": "네 건의 가격 변경이 저장을 기다리는 products 테이블과 해당 UPDATE 문을 나열하는 Preview SQL 시트."
+        },
+        "caption": null
+    },
+    "mac-edit-preview-sql-mobile": {
+        "alt": {
+            "ko": "미저장 가격 변경 네 건에 대한 UPDATE 문 네 개를 나열하는 Preview SQL 시트의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-grid-highlight-rules": {
+        "alt": {
+            "ko": "orders 테이블의 결제 완료 행은 녹색, 환불된 행은 주황색으로 표시되고 강조 규칙 팝오버가 열려 있습니다."
+        },
+        "caption": null
+    },
+    "mac-fk-picker": {
+        "alt": {
+            "ko": "orders.user_id 외래 키의 값 선택기. Silva를 검색하여 사용자를 이름과 성으로 나열합니다."
+        },
+        "caption": null
+    },
+    "mac-safe-mode-touchid": {
+        "alt": {
+            "ko": "프로덕션 환경의 빨간색으로 표시된 연결에서 orders 테이블에 DELETE를 실행하기 전에 Safe Mode가 표시하는 Touch ID 요청."
+        },
+        "caption": null
+    },
+    "mac-safe-mode-touchid-mobile": {
+        "alt": {
+            "ko": "DELETE 문 실행 전에 Safe Mode가 표시하는 Touch ID 요청의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-data-rewind-review": {
+        "alt": {
+            "ko": "Restore Previous Values 검토 시트. 세 행은 Will restore, 한 행은 Changed since the save로 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-structure-ddl-preview": {
+        "alt": {
+            "ko": "새 CHECK 제약 조건과 새 인덱스가 저장을 기다리는 reviews 테이블의 Structure 탭과 열린 DDL 미리보기."
+        },
+        "caption": null
+    },
+    "mac-structure-ddl-preview-mobile": {
+        "alt": {
+            "ko": "reviews 테이블에 CHECK 제약 조건과 인덱스를 추가하는 문이 있는 DDL 미리보기의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-er-diagram": {
+        "alt": {
+            "ko": "shop 스키마의 테이블과 관계가 있는 ER 다이어그램. product_tags는 products와 tags 사이의 다대다 선으로 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-er-diagram-mobile": {
+        "alt": {
+            "ko": "products와 tags를 다대다로 연결하는 ER 다이어그램의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-compare-sync-structure": {
+        "alt": {
+            "ko": "shop과 shop_staging 간의 Compare & Sync. 길이가 다른 열과 스크립트에서 보류된 DROP COLUMN이 나열됩니다."
+        },
+        "caption": null
+    },
+    "mac-compare-sync-structure-mobile": {
+        "alt": {
+            "ko": "이번 실행에서 보류된 DROP COLUMN과 데이터 손실 경고를 보여 주는 Compare & Sync 스크립트의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-copy-to-review": {
+        "alt": {
+            "ko": "MariaDB에서 PostgreSQL로 복사하는 Copy To 검토. 각 테이블의 예상 행 수, 허용 값 목록이 이전되지 않아 Type changes에 표시된 enum 열 두 개, CREATE TABLE 스크립트입니다."
+        },
+        "caption": null
+    },
+    "mac-users-roles-mysql": {
+        "alt": {
+            "ko": "MySQL 서버의 Users & Roles. SQL Preview가 app_reader 사용자에게 shop.orders의 total 열에 대한 SELECT를 부여하는 GRANT를 보여 줍니다."
+        },
+        "caption": null
+    },
+    "mac-server-dashboard-postgresql": {
+        "alt": {
+            "ko": "PostgreSQL 서버의 Server Dashboard. 활성 세션 목록에서 오래 실행 중인 SELECT가 선택되어 있고 Terminate 버튼이 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-server-dashboard-postgresql-mobile": {
+        "alt": {
+            "ko": "Server Dashboard에서 선택된 장시간 SELECT 세션과 옆의 Terminate 버튼의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-data-files-window": {
+        "alt": {
+            "ko": "orders.csv를 열어 Hanoi를 검색한 Data Files 창. 상태 표시줄에 20,000행 중 2,498행이 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-data-files-window-mobile": {
+        "alt": {
+            "ko": "orders.csv에서 Hanoi와 일치하는 행과 상태 표시줄의 일치 개수를 보여 주는 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-data-files-statistics": {
+        "alt": {
+            "ko": "Data Files 창에서 표시된 orders.csv의 status 열 통계."
+        },
+        "caption": null
+    },
+    "mac-import-mapping": {
+        "alt": {
+            "ko": "CSV 파일을 orders 테이블로 가져오는 시트. 파일의 각 열이 테이블 열에 매핑되어 있고 오류 발생 시 처리 옵션이 있습니다."
+        },
+        "caption": null
+    },
+    "mac-export-dialog": {
+        "alt": {
+            "ko": "스키마의 테이블 및 뷰 중 orders 테이블이 선택되어 있고 형식이 XLSX로 설정된 Export 대화상자."
+        },
+        "caption": null
+    },
+    "mac-backup-dump": {
+        "alt": {
+            "ko": "SSH 배스천을 통한 연결의 Back Up 시트. shop 데이터베이스만 선택되어 있습니다."
+        },
+        "caption": null
+    },
+    "mac-ai-chat": {
+        "alt": {
+            "ko": "지난달 매출 상위 고객에 대한 질문에 답하는 AI 채팅 패널. SQL 쿼리와 Copy, Insert 버튼이 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-ai-chat-mobile": {
+        "alt": {
+            "ko": "SQL 쿼리와 Insert 버튼이 있는 AI 채팅 답변의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-agent-mode": {
+        "description": {
+            "ko": "Agent 모드의 “Find orders with no items” 세션. 명령문 세 개와 Run을 기다리는 쓰기 작업 하나입니다."
+        }
+    },
+    "mac-agent-mode-mobile": {
+        "description": {
+            "ko": "대기 중인 쓰기 작업의 확대 화면. Run과 Reject가 있는 명령문 카드입니다."
+        }
+    },
+    "mac-mcp-settings": {
+        "alt": {
+            "ko": "MCP 설정의 Connect a Client 시트. Claude Code용 claude mcp add 명령이 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-connection-ssh-form": {
+        "alt": {
+            "ko": "연결 양식의 SSH 설정. 호스트 bastion.acme.internal, 사용자 deploy, 키 인증, 점프 호스트 하나입니다."
+        },
+        "caption": null
+    },
+    "mac-connection-ssh-form-mobile": {
+        "alt": {
+            "ko": "SSH 터널 설정의 확대 화면. 호스트 bastion.acme.internal, 사용자 deploy, SSH Agent 인증, 점프 호스트 하나입니다."
+        },
+        "caption": null
+    },
+    "mac-connection-library": {
+        "alt": {
+            "ko": "Welcome 창에 색상 태그가 있는 Production 및 Staging 그룹의 저장된 연결과 Chinook 샘플 데이터베이스가 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-import-other-app": {
+        "alt": {
+            "ko": "DataGrip에서 발견한 연결 세 개가 각각 가져오기 준비 완료로 표시된 Import from DataGrip 시트."
+        },
+        "caption": null
+    },
+    "mac-open-project-folder": {
+        "alt": {
+            "ko": "acme-shop 프로젝트의 Open Project Folder 결과. .env 및 .env.production에서 발견한 연결이 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-tunnel-command": {
+        "alt": {
+            "ko": "kubectl port-forward로 svc/orders-db에 터널 연결하는 연결과 실행할 명령."
+        },
+        "caption": null
+    },
+    "diagram-icloud-sync": {
+        "alt": {
+            "ko": "본인의 iCloud 계정을 통해 Mac과 iPhone 또는 iPad 간에 연결, 그룹 및 태그가 동기화되는 다이어그램입니다. 비밀번호는 비밀번호 동기화가 켜져 있을 때만 별도로 iCloud 키체인을 통해 동기화됩니다."
+        },
+        "caption": null
+    },
+    "mac-team-library": {
+        "description": {
+            "ko": "Favorites 사이드바의 Team Library 섹션. 게시자가 표시된 저장된 쿼리 세 개입니다."
+        }
+    },
+    "mac-handoff-ios": {
+        "description": {
+            "ko": "Handoff. iPhone에서 열린 Chinook Track 테이블이 Mac Dock에서 이어서 열도록 제공됩니다."
+        }
+    },
+    "mac-handoff-ios-mobile": {
+        "description": {
+            "ko": "휴대폰용 확대 화면. Track 테이블을 표시하는 iPhone 아래에 Mac Dock의 Handoff 아이콘이 있습니다."
+        }
+    },
+    "mac-engine-picker": {
+        "alt": {
+            "ko": "새 연결의 데이터베이스 유형 선택기. 엔진이 범주별로 그룹화되어 있으며 MongoDB는 Not Installed로 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-engine-picker-mobile": {
+        "alt": {
+            "ko": "데이터베이스 유형 선택기의 확대 화면. Document 아래의 Elasticsearch, MongoDB, SurrealDB, Typesense가 각각 Not Installed로 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-postgresql-explain": {
+        "alt": {
+            "ko": "orders와 users를 조인하는 쿼리의 EXPLAIN ANALYZE 계획 다이어그램. orders의 Seq Scan이 빨간색으로 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-postgresql-explain-mobile": {
+        "alt": {
+            "ko": "orders의 빨간색 Seq Scan까지 보여 주는 EXPLAIN ANALYZE 다이어그램의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-mysql-query": {
+        "alt": {
+            "ko": "MySQL에 연결된 TablePro. shop 데이터베이스에서 orders와 users를 조인하는 쿼리와 아래의 결과입니다."
+        },
+        "caption": null
+    },
+    "mac-db-mysql-query-mobile": {
+        "alt": {
+            "ko": "orders와 users를 조인하는 MySQL 쿼리와 결과의 첫 행들을 보여 주는 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-sqlite-chinook": {
+        "alt": {
+            "ko": "TablePro에서 열린 기본 제공 Chinook SQLite 샘플. Track 테이블이 장르별로 필터링되어 있습니다."
+        },
+        "caption": null
+    },
+    "mac-db-sqlite-chinook-mobile": {
+        "alt": {
+            "ko": "장르별로 필터링된 Chinook Track 테이블의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-mongodb-document": {
+        "alt": {
+            "ko": "MongoDB의 events 컬렉션 위에 열린 Insert Document 시트. 문서는 Extended JSON으로 작성되어 있습니다."
+        },
+        "caption": null
+    },
+    "mac-db-mongodb-document-mobile": {
+        "alt": {
+            "ko": "MongoDB 컬렉션에 삽입할 준비가 된 Extended JSON 문서의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-redis-keys": {
+        "alt": {
+            "ko": "TablePro의 Redis 키가 콜론 구분자로 트리에 그룹화되어 있고, 그리드에 각 키의 타입, TTL, 길이, 값이 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-redis-keys-mobile": {
+        "alt": {
+            "ko": "데이터 그리드의 Redis 키와 각 키의 타입 및 TTL을 보여 주는 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-sqlserver-script": {
+        "alt": {
+            "ko": "GO로 배치를 나눈 T-SQL 스크립트와 Output 탭에 표시된 마지막 배치의 PRINT 메시지."
+        },
+        "caption": null
+    },
+    "mac-db-sqlserver-script-mobile": {
+        "alt": {
+            "ko": "T-SQL 스크립트의 GO 배치 구분자와 Output 탭의 PRINT 메시지의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-oracle-plsql": {
+        "alt": {
+            "ko": "편집기의 Oracle PL/SQL 블록. DBMS_OUTPUT으로 출력한 텍스트 줄이 결과 아래에 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-oracle-plsql-mobile": {
+        "alt": {
+            "ko": "PL/SQL 블록의 DBMS_OUTPUT.PUT_LINE 호출과 결과 아래에 출력된 부서 정보 줄의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-clickhouse-parts": {
+        "alt": {
+            "ko": "ClickHouse MergeTree 테이블의 Parts 탭. 파티션과 파트 및 각 행 수가 나열됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-clickhouse-parts-mobile": {
+        "alt": {
+            "ko": "ClickHouse 테이블의 Parts 탭의 확대 화면. 각 파트의 파티션, 이름, 행 수가 나열됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-duckdb-parquet": {
+        "alt": {
+            "ko": "DuckDB에서 읽기 전용 뷰로 열린 Parquet 파일과 이를 조회하는 SQL 쿼리 및 결과."
+        },
+        "caption": null
+    },
+    "mac-db-duckdb-parquet-mobile": {
+        "alt": {
+            "ko": "DuckDB를 통해 Parquet 파일을 읽는 SQL 쿼리와 결과의 첫 행들의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-cassandra-table": {
+        "alt": {
+            "ko": "사이드바에서 데이터 그리드로 연 Cassandra 테이블. 변경된 status 값은 저장 전까지 보류로 표시되고 set 열은 컬렉션으로 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-cassandra-table-mobile": {
+        "alt": {
+            "ko": "데이터 그리드의 Cassandra 행의 확대 화면. status 셀 하나가 shipped로 변경되어 보류로 표시되고, 옆의 tags 열은 set을 표시합니다."
+        },
+        "caption": null
+    },
+    "mac-db-redshift-ddl": {
+        "description": {
+            "ko": "DISTKEY와 SORTKEY가 있는 Redshift 테이블의 DDL. 구조는 읽기 전용입니다."
+        }
+    },
+    "mac-db-redshift-ddl-mobile": {
+        "description": {
+            "ko": "테이블 DDL의 DISTKEY와 SORTKEY 줄의 확대 화면입니다."
+        }
+    },
+    "mac-db-d1-databases": {
+        "description": {
+            "ko": "계정의 D1 데이터베이스를 나열하는 전환기. 그중 한 데이터베이스의 쿼리 위에 열려 있습니다."
+        }
+    },
+    "mac-db-d1-databases-mobile": {
+        "description": {
+            "ko": "계정의 D1 데이터베이스를 나열하는 데이터베이스 전환기의 확대 화면입니다."
+        }
+    },
+    "mac-db-turso-remote": {
+        "description": {
+            "ko": "원격 Turso 데이터베이스. 사이드바의 테이블과 쿼리 결과입니다."
+        }
+    },
+    "mac-db-turso-remote-mobile": {
+        "description": {
+            "ko": "원격 Turso 데이터베이스의 쿼리와 결과의 첫 행들의 확대 화면입니다."
+        }
+    },
+    "mac-db-dynamodb-planner": {
+        "alt": {
+            "ko": "필터링된 DynamoDB 읽기. 상태 표시줄에 byStatus 인덱스의 Query, 반환된 항목 44개, 사용한 읽기 용량 단위 1개가 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-dynamodb-planner-mobile": {
+        "alt": {
+            "ko": "필터링된 읽기 후 DynamoDB 상태 표시줄의 확대 화면. byStatus 인덱스의 Query, 반환된 항목 44개, 사용한 읽기 용량 단위 1개입니다."
+        },
+        "caption": null
+    },
+    "mac-db-bigquery-dry-run": {
+        "description": {
+            "ko": "Explain 메뉴에서 실행한 BigQuery Dry Run. 처리할 바이트 수와 예상 비용입니다."
+        }
+    },
+    "mac-db-bigquery-dry-run-mobile": {
+        "description": {
+            "ko": "Dry Run 결과의 확대 화면. 처리할 바이트 수와 예상 비용입니다."
+        }
+    },
+    "mac-db-snowflake-session": {
+        "description": {
+            "ko": "Session Context에서 웨어하우스와 역할을 설정한 Snowflake 연결과 아래의 결과입니다."
+        }
+    },
+    "mac-db-snowflake-session-mobile": {
+        "description": {
+            "ko": "선택한 웨어하우스에 체크 표시가 있는 Session Context 하위 메뉴의 확대 화면입니다."
+        }
+    },
+    "mac-db-etcd-keys": {
+        "alt": {
+            "ko": "/acme/sessions/ 접두사 아래의 etcd 키. 이 중 세 개가 리스 하나를 공유합니다."
+        },
+        "caption": null
+    },
+    "mac-db-etcd-keys-mobile": {
+        "alt": {
+            "ko": "/acme/sessions/ 접두사 아래의 etcd 키와 각 키의 리스를 보여 주는 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-elasticsearch-console": {
+        "description": {
+            "ko": "Query DSL 콘솔. GET _search 요청과 행으로 표시된 반환 결과입니다."
+        }
+    },
+    "mac-db-elasticsearch-console-mobile": {
+        "description": {
+            "ko": "GET _search 요청과 첫 반환 결과의 확대 화면입니다."
+        }
+    },
+    "mac-db-surrealdb-query": {
+        "alt": {
+            "ko": "편집기의 SurrealQL 쿼리와 반환된 레코드를 표시하는 데이터 그리드."
+        },
+        "caption": null
+    },
+    "mac-db-surrealdb-query-mobile": {
+        "alt": {
+            "ko": "SurrealQL 쿼리와 반환된 레코드의 확대 화면. person:alice와 같은 ID가 표시됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-teradata-sidebar": {
+        "description": {
+            "ko": "프로시저가 나열된 Teradata 사이드바와 Functions 아래의 매크로입니다."
+        }
+    },
+    "mac-db-teradata-sidebar-mobile": {
+        "description": {
+            "ko": "사이드바의 Procedures 및 Functions 그룹의 확대 화면입니다."
+        }
+    },
+    "mac-db-trino-catalogs": {
+        "alt": {
+            "ko": "두 카탈로그의 테이블을 조인하는 Trino 쿼리와 아래의 결과."
+        },
+        "caption": null
+    },
+    "mac-db-trino-catalogs-mobile": {
+        "alt": {
+            "ko": "두 카탈로그의 테이블을 조인하는 Trino 쿼리와 첫 결과의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-beancount-bql": {
+        "alt": {
+            "ko": "사이드바에 표시된 Beancount 원장 데이터를 표현하는 테이블과 BQL 쿼리 결과."
+        },
+        "caption": null
+    },
+    "mac-db-beancount-bql-mobile": {
+        "alt": {
+            "ko": "Beancount 원장의 BQL 쿼리와 결과의 첫 행들의 확대 화면."
+        },
+        "caption": null
+    },
+    "mac-db-kafka-consume": {
+        "alt": {
+            "ko": "orders 토픽에 대한 KafkaQL CONSUME 문. 메시지가 파티션, 오프셋, 키, 타임스탬프로 나열됩니다."
+        },
+        "caption": null
+    },
+    "mac-db-kafka-consume-mobile": {
+        "alt": {
+            "ko": "orders 토픽에 대한 KafkaQL CONSUME 문의 확대 화면. 메시지가 파티션, 오프셋, 키로 나열됩니다."
+        },
+        "caption": null
+    },
+    "ios-connection-list": {
+        "alt": {
+            "ko": "iPhone의 TablePro 연결 목록. Favorites에는 Chinook 샘플이 있고 Production 그룹에는 태그가 지정된 연결이 있습니다."
+        },
+        "caption": null
+    },
+    "ipad-table-browse": {
+        "alt": {
+            "ko": "가로 방향 iPad의 TablePro. Chinook Track 테이블의 행을 카드로 표시합니다."
+        },
+        "caption": null
+    },
+    "ipad-table-browse-mobile": {
+        "alt": {
+            "ko": "iPad의 TablePro 확대 화면. Chinook Track 테이블의 첫 행들을 카드로 표시합니다."
+        },
+        "caption": null
+    },
+    "ios-table-browse": {
+        "alt": {
+            "ko": "iPhone의 Chinook Track 테이블이 장르별로 필터링되어 있습니다. 행은 카드로 표시되고 아래에는 페이지 범위가 있습니다."
+        },
+        "caption": null
+    },
+    "ios-row-edit": {
+        "alt": {
+            "ko": "iPhone에서 편집을 위해 열린 Chinook 트랙. 저장 전에 Composer가 NULL로 설정되어 있습니다."
+        },
+        "caption": null
+    },
+    "ios-query": {
+        "alt": {
+            "ko": "iPhone의 Query 탭. 장르별 트랙 수를 세는 SQL 쿼리와 결과가 표시됩니다."
+        },
+        "caption": null
+    },
+    "ios-live-activity": {
+        "description": {
+            "ko": "잠금 화면에 실시간 현황으로 표시된 실행 중인 쿼리. 연결, 쿼리, 경과 시간, Running 상태입니다."
+        }
+    },
+    "ios-connection-form": {
+        "alt": {
+            "ko": "iPhone의 새 연결 양식. SSL은 Verify Identity로 설정되어 있으며 개인 키로 로그인하는 bastion.acme.internal까지의 SSH 터널이 있습니다."
+        },
+        "caption": null
+    },
+    "ios-safe-mode-confirm": {
+        "alt": {
+            "ko": "Confirm Writes로 설정된 연결에서 UPDATE 문을 실행하기 전에 iPhone에 표시되는 확인 메시지."
+        },
+        "caption": null
+    },
+    "ipad-two-windows": {
+        "description": {
+            "ko": "iPad의 스테이지 매니저에서 동시에 열린 TablePro 창 두 개. 각각 다른 테이블이 표시됩니다."
+        }
+    },
+    "ios-widgets": {
+        "alt": {
+            "ko": "iPhone 홈 화면의 작은 크기와 중간 크기 Quick Connect 위젯."
+        },
+        "caption": null
+    },
+    "ios-shortcuts-add-rows": {
+        "alt": {
+            "ko": "단축어 편집기에서 TablePro의 Add Rows to Table 동작이 CSV 행을 테이블에 추가하도록 설정되어 있습니다."
+        },
+        "caption": null
+    },
+    "ios-settings-privacy": {
+        "alt": {
+            "ko": "iPhone의 TablePro 설정. Face ID 잠금과 iCloud Sync는 켜져 있고 사용 데이터 공유는 꺼져 있습니다."
+        },
+        "caption": null
+    },
+    "blog-tablepro-0-67-1": {
+        "alt": {
+            "en": "TablePro results pane in Chart mode with the Bar type selected, X Axis set to Row Number and Y Axis to ArtistId, a hover tooltip reading Row Number 140 and ArtistId 99, and the status bar still showing 1-347 of 347 rows"
+        },
+        "caption": {
+            "en": "Chart mode sits beside Data, Structure and JSON."
+        }
+    },
+    "blog-tablepro-0-67-2": {
+        "alt": {
+            "en": "TablePro SQL editor showing three folded regions, each collapsed to a chip naming its opening line and hidden line count, with a peek popover open over the folded CREATE TABLE and its full body syntax highlighted inside"
+        },
+        "caption": {
+            "en": "A folded region becomes a chip. Hover it to peek without expanding."
+        }
+    },
+    "blog-tablepro-0-67-3": {
+        "alt": {
+            "en": "TablePro SQL editor gutter with a run control beside the WITH statement on line 17, next to the fold chevrons for that statement and the one below it"
+        },
+        "caption": {
+            "en": "Hover the gutter and that statement's run control appears. Clicking it runs only that statement."
+        }
+    },
+    "blog-tablepro-0-67-4": {
+        "alt": {
+            "en": "TablePro data grid on the Customer table with the find bar open on the term rua, the counter reading 2 of 3, and the matching cell Rua da Assuncao 53 highlighted in the Address column"
+        },
+        "caption": {
+            "en": "Matching ignores case and accents, so rua finds Rua da Assunção."
+        }
+    },
+    "blog-tablepro-0-67-5": {
+        "alt": {
+            "en": "TablePro filter panel on a MongoDB orders collection with the field path browser open, listing customer.age, customer.city, customer.country and customer.name under customer and items.name, items.price, items.qty and items.sku under items, each with its detected type"
+        },
+        "caption": {
+            "en": "Search or type a path. The type beside each one is what the filter compares against."
+        }
+    },
+    "blog-tablepro-0-67-6": {
+        "alt": {
+            "en": "TablePro filter panel on a MongoDB orders collection with two rows, items.price greater than 500 and items.name equals Laptop, and the two matching orders listed in the grid below"
+        },
+        "caption": {
+            "en": "Two conditions on fields inside one array. The scope control decides whether a single item has to satisfy both."
+        }
+    },
+    "blog-tablepro-0-68-1": {
+        "alt": {
+            "en": "TablePro Compare & Sync window comparing Shop Demo with Shop Demo (Copy), with tables grouped under Only in Source, Only in Target and Differs on the left, and the orders table's definitions side by side on the right, a changed total_cents type and an added index highlighted above the list of changes"
+        },
+        "caption": {
+            "en": "Compare & Sync walks seven object kinds and writes the script that makes the target match."
+        }
+    },
+    "blog-tablepro-0-68-2": {
+        "alt": {
+            "en": "TablePro Compare & Sync window in Rows mode with id as the key column, a list of rows to update showing each changed value as old and new, such as an email and a country on row 6, and two rows to insert below"
+        },
+        "caption": {
+            "en": "Row mode diffs values against the key columns you choose, not against row order."
+        }
+    },
+    "blog-tablepro-0-68-3": {
+        "alt": {
+            "en": "TablePro sidebar on a PostgreSQL database with Procedures, Functions and Triggers sections, three balance_of functions told apart by their arguments, and the read-only source viewer showing one of them with its volatility, security and owner above the syntax-highlighted body"
+        },
+        "caption": {
+            "en": "Three overloads of one name, told apart by their arguments. The source opens read-only."
+        }
+    },
+    "blog-tablepro-0-68-4": {
+        "alt": {
+            "en": "TablePro data grid on a table with several hundred columns, scrolled well to the right so column headers in the middle of the run are visible, every cell painted with no blank columns or gaps, and the status bar reporting the full row count"
+        },
+        "caption": {
+            "en": "A few hundred columns in, scrolled sideways, with nothing left unpainted."
+        }
+    },
+    "blog-tablepro-0-68-5": {
+        "alt": {
+            "en": "TablePro Settings window on the License pane for a Team lifetime license, with Refresh and Copy Key buttons, two activated Macs with their macOS versions under Devices, 2 of 5 devices, and the team's members, 2 of 5; the license holder's email address, the shortened license key and the Mac names are covered for privacy"
+        },
+        "caption": {
+            "en": "Devices and team roster in one pane. Personal details in this capture are covered."
+        }
+    },
+    "blog-tablepro-0-69-1": {
+        "alt": {
+            "en": "TablePro Restore Previous Values sheet over the Chinook Customer table, listing four deleted rows, CustomerId 12 to 15, each with the action Put the row back and the outcome Will restore, Show SQL ticked with the generated INSERT statements below, and Cancel and Restore buttons"
+        },
+        "caption": {
+            "en": "Every row from a committed save, with the ones that cannot be restored named and explained rather than skipped."
+        }
+    },
+    "blog-tablepro-0-69-2": {
+        "alt": {
+            "en": "TablePro structure editor on a TrackPricing table added to the Chinook sample, with the Constraints tab selected and five check constraints listed by name beside their expressions, such as ListPrice > 0 and Currency IN ('USD', 'EUR', 'GBP', 'CAD')"
+        },
+        "caption": {
+            "en": "Check constraints read on four engines and edit on three. Generated columns carry their expression and their stored or virtual kind."
+        }
+    },
+    "blog-tablepro-0-69-3": {
+        "alt": {
+            "en": "TablePro Edit Connection sheet for SQLite on the Remote File pane, with Open a database file on an SSH server switched on above a note that the file is copied to this Mac and opened read-only, an empty Path field, and the SSH tunnel settings with host ssh.example.com and port 22"
+        },
+        "caption": {
+            "en": "Point it at a path on an SSH server. What comes back is a read-only local copy, not a live connection."
+        }
+    },
+    "blog-tablepro-0-69-4": {
+        "alt": {
+            "en": "TablePro sidebar listing the Chinook sample's tables, with InvoiceLine in an inline text field ready to be renamed, and no tab open in the window"
+        },
+        "caption": {
+            "en": "The label edits where it sits, in the tree, with no dialog."
+        }
+    },
+    "blog-tablepro-0-70-1": {
+        "alt": {
+            "en": "TablePro row inspector on the JSON tab for a selected Chinook Invoice row, its CustomerId field expanded in place into the Customer row it references and that row's SupportRepId expanded one level further into an Employee row, with a filter field above the tree"
+        },
+        "caption": {
+            "en": "A foreign key expands in place into the row it points at, and that row's keys expand too."
+        }
+    },
+    "blog-tablepro-0-70-2": {
+        "alt": {
+            "en": "TablePro query editor connected to MongoDB with a multi-statement JavaScript script, a var declaration on the first line and a db.orders.find chain with sort and limit below it, the autocomplete popup open after a find call listing cursor methods, and the resulting documents in the grid underneath"
+        },
+        "caption": {
+            "en": "Statements share a runtime, so a variable defined on one line is still defined on the next."
+        }
+    },
+    "blog-tablepro-0-70-3": {
+        "alt": {
+            "en": "TablePro structure editor on a Chinook table with a column dragged to a new position, and the SQL preview in front of it listing the SQLite rebuild script: a new table in the new column order, the INSERT SELECT that copies the rows, then the old table dropped and the new one renamed"
+        },
+        "caption": {
+            "en": "Where the engine has no positional DDL, the rebuild is shown in full before anything runs."
+        }
+    },
+    "blog-tablepro-0-72-1": {
+        "alt": {
+            "en": "TablePro Backup Database sheet listing the databases on the connection with a search field above them, tablepro_demo ticked, and Cancel and Choose Destination buttons along the bottom"
+        },
+        "caption": {
+            "en": "Backup Dump asks which database, then where to write it. The engine's own tool does the rest."
+        }
+    },
+    "blog-tablepro-0-72-2": {
+        "alt": {
+            "en": "TablePro export sheet with three tables ticked in the object tree and a popover open over the orders row, holding a Where field, a Row limit field reading All rows, and a checklist of the table's six columns, with the CSV format panel and its options visible to the right"
+        },
+        "caption": {
+            "en": "Each table carries its own WHERE, row limit and column list, set from the row itself."
+        }
+    },
+    "blog-tablepro-0-72-3": {
+        "alt": {
+            "en": "TablePro Transfer Tables sheet with a Destination picker set to another open connection and a Database picker below it, a checklist of source tables each reporting how many of its columns mapped, and an open popover pairing every source column of the orders table with its destination column beside a Match by Name button"
+        },
+        "caption": {
+            "en": "The destination list is the connections you already have open, and each table reports how many columns matched."
+        }
+    },
+    "blog-tablepro-0-72-4": {
+        "alt": {
+            "en": "Script Editor's dictionary window for TablePro with the TablePro Suite selected beside the Standard Suite, its commands such as connect, run query and open table listed, and below them the suite's safe mode level, external access level and tab kind enumerations"
+        },
+        "caption": {
+            "en": "Open it in Script Editor with File > Open Dictionary and pick TablePro."
+        }
+    },
+    "blog-tablepro-0-73-1": {
+        "alt": {
+            "en": "TablePro Copy To review step copying the customers table from a MySQL shop database to a PostgreSQL copy, with a warning that identity and auto-increment values are written as they are, the expected row count, and the generated CREATE TABLE and CREATE INDEX statements beside them, above Cancel, Back and Copy buttons"
+        },
+        "caption": {
+            "en": "The review step is the whole feature: the DDL that will run, the rows each table expects, and every type it had to approximate."
+        }
+    },
+    "blog-tablepro-0-73-2": {
+        "alt": {
+            "en": "TablePro connection editor for a PostgreSQL connection, with a four-item sidebar reading General, Network, Options and Appearance, credential fields filling the pane, and Test Connection, Cancel and Save on a bar along the bottom"
+        },
+        "caption": {
+            "en": "Four sections, the same for every driver, with Test Connection, Cancel and Save on one bar along the bottom."
+        }
+    },
+    "blog-tablepro-0-73-3": {
+        "alt": {
+            "en": "TablePro Network section with Connect via set to Tunnel Command and the kubectl port-forward method selected, empty resource, namespace and context fields showing their placeholder text, an executable path, and a Will Run panel with the exact argument list and a {port} placeholder"
+        },
+        "caption": {
+            "en": "Will Run shows the exact argument list, with {port} standing in for the port allocated on connect."
+        }
+    },
+    "blog-tablepro-0-73-4": {
+        "alt": {
+            "en": "TablePro SQL Preview of 14 statements for adding a foreign key to a SQLite orders table, starting with PRAGMA foreign_keys = off, then the rebuilt table's CREATE TABLE with the customer_fk constraint and the INSERT SELECT that copies the rows, above Open in Query Editor, Cancel and Apply and Rebuild buttons"
+        },
+        "caption": {
+            "en": "The rebuild script is shown before it runs, and it ends by checking the rows against the key you just added."
+        }
+    },
+    "blog-tablepro-0-74-1": {
+        "alt": {
+            "en": "TablePro on the Map segment for a PostGIS table of San Francisco service areas, with fifteen blue polygons, four transit lines and six depot pins drawn over an Apple Maps street view, a line above the map reading Drawing 25 shapes in SRID 4326, 3 rows in other coordinate systems are not drawn, a Fit to Result button on the right, and Data, Structure, JSON, Chart and Map segments along the bottom with Map selected"
+        },
+        "caption": {
+            "en": "The line above the map says what was drawn and what was skipped. Three rows here are in a state-plane coordinate system, so they are counted rather than placed."
+        }
+    },
+    "blog-tablepro-0-74-2": {
+        "alt": {
+            "en": "TablePro Highlight Rules popover over an invoice grid, listing three rules with a column, an operator, a value and a colour each, with US invoice rows tinted green, Canadian rows blue, and individual customer ID cells orange"
+        },
+        "caption": {
+            "en": "Rules run top to bottom and the first match colours the row. A cell rule tints its own cell over the row's colour."
+        }
+    },
+    "blog-tablepro-0-74-3": {
+        "alt": {
+            "en": "TablePro SQL editor holding a query pasted from a chat thread, with an orange BS box before SELECT on line 2, an outlined no-break space after zone on line 4, an orange ZWSP box after name on line 5, and orange underlines beneath the curly quotes around downtown and beneath a full-width greater-than sign on line 6"
+        },
+        "caption": {
+            "en": "A mark is the character itself: select it, arrow past it, or delete it like any other text. The underlines are the separate warning for characters that are visible but wrong."
+        }
+    },
+    "blog-tablepro-0-76-1": {
+        "alt": {
+            "en": "TablePro connection window in Agent mode on the Chinook sample database, with one session on the left marked Waiting on you, a conversation in the middle where the assistant checked prices by genre and now proposes UPDATE Track SET UnitPrice = 1.29 for every Rock track on a card with Run, Always Allow and Reject buttons, and a Result column on the right listing the SELECT as Ran and the UPDATE as Waiting"
+        },
+        "caption": {
+            "en": "The price check ran after one click. The UPDATE waits on its card, and the result column keeps both."
+        }
+    },
+    "blog-tablepro-0-76-2": {
+        "alt": {
+            "en": "TablePro Settings open on Integrations, with Enable MCP Server switched off above an Outside MCP Servers list holding Runbooks at runbooks.internal.example/mcp allowed on 2 connections and Incident Tracker allowed on none, and an Add Server button below them"
+        },
+        "caption": {
+            "en": "A server reaches nothing until a connection is ticked, and every call to it still waits for Run or Reject."
+        }
+    },
+    "blog-tablepro-0-76-3": {
+        "alt": {
+            "en": "A Data Files window on orders.csv with columns order_id, customer, city, status, total and ordered_at, searched for Hanoi, with the status bar reading 2,498 of 20,000 rows and 6 columns on the left and Comma, UTF-8, LF on the right"
+        },
+        "caption": {
+            "en": "The status bar names the delimiter, encoding and line ending the file was read with, and Save writes them back."
+        }
+    },
+    "blog-tablepro-0-76-4": {
+        "alt": {
+            "en": "Insert Document sheet over an empty events collection, holding a document with a name, a channel, a sentAt date written as $date, a recipients count and a tags array, with a hint to quote every field name and Cancel and Insert buttons"
+        },
+        "caption": {
+            "en": "Insert Document takes Extended JSON, so a date and an ObjectId are written the way MongoDB stores them."
+        }
+    },
+    "blog-tablepro-0-77-1": {
+        "alt": {
+            "en": "TablePro connection window on the Chinook sample database, with a Folders section at the top of the sidebar holding a Music folder with Album and Artist and a Sales folder with Invoice and InvoiceLine, a Tables section below it with the remaining seven tables, and the Track table open in the data grid"
+        },
+        "caption": {
+            "en": "Four tables sit in two folders, and the Tables section below lists only the ones not yet filed."
+        }
+    },
+    "blog-tablepro-0-77-2": {
+        "alt": {
+            "en": "Import sheet for customers.csv into the existing Customer table of the Chinook sample database, with the note Restored the mapping saved for Customer beside an open Match Columns menu offering Match by Name, Match by Position and a dimmed Use Saved Mapping, above a field list that maps Company, City, Country and E-mail to the Company, City, Country and Email columns"
+        },
+        "caption": {
+            "en": "E-mail comes back mapped to Email, the one column picked by hand in the last import."
+        }
+    },
+    "blog-tablepro-0-77-3": {
+        "alt": {
+            "en": "New PostgreSQL Connection sheet open on Options, with a Timeouts section holding Connect timeout showing Default (30) seconds and Query timeout showing Global (60) seconds, above the Startup Commands and Pre-Connect Script fields"
+        },
+        "caption": {
+            "en": "An empty field shows the value it inherits, so you can see what applies before you type anything."
+        }
+    },
+    "blog-tablepro-for-iphone-1": {
+        "alt": {
+            "en": "The Chinook Track table open in TablePro on iPhone, listing TrackId, Name, AlbumId and MediaTypeId for the first rows, with a pager reading 1-100 of 3503 and Tables, Query, History and Info along the bottom"
+        },
+        "caption": {
+            "en": "The bundled Chinook database, two taps from the connection list. There is something to read before you have set up a server."
+        }
+    }
+}

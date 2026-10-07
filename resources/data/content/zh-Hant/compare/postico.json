@@ -1,0 +1,189 @@
+{
+    "seo": {
+        "title": "TablePro vs Postico：專注 PostgreSQL 或支援多種引擎",
+        "description": "Postico 2 是一次性授權的 PostgreSQL Mac App。TablePro 支援 PostgreSQL 及其他引擎。比較價格、伺服器工具、同步和設定。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs Postico"
+    },
+    "header": {
+        "title": "TablePro vs Postico",
+        "lead": "Postico 2 是面向 PostgreSQL 及使用其通訊協定資料庫的 Mac App，出售一次性授權。TablePro 是 PostgreSQL 及其他引擎的開放原始碼用戶端，有獨立 iPhone、iPad App 及 Mac 選用付費功能。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "除 PostgreSQL，也使用 MySQL、SQL Server、SQLite、Redis 或 MongoDB。",
+            "也管理伺服器。Users & Roles、可終止工作階段的 Server Dashboard、VACUUM、pg_dump 備份在 Mac App 免費。",
+            "調校查詢。EXPLAIN 圖示計畫，EXPLAIN Compare 對照基準檢查新計畫。",
+            "希望免費 iPhone、iPad App 連線 PostgreSQL。",
+            "希望免費使用 AI 助手和 MCP 伺服器。"
+        ],
+        "competitor": [
+            "僅用 PostgreSQL、Redshift、CockroachDB 或 Greenplum，希望 App 專為此工作打造。",
+            "希望 Mac App Store 版本，或個人、商用、團隊、學生定價的授權。",
+            "希望透過 iCloud 或 Dropbox 同步伺服器設定。"
+        ]
+    },
+    "glance": {
+        "intro": "Postico 2 出售個人、商用、團隊、學生一次性授權，評估版無時間限制。TablePro 可免費使用，付費方案加入選用功能。"
+    },
+    "rows": {
+        "administration": {
+            "label": "伺服器管理",
+            "tablepro": "Mac App 免費：Users & Roles、Server Dashboard、VACUUM 等維護和需自行安裝的 pg_dump 備份"
+        },
+        "macAppStore": {
+            "label": "Mac App Store",
+            "tablepro": "不在 Mac App Store，從本站下載或用 Homebrew 安裝"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Postico 2 專為 PostgreSQL 及其通訊協定資料庫打造，包括 TablePro 不支援的 Greenplum。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "授權一次付費，有個人、商用、團隊、學生價格，也有 Mac App Store 版本。",
+                "cite": [
+                    "prices",
+                    "cells.macAppStore"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "評估版無時間限制，但部分功能購買授權後才開啟。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "透過 iCloud 或 Dropbox 同步伺服器設定。",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "一個用戶端支援 PostgreSQL 及從 MySQL、SQL Server 到 Redis、MongoDB、DuckDB 等引擎。查看<link>支援的資料庫</link>。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "免費 App 包含<link>伺服器管理</link>：授權細至欄位的 Users & Roles、顯示工作階段和慢速查詢的 Server Dashboard、先顯示 SQL 的 VACUUM。Postico 表示其並非為這些工作設計。",
+                "cite": [
+                    "cells.administration"
+                ],
+                "feature": null,
+                "href": "/features/schema#administer"
+            },
+            {
+                "text": "<link>EXPLAIN</link> 以圖、樹或原始文字顯示計畫，EXPLAIN Compare 對照基準檢查新計畫，兩者免費。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "<link>iCloud Sync</link> 在 Mac、iPhone、iPad 間保持連線同步，Mac 屬於 Starter，iPhone、iPad App 免費。",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "免費 <link>iPhone、iPad App</link> 連線 PostgreSQL，無 App 內購買。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "不支援 Greenplum。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "可連線 Redshift、CockroachDB，但 TablePro 中資料表結構唯讀。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "變更 PostgreSQL 欄位的位置時，TablePro 會產生重建指令碼供你自行執行。TablePro 不會執行該指令碼。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Postico 2 僅出售一次性授權。TablePro 月付、年付結束會鎖定付費功能，其餘 App 仍運作；Starter、Team 也有無到期日的一次性購買。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 無 Postico 匯入工具。將各伺服器新增為連線，填表單或將 postgresql:// URL 貼上至 <ui>File > Import > Import from URL…</ui>。",
+        "steps": [],
+        "after": [
+            "專案在 .env 檔案或 Prisma schema 儲存資料庫 URL 時，<ui>File > Import > Open Project Folder…</ui> 讀取並開啟填好的連線表單。",
+            "密碼儲存至 macOS 鑰匙圈，PostgreSQL 連線也讀取 ~/.pgpass。",
+            "TablePro 查詢記錄從頭開始。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "redshift-cockroachdb",
+            "question": "TablePro 像 Postico 一樣支援 Redshift、CockroachDB 嗎？",
+            "answer": "是，兩者可連線，TablePro 中資料表結構唯讀。Postico 也支援的 Greenplum 不在 TablePro 引擎中。",
+            "href": null
+        },
+        {
+            "id": "icloud-sync",
+            "question": "TablePro 的 iCloud Sync 免費嗎？",
+            "answer": "iPhone、iPad App 免費，Mac 屬於 Starter。Postico 2 透過 iCloud 或 Dropbox 同步伺服器設定。",
+            "href": null
+        },
+        {
+            "id": "admin",
+            "question": "可以在 TablePro 管理角色和工作階段嗎？",
+            "answer": "可以，Mac App 免費。Users & Roles 先顯示 SQL 再授予撤銷權限，Server Dashboard 列出工作階段並可終止。<link>了解伺服器工具</link>。",
+            "href": "/features/schema#administer"
+        },
+        {
+            "id": "license",
+            "question": "用 TablePro 連線 PostgreSQL 需要授權嗎？",
+            "answer": "不需要。PostgreSQL 和所有支援引擎、AI 助手、MCP 伺服器免費。Starter 或 Team 為 Mac 加入 {starterExamples} 等選用功能。<link>查看價格</link>。",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "postico-evaluation": "評估版無時間限制，部分功能購買授權前停用。",
+        "postico-vat-included": "含增值稅",
+        "postico-plus-vat": "另加增值稅",
+        "postico-databases": "PostgreSQL、Amazon Redshift、Greenplum、CockroachDB。其他使用 PostgreSQL 通訊協定的資料庫可能連線，但多數功能無法運作。",
+        "postico-sync-icloud-dropbox": "透過 iCloud 或 Dropbox 同步伺服器設定",
+        "postico-no-admin": "Postico 表示並非為備份還原、使用者權限管理或資料庫監控設計"
+    }
+}

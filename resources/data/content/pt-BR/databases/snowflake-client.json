@@ -1,0 +1,99 @@
+{
+    "seo": {
+        "title": "Snowflake para {devices}",
+        "description": "Entre no Snowflake com par de chaves, SSO, OAuth ou senha e código MFA. Alterne warehouse e função sem reconectar e exporte para um stage."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Cliente de Snowflake"
+    },
+    "engine": "snowflake",
+    "breadcrumb": "Snowflake",
+    "header": {
+        "title": "Cliente de Snowflake para {devices}",
+        "lead": "Entre da forma exigida pela sua conta, alterne a sessão entre warehouses e funções sem reconectar e depois consulte, edite e exporte tabelas para um stage."
+    },
+    "asset": "mac-db-snowflake-session",
+    "links": {
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conecte-se e entre",
+            "paragraphs": [
+                "Informe o identificador da conta, como <code>myorg-myaccount</code> ou um localizador antigo como <code>xy12345.us-east-1</code>: o que precede <code>.snowflakecomputing.com</code>. Todas as requisições usam HTTPS para o endpoint da conta, portanto não há host, seção SSL ou painel SSH.",
+                "Escolha um <ui>Auth Method</ui>, e o formulário mostra apenas o necessário. Um par de chaves assina cada conexão com sua chave privada PKCS#8, portanto o relógio do Mac precisa estar correto. Browser SSO direciona você ao provedor de identidade. Um token OAuth é usado como colado e nunca renovado. Uma senha é acompanhada de um código atual em <ui>MFA Passcode (TOTP)</ui> quando a conta exige MFA.",
+                "Com <code>ALLOW_CLIENT_MFA_CACHING</code> na conta, um código novo é suficiente: Snowflake retorna um token MFA que TablePro guarda no <credentials>Chaves</credentials>. Com <code>ALLOW_ID_TOKEN</code>, Browser SSO guarda ali um token de login, e as próximas conexões dispensam o navegador até Snowflake recusá-lo.",
+                "Snowflake não tem um esquema de URL. Informe o nome de uma seção em <ui>CLI Connection Name</ui>, e cada campo deixado vazio será lido de <code>~/.snowflake/connections.toml</code> ao conectar."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Warehouses, funções e consultas",
+            "paragraphs": [
+                "<ui>Database > Session Context</ui> muda a sessão para outro warehouse ou função com <code>USE WAREHOUSE</code> e <code>USE ROLE</code>, sem reconectar. Uma conexão TablePro é uma sessão Snowflake, mantida aberta durante a inatividade, e uma aba vinculada a um segundo banco executa <code>USE DATABASE</code> antes das instruções nessa mesma sessão.",
+                "A barra lateral agrupa os objetos por banco e esquema. As listas de objetos vêm de comandos <code>SHOW</code>, que funcionam sem warehouse; os detalhes das colunas vêm de <code>INFORMATION_SCHEMA</code>, que exige um. <explain>Explain</explain> retorna o plano de Snowflake como texto bruto.",
+                "As <editing>edições na grade</editing> vinculam os valores no servidor, com células VARIANT, OBJECT e ARRAY enviadas por <code>PARSE_JSON</code>. Uma edição usa a chave primária declarada ou todas as colunas quando não há chave. Snowflake nunca impõe restrições de chave, portanto um valor de chave duplicado faz uma edição ou exclusão atingir todas as linhas correspondentes: verifique se há duplicatas antes de editar uma tabela."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Estrutura",
+            "paragraphs": [
+                "A visualização DDL vem de <code>GET_DDL</code>. A <structure>aba Structure</structure> adiciona, renomeia e remove colunas, define NOT NULL, comentários e a chave primária, aumenta o tamanho de um VARCHAR e altera a precisão de NUMBER mantendo a escala.",
+                "Alterações que Snowflake rejeitaria são recusadas antes de qualquer execução: reduzir o tamanho de um VARCHAR, qualquer outra alteração de tipo e definir um novo valor padrão para uma coluna. Remover um valor padrão funciona."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "<importData>Importe</importData> arquivos {importFormats} pela conexão e exporte uma tabela ou um resultado para o Mac como {exportFormats}.",
+                "Para exportar uma tabela sem passar pelo Mac, escolha <ui>File > Server-Side Export…</ui> e informe um stage, com ou sem <code>@</code>. <backup>Server-Side Export</backup> executa <code>COPY INTO</code> com seus próprios privilégios e grava CSV comprimido com gzip, Parquet ou JSON; a tela aguarda a conclusão, e nada é gravado no Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "no-columns",
+            "question": "Por que a barra lateral mostra tabelas, mas não colunas?",
+            "answer": "Os detalhes das colunas vêm de <code>INFORMATION_SCHEMA</code>, que exige um warehouse em execução. Defina <ui>Warehouse</ui> na conexão ou em Session Context. Um banco cujos objetos não aparecem precisa de <code>USAGE</code> concedido à função usada na conexão."
+        },
+        {
+            "id": "timestamp-ltz",
+            "question": "Por que valores TIMESTAMP_LTZ aparecem em UTC?",
+            "answer": "TablePro os lê como horário UTC, marcado com <code>Z</code>, em vez de convertê-los para o <code>TIMEZONE</code> da sessão."
+        },
+        {
+            "id": "jwt-invalid",
+            "question": "O login por par de chaves diz que o token JWT é inválido. O que devo verificar?",
+            "answer": "O token contém o localizador da conta e um timestamp. Confira o identificador da conta e o relógio do Mac, depois confirme que a chave pública está registrada no usuário com <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Importação, exportação e arquivos de dados",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Escreva, execute e entenda consultas",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Google BigQuery, outro data warehouse na nuvem",
+            "href": "/bigquery-client"
+        },
+        {
+            "label": "Trino, para consultas entre catálogos",
+            "href": "/trino-client"
+        }
+    ]
+}

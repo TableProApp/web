@@ -25,6 +25,17 @@
 
 export const CRISP_SCRIPT_URL = 'https://client.crisp.chat/l.js';
 
+/** Crisp's regional codes differ from the site's BCP 47 route codes. */
+export function crispLocale(locale: string): string {
+    const regional: Record<string, string> = {
+        'pt-BR': 'pt-br',
+        'zh-Hans': 'zh',
+        'zh-Hant': 'zh-tw',
+    };
+
+    return regional[locale] ?? locale;
+}
+
 /** The attribute the consent bar carries (shared `components/shared/consent-bar.tsx`). */
 export const CONSENT_BAR_SELECTOR = '[data-consent-bar]';
 
@@ -113,7 +124,7 @@ export function loadChat(websiteId: string | null | undefined, locale: string): 
 
     if (!chatRequested()) {
         w.CRISP_WEBSITE_ID = websiteId;
-        w.CRISP_RUNTIME_CONFIG = { locale };
+        w.CRISP_RUNTIME_CONFIG = { locale: crispLocale(locale) };
 
         const script = document.createElement('script');
 

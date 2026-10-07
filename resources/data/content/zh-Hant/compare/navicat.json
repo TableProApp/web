@@ -1,0 +1,198 @@
+{
+    "seo": {
+        "title": "TablePro vs Navicat：開源用戶端",
+        "description": "Navicat 提供永久授權、訂閱及免費 Lite 版。TablePro 是免費開源用戶端。比較價格、AI 與各平台應用程式。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs Navicat"
+    },
+    "header": {
+        "title": "TablePro vs Navicat",
+        "lead": "Navicat Premium 是 Windows、macOS 與 Linux 用戶端，按使用者銷售永久授權或月繳、年繳訂閱，也提供免費的 Premium Lite 版。TablePro 是開源用戶端，分別提供 Mac 和 iPhone、iPad 原生應用程式。可免費使用，付費方案為 Mac 應用程式新增選用功能。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "你希望免費應用程式已包含 AI 助手、MCP 伺服器和安全模式，只為 {starterExamples} 等功能購買付費方案。",
+            "你希望使用開源用戶端。TablePro 包括付費功能程式碼在內，均以 AGPLv3 開源。",
+            "你希望一個免費 iPhone 與 iPad 應用程式支援多個引擎，而不是為每個引擎分別購買應用程式。",
+            "你使用 ClickHouse、DuckDB 或 Cassandra 等未列入 Navicat Premium 支援清單的引擎。"
+        ],
+        "competitor": [
+            "你除了 Mac，也在 Windows 或 Linux 上工作。",
+            "你使用資料建模工具設計結構。Navicat 在 Premium Enterprise 中包含此工具。",
+            "你透過 Navicat Cloud，或自有伺服器上的 Navicat On-Prem Server，與同事同步連線、查詢和模型。"
+        ]
+    },
+    "glance": {
+        "intro": "Navicat Premium 按使用者銷售，可選含一年維護的永久授權，或月繳、年繳訂閱；Premium Lite 免費。兩款產品都有 AI 助手，Navicat 在 {cells.ai.date} 發佈的 {cells.ai.version} 版本中加入了此功能。"
+    },
+    "rows": {
+        "schemaSync": {
+            "label": "結構同步",
+            "tablepro": "Starter 中的比較與同步，支援結構和資料"
+        },
+        "dataModeling": {
+            "label": "資料建模",
+            "tablepro": "無建模工具。免費提供唯讀 ER 圖，可匯出為 PNG 或 SQL"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Navicat Premium 可在 Windows、macOS 與 Linux 上執行。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium Enterprise 新增資料建模工具。TablePro 的 ER 圖只顯示現有結構。",
+                "cite": [
+                    "cells.dataModeling"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Navicat Cloud 會同步連線設定、查詢和模型，並與受邀人員分享；如果所有內容必須保留在內部，可以使用 Navicat On-Prem Server。",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "如果基本功能足以滿足工作需要，Premium Lite 可免費用於商業與非商業用途。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 包括付費功能程式碼在內，均以 AGPLv3 開源。Navicat 為閉源軟體。",
+                "cite": [
+                    "licence"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "免費應用程式可連接所有支援的引擎，並包含 AI 助手、MCP 伺服器和安全模式。<link>付費方案</link>新增 {starterExamples} 等功能。",
+                "cite": [],
+                "feature": null,
+                "href": "/pricing"
+            },
+            {
+                "text": "兩者都能同步結構。TablePro 的<link>比較與同步</link>會比較兩個資料庫的結構或資料並產生差異指令碼；破壞資料的陳述式會暫緩執行，直到你明確允許。此功能包含在 Starter 中。",
+                "cite": [
+                    "cells.schemaSync"
+                ],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "一個免費的 <link>iPhone 與 iPad 應用程式</link>可連接多個引擎，無 App 內購買。Navicat 按引擎分別銷售應用程式，如 Navicat for MySQL。",
+                "cite": [
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": "/ios"
+            },
+            {
+                "text": "TablePro 可連接 Navicat Premium 列出的引擎，也支援 ClickHouse、DuckDB、Cassandra 和 Elasticsearch 等<link>未列出的其他引擎</link>。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": "/databases"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 沒有 Windows 或 Linux 應用程式。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "沒有資料建模工具。<link>ER 圖</link>是現有結構的唯讀檢視，可匯出為 PNG 或 SQL。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/schema#er-diagram"
+            },
+            {
+                "text": "沒有工作排程器，比較、匯出和備份只會在你主動啟動時執行。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro 的單一 iPhone 與 iPad 應用程式支援多個引擎，但功能少於 Mac 應用程式：沒有 AI 助手、MCP 伺服器或自動完成。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Navicat 永久授權在一年維護結束後仍可使用，TablePro 一次性購買也一樣。TablePro 月繳或年繳方案則不同：結束後付費功能鎖定，其餘應用程式功能仍可使用。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 從 Navicat 匯出的檔案匯入連線，因此移轉從 Navicat 開始。不會讀取或變更 Navicat 本身的設定。",
+        "steps": [
+            "在 Navicat 中選擇 <ui>File > Export Connections…</ui>，選取連線，開啟 <ui>Export Password</ui> 並儲存 .ncx 檔案。",
+            "在 TablePro 中選擇 <ui>File > Import > Import from Other App…</ui>。",
+            "選擇 Navicat，開啟 <ui>Include passwords</ui>，按一下 <ui>Continue</ui> 並選取 .ncx 檔案。TablePro 會解密已儲存的密碼，因此無須在鑰匙圈中核准。",
+            "檢查清單，決定如何處理重複項目，然後按一下 <ui>Import</ui>。SSH 通道和 SSL 設定會一併匯入。TablePro 不支援的資料庫連線預設不勾選。",
+            "刪除 Navicat 前，開啟一個原本有密碼的連線，確認密碼已成功移轉。"
+        ],
+        "after": [
+            "連線不會攜帶 Navicat 群組，需要在 TablePro 中重新分組。",
+            ".ncx 檔案使用 Navicat 內建金鑰保護密碼，任何持有該檔案的人都能讀取。匯入完成後請刪除檔案。",
+            "查詢、模型、片段和 Navicat Cloud 專案留在 Navicat 中。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "premium-lite",
+            "question": "Navicat Premium Lite 也免費，TablePro 有何不同？",
+            "answer": "兩者均可免費用於商業工作。Premium Lite 提供 Navicat 的基本功能。TablePro 免費應用程式可連接所有支援的引擎，並包含 AI 助手、MCP 伺服器和安全模式；Starter 或 Team 方案新增 {starterExamples} 等功能。",
+            "href": null
+        },
+        {
+            "id": "one-time",
+            "question": "TablePro 可以像 Navicat 授權一樣一次性購買嗎？",
+            "answer": "可以。Starter 和 Team 可選擇月繳、年繳或一次性購買，一次性購買無到期日。Navicat Premium 永久授權一次付款，包含一年維護。<link>查看價格</link>。",
+            "href": "/pricing"
+        },
+        {
+            "id": "iphone",
+            "question": "iPhone 與 iPad 應用程式可連接哪些引擎？",
+            "answer": "一個免費應用程式可連接 MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite 和 DuckDB 等引擎，無 App 內購買。其功能少於 Mac 應用程式。<link>了解 iPhone 與 iPad 應用程式</link>。",
+            "href": "/ios"
+        }
+    ],
+    "notes": {
+        "navicat-lite-commercial-use": "包含基本功能的免費版，可用於商業與非商業用途",
+        "navicat-one-year-maintenance": "一次付款，包含一年維護：升級和技術支援。每個版本也提供月繳或年繳訂閱。",
+        "navicat-databases": "MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis 和 Snowflake，包括其雲端服務",
+        "navicat-ios-per-engine-apps": "按引擎分別提供付費應用程式，如 Navicat for MySQL 和 Navicat for PostgreSQL。沒有 iPhone 版 Navicat Premium。",
+        "navicat-cloud": "Navicat Cloud，或自有伺服器上的 Navicat On-Prem Server，同步連線設定、查詢和模型，並與受邀人員分享"
+    }
+}

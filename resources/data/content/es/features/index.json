@@ -1,0 +1,108 @@
+{
+    "seo": {
+        "title": "Funciones para gestionar bases de datos",
+        "description": "Consultas, edición, esquemas, importación, exportación, IA, MCP, conexiones y sincronización en TablePro, con las funciones de pago indicadas."
+    },
+    "og": {
+        "kicker": "Funciones",
+        "title": "Qué puedes hacer en TablePro"
+    },
+    "header": {
+        "title": "Qué puedes hacer en TablePro",
+        "lead": "La app para Mac es el entorno de trabajo completo y todas las páginas siguientes la describen primero. La app para iPhone y iPad es una app nativa independiente con un alcance menor; cada página termina con lo que ofrece en esos dispositivos."
+    },
+    "areas": {
+        "title": "Áreas de funciones",
+        "lead": "Cada área tiene una página con los detalles, el plan que requiere cada parte en el Mac y las limitaciones que conviene conocer.",
+        "paid": "{tier}: {features}",
+        "noPaid": "Sin funciones de pago",
+        "items": [
+            {
+                "slug": "querying",
+                "summary": "Autocompletado según el esquema, parámetros <code>:name</code>, historial con búsqueda, consultas guardadas, planes EXPLAIN comparables y resultados como gráficos o mapas."
+            },
+            {
+                "slug": "data-editing",
+                "summary": "Filtros y reglas de resaltado, claves foráneas que puedes seguir, ediciones que esperan al guardado, nivel de modo seguro por conexión y Data Rewind para valores sustituidos al guardar."
+            },
+            {
+                "slug": "schema",
+                "summary": "Cambios de estructura con vista previa DDL, diagrama ER de solo lectura, Comparar y sincronizar entre bases, Copiar a entre motores y Usuarios y roles."
+            },
+            {
+                "slug": "import-export",
+                "summary": "Importa archivos {importFormats}, exporta tablas y resultados, abre archivos de datos sin conexión y crea copias de motores compatibles con sus herramientas de volcado."
+            },
+            {
+                "slug": "ai-mcp",
+                "summary": "Asistente de IA opcional que usa el proveedor elegido y servidor MCP local que permite a clientes como Claude Code y Cursor usar tus conexiones guardadas."
+            },
+            {
+                "slug": "connections",
+                "summary": "Túneles SSH con hosts de salto, TLS, autenticación en la nube y comandos de túnel, contraseñas del Llavero o gestores de secretos y conexiones importadas de otras apps."
+            },
+            {
+                "slug": "sync-and-teams",
+                "summary": "iCloud Sync entre Mac, iPhone y iPad, archivos de conexión que puedes compartir y catálogo y biblioteca de equipo para compartir con tu grupo."
+            }
+        ]
+    },
+    "ios": {
+        "title": "iPhone y iPad",
+        "body": "TablePro para iPhone y iPad es una app independiente y gratuita, sin compras dentro de la app. Conecta por SSH o TLS, explora y edita filas y ejecuta consultas, con Atajos, widget de pantalla de inicio y Actividades en directo para consultas en ejecución. No tiene asistente de IA, edición de esquemas, Data Rewind ni Comparar y sincronizar.",
+        "link": "TablePro para iPhone y iPad"
+    },
+    "paid": {
+        "title": "Gratis y de pago",
+        "lead": "La app para Mac es gratis, sin periodo de prueba. Starter o Team añade las funciones siguientes al Mac y Team incluye todo lo de Starter. Conectar a cualquier motor compatible, el asistente de IA, el servidor MCP y el modo seguro no requieren licencia; la app para iPhone y iPad es gratis, sin compras dentro de la app.",
+        "caption": "Funciones de pago de la app para Mac, plan necesario y página que las describe",
+        "columns": {
+            "feature": "Feature",
+            "plan": "Plan",
+            "page": "Descrita en"
+        },
+        "pricing": "Ver precios"
+    },
+    "docs": {
+        "title": "Documentación",
+        "body": "Cada función tiene una página en la documentación de TablePro con todos sus ajustes y atajos.",
+        "link": "Leer la documentación",
+        "path": "/features/overview"
+    },
+    "labels": {
+        "number": {
+            "decimal": ",",
+            "group": "."
+        },
+        "tiers": {
+            "free": "Gratis",
+            "starter": "Starter",
+            "team": "Team"
+        },
+        "paidBadge": "{name}: plan {tier}",
+        "header": {
+            "paid": "Funciones de pago en esta página: {features}. Todo lo demás aquí es gratis.",
+            "paidItem": "{name} ({tier})",
+            "allFree": "Todo en esta página es gratis.",
+            "docs": "Leer la documentación"
+        },
+        "sections": {
+            "availability": "Dónde funciona",
+            "limits": "Limitaciones que conviene conocer",
+            "docs": "Documentación",
+            "related": "Relacionado"
+        },
+        "availability": {
+            "caption": "Cada capacidad de esta página, el plan necesario en el Mac y su disponibilidad en iPhone y iPad",
+            "capability": "Capacidad",
+            "free": "Gratis",
+            "notAvailable": "No disponible",
+            "plan": "Plan {tier}"
+        },
+        "download": {
+            "title": "Obtén TablePro",
+            "body": "TablePro es de código abierto y gratis. Los planes de pago añaden funciones opcionales a la app para Mac.",
+            "pricing": "Ver precios"
+        }
+    }
+}

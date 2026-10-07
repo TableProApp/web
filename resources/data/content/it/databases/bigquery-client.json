@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Google BigQuery per {devices}",
+        "description": "Interroga BigQuery con account di servizio, ADC o OAuth. Controlla byte e costi con Dry Run, limita Max Bytes Billed ed esporta su Cloud Storage."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Client Google BigQuery"
+    },
+    "engine": "bigquery",
+    "breadcrumb": "Google BigQuery",
+    "header": {
+        "title": "Client Google BigQuery per {devices}",
+        "lead": "Scrivi GoogleSQL sui dataset del progetto, verifica cosa scandirebbe una query prima di eseguirla e limita quanto un job può fatturare. Modifica le righe nella griglia ed esporta le tabelle su Cloud Storage senza passare dal Mac."
+    },
+    "asset": "mac-db-bigquery-dry-run",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Accedi a Google Cloud",
+            "paragraphs": [
+                "Scegli un <ui>Auth Method</ui> e inserisci il <ui>Project ID</ui>: l’ID, non il nome o il numero del progetto. <ui>Application Default Credentials</ui> legge il file creato da <code>gcloud auth application-default login</code>, quindi è il percorso più breve quando gcloud è già configurato. <ui>Service Account Key</ui> accetta un file di chiave .json o JSON incollato.",
+                "Google Account (OAuth) accede tramite il browser con un client OAuth desktop che crei in Google Cloud Console. Il token di aggiornamento viene conservato nel portachiavi, uno per client OAuth, quindi le connessioni successive non aprono il browser. Un client OAuth accede a un account Google, quindi un secondo account richiede un secondo client o un proprio token di aggiornamento.",
+                "Tutto passa dall’API REST di BigQuery, quindi non ci sono host, porta, URL di connessione o tunnel SSH. <ui>Location</ui> imposta la località di elaborazione inviata con ogni job. Scopri di più sull’<cloudAuth>accesso cloud</cloudAuth>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Esegui query e controlla i costi",
+            "paragraphs": [
+                "Prima di eseguire una query, scegli <ui>Dry Run (Cost)</ui> dal menu <explain>Explain</explain>. Il risultato elenca i byte che la query elaborerebbe e fatturerebbe, indica un eventuale risultato dalla cache e stima il costo in dollari USA; la query stessa non viene eseguita.",
+                "Dopo l’esecuzione, la barra di stato mostra byte elaborati, byte fatturati e una stima alla tariffa on demand, indicando i risultati dalla cache. Per un limite rigido, imposta <ui>Max Bytes Billed</ui> nella scheda Advanced della connessione: BigQuery rifiuta un job che fatturerebbe di più anziché eseguirlo.",
+                "Completamento, delimitazione e formattazione seguono GoogleSQL, con backtick intorno ai nomi delle tabelle, e le colonne STRUCT e ARRAY appaiono come JSON. I dataset svolgono il ruolo dei database: sono elencati nella barra laterale, <code>⌘K</code> passa tra essi e ogni scheda rimane sul dataset iniziale. Il job viene monitorato fino al timeout della query e poi annullato; con timeout No limit, TablePro attende la conclusione.",
+                "Celle, inserimenti ed eliminazioni passano dalla <editing>griglia</editing>. UPDATE e DELETE identificano una riga con la chiave primaria dichiarata; su una tabella senza chiave usano tutte le colonne tranne ARRAY, JSON e GEOGRAPHY, quindi le righe identiche cambiano insieme. Dichiara <code>PRIMARY KEY (…) NOT ENFORCED</code> per modificare esattamente una riga. Su una tabella partizionata, scrivi UPDATE e DELETE con un filtro di partizione nell’editor."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Dataset e DDL",
+            "paragraphs": [
+                "Il DDL si esegue dall’editor, per esempio <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> e <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> crea un dataset con <code>CREATE SCHEMA</code> e le tabelle possono essere rinominate dalla barra laterale. La scheda DDL legge ogni definizione da <code>INFORMATION_SCHEMA.TABLES</code> e clustering e partizionamento compaiono sotto Indexes."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "TablePro non offre importazione per BigQuery. <export>Esporta</export> una tabella o il risultato di una query sul Mac in {exportFormats}.",
+                "<backup>Server-Side Export</backup> esporta una tabella con <code>EXPORT DATA</code> su un prefisso <code>gs://</code> come CSV, Parquet o JSON delimitato da nuove righe, suddiviso in file sotto quel prefisso. Usa la tua connessione e i tuoi permessi, la schermata attende la conclusione e nessun file viene scritto sul Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "roles",
+            "question": "Quali ruoli IAM richiede una connessione BigQuery?",
+            "answer": "<code>roles/bigquery.user</code> per eseguire query, <code>roles/bigquery.dataViewer</code> per leggere dati e <code>roles/bigquery.dataEditor</code> per modificarli."
+        },
+        {
+            "id": "deep-pages",
+            "question": "Perché filtrare invece di scorrere molte pagine di una tabella?",
+            "answer": "Ogni pagina lontana dall’inizio scandisce di nuovo la tabella dall’inizio. Limita le righe con un filtro o una clausola WHERE anziché scorrere molte pagine."
+        }
+    ],
+    "related": [
+        {
+            "label": "Accesso cloud per AWS, Google e Microsoft",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "Esportazione, backup e Server-Side Export",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "Amazon Redshift, un altro data warehouse",
+            "href": "/redshift-client"
+        },
+        {
+            "label": "Snowflake, un altro data warehouse cloud",
+            "href": "/snowflake-client"
+        }
+    ]
+}

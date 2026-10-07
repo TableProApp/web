@@ -1,0 +1,232 @@
+{
+    "seo": {
+        "title": "스키마 편집, ER 다이어그램 및 데이터베이스 비교",
+        "description": "DDL 미리 보기로 테이블 구조를 변경하고 ER 다이어그램으로 스키마를 확인하며 두 데이터베이스를 비교해 동기화 스크립트를 만들고 다른 엔진으로 테이블을 복사합니다."
+    },
+    "og": {
+        "kicker": "스키마",
+        "title": "스키마, 비교 및 동기화"
+    },
+    "header": {
+        "title": "스키마, 비교 및 동기화",
+        "lead": "데이터베이스 구조를 변경하고 두 데이터베이스를 일치시키기 위한 기능입니다. DDL을 보며 테이블을 편집하고 테이블 관계를 확인하며 스테이징을 개발 환경에 맞추거나 다른 서버나 엔진으로 테이블을 복사합니다. 여기서 소개하는 기능은 Mac 앱에 있으며 마지막 절에서 iPhone과 iPad를 다룹니다.",
+        "docs": "/features/table-structure"
+    },
+    "sections": [
+        {
+            "id": "structure",
+            "title": "DDL을 먼저 확인하고 구조 변경",
+            "paragraphs": [
+                "Structure 탭에서 테이블의 열, 인덱스, 외래 키 및 CHECK 제약 조건을 그리드로 편집합니다. 변경은 저장할 때까지 대기하며 <ui>Preview SQL</ui>(<kbd>⌘⇧P</kbd>)로 실행 전에 ALTER TABLE 구문을 확인합니다. 항목 삭제, 유형 변경, NOT NULL 추가 또는 기본 키 변경은 연결의 안전 모드가 {macSafeModeDefault}여도 먼저 확인을 요청합니다.",
+                "인덱스는 <code>lower(email)</code> 같은 표현식 키를 사용할 수 있습니다. New Table도 같은 방식으로 테이블을 만들며 SQL 미리 보기를 실시간으로 표시합니다. 외래 키를 직접 변경할 수 없는 SQLite, libSQL, Turso 및 Cloudflare D1에서는 TablePro가 검토할 테이블 재구성 스크립트를 작성합니다. SQLite와 로컬 libSQL 파일에서는 확인 후 실행하고 Turso, 원격 libSQL 및 D1에서는 사용자가 실행해야 합니다."
+            ],
+            "engines": [
+                {
+                    "label": "구조는 읽기 전용",
+                    "list": "schemaReadOnly"
+                },
+                {
+                    "label": "일부 구조 변경만 지원",
+                    "list": "schemaPartial"
+                }
+            ],
+            "asset": "mac-structure-ddl-preview"
+        },
+        {
+            "id": "er-diagram",
+            "title": "테이블 관계 확인",
+            "paragraphs": [
+                "<ui>View ER Diagram</ui>은 현재 스키마의 테이블과 외래 키를 그리며 기본 키와 고유 키로 까마귀발 표기법의 카디널리티를 계산합니다. <code>product_tags</code> 같은 연결 테이블은 하나의 다대다 선으로 표시합니다. 다이어그램을 PNG로 내보내거나 이미지로 복사하거나 외래 키가 포함된 CREATE TABLE 구문을 SQL로 내보낼 수 있습니다.",
+                "다이어그램은 확인하고 공유하기 위한 스냅샷입니다. 테이블 변경은 캔버스가 아니라 Structure 탭에서 합니다."
+            ],
+            "asset": "mac-er-diagram"
+        },
+        {
+            "id": "objects",
+            "title": "사이드바의 루틴, 트리거 및 폴더",
+            "paragraphs": [
+                "엔진이 지원하면 사이드바의 각 스키마 아래에 프로시저, 함수 및 트리거를 나열하고 소스를 읽기 전용 탭에서 엽니다. 여기서 복사하거나 편집기로 열 수 있습니다. Redshift, CockroachDB, PGlite 및 SAP HANA는 이를 나열하지 않습니다. PostgreSQL 파티션은 부모 테이블 아래에 표시됩니다."
+            ],
+            "blocks": [
+                {
+                    "id": "table-folders",
+                    "title": "테이블과 뷰를 위한 폴더",
+                    "paragraphs": [
+                        "사이드바의 목록이나 트리에서 드래그하거나 <ui>Move to</ui>를 사용해 테이블과 뷰를 폴더로 묶습니다. 필터는 폴더 안도 검색합니다. 폴더는 TablePro에만 존재하고 서버에는 영향을 주지 않으며 iCloud Sync를 켜면 다른 Mac에도 동기화됩니다."
+                    ],
+                    "since": "0.77.0"
+                }
+            ]
+        },
+        {
+            "id": "compare-sync",
+            "title": "비교 및 동기화",
+            "paragraphs": [
+                "소스와 대상을 선택하면 Compare & Sync가 차이가 있는 모든 테이블을 나열합니다. 두 서버 또는 한 서버의 두 데이터베이스를 선택할 수 있으며 포함하도록 설정하면 뷰, 루틴 및 트리거도 비교합니다. 데이터 모드에서는 키로 행을 매칭하고 다른 값을 표시하며 테이블별 필터와 행 제한으로 큰 테이블의 일부만 비교할 수 있습니다.",
+                "생성된 스크립트는 외래 키 순서로 정렬되며 대상의 고유 클라이언트에 맞게 작성됩니다. 열 삭제, 유형 범위 축소 또는 행 삭제처럼 데이터를 파괴하는 구문은 해당 실행에서 허용할 때까지 보류됩니다. Read-Only로 설정한 연결은 대상으로 선택할 수 없습니다. 비교를 저장하면 한 번의 클릭으로 다시 실행할 수 있습니다."
+            ],
+            "paid": [
+                "compare-sync"
+            ],
+            "asset": "mac-compare-sync-structure"
+        },
+        {
+            "id": "copy",
+            "title": "Copy To, Duplicate Database 및 Transfer To",
+            "paragraphs": [
+                "Copy To는 테이블, 뷰, 루틴 및 트리거의 구조, 데이터 또는 둘 다를 저장된 연결의 다른 데이터베이스로 보냅니다. 다른 엔진도 지원합니다. 쓰기 전에 검토 화면에서 DDL, 테이블별 예상 행 수 및 변환되는 모든 열 유형을 표시합니다. 예를 들어 MariaDB의 <code>ENUM</code> 열은 허용 값 목록 없이 PostgreSQL의 <code>VARCHAR</code>로 변환됩니다. 테이블별 WHERE 절과 행 제한으로 테이블 일부만 복사할 수 있습니다.",
+                "Duplicate Database는 같은 연결에서 새 이름으로 전체 데이터베이스를 복사합니다. Transfer To는 열 매핑을 사용해 중간 파일 없이 다른 열린 연결의 기존 테이블로 행을 직접 보냅니다. 세 기능 모두 무료입니다."
+            ],
+            "asset": "mac-copy-to-review"
+        },
+        {
+            "id": "administer",
+            "title": "사용자, 세션 및 유지 관리",
+            "paragraphs": [
+                "PostgreSQL의 VACUUM과 REINDEX, MySQL의 OPTIMIZE와 CHECK 같은 테이블 유지 관리 작업은 실행 전에 SQL을 보여 줍니다. 엔진이 지원하면 사이드바에서 데이터베이스와 스키마를 만들고 삭제하고 이름을 바꿀 수 있습니다."
+            ],
+            "blocks": [
+                {
+                    "id": "users-roles",
+                    "title": "사용자 및 역할",
+                    "paragraphs": [
+                        "Users & Roles는 서버부터 개별 열까지 각 사용자의 권한을 트리로 표시합니다. 권한 부여와 취소는 변경 사항으로 대기하고 실행 전에 SQL을 보여 주므로 GRANT를 직접 작성할 필요가 없습니다."
+                    ],
+                    "engines": [
+                        {
+                            "label": "사용자 및 역할",
+                            "list": "usersRoles"
+                        }
+                    ],
+                    "asset": "mac-users-roles-mysql"
+                },
+                {
+                    "id": "server-dashboard",
+                    "title": "서버 대시보드",
+                    "paragraphs": [
+                        "Server Dashboard는 선택한 주기로 갱신되는 실시간 세션, 서버 지표 및 느린 쿼리를 보여 줍니다. 엔진이 허용하면 해당 행에서 실행 중인 쿼리를 취소하거나 세션을 종료할 수 있으며 두 작업 모두 연결의 안전 모드를 거칩니다. SQLite, DuckDB 및 Typesense에서는 지표만 표시합니다."
+                    ],
+                    "engines": [
+                        {
+                            "label": "서버 대시보드",
+                            "list": "dashboard"
+                        }
+                    ],
+                    "asset": "mac-server-dashboard-postgresql"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone과 iPad에서",
+            "paragraphs": [
+                "iPhone과 iPad 앱은 테이블의 열, 인덱스 및 외래 키를 읽기 전용으로 표시합니다. 연결이 Read-Only가 아니라면 SQL 엔진의 테이블 목록에서 테이블을 비우거나 삭제할 수 있습니다.",
+                "구조 편집, ER 다이어그램, Compare & Sync, Copy To, Users & Roles 및 Server Dashboard는 Mac 앱에서만 사용할 수 있습니다."
+            ],
+            "links": [
+                {
+                    "label": "iPhone과 iPad의 테이블",
+                    "href": "/ios#browse"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "DDL 미리 보기를 통한 구조 편집",
+            "ios": "partial",
+            "iosNote": "열, 인덱스 및 외래 키는 읽기 전용"
+        },
+        {
+            "label": "새 테이블",
+            "ios": "no"
+        },
+        {
+            "label": "테이블 비우기 및 삭제",
+            "ios": "yes"
+        },
+        {
+            "label": "ER 다이어그램",
+            "ios": "no"
+        },
+        {
+            "label": "루틴, 트리거 및 테이블 폴더",
+            "ios": "no"
+        },
+        {
+            "label": "비교 및 동기화",
+            "paid": "compare-sync",
+            "ios": "no"
+        },
+        {
+            "label": "Copy To, Duplicate Database 및 Transfer To",
+            "ios": "no"
+        },
+        {
+            "label": "사용자 및 역할",
+            "ios": "no"
+        },
+        {
+            "label": "서버 대시보드 및 테이블 유지 관리",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Compare & Sync는 같은 엔진의 두 데이터베이스 사이에서만 구조 스크립트를 작성하며 MySQL과 MariaDB는 같은 엔진으로 간주합니다. 다른 조합은 읽기 전용으로 비교하고 MongoDB 구조에는 스크립트를 생성하지 않습니다. 엔진 간 데이터 동기화 시 값의 기록 방식을 확인하라는 경고를 표시합니다. 다른 엔진으로 테이블을 옮기려면 Copy To를 사용하세요.",
+        "열 순서를 변경하면 SQLite와 로컬 libSQL 파일에서는 확인 후 테이블을 재구성합니다. PostgreSQL, Turso, 원격 libSQL 및 Cloudflare D1에서는 TablePro가 재구성 스크립트를 작성하고 실행은 사용자에게 맡깁니다.",
+        "ER 다이어그램은 읽기 전용이며 스키마 설계 도구가 아닙니다.",
+        "Server Dashboard에서 볼 수 있는 세션과 쿼리 텍스트는 연결한 계정의 권한에 따라 달라집니다."
+    ],
+    "docs": [
+        {
+            "label": "테이블 구조",
+            "docs": "/features/table-structure"
+        },
+        {
+            "label": "ER 다이어그램",
+            "docs": "/features/er-diagram"
+        },
+        {
+            "label": "프로시저, 함수 및 트리거",
+            "docs": "/features/routines-triggers"
+        },
+        {
+            "label": "비교 및 동기화",
+            "docs": "/features/compare-sync"
+        },
+        {
+            "label": "복사 및 복제",
+            "docs": "/features/copy-objects"
+        },
+        {
+            "label": "사용자 및 역할",
+            "docs": "/features/users-roles"
+        },
+        {
+            "label": "서버 대시보드",
+            "docs": "/features/server-dashboard"
+        },
+        {
+            "label": "테이블 작업 및 유지 관리",
+            "docs": "/features/table-operations"
+        }
+    ],
+    "related": [
+        {
+            "label": "가져오기, 내보내기 및 데이터 파일",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "TablePro의 PostgreSQL",
+            "href": "/postgresql-client"
+        },
+        {
+            "label": "TablePro의 MySQL 및 MariaDB",
+            "href": "/mysql-client"
+        },
+        {
+            "label": "유료 플랜의 추가 기능",
+            "href": "/pricing#features"
+        }
+    ]
+}

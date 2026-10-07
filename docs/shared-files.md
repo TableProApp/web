@@ -47,13 +47,14 @@ string arrives as a prop, so each app passes its own words in its own language.
 | --- | --- | --- |
 | `resources/css/tokens.css` | `aeba9a5b0dbcadc2285968462c8973217be6a03f349aa8d317f6698ccc5d6a40` | Colour tokens for light and dark, `color-scheme`, the type roles and their `--lh-*` line heights per language, radii, motion, the default border colour, the focus ring, forced colours, the ThemeControl icon and segment states, reduced motion (design-system §2–§4, §7) |
 | `resources/css/fonts.css` | `1ca1fc06d1978f008deb7c1d3e0b6421d11df39732612898e8776941228be6c0` | Inter (optical size) and IBM Plex Mono 400, declared latin-ext, vietnamese, latin (architecture §1.11) |
+| `resources/css/international.css` | `1d79b00ee7cf413b35cafd204a8444e97cc5e398bf34b2f4db0679fbe86c0c8c` | Native Japanese, Korean, simplified and traditional Chinese font stacks in both apps |
 | `resources/views/partials/head-theme.blade.php` | `10d0c109dc1b41f732519b94fa2dfa302fab590dc80089f419b48d36a3710110` | The pre-paint theme script, verbatim from design-system §2.8: light by default, `theme` in `localStorage`, `data-theme-choice`, one `theme-color` |
 | `tests/Support/vi-forbidden-variants.php` | `fcf40949323de01bed0be38a53d89256184e6c823acedfd0e0a91513690caa69` | The glossary's forbidden Vietnamese variants (sitemap §E.10), read by `Localization/ContentParityTest` here and `Localization/LangParityTest` in the account app |
 | `resources/js/lib/theme.ts` | `2c8b2af95cb12329a87a11743281af2506917ccbd57cc109629b51e4505d9765` | Reading, applying and syncing the theme choice across tabs and both apps (`theme` key; `tablepro:theme-change` event) |
 | `resources/js/components/shared/theme-control.tsx` | `3f093a0c661f07088ca94154d303a5c91b0a4fd47d9f71e5af6567d834245884` | ThemeControl, `menu` and `segmented` variants; labels arrive as props |
 | `resources/js/lib/consent.ts` | `1c276dfffeb65b67e01601e2d17bffeb854542573797c9c69f4bc8e21ae51aeb` | The analytics consent record (`tablepro:analytics-consent`), applying and withdrawing it, and the "Cookie settings" reopen event |
 | `resources/js/components/shared/consent-bar.tsx` | `e52f45bc0a981a7f1951130d7f3568ad5959168e3d76834835bda61e7581d33c` | The consent bar: one question, a privacy link, equal Allow and Decline; labels and the privacy URL arrive as props; `data-consent-bar` lets the chat launcher keep clear of it |
-| `resources/js/lib/crisp.ts` | `c4ec29c33038d47153c6768376aeb23ba10d760f79b06bc8f739a6ce3d1ed2f9` | Chat on every page: the loader arrives after the load event and an idle moment, a chat button opens it, and the launcher hides while the consent bar covers its corner |
+| `resources/js/lib/crisp.ts` | `26ee95af1babbf159a49021fd3c5316bd0ed64eaa385df654ba33389e5fd3faa` | Chat on every page: the loader arrives after the load event and an idle moment, a chat button opens it, and the launcher hides while the consent bar covers its corner |
 
 ### UI primitives
 

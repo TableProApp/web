@@ -1,0 +1,83 @@
+{
+    "seo": {
+        "title": "Cliente Elasticsearch para {devices}",
+        "description": "Envía Query DSL, explora índices como tablas, filtra, ordena y edita documentos por _id, con autenticación por contraseña o clave API."
+    },
+    "og": {
+        "kicker": "Bases de datos",
+        "title": "Cliente Elasticsearch"
+    },
+    "engine": "elasticsearch",
+    "breadcrumb": "Elasticsearch",
+    "header": {
+        "title": "Cliente Elasticsearch para {devices}",
+        "lead": "Una consola para solicitudes Query DSL y una cuadrícula que lee cada índice como tabla y edita documentos por su <code>_id</code>. Ninguna usa SQL: cada acción es una solicitud REST al clúster."
+    },
+    "asset": "mac-db-elasticsearch-console",
+    "links": {
+        "filters": "/features/data-editing#filters",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conectar",
+            "paragraphs": [
+                "Introduce el host y el puerto REST del clúster y elige un <ui>Método de autenticación</ui>. Usuario y contraseña envía HTTP Basic. Clave API envía el campo en una cabecera <code>Authorization: ApiKey</code>; pega el valor <code>encoded</code> que devuelve la solicitud de creación de clave API. La opción Ninguna sirve para un clúster de desarrollo con la seguridad desactivada. Cada conexión accede a un clúster, por lo que no hay campo Base de datos.",
+                "Las conexiones nuevas empiezan con SSL Desactivado, es decir, HTTP sin cifrar. Los demás modos usan HTTPS: Preferido y Obligatorio (omitir verificación) aceptan certificados autofirmados; Verificar CA y Verificar identidad los comprueban. Elasticsearch 8.x activa seguridad y TLS por defecto, así que un clúster 8.x suele necesitar HTTPS y credenciales."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Índices y consola Query DSL",
+            "paragraphs": [
+                "La consola acepta un método, una ruta y un cuerpo JSON opcional, como Kibana Dev Tools: por ejemplo, <code>GET /orders/_search</code> con una consulta <code>match</code>. Los resultados de búsqueda vuelven como filas; las solicitudes <code>_cat</code> con <code>format=json</code> y otras respuestas de tipo array se convierten en tabla; lo demás aparece como JSON formateado. El endpoint <code>_sql</code> no es accesible.",
+                "La barra lateral enumera los índices como tablas y oculta nombres que empiezan por punto. Las columnas proceden del mapping: los campos de objeto se aplanan en rutas como <code>address.city</code>, un campo anidado tiene una columna JSON para su array y otra por hoja; cada documento incluye <code>_id</code>, <code>_index</code> y <code>_score</code>.",
+                "Los <filters>filtros de columna</filters> se convierten en consultas <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> y <code>exists</code>; la fila de filtro SQL sin procesar acepta sintaxis Lucene, como <code>name:Widget</code>, enviada como <code>query_string</code>. Ordenar un campo <code>text</code> usa su subcampo <code>.keyword</code> si existe en el mapping.",
+                "Las ediciones de la cuadrícula se convierten en llamadas REST por <code>_id</code>: <code>_update</code> para modificar un documento, <code>_doc</code> para crearlo o borrarlo. Escribe un <code>_id</code> en una fila nueva para nombrar el documento. Cambia un array anidado en su columna JSON; un valor escrito en una columna hoja detiene el guardado, indica la columna y no envía nada."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Mappings",
+            "paragraphs": [
+                "Los mappings son de solo lectura en TablePro. No se ofrece Vaciar, porque lo más parecido en Elasticsearch, <code>_delete_by_query</code>, es asíncrono e informa de conflictos por documento; envíalo desde la consola. Eliminar un índice desde la barra lateral envía la solicitud DELETE que muestra la confirmación."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Exportar",
+            "paragraphs": [
+                "No hay importación. <export>Exportar</export> lee un índice entero con un punto en el tiempo y <code>search_after</code>, sin el límite de la ventana de resultados, y escribe CSV, JSON o XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "deep-paging",
+            "question": "¿Puedo paginar más allá de la ventana de resultados?",
+            "answer": "Sí. Más allá de la ventana predeterminada de Elasticsearch, la paginación cambia a <code>search_after</code> con un punto en el tiempo. El cambio se produce en el valor predeterminado; un índice con <code>max_result_window</code> reducido da error antes. Restablece el ajuste al valor predeterminado."
+        },
+        {
+            "id": "sort-id",
+            "question": "¿Por qué ordenar por _id mantiene el mismo orden?",
+            "answer": "Elasticsearch no puede ordenar por <code>_id</code> ni por un campo <code>text</code> sin subcampo <code>.keyword</code>, así que TablePro omite esa columna del orden. Añade un subcampo keyword al mapping o usa un campo keyword para ordenar."
+        }
+    ],
+    "related": [
+        {
+            "label": "Typesense y Weaviate, los otros motores de búsqueda",
+            "href": "/databases#search"
+        },
+        {
+            "label": "Explora y edita datos de forma segura",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Lenguajes de consulta distintos de SQL",
+            "href": "/features/querying#other-languages"
+        }
+    ]
+}

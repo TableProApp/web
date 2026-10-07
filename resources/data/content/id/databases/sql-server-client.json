@@ -1,0 +1,137 @@
+{
+    "seo": {
+        "title": "SQL Server untuk {devices}",
+        "description": "Jalankan T-SQL dengan batch GO dan keluaran PRINT, masuk memakai login SQL, Kerberos, atau Microsoft Entra ID, dan cadangkan SQL Server ke .bacpac."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien SQL Server"
+    },
+    "engine": "sqlserver",
+    "breadcrumb": "SQL Server",
+    "header": {
+        "title": "Klien SQL Server untuk {devices}",
+        "lead": "Jalankan skrip T-SQL per batch, dengan GO dan PRINT ditangani seperti SQL Server Management Studio, lalu masuk dengan login SQL Server, Kerberos, atau akun kerja Microsoft Entra ID. Server pada Windows, Linux, Docker, dan Azure SQL Database terhubung dengan cara yang sama."
+    },
+    "asset": "mac-db-sqlserver-script",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Masukkan host dan port TCP, lalu pilih <ui>Authentication</ui>, dan formulir menyesuaikan: login serta kata sandi SQL Server, Windows Authentication melalui Kerberos, atau Microsoft Entra ID. Isi Database untuk login yang terkait dengan satu database, seperti contained user Azure SQL.",
+                "Kerberos menggunakan tiket yang sudah ada dalam cache kredensial atau meminta tiket dengan principal dan kata sandi yang Anda masukkan. Hubungkan menggunakan nama host, bukan alamat IP, karena tiket diterbitkan untuk SPN terdaftar server. TablePro tidak pernah menjalankan <code>kinit</code> atau mengedit <code>/etc/krb5.conf</code>.",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> masuk melalui alur kode perangkat yang mematuhi autentikasi multifaktor dan Conditional Access. Anda mendaftarkan aplikasi di Azure dan memasukkan client ID; token tetap di keychain login, ditandai khusus perangkat, dan diperbarui di latar belakang.",
+                "Koneksi baru menggunakan Preferred, yang pada SQL Server hanya mengenkripsi login. Pilih Required atau mode lebih ketat untuk mengenkripsi seluruh sesi; Verify CA dan Verify Identity memeriksa sertifikat terhadap root sistem macOS. TablePro juga dapat menjalankan Cloud SQL Auth Proxy untuk Google Cloud SQL, dan <network>tunnel SSH</network> mengakses server pada jaringan pribadi."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Skrip, batch, dan perubahan",
+            "paragraphs": [
+                "Skrip dikirim ke server satu batch per waktu, dipisahkan pada setiap baris yang hanya berisi <code>GO</code>, seperti sqlcmd, dan <code>GO 5</code> menjalankan batch sebelumnya lima kali. Setiap kumpulan hasil dibuka dalam tab sendiri, dan keluaran <code>PRINT</code> serta pesan informasi ditampilkan pada tampilan Output.",
+                "Masukkan <code>BEGIN TRAN</code> dan <code>COMMIT</code> dalam skrip jika kegagalan harus membatalkan batch sebelumnya; skrip yang meninggalkan transaksi terbuka berakhir dengan pemberitahuan. Proses berhenti pada batch pertama yang gagal, dan kesalahan menyebutkan barisnya di editor.",
+                "Setiap sesi dibuka dengan opsi SET yang diperlukan indeks berfilter, view berindeks, dan indeks pada kolom terhitung, seperti <code>ANSI_NULLS</code> dan <code>QUOTED_IDENTIFIER</code> aktif. Ini juga berarti <code>col = NULL</code> tidak cocok dengan apa pun: bandingkan dengan <code>IS NULL</code>.",
+                "Tabel berada di bawah skemanya di bilah samping, dan <code>Cmd+K</code> mengganti database pada koneksi yang sama tanpa menghubungkan ulang. Perubahan baris ditampung dengan <editing>Preview SQL</editing>, baris baru menyerahkan kolom IDENTITY kepada server, dan nilai <code>nvarchar(max)</code> diterima utuh."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Skema",
+            "paragraphs": [
+                "<structure>Tab Structure</structure> menampung perubahan kolom, indeks, foreign key, dan constraint, serta menampilkan T-SQL sebelum berjalan. Skema dapat dihapus dari bilah samping; SQL Server menolak menghapus skema yang masih berisi objek. Buat skema dengan CREATE SCHEMA dalam editor.",
+                "<compareSync>Compare & Sync</compareSync>, bagian dari paket {compareSyncTier}, membandingkan dua skema SQL Server atau datanya, lalu menyimpan skrip dengan baris <code>GO</code> setelah setiap pernyataan, siap untuk sqlcmd atau SQL Server Management Studio."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Pemantauan dan pencadangan",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> menampilkan sesi pengguna, uptime, dan ukuran database, mencantumkan sesi lain serta kueri yang berjalan lebih dari satu detik, dan menghentikan sesi dengan <ui>Terminate Session</ui>. Cancel Query tidak tersedia pada SQL Server.",
+                "<backup>Backup Dump</backup> menulis <code>.bacpac</code> menggunakan {dumpTool} yang Anda unduh dari Microsoft, dan Restore Dump memuatnya ke database kosong. SqlPackage hanya menerima kata sandi pada baris perintah, tempat proses lain di Mac dapat membacanya, sehingga TablePro meminta konfirmasi sebelum dimulai. Autentikasi Windows atau Entra menghindari pengiriman kata sandi."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "<importData>Impor</importData> berkas {importFormats}. Berkas <code>.sql</code> dengan baris <code>GO</code> berjalan per batch, seperti sqlcmd. Ekspor tabel atau hasil sebagai {exportFormats}; ekspor SQL mengakhiri setiap pernyataan dengan baris <code>GO</code>, sehingga setiap pernyataan berjalan sebagai batch sendiri."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone dan iPad",
+            "paragraphs": [
+                "Di iPhone dan iPad, masuk dengan login SQL Server, telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan T-SQL pada tab Query. Windows Authentication tidak tersedia. Koneksi Microsoft Entra ID berasal dari Mac melalui iCloud Sync atau berkas koneksi ekspor, dan Anda masuk ke Microsoft saat membukanya."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "ssms",
+                "text": "SQL Server Management Studio adalah alat resmi Microsoft untuk SQL Server dan Azure SQL. Pilih untuk administrasi yang tidak dicakup TablePro, seperti job SQL Server Agent, grup ketersediaan Always On, statistik kueri langsung, serta alat optimasi performanya.",
+                "notes": [
+                    "ssms-github-copilot-component"
+                ]
+            },
+            {
+                "product": "azure-data-studio",
+                "text": "Azure Data Studio adalah editor kueri Microsoft untuk SQL Server dan Azure SQL, dengan ekstensi untuk tugas seperti SQL Server Agent dan Profiler.",
+                "notes": [
+                    "ads-retired-successor"
+                ]
+            }
+        ],
+        "notes": {
+            "ssms-github-copilot-component": "GitHub Copilot dalam SQL Server Management Studio adalah komponen terpisah yang Anda tambahkan menggunakan Visual Studio Installer.",
+            "ads-retired-successor": "Microsoft telah menghentikannya tanpa pembaruan atau perbaikan keamanan lagi, dan mengarahkan pengguna ke Visual Studio Code dengan ekstensi MSSQL yang membuka kueri, skrip, dan proyek database yang sama tanpa konversi."
+        }
+    },
+    "faq": [
+        {
+            "id": "azure-sql",
+            "question": "Apakah TablePro mendukung Azure SQL Database?",
+            "answer": "Ya. Gunakan <code>yourserver.database.windows.net</code> sebagai host, atur SSL ke Required atau lebih ketat, lalu masuk dengan login SQL atau Microsoft Entra ID. Contained user juga memerlukan bidang Database terisi."
+        },
+        {
+            "id": "declare",
+            "question": "Mengapa skrip menyatakan “Must declare the scalar variable”?",
+            "answer": "Pernyataan yang membaca variabel berjalan pada batch berbeda dari <code>DECLARE</code>-nya: ada baris <code>GO</code> di antaranya, atau <code>Cmd+Enter</code> hanya menjalankan pernyataan pada kursor. Pilih kedua pernyataan atau jalankan seluruh skrip."
+        },
+        {
+            "id": "freetds",
+            "question": "Apakah saya memerlukan FreeTDS atau driver ODBC?",
+            "answer": "Tidak. Driver dibuat menggunakan FreeTDS dan sudah menyertakannya, sehingga tidak ada pemasangan tambahan dan <code>freetds.conf</code> Anda tidak dibaca. Hanya Backup Dump dan Restore Dump yang memerlukan alat sendiri: {dumpTool}."
+        }
+    ],
+    "related": [
+        {
+            "label": "Koneksi, tunnel, dan autentikasi",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "Skema, perbandingan, dan sinkronisasi",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Impor, ekspor, dan pencadangan",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "TablePro untuk iPhone dan iPad",
+            "href": "/ios#security"
+        }
+    ]
+}

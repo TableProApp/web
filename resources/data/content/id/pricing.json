@@ -1,0 +1,100 @@
+{
+    "seo": {
+        "title": "Harga",
+        "description": "TablePro gratis. Starter dan Team menambah fitur opsional di Mac dengan pembayaran bulanan, tahunan, atau sekali bayar. Harga dalam dolar AS."
+    },
+    "og": {
+        "kicker": "Harga",
+        "title": "Gratis digunakan. Paket berbayar menambahkan fitur opsional."
+    },
+    "header": {
+        "title": "Harga",
+        "lead": "Aplikasi Mac gratis diunduh dan digunakan, tanpa masa uji coba atau batas waktu. Paket Starter atau Team menambahkan fitur opsional. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi."
+    },
+    "plans": {
+        "title": "Paket"
+    },
+    "features": {
+        "title": "Tambahan dari paket berbayar",
+        "lead": "Hanya fitur berikut yang memerlukan paket berbayar, dan semuanya tersedia di aplikasi Mac. Team mencakup semua fitur Starter. Terhubung ke semua mesin yang didukung tidak memerlukan lisensi, begitu juga asisten AI, server MCP, dan Mode Aman."
+    },
+    "license": {
+        "title": "Cara kerja lisensi",
+        "items": {
+            "macs": {
+                "term": "Mac",
+                "body": "Lisensi Starter dapat diaktifkan di hingga {activations} Mac. Di Team, setiap seat adalah satu Mac yang diaktifkan, termasuk milik pembeli. Aplikasi iPhone dan iPad tidak pernah menggunakan lisensi atau seat."
+            },
+            "activate": {
+                "term": "Aktivasi",
+                "body": "Masukkan kunci lisensi di TablePro pada Mac Anda, melalui <ui>Settings > License</ui>. Untuk menggunakannya di Mac lain, hapus Mac lama di halaman Mesin dalam <account>akun Anda</account>."
+            },
+            "checks": {
+                "term": "Pemeriksaan",
+                "body": "TablePro memeriksa tanda tangan lisensi setiap kali dibuka dan mengonfirmasi lisensi ke server TablePro setiap {revalidateDays} hari. Jika Mac tidak dapat mengakses server, fitur berbayar tetap berfungsi selama {graceDays} hari. Konfirmasi mengirim kunci lisensi, hash ID mesin, nama Mac, serta versi aplikasi dan macOS."
+            },
+            "ends": {
+                "term": "Saat paket berakhir",
+                "body": "Jika paket bulanan atau tahunan berakhir, fitur berbayar berhenti dan fitur aplikasi lainnya tetap berfungsi seperti dalam paket Gratis."
+            },
+            "oneTime": {
+                "term": "Sekali bayar",
+                "body": "Pembelian sekali bayar dibayar satu kali dan tidak memiliki tanggal kedaluwarsa."
+            }
+        },
+        "lapse": {
+            "summary": "Perilaku setiap fitur berbayar saat paket berakhir",
+            "intro": "Setiap fitur berbayar berhenti dengan cara tersendiri:"
+        },
+        "terms": "<terms>Ketentuan layanan</terms> menjelaskan apa yang diizinkan oleh lisensi."
+    },
+    "billing": {
+        "title": "Penagihan",
+        "merchant": "{merchant} adalah merchant of record untuk TablePro. Penyedia ini menjual paket kepada Anda, menerima pembayaran, menghitung pajak penjualan atau PPN berdasarkan alamat penagihan, serta mengirim tanda terima dan faktur lewat email. Harga tercantum dalam dolar AS.",
+        "renewal": "Paket bulanan dan tahunan diperpanjang otomatis hingga Anda membatalkannya di <account>akun Anda</account> atau portal pelanggan {merchant}. Setelah dibatalkan, paket tetap berfungsi hingga akhir periode yang dibayar dan dapat dilanjutkan sebelum itu. Jika pembayaran perpanjangan gagal, {merchant} mengirim email berisi tautan untuk memperbarui kartu dan mencoba pembayaran kembali selama sekitar tiga minggu.",
+        "portal": "Untuk pembelian melalui {merchant}, faktur, tanda terima, metode pembayaran, dan pembatalan tersedia di <portal>portal pelanggan {merchant}</portal>, tempat Anda masuk dengan alamat email yang digunakan saat checkout. <account>Penagihan dan faktur</account> dalam akun Anda juga membuka portal tersebut."
+    },
+    "refunds": {
+        "title": "Pengembalian dana",
+        "body": "Setiap paket dapat dikembalikan dananya dalam {refundDays} hari setelah pembelian, atau untuk paket tahunan, setelah perpanjangan terbaru. <link>Kebijakan pengembalian dana</link> menjelaskan cara mengajukan dan dampaknya pada lisensi."
+    },
+    "team": {
+        "title": "Paket Team",
+        "seats": "Paket Team dihargai per seat, dari {min} hingga {max} seat. Setiap seat adalah satu Mac yang diaktifkan, termasuk milik pembeli, sehingga orang yang bekerja di dua Mac menggunakan dua seat.",
+        "invites": "Pembeli paket mengelola tim dalam akunnya. Ia mengundang rekan tim lewat email; setiap undangan adalah kode sekali pakai, kedaluwarsa setelah satu minggu, dan memerlukan seat kosong.",
+        "changes": "Pada paket Team bulanan atau tahunan, Anda mengubah jumlah seat dalam akun dan selisihnya muncul di faktur berikutnya. Untuk menambah seat pada pembelian Team sekali bayar, kirim email ke <email>{email}</email>.",
+        "account": "Kelola tim dalam akun Anda"
+    },
+    "openSource": {
+        "title": "Sumber terbuka",
+        "body": "TablePro bersumber terbuka di bawah AGPLv3, termasuk kode fitur berbayarnya. Build dari kode sumber memeriksa lisensi dengan cara yang sama seperti aplikasi yang dirilis.",
+        "agpl": "AGPL tidak memberikan syarat untuk menjalankan TablePro, termasuk di tempat kerja, dalam perusahaan sebesar apa pun. Syaratnya berlaku untuk distribusi dan penawaran versi yang dimodifikasi kepada pihak lain melalui jaringan.",
+        "github": "Lihat di GitHub"
+    },
+    "faq": {
+        "title": "Pertanyaan tentang paket",
+        "more": "Pertanyaan lain tentang paket dan lisensi",
+        "items": {
+            "free": {
+                "question": "Apakah TablePro gratis?",
+                "answer": "Ya. Aplikasi Mac gratis diunduh dan digunakan, tanpa masa uji coba atau batas waktu. Paket Starter atau Team menambahkan fitur opsional ke aplikasi Mac. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi."
+            },
+            "ios-license": {
+                "question": "Apakah aplikasi iPhone dan iPad memerlukan lisensi?",
+                "answer": "Tidak. Aplikasi ini tidak memiliki fitur berbayar dan tidak pernah meminta lisensi. Sinkronisasi iCloud gratis di iPhone dan iPad; untuk sinkronisasi dengan Mac, Mac memerlukan Starter atau Team."
+            },
+            "seats": {
+                "question": "Apakah satu seat Team berarti satu orang?",
+                "answer": "Tidak. Satu seat adalah satu Mac yang diaktifkan. Orang yang bekerja di dua Mac menggunakan dua seat."
+            },
+            "offline": {
+                "question": "Apakah fitur berbayar memerlukan internet?",
+                "answer": "Hanya sesekali. Lisensi dikonfirmasi ke server TablePro setiap {revalidateDays} hari, dan fitur berbayar tetap berfungsi selama {graceDays} hari tanpa koneksi."
+            },
+            "lost-key": {
+                "question": "Di mana kunci lisensi saya?",
+                "answer": "Kunci ada dalam email yang Anda terima setelah checkout. Anda juga dapat masuk ke <account>akun Anda</account> dengan alamat email pembelian: kunci Anda ada di sana, beserta setiap Mac tempat lisensi diaktifkan."
+            }
+        }
+    }
+}

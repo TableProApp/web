@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\File;
+use App\Support\Localization\Locales;
 
 /**
  * Search titles and descriptions fit the lengths the design documents set: a
@@ -28,9 +29,11 @@ function seoLengthsJson(string $path): array
  */
 function seoLengthsJoin(array $names, string $locale): string
 {
-    $last = $locale === 'vi' ? ' và ' : ' and ';
+    $catalog = File::get(resource_path("js/i18n/messages/{$locale}/common.ts"));
+    preg_match('/[\"\']?list[\"\']?:\s*\{\s*[\"\']?separator[\"\']?:\s*([\"\'])(.*?)\1,\s*[\"\']?last[\"\']?:\s*([\"\'])(.*?)\3/s', $catalog, $match);
+    expect($match)->toHaveCount(5, "{$locale} has no literal list separators");
 
-    return count($names) < 2 ? implode('', $names) : implode(', ', array_slice($names, 0, -1)) . $last . end($names);
+    return count($names) < 2 ? implode('', $names) : implode($match[2], array_slice($names, 0, -1)) . $match[4] . end($names);
 }
 
 /**
@@ -42,7 +45,7 @@ function seoLengthsPages(): array
 {
     $pages = [];
 
-    foreach (['en', 'vi'] as $locale) {
+    foreach (Locales::codes() as $locale) {
         $root = resource_path("data/content/{$locale}");
 
         foreach (File::allFiles($root) as $file) {
@@ -105,7 +108,7 @@ it('renders every title in 60 characters or fewer', function (): void {
     }
 });
 
-it('keeps every description within 155 characters in English and 160 in Vietnamese', function (): void {
+it('keeps every description within the search snippet budget', function (): void {
     foreach (seoLengthsPages() as [$locale, $path, $copy]) {
         $limit = $locale === 'vi' ? 160 : 155;
         $length = mb_strlen((string) $copy['seo']['description']);

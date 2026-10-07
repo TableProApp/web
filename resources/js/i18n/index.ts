@@ -3,10 +3,10 @@
  *
  * The current locale comes from the shared `locale` prop on every render.
  * There is no module-level "current locale": the SSR process renders requests
- * for both languages concurrently, so a global would leak one reader's
+ * for different languages concurrently, so a global would leak one reader's
  * language into another's page.
  *
- * Both locales' UI catalogs ship in the bundle. They are small; page copy
+ * The locales' UI catalogs ship in the bundle. They are small; page copy
  * arrives per request as the `content` prop instead.
  */
 import { createElement, Fragment, type ReactNode } from 'react';
@@ -14,6 +14,16 @@ import { usePage } from '@inertiajs/react';
 import localeTable from '@data/locales.json';
 import en from './messages/en/index.ts';
 import vi from './messages/vi/index.ts';
+import es from './messages/es/index.ts';
+import de from './messages/de/index.ts';
+import fr from './messages/fr/index.ts';
+import ja from './messages/ja/index.ts';
+import pt_BR from './messages/pt-BR/index.ts';
+import zh_Hans from './messages/zh-Hans/index.ts';
+import ko from './messages/ko/index.ts';
+import zh_Hant from './messages/zh-Hant/index.ts';
+import it from './messages/it/index.ts';
+import id from './messages/id/index.ts';
 import { interpolate, plural as pluralize, splitTags, type Values } from './core.ts';
 import * as format from './format.ts';
 import { localePath as toLocalePath, resolveLink, type ResolvedLink } from './paths.ts';
@@ -28,7 +38,7 @@ export const LOCALES: LocaleTable = localeTable;
 
 export const DEFAULT_LOCALE = localeTable.default as Locale;
 
-const catalogs: Record<Locale, Messages> = { en, vi };
+const catalogs: Record<Locale, Messages> = { en, vi, es, de, fr, ja, 'pt-BR': pt_BR, 'zh-Hans': zh_Hans, ko, 'zh-Hant': zh_Hant, it, id };
 
 export function isLocale(value: unknown): value is Locale {
     return typeof value === 'string' && Object.hasOwn(catalogs, value);

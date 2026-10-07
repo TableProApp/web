@@ -1,0 +1,87 @@
+{
+    "seo": {
+        "title": "etcd GUI per {devices}",
+        "description": "Esplora chiavi etcd per prefisso, modifica valori e lease nella griglia ed esegui get, put, watch e lease in stile etcdctl, con TLS e tunnel SSH."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Interfaccia grafica etcd"
+    },
+    "engine": "etcd",
+    "breadcrumb": "etcd",
+    "header": {
+        "title": "Interfaccia grafica etcd per {devices}",
+        "lead": "Esplora le chiavi di un cluster per prefisso, modifica valori e lease nella griglia ed esegui nell’editor comandi in stile etcdctl come <code>get --prefix</code>, <code>lease grant</code> e <code>member list</code>."
+    },
+    "asset": "mac-db-etcd-keys",
+    "links": {
+        "network": "/features/connections#network",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti",
+            "paragraphs": [
+                "Fornisci a TablePro un host e la porta client. etcd non ha database, quindi il modulo non ha un campo Database. Usa la porta client: la porta peer non offre un gateway JSON e una connessione che la usa non si apre mai. Il modulo accetta un solo endpoint e non esegue failover, quindi scegli un membro attivo.",
+                "Lascia vuoti <ui>Username</ui> e <ui>Password</ui> su un cluster senza autenticazione. Un utente senza il ruolo <code>root</code> si connette ed esplora le chiavi consentite dai suoi ruoli, mentre <code>endpoint status</code> e i comandi <code>user</code> e <code>role</code> rispondono con un errore di autorizzazione.",
+                "TLS si configura con <ui>TLS Mode</ui> nei campi Advanced, non in una sezione SSL, ed è inizialmente Disabled. Required (skip verify) cifra senza verificare, Verify CA verifica il certificato rispetto al file della CA che indichi e Verify Identity aggiunge il controllo del nome host. Un certificato e una chiave client aggiungono TLS reciproco.",
+                "Raggiungi un cluster dietro un bastion tramite un <network>tunnel SSH</network>. Gli URL <code>etcd://</code> e <code>etcds://</code> si importano, ma nessuno dei due attiva TLS automaticamente."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Esplora le chiavi ed esegui comandi",
+            "paragraphs": [
+                "Imposta <ui>Key Prefix Root</ui>, per esempio <code>/app</code>, per limitare una connessione a un sottoalbero. La barra laterale raggruppa le chiavi per il primo segmento del percorso sottostante e ogni chiave è una riga con valore, versione, revisioni di modifica e creazione e lease.",
+                "Salvare una modifica invia comandi. Un nuovo valore o lease riscrive la chiave, un lease NULL rimuove il lease e rinominare una chiave scrive il nuovo nome ed elimina il vecchio. Le colonne delle revisioni appartengono a etcd, quindi modificarne una interrompe il salvataggio e indica la colonna.",
+                "L’editor accetta comandi in stile etcdctl, con completamento di comandi e flag: <code>get</code> con <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> e ordinamento, <code>put</code> con <code>--lease</code>, <code>del</code>, <code>watch</code>, i sottocomandi <code>lease</code>, <code>member list</code>, <code>endpoint status</code> e <code>health</code>, <code>compaction</code> e i comandi <code>auth</code>, <code>user</code> e <code>role</code>. Qualsiasi altro comando viene restituito come sconosciuto senza raggiungere il server.",
+                "Il driver etcd non può aprire una sessione in sola lettura, quindi <safeMode>Safe Mode</safeMode> considera ogni comando una scrittura: ai livelli Alert e Safe Mode chiede prima conferma per ciascuno e Read-Only li blocca tutti."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Lease e cluster",
+            "paragraphs": [
+                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> con <code>--keys</code>, <code>list</code> e <code>keep-alive</code> gestiscono i lease e <code>compaction</code> riduce la cronologia delle revisioni. <code>member list</code>, <code>endpoint status</code> e <code>endpoint health</code> riportano informazioni sul cluster dall’editor, poiché etcd non ha un Server Dashboard.",
+                "Eseguire <code>auth enable</code> dall’editor attiva l’autenticazione per l’intero cluster. Una connessione con nome utente e password continua a funzionare; una senza credenziali va riaperta specificandole."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "L’importazione non è disponibile. <export>Esporta</export> le chiavi o il risultato di un comando in CSV, JSON o XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "lease-ids",
+            "question": "Perché un ID di lease rimanda a un lease diverso?",
+            "answer": "Gli ID dei lease accettano decimali o esadecimali e il formato esadecimale viene riconosciuto dalle lettere. Aggiungi il prefisso <code>0x</code> a un ID esadecimale composto solo da cifre, come <code>--lease=0x69407712</code>, altrimenti viene letto come decimale e rimanda a un altro lease."
+        },
+        {
+            "id": "binary-values",
+            "question": "Posso modificare valori binari?",
+            "answer": "No. Un valore che non è UTF-8 valido compare nella griglia in base64, contrassegnato come tale, e il testo che digiti viene inviato come UTF-8. Scrivi i valori binari con <code>etcdctl</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Esplora e modifica i dati in sicurezza",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Connessioni, tunnel e credenziali",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Redis, un altro spazio delle chiavi",
+            "href": "/redis-gui"
+        }
+    ]
+}

@@ -1,0 +1,194 @@
+{
+    "seo": {
+        "title": "TablePro vs TablePlus: platform dan sumber terbuka",
+        "description": "Bandingkan dua klien native untuk Mac, iPhone, dan iPad: platform, harga, AI, MCP, serta impor koneksi TablePlus ke TablePro."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs TablePlus"
+    },
+    "header": {
+        "title": "TablePro vs TablePlus",
+        "lead": "TablePlus dan TablePro adalah klien database yang sama-sama menyebut dirinya native, dengan aplikasi Mac, iPhone, dan iPad. TablePlus juga berjalan di Windows dan Linux. TablePro bersumber terbuka, dan paket berbayar menambahkan fitur opsional pada aplikasi Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda menginginkan klien sumber terbuka. TablePro menggunakan AGPLv3, termasuk kode fitur berbayarnya.",
+            "Anda menginginkan asisten AI dan server MCP tanpa biaya. Keduanya gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda.",
+            "Anda menginginkan aplikasi iPhone dan iPad gratis tanpa pembelian dalam aplikasi.",
+            "Anda lebih suka membayar fitur yang diperlukan saja. Aplikasi gratis tidak membatasi tab atau jendela, dan paket berbayar menambah fitur seperti {starterExamples}."
+        ],
+        "competitor": [
+            "Anda juga bekerja di Windows atau Linux.",
+            "Anda terhubung ke Vertica atau Greenplum, yang tercantum pada TablePlus tetapi tidak didukung TablePro.",
+            "Anda memperoleh aplikasi Mac melalui Setapp."
+        ]
+    },
+    "glance": {
+        "intro": "Kedua klien memiliki obrolan AI, server MCP, diagram skema, dan ekspor Excel. TablePlus menambahkan server MCP, diagram, dan ekspor Excel pada versi {cells.mcp.version}, dirilis {cells.mcp.date}."
+    },
+    "rows": {
+        "diagram": {
+            "label": "Diagram skema",
+            "tablepro": "Diagram ER hanya baca, diekspor sebagai PNG atau SQL"
+        },
+        "excelExport": {
+            "label": "Ekspor ke Excel",
+            "tablepro": "Gratis, bersama CSV, JSON, SQL, dan format lainnya"
+        },
+        "safeMode": {
+            "label": "Safe Mode",
+            "tablepro": "Per koneksi, dari Silent hingga Read-Only, dengan Touch ID pada tingkat lebih ketat"
+        },
+        "setapp": {
+            "label": "Setapp",
+            "tablepro": "Tidak tersedia di Setapp"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePlus berjalan di Windows dan Linux selain Mac, sehingga satu klien dapat digunakan lintas komputer.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Aplikasi mencantumkan mesin yang tidak didukung TablePro, seperti Vertica dan Greenplum.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Tersedia melalui Setapp jika itulah cara Anda memperoleh aplikasi Mac.",
+                "cite": [
+                    "cells.setapp"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro bersumber terbuka dengan AGPLv3, termasuk kode fitur berbayar. TablePlus bersumber tertutup.",
+                "cite": [
+                    "licence"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Aplikasi gratis terhubung ke semua mesin yang didukung dan menyertakan asisten AI, server MCP, serta Safe Mode tanpa batas tab atau jendela. <link>Paket berbayar</link> menambah fitur seperti {starterExamples}.",
+                "cite": [],
+                "feature": null,
+                "href": "/pricing"
+            },
+            {
+                "text": "Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi dan tanpa lisensi. Aplikasi iPhone TablePlus memiliki pembelian dalam aplikasi atau disertakan dengan lisensi TablePlus.",
+                "cite": [
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>iCloud Sync</link> menyelaraskan koneksi antara Mac dan iPhone atau iPad. Fitur merupakan bagian Starter pada Mac dan gratis dalam aplikasi iPhone serta iPad.",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "Paket Team menambahkan <link>{teamExamples}</link> untuk berbagi koneksi dan kueri tersimpan dengan tim.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/sync-and-teams#team"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Seperti TablePlus, TablePro memiliki <link>aplikasi iPhone dan iPad terpisah</link> yang fiturnya lebih sedikit dibanding Mac: tanpa asisten AI, server MCP, atau pelengkapan otomatis.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            },
+            {
+                "text": "TablePro bukan perancang skema: diagram ER-nya adalah snapshot hanya baca dari skema saat ini.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Lisensi TablePlus tetap berfungsi setelah satu tahun pembaruan, begitu pula pembelian TablePro sekali bayar. Paket bulanan atau tahunan TablePro tidak: saat berakhir, fitur berbayar terkunci dan bagian aplikasi lain tetap berfungsi.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro membaca koneksi di lokasi penyimpanan TablePlus, termasuk edisi Setapp TablePlus. TablePlus tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "steps": [
+            "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
+            "Pilih TablePlus. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi tersimpan dari Keychain macOS.",
+            "macOS meminta kata sandi login sekali untuk setiap kata sandi tersimpan. Pilih <ui>Always Allow</ui> pada setiap permintaan.",
+            "Tinjau daftar, tentukan tindakan terhadap duplikat, lalu klik <ui>Import</ui>. Grup, tunnel SSH, dan warna koneksi ikut dipindahkan. Koneksi ke mesin yang tidak didukung TablePro muncul tanpa centang.",
+            "Sebelum menghapus TablePlus, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya dipindahkan."
+        ],
+        "after": [
+            "Kueri tersimpan, riwayat kueri, dan pintasan keyboard tetap di TablePlus.",
+            "Koneksi yang diatur untuk meminta kata sandi setiap kali digunakan tetap meminta kata sandi setelah diimpor."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "keep-tableplus",
+            "question": "Apakah saya dapat tetap menggunakan TablePlus setelah mengimpor?",
+            "answer": "Ya. Impor hanya membaca berkas koneksi TablePlus, sehingga kedua aplikasi tetap berfungsi dengan salinannya sendiri.",
+            "href": null
+        },
+        {
+            "id": "speed",
+            "question": "Bagaimana kecepatan TablePro dibandingkan TablePlus?",
+            "answer": "Halaman ini tidak membuat klaim kecepatan atau memori. Tidak ada aplikasi yang menerbitkan pengukuran yang dapat direproduksi orang lain, dan hasil bergantung pada Mac, database, serta jaringan Anda.",
+            "href": null
+        },
+        {
+            "id": "license",
+            "question": "Apakah saya memerlukan lisensi untuk menggunakan TablePro?",
+            "answer": "Tidak. TablePro gratis digunakan, termasuk semua mesin yang didukung, asisten AI, server MCP, dan Safe Mode. Starter atau Team menambah fitur opsional pada aplikasi Mac, seperti {starterExamples}. <link>Lihat harga</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "ios-license",
+            "question": "Apakah aplikasi iPhone dan iPad memerlukan lisensi?",
+            "answer": "Tidak. Aplikasi iPhone dan iPad gratis tanpa pembelian dalam aplikasi. Untuk sinkronisasi dengan Mac melalui iCloud, Mac memerlukan Starter.",
+            "href": null
+        }
+    ],
+    "notes": {
+        "tableplus-free-limits": "Tanpa batas waktu, tetapi maksimum {value} tab terbuka, {value} jendela, dan {value} filter lanjutan sekaligus",
+        "tableplus-one-year-updates": "Sekali bayar dengan satu tahun pembaruan. Aplikasi tetap berfungsi setelahnya.",
+        "tableplus-databases": "Mesin relasional, dokumen, kunci-nilai, dan analitik, termasuk PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica, serta Greenplum. Beberapa mesin hanya tersedia pada platform tertentu.",
+        "tableplus-ai": "Plugin obrolan yang bekerja dengan OpenAI, Anthropic, GitHub Copilot, atau model lokal",
+        "tableplus-ios-purchase": "Gratis diunduh dengan pembelian dalam aplikasi. Lisensi TablePlus aktif juga mencakupnya pada sejumlah perangkat yang ditentukan.",
+        "tableplus-safe-mode-levels": "{value} tingkat, dengan dukungan Touch ID"
+    }
+}

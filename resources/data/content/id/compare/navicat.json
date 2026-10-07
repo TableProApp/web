@@ -1,0 +1,198 @@
+{
+    "seo": {
+        "title": "TablePro vs Navicat: klien sumber terbuka",
+        "description": "Navicat Premium menawarkan lisensi permanen, langganan, dan Lite gratis. TablePro gratis dan sumber terbuka. Bandingkan harga, AI, dan aplikasi."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs Navicat"
+    },
+    "header": {
+        "title": "TablePro vs Navicat",
+        "lead": "Navicat Premium adalah klien untuk Windows, macOS, dan Linux, dijual per pengguna sebagai lisensi permanen atau langganan bulanan atau tahunan, dengan edisi Premium Lite gratis. TablePro adalah klien sumber terbuka dengan aplikasi native untuk Mac dan aplikasi lain untuk iPhone dan iPad. Gratis digunakan, dan paket berbayar menambahkan fitur opsional pada aplikasi Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda ingin aplikasi gratis yang sudah menyertakan asisten AI, server MCP, dan Safe Mode, dengan paket berbayar hanya untuk fitur seperti {starterExamples}.",
+            "Anda ingin klien sumber terbuka. TablePro sumber terbuka dengan AGPLv3, termasuk kode fitur berbayarnya.",
+            "Anda ingin satu aplikasi iPhone dan iPad gratis untuk beberapa mesin, bukan aplikasi berbayar terpisah untuk setiap mesin.",
+            "Anda memakai mesin yang tidak dicantumkan Navicat Premium, seperti ClickHouse, DuckDB, atau Cassandra."
+        ],
+        "competitor": [
+            "Anda bekerja di Windows atau Linux selain Mac.",
+            "Anda merancang skema dalam alat pemodelan data. Navicat menyertakannya dalam Premium Enterprise.",
+            "Anda menyinkronkan koneksi, kueri, dan model dengan rekan melalui Navicat Cloud, atau melalui Navicat On-Prem Server di server Anda sendiri."
+        ]
+    },
+    "glance": {
+        "intro": "Navicat Premium dijual per pengguna, sebagai lisensi permanen dengan pemeliharaan satu tahun atau langganan bulanan atau tahunan, dan Premium Lite gratis. Kedua produk memiliki asisten AI: Navicat menambahkan asistennya pada versi {cells.ai.version}, dirilis {cells.ai.date}."
+    },
+    "rows": {
+        "schemaSync": {
+            "label": "Sinkronisasi struktur",
+            "tablepro": "Compare & Sync, untuk struktur dan data, dalam Starter"
+        },
+        "dataModeling": {
+            "label": "Pemodelan data",
+            "tablepro": "Tanpa alat pemodelan. Diagram ER hanya baca, dapat diekspor sebagai PNG atau SQL, gratis"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Navicat Premium berjalan di Windows, macOS, dan Linux.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium Enterprise menambahkan alat pemodelan data. Diagram ER TablePro hanya menampilkan skema yang sudah ada.",
+                "cite": [
+                    "cells.dataModeling"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Navicat Cloud, atau Navicat On-Prem Server jika semuanya harus tetap di lingkungan perusahaan, menyinkronkan pengaturan koneksi, kueri, dan model serta membagikannya kepada orang yang Anda undang.",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium Lite gratis untuk penggunaan komersial dan nonkomersial, jika fitur intinya mencukupi pekerjaan Anda.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro sumber terbuka dengan AGPLv3, termasuk kode fitur berbayarnya. Navicat sumber tertutup.",
+                "cite": [
+                    "licence"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Aplikasi gratis terhubung ke setiap mesin yang didukung dan menyertakan asisten AI, server MCP, dan Safe Mode. <link>Paket berbayar</link> menambahkan fitur seperti {starterExamples}.",
+                "cite": [],
+                "feature": null,
+                "href": "/pricing"
+            },
+            {
+                "text": "Keduanya menyinkronkan struktur. <link>Compare & Sync</link> TablePro membandingkan struktur atau data dua database dan membuat skrip untuk perbedaannya, menahan pernyataan yang menghancurkan data sampai Anda mengizinkannya. Fitur ini termasuk Starter.",
+                "cite": [
+                    "cells.schemaSync"
+                ],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "Satu <link>aplikasi iPhone dan iPad gratis</link> terhubung ke beberapa mesin, tanpa pembelian dalam aplikasi. Navicat menjual aplikasi terpisah untuk satu mesin, seperti Navicat for MySQL.",
+                "cite": [
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": "/ios"
+            },
+            {
+                "text": "TablePro terhubung ke mesin yang dicantumkan Navicat Premium dan <link>mesin lain yang tidak dicantumkan</link>, seperti ClickHouse, DuckDB, Cassandra, dan Elasticsearch.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": "/databases"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Tidak ada alat pemodelan data. <link>Diagram ER</link> adalah tampilan hanya baca dari skema yang sudah ada, yang dapat diekspor sebagai PNG atau SQL.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/schema#er-diagram"
+            },
+            {
+                "text": "Tidak ada penjadwal tugas, jadi perbandingan, ekspor, dan pencadangan hanya berjalan saat Anda memulainya.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Satu aplikasi TablePro untuk iPhone dan iPad mencakup beberapa mesin, tetapi fiturnya lebih sedikit daripada aplikasi Mac: tanpa asisten AI, server MCP, atau pelengkapan otomatis.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Lisensi permanen Navicat tetap berfungsi setelah pemeliharaan satu tahunnya, begitu pula pembelian sekali bayar TablePro. Paket TablePro bulanan atau tahunan tidak: saat berakhir, fitur berbayar terkunci dan aplikasi lainnya tetap berfungsi.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro mengimpor koneksi Navicat dari berkas yang Anda ekspor di Navicat, jadi perpindahan dimulai di sana. Pengaturan Navicat sendiri tidak dibaca atau diubah.",
+        "steps": [
+            "Di Navicat, pilih <ui>File > Export Connections…</ui>, pilih koneksi, aktifkan <ui>Export Password</ui>, dan simpan berkas .ncx.",
+            "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
+            "Pilih Navicat, aktifkan <ui>Include passwords</ui>, klik <ui>Continue</ui>, lalu pilih berkas .ncx. TablePro mendekripsi kata sandi tersimpan, jadi tidak ada yang perlu disetujui di Keychain.",
+            "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Pengaturan tunnel SSH dan SSL ikut dipindahkan. Koneksi ke database yang tidak didukung TablePro masuk tanpa dicentang.",
+            "Sebelum menghapus Navicat, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
+        ],
+        "after": [
+            "Koneksi masuk tanpa grup Navicat, jadi susun ke dalam grup di TablePro.",
+            "Berkas .ncx melindungi kata sandi dengan kunci bawaan Navicat, jadi siapa pun yang memiliki berkasnya dapat membacanya. Hapus berkas setelah impor selesai.",
+            "Kueri, model, snippet, dan proyek Navicat Cloud tetap di Navicat."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "premium-lite",
+            "question": "Navicat Premium Lite juga gratis. Apa bedanya TablePro?",
+            "answer": "Keduanya gratis untuk pekerjaan komersial. Premium Lite memiliki fitur inti Navicat. Aplikasi gratis TablePro terhubung ke setiap mesin yang didukung dan menyertakan asisten AI, server MCP, dan Safe Mode, sedangkan paket Starter atau Team menambahkan fitur seperti {starterExamples}.",
+            "href": null
+        },
+        {
+            "id": "one-time",
+            "question": "Bisakah saya membayar TablePro sekali, seperti lisensi Navicat?",
+            "answer": "Ya. Starter dan Team dapat dibayar bulanan, tahunan, atau sekali, dan pembelian sekali bayar tidak memiliki tanggal kedaluwarsa. Lisensi permanen Navicat Premium dibayar sekali dan menyertakan pemeliharaan satu tahun. <link>Lihat harga</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "iphone",
+            "question": "Mesin apa yang dapat dibuka aplikasi iPhone dan iPad?",
+            "answer": "Satu aplikasi gratis terhubung ke MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, dan DuckDB, serta mesin lain, tanpa pembelian dalam aplikasi. Fiturnya lebih sedikit daripada aplikasi Mac. <link>Tentang aplikasi iPhone dan iPad</link>.",
+            "href": "/ios"
+        }
+    ],
+    "notes": {
+        "navicat-lite-commercial-use": "Edisi gratis dengan fitur inti, untuk penggunaan komersial dan nonkomersial",
+        "navicat-one-year-maintenance": "Dibayar sekali, dengan pemeliharaan satu tahun: peningkatan dan dukungan teknis. Setiap edisi juga dijual sebagai langganan bulanan atau tahunan.",
+        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, dan Snowflake, termasuk layanan cloud-nya",
+        "navicat-ios-per-engine-apps": "Aplikasi berbayar terpisah untuk satu mesin, seperti Navicat for MySQL dan Navicat for PostgreSQL. Tidak ada aplikasi Navicat Premium untuk iPhone.",
+        "navicat-cloud": "Navicat Cloud, atau Navicat On-Prem Server di server Anda sendiri, menyinkronkan pengaturan koneksi, kueri, dan model serta membagikannya kepada orang yang Anda undang"
+    }
+}

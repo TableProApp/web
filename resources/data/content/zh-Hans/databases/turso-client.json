@@ -1,0 +1,103 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 Turso、libSQL 客户端",
+        "description": "通过 URL、令牌打开 Turso、自托管 sqld 或 Mac 上的 libSQL 文件，以 SQLite 语法查询，修改表、索引和触发器。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "Turso、libSQL 客户端"
+    },
+    "engine": "turso",
+    "breadcrumb": "Turso 和 libSQL",
+    "header": {
+        "title": "适用于 {devices} 的 Turso、libSQL 客户端",
+        "lead": "使用 URL 和令牌连接 Turso 数据库，以 SQLite 语法查询，修改表、索引和触发器。同一驱动也可打开自托管 sqld 服务器和 Mac 上的 libSQL 文件。"
+    },
+    "asset": "mac-db-turso-remote",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "sqlite": "/sqlite-client",
+        "libsql": "#libsql",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接 Turso",
+            "paragraphs": [
+                "连接类型选择 Turso，<ui>Connection Mode</ui> 保持 <ui>Remote (Turso)</ui>。粘贴以 <code>.turso.io</code> 结尾的数据库 HTTPS URL，将令牌填入 <ui>API Token</ui>，保存在 macOS 钥匙串。Turso 仪表盘可获取两者，也可用 <code>turso db show my-db --url</code>、<code>turso db tokens create my-db</code>。",
+                "<code>libsql://</code> URL 会改写为 HTTPS，导入后创建远程连接。URL 指定单个数据库，因此无主机、端口或数据库字段。使用 HTTPS 而非明文 HTTP 时连接加密，不提供 SSH 隧道。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查询和编辑",
+            "paragraphs": [
+                "libSQL 使用 SQLite 语法，浏览、<explain>EXPLAIN QUERY PLAN</explain> 图、<editing>带 Preview SQL 的暂存编辑</editing>和导出与 <sqlite>SQLite</sqlite> 相同。",
+                "远程连接不运行事务。每条语句为独立 HTTP 请求并各自提交，<code>BEGIN</code> 会报错“Transactions are not supported in this mode”。事务工作需使用 <libsql>libSQL 一节</libsql>介绍的本地文件。",
+                "远程模式不加载 SQLite 扩展，Turso 数据库运行服务器构建时包含的扩展。Turso 限流时，错误说明重试前需等待多少秒。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "表、索引和触发器",
+            "paragraphs": [
+                "<structure>Structure 标签页</structure> 可创建表、添加和删除列及索引，创建、编辑和删除触发器。侧栏可重命名表，但不能重命名视图。",
+                "远程数据库调整列顺序或修改外键时，TablePro 生成重建脚本供自行审查运行。重建需要跨多个 HTTP 请求的单个事务，因此不能代为执行。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "TablePro 不提供 Turso、libSQL 导入；请用 Turso CLI 或 sqld 服务器的导入功能加载。要取出数据，可将表或查询结果<export>导出</export>为 {exportFormats}。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "libsql",
+            "title": "libSQL",
+            "paragraphs": [
+                "自托管 sqld 或此 Mac 上的文件请选择 libSQL。Remote 模式可访问任何提供 Hrana v2 pipeline 端点的 sqld，包括默认监听 8080 端口的本机服务器。未使用 <code>--auth-jwt-key-file</code> 启动的服务器可留空令牌，否则提供匹配服务器密钥的 JWT。",
+                "<ui>Local File</ui> 使用驱动内置 SQLite 打开 libSQL 文件，不存在的路径连同文件夹一起创建。本地文件支持事务、从连接 Extensions 列表加载 SQLite 扩展，并在确认后执行列重排或外键重建。",
+                "<code>ALTER TABLE … ALTER COLUMN</code> 等仅 libSQL 理解的语句，在本地文件上会失败，因为执行者是 SQLite。加密 libSQL 文件无法打开。切勿打开运行中的应用正在作为 Turso 嵌入式副本同步的文件，两个程序同时访问可能导致损坏。",
+                "<backup>Backup Dump 和 Restore Dump</backup> 对本地 libSQL 文件运行 {dumpTool}。"
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "remote-or-local",
+            "question": "应选 Remote 还是 Local File？",
+            "answer": "通过 URL 访问的 Turso 或 sqld 选 Remote；此 Mac 上的 libSQL 文件选 Local File，后者还支持事务、SQLite 扩展和备份。"
+        },
+        {
+            "id": "turso-cli",
+            "question": "需要安装 Turso CLI 吗？",
+            "answer": "不需要。Turso 仪表盘也可显示数据库 URL 并创建令牌。因 TablePro 不提供 Turso 导入，CLI 适合从终端加载数据。"
+        }
+    ],
+    "related": [
+        {
+            "label": "SQLite，libSQL 的基础引擎",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Cloudflare D1，通过 Cloudflare API 使用 SQLite",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "结构编辑和重建脚本",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "导出和备份",
+            "href": "/features/import-export"
+        }
+    ]
+}

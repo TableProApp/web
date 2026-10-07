@@ -1,0 +1,217 @@
+{
+    "seo": {
+        "title": "AI SQL アシスタントとローカル MCP サーバー",
+        "description": "選んだ AI プロバイダーで SQL を説明・最適化・修正。Claude Code などの MCP クライアントが、ローカル MCP サーバー経由で保存済み接続を使えます。"
+    },
+    "og": {
+        "kicker": "AI と MCP",
+        "title": "AI アシスタントと MCP サーバー"
+    },
+    "header": {
+        "title": "AI アシスタントと MCP サーバー",
+        "lead": "自分で選んだモデルから SQL の支援を受けたい開発者や、AI クライアントにデータベースを扱わせたい方へ。スキーマを尋ね、クエリをレビュー・修正し、Claude Code や Cursor に保存済み接続を使わせられます。すべて任意の Mac 専用機能です。プロバイダーの追加やクライアントの接続まで、モデルには何も送信しません。",
+        "docs": "/features/ai-assistant"
+    },
+    "sections": [
+        {
+            "id": "assistant",
+            "title": "自分で選んだプロバイダーを使う",
+            "paragraphs": [
+                "アシスタントは {aiProviders} に対応します。プロバイダーに応じて API キーを貼り付け、既存アカウントでサインインするか、Mac でモデルを実行します。TablePro 自身は AI サービスを運営しません。リクエストはプロバイダーに直接送り、追加するまでは何も送信しません。",
+                "各メッセージには、指定した上限までの接続内テーブルの構造と、エディタ内のクエリを含みます。結果の行は <ui>Settings > AI</ui> で有効にした場合のみ送ります。各接続には AI ポリシーもあり、Never ならアシスタントと MCP クライアントの両方がアクセスできません。"
+            ],
+            "asset": "mac-ai-chat"
+        },
+        {
+            "id": "in-the-editor",
+            "title": "レビュー、説明、最適化と修正",
+            "paragraphs": [
+                "文にカーソルを置き、Review with AI（<kbd>⌥⇧⌘L</kbd>）で正しさ、コストと安全性を確認し、Explain（<kbd>⌘L</kbd>）で処理の流れを説明させ、Optimize（<kbd>⌥⌘L</kbd>）で書き換えやインデックスを提案させられます。クエリが失敗するとエラーバナーに Fix with AI を表示します。リクエストは文が指定するテーブルの構造を含み、文自体は実行しません。<ui>Apply to Editor</ui> は確認した場合のみ文を置き換えます。",
+                "インライン候補は入力中にゴーストテキストを表示し、既定ではオフです。AI Rules は、決して SELECT してはいけないカラムなどのプレーンテキストの注意事項を接続に固定し、すべてのメッセージに添えます。"
+            ]
+        },
+        {
+            "id": "agent-mode",
+            "title": "チャットモードと Agent モード",
+            "paragraphs": [
+                "チャットには三つのモードがあります。既定の Ask はスキーマを調べ、何も実行しません。Edit はクエリも実行でき、Agent は DROP、TRUNCATE などの破壊的な文も実行できます。新規接続の既定レベル {macSafeModeDefault} では、Edit と Agent の書き込みは確認なしで実行します。Alert から Safe Mode (Full) では各操作が Run を待ち、Read-Only は拒否します。破壊的な文は必ずクリックを待ち、事前承認はできません。",
+                "Agent モード（<kbd>⌥⇧⌘A</kbd>）は一つのセッションにウィンドウ全体を割り当て、接続のセッション、会話、提案して実行した SQL を表示します。有効な間は接続を Alert 以上に保ち、Run をクリックするまで書き込みは実行しません。これは注意喚起であり、ロックではありません。一回のキー操作でオフにできます。セッションはこの Mac に保存します。"
+            ],
+            "asset": "mac-agent-mode",
+            "links": [
+                {
+                    "label": "セーフモードのレベル",
+                    "href": "/features/data-editing#safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "MCP サーバー",
+            "paragraphs": [
+                "組み込みの MCP サーバーは、AI クライアントにパスワードを見せずに TablePro の保存済み接続を使わせます。{mcpHost} だけで待ち受け、リモートモードはありません。有効にするか、設定したクライアントが起動するまでオフです。",
+                "ツールは接続、スキーマ検出、データの読み書き、データベースとオブジェクト、サーバー管理、アプリのタブと履歴を扱い、実際のスキーマからプロンプトとリソースを作ります。各呼び出しは Mac 上のアクティビティログに記録し、文はテキストではなくダイジェストで保存します。クライアントの実行したクエリはクエリ履歴にも表示します。"
+            ],
+            "asset": "mac-mcp-settings",
+            "blocks": [
+                {
+                    "id": "connect",
+                    "title": "クライアントを接続する",
+                    "paragraphs": [
+                        "<ui>Settings > Integrations</ui> に {mcpSetupClients} の設定手順とコピー用のスニペットがあります。同梱の <code>tablepro-mcp</code> ブリッジは {mcpBridgeClients} にも対応し、必要なら TablePro を起動してサーバーを見つけるため、クライアントの設定にポートやトークンは不要です。公式 Raycast 拡張は代わりにアプリとペアリングし、Mac 上で承認します。",
+                        "典型的なリクエストは、同じメールアドレスを使うユーザーを探すことです。クライアントは <code>list_tables</code> と <code>describe_table</code> を呼び、カラム名が <code>email_address</code> だと確認して、保存済み接続で一つの SELECT を実行できます。チャットにスキーマを貼り付ける必要はありません。"
+                    ]
+                },
+                {
+                    "id": "permissions",
+                    "title": "クライアントに許可する操作",
+                    "paragraphs": [
+                        "各呼び出しは以下のすべての確認を通り、最も厳しい制約が優先されます。"
+                    ],
+                    "points": [
+                        "トークンのスコープ：Read Only、Read & Write、Full Access。名前を指定した接続だけに制限することもできます。ブリッジが自動取得するのは Read & Write トークンのため、それを使うクライアントは破壊的な文を実行できません。",
+                        "接続ごとの External Clients：Blocked、Read Only（既定）、Read & Write。ブロックした接続は一覧にも表示しません。",
+                        "接続の承認：クライアントが初めて接続にアクセスすると、Mac のダイアログで確認します。毎回、接続ごとに一度、確認しない、から選べます。",
+                        "AI ポリシー：Never に設定した接続は MCP クライアントも拒否します。",
+                        "セーフモード：書き込みは接続のレベルに従って確認し、DROP や TRUNCATE は Full Access トークンと毎回の承認が必要です。ファイルを読み書きする文やサーバーでコードを実行する文は拒否します。"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "outside-servers",
+            "title": "外部 MCP サーバー",
+            "paragraphs": [
+                "逆方向にも使えます。TablePro の AI セッションは、運営する MCP サーバーのツールを Streamable HTTP 経由で呼び出せます。サーバーがこの Mac 上にない限り HTTPS が必要です。各サーバーを使える接続を選べます。呼び出しは毎回カードを表示してクリックを待ち、包括的な事前承認は使えません。サーバーのアドレスとトークンはこの Mac にのみ保存します。"
+            ]
+        },
+        {
+            "id": "automation",
+            "title": "チャット以外の自動化",
+            "paragraphs": [
+                "AppleScript は、接続の External Clients レベルとセーフモードに従って接続、クエリ実行、テーブル表示を行えます。<code>tablepro://</code> リンクは接続、テーブルやクエリタブを開きます。リンク内のクエリは確認後に入力され、自動実行しません。<code>postgresql://</code> などのデータベース URL は接続として開きます。",
+                "シェルコマンド <code>tablepro</code> はそれらの URL やファイルをアプリで開き、ターミナルからクエリは実行しません。公式 Raycast 拡張は接続、テーブルとクエリ履歴を検索し、ペアリングしたアプリ経由でクエリを実行します。"
+            ]
+        },
+        {
+            "id": "privacy",
+            "title": "データの送信先",
+            "paragraphs": [
+                "プロンプト、スキーマコンテキストと添付した内容は、選んだプロバイダーへ、そのプロバイダーと自分のアカウントの利用条件に従って送ります。Ollama、llama.cpp、MLX や自分で動かす OpenAI 互換サーバーでは、自分のマシンに留まります。TablePro は何も受け取りません。Mac アプリの日次利用状況レポートにも AI や MCP の情報は含みません。",
+                "GitHub Copilot を追加すると、GitHub へテレメトリを送るオプションは最初からオンです。Copilot の設定画面でオフにできます。"
+            ],
+            "links": [
+                {
+                    "label": "Mac アプリが送信する情報",
+                    "href": "/privacy#mac-app"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone と iPad は非対応",
+            "paragraphs": [
+                "iPhone と iPad アプリには AI アシスタント、Agent モードや MCP サーバーはありません。このページの機能はすべて Mac アプリにあります。"
+            ],
+            "links": [
+                {
+                    "label": "iPhone と iPad アプリの機能",
+                    "href": "/ios"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "自分のプロバイダーを使う AI チャット",
+            "ios": "no"
+        },
+        {
+            "label": "AI によるレビュー、説明、最適化と修正",
+            "ios": "no"
+        },
+        {
+            "label": "インライン候補と AI ルール",
+            "ios": "no"
+        },
+        {
+            "label": "Agent モード",
+            "ios": "no"
+        },
+        {
+            "label": "MCP サーバー",
+            "ios": "no"
+        },
+        {
+            "label": "外部 MCP サーバー",
+            "ios": "no"
+        },
+        {
+            "label": "AppleScript と <code>tablepro</code> シェルコマンド",
+            "ios": "no"
+        },
+        {
+            "label": "Raycast 拡張",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Cursor は TablePro のツールを呼び出せないため、Cursor をプロバイダーにすると Edit と Agent はクエリを実行しません。ローカルモデルは、モデルが対応する場合のみツールを呼び出します。",
+        "Claude Agent は Claude Code のログインを使い、有効な MCP サーバー経由でスキーマにアクセスします。Claude Code に依存するため、Claude Code のリリースで動かなくなる場合があります。",
+        "MCP サーバーは {mcpHost} だけで待ち受けます。他のマシンからアクセスする場合は、自分でポートを転送し、その公開範囲に責任を持つ必要があります。",
+        "Mac アプリにショートカットアクションはありません。AppleScript、リンクや MCP サーバーで自動化してください。",
+        "Agent セッションと外部 MCP サーバーは、設定した Mac にのみ保存し、同期しません。"
+    ],
+    "docs": [
+        {
+            "label": "AI アシスタント",
+            "docs": "/features/ai-assistant"
+        },
+        {
+            "label": "Agent モード",
+            "docs": "/features/agent-mode"
+        },
+        {
+            "label": "MCP サーバー",
+            "docs": "/features/mcp"
+        },
+        {
+            "label": "MCP クライアント",
+            "docs": "/external-api/mcp-clients"
+        },
+        {
+            "label": "MCP トークンとスコープ",
+            "docs": "/external-api/tokens"
+        },
+        {
+            "label": "外部 MCP サーバー",
+            "docs": "/features/mcp-outside-servers"
+        },
+        {
+            "label": "AppleScript",
+            "docs": "/external-api/applescript"
+        },
+        {
+            "label": "Raycast 拡張",
+            "docs": "/external-api/raycast"
+        }
+    ],
+    "related": [
+        {
+            "label": "セーフモード",
+            "href": "/features/data-editing#safe-mode"
+        },
+        {
+            "label": "接続ポリシー",
+            "href": "/features/connections#policies"
+        },
+        {
+            "label": "Mac アプリが送信する情報",
+            "href": "/privacy#mac-app"
+        },
+        {
+            "label": "TablePro と他のクライアントを比較",
+            "href": "/compare"
+        }
+    ]
+}

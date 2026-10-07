@@ -1,0 +1,110 @@
+{
+    "seo": {
+        "title": "DuckDB para {devices}",
+        "description": "Abra bancos DuckDB, consulte Parquet, CSV e JSON no local, trabalhe em memória e faça backups em DuckDB ou Parquet sem instalar ferramentas."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Cliente de DuckDB"
+    },
+    "engine": "duckdb",
+    "breadcrumb": "DuckDB",
+    "header": {
+        "title": "Cliente de DuckDB para {devices}",
+        "lead": "Abra um arquivo de banco DuckDB ou escolha um arquivo Parquet, CSV ou JSON e consulte-o com SQL no próprio local. DuckDB funciona dentro do driver, portanto nada é executado como servidor, a menos que você se conecte a um."
+    },
+    "asset": "mac-db-duckdb-parquet",
+    "links": {
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Abra um arquivo",
+            "paragraphs": [
+                "Escolha um arquivo <code>.duckdb</code> ou <code>.ddb</code> ou digite um caminho que ainda não existe para criá-lo. Digite <code>:memory:</code> para um banco que dura enquanto a sessão estiver aberta. Um banco abre como DuckDB independentemente do nome do arquivo, pois DuckDB identifica seus arquivos nos primeiros bytes.",
+                "Escolha um arquivo <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> ou <code>.ndjson</code>, e ele abre como views somente leitura em um banco em memória: uma chamada <code>file</code> e outra com o nome do arquivo. O arquivo no disco permanece idêntico, byte por byte; para alterar seu conteúdo, crie uma tabela a partir dele em um banco <code>.duckdb</code>.",
+                "Clique duas vezes em um arquivo <code>.duckdb</code> no Finder para abri-lo aqui. Arquivos Parquet listam TablePro em Abrir Com, e um arquivo Parquet escolhido em <ui>File > Open File</ui> abre como conexão DuckDB em vez de na <dataFiles>janela Data Files</dataFiles>.",
+                "<ui>Remote (Quack, experimental)</ui> se conecta a um servidor DuckDB iniciado com <code>quack_serve</code> e o anexa com um alias, como <code>remotedb</code>; acesse as tabelas pelo nome usando esse alias. A primeira conexão remota baixa a extensão <code>quack</code> do DuckDB."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Consulte e edite",
+            "paragraphs": [
+                "Qualquer conexão pode ler um arquivo diretamente por SQL, como em <code>SELECT * FROM 'data.csv'</code> ou <code>read_parquet('events.parquet')</code>. Use <code>ATTACH</code> em outro arquivo DuckDB para adicioná-lo à barra lateral como um segundo banco, e <code>Cmd+K</code> alterna entre eles sem reconectar. DuckDB não mantém nenhum banco anexado depois de reconectar.",
+                "<explain>EXPLAIN</explain> é apresentado como um diagrama de plano. As linhas de uma tabela podem ser editadas com <editing>Preview SQL</editing> mostrando cada instrução antes da execução, enquanto as views de um arquivo de dados permanecem somente leitura."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Estrutura",
+            "paragraphs": [
+                "A <structure>aba Structure</structure> edita tabelas e mostra o DDL antes da execução. Aqui um banco é um arquivo, portanto não é possível criar ou excluir um pelo app; <code>ATTACH</code> permite acessar um segundo arquivo."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Compartilhe o arquivo e faça backups",
+            "paragraphs": [
+                "Enquanto TablePro mantém um arquivo aberto, a CLI <code>duckdb</code>, um notebook ou uma execução de dbt não podem abri-lo. Defina <ui>Release the File Lock After</ui> para liberar o arquivo após alguns minutos de inatividade e retomá-lo na próxima consulta, ou <ui>Open the File Read-Only</ui> para permitir vários leitores. <ui>Database > Release File Lock</ui> o libera imediatamente e mantém as abas. A liberação é recusada, com a justificativa, enquanto a sessão mantém uma transação aberta, uma tabela temporária, um banco anexado ou uma configuração alterada.",
+                "O <dashboard>Server Dashboard</dashboard> mostra o tamanho do banco, o tamanho e a quantidade total de blocos, o limite de memória e as threads.",
+                "<backup>Backup Dump</backup> não exige instalar nada, pois {dumpTool} grava pela conexão aberta. Escolha um arquivo <code>.duckdb</code> para restaurar depois no TablePro, ou uma pasta contendo <code>schema.sql</code>, <code>load.sql</code> e um arquivo Parquet por tabela, que pandas, Spark e BigQuery leem diretamente. Restore Dump para no primeiro objeto cujo nome já está em uso."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "<importData>Import</importData> aceita arquivos {importFormats}, e a exportação grava tabelas e resultados como {exportFormats}. O <export>plugin de exportação Parquet</export>, instalado por Settings > Plugins, adiciona saída Parquet com um arquivo por tabela. Saiba mais sobre <files>como trabalhar com arquivos como bancos de dados</files>."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone e iPad",
+            "paragraphs": [
+                "No iPhone e iPad, DuckDB faz parte do app. Um arquivo escolhido no app Arquivos abre no próprio local em vez de como cópia; ou escolha In-Memory para um banco temporário. Navegue por tabelas como cartões e execute SQL na aba Query. Conexões Remote (Quack) são exclusivas do Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "version",
+            "question": "Qual versão de DuckDB TablePro usa?",
+            "answer": "DuckDB {engineVersion}, compilado no driver. Ele não depende de qualquer instalação de DuckDB que você tenha."
+        },
+        {
+            "id": "csv-or-data-files",
+            "question": "Devo abrir um arquivo CSV em DuckDB ou na janela Data Files?",
+            "answer": "Abra-o na <dataFiles>janela Data Files</dataFiles> para examiná-lo, limpar os dados e salvar as alterações no arquivo. Abra-o como DuckDB para uni-lo a outros arquivos ou tabelas com SQL; ali o arquivo permanece somente leitura."
+        }
+    ],
+    "related": [
+        {
+            "label": "Importação, exportação e arquivos de dados",
+            "href": "/features/import-export#files"
+        },
+        {
+            "label": "SQLite, para arquivos de bancos de aplicativos",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "ClickHouse, para servidores analíticos",
+            "href": "/clickhouse-client"
+        },
+        {
+            "label": "TablePro para iPhone e iPad",
+            "href": "/ios"
+        }
+    ]
+}

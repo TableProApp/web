@@ -1,0 +1,188 @@
+{
+    "seo": {
+        "title": "TablePro face à DBeaver",
+        "description": "DBeaver utilise Java et JDBC sur Windows, macOS et Linux. TablePro est natif sur Mac, iPhone et iPad. Comparez bases, IA, MCP et prix."
+    },
+    "og": {
+        "kicker": "Comparer",
+        "title": "TablePro face à DBeaver"
+    },
+    "header": {
+        "title": "TablePro face à DBeaver",
+        "lead": "DBeaver est un client Java Windows, macOS et Linux. Community est gratuit et open source ; les éditions payantes ajoutent des fonctions. TablePro est open source avec app Mac native, une autre iPhone et iPad et fonctions payantes facultatives sur Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Vous voulez MongoDB, Redis ou Cassandra gratuits. Tous les moteurs pris en charge sont gratuits ; DBeaver Community exclut NoSQL.",
+            "Vous voulez une app Mac sans Java. TablePro utilise Swift et pilotes natifs, sans JDBC.",
+            "Vous voulez un assistant IA gratuit avec le fournisseur choisi. Le chat Community utilise seulement OpenAI et GitHub Copilot.",
+            "Vous voulez un serveur MCP gratuit sur Mac pour vos clients IA et connexions.",
+            "Vous voulez aussi une app iPhone et iPad."
+        ],
+        "competitor": [
+            "Vous travaillez sur Windows ou Linux en plus de Mac.",
+            "Vous avez besoin d’un moteur sans pilote TablePro. Community connecte tout moteur avec JDBC.",
+            "Vous avez besoin de générateur visuel, diagramme ER modifiable ou tâches planifiées, dans les éditions payantes."
+        ]
+    },
+    "glance": {
+        "intro": "DBeaver a Community gratuit et des éditions payantes par utilisateur ; plusieurs lignes indiquent l’édition requise."
+    },
+    "rows": {
+        "diagram": {
+            "label": "Diagramme ER",
+            "tablepro": "Diagramme ER gratuit en lecture seule, exportable en PNG ou SQL"
+        },
+        "queryBuilder": {
+            "label": "Générateur visuel de requêtes",
+            "tablepro": "Indisponible"
+        },
+        "scheduler": {
+            "label": "Tâches planifiées",
+            "tablepro": "Indisponible"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DBeaver tourne sur Windows, macOS et Linux ; un client couvre vos ordinateurs.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Community connecte tout moteur JDBC, même sans pilote TablePro.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Les éditions payantes ajoutent requêtes visuelles, édition ER, tâches planifiées et sync Git des projets.",
+                "cite": [
+                    "cells.queryBuilder",
+                    "cells.diagram",
+                    "cells.scheduler",
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tous les moteurs pris en charge sont gratuits, dont MongoDB, Redis, Cassandra et autres bases non relationnelles. DBeaver réserve NoSQL aux éditions payantes.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro est une app Mac Swift avec pilotes natifs. DBeaver utilise Java et inclut son environnement dans le téléchargement.",
+                "cite": [
+                    "technology"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Assistant IA et serveur MCP</link> sont gratuits sur Mac. Vous choisissez le fournisseur ; MCP permet à Claude Code ou Cursor d’utiliser les connexions sans voir les mots de passe.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Comparer et synchroniser</link> compare structure ou données de deux bases et synchronise les différences. Inclus dans Starter.",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "Il existe une <link>app iPhone et iPad</link> gratuite sans achats intégrés.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Il n’y a pas de TablePro pour Windows ni Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro connecte seulement les moteurs avec ses pilotes. Pas de JDBC générique ; vérifiez les <link>bases prises en charge</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "Le diagramme ER est un instantané en lecture seule ; pas de générateur visuel ni planificateur de tâches.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro lit les connexions de l’espace DBeaver, Community ou payant. DBeaver n’a pas à être ouvert et ses fichiers ne changent pas.",
+        "steps": [
+            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui>",
+            "Sélectionnez DBeaver et activez <ui>Inclure les mots de passe</ui>. TablePro déchiffre ceux enregistrés ; rien à approuver dans le Trousseau.",
+            "Vérifiez liste et doublons puis <ui>Importer</ui>. Les dossiers deviennent groupes, les réglages SSH suivent. Une base non prise en charge arrive décochée.",
+            "Avant de retirer DBeaver, ouvrez une connexion avec mot de passe pour vérifier le transfert."
+        ],
+        "after": [
+            "Scripts SQL, historique et raccourcis restent dans DBeaver."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "java",
+            "question": "TablePro nécessite-t-il Java ?",
+            "answer": "Non. Il utilise Swift et pilotes natifs. Ceux des bases courantes sont intégrés, les autres téléchargés au premier choix de la base.",
+            "href": null
+        },
+        {
+            "id": "speed",
+            "question": "Comment se comparent vitesse et mémoire à DBeaver ?",
+            "answer": "Aucune revendication de vitesse ou mémoire : aucun projet ne publie de mesure reproductible. Vous pouvez vérifier que DBeaver inclut Java et TablePro n’en nécessite pas.",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "TablePro est-il gratuit comme DBeaver Community ?",
+            "answer": "Oui pour tous les moteurs pris en charge, IA et MCP : gratuit et open source AGPLv3. DBeaver vend les extras en éditions ; TablePro propose Starter et Équipe sur Mac avec {starterExamples}. <link>Voir les tarifs</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "unsupported",
+            "question": "Que deviennent les connexions DBeaver non ouvertes par TablePro ?",
+            "answer": "Elles apparaissent décochées avec la raison dans la liste. Rien n’est importé sans les cocher.",
+            "href": null
+        }
+    ],
+    "notes": {
+        "dbeaver-bundled-jdk": "Le téléchargement inclut son environnement Java",
+        "dbeaver-databases": "Community connecte les moteurs JDBC, mais pas NoSQL comme MongoDB, Redis ou Cassandra. Les éditions payantes les ajoutent.",
+        "dbeaver-ai-community-providers": "Dans {edition}, chat IA OpenAI ou GitHub Copilot. Les éditions payantes ajoutent fournisseurs et explications de requêtes et erreurs.",
+        "dbeaver-mcp-client": "Les éditions payantes utilisent MCP comme client. L’app de bureau n’exécute pas son serveur MCP.",
+        "dbeaver-git-sync": "Sync Git des projets dans {edition} et au-delà",
+        "dbeaver-erd-edit-paid": "Lecture seule dans Community. Édition dans Enterprise, Ultimate et Team.",
+        "dbeaver-query-builder-paid": "Dans toutes les éditions payantes, pas Community",
+        "dbeaver-task-scheduler": "Dans Enterprise, Ultimate et Team"
+    }
+}

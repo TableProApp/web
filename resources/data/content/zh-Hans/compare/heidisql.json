@@ -1,0 +1,171 @@
+{
+    "seo": {
+        "title": "TablePro vs HeidiSQL：两款免费开源客户端",
+        "description": "HeidiSQL 在 Windows、Linux 和自 2026 年起的 Apple silicon Mac 免费。TablePro 原生支持 Mac、iPhone、iPad。对比数据库、构建和价格。"
+    },
+    "og": {
+        "kicker": "对比",
+        "title": "TablePro vs HeidiSQL"
+    },
+    "header": {
+        "title": "TablePro vs HeidiSQL",
+        "lead": "HeidiSQL 是始于 Windows、也运行于 Linux 的免费开源客户端，自 2026 年 1 月有 Apple silicon Mac 构建。TablePro 是开源客户端，有 Apple silicon、Intel Mac 应用、独立 iPhone、iPad 应用及 Mac 可选付费功能。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Mac 使用 Intel 处理器。TablePro 有 Intel、Apple silicon 独立构建。",
+            "除 SQL 服务器，也使用 MongoDB、Redis、ClickHouse 或 DuckDB。",
+            "希望密码保存在 macOS 钥匙串，安全模式在生产连接写入前要求 Touch ID。",
+            "希望在 Mac 应用免费使用 AI 助手和 MCP 服务器。",
+            "也需要 iPhone、iPad 应用。"
+        ],
+        "competitor": [
+            "也在 Windows、Linux 工作，希望各平台用相同免费客户端。",
+            "连接 TablePro 不支持的 Firebird、Interbase 或 ProxySQL。",
+            "希望所有功能免费，没有付费方案。",
+            "熟悉 Windows HeidiSQL，希望在 Apple silicon Mac 使用。"
+        ]
+    },
+    "glance": {
+        "intro": "HeidiSQL 从 {cells.macBuild.date} 发布的 {cells.macBuild.version} 起每次发布都附 Mac 构建，仅在 Apple silicon 运行。"
+    },
+    "rows": {
+        "macBuild": {
+            "label": "Mac 构建",
+            "tablepro": "Apple silicon、Intel 独立构建"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "HeidiSQL 在 Windows、Linux、Mac 运行，一个免费客户端涵盖所用电脑。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "连接 TablePro 不支持的 Firebird、Interbase、ProxySQL。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "按 GPL 免费开源，无付费方案。",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 在 Intel、Apple silicon Mac 均运行，各有独立构建。HeidiSQL Mac 构建仅限 Apple silicon。",
+                "cite": [
+                    "cells.macBuild"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "除 SQL，也连接 MongoDB、Redis、Cassandra、ClickHouse、DuckDB 等引擎，各用自身查询方式。查看<link>支持的数据库</link>。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "密码保存在 macOS 钥匙串，连接的<link>安全模式</link>级别可在写入前要求 Touch ID 或密码。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "<link>AI 助手和 MCP 服务器</link>在 Mac 应用中免费，可自选 AI 提供商。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "免费 <link>iPhone、iPad 应用</link>连接 MySQL、MariaDB、PostgreSQL、SQL Server、SQLite 等。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 无 Windows、Linux 应用。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "不支持 Firebird、Interbase、ProxySQL。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "部分功能付费，Starter 添加 {starterExamples} 等；HeidiSQL 无付费方案。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 无 HeidiSQL 导入器。将各会话添加为连接：填表单，或将 mysql://、postgresql://、sqlserver:// 开头 URL 粘贴到 <ui>File > Import > Import from URL…</ui>。",
+        "steps": [],
+        "after": [
+            "在连接 <ui>Network</ui> 标签页设置 SSH 隧道，Mac 也支持跳板机。",
+            "密码保存至 macOS 钥匙串。",
+            "TablePro 查询历史从头开始。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "wine",
+            "question": "Mac 运行 HeidiSQL 还需要 Wine 吗？",
+            "answer": "Apple silicon Mac 不需要。HeidiSQL 从 {cells.macBuild.version} 起发布 Apple silicon Mac 应用，无 Intel Mac 构建。",
+            "href": null
+        },
+        {
+            "id": "databases",
+            "question": "两款都支持哪些数据库？",
+            "answer": "HeidiSQL 网站列 MySQL、MariaDB、SQL Server、PostgreSQL、SQLite、Redshift，TablePro 全部支持。HeidiSQL 另有 Firebird、Interbase、ProxySQL；TablePro 另有 MongoDB、Redis、ClickHouse 等文档、键值和分析引擎。",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "TablePro 像 HeidiSQL 一样免费吗？",
+            "answer": "可免费使用，但不像 HeidiSQL 全部免费。所有支持引擎、AI 助手、MCP 服务器免费，代码按 AGPLv3 开源。HeidiSQL 无付费方案，TablePro Starter 或 Team 为 Mac 添加 {starterExamples} 等可选功能。<link>查看价格</link>。",
+            "href": "/pricing"
+        },
+        {
+            "id": "intel-download",
+            "question": "需要哪个 TablePro 构建？",
+            "answer": "选择匹配 Mac 处理器的 Apple silicon 或 Intel 版，下载页提供两者。<link>下载 TablePro</link>。",
+            "href": "/download"
+        }
+    ],
+    "notes": {
+        "heidisql-delphi-on-windows": "Windows 版本用 Delphi 构建",
+        "heidisql-databases": "网站列出的 MariaDB、MySQL、SQL Server、PostgreSQL、SQLite、Interbase、Firebird、ProxySQL、Redshift",
+        "heidisql-mac-arm64-only": "签名并公证的 Apple silicon 应用，无 Intel Mac 构建。"
+    }
+}

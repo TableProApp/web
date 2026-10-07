@@ -171,15 +171,23 @@ it('serves the static page for 503 while debugging, in the locale of the path', 
     expect($response->getContent())->toContain('Đang bảo trì')->toContain('<html lang="vi"');
 });
 
-it('links the account in Vietnamese from a Vietnamese account or checkout 404', function (string $path): void {
+it('links the account in the requested language from a prefixed account or checkout 404', function (string $path, string $locale): void {
     /* The account has no locale prefix (spec §0); a reader who guessed one is sent to the real address (sitemap §A.7, §C.6). */
     $this->get($path)
         ->assertNotFound()
         ->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Error')
-            ->where('locale', 'vi')
-            ->where('account', '/account?locale=vi'));
-})->with(['/vi/account', '/vi/account/login', '/vi/checkout/starter']);
+            ->where('locale', $locale)
+            ->where('account', '/account?locale=' . $locale));
+})->with(function (): array {
+    $cases = [];
+    foreach (array_diff(array_keys(json_decode(file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']), ['en']) as $locale) {
+        foreach (['account', 'account/login', 'checkout/starter'] as $path) {
+            $cases["{$locale}/{$path}"] = ["/{$locale}/{$path}", $locale];
+        }
+    }
+    return $cases;
+});
 
 it('offers the account only on account and checkout paths', function (string $path): void {
     $this->get($path)

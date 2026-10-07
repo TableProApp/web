@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "Cassandra dan ScyllaDB untuk {devices}",
+        "description": "Jalankan CQL pada Cassandra, ScyllaDB, dan Amazon Keyspaces dengan TLS, TLS timbal balik, atau SigV4. Telusuri keyspace dan edit baris via primary key."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien Cassandra dan ScyllaDB"
+    },
+    "engine": "cassandra",
+    "breadcrumb": "Cassandra dan ScyllaDB",
+    "header": {
+        "title": "Klien Cassandra dan ScyllaDB untuk {devices}",
+        "lead": "Telusuri keyspace dan tabel, jalankan CQL dalam editor, serta edit baris yang ditulis berdasarkan primary key lengkap. Driver yang sama terhubung ke ScyllaDB dan Amazon Keyspaces."
+    },
+    "asset": "mac-db-cassandra-table",
+    "links": {
+        "network": "/features/connections#network",
+        "awsIam": "docs:/connections/aws-iam",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "cassandraGuide": "docs:/databases/cassandra"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Masukkan contact point dan portnya ke TablePro, beserta nama pengguna dan kata sandi jika cluster memiliki autentikator. Tidak ada bidang keyspace: pilih di bilah samping setelah terhubung, atau masukkan dalam jalur URL <code>cassandra://</code> maupun <code>cql://</code> lalu impor. Perpindahan keyspace berlangsung pada koneksi yang sama dan tidak menampilkan keyspace sistem, sementara tab yang sudah terbuka tetap pada keyspace masing-masing.",
+                "TLS nonaktif pada koneksi baru. Preferred dan Required mengenkripsi tanpa memeriksa sertifikat karena driver tidak memiliki TLS oportunistik. Verify CA dan Verify Identity memerlukan berkas sertifikat CA dan tidak pernah beralih ke root sistem. Untuk TLS timbal balik, tambahkan sertifikat klien, kuncinya, dan frasa sandi kunci. Cluster pada jaringan pribadi diakses melalui <network>tunnel SSH</network>.",
+                "Amazon Keyspaces masuk menggunakan SigV4, bukan kata sandi. Arahkan koneksi ke endpoint regional, seperti <code>cassandra.us-east-1.amazonaws.com</code> pada port 9142, atur Authentication ke <awsIam>mode AWS IAM</awsIam> (kunci akses, profil, atau AWS IAM Identity Center), kosongkan nama pengguna serta kata sandi, dan aktifkan TLS karena Keyspaces menolak teks biasa."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Telusuri dan jalankan CQL",
+            "paragraphs": [
+                "Buka tabel dari bilah samping untuk membacanya di grid. List, set, map, dan tuple ditampilkan sebagai koleksi, jenis buatan pengguna sebagai bidangnya, <code>duration</code> sebagai <code>1d2h30m</code>, vektor sebagai daftar angka, dan blob sebagai heksadesimal. Hasil editor CQL hanya baca, sehingga baris diubah dari tabel yang dibuka di bilah samping.",
+                "CQL tidak memiliki OFFSET, sehingga halaman dibaca maju dari baris pertama: Next dan Previous pada halaman yang sudah ditampilkan masing-masing memerlukan satu pembacaan, dan melompat ke halaman jauh membaca semua halaman sebelumnya. Baris diterima dalam urutan token, dan header kolom tidak mengurutkannya ulang karena CQL hanya mengurutkan berdasarkan kolom clustering dalam satu partisi. Tidak ada penghitungan saat tabel dibuka; <ui>Count Exactly</ui> menjalankan <code>SELECT COUNT(*)</code>, yang membaca semua partisi.",
+                "<filters>Filter</filters> menambahkan <code>ALLOW FILTERING</code>, sehingga server membaca setiap partisi kecuali filter menetapkan seluruh partition key. Mengandung, diawali, dan diakhiri dikirim sebagai LIKE, yang hanya diterima Cassandra pada kolom dengan indeks SASI atau SAI. Operator yang tidak dapat dinyatakan CQL, seperti tidak sama dengan atau is NULL, ditolak dengan menyebutkan namanya, dan kondisi hanya digabungkan dengan AND karena CQL tidak memiliki OR.",
+                "<editing>Nilai yang diedit</editing> dikirim menggunakan jenis CQL kolomnya, dan nilai yang tidak dapat diurai menghentikan seluruh penyimpanan. Setiap baris ditulis dengan pernyataan sendiri, diidentifikasi primary key lengkap. <ui>Add Row</ui> menulis <code>INSERT … IF NOT EXISTS</code>, sehingga baris baru tidak pernah menimpa baris dengan kunci yang sama. Kolom kunci tidak dapat diubah langsung: hapus baris lalu tambahkan lagi.",
+                "Kolom counter memerlukan <code>UPDATE … SET c = c + 1</code> dalam editor CQL; server menolak UPDATE biasa yang ditulis perubahan grid. Batas waktu koneksi berasal dari Options koneksi, sedangkan permintaan CQL tetap menggunakan batas waktu tetap driver yang tidak diubah batas waktu kueri aplikasi."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Keyspace dan tabel",
+            "paragraphs": [
+                "<structure>Tab Structure</structure> mencantumkan jenis CQL setiap kolom, menandai partition key serta kolom clustering sebagai primary key, dan menampilkan indeks sekunder tabel. Tab menambah dan menghapus kolom; perubahan lain, termasuk indeks, dilakukan melalui pernyataan CQL dalam editor.",
+                "Tab DDL membangun ulang <code>CREATE TABLE</code> dari daftar kolom, sehingga tidak menyertakan opsi tabel seperti compaction, urutan clustering, serta pemisahan partition key dan clustering key. Baca definisi lengkap dengan <code>DESCRIBE TABLE</code> di cqlsh. Fungsi dan agregat buatan pengguna tercantum di bawah Functions."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "TablePro tidak menyediakan impor untuk Cassandra atau ScyllaDB. <export>Ekspor</export> tabel atau hasil CQL sebagai {exportFormats}."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "scylladb",
+            "title": "ScyllaDB",
+            "paragraphs": [
+                "ScyllaDB memiliki entri sendiri dalam daftar jenis koneksi dan menggunakan driver Cassandra melalui protokol native CQL yang sama, sehingga koneksi, penelusuran, pengeditan, dan batasan di atas berlaku sebagaimana dijelaskan. URL <code>scylladb://</code> atau <code>scylla://</code> membuat koneksi ScyllaDB.",
+                "Satu perbedaan muncul pada bilah filter: ScyllaDB menerima LIKE dari mengandung, diawali, dan diakhiri pada kolom apa pun, sedangkan Cassandra memerlukan indeks SASI atau SAI. ScyllaDB diatur sesuai <cassandraGuide>panduan konfigurasi Cassandra</cassandraGuide>."
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "cluster-status",
+            "question": "Apakah TablePro menampilkan status node atau ring?",
+            "answer": "Tidak. Server Dashboard tidak tersedia untuk Cassandra atau ScyllaDB. Periksa node dengan <code>nodetool status</code>, dan gunakan TablePro untuk keyspace, tabel, serta CQL."
+        },
+        {
+            "id": "views-and-types",
+            "question": "Bagaimana saya melihat materialized view dan jenis buatan pengguna?",
+            "answer": "Keduanya tidak ada di bilah samping, jadi kueri keyspace <code>system_schema</code> dalam editor CQL, misalnya <code>SELECT * FROM system_schema.views</code> atau <code>system_schema.types</code>."
+        },
+        {
+            "id": "cassandra-2",
+            "question": "Apakah TablePro terhubung ke Cassandra 2.x?",
+            "answer": "Tidak. Driver membaca skema dari <code>system_schema</code>, yang tidak dimiliki Cassandra 2.x, sehingga koneksi gagal."
+        }
+    ],
+    "related": [
+        {
+            "label": "Filter, paginasi, dan perubahan tertunda",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Koneksi, tunnel, dan autentikasi AWS",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Amazon DynamoDB, mesin lain dengan tanda tangan AWS",
+            "href": "/dynamodb-gui"
+        },
+        {
+            "label": "Database yang didukung",
+            "href": "/databases#wide-column"
+        }
+    ]
+}
