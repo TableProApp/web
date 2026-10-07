@@ -3,7 +3,6 @@ import type { Messages } from '../../types.ts';
 export default {
     "language": {
         "label": "Bahasa",
-        "inlineLabel": "Bahasa:",
         "current": "Bahasa: {language}",
         "fallback": "Halaman ini tidak tersedia dalam bahasa Indonesia",
         "fallbackPost": "Artikel ini tidak tersedia dalam bahasa Indonesia",

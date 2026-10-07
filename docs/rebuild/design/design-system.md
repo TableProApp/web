@@ -573,11 +573,11 @@ Repo key:
 | `Footnote` | P | **Refactor** | `ui/footnote.tsx` | Numbered references under tables and comparisons. No closing rule. Removed unused during integration: the comparison pages number their sources with `compare/sources.tsx` |
 | `Breadcrumbs` | P | **New** | `PageHeader` `labelHref` back-link | Hub children, blog posts, legal |
 | `LanguageSwitcher` | P+A | **New** | — (none rendered on the old site) | Same look, different mechanics per repo (§5.3.15): public links to the equivalent page; the account app's switcher is its own |
-| `ThemeControl` | Shared | **New** | — (none rendered on the old site) | `components/shared/theme-control.tsx`: `variant="menu"` (header `menuitemradio` menu) and `variant="segmented"` (footer, mobile menu); labels as props |
+| `ThemeControl` | Shared | **New** | — (none rendered on the old site) | `components/shared/theme-control.tsx`: `variant="menu"` (header `menuitemradio` menu), `variant="segmented"` (mobile menu) and `variant="icons"` (footer bar); labels as props |
 | `SiteHeader` | P | **Replace** | `landing/header.tsx` (both) | Nav per sitemap §B.1 (Features menu, Databases, Pricing, Docs, Blog) plus language, theme, Account and Download. **No Download dropdown**: Download goes to `/download`. The license repo's copy is deleted; it gets its own slim headers (§5.4) |
 | `MobileNav` | P | **Refactor** | `landing/mobile-nav.tsx` (both) | Full-height sheet dialog. Toggle gets `aria-expanded`, which the old one lacked. The license repo's copy is deleted |
 | `SupportBanner` | P | **Refactor** | `landing/support-banner.tsx` | Neutral `--surface` band, not an orange fill. Key `tablepro:banner-dismissed` unchanged |
-| `SiteFooter` | P | **Replace** | `landing/footer.tsx` (both) | Groups and links per sitemap §B.3 with positioning §10.2's labels, newsletter form, language list, theme, cookie settings. No giant wordmark. The license repo's copy is replaced by its own slim footer (§5.4) |
+| `SiteFooter` | P | **Replace** | `landing/footer.tsx` (both) | Groups and links per sitemap §B.3 with positioning §10.2's labels, newsletter form and cookie settings, as cells, closed by the shared FooterBar (language menu, theme). No giant wordmark. The license repo's copy is replaced by its own slim footer (§5.4), which ends on the same FooterBar |
 | `ConsentBar` | Shared | **Refactor** | `landing/consent-bar.tsx` (both) | Moves to `components/shared/consent-bar.tsx` with `lib/consent.ts`. Compact. Equal-weight Allow and Decline. Storage key and head order unchanged |
 | `Field`, `Input`, `Select`, `Checkbox`, `Stepper` | Shared\* | **Keep/refactor** | A `ui/field.tsx`, `select.tsx`, `stepper.tsx` | Shared form styling. Native controls with `accent-color` |
 | `Dialog` | Shared\* | **Refactor** | A `ui/confirm-dialog.tsx` | Native `<dialog>`. Cancel gets default focus on destructive dialogs |
@@ -804,7 +804,7 @@ Repo key:
   - It opens a menu (`--raised`, `--shadow-overlay`, 12px radius, 4px padding).
   - Items are `<a href hreflang lang>` links to the **equivalent page**, labelled with endonyms. The current item gets a check and `aria-current="true"`.
   - Keyboard: arrow keys and Escape, and focus returns to the button.
-- **Footer:** the same choices as a plain inline list, "Language: English · Tiếng Việt", which works without JS.
+- **Footer:** the same choices in the shared `FooterMenu` (§5.3.17), a `<details>` that opens upward from the footer bar: a globe, the current endonym and a chevron, named "Language: English". It opens, and its links work, without JS. Hydrated, it also closes on Escape (focus returns to it), on a press or focus outside, and the arrow keys move between choices. An inline list of every endonym stopped fitting at twelve languages (decided 2026-10-08).
 - **Targets** come from `switchTargets` (sitemap §B.4). A cross-locale item is a plain `<a>` (`LocaleLink` with another locale renders one), so `<html lang>`, the font preloads and the theme script all run again.
 - **No equivalent page** (for example an English-only release post): the item still links to the other locale's nearest parent (`/vi/blog`) with the second line from sitemap §B.4, such as "Bài viết này chỉ có bằng tiếng Anh · Xem danh sách Blog". Never a dead or flag-labelled item.
 - **Account app** (a separate file in the license repo, §9; same look and labels): its mechanics belong to that repository. The public contract is architecture §2: one parameter name, `locale`, and switching language never invalidates a signed link.
@@ -813,13 +813,14 @@ Repo key:
 
 #### 5.3.16 ThemeControl
 
-One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and §3), with two variants. Each app passes its labels as props, so the file stays byte-identical.
+One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and §3), with three variants. Each app passes its labels as props, so the file stays byte-identical.
 
 - **`variant="menu"` (header):**
   - A 40 × 40 `quiet` icon button. Its icon reflects the *choice* (sun / moon / monitor), selected by CSS from `[data-theme-choice]`.
   - Accessible name: "Theme: Light" / "Giao diện: Sáng" (Dark / Tối; System / Theo hệ thống).
   - Opens a menu (`--raised`, `--shadow-overlay`, 12px radius) of three `menuitemradio` items with icon and label, `aria-checked` on the current one. Arrow keys move; Escape closes and returns focus to the button.
-- **`variant="segmented"` (footer and mobile menu):** an inline `SegmentedControl` with the same three options, icon + label.
+- **`variant="segmented"` (mobile menu):** an inline `SegmentedControl` with the same three options, icon + label.
+- **`variant="icons"` (footer bar):** the same radios as icon-only segments, 32px square (36px below 640), each named for assistive tech and in a tooltip.
 - **SSR:** the markup is theme-independent; the icon and the selected style come from `html[data-theme-choice=…]`, and `aria-checked` is corrected on mount.
 - **Behaviour:** §2.8.
 
@@ -854,13 +855,19 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 **SiteFooter:**
 
-- `--surface`, 1px `--rule` top border, `wide` container, 64px top and 48px bottom padding.
+- `--surface`, 1px `--rule` top border (the page frame's last join, marked where it meets the rails), `wide` container. Redesigned 2026-10-08.
 - Starts with a visually hidden `h2` ("Site links" / "Liên kết").
-- Row 1: a newsletter block (cols 1–5) and the link groups (cols 6–12, as 3 + 2 columns).
-- Groups and links come from sitemap §B.3, with the labels in positioning §10.2 (for example "Supported databases", never "All databases"). Group titles are `h3` at 14/600; links are `small` `--muted-foreground` with `--foreground` on hover, 32px rows.
-- Bottom row (1px `--rule` above):
-  - © year · TablePro
-  - Language list · ThemeControl (segmented) · "Cookie settings" (a `quiet` `sm` button that reopens consent)
+- The newsletter and the five link groups are cells of one `compact` CellGrid (§4.7), so their walls land on the rails:
+  - The newsletter is a full-width cell: its words beside its form from 768px of cell width, stacked below that.
+  - The groups are two to a row below 640, three from 640 and five from 1024. Below 640 the cells draw their horizontals only.
+  - Six cells in one row was measured and rejected: at 1280 it leaves 131px per group, and labels run to 196px (Indonesian) with unbreakable words of 150px (German).
+- Groups and links come from sitemap §B.3, with the labels in positioning §10.2 (for example "Supported databases", never "All databases"). Group titles are `h3` at 14/600; links are `small` `--muted-foreground` with `--foreground` on hover, 32px rows. A group cell keeps half its right padding and hyphenates a word that still cannot fit.
+- **FooterBar** closes it: one shared file, `components/shared/footer-bar.tsx`, byte-identical in the account app, whose footer ends on the same row.
+  - Left: the logo at 20px (decorative) and "© year TablePro. Source code under the AGPLv3."
+  - Right: the language menu (§5.3.15) and ThemeControl `icons` (§5.3.16). Below 640 they sit on a second row, language left and theme right.
+  - Its rule runs rail to rail, on the cell grid's last line.
+  - Where chat is configured, the controls keep `LAUNCHER_REACH` (100px) clear of the screen's right edge, so the chat launcher never covers them. From about 1416px the page's own margin is that wide and nothing moves.
+- "Cookie settings" stays in the Legal group.
 - No wordmark SVG.
 - The newsletter block:
   - Label + email `Input` + `secondary` Subscribe + one `caption` privacy line.
@@ -1049,6 +1056,7 @@ The site chrome and the `LanguageSwitcher` are always the license repo's own fil
 
 - **Account shell** (signed-in screens): the AccountBar, the section rail, and a slim footer inside the work column.
 - **Transactional shell** (sign-in, thank-you, newsletter and error pages): a slim header (logo → public home in the current locale; Download → public `/download`; Account or Sign in; LanguageSwitcher; ThemeControl) and the same slim footer.
+- The slim footer is one row of links, then the FooterBar the public footer ends on (§5.3.17): the mark, the copyright, the language menu and the theme.
 
 ```
 ┌ AccountBar · 56px · sticky · --background · 1px --rule bottom ──────────────────────────────┐

@@ -3,7 +3,6 @@ import type { Messages } from '../../types.ts';
 export default {
     "language": {
         "label": "Lingua",
-        "inlineLabel": "Lingua:",
         "current": "Lingua: {language}",
         "fallback": "Questa pagina non è disponibile in italiano",
         "fallbackPost": "Questo articolo non è in italiano",

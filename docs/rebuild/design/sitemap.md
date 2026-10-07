@@ -298,11 +298,11 @@ The footer replaces the 11 comparison links and 26 database links with hubs, and
 | Product / Sản phẩm | Features · Databases · iPhone & iPad · Pricing · Download · Compare |
 | Resources / Tài nguyên | Documentation ↗ (VI: "Tài liệu (tiếng Anh)") · Changelog ↗ (docs `/changelog`) · Blog · FAQ · Source code ↗ (GitHub) · Report a bug ↗ (GitHub issues) |
 | Support / Hỗ trợ | Account (`/account?locale=`) · Email (`hello@tablepro.app`) · Live chat (a button that loads Crisp only on click) |
-| Community / Cộng đồng | GitHub · Discord · X · Facebook · Telegram · Sponsor TablePro (GitHub Sponsors) |
+| Community / Cộng đồng | Discord · X · Facebook · Telegram · Sponsor TablePro (GitHub Sponsors). The repository is linked once, as "Source code" under Resources |
 | Legal / Pháp lý | Privacy · Terms · Refund policy · Cookie settings (a button that reopens the consent bar; key `tablepro:analytics-consent`) |
 
 - **Newsletter block.** The form posts to `/newsletter/subscribe` with a `locale` field, following the `useEmailForm` pattern, and fires `newsletter_signup_clicked{source:'footer'}`. It shows **no subscriber count**. Fetching `/api/newsletter/stats` from public pages also sets platform cookies, so the footer does not call it. The endpoint itself stays available and unchanged.
-- **Bottom row.** "© {year} TablePro. Source code under AGPLv3." · the language links "English · Tiếng Việt", repeated as plain links · the theme control.
+- **Bottom row.** The FooterBar shared with the account app: "© {year} TablePro. Source code under AGPLv3." · the language menu, a `<details>` of plain links that opens without JavaScript · the theme control as icons (design-system §5.3.17).
 
 ### B.4 Language switcher behaviour
 

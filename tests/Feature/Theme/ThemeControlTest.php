@@ -3,8 +3,9 @@
 use PHPUnit\Framework\Assert;
 
 /**
- * The theme control: Light, Dark and System, in the header as a menu and in
- * the footer and mobile menu as a segmented control (design-system §5.3.16).
+ * The theme control: Light, Dark and System, in the header as a menu, in the
+ * mobile menu as a segmented control and in the footer as the same control
+ * drawn with icons (design-system §5.3.16).
  *
  * The control is one file shared byte for byte with the account app, so it
  * takes its words as props and imports nothing app-specific. Its server markup
@@ -87,12 +88,22 @@ it('draws the current choice from the head script\'s attribute, so the first pai
     expect($tokens)->toContain(':root:not([data-theme-choice]) .theme-choice-icon[data-choice="light"]');
 });
 
-it('puts the menu in the header and the segmented form in the footer and the mobile menu', function (): void {
+it('puts the menu in the header, the segmented form in the mobile menu and the icons in the footer bar', function (): void {
     $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
 
     expect($read('site-header.tsx'))->toContain('<ThemeControl variant="menu" labels={m.controls.theme} />');
-    expect($read('site-footer.tsx'))->toContain('<ThemeControl variant="segmented" labels={m.controls.theme} />');
     expect($read('mobile-nav.tsx'))->toContain('<ThemeControl variant="segmented" labels={m.controls.theme} />');
+
+    // The footer hands its labels to the shared bar, which draws the control.
+    expect($read('site-footer.tsx'))->toContain('themeLabels={m.controls.theme}')->not->toContain('<ThemeControl');
+    expect((string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx')))->toContain('<ThemeControl variant="icons" labels={themeLabels} />');
+});
+
+it('names each icon-only segment for assistive tech and in a tooltip', function (): void {
+    $source = themeControlSource();
+
+    expect($source)->toContain('title={iconsOnly ? labels[option] : undefined}')
+        ->toContain('{iconsOnly ? <span className="sr-only">{labels[option]}</span> : labels[option]}');
 });
 
 it('renders the same markup whatever the theme, named in the page language', function (string $path, string $locale): void {
@@ -110,6 +121,8 @@ it('renders the same markup whatever the theme, named in the page language', fun
         Assert::assertStringContainsString("data-choice=\"{$choice}\"", $html);
         Assert::assertStringContainsString("data-theme-option=\"{$choice}\"", $html);
         Assert::assertStringContainsString('>' . $labels[$choice] . '</label>', $html, "{$path}: the {$choice} segment must be labelled in the page language");
+        Assert::assertStringContainsString('title="' . $labels[$choice] . '"', $html, "{$path}: the footer's {$choice} icon must carry its word as a tooltip");
+        Assert::assertStringContainsString('<span class="sr-only">' . $labels[$choice] . '</span></label>', $html, "{$path}: the footer's {$choice} icon must be named for assistive tech");
     }
 
     // The server cannot know the stored theme, so it renders light as checked, like the head script's default.

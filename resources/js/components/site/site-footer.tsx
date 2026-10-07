@@ -1,7 +1,8 @@
 import { useId, type FormEvent, type ReactNode } from 'react';
 import { CircleAlert } from 'lucide-react';
-import ThemeControl from '@/components/shared/theme-control';
+import FooterBar from '@/components/shared/footer-bar';
 import Button from '@/components/ui/button';
+import CellGrid from '@/components/ui/cell-grid';
 import Container from '@/components/ui/container';
 import { describedBy, FieldError, FieldLabel, Input } from '@/components/ui/field';
 import LocaleLink from '@/components/ui/locale-link';
@@ -41,9 +42,16 @@ function External({ href, children, hrefLang }: { href: string; children: ReactN
     );
 }
 
+/**
+ * One group, one cell. The narrowest cells (two columns at 360px, five at
+ * 1024px) leave about 150px, the width of a long German compound
+ * ("Nutzungsbedingungen"), so the cell gives up half of its right padding,
+ * which left-aligned text never shows. A longer word still hyphenates in the
+ * page's language rather than crossing the wall.
+ */
 function Group({ title, children }: { title: string; children: ReactNode }) {
     return (
-        <div>
+        <div className="pr-2 hyphens-auto sm:pr-4">
             <h3 className="text-sm leading-[1.4] font-semibold text-foreground">{title}</h3>
             <ul className="mt-3 grid">{children}</ul>
         </div>
@@ -56,6 +64,9 @@ function Group({ title, children }: { title: string; children: ReactNode }) {
  * page's locale, through `useEmailForm`, and shows no subscriber count: the
  * footer never calls `/api/newsletter/stats`, whose session cookie would
  * otherwise land on public pages.
+ *
+ * It lays itself out by its cell's width: the field and button side by side
+ * from 20rem, the words beside the form from 48rem.
  */
 function Newsletter() {
     const { m } = useI18n();
@@ -71,56 +82,60 @@ function Newsletter() {
     }
 
     return (
-        <section aria-labelledby={`${id}-title`} className="max-w-md">
-            <h3 id={`${id}-title`} className="type-h3 text-foreground">
-                {m.footer.newsletter.title}
-            </h3>
-            <p className="type-small mt-2 text-muted-foreground">{m.footer.newsletter.body}</p>
-            <form onSubmit={submit} className="mt-4 grid gap-1.5">
-                <FieldLabel htmlFor={inputId}>{m.forms.email.label}</FieldLabel>
-                <div className="flex flex-col gap-2 sm:flex-row">
-                    <Input
-                        id={inputId}
-                        type="email"
-                        name="email"
-                        required
-                        autoComplete="email"
-                        placeholder={m.forms.email.placeholder}
-                        value={form.email}
-                        onChange={(event) => form.setEmail(event.target.value)}
-                        readOnly={form.processing}
-                        invalid={form.error !== null}
-                        aria-describedby={describedBy(inputId, { error: form.error }) ?? resultId}
-                        className="sm:flex-1"
+        <section aria-labelledby={`${id}-title`} className="grid gap-4 @3xl:grid-cols-2 @3xl:gap-8">
+            <div className="max-w-md">
+                <h3 id={`${id}-title`} className="type-h3 text-foreground">
+                    {m.footer.newsletter.title}
+                </h3>
+                <p className="type-small mt-2 text-muted-foreground">{m.footer.newsletter.body}</p>
+            </div>
+            <div className="max-w-md">
+                <form onSubmit={submit} className="grid gap-1.5">
+                    <FieldLabel htmlFor={inputId}>{m.forms.email.label}</FieldLabel>
+                    <div className="flex flex-col gap-2 @xs:flex-row">
+                        <Input
+                            id={inputId}
+                            type="email"
+                            name="email"
+                            required
+                            autoComplete="email"
+                            placeholder={m.forms.email.placeholder}
+                            value={form.email}
+                            onChange={(event) => form.setEmail(event.target.value)}
+                            readOnly={form.processing}
+                            invalid={form.error !== null}
+                            aria-describedby={describedBy(inputId, { error: form.error }) ?? resultId}
+                            className="@xs:flex-1"
+                        />
+                        {/* Busy shows a spinner beside the same label, so the button keeps its width. */}
+                        <Button type="submit" variant="secondary" loading={form.processing} className="shrink-0">
+                            {m.forms.subscribe}
+                        </Button>
+                    </div>
+                    {form.error && <FieldError id={`${inputId}-error`}>{form.error}</FieldError>}
+                    {/* Reserved height, so the answer moves nothing. An error is the one coloured status text, with an icon beside it. */}
+                    <p
+                        id={resultId}
+                        aria-live="polite"
+                        className={cn('type-small flex min-h-[1.6em] items-start gap-1.5', form.flash?.type === 'error' ? 'text-danger' : 'text-foreground')}
+                    >
+                        {form.flash?.type === 'error' && <CircleAlert className="mt-[0.2em] size-4 shrink-0" aria-hidden="true" />}
+                        {form.flash?.message}
+                    </p>
+                </form>
+                <p className="type-caption text-muted-foreground">
+                    <Trans
+                        text={m.footer.newsletter.note}
+                        tags={{
+                            link: (text) => (
+                                <LocaleLink href="/privacy" className={textLinkClasses('inline')}>
+                                    {text}
+                                </LocaleLink>
+                            ),
+                        }}
                     />
-                    {/* Busy shows a spinner beside the same label, so the button keeps its width. */}
-                    <Button type="submit" variant="secondary" loading={form.processing} className="shrink-0">
-                        {m.forms.subscribe}
-                    </Button>
-                </div>
-                {form.error && <FieldError id={`${inputId}-error`}>{form.error}</FieldError>}
-                {/* Reserved height, so the answer moves nothing. An error is the one coloured status text, with an icon beside it. */}
-                <p
-                    id={resultId}
-                    aria-live="polite"
-                    className={cn('type-small flex min-h-[1.6em] items-start gap-1.5', form.flash?.type === 'error' ? 'text-danger' : 'text-foreground')}
-                >
-                    {form.flash?.type === 'error' && <CircleAlert className="mt-[0.2em] size-4 shrink-0" aria-hidden="true" />}
-                    {form.flash?.message}
                 </p>
-            </form>
-            <p className="type-caption text-muted-foreground">
-                <Trans
-                    text={m.footer.newsletter.note}
-                    tags={{
-                        link: (text) => (
-                            <LocaleLink href="/privacy" className={textLinkClasses('inline')}>
-                                {text}
-                            </LocaleLink>
-                        ),
-                    }}
-                />
-            </p>
+            </div>
         </section>
     );
 }
@@ -138,7 +153,11 @@ function Newsletter() {
  *
  * Its top rule is the page frame's last join, so it carries the marks where
  * that rule meets the rails, like every join in `<main>` (`data-join-mark`,
- * design-system §4.7).
+ * design-system §4.7). Below it the newsletter and the five groups are cells
+ * of one CellGrid: the newsletter a full-width row, then the groups in two
+ * columns on a phone, three from 640px and five from 1024px. A phone sees
+ * only the horizontals. The shared FooterBar closes it, the same row as in the
+ * account app.
  */
 export default function SiteFooter({ newsletter = true }: { newsletter?: boolean }) {
     const { locale, m, fmt } = useI18n();
@@ -147,146 +166,148 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
 
     return (
         <footer data-join-mark className="border-t border-rule bg-surface print:hidden">
-            <Container className="pt-16 pb-12">
+            <Container>
                 <h2 className="sr-only">{m.footer.heading}</h2>
-                <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+                <CellGrid
+                    density="compact"
+                    className={cn(
+                        'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5',
+                        // A phone keeps the rows' lines and drops the wall between its two columns.
+                        'max-sm:gap-x-0 max-sm:*:shadow-[0_-1px_0_var(--rule),0_1px_0_var(--rule)]',
+                    )}
+                >
                     {newsletter && (
-                        <div className="lg:col-span-5">
+                        <div className="@container col-span-full">
                             <Newsletter />
                         </div>
                     )}
-                    <div className={cn('grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3', newsletter ? 'lg:col-span-7' : 'lg:col-span-12 lg:grid-cols-5')}>
-                        <Group title={groups.product.title}>
-                            <li>
-                                <LocaleLink href="/features" className={LINK}>
-                                    {groups.product.features}
+                    <Group title={groups.product.title}>
+                        <li>
+                            <LocaleLink href="/features" className={LINK}>
+                                {groups.product.features}
+                            </LocaleLink>
+                        </li>
+                        <li>
+                            <LocaleLink href="/databases" className={LINK}>
+                                {groups.product.databases}
+                            </LocaleLink>
+                        </li>
+                        {PLATFORM_PAGES.map((page) => (
+                            <li key={page.id}>
+                                <LocaleLink href={page.href} className={LINK}>
+                                    {joinList(page.deviceNames, m.common.shortList)}
                                 </LocaleLink>
                             </li>
+                        ))}
+                        <li>
+                            <LocaleLink href="/pricing" className={LINK}>
+                                {groups.product.pricing}
+                            </LocaleLink>
+                        </li>
+                        <li>
+                            <LocaleLink href="/download" className={LINK}>
+                                {groups.product.download}
+                            </LocaleLink>
+                        </li>
+                        <li>
+                            <LocaleLink href="/compare" className={LINK}>
+                                {groups.product.compare}
+                            </LocaleLink>
+                        </li>
+                    </Group>
+                    <Group title={groups.resources.title}>
+                        <li>
+                            <External href={EXTERNAL.docs} hrefLang="en">
+                                {groups.resources.docs}
+                            </External>
+                        </li>
+                        <li>
+                            <External href={EXTERNAL.changelog} hrefLang="en">
+                                {groups.resources.changelog}
+                            </External>
+                        </li>
+                        <li>
+                            <LocaleLink href="/blog" className={LINK}>
+                                {groups.resources.blog}
+                            </LocaleLink>
+                        </li>
+                        <li>
+                            <LocaleLink href="/faq" className={LINK}>
+                                {groups.resources.faq}
+                            </LocaleLink>
+                        </li>
+                        <li>
+                            <External href={EXTERNAL.github}>{groups.resources.source}</External>
+                        </li>
+                        <li>
+                            <External href={EXTERNAL.issues}>{groups.resources.reportBug}</External>
+                        </li>
+                    </Group>
+                    <Group title={groups.support.title}>
+                        <li>
+                            <a href={accountHref(locale)} className={LINK}>
+                                {groups.support.account}
+                            </a>
+                        </li>
+                        <li>
+                            <a href={`mailto:${SUPPORT_EMAIL}`} className={LINK}>
+                                {groups.support.email}
+                            </a>
+                        </li>
+                        {chat && (
                             <li>
-                                <LocaleLink href="/databases" className={LINK}>
-                                    {groups.product.databases}
-                                </LocaleLink>
+                                <ChatButton className={`${LINK} cursor-pointer`}>{groups.support.chat}</ChatButton>
                             </li>
-                            {PLATFORM_PAGES.map((page) => (
-                                <li key={page.id}>
-                                    <LocaleLink href={page.href} className={LINK}>
-                                        {joinList(page.deviceNames, m.common.shortList)}
-                                    </LocaleLink>
-                                </li>
-                            ))}
-                            <li>
-                                <LocaleLink href="/pricing" className={LINK}>
-                                    {groups.product.pricing}
-                                </LocaleLink>
-                            </li>
-                            <li>
-                                <LocaleLink href="/download" className={LINK}>
-                                    {groups.product.download}
-                                </LocaleLink>
-                            </li>
-                            <li>
-                                <LocaleLink href="/compare" className={LINK}>
-                                    {groups.product.compare}
-                                </LocaleLink>
-                            </li>
-                        </Group>
-                        <Group title={groups.resources.title}>
-                            <li>
-                                <External href={EXTERNAL.docs} hrefLang="en">
-                                    {groups.resources.docs}
-                                </External>
-                            </li>
-                            <li>
-                                <External href={EXTERNAL.changelog} hrefLang="en">
-                                    {groups.resources.changelog}
-                                </External>
-                            </li>
-                            <li>
-                                <LocaleLink href="/blog" className={LINK}>
-                                    {groups.resources.blog}
-                                </LocaleLink>
-                            </li>
-                            <li>
-                                <LocaleLink href="/faq" className={LINK}>
-                                    {groups.resources.faq}
-                                </LocaleLink>
-                            </li>
-                            <li>
-                                <External href={EXTERNAL.github}>{groups.resources.source}</External>
-                            </li>
-                            <li>
-                                <External href={EXTERNAL.issues}>{groups.resources.reportBug}</External>
-                            </li>
-                        </Group>
-                        <Group title={groups.support.title}>
-                            <li>
-                                <a href={accountHref(locale)} className={LINK}>
-                                    {groups.support.account}
-                                </a>
-                            </li>
-                            <li>
-                                <a href={`mailto:${SUPPORT_EMAIL}`} className={LINK}>
-                                    {groups.support.email}
-                                </a>
-                            </li>
-                            {chat && (
-                                <li>
-                                    <ChatButton className={`${LINK} cursor-pointer`}>{groups.support.chat}</ChatButton>
-                                </li>
-                            )}
-                        </Group>
-                        <Group title={groups.community.title}>
-                            <li>
-                                <External href={EXTERNAL.github}>{groups.community.github}</External>
-                            </li>
-                            <li>
-                                <External href={EXTERNAL.discord}>{groups.community.discord}</External>
-                            </li>
-                            <li>
-                                <External href={EXTERNAL.x}>{groups.community.x}</External>
-                            </li>
-                            <li>
-                                <External href={EXTERNAL.facebook}>{groups.community.facebook}</External>
-                            </li>
-                            <li>
-                                <External href={EXTERNAL.telegram}>{groups.community.telegram}</External>
-                            </li>
-                            <li>
-                                <External href={EXTERNAL.sponsors}>{groups.community.sponsor}</External>
-                            </li>
-                        </Group>
-                        <Group title={groups.legal.title}>
-                            <li>
-                                <LocaleLink href="/privacy" className={LINK}>
-                                    {groups.legal.privacy}
-                                </LocaleLink>
-                            </li>
-                            <li>
-                                <LocaleLink href="/terms" className={LINK}>
-                                    {groups.legal.terms}
-                                </LocaleLink>
-                            </li>
-                            <li>
-                                <LocaleLink href="/refund-policy" className={LINK}>
-                                    {groups.legal.refund}
-                                </LocaleLink>
-                            </li>
-                            <li>
-                                <button type="button" onClick={openConsentSettings} className={`${LINK} cursor-pointer`}>
-                                    {groups.legal.cookies}
-                                </button>
-                            </li>
-                        </Group>
-                    </div>
-                </div>
-
-                <div className="-mx-(--cell-bleed) mt-12 flex flex-col gap-6 border-t border-rule px-(--cell-bleed) pt-6 lg:flex-row lg:items-center lg:justify-between">
-                    <p className="type-small text-muted-foreground">{fmt(m.footer.bottom.copyright, { year: new Date().getFullYear() })}</p>
-                    <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8">
-                        <LanguageSwitcher variant="list" />
-                        <ThemeControl variant="segmented" labels={m.controls.theme} />
-                    </div>
-                </div>
+                        )}
+                    </Group>
+                    <Group title={groups.community.title}>
+                        <li>
+                            <External href={EXTERNAL.discord}>{groups.community.discord}</External>
+                        </li>
+                        <li>
+                            <External href={EXTERNAL.x}>{groups.community.x}</External>
+                        </li>
+                        <li>
+                            <External href={EXTERNAL.facebook}>{groups.community.facebook}</External>
+                        </li>
+                        <li>
+                            <External href={EXTERNAL.telegram}>{groups.community.telegram}</External>
+                        </li>
+                        <li>
+                            <External href={EXTERNAL.sponsors}>{groups.community.sponsor}</External>
+                        </li>
+                    </Group>
+                    <Group title={groups.legal.title}>
+                        <li>
+                            <LocaleLink href="/privacy" className={LINK}>
+                                {groups.legal.privacy}
+                            </LocaleLink>
+                        </li>
+                        <li>
+                            <LocaleLink href="/terms" className={LINK}>
+                                {groups.legal.terms}
+                            </LocaleLink>
+                        </li>
+                        <li>
+                            <LocaleLink href="/refund-policy" className={LINK}>
+                                {groups.legal.refund}
+                            </LocaleLink>
+                        </li>
+                        <li>
+                            <button type="button" onClick={openConsentSettings} className={`${LINK} cursor-pointer`}>
+                                {groups.legal.cookies}
+                            </button>
+                        </li>
+                    </Group>
+                </CellGrid>
+                <FooterBar
+                    copyright={fmt(m.footer.bottom.copyright, {
+                        year: new Date().getFullYear(),
+                    })}
+                    language={<LanguageSwitcher variant="footer" />}
+                    themeLabels={m.controls.theme}
+                    chat={chat}
+                />
             </Container>
         </footer>
     );

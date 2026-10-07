@@ -51,7 +51,8 @@ string arrives as a prop, so each app passes its own words in its own language.
 | `resources/views/partials/head-theme.blade.php` | `10d0c109dc1b41f732519b94fa2dfa302fab590dc80089f419b48d36a3710110` | The pre-paint theme script, verbatim from design-system §2.8: light by default, `theme` in `localStorage`, `data-theme-choice`, one `theme-color` |
 | `tests/Support/vi-forbidden-variants.php` | `fcf40949323de01bed0be38a53d89256184e6c823acedfd0e0a91513690caa69` | The glossary's forbidden Vietnamese variants (sitemap §E.10), read by `Localization/ContentParityTest` here and `Localization/LangParityTest` in the account app |
 | `resources/js/lib/theme.ts` | `2c8b2af95cb12329a87a11743281af2506917ccbd57cc109629b51e4505d9765` | Reading, applying and syncing the theme choice across tabs and both apps (`theme` key; `tablepro:theme-change` event) |
-| `resources/js/components/shared/theme-control.tsx` | `3f093a0c661f07088ca94154d303a5c91b0a4fd47d9f71e5af6567d834245884` | ThemeControl, `menu` and `segmented` variants; labels arrive as props |
+| `resources/js/components/shared/theme-control.tsx` | `926fdee8bb165cc23cb2dd6479caa3db1de52480415a06664b6047e18330b662` | ThemeControl, `menu`, `segmented` and `icons` variants; labels arrive as props |
+| `resources/js/components/shared/footer-bar.tsx` | `7f0f27eba1902bd2d175e4b6a1bb434453a76d058d555a6329e0eea5e3e18237` | FooterBar, the last row of every page in both apps: the mark, the copyright, a slot for the app's language control and ThemeControl `icons`, kept clear of the chat launcher where chat is configured. FooterMenu, the `<details>` menu that opens upward and that each app's language switcher fills, and `FOOTER_MENU_ITEM`, the class of one of its choices |
 | `resources/js/lib/consent.ts` | `1c276dfffeb65b67e01601e2d17bffeb854542573797c9c69f4bc8e21ae51aeb` | The analytics consent record (`tablepro:analytics-consent`), applying and withdrawing it, and the "Cookie settings" reopen event |
 | `resources/js/components/shared/consent-bar.tsx` | `e52f45bc0a981a7f1951130d7f3568ad5959168e3d76834835bda61e7581d33c` | The consent bar: one question, a privacy link, equal Allow and Decline; labels and the privacy URL arrive as props; `data-consent-bar` lets the chat launcher keep clear of it |
 | `resources/js/lib/crisp.ts` | `26ee95af1babbf159a49021fd3c5316bd0ed64eaa385df654ba33389e5fd3faa` | Chat on every page: the loader arrives after the load event and an idle moment, a chat button opens it, and the launcher hides while the consent bar covers its corner |
@@ -137,7 +138,8 @@ which are updated in the same change as the copies:
   links and strings, the public ones link through `LocaleLink` (an Inertia
   link, which must never run in the account app), and the account switcher
   posts a form when signed in. The account app builds its own account and
-  transactional shells to the same design (design-system §5.4).
+  transactional shells to the same design (design-system §5.4). Both footers
+  end on the shared `FooterBar`, and both switchers fill its `FooterMenu`.
 - The public-only primitives, which read this site's data or locale helpers:
   `locale-link`, `breadcrumbs`, `page-header`, `section`, `card`, `disclosure`,
   `segmented-control`, `faq-list`, `code`, `kbd`, `glyph` (Availability),
