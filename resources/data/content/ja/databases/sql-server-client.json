@@ -1,0 +1,137 @@
+{
+    "seo": {
+        "title": "{devices} 用 SQL Server クライアント",
+        "description": "GO バッチと PRINT 出力で T-SQL を実行。SQL ログイン、Kerberos、Microsoft Entra ID で認証し、SQL Server を .bacpac にバックアップできます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "SQL Server クライアント"
+    },
+    "engine": "sqlserver",
+    "breadcrumb": "SQL Server",
+    "header": {
+        "title": "{devices} 用 SQL Server クライアント",
+        "lead": "T-SQL スクリプトをバッチごとに実行し、GO と PRINT を SQL Server Management Studio と同じように処理します。SQL Server ログイン、Kerberos、Microsoft Entra ID の職場アカウントで認証できます。Windows、Linux、Docker のサーバーと Azure SQL Database は同じ方法で接続します。"
+    },
+    "asset": "mac-db-sqlserver-script",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "ホストと TCP ポートを入力し、<ui>Authentication</ui> を選ぶとフォームが認証方式に合わせて変わります。SQL Server のログインとパスワード、Kerberos による Windows 認証、Microsoft Entra ID に対応します。Azure SQL の contained user など一つのデータベースに属するログインでは Database も指定してください。",
+                "Kerberos は認証情報キャッシュの既存チケットを使うか、入力したプリンシパルとパスワードで取得します。チケットはサーバーの登録済み SPN に対して発行するため、IP アドレスではなくホスト名で接続してください。TablePro は <code>kinit</code> を実行せず、<code>/etc/krb5.conf</code> も編集しません。",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> は多要素認証と Conditional Access に従うデバイスコードフローで認証します。Azure でアプリを登録し、クライアント ID を入力してください。トークンはデバイス限定としてログインキーチェーンに保持し、バックグラウンドで更新します。",
+                "新規接続は Preferred で始まり、SQL Server ではログインだけを暗号化します。セッション全体を暗号化するには Required 以上を選んでください。Verify CA と Verify Identity は macOS のシステムルート証明書で検証します。Google Cloud SQL 用の Cloud SQL Auth Proxy も実行でき、プライベートネットワークには <network>SSH トンネル</network> で接続できます。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "スクリプト、バッチと編集",
+            "paragraphs": [
+                "スクリプトは sqlcmd と同じく、<code>GO</code> だけがある行ごとに分割し、一つずつバッチとしてサーバーに送ります。<code>GO 5</code> は直前のバッチを五回実行します。結果セットはそれぞれ専用タブで開き、<code>PRINT</code> 出力と情報メッセージは Output ビューに表示します。",
+                "失敗時にそれ以前のバッチも戻す必要がある場合は、スクリプトに <code>BEGIN TRAN</code> と <code>COMMIT</code> を記述してください。トランザクションを開いたままのスクリプトは、終了時に通知します。最初に失敗したバッチで実行を停止し、エディタ内の行番号をエラーに表示します。",
+                "すべてのセッションは、フィルター付きインデックス、インデックス付きビューと計算カラムのインデックスに必要な SET オプションで開きます。例えば <code>ANSI_NULLS</code> と <code>QUOTED_IDENTIFIER</code> をオンにします。そのため <code>col = NULL</code> は何にも一致せず、<code>IS NULL</code> で比較してください。",
+                "サイドバーではスキーマ配下にテーブルを表示し、<code>Cmd+K</code> は再接続せずにデータベースを切り替えます。行の編集は <editing>Preview SQL</editing> とともに保留し、新規行の IDENTITY カラムはサーバーに任せます。<code>nvarchar(max)</code> の値は全体を受け取ります。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "スキーマ",
+            "paragraphs": [
+                "<structure>Structure タブ</structure> はカラム、インデックス、外部キーと制約の変更を保留し、実行前に T-SQL を表示します。スキーマはサイドバーから削除できますが、オブジェクトが残るスキーマは SQL Server が拒否します。作成はエディタで CREATE SCHEMA を使います。",
+                "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は二つの SQL Server スキーマまたはデータを比較し、各文の後に <code>GO</code> 行を付けたスクリプトを保存します。sqlcmd や SQL Server Management Studio でそのまま使えます。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "監視とバックアップ",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> はユーザーセッション、稼働時間、データベースサイズを表示し、他のすべてのセッションと一秒以上実行しているクエリを一覧表示します。<ui>Terminate Session</ui> でセッションを終了できます。SQL Server には Cancel Query はありません。",
+                "<backup>Backup Dump</backup> は Microsoft からダウンロードする {dumpTool} で <code>.bacpac</code> を書き込み、Restore Dump は空のデータベースに読み込みます。SqlPackage はパスワードをコマンドラインだけで受け取り、Mac 上の他のプロセスが読めるため、TablePro は開始前に確認します。Windows または Entra 認証ならパスワードを渡さずに済みます。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "{importFormats} ファイルを <importData>インポート</importData> できます。<code>GO</code> 行を含む <code>.sql</code> ファイルは sqlcmd と同じくバッチごとに実行します。テーブルや結果を {exportFormats} にエクスポートでき、SQL エクスポートは各文を <code>GO</code> 行で終えるため、独立したバッチとして実行します。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone と iPad",
+            "paragraphs": [
+                "iPhone と iPad では SQL Server ログインで認証し、カード表示でテーブルを閲覧し、主キーのある行を編集し、Query タブで T-SQL を実行できます。Windows 認証は使えません。Microsoft Entra ID を使う接続は iCloud Sync やエクスポートした接続ファイルで Mac から取り込み、開くときに Microsoft にサインインします。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "ssms",
+                "text": "SQL Server Management Studio は Microsoft 純正の SQL Server・Azure SQL 用ツールです。SQL Server Agent ジョブ、Always On 可用性グループ、ライブクエリ統計とパフォーマンス調整ツールなど、TablePro が扱わない管理機能に適しています。",
+                "notes": [
+                    "ssms-github-copilot-component"
+                ]
+            },
+            {
+                "product": "azure-data-studio",
+                "text": "Azure Data Studio は Microsoft の SQL Server・Azure SQL 用クエリエディタで、SQL Server Agent や Profiler などの作業用拡張を備えていました。",
+                "notes": [
+                    "ads-retired-successor"
+                ]
+            }
+        ],
+        "notes": {
+            "ssms-github-copilot-component": "SQL Server Management Studio の GitHub Copilot は、Visual Studio Installer で追加する別コンポーネントです。",
+            "ads-retired-successor": "Microsoft はこれを廃止し、アップデートやセキュリティ修正を終了しました。後継として案内するのは MSSQL 拡張を入れた Visual Studio Code で、同じクエリ、スクリプトとデータベースプロジェクトを変換なしに開けます。"
+        }
+    },
+    "faq": [
+        {
+            "id": "azure-sql",
+            "question": "Azure SQL Database に対応しますか？",
+            "answer": "はい。ホストに <code>yourserver.database.windows.net</code> を使い、SSL を Required 以上にし、SQL ログインや Microsoft Entra ID で認証してください。contained user の場合は Database 欄も必要です。"
+        },
+        {
+            "id": "declare",
+            "question": "なぜ「Must declare the scalar variable」と表示されるのですか？",
+            "answer": "変数を読む文と <code>DECLARE</code> が別のバッチで実行されました。間に <code>GO</code> 行があるか、<code>Cmd+Enter</code> がカーソル位置の文だけを実行したためです。両方の文を選択するか、スクリプト全体を実行してください。"
+        },
+        {
+            "id": "freetds",
+            "question": "FreeTDS や ODBC ドライバーは必要ですか？",
+            "answer": "不要です。ドライバーは FreeTDS を基にし、同梱するため追加インストールは不要です。自分の <code>freetds.conf</code> は読みません。別途ツール {dumpTool} が必要なのは Backup Dump と Restore Dump だけです。"
+        }
+    ],
+    "related": [
+        {
+            "label": "接続、トンネルと認証",
+            "href": "/features/connections#cloud-auth"
+        },
+        {
+            "label": "スキーマ、比較と同期",
+            "href": "/features/schema"
+        },
+        {
+            "label": "インポート、エクスポートとバックアップ",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "iPhone と iPad 用 TablePro",
+            "href": "/ios#security"
+        }
+    ]
+}

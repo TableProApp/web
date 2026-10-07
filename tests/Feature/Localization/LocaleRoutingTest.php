@@ -227,7 +227,7 @@ it('sets no cookie and never varies on language', function (): void {
 
 it('serves no locale outside the allowlist', function (string $path): void {
     $this->get($path)->assertNotFound();
-})->with(['/en', '/en/download', '/fr', '/fr/download', '/vi/vi', '/vi/vi/download', '/VI', '/Vi/download']);
+})->with(['/en', '/en/download', '/xx', '/xx/download', '/vi/vi', '/vi/vi/download', '/VI', '/Vi/download']);
 
 it('mounts every localized route once per locale, under the same name', function (): void {
     $routes = collect(app('router')->getRoutes()->getRoutes());
@@ -324,9 +324,9 @@ it('pins each slug constant to its content files once the family has them', func
 ]);
 
 it('refuses a locale outside the allowlist even if a route asks for it', function (): void {
-    Router::middleware(['web', 'locale:fr'])->get('/_test/french', fn() => 'bonjour');
+    Router::middleware(['web', 'locale:xx'])->get('/_test/unsupported', fn() => 'bonjour');
 
-    $this->get('/_test/french')->assertNotFound();
+    $this->get('/_test/unsupported')->assertNotFound();
 });
 
 it('canonicalises every request before routing, matched or not', function (): void {

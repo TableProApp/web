@@ -1,0 +1,314 @@
+{
+    "seo": {
+        "title": "SSH 通道、雲端帳號登入與連線匯入",
+        "description": "透過 SSH 跳板主機、代理或 kubectl 存取資料庫，使用 AWS IAM 或 Entra ID 登入，並從 TablePlus、DBeaver 等工具匯入連線。"
+    },
+    "og": {
+        "kicker": "連線",
+        "title": "連線、通道與認證資訊"
+    },
+    "header": {
+        "title": "連線、通道與認證資訊",
+        "lead": "如果資料庫位於堡壘主機、叢集或雲端帳號登入之後，只需設定一次連線所需的存取路徑與密碼來源，並為正式環境連線訂定更嚴格的規則。本頁介紹的功能均在 Mac App 中，最後一節介紹 iPhone 與 iPad。",
+        "docs": "/connections"
+    },
+    "sections": [
+        {
+            "id": "organize",
+            "title": "管理連線資源庫",
+            "paragraphs": [
+                "每個連線都在一個包含 General、Network、Options 與 Appearance 分頁的表單中編輯。匯入連線 URL 後，表單會自動填入，包括 <code>jdbc:</code> URL 與包含 SSH 中繼資訊的 <code>+ssh</code> URL；如果剪貼簿中已有 URL，表單會提供 <ui>Use clipboard URL</ui>。",
+                "為連線設定顏色、任意數量的標籤與巢狀群組，並將常用連線加星號設為喜好項目。環境以標籤表示，內建 local、development、production 與 testing，也可以新增自訂標籤。空連線資源庫會提供 <ui>Open Sample Database</ui>，開啟隨 App 附帶的 Chinook SQLite 副本。",
+                "在同一視窗開啟多個連線，透過左側的連線列切換；每個連線都會回到上次使用的分頁。<ui>Open in New Window</ui> 可讓兩個連線並排顯示。"
+            ],
+            "asset": "mac-connection-library"
+        },
+        {
+            "id": "import",
+            "title": "匯入現有連線",
+            "paragraphs": [
+                "通常無須從空清單開始：TablePro 可以從其他用戶端、專案設定檔或 AWS 帳號讀取連線。"
+            ],
+            "links": [
+                {
+                    "label": "連線檔案與分享連結",
+                    "href": "/features/sync-and-teams#share"
+                }
+            ],
+            "blocks": [
+                {
+                    "id": "other-apps",
+                    "title": "從其他資料庫用戶端匯入",
+                    "paragraphs": [
+                        "<ui>Import from Other App</ui> 讀取 {connectionImportApps} 中儲存的連線，包括 TablePlus 的 Setapp 版，並從這些 App 的儲存位置匯入密碼，也支援 DBeaver 與 Navicat 儲存的加密密碼。Navicat 連線從 <code>.ncx</code> 匯出檔讀取。"
+                    ],
+                    "asset": "mac-import-other-app"
+                },
+                {
+                    "id": "project-folder",
+                    "title": "從專案設定檔匯入",
+                    "paragraphs": [
+                        "<ui>Open Project Folder</ui> 在專案中掃描資料庫設定，支援 <code>.env</code>、<code>wp-config.php</code>、Prisma schema、Rails 的 <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring 的 <code>application.properties</code> 或 <code>application.yml</code>，以及 <code>appsettings.json</code>。它會列出每組設定及其來源檔案，選取後填入連線表單；密碼直接存入鑰匙圈。如果檔案路徑、主機或資料庫名稱中出現獨立單字 <code>prod</code>、<code>production</code> 或 <code>live</code>，該連線的安全模式預設為 Alert 等級。"
+                    ],
+                    "asset": "mac-open-project-folder"
+                },
+                {
+                    "id": "aws",
+                    "title": "從 AWS 帳號匯入",
+                    "paragraphs": [
+                        "<ui>Import from AWS</ui> 列出 AWS 設定檔在所選區域中可見的 RDS 執行個體與 Aurora 叢集，並新增選取的項目。設定檔需要 <code>rds:DescribeDBInstances</code> 與 <code>rds:DescribeDBClusters</code> 權限。"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "network",
+            "title": "存取堡壘主機、代理或叢集後的資料庫",
+            "paragraphs": [],
+            "blocks": [
+                {
+                    "id": "ssh",
+                    "title": "SSH 與 TLS",
+                    "paragraphs": [
+                        "SSH 通道支援密碼、私密金鑰、1Password 等 SSH 代理或鍵盤互動提示登入，可依序經過跳板主機，也可遵循 <code>~/.ssh/config</code> 中的 <code>ProxyJump</code>。一次性驗證碼可以根據鑰匙圈中的密鑰產生，或在每次連線時要求輸入；未知主機金鑰會在 TablePro 信任前顯示指紋。將通道儲存為 SSH 設定檔即可重複使用。",
+                        "TLS 支援 Disabled、Preferred、Required、Verify CA 與 Verify Identity 模式，可使用自己的 CA、用戶端憑證與金鑰。Required 僅加密，不檢查伺服器憑證；Verify 模式會驗證憑證。"
+                    ],
+                    "engines": [
+                        {
+                            "label": "不支援 SSH 通道的網路引擎",
+                            "list": "noSsh"
+                        }
+                    ],
+                    "asset": "mac-connection-ssh-form"
+                },
+                {
+                    "id": "tunnels",
+                    "title": "代理、Cloudflare、Cloud SQL 與通道指令",
+                    "paragraphs": [
+                        "不透過 SSH 存取時，Network 分頁可使用支援遠端 DNS 的 SOCKS5 代理、Cloudflare Access 或 Cloud SQL Auth Proxy。使用 Cloudflare Access 時，TablePro 執行 <code>cloudflared</code> 並透過瀏覽器或服務權杖登入；使用 Cloud SQL Auth Proxy 時，TablePro 為 {cloudSqlProxy} 下載、驗證並執行該代理。",
+                        "Tunnel Command 啟動 <code>kubectl port-forward</code>、<code>aws ssm start-session</code> 或自訂指令，再連線到它開啟的本機連接埠。連線也可在建立前執行 shell 指令碼，每個工作階段先徵求確認，並在連線後立即執行 SQL 陳述式。"
+                    ],
+                    "asset": "mac-tunnel-command"
+                }
+            ]
+        },
+        {
+            "id": "cloud-auth",
+            "title": "使用雲端帳號登入",
+            "paragraphs": [
+                "AWS IAM 資料庫驗證在每次連線時簽發新權杖，可使用存取金鑰、<code>~/.aws</code> 中的設定檔（支援 <code>credential_process</code> 與角色擔任）或 AWS IAM Identity Center，並將 TLS 提升為 Required。Amazon ElastiCache for Redis、Amazon Keyspaces 與 DynamoDB 使用各自的 AWS 簽章。",
+                "SQL Server 可使用提供的應用程式註冊用戶端 ID，在瀏覽器中透過 Microsoft Entra ID 登入，或使用票證、主體與密碼進行 Kerberos 登入。Google BigQuery 支援服務帳號金鑰、Application Default Credentials，或使用自有用戶端的 Google OAuth；Google Cloud Spanner 與 Cloud SQL Auth Proxy 可使用 Google 帳號。"
+            ],
+            "engines": [
+                {
+                    "label": "RDS 與 Aurora 的 AWS IAM 驗證",
+                    "list": "awsIam"
+                }
+            ],
+            "links": [
+                {
+                    "label": "在 TablePro 中使用 SQL Server",
+                    "href": "/sql-server-client"
+                },
+                {
+                    "label": "在 TablePro 中使用 BigQuery",
+                    "href": "/bigquery-client"
+                }
+            ]
+        },
+        {
+            "id": "credentials",
+            "title": "將密碼儲存在適當的位置",
+            "paragraphs": [
+                "密碼儲存在 macOS 鑰匙圈中；啟用 iCloud Sync 後，密碼同步透過 iCloud 鑰匙圈將其傳至其他裝置。SSH 金鑰始終是連線所參照的磁碟檔案，只有通關密語會存入鑰匙圈。",
+                "認證資訊設定檔可讓多個連線共用一組登入資訊，並在連線時從 1Password（<code>op</code>）、HashiCorp Vault、AWS Secrets Manager、shell 指令、檔案或環境變數讀取密碼。這些密碼來源免費且從不同步；各命令列工具必須位於 <code>PATH</code>、<code>/usr/local/bin</code> 或 <code>/opt/homebrew/bin</code> 中。PostgreSQL、Amazon Redshift 與 CockroachDB 連線也可使用 <code>~/.pgpass</code>，或每次都要求輸入密碼。"
+            ],
+            "links": [
+                {
+                    "label": "iCloud Sync 與密碼同步",
+                    "href": "/features/sync-and-teams#icloud-sync"
+                }
+            ],
+            "blocks": [
+                {
+                    "id": "environment-variables",
+                    "title": "環境變數",
+                    "paragraphs": [
+                        "在連線的主機、資料庫、使用者名稱、SSH 主機、使用者與金鑰路徑、SSL 路徑、啟動指令或驅動程式欄位中填寫 <code>$DB_HOST</code>，TablePro 會在連線時從自身環境填入其值。連接埠與密碼不會透過這種方式讀取，請為密碼指定來源。"
+                    ],
+                    "paid": [
+                        "environment-variables"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "policies",
+            "title": "每個連線的規則",
+            "paragraphs": [
+                "連線的安全模式等級決定陳述式是直接執行、先詢問、要求 Touch ID 或密碼，還是被拒絕。External Clients 的 Blocked、Read Only 或 Read & Write 等級決定 MCP 用戶端與 AppleScript 可執行的操作，設定僅儲存在此 Mac 上。AI 政策決定 AI 助手可直接使用連線、僅在確認後使用，或永不使用；Never 也會阻止 MCP 用戶端。",
+                "組織可透過設定描述檔強制所有連線的最低安全模式等級，並控制更新。"
+            ],
+            "links": [
+                {
+                    "label": "安全模式等級",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "MCP 用戶端與 External Clients",
+                    "href": "/features/ai-mcp#mcp"
+                }
+            ],
+            "blocks": [
+                {
+                    "id": "timeouts",
+                    "title": "連線與查詢逾時",
+                    "paragraphs": [
+                        "每個連線可設定自己的連線逾時，涵蓋網路、TLS、登入及任何通道或代理，也可設定查詢逾時取代全域值。查詢逾時在重新連線後對支援該功能的驅動程式生效。"
+                    ],
+                    "since": "0.77.0"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "在 iPhone 與 iPad 上",
+            "paragraphs": [
+                "iPhone 與 iPad App 有專用於 {iosPicker} 的連線表單，支援群組、每個連線一個標籤以及喜好項目。SSH 通道使用密碼或從檔案讀取、直接貼上的私密金鑰登入，並檢查主機金鑰；iPhone 與 iPad 不支援 SSH 代理和跳板主機。TLS 可驗證伺服器憑證，但 SQL Server 僅加密而不驗證。憑證保留在裝置上，從不同步。",
+                "密碼與貼上的金鑰儲存在鑰匙圈中。從 Mac 同步的 SQL Server 連線可透過 Microsoft Entra ID 登入。從其他 App 匯入、AWS IAM、Kerberos 與 Google 登入、代理與通道指令、密碼來源及逾時設定僅在 Mac App 中提供。"
+            ],
+            "links": [
+                {
+                    "label": "在 iPhone 與 iPad 上安全連線",
+                    "href": "/ios#security"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "連線表單、群組、標籤與喜好項目",
+            "ios": "partial",
+            "iosNote": "每個連線一個標籤；不支援顏色"
+        },
+        {
+            "label": "從 URL 或剪貼簿匯入",
+            "ios": "no"
+        },
+        {
+            "label": "從其他 App、專案檔案夾與 AWS 匯入",
+            "ios": "no"
+        },
+        {
+            "label": "使用密碼或私密金鑰的 SSH 通道",
+            "ios": "yes"
+        },
+        {
+            "label": "SSH 代理、一次性驗證碼與跳板主機",
+            "ios": "no"
+        },
+        {
+            "label": "含憑證驗證的 TLS",
+            "ios": "partial",
+            "iosNote": "SQL Server 僅加密，不驗證"
+        },
+        {
+            "label": "SOCKS5、Cloudflare Access、Cloud SQL Auth Proxy 與 Tunnel Command",
+            "ios": "no"
+        },
+        {
+            "label": "AWS IAM、Kerberos 與 Google 登入",
+            "ios": "no"
+        },
+        {
+            "label": "Microsoft Entra ID",
+            "ios": "partial",
+            "iosNote": "用於從 Mac 同步的連線"
+        },
+        {
+            "label": "密碼儲存在鑰匙圈中",
+            "ios": "yes"
+        },
+        {
+            "label": "密碼來源、認證資訊設定檔與 ~/.pgpass",
+            "ios": "no"
+        },
+        {
+            "label": "環境變數",
+            "paid": "environment-variables",
+            "ios": "no"
+        },
+        {
+            "label": "每個連線的安全模式",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "連線與查詢逾時",
+            "ios": "no"
+        },
+        {
+            "label": "透過設定描述檔設定最低安全模式等級",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "密碼來源以及 Network 分頁的代理與通道指令僅儲存在設定它們的 Mac 上，從不同步，因此同步的連線需要在每台 Mac 上重新配置這些設定。",
+        "TablePro 讀取啟動時的環境。從 Dock 或 Finder 開啟時，它無法看到 shell 設定檔設定的變數，這同時影響環境變數密碼來源和環境變數功能。",
+        "方案結束後，<code>$DB_HOST</code> 等參照不再取代，也不會警告，而是以輸入的原文傳送給伺服器。",
+        "Open Project Folder 是一次性匯入，不會監控任何變更；重複匯入同一組設定會建立兩個連線。",
+        "AWS IAM 驗證支援 {awsIam}，不支援 Amazon Redshift。設定描述檔只能強制最低安全模式等級和更新設定，無法控制其他項目。"
+    ],
+    "docs": [
+        {
+            "label": "管理連線",
+            "docs": "/connections"
+        },
+        {
+            "label": "從其他用戶端移轉",
+            "docs": "/switching"
+        },
+        {
+            "label": "開啟專案檔案夾",
+            "docs": "/features/project-folder-import"
+        },
+        {
+            "label": "SSH 通道",
+            "docs": "/connections/ssh-tunneling"
+        },
+        {
+            "label": "通道指令",
+            "docs": "/connections/tunnel-command"
+        },
+        {
+            "label": "AWS IAM 驗證",
+            "docs": "/connections/aws-iam"
+        },
+        {
+            "label": "認證資訊設定檔",
+            "docs": "/connections/credential-profiles"
+        },
+        {
+            "label": "密碼來源與環境變數",
+            "docs": "/features/connection-sharing#environment-variables"
+        }
+    ],
+    "related": [
+        {
+            "label": "同步與共用連線",
+            "href": "/features/sync-and-teams"
+        },
+        {
+            "label": "安全模式與資料編輯",
+            "href": "/features/data-editing#safe-mode"
+        },
+        {
+            "label": "比較 TablePro 與其他用戶端",
+            "href": "/compare"
+        },
+        {
+            "label": "付費方案提供的功能",
+            "href": "/pricing#features"
+        }
+    ]
+}

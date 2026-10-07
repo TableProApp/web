@@ -1,17 +1,18 @@
 <?php
 
 use App\Support\Content\MarkdownRenderer;
+use App\Support\Localization\Locales;
 use Illuminate\Support\Arr;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /**
  * Every translation has the same shape as its English original.
  *
- * - `resources/data/content/{en,vi}`: the same files, the same keys, the same
+ * - `resources/data/content/{locale}`: the same files, the same keys, the same
  *   `{token}` slots and the same asset ids. `seo.indexable` is the one key
  *   allowed to differ, because it is how `/vi/blog` renders without being
  *   indexed.
- * - `resources/data/legal/{en,vi}`: the same documents with the same heading
+ * - `resources/data/legal/{locale}`: the same documents with the same heading
  *   ids, so `/privacy#cookies` and `/vi/privacy#cookies` land on the same
  *   section.
  * - `resources/blog/vi`: a translated post has an English original and keeps
@@ -204,43 +205,71 @@ it('gives every locale the same content files', function (): void {
      */
     expect(count(contentTree('en')))->toBeGreaterThan(40, 'content/en is (nearly) empty; is CONTENT_ROOT right?');
 
-    foreach (['vi'] as $locale) {
+    foreach (array_diff(Locales::codes(), ['en']) as $locale) {
         expect(contentTree($locale))->toBe(contentTree('en'), "content/{$locale} and content/en hold different files");
     }
 });
 
-it('gives every translated content file the same keys, slots and assets', function (): void {
-    foreach (contentTree('en') as $file) {
-        if (! is_file(resource_path(CONTENT_ROOT . "/vi/{$file}"))) {
-            continue;
-        }
-
-        $english = contentJson('en', $file);
-        $vietnamese = contentJson('vi', $file);
-
-        $en = comparableShape($english);
-        $vi = comparableShape($vietnamese);
-
-        expect(array_keys($vi))->toBe(array_keys($en), "content/vi/{$file} keys differ from English");
-
-        foreach ($en as $key => $value) {
-            if (is_string($value) && is_string($vi[$key])) {
-                expect(slotNames($vi[$key]))->toBe(slotNames($value), "content/vi/{$file} {$key} has different {slots}");
+it('gives every translated content file the same keys, slots, markup and assets', function (): void {
+    foreach (array_diff(Locales::codes(), ['en']) as $locale) {
+        foreach (contentTree('en') as $file) {
+            $source = contentJson('en', $file);
+            $target = contentJson($locale, $file);
+            $english = comparableShape($source);
+            $translated = comparableShape($target);
+            expect(array_keys($translated))->toBe(array_keys($english), "{$locale}/{$file}: different keys");
+            foreach ($english as $key => $value) {
+                expect(get_debug_type($translated[$key]))->toBe(get_debug_type($value), "{$locale}/{$file}.{$key}: different type");
+                if (is_string($value)) {
+                    expect(slotNames($translated[$key]))->toBe(slotNames($value), "{$locale}/{$file}.{$key}: different slots");
+                    preg_match_all('/`[^`]*`/', $value, $sourceCode);
+                    preg_match_all('/`[^`]*`/', $translated[$key], $targetCode);
+                    sort($sourceCode[0]);
+                    sort($targetCode[0]);
+                    expect($targetCode[0])->toBe($sourceCode[0], "{$locale}/{$file}.{$key}: changed inline code");
+                    $displayLabel = preg_match('/(^|\.)(labels|columns|headers)\./', $key) === 1;
+                    $identifier = preg_match('/(^|\.)(id|asset|anchor|feature|cite|slug|icon|engine|product)(\.\d+)?$/', $key) === 1
+                        && preg_match('/^[a-z][a-z0-9-]*$/', $value) === 1;
+                    $link = preg_match('/(^|\.)(href|url|docs|src|path)(\.\d+)?$/', $key) === 1
+                        && preg_match('~^(?:https?://|mailto:|/|#)~', $value) === 1;
+                    if (! $displayLabel && ($identifier || $link)) {
+                        $expected = $value === '/account?locale=en' ? '/account?locale=' . $locale : $value;
+                        expect($translated[$key])->toBe($expected, "{$locale}/{$file}.{$key}: changed technical identifier or link");
+                    }
+                    preg_match_all('/<\/?[a-z]+>/', $value, $sourceTags);
+                    preg_match_all('/<\/?[a-z]+>/', $translated[$key], $targetTags);
+                    $sourceNames = array_values(array_unique($sourceTags[0]));
+                    $targetNames = array_values(array_unique($targetTags[0]));
+                    sort($sourceNames);
+                    sort($targetNames);
+                    expect($targetNames)->toBe($sourceNames, "{$locale}/{$file}.{$key}: different inline tags");
+                    $stack = [];
+                    foreach ($targetTags[0] as $tag) {
+                        if (str_starts_with($tag, '</')) {
+                            expect(array_pop($stack))->toBe(str_replace('</', '<', $tag), "{$locale}/{$file}.{$key}: mismatched {$tag}");
+                        } else {
+                            $stack[] = $tag;
+                        }
+                    }
+                    expect($stack)->toBe([], "{$locale}/{$file}.{$key}: unclosed inline tags");
+                    if (trim($value) !== '') {
+                        expect(trim($translated[$key]))->not->toBe('', "{$locale}/{$file}.{$key}: empty translation");
+                    }
+                }
             }
+            expect(assetIds($target))->toBe(assetIds($source), "{$locale}/{$file}: different assets");
         }
-
-        expect(assetIds($vietnamese))->toBe(assetIds($english), "content/vi/{$file} references different assets");
     }
 });
 
 it('gives every legal translation the same heading ids', function (): void {
     expect(glob(resource_path('data/legal/en/*.md')))->toHaveCount(3);
-
-    foreach (glob(resource_path('data/legal/en/*.md')) as $english) {
-        $translated = resource_path('data/legal/vi/' . basename($english));
-
-        expect(is_file($translated))->toBeTrue('legal/vi/' . basename($english) . ' is missing');
-        expect(headingIds($translated))->toBe(headingIds($english), basename($english) . ' heading ids differ');
+    foreach (array_diff(Locales::codes(), ['en']) as $locale) {
+        foreach (glob(resource_path('data/legal/en/*.md')) as $english) {
+            $translated = resource_path("data/legal/{$locale}/" . basename($english));
+            expect(is_file($translated))->toBeTrue("{$locale}/" . basename($english) . ' is missing');
+            expect(headingIds($translated))->toBe(headingIds($english), "{$locale}/" . basename($english) . ': heading ids differ');
+        }
     }
 });
 
@@ -476,6 +505,26 @@ it('translates every Vietnamese value that has words to translate', function ():
     expect($compared)->toBeGreaterThan(1000)
         ->and($untranslated)->toBe([], "Vietnamese values left in English (translate them, or add a kept term with its glossary reason):\n  " . implode("\n  ", $untranslated));
 });
+
+it('ships native prose and NFC source text in every added language', function (string $locale): void {
+    foreach (localeSources($locale) as $path) {
+        expect(Normalizer::isNormalized((string) file_get_contents($path), Normalizer::FORM_C))->toBeTrue("{$path} is not NFC");
+    }
+
+    foreach (contentTree('en') as $file) {
+        $english = Arr::dot(contentJson('en', $file));
+        $translated = Arr::dot(contentJson($locale, $file));
+        foreach ($english as $key => $line) {
+            if (! is_string($line) || untranslatedIsNeutral((string) $key, $line)) {
+                continue;
+            }
+            preg_match_all('/\b[A-Za-z]{2,}\b/', $line, $words);
+            if (count($words[0]) >= 5) {
+                expect($translated[$key])->not->toBe($line, "{$locale}/{$file}.{$key}: visible English prose left untranslated");
+            }
+        }
+    }
+})->with(array_values(array_diff(array_keys((json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true))['supported']), ['en', 'vi'])));
 
 it('tells an untranslated string from one with nothing to translate', function (string $key, string $value, bool $neutral): void {
     expect(untranslatedIsNeutral($key, $value))->toBe($neutral);

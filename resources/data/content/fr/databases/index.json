@@ -1,0 +1,186 @@
+{
+    "seo": {
+        "title": "Bases de données prises en charge",
+        "description": "Bases prises en charge par TablePro, par type, langage, pilote intégré ou téléchargé et disponibilité sur iPhone et iPad."
+    },
+    "og": {
+        "kicker": "Bases de données",
+        "title": "Les bases de données auxquelles TablePro se connecte"
+    },
+    "header": {
+        "title": "Les bases de données auxquelles TablePro se connecte",
+        "lead": "Des pilotes natifs pour {count} bases de données, dont {featured}. Chaque ligne indique le langage utilisé, la provenance du pilote et la possibilité d’ouvrir la base sur iPhone et iPad."
+    },
+    "jump": "Catégories",
+    "categories": {
+        "relational": {
+            "title": "Relationnelles",
+            "intro": "Des bases SQL avec tables, clés et transactions. Plusieurs partagent le pilote MySQL ou PostgreSQL."
+        },
+        "analytical": {
+            "title": "Analytiques et entrepôts de données",
+            "intro": "Des entrepôts de données, moteurs colonnaires et moteurs de requêtes fédérées, où un parcours coûte du temps ou de l’argent."
+        },
+        "cloud": {
+            "title": "Cloud et serverless",
+            "intro": "Des services SQL accessibles par HTTP avec un jeton de compte et des fichiers libSQL sur votre Mac."
+        },
+        "document": {
+            "title": "Documents",
+            "intro": "Des bases documentaires et multimodèles, chacune interrogée dans son propre langage."
+        },
+        "key-value": {
+            "title": "Clé-valeur",
+            "intro": "Des clés et leurs valeurs, lues et écrites avec des commandes ou PartiQL."
+        },
+        "wide-column": {
+            "title": "Colonnes larges",
+            "intro": "Des tables CQL partitionnées sur un cluster."
+        },
+        "search": {
+            "title": "Recherche et vecteurs",
+            "intro": "Des moteurs de recherche et de vecteurs, interrogés via leurs propres consoles de requêtes."
+        },
+        "streaming": {
+            "title": "Streaming",
+            "intro": "Un journal plutôt qu’une table : lisez et écrivez des messages avec KafkaQL."
+        },
+        "coordination": {
+            "title": "Coordination",
+            "intro": "L’espace de clés d’etcd, avec baux et membres du cluster."
+        },
+        "files": {
+            "title": "Fichiers",
+            "intro": "Des bases conservées dans des fichiers qui s’ouvrent directement, sans serveur à lancer."
+        }
+    },
+    "table": {
+        "caption": "{category} : chaque moteur, son langage de requête, son pilote et sa disponibilité sur iPhone et iPad",
+        "engine": "Database",
+        "queryLanguage": "Langage de requête",
+        "driver": "Pilote",
+        "ios": "iPhone et iPad",
+        "notes": "Notes"
+    },
+    "drivers": {
+        "title": "Comment les pilotes sont distribués",
+        "paragraphs": [
+            "Les pilotes pour {bundled} sont intégrés à l’app Mac et se connectent sans rien installer d’autre.",
+            "Tous les autres pilotes sont des plugins signés, téléchargés la première fois que vous choisissez leur moteur, avant l’ouverture du formulaire de connexion. Ce premier téléchargement nécessite une connexion Internet.",
+            "Avant d’installer un pilote téléchargé, TablePro compare sa somme SHA-256 au registre des plugins et vérifie sa signature de code.",
+            "Les plugins suivent leur propre calendrier de mise à jour : une correction de pilote peut arriver sans mise à jour de l’app. Un pilote en cours d’utilisation est mis à jour après le redémarrage de l’app.",
+            "L’app iPhone et iPad intègre ses pilotes ; rien n’y est donc téléchargé."
+        ],
+        "asset": "mac-engine-picker",
+        "docs": {
+            "label": "Plugins et mises à jour des pilotes",
+            "path": "/features/plugins"
+        }
+    },
+    "iphone": {
+        "title": "Sur iPhone et iPad",
+        "picker": "L’app iPhone et iPad se connecte à {engines}.",
+        "synced": "Les connexions à {engines} ne s’y ouvrent que lorsqu’elles proviennent d’un Mac, via la synchronisation iCloud ou un fichier de connexion exporté.",
+        "others": "Les connexions aux autres moteurs se synchronisent sur iPhone et iPad et apparaissent dans la liste, mais ne peuvent pas s’y ouvrir.",
+        "link": "TablePro pour iPhone et iPad"
+    },
+    "license": {
+        "title": "Aucune base de données ne nécessite de licence",
+        "body": "La connexion à tous les moteurs de cette page est gratuite. Un forfait Starter ou Équipe ajoute des fonctions facultatives à l’app Mac, sans les lier à une base de données particulière.",
+        "link": "Voir les tarifs"
+    },
+    "missing": {
+        "title": "Votre base de données manque ?",
+        "body": "Les nouveaux moteurs arrivent sous forme de plugins de pilote. Si le vôtre n’est pas répertorié, demandez-le sur GitHub.",
+        "link": "Demander une base de données sur GitHub"
+    },
+    "docs": {
+        "label": "Guides de configuration pour chaque base de données",
+        "path": "/databases"
+    },
+    "labels": {
+        "facts": {
+            "title": "En bref",
+            "queryLanguage": "Langage de requête",
+            "driver": "Pilote",
+            "sharedWith": "Partagé avec {engines}",
+            "connect": "Connexion via",
+            "defaultPort": "Port par défaut",
+            "minimumVersion": "Version minimale",
+            "enforced": "{version}, imposée : les serveurs plus anciens sont refusés",
+            "documented": "{version}, documentée",
+            "embedded": "Moteur intégré",
+            "embeddedValue": "{name} {version}",
+            "ios": "iPhone et iPad"
+        },
+        "connect": {
+            "file": "Un fichier",
+            "network": "Hôte et port",
+            "api": "L’API du service",
+            "ssh": "Tunnel SSH",
+            "ssl": "SSL/TLS",
+            "awsIam": "AWS IAM",
+            "cloudSqlProxy": "Cloud SQL Auth Proxy"
+        },
+        "driver": {
+            "bundled": "Intégré à l’app Mac",
+            "registry": "Téléchargé à la première utilisation"
+        },
+        "ios": {
+            "picker": "S’ouvre",
+            "synced": "S’ouvre après synchronisation depuis un Mac",
+            "none": "Ne s’ouvre pas"
+        },
+        "availability": {
+            "devices": "Fonctionne sur {devices}",
+            "bundled": "Pilote intégré à l’app Mac",
+            "registry": "Le pilote se télécharge la première fois que vous choisissez {name}"
+        },
+        "release": "Nouveau dans {version}",
+        "docs": "Guide de configuration de {name}",
+        "sections": {
+            "limits": "Limites",
+            "limitsOf": "Limites de {name}",
+            "iphone": "iPhone et iPad",
+            "faq": "Questions sur {name}",
+            "related": "À consulter aussi"
+        },
+        "iphone": {
+            "picker": "{name} est proposé lors de la création d’une connexion dans l’app iPhone et iPad, qui s’y connecte directement.",
+            "synced": "L’app iPhone et iPad n’ouvre les connexions {name} que lorsqu’elles proviennent d’un Mac, via la synchronisation iCloud ou un fichier de connexion exporté. Vous ne pouvez pas en créer sur ces appareils.",
+            "none": "L’app iPhone et iPad n’a pas de pilote {name}. Les connexions {name} synchronisées depuis un Mac apparaissent dans sa liste, mais ne s’ouvrent pas.",
+            "link": "TablePro pour iPhone et iPad"
+        },
+        "family": {
+            "port": "Port par défaut {port}"
+        },
+        "otherTools": {
+            "title": "Autres outils",
+            "released": "Version {version}, publiée le {date}",
+            "discontinued": "{name} n’est plus maintenu. Sa dernière version, {version}, est sortie le {date}.",
+            "free": "Gratuit",
+            "openSource": "Open source ({licence})",
+            "closedSource": "Code fermé",
+            "platforms": "Plateformes : {platforms}",
+            "compare": "TablePro face à {name}",
+            "checked": "Informations sur les autres outils vérifiées le {date}.",
+            "sources": "Sources"
+        },
+        "platformNames": {
+            "mac": "Mac",
+            "windows": "Windows",
+            "linux": "Linux",
+            "ios": "iPhone et iPad",
+            "web": "Web"
+        },
+        "number": {
+            "decimal": ",",
+            "group": " "
+        },
+        "download": {
+            "title": "Obtenir TablePro",
+            "mac": "L’app Mac se télécharge et s’utilise gratuitement. Un forfait Starter ou Équipe ajoute des fonctions facultatives.",
+            "ios": "L’app iPhone et iPad est disponible sur l’App Store."
+        }
+    }
+}

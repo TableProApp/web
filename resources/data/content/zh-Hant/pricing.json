@@ -1,0 +1,100 @@
+{
+    "seo": {
+        "title": "價格方案",
+        "description": "TablePro 可免費下載使用。Starter 與 Team 方案為 Mac App 增加選用功能，可按月、按年或一次性付費。價格以美元計。"
+    },
+    "og": {
+        "kicker": "價格方案",
+        "title": "免費使用。付費方案增加選用功能。"
+    },
+    "header": {
+        "title": "價格方案",
+        "lead": "Mac App 可免費下載使用，沒有試用期或時間限制。Starter 或 Team 方案可增加選用功能。iPhone 與 iPad App 免費，且無 App 內購買。"
+    },
+    "plans": {
+        "title": "方案"
+    },
+    "features": {
+        "title": "付費方案增加哪些功能",
+        "lead": "只有以下功能需要付費方案，且全部位於 Mac App 中。Team 包含 Starter 的所有功能。連線至任何支援的引擎，以及使用 AI 助理、MCP 伺服器或安全模式，都無需授權。"
+    },
+    "license": {
+        "title": "授權如何運作",
+        "items": {
+            "macs": {
+                "term": "Mac 台數",
+                "body": "Starter 授權最多可在 {activations} 台 Mac 上啟用。Team 每個席位對應一台已啟用的 Mac，也包括購買者自己的 Mac。iPhone 與 iPad App 從不占用授權或席位。"
+            },
+            "activate": {
+                "term": "啟用",
+                "body": "在 Mac 上的 TablePro 中，進入 <ui>Settings > License</ui> 輸入授權金鑰。若要在另一台 Mac 使用，請在<account>您的帳戶</account>的 Machines 頁面移除舊裝置。"
+            },
+            "checks": {
+                "term": "驗證",
+                "body": "TablePro 每次啟動都會驗證授權簽章，並每隔 {revalidateDays} 天向 TablePro 伺服器確認授權。如果 Mac 無法連線至伺服器，付費功能仍可繼續使用 {graceDays} 天。確認時會傳送授權金鑰、經過雜湊處理的機器 ID、Mac 名稱，以及 App 與 macOS 版本。"
+            },
+            "ends": {
+                "term": "方案結束時",
+                "body": "月付或年付方案結束後，付費功能會停止，其餘 App 功能仍按免費版的方式繼續運作。"
+            },
+            "oneTime": {
+                "term": "一次性購買",
+                "body": "一次性購買只需支付一次，且無到期日。"
+            }
+        },
+        "lapse": {
+            "summary": "方案結束時各付費功能的行為",
+            "intro": "各付費功能會按以下方式停止："
+        },
+        "terms": "<terms>服務條款</terms>說明了授權允許的使用範圍。"
+    },
+    "billing": {
+        "title": "帳務",
+        "merchant": "{merchant} 是 TablePro 的交易登記銷售商，負責向您銷售方案、收款、根據帳單地址計算銷售稅或加值稅，並透過電子郵件寄送收據和發票。價格以美元列示。",
+        "renewal": "月付與年付方案會自動續訂，直到您在<account>您的帳戶</account>或 {merchant} 客戶入口網站中取消。取消後，方案可繼續使用至已付費期間結束，您也可在此之前恢復訂閱。如果續費失敗，{merchant} 會透過電子郵件寄送更新信用卡的連結，並在約三週內重試扣款。",
+        "portal": "透過 {merchant} 購買的訂單，其發票、收據、付款方式與取消訂閱均可在 <portal>{merchant} 客戶入口網站</portal>中管理，使用結帳時的電子郵件地址登入即可。您帳戶中的 <account>Billing & invoices</account> 也可開啟該入口網站。"
+    },
+    "refunds": {
+        "title": "退款",
+        "body": "所有方案均可在購買後 {refundDays} 天內申請退款；年付方案還可在最近一次續訂後的相同期限內退款。<link>退款政策</link>說明了申請方法及授權後續處理方式。"
+    },
+    "team": {
+        "title": "Team 方案",
+        "seats": "Team 方案按席位定價，可選 {min} 至 {max} 個席位。每個席位對應一台已啟用的 Mac，包含購買者自己的 Mac；因此使用兩台 Mac 工作的人需要兩個席位。",
+        "invites": "方案購買者在自己的帳戶中管理團隊。他們透過電子郵件邀請成員，每個邀請都包含一次性代碼，一週後到期，並需要一個空閒席位。",
+        "changes": "月付或年付 Team 方案可在帳戶中更改席位數，差額會反映在下一張帳單中。若要為一次性購買的 Team 方案增加席位，請寄送郵件至 <email>{email}</email>。",
+        "account": "在帳戶中管理團隊"
+    },
+    "openSource": {
+        "title": "開放原始碼",
+        "body": "TablePro 採用 AGPLv3 開放原始碼，包括付費功能的程式碼。從原始碼建置的版本會以與發行版相同的方式檢查授權。",
+        "agpl": "AGPL 對執行 TablePro 不設條件，包括在任何規模的公司中用於工作。其條件適用於散布軟體，以及透過網路向他人提供修改後的版本。",
+        "github": "在 GitHub 查看"
+    },
+    "faq": {
+        "title": "方案常見問題",
+        "more": "更多方案與授權問題",
+        "items": {
+            "free": {
+                "question": "TablePro 免費嗎？",
+                "answer": "是的。Mac App 可免費下載使用，沒有試用期或時間限制。Starter 或 Team 方案為 Mac App 增加選用功能。iPhone 與 iPad App 免費，且無 App 內購買。"
+            },
+            "ios-license": {
+                "question": "iPhone 與 iPad App 需要授權嗎？",
+                "answer": "不需要。它沒有付費功能，也從不要求授權。iPhone 與 iPad 上的 iCloud 同步免費；若要與 Mac 同步，Mac 需要 Starter 或 Team。"
+            },
+            "seats": {
+                "question": "Team 的一個席位對應一個人嗎？",
+                "answer": "不是。一個席位對應一台已啟用的 Mac。使用兩台 Mac 工作的人需要兩個席位。"
+            },
+            "offline": {
+                "question": "付費功能需要網際網路連線嗎？",
+                "answer": "只需不定期連線。授權每隔 {revalidateDays} 天向 TablePro 伺服器確認一次，沒有連線時付費功能仍可使用 {graceDays} 天。"
+            },
+            "lost-key": {
+                "question": "在哪裡找到授權金鑰？",
+                "answer": "金鑰在結帳後收到的郵件中。您也可使用購買時的電子郵件地址登入<account>您的帳戶</account>，其中會顯示金鑰與所有已啟用的 Mac。"
+            }
+        }
+    }
+}

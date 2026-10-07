@@ -1,0 +1,183 @@
+{
+    "seo": {
+        "title": "MySQL e MariaDB para {devices}",
+        "description": "Conecte MySQL e MariaDB por SSH, SSL/TLS ou AWS IAM, e TiDB, OceanBase e Databend no mesmo driver. Diagramas EXPLAIN e backups mysqldump."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Cliente de MySQL e MariaDB"
+    },
+    "engine": "mysql",
+    "breadcrumb": "MySQL e MariaDB",
+    "header": {
+        "title": "Cliente de MySQL e MariaDB para {devices}",
+        "lead": "Escreva SQL com autocompletar baseado no esquema, edite linhas com uma prévia de cada instrução e gerencie usuários, sessões e backups. O mesmo driver também atende MariaDB, TiDB, OceanBase e Databend."
+    },
+    "asset": "mac-db-mysql-query",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "importApps": "/features/connections#import",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "erDiagram": "/features/schema#er-diagram"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conecte-se",
+            "paragraphs": [
+                "Informe host, porta e usuário ao TablePro ou cole uma URL <code>mysql://</code>. Contas MySQL 8 que usam <code>caching_sha2_password</code> se conectam na primeira tentativa. Deixe o banco vazio e escolha depois: alternar bancos acontece na mesma conexão.",
+                "Novas conexões começam com SSL em Preferred, que tenta TLS primeiro e só volta a texto simples após uma falha de handshake TLS. Escolha Verify CA ou Verify Identity com o certificado do seu provedor para uma verificação rigorosa.",
+                "Para um servidor em rede privada, conecte por um <network>túnel SSH, com hosts intermediários se necessário, proxy SOCKS5, túnel Cloudflare Access ou seu próprio comando de túnel</network>, como kubectl port-forward.",
+                "No Amazon RDS e Aurora, entre com <cloudAuth>AWS IAM</cloudAuth>, que assina um token novo a cada conexão, e importe instâncias diretamente da conta AWS. Para Google Cloud SQL, TablePro baixa e executa Cloud SQL Auth Proxy por você.",
+                "Está vindo do Sequel Ace? <importApps>Import from Other App</importApps> lê os favoritos e, após sua confirmação, as senhas armazenadas no Chaves."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Consulte e edite",
+            "paragraphs": [
+                "O editor SQL completa nomes de tabelas e colunas pelo esquema, incluindo aliases e CTEs, e executa a instrução no cursor ou o script inteiro. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE e EXPLAIN ANALYZE</explain> são apresentados como diagrama de plano ou árvore, e EXPLAIN Compare mostra o que mudou entre duas execuções.",
+                "Edições de linhas ficam pendentes até salvar, e <editing>Preview SQL</editing> mostra primeiro as instruções exatas. Salvamentos usam parâmetros vinculados e param se uma instrução alteraria uma quantidade de linhas diferente da esperada. Uma tabela sem chave primária ainda pode ser editada: a linha é identificada por todas as colunas.",
+                "Cada sessão usa utf8mb4, preservando emojis e textos não latinos na leitura e gravação. Para um banco cujo texto foi gravado por um cliente antigo usando Latin 1, a codificação UTF-8 via Latin 1 o lê como aquele cliente.",
+                "Tabelas particionadas listam partições e limites, como <code>VALUES LESS THAN (2024)</code>, e comentários de tabelas e colunas aparecem na barra lateral e nos cabeçalhos de coluna da grade."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Esquema",
+            "paragraphs": [
+                "A <structure>aba Structure</structure> prepara alterações em colunas, índices, chaves estrangeiras, restrições CHECK e colunas geradas e mostra o DDL antes de executar. Chaves de índice sobre uma expressão, como <code>lower(email)</code>, exigem MySQL 8.0.13 ou posterior.",
+                "Rotinas e triggers aparecem na barra lateral com seu código-fonte. O <erDiagram>diagrama ER</erDiagram> apresenta o esquema como uma imagem somente leitura que pode ser exportada como PNG ou SQL.",
+                "<compareSync>Compare & Sync</compareSync>, parte do plano {compareSyncTier}, compara dois esquemas MySQL ou MariaDB ou seus dados e escreve o script que alinha um ao outro. Alterações que causariam perda de dados ficam de fora até você incluí-las."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Administre",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> mostra os privilégios de cada conta até o nível de colunas individuais e prepara cada GRANT e REVOKE como SQL que você lê antes de executar.",
+                "O Server Dashboard lista sessões, métricas do servidor e consultas lentas, atualizado a cada poucos segundos. Cancela uma consulta com <code>KILL QUERY</code> ou encerra uma sessão com <code>KILL</code>. Uma conta sem o privilégio PROCESS vê apenas suas próprias sessões.",
+                "A manutenção de tabelas executa OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE e REPAIR TABLE e mostra a instrução antes da execução.",
+                "<backup>Backup Dump</backup> executa {dumpTool}, e Restore Dump executa o cliente mysql, ambos pelo túnel SSH da conexão; primeiro instale as ferramentas cliente MySQL no Mac. Uma restauração substitui os objetos nomeados pelo dump.",
+                "Para devolver uma vaga de conexão ao servidor enquanto estiver ausente, configure a conexão para se liberar após alguns minutos de inatividade; a próxima consulta abre outra. TablePro mantém a conexão quando a sessão contém algo que seria perdido ao reconectar, como uma transação aberta ou tabela temporária."
+            ],
+            "asset": "mac-users-roles-mysql"
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "<importData>Importe</importData> arquivos {importFormats}, com mapeamento de colunas para a tabela de destino e escolha da ação quando uma linha falha. Exporte uma tabela ou um resultado como {exportFormats}.",
+                "<copy>Copy To</copy> envia tabelas, seus dados ou ambos para outra conexão MySQL ou de outro mecanismo e lista cada tipo de coluna que precisa aproximar."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone e iPad",
+            "paragraphs": [
+                "No iPhone e iPad, navegue por tabelas como cartões, filtre e ordene, edite linhas com chave primária e execute SQL na aba Query. As conexões oferecem SSL de Required a Verify Identity e túneis SSH com senha ou chave. Hosts intermediários SSH não são suportados."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "mariadb",
+            "title": "MariaDB",
+            "paragraphs": [
+                "MariaDB se conecta pelo mesmo driver MySQL, com as mesmas opções SSH, SSL/TLS e AWS IAM. Uma URL <code>mariadb://</code> cria uma conexão MariaDB.",
+                "Colunas JSON, armazenadas por MariaDB como LONGTEXT, abrem no editor JSON. Colunas virtuais e persistentes são detectadas e excluídas das instruções INSERT e UPDATE geradas. Sequências são listadas na barra lateral, somente leitura, e uma tabela com versionamento de sistema é listada como tabela comum.",
+                "Users & Roles, Server Dashboard, manutenção de tabelas e backups {dumpTool} funcionam como no MySQL."
+            ]
+        },
+        {
+            "engine": "tidb",
+            "title": "TiDB",
+            "paragraphs": [
+                "Direcione a conexão à porta SQL do servidor TiDB, nunca a PD ou TiKV. TiDB Cloud usa a mesma porta; nele, defina SSL Mode como Required.",
+                "Stop envia <code>KILL TIDB QUERY</code> para sua própria sessão. Por trás de TiProxy ou de um balanceador de carga, isso exige Global Kill, ativado por padrão no TiDB desde a versão 6.1.",
+                "EXPLAIN e EXPLAIN ANALYZE mostram o plano TiDB como texto. Restrições CHECK aparecem na aba Structure no TiDB 7.2 ou posterior quando o cluster as ativa, chaves estrangeiras podem ser criadas, e a manutenção de tabelas oferece ANALYZE TABLE.",
+                "Escolha TiDB como tipo de conexão em vez de MySQL para que barra lateral, seletor de tipos e EXPLAIN sigam TiDB."
+            ]
+        },
+        {
+            "engine": "oceanbase",
+            "title": "OceanBase",
+            "paragraphs": [
+                "Coloque o tenant no nome de usuário: <code>root@test</code> em um observer ou <code>root@test#obcluster</code> por OBProxy, que escuta na porta 2883.",
+                "A conexão verifica se o servidor se identifica como OceanBase, portanto um host ou porta incorretos falham imediatamente. O timeout de consulta do TablePro substitui o limite de instrução do próprio OceanBase.",
+                "EXPLAIN mostra o plano como texto. Uma tabela sem chave primária é editada identificando todas as colunas, e um salvamento que alteraria mais de uma linha ou nenhuma para e informa isso.",
+                "Escolha OceanBase como tipo de conexão: uma conexão salva como MySQL que acessa OceanBase não recebe nenhum desses recursos."
+            ]
+        },
+        {
+            "engine": "databend",
+            "title": "Databend",
+            "paragraphs": [
+                "Databend se conecta pelo seu handler MySQL, não pela API HTTP. Escolha Databend como tipo de conexão; uma conexão MySQL que acessa um servidor Databend é recusada e pede a mudança de tipo.",
+                "No Databend Cloud, peça ao suporte Databend para ativar o endpoint MySQL do warehouse e copie host e porta da janela Connect.",
+                "A aba Structure edita colunas e restrições CHECK e renomeia tabelas, views e colunas. EXPLAIN e EXPLAIN ANALYZE mostram o plano como texto, e a manutenção de tabelas oferece ANALYZE TABLE.",
+                "Células ARRAY, MAP e TUPLE não podem ser gravadas a partir de texto. Altere-as com um UPDATE no editor."
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "sequel-ace",
+                "text": "Sequel Ace dá continuidade ao Sequel Pro como app para Mac de MySQL e MariaDB. Possui um servidor MCP desativado por padrão e somente leitura a menos que você o altere, e não tem chat de IA. É adequado se você usa apenas MySQL e MariaDB."
+            },
+            {
+                "product": "phpmyadmin",
+                "text": "phpMyAdmin funciona no seu servidor web e em qualquer navegador, e está incluído no cPanel. É adequado para um servidor acessível apenas por um painel de hospedagem, quando um app desktop não tem acesso ao banco."
+            },
+            {
+                "product": "heidisql",
+                "text": "HeidiSQL é um cliente de código aberto consolidado, originado no Windows, que agora também oferece um app macOS."
+            }
+        ],
+        "notes": {}
+    },
+    "faq": [
+        {
+            "id": "socket",
+            "question": "TablePro pode se conectar por um socket MySQL local?",
+            "answer": "Não. As conexões usam TCP, portanto a rede precisa estar ativada no servidor. Para acessar um socket em um servidor remoto, encaminhe-o por um túnel SSH."
+        },
+        {
+            "id": "mysqldump",
+            "question": "Preciso instalar as ferramentas cliente MySQL?",
+            "answer": "Apenas para Backup Dump e Restore Dump, que executam {dumpTool} e mysql. Conexão, consultas e edição usam o driver incluído no app."
+        },
+        {
+            "id": "er-diagram",
+            "question": "Posso projetar um esquema no diagrama ER?",
+            "answer": "Não. O <erDiagram>diagrama ER</erDiagram> é uma imagem somente leitura do esquema que pode ser exportada. Altere tabelas na aba Structure ou com SQL."
+        }
+    ],
+    "related": [
+        {
+            "label": "Escreva, execute e entenda consultas",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Esquema, comparação e sincronização",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Conexões, túneis e credenciais",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Compare TablePro com outros clientes de banco de dados",
+            "href": "/compare"
+        }
+    ]
+}

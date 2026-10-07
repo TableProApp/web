@@ -1,0 +1,183 @@
+{
+    "seo": {
+        "title": "{devices} 用 MySQL・MariaDB クライアント",
+        "description": "SSH、SSL/TLS、AWS IAM で MySQL・MariaDB に接続。同じドライバーで TiDB、OceanBase、Databend も対応。EXPLAIN 図と mysqldump バックアップ。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "MySQL・MariaDB クライアント"
+    },
+    "engine": "mysql",
+    "breadcrumb": "MySQL と MariaDB",
+    "header": {
+        "title": "{devices} 用 MySQL・MariaDB クライアント",
+        "lead": "スキーマを理解する自動補完で SQL を書き、すべての文をプレビューしながら行を編集し、ユーザー、セッションとバックアップを管理できます。同じドライバーは MariaDB、TiDB、OceanBase、Databend にも対応します。"
+    },
+    "asset": "mac-db-mysql-query",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "importApps": "/features/connections#import",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "erDiagram": "/features/schema#er-diagram"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "ホスト、ポートとユーザーを指定するか、<code>mysql://</code> URL を貼り付けます。<code>caching_sha2_password</code> を使う MySQL 8 アカウントも初回から接続できます。データベースを空欄にして後で選ぶこともでき、同じ接続内でそのまま切り替えられます。",
+                "新しい接続の SSL は Preferred で始まり、最初に TLS を試します。TLS ハンドシェイクが失敗した場合にだけ平文へフォールバックします。厳密に検証するには、プロバイダーの証明書とともに Verify CA または Verify Identity を選んでください。",
+                "プライベートネットワークのサーバーには、<network>必要に応じて踏み台ホストを使う SSH トンネル、SOCKS5 プロキシ、Cloudflare Access トンネルや独自のトンネルコマンド</network>（kubectl port-forward など）で接続できます。",
+                "Amazon RDS と Aurora では、接続のたびに新しいトークンを署名する <cloudAuth>AWS IAM</cloudAuth> で認証でき、AWS アカウントからインスタンスを直接インポートできます。Google Cloud SQL では、TablePro が Cloud SQL Auth Proxy をダウンロードして実行します。",
+                "Sequel Ace から移行する場合、<importApps>Import from Other App</importApps> がそのお気に入りと、確認後にキーチェーン内のパスワードを読み取ります。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "クエリと編集",
+            "paragraphs": [
+                "SQL エディタはスキーマからテーブル名とカラム名を補完し、エイリアスや CTE にも対応します。カーソル下の文かスクリプト全体を実行できます。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE と EXPLAIN ANALYZE</explain> はプラン図やツリーとして描画し、EXPLAIN Compare は二回の実行の違いを示します。",
+                "行の編集は保存まで保留し、<editing>Preview SQL</editing> で正確な文を先に表示します。保存はバインドパラメータで実行し、予定と異なる行数を変更する文があれば停止します。主キーのないテーブルも編集でき、その場合は全カラムで行を特定します。",
+                "すべてのセッションが utf8mb4 を使うため、絵文字やラテン文字以外のテキストも正しく往復できます。古いクライアントが Latin 1 経由で書いたデータベースのテキストは、UTF-8 via Latin 1 エンコーディングでそのクライアントと同じように読み取れます。",
+                "パーティションテーブルは <code>VALUES LESS THAN (2024)</code> などの境界とともにパーティションを表示します。テーブルとカラムのコメントはサイドバーとグリッドのカラム見出しに表示します。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "スキーマ",
+            "paragraphs": [
+                "<structure>Structure タブ</structure> はカラム、インデックス、外部キー、CHECK 制約と生成カラムの変更を保留し、実行前に DDL を表示します。<code>lower(email)</code> などの式によるインデックスキーには MySQL 8.0.13 以降が必要です。",
+                "ルーチンとトリガーはソースとともにサイドバーに表示します。<erDiagram>ER 図</erDiagram> はスキーマを読み取り専用の図として描き、PNG や SQL にエクスポートできます。",
+                "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は、二つの MySQL や MariaDB のスキーマまたはデータを比較し、一方を他方に揃えるスクリプトを生成します。データを失う変更は、対象に含めるまで保留します。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "管理",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> はアカウントごとの権限を個々のカラムまで表示し、すべての GRANT と REVOKE を、実行前に確認する SQL として保留します。",
+                "Server Dashboard は数秒ごとに更新するセッション、サーバーメトリクスと遅いクエリを一覧表示します。<code>KILL QUERY</code> で実行中のクエリをキャンセルし、<code>KILL</code> でセッションを終了します。PROCESS 権限のないアカウントには自身のセッションだけを表示します。",
+                "テーブル保守は OPTIMIZE TABLE、ANALYZE TABLE、CHECK TABLE と REPAIR TABLE を実行し、実行前に文を表示します。",
+                "<backup>Backup Dump</backup> は {dumpTool}、Restore Dump は mysql クライアントを、どちらも接続の SSH トンネル経由で実行します。先に Mac に MySQL クライアントツールをインストールしてください。復元はダンプが指定するオブジェクトを置き換えます。",
+                "離席中にサーバーの接続枠を空けるには、数分間アイドルになると接続を解放する設定を使えます。次のクエリで再接続します。開いたトランザクションや一時テーブルなど、再接続で失うものをセッションが保持する場合は接続を維持します。"
+            ],
+            "asset": "mac-users-roles-mysql"
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "{importFormats} ファイルを <importData>インポート</importData> し、読み込み先テーブルへのカラムの対応付けと、行が失敗したときの処理を選べます。テーブルや結果を {exportFormats} としてエクスポートできます。",
+                "<copy>Copy To</copy> は、テーブル、データまたは両方を MySQL や異なるエンジンの別の接続へ送り、近似変換が必要なすべてのカラム型を表示します。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone と iPad",
+            "paragraphs": [
+                "iPhone と iPad ではカード表示でテーブルを閲覧し、絞り込みと並べ替え、主キーのある行の編集、Query タブでの SQL 実行ができます。SSL は Required から Verify Identity に対応し、SSH トンネルはパスワードや鍵で認証します。SSH 踏み台ホストには対応しません。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "mariadb",
+            "title": "MariaDB",
+            "paragraphs": [
+                "MariaDB は MySQL と同じドライバーで接続し、同じ SSH、SSL/TLS、AWS IAM オプションを使えます。<code>mariadb://</code> URL は MariaDB 接続を作成します。",
+                "MariaDB が LONGTEXT として保存する JSON カラムは JSON エディタで開きます。仮想カラムと永続カラムを検出し、生成する INSERT と UPDATE 文から除外します。シーケンスは読み取り専用でサイドバーに表示し、システムバージョン管理テーブルは通常のテーブルとして表示します。",
+                "Users & Roles、Server Dashboard、テーブル保守と {dumpTool} バックアップは MySQL と同じように動作します。"
+            ]
+        },
+        {
+            "engine": "tidb",
+            "title": "TiDB",
+            "paragraphs": [
+                "接続先は TiDB サーバーの SQL ポートにし、PD や TiKV には接続しないでください。TiDB Cloud も同じポートを使い、SSL Mode は Required に設定します。",
+                "Stop は自分のセッションに <code>KILL TIDB QUERY</code> を送ります。TiProxy やロードバランサーの背後では Global Kill が必要で、TiDB はバージョン 6.1 から既定で有効にしています。",
+                "EXPLAIN と EXPLAIN ANALYZE は TiDB のプランをテキストで表示します。TiDB 7.2 以降でクラスタが有効にすると CHECK 制約が Structure タブに表示されます。外部キーを作成でき、テーブル保守には ANALYZE TABLE があります。",
+                "接続の種類は MySQL ではなく TiDB を選び、サイドバー、型の選択と EXPLAIN を TiDB に合わせてください。"
+            ]
+        },
+        {
+            "engine": "oceanbase",
+            "title": "OceanBase",
+            "paragraphs": [
+                "ユーザー名にテナントを入れます。observer では <code>root@test</code>、ポート 2883 で待ち受ける OBProxy 経由では <code>root@test#obcluster</code> を使います。",
+                "接続時にサーバーが OceanBase を名乗るか確認するため、ホストやポートが誤っていればすぐ失敗します。TablePro のクエリタイムアウトが OceanBase 独自の文の時間制限を置き換えます。",
+                "EXPLAIN はプランをテキストで表示します。主キーのないテーブルは全カラムで行を特定して編集します。保存が複数行を変更する、または一行も変更しない場合は停止して理由を表示します。",
+                "接続の種類に OceanBase を選んでください。MySQL として保存して OceanBase に接続した場合、これらの機能は使えません。"
+            ]
+        },
+        {
+            "engine": "databend",
+            "title": "Databend",
+            "paragraphs": [
+                "Databend は HTTP API ではなく MySQL ハンドラー経由で接続します。接続の種類に Databend を選んでください。MySQL 接続で Databend に接続すると拒否され、種類の変更を求めます。",
+                "Databend Cloud では、サポートにウェアハウスの MySQL エンドポイントの有効化を依頼し、Connect ダイアログからホストとポートをコピーしてください。",
+                "Structure タブはカラムと CHECK 制約を編集し、テーブル、ビューとカラムを名前変更します。EXPLAIN と EXPLAIN ANALYZE はプランをテキストで表示し、テーブル保守には ANALYZE TABLE があります。",
+                "ARRAY、MAP と TUPLE のセルはテキストから書き込めません。エディタの UPDATE で変更してください。"
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "sequel-ace",
+                "text": "Sequel Ace は Sequel Pro を引き継ぐ MySQL・MariaDB 用 Mac アプリです。MCP サーバーは既定でオフで、変更しない限り読み取り専用です。AI チャットはありません。MySQL と MariaDB だけを使う場合に適しています。"
+            },
+            {
+                "product": "phpmyadmin",
+                "text": "phpMyAdmin は Web サーバーで動き、どのブラウザでも使えます。cPanel にも含まれます。デスクトップアプリからデータベースへの経路がなく、ホスティングパネルからしかアクセスできないサーバーに適しています。"
+            },
+            {
+                "product": "heidisql",
+                "text": "HeidiSQL は長年 Windows で使われてきたオープンソースのクライアントで、現在は macOS アプリも提供しています。"
+            }
+        ],
+        "notes": {}
+    },
+    "faq": [
+        {
+            "id": "socket",
+            "question": "ローカルの MySQL ソケット経由で接続できますか？",
+            "answer": "できません。接続は TCP を使うため、サーバーのネットワーク機能を有効にする必要があります。リモートサーバーのソケットには SSH トンネルで転送してアクセスしてください。"
+        },
+        {
+            "id": "mysqldump",
+            "question": "MySQL クライアントツールのインストールは必要ですか？",
+            "answer": "{dumpTool} と mysql を実行する Backup Dump と Restore Dump にのみ必要です。接続、クエリと編集はアプリに同梱したドライバーを使います。"
+        },
+        {
+            "id": "er-diagram",
+            "question": "ER 図でスキーマを設計できますか？",
+            "answer": "できません。<erDiagram>ER 図</erDiagram> はエクスポート可能な読み取り専用のスキーマ図です。テーブルは Structure タブや SQL で変更してください。"
+        }
+    ],
+    "related": [
+        {
+            "label": "クエリを書き、実行し、理解する",
+            "href": "/features/querying"
+        },
+        {
+            "label": "スキーマ、比較と同期",
+            "href": "/features/schema"
+        },
+        {
+            "label": "接続、トンネルと認証情報",
+            "href": "/features/connections"
+        },
+        {
+            "label": "TablePro と他のデータベースクライアントを比較",
+            "href": "/compare"
+        }
+    ]
+}

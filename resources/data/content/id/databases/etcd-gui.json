@@ -1,0 +1,87 @@
+{
+    "seo": {
+        "title": "GUI etcd untuk {devices}",
+        "description": "Telusuri kunci etcd berdasarkan prefiks, edit nilai dan lease di grid, lalu jalankan get, put, watch, dan lease bergaya etcdctl dengan TLS dan SSH."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "GUI etcd"
+    },
+    "engine": "etcd",
+    "breadcrumb": "etcd",
+    "header": {
+        "title": "GUI etcd untuk {devices}",
+        "lead": "Telusuri kunci cluster berdasarkan prefiks, ubah nilai dan lease dari grid, serta jalankan perintah bergaya etcdctl seperti <code>get --prefix</code>, <code>lease grant</code>, dan <code>member list</code> dalam editor."
+    },
+    "asset": "mac-db-etcd-keys",
+    "links": {
+        "network": "/features/connections#network",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Masukkan host dan port klien ke TablePro. etcd tidak memiliki database, sehingga formulir tidak memiliki bidang Database. Gunakan port klien: port peer tidak menyediakan gateway JSON, dan koneksi ke port tersebut tidak akan terbuka. Formulir menerima satu endpoint tanpa failover, jadi pilih anggota yang aktif.",
+                "Kosongkan <ui>Username</ui> dan <ui>Password</ui> pada cluster tanpa autentikasi. Pengguna tanpa peran <code>root</code> dapat terhubung dan menelusuri kunci yang diizinkan perannya, sementara <code>endpoint status</code> serta perintah <code>user</code> dan <code>role</code> mengembalikan penolakan izin.",
+                "TLS diatur melalui <ui>TLS Mode</ui> dalam bidang Advanced, bukan bagian SSL, dan awalnya Disabled. Required (skip verify) mengenkripsi tanpa verifikasi, Verify CA memeriksa sertifikat terhadap berkas CA yang Anda tentukan, dan Verify Identity menambahkan pemeriksaan nama host. Sertifikat dan kunci klien menambahkan TLS timbal balik.",
+                "Akses cluster di balik bastion melalui <network>tunnel SSH</network>. URL <code>etcd://</code> dan <code>etcds://</code> dapat diimpor, dan keduanya tidak otomatis mengaktifkan TLS."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Telusuri kunci dan jalankan perintah",
+            "paragraphs": [
+                "Tetapkan <ui>Key Prefix Root</ui>, seperti <code>/app</code>, untuk membatasi koneksi pada satu subpohon. Bilah samping mengelompokkan kunci berdasarkan segmen jalur pertama di bawahnya, dan setiap kunci berupa baris dengan nilai, versi, revisi perubahan dan pembuatan, serta lease.",
+                "Menyimpan perubahan mengirim perintah. Nilai atau lease baru menulis ulang kunci, lease NULL menghapus lease, dan mengganti nama kunci menulis nama baru serta menghapus nama lama. Kolom revisi dikelola etcd, sehingga mengeditnya menghentikan penyimpanan dan menyebutkan kolom tersebut.",
+                "Editor menerima perintah bergaya etcdctl, dengan pelengkapan perintah dan flag: <code>get</code> dengan <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code>, dan pengurutan, <code>put</code> dengan <code>--lease</code>, <code>del</code>, <code>watch</code>, subperintah <code>lease</code>, <code>member list</code>, <code>endpoint status</code> dan <code>health</code>, <code>compaction</code>, serta perintah <code>auth</code>, <code>user</code>, dan <code>role</code>. Perintah lain dikembalikan sebagai tidak dikenal tanpa mencapai server.",
+                "Driver etcd tidak dapat membuka sesi hanya baca, sehingga <safeMode>Safe Mode</safeMode> menganggap setiap perintah sebagai penulisan: pada tingkat Alert dan Safe Mode, setiap perintah meminta konfirmasi terlebih dahulu, dan Read-Only memblokir semuanya."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Lease dan cluster",
+            "paragraphs": [
+                "<code>lease grant</code>, <code>revoke</code>, <code>timetolive</code> dengan <code>--keys</code>, <code>list</code>, dan <code>keep-alive</code> mengelola lease, dan <code>compaction</code> memangkas riwayat revisi. <code>member list</code>, <code>endpoint status</code>, dan <code>endpoint health</code> melaporkan kondisi cluster melalui editor, karena etcd tidak memiliki Server Dashboard.",
+                "Menjalankan <code>auth enable</code> dari editor mengaktifkan autentikasi untuk seluruh cluster. Koneksi dengan nama pengguna dan kata sandi tetap berfungsi; koneksi tanpa keduanya harus dibuka ulang dengan kredensial."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "Impor tidak tersedia. <export>Ekspor</export> kunci atau hasil perintah sebagai CSV, JSON, atau XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "lease-ids",
+            "question": "Mengapa ID lease merujuk ke lease lain?",
+            "answer": "ID lease menerima desimal atau heksadesimal, dan heksadesimal dikenali dari hurufnya. Awali ID heksadesimal yang hanya berisi digit dengan <code>0x</code>, seperti <code>--lease=0x69407712</code>, atau ID dibaca sebagai desimal dan merujuk ke lease lain."
+        },
+        {
+            "id": "binary-values",
+            "question": "Apakah saya dapat mengedit nilai biner?",
+            "answer": "Tidak. Nilai yang bukan UTF-8 valid ditampilkan dalam grid sebagai base64 dan ditandai demikian, sedangkan teks yang Anda ketik dikirim sebagai UTF-8. Tulis nilai biner menggunakan <code>etcdctl</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Telusuri dan edit data dengan aman",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Koneksi, tunnel, dan kredensial",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Redis, ruang kunci lainnya",
+            "href": "/redis-gui"
+        }
+    ]
+}

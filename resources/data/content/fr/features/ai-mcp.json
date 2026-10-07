@@ -1,0 +1,217 @@
+{
+    "seo": {
+        "title": "Assistant SQL IA et serveur MCP local",
+        "description": "Expliquez, optimisez et corrigez du SQL avec votre fournisseur IA. Les clients MCP comme Claude Code accèdent aux connexions via un serveur local."
+    },
+    "og": {
+        "kicker": "IA et MCP",
+        "title": "Assistant IA et serveur MCP"
+    },
+    "header": {
+        "title": "Assistant IA et serveur MCP",
+        "lead": "Pour les développeurs voulant une aide SQL d’un modèle choisi ou un client IA sur leurs bases : questions sur le schéma, contrôle ou correction des requêtes, utilisation des connexions par Claude Code et Cursor. Tout est facultatif et uniquement sur Mac ; rien n’atteint un modèle avant ajout d’un fournisseur ou connexion d’un client.",
+        "docs": "/features/ai-assistant"
+    },
+    "sections": [
+        {
+            "id": "assistant",
+            "title": "Utilisez le fournisseur choisi",
+            "paragraphs": [
+                "L’assistant utilise {aiProviders}. Selon le fournisseur, collez une clé API, connectez-vous avec un compte existant ou exécutez un modèle sur Mac. TablePro n’exploite aucun service IA propre : les demandes vont directement au fournisseur, sans envoi avant son ajout.",
+                "Chaque message inclut la structure des tables jusqu’à votre limite et la requête de l’éditeur. Les résultats ne sont envoyés qu’après activation dans <ui>Réglages > IA</ui>. Chaque connexion a une politique IA ; Jamais en exclut l’assistant et les clients MCP."
+            ],
+            "asset": "mac-ai-chat"
+        },
+        {
+            "id": "in-the-editor",
+            "title": "Vérifiez, expliquez, optimisez et corrigez",
+            "paragraphs": [
+                "Placez le curseur dans une instruction et choisissez Vérifier avec IA (<kbd>⌥⇧⌘L</kbd>) pour exactitude, coût et sécurité, Expliquer (<kbd>⌘L</kbd>) pour les étapes ou Optimiser (<kbd>⌥⌘L</kbd>) pour réécriture ou index. En cas d’échec, Corriger avec IA apparaît dans l’erreur. La demande inclut les structures des tables nommées sans exécuter l’instruction. <ui>Appliquer à l’éditeur</ui> la remplace après confirmation seulement.",
+                "Les suggestions en ligne affichent du texte fantôme pendant la saisie et sont désactivées par défaut. Règles IA fixe des notes par connexion, comme une colonne à ne jamais sélectionner, jointes à chaque message."
+            ]
+        },
+        {
+            "id": "agent-mode",
+            "title": "Modes du chat et mode Agent",
+            "paragraphs": [
+                "Le chat a trois modes. Demander, par défaut, consulte le schéma sans exécution. Modifier peut exécuter des requêtes et Agent aussi DROP, TRUNCATE et autres instructions destructrices. À {macSafeModeDefault}, niveau initial, les écritures s’exécutent sans confirmation ; d’Alerte à Mode sécurisé (complet), elles attendent Exécuter, et Lecture seule les refuse. Les destructrices attendent toujours un clic, sans approbation anticipée.",
+                "Le mode Agent (<kbd>⌥⇧⌘A</kbd>) consacre la fenêtre à une session : sessions de la connexion, conversation, SQL proposé et exécuté. Il impose Alerte ou plus strict ; aucune écriture sans Exécuter. C’est un rappel, pas un verrou : une touche suffit à le désactiver. Les sessions restent sur ce Mac."
+            ],
+            "asset": "mac-agent-mode",
+            "links": [
+                {
+                    "label": "Niveaux du mode sécurisé",
+                    "href": "/features/data-editing#safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "Le serveur MCP",
+            "paragraphs": [
+                "Le serveur MCP intégré permet aux clients IA d’utiliser vos connexions sans voir les mots de passe. Il écoute uniquement sur {mcpHost}, sans mode distant, et reste désactivé jusqu’à votre activation ou son démarrage par un client configuré.",
+                "Ses outils couvrent connexions, découverte du schéma, lectures et écritures, bases et objets, administration et onglets et historique, avec prompts et ressources du schéma actif. Chaque appel est journalisé sur Mac avec instructions en condensat plutôt qu’en texte ; les requêtes clients figurent aussi dans l’historique."
+            ],
+            "asset": "mac-mcp-settings",
+            "blocks": [
+                {
+                    "id": "connect",
+                    "title": "Connectez un client",
+                    "paragraphs": [
+                        "<ui>Réglages > Intégrations</ui> fournit les étapes et un extrait pour {mcpSetupClients}. Le pont <code>tablepro-mcp</code> fourni fonctionne aussi avec {mcpBridgeClients} : il démarre TablePro au besoin et trouve le serveur, sans port ni jeton dans la configuration. L’extension officielle Raycast s’associe à l’application, avec approbation sur Mac.",
+                        "Exemple : cherchez des utilisateurs partageant une adresse e-mail. Le client peut appeler <code>list_tables</code> et <code>describe_table</code>, trouver <code>email_address</code> et exécuter SELECT via la connexion enregistrée, sans coller le schéma dans le chat."
+                    ]
+                },
+                {
+                    "id": "permissions",
+                    "title": "Ce qu’un client peut faire",
+                    "paragraphs": [
+                        "Chaque appel passe ces vérifications ; la plus stricte prévaut."
+                    ],
+                    "points": [
+                        "Portée du jeton : Lecture seule, Lecture et écriture ou Accès complet, éventuellement limité aux connexions nommées. Le pont reçoit un jeton Lecture et écriture ; ses clients ne peuvent exécuter d’instructions destructrices.",
+                        "Clients externes par connexion : Bloqué, Lecture seule (défaut) ou Lecture et écriture. Une connexion bloquée n’est même pas listée.",
+                        "Approbation : au premier accès, un dialogue sur Mac demande confirmation. Choisissez à chaque fois, une fois par connexion ou jamais.",
+                        "Politique IA : Jamais refuse aussi les clients MCP.",
+                        "Mode sécurisé : les écritures confirment selon le niveau ; DROP et TRUNCATE exigent Accès complet et approbation à chaque fois. Les instructions lisant ou écrivant des fichiers ou exécutant du code serveur sont refusées."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "outside-servers",
+            "title": "Serveurs MCP externes",
+            "paragraphs": [
+                "Dans l’autre sens, une session IA TablePro peut appeler vos outils MCP via Streamable HTTP, avec HTTPS sauf sur ce Mac. Choisissez les connexions où chaque serveur est proposé. Chaque appel affiche une carte et attend votre clic, sans autorisation permanente. Adresse et jeton restent sur ce Mac."
+            ]
+        },
+        {
+            "id": "automation",
+            "title": "Automatisation hors du chat",
+            "paragraphs": [
+                "AppleScript connecte, exécute une requête et ouvre une table selon Clients externes et mode sécurisé. Les liens <code>tablepro://</code> ouvrent connexion, table ou onglet ; une requête est renseignée après confirmation, jamais exécutée seule. Les URL comme <code>postgresql://</code> s’ouvrent en connexions.",
+                "La commande <code>tablepro</code> ouvre ces URL et fichiers dans l’application, sans requêtes depuis le terminal. L’extension Raycast officielle recherche connexions, tables et historique et exécute via l’application associée."
+            ]
+        },
+        {
+            "id": "privacy",
+            "title": "Où vont vos données",
+            "paragraphs": [
+                "Prompts, contexte de schéma et pièces jointes vont au fournisseur choisi selon les conditions de votre compte. Avec Ollama, llama.cpp, MLX ou votre serveur compatible OpenAI, ils restent sur votre machine. TablePro ne reçoit rien ; le rapport quotidien Mac ne contient rien sur IA ou MCP.",
+                "À l’ajout de GitHub Copilot, sa télémétrie GitHub est activée ; désactivez-la dans sa configuration."
+            ],
+            "links": [
+                {
+                    "label": "Ce qu’envoie l’application Mac",
+                    "href": "/privacy#mac-app"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "Absent sur iPhone et iPad",
+            "paragraphs": [
+                "L’application iPhone et iPad n’a ni assistant IA, mode Agent ou serveur MCP. Tout sur cette page est dans l’application Mac."
+            ],
+            "links": [
+                {
+                    "label": "Ce que fait l’application iPhone et iPad",
+                    "href": "/ios"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "Chat IA avec votre fournisseur",
+            "ios": "no"
+        },
+        {
+            "label": "Vérifier, Expliquer, Optimiser et Corriger avec IA",
+            "ios": "no"
+        },
+        {
+            "label": "Suggestions en ligne et Règles IA",
+            "ios": "no"
+        },
+        {
+            "label": "Mode Agent",
+            "ios": "no"
+        },
+        {
+            "label": "Serveur MCP",
+            "ios": "no"
+        },
+        {
+            "label": "Serveurs MCP externes",
+            "ios": "no"
+        },
+        {
+            "label": "AppleScript et commande shell <code>tablepro</code>",
+            "ios": "no"
+        },
+        {
+            "label": "Extension Raycast",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Cursor ne peut appeler les outils TablePro ; comme fournisseur, Modifier et Agent n’exécutent aucune requête. Les modèles locaux appellent les outils seulement s’ils le permettent.",
+        "Claude Agent utilise votre connexion Claude Code et atteint le schéma via MCP, qui doit être actif. Il dépend de Claude Code et peut cesser de fonctionner avec une version.",
+        "MCP écoute uniquement sur {mcpHost}. L’accès depuis une autre machine exige votre propre redirection de port et la responsabilité de ce qu’elle expose.",
+        "L’application Mac n’a aucune action Raccourcis ; automatisez avec AppleScript, liens ou MCP.",
+        "Les sessions Agent et serveurs externes restent sur le Mac configuré et ne se synchronisent pas."
+    ],
+    "docs": [
+        {
+            "label": "Assistant IA",
+            "docs": "/features/ai-assistant"
+        },
+        {
+            "label": "Mode Agent",
+            "docs": "/features/agent-mode"
+        },
+        {
+            "label": "Serveur MCP",
+            "docs": "/features/mcp"
+        },
+        {
+            "label": "Clients MCP",
+            "docs": "/external-api/mcp-clients"
+        },
+        {
+            "label": "Jetons MCP et portées",
+            "docs": "/external-api/tokens"
+        },
+        {
+            "label": "Serveurs MCP externes",
+            "docs": "/features/mcp-outside-servers"
+        },
+        {
+            "label": "AppleScript",
+            "docs": "/external-api/applescript"
+        },
+        {
+            "label": "Extension Raycast",
+            "docs": "/external-api/raycast"
+        }
+    ],
+    "related": [
+        {
+            "label": "Mode sécurisé",
+            "href": "/features/data-editing#safe-mode"
+        },
+        {
+            "label": "Règles de connexion",
+            "href": "/features/connections#policies"
+        },
+        {
+            "label": "Ce qu’envoie l’application Mac",
+            "href": "/privacy#mac-app"
+        },
+        {
+            "label": "Comparer TablePro à d’autres clients",
+            "href": "/compare"
+        }
+    ]
+}

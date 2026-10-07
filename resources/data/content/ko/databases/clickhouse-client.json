@@ -1,0 +1,102 @@
+{
+    "seo": {
+        "title": "{devices}용 ClickHouse 클라이언트",
+        "description": "HTTP·HTTPS로 ClickHouse를 쿼리하고 Plan·Pipeline·Estimate EXPLAIN을 확인하며 MergeTree 파트·파티션과 뮤테이션을 관리합니다."
+    },
+    "og": {
+        "kicker": "데이터베이스",
+        "title": "ClickHouse 클라이언트"
+    },
+    "engine": "clickhouse",
+    "breadcrumb": "ClickHouse",
+    "header": {
+        "title": "{devices}용 ClickHouse 클라이언트",
+        "lead": "ClickHouse HTTP 인터페이스로 분석 SQL을 실행하고 쿼리 계획, 파이프라인과 예상 행 수를 확인하며 Parts 탭에서 MergeTree 파트와 파티션을 관리합니다. 긴 쿼리는 읽은 행 수를 보고하고 Stop은 서버에서 종료합니다."
+    },
+    "asset": "mac-db-clickhouse-parts",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "map": "/features/querying#map",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "연결",
+            "paragraphs": [
+                "호스트, HTTP 포트, 사용자와 선택적으로 데이터베이스를 입력합니다. 데이터베이스는 바로 전환되고 열린 탭은 시작한 데이터베이스에 남습니다. <ui>View > Sidebar as Tree</ui>는 서버의 데이터베이스를 펼칠 수 있는 트리로 표시합니다.",
+                "SSL 모드를 선택하면 HTTPS로 전환합니다. 443이나 ClickHouse Cloud의 8443 포트는 Verify Identity를 켜 CA 파일 또는 시스템 신뢰 저장소로 인증서를 검사합니다. Verify CA는 CA 파일이 필요하며 클라이언트 인증서와 키로 상호 TLS 서버에 접근합니다.",
+                "TLS 없이 원격 서버에 접근한다면 네트워크로 평문 HTTP를 보내는 대신 <network>SSH 터널</network>을 사용하세요."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "쿼리 및 편집",
+            "paragraphs": [
+                "각 쿼리는 고유 ID와 진행 요청을 보내 긴 쿼리도 읽은 행 수를 보고합니다. Stop은 그 ID의 <code>KILL QUERY</code>를 보내며 연결의 쿼리 제한 시간도 서버에 전달됩니다.",
+                "<explain>Explain 메뉴</explain>는 Plan, Pipeline, AST, Syntax와 Estimate를 제공합니다. 들여쓰기 출력은 다이어그램이나 트리로 표시되며 Estimate는 읽을 행, 마크와 파트를 보여 줍니다.",
+                "그리드 편집은 <editing>Preview SQL</editing> 확인 후 <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code>와 <code>ALTER TABLE … DELETE</code>로 전송됩니다. ClickHouse는 갱신·삭제를 백그라운드 뮤테이션으로 실행하므로 저장은 접수이지 적용 완료가 아닙니다. <code>system.mutations</code>에서 진행을 확인하며 구체화된 뷰는 읽기 전용입니다.",
+                "ClickHouse point나 ring 튜플 결과는 <map>지도 보기</map>로 열립니다. 자체 <code>FORMAT</code> 절을 가진 쿼리는 서버 원시 출력을 한 열에 보여 주므로 그리드를 보려면 해당 절을 빼세요."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "테이블, 파트 및 파티션",
+            "paragraphs": [
+                "테이블에는 Structure, Indexes, DDL과 Parts 탭이 있습니다. Indexes는 정렬 키와 데이터 스킵 인덱스를, DDL은 엔진·설정을 포함한 전체 <code>CREATE TABLE</code>을 보여 줍니다.",
+                "Parts는 <code>system.parts</code>의 모든 파트를 파티션, 행 수, 디스크 크기, 수정 시간과 active 플래그와 함께 나열하고 Optimize, Drop Partition과 Detach Partition을 실행합니다.",
+                "<structure>Structure 탭</structure>은 열 추가·수정·삭제와 데이터 스킵 인덱스 삭제를 지원합니다. 정렬 키와 기본 키는 생성 시 고정되므로 데이터 스킵 인덱스 추가는 <code>ALTER TABLE … ADD INDEX</code>를 쓰고 다른 변경은 테이블을 다시 만듭니다."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "모니터링",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard>는 활성 쿼리·병합, 파트 뮤테이션과 디스크 사용량을 보여 주며 다른 세션마다 <ui>Terminate Session</ui>을 제공합니다. 느린 쿼리는 <code>system.query_log</code>에서 최근 완료한 1초 초과 쿼리를 읽습니다."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "데이터 이동",
+            "paragraphs": [
+                "<importData>가져오기</importData>로 {importFormats} 파일을 넣고 테이블·쿼리 결과를 {exportFormats}로 내보냅니다. 유효하지 않은 UTF-8 값이 하나라도 있는 열은 그리드에서 16진수로 표시됩니다. 텍스트로 읽으려면 <code>toValidUTF8(column)</code>을 선택하세요."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "settings",
+            "question": "쿼리 하나의 설정은 어떻게 바꾸나요?",
+            "answer": "<code>SELECT … SETTINGS max_threads = 4</code>처럼 쿼리 자체에 <code>SETTINGS</code> 절을 넣으세요. 각 구문은 세션 없는 HTTP 요청이므로 별도 <code>SET</code>은 다음 구문에 남지 않습니다."
+        },
+        {
+            "id": "native-port",
+            "question": "9000 포트로 연결되지 않는 이유는 무엇인가요?",
+            "answer": "9000은 TablePro가 쓰지 않는 ClickHouse 네이티브 TCP 포트입니다. HTTP 포트나 ClickHouse Cloud의 HTTPS 8443으로 연결하고 HTTP 인터페이스가 켜져 있는지 확인하세요. 해당 포트의 <code>/ping</code> 요청은 <code>Ok.</code>를 반환합니다."
+        }
+    ],
+    "related": [
+        {
+            "label": "EXPLAIN 계획 및 쿼리 성능",
+            "href": "/features/querying#performance"
+        },
+        {
+            "label": "스키마, 비교 및 동기화",
+            "href": "/features/schema"
+        },
+        {
+            "label": "가져오기, 내보내기 및 데이터 파일",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "분석 파일용 DuckDB",
+            "href": "/duckdb-client"
+        }
+    ]
+}

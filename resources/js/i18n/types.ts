@@ -12,7 +12,7 @@
 import type localeTable from '../../data/locales.json';
 import type en from './messages/en/index.ts';
 
-/** `'en' | 'vi'`, straight from resources/data/locales.json. */
+/** Supported locale codes, straight from resources/data/locales.json. */
 export type Locale = keyof (typeof localeTable)['supported'];
 
 export interface LocaleDefinition {

@@ -1,0 +1,102 @@
+{
+    "seo": {
+        "title": "ClickHouse untuk {devices}",
+        "description": "Kueri ClickHouse via HTTP atau HTTPS, baca rencana EXPLAIN, pipeline, dan estimasi, kelola part serta partisi MergeTree, dan pantau mutasi."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien ClickHouse"
+    },
+    "engine": "clickhouse",
+    "breadcrumb": "ClickHouse",
+    "header": {
+        "title": "Klien ClickHouse untuk {devices}",
+        "lead": "Jalankan SQL analitik melalui antarmuka HTTP ClickHouse, baca rencana, pipeline, atau estimasi baris kueri, serta kelola part dan partisi MergeTree dari tab Parts tabel. Kueri panjang melaporkan baris yang dibaca saat berjalan, dan Stop menghentikannya di server."
+    },
+    "asset": "mac-db-clickhouse-parts",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "map": "/features/querying#map",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Masukkan host dan port HTTP, pengguna, dan jika diinginkan, database. Perpindahan database berlangsung pada koneksi yang sama, dan tab terbuka tetap pada database awalnya. <ui>View > Sidebar as Tree</ui> menampilkan database server sebagai pohon yang dapat diperluas di tempat.",
+                "Pilih mode SSL apa pun untuk beralih ke HTTPS. Port 443 atau 8443, yang digunakan ClickHouse Cloud, mengaktifkan Verify Identity untuk memeriksa sertifikat terhadap berkas CA atau penyimpanan kepercayaan sistem. Verify CA memerlukan berkas CA, dan sertifikat serta kunci klien mengakses server yang mewajibkan TLS timbal balik.",
+                "Tanpa TLS, akses server jarak jauh melalui <network>tunnel SSH</network> alih-alih mengirim HTTP tanpa enkripsi melalui jaringan."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Jalankan kueri dan edit",
+            "paragraphs": [
+                "Setiap kueri memiliki ID sendiri dan meminta kemajuan, sehingga kueri panjang melaporkan baris yang dibaca selama berjalan. Stop mengirim <code>KILL QUERY</code> untuk ID tersebut, dan batas waktu kueri koneksi diteruskan ke server.",
+                "<explain>Menu Explain</explain> menyediakan Plan, Pipeline, AST, Syntax, dan Estimate. Keluaran berindentasi digambar sebagai diagram atau pohon, dan Estimate menampilkan baris, mark, serta part yang akan dibaca kueri.",
+                "Perubahan grid dikirim sebagai <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code>, dan <code>ALTER TABLE … DELETE</code>, dengan <editing>Preview SQL</editing> terlebih dahulu. ClickHouse menjalankan pembaruan dan penghapusan sebagai mutasi latar belakang, sehingga menyimpan berarti diterima, belum diterapkan; <code>system.mutations</code> menampilkan kemajuannya. Materialized view dibuka hanya baca.",
+                "Hasil yang berisi tuple titik atau ring ClickHouse dibuka pada <map>tampilan Map</map>. Kueri dengan klausa <code>FORMAT</code> sendiri menampilkan keluaran mentah server dalam satu kolom, jadi hilangkan klausa tersebut untuk mendapatkan grid."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tabel, part, dan partisi",
+            "paragraphs": [
+                "Tabel dibuka dengan tab Structure, Indexes, DDL, dan Parts. Indexes menampilkan kunci pengurutan dan indeks data-skipping, sedangkan DDL menampilkan <code>CREATE TABLE</code> lengkap, termasuk mesin dan pengaturan.",
+                "Parts mencantumkan setiap part dari <code>system.parts</code> dengan partisi, baris, ukuran pada disk, waktu perubahan, dan flag aktif, serta menjalankan Optimize, Drop Partition, dan Detach Partition dari sana.",
+                "<structure>Tab Structure</structure> menambah, mengubah, dan menghapus kolom serta menghapus indeks data-skipping. Kunci pengurutan dan primary key ditetapkan saat tabel dibuat, jadi tambahkan indeks data-skipping menggunakan <code>ALTER TABLE … ADD INDEX</code>, dan buat ulang tabel untuk perubahan lainnya."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Pantau",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> menampilkan kueri aktif, merge aktif, mutasi part, dan penggunaan disk, mencantumkan sesi lain dengan <ui>Terminate Session</ui> pada masing-masing, serta membaca daftar kueri lambat dari <code>system.query_log</code>: kueri selesai terbaru yang memerlukan lebih dari satu detik."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "Muat berkas {importFormats} menggunakan <importData>Import</importData>, lalu ekspor tabel atau hasil kueri sebagai {exportFormats}. Kolom dengan satu nilai saja yang bukan UTF-8 valid ditampilkan sebagai heksadesimal pada grid; pilih <code>toValidUTF8(column)</code> untuk membacanya sebagai teks."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "settings",
+            "question": "Bagaimana saya mengubah pengaturan untuk satu kueri?",
+            "answer": "Masukkan dalam klausa <code>SETTINGS</code> pada kueri itu sendiri, seperti <code>SELECT … SETTINGS max_threads = 4</code>. Setiap pernyataan adalah permintaan HTTP tersendiri tanpa sesi, sehingga <code>SET</code> terpisah tidak berlaku pada pernyataan berikutnya."
+        },
+        {
+            "id": "native-port",
+            "question": "Mengapa port 9000 tidak dapat terhubung?",
+            "answer": "Port 9000 adalah port TCP native ClickHouse, yang tidak digunakan TablePro. Hubungkan ke port HTTP, atau 8443 untuk HTTPS pada ClickHouse Cloud, dan periksa apakah antarmuka HTTP server aktif: permintaan ke <code>/ping</code> pada port tersebut menjawab <code>Ok.</code>"
+        }
+    ],
+    "related": [
+        {
+            "label": "Rencana EXPLAIN dan performa kueri",
+            "href": "/features/querying#performance"
+        },
+        {
+            "label": "Skema, perbandingan, dan sinkronisasi",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Impor, ekspor, dan berkas data",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "DuckDB, untuk berkas analitik",
+            "href": "/duckdb-client"
+        }
+    ]
+}

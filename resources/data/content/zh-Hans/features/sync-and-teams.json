@@ -1,0 +1,247 @@
+{
+    "seo": {
+        "title": "iCloud Sync 和团队连接共享",
+        "description": "通过 iCloud Sync 在 Mac、iPhone 和 iPad 间同步连接、分组和标签，分享连接文件，并发布到团队库。"
+    },
+    "og": {
+        "kicker": "同步和团队",
+        "title": "跨设备同步，与团队共享"
+    },
+    "header": {
+        "title": "跨设备同步，与团队共享",
+        "lead": "适用于在多台设备上使用 TablePro，或多人需要相同连接的情况。iCloud Sync 同步自己的 Mac、iPhone 和 iPad；连接文件、Linked Folders 和 Team 功能用于与他人共享连接和查询。",
+        "docs": "/features/icloud-sync"
+    },
+    "sections": [
+        {
+            "id": "icloud-sync",
+            "title": "iCloud 同步",
+            "paragraphs": [
+                "iCloud Sync 在登录同一 iCloud 账户的所有 Mac、iPhone 和 iPad 上保持连接库一致。记录存入该账户的私有数据库；各设备默认关闭同步，需自行开启。iPhone 和 iPad 上免费，Mac 需要包含此功能的方案。",
+                "密码仅在同时启用 Mac 的 Sync Categories 下的 <ui>Passwords</ui>，或 iPhone、iPad 上的 <ui>Sync Passwords</ui> 时，通过 iCloud 钥匙串同步；Mac 还会同步 TablePro 在钥匙串中保存的其他秘密，例如 AI 提供商密钥和许可证密钥。将连接标为 Local only，可让连接及其收藏和已保存查询仅保留在一台 Mac 上。"
+            ],
+            "points": [
+                "Mac 可选择同步内容：连接、分组和标签、设置、SSH 配置文件、表和数据库收藏、包含 SQL 的已保存查询，以及表文件夹。",
+                "iPhone 和 iPad：连接、分组和标签。",
+                "同步的连接包含主机、端口、用户名、数据库、SSH 和 SSL 设置、启动命令、连接前脚本及 AI 规则。",
+                "从不同步：查询历史、Data Rewind、密码来源、隧道命令以及每个连接的 External Clients 级别。"
+            ],
+            "paid": [
+                "icloud-sync"
+            ],
+            "asset": "diagram-icloud-sync"
+        },
+        {
+            "id": "handoff",
+            "title": "Handoff",
+            "paragraphs": [
+                "在 iPhone 或 iPad 的 TablePro 中打开连接或表，Mac 会在 Dock 中提供接续，反向亦然。Handoff 重新打开同一个已保存连接，因此两台设备都必须有此连接：iCloud Sync 可同步，而从文件导入的副本视为不同连接。Handoff 通过 Apple 在设备间传递连接 ID 和已打开表名；未打开表时传递连接名称，无名称时传递主机。"
+            ],
+            "paid": [
+                "icloud-sync"
+            ],
+            "asset": "mac-handoff-ios"
+        },
+        {
+            "id": "share",
+            "title": "共享连接",
+            "paragraphs": [
+                "将连接导出为 <code>.tablepro</code> 文件可发送给同事或与代码一同保存。文件包含连接及其分组、标签和 SSH 设置，不含密码。Encrypted Export 可加入密码，并以口令和 AES-256-GCM 加密整个文件。无论是否加密，在 Mac、iPhone 和 iPad 上导入文件均免费。",
+                "iPhone 和 iPad 上使用口令导出含密码的文件也免费。连接还可通过 <code>tablepro://import</code> 链接分享，包含主机、端口、用户名、数据库及 SSH、SSL 设置，从不包含密码。"
+            ],
+            "paid": [
+                "encrypted-export"
+            ],
+            "links": [
+                {
+                    "label": "从其他客户端导入连接",
+                    "href": "/features/connections#import"
+                }
+            ]
+        },
+        {
+            "id": "linked-folders",
+            "title": "关联文件夹",
+            "paragraphs": [
+                "添加 Git 检出目录或共享云盘等文件夹，TablePro 会将其中每个 <code>.tablepro</code> 文件列为连接，并随文件新增或修改更新列表。关联连接在 TablePro 中只读，需修改文件来更改。加密文件会跳过，因此共享文件夹保存的是设置而非密码，关联文件中的启动命令和隧道命令也会被忽略。",
+                "Linked Folders 监控连接文件。关联 SQL 文件夹是另一项功能，属于已保存查询的免费功能，用于让 <code>.sql</code> 文件夹与已保存查询保持同步。"
+            ],
+            "paid": [
+                "linked-folders"
+            ],
+            "links": [
+                {
+                    "label": "已保存查询和关联 SQL 文件夹",
+                    "href": "/features/querying#history"
+                }
+            ]
+        },
+        {
+            "id": "team",
+            "title": "团队目录和团队库",
+            "paragraphs": [
+                "为 Team 许可证下的所有人提供相同连接的两种方式：一种通过已有共享文件夹，另一种通过 TablePro 服务器。"
+            ],
+            "blocks": [
+                {
+                    "id": "team-catalog",
+                    "title": "团队目录",
+                    "paragraphs": [
+                        "<ui>Share > Publish to Team Catalog…</ui> 将所选连接以不含密码的 <code>.tablepro</code> 文件写入共享文件夹。团队成员将该文件夹添加为 Linked Folder，因此目录通过现有共享云盘或仓库分发，不经过 TablePro。"
+                    ],
+                    "paid": [
+                        "team-catalog"
+                    ]
+                },
+                {
+                    "id": "team-library",
+                    "title": "团队库",
+                    "paragraphs": [
+                        "连接上的 <ui>Share > Publish to Team Library…</ui> 和 Favorites 侧栏的 <ui>Publish Saved Queries to Team…</ui> 将连接及已保存查询上传到 TablePro 服务器，许可证下的每台 Mac 会下载；查询在 Favorites 侧栏中显示发布者姓名。上传连接设置和查询 SQL 文本，从不上传密码。成员的 Mac 会忽略接收到的启动命令和隧道命令，因此不会自行运行任何命令。再次发布会替换先前发布的内容。"
+                    ],
+                    "paid": [
+                        "team-library"
+                    ],
+                    "asset": "mac-team-library",
+                    "links": [
+                        {
+                            "label": "Team Library 发送给 TablePro 的内容",
+                            "href": "/privacy#library"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "seats",
+            "title": "席位、邀请和账户",
+            "paragraphs": [
+                "Team 许可证按席位计价，一个席位代表一台已激活 Mac，而非一个人。通过网页账户邀请成员，每人会通过邮件收到单次使用代码，在 Mac 的 <ui>Settings > License</ui> 中输入；邀请需要空闲席位。应用显示团队成员，席位和邀请则在网页管理。",
+                "有效月付或年付订阅可自行调整席位数，一次性购买需联系支持。移除成员会立即释放席位，并删除其发布到 Team Library 的内容；该成员的 Mac 在下次许可证检查时失去付费功能，最长 {licenseCheckDays} 天。账户页供许可证购买者使用。"
+            ],
+            "links": [
+                {
+                    "label": "Team 价格",
+                    "href": "/pricing#team"
+                },
+                {
+                    "label": "你的账户",
+                    "href": "/account?locale=zh-Hans"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "在 iPhone 和 iPad 上",
+            "paragraphs": [
+                "iPhone 和 iPad 应用通过 iCloud 同步连接、分组和标签，支持 Handoff，并导入、导出 <code>.tablepro</code> 文件，可选择包含口令保护的密码。Linked Folders、Team Catalog 和 Team Library 仅在 Mac 应用中提供。"
+            ],
+            "links": [
+                {
+                    "label": "让 iPhone、iPad 的 TablePro 与 Mac 协作",
+                    "href": "/ios#mac"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "iCloud 同步",
+            "paid": "icloud-sync",
+            "ios": "partial",
+            "iosNote": "连接、分组和标签，免费"
+        },
+        {
+            "label": "通过 iCloud 钥匙串同步密码",
+            "paid": "icloud-sync",
+            "ios": "yes"
+        },
+        {
+            "label": "选择同步内容，将连接设为 Local only",
+            "paid": "icloud-sync",
+            "ios": "no"
+        },
+        {
+            "label": "启用 iCloud Sync 时使用 Handoff",
+            "paid": "icloud-sync",
+            "ios": "yes"
+        },
+        {
+            "label": "导出和导入 .tablepro 文件",
+            "ios": "yes"
+        },
+        {
+            "label": "含密码的加密导出",
+            "paid": "encrypted-export",
+            "ios": "yes"
+        },
+        {
+            "label": "关联文件夹",
+            "paid": "linked-folders",
+            "ios": "no"
+        },
+        {
+            "label": "团队目录",
+            "paid": "team-catalog",
+            "ios": "no"
+        },
+        {
+            "label": "团队库",
+            "paid": "team-library",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Mac 方案结束后，iCloud Sync 暂停并说明原因，Linked Folders 和 Team Library 的连接从列表消失，团队发布命令隐藏，Encrypted Export 不再提供密码选项。",
+        "在 iPhone 或 iPad 编辑同步连接可能改变该应用没有的设置：Safe Mode (Full) 等更严格的 Mac 安全模式会回传为 Alert，SSH 跳板机设置也可能丢失。请在 Mac 上修改这些连接。",
+        "Team 许可证结束或暂停后，发布到 Team Library 的内容仍保留在 TablePro 服务器上，直到你要求删除。"
+    ],
+    "docs": [
+        {
+            "label": "iCloud 同步",
+            "docs": "/features/icloud-sync"
+        },
+        {
+            "label": "Handoff",
+            "docs": "/features/handoff"
+        },
+        {
+            "label": "连接文件和加密导出",
+            "docs": "/features/connection-sharing#export"
+        },
+        {
+            "label": "关联文件夹",
+            "docs": "/features/connection-sharing#linked-folders"
+        },
+        {
+            "label": "团队目录",
+            "docs": "/features/connection-sharing#team-catalog"
+        },
+        {
+            "label": "团队库",
+            "docs": "/features/favorites#team-library"
+        },
+        {
+            "label": "Team 方案和席位",
+            "docs": "/features/team#seats"
+        }
+    ],
+    "related": [
+        {
+            "label": "适用于 iPhone 和 iPad 的 TablePro",
+            "href": "/ios"
+        },
+        {
+            "label": "连接、隧道和凭据",
+            "href": "/features/connections"
+        },
+        {
+            "label": "付费方案提供的功能",
+            "href": "/pricing#features"
+        },
+        {
+            "label": "隐私：iCloud Sync 和 Handoff",
+            "href": "/privacy#icloud"
+        }
+    ]
+}

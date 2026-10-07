@@ -2,12 +2,11 @@
  * The asset manifest as the browser bundle carries it, typed.
  *
  * The source of truth is resources/data/assets.json. The bundle imports only
- * its render slice, `./asset-slots.json`, which `php artisan assets:handoff`
- * writes from it (`AssetManifest::slotProjection()`): the slot entries'
- * render fields, the placeholder description or the supplied alt text and
- * caption, and each kind's type, aspect and sizes. The handoff-only fields
- * (`usedOn`, `handoffPriority`, `legacySource`, export rules and notes) and
- * the bespoke social cards stay out of every page's JavaScript.
+ * its geometry slice, `./asset-slots.json`, plus the current language’s text
+ * from `./asset-locales/{locale}.json`. `php artisan assets:handoff` writes
+ * both from the manifest. The page resolver awaits the selected catalog before
+ * SSR or hydration; other languages stay in separate chunks. Handoff fields
+ * and bespoke social cards stay out of the browser’s JavaScript.
  * tests/Feature/Assets/AssetManifestTest.php fails while the slice is stale,
  * and tests/js/asset-slot.test.ts proves every slot renders the same from
  * the slice as from the full manifest.
@@ -22,6 +21,7 @@
  */
 import slots from './asset-slots.json';
 import type { SlotEntry, SlotManifestData } from './asset-model.ts';
+import { createAssetCatalog, type AssetLocaleCopy } from './asset-catalog.ts';
 
 export type {
     AssetEntry,
@@ -39,6 +39,15 @@ export type {
 export type AssetId = keyof (typeof slots)['assets'];
 
 export const ASSET_MANIFEST = slots as unknown as SlotManifestData;
+
+const imports = import.meta.glob<{ default: AssetLocaleCopy }>('./asset-locales/*.json');
+const loaders = Object.fromEntries(Object.entries(imports).map(([path, load]) => [
+    path.slice('./asset-locales/'.length, -'.json'.length),
+    async () => (await load()).default,
+]));
+const catalog = createAssetCatalog(ASSET_MANIFEST, loaders);
+export const loadAssetLocale = (locale: string): Promise<void> => catalog.load(locale);
+export const assetManifest = (locale: string): SlotManifestData => catalog.manifest(locale);
 
 /** True for an id that names a renderable slot (not a handoff-only entry such as a bespoke OG card). */
 export function isAssetId(value: unknown): value is AssetId {

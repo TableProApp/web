@@ -199,7 +199,7 @@ function LanguageMenu({ items, className }: { items: SwitcherItem[]; className?:
             <div
                 id={panelId}
                 hidden={!open}
-                className="absolute top-full right-0 z-50 mt-2 w-max max-w-72 min-w-48 rounded-panel border border-rule bg-raised p-1 shadow-overlay"
+                className="absolute top-full right-0 z-50 mt-2 max-h-[min(32rem,70dvh)] w-max max-w-72 min-w-48 overflow-y-auto overscroll-contain rounded-panel border border-rule bg-raised p-1 shadow-overlay"
             >
                 <ul>
                     {items.map((item, index) => (

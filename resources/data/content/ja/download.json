@@ -1,0 +1,63 @@
+{
+    "seo": {
+        "title": "Mac 版 TablePro をダウンロード",
+        "description": "Mac 版 TablePro を Apple シリコン用または Intel 用のビルドでダウンロードするか、Homebrew でインストールできます。iPhone・iPad アプリは App Store にあります。"
+    },
+    "og": {
+        "kicker": "ダウンロード",
+        "title": "TablePro をダウンロード"
+    },
+    "header": {
+        "title": "TablePro をダウンロード",
+        "lead": "お使いの Mac のチップに合うアプリをダウンロードするか、Homebrew でインストールしてください。iPhone・iPad アプリは App Store にあります。"
+    },
+    "mac": {
+        "otherWays": "その他のインストール方法",
+        "homebrew": {
+            "title": "Homebrew",
+            "body": "Homebrew はお使いの Mac のチップに合うビルドをインストールします。その後はアプリ自身が最新の状態を保ちます。",
+            "trails": "Homebrew の配布版は別途更新されるため、新しいリリースより遅れる場合があります。古いバージョンが入った場合は、<ui>TablePro > Check for Updates…</ui> を選んで最新バージョンを取得してください。"
+        },
+        "releases": "GitHub Releases の全ビルド",
+        "source": "ソースからビルド（AGPLv3）"
+    },
+    "ios": {
+        "body": "{devices} 専用の別のアプリで、独自の機能を備えています。",
+        "link": "{devices} 版 TablePro"
+    },
+    "install": {
+        "title": "インストールと初回起動",
+        "steps": [
+            "ダウンロードフォルダにある、ダウンロードした .dmg ファイルを開きます。",
+            "TablePro をアプリケーションフォルダにドラッグします。",
+            "アプリケーションフォルダから TablePro を開きます。インターネットからダウンロードしたアプリのため、初回は macOS が確認を求めます。<ui>Open</ui> を選んでください。",
+            "接続を追加するか、まず試すなら <ui>Help > Open Sample Database</ui> を選びます。アプリに同梱された、小さな SQLite データベース Chinook が開きます。"
+        ],
+        "signing": "どちらのビルドも Developer ID で署名され、Apple の公証を受けています。TablePro を開くためにセキュリティ設定を変更する必要はありません。",
+        "drivers": "一般的なデータベースのドライバはアプリに同梱されています。それ以外はそのデータベースを初めて選んだときにダウンロードされるため、インターネット接続が必要です。ドライバはアプリとは別に更新されます。",
+        "databases": "対応データベース",
+        "guide": {
+            "label": "インストールガイドを読む",
+            "path": "/installation"
+        }
+    },
+    "updates": {
+        "title": "アップデート",
+        "paragraphs": [
+            "TablePro は 1 日 1 回アップデートを確認します。新しいバージョンはバックグラウンドでダウンロードされ、次にアプリを終了したときにインストールされます。",
+            "ほとんどのリリースは約 1 日半かけて段階的に Mac へ配信されます。早く入手するには <ui>TablePro > Check for Updates…</ui> を選んでください。",
+            "<ui>Settings > General</ui> で自動確認や自動インストールをオフにできます。アップデートの確認先はリリースを公開している GitHub です。すべてのアップデートは署名され、インストール前に検証されます。"
+        ]
+    },
+    "otherPlatforms": {
+        "title": "その他のプラットフォーム",
+        "body": "TablePro は {platforms} に対応していません。リリース日も未定です。",
+        "faq": "FAQ のプラットフォームに関する質問"
+    },
+    "olderVersions": {
+        "title": "以前のバージョンとリリースノート",
+        "body": "すべてのリリースのノートと両方のディスクイメージは GitHub Releases にあります。各バージョンの変更内容は変更履歴で確認できます。",
+        "releases": "GitHub の全リリース",
+        "changelog": "変更履歴"
+    }
+}

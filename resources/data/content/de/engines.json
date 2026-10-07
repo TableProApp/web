@@ -1,0 +1,278 @@
+{
+    "postgresql": {
+        "tagline": "Array-, jsonb- und PostGIS-Werte, EXPLAIN-Diagramme, Benutzer und Rollen sowie pg_dump-Backups.",
+        "limits": {
+            "column-reorder-script-only": "Das Umordnen von Spalten erstellt ein Skript zum Neuaufbau der Tabelle. TablePro zeigt es und führt es niemals aus."
+        }
+    },
+    "mysql": {
+        "tagline": "MySQL über TCP mit EXPLAIN-Diagrammen, Benutzer und Rollen, AWS-IAM-Anmeldung und mysqldump-Backups.",
+        "limits": {
+            "tcp-only": "Verbindungen verwenden Host und Port über TCP. Lokale Unix-Sockets werden nicht unterstützt.",
+            "load-data-local-refused": "Der Treiber verweigert LOAD DATA LOCAL INFILE. Lade Dateien stattdessen über „Importieren“."
+        }
+    },
+    "sqlserver": {
+        "tagline": "T-SQL mit GO-Batches und PRINT-Ausgabe, Kerberos- oder Microsoft-Entra-ID-Anmeldung und .bacpac-Backups.",
+        "limits": {
+            "no-named-instances": "Benannte Instanzen werden nicht unterstützt. Verbinde dich mit dem TCP-Port der Instanz.",
+            "no-ntlm": "NTLM wird nicht unterstützt. Melde dich mit SQL-Server-Anmeldung, Kerberos oder Microsoft Entra ID an.",
+            "no-explain": "Für SQL Server gibt es weder EXPLAIN noch eine Ausführungsplanansicht.",
+            "scripts-not-in-transaction": "Ein Skript läuft außerhalb aller von TablePro geöffneten Transaktionen, wie in SQL Server Management Studio. Vor einem Fehler ausgeführte Anweisungen bleiben daher angewendet.",
+            "ios-tls-not-verified": "Auf iPhone und iPad kann TLS vorgeschrieben werden, das Serverzertifikat wird aber nicht geprüft."
+        }
+    },
+    "sqlite": {
+        "tagline": "Datenbankdateien direkt an ihrem Speicherort auf diesem Mac oder einem SSH-Server öffnen, mit ladbaren Erweiterungen.",
+        "limits": {
+            "no-encryption": "Verschlüsselte Datenbanken wie SQLCipher- und SEE-Dateien lassen sich nicht öffnen. Entschlüssle die Datei zuerst.",
+            "no-primary-key-changes": "Ein Primärschlüssel kann nicht hinzugefügt, entfernt oder verschoben werden.",
+            "ios-file-copied": "Auf iPhone und iPad wird die gewählte Datei in die App kopiert; Änderungen betreffen diese Kopie.",
+            "extensions-local-file-only": "Erweiterungen werden nur für auf diesem Mac gelesene Dateien geladen. Eine auf einem SSH-Server geöffnete Datenbank kann sie nicht laden; eine schreibgeschützte Kopie kann es.",
+            "attached-files-not-listed": "Eine im Editor mit ATTACH eingebundene Datei lässt sich abfragen, erscheint aber nicht in der Seitenleiste."
+        }
+    },
+    "mongodb": {
+        "tagline": "Eine JavaScript-Shell im mongosh-Stil, Dokumente als Extended JSON und Atlas-Cluster über SRV.",
+        "limits": {
+            "no-transactions": "Transaktionen werden nicht unterstützt.",
+            "no-gridfs-or-change-streams": "GridFS und Change Streams werden nicht unterstützt.",
+            "no-pipeline-builder": "Es gibt keinen visuellen Aggregationspipeline-Editor. Schreibe aggregate() in der Shell."
+        }
+    },
+    "redis": {
+        "tagline": "Redis-Befehle, ein an Doppelpunkten gegliederter Schlüsselbaum, TTLs und Sentinel- oder Cluster-Verbindungen.",
+        "limits": {
+            "string-values-only": "In der Datentabelle lassen sich nur Zeichenfolgen bearbeiten. Ändere Listen, Mengen, Hashes, sortierte Mengen und Streams über Befehle.",
+            "no-pubsub": "Es gibt keine Pub/Sub-Ansicht. PUBLISH läuft als Befehl; nichts abonniert Nachrichten.",
+            "key-tree-cap": "Der Schlüsselbaum in der Seitenleiste lädt höchstens {value} Schlüssel.",
+            "filter-match-cap": "Ein Schlüsselfilter stoppt nach {value} Treffern.",
+            "cluster-db0-only": "Eine Cluster-Verbindung nutzt Datenbank 0, außer bei einem Valkey-Cluster mit mehreren eingerichteten Datenbanken.",
+            "ios-query-tab-only": "Auf iPhone und iPad öffnen sich Schlüssel nicht im Tabellenbrowser. Führe Befehle im Tab „Abfrage“ aus."
+        }
+    },
+    "mariadb": {
+        "tagline": "Der MySQL-Treiber mit MariaDB-Sequenzen, virtuellen und persistenten Spalten sowie JSON-Spalten.",
+        "limits": {
+            "no-cloud-sql-proxy": "Cloud SQL Auth Proxy wird für MariaDB nicht angeboten. Erreiche einen privaten Server über einen SSH-Tunnel.",
+            "roles-listed-as-users": "„Benutzer und Rollen“ listet MariaDB-Rollen als Benutzer auf. Erstelle und vergebe Rollen mit SQL im Editor."
+        }
+    },
+    "tidb": {
+        "tagline": "TiDB und TiDB Cloud über den MySQL-Treiber; „Stoppen“ wird als KILL TIDB QUERY gesendet.",
+        "limits": {
+            "no-triggers-or-routines": "Keine Trigger, gespeicherten Routinen oder Ereignisse.",
+            "no-dashboard-or-dump": "Kein Server-Dashboard und kein Backup-Dump. Exportiere stattdessen mit TiDB Dumpling.",
+            "structure-sync-same-engine": "„Vergleichen und synchronisieren“ erstellt Strukturskripte nur zwischen TiDB-Datenbanken, nicht zwischen TiDB und MySQL oder MariaDB."
+        }
+    },
+    "oceanbase": {
+        "tagline": "OceanBase-Tenants im MySQL-Modus mit Anmeldung als user@tenant, direkt oder über OBProxy.",
+        "limits": {
+            "mysql-mode-only": "Nur Tenants im MySQL-Modus verbinden sich. Tenants im Oracle-Modus werden abgewiesen.",
+            "no-dashboard-or-dump": "Kein Server-Dashboard und kein Backup-Dump.",
+            "structure-sync-same-engine": "„Vergleichen und synchronisieren“ erstellt Strukturskripte nur zwischen OceanBase-Datenbanken, nicht zwischen OceanBase und MySQL oder MariaDB."
+        }
+    },
+    "databend": {
+        "tagline": "Databend und Databend Cloud über Databends MySQL-Handler.",
+        "limits": {
+            "no-keys-or-indexes": "Databend hat keine Indizes, Primär- oder Fremdschlüssel. Eine Zeilenänderung gleicht daher alle Spalten ab; ein Speichervorgang, der mehrere Zeilen ändern würde, wird verweigert.",
+            "no-compare-sync": "„Vergleichen und synchronisieren“ ist nicht verfügbar.",
+            "no-url-scheme": "Kein URL-Schema öffnet eine Databend-Verbindung. Erstelle sie im Verbindungsformular.",
+            "not-on-ios": "Nicht auf iPhone und iPad verfügbar."
+        }
+    },
+    "redshift": {
+        "tagline": "Amazon Redshift über den PostgreSQL-Treiber, mit DISTKEY und SORTKEY im DDL.",
+        "limits": {
+            "no-aws-iam": "AWS-IAM-Anmeldung ist für Redshift nicht verfügbar. Melde dich als Datenbankbenutzer an.",
+            "structure-read-only": "Der Tab „Struktur“ ist schreibgeschützt. Führe DDL im Editor aus.",
+            "ios-synced-only": "Auf iPhone und iPad öffnet sich eine Redshift-Verbindung nur, wenn sie von einem Mac synchronisiert oder importiert wurde."
+        }
+    },
+    "cockroachdb": {
+        "tagline": "CockroachDB und CockroachDB Cloud über das PostgreSQL-Wire-Protokoll.",
+        "limits": {
+            "structure-read-only": "Der Tab „Struktur“ ist schreibgeschützt. Führe Schemaänderungen als SQL im Editor aus.",
+            "no-dump-or-maintenance": "Kein Backup-Dump, keine Dump-Wiederherstellung und keine Tabellenwartung. Nutze CockroachDBs eigene BACKUP- und RESTORE-Anweisungen."
+        }
+    },
+    "pglite": {
+        "tagline": "PGlite über seinen Socket-Server als gewöhnliche PostgreSQL-Verbindung.",
+        "limits": {
+            "needs-socket-server": "PGlite muss über @electric-sql/pglite-socket bereitgestellt werden, das du selbst startest und laufen lässt.",
+            "single-client": "Der Socket-Server akzeptiert jeweils einen Client.",
+            "cancel-has-no-effect": "Abbrechen hat keine Wirkung: Eine Abfrage läuft immer bis zum Ende."
+        }
+    },
+    "oracle": {
+        "tagline": "Ein reiner Swift-Treiber ohne Instant Client, mit PL/SQL-Skripten und DBMS_OUTPUT.",
+        "limits": {
+            "no-wallet-os-auth-kerberos-ldap": "Oracle-Wallets, Betriebssystemauthentifizierung, Kerberos und LDAP werden nicht unterstützt. Verbinde dich mit Dienstname oder SID und Passwort.",
+            "no-explain": "Für Oracle gibt es weder EXPLAIN noch eine Ausführungsplanansicht.",
+            "no-users-roles": "„Benutzer und Rollen“ ist nicht verfügbar. Verwalte Konten mit CREATE USER und GRANT im Editor.",
+            "no-packages": "Packages werden nicht in der Seitenleiste aufgeführt. Eigenständige Prozeduren und Funktionen schon."
+        }
+    },
+    "clickhouse": {
+        "tagline": "ClickHouse über HTTP oder HTTPS mit EXPLAIN-Varianten, Mutationen und dem Tab „Parts“.",
+        "limits": {
+            "http-only": "Verbindungen nutzen die HTTP-Schnittstelle von ClickHouse. Das native TCP-Protokoll wird nicht verwendet.",
+            "tls-off-by-default": "TLS ist standardmäßig aus. Wähle im Verbindungsformular einen SSL-Modus für HTTPS.",
+            "no-foreign-keys-or-transactions": "Keine Fremdschlüssel und keine Transaktionen.",
+            "set-does-not-persist": "Eine SET-Anweisung wirkt nicht in der nächsten Abfrage weiter."
+        }
+    },
+    "duckdb": {
+        "tagline": "DuckDB-Dateien, Parquet-, CSV- und JSON-Dateien als Views sowie Datenbanken im Arbeitsspeicher.",
+        "limits": {
+            "one-writer-per-file": "Solange die Verbindung offen ist, schreibt jeweils nur ein Prozess in eine DuckDB-Datei.",
+            "extensions-download-on-first-use": "Der Treiber enthält Kernfunktionen sowie JSON-, Parquet-, ICU- und Autovervollständigungserweiterungen. Andere wie httpfs werden beim ersten Bedarf einer Abfrage von DuckDB heruntergeladen.",
+            "remote-quack-experimental": "Remote-Verbindungen über Quack sind experimentell."
+        }
+    },
+    "cassandra": {
+        "tagline": "CQL mit Kontaktpunkten, TLS und Amazon-Keyspaces-SigV4-Anmeldung.",
+        "limits": {
+            "scalar-edits-only": "In der Datentabelle lassen sich nur skalare Spalten bearbeiten. Sammlungen, Tupel, benutzerdefinierte Typen und Zeitdauern benötigen ein UPDATE im Editor.",
+            "no-consistency-level": "Es gibt keine Einstellung für das Konsistenzniveau. Anweisungen laufen mit dem Treiberstandard LOCAL_ONE.",
+            "no-astra-bundle": "DataStax Astra DB verbindet sich nicht, da sein Secure-Connect-Bundle nicht geladen werden kann.",
+            "no-views-or-types-in-sidebar": "Materialisierte Views und benutzerdefinierte Typen erscheinen nicht in der Seitenleiste."
+        }
+    },
+    "scylladb": {
+        "tagline": "ScyllaDB über den Cassandra-Treiber mit demselben CQL-Ablauf.",
+        "limits": {}
+    },
+    "dynamodb": {
+        "tagline": "PartiQL und DynamoDB-API-JSON mit einem Planer, der anhand deiner Filter Query oder Scan wählt und die verbrauchte Lesekapazität jedes Lesevorgangs meldet.",
+        "limits": {
+            "one-account-and-region": "Jede Verbindung umfasst ein AWS-Konto in einer Region.",
+            "no-dax-or-truncate": "DAX-Endpunkte werden nicht unterstützt; Leeren wird nicht angeboten."
+        }
+    },
+    "bigquery": {
+        "tagline": "GoogleSQL mit „Max Bytes Billed“ und einer Dry-Run-Kostenschätzung vor der Ausführung.",
+        "limits": {
+            "structure-read-only": "Der Tab „Struktur“ ist schreibgeschützt. Führe DDL im Editor aus.",
+            "no-transactions": "Transaktionen werden nicht unterstützt."
+        }
+    },
+    "snowflake": {
+        "tagline": "Schlüsselpaar, Browser-SSO, OAuth oder Passwort mit Passcode, mit Warehouse und Rolle im Sitzungskontext.",
+        "limits": {
+            "duo-passcode-only": "Duo funktioniert nur mit Passcode. Push-Bestätigung wird nicht unterstützt."
+        }
+    },
+    "cloudflare-d1": {
+        "tagline": "Alle D1-Datenbanken eines Cloudflare-Kontos über die D1-HTTP-API.",
+        "limits": {
+            "no-session-state-or-transactions": "Jede Anweisung ist eine eigene HTTP-Anfrage: Sitzungszustand bleibt nicht erhalten, und Transaktionen werden nicht unterstützt."
+        }
+    },
+    "turso": {
+        "tagline": "Remote-Turso-Datenbanken über HTTP mit Token und dem libSQL-Treiber.",
+        "limits": {
+            "no-database-switching-or-branches": "Jede Verbindung entspricht einer Datenbank. Datenbankwechsel und Branches werden nicht unterstützt.",
+            "no-embedded-replicas": "Eingebettete Replikate werden nicht unterstützt: Eine lokale Datei öffnet sich eigenständig und synchronisiert nicht."
+        }
+    },
+    "libsql": {
+        "tagline": "libSQL-Dateien auf diesem Mac oder sqld-Server über HTTP.",
+        "limits": {
+            "dump-local-file-only": "Backup-Dump funktioniert nur für eine lokale libSQL-Datei, nicht für eine Remote-Datenbank."
+        }
+    },
+    "elasticsearch": {
+        "tagline": "Eine Query-DSL-Konsole, Indizes als Tabellen und Dokumentbearbeitung nach _id.",
+        "limits": {
+            "no-opensearch": "OpenSearch wird nicht unterstützt.",
+            "aliases-not-listed": "Aliasse und Datenstreams werden nicht in der Seitenleiste angezeigt. Sprich sie in der Konsole mit ihrem Namen an.",
+            "no-ssh": "SSH-Tunnel werden nicht unterstützt."
+        }
+    },
+    "etcd": {
+        "tagline": "Ein Teil von etcdctl über das v3-JSON-Gateway: Schlüssel unter einem Präfix, Leases und Mitglieder.",
+        "limits": {
+            "no-txn": "txn wird nicht unterstützt.",
+            "json-gateway-only": "Verbindungen nutzen das v3-JSON-Gateway, nicht gRPC.",
+            "watch-collects-until-timeout": "watch sammelt Ereignisse bis zum Zeitlimit und zeigt sie dann als Zeilen."
+        }
+    },
+    "kafka": {
+        "tagline": "Konsumieren und Produzieren mit KafkaQL, mit Topics, Partitionen und Consumer-Group-Lag.",
+        "limits": {
+            "no-schema-registry": "Schema Registry wird nicht gelesen, daher erscheinen Avro- und Protobuf-Werte als Rohbytes.",
+            "no-topic-create-or-offset-reset": "Das Erstellen von Topics, Bearbeiten ihrer Konfiguration und Zurücksetzen von Consumer-Group-Offsets wird nicht unterstützt.",
+            "approximate-counts": "Nachrichtenzahlen sind Näherungswerte."
+        }
+    },
+    "surrealdb": {
+        "tagline": "SurrealQL über HTTP RPC mit Root-, Namespace-, Datenbank-, Datensatz- oder Token-Anmeldung.",
+        "limits": {
+            "no-syntax-highlighting": "SurrealQL erhält im Editor keine Syntaxhervorhebung.",
+            "no-live-queries": "Live-Abfragen werden nicht unterstützt. Führe eine Abfrage erneut aus, um neue Datensätze zu sehen."
+        }
+    },
+    "teradata": {
+        "tagline": "TD2- oder TDNEGO-Anmeldung, mit Prozeduren und Makros in der Seitenleiste.",
+        "limits": {
+            "ldap-kerberos-jwt-refused": "LDAP-, Kerberos- und JWT-Anmeldung wird verweigert. Nutze TD2 oder TDNEGO.",
+            "foreign-keys-not-listed": "Fremdschlüssel werden nicht aufgelistet. Lies sie aus dem DDL der Tabelle."
+        }
+    },
+    "trino": {
+        "tagline": "Katalogübergreifendes SQL über Trinos REST-API, mit Passwort- oder JWT-Anmeldung.",
+        "limits": {
+            "no-presto": "Presto-Server werden nicht unterstützt.",
+            "no-kerberos-or-oauth": "Kerberos- und OAuth-Anmeldung wird nicht unterstützt."
+        }
+    },
+    "beancount": {
+        "tagline": "Ein Beancount-Hauptbuch als SQL-Tabellen sowie BQL-Abfragen.",
+        "limits": {
+            "projected-tables": "TablePro liest das Hauptbuch beim Öffnen in {value} schreibgeschützte SQL-Tabellen ein. Es wird nichts ins Hauptbuch zurückgeschrieben.",
+            "needs-ledger-tool": "Benötigt rledger oder Python beancount auf diesem Mac."
+        }
+    },
+    "spanner": {
+        "tagline": "GoogleSQL- oder PostgreSQL-Dialekt, beim Verbinden erkannt, und der Spanner-Emulator.",
+        "limits": {
+            "structure-read-only": "Der Tab „Struktur“ ist schreibgeschützt. Ändere Tabellen mit ALTER TABLE im Editor."
+        }
+    },
+    "typesense": {
+        "tagline": "Eine REST-Anfragekonsole, Sammlungen als Tabellen und ein Metrik-Dashboard.",
+        "limits": {
+            "api-keys-as-users": "Typesense hat keine Benutzerkonten. API-Schlüssel stehen daher dort, wo andere Systeme Benutzer auflisten."
+        }
+    },
+    "weaviate": {
+        "tagline": "Sammlungen als Tabellen, gelesen mit GraphQL und geschrieben über REST.",
+        "limits": {
+            "graphql-reads-rest-writes": "GraphQL liest nur. Durchsuchen und Zeilenänderungen laufen über Weaviates REST-Endpunkte."
+        }
+    },
+    "cloudflare-r2-sql": {
+        "tagline": "Schreibgeschütztes SQL über Iceberg-Tabellen in Cloudflare R2.",
+        "limits": {
+            "rows-per-query": "Eine Abfrage liefert höchstens {value} Zeilen.",
+            "no-offset": "OFFSET wird nicht unterstützt.",
+            "billed-per-scan": "Cloudflare berechnet R2 SQL anhand der pro Abfrage gescannten Daten."
+        }
+    },
+    "dameng": {
+        "tagline": "Dameng DM8 über sein natives Protokoll, mit EXPLAIN-Plänen und SSH-Tunneln.",
+        "limits": {
+            "no-tls": "TLS wird nicht unterstützt. Erreiche einen Server außerhalb eines privaten Netzwerks über einen SSH-Tunnel."
+        }
+    },
+    "sap-hana": {
+        "tagline": "SAP HANA Cloud, HANA 2.0 und HANA Express, mit schreibgeschützter Strukturanzeige.",
+        "limits": {
+            "no-tunnels": "SSH-Tunnel, SOCKS-Proxys, Cloudflare-Tunnel und Tunnelbefehle werden nicht unterstützt.",
+            "unsupported-auth-methods": "Anmeldung mit X.509-Zertifikat, JWT, SAML, Kerberos oder LDAP wird nicht unterstützt. Melde dich als Datenbankbenutzer mit Passwort an."
+        }
+    }
+}

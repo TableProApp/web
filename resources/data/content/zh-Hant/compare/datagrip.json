@@ -1,0 +1,195 @@
+{
+    "seo": {
+        "title": "TablePro vs DataGrip：IDE 或原生用戶端",
+        "description": "DataGrip 是 JetBrains IDE，僅非商業用途免費。TablePro 是開源原生用戶端。比較價格、AI、MCP、Git 和連線匯入。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs DataGrip"
+    },
+    "header": {
+        "title": "TablePro vs DataGrip",
+        "lead": "DataGrip 是 JetBrains 基於 {technology} 建立的 Windows、macOS 與 Linux 資料庫 IDE。非商業用途免費，其他工作需要年繳或月繳訂閱。TablePro 是開源用戶端，分別提供 Mac 和 iPhone、iPad 原生應用程式。可免費用於任何工作，付費方案為 Mac 應用程式新增選用功能。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "你希望用戶端可免費用於有償工作。TablePro 可免費用於任何工作，付費方案新增 {starterExamples} 等功能。",
+            "你希望 AI 助手直接向加入的服務商傳送請求，中間沒有 TablePro 自營 AI 服務或點數。Mac 應用程式中的 AI 助手和 MCP 伺服器均免費。",
+            "你更希望使用 Swift 編寫的 Mac 應用程式，而不是完整 IDE。",
+            "你也希望有 iPhone 與 iPad 應用程式。"
+        ],
+        "competitor": [
+            "你除了 Mac，也在 Windows 或 Linux 上工作。",
+            "你希望 IDE 在查詢所在的同一視窗提供程式碼檢查和版本控制。",
+            "你的工作是非商業用途，如學習、興趣專案或無商業收益的開源工作。DataGrip 對這些用途免費開放全部功能。",
+            "你連接 Firebird、Informix 或 Databricks 等 TablePro 不支援的引擎。"
+        ]
+    },
+    "glance": {
+        "intro": "DataGrip 按使用者定價。個人年繳價格在第二年和第三年降低。兩款產品都有 AI 助手和 MCP 伺服器；DataGrip 的 MCP 伺服器從 {cells.mcp.version} 版本開始提供。"
+    },
+    "rows": {
+        "vcs": {
+            "label": "版本控制",
+            "tablepro": "連結 SQL 資料夾可免費顯示 Git 狀態字母、各檔案提交歷史與並排差異，以及 Restore This Version 和 Discard Changes。不支援暫存、提交、推送或分支"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DataGrip 可在 Windows、macOS 與 Linux 上執行，讓你在不同電腦使用同一個 IDE。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "它是 IDE，Git 等版本控制與查詢並列提供，完整支援的引擎還具備程式碼檢查和快速修復。",
+                "cite": [
+                    "cells.vcs",
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "可透過各自 JDBC 驅動程式提供基本支援，連接 Firebird、Informix 和 Databricks 等 TablePro 不支援的引擎。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "非商業用途免費，包含付費版全部功能。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 可免費用於任何工作，包括商業工作，無試用期或時間限制。Mac 應用程式預設每日向 TablePro 傳送<link>使用報告</link>，可在設定中關閉。DataGrip 免費授權僅限非商業用途，並收集無法停用的使用統計。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": "/privacy#mac-usage-report"
+            },
+            {
+                "text": "TablePro 是 Swift 編寫的 Mac 應用程式，使用原生資料庫驅動程式。DataGrip 基於 {technology}。",
+                "cite": [
+                    "technology"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI 助手</link>在 Mac 應用程式中免費，可使用你選擇的雲端或本機服務商；TablePro 不營運 AI 服務，也不銷售 AI 點數。DataGrip 使用 JetBrains AI，其自營服務有點數額度，也接受你自己的服務商金鑰或本機模型。",
+                "cite": [
+                    "cells.ai"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "兩者都有 MCP 伺服器。<link>TablePro 的伺服器</link>免費，僅在本機 Mac 監聽，每個連線可決定外部應用程式權限：Blocked、Read Only 或 Read & Write。",
+                "cite": [
+                    "cells.mcp"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp#mcp"
+            },
+            {
+                "text": "<link>比較與同步</link>會比較兩個資料庫的結構或資料，並產生讓一方與另一方一致的腳本。此功能包含在 Starter 中。",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "提供免費的 <link>iPhone 與 iPad 應用程式</link>，無 App 內購買。DataGrip 沒有行動應用程式。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 沒有 Windows 或 Linux 應用程式。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro 是用戶端，不是 IDE。<link>連結 SQL 資料夾</link>顯示各檔案的 Git 狀態和歷史，但暫存、提交、推送和分支需要在自己的 Git 工具中完成。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#history"
+            },
+            {
+                "text": "TablePro 僅能連接已有驅動程式的引擎，不提供通用 JDBC 連線。請先檢查<link>支援的資料庫</link>。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 讀取 DataGrip 的全域資料來源及最近專案的資料來源。DataGrip 無須開啟，檔案也不會修改。",
+        "steps": [
+            "在 TablePro 中選擇 <ui>File > Import > Import from Other App…</ui>。",
+            "選擇 DataGrip，開啟 <ui>Include passwords</ui>，讀取 DataGrip 儲存在 macOS 鑰匙圈中的密碼，包括 SSH 密碼和金鑰密語。",
+            "macOS 會為每個已儲存密碼要求一次登入密碼。每次提示都選擇 <ui>Always Allow</ui>。",
+            "檢查清單，決定如何處理重複項目，然後按一下 <ui>Import</ui>。群組、SSH 通道和 SSL 設定會一併移轉。TablePro 不支援的引擎連線預設不勾選。",
+            "刪除 DataGrip 前，開啟一個原本有密碼的連線，確認密碼已成功移轉。"
+        ],
+        "after": [
+            "主控台、暫存檔案、查詢歷史和鍵盤快捷鍵留在 DataGrip 中。",
+            "無法讀取 DataGrip 使用主密碼保護的密碼。這些連線會在不帶密碼的情況下匯入，之後需在 TablePro 中設定密碼。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "commercial-use",
+            "question": "可以將免費 TablePro 應用程式用於有償工作嗎？",
+            "answer": "可以。Mac 應用程式可免費用於任何工作，無試用期或時間限制。DataGrip 僅非商業用途免費，開發商業產品或提供有償服務需要訂閱。",
+            "href": null
+        },
+        {
+            "id": "ai-provider",
+            "question": "TablePro AI 助手需要像 JetBrains AI 一樣訂閱方案嗎？",
+            "answer": "不需要。TablePro 不營運自有 AI 服務。你加入服務商：API 金鑰、現有帳戶或 Mac 上執行的模型。加入之前不會傳送任何內容。<link>了解 AI 助手的運作方式</link>。",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "mcp",
+            "question": "DataGrip 也有 MCP 伺服器，TablePro 的伺服器有什麼作用？",
+            "answer": "讓 Claude Code 和 Cursor 等用戶端在不看到密碼的情況下使用已儲存的 TablePro 連線。只在 127.0.0.1 監聽，各連線對外部應用程式預設為唯讀，除非你變更，而且免費。DataGrip 從 {cells.mcp.version} 版本開始提供自己的伺服器。",
+            "href": null
+        },
+        {
+            "id": "jdbc-url",
+            "question": "可以貼上 DataGrip 的 JDBC URL 嗎？",
+            "answer": "可以，前提是 TablePro 支援該引擎。<ui>File > Import > Import from URL…</ui> 除 postgres:// 和 mysql:// 外，也讀取 jdbc: URL。若要一次移轉所有資料來源，請使用上文介紹的匯入器。",
+            "href": null
+        }
+    ],
+    "notes": {
+        "datagrip-non-commercial-telemetry": "學習、興趣專案、內容創作和無商業收益的開源工作可使用全部功能。透過 JetBrains Account 啟用，並收集無法停用的使用統計。",
+        "datagrip-databases": "主要引擎獲得完整支援，包括程式碼檢查和快速修復。DuckDB、Firebird、Informix 和 Databricks 等透過 JDBC 驅動程式獲得基本支援：醒目提示和物件瀏覽，不含錯誤檢查。",
+        "datagrip-ai-quota": "JetBrains AI：免費層級提供少量定期補充的 AI 點數，更高用量可購買其自營服務的付費 AI 方案，也可使用自己的服務商金鑰或本機模型。"
+    }
+}

@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "Cassandra und ScyllaDB für {devices}",
+        "description": "CQL auf Cassandra, ScyllaDB und Amazon Keyspaces über TLS, mTLS oder SigV4. Keyspaces ansehen, Tabellen durchblättern und per Primärschlüssel ändern."
+    },
+    "og": {
+        "kicker": "Datenbanken",
+        "title": "Client für Cassandra und ScyllaDB"
+    },
+    "engine": "cassandra",
+    "breadcrumb": "Cassandra und ScyllaDB",
+    "header": {
+        "title": "Client für Cassandra und ScyllaDB auf {devices}",
+        "lead": "Durchsuche Keyspaces und Tabellen, führe CQL im Editor aus und bearbeite Zeilen, die über ihren vollständigen Primärschlüssel zurückgeschrieben werden. Derselbe Treiber verbindet sich mit ScyllaDB und Amazon Keyspaces."
+    },
+    "asset": "mac-db-cassandra-table",
+    "links": {
+        "network": "/features/connections#network",
+        "awsIam": "docs:/connections/aws-iam",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "cassandraGuide": "docs:/databases/cassandra"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Verbinden",
+            "paragraphs": [
+                "Gib TablePro einen Kontaktpunkt und dessen Port sowie Benutzername und Passwort, wenn im Cluster ein Authentifikator eingerichtet ist. Es gibt kein Keyspace-Feld: Wähle nach dem Verbinden einen in der Seitenleiste oder füge ihn in den Pfad einer <code>cassandra://</code>- oder <code>cql://</code>-URL ein und importiere sie. Der Keyspace-Wechsel erfolgt direkt und lässt System-Keyspaces aus der Liste aus; bereits offene Tabs bleiben bei ihrem eigenen Keyspace.",
+                "TLS ist bei einer neuen Verbindung deaktiviert. Bevorzugt und Erforderlich verschlüsseln beide ohne Zertifikatsprüfung, da der Treiber kein opportunistisches TLS bietet. CA prüfen und Identität prüfen benötigen eine CA-Zertifikatsdatei und greifen nie auf die System-Wurzelzertifikate zurück. Für gegenseitiges TLS füge ein Client-Zertifikat, dessen Schlüssel und die Passphrase des Schlüssels hinzu. Einen Cluster im privaten Netzwerk erreichst du über einen <network>SSH-Tunnel</network>.",
+                "Amazon Keyspaces meldet sich mit SigV4 statt mit einem Passwort an. Verwende den regionalen Endpunkt, etwa <code>cassandra.us-east-1.amazonaws.com</code> auf Port 9142, stelle Authentifizierung auf <awsIam>einen AWS-IAM-Modus</awsIam> (Zugriffsschlüssel, Profil oder AWS IAM Identity Center), lasse Benutzername und Passwort leer und aktiviere TLS, da Keyspaces Klartext ablehnt."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Durchsuchen und CQL ausführen",
+            "paragraphs": [
+                "Öffne eine Tabelle aus der Seitenleiste im Datenraster. Listen, Mengen, Maps und Tupel erscheinen als Sammlungen, ein benutzerdefinierter Typ als seine Felder, eine <code>duration</code> als <code>1d2h30m</code>, ein Vektor als Zahlenliste und ein Blob als Hex. Ergebnisse im CQL-Editor sind schreibgeschützt; Zeilen werden daher in der aus der Seitenleiste geöffneten Tabelle geändert.",
+                "CQL kennt kein OFFSET, daher werden Seiten ab der ersten Zeile vorwärts gelesen: Weiter und Zurück über bereits angezeigte Seiten kosten jeweils einen Lesevorgang; ein Sprung zu einer entfernten Seite liest alle vorherigen Seiten. Zeilen kommen in Token-Reihenfolge; ein Spaltenkopf sortiert sie nicht neu, da CQL nur nach Clustering-Spalten innerhalb einer Partition sortiert. Beim Öffnen wird nichts gezählt; <ui>Exakt zählen</ui> führt <code>SELECT COUNT(*)</code> aus und liest jede Partition.",
+                "<filters>Filter</filters> ergänzen <code>ALLOW FILTERING</code>, sodass der Server jede Partition liest, sofern der Filter nicht den gesamten Partitionsschlüssel festlegt. Enthält, Beginnt mit und Endet mit werden als LIKE gesendet, das Cassandra nur für Spalten mit SASI- oder SAI-Index akzeptiert. Operatoren, die CQL nicht ausdrücken kann, etwa Ungleich oder Ist NULL, werden mit ihrem Namen abgelehnt. Bedingungen werden nur mit AND verbunden, da CQL kein OR kennt.",
+                "Ein <editing>bearbeiteter Wert</editing> wird als CQL-Typ seiner Spalte gesendet; lässt sich ein Wert nicht parsen, stoppt der gesamte Speichervorgang. Jede Zeile wird mit einer eigenen Anweisung über ihren vollständigen Primärschlüssel geschrieben. <ui>Zeile hinzufügen</ui> schreibt <code>INSERT … IF NOT EXISTS</code>, sodass eine neue Zeile nie eine vorhandene mit demselben Schlüssel überschreibt. Eine Schlüsselspalte lässt sich nicht direkt ändern: Lösche die Zeile und füge sie neu hinzu.",
+                "Zählerspalten brauchen <code>UPDATE … SET c = c + 1</code> im CQL-Editor; der Server lehnt das einfache UPDATE einer Rasterbearbeitung ab. Das Verbindungszeitlimit stammt aus den Optionen der Verbindung; CQL-Anfragen behalten das feste Zeitlimit des Treibers, das das Abfragezeitlimit der App nicht ändert."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Keyspaces und Tabellen",
+            "paragraphs": [
+                "Der <structure>Struktur-Tab</structure> listet den CQL-Typ jeder Spalte, markiert Partitionsschlüssel- und Clustering-Spalten gleichermaßen als Primärschlüssel und zeigt sekundäre Indizes. Er fügt Spalten hinzu und entfernt sie; jede andere Änderung, auch an Indizes, erfolgt per CQL im Editor.",
+                "Der DDL-Tab rekonstruiert <code>CREATE TABLE</code> aus der Spaltenliste und lässt daher Tabellenoptionen wie Kompaktierung, Clustering-Reihenfolge und die Aufteilung zwischen Partitions- und Clustering-Schlüsseln aus. Lies die vollständige Definition mit <code>DESCRIBE TABLE</code> in cqlsh. Benutzerdefinierte Funktionen und Aggregate werden unter Funktionen aufgeführt."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Daten übertragen",
+            "paragraphs": [
+                "TablePro bietet keinen Import für Cassandra oder ScyllaDB. <export>Exportiere</export> eine Tabelle oder ein CQL-Ergebnis als {exportFormats}."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "scylladb",
+            "title": "ScyllaDB",
+            "paragraphs": [
+                "ScyllaDB hat einen eigenen Eintrag in der Verbindungstypliste und nutzt den Cassandra-Treiber über dasselbe native CQL-Protokoll. Verbinden, Durchsuchen, Bearbeiten und die obigen Grenzen gelten daher unverändert. Eine <code>scylladb://</code>- oder <code>scylla://</code>-URL erstellt eine ScyllaDB-Verbindung.",
+                "Ein Unterschied zeigt sich in der Filterleiste: ScyllaDB akzeptiert das LIKE von Enthält, Beginnt mit und Endet mit auf jeder Spalte, während Cassandra einen SASI- oder SAI-Index braucht. ScyllaDB wird wie in der <cassandraGuide>Cassandra-Einrichtungsanleitung</cassandraGuide> beschrieben eingerichtet."
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "cluster-status",
+            "question": "Zeigt TablePro den Knoten- oder Ringstatus?",
+            "answer": "Nein. Es gibt kein Server-Dashboard für Cassandra oder ScyllaDB. Prüfe Knoten mit <code>nodetool status</code> und nutze TablePro für Keyspaces, Tabellen und CQL."
+        },
+        {
+            "id": "views-and-types",
+            "question": "Wie sehe ich materialisierte Sichten und benutzerdefinierte Typen?",
+            "answer": "Sie stehen nicht in der Seitenleiste. Frage daher den Keyspace <code>system_schema</code> im CQL-Editor ab, etwa mit <code>SELECT * FROM system_schema.views</code> oder <code>system_schema.types</code>."
+        },
+        {
+            "id": "cassandra-2",
+            "question": "Verbindet sich TablePro mit Cassandra 2.x?",
+            "answer": "Nein. Der Treiber liest das Schema aus <code>system_schema</code>, das Cassandra 2.x nicht hat, sodass die Verbindung fehlschlägt."
+        }
+    ],
+    "related": [
+        {
+            "label": "Filter, Seitennavigation und vorgemerkte Änderungen",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Verbindungen, Tunnel und AWS-Anmeldung",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Amazon DynamoDB, eine weitere AWS-signierte Engine",
+            "href": "/dynamodb-gui"
+        },
+        {
+            "label": "Unterstützte Datenbanken",
+            "href": "/databases#wide-column"
+        }
+    ]
+}

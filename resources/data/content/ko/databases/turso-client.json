@@ -1,0 +1,103 @@
+{
+    "seo": {
+        "title": "{devices}용 Turso·libSQL 클라이언트",
+        "description": "URL과 토큰으로 Turso, 자체 sqld 서버나 Mac의 libSQL 파일을 엽니다. SQLite 문법으로 쿼리하고 테이블·인덱스·트리거를 변경합니다."
+    },
+    "og": {
+        "kicker": "데이터베이스",
+        "title": "Turso·libSQL 클라이언트"
+    },
+    "engine": "turso",
+    "breadcrumb": "Turso 및 libSQL",
+    "header": {
+        "title": "{devices}용 Turso·libSQL 클라이언트",
+        "lead": "URL과 토큰으로 Turso 데이터베이스에 연결해 SQLite 문법으로 쿼리하고 테이블, 인덱스와 트리거를 변경합니다. 같은 드라이버는 자체 sqld 서버와 Mac의 libSQL 파일도 엽니다."
+    },
+    "asset": "mac-db-turso-remote",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "sqlite": "/sqlite-client",
+        "libsql": "#libsql",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Turso에 연결",
+            "paragraphs": [
+                "연결 유형에서 Turso를 선택하고 <ui>Connection Mode</ui>를 <ui>Remote (Turso)</ui>로 유지합니다. <code>.turso.io</code>로 끝나는 HTTPS URL을 붙여넣고 <ui>API Token</ui>에 토큰을 넣으면 macOS 키체인에 보관됩니다. Turso 대시보드나 <code>turso db show my-db --url</code>, <code>turso db tokens create my-db</code>로 둘 다 얻을 수 있습니다.",
+                "<code>libsql://</code> URL은 HTTPS로 변환되며 가져오면 원격 연결을 만듭니다. URL이 하나의 데이터베이스를 지정하므로 호스트, 포트나 데이터베이스 필드는 없습니다. 평문 HTTP 대신 HTTPS URL을 쓰면 암호화되며 SSH 터널은 없습니다."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "쿼리 및 편집",
+            "paragraphs": [
+                "libSQL은 SQLite 문법을 사용하므로 탐색, <explain>EXPLAIN QUERY PLAN</explain> 다이어그램, <editing>Preview SQL을 통한 편집 임시 저장</editing>과 내보내기가 <sqlite>SQLite</sqlite>와 동일하게 작동합니다.",
+                "원격 연결은 트랜잭션을 실행하지 않습니다. 각 구문이 별도 HTTP 요청으로 커밋되며 <code>BEGIN</code>은 “Transactions are not supported in this mode” 오류로 실패합니다. 트랜잭션은 <libsql>libSQL 절</libsql>의 로컬 libSQL 파일이 필요합니다.",
+                "원격 모드는 SQLite 확장을 로드하지 않으며 Turso 데이터베이스는 서버에 포함된 확장을 실행합니다. Turso가 연결을 제한하면 오류에 재시도 전 대기 초가 표시됩니다."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "테이블, 인덱스 및 트리거",
+            "paragraphs": [
+                "<structure>Structure 탭</structure>은 테이블 생성, 열·인덱스 추가·삭제와 트리거 생성·편집·삭제를 지원합니다. 사이드바에서 테이블 이름은 바꿀 수 있지만 뷰는 바꿀 수 없습니다.",
+                "원격 데이터베이스의 열 순서나 외래 키를 변경하면 TablePro가 재구성 스크립트를 작성해 직접 검토하고 실행하게 합니다. 별도 HTTP 요청에 걸친 하나의 트랜잭션이 필요하므로 앱이 대신 실행할 수 없습니다."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "데이터 이동",
+            "paragraphs": [
+                "TablePro는 Turso·libSQL 가져오기를 제공하지 않습니다. Turso CLI나 sqld 서버에서 가져오세요. 데이터를 꺼내려면 테이블이나 쿼리 결과를 {exportFormats}로 <export>내보냅니다</export>."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "libsql",
+            "title": "libSQL",
+            "paragraphs": [
+                "자체 sqld 서버나 이 Mac의 파일은 libSQL을 선택합니다. Remote 모드는 Hrana v2 pipeline 엔드포인트를 제공하는 모든 sqld에 연결하며 이 Mac의 기본 포트 8080 서버도 지원합니다. <code>--auth-jwt-key-file</code> 없이 시작한 서버는 토큰을 비우고 그 외에는 서버 키와 맞는 JWT를 입력합니다.",
+                "<ui>Local File</ui> 모드는 드라이버에 포함된 SQLite로 libSQL 파일을 열고 아직 없는 경로는 폴더까지 만듭니다. 로컬 파일은 트랜잭션, 연결의 Extensions 목록에서 SQLite 확장 로드와 확인 후 열 순서·외래 키 재구성을 지원합니다.",
+                "<code>ALTER TABLE … ALTER COLUMN</code>처럼 libSQL만 이해하는 구문은 SQLite 엔진이 받기 때문에 로컬 파일에서 실패합니다. 암호화된 libSQL 파일은 열리지 않습니다. 실행 중인 앱이 Turso 내장 복제본으로 동기화하는 파일은 두 프로그램의 동시 접근으로 손상될 수 있으므로 절대로 열지 마세요.",
+                "<backup>Backup Dump와 Restore Dump</backup>는 로컬 libSQL 파일에 {dumpTool}을 실행합니다."
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "remote-or-local",
+            "question": "Remote와 Local File 중 무엇을 선택하나요?",
+            "answer": "URL로 접근하는 Turso 데이터베이스나 sqld 서버는 Remote, 이 Mac의 libSQL 파일은 Local File을 선택합니다. 후자는 트랜잭션, SQLite 확장과 백업도 제공합니다."
+        },
+        {
+            "id": "turso-cli",
+            "question": "Turso CLI를 설치해야 하나요?",
+            "answer": "아니요. Turso 대시보드에서도 데이터베이스 URL을 보고 토큰을 만들 수 있습니다. TablePro에 Turso 가져오기가 없으므로 터미널에서 데이터를 넣을 때 CLI가 유용합니다."
+        }
+    ],
+    "related": [
+        {
+            "label": "libSQL의 기반 엔진 SQLite",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Cloudflare D1, Cloudflare API를 통한 SQLite",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "구조 편집 및 재구성 스크립트",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "내보내기 및 백업",
+            "href": "/features/import-export"
+        }
+    ]
+}

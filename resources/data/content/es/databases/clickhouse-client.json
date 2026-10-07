@@ -1,0 +1,102 @@
+{
+    "seo": {
+        "title": "Cliente ClickHouse para {devices}",
+        "description": "Consulta ClickHouse por HTTP o HTTPS, lee planes, pipelines y estimaciones EXPLAIN, gestiona partes y particiones MergeTree y supervisa mutaciones."
+    },
+    "og": {
+        "kicker": "Bases de datos",
+        "title": "Cliente ClickHouse"
+    },
+    "engine": "clickhouse",
+    "breadcrumb": "ClickHouse",
+    "header": {
+        "title": "Cliente ClickHouse para {devices}",
+        "lead": "Ejecuta SQL analítico por la interfaz HTTP de ClickHouse, lee el plan, el pipeline o la estimación de filas de una consulta y gestiona las partes y particiones MergeTree desde la pestaña Partes. Las consultas largas informan de las filas leídas mientras se ejecutan, y Detener las termina en el servidor."
+    },
+    "asset": "mac-db-clickhouse-parts",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "map": "/features/querying#map",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Conectar",
+            "paragraphs": [
+                "Indica el host y el puerto HTTP, un usuario y, si quieres, una base de datos. El cambio de base se hace sin reconectar; cada pestaña abierta conserva la base inicial. <ui>Ver > Barra lateral como árbol</ui> muestra las bases del servidor en un árbol que puedes desplegar directamente.",
+                "Elige cualquier modo SSL para pasar a HTTPS. Los puertos 443 o 8443, este último usado por ClickHouse Cloud, activan Verificar identidad, que comprueba el certificado con tu archivo de CA o el almacén de confianza del sistema. Verificar CA necesita un archivo de CA; un certificado de cliente y su clave permiten acceder a servidores que requieren TLS mutuo.",
+                "Sin TLS, accede a un servidor remoto mediante un <network>túnel SSH</network> en lugar de enviar HTTP sin cifrar por la red."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Consulta y edita",
+            "paragraphs": [
+                "Cada consulta lleva su propio ID y solicita información de progreso, de modo que una consulta larga informa de las filas leídas. Detener envía <code>KILL QUERY</code> para ese ID, y el tiempo de espera de consulta de la conexión llega al servidor.",
+                "El <explain>menú Explicar</explain> ofrece Plan, Pipeline, AST, Sintaxis y Estimación. La salida con sangría se representa como diagrama o árbol; Estimación muestra las filas, marcas y partes que leería la consulta.",
+                "Las ediciones de la cuadrícula se envían como <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> y <code>ALTER TABLE … DELETE</code>, con <editing>Vista previa SQL</editing> antes. ClickHouse ejecuta actualizaciones y eliminaciones como mutaciones en segundo plano, por lo que guardar significa que se han aceptado, todavía no aplicado; <code>system.mutations</code> muestra el progreso. Las vistas materializadas se abren en solo lectura.",
+                "Un resultado con tuplas de puntos o anillos de ClickHouse se abre en la <map>vista Mapa</map>. Una consulta con su propia cláusula <code>FORMAT</code> muestra la salida bruta del servidor en una columna; omite la cláusula para obtener una cuadrícula."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tablas, partes y particiones",
+            "paragraphs": [
+                "Una tabla se abre con las pestañas Estructura, Índices, DDL y Partes. Índices muestra la clave de ordenación y los índices de omisión de datos; DDL muestra el <code>CREATE TABLE</code> completo, incluidos el motor y los ajustes.",
+                "Partes enumera cada parte de <code>system.parts</code> con su partición, filas, tamaño en disco, fecha de modificación e indicador de actividad, y permite ejecutar Optimizar, Eliminar partición y Desvincular partición.",
+                "La <structure>pestaña Estructura</structure> añade, modifica y elimina columnas y elimina índices de omisión de datos. La clave de ordenación y la primaria se fijan al crear la tabla, así que añade un índice de omisión con <code>ALTER TABLE … ADD INDEX</code> y vuelve a crear la tabla para otros cambios."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Supervisar",
+            "paragraphs": [
+                "El <dashboard>Panel del servidor</dashboard> muestra consultas y fusiones activas, mutaciones de partes y uso de disco; enumera las demás sesiones con <ui>Terminar sesión</ui> en cada una y lee las consultas lentas de <code>system.query_log</code>: las consultas finalizadas más recientes que tardaron más de un segundo."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Transfiere datos",
+            "paragraphs": [
+                "Carga archivos {importFormats} con <importData>Importar</importData> y exporta tablas o resultados de consultas como {exportFormats}. Si una columna contiene siquiera un valor que no sea UTF-8 válido, se muestra en hexadecimal en la cuadrícula; selecciona <code>toValidUTF8(column)</code> para leerla como texto."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "settings",
+            "question": "¿Cómo cambio un ajuste para una consulta?",
+            "answer": "Inclúyelo en una cláusula <code>SETTINGS</code> de la consulta, como <code>SELECT … SETTINGS max_threads = 4</code>. Cada sentencia es su propia solicitud HTTP sin sesión, así que un <code>SET</code> separado desaparece en la siguiente."
+        },
+        {
+            "id": "native-port",
+            "question": "¿Por qué no conecta el puerto 9000?",
+            "answer": "El puerto 9000 es el puerto TCP nativo de ClickHouse, que TablePro no usa. Conecta al puerto HTTP, o al 8443 para HTTPS en ClickHouse Cloud, y comprueba que la interfaz HTTP esté activada: una solicitud a <code>/ping</code> en ese puerto responde <code>Ok.</code>"
+        }
+    ],
+    "related": [
+        {
+            "label": "Planes EXPLAIN y rendimiento de consultas",
+            "href": "/features/querying#performance"
+        },
+        {
+            "label": "Esquemas, comparación y sincronización",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Importación, exportación y archivos de datos",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "DuckDB, para archivos analíticos",
+            "href": "/duckdb-client"
+        }
+    ]
+}

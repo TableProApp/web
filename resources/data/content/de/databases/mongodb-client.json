@@ -1,0 +1,126 @@
+{
+    "seo": {
+        "title": "MongoDB-Client für {devices}",
+        "description": "MongoDB mit JavaScript im mongosh-Stil abfragen, Extended JSON bearbeiten, Felder in Sammlungen umbenennen und Atlas über SRV verbinden."
+    },
+    "og": {
+        "kicker": "Datenbanken",
+        "title": "MongoDB-Client"
+    },
+    "engine": "mongodb",
+    "breadcrumb": "MongoDB",
+    "header": {
+        "title": "MongoDB-Client für {devices}",
+        "lead": "Schreibe Abfragen in mongosh-Syntax, blättere durch Sammlungen im Raster und füge ganze Dokumente als Extended JSON ein oder bearbeite sie. Benenne ein Feld sammlungsweit um oder entferne es, wobei jede Anweisung vor der Ausführung angezeigt wird."
+    },
+    "asset": "mac-db-mongodb-document",
+    "links": {
+        "network": "/features/connections#network",
+        "editing": "/features/data-editing#documents-and-keys",
+        "filters": "/features/data-editing#filters",
+        "safeMode": "/features/data-editing#safe-mode",
+        "map": "/features/querying#map",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Verbinden",
+            "paragraphs": [
+                "Gib einen Host oder mehrere <code>host:port</code>-Paare für ein Replica Set an; der Primary wird automatisch gefunden. Du kannst auch eine <code>mongodb://</code>- oder <code>mongodb+srv://</code>-URL einfügen. Melde dich mit SCRAM-SHA-1, SCRAM-SHA-256, X.509 oder AWS IAM an und setze <ui>Authentifizierungsdatenbank</ui>, wenn dein Benutzer in <code>admin</code> definiert ist, du aber eine andere Datenbank durchsuchst.",
+                "Ein Host mit der Endung <code>.mongodb.net</code> aktiviert SRV und TLS automatisch, wie MongoDB Atlas es verlangt. Füge zuerst deine IP zur Zugriffsliste des Clusters hinzu: Verkehr von einer nicht gelisteten Adresse läuft ins Zeitlimit, statt sofort fehlzuschlagen.",
+                "Neue Verbindungen beginnen ohne TLS; der Treiber bietet keinen Fallback, daher verhält sich Bevorzugt wie Erforderlich. Read Preference und Write Concern werden pro Verbindung festgelegt; Write Concern wird bei jedem Einfügen, Ändern und Löschen aus der Shell oder beim Rasterspeichern mitgesendet.",
+                "Über einen <network>SSH-Tunnel</network> wird nur der erste Host der Liste genutzt; Replica-Set-Erkennung und Failover sind daher für diese Sitzung deaktiviert."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Dokumente abfragen und bearbeiten",
+            "paragraphs": [
+                "Der Abfrage-Tab ist eine JavaScript-Shell mit mongosh-Syntax: unquotierte Schlüssel, Regex-Literale, <code>ISODate()</code>, Variablen, Schleifen und <code>forEach</code>. Sie läuft in TablePro ohne weitere Installation; eine definierte Variable bleibt in allen Tabs der Verbindung bis zum Trennen verfügbar. Die Vervollständigung bietet Sammlungen, Methoden, verschachtelte Feldpfade und die an der Cursorposition gültigen <code>$</code>-Operatoren.",
+                "Eine Sammlung öffnet als Raster mit Feldern der obersten Ebene als Spalten und verschachtelten Objekten als Extended JSON. Eine bearbeitete Zelle behält den Feldtyp: Ein Datum bleibt Datum, eine ObjectId bleibt ObjectId. Eine Änderung im verschachtelten Objekt schreibt nur den geänderten Pfad wie <code>address.city</code>.",
+                "<editing>Dokument einfügen und Dokument bearbeiten</editing> nehmen ein ganzes Dokument als Extended JSON entgegen. Dokument bearbeiten liest es erneut vom Server; hat jemand es nach dem Öffnen geändert oder gelöscht, wird nichts gespeichert und der Dialog meldet es. <ui>Feld entfernen</ui> auf einer Zelle sendet <code>$unset</code>.",
+                "Die <filters>Filterleiste</filters> erreicht verschachtelte Objekte und Objektarrays, sodass <code>customer.country</code> und <code>items.sku</code> direkt filtern. Ein GeoJSON-Feld öffnet in der <map>Kartenansicht</map>.",
+                "<safeMode>Sicherer Modus</safeMode> behandelt jede MongoDB-Anweisung als Schreibzugriff, da der Treiber keine schreibgeschützte Sitzung öffnen kann. Warnung und Sicherer Modus bestätigen jede Anweisung; Nur lesen blockiert alle."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Sammlungen, Indizes und Validatoren",
+            "paragraphs": [
+                "Der <structure>Struktur-Tab</structure> listet jeden Index mit seinen Feldern in Schlüsselreihenfolge und seiner Art wie hashed, text, 2dsphere oder wildcard. DDL anzeigen schreibt die <code>createIndex</code>-Aufrufe zum Wiederherstellen mit jeder vom Server gemeldeten Option.",
+                "Benenne im selben Tab ein Feld in der ganzen Sammlung um oder entferne es. Jede Änderung ist ein in SQL-Vorschau gezeigtes <code>updateMany</code>; ein vom <code>$jsonSchema</code>-Validator deklariertes Feld wird dort ebenfalls geändert. Solange ein Index, Suchindex oder eine Sicht den Namen nutzt, wird das Speichern vor jedem Schreibvorgang abgelehnt.",
+                "<ui>Neue Tabelle</ui> erstellt eine Sammlung, deren Felder zu einem <code>$jsonSchema</code>-Validator werden, und erstellt danach die aufgeführten Indizes. Sichten und Zeitreihensammlungen erscheinen in der Seitenleiste; Sichten öffnen schreibgeschützt."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Sichern",
+            "paragraphs": [
+                "<backup>Backup-Dump</backup> schreibt jede markierte Datenbank mit {dumpTool} in ein gzip-Archiv, mit Hosts, Authentifizierungsdatenbank, SRV- und TLS-Einstellungen der Verbindung; ein Dump lässt sich auf einzelne Sammlungen begrenzen. Dump wiederherstellen führt mongorestore in der gewählten Datenbank aus und behält Vorhandenes. Installiere zuerst MongoDB Database Tools auf deinem Mac."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Daten übertragen",
+            "paragraphs": [
+                "<importData>Importiere</importData> {importFormats}-Dateien in eine Sammlung. <export>Exportiere</export> Sammlungen oder Ergebnisse als {exportFormats}.",
+                "Ein MQL-Export ist eine in mongosh ausführbare <code>.js</code>-Datei mit <code>insertMany</code>-Aufrufen und, wenn markiert, den Indizes und dem Validator jeder Sammlung. Werte der obersten Ebene behalten ihren Typ; ein typisierter Wert in einem Unterdokument oder Array, etwa eine ObjectId in einem Array, wird als String geschrieben. Exportiere solche Sammlungen als JSON oder sichere sie mit mongodump."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "mongodb-compass",
+                "anchor": "compass",
+                "text": "MongoDB Compass ist die eigene grafische Oberfläche von MongoDB. Es baut Aggregationspipelines Stufe für Stufe mit Vorschau nach jeder Stufe, analysiert ein Sammlungsschema anhand einer Dokumentstichprobe und zeichnet Ausführungspläne. Wähle es für visuelles Pipeline-Design oder zum Untersuchen einer Sammlung; TablePro passt, wenn MongoDB eine von mehreren Datenbanken in derselben App ist.",
+                "notes": [
+                    "compass-natural-language"
+                ]
+            }
+        ],
+        "notes": {
+            "compass-natural-language": "Es kann auch aus einer natürlichsprachlichen Frage eine Abfrage schreiben."
+        }
+    },
+    "faq": [
+        {
+            "id": "mongosh",
+            "question": "Ist der Abfrage-Tab mongosh?",
+            "answer": "Nein. Es ist eine Shell, die mongosh-Syntax annimmt und in TablePro auf JavaScriptCore läuft. Der meiste mongosh-Code funktioniert unverändert. Ein Unterschied: Eine ganze Zahl außerhalb des 32-Bit-Bereichs wird als 64-Bit-Ganzzahl gespeichert, während mongosh ein Double speichert; umschließe sie mit <code>Double()</code>, um das anzugleichen."
+        },
+        {
+            "id": "query-plan",
+            "question": "Wie sehe ich einen Abfrageplan?",
+            "answer": "Hänge <code>.explain(\"executionStats\")</code> an den Cursor im Abfrage-Tab an. Der Plan kommt als Dokument zurück; MongoDB-Verbindungen haben kein Plandiagramm."
+        },
+        {
+            "id": "users",
+            "question": "Wie liste ich Datenbankbenutzer auf?",
+            "answer": "Führe <code>db.runCommand({usersInfo: 1})</code> aus. Die Shell parst weder <code>db.getUsers()</code> noch <code>db.createUser()</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Daten sicher durchsuchen und bearbeiten",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Abfragesprachen jenseits von SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Import, Export und Backups",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "TablePro mit anderen Datenbankclients vergleichen",
+            "href": "/compare"
+        }
+    ]
+}

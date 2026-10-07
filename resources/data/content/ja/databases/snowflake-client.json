@@ -1,0 +1,99 @@
+{
+    "seo": {
+        "title": "{devices} 用 Snowflake クライアント",
+        "description": "鍵ペア、ブラウザ SSO、OAuth、パスワードとコードで Snowflake に認証。再接続せずウェアハウスやロールを切り替え、ステージにアンロードできます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Snowflake クライアント"
+    },
+    "engine": "snowflake",
+    "breadcrumb": "Snowflake",
+    "header": {
+        "title": "{devices} 用 Snowflake クライアント",
+        "lead": "アカウントが要求する方式で認証し、再接続せずにセッションのウェアハウスとロールを切り替えて、テーブルを問い合わせ、編集し、ステージにアンロードできます。"
+    },
+    "asset": "mac-db-snowflake-session",
+    "links": {
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続と認証",
+            "paragraphs": [
+                "<code>myorg-myaccount</code> や旧形式の <code>xy12345.us-east-1</code> など、<code>.snowflakecomputing.com</code> の前に付くアカウント識別子を入力します。すべてのリクエストは HTTPS でアカウントのエンドポイントに送るため、ホスト、SSL セクションや SSH ペインはありません。",
+                "<ui>Auth Method</ui> を選ぶと必要な項目だけ表示します。鍵ペアは PKCS#8 秘密鍵で接続ごとに署名するため、Mac の時計が正確である必要があります。ブラウザ SSO は ID プロバイダーへ進みます。OAuth トークンは貼り付けたまま使い、更新しません。MFA 必須のアカウントではパスワードと <ui>MFA Passcode (TOTP)</ui> の現在のコードを使います。",
+                "アカウントの <code>ALLOW_CLIENT_MFA_CACHING</code> が有効なら、新しいコードは一回で済みます。Snowflake が返す MFA トークンを TablePro が <credentials>キーチェーン</credentials> に保存します。<code>ALLOW_ID_TOKEN</code> ならブラウザ SSO のサインイントークンを保存し、Snowflake が拒否するまで次の接続はブラウザを省略します。",
+                "Snowflake には URL スキームがありません。代わりに <ui>CLI Connection Name</ui> にセクション名を指定すると、空欄のフィールドを接続時に <code>~/.snowflake/connections.toml</code> から読みます。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "ウェアハウス、ロールとクエリ",
+            "paragraphs": [
+                "<ui>Database > Session Context</ui> は <code>USE WAREHOUSE</code> と <code>USE ROLE</code> で、再接続せずセッションのウェアハウスやロールを切り替えます。一つの TablePro 接続は一つの Snowflake セッションで、アイドル中も保持します。別のデータベースに紐付いたタブは、同じセッションで文の前に <code>USE DATABASE</code> を実行します。",
+                "サイドバーはデータベースとスキーマでオブジェクトをまとめます。一覧はウェアハウス不要の <code>SHOW</code> コマンドから取得し、カラム詳細はウェアハウスが必要な <code>INFORMATION_SCHEMA</code> から取得します。<explain>Explain</explain> は Snowflake のプランを生のテキストで返します。",
+                "<editing>グリッド編集</editing> は値をサーバーでバインドし、VARIANT、OBJECT、ARRAY セルは <code>PARSE_JSON</code> を使って送ります。宣言した主キー、なければ全カラムで特定します。Snowflake はキー制約を強制しないため、重複キーがあれば編集や削除はすべての一致行に及びます。編集前に重複を確認してください。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "構造",
+            "paragraphs": [
+                "DDL ビューは <code>GET_DDL</code> から取得します。<structure>Structure タブ</structure> はカラムの追加、名前変更と削除、NOT NULL、コメントと主キーの設定、VARCHAR の拡大、同じスケールでの NUMBER 精度変更に対応します。",
+                "VARCHAR の縮小、その他の型変更、カラムの既定値を新しい値にする操作など、Snowflake が拒否する変更は実行前に拒否します。既定値の解除は実行できます。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "接続経由で {importFormats} ファイルを <importData>インポート</importData> し、テーブルや結果を Mac に {exportFormats} でエクスポートできます。",
+                "Mac を通さずにテーブルをアンロードするには、<ui>File > Server-Side Export…</ui> で <code>@</code> あり・なしのステージ名を指定します。<backup>Server-Side Export</backup> は自分の権限で <code>COPY INTO</code> を実行し、gzip CSV、Parquet や JSON を書き込みます。シートは完了まで待機し、Mac に保存しません。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "no-columns",
+            "question": "サイドバーにテーブルがあるのにカラムがないのはなぜですか？",
+            "answer": "カラム詳細は稼働中ウェアハウスが必要な <code>INFORMATION_SCHEMA</code> から取得します。接続や Session Context の <ui>Warehouse</ui> を指定してください。オブジェクトが全く表示されないデータベースは接続ロールに <code>USAGE</code> の付与が必要です。"
+        },
+        {
+            "id": "timestamp-ltz",
+            "question": "TIMESTAMP_LTZ が UTC 表示になるのはなぜですか？",
+            "answer": "TablePro はセッションの <code>TIMEZONE</code> に変換せず、<code>Z</code> を付けた UTC 時刻として読み取ります。"
+        },
+        {
+            "id": "jwt-invalid",
+            "question": "鍵ペア認証で JWT が無効と言われたら何を確認しますか？",
+            "answer": "トークンはアカウントロケーターとタイムスタンプを含みます。アカウント識別子と Mac の時計を確認し、<code>ALTER USER … SET RSA_PUBLIC_KEY</code> で公開鍵をユーザーに登録したか確認してください。"
+        }
+    ],
+    "related": [
+        {
+            "label": "インポート、エクスポートとデータファイル",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "クエリを書き、実行し、理解する",
+            "href": "/features/querying"
+        },
+        {
+            "label": "別のクラウドウェアハウス Google BigQuery",
+            "href": "/bigquery-client"
+        },
+        {
+            "label": "カタログ横断クエリ向け Trino",
+            "href": "/trino-client"
+        }
+    ]
+}

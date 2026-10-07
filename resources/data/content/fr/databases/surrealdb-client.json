@@ -1,0 +1,86 @@
+{
+    "seo": {
+        "title": "Client SurrealDB pour {devices}",
+        "description": "Accédez à SurrealDB par root, namespace, base, record ou jeton, exécutez SurrealQL, parcourez les namespaces et modifiez par champ."
+    },
+    "og": {
+        "kicker": "Bases de données",
+        "title": "Client SurrealDB"
+    },
+    "engine": "surrealdb",
+    "breadcrumb": "SurrealDB",
+    "header": {
+        "title": "Client SurrealDB pour {devices}",
+        "lead": "Authentifiez-vous au niveau où votre utilisateur est défini, exécutez SurrealQL et modifiez les enregistrements champ par champ, en conservant les types des liens, dates et décimaux."
+    },
+    "asset": "mac-db-surrealdb-query",
+    "links": {
+        "network": "/features/connections#network",
+        "filters": "/features/data-editing#filters",
+        "explain": "/features/querying#performance",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connectez-vous et authentifiez-vous",
+            "paragraphs": [
+                "SurrealDB ne déduit pas le niveau utilisateur des identifiants ; le <ui>Niveau d’authentification</ui> le nomme et le formulaire demande le reste. Root prend utilisateur et mot de passe, Namespace ajoute l’espace de noms, Database la base aussi. Record Access prend namespace, base, méthode de <code>DEFINE ACCESS</code> et champs de connexion. Token accepte un JWT existant, y compris SurrealDB Cloud.",
+                "Le pilote parle CBOR sur HTTP RPC, conservant types de liens, dates, durées, décimaux et UUID. Un lien <code>surrealdb://</code> ouvre le formulaire rempli ; un serveur distant est accessible par <network>tunnel SSH</network>.",
+                "SSL commence Désactivé, en HTTP clair ; les autres modes utilisent HTTPS. Vérifier l’AC et Vérifier l’identité utilisent le magasin système ; un fichier d’AC dans SSL/TLS est ignoré, installez donc une AC privée dans macOS d’abord."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SurrealQL et enregistrements",
+            "paragraphs": [
+                "L’éditeur exécute des scripts SurrealQL entiers, y compris <code>RELATE</code> entre deux enregistrements, avec complétion des instructions courantes. <explain>Expliquer et Expliquer complet</explain> relancent la requête avec <code>EXPLAIN</code> pour montrer sa résolution et l’usage d’index ; le plan revient en texte brut.",
+                "Les namespaces figurent en haut de la barre latérale avec leurs bases. Changer l’un ou l’autre ne reconnecte jamais, car ils accompagnent chaque requête. Seul root voit tous les namespaces.",
+                "Changer une cellule exécute <code>UPDATE</code> seulement sur les champs touchés, en paramètres typés : <code>int</code> reste <code>int</code>, sans toucher aux champs calculés <code>FUTURE</code> ni aux changements d’autrui. Laissez <code>id</code> vide pour le générer ou saisissez <code>table:id</code>. Une table <code>SCHEMALESS</code> tire ses colonnes des enregistrements lus.",
+                "Les <filters>filtres</filters> deviennent SurrealQL ; une ligne SQL brut prend une condition, comme un parcours de graphe. Une condition écrivant, contenant <code>;</code> ou commentaire, ou appelant <code>fn::</code> ou <code>http::</code>, est refusée ; exécutez-la dans l’éditeur."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "Structure est en lecture seule. Créez et changez champs et index avec <code>DEFINE FIELD</code> et <code>DEFINE INDEX</code> dans l’éditeur. Un namespace ou une base se supprime par son menu ; en sélectionner plusieurs demande une seule confirmation."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Transférez des données",
+            "paragraphs": [
+                "Il n’y a pas d’import. <export>Exportez</export> tables ou résultats en CSV, JSON ou XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "transactions",
+            "question": "Puis-je exécuter une transaction ?",
+            "answer": "Dans une requête, oui. HTTP RPC ne conserve pas de transaction entre requêtes ; envoyez <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> comme une seule requête d’éditeur."
+        },
+        {
+            "id": "relations",
+            "question": "Comment changer in ou out d’une relation ?",
+            "answer": "Pas depuis la grille : l’enregistrement s’arrête, nomme le champ et garde toutes les modifications en attente. <code>UPDATE</code> ne déplace pas non plus une relation ; supprimez-la et utilisez <code>RELATE</code> pour la nouvelle paire."
+        }
+    ],
+    "related": [
+        {
+            "label": "MongoDB, l’autre base documentaire",
+            "href": "/mongodb-client"
+        },
+        {
+            "label": "Langages de requête autres que SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Parcourez et modifiez les données en sécurité",
+            "href": "/features/data-editing"
+        }
+    ]
+}

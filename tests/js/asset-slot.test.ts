@@ -7,6 +7,16 @@ import { renderAssetSlot, type AssetSlotLabels } from '../../resources/js/compon
 import { fileUrl, slotModel, srcSet, type AssetManifestData, type SlotManifestData } from '../../resources/js/lib/data/asset-model.ts';
 import en from '../../resources/js/i18n/messages/en/assets.ts';
 import vi from '../../resources/js/i18n/messages/vi/assets.ts';
+import es from '../../resources/js/i18n/messages/es/assets.ts';
+import de from '../../resources/js/i18n/messages/de/assets.ts';
+import fr from '../../resources/js/i18n/messages/fr/assets.ts';
+import ja from '../../resources/js/i18n/messages/ja/assets.ts';
+import ptBR from '../../resources/js/i18n/messages/pt-BR/assets.ts';
+import zhHans from '../../resources/js/i18n/messages/zh-Hans/assets.ts';
+import ko from '../../resources/js/i18n/messages/ko/assets.ts';
+import zhHant from '../../resources/js/i18n/messages/zh-Hant/assets.ts';
+import it from '../../resources/js/i18n/messages/it/assets.ts';
+import id from '../../resources/js/i18n/messages/id/assets.ts';
 
 /*
  * <AssetSlot> rendered through react-dom/server, with no build and no SSR
@@ -21,7 +31,8 @@ const read = (path: string): AssetManifestData =>
 
 const real = read('../../resources/data/assets.json');
 const fixture = read('../Fixtures/assets/manifest.json');
-const labels: Record<string, AssetSlotLabels> = { en, vi };
+const labels: Record<string, AssetSlotLabels> = { en, vi, es, de, fr, ja, 'pt-BR': ptBR, 'zh-Hans': zhHans, ko, 'zh-Hant': zhHant, it, id };
+const locales: string[] = Object.keys(JSON.parse(readFileSync(new URL('../../resources/data/locales.json', import.meta.url), 'utf8')).supported);
 
 function html(manifest: SlotManifestData, id: string, locale = 'en', extra: { sizes?: string; caption?: boolean; priority?: boolean } = {}): string {
     return renderToStaticMarkup(renderAssetSlot(manifest, id, { locale, labels: labels[locale], ...extra }));
@@ -35,7 +46,7 @@ test('every real slot renders as a labelled placeholder that requests nothing, o
             continue;
         }
 
-        for (const locale of ['en', 'vi']) {
+        for (const locale of locales) {
             const markup = html(real, id, locale);
 
             if (entry.status !== 'placeholder') {
@@ -54,14 +65,14 @@ test('every real slot renders as a labelled placeholder that requests nothing, o
             assert.ok(!/<img\b/i.test(markup), `${id} (${locale}) renders an <img>`);
             assert.ok(!/<picture\b|<source\b|background-image|url\(/i.test(markup), `${id} (${locale}) can make a request`);
             assert.ok(markup.includes(`role="img"`), `${id} (${locale}) has no role="img" box`);
-            assert.ok(markup.includes(`aria-label="${escapeHtml(`${label}: ${description}`)}"`), `${id} (${locale}) has the wrong accessible name`);
+            assert.ok(markup.includes(`aria-label="${escapeHtml(labels[locale].accessibleName.replace('{type}', label).replace('{description}', description))}"`), `${id} (${locale}) has the wrong accessible name`);
             assert.ok(markup.includes('aria-hidden="true"'), `${id} (${locale}) exposes its visible text twice`);
             assert.ok(!markup.includes('<figcaption'), `${id} (${locale}) shows a caption while a placeholder`);
             rendered++;
         }
     }
 
-    assert.ok(rendered > 100, `expected every slot in both locales, rendered ${rendered}`);
+    assert.ok(rendered > 100, `expected every slot in all locales, rendered ${rendered}`);
 });
 
 test('a window placeholder carries its phone crop as a second box, swapped by CSS', () => {
@@ -157,7 +168,7 @@ test('a supplied slot hides the id, the type label and the brief', () => {
     for (const id of ['fixture-hero', 'fixture-detail', 'fixture-phone', 'fixture-diagram']) {
         const entry = fixture.assets[id];
 
-        for (const locale of ['en', 'vi']) {
+        for (const locale of locales) {
             const markup = html(fixture, id, locale);
             const visible = markup.replace(/(src|srcSet)="[^"]*"/gi, '');
 
@@ -220,21 +231,20 @@ test('the model switches mode on status alone', () => {
     assert.equal(slotModel(fixture, 'fixture-detail', { locale: 'en' }).main.mode, 'supplied');
 });
 
-test('the catalogs label every type the manifest uses, in both languages', () => {
+test('the catalogs label every type the manifest uses in every language', () => {
     const used = new Set(Object.values(real.assets).filter((entry) => entry.slot).map((entry) => entry.type));
 
-    for (const type of used) {
-        assert.ok(type in en.types, `no English label for ${type}`);
-        assert.ok(type in vi.types, `no Vietnamese label for ${type}`);
+    assert.deepEqual(Object.keys(labels).sort(), [...locales].sort());
+    for (const locale of locales) {
+        for (const type of used) assert.ok(type in labels[locale].types, `no ${locale} label for ${type}`);
+        assert.ok(labels[locale].accessibleName.includes('{type}'));
+        assert.ok(labels[locale].accessibleName.includes('{description}'));
     }
-
-    assert.equal(en.accessibleName, '{type}: {description}');
-    assert.equal(vi.accessibleName, '{type}: {description}');
 });
 
 /*
- * The bundle carries resources/js/lib/data/asset-slots.json, not the whole
- * manifest. It must render every slot exactly as the manifest does, in both
+ * The bundle carries shared geometry plus one selected language catalog,
+ * not the whole manifest. It must render every slot exactly as the manifest does, in both
  * states: the committed slice for the real (placeholder) entries, and the
  * same projection rules applied here to the fixture for the supplied path.
  * PHP pins the committed file to `AssetManifest::slotProjection()`.
@@ -261,18 +271,18 @@ function project(manifest: AssetManifestData): SlotManifestData {
     return { kinds, assets };
 }
 
-test('the bundled slice renders every real slot exactly as the manifest does', () => {
+test('the metadata and selected language render every real slot exactly as the manifest does', () => {
     const slotIds = Object.keys(real.assets).filter((id) => real.assets[id].slot);
 
     assert.deepEqual(Object.keys(bundled.assets), slotIds, 'the slice lists other ids than the manifest has slots; run php artisan assets:handoff');
 
-    for (const id of slotIds) {
-        for (const locale of ['en', 'vi']) {
-            assert.equal(html(bundled, id, locale), html(real, id, locale), `${id} (${locale}) renders differently from the bundled slice`);
-        }
+    for (const locale of locales) {
+        const copy = JSON.parse(readFileSync(new URL(`../../resources/js/lib/data/asset-locales/${locale}.json`, import.meta.url), 'utf8'));
+        const localized = { kinds: bundled.kinds, assets: Object.fromEntries(Object.entries(bundled.assets).map(([id, entry]) => [id, { ...entry, ...copy[id] }])) };
+        for (const id of slotIds) assert.equal(html(localized, id, locale), html(real, id, locale), `${id} (${locale}) renders differently from the selected language`);
     }
 
-    for (const field of ['usedOn', 'handoffPriority', 'legacySource', 'family', 'ownerRepo']) {
+    for (const field of ['usedOn', 'handoffPriority', 'legacySource', 'family', 'ownerRepo', 'alt', 'caption', 'description']) {
         assert.ok(Object.values(bundled.assets).every((entry) => !(field in entry)), `the slice still carries ${field}`);
     }
 });
@@ -281,7 +291,7 @@ test('the projection keeps what the supplied path needs', () => {
     const projected = project(fixture);
 
     for (const id of Object.keys(projected.assets)) {
-        for (const locale of ['en', 'vi']) {
+        for (const locale of locales) {
             assert.equal(html(projected, id, locale), html(fixture, id, locale), `${id} (${locale})`);
         }
     }

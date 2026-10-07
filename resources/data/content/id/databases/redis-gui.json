@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "Redis GUI untuk {macDevices}",
+        "description": "Telusuri kunci Redis dalam pohon, edit nama, TTL, dan string, serta jalankan perintah dengan sintaks redis-cli pada Standalone, Sentinel, dan Cluster."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "GUI Redis"
+    },
+    "engine": "redis",
+    "breadcrumb": "Redis",
+    "header": {
+        "title": "GUI Redis untuk {macDevices}",
+        "lead": "Telusuri kunci sebagai pohon yang dipisahkan titik dua, lihat jenis, TTL, dan panjang setiap kunci sekilas, serta jalankan perintah Redis dengan aturan kutip redis-cli pada server tunggal, primary yang dikelola Sentinel, atau Redis Cluster."
+    },
+    "asset": "mac-db-redis-keys",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "editing": "/features/data-editing#documents-and-keys",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Pilih <ui>Connection Mode</ui>. Standalone memerlukan host dan port. Sentinel memerlukan satu atau beberapa node Sentinel serta nama grup primary, mengikuti kuorum ke primary dan berpindah bersamanya setelah failover. Cluster menggunakan anggota yang dapat diakses sebagai titik awal, membaca peta shard, lalu mengirim setiap perintah ke shard pemilik kunci.",
+                "Masuk dengan kata sandi, atau isi Username untuk masuk sebagai pengguna ACL Redis 6. Pada Amazon ElastiCache, pilih mode <cloudAuth>AWS IAM</cloudAuth>, dan token berumur pendek menjadi kata sandi; IAM ElastiCache memerlukan TLS aktif.",
+                "Koneksi baru menggunakan TLS nonaktif. Upstash, Redis Cloud, dan layanan serupa mewajibkannya, dan URL <code>rediss://</code> yang ditempel mengaktifkannya. Tidak ada peralihan ke teks biasa, sehingga Preferred berperilaku seperti Required. Server Valkey terhubung dengan cara yang sama seperti Redis.",
+                "Bilah samping mencantumkan setiap database bernomor mulai <code>db0</code>, dan mengekliknya menelusuri database pada koneksi yang sama."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Kunci dan perintah",
+            "paragraphs": [
+                "Nama kunci dibagi menjadi folder pada setiap titik dua, atau pemisah yang Anda atur di tab Options. Setiap kunci adalah baris grid dengan Key, Type, TTL, Length, dan Value. String ditampilkan utuh; hash, list, set, sorted set, atau stream menampilkan entri awal, dan Length menunjukkan jumlah totalnya. Nilai yang bukan UTF-8 valid, seperti payload gzip, dibuka dalam editor heksadesimal.",
+                "<editing>Di grid</editing>, mengedit nama kunci menjalankan <code>RENAME</code>, TTL menjalankan <code>EXPIRE</code> atau <code>PERSIST</code>, dan nilai string menjalankan <code>SET</code>. Add Row menulis jenis yang dipilih menggunakan <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code>, atau <code>SET</code>. Bilah filter mencocokkan nama kunci dengan pola glob Redis dan membatasi berdasarkan jenis, menggunakan <code>SCAN MATCH</code> dan <code>SCAN TYPE</code> pada server.",
+                "Editor menerima satu perintah per pernyataan, dengan aturan kutip redis-cli, dan mengirim perintah yang tidak dikenali sebagaimana ditulis. <code>DB 3 GET key</code> menjalankan satu perintah pada database lain tanpa memindahkan sesi, dan dalam blok <code>MULTI</code> setiap perintah menjawab <code>QUEUED</code> sampai <code>EXEC</code> mengembalikan semua jawaban secara berurutan.",
+                "<safeMode>Safe Mode</safeMode> menganggap setiap perintah Redis sebagai penulisan, termasuk <code>GET</code>, sehingga tingkat Alert dan Safe Mode mengonfirmasi setiap perintah, dan Read-Only memblokir semuanya. <code>FLUSHDB</code> dan <code>FLUSHALL</code> meminta konfirmasi sebelum berjalan, bahkan pada Silent."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "<export>Ekspor</export> kunci atau hasil perintah sebagai {exportFormats}. Impor tidak tersedia untuk Redis; muat data dengan perintah dalam editor."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone dan iPad",
+            "paragraphs": [
+                "Di iPhone dan iPad, jalankan perintah Redis di tab Query; penelusuran kunci tidak tersedia dalam aplikasi iPhone dan iPad. Koneksi menerima kata sandi, TLS dengan sertifikat CA atau klien dari berkas, teks yang ditempel, atau bundel PKCS#12, serta tunnel SSH dengan autentikasi kata sandi atau kunci. Koneksi Sentinel dan Cluster hanya tersedia di Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "redis-insight",
+                "text": "Redis Insight adalah alat resmi Redis. Selain peramban kunci dan Workbench perintah, tersedia ruang Pub/Sub, profiler perintah, pemeriksaan log lambat, dan analisis memori. Pilih untuk memantau dan mengoptimalkan instalasi Redis; TablePro cocok jika Redis berada di samping database SQL yang Anda gunakan setiap hari.",
+                "notes": [
+                    "redis-insight-copilot"
+                ]
+            }
+        ],
+        "notes": {
+            "redis-insight-copilot": "Redis Copilot-nya menjawab pertanyaan Redis dan membuat kueri pencarian dari bahasa alami."
+        }
+    },
+    "faq": [
+        {
+            "id": "acl-scan",
+            "question": "Mengapa pohon kunci kosong untuk pengguna ACL saya?",
+            "answer": "Pohon kunci membaca nama dengan <code>SCAN</code> dan jenis dengan <code>TYPE</code>. Berikan keduanya, misalnya <code>ACL SETUSER app +scan +type</code>, lalu klik kanan <ui>Keys</ui> di bilah samping dan pilih <ui>Refresh</ui>."
+        },
+        {
+            "id": "select",
+            "question": "Mengapa SELECT tidak mengubah bilah samping?",
+            "answer": "<code>SELECT</code> hanya memindahkan sesi editor, sehingga perintah setelahnya berjalan pada database tersebut sementara bilah samping dan pohon kunci tetap pada pilihan Anda. Klik database di bilah samping untuk memindahkan keduanya, atau awali satu perintah dengan <code>DB</code> dan nomor database."
+        },
+        {
+            "id": "managed",
+            "question": "Mengapa layanan Redis terkelola mencantumkan database yang tidak dimilikinya?",
+            "answer": "Layanan seperti Upstash, Redis Cloud, dan ElastiCache menolak <code>CONFIG</code>, sehingga TablePro tidak dapat membaca jumlah database dan mencantumkan rentang default. Pada layanan dengan satu database, database selain <code>db0</code> menampilkan kesalahan server saat dibuka."
+        }
+    ],
+    "related": [
+        {
+            "label": "Telusuri dan edit data dengan aman",
+            "href": "/features/data-editing#documents-and-keys"
+        },
+        {
+            "label": "Koneksi, tunnel, dan kredensial",
+            "href": "/features/connections"
+        },
+        {
+            "label": "TablePro untuk iPhone dan iPad",
+            "href": "/ios"
+        },
+        {
+            "label": "Bandingkan TablePro dengan klien database lain",
+            "href": "/compare"
+        }
+    ]
+}

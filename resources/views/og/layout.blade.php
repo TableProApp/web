@@ -34,7 +34,7 @@
             overflow: hidden;
             background: #ffffff;
             color: #0a0a0a;
-            font-family: 'Inter Variable', system-ui, sans-serif;
+            font-family: 'Inter Variable', 'Noto Sans CJK JP', 'Noto Sans CJK KR', 'Noto Sans CJK SC', 'Noto Sans CJK TC', system-ui, sans-serif;
             font-optical-sizing: auto;
             -webkit-font-smoothing: antialiased;
         }
@@ -99,6 +99,10 @@
             font-size: 22px;
             letter-spacing: 0;
         }
+        html:lang(ja) body { font-family: "Inter Variable", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN", sans-serif; }
+        html:lang(ko) body { font-family: "Inter Variable", "Noto Sans CJK KR", "Apple SD Gothic Neo", sans-serif; }
+        html:lang(zh-Hans) body { font-family: "Inter Variable", "Noto Sans CJK SC", "PingFang SC", sans-serif; }
+        html:lang(zh-Hant) body { font-family: "Inter Variable", "Noto Sans CJK TC", "PingFang TC", sans-serif; }
     </style>
 </head>
 <body>

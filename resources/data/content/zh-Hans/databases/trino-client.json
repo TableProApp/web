@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 Trino 客户端",
+        "description": "跨 Trino catalog 查询，通过 TLS 密码、JWT 或客户端证书认证，查看逻辑和分布式计划，并取消查询。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "Trino 客户端"
+    },
+    "engine": "trino",
+    "breadcrumb": "Trino",
+    "header": {
+        "title": "适用于 {devices} 的 Trino 客户端",
+        "lead": "在一个查询中联接不同 catalog 的表，查看 Trino 将执行的计划，并在 coordinator 上停止失控查询。写入能力取决于各 catalog 后的 connector。"
+    },
+    "asset": "mac-db-trino-catalogs",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接和登录",
+            "paragraphs": [
+                "填写 coordinator 主机、端口及运行查询的 <ui>Username</ui>。<ui>Catalog</ui>、<ui>Schema</ui> 为可选起点，Catalog 留空可浏览全部。Options 中的 IANA <ui>Time Zone</ui> 设置会话时区。",
+                "密码以 HTTP Basic 发送，用于 LDAP 或密码文件认证；JWT 访问令牌以 bearer 凭据发送。两者仅通过 TLS，SSL Disabled 下含此凭据的连接在发送前即拒绝。SSL 面板的客户端证书和密钥添加双向 TLS。",
+                "SSL 默认为 Disabled，即明文 HTTP；其他模式强制 TLS，不退回明文，443 端口启用 Verify Identity。不跟随 coordinator 前代理的重定向，错误指出目标地址。堡垒机后的 coordinator 可通过 <network>SSH 隧道</network>访问，并用 <ui>Import from URL…</ui> 导入 <code>trino://</code> URL。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "跨 catalog 查询",
+            "paragraphs": [
+                "连接在某个 catalog、schema 打开，查询仍可完整指定 <code>catalog.schema.table</code>，例如联接 Hive 和 PostgreSQL 表。侧栏将各 catalog 展开为 schema 和表，物化视图与表、视图并列，行数来自 <code>SHOW STATS</code>。",
+                "<code>bigint</code>、<code>decimal</code> 以精确文本而非浮点数读取。<code>varbinary</code> 显示为十六进制，<code>array</code>、<code>map</code>、<code>row</code> 为 JSON，时间戳保留服务器返回值。",
+                "<explain>Explain</explain> 提供 Logical、Distributed、IO、Validate、Analyze。Validate 不运行而验证，Analyze 运行并报告实际耗时，所有计划均为原始文本。",
+                "<code>SET SESSION</code> 在连接余下期间保持。<ui>Query > Cancel Query</ui> 通知 coordinator 终止运行中的查询，这是停止查询的方法，因为连接查询超时不传至 Trino。",
+                "<editing>单元格编辑</editing>转换为 INSERT、UPDATE、DELETE，每个值带 Trino 类型。Trino 不报告主键，因此按读取时整行所有列匹配，没有事务可回滚。编辑两条相同行中的一条会同时修改两条，请先检查重复。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "结构",
+            "paragraphs": [
+                "<structure>Structure 标签页</structure>自动提交创建表、添加、删除、重命名和更改列类型的操作。能否执行取决于 catalog connector，其中类型修改被最少 connector 支持。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "没有导入。可将表或结果<export>导出</export>为 {exportFormats}。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "not-supported",
+            "question": "为什么有效语句返回 NOT_SUPPORTED？",
+            "answer": "无论 Trino 语法允许什么，catalog 后的 connector 未实现该操作。只读 connector 拒绝所有写入，请查阅 connector 自身文档的支持范围。"
+        },
+        {
+            "id": "encrypted-key",
+            "question": "可以使用加密客户端密钥吗？",
+            "answer": "不可以。Trino 连接没有密钥口令字段，请用 <code>openssl pkey -in encrypted.key -out client.key</code> 写出解密副本并选择该文件。"
+        }
+    ],
+    "related": [
+        {
+            "label": "编写、运行和理解查询",
+            "href": "/features/querying"
+        },
+        {
+            "label": "连接、隧道和凭据",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Teradata，数据仓库",
+            "href": "/teradata-client"
+        },
+        {
+            "label": "Snowflake，云端数据仓库",
+            "href": "/snowflake-client"
+        }
+    ]
+}

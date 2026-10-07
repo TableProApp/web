@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "{devices}용 Cassandra·ScyllaDB 클라이언트",
+        "description": "TLS·상호 TLS·SigV4로 Cassandra, ScyllaDB, Amazon Keyspaces에서 CQL을 실행하고 키스페이스·테이블을 탐색하며 기본 키로 행을 편집합니다."
+    },
+    "og": {
+        "kicker": "데이터베이스",
+        "title": "Cassandra 및 ScyllaDB 클라이언트"
+    },
+    "engine": "cassandra",
+    "breadcrumb": "Cassandra 및 ScyllaDB",
+    "header": {
+        "title": "{devices}용 Cassandra·ScyllaDB 클라이언트",
+        "lead": "키스페이스·테이블을 탐색하고 편집기에서 CQL을 실행하며 전체 기본 키로 기록되는 행을 편집합니다. 같은 드라이버로 ScyllaDB와 Amazon Keyspaces에도 연결합니다."
+    },
+    "asset": "mac-db-cassandra-table",
+    "links": {
+        "network": "/features/connections#network",
+        "awsIam": "docs:/connections/aws-iam",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "cassandraGuide": "docs:/databases/cassandra"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "연결",
+            "paragraphs": [
+                "접점과 포트를 입력하고 클러스터에 인증기가 설정돼 있으면 사용자 이름·비밀번호도 넣습니다. 키스페이스 필드는 없어 연결 후 사이드바에서 고르거나 <code>cassandra://</code>·<code>cql://</code> URL 경로에 넣어 가져옵니다. 키스페이스는 재접속 없이 바뀌며 시스템 키스페이스는 목록에서 제외됩니다. 열린 탭은 각자 키스페이스를 유지합니다.",
+                "새 연결은 TLS가 꺼져 있습니다. 드라이버에 기회적 TLS가 없어 Preferred·Required 모두 인증서 검사 없이 암호화합니다. Verify CA·Verify Identity는 CA 인증서 파일이 필요하며 시스템 루트로 대체하지 않습니다. 상호 TLS는 클라이언트 인증서, 키와 키 암호 문구를 추가합니다. 사설 네트워크 클러스터에는 <network>SSH 터널</network>로 접근합니다.",
+                "Amazon Keyspaces는 비밀번호 대신 SigV4로 로그인합니다. 9142 포트의 <code>cassandra.us-east-1.amazonaws.com</code> 같은 리전 엔드포인트로 연결하고 Authentication을 <awsIam>AWS IAM 방식</awsIam>(액세스 키, 프로필 또는 AWS IAM Identity Center)으로 설정합니다. 사용자 이름·비밀번호는 비우고 평문을 거부하므로 TLS를 켜세요."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "탐색 및 CQL 실행",
+            "paragraphs": [
+                "사이드바에서 테이블을 열어 데이터 그리드로 읽습니다. 리스트·세트·맵·튜플은 컬렉션, 사용자 정의 유형은 필드, <code>duration</code>은 <code>1d2h30m</code>, 벡터는 숫자 목록, blob은 십육진수로 표시됩니다. CQL 편집기 결과는 읽기 전용이므로 사이드바에서 연 테이블로 행을 변경합니다.",
+                "CQL에는 OFFSET이 없어 첫 행부터 앞으로 읽습니다. 이미 본 페이지의 Next·Previous는 읽기 한 번이고 먼 페이지로 이동하면 앞 페이지를 모두 읽습니다. 행은 토큰 순서이며 CQL은 한 파티션 내 클러스터링 열만 정렬하므로 열 헤더는 재정렬하지 않습니다. 테이블을 열 때는 세지 않고 <ui>Count Exactly</ui>의 <code>SELECT COUNT(*)</code>가 모든 파티션을 읽습니다.",
+                "<filters>필터</filters>는 <code>ALLOW FILTERING</code>을 추가하므로 전체 파티션 키를 지정하지 않으면 서버가 모든 파티션을 읽습니다. 포함·시작·끝 일치는 LIKE로 보내고 Cassandra는 SASI·SAI 인덱스 열에서만 받습니다. 같지 않음·is NULL처럼 CQL로 표현 못하는 연산자는 이름을 알려 거부하며 OR가 없어 조건은 AND만 사용합니다.",
+                "<editing>편집한 값</editing>은 열의 CQL 유형으로 보내며 파싱 못하는 값은 전체 저장을 멈춥니다. 각 행은 전체 기본 키로 지정한 개별 구문으로 씁니다. <ui>Add Row</ui>는 <code>INSERT … IF NOT EXISTS</code>를 써 같은 키의 기존 행을 덮어쓰지 않습니다. 키 열은 직접 변경 못하므로 행을 삭제하고 다시 추가하세요.",
+                "카운터 열은 CQL 편집기에서 <code>UPDATE … SET c = c + 1</code>이 필요하며 그리드가 쓰는 일반 UPDATE는 서버가 거부합니다. 연결 시간 제한은 Options를 따르지만 CQL 요청은 드라이버 고정 제한을 유지하고 앱의 쿼리 시간 제한은 바꾸지 않습니다."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "키스페이스 및 테이블",
+            "paragraphs": [
+                "<structure>Structure 탭</structure>은 열별 CQL 유형을 나열하고 파티션 키·클러스터링 열 모두 기본 키로 표시하며 보조 인덱스를 보여 줍니다. 열 추가·삭제를 지원하고 인덱스 등 나머지 변경은 편집기의 CQL 구문으로 합니다.",
+                "DDL 탭은 열 목록에서 <code>CREATE TABLE</code>을 재구성해 compaction 같은 테이블 옵션, 클러스터링 순서와 파티션·클러스터링 키 구분을 생략합니다. 전체 정의는 cqlsh의 <code>DESCRIBE TABLE</code>로 읽으세요. 사용자 정의 함수·집계는 Functions에 나열됩니다."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "데이터 이동",
+            "paragraphs": [
+                "TablePro에는 Cassandra·ScyllaDB 가져오기가 없습니다. 테이블이나 CQL 결과를 {exportFormats}로 <export>내보냅니다</export>."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "scylladb",
+            "title": "ScyllaDB",
+            "paragraphs": [
+                "ScyllaDB는 연결 유형에 별도 항목이 있고 같은 CQL 네이티브 프로토콜로 Cassandra 드라이버를 쓰므로 위 연결·탐색·편집·제한이 그대로 적용됩니다. <code>scylladb://</code>·<code>scylla://</code> URL은 ScyllaDB 연결을 만듭니다.",
+                "필터 바에 차이가 하나 있습니다. ScyllaDB는 포함·시작·끝 일치의 LIKE를 모든 열에서 받지만 Cassandra는 SASI·SAI 인덱스가 필요합니다. ScyllaDB는 <cassandraGuide>Cassandra 설정 가이드</cassandraGuide>대로 설정합니다."
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "cluster-status",
+            "question": "노드·링 상태를 표시하나요?",
+            "answer": "아니요. Cassandra·ScyllaDB에는 Server Dashboard가 없습니다. 노드는 <code>nodetool status</code>로 확인하고 TablePro는 키스페이스·테이블·CQL에 쓰세요."
+        },
+        {
+            "id": "views-and-types",
+            "question": "구체화 뷰·사용자 정의 유형은 어떻게 보나요?",
+            "answer": "사이드바에 없으므로 CQL 편집기에서 <code>system_schema</code> 키스페이스를 쿼리하세요. 예를 들어 <code>SELECT * FROM system_schema.views</code>나 <code>system_schema.types</code>입니다."
+        },
+        {
+            "id": "cassandra-2",
+            "question": "Cassandra 2.x에 연결하나요?",
+            "answer": "아니요. 드라이버는 Cassandra 2.x에 없는 <code>system_schema</code>에서 스키마를 읽으므로 연결이 실패합니다."
+        }
+    ],
+    "related": [
+        {
+            "label": "필터, 페이지 이동 및 대기 중인 편집",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "연결, 터널 및 AWS 로그인",
+            "href": "/features/connections"
+        },
+        {
+            "label": "다른 AWS 서명 엔진 Amazon DynamoDB",
+            "href": "/dynamodb-gui"
+        },
+        {
+            "label": "지원 데이터베이스",
+            "href": "/databases#wide-column"
+        }
+    ]
+}

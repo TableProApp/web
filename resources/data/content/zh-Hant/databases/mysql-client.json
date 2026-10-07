@@ -1,0 +1,183 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 MySQL、MariaDB 用戶端",
+        "description": "透過 SSH、SSL/TLS 或 AWS IAM 連線 MySQL、MariaDB，同一驅動支援 TiDB、OceanBase 和 Databend，提供 EXPLAIN 圖和 mysqldump 備份。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "MySQL、MariaDB 用戶端"
+    },
+    "engine": "mysql",
+    "breadcrumb": "MySQL 與 MariaDB",
+    "header": {
+        "title": "適用於 {devices} 的 MySQL、MariaDB 用戶端",
+        "lead": "使用感知結構的自動完成撰寫 SQL，預覽每個陳述式後編輯列，並管理使用者、工作階段和備份。同一驅動程式也支援 MariaDB、TiDB、OceanBase 和 Databend。"
+    },
+    "asset": "mac-db-mysql-query",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "importApps": "/features/connections#import",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "erDiagram": "/features/schema#er-diagram"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "連線",
+            "paragraphs": [
+                "提供主機、連接埠和使用者，或貼上 <code>mysql://</code> URL。使用 <code>caching_sha2_password</code> 的 MySQL 8 帳號首次即可連線。資料庫可留空後再選擇，切換資料庫在同一連線中完成。",
+                "新連線的 SSL 預設為 Preferred，先嘗試 TLS，僅在 TLS 交握失敗後退回明文。嚴格驗證請選擇 Verify CA 或 Verify Identity，並使用供應商憑證。",
+                "私有網路伺服器可透過 <network>SSH 通道（依需使用跳板主機）、SOCKS5 代理、Cloudflare Access 通道或自訂通道指令</network>連線，例如 kubectl port-forward。",
+                "Amazon RDS 和 Aurora 可使用 <cloudAuth>AWS IAM</cloudAuth> 登入，每次連線簽發新權杖，也可從 AWS 帳號直接匯入執行個體。Google Cloud SQL 由 TablePro 下載並執行 Cloud SQL Auth Proxy。",
+                "從 Sequel Ace 移轉？<importApps>Import from Other App</importApps> 讀取其喜好項目，並在確認後讀取其儲存在鑰匙圈中的密碼。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查詢與編輯",
+            "paragraphs": [
+                "SQL 編輯器從結構完成資料表和欄位名稱，包括別名和 CTE，可執行游標下的陳述式或整份指令碼。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE 與 EXPLAIN ANALYZE</explain> 繪製為計畫圖或樹狀圖，EXPLAIN Compare 顯示兩次執行間的變化。",
+                "列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示確切陳述式。儲存使用繫結參數執行，陳述式將修改的列數與預期不符時停止。沒有主索引鍵的資料表仍可編輯，透過所有欄位比對列。",
+                "所有工作階段使用 utf8mb4，表情符號和非拉丁文字可正確往返。舊用戶端透過 Latin 1 寫入的資料庫文字，可用 UTF-8 via Latin 1 編碼依該用戶端方式讀取。",
+                "分割資料表列出各分割區及界限，例如 <code>VALUES LESS THAN (2024)</code>；資料表和欄位註解顯示在側欄及格線欄位標題中。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "結構",
+            "paragraphs": [
+                "<structure>Structure 分頁</structure> 暫存欄位、索引、外部索引鍵、CHECK 條件約束和產生欄位的修改，並在執行前顯示 DDL。<code>lower(email)</code> 等運算式索引鍵需要 MySQL 8.0.13 或更新版本。",
+                "常式和觸發程序及其原始碼顯示在側欄。<erDiagram>ER 圖</erDiagram> 將結構繪製為唯讀圖，可匯出為 PNG 或 SQL。",
+                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 比較兩個 MySQL 或 MariaDB 結構或資料，產生使兩者一致的指令碼。可能導致資料遺失的修改會暫緩，直到明確包含。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "管理",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> 顯示每個帳號直到單一欄位的權限，並將所有 GRANT 和 REVOKE 暫存為執行前可檢閱的 SQL。",
+                "Server Dashboard 每隔幾秒重新整理工作階段、伺服器指標和慢查詢。使用 <code>KILL QUERY</code> 取消執行中的查詢，<code>KILL</code> 終止工作階段。沒有 PROCESS 權限的帳號僅看到自己的工作階段。",
+                "資料表維護執行 OPTIMIZE TABLE、ANALYZE TABLE、CHECK TABLE 和 REPAIR TABLE，並在執行前顯示陳述式。",
+                "<backup>Backup Dump</backup> 執行 {dumpTool}，Restore Dump 執行 mysql 用戶端，兩者均透過連線的 SSH 通道；請先在 Mac 安裝 MySQL 用戶端工具。還原會取代傾印指定的物件。",
+                "離開時可設定連線在閒置數分鐘後釋放，以歸還伺服器連線名額；下次查詢會新建連線。若工作階段持有重新連線會遺失的狀態，例如未結束交易或暫存資料表，TablePro 會保持連線。"
+            ],
+            "asset": "mac-users-roles-mysql"
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "<importData>匯入</importData> {importFormats} 檔案，為目標資料表對應欄位，並選擇列失敗時的處理方式。資料表或結果可匯出為 {exportFormats}。",
+                "<copy>Copy To</copy> 將資料表、資料或兩者傳送至 MySQL 或其他引擎的連線，並列出所有需要近似轉換的欄位型別。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 與 iPad",
+            "paragraphs": [
+                "iPhone 與 iPad 上可依卡片瀏覽資料表、篩選排序、編輯有主索引鍵的列，並在 Query 分頁執行 SQL。連線提供 Required 到 Verify Identity 的 SSL，以及密碼或金鑰 SSH 通道，不支援 SSH 跳板主機。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "mariadb",
+            "title": "MariaDB",
+            "paragraphs": [
+                "MariaDB 透過與 MySQL 相同的驅動程式連線，提供相同 SSH、SSL/TLS 和 AWS IAM 選項。<code>mariadb://</code> URL 建立 MariaDB 連線。",
+                "MariaDB 以 LONGTEXT 儲存的 JSON 欄位在 JSON 編輯器中開啟。虛擬和持續欄位會被識別並從產生的 INSERT、UPDATE 陳述式中排除。序列在側欄中唯讀列出，系統版本資料表則作為一般資料表列出。",
+                "Users & Roles、Server Dashboard、資料表維護和 {dumpTool} 備份與 MySQL 相同。"
+            ]
+        },
+        {
+            "engine": "tidb",
+            "title": "TiDB",
+            "paragraphs": [
+                "連線至 TiDB 伺服器的 SQL 連接埠，不要連線 PD 或 TiKV。TiDB Cloud 使用相同連接埠，請將 SSL Mode 設為 Required。",
+                "Stop 對自己的工作階段傳送 <code>KILL TIDB QUERY</code>。在 TiProxy 或負載平衡器後需要 Global Kill，TiDB 自 6.1 版本起預設啟用。",
+                "EXPLAIN 和 EXPLAIN ANALYZE 以文字顯示 TiDB 計畫。TiDB 7.2 及以上在叢集啟用後於 Structure 分頁顯示 CHECK 條件約束，可建立外部索引鍵，資料表維護提供 ANALYZE TABLE。",
+                "請選 TiDB 而非 MySQL 作為連線類型，使側欄、型別選擇器和 EXPLAIN 依 TiDB 運作。"
+            ]
+        },
+        {
+            "engine": "oceanbase",
+            "title": "OceanBase",
+            "paragraphs": [
+                "使用者名稱需包含租戶：observer 使用 <code>root@test</code>，透過接聽 2883 連接埠的 OBProxy 時使用 <code>root@test#obcluster</code>。",
+                "連線時檢查伺服器是否宣告為 OceanBase，因此主機或連接埠錯誤會立即失敗。TablePro 查詢逾時取代 OceanBase 自身的陳述式限制。",
+                "EXPLAIN 以文字顯示計畫。無主索引鍵的資料表透過所有欄位比對來編輯；儲存若將修改多列或零列，會停止並說明。",
+                "請選 OceanBase 作為連線類型。以 MySQL 儲存的連線存取 OceanBase 時，不提供上述功能。"
+            ]
+        },
+        {
+            "engine": "databend",
+            "title": "Databend",
+            "paragraphs": [
+                "Databend 透過 MySQL handler 而非 HTTP API 連線。請選擇 Databend 連線類型；MySQL 連線存取 Databend 伺服器會被拒絕，並要求變更類型。",
+                "Databend Cloud 需聯絡支援開啟倉儲的 MySQL 端點，再從 Connect 對話框複製主機和連接埠。",
+                "Structure 分頁可編輯欄位和 CHECK 條件約束，重新命名資料表、檢視表和欄位。EXPLAIN、EXPLAIN ANALYZE 以文字顯示計畫，資料表維護提供 ANALYZE TABLE。",
+                "ARRAY、MAP 和 TUPLE 儲存格不能從文字寫入，請在編輯器中用 UPDATE 修改。"
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "sequel-ace",
+                "text": "Sequel Ace 繼承 Sequel Pro，是 MySQL、MariaDB 的 Mac App。MCP 伺服器預設關閉，未修改時唯讀，沒有 AI 聊天。僅使用 MySQL 和 MariaDB 時較合適。"
+            },
+            {
+                "product": "phpmyadmin",
+                "text": "phpMyAdmin 在 Web 伺服器上執行，可使用任意瀏覽器，cPanel 也包含它。伺服器只能透過主機管理面板存取，而桌面 App 無法直達資料庫時較合適。"
+            },
+            {
+                "product": "heidisql",
+                "text": "HeidiSQL 是源自 Windows 的老牌開放原始碼用戶端，如今也提供 macOS App。"
+            }
+        ],
+        "notes": {}
+    },
+    "faq": [
+        {
+            "id": "socket",
+            "question": "能透過本機 MySQL socket 連線嗎？",
+            "answer": "不能。連線使用 TCP，伺服器需開啟網路功能。要存取遠端伺服器上的 socket，請透過 SSH 通道轉送。"
+        },
+        {
+            "id": "mysqldump",
+            "question": "需要安裝 MySQL 用戶端工具嗎？",
+            "answer": "僅 Backup Dump 和 Restore Dump 需要，它們執行 {dumpTool} 和 mysql。連線、查詢和編輯使用 App 內建驅動程式。"
+        },
+        {
+            "id": "er-diagram",
+            "question": "能在 ER 圖中設計結構嗎？",
+            "answer": "不能。<erDiagram>ER 圖</erDiagram> 是可匯出的唯讀結構圖，請在 Structure 分頁或用 SQL 修改資料表。"
+        }
+    ],
+    "related": [
+        {
+            "label": "撰寫、執行與理解查詢",
+            "href": "/features/querying"
+        },
+        {
+            "label": "結構、比較與同步",
+            "href": "/features/schema"
+        },
+        {
+            "label": "連線、通道與認證資訊",
+            "href": "/features/connections"
+        },
+        {
+            "label": "比較 TablePro 與其他資料庫用戶端",
+            "href": "/compare"
+        }
+    ]
+}

@@ -1,0 +1,205 @@
+{
+    "seo": {
+        "title": "TablePro vs Sequel Ace: MySQL atau banyak mesin",
+        "description": "Bandingkan dua klien Mac gratis dan sumber terbuka: database, AI, MCP, Mac App Store, serta impor koneksi Sequel Ace beserta kata sandi."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs Sequel Ace"
+    },
+    "header": {
+        "title": "TablePro vs Sequel Ace",
+        "lead": "Sequel Ace dan TablePro adalah klien database gratis dan sumber terbuka dengan aplikasi Mac native, dan keduanya aktif dipelihara. Sequel Ace melanjutkan Sequel Pro dan hanya bekerja dengan MySQL serta MariaDB. TablePro terhubung ke MySQL, MariaDB, dan mesin lain, memiliki aplikasi iPhone dan iPad, serta menambahkan fitur berbayar opsional di Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda juga bekerja dengan PostgreSQL, SQL Server, Redis, MongoDB, atau mesin lain dan ingin satu klien untuk semuanya.",
+            "Anda ingin asisten AI gratis di dalam aplikasi, dengan penyedia AI pilihan Anda.",
+            "Anda ingin EXPLAIN sebagai diagram, diagram ER hanya baca, dan mode Vim dalam editor.",
+            "Anda ingin aplikasi iPhone dan iPad gratis yang terhubung ke MySQL dan MariaDB."
+        ],
+        "competitor": [
+            "Anda hanya menggunakan MySQL dan MariaDB, dan ingin klien yang dibuat khusus untuk keduanya.",
+            "Anda ingin semua fitur gratis, tanpa paket berbayar.",
+            "Anda memasang aplikasi dari Mac App Store.",
+            "Anda beralih dari Sequel Pro dan ingin antarmuka yang sudah dikenal."
+        ]
+    },
+    "glance": {
+        "intro": "Kedua aplikasi gratis diunduh dan sumber terbuka. Sequel Ace menambahkan server MCP bawaan pada versi {cells.mcp.version}, dirilis {cells.mcp.date}. Tidak ada chat AI dalam aplikasi."
+    },
+    "rows": {
+        "macAppStore": {
+            "label": "Mac App Store",
+            "tablepro": "Tidak tersedia di Mac App Store. Unduh dari situs ini atau pasang dengan Homebrew"
+        },
+        "userManager": {
+            "label": "Pengguna dan hak akses",
+            "tablepro": "Users & Roles untuk MySQL, MariaDB, dan PostgreSQL, dengan pemberian hak hingga tingkat kolom dan SQL ditampilkan sebelum dijalankan"
+        },
+        "bundles": {
+            "label": "Bundles",
+            "tablepro": "Tidak tersedia"
+        },
+        "sequelProMigration": {
+            "label": "Beralih dari Sequel Pro",
+            "tablepro": "Tidak ada pengimpor Sequel Pro. Beralih ke Sequel Ace dahulu, lalu impor koneksinya"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Semua yang ada di Sequel Ace gratis dan sumber terbuka dengan lisensi MIT. Tidak ada paket berbayar.",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Tersedia di Mac App Store, sehingga pemasangan dan pembaruannya seperti aplikasi App Store Anda yang lain.",
+                "cite": [
+                    "cells.macAppStore"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Bundles memungkinkan Anda menambahkan perintah sendiri ke aplikasi, dan pengelola penggunanya mengedit pengguna serta hak akses MySQL.",
+                "cite": [
+                    "cells.bundles",
+                    "cells.userManager"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Tersedia panduan untuk beralih dari Sequel Pro yang menyalin favorit serta pengaturan Sequel Pro ke Sequel Ace.",
+                "cite": [
+                    "cells.sequelProMigration"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Selain MySQL dan MariaDB, TablePro terhubung ke PostgreSQL, SQL Server, SQLite, Redis, MongoDB, dan mesin lain. Lihat <link>database yang didukung</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>Asisten AI</link> gratis dalam aplikasi Mac. Asisten menjelaskan, mengoptimalkan, dan memperbaiki kueri dengan penyedia AI pilihan Anda. Sequel Ace tidak memiliki chat AI, dan klien AI eksternal mengaksesnya melalui server MCP.",
+                "cite": [
+                    "cells.ai"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Untuk <link>pekerjaan MySQL</link>, EXPLAIN terbuka sebagai diagram, diagram ER dapat diekspor ke PNG atau SQL, dan editor memiliki mode Vim. Semua ini gratis.",
+                "cite": [],
+                "feature": null,
+                "href": "/mysql-client"
+            },
+            {
+                "text": "<link>Compare & Sync</link> membandingkan struktur atau data dua database dan menulis skrip untuk menyelaraskan satu dengan yang lain. Fitur ini termasuk Starter.",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "<link>Aplikasi iPhone dan iPad gratis</link> terhubung ke MySQL dan MariaDB, tanpa pembelian dalam aplikasi.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro terhubung ke MySQL dan MariaDB hanya melalui TCP, bukan berkas socket lokal.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Tidak ada fitur seperti Bundles Sequel Ace untuk menambahkan perintah sendiri ke aplikasi.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro tidak tersedia di Mac App Store dan tidak berjalan dalam App Sandbox.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Sebagian fitur berbayar. Starter menambahkan fitur seperti {starterExamples}, sedangkan semua fitur Sequel Ace gratis.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro membaca favorit yang disimpan Sequel Ace dan kata sandi dalam Keychain macOS. Sequel Ace tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "steps": [
+            "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
+            "Pilih Sequel Ace. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi database dan SSH yang disimpan dalam Keychain macOS.",
+            "macOS meminta kata sandi login Anda sekali untuk setiap kata sandi tersimpan. Pilih <ui>Always Allow</ui> pada setiap permintaan. Membatalkan permintaan melewati kata sandi yang tersisa.",
+            "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Grup, warna koneksi, tunnel SSH, dan pengaturan SSL ikut dipindahkan.",
+            "Sebelum menghapus Sequel Ace, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
+        ],
+        "after": [
+            "Favorit kueri, riwayat kueri, bundles, dan pintasan keyboard tetap di Sequel Ace.",
+            "Setiap koneksi masuk sebagai koneksi MySQL, termasuk server MariaDB.",
+            "Kunci SSH ditautkan melalui jalur berkasnya. Frasa sandi kunci tidak diimpor.",
+            "TablePro tidak terhubung melalui berkas socket, jadi koneksi yang menggunakannya memerlukan host dan port sebelum dibuka."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "keep-sequel-ace",
+            "question": "Bisakah saya tetap menggunakan Sequel Ace setelah mengimpor?",
+            "answer": "Ya. Impor hanya membaca berkas favorit Sequel Ace dan item Keychain-nya, jadi kedua aplikasi tetap berfungsi dengan salinannya masing-masing.",
+            "href": null
+        },
+        {
+            "id": "mcp",
+            "question": "Kedua aplikasi memiliki server MCP. Apa perbedaannya?",
+            "answer": "Server Sequel Ace, ditambahkan pada versi {cells.mcp.version}, nonaktif secara default, hanya mendengarkan di Mac Anda, dan hanya baca secara default. Server TablePro juga hanya mendengarkan di Mac Anda, dan setiap koneksi menentukan apakah aplikasi eksternal diblokir, hanya baca (default), atau diizinkan menulis. TablePro juga memiliki chat AI dalam aplikasi. <link>Baca tentang AI dan MCP</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "free",
+            "question": "Apakah TablePro gratis seperti Sequel Ace?",
+            "answer": "TablePro gratis digunakan dan sumber terbuka dengan AGPLv3, termasuk MySQL, MariaDB, asisten AI, dan server MCP. Paket Starter atau Team menambahkan fitur opsional pada aplikasi Mac, seperti {starterExamples}. Sequel Ace tidak memiliki paket berbayar. <link>Lihat harga</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "sequel-pro",
+            "question": "Saya masih menggunakan Sequel Pro. Mulai dari mana?",
+            "answer": "Pindahkan favorit ke Sequel Ace dengan panduan migrasi Sequel Ace sendiri, lalu impor dari Sequel Ace ke TablePro. <link>Alternatif Sequel Pro</link> menjelaskan langkahnya.",
+            "href": "/compare/sequel-pro"
+        }
+    ],
+    "notes": {
+        "sequel-ace-databases": "MySQL 5.7 atau lebih baru dan MariaDB 10.0 atau lebih baru, tanpa database lain",
+        "sequel-ace-no-ai-chat": "Tidak ada chat AI dalam aplikasi. Klien AI eksternal dapat menggunakan server MCP-nya.",
+        "sequel-ace-mcp-read-only": "Bawaan, nonaktif secara default, hanya mendengarkan di Mac Anda, dan hanya baca secara default. Menyediakan {value} alat.",
+        "sequel-ace-sequel-pro-migration": "Panduan menyalin favorit dan pengaturan Sequel Pro ke Sequel Ace. Kata sandi memerlukan skrip terpisah, dan kunci SSH harus dipilih ulang."
+    }
+}

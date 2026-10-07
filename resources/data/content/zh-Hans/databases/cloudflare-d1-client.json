@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 Cloudflare D1 客户端",
+        "description": "使用账户 ID 和 API 令牌连接 Cloudflare D1，切换账户中的数据库，以 SQLite 方言查询并查看计划图。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "Cloudflare D1 客户端"
+    },
+    "engine": "cloudflare-d1",
+    "breadcrumb": "Cloudflare D1",
+    "header": {
+        "title": "适用于 {devices} 的 Cloudflare D1 客户端",
+        "lead": "从一个连接访问 Cloudflare 账户中的 D1 数据库，通过 Cloudflare API 使用 SQLite 方言查询，并在 Structure 标签页管理表、索引和触发器。"
+    },
+    "asset": "mac-db-d1-databases",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "credentials": "/features/connections#credentials",
+        "sqlite": "/sqlite-client"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "使用 API 令牌连接",
+            "paragraphs": [
+                "D1 连接需要三个值：数据库名称或 UUID、Cloudflare 账户 ID 和 API 令牌。令牌填入 <ui>API Token</ui> 字段，保存在 <credentials>macOS 钥匙串</credentials>。所有请求经 HTTPS 发送到 Cloudflare API，因此没有主机、端口、SSL 设置或 SSH 隧道。",
+                "通过 Custom token 模板创建带 <ui>Account > D1 > Edit</ui> 权限的令牌，Cloudflare 仅显示一次，请及时复制。令牌可访问账户中所有 D1 数据库，不仅是当前连接的数据库。",
+                "导入 <code>d1://account-id/database-name</code> URL 会填入账户和数据库；令牌从不包含在 URL 中，需随后粘贴。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "切换数据库并查询",
+            "paragraphs": [
+                "工具栏数据库切换器列出账户的 D1 数据库，无需重连即可切换，也可创建和删除数据库。各标签页保持在打开时的数据库。",
+                "查询使用 SQLite 方言。<explain>EXPLAIN QUERY PLAN</explain> 绘制为图形，行编辑在网格中暂存至保存，<editing>Preview SQL</editing> 先显示语句。",
+                "请让每条语句独立成立：一条语句设置的 <code>PRAGMA</code> 或临时表在下一条时消失，每条执行即提交，无法回滚。Cloudflare 限流时，错误包含重试前要求等待的时间。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "表、索引和触发器",
+            "paragraphs": [
+                "<structure>Structure 标签页</structure> 可创建和删除表、添加和删除列、创建和删除索引，包括带 WHERE 条件的部分索引；Preview SQL 在保存前显示 DDL。Triggers 标签页可创建、编辑和删除触发器，表可从侧栏重命名。",
+                "调整列顺序或修改外键需要重建表。在 D1 上每条语句都是独立请求，无法用事务将重建合并，TablePro 只生成重建脚本供自行运行。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "TablePro 不提供 D1 导入。用 <code>wrangler d1 execute</code> 的 <code>--file</code> 选项加载 SQL 文件，再在此浏览结果。<export>导出</export>将 D1 表或查询结果写为 {exportFormats}。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "sessions",
+            "question": "使用 D1 的 Sessions API 吗？",
+            "answer": "不使用。每条语句作为独立请求发送，无会话或书签，因此无论同一标签页或跨标签页，语句间都不保留状态。"
+        },
+        {
+            "id": "wrangler",
+            "question": "需要安装 Wrangler 吗？",
+            "answer": "浏览、查询和编辑不需要，TablePro 直接与 Cloudflare API 通信。仅加载 SQL 文件需要 Wrangler，因为 TablePro 不提供 D1 导入。"
+        }
+    ],
+    "related": [
+        {
+            "label": "SQLite，D1 使用的方言",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Turso 和 libSQL，通过 HTTP 使用 SQLite",
+            "href": "/turso-client"
+        },
+        {
+            "label": "结构编辑和重建脚本",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "连接和凭据",
+            "href": "/features/connections"
+        }
+    ]
+}

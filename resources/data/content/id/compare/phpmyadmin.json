@@ -1,0 +1,214 @@
+{
+    "seo": {
+        "title": "TablePro vs phpMyAdmin: web atau app Mac",
+        "description": "phpMyAdmin berjalan di server web dan dibuka di peramban. TablePro berjalan di Mac dan terhubung langsung atau via SSH. Bandingkan database dan akses."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs phpMyAdmin"
+    },
+    "header": {
+        "title": "TablePro vs phpMyAdmin",
+        "lead": "phpMyAdmin adalah alat web gratis bersumber terbuka untuk MySQL dan MariaDB. Alat dipasang pada server web dan disertakan dalam cPanel. TablePro adalah aplikasi sumber terbuka untuk Mac, dengan aplikasi iPhone dan iPad terpisah, yang terhubung langsung ke database atau melalui tunnel SSH."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda lebih suka tidak memasang apa pun pada server dan bekerja dari Mac dengan koneksi langsung atau SSH.",
+            "Anda juga menggunakan PostgreSQL, SQL Server, SQLite, Redis, atau mesin lain.",
+            "Anda menginginkan tingkat Safe Mode pada setiap koneksi, seperti Read-Only untuk produksi atau Touch ID sebelum penulisan.",
+            "Anda sering memindahkan data. Mengimpor CSV, JSON, XLSX, atau SQL dan mengekspornya gratis.",
+            "Anda menginginkan asisten AI dan server MCP gratis dalam aplikasi Mac."
+        ],
+        "competitor": [
+            "Hosting menyediakannya di cPanel dan Anda tidak memiliki akses SSH atau akses jarak jauh ke database.",
+            "Anda ingin bekerja dari komputer mana pun dengan peramban, tanpa memasang apa pun.",
+            "Anda atau tim memerlukan bahasa antarmuka yang tidak tersedia dalam aplikasi Mac TablePro."
+        ]
+    },
+    "glance": {
+        "intro": "phpMyAdmin adalah aplikasi web, sehingga beberapa baris menjelaskan server tempat aplikasi berjalan, bukan komputer Anda. Versi stabil saat ini adalah {status.version}, dan versi {cells.nextMajor.version} sedang dikembangkan."
+    },
+    "rows": {
+        "cpanel": {
+            "label": "Disertakan dalam cPanel",
+            "tablepro": "Tidak. Berjalan di Mac dan terhubung ke server"
+        },
+        "languages": {
+            "label": "Bahasa antarmuka",
+            "tablepro": "Aplikasi Mac: {macLanguages}"
+        },
+        "designer": {
+            "label": "Diagram skema",
+            "tablepro": "Diagram ER hanya baca, diekspor sebagai PNG atau SQL, gratis"
+        },
+        "queryByExample": {
+            "label": "Kueri melalui contoh (QBE)",
+            "tablepro": "Tidak tersedia"
+        },
+        "nextMajor": {
+            "label": "Versi mayor berikutnya",
+            "tablepro": "Versi Mac baru tersedia melalui pembaruan aplikasi atau Homebrew"
+        },
+        "hardening": {
+            "label": "Mengamankan instalasi",
+            "tablepro": "Tidak ada pemasangan pada server. Database tetap memerlukan aturan akses sendiri"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Berjalan dalam peramban sehingga dapat diakses dari komputer mana pun tanpa pemasangan.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Disertakan dalam cPanel, sehingga akun hosting cPanel sudah menyediakannya untuk digunakan.",
+                "cite": [
+                    "cells.cpanel"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Antarmuka tersedia dalam {cells.languages.value} bahasa.",
+                "cite": [
+                    "cells.languages"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Menampilkan skema database dalam beberapa format grafis, dan alat query-by-example (QBE) membantu membuat kueri kompleks.",
+                "cite": [
+                    "cells.designer",
+                    "cells.queryByExample"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Gratis dan bersumber terbuka dengan GPL, tanpa paket berbayar.",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tidak ada pemasangan pada server. TablePro berjalan di Mac dan terhubung ke MySQL langsung atau melalui <link>tunnel SSH</link>, dengan jump host pada Mac.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/connections#network"
+            },
+            {
+                "text": "Tidak ada instalasi web yang harus diamankan dan diperbarui. Dokumentasi phpMyAdmin menjelaskan cara mengamankan instalasinya dengan HTTPS, aturan akses, serta autentikasi dua faktor.",
+                "cite": [
+                    "cells.hardening"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Setiap koneksi memiliki tingkat <link>Safe Mode</link>, dari Silent hingga Read-Only, dengan Touch ID pada tingkat lebih ketat.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "Satu aplikasi mencakup MySQL, MariaDB, dan mesin lain, termasuk PostgreSQL, SQL Server, SQLite, serta Redis. Lihat <link>database yang didukung</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>Impor dan ekspor</link> berjalan pada Mac: CSV, JSON, XLSX, dan SQL masuk, sedangkan CSV, JSON, SQL, XLSX, Markdown, HTML, serta XML keluar.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/import-export"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro memerlukan jalur ke database: port yang dapat diakses Mac atau akses SSH ke server. Jika paket hosting tidak menyediakan keduanya, phpMyAdmin adalah jalan masuknya.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Aplikasi untuk Mac, iPhone, dan iPad. Anda tidak dapat membukanya dari peramban komputer mana pun.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Antarmuka aplikasi Mac hanya tersedia dalam {macLanguages}.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Beberapa fitur berbayar. Starter menambahkan fitur seperti {starterExamples}, sedangkan phpMyAdmin tidak memiliki paket berbayar.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro tidak memiliki pengimpor untuk phpMyAdmin. Gunakan detail MySQL atau SSH dari hosting: isi formulir koneksi atau tempel URL yang diawali mysql:// pada <ui>File > Import > Import from URL…</ui>",
+        "steps": [],
+        "after": [
+            "Jika kode situs berada di Mac, <ui>File > Import > Open Project Folder…</ui> membaca pengaturan database dari berkas seperti wp-config.php atau .env, lalu membuka formulir yang terisi.",
+            "Untuk database produksi, atur tingkat Safe Mode koneksi sebelum memulai.",
+            "Berkas SQL yang diekspor dari phpMyAdmin dapat diimpor ke koneksi MySQL atau MariaDB apa pun, dengan atau tanpa kompresi gzip."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "access",
+            "question": "Apa yang saya perlukan dari hosting untuk menggunakan TablePro?",
+            "answer": "Satu cara mengakses database: akses MySQL jarak jauh yang diizinkan hosting dari alamat Anda, atau akses SSH ke server. TablePro terhubung dengan keduanya. Jika paket tidak menyediakan keduanya, tetap gunakan phpMyAdmin.",
+            "href": null
+        },
+        {
+            "id": "sql-import",
+            "question": "Apakah TablePro dapat mengimpor SQL yang saya ekspor dari phpMyAdmin?",
+            "answer": "Ya. Import menerima berkas .sql dan .sql.gz lalu menjalankan pernyataannya pada koneksi pilihan Anda. <link>Baca tentang impor dan ekspor</link>.",
+            "href": "/features/import-export"
+        },
+        {
+            "id": "adminer",
+            "question": "Bagaimana dengan Adminer?",
+            "answer": "Adminer adalah alat web sumber terbuka lain yang disediakan sebagai satu berkas PHP. Selain MySQL dan MariaDB, alat terhubung ke PostgreSQL, SQLite, SQL Server, serta Oracle. Seperti phpMyAdmin, alat berjalan pada server, sehingga instalasinya memerlukan perhatian yang sama.",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "Apakah TablePro gratis seperti phpMyAdmin?",
+            "answer": "Untuk pekerjaan MySQL dan MariaDB, ya: aplikasi Mac TablePro gratis digunakan dan bersumber terbuka dengan AGPLv3, mencakup semua mesin yang didukung, asisten AI, dan server MCP. Berbeda dari phpMyAdmin, aplikasi juga memiliki paket berbayar: Starter dan Team menambah fitur opsional seperti {starterExamples}. <link>Lihat harga</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "phpmyadmin-databases": "MySQL dan MariaDB",
+        "phpmyadmin-schema-visualization": "Tampilan grafis skema database dalam beberapa format",
+        "phpmyadmin-in-development": "Versi {version} sedang dikembangkan",
+        "phpmyadmin-hardening": "Dokumentasi menyarankan akses hanya melalui HTTPS, pembatasan pengguna yang dapat mengakses, penonaktifan login root, serta autentikasi dua faktor"
+    }
+}

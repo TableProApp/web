@@ -1,0 +1,206 @@
+{
+    "seo": {
+        "title": "Modifica dati con Preview SQL e Safe Mode",
+        "description": "Filtra e modifica righe, verifica l’SQL prima di salvare e imposta Safe Mode per connessione. Data Rewind recupera i valori sostituiti."
+    },
+    "og": {
+        "kicker": "Modifica dei dati",
+        "title": "Esplora e modifica i dati in sicurezza"
+    },
+    "header": {
+        "title": "Esplora e modifica i dati in sicurezza",
+        "lead": "Per lavorare direttamente sulle righe: trovare quelle necessarie, cambiare alcuni valori e farlo su un database di produzione senza sorprese. Le modifiche attendono il salvataggio e ogni connessione stabilisce le precauzioni di TablePro prima di eseguire un’istruzione.",
+        "docs": "/features/change-tracking"
+    },
+    "sections": [
+        {
+            "id": "browse",
+            "title": "Trova le righe necessarie",
+            "paragraphs": [
+                "Ordinamento e paginazione avvengono sul server, quindi una grande tabella si apre alla prima pagina. Oltre {countEstimate} righe, il conteggio è una stima; Conta esattamente è disponibile quando ti serve il numero reale."
+            ],
+            "blocks": [
+                {
+                    "id": "filters",
+                    "title": "Filtri e regole di evidenziazione",
+                    "paragraphs": [
+                        "La barra dei filtri (<kbd>⌘⇧F</kbd>) costruisce una clausola WHERE con {filterOperatorCount} operatori, da = e BETWEEN a REGEX, oppure accetta una condizione SQL grezza. Salva un filtro per una tabella e richiamalo in seguito senza eseguirlo. Le regole di evidenziazione colorano righe o celle in base ai valori, come la formattazione condizionale di un foglio di calcolo, e restano su questo Mac."
+                    ],
+                    "asset": "mac-grid-highlight-rules"
+                },
+                {
+                    "id": "foreign-keys",
+                    "title": "Chiavi esterne e JSON",
+                    "paragraphs": [
+                        "Segui una chiave esterna fino alla riga referenziata in una nuova scheda oppure visualizzane l’anteprima in un popover. Quando modifichi una colonna di chiave esterna, il selettore dei valori elenca le righe referenziate secondo le colonne scelte, come cognome e nome di un cliente. I valori JSON si aprono in un visualizzatore con un albero per orientarsi e una modalità testuale per modificarli."
+                    ],
+                    "asset": "mac-fk-picker"
+                }
+            ]
+        },
+        {
+            "id": "edit",
+            "title": "Modifica i dati, poi salva una sola volta",
+            "paragraphs": [
+                "Le modifiche alle celle, le nuove righe e le eliminazioni restano contrassegnate nella scheda fino a quando premi <kbd>⌘S</kbd>; prima non viene inviato nulla. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) elenca le istruzioni con i valori inseriti. Il salvataggio le invia con parametri associati, in una transazione quando il motore lo consente, e verifica che ogni istruzione abbia modificato il numero di righe previsto; in caso contrario, il salvataggio viene annullato."
+            ],
+            "points": [
+                "Editor di celle secondo il tipo della colonna: selettore di data e ora, elenchi ENUM e SET, array, JSON, editor esadecimale per valori binari e visualizzatore di immagini.",
+                "Annulla e ripeti in ogni scheda fino al salvataggio.",
+                "I risultati delle query sono modificabili quando la query legge una sola tabella, senza join, CTE o UNION.",
+                "Copia le righe come CSV, JSON, Markdown, elenco IN oppure istruzioni INSERT e UPDATE."
+            ],
+            "asset": "mac-edit-preview-sql"
+        },
+        {
+            "id": "safe-mode",
+            "title": "Modalità sicura per le connessioni di produzione",
+            "paragraphs": [
+                "Ogni connessione ha un livello di Modalità sicura: {macSafeModeLevels}. Le nuove connessioni iniziano da {macSafeModeDefault}, dove le istruzioni vengono eseguite così come sono scritte. Avviso chiede conferma prima di una scrittura; i livelli Modalità sicura richiedono anche Touch ID o la password del Mac, i livelli Completi chiedono conferma anche prima delle letture e Sola lettura rifiuta le scritture e disattiva la modifica. La Modalità sicura è gratuita.",
+                "A ogni livello, DROP, TRUNCATE e DELETE senza WHERE si fermano e chiedono prima conferma. Alcune condizioni alzano il livello della connessione mentre sono attive: un motore che consente solo letture, la modalità Agente, che lo porta almeno ad Avviso, e un livello minimo imposto dall’organizzazione tramite la gestione dei dispositivi (MDM)."
+            ],
+            "asset": "mac-safe-mode-touchid",
+            "links": [
+                {
+                    "label": "Modalità sicura e altre politiche di connessione",
+                    "href": "/features/connections#policies"
+                },
+                {
+                    "label": "Modalità Agente",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "data-rewind",
+            "title": "Ripristino dati",
+            "paragraphs": [
+                "Ripristino dati conserva i valori sostituiti da un salvataggio, così <ui>Restore Previous Values</ui> può recuperarli. Una schermata di revisione mostra prima cosa accadrà a ogni riga, incluse quelle cambiate dopo il salvataggio; il ripristino passa attraverso la Modalità sicura, in una transazione quando il motore lo consente. Anche un ripristino può essere ripristinato.",
+                "I valori salvati restano su questo Mac per {rewindDays} giorni, cifrati con una chiave conservata nel Portachiavi, e non vengono mai sincronizzati. Quando termina un piano, TablePro smette di registrare i salvataggi e <ui>Restore Previous Values</ui> mostra invece un avviso."
+            ],
+            "paid": [
+                "data-rewind"
+            ],
+            "asset": "mac-data-rewind-review"
+        },
+        {
+            "id": "documents-and-keys",
+            "title": "Documenti e chiavi",
+            "paragraphs": [
+                "Non tutti i motori memorizzano righe. Su MongoDB inserisci e modifichi interi documenti come Extended JSON, rimuovi un campo da un documento e rinomini o rimuovi un campo nell’intera collezione dalla scheda Struttura. Su Redis rinomini chiavi, imposti TTL e modifichi valori stringa nella griglia, aggiungi chiavi string, hash, list, set o sorted-set e modifichi gli altri tipi con i comandi nell’editor."
+            ],
+            "links": [
+                {
+                    "label": "MongoDB in TablePro",
+                    "href": "/mongodb-client"
+                },
+                {
+                    "label": "Redis in TablePro",
+                    "href": "/redis-gui"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "Su iPhone e iPad",
+            "paragraphs": [
+                "Nell’app per iPhone e iPad, le righe appaiono come schede che puoi ordinare, cercare e filtrare con AND e OR; toccando una chiave esterna visualizzi l’anteprima della riga referenziata. Puoi modificare una riga, impostare un valore a NULL o DEFAULT, inserire righe ed eliminarle scorrendo; modifica ed eliminazione richiedono una chiave primaria.",
+                "La Modalità sicura ha livelli propri, {iosSafeModeLevels}, con {iosSafeModeDefault} come valore predefinito per le nuove connessioni. Modifiche in attesa, Anteprima SQL, regole di evidenziazione e Ripristino dati sono disponibili solo nell’app per Mac."
+            ],
+            "links": [
+                {
+                    "label": "Esplorazione e modifica su iPhone e iPad",
+                    "href": "/ios#browse"
+                },
+                {
+                    "label": "Modalità sicura su iPhone e iPad",
+                    "href": "/ios#safe-mode"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "Ordinamento, paginazione e filtri",
+            "ios": "yes"
+        },
+        {
+            "label": "Filtri salvati e regole di evidenziazione",
+            "ios": "no"
+        },
+        {
+            "label": "Navigazione delle chiavi esterne e selettore dei valori",
+            "ios": "partial",
+            "iosNote": "Tocca per vedere l’anteprima della riga referenziata"
+        },
+        {
+            "label": "Modifica, inserimento ed eliminazione delle righe",
+            "ios": "partial",
+            "iosNote": "Editor di righe; richiede una chiave primaria"
+        },
+        {
+            "label": "Modifiche in attesa, Anteprima SQL e annullamento",
+            "ios": "no"
+        },
+        {
+            "label": "Modalità sicura",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "Touch ID o password prima di una scrittura",
+            "ios": "no"
+        },
+        {
+            "label": "Ripristino dati",
+            "paid": "data-rewind",
+            "ios": "no"
+        },
+        {
+            "label": "Documenti MongoDB e chiavi Redis",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Ripristino dati non è un backup. Non annulla trigger, modifiche a cascata o modifiche esterne a TablePro e non può recuperare righe senza chiave primaria, valori oltre {rewindMaxValue} MB o valori calcolati dal server.",
+        "Un UPDATE senza WHERE è una scrittura ordinaria: chiede prima conferma solo al livello Avviso o superiore.",
+        "Su {everyStatementWrites}, la Modalità sicura considera ogni istruzione una scrittura, quindi Avviso chiede conferma anche prima delle letture e Sola lettura le blocca.",
+        "Il risultato di un join, una CTE o una UNION è in sola lettura nella griglia; apri la tabella per modificarla."
+    ],
+    "docs": [
+        {
+            "label": "Griglia dei dati",
+            "docs": "/features/data-grid"
+        },
+        {
+            "label": "Filtri",
+            "docs": "/features/filtering"
+        },
+        {
+            "label": "Tracciamento delle modifiche e Anteprima SQL",
+            "docs": "/features/change-tracking"
+        },
+        {
+            "label": "Ripristino dati",
+            "docs": "/features/change-tracking#restoring-a-save"
+        },
+        {
+            "label": "Modalità sicura",
+            "docs": "/features/safe-mode"
+        }
+    ],
+    "related": [
+        {
+            "label": "Query",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Cosa aggiunge un piano a pagamento",
+            "href": "/pricing#features"
+        }
+    ]
+}

@@ -1,0 +1,232 @@
+{
+    "seo": {
+        "title": "Schema, ER-Diagramme und Datenbankvergleich",
+        "description": "Strukturen mit DDL-Vorschau ändern, ER-Diagramme lesen, Datenbanken für ein Synchronisierungsskript vergleichen und Tabellen zwischen Engines kopieren."
+    },
+    "og": {
+        "kicker": "Schema",
+        "title": "Schema, Vergleich und Synchronisierung"
+    },
+    "header": {
+        "title": "Schema, Vergleich und Synchronisierung",
+        "lead": "Für Strukturänderungen und den Gleichlauf zweier Datenbanken: Bearbeite Tabellen mit sichtbarem DDL, sieh ihre Beziehungen, gleiche Staging an Entwicklung an oder kopiere Tabellen zu anderen Servern oder Systemen. Alles steht in der Mac-App bereit; zuletzt geht es um iPhone und iPad.",
+        "docs": "/features/table-structure"
+    },
+    "sections": [
+        {
+            "id": "structure",
+            "title": "Struktur ändern, DDL zuerst lesen",
+            "paragraphs": [
+                "Der Tab „Struktur“ bearbeitet Spalten, Indizes, Fremdschlüssel und CHECK-Bedingungen in einer Tabelle. Änderungen warten bis zum Speichern; <ui>SQL-Vorschau</ui> (<kbd>⌘⇧P</kbd>) zeigt vorher die ALTER-TABLE-Anweisungen. Entfernen, Typänderung, NOT NULL und Primärschlüsseländerung fragen vorher, selbst bei {macSafeModeDefault} als Sicherheitsstufe.",
+                "Indizes können Ausdrücke wie <code>lower(email)</code> verwenden. „Neue Tabelle“ erstellt Tabellen ebenso mit laufender SQL-Vorschau. Auf SQLite, libSQL, Turso und Cloudflare D1, die Fremdschlüssel nicht direkt ändern können, erstellt TablePro einen Tabellenneuaufbau zur Prüfung. Nach Bestätigung führt es ihn auf SQLite und lokalen libSQL-Dateien aus; auf Turso, Remote-libSQL und D1 bleibt die Ausführung dir überlassen."
+            ],
+            "engines": [
+                {
+                    "label": "Struktur ist schreibgeschützt",
+                    "list": "schemaReadOnly"
+                },
+                {
+                    "label": "Nur einige Strukturänderungen",
+                    "list": "schemaPartial"
+                }
+            ],
+            "asset": "mac-structure-ddl-preview"
+        },
+        {
+            "id": "er-diagram",
+            "title": "Sieh die Beziehungen zwischen Tabellen",
+            "paragraphs": [
+                "<ui>ER-Diagramm anzeigen</ui> zeichnet Tabellen und Fremdschlüssel des Schemas mit aus Primär- und eindeutigen Schlüsseln berechneter Krähenfuß-Kardinalität. Verbindungstabellen wie <code>product_tags</code> werden zu einer Viele-zu-viele-Linie zusammengefasst. Exportiere als PNG, kopiere als Bild oder exportiere SQL: CREATE-TABLE-Anweisungen mit Fremdschlüsseln.",
+                "Das Diagramm ist eine Momentaufnahme zum Lesen und Teilen. Tabellen werden im Struktur-Tab geändert, nicht auf der Zeichenfläche."
+            ],
+            "asset": "mac-er-diagram"
+        },
+        {
+            "id": "objects",
+            "title": "Routinen, Trigger und Ordner in der Seitenleiste",
+            "paragraphs": [
+                "Unter jedem Schema stehen Prozeduren, Funktionen und Trigger, soweit das System sie hat. Ihr Quelltext öffnet schreibgeschützt zum Kopieren oder Öffnen im Editor. Redshift, CockroachDB, PGlite und SAP HANA listen keine auf. PostgreSQL-Partitionen stehen unter ihrer übergeordneten Tabelle."
+            ],
+            "blocks": [
+                {
+                    "id": "table-folders",
+                    "title": "Ordner für Tabellen und Views",
+                    "paragraphs": [
+                        "Gruppiere Tabellen und Views per Ziehen oder <ui>Verschieben nach</ui> in der Listen- oder Baumansicht der Seitenleiste. Der Filter sucht in Ordnern. Ein Ordner existiert nur in TablePro und ändert nichts auf dem Server; mit iCloud Sync folgt er dir auf andere Macs."
+                    ],
+                    "since": "0.77.0"
+                }
+            ]
+        },
+        {
+            "id": "compare-sync",
+            "title": "Vergleichen und synchronisieren",
+            "paragraphs": [
+                "Wähle Quelle und Ziel: zwei Server oder zwei Datenbanken auf einem Server. „Vergleichen und synchronisieren“ listet alle unterschiedlichen Tabellen sowie optional Views, Routinen und Trigger. Im Datenmodus werden Zeilen nach Schlüssel zugeordnet und abweichende Werte markiert, mit Filter und Zeilenlimit je Tabelle für Ausschnitte großer Tabellen.",
+                "Das erzeugte Skript ist nach Fremdschlüsseln geordnet und für den Client des Ziels geschrieben. Datenzerstörende Anweisungen wie Spaltenlöschen, Typverengung oder Zeilenlöschen bleiben zurückgehalten, bis du sie für diesen Lauf erlaubst. Schreibgeschützte Verbindungen können kein Ziel sein. Speichere einen Vergleich für erneute Ausführung mit einem Klick."
+            ],
+            "paid": [
+                "compare-sync"
+            ],
+            "asset": "mac-compare-sync-structure"
+        },
+        {
+            "id": "copy",
+            "title": "Kopieren nach, Datenbank duplizieren und Übertragen nach",
+            "paragraphs": [
+                "„Kopieren nach“ sendet Tabellen, Views, Routinen und Trigger als Struktur, Daten oder beides an eine andere Datenbank jeder gespeicherten Verbindung, auch eines anderen Systems. Vor dem Schreiben zeigt eine Prüfung DDL, erwartete Zeilen und geänderte Spaltentypen, etwa MariaDB-<code>ENUM</code> als PostgreSQL-<code>VARCHAR</code> ohne erlaubte Werteliste. WHERE und Zeilenlimit je Tabelle kopieren Ausschnitte.",
+                "„Datenbank duplizieren“ kopiert eine ganze Datenbank unter neuem Namen auf derselben Verbindung. „Übertragen nach“ bewegt Zeilen direkt in eine bestehende Tabelle einer anderen offenen Verbindung, mit Spaltenzuordnung und ohne Zwischendatei. Alle drei sind kostenlos."
+            ],
+            "asset": "mac-copy-to-review"
+        },
+        {
+            "id": "administer",
+            "title": "Benutzer, Sitzungen und Wartung",
+            "paragraphs": [
+                "Tabellenwartung wie VACUUM und REINDEX auf PostgreSQL oder OPTIMIZE und CHECK auf MySQL zeigt vor Ausführung das SQL. Datenbanken und Schemas lassen sich über die Seitenleiste erstellen, löschen und umbenennen, soweit das System dies unterstützt."
+            ],
+            "blocks": [
+                {
+                    "id": "users-roles",
+                    "title": "Benutzer und Rollen",
+                    "paragraphs": [
+                        "„Benutzer und Rollen“ zeigt die Rechte jedes Benutzers als Baum vom Server bis zur einzelnen Spalte. Vergaben und Entzüge warten als vorgemerkte Änderungen und zeigen SQL vor Ausführung, ohne ein GRANT von Hand schreiben zu müssen."
+                    ],
+                    "engines": [
+                        {
+                            "label": "Benutzer und Rollen",
+                            "list": "usersRoles"
+                        }
+                    ],
+                    "asset": "mac-users-roles-mysql"
+                },
+                {
+                    "id": "server-dashboard",
+                    "title": "Server-Dashboard",
+                    "paragraphs": [
+                        "Das Server-Dashboard zeigt laufende Sitzungen, Servermetriken und langsame Abfragen im gewählten Aktualisierungsintervall. Soweit erlaubt, brich eine Abfrage ab oder beende eine Sitzung über ihre Zeile; beides durchläuft den sicheren Modus. Auf SQLite, DuckDB und Typesense zeigt es nur Metriken."
+                    ],
+                    "engines": [
+                        {
+                            "label": "Server-Dashboard",
+                            "list": "dashboard"
+                        }
+                    ],
+                    "asset": "mac-server-dashboard-postgresql"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "Auf iPhone und iPad",
+            "paragraphs": [
+                "Die iPhone- und iPad-App zeigt Spalten, Indizes und Fremdschlüssel schreibgeschützt an. Über die Tabellenliste kannst du Tabellen auf SQL-Systemen leeren oder löschen, außer bei schreibgeschützten Verbindungen.",
+                "Strukturbearbeitung, ER-Diagramm, Vergleichen und synchronisieren, Kopieren nach, Benutzer und Rollen und Server-Dashboard gibt es nur auf dem Mac."
+            ],
+            "links": [
+                {
+                    "label": "Tabellen auf iPhone und iPad",
+                    "href": "/ios#browse"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "Strukturbearbeitung mit DDL-Vorschau",
+            "ios": "partial",
+            "iosNote": "Spalten, Indizes und Fremdschlüssel, schreibgeschützt"
+        },
+        {
+            "label": "Neue Tabelle",
+            "ios": "no"
+        },
+        {
+            "label": "Tabellen leeren und löschen",
+            "ios": "yes"
+        },
+        {
+            "label": "ER-Diagramm",
+            "ios": "no"
+        },
+        {
+            "label": "Routinen, Trigger und Tabellenordner",
+            "ios": "no"
+        },
+        {
+            "label": "Vergleichen und synchronisieren",
+            "paid": "compare-sync",
+            "ios": "no"
+        },
+        {
+            "label": "Kopieren nach, Datenbank duplizieren und Übertragen nach",
+            "ios": "no"
+        },
+        {
+            "label": "Benutzer und Rollen",
+            "ios": "no"
+        },
+        {
+            "label": "Server-Dashboard und Tabellenwartung",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "„Vergleichen und synchronisieren“ erstellt Strukturskripte nur zwischen Datenbanken desselben Systems; MySQL und MariaDB zählen als eines. Andere Paare werden schreibgeschützt verglichen, MongoDB-Strukturen erhalten nie ein Skript, und systemübergreifende Datensynchronisierung warnt vor der Werteschreibweise. Für Tabellen zu einem anderen System nutze „Kopieren nach“.",
+        "Das Umordnen von Spalten baut nach Bestätigung die Tabelle auf SQLite und lokalen libSQL-Dateien neu auf. Auf PostgreSQL, Turso, Remote-libSQL und Cloudflare D1 erstellt TablePro das Skript und überlässt dir die Ausführung.",
+        "Das ER-Diagramm ist schreibgeschützt. Es ist kein Schema-Designer.",
+        "Sitzungen und Abfragetext im Server-Dashboard hängen von den Rechten deines Verbindungskontos ab."
+    ],
+    "docs": [
+        {
+            "label": "Tabellenstruktur",
+            "docs": "/features/table-structure"
+        },
+        {
+            "label": "ER-Diagramm",
+            "docs": "/features/er-diagram"
+        },
+        {
+            "label": "Prozeduren, Funktionen und Trigger",
+            "docs": "/features/routines-triggers"
+        },
+        {
+            "label": "Vergleichen und synchronisieren",
+            "docs": "/features/compare-sync"
+        },
+        {
+            "label": "Kopieren und duplizieren",
+            "docs": "/features/copy-objects"
+        },
+        {
+            "label": "Benutzer und Rollen",
+            "docs": "/features/users-roles"
+        },
+        {
+            "label": "Server-Dashboard",
+            "docs": "/features/server-dashboard"
+        },
+        {
+            "label": "Tabellenoperationen und Wartung",
+            "docs": "/features/table-operations"
+        }
+    ],
+    "related": [
+        {
+            "label": "Import, Export und Datendateien",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "PostgreSQL in TablePro",
+            "href": "/postgresql-client"
+        },
+        {
+            "label": "MySQL und MariaDB in TablePro",
+            "href": "/mysql-client"
+        },
+        {
+            "label": "Was ein bezahlter Tarif ergänzt",
+            "href": "/pricing#features"
+        }
+    ]
+}

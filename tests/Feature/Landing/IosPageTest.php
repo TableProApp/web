@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use App\Http\Controllers\IosController;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\Slugs\CompareSlugs;
@@ -99,12 +100,12 @@ it('formats the release date in PHP for each language', function (): void {
     get('/vi/ios')->assertInertia(fn(AssertableInertia $page) => $page->where('ios.publishedAtFormatted', '22 tháng 9 năm 2026'));
 });
 
-it('is a translated pair, indexed in both languages', function (): void {
+it('indexes every complete translation', function (): void {
     $entry = app(PageRegistry::class)->find('landing.ios', []);
 
     expect($entry)->not->toBeNull();
-    expect($entry->renderLocales)->toBe(['en', 'vi']);
-    expect($entry->hreflangCluster())->toBe(['en', 'vi']);
+    expect($entry->renderLocales)->toBe(Locales::codes());
+    expect($entry->hreflangCluster())->toBe(Locales::codes());
 });
 
 it('asks GitHub for nothing: the Mac release does not appear on this page', function (): void {

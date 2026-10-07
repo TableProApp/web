@@ -1,0 +1,188 @@
+{
+    "seo": {
+        "title": "TablePro vs DBeaver：ネイティブと Java",
+        "description": "DBeaver は Java と JDBC で Windows、macOS、Linux に対応。TablePro は Mac、iPhone、iPad のネイティブクライアントです。エンジン、AI、MCP、料金を比較します。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs DBeaver"
+    },
+    "header": {
+        "title": "TablePro vs DBeaver",
+        "lead": "DBeaver は Java で作られた Windows、macOS、Linux 用のクライアントです。Community 版は無料のオープンソースで、有料版は追加機能を提供します。TablePro は Mac と iPhone・iPad それぞれにネイティブアプリを持つオープンソースクライアントで、Mac では任意の有料機能を追加できます。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "MongoDB、Redis、Cassandra を無料で使いたい。TablePro はすべての対応エンジンが無料だが、DBeaver Community は NoSQL データベースに対応しない。",
+            "Java 不要の Mac アプリを使いたい。TablePro は Swift 製で、データベースドライバーもネイティブ。JDBC は使わない。",
+            "選んだプロバイダーで無料の AI アシスタントを使いたい。DBeaver Community の AI チャットは OpenAI と GitHub Copilot のみに対応する。",
+            "AI クライアントが自分の接続を利用できる MCP サーバーを、Mac アプリで無料で使いたい。",
+            "iPhone・iPad 用のアプリも欲しい。"
+        ],
+        "competitor": [
+            "Mac に加え、Windows や Linux でも作業している。",
+            "TablePro にドライバーのないエンジンが必要。DBeaver Community は JDBC ドライバーがあるどのエンジンにも接続できる。",
+            "ビジュアルクエリビルダー、編集可能な ER 図、タスクのスケジュール実行が必要。DBeaver の有料版はこれらを提供する。"
+        ]
+    },
+    "glance": {
+        "intro": "DBeaver には無料の Community 版とユーザー単位で課金される有料版があるため、表のいくつかの行には必要なエディションを記載しています。"
+    },
+    "rows": {
+        "diagram": {
+            "label": "ER 図",
+            "tablepro": "無料の読み取り専用 ER 図。PNG または SQL に書き出せる"
+        },
+        "queryBuilder": {
+            "label": "ビジュアルクエリビルダー",
+            "tablepro": "なし"
+        },
+        "scheduler": {
+            "label": "タスクのスケジュール実行",
+            "tablepro": "なし"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DBeaver は Windows、macOS、Linux で動作するため、一つのクライアントで複数のコンピューターを扱えます。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Community は JDBC ドライバーがあるどのエンジンにも接続でき、TablePro にドライバーのないエンジンも対象です。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "有料版はビジュアルクエリビルダー、ER 図の編集、タスクのスケジュール実行、プロジェクトの Git 同期を追加します。",
+                "cite": [
+                    "cells.queryBuilder",
+                    "cells.diagram",
+                    "cells.scheduler",
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "MongoDB、Redis、Cassandra などの非リレーショナルデータベースを含め、すべての対応エンジンが無料です。DBeaver は NoSQL データベースを有料版でのみ提供します。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro は Swift で書かれた Mac アプリで、ネイティブのデータベースドライバーを使います。DBeaver は Java 製で、ダウンロードに Java ランタイムが含まれます。",
+                "cite": [
+                    "technology"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI アシスタントと MCP サーバー</link>は Mac アプリで無料です。AI プロバイダーを選べ、MCP サーバーを通じて Claude Code や Cursor などが、パスワードを見ずに保存済みの接続を使えます。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Compare & Sync</link> は二つのデータベースの構造またはデータを比較し、差分を同期します。Starter に含まれます。",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "無料の <link>iPhone・iPad アプリ</link>があり、アプリ内課金はありません。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro には Windows・Linux 用アプリがありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro はドライバーを持つエンジンにのみ接続します。汎用 JDBC 接続はないため、まず<link>対応データベース</link>を確認してください。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "ER 図は読み取り専用のスナップショットで、ビジュアルクエリビルダーやタスクスケジューラーはありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro は Community とすべての有料版の DBeaver ワークスペースから接続を読み取ります。DBeaver を開いておく必要はなく、ファイルも変更しません。",
+        "steps": [
+            "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",
+            "DBeaver を選び、<ui>Include passwords</ui> をオンにします。TablePro が DBeaver の保存したパスワードを復号するため、キーチェーンでの承認は不要です。",
+            "一覧を確認し、重複の扱いを決めて <ui>Import</ui> をクリックします。フォルダーはグループになり、SSH トンネル設定も引き継がれます。TablePro 非対応のデータベースへの接続はチェックされていません。",
+            "DBeaver を削除する前に、パスワード付きだった接続を開き、引き継がれたことを確認します。"
+        ],
+        "after": [
+            "SQL スクリプト、クエリ履歴、キーボードショートカットは DBeaver に残ります。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "java",
+            "question": "TablePro に Java は必要ですか？",
+            "answer": "いいえ。TablePro は Swift 製で、ネイティブドライバーでデータベースに接続します。一般的なデータベースのドライバーは同梱され、それ以外は初めてそのデータベースを選んだときにダウンロードします。",
+            "href": null
+        },
+        {
+            "id": "speed",
+            "question": "DBeaver と速度やメモリー使用量はどう違いますか？",
+            "answer": "どちらのプロジェクトも他者が再現できる測定結果を公開していないため、このページでは速度やメモリーについて主張しません。確認できるのは、DBeaver のダウンロードには Java ランタイムが含まれ、TablePro には不要という点です。",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "TablePro も DBeaver Community のように無料ですか？",
+            "answer": "すべての対応エンジン、AI アシスタント、MCP サーバーは無料です。TablePro は AGPLv3 のオープンソースで無料利用できます。DBeaver が追加機能を別エディションとして販売するのに対し、TablePro は Mac アプリ向けの Starter・Team プランで {starterExamples} などの機能を提供します。<link>料金を見る</link>。",
+            "href": "/pricing"
+        },
+        {
+            "id": "unsupported",
+            "question": "TablePro で開けない DBeaver の接続はどうなりますか？",
+            "answer": "理由付きでインポート一覧に表示され、チェックはされていません。自分でチェックしない限り、その接続はインポートされません。",
+            "href": null
+        }
+    ],
+    "notes": {
+        "dbeaver-bundled-jdk": "ダウンロードに専用の Java ランタイムを同梱",
+        "dbeaver-databases": "Community は JDBC ドライバーがあるどのエンジンにも接続しますが、MongoDB、Redis、Cassandra などの NoSQL には対応しません。有料版で追加されます。",
+        "dbeaver-ai-community-providers": "{edition} では OpenAI または GitHub Copilot の AI チャット。有料版はプロバイダーを増やし、クエリやエラーの説明を追加します。",
+        "dbeaver-mcp-client": "有料版は MCP サーバーをクライアントとして利用できます。デスクトップアプリ自体は MCP サーバーを実行しません。",
+        "dbeaver-git-sync": "{edition} 以上でプロジェクトの Git 同期",
+        "dbeaver-erd-edit-paid": "Community は表示のみ。編集は Enterprise、Ultimate、Team で利用できます。",
+        "dbeaver-query-builder-paid": "すべての有料版に含まれる。Community にはなし",
+        "dbeaver-task-scheduler": "Enterprise、Ultimate、Team に含まれる"
+    }
+}

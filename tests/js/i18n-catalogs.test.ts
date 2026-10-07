@@ -3,6 +3,16 @@ import assert from 'node:assert/strict';
 
 import en from '../../resources/js/i18n/messages/en/index.ts';
 import vi from '../../resources/js/i18n/messages/vi/index.ts';
+import es from '../../resources/js/i18n/messages/es/index.ts';
+import de from '../../resources/js/i18n/messages/de/index.ts';
+import fr from '../../resources/js/i18n/messages/fr/index.ts';
+import ja from '../../resources/js/i18n/messages/ja/index.ts';
+import pt_BR from '../../resources/js/i18n/messages/pt-BR/index.ts';
+import zh_Hans from '../../resources/js/i18n/messages/zh-Hans/index.ts';
+import ko from '../../resources/js/i18n/messages/ko/index.ts';
+import zh_Hant from '../../resources/js/i18n/messages/zh-Hant/index.ts';
+import it from '../../resources/js/i18n/messages/it/index.ts';
+import id from '../../resources/js/i18n/messages/id/index.ts';
 import { placeholders, splitTags } from '../../resources/js/i18n/core.ts';
 
 /*
@@ -62,59 +72,44 @@ function tagNames(text: string): string[] {
 const english = leaves(en as unknown as Node);
 const vietnamese = leaves(vi as unknown as Node);
 
-test('both catalogs have the same keys', () => {
-    assert.deepEqual([...vietnamese.keys()].sort(), [...english.keys()].sort());
-});
+const catalogs = new Map<string, Map<string, Node>>([
+    ['en', leaves(en as unknown as Node)],
+    ['vi', leaves(vi as unknown as Node)],
+    ['es', leaves(es as unknown as Node)],
+    ['de', leaves(de as unknown as Node)],
+    ['fr', leaves(fr as unknown as Node)],
+    ['ja', leaves(ja as unknown as Node)],
+    ['pt-BR', leaves(pt_BR as unknown as Node)],
+    ['zh-Hans', leaves(zh_Hans as unknown as Node)],
+    ['ko', leaves(ko as unknown as Node)],
+    ['zh-Hant', leaves(zh_Hant as unknown as Node)],
+    ['it', leaves(it as unknown as Node)],
+    ['id', leaves(id as unknown as Node)]
+]);
 
-test('no string is empty or only whitespace', () => {
-    for (const [locale, catalog] of [['en', english], ['vi', vietnamese]] as const) {
-        for (const [path, node] of catalog) {
-            for (const value of strings(node)) {
-                assert.ok(value.trim().length > 0, `${locale}: ${path} is empty`);
+for (const [locale, catalog] of catalogs) {
+    test(`${locale}: has all English message keys`, () => {
+        assert.deepEqual([...catalog.keys()].sort(), [...english.keys()].sort());
+    });
+
+    test(`${locale}: preserves text, slots, markup and plural nodes`, () => {
+        for (const [path, source] of english) {
+            const target = catalog.get(path);
+            assert.ok(target !== undefined, `${locale}: ${path} is missing`);
+            assert.equal(isPluralNode(target), isPluralNode(source), `${locale}: ${path} changed node type`);
+            for (const [category, value] of typeof target === 'string' ? [['text', target]] : Object.entries(target as Record<string, string>)) {
+                const original = typeof source === 'string' ? source : (source as Record<string, string>)[category] ?? (source as Record<string, string>).other;
+                const expected = [...new Set(placeholders(original))].sort();
+                assert.ok(['pricing.currency.group', 'download.file.number.group'].includes(path) ? value.length > 0 : value.trim(), `${locale}: ${path} is empty`);
+                assert.deepEqual([...new Set(placeholders(value))].sort(), expected, `${locale}: ${path} changed placeholders`);
             }
+            if (typeof source === 'string' && typeof target === 'string') {
+                assert.deepEqual(tagNames(target), tagNames(source), `${locale}: ${path} changed inline tags`);
+            }
+            if (isPluralNode(target)) assert.ok('other' in target, `${locale}: ${path} needs other`);
         }
-    }
-});
-
-test('a translation keeps every {placeholder} of the English string', () => {
-    for (const [path, node] of english) {
-        const target = vietnamese.get(path);
-
-        if (target === undefined) {
-            continue;
-        }
-
-        const expected = [...new Set(strings(node).flatMap(placeholders))].sort();
-        const actual = [...new Set(strings(target).flatMap(placeholders))].sort();
-
-        assert.deepEqual(actual, expected, `vi: ${path} has slots ${actual.join(', ')}; English has ${expected.join(', ')}`);
-    }
-});
-
-test('a translation keeps every <tag> marker of the English string', () => {
-    for (const [path, node] of english) {
-        const target = vietnamese.get(path);
-
-        if (typeof node !== 'string' || typeof target !== 'string') {
-            continue;
-        }
-
-        assert.deepEqual(tagNames(target), tagNames(node), `vi: ${path} lost or renamed an inline tag`);
-    }
-});
-
-test('plural nodes stay plural nodes, and Vietnamese needs only other', () => {
-    for (const [path, node] of english) {
-        if (!isPluralNode(node)) {
-            continue;
-        }
-
-        const target = vietnamese.get(path);
-
-        assert.ok(target !== undefined && isPluralNode(target), `vi: ${path} must be a plural node`);
-        assert.ok('other' in node, `en: ${path} needs an other form`);
-    }
-});
+    });
+}
 
 /*
  * Identity keys name no platform, version or number, so they stay true when a
@@ -126,7 +121,7 @@ test('plural nodes stay plural nodes, and Vietnamese needs only other', () => {
 test('navigation and footer group labels name no platform and no number', () => {
     const identity = /\b(Mac|macOS|iPhone|iPad|iOS|iPadOS|Windows|Linux)\b|\d/;
 
-    for (const [locale, catalog] of [['en', english], ['vi', vietnamese]] as const) {
+    for (const [locale, catalog] of catalogs) {
         for (const [path, node] of catalog) {
             if (!path.startsWith('nav.') && !path.startsWith('footer.groups.')) {
                 continue;

@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "{devices} 用 Cassandra・ScyllaDB クライアント",
+        "description": "TLS、相互 TLS や SigV4 で Cassandra、ScyllaDB、Amazon Keyspaces に CQL を実行。キースペースを閲覧し、テーブルのページを送り、主キーで行を編集できます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Cassandra と ScyllaDB クライアント"
+    },
+    "engine": "cassandra",
+    "breadcrumb": "Cassandra と ScyllaDB",
+    "header": {
+        "title": "{devices} 用 Cassandra・ScyllaDB クライアント",
+        "lead": "キースペースとテーブルを閲覧し、エディタで CQL を実行して、完全な主キーで書き戻す行を編集します。同じドライバーで ScyllaDB と Amazon Keyspaces にも接続できます。"
+    },
+    "asset": "mac-db-cassandra-table",
+    "links": {
+        "network": "/features/connections#network",
+        "awsIam": "docs:/connections/aws-iam",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "cassandraGuide": "docs:/databases/cassandra"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "コンタクトポイントとポートを指定し、クラスタに認証機構が設定されていればユーザー名とパスワードも入力します。キースペース欄はなく、接続後サイドバーで選ぶか、<code>cassandra://</code> または <code>cql://</code> URL のパスに入れてインポートします。キースペースはその場で切り替え、システム用は一覧から除きます。開いたタブはそれぞれのキースペースを保持します。",
+                "新しい接続では TLS は無効です。ドライバーに日和見 TLS がないため、Preferred と Required はどちらも証明書を検証せず暗号化します。Verify CA と Verify Identity は CA 証明書ファイルが必須で、システムのルート証明書には戻りません。相互 TLS はクライアント証明書、鍵とそのパスフレーズを追加します。プライベートネットワークのクラスタには <network>SSH トンネル</network> で接続します。",
+                "Amazon Keyspaces はパスワードではなく SigV4 でログインします。ポート 9142 の <code>cassandra.us-east-1.amazonaws.com</code> など地域エンドポイントを指定し、Authentication を <awsIam>AWS IAM 方式</awsIam>（アクセスキー、プロファイルや AWS IAM Identity Center）にします。ユーザー名とパスワードは空欄にし、平文を拒否するため TLS を有効にします。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "閲覧と CQL 実行",
+            "paragraphs": [
+                "サイドバーからテーブルを開き、データグリッドで読みます。リスト、セット、マップとタプルはコレクション、ユーザー定義型はフィールド、<code>duration</code> は <code>1d2h30m</code>、ベクトルは数値リスト、blob は十六進数で表示します。CQL エディタの結果は読み取り専用なので、行はサイドバーで開いたテーブルから変更します。",
+                "CQL に OFFSET はないため、最初の行から前方向にページを読みます。表示済みの Next と Previous は一回の読み取り、遠いページへのジャンプはそれ以前をすべて読みます。行はトークン順で、CQL は一つのパーティション内のクラスタリングカラムでしか並べ替えないため、ヘッダーで再ソートしません。開く時に件数は数えず、<ui>Count Exactly</ui> の <code>SELECT COUNT(*)</code> はすべてのパーティションを読みます。",
+                "<filters>フィルター</filters> は <code>ALLOW FILTERING</code> を付けるため、完全なパーティションキーを指定しなければ全パーティションを読みます。含む、前方一致と後方一致は LIKE として送り、Cassandra は SASI または SAI インデックスのあるカラムだけで受け付けます。不等号や is NULL など CQL で表せない演算子は名前を示して拒否し、OR がないため条件は AND のみです。",
+                "<editing>編集した値</editing> はカラムの CQL 型で送り、解析できない値は保存全体を止めます。各行は完全な主キーを指定する個別の文で書きます。<ui>Add Row</ui> は <code>INSERT … IF NOT EXISTS</code> で、同じキーの行を上書きしません。キーのカラムはその場で変更できないため、行を削除して追加し直してください。",
+                "カウンターカラムは CQL エディタの <code>UPDATE … SET c = c + 1</code> が必要で、グリッドの単純な UPDATE はサーバーが拒否します。接続タイムアウトは接続の Options で設定しますが、CQL リクエストはドライバー固有の固定タイムアウトを使い、アプリのクエリタイムアウトは影響しません。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "キースペースとテーブル",
+            "paragraphs": [
+                "<structure>Structure タブ</structure> は各カラムの CQL 型を示し、パーティションキーもクラスタリングカラムも主キーと表示し、セカンダリインデックスを示します。カラムの追加・削除に対応します。それ以外はインデックスも含め、エディタで CQL 文を実行します。",
+                "DDL タブはカラム一覧から <code>CREATE TABLE</code> を再構築するため、compaction などのテーブルオプション、クラスタリング順序とパーティション・クラスタリングキーの区別は省きます。完全な定義は cqlsh の <code>DESCRIBE TABLE</code> で確認します。ユーザー定義関数と集約は Functions に表示します。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "TablePro は Cassandra や ScyllaDB のインポートに対応しません。テーブルや CQL の結果を {exportFormats} で <export>エクスポート</export> できます。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "scylladb",
+            "title": "ScyllaDB",
+            "paragraphs": [
+                "ScyllaDB は接続タイプに独自の項目を持ち、同じ CQL ネイティブプロトコルで Cassandra ドライバーを使うため、上の接続、閲覧、編集と制限がそのまま適用されます。<code>scylladb://</code> や <code>scylla://</code> URL は ScyllaDB 接続を作成します。",
+                "フィルターバーに一つ違いがあります。ScyllaDB は含む、前方一致と後方一致が送る LIKE を任意のカラムで受け付けますが、Cassandra は SASI または SAI インデックスが必要です。ScyllaDB の設定は <cassandraGuide>Cassandra 設定ガイド</cassandraGuide> に従います。"
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "cluster-status",
+            "question": "ノードやリングの状態を表示しますか？",
+            "answer": "表示しません。Cassandra と ScyllaDB に Server Dashboard はありません。ノードは <code>nodetool status</code> で確認し、TablePro はキースペース、テーブルと CQL に使います。"
+        },
+        {
+            "id": "views-and-types",
+            "question": "マテリアライズドビューやユーザー定義型を見るには？",
+            "answer": "サイドバーにはないため、CQL エディタで <code>system_schema</code> キースペースを問い合わせます。例えば <code>SELECT * FROM system_schema.views</code> や <code>system_schema.types</code> です。"
+        },
+        {
+            "id": "cassandra-2",
+            "question": "Cassandra 2.x に接続できますか？",
+            "answer": "できません。ドライバーは Cassandra 2.x に存在しない <code>system_schema</code> からスキーマを読むため、接続に失敗します。"
+        }
+    ],
+    "related": [
+        {
+            "label": "フィルター、ページ送りと保留中の編集",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "接続、トンネルと AWS ログイン",
+            "href": "/features/connections"
+        },
+        {
+            "label": "別の AWS 署名エンジン Amazon DynamoDB",
+            "href": "/dynamodb-gui"
+        },
+        {
+            "label": "対応データベース",
+            "href": "/databases#wide-column"
+        }
+    ]
+}

@@ -1,0 +1,125 @@
+{
+    "seo": {
+        "title": "TablePro: cliente nativo para {deviceList}",
+        "titleFallback": "TablePro: cliente de bases de datos nativo para desarrolladores",
+        "description": "Cliente nativo de código abierto para PostgreSQL, MySQL, SQL Server, MongoDB, Redis y más. Gratis, con funciones de pago opcionales."
+    },
+    "og": {
+        "kicker": "",
+        "title": "TablePro es un cliente de bases de datos nativo y de código abierto para desarrolladores."
+    },
+    "hero": {
+        "title": "Un cliente de bases de datos nativo para desarrolladores.",
+        "subtitle": "Ejecuta consultas, explora y edita datos en {featuredEngines} <more>y más</more>. TablePro tiene una app nativa independiente para cada plataforma compatible.",
+        "macCaption": "{requirement} · {architectures}",
+        "iosCaption": "{devices} · {requirement}",
+        "otherWays": "Otras formas de instalar",
+        "business": "TablePro es de código abierto y se puede usar gratis. Los planes de pago añaden funciones opcionales a {paidPlatformApps}. <pricing>Ver precios</pricing>"
+    },
+    "databases": {
+        "title": "Bases de datos relacionales, documentales, clave-valor y analíticas",
+        "lead": "Algunos controladores vienen con {macApp}. Los demás se descargan la primera vez que eliges esa base de datos y se actualizan por separado.",
+        "byType": "Bases de datos compatibles por tipo",
+        "categories": {
+            "relational": "Relacionales",
+            "document": "Documentales",
+            "key-value": "Clave-valor",
+            "analytical": "Analíticas",
+            "wide-column": "Columnas anchas",
+            "search": "Búsqueda y vectores",
+            "streaming": "Streaming",
+            "coordination": "Configuración y coordinación",
+            "cloud": "Nube",
+            "files": "Archivos locales"
+        },
+        "ios": "En {iosDevices}, TablePro se conecta a {iosEngines}.",
+        "iosSynced": "Las conexiones de {syncedOnly} sincronizadas desde un Mac también se abren allí.",
+        "link": "Bases de datos compatibles"
+    },
+    "sponsors": {
+        "title": "Patrocinadores",
+        "link": "Patrocinar TablePro"
+    },
+    "workflows": {
+        "title": "Trabaja con tus bases de datos",
+        "lead": "Los flujos de trabajo de esta sección están en {macApp}. Para {iosDevices}, TablePro tiene una app independiente con su propio alcance, descrito más abajo.",
+        "paid": "Requiere un plan {tier}: {features}.",
+        "link": "Todas las funciones",
+        "rows": [
+            {
+                "id": "query",
+                "asset": "mac-query-autocomplete",
+                "title": "Escribe, ejecuta y comprende consultas",
+                "body": "Un editor SQL con autocompletado según el esquema, parámetros de consulta <code>:name</code>, historial con búsqueda, consultas guardadas y carpetas SQL vinculadas que muestran el estado de Git. EXPLAIN dibuja el plan como diagrama en los motores compatibles y EXPLAIN Compare compara un plan con una referencia."
+            },
+            {
+                "id": "edit",
+                "asset": "mac-edit-preview-sql",
+                "title": "Edita datos y esquemas y revisa el SQL antes de guardar",
+                "body": "Las ediciones de celdas, las filas nuevas y las eliminaciones esperan hasta que guardes, y la vista previa de SQL muestra las sentencias primero. En los motores cuya estructura TablePro puede editar, la pestaña Estructura prepara de la misma forma los cambios en columnas, índices, claves foráneas y restricciones CHECK. Incluye filtros, filtros guardados, reglas de resaltado, un selector de claves foráneas y deshacer por pestaña."
+            },
+            {
+                "id": "schema",
+                "asset": "mac-compare-sync-structure",
+                "title": "Compara, sincroniza y copia entre bases de datos",
+                "body": "Comparar y sincronizar compara la estructura o los datos de dos bases de datos y genera un script para alinear una con la otra. Los cambios arriesgados, como eliminar una columna, se retienen para que los revises. Copiar a copia tablas o una base de datos completa a otra conexión, incluso de otro motor, y enumera cada tipo que necesita aproximar. Incluye un diagrama ER de solo lectura y Usuarios y roles para {usersRolesEngines}."
+            },
+            {
+                "id": "files",
+                "asset": "mac-data-files-window",
+                "title": "Importa, exporta y abre archivos de datos",
+                "body": "Importa archivos {importFormats} en los motores que admiten importación y exporta a {exportFormats}. La ventana Archivos de datos abre CSV, JSON y XLSX sin una base de datos para buscar y filtrar, limpiar CSV y JSON e importar el resultado a una tabla. Crear y restaurar volcados ejecutan las herramientas de línea de comandos de cada motor ({dumpTools}). TablePro no las incluye: instala las que tu Mac todavía no tenga."
+            },
+            {
+                "id": "connect",
+                "asset": "mac-connection-ssh-form",
+                "title": "Conecta mediante SSH, TLS e inicio de sesión en la nube",
+                "body": "Accede a una base de datos mediante túneles SSH con hosts de salto, TLS, AWS IAM, Microsoft Entra ID, inicio de sesión con Google o un comando de túnel como <code>kubectl port-forward</code>. Obtén contraseñas del Llavero, 1Password, Vault o AWS Secrets Manager. Usa variables de entorno como <code>$VAR</code> en el host, el usuario y otros campos de conexión."
+            }
+        ]
+    },
+    "safety": {
+        "title": "Protecciones para bases de datos de producción",
+        "body": [
+            "En el Mac, etiqueta y asigna colores a las conexiones por entorno y configura un nivel de modo seguro para cada una, desde Silencioso hasta Solo lectura, con Touch ID o contraseña en los niveles más estrictos. DROP, TRUNCATE y DELETE sin WHERE siempre se detienen y piden confirmación. En iPhone y iPad, Confirmar escrituras pregunta antes de cada escritura y Solo lectura las rechaza.",
+            "Mientras una conexión está abierta en modo Agente, funciona en Alerta o un nivel más estricto. Data Rewind puede restaurar los valores sustituidos por un guardado reciente. No es una copia de seguridad."
+        ],
+        "levels": "Niveles del modo seguro",
+        "link": "Modo seguro"
+    },
+    "ai": {
+        "title": "Asistente de IA y servidor MCP",
+        "body": [
+            "En el Mac, un asistente de IA opcional explica, optimiza y corrige consultas y responde preguntas sobre tu esquema. Tú eliges el proveedor: una clave de API, una cuenta que ya tengas o un modelo que se ejecute en tu Mac. TablePro no ofrece ningún servicio de IA propio y no se envía nada hasta que añades un proveedor.",
+            "El chat comienza en modo Preguntar, que solo lee. En los modos Editar y Agente, el asistente puede ejecutar sentencias. Desde Alerta hasta Modo seguro (completo), cada escritura espera tu confirmación; Solo lectura las rechaza, y DROP o TRUNCATE siempre requieren que hagas clic.",
+            "El servidor MCP integrado permite que clientes como {mcpClients} usen tus conexiones guardadas sin ver ninguna contraseña. Solo escucha en {mcpHost}, y cada conexión determina qué pueden hacer las apps externas: Bloqueado, Solo lectura (por defecto) o Lectura y escritura.",
+            "Todo esto es gratis."
+        ],
+        "providers": "Proveedores que puedes añadir: {providers}."
+    },
+    "platforms": {
+        "title": "Apps nativas para {deviceList}",
+        "cardTitle": "TablePro para {devices}",
+        "mac": "En el Mac, TablePro es una app Swift con versiones separadas para {architectures}. Guarda las contraseñas en el Llavero, pide Touch ID en los niveles más estrictos del modo seguro y se actualiza por sí sola.",
+        "ios": "En {devices}, TablePro es una app independiente con su propio alcance: conexiones por SSH o TLS, exploración de tablas, ejecución de consultas y edición de filas, con bloqueo opcional por Face ID, Atajos, un widget de pantalla de inicio y Actividades en directo para consultas en ejecución.",
+        "sync": "iCloud Sync mantiene sincronizadas las conexiones, los grupos y las etiquetas entre un Mac y un iPhone o iPad. Está desactivado por defecto y en el Mac requiere un plan {tier}. Con iCloud Sync activado, Handoff permite continuar una conexión abierta en el otro dispositivo."
+    },
+    "switch": {
+        "title": "Si vienes de otra app",
+        "lead": "La importación desde otras apps y Abrir carpeta de proyecto solo están en {macApp}.",
+        "import": "Importa conexiones de {apps}, incluidas las contraseñas guardadas.",
+        "importWithoutPasswords": "Las conexiones de {apps} se importan sin sus contraseñas.",
+        "project": "Abrir carpeta de proyecto lee los archivos <code>.env</code>, <code>docker-compose.yml</code>, el esquema de Prisma y otros archivos de configuración de un proyecto, y crea conexiones con los datos que encuentra.",
+        "link": "Comparar TablePro con otros clientes"
+    },
+    "pricing": {
+        "title": "Gratis, con planes de pago opcionales",
+        "lead": "{macApp} se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Un plan Starter o Team añade funciones opcionales como {starterExamples}. Team incluye todo lo de Starter y añade {teamExamples} para compartir conexiones y consultas con tu equipo. {iosApp} es gratis, sin compras dentro de la app."
+    },
+    "openSource": {
+        "title": "Código abierto y listo para descargar",
+        "body": "TablePro es de código abierto bajo AGPLv3, incluido el código de sus funciones de pago. Los planes de pago y los patrocinadores financian su desarrollo. TablePro no tiene inversores ni vende datos.",
+        "github": "Ver en GitHub",
+        "productHunt": "TablePro en Product Hunt"
+    }
+}

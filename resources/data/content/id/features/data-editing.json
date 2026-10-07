@@ -1,0 +1,206 @@
+{
+    "seo": {
+        "title": "Edit data dengan Preview SQL dan Safe Mode",
+        "description": "Filter dan edit baris, tinjau SQL sebelum menyimpan, dan atur Safe Mode per koneksi. Data Rewind memulihkan nilai yang diganti saat menyimpan."
+    },
+    "og": {
+        "kicker": "Pengeditan data",
+        "title": "Telusuri dan edit data dengan aman"
+    },
+    "header": {
+        "title": "Telusuri dan edit data dengan aman",
+        "lead": "Untuk bekerja langsung dengan baris: mencari baris yang diperlukan, mengubah beberapa nilai, dan melakukannya pada database produksi tanpa kejutan. Edit menunggu hingga Anda menyimpan, dan setiap koneksi menentukan kehati-hatian TablePro sebelum menjalankan pernyataan.",
+        "docs": "/features/change-tracking"
+    },
+    "sections": [
+        {
+            "id": "browse",
+            "title": "Temukan baris yang diperlukan",
+            "paragraphs": [
+                "Pengurutan dan paginasi berjalan di server, sehingga tabel besar terbuka pada halaman pertama. Di atas {countEstimate} baris, jumlah baris berupa estimasi; Hitung Tepat tersedia jika Anda memerlukan angka sebenarnya."
+            ],
+            "blocks": [
+                {
+                    "id": "filters",
+                    "title": "Filter dan aturan sorotan",
+                    "paragraphs": [
+                        "Bilah filter (<kbd>⌘⇧F</kbd>) menyusun klausa WHERE dari {filterOperatorCount} operator, dari = dan BETWEEN hingga REGEX, atau menerima kondisi SQL mentah. Simpan filter untuk tabel dan panggil kembali nanti tanpa menjalankannya. Aturan sorotan mewarnai baris atau sel berdasarkan nilainya, seperti pemformatan bersyarat dalam spreadsheet, dan tetap berada di Mac ini."
+                    ],
+                    "asset": "mac-grid-highlight-rules"
+                },
+                {
+                    "id": "foreign-keys",
+                    "title": "Foreign key dan JSON",
+                    "paragraphs": [
+                        "Ikuti foreign key ke baris yang ditunjuknya di tab baru, atau lihat pratinjau baris dalam popover. Saat mengedit kolom foreign key, pemilih nilai mencantumkan baris rujukan berdasarkan kolom pilihan Anda, seperti nama belakang dan nama depan pelanggan. Nilai JSON terbuka dalam penampil dengan pohon untuk navigasi dan mode teks untuk pengeditan."
+                    ],
+                    "asset": "mac-fk-picker"
+                }
+            ]
+        },
+        {
+            "id": "edit",
+            "title": "Ubah data, lalu simpan sekali",
+            "paragraphs": [
+                "Edit sel, baris baru, dan penghapusan menunggu di tab dengan penanda hingga Anda menekan <kbd>⌘S</kbd>; tidak ada yang dikirim sebelumnya. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) mencantumkan pernyataan dengan nilai terisi. Penyimpanan mengirimnya dengan parameter terikat, dalam satu transaksi jika mesin mengizinkan, serta memeriksa apakah setiap pernyataan mengubah jumlah baris yang diharapkan; jika tidak, penyimpanan dibatalkan."
+            ],
+            "points": [
+                "Editor sel berdasarkan tipe kolom: pemilih tanggal dan waktu, daftar ENUM dan SET, array, JSON, editor heksadesimal untuk nilai biner, dan penampil gambar.",
+                "Urungkan dan ulangi di setiap tab hingga Anda menyimpan.",
+                "Hasil kueri dapat diedit jika kueri membaca satu tabel, tanpa join, CTE, atau UNION.",
+                "Salin baris sebagai CSV, JSON, Markdown, daftar IN, atau pernyataan INSERT dan UPDATE."
+            ],
+            "asset": "mac-edit-preview-sql"
+        },
+        {
+            "id": "safe-mode",
+            "title": "Mode Aman untuk koneksi produksi",
+            "paragraphs": [
+                "Setiap koneksi memiliki level Mode Aman: {macSafeModeLevels}. Koneksi baru dimulai pada {macSafeModeDefault}, yang menjalankan pernyataan sesuai tulisannya. Peringatan meminta konfirmasi sebelum penulisan; level Mode Aman juga meminta Touch ID atau kata sandi Mac, level Penuh meminta konfirmasi sebelum membaca, dan Hanya-Baca menolak penulisan serta menonaktifkan pengeditan. Mode Aman gratis.",
+                "Di setiap level, DROP, TRUNCATE, dan DELETE tanpa WHERE berhenti dan meminta konfirmasi terlebih dahulu. Beberapa kondisi menaikkan level koneksi selama berlaku: mesin yang hanya membaca, mode Agen yang menaikkannya hingga setidaknya Peringatan, serta level minimum yang diatur organisasi lewat pengelolaan perangkat (MDM)."
+            ],
+            "asset": "mac-safe-mode-touchid",
+            "links": [
+                {
+                    "label": "Mode Aman dan kebijakan koneksi lainnya",
+                    "href": "/features/connections#policies"
+                },
+                {
+                    "label": "Mode Agen",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "data-rewind",
+            "title": "Pemulihan Data",
+            "paragraphs": [
+                "Pemulihan Data menyimpan nilai yang diganti saat menyimpan, sehingga <ui>Restore Previous Values</ui> dapat mengembalikannya. Lembar tinjauan terlebih dahulu menunjukkan apa yang akan terjadi pada setiap baris, termasuk baris yang berubah setelah penyimpanan; pemulihan melewati Mode Aman, dalam satu transaksi jika mesin mengizinkan. Pemulihan itu sendiri dapat dipulihkan kembali.",
+                "Nilai tersimpan tetap berada di Mac ini selama {rewindDays} hari, dienkripsi dengan kunci dalam Rantai Kunci, dan tidak pernah disinkronkan. Saat paket berakhir, TablePro berhenti merekam penyimpanan dan <ui>Restore Previous Values</ui> menampilkan peringatan."
+            ],
+            "paid": [
+                "data-rewind"
+            ],
+            "asset": "mac-data-rewind-review"
+        },
+        {
+            "id": "documents-and-keys",
+            "title": "Dokumen dan key",
+            "paragraphs": [
+                "Tidak semua mesin menyimpan baris. Di MongoDB Anda menyisipkan dan mengedit dokumen utuh sebagai Extended JSON, menghapus field dari dokumen, serta mengganti nama atau menghapus field di seluruh koleksi lewat tab Struktur. Di Redis Anda mengganti nama key, mengatur TTL, mengedit nilai string di grid, menambah key string, hash, list, set, atau sorted-set, serta mengubah tipe lain dengan perintah di editor."
+            ],
+            "links": [
+                {
+                    "label": "MongoDB di TablePro",
+                    "href": "/mongodb-client"
+                },
+                {
+                    "label": "Redis di TablePro",
+                    "href": "/redis-gui"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "Di iPhone dan iPad",
+            "paragraphs": [
+                "Dalam aplikasi iPhone dan iPad, baris tampil sebagai kartu yang dapat diurutkan, dicari, dan difilter dengan AND dan OR; mengetuk foreign key menampilkan pratinjau baris rujukan. Anda dapat mengedit baris, mengatur nilai ke NULL atau DEFAULT, menyisipkan baris, dan menghapusnya dengan geseran; pengeditan dan penghapusan memerlukan primary key.",
+                "Mode Aman di sana memiliki level sendiri, {iosSafeModeLevels}, dengan {iosSafeModeDefault} sebagai bawaan koneksi baru. Edit tertunda, Pratinjau SQL, aturan sorotan, dan Pemulihan Data hanya tersedia di aplikasi Mac."
+            ],
+            "links": [
+                {
+                    "label": "Penelusuran dan pengeditan di iPhone dan iPad",
+                    "href": "/ios#browse"
+                },
+                {
+                    "label": "Mode Aman di iPhone dan iPad",
+                    "href": "/ios#safe-mode"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "Pengurutan, paginasi, dan filter",
+            "ios": "yes"
+        },
+        {
+            "label": "Filter tersimpan dan aturan sorotan",
+            "ios": "no"
+        },
+        {
+            "label": "Navigasi foreign key dan pemilih nilai",
+            "ios": "partial",
+            "iosNote": "Ketuk untuk melihat pratinjau baris rujukan"
+        },
+        {
+            "label": "Edit, sisipkan, dan hapus baris",
+            "ios": "partial",
+            "iosNote": "Editor baris; memerlukan primary key"
+        },
+        {
+            "label": "Edit tertunda, Pratinjau SQL, dan pengurungan",
+            "ios": "no"
+        },
+        {
+            "label": "Mode Aman",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "Touch ID atau kata sandi sebelum penulisan",
+            "ios": "no"
+        },
+        {
+            "label": "Pemulihan Data",
+            "paid": "data-rewind",
+            "ios": "no"
+        },
+        {
+            "label": "Dokumen MongoDB dan key Redis",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Pemulihan Data bukan cadangan. Fitur ini tidak mengurungkan trigger, perubahan berantai, atau perubahan di luar TablePro, dan tidak dapat memulihkan baris tanpa primary key, nilai di atas {rewindMaxValue} MB, atau nilai yang dihitung server.",
+        "UPDATE tanpa WHERE adalah penulisan biasa: konfirmasi hanya diminta pada level Peringatan atau lebih ketat.",
+        "Pada {everyStatementWrites}, Mode Aman menganggap setiap pernyataan sebagai penulisan, sehingga Peringatan juga meminta konfirmasi sebelum membaca dan Hanya-Baca memblokirnya.",
+        "Hasil join, CTE, atau UNION hanya-baca di grid; buka tabel untuk mengeditnya."
+    ],
+    "docs": [
+        {
+            "label": "Grid data",
+            "docs": "/features/data-grid"
+        },
+        {
+            "label": "Pemfilteran",
+            "docs": "/features/filtering"
+        },
+        {
+            "label": "Pelacakan perubahan dan Pratinjau SQL",
+            "docs": "/features/change-tracking"
+        },
+        {
+            "label": "Pemulihan Data",
+            "docs": "/features/change-tracking#restoring-a-save"
+        },
+        {
+            "label": "Mode Aman",
+            "docs": "/features/safe-mode"
+        }
+    ],
+    "related": [
+        {
+            "label": "Kueri",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Skema",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Tambahan dari paket berbayar",
+            "href": "/pricing#features"
+        }
+    ]
+}

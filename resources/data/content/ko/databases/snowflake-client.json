@@ -1,0 +1,99 @@
+{
+    "seo": {
+        "title": "{devices}용 Snowflake 클라이언트",
+        "description": "키 쌍·브라우저 SSO·OAuth·비밀번호와 코드로 Snowflake에 로그인하고 재연결 없이 웨어하우스·역할을 바꾸며 스테이지로 언로드합니다."
+    },
+    "og": {
+        "kicker": "데이터베이스",
+        "title": "Snowflake 클라이언트"
+    },
+    "engine": "snowflake",
+    "breadcrumb": "Snowflake",
+    "header": {
+        "title": "{devices}용 Snowflake 클라이언트",
+        "lead": "계정에 필요한 방식으로 로그인하고 재연결 없이 세션의 웨어하우스와 역할을 바꾸며 테이블을 쿼리·편집하고 스테이지로 언로드합니다."
+    },
+    "asset": "mac-db-snowflake-session",
+    "links": {
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "연결 및 로그인",
+            "paragraphs": [
+                "<code>myorg-myaccount</code>나 기존 <code>xy12345.us-east-1</code>처럼 <code>.snowflakecomputing.com</code> 앞의 계정 식별자를 입력합니다. 모든 요청은 계정 엔드포인트로 HTTPS 전송되므로 호스트, SSL 섹션이나 SSH 패널이 없습니다.",
+                "<ui>Auth Method</ui>를 선택하면 필요한 필드만 표시됩니다. 키 쌍은 PKCS#8 개인 키로 매 연결에 서명하므로 Mac 시계가 정확해야 합니다. 브라우저 SSO는 신원 제공업체로 이동합니다. OAuth 토큰은 붙여넣은 그대로 쓰며 갱신하지 않습니다. MFA 필수 계정은 비밀번호와 <ui>MFA Passcode (TOTP)</ui>의 현재 코드를 함께 씁니다.",
+                "계정의 <code>ALLOW_CLIENT_MFA_CACHING</code>을 켜면 새 코드 한 번으로 충분하며 Snowflake가 반환한 MFA 토큰을 <credentials>키체인</credentials>에 보관합니다. <code>ALLOW_ID_TOKEN</code>은 브라우저 SSO 로그인 토큰을 저장해 Snowflake가 거부할 때까지 다음 연결에서 브라우저를 건너뜁니다.",
+                "Snowflake에는 URL 스키마가 없습니다. 대신 <ui>CLI Connection Name</ui>에 섹션 이름을 넣으면 비워 둔 필드를 연결 시 <code>~/.snowflake/connections.toml</code>에서 읽습니다."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "웨어하우스, 역할 및 쿼리",
+            "paragraphs": [
+                "<ui>Database > Session Context</ui>는 <code>USE WAREHOUSE</code>와 <code>USE ROLE</code>로 재연결 없이 웨어하우스·역할을 바꿉니다. TablePro 연결 하나는 유휴 시에도 유지하는 Snowflake 세션 하나이며 다른 데이터베이스 탭은 같은 세션에서 구문 앞에 <code>USE DATABASE</code>를 실행합니다.",
+                "사이드바는 데이터베이스·스키마별로 객체를 묶습니다. 목록은 웨어하우스 없이 실행되는 <code>SHOW</code> 명령에서, 열 상세는 웨어하우스가 필요한 <code>INFORMATION_SCHEMA</code>에서 읽습니다. <explain>Explain</explain>은 Snowflake 계획을 원시 텍스트로 반환합니다.",
+                "<editing>그리드 편집</editing>은 값을 서버에 바인딩하고 VARIANT, OBJECT와 ARRAY 셀은 <code>PARSE_JSON</code>으로 전송합니다. 선언된 기본 키나 없으면 모든 열로 매칭합니다. Snowflake는 키 제약을 강제하지 않아 키가 중복되면 편집·삭제가 모든 일치 행에 적용되니 먼저 중복을 확인하세요."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "구조",
+            "paragraphs": [
+                "DDL 보기는 <code>GET_DDL</code>에서 읽습니다. <structure>Structure 탭</structure>은 열 추가·이름 변경·삭제, NOT NULL·주석·기본 키 설정, VARCHAR 확장과 같은 소수 자릿수의 NUMBER 정밀도 변경을 지원합니다.",
+                "VARCHAR 축소, 기타 유형 변경과 열 기본값을 새 값으로 설정하는 등 Snowflake가 거부하는 변경은 실행 전에 거부합니다. 기본값 제거는 가능합니다."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "데이터 이동",
+            "paragraphs": [
+                "연결로 {importFormats} 파일을 <importData>가져오고</importData> 테이블·결과를 Mac에 {exportFormats}로 내보냅니다.",
+                "Mac을 거치지 않고 언로드하려면 <ui>File > Server-Side Export…</ui>에서 <code>@</code> 유무와 관계없이 스테이지를 지정합니다. <backup>Server-Side Export</backup>는 본인 권한으로 <code>COPY INTO</code>를 실행해 gzip CSV, Parquet나 JSON을 기록합니다. 화면은 완료까지 기다리며 Mac에는 저장하지 않습니다."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "no-columns",
+            "question": "사이드바에 테이블은 있지만 열이 없는 이유는 무엇인가요?",
+            "answer": "열 상세는 실행 중인 웨어하우스가 필요한 <code>INFORMATION_SCHEMA</code>에서 읽습니다. 연결이나 Session Context의 <ui>Warehouse</ui>를 설정하세요. 객체가 전혀 안 보이는 데이터베이스는 연결 역할에 <code>USAGE</code>가 필요합니다."
+        },
+        {
+            "id": "timestamp-ltz",
+            "question": "TIMESTAMP_LTZ가 UTC로 표시되는 이유는 무엇인가요?",
+            "answer": "TablePro는 세션의 <code>TIMEZONE</code>으로 변환하지 않고 <code>Z</code>가 붙은 UTC로 읽습니다."
+        },
+        {
+            "id": "jwt-invalid",
+            "question": "키 쌍 로그인에서 JWT 토큰이 잘못됐다고 나오면 무엇을 확인하나요?",
+            "answer": "토큰에는 계정 로케이터와 타임스탬프가 있습니다. 계정 식별자와 Mac 시계를 확인한 뒤 <code>ALTER USER … SET RSA_PUBLIC_KEY</code>로 사용자에 공개 키가 등록됐는지 확인하세요."
+        }
+    ],
+    "related": [
+        {
+            "label": "가져오기, 내보내기 및 데이터 파일",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "쿼리 작성, 실행 및 이해",
+            "href": "/features/querying"
+        },
+        {
+            "label": "다른 클라우드 웨어하우스 Google BigQuery",
+            "href": "/bigquery-client"
+        },
+        {
+            "label": "카탈로그 간 쿼리용 Trino",
+            "href": "/trino-client"
+        }
+    ]
+}

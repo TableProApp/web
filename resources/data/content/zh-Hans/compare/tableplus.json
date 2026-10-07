@@ -1,0 +1,194 @@
+{
+    "seo": {
+        "title": "TablePro vs TablePlus：开源与平台支持",
+        "description": "比较两款提供 Mac、iPhone 和 iPad 应用的原生数据库客户端：平台、价格、AI、MCP，以及将 TablePlus 连接导入 TablePro 的流程。"
+    },
+    "og": {
+        "kicker": "比较",
+        "title": "TablePro vs TablePlus"
+    },
+    "header": {
+        "title": "TablePro vs TablePlus",
+        "lead": "TablePlus 和 TablePro 都是自称原生的数据库客户端，提供 Mac、iPhone 和 iPad 应用。TablePlus 也可在 Windows 和 Linux 上运行。TablePro 开源，付费方案为 Mac 应用添加可选功能。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "你希望使用开源客户端。TablePro 包括付费功能代码在内，均以 AGPLv3 开源。",
+            "你希望免费使用 AI 助手和 MCP 服务器。两者在 Mac 应用中均免费，可选择 AI 服务商。",
+            "你希望使用免费的 iPhone 和 iPad 应用，无应用内购买。",
+            "你希望只为所需功能付费。免费应用没有标签页或窗口数量限制，付费方案添加 {starterExamples} 等功能。"
+        ],
+        "competitor": [
+            "你也在 Windows 或 Linux 上工作。",
+            "你连接 TablePlus 列出而 TablePro 不支持的 Vertica 或 Greenplum。",
+            "你通过 Setapp 获取 Mac 应用。"
+        ]
+    },
+    "glance": {
+        "intro": "两个客户端都有 AI 聊天、MCP 服务器、模式图和 Excel 导出。TablePlus 在 {cells.mcp.date} 发布的 {cells.mcp.version} 版本中添加了 MCP 服务器、模式图和 Excel 导出。"
+    },
+    "rows": {
+        "diagram": {
+            "label": "模式图",
+            "tablepro": "只读 ER 图，可导出为 PNG 或 SQL"
+        },
+        "excelExport": {
+            "label": "导出到 Excel",
+            "tablepro": "免费，也支持 CSV、JSON、SQL 等格式"
+        },
+        "safeMode": {
+            "label": "安全模式",
+            "tablepro": "每个连接可从 Silent 到 Read-Only 设置级别，较严格级别支持 Touch ID"
+        },
+        "setapp": {
+            "label": "Setapp",
+            "tablepro": "不在 Setapp 提供"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePlus 除 Mac 外，也可在 Windows 和 Linux 上运行，让同一个客户端伴随你使用不同电脑。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "列出 Vertica 和 Greenplum 等 TablePro 不支持的引擎。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "如果你通过 Setapp 获取 Mac 应用，TablePlus 也可在那里使用。",
+                "cite": [
+                    "cells.setapp"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 包括付费功能代码在内，均以 AGPLv3 开源。TablePlus 为闭源软件。",
+                "cite": [
+                    "licence"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "免费应用可连接所有支持引擎，包含 AI 助手、MCP 服务器和安全模式，没有标签页或窗口数量限制。<link>付费方案</link>添加 {starterExamples} 等功能。",
+                "cite": [],
+                "feature": null,
+                "href": "/pricing"
+            },
+            {
+                "text": "iPhone 和 iPad 应用免费，无应用内购买，也不需要许可证。TablePlus iPhone 应用有应用内购买，或可随 TablePlus 许可证使用。",
+                "cite": [
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>iCloud 同步</link>让多台 Mac 与 iPhone 或 iPad 的连接保持一致。在 Mac 上包含于 Starter，在 iPhone 和 iPad 应用中免费。",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "Team 方案添加 <link>{teamExamples}</link>，用于与团队共享连接和已保存查询。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/sync-and-teams#team"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 没有 Windows 或 Linux 应用。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "与 TablePlus 一样，TablePro 有独立的 <link>iPhone 和 iPad 应用</link>，功能少于 Mac 应用：没有 AI 助手、MCP 服务器或自动补全。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            },
+            {
+                "text": "TablePro 不是模式设计器，其 ER 图是当前模式的只读快照。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePlus 许可证在一年更新期结束后仍可使用，TablePro 一次性购买也一样。TablePro 月付或年付方案则不同：结束后付费功能锁定，其余应用功能仍可使用。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 从 TablePlus 保存连接的位置读取连接，包括 Setapp 版。TablePlus 无需打开，文件也不会修改。",
+        "steps": [
+            "在 TablePro 中选择 <ui>File > Import > Import from Other App…</ui>。",
+            "选择 TablePlus，开启 <ui>Include passwords</ui> 以读取 macOS 钥匙串中保存的密码。",
+            "macOS 会为每个已保存密码请求一次登录密码。每次提示都选择 <ui>Always Allow</ui>。",
+            "检查列表，决定如何处理重复项，然后点击 <ui>Import</ui>。分组、SSH 隧道和连接颜色一并迁移。TablePro 不支持的引擎连接默认不勾选。",
+            "删除 TablePlus 前，打开一个原本有密码的连接，确认密码已成功迁移。"
+        ],
+        "after": [
+            "已保存查询、查询历史和键盘快捷键留在 TablePlus 中。",
+            "设置为每次询问密码的连接，导入后仍会提示输入密码。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "keep-tableplus",
+            "question": "导入后可以继续使用 TablePlus 吗？",
+            "answer": "可以。导入只读取 TablePlus 连接文件，两个应用可各自使用自己的副本继续工作。",
+            "href": null
+        },
+        {
+            "id": "speed",
+            "question": "TablePro 与 TablePlus 的速度相比如何？",
+            "answer": "本页不作速度或内存方面的宣称。两款应用都没有发布他人可复现的测量结果，结果取决于你的 Mac、数据库和网络。",
+            "href": null
+        },
+        {
+            "id": "license",
+            "question": "使用 TablePro 需要许可证吗？",
+            "answer": "不需要。TablePro 可免费使用，包含所有支持引擎、AI 助手、MCP 服务器和安全模式。Starter 或 Team 方案为 Mac 应用添加 {starterExamples} 等可选功能。<link>查看价格</link>。",
+            "href": "/pricing"
+        },
+        {
+            "id": "ios-license",
+            "question": "iPhone 和 iPad 应用需要许可证吗？",
+            "answer": "不需要。iPhone 和 iPad 应用免费，无应用内购买。若要通过 iCloud 与 Mac 同步，Mac 需要 Starter。",
+            "href": null
+        }
+    ],
+    "notes": {
+        "tableplus-free-limits": "无时间限制，但同时最多打开 {value} 个标签页、{value} 个窗口和 {value} 个高级过滤器",
+        "tableplus-one-year-updates": "一次付款，包含一年更新，之后应用仍可使用。",
+        "tableplus-databases": "关系型、文档、键值和分析引擎，包括 PostgreSQL、MySQL、SQL Server、SQLite、Redis、MongoDB、Oracle、Cassandra、Snowflake、Vertica 和 Greenplum。部分引擎仅在部分平台可用。",
+        "tableplus-ai": "支持 OpenAI、Anthropic、GitHub Copilot 或本地模型的聊天插件",
+        "tableplus-ios-purchase": "免费下载，有应用内购买。有效 TablePlus 许可证也覆盖指定数量的设备。",
+        "tableplus-safe-mode-levels": "{value} 个级别，支持 Touch ID"
+    }
+}

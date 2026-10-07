@@ -1,0 +1,195 @@
+{
+    "seo": {
+        "title": "TablePro vs DataGrip: IDE o cliente nativo",
+        "description": "DataGrip es un IDE gratuito solo para uso no comercial. TablePro es un cliente nativo de código abierto. Compara precios, IA, MCP, Git e importación."
+    },
+    "og": {
+        "kicker": "Comparar",
+        "title": "TablePro vs DataGrip"
+    },
+    "header": {
+        "title": "TablePro vs DataGrip",
+        "lead": "DataGrip es el IDE de bases de datos de JetBrains para Windows, macOS y Linux, basado en {technology}. Es gratuito para uso no comercial y requiere una suscripción anual o mensual para otros trabajos. TablePro es un cliente de código abierto con una app nativa para Mac y otra para iPhone y iPad. Es gratuito para cualquier trabajo y los planes de pago añaden funciones opcionales a la app para Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Quieres un cliente que puedas usar para trabajo remunerado sin pagar. TablePro es gratuito para cualquier trabajo y los planes de pago añaden funciones como {starterExamples}.",
+            "Quieres un asistente de IA que envíe las solicitudes directamente al proveedor que añadas, sin servicio de IA ni créditos propios de TablePro de por medio. Es gratuito en la app para Mac, al igual que el servidor MCP.",
+            "Prefieres una app para Mac escrita en Swift a un IDE completo.",
+            "También quieres una app para iPhone y iPad."
+        ],
+        "competitor": [
+            "Trabajas en Windows o Linux además de Mac.",
+            "Quieres un IDE con inspecciones de código y control de versiones en la misma ventana que tus consultas.",
+            "Tu trabajo no es comercial, como aprendizaje, un proyecto personal o trabajo de código abierto sin beneficio comercial. DataGrip es gratuito para ello, con todas sus funciones.",
+            "Te conectas a motores que TablePro no admite, como Firebird, Informix o Databricks."
+        ]
+    },
+    "glance": {
+        "intro": "DataGrip tiene precio por usuario. Para particulares, el precio anual baja en el segundo y tercer año. Ambos productos tienen asistente de IA y servidor MCP; el servidor MCP de DataGrip llegó en la versión {cells.mcp.version}."
+    },
+    "rows": {
+        "vcs": {
+            "label": "Control de versiones",
+            "tablepro": "Gratis para una carpeta SQL vinculada: letras de estado de Git, historial de commits de cada archivo con comparación en paralelo, Restaurar esta versión y Descartar cambios. Sin preparación, commits, envíos ni ramas"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DataGrip funciona en Windows, macOS y Linux, así que el mismo IDE te acompaña entre ordenadores.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Es un IDE. El control de versiones, como Git, está junto a tus consultas y los motores con soporte completo ofrecen inspecciones de código y correcciones rápidas.",
+                "cite": [
+                    "cells.vcs",
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Se conecta a motores que TablePro no admite, como Firebird, Informix y Databricks, con soporte básico mediante su controlador JDBC.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "El uso no comercial es gratuito, con todas las funciones de la versión de pago.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro es gratuito para cualquier trabajo, incluido el comercial, sin periodo de prueba ni límite de tiempo. La app para Mac envía a TablePro un <link>informe de uso</link> diario, activado por defecto, que puedes desactivar en Ajustes. La licencia gratuita de DataGrip solo permite uso no comercial y recopila estadísticas de uso que no puedes desactivar.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": "/privacy#mac-usage-report"
+            },
+            {
+                "text": "TablePro es una app para Mac escrita en Swift con controladores de bases de datos nativos. DataGrip está basado en {technology}.",
+                "cite": [
+                    "technology"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "El <link>asistente de IA</link> es gratuito en la app para Mac y funciona con el proveedor que elijas, en la nube o en tu Mac; TablePro no opera ningún servicio de IA ni vende créditos de IA. DataGrip usa JetBrains AI, que tiene su propio servicio con una cuota de créditos y también acepta tu propia clave de proveedor o un modelo local.",
+                "cite": [
+                    "cells.ai"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Ambos tienen servidor MCP. <link>El de TablePro</link> es gratuito, escucha solo en tu Mac y permite que cada conexión decida qué pueden hacer las apps externas: Bloqueado, Solo lectura o Lectura y escritura.",
+                "cite": [
+                    "cells.mcp"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp#mcp"
+            },
+            {
+                "text": "<link>Comparar y sincronizar</link> compara la estructura o los datos de dos bases de datos y genera el script que las alinea. Forma parte de Starter.",
+                "cite": [],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "Hay una <link>app gratuita para iPhone y iPad</link>, sin compras dentro de la app. DataGrip no tiene app móvil.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "No hay TablePro para Windows ni Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro es un cliente, no un IDE. Una <link>carpeta SQL vinculada</link> muestra el estado y el historial de Git de cada archivo, pero la preparación, los commits, los envíos y las ramas se gestionan en tu propia herramienta Git.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#history"
+            },
+            {
+                "text": "TablePro solo se conecta a los motores para los que tiene controladores, sin conexión JDBC genérica. Comprueba primero las <link>bases de datos compatibles</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro lee las fuentes de datos globales de DataGrip y las de tus proyectos recientes. DataGrip no necesita estar abierto y sus archivos no se modifican.",
+        "steps": [
+            "En TablePro, elige <ui>Archivo > Importar > Importar desde otra app…</ui>",
+            "Selecciona DataGrip. Activa <ui>Incluir contraseñas</ui> para leer las contraseñas que DataGrip guardó en el llavero de macOS, incluidas las contraseñas SSH y las frases de contraseña de las claves.",
+            "macOS solicita tu contraseña de inicio de sesión una vez por cada contraseña guardada. Elige <ui>Permitir siempre</ui> en cada aviso.",
+            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Importar</ui>. Se trasladan los grupos, los túneles SSH y la configuración SSL. Las conexiones a motores que TablePro no admite llegan sin marcar.",
+            "Antes de eliminar DataGrip, abre una conexión que tuviera contraseña para comprobar que se ha trasladado."
+        ],
+        "after": [
+            "Las consolas, los archivos temporales, el historial de consultas y los atajos de teclado permanecen en DataGrip.",
+            "Las contraseñas que DataGrip protege con una contraseña maestra no se pueden leer. Esas conexiones llegan sin ellas y debes establecerlas en TablePro."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "commercial-use",
+            "question": "¿Puedo usar la app gratuita de TablePro para trabajo remunerado?",
+            "answer": "Sí. La app para Mac es gratuita para cualquier trabajo, sin periodo de prueba ni límite de tiempo. DataGrip solo es gratuito para uso no comercial, así que crear productos comerciales o prestar servicios remunerados con él requiere una suscripción.",
+            "href": null
+        },
+        {
+            "id": "ai-provider",
+            "question": "¿El asistente de IA de TablePro necesita un plan como JetBrains AI?",
+            "answer": "No. TablePro no opera un servicio de IA propio. Añades un proveedor: una clave de API, una cuenta que ya tengas o un modelo que se ejecute en tu Mac. No se envía nada hasta que añadas uno. <link>Cómo funciona el asistente de IA</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "mcp",
+            "question": "DataGrip también tiene servidor MCP. ¿Qué hace el de TablePro?",
+            "answer": "Permite que clientes como Claude Code y Cursor usen tus conexiones guardadas de TablePro sin ver las contraseñas. Escucha solo en 127.0.0.1, cada conexión es de solo lectura para apps externas salvo que lo cambies y es gratuito. DataGrip tiene el suyo desde la versión {cells.mcp.version}.",
+            "href": null
+        },
+        {
+            "id": "jdbc-url",
+            "question": "¿Puedo pegar una URL JDBC de DataGrip?",
+            "answer": "Sí, para motores compatibles con TablePro. <ui>Archivo > Importar > Importar desde URL…</ui> lee URL jdbc: además de postgres:// y mysql://. Para trasladar todas las fuentes de datos de una vez, usa el importador descrito arriba.",
+            "href": null
+        }
+    ],
+    "notes": {
+        "datagrip-non-commercial-telemetry": "Para aprendizaje, proyectos personales, creación de contenido y trabajo de código abierto sin beneficio comercial, con todas las funciones. Se activa mediante una JetBrains Account y recopila estadísticas de uso sin posibilidad de desactivarlas.",
+        "datagrip-databases": "Soporte completo con inspecciones de código y correcciones rápidas para sus motores principales. Otros, como DuckDB, Firebird, Informix y Databricks, tienen soporte básico mediante su controlador JDBC: resaltado y exploración de objetos, sin comprobación de errores.",
+        "datagrip-ai-quota": "JetBrains AI: nivel gratuito con una pequeña cuota recurrente de créditos de IA, planes de IA de pago para usar más el servicio propio de JetBrains o tu propia clave de proveedor o un modelo local."
+    }
+}

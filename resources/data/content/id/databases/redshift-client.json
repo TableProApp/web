@@ -1,0 +1,112 @@
+{
+    "seo": {
+        "title": "Amazon Redshift untuk {devices}",
+        "description": "Kueri cluster Redshift dan workgroup Serverless dengan driver PostgreSQL. Lihat DISTKEY dan SORTKEY, telusuri skema eksternal, dan gunakan pg_dump."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien Amazon Redshift"
+    },
+    "engine": "redshift",
+    "breadcrumb": "Amazon Redshift",
+    "header": {
+        "title": "Klien Amazon Redshift untuk {devices}",
+        "lead": "Kueri cluster yang diprovisikan atau workgroup Serverless melalui driver PostgreSQL bawaan aplikasi, baca gaya distribusi dan kunci pengurutan tabel, serta telusuri skema Spectrum dan datashare di samping skema Anda."
+    },
+    "asset": "mac-db-redshift-ddl",
+    "links": {
+        "network": "/features/connections#network",
+        "credentials": "/features/connections#credentials",
+        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "postgresql": "/postgresql-client",
+        "icloudSync": "/features/sync-and-teams#icloud-sync",
+        "share": "/features/sync-and-teams#share"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Gunakan endpoint cluster sebagai host, atau endpoint workgroup pada Redshift Serverless; keduanya menggunakan port yang sama. Database wajib diisi, dan setiap cluster dibuat dengan database bernama <code>dev</code>. Mengimpor URL <code>redshift://</code> mengisi formulir.",
+                "Koneksi baru menetapkan SSL ke Preferred, dan tidak ada pemeriksaan versi, sehingga setiap cluster yang masih dijalankan AWS dapat terhubung. Kata sandi disimpan di Keychain atau dibaca dari <code>~/.pgpass</code>, dua dari <credentials>opsi kredensial</credentials> koneksi. Cluster yang tidak dapat diakses publik diakses melalui <network>tunnel SSH</network> ke bastion host di VPC-nya."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Jalankan kueri dan edit",
+            "paragraphs": [
+                "Kueri dan <editing>perubahan baris tertunda dengan Preview SQL</editing> bekerja seperti pada <postgresql>PostgreSQL</postgresql>, melalui driver yang sama. Tab yang terkait dengan database selain yang aktif membuka koneksi kedua untuk database itu.",
+                "Informasi tabel membaca <code>svv_table_info</code> untuk gaya distribusi, kunci pengurutan, dan ukuran setiap tabel, dan tab DDL menyertakan DISTKEY, SORTKEY, DISTSTYLE, serta ENCODE. Foreign key tercantum, tetapi Redshift tidak menegakkannya, sehingga tidak ada yang mencegah baris yang melanggar foreign key.",
+                "<explain>EXPLAIN dan EXPLAIN VERBOSE</explain> mengembalikan rencana Redshift sebagai teks, bukan diagram.",
+                "Skema yang dibuat menggunakan <code>CREATE EXTERNAL SCHEMA</code>, baik Spectrum di atas S3, kueri terfederasi, referensi lintas database, maupun datashare, ditampilkan di samping skema Anda dan ditandai External. Tabelnya dapat ditelusuri, difilter, diurutkan, dan diekspor seperti biasa, tetapi hanya baca karena Redshift tidak menerima UPDATE atau DELETE pada tabel tersebut. Jumlah baris tidak ditampilkan, dan jenis kolom dibaca sesuai laporan katalog eksternal."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Skema",
+            "paragraphs": [
+                "Redshift tidak memiliki indeks, enum, sequence, atau trigger untuk dikelola: DISTKEY dan SORTKEY menjalankan fungsi indeks, dan tab Structure tidak memiliki tab Triggers. Routine tidak tercantum di bilah samping.",
+                "Dari bilah samping, Anda dapat mengganti nama tabel, database, dan skema, serta membuat skema dengan pemiliknya."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Pemantauan dan pencadangan",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> mencantumkan sesi dan kueri lambat, dengan metrik koneksi, rasio cache hit, ukuran database, uptime, serta kueri aktif. Cancel Query mengirim <code>pg_cancel_backend</code> dan Terminate Session mengirim <code>pg_terminate_backend</code>, masing-masing setelah Anda mengonfirmasi.",
+                "Tidak ada menu Maintenance atau Users & Roles untuk Redshift: jalankan VACUUM, ANALYZE, dan GRANT dalam editor SQL.",
+                "<backup>Backup Dump dan Restore Dump</backup> menjalankan {dumpTool} dan pg_restore dari Mac, melalui tunnel SSH koneksi jika tersedia. Pasang terlebih dahulu menggunakan libpq dari Homebrew."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "<importData>Import</importData> memuat berkas {importFormats} dari Mac ke tabel Redshift. Ekspor menulis tabel atau hasil kueri sebagai {exportFormats}, dan tabel eksternal diekspor seperti tabel lainnya."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone dan iPad",
+            "paragraphs": [
+                "Untuk membawa koneksi Redshift ke iPhone atau iPad, aktifkan <icloudSync>iCloud Sync</icloudSync>, bagian dari paket {icloudSyncTier} di Mac, atau <share>ekspor koneksi</share> ke berkas lalu buka pada perangkat. Koneksi kemudian berjalan dengan driver PostgreSQL bawaan aplikasi: telusuri tabel sebagai kartu, filter dan urutkan, serta jalankan SQL di tab Query. Kata sandi disertakan melalui iCloud Sync hanya jika sinkronisasi kata sandi aktif, atau dalam berkas ekspor terenkripsi yang menyertakan kata sandi, bagian dari paket {encryptedExportTier}. Sertifikat tetap pada setiap perangkat."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "serverless",
+            "question": "Apakah TablePro mendukung Redshift Serverless?",
+            "answer": "Ya. Masukkan endpoint workgroup pada bidang host dan isi port, database, serta pengguna seperti pada cluster yang diprovisikan."
+        },
+        {
+            "id": "pg-dump",
+            "question": "Apakah pg_dump mendukung Redshift?",
+            "answer": "Tidak ada rilis pg_dump yang menyatakan mendukung versi PostgreSQL yang dilaporkan Redshift. TablePro menjalankan pg_dump yang Anda pasang, sedangkan pada PostgreSQL aplikasi memilih versi yang sesuai dengan server, jadi coba cadangkan skema kecil sebelum mengandalkannya."
+        }
+    ],
+    "related": [
+        {
+            "label": "PostgreSQL, dengan driver yang sama",
+            "href": "/postgresql-client"
+        },
+        {
+            "label": "Server Dashboard dan alat skema",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Pencadangan, impor, dan ekspor",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Google BigQuery, data warehouse lainnya",
+            "href": "/bigquery-client"
+        }
+    ]
+}

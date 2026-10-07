@@ -1,0 +1,314 @@
+{
+    "seo": {
+        "title": "SSH 터널, 클라우드 로그인 및 연결 가져오기",
+        "description": "SSH 점프 호스트, 프록시 또는 kubectl로 데이터베이스에 접속하고 AWS IAM이나 Entra ID로 로그인하며 TablePlus, DBeaver 등에서 연결을 가져옵니다."
+    },
+    "og": {
+        "kicker": "연결",
+        "title": "연결, 터널 및 자격 증명"
+    },
+    "header": {
+        "title": "연결, 터널 및 자격 증명",
+        "lead": "데이터베이스가 배스천, 클러스터 또는 클라우드 로그인 뒤에 있다면 필요한 경로와 비밀번호 소스를 지정해 연결을 한 번 설정하고 운영 연결에는 더 엄격한 규칙을 적용하세요. 여기서 소개하는 기능은 Mac 앱에 있으며 마지막 절에서 iPhone과 iPad를 다룹니다.",
+        "docs": "/connections"
+    },
+    "sections": [
+        {
+            "id": "organize",
+            "title": "연결 라이브러리 관리",
+            "paragraphs": [
+                "각 연결은 General, Network, Options, Appearance 탭이 있는 하나의 양식에서 편집합니다. <code>jdbc:</code> URL이나 SSH 경유 정보를 포함한 <code>+ssh</code> URL 등 연결 URL을 가져오면 양식이 자동으로 채워집니다. 클립보드에 URL이 있으면 <ui>Use clipboard URL</ui> 옵션을 제공합니다.",
+                "연결에 색상과 원하는 만큼의 태그를 지정하고 중첩 그룹에 배치하며 자주 쓰는 연결에 별표를 붙여 즐겨찾기로 등록합니다. 환경은 태그로 구분합니다. local, development, production, testing이 기본 제공되며 직접 추가할 수도 있습니다. 빈 라이브러리에서는 번들로 포함된 Chinook의 SQLite 복사본을 여는 <ui>Open Sample Database</ui>를 제공합니다.",
+                "한 창에서 여러 연결을 엽니다. 왼쪽 가장자리의 연결 표시줄에서 전환하면 각 연결에서 마지막으로 사용한 탭으로 돌아갑니다. <ui>Open in New Window</ui>를 사용하면 다른 연결을 옆에 나란히 놓을 수 있습니다."
+            ],
+            "asset": "mac-connection-library"
+        },
+        {
+            "id": "import",
+            "title": "기존 연결 가져오기",
+            "paragraphs": [
+                "빈 목록에서 시작할 필요는 거의 없습니다. TablePro는 다른 클라이언트, 프로젝트 설정 파일 또는 AWS 계정에서 연결을 읽습니다."
+            ],
+            "links": [
+                {
+                    "label": "연결 파일과 공유 링크",
+                    "href": "/features/sync-and-teams#share"
+                }
+            ],
+            "blocks": [
+                {
+                    "id": "other-apps",
+                    "title": "다른 데이터베이스 클라이언트에서",
+                    "paragraphs": [
+                        "<ui>Import from Other App</ui>은 TablePlus의 Setapp 버전을 포함한 {connectionImportApps}에 저장된 연결을 읽고 해당 앱의 저장 위치에서 비밀번호도 가져옵니다. DBeaver와 Navicat이 저장한 암호화된 비밀번호도 포함됩니다. Navicat 연결은 <code>.ncx</code> 내보내기 파일에서 가져옵니다."
+                    ],
+                    "asset": "mac-import-other-app"
+                },
+                {
+                    "id": "project-folder",
+                    "title": "프로젝트 설정 파일에서",
+                    "paragraphs": [
+                        "<ui>Open Project Folder</ui>는 프로젝트의 <code>.env</code>, <code>wp-config.php</code>, Prisma 스키마, Rails의 <code>config/database.yml</code>, <code>docker-compose.yml</code>, Spring의 <code>application.properties</code> 또는 <code>application.yml</code>, <code>appsettings.json</code>에서 데이터베이스 설정을 찾습니다. 찾은 설정과 원본 파일을 목록으로 보여 주며 선택한 설정이 연결 양식을 채웁니다. 비밀번호는 바로 키체인에 저장됩니다. 파일 경로, 호스트 또는 데이터베이스 이름에 <code>prod</code>, <code>production</code>, <code>live</code>가 독립된 단어로 있으면 연결의 안전 모드가 Alert 수준으로 시작됩니다."
+                    ],
+                    "asset": "mac-open-project-folder"
+                },
+                {
+                    "id": "aws",
+                    "title": "AWS 계정에서",
+                    "paragraphs": [
+                        "<ui>Import from AWS</ui>는 선택한 리전에서 AWS 프로필이 볼 수 있는 RDS 인스턴스와 Aurora 클러스터를 나열하고 선택한 항목을 추가합니다. 프로필에는 <code>rds:DescribeDBInstances</code>와 <code>rds:DescribeDBClusters</code> 권한이 필요합니다."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "network",
+            "title": "배스천, 프록시 또는 클러스터 뒤의 데이터베이스에 접속",
+            "paragraphs": [],
+            "blocks": [
+                {
+                    "id": "ssh",
+                    "title": "SSH와 TLS",
+                    "paragraphs": [
+                        "SSH 터널은 비밀번호, 개인 키, 1Password 같은 SSH 에이전트 또는 키보드 대화형 프롬프트로 로그인합니다. 여러 점프 호스트를 순서대로 거치거나 <code>~/.ssh/config</code>의 <code>ProxyJump</code>를 따를 수 있습니다. 키체인의 비밀값으로 일회용 코드를 생성하거나 연결할 때마다 입력을 요청할 수 있으며 알려지지 않은 호스트 키는 TablePro가 신뢰하기 전에 지문을 표시합니다. 터널을 SSH 프로필로 저장하면 재사용할 수 있습니다.",
+                        "TLS는 Disabled, Preferred, Required, Verify CA 또는 Verify Identity 모드로 동작하며 자체 CA, 클라이언트 인증서와 키를 사용할 수 있습니다. Required는 서버 인증서를 검사하지 않고 암호화하며 Verify 모드는 인증서를 검사합니다."
+                    ],
+                    "engines": [
+                        {
+                            "label": "SSH 터널을 지원하지 않는 네트워크 엔진",
+                            "list": "noSsh"
+                        }
+                    ],
+                    "asset": "mac-connection-ssh-form"
+                },
+                {
+                    "id": "tunnels",
+                    "title": "프록시, Cloudflare, Cloud SQL 및 터널 명령",
+                    "paragraphs": [
+                        "SSH를 사용하지 않는 경우 Network 탭에서 원격 DNS를 지원하는 SOCKS5 프록시, Cloudflare Access 또는 Cloud SQL Auth Proxy로 연결합니다. Cloudflare Access에서는 TablePro가 <code>cloudflared</code>를 실행하고 브라우저나 서비스 토큰으로 로그인합니다. Cloud SQL Auth Proxy는 TablePro가 {cloudSqlProxy}용으로 다운로드하고 검사하여 실행합니다.",
+                        "Tunnel Command는 <code>kubectl port-forward</code>, <code>aws ssm start-session</code> 또는 직접 지정한 명령을 시작한 뒤 그 명령이 연 로컬 포트에 연결합니다. 연결 전에 셸 스크립트를 실행하도록 설정할 수도 있으며 각 세션에서 먼저 확인을 요청합니다. 연결 직후 SQL 문을 실행할 수도 있습니다."
+                    ],
+                    "asset": "mac-tunnel-command"
+                }
+            ]
+        },
+        {
+            "id": "cloud-auth",
+            "title": "클라우드 계정으로 로그인",
+            "paragraphs": [
+                "AWS IAM 데이터베이스 인증은 액세스 키, <code>~/.aws</code>의 프로필(<code>credential_process</code>와 역할 수임 지원) 또는 AWS IAM Identity Center를 사용해 연결할 때마다 새 토큰에 서명하며 TLS를 Required로 높입니다. Amazon ElastiCache for Redis, Amazon Keyspaces 및 DynamoDB는 각자의 AWS 서명을 사용합니다.",
+                "SQL Server는 제공한 앱 등록의 클라이언트 ID를 사용해 브라우저에서 Microsoft Entra ID로 로그인하거나 티켓 또는 보안 주체와 비밀번호를 사용해 Kerberos로 로그인합니다. Google BigQuery는 서비스 계정 키, Application Default Credentials 또는 자체 클라이언트를 통한 Google OAuth를 지원하며 Google Cloud Spanner와 Cloud SQL Auth Proxy에서는 Google 계정을 사용할 수 있습니다."
+            ],
+            "engines": [
+                {
+                    "label": "RDS 및 Aurora의 AWS IAM 인증",
+                    "list": "awsIam"
+                }
+            ],
+            "links": [
+                {
+                    "label": "TablePro의 SQL Server",
+                    "href": "/sql-server-client"
+                },
+                {
+                    "label": "TablePro의 BigQuery",
+                    "href": "/bigquery-client"
+                }
+            ]
+        },
+        {
+            "id": "credentials",
+            "title": "비밀번호를 적절한 곳에 보관",
+            "paragraphs": [
+                "비밀번호는 macOS 키체인에 저장됩니다. iCloud Sync를 켜면 비밀번호 동기화가 iCloud 키체인을 통해 다른 기기로 전달합니다. SSH 키는 연결이 가리키는 디스크 파일로 남아 있고 암호 문구만 키체인에 저장됩니다.",
+                "자격 증명 프로필은 여러 연결에서 하나의 로그인을 공유하며 연결할 때 1Password(<code>op</code>), HashiCorp Vault, AWS Secrets Manager, 셸 명령, 파일 또는 환경 변수에서 비밀번호를 읽을 수 있습니다. 이 비밀번호 소스는 무료이며 동기화되지 않습니다. 각 명령줄 도구는 <code>PATH</code>, <code>/usr/local/bin</code> 또는 <code>/opt/homebrew/bin</code>에 있어야 합니다. PostgreSQL, Amazon Redshift 및 CockroachDB에서는 <code>~/.pgpass</code>를 사용할 수도 있고 연결할 때마다 비밀번호를 요청할 수도 있습니다."
+            ],
+            "links": [
+                {
+                    "label": "iCloud Sync와 비밀번호 동기화",
+                    "href": "/features/sync-and-teams#icloud-sync"
+                }
+            ],
+            "blocks": [
+                {
+                    "id": "environment-variables",
+                    "title": "환경 변수",
+                    "paragraphs": [
+                        "연결의 호스트, 데이터베이스, 사용자 이름, SSH 호스트·사용자·키 경로, SSL 경로, 시작 명령 또는 드라이버 필드에 <code>$DB_HOST</code>를 쓰면 TablePro가 연결할 때 자체 환경에서 값을 채웁니다. 포트와 비밀번호는 이 방식으로 읽지 않습니다. 비밀번호에는 별도의 소스를 지정하세요."
+                    ],
+                    "paid": [
+                        "environment-variables"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "policies",
+            "title": "연결별 규칙",
+            "paragraphs": [
+                "연결의 안전 모드 수준은 구문을 그대로 실행할지, 먼저 확인할지, Touch ID나 비밀번호를 요구할지 또는 거부할지를 결정합니다. External Clients의 Blocked, Read Only, Read & Write 수준은 MCP 클라이언트와 AppleScript가 할 수 있는 작업을 정하며 이 Mac에만 저장됩니다. AI 정책은 AI 어시스턴트가 확인 없이 연결을 사용할지, 확인 후에만 사용할지 또는 전혀 사용하지 못할지를 정합니다. Never는 MCP 클라이언트도 차단합니다.",
+                "조직은 구성 프로필을 통해 모든 연결의 최소 안전 모드 수준을 강제하고 업데이트를 제어할 수 있습니다."
+            ],
+            "links": [
+                {
+                    "label": "안전 모드 수준",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "MCP 클라이언트와 External Clients",
+                    "href": "/features/ai-mcp#mcp"
+                }
+            ],
+            "blocks": [
+                {
+                    "id": "timeouts",
+                    "title": "연결 및 쿼리 제한 시간",
+                    "paragraphs": [
+                        "각 연결에 네트워크, TLS, 로그인 및 터널이나 프록시를 포함하는 연결 제한 시간을 설정할 수 있으며 앱 전체 설정 대신 연결별 쿼리 제한 시간도 지정할 수 있습니다. 쿼리 제한 시간은 지원하는 드라이버에서 다시 연결한 후 적용됩니다."
+                    ],
+                    "since": "0.77.0"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone과 iPad에서",
+            "paragraphs": [
+                "iPhone과 iPad 앱에는 {iosPicker}용 자체 연결 양식이 있으며 그룹, 연결당 태그 하나와 즐겨찾기를 지원합니다. SSH 터널은 비밀번호 또는 파일이나 붙여넣기로 제공한 개인 키로 로그인하고 호스트 키를 검사합니다. iPhone과 iPad에서는 SSH 에이전트와 점프 호스트를 지원하지 않습니다. TLS는 서버 인증서를 검증할 수 있지만 SQL Server에서는 검증 없이 암호화합니다. 인증서는 기기에만 저장되며 동기화되지 않습니다.",
+                "비밀번호와 붙여넣은 키는 키체인에 보관됩니다. Mac에서 동기화한 SQL Server 연결은 Microsoft Entra ID로 로그인할 수 있습니다. 다른 앱에서 가져오기, AWS IAM, Kerberos 및 Google 로그인, 프록시와 터널 명령, 비밀번호 소스와 제한 시간은 Mac 앱에서만 사용할 수 있습니다."
+            ],
+            "links": [
+                {
+                    "label": "iPhone과 iPad에서 안전하게 연결",
+                    "href": "/ios#security"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "연결 양식, 그룹, 태그 및 즐겨찾기",
+            "ios": "partial",
+            "iosNote": "연결당 태그 하나, 색상 없음"
+        },
+        {
+            "label": "URL 또는 클립보드에서 가져오기",
+            "ios": "no"
+        },
+        {
+            "label": "다른 앱, 프로젝트 폴더 및 AWS에서 가져오기",
+            "ios": "no"
+        },
+        {
+            "label": "비밀번호 또는 개인 키를 사용하는 SSH 터널",
+            "ios": "yes"
+        },
+        {
+            "label": "SSH 에이전트, 일회용 코드 및 점프 호스트",
+            "ios": "no"
+        },
+        {
+            "label": "인증서 검사를 사용하는 TLS",
+            "ios": "partial",
+            "iosNote": "SQL Server는 검증 없이 암호화"
+        },
+        {
+            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy 및 Tunnel Command",
+            "ios": "no"
+        },
+        {
+            "label": "AWS IAM, Kerberos 및 Google 로그인",
+            "ios": "no"
+        },
+        {
+            "label": "Microsoft Entra ID",
+            "ios": "partial",
+            "iosNote": "Mac에서 동기화한 연결에서"
+        },
+        {
+            "label": "키체인에 비밀번호 저장",
+            "ios": "yes"
+        },
+        {
+            "label": "비밀번호 소스, 자격 증명 프로필 및 ~/.pgpass",
+            "ios": "no"
+        },
+        {
+            "label": "환경 변수",
+            "paid": "environment-variables",
+            "ios": "no"
+        },
+        {
+            "label": "연결별 안전 모드",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "연결 및 쿼리 제한 시간",
+            "ios": "no"
+        },
+        {
+            "label": "구성 프로필을 통한 최소 안전 모드 수준",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "비밀번호 소스와 Network 탭의 프록시 및 터널 명령은 설정한 Mac에만 남고 동기화되지 않습니다. 따라서 동기화된 연결에서는 각 Mac마다 다시 설정해야 합니다.",
+        "TablePro는 시작할 때의 환경을 읽습니다. Dock이나 Finder에서 열면 셸 프로필이 설정한 변수를 볼 수 없으며 환경 변수 비밀번호 소스와 환경 변수 기능 모두에 영향을 줍니다.",
+        "플랜이 종료되면 <code>$DB_HOST</code>와 기타 참조가 더 이상 치환되지 않고 경고 없이 입력된 그대로 서버에 전달됩니다.",
+        "Open Project Folder는 일회성 가져오기입니다. 변경을 감시하지 않으며 같은 설정을 두 번 가져오면 연결이 두 개 생성됩니다.",
+        "AWS IAM 인증은 {awsIam}을 지원하지만 Amazon Redshift는 지원하지 않습니다. 구성 프로필은 최소 안전 모드 수준과 업데이트 설정만 강제할 수 있습니다."
+    ],
+    "docs": [
+        {
+            "label": "연결 관리",
+            "docs": "/connections"
+        },
+        {
+            "label": "다른 클라이언트에서 전환",
+            "docs": "/switching"
+        },
+        {
+            "label": "프로젝트 폴더 열기",
+            "docs": "/features/project-folder-import"
+        },
+        {
+            "label": "SSH 터널링",
+            "docs": "/connections/ssh-tunneling"
+        },
+        {
+            "label": "터널 명령",
+            "docs": "/connections/tunnel-command"
+        },
+        {
+            "label": "AWS IAM 인증",
+            "docs": "/connections/aws-iam"
+        },
+        {
+            "label": "자격 증명 프로필",
+            "docs": "/connections/credential-profiles"
+        },
+        {
+            "label": "비밀번호 소스 및 환경 변수",
+            "docs": "/features/connection-sharing#environment-variables"
+        }
+    ],
+    "related": [
+        {
+            "label": "연결 동기화 및 공유",
+            "href": "/features/sync-and-teams"
+        },
+        {
+            "label": "안전 모드 및 데이터 편집",
+            "href": "/features/data-editing#safe-mode"
+        },
+        {
+            "label": "TablePro와 다른 클라이언트 비교",
+            "href": "/compare"
+        },
+        {
+            "label": "유료 플랜의 추가 기능",
+            "href": "/pricing#features"
+        }
+    ]
+}

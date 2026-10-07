@@ -72,7 +72,7 @@ final class ContentRepository
     public function slugs(string $family, string $locale): array
     {
         $this->assertSegment($family);
-        $this->assertSegment($locale);
+        $this->assertLocale($locale);
 
         $slugs = array_map(
             static fn(string $file): string => pathinfo($file, PATHINFO_FILENAME),
@@ -90,7 +90,7 @@ final class ContentRepository
      */
     public function path(string $name, string $locale): string
     {
-        $this->assertSegment($locale);
+        $this->assertLocale($locale);
 
         if (preg_match('#^[a-z0-9-]+(/[a-z0-9-]+)?$#', $name) !== 1) {
             throw new InvalidArgumentException("Invalid content name [{$name}].");
@@ -125,6 +125,13 @@ final class ContentRepository
     {
         if (preg_match('/^[a-z0-9-]+$/', $segment) !== 1) {
             throw new InvalidArgumentException("Invalid content path segment [{$segment}].");
+        }
+    }
+
+    private function assertLocale(string $locale): void
+    {
+        if (preg_match('/^[a-z]{2}(?:-[A-Z][a-z]{3})?(?:-[A-Z]{2})?$/', $locale) !== 1) {
+            throw new InvalidArgumentException("Invalid content locale [{$locale}].");
         }
     }
 }

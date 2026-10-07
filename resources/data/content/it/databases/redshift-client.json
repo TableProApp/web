@@ -1,0 +1,112 @@
+{
+    "seo": {
+        "title": "Amazon Redshift per {devices}",
+        "description": "Interroga cluster Redshift e workgroup Serverless con il driver PostgreSQL. Leggi DISTKEY e SORTKEY, esplora schemi esterni e usa pg_dump."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Client Amazon Redshift"
+    },
+    "engine": "redshift",
+    "breadcrumb": "Amazon Redshift",
+    "header": {
+        "title": "Client Amazon Redshift per {devices}",
+        "lead": "Interroga un cluster provisionato o un workgroup Serverless tramite il driver PostgreSQL incluso nell’app, leggi stile di distribuzione e chiavi di ordinamento delle tabelle ed esplora schemi Spectrum e datashare accanto ai tuoi."
+    },
+    "asset": "mac-db-redshift-ddl",
+    "links": {
+        "network": "/features/connections#network",
+        "credentials": "/features/connections#credentials",
+        "editing": "/features/data-editing#edit",
+        "explain": "/features/querying#explain",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "postgresql": "/postgresql-client",
+        "icloudSync": "/features/sync-and-teams#icloud-sync",
+        "share": "/features/sync-and-teams#share"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connetti",
+            "paragraphs": [
+                "Usa l’endpoint del cluster come host oppure l’endpoint del workgroup su Redshift Serverless; entrambi ascoltano sulla stessa porta. È necessario un database e ogni cluster ne include uno chiamato <code>dev</code>. Importare un URL <code>redshift://</code> compila il modulo.",
+                "Le nuove connessioni impostano SSL su Preferred e non controllano la versione, quindi si connette qualsiasi cluster ancora gestito da AWS. La password viene conservata nel portachiavi o letta da <code>~/.pgpass</code>, due delle <credentials>opzioni per le credenziali</credentials> della connessione. Un cluster non raggiungibile pubblicamente si raggiunge con un <network>tunnel SSH</network> verso un bastion host nella sua VPC."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Esegui query e modifica",
+            "paragraphs": [
+                "Le query e le <editing>modifiche alle righe in attesa con Preview SQL</editing> funzionano come su <postgresql>PostgreSQL</postgresql>, tramite lo stesso driver. Una scheda associata a un database diverso da quello attivo apre una seconda connessione per quel database.",
+                "Le informazioni della tabella leggono <code>svv_table_info</code> per stile di distribuzione, chiavi di ordinamento e dimensione e la scheda DDL include DISTKEY, SORTKEY, DISTSTYLE ed ENCODE. Le chiavi esterne sono elencate, ma Redshift non le applica, quindi nulla impedisce una riga che le viola.",
+                "<explain>EXPLAIN ed EXPLAIN VERBOSE</explain> restituiscono il piano Redshift come testo anziché diagramma.",
+                "Gli schemi creati con <code>CREATE EXTERNAL SCHEMA</code>, che siano Spectrum su S3, query federate, riferimenti tra database o datashare, compaiono accanto ai tuoi e sono contrassegnati External. Le tabelle si esplorano, filtrano, ordinano ed esportano normalmente ma sono in sola lettura, perché Redshift non accetta UPDATE o DELETE su di esse. Non mostrano il numero di righe e i tipi delle colonne vengono letti come riportati dal catalogo esterno."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Schema",
+            "paragraphs": [
+                "Redshift non ha indici, enum, sequenze o trigger da gestire: DISTKEY e SORTKEY svolgono il lavoro di un indice e la scheda Structure non ha una scheda Triggers. Le routine non sono elencate nella barra laterale.",
+                "Dalla barra laterale puoi rinominare tabelle, database e schemi e creare uno schema con il suo proprietario."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Monitoraggio e backup",
+            "paragraphs": [
+                "Il <dashboard>Server Dashboard</dashboard> elenca sessioni e query lente, con metriche per connessioni, rapporto di hit della cache, dimensione del database, tempo di attività e query attive. Cancel Query invia <code>pg_cancel_backend</code> e Terminate Session invia <code>pg_terminate_backend</code>, ciascuno dopo la tua conferma.",
+                "Per Redshift non ci sono un menu Maintenance né Users & Roles: esegui VACUUM, ANALYZE e GRANT nell’editor SQL.",
+                "<backup>Backup Dump e Restore Dump</backup> eseguono {dumpTool} e pg_restore dal Mac, tramite il tunnel SSH della connessione se presente. Installali prima con libpq di Homebrew."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Sposta i dati",
+            "paragraphs": [
+                "<importData>Import</importData> carica file {importFormats} dal Mac in una tabella Redshift. L’esportazione scrive una tabella o il risultato di una query in {exportFormats} e le tabelle esterne si esportano come le altre."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone e iPad",
+            "paragraphs": [
+                "Per portare una connessione Redshift su iPhone o iPad, attiva <icloudSync>iCloud Sync</icloudSync>, incluso nel piano {icloudSyncTier} sul Mac, oppure <share>esporta la connessione</share> in un file e aprilo sul dispositivo. Funziona poi con il driver PostgreSQL incluso nell’app: esplora le tabelle come schede, filtra e ordina ed esegui SQL nella scheda Query. Le password passano tramite iCloud Sync solo con la sincronizzazione delle password attiva oppure in un file esportato cifrato che le includa, parte del piano {encryptedExportTier}. I certificati rimangono su ogni dispositivo."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "serverless",
+            "question": "TablePro funziona con Redshift Serverless?",
+            "answer": "Sì. Inserisci l’endpoint del workgroup nel campo host e compila porta, database e utente come per un cluster provisionato."
+        },
+        {
+            "id": "pg-dump",
+            "question": "pg_dump supporta Redshift?",
+            "answer": "Nessuna versione di pg_dump dichiara di supportare la versione PostgreSQL indicata da Redshift. TablePro esegue il pg_dump che hai installato, mentre su PostgreSQL ne sceglie uno compatibile con il server: prova quindi un backup di uno schema piccolo prima di farci affidamento."
+        }
+    ],
+    "related": [
+        {
+            "label": "PostgreSQL, sullo stesso driver",
+            "href": "/postgresql-client"
+        },
+        {
+            "label": "Server Dashboard e strumenti per lo schema",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Backup, importazione ed esportazione",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Google BigQuery, un altro data warehouse",
+            "href": "/bigquery-client"
+        }
+    ]
+}

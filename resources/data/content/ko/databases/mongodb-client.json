@@ -1,0 +1,126 @@
+{
+    "seo": {
+        "title": "{devices}용 MongoDB 클라이언트",
+        "description": "mongosh 방식 JavaScript 셸로 MongoDB를 쿼리하고 Extended JSON으로 문서를 편집하며 컬렉션 전체 필드 이름을 바꾸고 SRV로 Atlas에 연결합니다."
+    },
+    "og": {
+        "kicker": "데이터베이스",
+        "title": "MongoDB 클라이언트"
+    },
+    "engine": "mongodb",
+    "breadcrumb": "MongoDB",
+    "header": {
+        "title": "{devices}용 MongoDB 클라이언트",
+        "lead": "mongosh 방식으로 쿼리를 쓰고 그리드에서 컬렉션을 페이지로 탐색하며 Extended JSON으로 전체 문서를 추가·편집합니다. 컬렉션 전체 필드 이름 변경·제거도 실행 전 모든 구문을 표시합니다."
+    },
+    "asset": "mac-db-mongodb-document",
+    "links": {
+        "network": "/features/connections#network",
+        "editing": "/features/data-editing#documents-and-keys",
+        "filters": "/features/data-editing#filters",
+        "safeMode": "/features/data-editing#safe-mode",
+        "map": "/features/querying#map",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "연결",
+            "paragraphs": [
+                "호스트 하나 또는 복제 세트의 여러 <code>host:port</code>를 나열하면 프라이머리를 찾습니다. <code>mongodb://</code>·<code>mongodb+srv://</code> URL도 붙여 넣습니다. SCRAM-SHA-1, SCRAM-SHA-256, X.509·AWS IAM으로 로그인하며 사용자가 <code>admin</code>에 정의됐지만 다른 데이터베이스를 탐색하면 <ui>Auth Database</ui>를 설정합니다.",
+                "<code>.mongodb.net</code>으로 끝나는 호스트는 MongoDB Atlas가 요구하는 SRV·TLS를 자동으로 켭니다. 먼저 IP 주소를 클러스터 접근 목록에 추가하세요. 목록에 없는 주소의 트래픽은 즉시 실패 대신 시간 초과됩니다.",
+                "새 연결은 TLS가 꺼져 있고 드라이버가 대체 연결을 못해 Preferred는 Required처럼 작동합니다. Read Preference·Write Concern은 연결별로 설정하고 쓰기 확인 수준은 셸·그리드 저장의 모든 삽입·업데이트·삭제에 전송됩니다.",
+                "<network>SSH 터널</network>은 목록의 첫 호스트만 사용해 해당 세션의 복제 세트 검색·장애 조치는 꺼집니다."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "문서 쿼리 및 편집",
+            "paragraphs": [
+                "쿼리 탭은 mongosh 구문의 JavaScript 셸로 따옴표 없는 키, 정규식 리터럴, <code>ISODate()</code>, 변수·루프·<code>forEach</code>를 받습니다. TablePro 안에서 실행돼 추가 설치가 필요 없으며 정의한 변수는 연결을 끊을 때까지 해당 연결의 모든 탭에서 사용합니다. 자동 완성은 컬렉션, 메서드, 중첩 필드 경로와 커서 위치에 맞는 <code>$</code> 연산자를 제안합니다.",
+                "컬렉션은 최상위 필드를 열로, 중첩 객체를 Extended JSON으로 표시하는 그리드로 열립니다. 편집 셀은 필드 유형을 유지해 날짜·ObjectId가 그대로이며 중첩 객체 편집은 <code>address.city</code>처럼 바뀐 경로만 씁니다.",
+                "<editing>Insert Document와 Edit Document</editing>는 전체 문서를 Extended JSON으로 받습니다. Edit Document는 서버에서 다시 읽고 시트를 연 뒤 누군가 변경·삭제했으면 저장하지 않고 알려 줍니다. 셀의 <ui>Remove Field</ui>는 <code>$unset</code>을 보냅니다.",
+                "<filters>필터 바</filters>는 중첩 객체·객체 배열 안에 접근해 <code>customer.country</code>·<code>items.sku</code>를 바로 필터링합니다. GeoJSON 필드는 <map>지도 보기</map>로 열립니다.",
+                "드라이버가 읽기 전용 세션을 열 수 없어 <safeMode>안전 모드</safeMode>는 MongoDB 연결의 모든 구문을 쓰기로 취급합니다. Alert·Safe Mode는 각각 확인하고 Read-Only는 모두 차단합니다."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "컬렉션, 인덱스 및 검증기",
+            "paragraphs": [
+                "<structure>Structure 탭</structure>은 인덱스별 필드를 키 순서와 hashed·text·2dsphere·wildcard 같은 종류로 나열합니다. Show DDL은 서버가 보고한 모든 옵션을 담아 재구성할 <code>createIndex</code> 호출을 만듭니다.",
+                "같은 탭에서 컬렉션 전체 필드 이름을 바꾸거나 제거합니다. 변경마다 <code>updateMany</code> 하나를 Preview SQL에 표시하며 <code>$jsonSchema</code> 검증기가 선언한 필드도 바뀝니다. 인덱스·검색 인덱스·뷰가 이름을 계속 사용하면 쓰기 전에 저장을 거부합니다.",
+                "<ui>New Table</ui>은 필드를 <code>$jsonSchema</code> 검증기로 구성한 컬렉션을 만든 뒤 나열한 인덱스를 만듭니다. 뷰·시계열 컬렉션은 사이드바에 표시되며 뷰는 읽기 전용입니다."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "백업",
+            "paragraphs": [
+                "<backup>Backup Dump</backup>는 선택한 데이터베이스마다 {dumpTool}로 gzip 아카이브를 쓰며 연결 호스트, Auth Database, SRV·TLS 설정을 사용합니다. 단일 컬렉션으로 좁힐 수도 있습니다. Restore Dump는 선택한 데이터베이스에 mongorestore를 실행하고 기존 내용은 유지합니다. 먼저 Mac에 MongoDB Database Tools를 설치하세요."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "데이터 이동",
+            "paragraphs": [
+                "{importFormats} 파일을 컬렉션에 <importData>가져오고</importData> 컬렉션·결과를 {exportFormats}로 <export>내보냅니다</export>.",
+                "MQL 내보내기는 mongosh에서 실행하는 <code>insertMany</code> 호출의 <code>.js</code> 파일이며 체크하면 컬렉션별 인덱스·검증기도 포함합니다. 최상위 값은 유형을 유지하지만 하위 문서·배열의 유형 값, 예를 들어 배열 안 ObjectId는 문자열로 기록됩니다. 그런 컬렉션은 JSON으로 내보내거나 mongodump로 백업하세요."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "mongodb-compass",
+                "anchor": "compass",
+                "text": "MongoDB Compass는 MongoDB 공식 GUI입니다. 집계 파이프라인을 단계별로 구성해 각 단계 후 미리 보고 문서 표본으로 컬렉션 스키마를 분석하며 실행 계획을 그립니다. 파이프라인을 시각적으로 만들거나 한 컬렉션 구조를 조사할 때 고르세요. TablePro는 MongoDB를 여러 데이터베이스와 같은 앱에서 다룰 때 맞습니다.",
+                "notes": [
+                    "compass-natural-language"
+                ]
+            }
+        ],
+        "notes": {
+            "compass-natural-language": "자연어 질문에서 쿼리를 작성할 수도 있습니다."
+        }
+    },
+    "faq": [
+        {
+            "id": "mongosh",
+            "question": "쿼리 탭은 mongosh인가요?",
+            "answer": "아니요. mongosh 구문을 받아 TablePro 안의 JavaScriptCore에서 실행하는 셸입니다. 대부분 mongosh 코드는 그대로 실행됩니다. 차이 하나는 32비트 범위 밖 정수를 64비트 정수로 저장하는 것으로 mongosh는 double로 저장하니 같게 하려면 <code>Double()</code>로 감싸세요."
+        },
+        {
+            "id": "query-plan",
+            "question": "쿼리 계획은 어떻게 보나요?",
+            "answer": "쿼리 탭의 커서에 <code>.explain(\"executionStats\")</code>를 연결하세요. 계획은 문서로 반환되며 MongoDB 연결에는 계획 다이어그램이 없습니다."
+        },
+        {
+            "id": "users",
+            "question": "데이터베이스 사용자는 어떻게 나열하나요?",
+            "answer": "<code>db.runCommand({usersInfo: 1})</code>을 실행하세요. 셸은 <code>db.getUsers()</code>·<code>db.createUser()</code>를 파싱하지 않습니다."
+        }
+    ],
+    "related": [
+        {
+            "label": "안전하게 데이터 탐색 및 편집",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "SQL 이외의 쿼리 언어",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "가져오기, 내보내기 및 백업",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "TablePro와 다른 데이터베이스 클라이언트 비교",
+            "href": "/compare"
+        }
+    ]
+}

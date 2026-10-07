@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 Teradata 用戶端",
+        "description": "透過 TD2、TDNEGO 登入 Teradata Vantage，支援明文或 TLS 工作階段，瀏覽資料庫、使用者、程序和巨集，並建立修改資料表。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "Teradata 用戶端"
+    },
+    "engine": "teradata",
+    "breadcrumb": "Teradata",
+    "header": {
+        "title": "適用於 {devices} 的 Teradata 用戶端",
+        "lead": "透過 TD2 或 TDNEGO 登入，瀏覽資料庫、使用者及其資料表、檢視表、預存程序和巨集，以原生 Swift 驅動程式查詢編輯，無須安裝 Teradata 用戶端軟體。"
+    },
+    "asset": "mac-db-teradata-sidebar",
+    "links": {
+        "network": "/features/connections#network",
+        "objects": "/features/schema#objects",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "連線與登入",
+            "paragraphs": [
+                "填寫主機、使用者名稱和密碼。任何接受 TD2 登入的 Vantage 均可，不檢查版本。Options 的 <ui>Logon Mechanism</ui> 接受 <code>TD2</code> 或 <code>TDNEGO</code>；僅需不同於帳號預設資料庫時填寫 <ui>Database</ui>。",
+                "預設連接埠使用明文工作階段。任意 SSL 模式將工作階段移至閘道 WebSocket 端點的 443 連接埠，不可變更。Verify CA 需 CA 憑證，Verify Identity 用該憑證驗證鏈和主機名稱，未提供時使用系統信任存放區。",
+                "除非指令碼需要 ANSI 或 TERA 提交規則及工作階段大小寫區分，<ui>Transaction Mode</ui> 保持 <code>DEFAULT</code>。堡壘主機後的系統透過 <network>SSH 通道</network>存取。<ui>Import from URL…</ui> 接受 <code>teradata://</code>，macOS 不會將其作為連結開啟。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查詢與編輯",
+            "paragraphs": [
+                "Teradata 中資料庫和使用者都是命名空間，均在側欄頂層顯示其資料表和檢視表。繫結第二個資料庫的分頁保持同一工作階段，在陳述式前執行 <code>DATABASE</code>。",
+                "預存程序列在側欄，巨集位於 Functions 下，各自在<objects>唯讀分頁中開啟原始碼</objects>。",
+                "Teradata 沒有 <code>LIMIT</code>，資料表第一頁使用 <code>TOP</code>，後續使用 <code>QUALIFY ROW_NUMBER()</code>。<explain>EXPLAIN</explain> 傳回原始文字計畫。列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示每個陳述式。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "結構",
+            "paragraphs": [
+                "從 <structure>Structure 分頁</structure>建立資料表和修改欄位。資料表 DDL 檢視顯示含條件約束的完整定義。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "透過<importData>匯入</importData>載入 {importFormats}，資料表或結果儲存為 {exportFormats}。<copy>Copy To</copy> 將資料表、列或兩者傳送至其他 Teradata 連線，拒絕複製至其他引擎。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "logon-mechanism",
+            "question": "為什麼登入機制被忽略？",
+            "answer": "請用大寫。驅動程式不識別的值，例如小寫 <code>tdnego</code>，會依 <code>TD2</code> 讀取。"
+        },
+        {
+            "id": "tls-check",
+            "question": "如何知道工作階段已加密？",
+            "answer": "請用 Required (skip verify) 或驗證模式測試。Preferred 在 TLS 連接埠不可達時退回明文，因此交握失敗也可能顯示連線成功。"
+        }
+    ],
+    "related": [
+        {
+            "label": "撰寫、執行與理解查詢",
+            "href": "/features/querying"
+        },
+        {
+            "label": "結構、比較與同步",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Snowflake，另一種資料倉儲",
+            "href": "/snowflake-client"
+        },
+        {
+            "label": "Trino，跨 catalog 查詢",
+            "href": "/trino-client"
+        }
+    ]
+}

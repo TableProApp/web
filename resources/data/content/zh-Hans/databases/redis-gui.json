@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "适用于 {macDevices} 的 Redis GUI",
+        "description": "以冒号分层的树浏览 Redis 键，编辑名称、TTL、字符串值，在 Standalone、Sentinel、Cluster 用 redis-cli 引号规则执行命令。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "Redis GUI"
+    },
+    "engine": "redis",
+    "breadcrumb": "Redis",
+    "header": {
+        "title": "适用于 {macDevices} 的 Redis GUI",
+        "lead": "以冒号分层的树浏览键，一眼查看各键类型、TTL 和长度，在单服务器、Sentinel 管理的主节点或 Redis Cluster 上按 redis-cli 引号规则运行 Redis 命令。"
+    },
+    "asset": "mac-db-redis-keys",
+    "links": {
+        "cloudAuth": "/features/connections#cloud-auth",
+        "editing": "/features/data-editing#documents-and-keys",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接",
+            "paragraphs": [
+                "选择 <ui>Connection Mode</ui>。Standalone 填主机端口。Sentinel 填一个或多个 Sentinel 节点和主组名，跟随法定多数找到主节点，并在故障转移后跟随迁移。Cluster 以任意可达成员为种子，读取分片映射，将命令送往拥有其键的分片。",
+                "用密码登录，或填写 Username 以 Redis 6 ACL 用户登录。Amazon ElastiCache 选择 <cloudAuth>AWS IAM</cloudAuth> 模式，用短期令牌作为密码；ElastiCache IAM 需开启 TLS。",
+                "新连接 TLS 关闭。Upstash、Redis Cloud 等服务要求 TLS，粘贴 <code>rediss://</code> URL 会开启。无明文回退，Preferred 等同 Required。Valkey 服务器与 Redis 连接方式相同。",
+                "侧栏从 <code>db0</code> 起列出各编号数据库，点击原地浏览。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "键和命令",
+            "paragraphs": [
+                "键名在每个冒号或 Options 标签页设置的分隔符处分为文件夹。每键一行含 Key、Type、TTL、Length、Value。字符串完整显示；hash、list、set、sorted set、stream 显示开头条目，Length 标明数量。非有效 UTF-8 值（如 gzip 数据）在十六进制编辑器打开。",
+                "<editing>网格中</editing>编辑键名运行 <code>RENAME</code>，TTL 运行 <code>EXPIRE</code> 或 <code>PERSIST</code>，字符串值运行 <code>SET</code>。Add Row 用 <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> 或 <code>SET</code> 写所选类型。筛选栏在服务器用 <code>SCAN MATCH</code>、<code>SCAN TYPE</code> 按 Redis glob 模式匹配键名并限定类型。",
+                "编辑器每语句接受一条命令，按 redis-cli 引号规则，无法识别的命令原样发送。<code>DB 3 GET key</code> 不移动会话而在其他数据库执行单条命令。<code>MULTI</code> 块内各命令返回 <code>QUEUED</code>，直到 <code>EXEC</code> 按顺序返回所有响应。",
+                "<safeMode>安全模式</safeMode>将包括 <code>GET</code> 的所有 Redis 命令视为写入，Alert、Safe Mode 逐条确认，Read-Only 全部阻止。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先确认。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "将键或命令结果<export>导出</export>为 {exportFormats}。Redis 不提供导入，请在编辑器用命令加载数据。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 和 iPad",
+            "paragraphs": [
+                "iPhone、iPad 在 Query 标签页运行 Redis 命令，应用不提供浏览键。连接接受密码、来自文件、粘贴文本或 PKCS#12 包的 CA 或客户端证书 TLS，以及密码或密钥登录的 SSH 隧道。Sentinel、Cluster 仅限 Mac。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": {
+        "items": [
+            {
+                "product": "redis-insight",
+                "text": "Redis Insight 是 Redis 官方工具。除键浏览器和命令 Workbench，还有 Pub/Sub 工作区、命令分析器、慢日志检查及内存分析。监控调优 Redis 部署时选择它；Redis 与日常 SQL 数据库一起使用时，TablePro 更合适。",
+                "notes": [
+                    "redis-insight-copilot"
+                ]
+            }
+        ],
+        "notes": {
+            "redis-insight-copilot": "Redis Copilot 回答 Redis 问题，并从自然语言构建搜索查询。"
+        }
+    },
+    "faq": [
+        {
+            "id": "acl-scan",
+            "question": "为什么 ACL 用户的键树为空？",
+            "answer": "键树用 <code>SCAN</code> 读取键名，用 <code>TYPE</code> 读取类型。授予两者，如 <code>ACL SETUSER app +scan +type</code>，再右击侧栏 <ui>Keys</ui> 选 <ui>Refresh</ui>。"
+        },
+        {
+            "id": "select",
+            "question": "为什么 SELECT 不改变侧栏？",
+            "answer": "<code>SELECT</code> 仅移动编辑器会话，后续命令在该数据库运行，侧栏和键树保持点击的位置。点击侧栏数据库同时移动两者，或给单条命令加 <code>DB</code> 及数据库编号前缀。"
+        },
+        {
+            "id": "managed",
+            "question": "为什么托管 Redis 服务列出不存在的数据库？",
+            "answer": "Upstash、Redis Cloud、ElastiCache 等拒绝 <code>CONFIG</code>，TablePro 无法读取数据库数而列出默认范围。仅一个数据库的服务中，打开 <code>db0</code> 之外的数据库显示服务器错误。"
+        }
+    ],
+    "related": [
+        {
+            "label": "安全浏览和编辑数据",
+            "href": "/features/data-editing#documents-and-keys"
+        },
+        {
+            "label": "连接、隧道和凭据",
+            "href": "/features/connections"
+        },
+        {
+            "label": "适用于 iPhone 和 iPad 的 TablePro",
+            "href": "/ios"
+        },
+        {
+            "label": "对比 TablePro 和其他数据库客户端",
+            "href": "/compare"
+        }
+    ]
+}

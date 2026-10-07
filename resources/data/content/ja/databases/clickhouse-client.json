@@ -1,0 +1,102 @@
+{
+    "seo": {
+        "title": "{devices} 用 ClickHouse クライアント",
+        "description": "HTTP/HTTPS で ClickHouse をクエリ。Plan、Pipeline、Estimate の EXPLAIN を確認し、MergeTree のパーツとパーティション、ミューテーションを管理。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "ClickHouse クライアント"
+    },
+    "engine": "clickhouse",
+    "breadcrumb": "ClickHouse",
+    "header": {
+        "title": "{devices} 用 ClickHouse クライアント",
+        "lead": "ClickHouse の HTTP インターフェイスで分析 SQL を実行し、クエリのプラン、パイプラインや推定行数を確認できます。テーブルの Parts タブでは MergeTree のパーツとパーティションを管理します。長いクエリは実行中に読み取った行数を報告し、Stop はサーバー上で停止します。"
+    },
+    "asset": "mac-db-clickhouse-parts",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "map": "/features/querying#map",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "ホスト、HTTP ポート、ユーザーと、必要ならデータベースを指定します。データベースはその場で切り替え、既存タブは開いたときのデータベースに留まります。<ui>View > Sidebar as Tree</ui> でサーバーのデータベースを展開できるツリーとして表示します。",
+                "SSL モードを選ぶと HTTPS に切り替わります。443 または ClickHouse Cloud の 8443 ポートは Verify Identity を有効にし、CA ファイルまたはシステムの信頼ストアで証明書を検証します。Verify CA は CA ファイルが必要です。クライアント証明書と鍵で相互 TLS が必要なサーバーに接続できます。",
+                "TLS なしではネットワーク上に平文 HTTP を送る代わりに、<network>SSH トンネル</network> 経由でリモートサーバーに接続してください。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "クエリと編集",
+            "paragraphs": [
+                "各クエリは固有の ID を持ち、進捗を要求するため、長いクエリも読み取った行数を随時報告します。Stop はその ID の <code>KILL QUERY</code> を送り、接続のクエリタイムアウトもサーバーに伝わります。",
+                "<explain>Explain メニュー</explain> は Plan、Pipeline、AST、Syntax、Estimate を提供します。字下げされた出力を図やツリーにし、Estimate ではクエリが読む予定の行、マークとパーツを示します。",
+                "グリッドの編集は <editing>Preview SQL</editing> を確認後、<code>INSERT</code>、<code>ALTER TABLE … UPDATE</code> と <code>ALTER TABLE … DELETE</code> で送ります。ClickHouse は更新と削除をバックグラウンドミューテーションとして実行するため、保存は受付済みであり適用済みではありません。<code>system.mutations</code> で進捗を確認できます。マテリアライズドビューは読み取り専用です。",
+                "ClickHouse の point や ring タプルを含む結果は <map>地図ビュー</map> で開けます。独自の <code>FORMAT</code> 句を持つクエリはサーバーの生の出力を一つのカラムに表示するため、グリッド表示には句を省いてください。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "テーブル、パーツとパーティション",
+            "paragraphs": [
+                "テーブルには Structure、Indexes、DDL、Parts タブがあります。Indexes はソートキーとデータスキップインデックスを示し、DDL はエンジンと設定を含む完全な <code>CREATE TABLE</code> を表示します。",
+                "Parts は <code>system.parts</code> のすべてのパーツを、パーティション、行数、ディスクサイズ、変更日時と active フラグとともに表示し、Optimize、Drop Partition、Detach Partition を実行できます。",
+                "<structure>Structure タブ</structure> はカラムの追加・変更・削除とデータスキップインデックスの削除に対応します。ソートキーと主キーは作成時に固定されるため、データスキップインデックスは <code>ALTER TABLE … ADD INDEX</code> で追加し、他の変更にはテーブルを再作成します。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "監視",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> は実行中クエリ、マージ、パーツのミューテーションとディスク使用量を表示し、他のセッションを <ui>Terminate Session</ui> とともに一覧表示します。遅いクエリは <code>system.query_log</code> の、直近で終了して一秒以上かかったクエリから取得します。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "<importData>インポート</importData> で {importFormats} ファイルを読み込み、テーブルやクエリ結果を {exportFormats} にエクスポートします。一つでも無効な UTF-8 値を含むカラムはグリッドで 16 進表示します。テキストで読むには <code>toValidUTF8(column)</code> を SELECT してください。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "settings",
+            "question": "一つのクエリだけ設定を変更するには？",
+            "answer": "<code>SELECT … SETTINGS max_threads = 4</code> など、クエリ自体に <code>SETTINGS</code> 句を入れます。各文はセッションのない独立した HTTP リクエストなので、別の <code>SET</code> は次の文まで残りません。"
+        },
+        {
+            "id": "native-port",
+            "question": "ポート 9000 で接続できないのはなぜですか？",
+            "answer": "9000 は ClickHouse のネイティブ TCP ポートで、TablePro は使いません。HTTP ポート、または ClickHouse Cloud の HTTPS 8443 に接続し、HTTP インターフェイスが有効か確認してください。そのポートの <code>/ping</code> リクエストは <code>Ok.</code> と返します。"
+        }
+    ],
+    "related": [
+        {
+            "label": "EXPLAIN プランとクエリ性能",
+            "href": "/features/querying#performance"
+        },
+        {
+            "label": "スキーマ、比較と同期",
+            "href": "/features/schema"
+        },
+        {
+            "label": "インポート、エクスポートとデータファイル",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "分析ファイル向け DuckDB",
+            "href": "/duckdb-client"
+        }
+    ]
+}

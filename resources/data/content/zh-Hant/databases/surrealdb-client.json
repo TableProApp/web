@@ -1,0 +1,86 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 SurrealDB 用戶端",
+        "description": "以根、命名空間、資料庫、記錄或權杖層級登入 SurrealDB，執行 SurrealQL，瀏覽命名空間，逐欄位編輯記錄。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "SurrealDB 用戶端"
+    },
+    "engine": "surrealdb",
+    "breadcrumb": "SurrealDB",
+    "header": {
+        "title": "適用於 {devices} 的 SurrealDB 用戶端",
+        "lead": "以使用者定義所在的層級登入，執行 SurrealQL 指令碼，逐欄位編輯記錄；記錄連結、日期時間及小數均保留各自型別。"
+    },
+    "asset": "mac-db-surrealdb-query",
+    "links": {
+        "network": "/features/connections#network",
+        "filters": "/features/data-editing#filters",
+        "explain": "/features/querying#performance",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "連線與登入",
+            "paragraphs": [
+                "SurrealDB 無法從認證資訊判斷使用者定義在哪一級，所以由 <ui>Auth Level</ui> 指定，表單再要求其餘資訊。Root 使用使用者名稱和密碼，Namespace 增加命名空間，Database 再增加資料庫。Record Access 需要命名空間、資料庫、<code>DEFINE ACCESS</code> 定義的存取方式及登入欄位。Token 接受已持有的 JWT，包括 SurrealDB Cloud 的權杖。",
+                "驅動程式透過 HTTP RPC 端點傳輸 CBOR，記錄連結、日期時間、期間、小數和 UUID 保留型別。<code>surrealdb://</code> 連結開啟已填好的連線表單，遠端伺服器可經 <network>SSH 通道</network>存取。",
+                "SSL 預設 Disabled，即明文 HTTP，其他模式均使用 HTTPS。Verify CA、Verify Identity 對照系統信任存放區驗證憑證，忽略 SSL/TLS 面板的 CA 檔案，因此請先在 macOS 安裝私有 CA。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SurrealQL 與記錄",
+            "paragraphs": [
+                "編輯器執行整個 SurrealQL 指令碼，包括兩筆記錄間的 <code>RELATE</code>，並提供常用陳述式補全。<explain>Explain 與 Explain Full</explain> 加上 <code>EXPLAIN</code> 重新執行目前查詢，顯示其解析方式及是否使用索引；計畫以原始文字傳回。",
+                "命名空間位於側欄頂層，內含資料庫。兩者隨每次請求傳送，切換均無須重新連線。只有根使用者能看到所有命名空間。",
+                "修改儲存格執行 <code>UPDATE</code>，僅用具型別參數設定改動的欄位，讓 <code>int</code> 仍為 <code>int</code>，不觸碰計算的 <code>FUTURE</code> 欄位或其他寫入者的改動。新列留空 <code>id</code> 自動產生，或填寫 <code>table:id</code>。<code>SCHEMALESS</code> 資料表從取得的記錄決定欄位。",
+                "<filters>篩選</filters>轉換為 SurrealQL，Raw SQL 列接受單一條件，例如圖遍歷。寫入、含 <code>;</code> 或註解、呼叫 <code>fn::</code> 或 <code>http::</code> 的條件被拒絕，請在編輯器執行。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "結構",
+            "paragraphs": [
+                "Structure 分頁唯讀。在編輯器用 <code>DEFINE FIELD</code>、<code>DEFINE INDEX</code> 建立修改欄位和索引。從選單刪除命名空間或資料庫，多選時對全部項目僅確認一次。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "不提供匯入。將資料表或結果<export>匯出</export>為 CSV、JSON 或 XLSX。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "transactions",
+            "question": "可以執行交易嗎？",
+            "answer": "同一查詢內可以。HTTP RPC 不在請求間保留交易，請將 <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> 作為一個編輯器查詢傳送。"
+        },
+        {
+            "id": "relations",
+            "question": "如何修改關係的 in 或 out？",
+            "answer": "無法從格線修改：儲存會停止，指出欄位，保留所有待處理編輯。<code>UPDATE</code> 也不移動關係，需刪除後 <code>RELATE</code> 新的一對記錄。"
+        }
+    ],
+    "related": [
+        {
+            "label": "MongoDB，另一種文件資料庫",
+            "href": "/mongodb-client"
+        },
+        {
+            "label": "SQL 以外的查詢語言",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "安全瀏覽與編輯資料",
+            "href": "/features/data-editing"
+        }
+    ]
+}

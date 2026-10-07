@@ -1,0 +1,183 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 MySQL、MariaDB 客户端",
+        "description": "通过 SSH、SSL/TLS 或 AWS IAM 连接 MySQL、MariaDB，同一驱动支持 TiDB、OceanBase 和 Databend，提供 EXPLAIN 图和 mysqldump 备份。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "MySQL、MariaDB 客户端"
+    },
+    "engine": "mysql",
+    "breadcrumb": "MySQL 和 MariaDB",
+    "header": {
+        "title": "适用于 {devices} 的 MySQL、MariaDB 客户端",
+        "lead": "使用感知结构的自动补全编写 SQL，预览每条语句后编辑行，并管理用户、会话和备份。同一驱动也支持 MariaDB、TiDB、OceanBase 和 Databend。"
+    },
+    "asset": "mac-db-mysql-query",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "importApps": "/features/connections#import",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "erDiagram": "/features/schema#er-diagram"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接",
+            "paragraphs": [
+                "提供主机、端口和用户，或粘贴 <code>mysql://</code> URL。使用 <code>caching_sha2_password</code> 的 MySQL 8 账户首次即可连接。数据库可留空后再选择，切换数据库在同一连接中完成。",
+                "新连接的 SSL 默认为 Preferred，先尝试 TLS，仅在 TLS 握手失败后退回明文。严格验证请选择 Verify CA 或 Verify Identity，并使用提供商证书。",
+                "私有网络服务器可通过 <network>SSH 隧道（按需使用跳板机）、SOCKS5 代理、Cloudflare Access 隧道或自定义隧道命令</network>连接，例如 kubectl port-forward。",
+                "Amazon RDS 和 Aurora 可使用 <cloudAuth>AWS IAM</cloudAuth> 登录，每次连接签发新令牌，也可从 AWS 账户直接导入实例。Google Cloud SQL 由 TablePro 下载并运行 Cloud SQL Auth Proxy。",
+                "从 Sequel Ace 迁移？<importApps>Import from Other App</importApps> 读取其收藏，并在确认后读取其保存在钥匙串中的密码。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查询和编辑",
+            "paragraphs": [
+                "SQL 编辑器从结构补全表名和列名，包括别名和 CTE，可运行光标下的语句或整个脚本。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE 和 EXPLAIN ANALYZE</explain> 绘制为计划图或树，EXPLAIN Compare 显示两次运行间的变化。",
+                "行编辑暂存至保存，<editing>Preview SQL</editing> 先显示确切语句。保存使用绑定参数执行，语句将修改的行数与预期不符时停止。没有主键的表仍可编辑，通过所有列匹配行。",
+                "所有会话使用 utf8mb4，表情符号和非拉丁文本可正确往返。旧客户端通过 Latin 1 写入的数据库文本，可用 UTF-8 via Latin 1 编码按该客户端方式读取。",
+                "分区表列出各分区及边界，例如 <code>VALUES LESS THAN (2024)</code>；表和列注释显示在侧栏及网格列标题中。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "结构",
+            "paragraphs": [
+                "<structure>Structure 标签页</structure> 暂存列、索引、外键、CHECK 约束和生成列的修改，并在执行前显示 DDL。<code>lower(email)</code> 等表达式索引键需要 MySQL 8.0.13 或更高版本。",
+                "例程和触发器及其源码显示在侧栏。<erDiagram>ER 图</erDiagram> 将结构绘制为只读图，可导出为 PNG 或 SQL。",
+                "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 对比两个 MySQL 或 MariaDB 结构或数据，生成使两者一致的脚本。可能导致数据丢失的修改会暂缓，直到明确包含。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "管理",
+            "paragraphs": [
+                "<administer>Users & Roles</administer> 显示每个账户直到单列的权限，并将所有 GRANT 和 REVOKE 暂存为执行前可审查的 SQL。",
+                "Server Dashboard 每隔几秒刷新会话、服务器指标和慢查询。使用 <code>KILL QUERY</code> 取消运行中的查询，<code>KILL</code> 终止会话。没有 PROCESS 权限的账户仅看到自己的会话。",
+                "表维护执行 OPTIMIZE TABLE、ANALYZE TABLE、CHECK TABLE 和 REPAIR TABLE，并在执行前显示语句。",
+                "<backup>Backup Dump</backup> 运行 {dumpTool}，Restore Dump 运行 mysql 客户端，两者均通过连接的 SSH 隧道；请先在 Mac 安装 MySQL 客户端工具。还原会替换转储指定的对象。",
+                "离开时可设置连接在空闲数分钟后释放，以归还服务器连接名额；下次查询会新建连接。若会话持有重新连接会丢失的状态，例如未结束事务或临时表，TablePro 会保持连接。"
+            ],
+            "asset": "mac-users-roles-mysql"
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "<importData>导入</importData> {importFormats} 文件，为目标表映射列，并选择行失败时的处理方式。表或结果可导出为 {exportFormats}。",
+                "<copy>Copy To</copy> 将表、数据或两者发送到 MySQL 或其他引擎的连接，并列出所有需要近似转换的列类型。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 和 iPad",
+            "paragraphs": [
+                "iPhone 和 iPad 上可按卡片浏览表、筛选排序、编辑有主键的行，并在 Query 标签页运行 SQL。连接提供 Required 到 Verify Identity 的 SSL，以及密码或密钥 SSH 隧道，不支持 SSH 跳板机。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "mariadb",
+            "title": "MariaDB",
+            "paragraphs": [
+                "MariaDB 通过与 MySQL 相同的驱动连接，提供相同 SSH、SSL/TLS 和 AWS IAM 选项。<code>mariadb://</code> URL 创建 MariaDB 连接。",
+                "MariaDB 以 LONGTEXT 存储的 JSON 列在 JSON 编辑器中打开。虚拟和持久列会被识别并从生成的 INSERT、UPDATE 语句中排除。序列在侧栏中只读列出，系统版本表则作为普通表列出。",
+                "Users & Roles、Server Dashboard、表维护和 {dumpTool} 备份与 MySQL 相同。"
+            ]
+        },
+        {
+            "engine": "tidb",
+            "title": "TiDB",
+            "paragraphs": [
+                "连接到 TiDB 服务器的 SQL 端口，不要连接 PD 或 TiKV。TiDB Cloud 使用相同端口，请将 SSL Mode 设为 Required。",
+                "Stop 对自己的会话发送 <code>KILL TIDB QUERY</code>。在 TiProxy 或负载均衡器后需要 Global Kill，TiDB 自 6.1 版本起默认启用。",
+                "EXPLAIN 和 EXPLAIN ANALYZE 以文本显示 TiDB 计划。TiDB 7.2 及以上在集群启用后于 Structure 标签页显示 CHECK 约束，可创建外键，表维护提供 ANALYZE TABLE。",
+                "请选 TiDB 而非 MySQL 作为连接类型，使侧栏、类型选择器和 EXPLAIN 按 TiDB 运作。"
+            ]
+        },
+        {
+            "engine": "oceanbase",
+            "title": "OceanBase",
+            "paragraphs": [
+                "用户名需包含租户：observer 使用 <code>root@test</code>，通过监听 2883 端口的 OBProxy 时使用 <code>root@test#obcluster</code>。",
+                "连接时检查服务器是否声明为 OceanBase，因此主机或端口错误会立即失败。TablePro 查询超时取代 OceanBase 自身的语句限制。",
+                "EXPLAIN 以文本显示计划。无主键的表通过所有列匹配来编辑；保存若将修改多行或零行，会停止并说明。",
+                "请选 OceanBase 作为连接类型。以 MySQL 保存的连接访问 OceanBase 时，不提供上述功能。"
+            ]
+        },
+        {
+            "engine": "databend",
+            "title": "Databend",
+            "paragraphs": [
+                "Databend 通过 MySQL handler 而非 HTTP API 连接。请选择 Databend 连接类型；MySQL 连接访问 Databend 服务器会被拒绝，并要求更改类型。",
+                "Databend Cloud 需联系支持开启仓库的 MySQL 端点，再从 Connect 对话框复制主机和端口。",
+                "Structure 标签页可编辑列和 CHECK 约束，重命名表、视图和列。EXPLAIN、EXPLAIN ANALYZE 以文本显示计划，表维护提供 ANALYZE TABLE。",
+                "ARRAY、MAP 和 TUPLE 单元格不能从文本写入，请在编辑器中用 UPDATE 修改。"
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "sequel-ace",
+                "text": "Sequel Ace 继承 Sequel Pro，是 MySQL、MariaDB 的 Mac 应用。MCP 服务器默认关闭，未修改时只读，没有 AI 聊天。仅使用 MySQL 和 MariaDB 时较合适。"
+            },
+            {
+                "product": "phpmyadmin",
+                "text": "phpMyAdmin 在 Web 服务器上运行，可使用任意浏览器，cPanel 也包含它。服务器只能通过主机管理面板访问，而桌面应用无法直达数据库时较合适。"
+            },
+            {
+                "product": "heidisql",
+                "text": "HeidiSQL 是源自 Windows 的老牌开源客户端，如今也提供 macOS 应用。"
+            }
+        ],
+        "notes": {}
+    },
+    "faq": [
+        {
+            "id": "socket",
+            "question": "能通过本地 MySQL socket 连接吗？",
+            "answer": "不能。连接使用 TCP，服务器需开启网络功能。要访问远程服务器上的 socket，请通过 SSH 隧道转发。"
+        },
+        {
+            "id": "mysqldump",
+            "question": "需要安装 MySQL 客户端工具吗？",
+            "answer": "仅 Backup Dump 和 Restore Dump 需要，它们运行 {dumpTool} 和 mysql。连接、查询和编辑使用应用内置驱动。"
+        },
+        {
+            "id": "er-diagram",
+            "question": "能在 ER 图中设计结构吗？",
+            "answer": "不能。<erDiagram>ER 图</erDiagram> 是可导出的只读结构图，请在 Structure 标签页或用 SQL 修改表。"
+        }
+    ],
+    "related": [
+        {
+            "label": "编写、运行和理解查询",
+            "href": "/features/querying"
+        },
+        {
+            "label": "结构、对比和同步",
+            "href": "/features/schema"
+        },
+        {
+            "label": "连接、隧道和凭据",
+            "href": "/features/connections"
+        },
+        {
+            "label": "对比 TablePro 和其他数据库客户端",
+            "href": "/compare"
+        }
+    ]
+}

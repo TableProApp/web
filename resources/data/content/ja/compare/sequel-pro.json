@@ -1,0 +1,175 @@
+{
+    "seo": {
+        "title": "Mac の Sequel Pro 代替：Sequel Ace と TablePro",
+        "description": "Sequel Pro の最終リリースは 2016 年で Apple silicon に Rosetta が必要。Sequel Ace が引き継ぎ、TablePro はその接続をインポートできます。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "Mac の Sequel Pro 代替"
+    },
+    "header": {
+        "title": "Mac の Sequel Pro 代替",
+        "lead": "Sequel Pro の開発は終了しています。最終リリースは 2016 年の Intel ビルドで、Homebrew からは削除され、このページを確認した時点ではウェブサイトにもアクセスできませんでした。Sequel Ace が MySQL と MariaDB 向けに開発を引き継いでいます。より多くのデータベースを一つのクライアントで使いたい場合は TablePro も選択肢になり、Sequel Ace の接続をインポートできます。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "MySQL と MariaDB だけでなく PostgreSQL、SQL Server、SQLite、Redis や MongoDB も使う。",
+            "選んだ AI プロバイダーを使う、Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。",
+            "MySQL と MariaDB に接続する無料の iPhone・iPad アプリが欲しい。",
+            "別のインターフェイスを学び、Sequel Ace の接続をパスワードとともに移したい。"
+        ],
+        "competitor": [
+            "慣れた Sequel Pro のインターフェイスを無料で、継続保守される形で使いたい。",
+            "MySQL と MariaDB だけを使う。",
+            "アプリは Mac App Store からインストールする。"
+        ],
+        "competitorTitle": "Sequel Ace が向く場合"
+    },
+    "glance": {
+        "intro": "Sequel Pro の最終リリースは {status.date} の {status.version} です。表は現在の状況を TablePro と並べています。継続保守される後継との比較は TablePro vs Sequel Ace をご覧ください。"
+    },
+    "rows": {
+        "homebrew": {
+            "label": "Homebrew",
+            "tablepro": "tablepro cask として Homebrew でインストール"
+        },
+        "website": {
+            "label": "ウェブサイト",
+            "tablepro": "公開中、リリースノートとドキュメントあり"
+        },
+        "rosetta": {
+            "label": "Apple silicon",
+            "tablepro": "Apple silicon 専用ビルドで Rosetta 不要"
+        },
+        "successor": {
+            "label": "後継",
+            "tablepro": "別プロジェクト。Sequel Pro ではなく Sequel Ace の接続をインポート"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Sequel Pro は無料で、MIT ライセンスのオープンソースです。",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "コードは、MySQL と MariaDB 用のインターフェイスを引き継いで保守される Sequel Ace に受け継がれています。",
+                "cite": [
+                    "cells.successor"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro は保守中で Apple silicon と Intel の別ビルドがあります。Sequel Pro の最終リリースは Intel ビルドで、Apple silicon には Rosetta が必要です。",
+                "cite": [
+                    "status",
+                    "cells.rosetta"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>MySQL と MariaDB</link> に加え、PostgreSQL、SQL Server、SQLite、Redis や MongoDB など他のエンジンにも接続します。",
+                "cite": [],
+                "feature": null,
+                "href": "/mysql-client"
+            },
+            {
+                "text": "Sequel Ace の接続をパスワード付きでインポートするため、Sequel Ace を途中のステップにできます。<link>TablePro vs Sequel Ace</link> をご覧ください。",
+                "cite": [],
+                "feature": null,
+                "href": "/compare/sequel-ace"
+            },
+            {
+                "text": "<link>AI アシスタントと MCP サーバー</link> は Mac アプリで無料です。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro は Sequel Pro のお気に入りを直接読み込めません。先に Sequel Ace に移します。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Sequel Pro とはインターフェイスが違うため、一部の操作位置を学び直す必要があります。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "MySQL と MariaDB は TCP 接続のみで、ローカルソケットファイルでは接続しません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "一部の機能は有料です。Starter は {starterExamples} などを追加します。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro に Sequel Pro のインポーターはありません。Sequel Ace 経由で移行します。お気に入りを Sequel Ace に移し、そこから TablePro にインポートしてください。",
+        "steps": [],
+        "after": [
+            "Sequel Ace の「Migrating from Sequel Pro」ガイドに従い、お気に入りファイルと設定をコピーします。ガイドによるとパスワードは自動移行せず、移行スクリプトがあり、SSH 鍵は再選択が必要です。",
+            "TablePro で <ui>File > Import > Import from Other App…</ui> を選び、Sequel Ace を選択して <ui>Include passwords</ui> を有効にします。",
+            "どちらのアプリも削除する前に、パスワードのある接続を開いて移行を確認してください。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "apple-silicon",
+            "question": "Sequel Pro は Apple silicon で動きますか？",
+            "answer": "{status.version} は Intel ビルドなので Rosetta 経由のみです。Apple は macOS 28 以降、特定の古いゲームだけに Rosetta を残すとしています。",
+            "href": null
+        },
+        {
+            "id": "import",
+            "question": "Sequel Pro のお気に入りをインポートできますか？",
+            "answer": "直接はできません。Sequel Ace の移行ガイドでコピーし、そこからインポートします。パスワードは自動移行しないため、インポート前に Sequel Ace で確認するか TablePro に入力してください。",
+            "href": null
+        },
+        {
+            "id": "which",
+            "question": "Sequel Ace と TablePro のどちらに移るべきですか？",
+            "answer": "Sequel Pro の MySQL・MariaDB インターフェイスを無料で継続保守される形で使うなら Sequel Ace。他のエンジン、iPhone・iPad アプリやアプリ内 AI アシスタントが欲しいなら TablePro です。<link>TablePro と Sequel Ace を比較</link>。",
+            "href": "/compare/sequel-ace"
+        },
+        {
+            "id": "heidisql",
+            "question": "HeidiSQL も Mac の選択肢ですか？",
+            "answer": "Apple silicon の Mac なら選べます。MySQL、MariaDB など用の無料クライアント HeidiSQL は 2026 年 1 月から Mac ビルドを公開し、Intel Mac 版はありません。<link>TablePro と HeidiSQL を比較</link>。",
+            "href": "/compare/heidisql"
+        }
+    ],
+    "notes": {
+        "sequel-pro-databases": "MySQL と MariaDB",
+        "sequel-pro-cask-removed": "Homebrew は開発終了として cask を無効にし Sequel Ace を案内、{date} に削除",
+        "sequel-pro-site-down": "確認時に sequelpro.com は読み込めず、リポジトリの未解決 issue もサイト停止を報告",
+        "sequel-pro-rosetta": "Intel ビルド。Apple silicon は Rosetta が必要で、Apple は macOS 28 以降特定の古いゲームだけに残すとしています。",
+        "sequel-pro-successor": "Sequel Pro の「続編」と名乗り、そのコードを基にする Sequel Ace"
+    }
+}

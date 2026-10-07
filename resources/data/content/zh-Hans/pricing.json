@@ -1,0 +1,100 @@
+{
+    "seo": {
+        "title": "定价",
+        "description": "TablePro 可免费下载使用。Starter 和 Team 方案为 Mac 应用增加可选功能，按月、按年或一次性付费。价格以美元计。"
+    },
+    "og": {
+        "kicker": "定价",
+        "title": "免费使用。付费方案增加可选功能。"
+    },
+    "header": {
+        "title": "定价",
+        "lead": "Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 方案可增加可选功能。iPhone 和 iPad 应用免费，且无应用内购买。"
+    },
+    "plans": {
+        "title": "方案"
+    },
+    "features": {
+        "title": "付费方案增加哪些功能",
+        "lead": "只有以下功能需要付费方案，且全部位于 Mac 应用中。Team 包含 Starter 的全部功能。连接任何受支持的引擎，以及使用 AI 助手、MCP 服务器或安全模式，都无需许可证。"
+    },
+    "license": {
+        "title": "许可证如何运作",
+        "items": {
+            "macs": {
+                "term": "Mac 台数",
+                "body": "Starter 许可证最多可在 {activations} 台 Mac 上激活。Team 每个席位对应一台已激活的 Mac，也包括购买者自己的 Mac。iPhone 和 iPad 应用从不占用许可证或席位。"
+            },
+            "activate": {
+                "term": "激活",
+                "body": "在 Mac 上的 TablePro 中，进入 <ui>Settings > License</ui> 输入许可证密钥。若要在另一台 Mac 使用，请在<account>您的账户</account>的 Machines 页面移除旧设备。"
+            },
+            "checks": {
+                "term": "验证",
+                "body": "TablePro 每次启动都会验证许可证签名，并每隔 {revalidateDays} 天向 TablePro 服务器确认许可证。如果 Mac 无法连接服务器，付费功能仍可继续使用 {graceDays} 天。确认时会发送许可证密钥、经过哈希处理的机器 ID、Mac 名称，以及应用和 macOS 版本。"
+            },
+            "ends": {
+                "term": "方案结束时",
+                "body": "月付或年付方案结束后，付费功能会停止，其余应用功能仍按免费版的方式继续运作。"
+            },
+            "oneTime": {
+                "term": "一次性购买",
+                "body": "一次性购买只需支付一次，且无到期日。"
+            }
+        },
+        "lapse": {
+            "summary": "方案结束时各付费功能的行为",
+            "intro": "各付费功能会按以下方式停止："
+        },
+        "terms": "<terms>服务条款</terms>说明了许可证允许的使用范围。"
+    },
+    "billing": {
+        "title": "账单",
+        "merchant": "{merchant} 是 TablePro 的名义销售商，负责向您销售方案、收款、根据账单地址计算销售税或增值税，并通过邮件发送收据和发票。价格以美元列示。",
+        "renewal": "月付和年付方案会自动续订，直到您在<account>您的账户</account>或 {merchant} 客户门户中取消。取消后，方案可继续使用至已付费期间结束，您也可在此之前恢复订阅。如果续费失败，{merchant} 会通过邮件发送更新银行卡的链接，并在约三周内重试扣款。",
+        "portal": "通过 {merchant} 购买的订单，其发票、收据、付款方式和取消订阅均可在 <portal>{merchant} 客户门户</portal>中管理，使用结账时的邮箱地址登录即可。您账户中的 <account>Billing & invoices</account> 也可打开该门户。"
+    },
+    "refunds": {
+        "title": "退款",
+        "body": "所有方案均可在购买后 {refundDays} 天内申请退款；年付方案还可在最近一次续订后的相同期限内退款。<link>退款政策</link>说明了申请方法及许可证后续处理方式。"
+    },
+    "team": {
+        "title": "Team 方案",
+        "seats": "Team 方案按席位定价，可选 {min} 至 {max} 个席位。每个席位对应一台已激活的 Mac，包含购买者自己的 Mac；因此使用两台 Mac 工作的人需要两个席位。",
+        "invites": "方案购买者在自己的账户中管理团队。他们通过邮件邀请成员，每个邀请都包含一次性代码，一周后过期，并需要一个空闲席位。",
+        "changes": "月付或年付 Team 方案可在账户中更改席位数，差额会反映在下一张账单中。若要为一次性购买的 Team 方案增加席位，请发送邮件至 <email>{email}</email>。",
+        "account": "在账户中管理团队"
+    },
+    "openSource": {
+        "title": "开源",
+        "body": "TablePro 采用 AGPLv3 开源，包括付费功能的代码。从源代码构建的版本会以与发行版相同的方式检查许可证。",
+        "agpl": "AGPL 对运行 TablePro 不设条件，包括在任何规模的公司中用于工作。其条件适用于分发软件，以及通过网络向他人提供修改后的版本。",
+        "github": "在 GitHub 查看"
+    },
+    "faq": {
+        "title": "方案常见问题",
+        "more": "更多方案和许可证问题",
+        "items": {
+            "free": {
+                "question": "TablePro 免费吗？",
+                "answer": "是的。Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 方案为 Mac 应用增加可选功能。iPhone 和 iPad 应用免费，且无应用内购买。"
+            },
+            "ios-license": {
+                "question": "iPhone 和 iPad 应用需要许可证吗？",
+                "answer": "不需要。它没有付费功能，也从不要求许可证。iPhone 和 iPad 上的 iCloud 同步免费；若要与 Mac 同步，Mac 需要 Starter 或 Team。"
+            },
+            "seats": {
+                "question": "Team 的一个席位对应一个人吗？",
+                "answer": "不是。一个席位对应一台已激活的 Mac。使用两台 Mac 工作的人需要两个席位。"
+            },
+            "offline": {
+                "question": "付费功能需要互联网连接吗？",
+                "answer": "只需不定期连接。许可证每隔 {revalidateDays} 天向 TablePro 服务器确认一次，没有连接时付费功能仍可使用 {graceDays} 天。"
+            },
+            "lost-key": {
+                "question": "在哪里找到许可证密钥？",
+                "answer": "密钥在结账后收到的邮件中。您也可使用购买时的邮箱地址登录<account>您的账户</account>，其中会显示密钥和所有已激活的 Mac。"
+            }
+        }
+    }
+}

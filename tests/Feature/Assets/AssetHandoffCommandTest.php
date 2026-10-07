@@ -137,6 +137,14 @@ it('writes the document and the bundled slot data, and --check holds both to the
     $this->artisan('assets:handoff', ['--check' => true, ...$options])
         ->expectsOutputToContain('asset-slots.json is out of date')
         ->assertFailed();
+
+    $this->artisan('assets:handoff', $options)->assertSuccessful();
+    $localeFile = "{$dir}/asset-locales/ja.json";
+    expect($localeFile)->toBeFile();
+    file_put_contents($localeFile, '{}');
+    $this->artisan('assets:handoff', ['--check' => true, ...$options])
+        ->expectsOutputToContain('asset-locales/ja.json is out of date')
+        ->assertFailed();
 });
 
 it('renders the same bytes every time, with no machine-specific path', function (): void {

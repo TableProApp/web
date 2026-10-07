@@ -1,5 +1,5 @@
 import { useI18n } from '@/i18n';
-import { ASSET_MANIFEST, type AssetId } from '@/lib/data/assets';
+import { assetManifest, type AssetId } from '@/lib/data/assets';
 import { renderAssetSlot } from './asset-slot-view';
 
 interface AssetSlotProps {
@@ -36,5 +36,5 @@ interface AssetSlotProps {
 export default function AssetSlot({ id, sizes, className, caption = true, priority }: AssetSlotProps) {
     const { locale, m } = useI18n();
 
-    return renderAssetSlot(ASSET_MANIFEST, id, { locale, labels: m.assets, sizes, className, caption, priority });
+    return renderAssetSlot(assetManifest(locale), id, { locale, labels: m.assets, sizes, className, caption, priority });
 }

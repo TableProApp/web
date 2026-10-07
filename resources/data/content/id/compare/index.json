@@ -1,0 +1,240 @@
+{
+    "seo": {
+        "title": "Bandingkan TablePro dengan klien lain",
+        "description": "Bandingkan TablePro dengan TablePlus, DBeaver, DataGrip, Navicat, Beekeeper Studio, Sequel Ace, Postico, HeidiSQL, dan phpMyAdmin, dengan sumber resmi."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro dan klien database lainnya"
+    },
+    "header": {
+        "title": "Bandingkan TablePro dengan klien database lain",
+        "lead": "Setiap perbandingan menjelaskan keunggulan klien lain, perbedaan TablePro, dan hal yang tidak dilakukan TablePro. Fakta produk lain berasal dari sumber resmi dan menyertakan tanggal pemeriksaan."
+    },
+    "bySituation": {
+        "title": "Pilih sesuai kebutuhan",
+        "lead": "Satu baris untuk setiap klien, dengan tautan ke perbandingan lengkap.",
+        "items": {
+            "tableplus": "Pilih TablePlus jika Anda juga bekerja di Windows atau Linux, atau terhubung ke Vertica maupun Greenplum.",
+            "dbeaver": "Pilih DBeaver jika Anda menginginkan klien gratis untuk Windows, macOS, dan Linux yang terhubung ke mesin apa pun dengan driver JDBC.",
+            "datagrip": "Pilih DataGrip jika Anda menginginkan IDE database JetBrains dengan kontrol versi bawaan, dan pekerjaan Anda nonkomersial atau Anda sudah membayar alat JetBrains.",
+            "navicat": "Pilih Navicat jika Anda memerlukan pemodelan data atau Navicat Cloud untuk bekerja bersama tim, dan lisensi perpetual sesuai anggaran.",
+            "beekeeper-studio": "Pilih Beekeeper Studio jika Anda menginginkan klien sumber terbuka yang bekerja sama di Windows, macOS, dan Linux.",
+            "sequel-ace": "Pilih Sequel Ace jika Anda hanya menggunakan MySQL dan MariaDB serta menginginkan aplikasi Mac gratis bersumber terbuka dari Mac App Store.",
+            "sequel-pro": "Masih menggunakan Sequel Pro? Rilis terakhirnya, {status.version}, berasal dari {status.date}. Sequel Ace melanjutkannya, dan TablePro mengimpor koneksi Sequel Ace.",
+            "postico": "Pilih Postico jika Anda hanya menggunakan PostgreSQL dan menginginkan aplikasi Mac khusus dengan lisensi sekali bayar.",
+            "heidisql": "Pilih HeidiSQL jika Anda sudah menggunakannya di Windows dan menginginkan klien gratis yang sama pada Mac dengan Apple silicon.",
+            "phpmyadmin": "Pilih phpMyAdmin jika Anda mengelola MySQL atau MariaDB dalam peramban, misalnya pada hosting yang menyediakannya melalui cPanel."
+        }
+    },
+    "atAGlance": {
+        "title": "Sekilas",
+        "lead": "Platform, kode sumber, dan harga setiap klien yang dibandingkan. Harga adalah harga daftar dalam dolar AS, sebelum pajak.",
+        "caption": "Klien dibandingkan pada {date}. Sumber tercantum di akhir halaman."
+    },
+    "openSource": {
+        "title": "Klien sumber terbuka di Mac",
+        "lead": "Klien ini menerbitkan kode sumber dengan lisensi sumber terbuka. Sequel Pro tidak lagi dipelihara, dan phpMyAdmin berjalan pada server web yang dibuka melalui peramban.",
+        "caption": "Klien sumber terbuka, diperiksa pada {date}."
+    },
+    "switching": {
+        "title": "Beralih ke TablePro",
+        "body": "TablePro mengimpor koneksi tersimpan dari {apps}, termasuk kata sandi tersimpan. Koneksi Navicat berasal dari berkas yang Anda ekspor di Navicat.",
+        "none": "Tidak ada pengimpor untuk {others}. Tambahkan koneksi secara manual atau tempel URL koneksi.",
+        "link": "Bawa koneksi Anda",
+        "docs": "Panduan beralih dalam dokumentasi"
+    },
+    "method": {
+        "title": "Cara halaman ini ditulis",
+        "paragraphs": [
+            "Setiap fakta produk lain berasal dari sumber resmi: situs, dokumentasi, repositori, catatan rilis, atau halaman toko produk tersebut, atau pengelola paket maupun penyedia platform yang mendistribusikannya. Setiap halaman mencantumkan sumber beserta tanggal pemeriksaan.",
+            "Informasi TablePro berasal dari data yang sama dengan bagian situs lainnya, sehingga harga, platform, dan fitur sesuai dengan halaman harga serta fitur.",
+            "Tidak ada angka kecepatan, memori, atau waktu mulai karena tidak ditemukan pengukuran klien yang dapat direproduksi orang lain untuk dikutip.",
+            "Harga dan fitur berubah. Jika informasi sudah usang, <issues>buka issue di GitHub</issues>."
+        ]
+    },
+    "labels": {
+        "factsChecked": "Fakta diperiksa pada {date}",
+        "orList": {
+            "separator": ", ",
+            "last": " atau "
+        },
+        "sourcesLink": "Sumber",
+        "shortAnswer": {
+            "title": "Jawaban singkat",
+            "tablepro": "Pilih TablePro jika",
+            "competitor": "Pilih {name} jika"
+        },
+        "glance": {
+            "title": "Sekilas",
+            "caption": "TablePro dan {name}, dibandingkan pada {date}. Sumber tercantum di akhir halaman.",
+            "feature": "Perbandingan",
+            "more": "Selengkapnya tentang {name}"
+        },
+        "rows": {
+            "platforms": "Platform",
+            "technology": "Dibuat dengan",
+            "price": "Harga",
+            "licence": "Sumber terbuka",
+            "databases": "Database",
+            "ai": "Asisten AI",
+            "mcp": "Server MCP",
+            "ios": "iPhone dan iPad",
+            "sync": "Sinkronisasi",
+            "import": "Beralih ke TablePro"
+        },
+        "cell": {
+            "yes": "Didukung",
+            "no": "Tidak didukung",
+            "partial": "Sebagian",
+            "edition": "Pada edisi {edition}",
+            "since": "Sejak versi {version}",
+            "sinceDated": "Sejak versi {version}, {date}",
+            "source": "Sumber",
+            "none": "Tidak berlaku"
+        },
+        "platforms": {
+            "mac": "Mac",
+            "windows": "Windows",
+            "linux": "Linux",
+            "ios": "iPhone dan iPad",
+            "web": "Aplikasi web pada server"
+        },
+        "macRequirement": "macOS {version} atau lebih baru",
+        "languages": {
+            "en": "Inggris",
+            "vi": "Vietnam",
+            "zh-Hans": "Mandarin sederhana",
+            "zh-Hant": "Mandarin tradisional",
+            "ko": "Korea",
+            "tr": "Turki"
+        },
+        "builds": {
+            "both": "Versi Apple silicon dan Intel",
+            "universal": "Berjalan native pada Apple silicon dan Intel",
+            "arm64": "Hanya Apple silicon",
+            "x86_64": "Hanya Intel"
+        },
+        "licence": {
+            "yes": "Ya: {licence}",
+            "yesEdition": "Ya: {licence}, untuk edisi {edition}",
+            "no": "Tidak"
+        },
+        "currency": {
+            "pattern": "US$ {amount}",
+            "decimal": ",",
+            "group": "."
+        },
+        "price": {
+            "free": "Gratis",
+            "labelled": "{label}: {price}",
+            "amount": {
+                "once": "{amount} sekali bayar",
+                "month": "{amount} per bulan",
+                "year": "{amount} per tahun",
+                "none": "{amount}"
+            },
+            "per": {
+                "device": "{price} per perangkat",
+                "user": "{price} per pengguna",
+                "seat": "{price} per kursi",
+                "license": "{price} per lisensi",
+                "none": "{price}"
+            },
+            "units": {
+                "one": "{price}, untuk satu perangkat",
+                "other": "{price}, untuk hingga {count} perangkat"
+            },
+            "minUnits": {
+                "one": "{price}, minimum satu kursi",
+                "other": "{price}, minimum {count} kursi"
+            },
+            "renewal": "Perpanjangan",
+            "ios": "Aplikasi iPhone dan iPad",
+            "macAppStore": "Mac App Store",
+            "audience": {
+                "individual": "Individu",
+                "organization": "Organisasi",
+                "personal": "Pribadi",
+                "commercial": "Komersial",
+                "student": "Pelajar",
+                "non-commercial": "Penggunaan nonkomersial"
+            },
+            "continuity": {
+                "1": "tahun pertama",
+                "2": "tahun kedua",
+                "3": "mulai tahun ketiga"
+            },
+            "withContinuity": "{label}, {year}"
+        },
+        "tablepro": {
+            "technology": "Swift, dengan driver database native",
+            "priceFree": "Gratis digunakan. Paket berbayar menambahkan fitur opsional ke aplikasi Mac.",
+            "starter": "Starter: {monthly} per bulan, {yearly} per tahun, atau {lifetime} sekali bayar",
+            "team": "Team: {monthly} per bulan, {yearly} per tahun, atau {lifetime} sekali bayar per kursi, minimum {min} kursi",
+            "iosPrice": "Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi.",
+            "licence": "Ya: {licence}, termasuk kode fitur berbayar",
+            "databases": "{engines} dan lainnya",
+            "databasesLink": "Database yang didukung",
+            "ai": "Gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, di cloud atau Mac",
+            "mcp": "Gratis dalam aplikasi Mac. Hanya mendengarkan pada Mac, dan setiap koneksi menentukan tindakan yang diizinkan untuk aplikasi luar",
+            "ios": "Aplikasi gratis terpisah, tanpa pembelian dalam aplikasi",
+            "sync": "iCloud Sync: bagian dari {tier} di Mac, gratis di iPhone dan iPad"
+        },
+        "import": {
+            "yes": "TablePro mengimpor koneksi {name}, termasuk kata sandi tersimpan.",
+            "yesFile": "TablePro mengimpor koneksi {name} dari berkas {format} yang Anda ekspor di {name}, termasuk kata sandi tersimpan.",
+            "noPasswords": "TablePro mengimpor koneksi {name}. Kata sandinya tidak disertakan.",
+            "none": "TablePro tidak memiliki pengimpor untuk {name}.",
+            "link": "Cara beralih"
+        },
+        "tiers": {
+            "starter": "Starter",
+            "team": "Team"
+        },
+        "tierBadge": "Paket {tier}",
+        "sections": {
+            "stronger": "Keunggulan {name}",
+            "differs": "Perbedaan TablePro",
+            "limits": "Hal yang tidak dilakukan TablePro",
+            "switching": "Beralih dari {name}",
+            "faq": "Pertanyaan",
+            "sources": "Sumber",
+            "cta": "Unduh TablePro"
+        },
+        "switching": {
+            "docs": "Panduan beralih dalam dokumentasi"
+        },
+        "sources": {
+            "intro": "Fakta tentang {name} diperiksa pada {date} berdasarkan halaman ini. Harga adalah harga daftar dalam dolar AS, sebelum pajak.",
+            "retrieved": "diperiksa pada {date}",
+            "latest": "Rilis {name} terbaru pada tanggal itu: {version}, diterbitkan {date}.",
+            "tablepro": "Kolom TablePro menjelaskan TablePro {macVersion} untuk Mac dan {iosVersion} untuk iPhone dan iPad."
+        },
+        "cta": {
+            "body": "TablePro gratis diunduh. Paket berbayar menambahkan fitur opsional ke aplikasi Mac.",
+            "pricing": "Lihat harga",
+            "hub": "Semua perbandingan"
+        },
+        "status": {
+            "active": "Dipertahankan",
+            "discontinued": "Dihentikan"
+        },
+        "hub": {
+            "client": "Klien",
+            "platforms": "Platform",
+            "openSource": "Sumber terbuka",
+            "free": "Gratis digunakan",
+            "paid": "Paket berbayar",
+            "paidFrom": "Mulai {price}",
+            "noPaid": "Tidak ada",
+            "freeYes": "Ya",
+            "freeNo": "Tidak",
+            "license": "Lisensi",
+            "status": "Status",
+            "latest": "Rilis terbaru",
+            "latestValue": "{version}, {date}",
+            "compareLink": "TablePro vs {name}"
+        }
+    }
+}

@@ -1,0 +1,87 @@
+{
+    "seo": {
+        "title": "{devices}용 etcd GUI",
+        "description": "접두사로 etcd 키를 탐색하고 그리드에서 값·리스를 변경하며 etcdctl 방식의 get·put·watch·lease 명령을 실행합니다. TLS·SSH 터널도 지원합니다."
+    },
+    "og": {
+        "kicker": "데이터베이스",
+        "title": "etcd GUI"
+    },
+    "engine": "etcd",
+    "breadcrumb": "etcd",
+    "header": {
+        "title": "{devices}용 etcd GUI",
+        "lead": "클러스터 키를 접두사로 탐색하고 그리드에서 값·리스를 변경하며 편집기에서 <code>get --prefix</code>, <code>lease grant</code>, <code>member list</code> 같은 etcdctl 방식 명령을 실행합니다."
+    },
+    "asset": "mac-db-etcd-keys",
+    "links": {
+        "network": "/features/connections#network",
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "연결",
+            "paragraphs": [
+                "호스트와 클라이언트 포트를 입력합니다. etcd에는 데이터베이스가 없어 Database 필드도 없습니다. 피어 포트는 JSON 게이트웨이가 없어 연결되지 않으니 클라이언트 포트를 쓰세요. 엔드포인트 하나만 받으며 장애 조치하지 않으므로 실행 중인 멤버를 고르세요.",
+                "인증 없는 클러스터는 <ui>Username</ui>과 <ui>Password</ui>를 비우세요. <code>root</code> 역할 없는 사용자도 연결해 역할이 허용하는 키를 탐색하지만 <code>endpoint status</code> 및 <code>user</code>·<code>role</code> 명령은 권한 거부를 반환합니다.",
+                "TLS는 SSL 영역 대신 Advanced의 <ui>TLS Mode</ui>로 설정하며 초기값은 Disabled입니다. Required (skip verify)는 검사 없이 암호화, Verify CA는 지정 CA 파일로 인증서 검사, Verify Identity는 호스트 이름도 검사합니다. 클라이언트 인증서·키는 상호 TLS를 추가합니다.",
+                "배스천 뒤의 클러스터에는 <network>SSH 터널</network>로 접근합니다. <code>etcd://</code>와 <code>etcds://</code> URL을 가져올 수 있지만 둘 다 자체로 TLS를 켜지 않습니다."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "키 탐색 및 명령 실행",
+            "paragraphs": [
+                "<ui>Key Prefix Root</ui>에 <code>/app</code> 등을 넣어 연결 범위를 하위 트리 하나로 제한합니다. 사이드바는 그 아래 첫 경로 구간으로 키를 묶고 각 행에 값, 버전, 수정·생성 리비전과 리스를 표시합니다.",
+                "편집 저장은 명령을 전송합니다. 새 값·리스는 키를 다시 put, NULL 리스는 리스를 제거, 이름 변경은 새 이름을 put하고 기존 이름을 삭제합니다. 리비전 열은 etcd가 관리해 수정하면 저장을 멈추고 열을 알립니다.",
+                "편집기는 etcdctl 방식 명령·플래그를 완성합니다. <code>get</code>의 <code>--prefix</code>·<code>--limit</code>·<code>--keys-only</code>·정렬, <code>put</code>의 <code>--lease</code>, <code>del</code>, <code>watch</code>, <code>lease</code> 하위 명령, <code>member list</code>, <code>endpoint status</code>·<code>health</code>, <code>compaction</code> 및 <code>auth</code>·<code>user</code>·<code>role</code>을 받습니다. 다른 명령은 서버에 보내지 않고 알 수 없는 명령으로 반환합니다.",
+                "etcd 드라이버는 읽기 전용 세션을 열 수 없어 <safeMode>안전 모드</safeMode>가 모든 명령을 쓰기로 취급합니다. Alert·Safe Mode 수준은 매번 확인하고 Read-Only는 모두 차단합니다."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "리스 및 클러스터",
+            "paragraphs": [
+                "<code>lease grant</code>, <code>revoke</code>, <code>--keys</code>를 붙인 <code>timetolive</code>, <code>list</code>·<code>keep-alive</code>로 리스를 관리하고 <code>compaction</code>으로 리비전 기록을 줄입니다. etcd에는 Server Dashboard가 없어 편집기의 <code>member list</code>, <code>endpoint status</code>·<code>endpoint health</code>로 클러스터 상태를 봅니다.",
+                "편집기에서 <code>auth enable</code>을 실행하면 전체 클러스터 인증이 켜집니다. 사용자 이름·비밀번호가 있는 연결은 계속 작동하고 둘 다 없는 연결은 자격 증명으로 다시 열어야 합니다."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "데이터 이동",
+            "paragraphs": [
+                "가져오기는 없습니다. 키나 명령 결과를 CSV, JSON 또는 XLSX로 <export>내보냅니다</export>."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "lease-ids",
+            "question": "리스 ID가 다른 리스를 가리키는 이유는 무엇인가요?",
+            "answer": "리스 ID는 십진수·십육진수를 받고 문자가 있으면 십육진수로 인식합니다. 숫자만 있는 십육진 ID는 <code>--lease=0x69407712</code>처럼 <code>0x</code>를 붙이지 않으면 십진수로 읽혀 다른 리스가 됩니다."
+        },
+        {
+            "id": "binary-values",
+            "question": "바이너리 값을 편집할 수 있나요?",
+            "answer": "불가능합니다. 유효한 UTF-8이 아닌 값은 그리드에 base64라고 표시해 보여 주며 입력한 텍스트는 UTF-8로 전송합니다. 바이너리 값은 <code>etcdctl</code>로 쓰세요."
+        }
+    ],
+    "related": [
+        {
+            "label": "안전하게 데이터 탐색 및 편집",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "연결, 터널 및 자격 증명",
+            "href": "/features/connections"
+        },
+        {
+            "label": "다른 키 공간 Redis",
+            "href": "/redis-gui"
+        }
+    ]
+}

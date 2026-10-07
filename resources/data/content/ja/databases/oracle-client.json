@@ -1,0 +1,116 @@
+{
+    "seo": {
+        "title": "{devices} 用 Oracle Database クライアント",
+        "description": "Instant Client なしで Oracle Database に接続し、PL/SQL・SQL*Plus スクリプトを実行。DBMS_OUTPUT を読み、サーバーで Data Pump エクスポートを開始できます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Oracle Database クライアント"
+    },
+    "engine": "oracle",
+    "breadcrumb": "Oracle",
+    "header": {
+        "title": "{devices} 用 Oracle Database クライアント",
+        "lead": "ドライバーは Swift で Oracle の TNS プロトコルを使うため、Instant Client など Oracle のソフトを Mac に入れる必要はありません。SQL*Plus 向けのスクリプトを含む SQL と PL/SQL を実行し、各結果の横で DBMS_OUTPUT の出力を読めます。"
+    },
+    "asset": "mac-db-oracle-plsql",
+    "links": {
+        "network": "/features/connections#network",
+        "parameters": "/features/querying#history",
+        "editing": "/features/data-editing#edit",
+        "safeMode": "/features/data-editing#safe-mode",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "importData": "/features/import-export#import",
+        "serverExport": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "ホスト、リスナーポートと Service Name を入力し、サービスのないインスタンスでは <ui>Connection Type</ui> を SID にします。ユーザー名とパスワードで Normal、SYSDBA または SYSOPER ロールとしてログインします。",
+                "Native Network Encryption は設定不要で、サーバーが要求すると SHA-2 チェックサム付き AES を提示します。<ui>Network Encryption</ui> は提示内容を変更します。TLS は TCPS 用 Required、または CA 証明書付き Verify CA・Verify Identity を選びます。新規接続は SSL 無効で、Preferred は平文 TCP のままです。",
+                "Oracle Autonomous Database では mTLS ではなく TLS 接続文字列からホスト、ポートとサービス名をコピーし、SSL を Required か Verify CA にします。ウォレットファイルは読まないため、データベースは相互 TLS なしの TLS を受け付ける必要があります。",
+                "RAC SCAN リスナー、共有サーバーやデータベース前のロードバランサーは設定不要です。プライベートネットワークのリスナーには <network>SSH トンネル</network> で接続します。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SQL、PL/SQL とトランザクション",
+            "paragraphs": [
+                "PL/SQL ブロックやストアドユニットはセミコロンの数によらず一つの文として実行するので、中にカーソルを置いて実行してください。SQL*Plus や SQL Developer のスクリプトはそのまま動作し、<code>/</code> だけの行は直前のユニットを終えます。コンパイル失敗は Oracle のエラーを一行ずつ位置付きで表示します。",
+                "<code>DBMS_OUTPUT.PUT_LINE</code> の各行は出力した文の結果と表示し、<code>SET SERVEROUTPUT ON</code> は不要です。無名ブロックの <code>:name</code> はパネルで入力する <parameters>クエリパラメーター</parameters> です。",
+                "各文は成功時にコミットします。変更を保持するには <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> や <code>LOCK TABLE</code> で始めると、グリッド保存も含む以後のすべては <code>COMMIT</code> か <code>ROLLBACK</code> を待ちます。",
+                "各ユーザーがスキーマで、<code>Cmd+K</code> は再接続せずアクティブなものを切り替えます。行編集は <editing>Preview SQL</editing> で保留します。<code>EXECUTE IMMEDIATE</code> 経由でも削除や truncate を行うブロックは実行前に <safeMode>危険なクエリの警告</safeMode> を表示します。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "スキーマ",
+            "paragraphs": [
+                "<structure>Structure タブ</structure> は <code>ALTER TABLE</code> でカラムを追加、名前変更、変更・削除し、インデックスを作成します。大文字小文字を区別する名前は二重引用符で囲みます。テーブル情報には主キー、外部キーと CREATE TABLE DDL も含みます。",
+                "パーティションテーブルは配下に位置付きのパーティションを一覧表示し、サブパーティションをその中に表示します。一つを問い合わせるには <code>SELECT * FROM orders PARTITION (p2024)</code> を使います。",
+                "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は二つの Oracle スキーマやデータを比較し、各ユニット後に <code>/</code> 行を入れた SQL*Plus や SQLcl 用スクリプトを保存します。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "サーバー上のエクスポート",
+            "paragraphs": [
+                "<serverExport>Server-Side Export</serverExport> は自分の権限でテーブルをサーバーの <code>DIRECTORY</code> オブジェクトに書く Data Pump ジョブを開始します。Mac には保存しません。開始を報告した後もジョブは動き続けるので、<code>DBA_DATAPUMP_JOBS</code> で確認してください。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "{importFormats} ファイルを <importData>インポート</importData> できます。データファイルが新しいテーブルを作る時、提案名は大文字で Oracle の長さ制限に収まります。テーブルや結果は {exportFormats} でエクスポートします。SQL エクスポートは各ルーチンとトリガー後に <code>/</code> 行を付け、SQL*Plus で復元できます。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone と iPad",
+            "paragraphs": [
+                "iPhone と iPad では Oracle ドライバーをアプリに同梱します。接続フォームは Service Name または SID、SYSDBA と SYSOPER ロール、Network Encryption 設定を受け付けます。テーブルをカードで閲覧し、主キーのある行を編集して Query タブで SQL を実行できます。テーブルの作成・変更は Mac で行います。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "pluggable-database",
+            "question": "アプリケーションのテーブルが一つも見えないのはなぜですか？",
+            "answer": "コンテナデータベースに接続した可能性があります。プラガブルデータベースは <code>XE</code> 内の <code>XEPDB1</code> など独自のサービス名を持ちます。サーバーの <code>lsnrctl services</code> でリスナーが応答する名前を一覧表示します。"
+        },
+        {
+            "id": "sqlplus-commands",
+            "question": "SET SERVEROUTPUT ON が失敗するのはなぜですか？",
+            "answer": "<code>SET SERVEROUTPUT ON</code>、<code>SHOW ERRORS</code>、<code>EXEC</code> などの SQL*Plus コマンドは SQL ではなく、サーバーは拒否します。接続直後から出力は有効なので削除してください。<code>EXEC p</code> は <code>BEGIN p; END;</code> と書きます。"
+        },
+        {
+            "id": "password-verifier",
+            "question": "古い 10G パスワード検証値を持つアカウントも接続できますか？",
+            "answer": "はい。ただし使われる DES ベースのハッシュは Oracle が非推奨にしています。<code>ALTER USER … IDENTIFIED BY</code> でパスワードを変更し、<code>dba_users</code> の <code>password_versions</code> が 11G または 12C になったか確認してください。"
+        }
+    ],
+    "related": [
+        {
+            "label": "クエリを書き、実行し、理解する",
+            "href": "/features/querying"
+        },
+        {
+            "label": "バックアップとサーバー側エクスポート",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "スキーマ、比較と同期",
+            "href": "/features/schema"
+        },
+        {
+            "label": "iPhone と iPad 用 TablePro",
+            "href": "/ios"
+        }
+    ]
+}

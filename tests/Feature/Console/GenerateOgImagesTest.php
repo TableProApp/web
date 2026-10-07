@@ -113,7 +113,7 @@ it('rejects an unknown type or language before rendering anything', function (ar
     expect($this->rendered)->toBe([]);
 })->with([
     'type' => [['--type' => 'banana']],
-    'locale' => [['--locale' => 'fr']],
+    'locale' => [['--locale' => 'xx']],
 ]);
 
 it('renders nothing and says so when no page has the slug', function (): void {

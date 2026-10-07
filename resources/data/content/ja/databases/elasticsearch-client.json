@@ -1,0 +1,83 @@
+{
+    "seo": {
+        "title": "{devices} 用 Elasticsearch クライアント",
+        "description": "コンソールで Query DSL を送信し、Elasticsearch インデックスをテーブルとして閲覧。パスワードか API キーでログインし、_id で文書を編集、並べ替え、絞り込めます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Elasticsearch クライアント"
+    },
+    "engine": "elasticsearch",
+    "breadcrumb": "Elasticsearch",
+    "header": {
+        "title": "{devices} 用 Elasticsearch クライアント",
+        "lead": "Query DSL リクエスト用のコンソールと、各インデックスをテーブルとして読み、<code>_id</code> で文書を編集するグリッド。どちらも SQL ではなく、すべての操作はクラスタへの REST リクエストです。"
+    },
+    "asset": "mac-db-elasticsearch-console",
+    "links": {
+        "filters": "/features/data-editing#filters",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "接続",
+            "paragraphs": [
+                "クラスタのホストと REST ポートを入力し、<ui>Auth Method</ui> を選びます。Username & Password は HTTP Basic、API Key は <code>Authorization: ApiKey</code> ヘッダーを送るため、API キー作成リクエストが返す <code>encoded</code> 値を貼り付けます。None はセキュリティを切った開発クラスタ向けです。一つのクラスタに接続するため Database フィールドはありません。",
+                "新しい接続の SSL Disabled は平文 HTTP です。それ以外は HTTPS で、Preferred と Required (skip verify) は自己署名証明書を許可し、Verify CA と Verify Identity は検証します。Elasticsearch 8.x は既定でセキュリティと TLS が有効なので、通常 HTTPS と認証情報が必要です。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "インデックスと Query DSL コンソール",
+            "paragraphs": [
+                "コンソールは Kibana Dev Tools のようにメソッド、パスと任意の JSON 本文を受け付けます。例は <code>match</code> クエリを持つ <code>GET /orders/_search</code> です。検索ヒットは行、<code>format=json</code> 付き <code>_cat</code> リクエストや配列応答はテーブル、その他は整形した JSON として表示します。<code>_sql</code> エンドポイントは利用できません。",
+                "サイドバーはインデックスをテーブルとして一覧にし、ドットで始まる名前を隠します。カラムはマッピングから取り、オブジェクトは <code>address.city</code> などのドット区切りパスに展開、nested フィールドは配列の JSON カラムと各リーフのカラムを作ります。各文書には <code>_id</code>、<code>_index</code>、<code>_score</code> があります。",
+                "<filters>カラムフィルター</filters> は <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> クエリになり、Raw SQL フィルター行は <code>name:Widget</code> などの Lucene 構文を <code>query_string</code> として送ります。<code>text</code> フィールドの並べ替えはマッピングにあれば <code>.keyword</code> サブフィールドを使います。",
+                "グリッド編集は <code>_id</code> をキーにした REST 呼び出しとなり、変更は <code>_update</code>、作成・削除は <code>_doc</code> です。新しい行の <code>_id</code> で文書を命名できます。nested 配列は JSON カラムで変更してください。リーフカラムの入力は保存を止め、カラム名を示し、何も送信しません。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "マッピング",
+            "paragraphs": [
+                "TablePro のマッピングは読み取り専用です。Elasticsearch の類似操作 <code>_delete_by_query</code> は非同期で文書ごとに競合を報告するため Truncate はなく、コンソールから送信してください。サイドバーのインデックス削除は確認に表示した DELETE リクエストを送ります。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "エクスポート",
+            "paragraphs": [
+                "インポートはありません。<export>エクスポート</export> は point-in-time と <code>search_after</code> でインデックス全体を読み、結果ウィンドウで制限せず CSV、JSON または XLSX に書き込みます。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "deep-paging",
+            "question": "結果ウィンドウを超えてページを送れますか？",
+            "answer": "はい。Elasticsearch の既定ウィンドウを超えると point-in-time の <code>search_after</code> に切り替えます。切り替えは既定値で行うため、<code>max_result_window</code> を下げたインデックスはその前にエラーになります。設定を既定値に戻してください。"
+        },
+        {
+            "id": "sort-id",
+            "question": "_id で並べ替えても行の順序が同じなのはなぜですか？",
+            "answer": "Elasticsearch は <code>_id</code> や <code>.keyword</code> サブフィールドのない <code>text</code> フィールドで並べ替えできないため、そのカラムをソートから外します。マッピングに keyword サブフィールドを追加するか、keyword フィールドで並べ替えてください。"
+        }
+    ],
+    "related": [
+        {
+            "label": "別の検索エンジン Typesense と Weaviate",
+            "href": "/databases#search"
+        },
+        {
+            "label": "安全にデータを閲覧して編集",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "SQL 以外のクエリ言語",
+            "href": "/features/querying#other-languages"
+        }
+    ]
+}

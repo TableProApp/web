@@ -1,0 +1,103 @@
+{
+    "seo": {
+        "title": "{devices} 用 Turso・libSQL クライアント",
+        "description": "URL とトークンで Turso、自前の sqld や Mac の libSQL ファイルを開きます。SQLite 構文で問い合わせ、テーブル、インデックスとトリガーを変更できます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Turso・libSQL クライアント"
+    },
+    "engine": "turso",
+    "breadcrumb": "Turso と libSQL",
+    "header": {
+        "title": "{devices} 用 Turso・libSQL クライアント",
+        "lead": "URL とトークンで Turso データベースに接続し、SQLite 構文でクエリを実行してテーブル、インデックスとトリガーを変更できます。同じドライバーで自前の sqld サーバーや Mac 上の libSQL ファイルも開けます。"
+    },
+    "asset": "mac-db-turso-remote",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "sqlite": "/sqlite-client",
+        "libsql": "#libsql",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Turso に接続",
+            "paragraphs": [
+                "接続の種類で Turso を選び、<ui>Connection Mode</ui> は <ui>Remote (Turso)</ui> のままにします。<code>.turso.io</code> で終わるデータベースの HTTPS URL を貼り付け、<ui>API Token</ui> 欄にトークンを入れます。トークンは macOS キーチェーンに保存します。両方とも Turso ダッシュボードや <code>turso db show my-db --url</code> と <code>turso db tokens create my-db</code> で取得できます。",
+                "<code>libsql://</code> URL は HTTPS に書き換え、インポートするとリモート接続を作成します。URL が一つのデータベースを指すため、ホスト、ポート、データベース欄はありません。平文 HTTP ではなく HTTPS の URL を使う場合に暗号化し、SSH トンネルはありません。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "クエリと編集",
+            "paragraphs": [
+                "libSQL は SQLite 構文を使うため、閲覧、<explain>EXPLAIN QUERY PLAN</explain> の図、<editing>Preview SQL 付きの編集保留</editing>、エクスポートは <sqlite>SQLite</sqlite> と同じように動作します。",
+                "リモート接続ではトランザクションを使えません。各文は独立した HTTP リクエストで個別にコミットし、<code>BEGIN</code> は「Transactions are not supported in this mode」で失敗します。トランザクションには <libsql>libSQL の節</libsql>で説明するローカル libSQL ファイルが必要です。",
+                "リモートモードでは SQLite 拡張を読み込みません。Turso データベースはサーバーに組み込まれたものを使います。Turso が接続を制限すると、エラーで再試行までの待機秒数を表示します。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "テーブル、インデックスとトリガー",
+            "paragraphs": [
+                "<structure>Structure タブ</structure> はテーブルの作成、カラムとインデックスの追加・削除、トリガーの作成・編集・削除を行います。サイドバーではテーブルを名前変更できますが、ビューはできません。",
+                "リモートデータベースのカラム順や外部キーの変更では、TablePro が再構築スクリプトを生成し、自分で確認・実行します。別々の HTTP リクエストを一つのトランザクションにまとめる必要があるため、代わりに実行することはできません。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "TablePro は Turso や libSQL のインポートに対応しません。Turso CLI や sqld サーバーのインポートで読み込んでください。取り出すにはテーブルやクエリ結果を {exportFormats} に <export>エクスポート</export> できます。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "libsql",
+            "title": "libSQL",
+            "paragraphs": [
+                "自前の sqld サーバーや Mac 上のファイルには libSQL を選びます。Remote モードは Hrana v2 pipeline エンドポイントを提供する任意の sqld に接続でき、この Mac 上で既定ポート 8080 を使うものにも対応します。<code>--auth-jwt-key-file</code> なしで起動したサーバーはトークンを空欄にし、それ以外はサーバーの鍵と一致する JWT を入力します。",
+                "<ui>Local File</ui> モードはドライバー同梱の SQLite で libSQL ファイルを開き、存在しないパスならフォルダも含めて作成します。ローカルファイルはトランザクションを使い、接続の Extensions リストから SQLite 拡張を読み込み、確認後にカラム順や外部キーの再構築を実行します。",
+                "<code>ALTER TABLE … ALTER COLUMN</code> など libSQL だけが理解する文は、SQLite エンジンが受け取るためローカルファイルで失敗します。暗号化 libSQL ファイルは開けません。別の実行中アプリが Turso 埋め込みレプリカとして同期しているファイルは、二つのプログラムの同時アクセスで破損する可能性があるため、決して開かないでください。",
+                "<backup>Backup Dump と Restore Dump</backup> は、ローカル libSQL ファイルに {dumpTool} を実行します。"
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "remote-or-local",
+            "question": "Remote と Local File のどちらを選ぶべきですか？",
+            "answer": "URL でアクセスする Turso データベースや sqld サーバーには Remote、Mac 上の libSQL ファイルには Local File を選びます。後者はトランザクション、SQLite 拡張とバックアップにも対応します。"
+        },
+        {
+            "id": "turso-cli",
+            "question": "Turso CLI のインストールは必要ですか？",
+            "answer": "不要です。Turso ダッシュボードでデータベース URL の表示とトークン作成ができます。TablePro に Turso インポートがないため、ターミナルからデータを読み込む場合は CLI が便利です。"
+        }
+    ],
+    "related": [
+        {
+            "label": "libSQL の基盤となる SQLite",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Cloudflare D1、Cloudflare API 経由の SQLite",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "構造編集と再構築スクリプト",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "エクスポートとバックアップ",
+            "href": "/features/import-export"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+/*
+ * Shared with TableProApp/web and TableProApp/license at resources/css/international.css. Change both in the same release. See docs/shared-files.md.
+ */
+/* Native script fonts supplement Inter without downloading a second UI font. */
+html:lang(ja) {
+  --font-sans: "Inter Variable", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", sans-serif;
+}
+html:lang(ko) {
+  --font-sans: "Inter Variable", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", sans-serif;
+}
+html:lang(zh-Hans) {
+  --font-sans: "Inter Variable", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+}
+html:lang(zh-Hant) {
+  --font-sans: "Inter Variable", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
+}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Http\Client\Request;
@@ -117,14 +118,14 @@ it('is a translated pair, indexed in both locales', function (): void {
     $entry = app(PageRegistry::class)->find('landing.download', []);
 
     expect($entry)->not->toBeNull()
-        ->and($entry->renderLocales)->toBe(['en', 'vi'])
-        ->and($entry->indexableLocales)->toBe(['en', 'vi'])
-        ->and($entry->hreflangCluster())->toBe(['en', 'vi']);
+        ->and($entry->renderLocales)->toBe(Locales::codes())
+        ->and($entry->indexableLocales)->toBe(Locales::codes())
+        ->and($entry->hreflangCluster())->toBe(Locales::codes());
 
     get('/vi/download')->assertInertia(fn(AssertableInertia $page) => $page
         ->where('seo.robots', 'index, follow')
         ->where('seo.canonical', fn(string $url): bool => str_ends_with($url, '/vi/download'))
-        ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->sort()->values()->all() === ['en', 'vi']));
+        ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->sort()->values()->all() === collect(Locales::codes())->sort()->values()->all()));
 });
 
 /*

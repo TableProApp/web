@@ -1,0 +1,171 @@
+{
+    "seo": {
+        "title": "TablePro vs. HeidiSQL: clientes de código aberto",
+        "description": "HeidiSQL é gratuito em Windows, Linux e Macs Apple silicon desde 2026. TablePro é nativo no Mac, iPhone e iPad. Compare bancos, versões e preços."
+    },
+    "og": {
+        "kicker": "Comparação",
+        "title": "TablePro vs. HeidiSQL"
+    },
+    "header": {
+        "title": "TablePro vs. HeidiSQL",
+        "lead": "HeidiSQL é um cliente gratuito e de código aberto que começou no Windows e também funciona no Linux. Desde janeiro de 2026, oferece uma versão Mac para Apple silicon. TablePro é um cliente de código aberto com app Mac para Apple silicon e Intel, um app separado para iPhone e iPad e recursos pagos opcionais no Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Seu Mac tem processador Intel. TablePro tem uma compilação separada para Intel e outra para Apple silicon.",
+            "Você também trabalha com MongoDB, Redis, ClickHouse ou DuckDB, não apenas servidores SQL.",
+            "Você quer senhas salvas no Chaves do macOS e um nível de Safe Mode que peça Touch ID antes de gravar em conexões de produção.",
+            "Você quer um assistente de IA e servidor MCP gratuitos no app para Mac.",
+            "Você também quer um app para iPhone e iPad."
+        ],
+        "competitor": [
+            "Você também trabalha em Windows ou Linux e quer o mesmo cliente gratuito em todos.",
+            "Você se conecta a Firebird, Interbase ou ProxySQL, que TablePro não suporta.",
+            "Você quer todos os recursos gratuitos, sem planos pagos.",
+            "Você conhece HeidiSQL do Windows e quer usá-lo em um Mac com Apple silicon."
+        ]
+    },
+    "glance": {
+        "intro": "A compilação Mac de HeidiSQL acompanha todas as versões desde {cells.macBuild.version}, publicada em {cells.macBuild.date}. Funciona apenas em Apple silicon."
+    },
+    "rows": {
+        "macBuild": {
+            "label": "Versão Mac",
+            "tablepro": "Compilações separadas para Apple silicon e Intel"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "HeidiSQL funciona em Windows, Linux e Mac, permitindo usar um cliente gratuito nos seus computadores.",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Conecta a Firebird, Interbase e ProxySQL, que TablePro não suporta.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "É gratuito e de código aberto sob a GPL, sem planos pagos.",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro funciona em Macs Intel e Apple silicon, com uma compilação separada para cada. A versão Mac de HeidiSQL é apenas para Apple silicon.",
+                "cite": [
+                    "cells.macBuild"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Além de bancos SQL, conecta a MongoDB, Redis, Cassandra, ClickHouse, DuckDB e outros mecanismos, cada um com sua forma de consultar. Veja os <link>bancos de dados compatíveis</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "As senhas ficam no Chaves do macOS, e o nível de <link>Safe Mode</link> de uma conexão pode pedir Touch ID ou senha antes de gravar.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "O <link>assistente de IA e o servidor MCP</link> são gratuitos no app para Mac, com o provedor de IA escolhido por você.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Um <link>app gratuito para iPhone e iPad</link> conecta a MySQL, MariaDB, PostgreSQL, SQL Server e SQLite, entre outros.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Não há app TablePro para Windows ou Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Firebird, Interbase e ProxySQL não estão entre os mecanismos suportados.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Alguns recursos são pagos. Starter adiciona recursos como {starterExamples}, enquanto HeidiSQL não tem planos pagos.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro não tem importador para HeidiSQL. Adicione cada sessão como uma conexão TablePro: preencha o formulário ou cole uma URL que começa com mysql://, postgresql:// ou sqlserver:// em <ui>File > Import > Import from URL…</ui>",
+        "steps": [],
+        "after": [
+            "Configure um túnel SSH na aba <ui>Network</ui> da conexão. No Mac, hosts intermediários também são suportados.",
+            "As senhas ficam no Chaves do macOS.",
+            "O histórico de consultas começa do zero no TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "wine",
+            "question": "Ainda preciso de Wine para executar HeidiSQL no Mac?",
+            "answer": "Não em um Mac com Apple silicon. Desde a versão {cells.macBuild.version}, HeidiSQL publica um app Mac para Apple silicon. Não há compilação Mac para processadores Intel.",
+            "href": null
+        },
+        {
+            "id": "databases",
+            "question": "Quais bancos os dois clientes suportam?",
+            "answer": "O site de HeidiSQL lista MySQL, MariaDB, SQL Server, PostgreSQL, SQLite e Redshift, e TablePro suporta todos. HeidiSQL adiciona Firebird, Interbase e ProxySQL. TablePro adiciona mecanismos de documentos, chave-valor e analíticos, como MongoDB, Redis e ClickHouse.",
+            "href": null
+        },
+        {
+            "id": "free",
+            "question": "TablePro é gratuito como HeidiSQL?",
+            "answer": "É gratuito para usar, mas não totalmente gratuito como HeidiSQL. Todos os mecanismos suportados, o assistente de IA e o servidor MCP não custam nada, e o código é aberto sob a AGPLv3. HeidiSQL não tem planos pagos, enquanto Starter ou Team adiciona recursos opcionais ao app TablePro para Mac, como {starterExamples}. <link>Ver preços</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "intel-download",
+            "question": "Qual versão de TablePro preciso?",
+            "answer": "A correspondente ao processador do Mac: Apple silicon ou Intel. A página de download oferece ambas. <link>Baixar TablePro</link>.",
+            "href": "/download"
+        }
+    ],
+    "notes": {
+        "heidisql-delphi-on-windows": "A versão Windows é desenvolvida em Delphi",
+        "heidisql-databases": "MariaDB, MySQL, SQL Server, PostgreSQL, SQLite, Interbase, Firebird, ProxySQL e Redshift, conforme listado no site",
+        "heidisql-mac-arm64-only": "Um app assinado e notarizado para Apple silicon. Não há compilação para Macs Intel."
+    }
+}

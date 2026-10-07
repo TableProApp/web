@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Support\Assets\AssetManifest;
 use App\Support\Assets\HandoffDocument;
+use App\Support\Localization\Locales;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
@@ -14,11 +15,12 @@ use Illuminate\Console\Command;
  * §1.9). The document is generated, never edited by hand.
  *
  * It also writes `resources/js/lib/data/asset-slots.json`, the slice of the
- * manifest the browser bundle carries (`AssetManifest::slotProjection()`), so
+ * geometry the browser bundle carries (`AssetManifest::slotProjection()`), and
+ * `asset-locales/{locale}.json` for each language's rendering text, so
  * the one command the handoff already asks for after a manifest edit is the
  * only one needed.
  *
- * `--check` writes nothing and exits non-zero when either committed file
+ * `--check` writes nothing and exits non-zero when any committed file
  * differs from what the sources would produce, so a manifest or fragment
  * edit cannot ship with a stale handoff or a stale bundle. Incomplete briefs
  * are reported but do not fail the run: they are rendered as "no brief yet"
@@ -41,6 +43,11 @@ class GenerateAssetHandoffCommand extends Command
             (string) ($this->option('output') ?: self::DEFAULT_OUTPUT) => $document->render(),
             (string) ($this->option('slots') ?: self::DEFAULT_SLOTS) => $manifest->slotProjectionJson(),
         ];
+
+        foreach (Locales::codes() as $locale) {
+            $path = dirname((string) ($this->option('slots') ?: self::DEFAULT_SLOTS)) . '/asset-locales/' . $locale . '.json';
+            $files[$path] = $manifest->slotTextProjectionJson($locale);
+        }
         $problems = $document->problems();
 
         if ($this->option('check')) {

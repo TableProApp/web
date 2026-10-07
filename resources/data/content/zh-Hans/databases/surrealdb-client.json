@@ -1,0 +1,86 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 SurrealDB 客户端",
+        "description": "以根、命名空间、数据库、记录或令牌级别登录 SurrealDB，执行 SurrealQL，浏览命名空间，逐字段编辑记录。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "SurrealDB 客户端"
+    },
+    "engine": "surrealdb",
+    "breadcrumb": "SurrealDB",
+    "header": {
+        "title": "适用于 {devices} 的 SurrealDB 客户端",
+        "lead": "以用户定义所在的级别登录，运行 SurrealQL 脚本，逐字段编辑记录；记录链接、日期时间及小数均保留各自类型。"
+    },
+    "asset": "mac-db-surrealdb-query",
+    "links": {
+        "network": "/features/connections#network",
+        "filters": "/features/data-editing#filters",
+        "explain": "/features/querying#performance",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接和登录",
+            "paragraphs": [
+                "SurrealDB 无法从凭据判断用户定义在哪一级，所以由 <ui>Auth Level</ui> 指定，表单再要求其余信息。Root 使用用户名和密码，Namespace 增加命名空间，Database 再增加数据库。Record Access 需要命名空间、数据库、<code>DEFINE ACCESS</code> 定义的访问方式及登录字段。Token 接受已持有的 JWT，包括 SurrealDB Cloud 的令牌。",
+                "驱动通过 HTTP RPC 端点传输 CBOR，记录链接、日期时间、时长、小数和 UUID 保留类型。<code>surrealdb://</code> 链接打开已填好的连接表单，远程服务器可经 <network>SSH 隧道</network>访问。",
+                "SSL 默认 Disabled，即明文 HTTP，其他模式均使用 HTTPS。Verify CA、Verify Identity 对照系统信任库验证证书，忽略 SSL/TLS 面板的 CA 文件，因此请先在 macOS 安装私有 CA。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SurrealQL 和记录",
+            "paragraphs": [
+                "编辑器运行整个 SurrealQL 脚本，包括两条记录间的 <code>RELATE</code>，并提供常用语句补全。<explain>Explain 和 Explain Full</explain> 添加 <code>EXPLAIN</code> 重新运行当前查询，显示其解析方式及是否使用索引；计划以原始文本返回。",
+                "命名空间位于侧栏顶层，内含数据库。两者随每次请求发送，切换均无需重连。只有根用户能看到所有命名空间。",
+                "修改单元格执行 <code>UPDATE</code>，仅用类型化参数设置改动的字段，让 <code>int</code> 仍为 <code>int</code>，不触碰计算的 <code>FUTURE</code> 字段或其他写入者的改动。新行留空 <code>id</code> 自动生成，或填写 <code>table:id</code>。<code>SCHEMALESS</code> 表从获取的记录确定列。",
+                "<filters>筛选</filters>转换为 SurrealQL，Raw SQL 行接受单个条件，例如图遍历。写入、含 <code>;</code> 或注释、调用 <code>fn::</code> 或 <code>http::</code> 的条件被拒绝，请在编辑器运行。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "结构",
+            "paragraphs": [
+                "Structure 标签页只读。在编辑器用 <code>DEFINE FIELD</code>、<code>DEFINE INDEX</code> 创建修改字段和索引。从菜单删除命名空间或数据库，多选时对全部项目仅确认一次。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "不提供导入。将表或结果<export>导出</export>为 CSV、JSON 或 XLSX。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "transactions",
+            "question": "可以运行事务吗？",
+            "answer": "同一查询内可以。HTTP RPC 不在请求间保留事务，请将 <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> 作为一条编辑器查询发送。"
+        },
+        {
+            "id": "relations",
+            "question": "如何修改关系的 in 或 out？",
+            "answer": "无法从网格修改：保存会停止，指出字段，保留所有待处理编辑。<code>UPDATE</code> 也不移动关系，需删除后 <code>RELATE</code> 新的一对记录。"
+        }
+    ],
+    "related": [
+        {
+            "label": "MongoDB，另一种文档数据库",
+            "href": "/mongodb-client"
+        },
+        {
+            "label": "SQL 以外的查询语言",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "安全浏览和编辑数据",
+            "href": "/features/data-editing"
+        }
+    ]
+}

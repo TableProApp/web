@@ -1,0 +1,110 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 DuckDB 客户端",
+        "description": "打开 DuckDB 文件，直接查询 Parquet、CSV、JSON，在内存中工作，无需安装即可备份到 DuckDB 文件或 Parquet。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "DuckDB 客户端"
+    },
+    "engine": "duckdb",
+    "breadcrumb": "DuckDB",
+    "header": {
+        "title": "适用于 {devices} 的 DuckDB 客户端",
+        "lead": "打开 DuckDB 数据库文件，或指向 Parquet、CSV、JSON 文件，在原位置使用 SQL 查询。DuckDB 在驱动中运行，除非主动连接服务器，否则无需运行服务器。"
+    },
+    "asset": "mac-db-duckdb-parquet",
+    "links": {
+        "files": "/features/import-export#files",
+        "dataFiles": "/features/import-export#data-files",
+        "importData": "/features/import-export#import",
+        "export": "/features/import-export#export",
+        "backup": "/features/import-export#backup",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "打开文件",
+            "paragraphs": [
+                "选择 <code>.duckdb</code> 或 <code>.ddb</code> 文件，或输入尚不存在的路径来创建。输入 <code>:memory:</code> 可创建仅在会话期间存在的数据库。DuckDB 在文件开头字节中标识格式，因此无论文件名如何均可识别并打开。",
+                "选择 <code>.parquet</code>、<code>.csv</code>、<code>.tsv</code>、<code>.json</code> 或 <code>.ndjson</code>，会在内存数据库中作为只读视图打开，一个名为 <code>file</code>，另一个以文件名命名。磁盘文件保持逐字节不变；要修改内容，请在 <code>.duckdb</code> 数据库中从文件创建表。",
+                "在 Finder 双击 <code>.duckdb</code> 即可在此打开。Parquet 文件的“打开方式”列出 TablePro，通过 <ui>File > Open File</ui> 选择 Parquet 会打开为 DuckDB 连接，而非进入 <dataFiles>Data Files 窗口</dataFiles>。",
+                "<ui>Remote (Quack, experimental)</ui> 连接由 <code>quack_serve</code> 启动的 DuckDB 服务器，并以 <code>remotedb</code> 等别名挂载，通过该别名访问表。首次远程连接从 DuckDB 下载 <code>quack</code> 扩展。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查询和编辑",
+            "paragraphs": [
+                "任何连接都可从 SQL 直接读取文件，例如 <code>SELECT * FROM 'data.csv'</code> 或 <code>read_parquet('events.parquet')</code>。<code>ATTACH</code> 其他 DuckDB 文件会作为第二个数据库加入侧栏，<code>Cmd+K</code> 无需重连即可切换。重新连接后 DuckDB 不保留任何挂载。",
+                "<explain>EXPLAIN</explain> 绘制为计划图。编辑表中的行时，<editing>Preview SQL</editing> 先显示每条语句，数据文件上的视图保持只读。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "结构",
+            "paragraphs": [
+                "<structure>Structure 标签页</structure> 编辑表并在执行前显示 DDL。此处数据库为文件，因此不能从应用创建或删除数据库；访问第二个文件请用 <code>ATTACH</code>。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "共享文件并备份",
+            "paragraphs": [
+                "TablePro 持有文件时，<code>duckdb</code> CLI、notebook 或 dbt 无法打开。设置 <ui>Release the File Lock After</ui> 可在空闲数分钟后释放，下次查询再获取；<ui>Open the File Read-Only</ui> 允许多个读取者共享。<ui>Database > Release File Lock</ui> 立即释放并保留标签页。会话若持有未结束事务、临时表、挂载数据库或已修改设置，会拒绝释放并说明原因。",
+                "<dashboard>Server Dashboard</dashboard> 显示数据库大小、块大小、总块数、内存上限和线程数。",
+                "<backup>Backup Dump</backup> 无需安装，因为 {dumpTool} 通过已打开连接写入。可选择供日后在 TablePro 还原的 <code>.duckdb</code> 文件，或含 <code>schema.sql</code>、<code>load.sql</code> 及每表一个 Parquet 文件的文件夹，pandas、Spark 和 BigQuery 可直接读取。Restore Dump 在首个名称已被占用的对象处停止。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "<importData>导入</importData>支持 {importFormats} 文件，表和结果导出为 {exportFormats}。从 Settings > Plugins 安装的 <export>Parquet 导出插件</export>添加 Parquet 输出，每表一个文件。详见<files>将文件作为数据库处理</files>。"
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone 和 iPad",
+            "paragraphs": [
+                "iPhone 和 iPad 应用内置 DuckDB。在“文件”应用选择的文件于原位置打开，不创建副本；可选 In-Memory 建立临时数据库。按卡片浏览表，在 Query 标签页运行 SQL。Remote (Quack) 连接仅支持 Mac。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "version",
+            "question": "使用哪个 DuckDB 版本？",
+            "answer": "DuckDB {engineVersion}，编译在驱动中，不依赖已安装的任何 DuckDB。"
+        },
+        {
+            "id": "csv-or-data-files",
+            "question": "CSV 应在 DuckDB 还是 Data Files 窗口打开？",
+            "answer": "浏览、清理并保存回文件，请在 <dataFiles>Data Files 窗口</dataFiles>打开。要用 SQL 与其他文件或表联接，则用 DuckDB 打开，文件保持只读。"
+        }
+    ],
+    "related": [
+        {
+            "label": "导入、导出和数据文件",
+            "href": "/features/import-export#files"
+        },
+        {
+            "label": "用于应用数据库文件的 SQLite",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "用于分析服务器的 ClickHouse",
+            "href": "/clickhouse-client"
+        },
+        {
+            "label": "适用于 iPhone 和 iPad 的 TablePro",
+            "href": "/ios"
+        }
+    ]
+}

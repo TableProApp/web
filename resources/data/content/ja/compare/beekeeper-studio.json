@@ -1,0 +1,210 @@
+{
+    "seo": {
+        "title": "TablePro vs Beekeeper Studio：ネイティブと Electron",
+        "description": "Beekeeper Studio は Windows、macOS、Linux 用の Electron 製オープンソースクライアント。ネイティブの TablePro と、プラン、エンジン、AI、移行を比較します。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs Beekeeper Studio"
+    },
+    "header": {
+        "title": "TablePro vs Beekeeper Studio",
+        "lead": "Beekeeper Studio と TablePro はどちらもオープンソースのデータベースクライアントです。Beekeeper Studio は {technology} を基盤とし、Windows、macOS、Linux で同じように動作します。無料の Community 版に加えて有料の上位プランがあります。TablePro は Mac と iPhone・iPad それぞれにネイティブアプリを持ち、Mac では任意の有料機能を追加できます。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Oracle、Cassandra、Snowflake を無料で使いたい。TablePro はすべての対応エンジンが無料だが、Beekeeper Studio ではこれらは有料プランで追加される。",
+            "有料プランなしで AI アシスタントと MCP サーバーを使いたい。Mac アプリではどちらも無料で、AI プロバイダーを選べる。",
+            "Swift で書かれたネイティブ Mac アプリを使いたく、有料機能のコードもオープンソースであってほしい。",
+            "iPhone・iPad 用のアプリも欲しい。"
+        ],
+        "competitor": [
+            "Windows や Linux でも作業し、どの環境でも同じクライアントを使いたい。",
+            "TablePro 非対応の Firebird、SQL Anywhere、GreengageDB に接続する。",
+            "{cells.sync.edition} プランから使えるクラウドワークスペースで、接続とクエリを同期・共有したい。"
+        ]
+    },
+    "glance": {
+        "intro": "両クライアントともオープンソースで、SQL エディターに Vim モードがあります。ER 図も双方にあり、TablePro は無料、Beekeeper Studio はすべての有料プランに含まれます。"
+    },
+    "rows": {
+        "diagram": {
+            "label": "ER 図",
+            "tablepro": "無料の読み取り専用 ER 図。PNG または SQL に書き出せる"
+        },
+        "vim": {
+            "label": "Vim モード",
+            "tablepro": "SQL エディターで無料。移動操作、レジスター、マクロに対応"
+        },
+        "importExport": {
+            "label": "インポート、エクスポート、バックアップ",
+            "tablepro": "Mac アプリで無料：CSV、JSON、XLSX、SQL ファイルのインポート、CSV、JSON、SQL、XLSX などへのエクスポート、ダンプツールのあるエンジンでの Backup Dump と Restore Dump"
+        },
+        "lifetimeLicense": {
+            "label": "サブスクリプション終了後",
+            "tablepro": "月額・年額プランは終了時に有料機能がロックされる。買い切りには有効期限なし"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Beekeeper Studio は Windows、macOS、Linux で同じ機能を提供するため、使うすべてのコンピューターを一つのクライアントで扱えます。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Firebird、SQL Anywhere、GreengageDB など、TablePro 非対応のエンジンにも接続できます。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "{cells.sync.edition} プランから、クラウドワークスペースで接続とクエリを同期し、どの対応プラットフォームでも同僚と共有できます。",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro は Swift で書かれた Mac アプリで、ネイティブのデータベースドライバーを使います。Beekeeper Studio は {technology} を基盤としています。どちらも Apple silicon と Intel Mac 向けに別々のビルドを提供します。",
+                "cite": [
+                    "technology",
+                    "mac"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Oracle、Cassandra、Snowflake を含むすべての対応エンジンが TablePro では無料です。Beekeeper Studio の Community 版は PostgreSQL、MySQL、SQL Server、SQLite などに対応し、有料プランで Oracle、Cassandra、Snowflake などを追加します。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI アシスタントと MCP サーバー</link>は Mac アプリで無料で使え、AI プロバイダーを選べます。Beekeeper Studio の AI Shell には有料プランが必要です。",
+                "cite": [
+                    "cells.ai"
+                ],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "TablePro は<link>データのインポートとエクスポート</link>が無料で、エンジンに専用のダンプツールがあれば、それによるバックアップも無料です。Beekeeper Studio の Import/Export & Backup/Restore は Community ではなく有料プランに記載されています。",
+                "cite": [
+                    "cells.importExport"
+                ],
+                "feature": null,
+                "href": "/features/import-export"
+            },
+            {
+                "text": "TablePro は有料機能のコードも含め、AGPLv3 のオープンソースです。Beekeeper Studio の Community 版は {licence} のオープンソースです。",
+                "cite": [
+                    "licence"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>iCloud Sync</link> で Mac 間や iPhone・iPad と接続を同期します。Mac では Starter に含まれ、iPhone・iPad では無料です。",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "無料の <link>iPhone・iPad アプリ</link>があり、アプリ内課金はありません。Beekeeper Studio にはモバイルアプリがありません。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro には Windows・Linux 用アプリがありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro はドライバーを持つエンジンにのみ接続します。移行前に<link>対応データベース</link>を確認してください。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "ER 図は無料ですが読み取り専用です。テーブルの変更は図を描いて行うのではなく、Structure タブで行います。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Beekeeper Studio は支払っていた期間に公開されたバージョンを継続利用でき、月額プランでは 12 か月後にその権利が得られます。TablePro の月額・年額プランにはそのような権利は残りません。終了すると有料機能がロックされ、その他の機能は使い続けられます。買い切りには有効期限がありません。",
+                "cite": [
+                    "cells.lifetimeLicense"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro は Beekeeper Studio が Mac のローカルワークスペースに保存した接続を読み取ります。Beekeeper Studio を開いておく必要はなく、ファイルも変更しません。",
+        "steps": [
+            "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",
+            "Beekeeper Studio を選び、<ui>Include passwords</ui> をオンにします。TablePro が保存されたパスワードを復号します。SSH パスワードや鍵のパスフレーズも含むため、キーチェーンでの承認は不要です。",
+            "一覧を確認し、重複の扱いを決めて <ui>Import</ui> をクリックします。フォルダーはグループになり、接続の色と SSL 設定も引き継ぎ、SSH 踏み台はジャンプホストになります。TablePro 非対応のエンジンへの接続はチェックされていません。",
+            "Beekeeper Studio を削除する前に、パスワード付きだった接続を開き、引き継がれたことを確認します。"
+        ],
+        "after": [
+            "Beekeeper Studio のクラウドワークスペースの接続はインポートされません。対象はローカルワークスペースだけです。",
+            "保存済みクエリ、クエリ履歴、キーボードショートカットは Beekeeper Studio に残ります。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "apple-silicon",
+            "question": "TablePro は Apple silicon 上でネイティブ動作しますか？",
+            "answer": "はい。TablePro は Apple silicon と Intel Mac 向けに別々のビルドを用意し、<link>ダウンロードページ</link>で両方を提供しています。",
+            "href": "/download"
+        },
+        {
+            "id": "free-engines",
+            "question": "無料で使えるエンジンはどれですか？",
+            "answer": "TablePro はすべての対応エンジンに加え、AI アシスタント、MCP サーバー、Safe Mode が無料です。Starter・Team プランはエンジンではなく {starterExamples} などの機能を追加します。Beekeeper Studio の Community 版はいくつかの一般的なエンジンに対応し、有料プランでその他を追加します。",
+            "href": null
+        },
+        {
+            "id": "vim",
+            "question": "Beekeeper Studio で Vim モードを使っています。TablePro にもありますか？",
+            "answer": "はい、無料です。<ui>Settings > Editor > Vim mode</ui> をオンにすると移動操作、レジスター、マクロが使え、:w でクエリを実行します。",
+            "href": null
+        }
+    ],
+    "notes": {
+        "beekeeper-databases": "Community は PostgreSQL、MySQL、MariaDB、SQLite、SQL Server などに対応。有料プランで Oracle、Cassandra、Snowflake などを追加します。",
+        "beekeeper-ai-shell": "AI Shell は有料プランのみ。Community にはなし",
+        "beekeeper-cloud-workspaces": "{edition} プランから、接続とクエリを同期・共有するクラウドワークスペース",
+        "beekeeper-erd-paid": "すべての有料プランに含まれる。Community にはなし",
+        "beekeeper-import-export-paid": "Import/Export & Backup/Restore はすべての有料プランに含まれる。Community にはなし",
+        "beekeeper-lifetime-license": "年額プラン、または月額プランを 12 か月連続で利用すると、支払っていた期間に公開されたバージョンの有料機能を、サブスクリプション終了後も使い続けられます。クラウドワークスペースには有効なサブスクリプションが必要です。"
+    }
+}

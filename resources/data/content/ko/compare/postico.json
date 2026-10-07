@@ -1,0 +1,189 @@
+{
+    "seo": {
+        "title": "TablePro vs Postico: PostgreSQL 전용 또는 여러 엔진",
+        "description": "Postico 2는 일회 구매 PostgreSQL용 Mac 앱이고 TablePro는 PostgreSQL과 다른 엔진도 지원합니다. 가격·서버 도구·동기화·설정을 비교합니다."
+    },
+    "og": {
+        "kicker": "비교",
+        "title": "TablePro vs Postico"
+    },
+    "header": {
+        "title": "TablePro vs Postico",
+        "lead": "Postico 2는 PostgreSQL과 같은 프로토콜을 쓰는 데이터베이스용 Mac 앱으로 일회 구매 라이선스입니다. TablePro는 PostgreSQL·다른 엔진용 오픈 소스 클라이언트이며 별도 iPhone·iPad 앱과 Mac 선택 유료 기능이 있습니다."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "PostgreSQL뿐 아니라 MySQL, SQL Server, SQLite, Redis·MongoDB도 사용합니다.",
+            "서버도 관리합니다. Users & Roles, 세션 종료가 가능한 Server Dashboard, VACUUM·pg_dump 백업이 Mac 앱에서 무료입니다.",
+            "쿼리를 튜닝합니다. EXPLAIN은 계획을 다이어그램으로, EXPLAIN Compare는 새 계획을 기준과 비교합니다.",
+            "PostgreSQL에 연결하는 무료 iPhone·iPad 앱을 원합니다.",
+            "AI 도우미·MCP 서버를 무료로 원합니다."
+        ],
+        "competitor": [
+            "PostgreSQL, Redshift, CockroachDB·Greenplum만 사용하며 그 작업에 맞춘 앱을 원합니다.",
+            "Mac App Store 버전 또는 개인·상업·팀·학생용 가격의 라이선스를 원합니다.",
+            "서버 설정을 iCloud·Dropbox로 동기화하고 싶습니다."
+        ]
+    },
+    "glance": {
+        "intro": "Postico 2는 개인·상업·팀·학생용 일회 구매 라이선스이며 평가판은 시간 제한이 없습니다. TablePro는 무료로 쓰고 유료 플랜은 선택 기능을 추가합니다."
+    },
+    "rows": {
+        "administration": {
+            "label": "서버 관리",
+            "tablepro": "Mac 앱에서 무료: Users & Roles, Server Dashboard, VACUUM 등 유지 관리 및 별도 설치한 pg_dump 백업"
+        },
+        "macAppStore": {
+            "label": "Mac App Store",
+            "tablepro": "Mac App Store에 없으며 이 사이트에서 다운로드하거나 Homebrew로 설치"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Postico 2는 PostgreSQL과 해당 프로토콜 데이터베이스용이며 TablePro가 지원하지 않는 Greenplum도 포함합니다.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "라이선스는 일회 결제이며 개인·상업·팀·학생용 가격과 Mac App Store 버전도 있습니다.",
+                "cite": [
+                    "prices",
+                    "cells.macAppStore"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "평가판 시간 제한은 없지만 일부 기능은 라이선스를 구매해야 켜집니다.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "서버 설정을 iCloud·Dropbox로 동기화합니다.",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "클라이언트 하나로 PostgreSQL과 MySQL·SQL Server부터 Redis·MongoDB·DuckDB까지 지원합니다. <link>지원 데이터베이스</link>를 보세요.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>서버 작업</link>은 무료 앱에 있습니다. 열까지 권한을 주는 Users & Roles, 세션·느린 쿼리의 Server Dashboard와 SQL을 먼저 보여 주는 VACUUM입니다. Postico는 이 작업용으로 설계되지 않았다고 합니다.",
+                "cite": [
+                    "cells.administration"
+                ],
+                "feature": null,
+                "href": "/features/schema#administer"
+            },
+            {
+                "text": "<link>EXPLAIN</link>은 계획을 다이어그램·트리·원시 텍스트로 보여 주고 EXPLAIN Compare는 새 계획을 기준과 비교합니다. 둘 다 무료입니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "<link>iCloud Sync</link>는 Mac과 iPhone·iPad의 연결을 맞춥니다. Mac은 Starter에 포함되고 iPhone·iPad 앱은 무료입니다.",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "무료 <link>iPhone·iPad 앱</link>은 PostgreSQL에 연결하고 인앱 구매는 없습니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Greenplum은 지원하지 않습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Redshift·CockroachDB에 연결하지만 TablePro에서 테이블 구조는 읽기 전용입니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "PostgreSQL 열 위치 변경은 TablePro가 재구성 스크립트를 만들고 직접 실행해야 합니다. 앱이 실행하지 않습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Postico 2는 일회 구매만 있습니다. TablePro 월간·연간 플랜이 끝나면 유료 기능은 잠기지만 나머지는 계속 작동합니다. Starter·Team은 만료 없는 일회 구매도 있습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro에는 Postico 가져오기가 없습니다. 서버별로 연결을 추가해 폼을 채우거나 postgresql:// URL을 <ui>File > Import > Import from URL…</ui>에 붙여 넣으세요.",
+        "steps": [],
+        "after": [
+            "프로젝트 .env 파일·Prisma 스키마에 데이터베이스 URL이 있으면 <ui>File > Import > Open Project Folder…</ui>가 읽어 채워진 연결 폼을 엽니다.",
+            "비밀번호는 macOS 키체인에 저장하며 PostgreSQL 연결은 ~/.pgpass도 읽습니다.",
+            "쿼리 기록은 TablePro에서 새로 시작합니다."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "redshift-cockroachdb",
+            "question": "TablePro도 Postico처럼 Redshift·CockroachDB를 지원하나요?",
+            "answer": "네. 둘 다 연결하며 TablePro에서 테이블 구조는 읽기 전용입니다. Postico가 지원하는 Greenplum은 TablePro에서 지원하지 않습니다.",
+            "href": null
+        },
+        {
+            "id": "icloud-sync",
+            "question": "TablePro iCloud Sync는 무료인가요?",
+            "answer": "iPhone·iPad 앱은 무료이고 Mac은 Starter에 포함됩니다. Postico 2는 iCloud·Dropbox로 서버 설정을 동기화합니다.",
+            "href": null
+        },
+        {
+            "id": "admin",
+            "question": "TablePro에서 역할·세션을 관리하나요?",
+            "answer": "Mac 앱에서 무료입니다. Users & Roles는 SQL을 먼저 보여 주고 권한을 부여·회수하며 Server Dashboard는 세션을 나열하고 종료할 수 있습니다. <link>서버 도구 읽기</link>.",
+            "href": "/features/schema#administer"
+        },
+        {
+            "id": "license",
+            "question": "PostgreSQL 사용에 TablePro 라이선스가 필요한가요?",
+            "answer": "아니요. PostgreSQL·모든 지원 엔진·AI 도우미·MCP 서버는 무료입니다. Starter·Team은 Mac 앱에 {starterExamples} 등 선택 기능을 추가합니다. <link>가격 보기</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "postico-evaluation": "평가판 시간 제한이 없으며 일부 기능은 라이선스 구매 전 비활성화됩니다.",
+        "postico-vat-included": "VAT 포함",
+        "postico-plus-vat": "VAT 별도",
+        "postico-databases": "PostgreSQL, Amazon Redshift, Greenplum·CockroachDB입니다. PostgreSQL 프로토콜의 다른 데이터베이스도 연결할 수 있지만 대부분 기능은 작동하지 않습니다.",
+        "postico-sync-icloud-dropbox": "서버 설정을 iCloud·Dropbox로 동기화",
+        "postico-no-admin": "Postico는 백업·복원, 사용자·권한 관리나 데이터베이스 모니터링용으로 설계되지 않았다고 합니다"
+    }
+}

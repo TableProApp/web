@@ -1,0 +1,206 @@
+{
+    "seo": {
+        "title": "Daten ändern mit SQL-Vorschau und sicherem Modus",
+        "description": "Zeilen filtern und ändern, SQL vor dem Speichern prüfen und den sicheren Modus pro Verbindung wählen. Daten zurückspulen stellt alte Werte wieder her."
+    },
+    "og": {
+        "kicker": "Daten bearbeiten",
+        "title": "Daten sicher durchsuchen und bearbeiten"
+    },
+    "header": {
+        "title": "Daten sicher durchsuchen und bearbeiten",
+        "lead": "Für die direkte Arbeit mit Zeilen: die richtigen finden, einige Werte ändern und dabei auf einer Produktionsdatenbank Überraschungen vermeiden. Änderungen warten bis zum Speichern; jede Verbindung bestimmt die Vorsicht vor einer Anweisung.",
+        "docs": "/features/change-tracking"
+    },
+    "sections": [
+        {
+            "id": "browse",
+            "title": "Finde die benötigten Zeilen",
+            "paragraphs": [
+                "Sortierung und Seiteneinteilung laufen auf dem Server; große Tabellen öffnen daher ihre erste Seite. Über {countEstimate} Zeilen wird die Anzahl geschätzt. „Genau zählen“ liefert bei Bedarf die tatsächliche Zahl."
+            ],
+            "blocks": [
+                {
+                    "id": "filters",
+                    "title": "Filter und Hervorhebungsregeln",
+                    "paragraphs": [
+                        "Die Filterleiste (<kbd>⌘⇧F</kbd>) erstellt eine WHERE-Klausel aus {filterOperatorCount} Operatoren, von = und BETWEEN bis REGEX, oder nimmt eine direkte SQL-Bedingung an. Speichere einen Tabellenfilter und hole ihn später ohne Ausführung zurück. Hervorhebungsregeln färben Zeilen oder Zellen nach Werten, wie bedingte Formatierung in Tabellenkalkulationen, und bleiben auf diesem Mac."
+                    ],
+                    "asset": "mac-grid-highlight-rules"
+                },
+                {
+                    "id": "foreign-keys",
+                    "title": "Fremdschlüssel und JSON",
+                    "paragraphs": [
+                        "Folge einem Fremdschlüssel zur zugehörigen Zeile in einem neuen Tab oder zeige sie in einem Popover. Beim Bearbeiten einer Fremdschlüsselspalte listet die Auswahl die referenzierten Zeilen nach gewählten Spalten, etwa Nach- und Vorname eines Kunden. JSON-Werte öffnen in einem Betrachter mit Baum zur Navigation und Textmodus zum Bearbeiten."
+                    ],
+                    "asset": "mac-fk-picker"
+                }
+            ]
+        },
+        {
+            "id": "edit",
+            "title": "Daten ändern, einmal speichern",
+            "paragraphs": [
+                "Zellenänderungen, neue Zeilen und Löschungen warten markiert im Tab bis <kbd>⌘S</kbd>; vorher wird nichts gesendet. <ui>SQL-Vorschau</ui> (<kbd>⌘⇧P</kbd>) zeigt Anweisungen mit eingesetzten Werten. Beim Speichern werden sie mit gebundenen Parametern gesendet, soweit möglich in einer Transaktion. Die erwartete Zeilenzahl jeder Änderung wird geprüft; bei Abweichung wird das Speichern zurückgerollt."
+            ],
+            "points": [
+                "Zelleneditoren passend zum Spaltentyp: Datums- und Zeitauswahl, ENUM- und SET-Listen, Arrays, JSON, Hex-Editor für Binärwerte und Bildbetrachter.",
+                "Rückgängig und Wiederholen pro Tab bis zum Speichern.",
+                "Abfrageergebnisse lassen sich bearbeiten, wenn die Abfrage eine einzelne Tabelle ohne Join, CTE oder UNION liest.",
+                "Kopiere Zeilen als CSV, JSON, Markdown, IN-Liste oder INSERT- und UPDATE-Anweisungen."
+            ],
+            "asset": "mac-edit-preview-sql"
+        },
+        {
+            "id": "safe-mode",
+            "title": "Sicherer Modus für Produktionsverbindungen",
+            "paragraphs": [
+                "Jede Verbindung hat eine Stufe des sicheren Modus: {macSafeModeLevels}. Neue starten mit {macSafeModeDefault}, wo Anweisungen unverändert ausgeführt werden. „Warnung“ fragt vor Schreibvorgängen; die sicheren Stufen verlangen zusätzlich Touch ID oder Mac-Passwort. Vollständige Stufen fragen auch vor Lesevorgängen; „Schreibgeschützt“ verweigert Schreiben und deaktiviert die Bearbeitung. Der sichere Modus ist kostenlos.",
+                "Auf jeder Stufe stoppen DROP, TRUNCATE und DELETE ohne WHERE und fragen vorher. Manche Bedingungen erhöhen die Stufe während ihrer Geltung: ein nur lesendes System, Agent-Modus mit mindestens „Warnung“ und eine von deiner Organisation per Geräteverwaltung (MDM) gesetzte Mindeststufe."
+            ],
+            "asset": "mac-safe-mode-touchid",
+            "links": [
+                {
+                    "label": "Sicherer Modus und weitere Verbindungsrichtlinien",
+                    "href": "/features/connections#policies"
+                },
+                {
+                    "label": "Agent-Modus",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "data-rewind",
+            "title": "Data Rewind",
+            "paragraphs": [
+                "Data Rewind behält beim Speichern ersetzte Werte, damit <ui>Vorherige Werte wiederherstellen</ui> sie zurücksetzt. Ein Prüfblatt zeigt zuerst die Folgen für jede Zeile, auch für danach geänderte Zeilen. Die Wiederherstellung läuft durch den sicheren Modus, soweit möglich in einer Transaktion. Eine Wiederherstellung lässt sich ihrerseits wiederherstellen.",
+                "Die Werte bleiben {rewindDays} Tage auf diesem Mac, mit einem Schlüssel aus dem Schlüsselbund verschlüsselt, und werden nie synchronisiert. Nach Tarifende zeichnet TablePro keine Speichervorgänge mehr auf; <ui>Vorherige Werte wiederherstellen</ui> zeigt stattdessen einen Hinweis."
+            ],
+            "paid": [
+                "data-rewind"
+            ],
+            "asset": "mac-data-rewind-review"
+        },
+        {
+            "id": "documents-and-keys",
+            "title": "Dokumente und Schlüssel",
+            "paragraphs": [
+                "Nicht jedes System speichert Zeilen. In MongoDB fügst du ganze Dokumente als Extended JSON ein und bearbeitest sie, entfernst ein Dokumentfeld und benennst oder entfernst ein Feld sammlungsweit im Tab „Struktur“. In Redis benennst du Schlüssel um, setzt TTLs, bearbeitest Zeichenfolgen in der Datentabelle, ergänzt String-, Hash-, List-, Set- oder Sorted-Set-Schlüssel und änderst andere Typen mit Editorbefehlen."
+            ],
+            "links": [
+                {
+                    "label": "MongoDB in TablePro",
+                    "href": "/mongodb-client"
+                },
+                {
+                    "label": "Redis in TablePro",
+                    "href": "/redis-gui"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "Auf iPhone und iPad",
+            "paragraphs": [
+                "Auf iPhone und iPad erscheinen Zeilen als Karten zum Sortieren, Suchen und Filtern mit AND und OR. Das Tippen auf einen Fremdschlüssel zeigt die zugehörige Zeile. Du kannst Zeilen bearbeiten, Werte auf NULL oder DEFAULT setzen, Zeilen einfügen und per Wischen löschen; Bearbeiten und Löschen benötigen einen Primärschlüssel.",
+                "Der sichere Modus hat dort eigene Stufen, {iosSafeModeLevels}, mit {iosSafeModeDefault} als Standard für neue Verbindungen. Vorgemerkte Änderungen, SQL-Vorschau, Hervorhebungsregeln und Data Rewind gibt es nur auf dem Mac."
+            ],
+            "links": [
+                {
+                    "label": "Durchsuchen und Bearbeiten auf iPhone und iPad",
+                    "href": "/ios#browse"
+                },
+                {
+                    "label": "Sicherer Modus auf iPhone und iPad",
+                    "href": "/ios#safe-mode"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "Sortierung, Seiten und Filter",
+            "ios": "yes"
+        },
+        {
+            "label": "Gespeicherte Filter und Hervorhebungsregeln",
+            "ios": "no"
+        },
+        {
+            "label": "Fremdschlüsselnavigation und Werteauswahl",
+            "ios": "partial",
+            "iosNote": "Tippen zeigt die referenzierte Zeile"
+        },
+        {
+            "label": "Zeilen bearbeiten, einfügen und löschen",
+            "ios": "partial",
+            "iosNote": "Zeileneditor; benötigt einen Primärschlüssel"
+        },
+        {
+            "label": "Vorgemerkte Änderungen, SQL-Vorschau und Rückgängig",
+            "ios": "no"
+        },
+        {
+            "label": "Sicherer Modus",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "Touch ID oder Passwort vor Schreibvorgängen",
+            "ios": "no"
+        },
+        {
+            "label": "Data Rewind",
+            "paid": "data-rewind",
+            "ios": "no"
+        },
+        {
+            "label": "MongoDB-Dokumente und Redis-Schlüssel",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Data Rewind ist kein Backup. Es macht weder Trigger, Kaskaden noch Änderungen außerhalb von TablePro rückgängig und stellt keine Zeilen ohne Primärschlüssel, Werte über {rewindMaxValue} MB oder serverberechnete Werte wieder her.",
+        "UPDATE ohne WHERE ist ein gewöhnlicher Schreibvorgang: Es fragt nur bei „Warnung“ oder strenger vorher.",
+        "Auf {everyStatementWrites} zählt der sichere Modus jede Anweisung als Schreibvorgang; „Warnung“ fragt daher auch vor Lesevorgängen und „Schreibgeschützt“ blockiert sie.",
+        "Das Ergebnis eines Joins, einer CTE oder UNION ist in der Datentabelle schreibgeschützt; öffne zum Bearbeiten die Tabelle."
+    ],
+    "docs": [
+        {
+            "label": "Datentabelle",
+            "docs": "/features/data-grid"
+        },
+        {
+            "label": "Filter",
+            "docs": "/features/filtering"
+        },
+        {
+            "label": "Änderungsverfolgung und SQL-Vorschau",
+            "docs": "/features/change-tracking"
+        },
+        {
+            "label": "Data Rewind",
+            "docs": "/features/change-tracking#restoring-a-save"
+        },
+        {
+            "label": "Sicherer Modus",
+            "docs": "/features/safe-mode"
+        }
+    ],
+    "related": [
+        {
+            "label": "Abfragen",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schema",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Was ein bezahlter Tarif ergänzt",
+            "href": "/pricing#features"
+        }
+    ]
+}

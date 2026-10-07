@@ -1,0 +1,278 @@
+{
+    "postgresql": {
+        "tagline": "配列、jsonb、PostGIS 値、EXPLAIN 図、Users & Roles、pg_dump バックアップ。",
+        "limits": {
+            "column-reorder-script-only": "カラムの並べ替えでは、テーブルを再構築するスクリプトを生成します。TablePro は表示するだけで、実行しません。"
+        }
+    },
+    "mysql": {
+        "tagline": "TCP で MySQL に接続。EXPLAIN 図、Users & Roles、AWS IAM 認証、mysqldump バックアップ。",
+        "limits": {
+            "tcp-only": "ホストとポートを指定して TCP で接続します。ローカル Unix ソケットは非対応です。",
+            "load-data-local-refused": "ドライバは LOAD DATA LOCAL INFILE を拒否します。代わりに Import でファイルを取り込んでください。"
+        }
+    },
+    "sqlserver": {
+        "tagline": "GO バッチと PRINT 出力を使う T-SQL、Kerberos または Microsoft Entra ID 認証、.bacpac バックアップ。",
+        "limits": {
+            "no-named-instances": "名前付きインスタンスは非対応です。インスタンスの TCP ポートに接続してください。",
+            "no-ntlm": "NTLM は非対応です。SQL Server ログイン、Kerberos、Microsoft Entra ID を使ってください。",
+            "no-explain": "SQL Server の EXPLAIN や実行計画ビューはありません。",
+            "scripts-not-in-transaction": "SQL Server Management Studio と同様、スクリプトは TablePro が開始するトランザクションの外で実行されます。エラー前に実行した文の変更は残ります。",
+            "ios-tls-not-verified": "iPhone・iPad では TLS を必須にできますが、サーバー証明書は検証しません。"
+        }
+    },
+    "sqlite": {
+        "tagline": "この Mac または SSH サーバーのデータベースファイルを元の場所で開き、拡張機能を読み込めます。",
+        "limits": {
+            "no-encryption": "SQLCipher や SEE ファイルなど、暗号化したデータベースは開けません。先に復号してください。",
+            "no-primary-key-changes": "主キーの追加、削除、移動はできません。",
+            "ios-file-copied": "iPhone・iPad で選んだファイルはアプリ内にコピーされ、編集はそのコピーを変更します。",
+            "extensions-local-file-only": "拡張機能はこの Mac で読むファイルにのみ読み込めます。SSH サーバーで開いたデータベースには読み込めませんが、読み取り専用のコピーでは使えます。",
+            "attached-files-not-listed": "エディタで ATTACH したファイルはクエリできますが、サイドバーには表示されません。"
+        }
+    },
+    "mongodb": {
+        "tagline": "mongosh 形式の JavaScript シェル、Extended JSON のドキュメント、SRV 経由の Atlas クラスタ。",
+        "limits": {
+            "no-transactions": "トランザクションは非対応です。",
+            "no-gridfs-or-change-streams": "GridFS と変更ストリームは非対応です。",
+            "no-pipeline-builder": "視覚的な集約パイプラインビルダーはありません。シェルで aggregate() を書いてください。"
+        }
+    },
+    "redis": {
+        "tagline": "Redis コマンド、コロン区切りのキーツリー、TTL、Sentinel・Cluster 接続。",
+        "limits": {
+            "string-values-only": "グリッドで編集できるのは文字列値だけです。リスト、集合、ハッシュ、ソート済み集合、ストリームはコマンドで変更してください。",
+            "no-pubsub": "pub/sub ビューはありません。PUBLISH はコマンドとして実行でき、購読はしません。",
+            "key-tree-cap": "サイドバーのキーツリーは最大 {value} 件のキーを読み込みます。",
+            "filter-match-cap": "キーフィルタは {value} 件一致すると停止します。",
+            "cluster-db0-only": "Cluster 接続はデータベース 0 を使います。複数データベースを設定した Valkey クラスタは例外です。",
+            "ios-query-tab-only": "iPhone・iPad ではテーブルブラウザでキーを開けません。Query タブでコマンドを実行してください。"
+        }
+    },
+    "mariadb": {
+        "tagline": "MySQL ドライバで MariaDB のシーケンス、仮想・永続カラム、JSON カラムに対応。",
+        "limits": {
+            "no-cloud-sql-proxy": "MariaDB には Cloud SQL Auth Proxy を提供しません。非公開サーバーへは SSH トンネルで接続してください。",
+            "roles-listed-as-users": "Users & Roles は MariaDB のロールをユーザーとして表示します。作成と付与はエディタの SQL で行ってください。"
+        }
+    },
+    "tidb": {
+        "tagline": "MySQL ドライバで TiDB と TiDB Cloud に接続。停止操作は KILL TIDB QUERY を送信します。",
+        "limits": {
+            "no-triggers-or-routines": "トリガー、ストアドルーチン、イベントはありません。",
+            "no-dashboard-or-dump": "Server Dashboard と Backup Dump はありません。TiDB の Dumpling でエクスポートしてください。",
+            "structure-sync-same-engine": "Compare & Sync は TiDB データベース同士の構造スクリプトのみ生成します。TiDB と MySQL・MariaDB 間では生成しません。"
+        }
+    },
+    "oceanbase": {
+        "tagline": "MySQL モードの OceanBase テナントに user@tenant で、直接または OBProxy 経由で接続。",
+        "limits": {
+            "mysql-mode-only": "MySQL モードのテナントのみ接続できます。Oracle モードは拒否します。",
+            "no-dashboard-or-dump": "Server Dashboard と Backup Dump はありません。",
+            "structure-sync-same-engine": "Compare & Sync は OceanBase データベース同士の構造スクリプトのみ生成します。OceanBase と MySQL・MariaDB 間では生成しません。"
+        }
+    },
+    "databend": {
+        "tagline": "Databend の MySQL ハンドラで Databend と Databend Cloud に接続。",
+        "limits": {
+            "no-keys-or-indexes": "Databend にはインデックス、主キー、外部キーがないため、行編集では全カラムで照合します。複数の行を変更する保存は拒否します。",
+            "no-compare-sync": "Compare & Sync は使えません。",
+            "no-url-scheme": "Databend 接続を開く URL スキームはありません。接続フォームで作成してください。",
+            "not-on-ios": "iPhone・iPad では使えません。"
+        }
+    },
+    "redshift": {
+        "tagline": "PostgreSQL ドライバで Amazon Redshift に接続し、DDL に DISTKEY と SORTKEY を表示。",
+        "limits": {
+            "no-aws-iam": "Redshift の AWS IAM 認証は非対応です。データベースユーザーでログインしてください。",
+            "structure-read-only": "Structure タブは読み取り専用です。エディタで DDL を実行してください。",
+            "ios-synced-only": "iPhone・iPad で Redshift 接続を開けるのは、Mac から同期またはインポートした場合のみです。"
+        }
+    },
+    "cockroachdb": {
+        "tagline": "PostgreSQL ワイヤプロトコルで CockroachDB と CockroachDB Cloud に接続。",
+        "limits": {
+            "structure-read-only": "Structure タブは読み取り専用です。スキーマ変更はエディタで SQL として実行してください。",
+            "no-dump-or-maintenance": "Backup Dump、Restore Dump、テーブルメンテナンスはありません。CockroachDB 自身の BACKUP と RESTORE 文を使ってください。"
+        }
+    },
+    "pglite": {
+        "tagline": "ソケットサーバーで提供した PGlite を、通常の PostgreSQL 接続として利用。",
+        "limits": {
+            "needs-socket-server": "PGlite は @electric-sql/pglite-socket で提供する必要があり、自分で起動して動作を続けてください。",
+            "single-client": "ソケットサーバーは同時に 1 クライアントのみ接続できます。",
+            "cancel-has-no-effect": "キャンセルは効きません。クエリは常に完了まで実行します。"
+        }
+    },
+    "oracle": {
+        "tagline": "Instant Client 不要の純 Swift ドライバ、PL/SQL スクリプト、DBMS_OUTPUT。",
+        "limits": {
+            "no-wallet-os-auth-kerberos-ldap": "Oracle ウォレット、OS 認証、Kerberos、LDAP は非対応です。サービス名または SID とパスワードで接続してください。",
+            "no-explain": "Oracle の EXPLAIN や実行計画ビューはありません。",
+            "no-users-roles": "Users & Roles は使えません。エディタの CREATE USER と GRANT でアカウントを管理してください。",
+            "no-packages": "パッケージはサイドバーに表示しません。独立したプロシージャと関数は表示します。"
+        }
+    },
+    "clickhouse": {
+        "tagline": "HTTP・HTTPS で ClickHouse に接続し、EXPLAIN 各種、ミューテーション、Parts タブに対応。",
+        "limits": {
+            "http-only": "ClickHouse の HTTP インターフェースで接続します。ネイティブ TCP プロトコルは使いません。",
+            "tls-off-by-default": "TLS は初期設定ではオフです。HTTPS を使うには接続フォームで SSL モードを選んでください。",
+            "no-foreign-keys-or-transactions": "外部キーとトランザクションはありません。",
+            "set-does-not-persist": "SET 文の設定は次のクエリに引き継がれません。"
+        }
+    },
+    "duckdb": {
+        "tagline": "DuckDB ファイル、Parquet・CSV・JSON ファイルをビューとして扱う機能、インメモリデータベース。",
+        "limits": {
+            "one-writer-per-file": "接続が開いている間、DuckDB ファイルへの書き込みは同時に 1 プロセスのみです。",
+            "extensions-download-on-first-use": "ドライバはコア機能、JSON、Parquet、ICU、自動補完の拡張機能を含みます。httpfs などのその他の拡張機能は、クエリで初めて必要になったときに DuckDB からダウンロードします。",
+            "remote-quack-experimental": "Quack 経由のリモート接続は実験的な機能です。"
+        }
+    },
+    "cassandra": {
+        "tagline": "接続先ノード、TLS、Amazon Keyspaces SigV4 認証に対応した CQL。",
+        "limits": {
+            "scalar-edits-only": "グリッドで編集できるのはスカラーカラムのみです。コレクション、タプル、ユーザー定義型、期間型はエディタの UPDATE で変更してください。",
+            "no-consistency-level": "整合性レベルの設定はありません。文はドライバの初期設定 LOCAL_ONE で実行します。",
+            "no-astra-bundle": "セキュア接続バンドルを読み込めないため、DataStax Astra DB には接続できません。",
+            "no-views-or-types-in-sidebar": "マテリアライズドビューとユーザー定義型はサイドバーに表示しません。"
+        }
+    },
+    "scylladb": {
+        "tagline": "Cassandra ドライバで ScyllaDB に接続し、同じ CQL ワークフローを利用。",
+        "limits": {}
+    },
+    "dynamodb": {
+        "tagline": "PartiQL と DynamoDB API JSON。フィルタに応じて Query・Scan を選ぶプランナーと、読み取りごとの消費キャパシティを表示。",
+        "limits": {
+            "one-account-and-region": "各接続は 1 つのリージョンの 1 つの AWS アカウントを対象とします。",
+            "no-dax-or-truncate": "DAX エンドポイントは非対応で、Truncate も提供しません。"
+        }
+    },
+    "bigquery": {
+        "tagline": "Max Bytes Billed と、実行前の Dry Run 費用見積もりに対応した GoogleSQL。",
+        "limits": {
+            "structure-read-only": "Structure タブは読み取り専用です。エディタで DDL を実行してください。",
+            "no-transactions": "トランザクションは非対応です。"
+        }
+    },
+    "snowflake": {
+        "tagline": "鍵ペア、ブラウザ SSO、OAuth、パスコード付きパスワードで認証。Session Context にウェアハウスとロールを表示。",
+        "limits": {
+            "duo-passcode-only": "Duo はパスコードのみ対応します。プッシュ承認は非対応です。"
+        }
+    },
+    "cloudflare-d1": {
+        "tagline": "Cloudflare アカウント内のすべての D1 データベースに、D1 HTTP API で接続。",
+        "limits": {
+            "no-session-state-or-transactions": "各文は個別の HTTP リクエストです。セッション状態は引き継がれず、トランザクションも非対応です。"
+        }
+    },
+    "turso": {
+        "tagline": "libSQL ドライバでトークンを使い、HTTP 経由でリモート Turso データベースに接続。",
+        "limits": {
+            "no-database-switching-or-branches": "各接続は 1 つのデータベースです。データベースの切り替えとブランチは非対応です。",
+            "no-embedded-replicas": "埋め込みレプリカは非対応です。ローカルファイルは独立して開き、同期しません。"
+        }
+    },
+    "libsql": {
+        "tagline": "この Mac の libSQL ファイル、または HTTP 経由の sqld サーバー。",
+        "limits": {
+            "dump-local-file-only": "Backup Dump はローカルの libSQL ファイルのみ対応し、リモートデータベースは非対応です。"
+        }
+    },
+    "elasticsearch": {
+        "tagline": "Query DSL コンソール、テーブルとしてのインデックス、_id によるドキュメント編集。",
+        "limits": {
+            "no-opensearch": "OpenSearch は非対応です。",
+            "aliases-not-listed": "エイリアスとデータストリームはサイドバーに表示しません。コンソールで名前を指定してください。",
+            "no-ssh": "SSH トンネルは非対応です。"
+        }
+    },
+    "etcd": {
+        "tagline": "v3 JSON ゲートウェイ経由の etcdctl の一部：プレフィックス配下のキー、リース、メンバー。",
+        "limits": {
+            "no-txn": "txn は非対応です。",
+            "json-gateway-only": "接続には gRPC ではなく v3 JSON ゲートウェイを使います。",
+            "watch-collects-until-timeout": "watch はタイムアウトまでイベントを収集し、その後行として表示します。"
+        }
+    },
+    "kafka": {
+        "tagline": "KafkaQL でメッセージの読み取りと送信。トピック、パーティション、コンシューマーグループの遅延も表示。",
+        "limits": {
+            "no-schema-registry": "Schema Registry を読まないため、Avro と Protobuf の値は生のバイトとして表示します。",
+            "no-topic-create-or-offset-reset": "トピックの作成、トピック設定の編集、コンシューマーグループのオフセットのリセットは非対応です。",
+            "approximate-counts": "メッセージ数は概算です。"
+        }
+    },
+    "surrealdb": {
+        "tagline": "HTTP RPC 経由の SurrealQL。root、名前空間、データベース、レコード、トークンで認証。",
+        "limits": {
+            "no-syntax-highlighting": "エディタの SurrealQL は構文ハイライトされません。",
+            "no-live-queries": "ライブクエリは非対応です。新しいレコードを見るにはクエリを再実行してください。"
+        }
+    },
+    "teradata": {
+        "tagline": "TD2・TDNEGO 認証。サイドバーにプロシージャとマクロを表示。",
+        "limits": {
+            "ldap-kerberos-jwt-refused": "LDAP、Kerberos、JWT 認証は拒否します。TD2 または TDNEGO を使ってください。",
+            "foreign-keys-not-listed": "外部キーは一覧に表示しません。テーブルの DDL で確認してください。"
+        }
+    },
+    "trino": {
+        "tagline": "Trino の REST API でカタログをまたぐ SQL を実行し、パスワードまたは JWT で認証。",
+        "limits": {
+            "no-presto": "Presto サーバーは非対応です。",
+            "no-kerberos-or-oauth": "Kerberos と OAuth 認証は非対応です。"
+        }
+    },
+    "beancount": {
+        "tagline": "Beancount 元帳を SQL テーブルとして読み取り、BQL クエリも実行。",
+        "limits": {
+            "projected-tables": "TablePro は元帳を開くときに {value} 個の読み取り専用 SQL テーブルへ読み込みます。元帳には何も書き戻しません。",
+            "needs-ledger-tool": "この Mac に rledger または Python beancount のインストールが必要です。"
+        }
+    },
+    "spanner": {
+        "tagline": "接続時に GoogleSQL・PostgreSQL 方言を検出し、Spanner エミュレータにも対応。",
+        "limits": {
+            "structure-read-only": "Structure タブは読み取り専用です。エディタの ALTER TABLE でテーブルを変更してください。"
+        }
+    },
+    "typesense": {
+        "tagline": "REST リクエストコンソール、テーブルとしてのコレクション、メトリクスダッシュボード。",
+        "limits": {
+            "api-keys-as-users": "Typesense にはユーザーアカウントがないため、他のエンジンでユーザーを表示する場所に API キーを表示します。"
+        }
+    },
+    "weaviate": {
+        "tagline": "コレクションをテーブルとして扱い、GraphQL で読み取り、REST で書き込み。",
+        "limits": {
+            "graphql-reads-rest-writes": "GraphQL は読み取りのみです。ブラウズと行編集は Weaviate の REST エンドポイントを使います。"
+        }
+    },
+    "cloudflare-r2-sql": {
+        "tagline": "Cloudflare R2 に保存した Iceberg テーブルの読み取り専用 SQL。",
+        "limits": {
+            "rows-per-query": "1 クエリで返すのは最大 {value} 行です。",
+            "no-offset": "OFFSET は非対応です。",
+            "billed-per-scan": "Cloudflare は各クエリがスキャンするデータ量に応じて R2 SQL の料金を請求します。"
+        }
+    },
+    "dameng": {
+        "tagline": "ネイティブプロトコルで Dameng DM8 に接続し、EXPLAIN 計画と SSH トンネルに対応。",
+        "limits": {
+            "no-tls": "TLS は非対応です。非公開ネットワークの外のサーバーへは SSH トンネルで接続してください。"
+        }
+    },
+    "sap-hana": {
+        "tagline": "SAP HANA Cloud、HANA 2.0、HANA Express に対応し、構造は読み取り専用で表示。",
+        "limits": {
+            "no-tunnels": "SSH トンネル、SOCKS プロキシ、Cloudflare トンネル、トンネルコマンドは非対応です。",
+            "unsupported-auth-methods": "X.509 証明書、JWT、SAML、Kerberos、LDAP 認証は非対応です。データベースユーザーとパスワードでログインしてください。"
+        }
+    }
+}

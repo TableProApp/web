@@ -18,12 +18,15 @@ database and no credentials: every page is built from markdown in
 /robots.txt  /sitemap.xml
 ```
 
-Pages resolve by convention from `resources/js/pages`, so adding a file is
-enough — Inertia is configured without an explicit `resolve`.
+Pages resolve by convention from `resources/js/pages`. The shared
+`resolve-page.ts` resolver loads the selected asset language before rendering
+on the client or through SSR.
 
 ### Languages
 
-English is at the root and Vietnamese under `/vi`, with the same slugs. The
+English is at the root. Vietnamese, Spanish, German, French, Japanese, Brazilian
+Portuguese, Simplified Chinese, Korean, Traditional Chinese, Italian and Indonesian
+use the prefixes in `resources/data/locales.json`, with the same slugs. The
 locale comes from the URL alone: no cookie, no session, no `Accept-Language`,
 no IP lookup, no `Vary` on language and no redirect between languages. A
 crawler or a reader reaches each language by its URL.
@@ -49,7 +52,7 @@ not know it and the route answers 404.
 The same registry feeds the shared `seo` prop (robots, canonical, hreflang,
 `og:locale`, OG card), the `localization.switcher` prop and the sitemap, so they
 cannot disagree. A page can render in a locale without being indexed there:
-`/vi/blog` lists English posts, so its content file sets `seo.indexable: false`
+Every localized blog index lists English posts, so its content file sets `seo.indexable: false`
 and it carries `noindex, follow` with no canonical and no alternates.
 
 Errors render the `Error` page in the locale of the path (404 and 410 always,
@@ -333,12 +336,16 @@ request, and a `supplied` entry as `<picture>` sources with light and dark
 variants. Markdown places a slot with `<asset-slot id="…"></asset-slot>`. A
 supplied `priority` asset gets a head preload through the `lcpAsset` page prop.
 
-The browser bundle carries only `resources/js/lib/data/asset-slots.json`, the
-render slice of the manifest. `php artisan assets:handoff` writes it, together
-with the owner's brief, `docs/visual-assets.md`, from the manifest and the
-per-family fragments in `docs/rebuild/assets/`. Both files are generated: edit
-the manifest or a fragment and rerun the command. `assets:handoff --check` runs
-in CI and fails on a stale file.
+The browser loads `resources/js/lib/data/asset-slots.json` for shared geometry
+and one `asset-locales/{locale}.json` catalog for the active language's text.
+The page resolver waits for that catalog before client or SSR rendering;
+the cache is keyed by locale so concurrent SSR requests cannot share the wrong
+language. English editorial figures retain their English text.
+
+`php artisan assets:handoff` writes these files and the owner's brief,
+`docs/visual-assets.md`, from the manifest and the per-family fragments in
+`docs/rebuild/assets/`. Edit the manifest or a fragment and rerun the command.
+`assets:handoff --check` runs in CI and fails on any stale generated file.
 
 ## Build and deploy
 
@@ -350,10 +357,10 @@ rebuilds the route cache like any PHP change (docs/deployment.md).
 The sitemap is generated on the host because it carries a `lastmod` date. Open
 Graph cards are the opposite — they are committed under `public/og/`, so
 nothing in production needs a browser engine. `php artisan og:generate
---type={site|blog|database|compare|feature|all} --locale={en|vi|all}` renders
+--type={site|blog|database|compare|feature|all} --locale={supported-locale|all}` renders
 them from each page's content (`og` block, or the post's front matter):
 English at `public/og/{type}/{slug}.png` and the generic `public/og.png`,
-Vietnamese under `public/og/vi/`. A page with no card of its own, or whose own
+Other languages under `public/og/{locale}/`. A page with no card of its own, or whose own
 card file is missing, falls back to its language's generic card: the bespoke
 `og-site` card (`public/og/bespoke/og-site-{locale}.png`, an owner asset in
 `resources/data/assets.json`) once that entry is supplied and the locale's file

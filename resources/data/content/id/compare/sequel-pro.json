@@ -1,0 +1,175 @@
+{
+    "seo": {
+        "title": "Alternatif Sequel Pro untuk Mac",
+        "description": "Rilis terakhir Sequel Pro berasal dari 2016 dan memerlukan Rosetta pada Apple silicon. Sequel Ace melanjutkannya, dan TablePro mengimpor koneksinya."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "Alternatif Sequel Pro untuk Mac"
+    },
+    "header": {
+        "title": "Alternatif Sequel Pro untuk Mac",
+        "lead": "Sequel Pro tidak lagi dikembangkan. Rilis terakhirnya adalah build Intel dari 2016, Homebrew telah menghapusnya, dan situsnya tidak tersedia saat halaman ini diperiksa. Sequel Ace melanjutkannya untuk MySQL dan MariaDB. TablePro adalah pilihan lain jika Anda menginginkan satu klien untuk lebih banyak database, dan mengimpor koneksi Sequel Ace."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda juga menggunakan PostgreSQL, SQL Server, SQLite, Redis, atau MongoDB, bukan hanya MySQL dan MariaDB.",
+            "Anda menginginkan asisten AI dan server MCP gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda.",
+            "Anda menginginkan aplikasi iPhone dan iPad gratis yang terhubung ke MySQL dan MariaDB.",
+            "Anda siap mempelajari antarmuka berbeda dan ingin memindahkan koneksi Sequel Ace beserta kata sandinya."
+        ],
+        "competitor": [
+            "Anda menginginkan antarmuka Sequel Pro yang dikenal, gratis, dan tetap dipelihara.",
+            "Anda hanya menggunakan MySQL dan MariaDB.",
+            "Anda memasang aplikasi dari Mac App Store."
+        ],
+        "competitorTitle": "Pilih Sequel Ace jika"
+    },
+    "glance": {
+        "intro": "Rilis terakhir Sequel Pro adalah {status.version}, dari {status.date}. Tabel menampilkan kondisinya saat ini di samping TablePro. Untuk perbandingan dengan penerusnya yang dipelihara, baca TablePro vs Sequel Ace."
+    },
+    "rows": {
+        "homebrew": {
+            "label": "Homebrew",
+            "tablepro": "Dipasang dengan Homebrew sebagai cask tablepro"
+        },
+        "website": {
+            "label": "Situs web",
+            "tablepro": "Tersedia dengan catatan rilis dan dokumentasi"
+        },
+        "rosetta": {
+            "label": "Apple silicon",
+            "tablepro": "Build terpisah untuk Apple silicon, tanpa Rosetta"
+        },
+        "successor": {
+            "label": "Penerus",
+            "tablepro": "Proyek terpisah. Mengimpor koneksi Sequel Ace, bukan Sequel Pro"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Sequel Pro gratis dan bersumber terbuka dengan lisensi MIT.",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Kodenya berlanjut dalam Sequel Ace, penerus yang dipelihara dan mempertahankan antarmukanya untuk MySQL serta MariaDB.",
+                "cite": [
+                    "cells.successor"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro dipelihara dan memiliki build terpisah untuk Apple silicon serta Intel. Rilis terakhir Sequel Pro adalah build Intel yang memerlukan Rosetta pada Apple silicon.",
+                "cite": [
+                    "status",
+                    "cells.rosetta"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Aplikasi terhubung ke <link>MySQL dan MariaDB</link> serta mesin lain seperti PostgreSQL, SQL Server, SQLite, Redis, dan MongoDB.",
+                "cite": [],
+                "feature": null,
+                "href": "/mysql-client"
+            },
+            {
+                "text": "Aplikasi mengimpor koneksi Sequel Ace beserta kata sandinya, sehingga Sequel Ace dapat menjadi langkah perantara. Lihat <link>TablePro vs Sequel Ace</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/compare/sequel-ace"
+            },
+            {
+                "text": "<link>Asisten AI dan server MCP</link> gratis dalam aplikasi Mac.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro tidak dapat membaca favorit Sequel Pro secara langsung. Favorit harus melewati Sequel Ace terlebih dahulu.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Antarmukanya berbeda dari Sequel Pro, jadi Anda perlu mempelajari kembali lokasi beberapa fungsi.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro hanya menghubungkan MySQL dan MariaDB melalui TCP, bukan berkas socket lokal.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Beberapa fitur berbayar. Starter menambahkan fitur seperti {starterExamples}.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro tidak memiliki pengimpor untuk Sequel Pro. Jalur yang tersedia melewati Sequel Ace: pindahkan favorit ke Sequel Ace, lalu impor dari Sequel Ace ke TablePro.",
+        "steps": [],
+        "after": [
+            "Di Sequel Ace, ikuti panduan “Migrating from Sequel Pro” yang menyalin berkas favorit dan preferensi ke Sequel Ace. Panduan menyatakan kata sandi tidak dipindahkan otomatis dan menyediakan skrip untuknya, serta kunci SSH harus dipilih ulang.",
+            "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>, pilih Sequel Ace, dan aktifkan <ui>Include passwords</ui>.",
+            "Sebelum menghapus salah satu aplikasi, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "apple-silicon",
+            "question": "Apakah Sequel Pro berjalan pada Apple silicon?",
+            "answer": "Hanya melalui Rosetta karena versi {status.version} adalah build Intel. Apple menyatakan mulai macOS 28 Rosetta hanya dipertahankan untuk beberapa game lama.",
+            "href": null
+        },
+        {
+            "id": "import",
+            "question": "Apakah TablePro dapat mengimpor favorit Sequel Pro?",
+            "answer": "Tidak langsung. Salin ke Sequel Ace menggunakan panduan migrasinya, lalu impor dari Sequel Ace. Panduan menyatakan kata sandi tidak dipindahkan otomatis, jadi periksa di Sequel Ace sebelum mengimpor atau masukkan di TablePro.",
+            "href": null
+        },
+        {
+            "id": "which",
+            "question": "Sebaiknya saya beralih ke Sequel Ace atau TablePro?",
+            "answer": "Sequel Ace jika Anda menginginkan antarmuka Sequel Pro untuk MySQL dan MariaDB yang gratis dan dipelihara. TablePro jika Anda juga memakai mesin lain, menginginkan aplikasi iPhone dan iPad, atau asisten AI dalam aplikasi. <link>Bandingkan TablePro dengan Sequel Ace</link>.",
+            "href": "/compare/sequel-ace"
+        },
+        {
+            "id": "heidisql",
+            "question": "Apakah HeidiSQL sekarang menjadi pilihan pada Mac?",
+            "answer": "Pada Mac dengan Apple silicon, ya. HeidiSQL, klien gratis untuk MySQL, MariaDB, dan database lain, menyediakan build Mac sejak Januari 2026 tanpa versi untuk Mac Intel. <link>Bandingkan TablePro dengan HeidiSQL</link>.",
+            "href": "/compare/heidisql"
+        }
+    ],
+    "notes": {
+        "sequel-pro-databases": "MySQL dan MariaDB",
+        "sequel-pro-cask-removed": "Homebrew menonaktifkan cask karena dihentikan, mengarahkan ke Sequel Ace, lalu menghapusnya pada {date}",
+        "sequel-pro-site-down": "sequelpro.com tidak dimuat saat diperiksa, dan issue terbuka pada repositori melaporkan situs tidak tersedia",
+        "sequel-pro-rosetta": "Build Intel. Pada Apple silicon memerlukan Rosetta, yang menurut Apple hanya dipertahankan untuk beberapa game lama mulai macOS 28.",
+        "sequel-pro-successor": "Sequel Ace, yang menyebut dirinya “sekuel” Sequel Pro dan dibangun dari kodenya"
+    }
+}

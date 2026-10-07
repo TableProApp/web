@@ -259,8 +259,28 @@ chủ dùng lại ảnh của trang tính năng và trang iPhone, nên mô tả 
 
 - Placeholder text (en): TablePro on Mac with the shop sample database (PostgreSQL): the orders table, a query in the editor and its results.
 - Placeholder text (vi): TablePro trên Mac với cơ sở dữ liệu mẫu shop (PostgreSQL): table orders, một query trong editor cùng kết quả.
+- Placeholder text (es): TablePro en Mac con la base de datos de ejemplo shop (PostgreSQL): la tabla orders, una consulta en el editor y sus resultados.
+- Placeholder text (de): TablePro auf dem Mac mit der Beispieldatenbank shop (PostgreSQL): die Tabelle orders, eine Abfrage im Editor und ihre Ergebnisse.
+- Placeholder text (fr): TablePro sur Mac avec la base d’exemple shop (PostgreSQL) : la table orders, une requête dans l’éditeur et ses résultats.
+- Placeholder text (ja): Mac 上の TablePro で開いた shop サンプルデータベース（PostgreSQL）。orders テーブル、エディタ内のクエリとその結果。
+- Placeholder text (pt-BR): TablePro no Mac com o banco de exemplo shop (PostgreSQL): a tabela orders, uma consulta no editor e seus resultados.
+- Placeholder text (zh-Hans): Mac 上的 TablePro 打开 shop 示例数据库（PostgreSQL）：orders 表、编辑器中的查询及其结果。
+- Placeholder text (ko): Mac의 TablePro에서 열린 shop 샘플 데이터베이스(PostgreSQL). orders 테이블, 편집기의 쿼리와 결과입니다.
+- Placeholder text (zh-Hant): Mac 上的 TablePro 開啟 shop 範例資料庫（PostgreSQL）：orders 資料表、編輯器內的查詢及其結果。
+- Placeholder text (it): TablePro su Mac con il database di esempio shop (PostgreSQL): la tabella orders, una query nell’editor e i risultati.
+- Placeholder text (id): TablePro di Mac dengan database contoh shop (PostgreSQL): tabel orders, kueri dalam editor, dan hasilnya.
 - Proposed alt text (en): TablePro window on a Mac, connected to a PostgreSQL sample database, with the orders table in the sidebar, a query in the SQL editor and its result rows below.
 - Proposed alt text (vi): Cửa sổ TablePro trên Mac, kết nối tới một cơ sở dữ liệu PostgreSQL mẫu, với table orders ở sidebar, một query trong SQL editor và các dòng kết quả bên dưới.
+- Proposed alt text (es): Ventana de TablePro en Mac conectada a una base PostgreSQL de ejemplo, con la tabla orders en la barra lateral, una consulta en el editor SQL y las filas de resultados debajo.
+- Proposed alt text (de): TablePro-Fenster auf einem Mac, verbunden mit einer PostgreSQL-Beispieldatenbank: Tabelle orders in der Seitenleiste, Abfrage im SQL-Editor und Ergebniszeilen darunter.
+- Proposed alt text (fr): Fenêtre TablePro sur Mac connectée à une base PostgreSQL d’exemple, avec la table orders dans la barre latérale, une requête dans l’éditeur SQL et les lignes de résultat dessous.
+- Proposed alt text (ja): Mac 上の TablePro のウインドウ。PostgreSQL のサンプルデータベースに接続し、サイドバーに orders テーブル、SQL エディタにクエリ、その下に結果の行が表示されています。
+- Proposed alt text (pt-BR): Janela do TablePro em um Mac, conectada a um banco de exemplo PostgreSQL, com a tabela orders na barra lateral, uma consulta no editor SQL e suas linhas de resultado abaixo.
+- Proposed alt text (zh-Hans): Mac 上的 TablePro 窗口连接到 PostgreSQL 示例数据库，侧边栏显示 orders 表，SQL 编辑器中有一条查询，下方显示结果行。
+- Proposed alt text (ko): Mac의 TablePro 창이 PostgreSQL 샘플 데이터베이스에 연결되어 있습니다. 사이드바에는 orders 테이블, SQL 편집기에는 쿼리, 아래에는 결과 행이 표시됩니다.
+- Proposed alt text (zh-Hant): Mac 上的 TablePro 視窗連線至 PostgreSQL 範例資料庫，側邊欄顯示 orders 資料表，SQL 編輯器內有一項查詢，下方顯示結果資料列。
+- Proposed alt text (it): Finestra di TablePro su un Mac, connessa a un database PostgreSQL di esempio, con la tabella orders nella barra laterale, una query nell’editor SQL e le righe del risultato sotto.
+- Proposed alt text (id): Jendela TablePro di Mac, terhubung ke database contoh PostgreSQL, dengan tabel orders di sidebar, kueri dalam editor SQL, dan baris hasil di bawahnya.
 
 **Purpose**
 
@@ -342,8 +362,28 @@ Vietnamese translation is partial, so a Vietnamese capture would mix both langua
 
 - Placeholder text (en): Close-up of the same window: the query and the first result rows.
 - Placeholder text (vi): Cận cảnh cùng cửa sổ: câu query và các dòng kết quả đầu tiên.
+- Placeholder text (es): Detalle de la misma ventana: la consulta y las primeras filas de resultados.
+- Placeholder text (de): Detailansicht desselben Fensters: Abfrage und erste Ergebniszeilen.
+- Placeholder text (fr): Gros plan de la même fenêtre : la requête et les premières lignes de résultat.
+- Placeholder text (ja): 同じウインドウの拡大図。クエリと結果の最初の数行。
+- Placeholder text (pt-BR): Detalhe da mesma janela: a consulta e as primeiras linhas do resultado.
+- Placeholder text (zh-Hans): 同一窗口的局部图：查询及结果的前几行。
+- Placeholder text (ko): 같은 창의 확대 화면. 쿼리와 결과의 첫 행들입니다.
+- Placeholder text (zh-Hant): 同一視窗的局部圖：查詢及結果的前幾列。
+- Placeholder text (it): Dettaglio della stessa finestra: la query e le prime righe del risultato.
+- Placeholder text (id): Tampilan dekat jendela yang sama: kueri dan baris awal hasilnya.
 - Proposed alt text (en): Close-up of the TablePro SQL editor with a query on the orders table and the first rows of its result.
 - Proposed alt text (vi): Cận cảnh SQL editor của TablePro với một query trên table orders và các dòng kết quả đầu tiên.
+- Proposed alt text (es): Detalle del editor SQL de TablePro con una consulta sobre la tabla orders y las primeras filas de resultados.
+- Proposed alt text (de): Detailansicht des TablePro-SQL-Editors mit einer Abfrage auf orders und den ersten Ergebniszeilen.
+- Proposed alt text (fr): Gros plan de l’éditeur SQL TablePro avec une requête sur la table orders et les premières lignes de résultat.
+- Proposed alt text (ja): TablePro の SQL エディタの拡大図。orders テーブルへのクエリと結果の最初の数行が表示されています。
+- Proposed alt text (pt-BR): Detalhe do editor SQL do TablePro com uma consulta à tabela orders e as primeiras linhas do resultado.
+- Proposed alt text (zh-Hans): TablePro SQL 编辑器的局部图，显示 orders 表查询及结果的前几行。
+- Proposed alt text (ko): orders 테이블의 쿼리와 결과의 첫 행들을 보여 주는 TablePro SQL 편집기의 확대 화면.
+- Proposed alt text (zh-Hant): TablePro SQL 編輯器的局部圖，顯示 orders 資料表查詢及結果的前幾列。
+- Proposed alt text (it): Dettaglio dell’editor SQL di TablePro con una query sulla tabella orders e le prime righe del risultato.
+- Proposed alt text (id): Tampilan dekat editor SQL TablePro dengan kueri pada tabel orders dan baris awal hasilnya.
 
 **Purpose**
 
@@ -401,7 +441,7 @@ name, API key or customer row. Window captures follow `docs/screenshots.md`.
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/` · features; `/features/querying` · editor |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/querying.json`, `resources/data/content/vi/features/querying.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/querying.json`, `resources/data/content/en/features/querying.json`, `resources/data/content/es/features/querying.json`, `resources/data/content/fr/features/querying.json`, `resources/data/content/id/features/querying.json`, `resources/data/content/it/features/querying.json`, `resources/data/content/ja/features/querying.json`, `resources/data/content/ko/features/querying.json`, `resources/data/content/pt-BR/features/querying.json`, `resources/data/content/vi/features/querying.json`, `resources/data/content/zh-Hans/features/querying.json`, `resources/data/content/zh-Hant/features/querying.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-query-autocomplete-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -413,8 +453,28 @@ name, API key or customer row. Window captures follow `docs/screenshots.md`.
 
 - Placeholder text (en): SQL editor on shop: a CTE joined to orders, with autocomplete listing the CTE's columns.
 - Placeholder text (vi): SQL editor trên shop: một CTE join với orders, autocomplete gợi ý các cột của CTE.
+- Placeholder text (es): Editor SQL en shop: una CTE unida a orders, con autocompletado que lista las columnas de la CTE.
+- Placeholder text (de): SQL-Editor für shop: eine mit orders verknüpfte CTE; die Autovervollständigung listet ihre Spalten auf.
+- Placeholder text (fr): Éditeur SQL sur shop : une CTE jointe à orders, avec l’autocomplétion listant ses colonnes.
+- Placeholder text (ja): shop の SQL エディタ。orders に結合した CTE と、その列を一覧表示する自動補完。
+- Placeholder text (pt-BR): Editor SQL em shop: uma CTE unida a orders, com preenchimento automático listando as colunas da CTE.
+- Placeholder text (zh-Hans): 在 shop 上使用 SQL 编辑器：CTE 与 orders 连接，自动补全列表显示 CTE 的列。
+- Placeholder text (ko): shop의 SQL 편집기. orders에 조인된 CTE와 CTE의 열을 나열하는 자동 완성입니다.
+- Placeholder text (zh-Hant): 在 shop 上使用 SQL 編輯器：CTE 與 orders 聯結，自動完成清單顯示 CTE 的欄位。
+- Placeholder text (it): Editor SQL su shop: una CTE unita a orders, con completamento automatico che elenca le colonne della CTE.
+- Placeholder text (id): Editor SQL pada shop: CTE digabungkan ke orders, dengan pelengkapan otomatis yang mencantumkan kolom CTE.
 - Proposed alt text (en): TablePro SQL editor with a query that joins a CTE named recent_orders to users, and the autocomplete list showing the CTE's columns.
 - Proposed alt text (vi): SQL editor của TablePro với một query join CTE recent_orders với users, danh sách autocomplete hiển thị các cột của CTE.
+- Proposed alt text (es): Editor SQL de TablePro con una consulta que une la CTE recent_orders con users y una lista de autocompletado que muestra las columnas de la CTE.
+- Proposed alt text (de): TablePro-SQL-Editor mit einer Abfrage, die die CTE recent_orders mit users verknüpft, und einer Autovervollständigungsliste mit den CTE-Spalten.
+- Proposed alt text (fr): Éditeur SQL TablePro avec une requête joignant la CTE recent_orders à users et une liste d’autocomplétion affichant les colonnes de la CTE.
+- Proposed alt text (ja): TablePro の SQL エディタ。recent_orders という CTE を users に結合するクエリと、CTE の列を表示する自動補完リスト。
+- Proposed alt text (pt-BR): Editor SQL do TablePro com uma consulta que une uma CTE chamada recent_orders a users, e a lista de preenchimento automático mostrando as colunas da CTE.
+- Proposed alt text (zh-Hans): TablePro SQL 编辑器中的查询将名为 recent_orders 的 CTE 与 users 连接，自动补全列表显示该 CTE 的列。
+- Proposed alt text (ko): recent_orders라는 CTE를 users에 조인하는 쿼리가 있는 TablePro SQL 편집기와 CTE의 열을 표시하는 자동 완성 목록.
+- Proposed alt text (zh-Hant): TablePro SQL 編輯器內的查詢將名為 recent_orders 的 CTE 與 users 聯結，自動完成清單顯示該 CTE 的欄位。
+- Proposed alt text (it): Editor SQL di TablePro con una query che unisce una CTE chiamata recent_orders a users, e l’elenco di completamento che mostra le colonne della CTE.
+- Proposed alt text (id): Editor SQL TablePro dengan kueri yang menggabungkan CTE bernama recent_orders ke users, dan daftar pelengkapan otomatis menampilkan kolom CTE.
 
 **Purpose**
 
@@ -460,7 +520,7 @@ Load the `shop` schema (`demo/schema.postgres.sql`) into a local PostgreSQL befo
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/` · features; `/features/querying` · editor |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/querying.json`, `resources/data/content/vi/features/querying.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) (through the `mac-query-autocomplete` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/querying.json`, `resources/data/content/en/features/querying.json`, `resources/data/content/es/features/querying.json`, `resources/data/content/fr/features/querying.json`, `resources/data/content/id/features/querying.json`, `resources/data/content/it/features/querying.json`, `resources/data/content/ja/features/querying.json`, `resources/data/content/ko/features/querying.json`, `resources/data/content/pt-BR/features/querying.json`, `resources/data/content/vi/features/querying.json`, `resources/data/content/zh-Hans/features/querying.json`, `resources/data/content/zh-Hant/features/querying.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) (through the `mac-query-autocomplete` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -470,8 +530,28 @@ Load the `shop` schema (`demo/schema.postgres.sql`) into a local PostgreSQL befo
 
 - Placeholder text (en): Close-up of the editor: the CTE query and the autocomplete list with the CTE's columns.
 - Placeholder text (vi): Cận cảnh editor: query có CTE và danh sách autocomplete gợi ý các cột của CTE.
+- Placeholder text (es): Detalle del editor: la consulta con CTE y la lista de autocompletado con sus columnas.
+- Placeholder text (de): Detailansicht des Editors: CTE-Abfrage und Autovervollständigungsliste mit ihren Spalten.
+- Placeholder text (fr): Gros plan de l’éditeur : la requête CTE et la liste d’autocomplétion de ses colonnes.
+- Placeholder text (ja): エディタの拡大図。CTE のクエリと、その列を表示する自動補完リスト。
+- Placeholder text (pt-BR): Detalhe do editor: a consulta com CTE e a lista de preenchimento automático com as colunas da CTE.
+- Placeholder text (zh-Hans): 编辑器的局部图：CTE 查询及列出 CTE 列名的自动补全列表。
+- Placeholder text (ko): 편집기의 확대 화면. CTE 쿼리와 CTE의 열을 표시하는 자동 완성 목록입니다.
+- Placeholder text (zh-Hant): 編輯器的局部圖：CTE 查詢及列出 CTE 欄位名稱的自動完成清單。
+- Placeholder text (it): Dettaglio dell’editor: la query con CTE e l’elenco di completamento con le colonne della CTE.
+- Placeholder text (id): Tampilan dekat editor: kueri CTE dan daftar pelengkapan otomatis dengan kolom CTE.
 - Proposed alt text (en): Close-up of the autocomplete list suggesting the columns of a CTE in the TablePro SQL editor.
 - Proposed alt text (vi): Cận cảnh danh sách autocomplete gợi ý các cột của một CTE trong SQL editor của TablePro.
+- Proposed alt text (es): Detalle de la lista de autocompletado que sugiere las columnas de una CTE en el editor SQL de TablePro.
+- Proposed alt text (de): Detailansicht der Autovervollständigung, die CTE-Spalten im TablePro-SQL-Editor vorschlägt.
+- Proposed alt text (fr): Gros plan de la liste d’autocomplétion suggérant les colonnes d’une CTE dans l’éditeur SQL TablePro.
+- Proposed alt text (ja): TablePro の SQL エディタで CTE の列を提案する自動補完リストの拡大図。
+- Proposed alt text (pt-BR): Detalhe da lista de preenchimento automático sugerindo as colunas de uma CTE no editor SQL do TablePro.
+- Proposed alt text (zh-Hans): TablePro SQL 编辑器的自动补全列表局部图，列出 CTE 的列建议。
+- Proposed alt text (ko): TablePro SQL 편집기에서 CTE의 열을 제안하는 자동 완성 목록의 확대 화면.
+- Proposed alt text (zh-Hant): TablePro SQL 編輯器的自動完成清單局部圖，列出 CTE 的欄位建議。
+- Proposed alt text (it): Dettaglio dell’elenco di completamento che suggerisce le colonne di una CTE nell’editor SQL di TablePro.
+- Proposed alt text (id): Tampilan dekat daftar pelengkapan otomatis yang menyarankan kolom CTE dalam editor SQL TablePro.
 
 **Purpose**
 
@@ -509,7 +589,7 @@ None beyond `mac-query-autocomplete`.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/querying` · history |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/querying.json`, `resources/data/content/vi/features/querying.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/querying.json`, `resources/data/content/en/features/querying.json`, `resources/data/content/es/features/querying.json`, `resources/data/content/fr/features/querying.json`, `resources/data/content/id/features/querying.json`, `resources/data/content/it/features/querying.json`, `resources/data/content/ja/features/querying.json`, `resources/data/content/ko/features/querying.json`, `resources/data/content/pt-BR/features/querying.json`, `resources/data/content/vi/features/querying.json`, `resources/data/content/zh-Hans/features/querying.json`, `resources/data/content/zh-Hant/features/querying.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -519,8 +599,28 @@ None beyond `mac-query-autocomplete`.
 
 - Placeholder text (en): A query with :customer_id and :since parameters, their value panel and the history drawer.
 - Placeholder text (vi): Query có tham số :customer_id và :since, khung nhập giá trị và ngăn lịch sử query.
+- Placeholder text (es): Una consulta con parámetros :customer_id y :since, su panel de valores y el panel de historial.
+- Placeholder text (de): Abfrage mit den Parametern :customer_id und :since, ihrem Wertebereich und dem Verlaufsbereich.
+- Placeholder text (fr): Une requête avec les paramètres :customer_id et :since, leur panneau de valeurs et le volet d’historique.
+- Placeholder text (ja): :customer_id と :since パラメータを含むクエリ、値のパネル、履歴のドロワー。
+- Placeholder text (pt-BR): Uma consulta com parâmetros :customer_id e :since, seu painel de valores e a gaveta de histórico.
+- Placeholder text (zh-Hans): 包含 :customer_id 和 :since 参数的查询、参数值面板及历史抽屉。
+- Placeholder text (ko): :customer_id와 :since 매개변수가 있는 쿼리, 값 패널, 기록 서랍입니다.
+- Placeholder text (zh-Hant): 包含 :customer_id 和 :since 參數的查詢、參數值面板及歷史抽屜。
+- Placeholder text (it): Una query con parametri :customer_id e :since, il pannello dei valori e il cassetto della cronologia.
+- Placeholder text (id): Kueri dengan parameter :customer_id dan :since, panel nilainya, serta laci riwayat.
 - Proposed alt text (en): A query using the :customer_id and :since parameters, the panel where their values are typed, and the query history drawer.
 - Proposed alt text (vi): Một query dùng tham số :customer_id và :since, khung nhập giá trị tham số và ngăn lịch sử query.
+- Proposed alt text (es): Consulta con los parámetros :customer_id y :since, el panel para introducir sus valores y el panel de historial de consultas.
+- Proposed alt text (de): Abfrage mit den Parametern :customer_id und :since, dem Bereich zur Eingabe ihrer Werte und dem Abfrageverlauf.
+- Proposed alt text (fr): Requête utilisant les paramètres :customer_id et :since, panneau de saisie de leurs valeurs et volet d’historique des requêtes.
+- Proposed alt text (ja): :customer_id と :since パラメータを使うクエリ、値を入力するパネル、クエリ履歴のドロワー。
+- Proposed alt text (pt-BR): Uma consulta usando os parâmetros :customer_id e :since, o painel onde seus valores são digitados e a gaveta do histórico de consultas.
+- Proposed alt text (zh-Hans): 使用 :customer_id 和 :since 参数的查询、输入参数值的面板，以及查询历史抽屉。
+- Proposed alt text (ko): :customer_id와 :since 매개변수를 사용하는 쿼리, 값을 입력하는 패널, 쿼리 기록 서랍.
+- Proposed alt text (zh-Hant): 使用 :customer_id 和 :since 參數的查詢、輸入參數值的面板，以及查詢歷史抽屜。
+- Proposed alt text (it): Una query con i parametri :customer_id e :since, il pannello dove si inseriscono i valori e il cassetto della cronologia delle query.
+- Proposed alt text (id): Kueri yang menggunakan parameter :customer_id dan :since, panel tempat nilainya diketik, serta laci riwayat kueri.
 
 **Purpose**
 
@@ -563,7 +663,7 @@ including one that failed; run them by hand before capturing.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/querying` · performance |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/querying.json`, `resources/data/content/vi/features/querying.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/querying.json`, `resources/data/content/en/features/querying.json`, `resources/data/content/es/features/querying.json`, `resources/data/content/fr/features/querying.json`, `resources/data/content/id/features/querying.json`, `resources/data/content/it/features/querying.json`, `resources/data/content/ja/features/querying.json`, `resources/data/content/ko/features/querying.json`, `resources/data/content/pt-BR/features/querying.json`, `resources/data/content/vi/features/querying.json`, `resources/data/content/zh-Hans/features/querying.json`, `resources/data/content/zh-Hant/features/querying.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -573,8 +673,28 @@ including one that failed; run them by hand before capturing.
 
 - Placeholder text (en): EXPLAIN Compare on shop.orders: the plan changed from Index Scan to Seq Scan after an index was dropped.
 - Placeholder text (vi): EXPLAIN Compare trên shop.orders: plan đổi từ Index Scan sang Seq Scan sau khi xóa một index.
+- Placeholder text (es): Comparación de EXPLAIN en shop.orders: el plan pasó de Index Scan a Seq Scan tras eliminar un índice.
+- Placeholder text (de): EXPLAIN-Vergleich für shop.orders: Nach dem Löschen eines Index wechselte der Plan von Index Scan zu Seq Scan.
+- Placeholder text (fr): Comparaison EXPLAIN sur shop.orders : le plan est passé d’Index Scan à Seq Scan après la suppression d’un index.
+- Placeholder text (ja): shop.orders の EXPLAIN Compare。インデックスの削除後、計画が Index Scan から Seq Scan に変わっています。
+- Placeholder text (pt-BR): EXPLAIN Compare em shop.orders: o plano mudou de Index Scan para Seq Scan após a remoção de um índice.
+- Placeholder text (zh-Hans): shop.orders 的 EXPLAIN Compare：删除索引后，执行计划从 Index Scan 变为 Seq Scan。
+- Placeholder text (ko): shop.orders의 EXPLAIN Compare. 인덱스를 삭제한 뒤 실행 계획이 Index Scan에서 Seq Scan으로 바뀌었습니다.
+- Placeholder text (zh-Hant): shop.orders 的 EXPLAIN Compare：刪除索引後，執行計畫從 Index Scan 變成 Seq Scan。
+- Placeholder text (it): EXPLAIN Compare su shop.orders: il piano è passato da Index Scan a Seq Scan dopo la rimozione di un indice.
+- Placeholder text (id): EXPLAIN Compare pada shop.orders: rencana berubah dari Index Scan menjadi Seq Scan setelah indeks dihapus.
 - Proposed alt text (en): EXPLAIN Compare for a query on orders, showing that the plan changed from Index Scan to Seq Scan and the query is slower than its baseline.
 - Proposed alt text (vi): EXPLAIN Compare cho một query trên orders: plan đổi từ Index Scan sang Seq Scan và query chậm hơn so với lần đo gốc.
+- Proposed alt text (es): Comparación de EXPLAIN para una consulta sobre orders que muestra el cambio de Index Scan a Seq Scan y que la consulta es más lenta que su referencia.
+- Proposed alt text (de): EXPLAIN-Vergleich einer Abfrage auf orders: Der Plan wechselte von Index Scan zu Seq Scan, und die Abfrage ist langsamer als ihre Referenz.
+- Proposed alt text (fr): Comparaison EXPLAIN d’une requête sur orders, montrant le passage d’Index Scan à Seq Scan et une requête plus lente que sa référence.
+- Proposed alt text (ja): orders に対するクエリの EXPLAIN Compare。計画が Index Scan から Seq Scan に変わり、クエリがベースラインより遅くなったことを示しています。
+- Proposed alt text (pt-BR): EXPLAIN Compare para uma consulta a orders, mostrando que o plano mudou de Index Scan para Seq Scan e a consulta está mais lenta que sua referência.
+- Proposed alt text (zh-Hans): orders 表查询的 EXPLAIN Compare，显示执行计划从 Index Scan 变为 Seq Scan，查询速度比基线更慢。
+- Proposed alt text (ko): orders 쿼리의 EXPLAIN Compare. 실행 계획이 Index Scan에서 Seq Scan으로 바뀌고 쿼리가 기준보다 느려진 것을 보여 줍니다.
+- Proposed alt text (zh-Hant): orders 資料表查詢的 EXPLAIN Compare，顯示執行計畫從 Index Scan 變成 Seq Scan，查詢速度比基準更慢。
+- Proposed alt text (it): EXPLAIN Compare per una query su orders, che mostra il passaggio del piano da Index Scan a Seq Scan e la query più lenta rispetto al riferimento.
+- Proposed alt text (id): EXPLAIN Compare untuk kueri pada orders, menunjukkan rencana berubah dari Index Scan menjadi Seq Scan dan kueri lebih lambat daripada acuan.
 
 **Purpose**
 
@@ -618,7 +738,7 @@ the `shop` schema into a local PostgreSQL first.
 |---|---|
 | Type | screenshot (`window`) · **P3** · supplied |
 | Used on | `/features/querying` · performance |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/querying.json`, `resources/data/content/vi/features/querying.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/querying.json`, `resources/data/content/en/features/querying.json`, `resources/data/content/es/features/querying.json`, `resources/data/content/fr/features/querying.json`, `resources/data/content/id/features/querying.json`, `resources/data/content/it/features/querying.json`, `resources/data/content/ja/features/querying.json`, `resources/data/content/ko/features/querying.json`, `resources/data/content/pt-BR/features/querying.json`, `resources/data/content/vi/features/querying.json`, `resources/data/content/zh-Hans/features/querying.json`, `resources/data/content/zh-Hant/features/querying.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-query-insights-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -629,8 +749,28 @@ the `shop` schema into a local PostgreSQL first.
 
 - Placeholder text (en): Query Insights for the last 7 days, with one query shape flagged as Got Slower.
 - Placeholder text (vi): Query Insights trong 7 ngày qua, một dạng query được đánh dấu Got Slower.
+- Placeholder text (es): Análisis de consultas de los últimos 7 días, con una forma de consulta marcada como Más lenta.
+- Placeholder text (de): Abfrageanalyse der letzten 7 Tage mit einer als Langsamer geworden markierten Abfrageform.
+- Placeholder text (fr): Analyse des requêtes sur les 7 derniers jours, avec une forme de requête signalée comme Devenue plus lente.
+- Placeholder text (ja): 過去 7 日間の Query Insights。一つのクエリ形式が Got Slower と表示されています。
+- Placeholder text (pt-BR): Query Insights dos últimos 7 dias, com um formato de consulta sinalizado como Got Slower.
+- Placeholder text (zh-Hans): 过去 7 天的 Query Insights，其中一种查询形态标记为 Got Slower。
+- Placeholder text (ko): 최근 7일의 Query Insights. 한 쿼리 형태가 Got Slower로 표시됩니다.
+- Placeholder text (zh-Hant): 過去 7 天的 Query Insights，其中一種查詢形態標記為 Got Slower。
+- Placeholder text (it): Query Insights degli ultimi 7 giorni, con una forma di query segnalata come Got Slower.
+- Placeholder text (id): Query Insights selama 7 hari terakhir, dengan satu bentuk kueri ditandai Got Slower.
 - Proposed alt text (en): Query Insights over the last 7 days, with a chart of succeeded and failed queries per day above the Most Run, Slowest and Got Slower lists, where one query shape is marked Got Slower.
 - Proposed alt text (vi): Query Insights trong 7 ngày qua, với biểu đồ số query thành công và thất bại mỗi ngày phía trên các mục Most Run, Slowest và Got Slower, trong đó một dạng query được đánh dấu Got Slower.
+- Proposed alt text (es): Análisis de consultas de los últimos 7 días, con un gráfico diario de consultas correctas y fallidas sobre las listas Más ejecutadas, Más lentas y Más lentas que antes, donde una forma está marcada como Más lenta.
+- Proposed alt text (de): Abfrageanalyse der letzten 7 Tage: Diagramm erfolgreicher und fehlgeschlagener Abfragen pro Tag über den Listen Häufigste, Langsamste und Langsamer geworden; eine Abfrageform ist als Langsamer geworden markiert.
+- Proposed alt text (fr): Analyse des requêtes sur les 7 derniers jours : graphique quotidien des requêtes réussies et échouées au-dessus des listes Les plus exécutées, Les plus lentes et Devenues plus lentes, où une forme est signalée comme Devenue plus lente.
+- Proposed alt text (ja): 過去 7 日間の Query Insights。Most Run、Slowest、Got Slower のリストの上に日ごとの成功・失敗クエリのグラフがあり、一つのクエリ形式が Got Slower と表示されています。
+- Proposed alt text (pt-BR): Query Insights dos últimos 7 dias, com um gráfico de consultas bem-sucedidas e falhas por dia acima das listas Most Run, Slowest e Got Slower, onde um formato de consulta está marcado como Got Slower.
+- Proposed alt text (zh-Hans): 过去 7 天的 Query Insights，上方图表按日显示成功和失败的查询，下方为 Most Run、Slowest 和 Got Slower 列表，其中一种查询形态标记为 Got Slower。
+- Proposed alt text (ko): 최근 7일의 Query Insights. Most Run, Slowest, Got Slower 목록 위에 일별 성공 및 실패 쿼리 차트가 있고, 한 쿼리 형태가 Got Slower로 표시됩니다.
+- Proposed alt text (zh-Hant): 過去 7 天的 Query Insights，上方圖表按日顯示成功和失敗的查詢，下方為 Most Run、Slowest 和 Got Slower 清單，其中一種查詢形態標記為 Got Slower。
+- Proposed alt text (it): Query Insights degli ultimi 7 giorni, con un grafico delle query riuscite e fallite per giorno sopra gli elenchi Most Run, Slowest e Got Slower, dove una forma di query è contrassegnata Got Slower.
+- Proposed alt text (id): Query Insights selama 7 hari terakhir, dengan grafik kueri berhasil dan gagal per hari di atas daftar Most Run, Slowest, dan Got Slower, dengan satu bentuk kueri ditandai Got Slower.
 
 **Purpose**
 
@@ -671,7 +811,7 @@ Load the `shop` schema into a local PostgreSQL first.
 |---|---|
 | Type | detail (`mobile-crop`) · **P3** · supplied |
 | Used on | `/features/querying` · performance |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/querying.json`, `resources/data/content/vi/features/querying.json`) (through the `mac-query-insights` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/querying.json`, `resources/data/content/en/features/querying.json`, `resources/data/content/es/features/querying.json`, `resources/data/content/fr/features/querying.json`, `resources/data/content/id/features/querying.json`, `resources/data/content/it/features/querying.json`, `resources/data/content/ja/features/querying.json`, `resources/data/content/ko/features/querying.json`, `resources/data/content/pt-BR/features/querying.json`, `resources/data/content/vi/features/querying.json`, `resources/data/content/zh-Hans/features/querying.json`, `resources/data/content/zh-Hant/features/querying.json`) (through the `mac-query-insights` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -681,8 +821,28 @@ Load the `shop` schema into a local PostgreSQL first.
 
 - Placeholder text (en): Close-up of Query Insights: the query shape marked Got Slower and its timing change.
 - Placeholder text (vi): Cận cảnh Query Insights: dạng query được đánh dấu Got Slower và mức thay đổi thời gian chạy.
+- Placeholder text (es): Detalle del análisis de consultas: la forma marcada como Más lenta y su cambio de duración.
+- Placeholder text (de): Detailansicht der Abfrageanalyse: als Langsamer geworden markierte Abfrageform und Änderung ihrer Laufzeit.
+- Placeholder text (fr): Gros plan de l’analyse des requêtes : la forme signalée comme Devenue plus lente et l’évolution de sa durée.
+- Placeholder text (ja): Query Insights の拡大図。Got Slower と表示されたクエリ形式と実行時間の変化。
+- Placeholder text (pt-BR): Detalhe do Query Insights: o formato de consulta marcado como Got Slower e a mudança no tempo de execução.
+- Placeholder text (zh-Hans): Query Insights 局部图：标记为 Got Slower 的查询形态及其耗时变化。
+- Placeholder text (ko): Query Insights의 확대 화면. Got Slower로 표시된 쿼리 형태와 실행 시간 변화입니다.
+- Placeholder text (zh-Hant): Query Insights 局部圖：標記為 Got Slower 的查詢形態及其耗時變化。
+- Placeholder text (it): Dettaglio di Query Insights: la forma di query contrassegnata Got Slower e la variazione del tempo di esecuzione.
+- Placeholder text (id): Tampilan dekat Query Insights: bentuk kueri yang ditandai Got Slower dan perubahan waktunya.
 - Proposed alt text (en): Close-up of a query shape marked Got Slower in Query Insights, with its timing change.
 - Proposed alt text (vi): Cận cảnh một dạng query được đánh dấu Got Slower trong Query Insights, kèm mức thay đổi thời gian chạy.
+- Proposed alt text (es): Detalle de una forma de consulta marcada como Más lenta en el análisis de consultas, con su cambio de duración.
+- Proposed alt text (de): Detailansicht einer als Langsamer geworden markierten Abfrageform in der Abfrageanalyse mit ihrer Laufzeitänderung.
+- Proposed alt text (fr): Gros plan d’une forme de requête signalée comme Devenue plus lente dans l’analyse des requêtes, avec l’évolution de sa durée.
+- Proposed alt text (ja): Query Insights で Got Slower と表示されたクエリ形式と、その実行時間の変化の拡大図。
+- Proposed alt text (pt-BR): Detalhe de um formato de consulta marcado como Got Slower no Query Insights, com a mudança no tempo de execução.
+- Proposed alt text (zh-Hans): Query Insights 的局部图，显示标记为 Got Slower 的查询形态及其耗时变化。
+- Proposed alt text (ko): Query Insights에서 Got Slower로 표시된 쿼리 형태와 실행 시간 변화의 확대 화면.
+- Proposed alt text (zh-Hant): Query Insights 的局部圖，顯示標記為 Got Slower 的查詢形態及其耗時變化。
+- Proposed alt text (it): Dettaglio di una forma di query contrassegnata Got Slower in Query Insights, con la variazione del tempo di esecuzione.
+- Proposed alt text (id): Tampilan dekat bentuk kueri yang ditandai Got Slower dalam Query Insights, dengan perubahan waktunya.
 
 **Purpose**
 
@@ -719,7 +879,7 @@ None beyond `mac-query-insights`.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/querying` · results |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/querying.json`, `resources/data/content/vi/features/querying.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/querying.json`, `resources/data/content/en/features/querying.json`, `resources/data/content/es/features/querying.json`, `resources/data/content/fr/features/querying.json`, `resources/data/content/id/features/querying.json`, `resources/data/content/it/features/querying.json`, `resources/data/content/ja/features/querying.json`, `resources/data/content/ko/features/querying.json`, `resources/data/content/pt-BR/features/querying.json`, `resources/data/content/vi/features/querying.json`, `resources/data/content/zh-Hans/features/querying.json`, `resources/data/content/zh-Hant/features/querying.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -730,8 +890,28 @@ None beyond `mac-query-insights`.
 
 - Placeholder text (en): Monthly revenue from shop.orders as a line chart, one series per order status.
 - Placeholder text (vi): Doanh thu theo tháng từ shop.orders dưới dạng biểu đồ đường, mỗi trạng thái đơn hàng một đường.
+- Placeholder text (es): Ingresos mensuales de shop.orders en un gráfico de líneas, con una serie por estado de pedido.
+- Placeholder text (de): Monatlicher Umsatz aus shop.orders als Liniendiagramm, eine Reihe je Bestellstatus.
+- Placeholder text (fr): Chiffre d’affaires mensuel de shop.orders en graphique linéaire, avec une série par statut de commande.
+- Placeholder text (ja): shop.orders の月ごとの売上を表す折れ線グラフ。注文のステータスごとに一つの系列。
+- Placeholder text (pt-BR): Receita mensal de shop.orders como gráfico de linhas, uma série por status de pedido.
+- Placeholder text (zh-Hans): shop.orders 的每月收入折线图，每种订单状态各为一个数据系列。
+- Placeholder text (ko): shop.orders의 월별 매출 선 차트. 주문 상태마다 데이터 계열 하나가 있습니다.
+- Placeholder text (zh-Hant): shop.orders 的每月營收折線圖，每種訂單狀態各為一個資料序列。
+- Placeholder text (it): Ricavi mensili da shop.orders come grafico a linee, una serie per stato dell’ordine.
+- Placeholder text (id): Pendapatan bulanan dari shop.orders sebagai grafik garis, satu seri per status pesanan.
 - Proposed alt text (en): A line chart of monthly revenue from the orders table, with one line per order status.
 - Proposed alt text (vi): Biểu đồ đường thể hiện doanh thu theo tháng từ table orders, mỗi trạng thái đơn hàng một đường.
+- Proposed alt text (es): Gráfico de líneas de los ingresos mensuales de la tabla orders, con una línea por estado de pedido.
+- Proposed alt text (de): Liniendiagramm des monatlichen Umsatzes aus orders mit einer Linie je Bestellstatus.
+- Proposed alt text (fr): Graphique linéaire du chiffre d’affaires mensuel de la table orders, avec une ligne par statut de commande.
+- Proposed alt text (ja): orders テーブルの月ごとの売上を表す折れ線グラフ。注文のステータスごとに一本の線があります。
+- Proposed alt text (pt-BR): Um gráfico de linhas da receita mensal da tabela orders, com uma linha por status de pedido.
+- Proposed alt text (zh-Hans): orders 表每月收入的折线图，每种订单状态各有一条线。
+- Proposed alt text (ko): orders 테이블의 월별 매출 선 차트로, 주문 상태마다 선 하나가 있습니다.
+- Proposed alt text (zh-Hant): orders 資料表每月營收的折線圖，每種訂單狀態各有一條線。
+- Proposed alt text (it): Un grafico a linee dei ricavi mensili dalla tabella orders, con una linea per stato dell’ordine.
+- Proposed alt text (id): Grafik garis pendapatan bulanan dari tabel orders, dengan satu garis per status pesanan.
 
 **Purpose**
 
@@ -771,7 +951,7 @@ reference only. Load the `shop` schema into a local PostgreSQL first.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/querying` · results; `/postgresql-client` · work |
-| Rendered by | `resources/js/components/databases/engine-section.tsx` (via `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`); `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/querying.json`, `resources/data/content/vi/features/querying.json`) |
+| Rendered by | `resources/js/components/databases/engine-section.tsx` (via `resources/data/content/de/databases/postgresql-client.json`, `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/es/databases/postgresql-client.json`, `resources/data/content/fr/databases/postgresql-client.json`, `resources/data/content/id/databases/postgresql-client.json`, `resources/data/content/it/databases/postgresql-client.json`, `resources/data/content/ja/databases/postgresql-client.json`, `resources/data/content/ko/databases/postgresql-client.json`, `resources/data/content/pt-BR/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`, `resources/data/content/zh-Hans/databases/postgresql-client.json`, `resources/data/content/zh-Hant/databases/postgresql-client.json`); `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/querying.json`, `resources/data/content/en/features/querying.json`, `resources/data/content/es/features/querying.json`, `resources/data/content/fr/features/querying.json`, `resources/data/content/id/features/querying.json`, `resources/data/content/it/features/querying.json`, `resources/data/content/ja/features/querying.json`, `resources/data/content/ko/features/querying.json`, `resources/data/content/pt-BR/features/querying.json`, `resources/data/content/vi/features/querying.json`, `resources/data/content/zh-Hans/features/querying.json`, `resources/data/content/zh-Hant/features/querying.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -782,8 +962,28 @@ reference only. Load the `shop` schema into a local PostgreSQL first.
 
 - Placeholder text (en): Populated places from a PostGIS table on the Map view, with the selection synced to the grid.
 - Placeholder text (vi): Các địa điểm dân cư từ một table PostGIS trên Map view, vùng chọn đồng bộ với data grid.
+- Placeholder text (es): Lugares poblados de una tabla PostGIS en la vista Mapa, con la selección sincronizada con la cuadrícula.
+- Placeholder text (de): Bewohnte Orte aus einer PostGIS-Tabelle in der Kartenansicht, mit zur Datentabelle synchronisierter Auswahl.
+- Placeholder text (fr): Lieux habités d’une table PostGIS dans la vue Carte, avec sélection synchronisée avec la grille.
+- Placeholder text (ja): Map ビューに表示した PostGIS テーブルの居住地。選択内容はグリッドと同期しています。
+- Placeholder text (pt-BR): Localidades de uma tabela PostGIS na visualização Map, com a seleção sincronizada à grade.
+- Placeholder text (zh-Hans): Map 视图标出 PostGIS 表中的有人居住地点，选中项与数据网格同步。
+- Placeholder text (ko): Map 뷰에 표시된 PostGIS 테이블의 거주 지역. 선택 사항은 그리드와 동기화됩니다.
+- Placeholder text (zh-Hant): Map 檢視標出 PostGIS 資料表中的有人居住地點，選取項目與資料網格同步。
+- Placeholder text (it): Località abitate da una tabella PostGIS nella vista Map, con la selezione sincronizzata alla griglia.
+- Placeholder text (id): Tempat berpenduduk dari tabel PostGIS dalam tampilan Map, dengan pilihan disinkronkan ke grid.
 - Proposed alt text (en): The Map view plotting populated places from a PostGIS table, with the selected point, Paris, in the row inspector.
 - Proposed alt text (vi): Map view hiển thị các địa điểm dân cư từ một table PostGIS, điểm đang chọn (Paris) hiển thị trong row inspector.
+- Proposed alt text (es): Vista Mapa con lugares poblados de una tabla PostGIS y el punto seleccionado, París, en el inspector de filas.
+- Proposed alt text (de): Kartenansicht mit bewohnten Orten aus einer PostGIS-Tabelle und dem ausgewählten Punkt Paris im Zeileninspektor.
+- Proposed alt text (fr): Vue Carte affichant les lieux habités d’une table PostGIS et le point sélectionné, Paris, dans l’inspecteur de ligne.
+- Proposed alt text (ja): Map ビューで PostGIS テーブルの居住地を地図に表示し、行インスペクタに選択された地点のパリを表示しています。
+- Proposed alt text (pt-BR): A visualização Map exibindo localidades de uma tabela PostGIS, com o ponto selecionado, Paris, no inspetor de linhas.
+- Proposed alt text (zh-Hans): Map 视图在地图上标出 PostGIS 表中的有人居住地点，行检查器显示选中的巴黎点位。
+- Proposed alt text (ko): PostGIS 테이블의 거주 지역을 지도에 표시하는 Map 뷰. 선택된 지점인 파리가 행 검사기에 표시됩니다.
+- Proposed alt text (zh-Hant): Map 檢視在地圖上標出 PostGIS 資料表中的有人居住地點，資料列檢查器顯示選取的巴黎點位。
+- Proposed alt text (it): La vista Map che traccia località abitate da una tabella PostGIS, con il punto selezionato, Parigi, nell’ispettore delle righe.
+- Proposed alt text (id): Tampilan Map yang memetakan tempat berpenduduk dari tabel PostGIS, dengan titik terpilih, Paris, dalam pemeriksa baris.
 
 **Purpose**
 
@@ -828,7 +1028,7 @@ The `places` table is not shipped anywhere: load Natural Earth populated places 
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/` · features; `/features/data-editing` · edit |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/data-editing.json`, `resources/data/content/en/features/data-editing.json`, `resources/data/content/es/features/data-editing.json`, `resources/data/content/fr/features/data-editing.json`, `resources/data/content/id/features/data-editing.json`, `resources/data/content/it/features/data-editing.json`, `resources/data/content/ja/features/data-editing.json`, `resources/data/content/ko/features/data-editing.json`, `resources/data/content/pt-BR/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`, `resources/data/content/zh-Hans/features/data-editing.json`, `resources/data/content/zh-Hant/features/data-editing.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-edit-preview-sql-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -840,8 +1040,28 @@ The `places` table is not shipped anywhere: load Natural Earth populated places 
 
 - Placeholder text (en): Four staged price edits in shop.products and the Preview SQL sheet with their UPDATE statements.
 - Placeholder text (vi): Bốn thay đổi giá đang chờ lưu trong shop.products và hộp thoại Preview SQL với các câu UPDATE tương ứng.
+- Placeholder text (es): Cuatro cambios de precio pendientes en shop.products y la hoja de vista previa del SQL con sus instrucciones UPDATE.
+- Placeholder text (de): Vier vorgemerkte Preisänderungen in shop.products und die SQL-Vorschau mit ihren UPDATE-Anweisungen.
+- Placeholder text (fr): Quatre modifications de prix en attente dans shop.products et la feuille d’aperçu SQL avec leurs instructions UPDATE.
+- Placeholder text (ja): shop.products の未保存の四つの価格変更と、その UPDATE 文を表示する Preview SQL シート。
+- Placeholder text (pt-BR): Quatro alterações de preço preparadas em shop.products e a folha Preview SQL com suas instruções UPDATE.
+- Placeholder text (zh-Hans): shop.products 中四处暂存的价格修改，以及列出相应 UPDATE 语句的 Preview SQL 面板。
+- Placeholder text (ko): shop.products의 미저장 가격 변경 네 건과 해당 UPDATE 문이 있는 Preview SQL 시트입니다.
+- Placeholder text (zh-Hant): shop.products 內四處暫存的價格修改，以及列出相應 UPDATE 陳述式的 Preview SQL 面板。
+- Placeholder text (it): Quattro modifiche ai prezzi preparate in shop.products e il foglio Preview SQL con le relative istruzioni UPDATE.
+- Placeholder text (id): Empat perubahan harga yang disiapkan pada shop.products dan lembar Preview SQL dengan pernyataan UPDATE-nya.
 - Proposed alt text (en): The products table with four price edits waiting to be saved, and the Preview SQL sheet listing the matching UPDATE statements.
 - Proposed alt text (vi): Table products với bốn thay đổi giá đang chờ lưu, và hộp thoại Preview SQL liệt kê các câu UPDATE tương ứng.
+- Proposed alt text (es): Tabla products con cuatro cambios de precio pendientes de guardar y la hoja de vista previa del SQL que lista las instrucciones UPDATE correspondientes.
+- Proposed alt text (de): Tabelle products mit vier noch nicht gespeicherten Preisänderungen und SQL-Vorschau mit den zugehörigen UPDATE-Anweisungen.
+- Proposed alt text (fr): Table products avec quatre modifications de prix en attente d’enregistrement et feuille d’aperçu SQL listant les instructions UPDATE correspondantes.
+- Proposed alt text (ja): products テーブルで四つの価格変更が保存を待ち、Preview SQL シートには対応する UPDATE 文が表示されています。
+- Proposed alt text (pt-BR): A tabela products com quatro alterações de preço aguardando salvamento, e a folha Preview SQL listando as instruções UPDATE correspondentes.
+- Proposed alt text (zh-Hans): products 表中有四处等待保存的价格修改，Preview SQL 面板列出对应的 UPDATE 语句。
+- Proposed alt text (ko): 네 건의 가격 변경이 저장을 기다리는 products 테이블과 해당 UPDATE 문을 나열하는 Preview SQL 시트.
+- Proposed alt text (zh-Hant): products 資料表內有四處等待儲存的價格修改，Preview SQL 面板列出對應的 UPDATE 陳述式。
+- Proposed alt text (it): La tabella products con quattro modifiche ai prezzi in attesa di salvataggio, e il foglio Preview SQL che elenca le istruzioni UPDATE corrispondenti.
+- Proposed alt text (id): Tabel products dengan empat perubahan harga yang menunggu penyimpanan, dan lembar Preview SQL yang mencantumkan pernyataan UPDATE terkait.
 
 **Purpose**
 
@@ -883,7 +1103,7 @@ different table and are reference only.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/` · features; `/features/data-editing` · edit |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) (through the `mac-edit-preview-sql` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/data-editing.json`, `resources/data/content/en/features/data-editing.json`, `resources/data/content/es/features/data-editing.json`, `resources/data/content/fr/features/data-editing.json`, `resources/data/content/id/features/data-editing.json`, `resources/data/content/it/features/data-editing.json`, `resources/data/content/ja/features/data-editing.json`, `resources/data/content/ko/features/data-editing.json`, `resources/data/content/pt-BR/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`, `resources/data/content/zh-Hans/features/data-editing.json`, `resources/data/content/zh-Hant/features/data-editing.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) (through the `mac-edit-preview-sql` slot, below 768 px) |
 | Aspect | 1:1 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -893,8 +1113,28 @@ different table and are reference only.
 
 - Placeholder text (en): Close-up of the Preview SQL sheet: the UPDATE statements for the four staged edits.
 - Placeholder text (vi): Cận cảnh hộp thoại Preview SQL: các câu UPDATE cho bốn thay đổi đang chờ lưu.
+- Placeholder text (es): Detalle de la vista previa del SQL: las instrucciones UPDATE de los cuatro cambios pendientes.
+- Placeholder text (de): Detailansicht der SQL-Vorschau: UPDATE-Anweisungen für die vier vorgemerkten Änderungen.
+- Placeholder text (fr): Gros plan de l’aperçu SQL : instructions UPDATE des quatre modifications en attente.
+- Placeholder text (ja): Preview SQL シートの拡大図。未保存の四つの変更に対応する UPDATE 文。
+- Placeholder text (pt-BR): Detalhe da folha Preview SQL: as instruções UPDATE das quatro alterações preparadas.
+- Placeholder text (zh-Hans): Preview SQL 面板局部图：四处暂存修改对应的 UPDATE 语句。
+- Placeholder text (ko): Preview SQL 시트의 확대 화면. 미저장 변경 네 건의 UPDATE 문입니다.
+- Placeholder text (zh-Hant): Preview SQL 面板局部圖：四處暫存修改對應的 UPDATE 陳述式。
+- Placeholder text (it): Dettaglio del foglio Preview SQL: le istruzioni UPDATE per le quattro modifiche preparate.
+- Placeholder text (id): Tampilan dekat lembar Preview SQL: pernyataan UPDATE untuk empat perubahan yang disiapkan.
 - Proposed alt text (en): Close-up of the Preview SQL sheet listing four UPDATE statements for staged price edits.
 - Proposed alt text (vi): Cận cảnh hộp thoại Preview SQL liệt kê bốn câu UPDATE cho các thay đổi giá đang chờ lưu.
+- Proposed alt text (es): Detalle de la vista previa del SQL que lista cuatro instrucciones UPDATE para cambios de precio pendientes.
+- Proposed alt text (de): Detailansicht der SQL-Vorschau mit vier UPDATE-Anweisungen für vorgemerkte Preisänderungen.
+- Proposed alt text (fr): Gros plan de l’aperçu SQL listant quatre instructions UPDATE pour des modifications de prix en attente.
+- Proposed alt text (ja): 未保存の四つの価格変更に対応する四つの UPDATE 文を表示する Preview SQL シートの拡大図。
+- Proposed alt text (pt-BR): Detalhe da folha Preview SQL listando quatro instruções UPDATE para alterações de preço preparadas.
+- Proposed alt text (zh-Hans): Preview SQL 面板的局部图，列出四处暂存价格修改对应的四条 UPDATE 语句。
+- Proposed alt text (ko): 미저장 가격 변경 네 건에 대한 UPDATE 문 네 개를 나열하는 Preview SQL 시트의 확대 화면.
+- Proposed alt text (zh-Hant): Preview SQL 面板的局部圖，列出四處暫存價格修改對應的四項 UPDATE 陳述式。
+- Proposed alt text (it): Dettaglio del foglio Preview SQL che elenca quattro istruzioni UPDATE per modifiche ai prezzi preparate.
+- Proposed alt text (id): Tampilan dekat lembar Preview SQL yang mencantumkan empat pernyataan UPDATE untuk perubahan harga yang disiapkan.
 
 **Purpose**
 
@@ -937,7 +1177,7 @@ None beyond `mac-edit-preview-sql`.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/data-editing` · browse |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/data-editing.json`, `resources/data/content/en/features/data-editing.json`, `resources/data/content/es/features/data-editing.json`, `resources/data/content/fr/features/data-editing.json`, `resources/data/content/id/features/data-editing.json`, `resources/data/content/it/features/data-editing.json`, `resources/data/content/ja/features/data-editing.json`, `resources/data/content/ko/features/data-editing.json`, `resources/data/content/pt-BR/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`, `resources/data/content/zh-Hans/features/data-editing.json`, `resources/data/content/zh-Hant/features/data-editing.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -948,8 +1188,28 @@ None beyond `mac-edit-preview-sql`.
 
 - Placeholder text (en): shop.orders with highlight rules: paid rows green, refunded rows orange, the rules popover open.
 - Placeholder text (vi): shop.orders với highlight rules: dòng paid màu xanh lá, dòng refunded màu cam, popover quy tắc đang mở.
+- Placeholder text (es): shop.orders con reglas de resaltado: filas pagadas en verde, reembolsadas en naranja y la ventana de reglas abierta.
+- Placeholder text (de): shop.orders mit Hervorhebungsregeln: bezahlte Zeilen grün, erstattete orange und geöffnetes Regel-Popover.
+- Placeholder text (fr): shop.orders avec règles de surbrillance : lignes payées en vert, remboursées en orange et panneau des règles ouvert.
+- Placeholder text (ja): shop.orders のハイライトルール。支払い済みの行は緑、返金済みの行はオレンジで、ルールのポップオーバーが開いています。
+- Placeholder text (pt-BR): shop.orders com regras de destaque: linhas pagas verdes, reembolsadas laranja e o popover de regras aberto.
+- Placeholder text (zh-Hans): shop.orders 的高亮规则：已付款行显示为绿色，已退款行显示为橙色，规则弹出框已打开。
+- Placeholder text (ko): shop.orders의 강조 규칙. 결제 완료 행은 녹색, 환불된 행은 주황색이며 규칙 팝오버가 열려 있습니다.
+- Placeholder text (zh-Hant): shop.orders 的醒目提示規則：已付款資料列顯示為綠色，已退款資料列顯示為橘色，規則彈出視窗已開啟。
+- Placeholder text (it): shop.orders con regole di evidenziazione: righe pagate verdi, rimborsate arancioni e popover delle regole aperto.
+- Placeholder text (id): shop.orders dengan aturan sorotan: baris dibayar hijau, dikembalikan oranye, dan popover aturan terbuka.
 - Proposed alt text (en): The orders table with paid rows tinted green and refunded rows tinted orange, and the highlight rules popover open.
 - Proposed alt text (vi): Table orders với các dòng paid tô màu xanh lá, các dòng refunded tô màu cam, popover highlight rules đang mở.
+- Proposed alt text (es): Tabla orders con las filas pagadas en verde y las reembolsadas en naranja, y la ventana de reglas de resaltado abierta.
+- Proposed alt text (de): Tabelle orders mit grün eingefärbten bezahlten und orange eingefärbten erstatteten Zeilen sowie geöffnetem Popover für Hervorhebungsregeln.
+- Proposed alt text (fr): Table orders avec les lignes payées teintées en vert, les remboursées en orange et le panneau des règles de surbrillance ouvert.
+- Proposed alt text (ja): orders テーブルの支払い済みの行が緑、返金済みの行がオレンジで表示され、ハイライトルールのポップオーバーが開いています。
+- Proposed alt text (pt-BR): A tabela orders com linhas pagas coloridas de verde e reembolsadas de laranja, e o popover das regras de destaque aberto.
+- Proposed alt text (zh-Hans): orders 表将已付款行标为绿色、已退款行标为橙色，并打开了高亮规则弹出框。
+- Proposed alt text (ko): orders 테이블의 결제 완료 행은 녹색, 환불된 행은 주황색으로 표시되고 강조 규칙 팝오버가 열려 있습니다.
+- Proposed alt text (zh-Hant): orders 資料表將已付款資料列標為綠色、已退款資料列標為橘色，並開啟了醒目提示規則彈出視窗。
+- Proposed alt text (it): La tabella orders con righe pagate colorate di verde e rimborsate di arancione, e il popover delle regole di evidenziazione aperto.
+- Proposed alt text (id): Tabel orders dengan baris dibayar berwarna hijau dan dikembalikan berwarna oranye, serta popover aturan sorotan terbuka.
 
 **Purpose**
 
@@ -989,7 +1249,7 @@ reference only.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/data-editing` · browse |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/data-editing.json`, `resources/data/content/en/features/data-editing.json`, `resources/data/content/es/features/data-editing.json`, `resources/data/content/fr/features/data-editing.json`, `resources/data/content/id/features/data-editing.json`, `resources/data/content/it/features/data-editing.json`, `resources/data/content/ja/features/data-editing.json`, `resources/data/content/ko/features/data-editing.json`, `resources/data/content/pt-BR/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`, `resources/data/content/zh-Hans/features/data-editing.json`, `resources/data/content/zh-Hant/features/data-editing.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -999,8 +1259,28 @@ reference only.
 
 - Placeholder text (en): The foreign key picker on orders.user_id, showing customers by last and first name.
 - Placeholder text (vi): Bộ chọn giá trị khóa ngoại trên orders.user_id, hiển thị khách hàng theo họ và tên.
+- Placeholder text (es): Selector de clave externa en orders.user_id que muestra clientes por apellido y nombre.
+- Placeholder text (de): Fremdschlüsselauswahl für orders.user_id, die Kunden nach Nach- und Vorname zeigt.
+- Placeholder text (fr): Sélecteur de clé étrangère sur orders.user_id, affichant les clients par nom et prénom.
+- Placeholder text (ja): orders.user_id の外部キーピッカー。顧客を姓と名で表示しています。
+- Placeholder text (pt-BR): O seletor de chave estrangeira em orders.user_id, mostrando clientes por sobrenome e nome.
+- Placeholder text (zh-Hans): orders.user_id 的外键选择器，按姓氏和名字显示客户。
+- Placeholder text (ko): orders.user_id의 외래 키 선택기. 고객을 성과 이름으로 표시합니다.
+- Placeholder text (zh-Hant): orders.user_id 的外部索引鍵選擇器，按姓氏和名字顯示客戶。
+- Placeholder text (it): Il selettore della chiave esterna su orders.user_id, che mostra i clienti per cognome e nome.
+- Placeholder text (id): Pemilih foreign key pada orders.user_id, menampilkan pelanggan berdasarkan nama belakang dan depan.
 - Proposed alt text (en): A value picker for the orders.user_id foreign key, searched for Silva, listing users by first and last name.
 - Proposed alt text (vi): Bộ chọn giá trị cho khóa ngoại orders.user_id, đang tìm Silva, liệt kê user theo tên và họ.
+- Proposed alt text (es): Selector de valores para la clave externa orders.user_id, con la búsqueda Silva y usuarios listados por nombre y apellido.
+- Proposed alt text (de): Werteauswahl für den Fremdschlüssel orders.user_id, Suche nach Silva, Benutzerliste mit Vor- und Nachnamen.
+- Proposed alt text (fr): Sélecteur de valeurs pour la clé étrangère orders.user_id, recherché sur Silva, listant les utilisateurs par prénom et nom.
+- Proposed alt text (ja): orders.user_id 外部キーの値ピッカー。Silva を検索し、ユーザーを名と姓で一覧表示しています。
+- Proposed alt text (pt-BR): Um seletor de valores para a chave estrangeira orders.user_id, com busca por Silva, listando usuários por nome e sobrenome.
+- Proposed alt text (zh-Hans): orders.user_id 外键的值选择器，搜索 Silva 后按名字和姓氏列出用户。
+- Proposed alt text (ko): orders.user_id 외래 키의 값 선택기. Silva를 검색하여 사용자를 이름과 성으로 나열합니다.
+- Proposed alt text (zh-Hant): orders.user_id 外部索引鍵的值選擇器，搜尋 Silva 後按名字和姓氏列出使用者。
+- Proposed alt text (it): Un selettore di valori per la chiave esterna orders.user_id, con ricerca di Silva, che elenca gli utenti per nome e cognome.
+- Proposed alt text (id): Pemilih nilai untuk foreign key orders.user_id, dengan pencarian Silva, mencantumkan pengguna berdasarkan nama depan dan belakang.
 
 **Purpose**
 
@@ -1039,7 +1319,7 @@ Load the `shop` schema into a local PostgreSQL first; customer names must be fic
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/` · safety; `/features/data-editing` · safe-mode |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`); `resources/js/components/home/safety-section.tsx` |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/data-editing.json`, `resources/data/content/en/features/data-editing.json`, `resources/data/content/es/features/data-editing.json`, `resources/data/content/fr/features/data-editing.json`, `resources/data/content/id/features/data-editing.json`, `resources/data/content/it/features/data-editing.json`, `resources/data/content/ja/features/data-editing.json`, `resources/data/content/ko/features/data-editing.json`, `resources/data/content/pt-BR/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`, `resources/data/content/zh-Hans/features/data-editing.json`, `resources/data/content/zh-Hant/features/data-editing.json`); `resources/js/components/home/safety-section.tsx` |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-safe-mode-touchid-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -1050,8 +1330,28 @@ Load the `shop` schema into a local PostgreSQL first; customer names must be fic
 
 - Placeholder text (en): A production-tagged connection in Safe Mode asking for Touch ID before a DELETE runs.
 - Placeholder text (vi): Một connection gắn tag production đang bật Safe Mode, yêu cầu Touch ID trước khi chạy câu DELETE.
+- Placeholder text (es): Una conexión etiquetada como producción en modo seguro solicita Touch ID antes de ejecutar DELETE.
+- Placeholder text (de): Eine als Produktion markierte Verbindung im Sicherheitsmodus fordert vor einem DELETE Touch ID an.
+- Placeholder text (fr): Une connexion étiquetée production en mode sécurisé demande Touch ID avant d’exécuter un DELETE.
+- Placeholder text (ja): 本番環境のタグ付き接続の Safe Mode。DELETE の実行前に Touch ID を要求しています。
+- Placeholder text (pt-BR): Uma conexão marcada como produção em Safe Mode pedindo Touch ID antes de executar um DELETE.
+- Placeholder text (zh-Hans): 标记为生产环境的连接启用了 Safe Mode，在执行 DELETE 前要求 Touch ID 验证。
+- Placeholder text (ko): 프로덕션 태그가 지정된 연결의 Safe Mode가 DELETE 실행 전에 Touch ID를 요청합니다.
+- Placeholder text (zh-Hant): 標記為正式環境的連線啟用了 Safe Mode，在執行 DELETE 前要求 Touch ID 驗證。
+- Placeholder text (it): Una connessione contrassegnata come produzione in Safe Mode che richiede Touch ID prima di eseguire un DELETE.
+- Placeholder text (id): Koneksi bertanda produksi dalam Safe Mode meminta Touch ID sebelum DELETE dijalankan.
 - Proposed alt text (en): A Touch ID prompt that Safe Mode shows before a DELETE on the orders table runs, on a connection marked with the red production colour.
 - Proposed alt text (vi): Hộp thoại Touch ID mà Safe Mode hiện ra trước khi câu lệnh DELETE trên table orders chạy, trên một connection được đánh dấu bằng màu đỏ của production.
+- Proposed alt text (es): Aviso de Touch ID del modo seguro antes de ejecutar DELETE en la tabla orders, en una conexión marcada con el color rojo de producción.
+- Proposed alt text (de): Touch-ID-Abfrage des Sicherheitsmodus vor einem DELETE auf orders, bei einer mit der roten Produktionsfarbe markierten Verbindung.
+- Proposed alt text (fr): Invite Touch ID du mode sécurisé avant un DELETE sur la table orders, sur une connexion marquée de la couleur rouge de production.
+- Proposed alt text (ja): 本番環境を示す赤色の接続で、orders テーブルへの DELETE の実行前に Safe Mode が表示する Touch ID の確認。
+- Proposed alt text (pt-BR): Uma solicitação de Touch ID que Safe Mode mostra antes de executar um DELETE na tabela orders, em uma conexão marcada com a cor vermelha de produção.
+- Proposed alt text (zh-Hans): 标有红色生产环境颜色的连接中，Safe Mode 在执行 orders 表的 DELETE 前显示 Touch ID 提示。
+- Proposed alt text (ko): 프로덕션 환경의 빨간색으로 표시된 연결에서 orders 테이블에 DELETE를 실행하기 전에 Safe Mode가 표시하는 Touch ID 요청.
+- Proposed alt text (zh-Hant): 標有紅色正式環境顏色的連線中，Safe Mode 在執行 orders 資料表的 DELETE 前顯示 Touch ID 提示。
+- Proposed alt text (it): Una richiesta Touch ID mostrata da Safe Mode prima di eseguire un DELETE sulla tabella orders, su una connessione contrassegnata con il colore rosso di produzione.
+- Proposed alt text (id): Permintaan Touch ID yang ditampilkan Safe Mode sebelum DELETE pada tabel orders dijalankan, pada koneksi bertanda warna merah produksi.
 
 **Purpose**
 
@@ -1094,7 +1394,7 @@ On a Mac without Touch ID the prompt asks for the account password instead, whic
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/` · safety; `/features/data-editing` · safe-mode |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`); `resources/js/components/home/safety-section.tsx` (through the `mac-safe-mode-touchid` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/data-editing.json`, `resources/data/content/en/features/data-editing.json`, `resources/data/content/es/features/data-editing.json`, `resources/data/content/fr/features/data-editing.json`, `resources/data/content/id/features/data-editing.json`, `resources/data/content/it/features/data-editing.json`, `resources/data/content/ja/features/data-editing.json`, `resources/data/content/ko/features/data-editing.json`, `resources/data/content/pt-BR/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`, `resources/data/content/zh-Hans/features/data-editing.json`, `resources/data/content/zh-Hant/features/data-editing.json`); `resources/js/components/home/safety-section.tsx` (through the `mac-safe-mode-touchid` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -1104,8 +1404,28 @@ On a Mac without Touch ID the prompt asks for the account password instead, whic
 
 - Placeholder text (en): Close-up of the Touch ID prompt over the DELETE statement.
 - Placeholder text (vi): Cận cảnh hộp thoại Touch ID phía trên câu lệnh DELETE.
+- Placeholder text (es): Detalle del aviso de Touch ID sobre la instrucción DELETE.
+- Placeholder text (de): Detailansicht der Touch-ID-Abfrage über der DELETE-Anweisung.
+- Placeholder text (fr): Gros plan de l’invite Touch ID au-dessus de l’instruction DELETE.
+- Placeholder text (ja): DELETE 文の上に表示された Touch ID の確認の拡大図。
+- Placeholder text (pt-BR): Detalhe da solicitação de Touch ID sobre a instrução DELETE.
+- Placeholder text (zh-Hans): 覆盖在 DELETE 语句上的 Touch ID 提示局部图。
+- Placeholder text (ko): DELETE 문 위에 표시된 Touch ID 요청의 확대 화면입니다.
+- Placeholder text (zh-Hant): 覆蓋在 DELETE 陳述式上的 Touch ID 提示局部圖。
+- Placeholder text (it): Dettaglio della richiesta Touch ID sopra l’istruzione DELETE.
+- Placeholder text (id): Tampilan dekat permintaan Touch ID di atas pernyataan DELETE.
 - Proposed alt text (en): Close-up of the Touch ID prompt that Safe Mode shows before a DELETE statement runs.
 - Proposed alt text (vi): Cận cảnh hộp thoại Touch ID mà Safe Mode hiện ra trước khi câu lệnh DELETE chạy.
+- Proposed alt text (es): Detalle del aviso de Touch ID del modo seguro antes de ejecutar una instrucción DELETE.
+- Proposed alt text (de): Detailansicht der Touch-ID-Abfrage, die der Sicherheitsmodus vor einer DELETE-Anweisung zeigt.
+- Proposed alt text (fr): Gros plan de l’invite Touch ID affichée par le mode sécurisé avant l’exécution d’un DELETE.
+- Proposed alt text (ja): DELETE 文の実行前に Safe Mode が表示する Touch ID の確認の拡大図。
+- Proposed alt text (pt-BR): Detalhe da solicitação de Touch ID que Safe Mode mostra antes de executar uma instrução DELETE.
+- Proposed alt text (zh-Hans): Safe Mode 在执行 DELETE 语句前显示的 Touch ID 提示局部图。
+- Proposed alt text (ko): DELETE 문 실행 전에 Safe Mode가 표시하는 Touch ID 요청의 확대 화면.
+- Proposed alt text (zh-Hant): Safe Mode 在執行 DELETE 陳述式前顯示的 Touch ID 提示局部圖。
+- Proposed alt text (it): Dettaglio della richiesta Touch ID mostrata da Safe Mode prima di eseguire un’istruzione DELETE.
+- Proposed alt text (id): Tampilan dekat permintaan Touch ID yang ditampilkan Safe Mode sebelum pernyataan DELETE dijalankan.
 
 **Purpose**
 
@@ -1150,7 +1470,7 @@ sheet is about 260 pt wide, so the start of the statement fits beside it only if
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/data-editing` · data-rewind |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/data-editing.json`, `resources/data/content/en/features/data-editing.json`, `resources/data/content/es/features/data-editing.json`, `resources/data/content/fr/features/data-editing.json`, `resources/data/content/id/features/data-editing.json`, `resources/data/content/it/features/data-editing.json`, `resources/data/content/ja/features/data-editing.json`, `resources/data/content/ko/features/data-editing.json`, `resources/data/content/pt-BR/features/data-editing.json`, `resources/data/content/vi/features/data-editing.json`, `resources/data/content/zh-Hans/features/data-editing.json`, `resources/data/content/zh-Hant/features/data-editing.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -1161,8 +1481,28 @@ sheet is about 260 pt wide, so the start of the statement fits beside it only if
 
 - Placeholder text (en): Restore Previous Values review: three rows will restore, one changed since the save.
 - Placeholder text (vi): Màn hình xem lại Restore Previous Values: ba dòng sẽ được khôi phục, một dòng đã thay đổi sau lần lưu.
+- Placeholder text (es): Revisión de Restaurar valores anteriores: se restaurarán tres filas y una ha cambiado desde que se guardó.
+- Placeholder text (de): Prüfung beim Wiederherstellen vorheriger Werte: Drei Zeilen werden wiederhergestellt, eine wurde seit dem Speichern geändert.
+- Placeholder text (fr): Vérification Restaurer les valeurs précédentes : trois lignes seront restaurées, une a changé depuis l’enregistrement.
+- Placeholder text (ja): Restore Previous Values のレビュー。三行は復元され、一行は保存後に変更されています。
+- Placeholder text (pt-BR): Revisão Restore Previous Values: três linhas serão restauradas e uma mudou desde o salvamento.
+- Placeholder text (zh-Hans): Restore Previous Values 审核：三行将恢复，一行在保存后发生了变化。
+- Placeholder text (ko): Restore Previous Values 검토. 세 행은 복원되며 한 행은 저장 이후 변경되었습니다.
+- Placeholder text (zh-Hant): Restore Previous Values 檢閱：三列將還原，一列在儲存後發生了變化。
+- Placeholder text (it): Revisione Restore Previous Values: tre righe verranno ripristinate, una è cambiata dopo il salvataggio.
+- Placeholder text (id): Peninjauan Restore Previous Values: tiga baris akan dipulihkan, satu berubah sejak penyimpanan.
 - Proposed alt text (en): The Restore Previous Values review sheet, with three rows marked Will restore and one marked Changed since the save.
 - Proposed alt text (vi): Hộp thoại xem lại Restore Previous Values: ba dòng được đánh dấu Will restore, một dòng được đánh dấu Changed since the save.
+- Proposed alt text (es): Hoja de revisión de Restaurar valores anteriores, con tres filas marcadas Se restaurará y una marcada Cambiada desde el guardado.
+- Proposed alt text (de): Prüfblatt zum Wiederherstellen vorheriger Werte mit drei als Wird wiederhergestellt und einer als Seit dem Speichern geändert markierten Zeile.
+- Proposed alt text (fr): Feuille de vérification Restaurer les valeurs précédentes, avec trois lignes marquées Sera restaurée et une marquée Modifiée depuis l’enregistrement.
+- Proposed alt text (ja): Restore Previous Values のレビューシート。三行が Will restore、一行が Changed since the save と表示されています。
+- Proposed alt text (pt-BR): A folha de revisão Restore Previous Values, com três linhas marcadas como Will restore e uma como Changed since the save.
+- Proposed alt text (zh-Hans): Restore Previous Values 审核面板，三行标记为 Will restore，一行标记为 Changed since the save。
+- Proposed alt text (ko): Restore Previous Values 검토 시트. 세 행은 Will restore, 한 행은 Changed since the save로 표시됩니다.
+- Proposed alt text (zh-Hant): Restore Previous Values 檢閱面板，三列標記為 Will restore，一列標記為 Changed since the save。
+- Proposed alt text (it): Il foglio di revisione Restore Previous Values, con tre righe contrassegnate Will restore e una Changed since the save.
+- Proposed alt text (id): Lembar peninjauan Restore Previous Values, dengan tiga baris bertanda Will restore dan satu bertanda Changed since the save.
 
 **Purpose**
 
@@ -1205,7 +1545,7 @@ Restore Previous Values has no default shortcut; use the Edit menu.
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/features/schema` · structure |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-structure-ddl-preview-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -1217,8 +1557,28 @@ Restore Previous Values has no default shortcut; use the Edit menu.
 
 - Placeholder text (en): Structure tab of shop.reviews with a staged CHECK constraint and a new index, the DDL preview open.
 - Placeholder text (vi): Tab Structure của shop.reviews với CHECK constraint và index mới đang chờ lưu, bản xem trước DDL đang mở.
+- Placeholder text (es): Pestaña Estructura de shop.reviews con una restricción CHECK y un índice nuevo pendientes, y la vista previa DDL abierta.
+- Placeholder text (de): Struktur-Tab von shop.reviews mit vorgemerkter CHECK-Einschränkung, neuem Index und geöffneter DDL-Vorschau.
+- Placeholder text (fr): Onglet Structure de shop.reviews avec contrainte CHECK et nouvel index en attente, aperçu DDL ouvert.
+- Placeholder text (ja): shop.reviews の Structure タブ。未保存の CHECK 制約と新しいインデックスがあり、DDL プレビューが開いています。
+- Placeholder text (pt-BR): Aba Structure de shop.reviews com uma restrição CHECK preparada e um novo índice, e a prévia DDL aberta.
+- Placeholder text (zh-Hans): shop.reviews 的 Structure 标签页，包含暂存的 CHECK 约束和新索引，DDL 预览已打开。
+- Placeholder text (ko): shop.reviews의 Structure 탭. 미저장 CHECK 제약 조건과 새 인덱스가 있으며 DDL 미리보기가 열려 있습니다.
+- Placeholder text (zh-Hant): shop.reviews 的 Structure 分頁，包含暫存的 CHECK 條件約束和新索引，DDL 預覽已開啟。
+- Placeholder text (it): Scheda Structure di shop.reviews con un vincolo CHECK preparato e un nuovo indice, e anteprima DDL aperta.
+- Placeholder text (id): Tab Structure shop.reviews dengan batasan CHECK yang disiapkan dan indeks baru, serta pratinjau DDL terbuka.
 - Proposed alt text (en): The Structure tab of the reviews table with a new CHECK constraint and a new index waiting to be saved, and the DDL preview open.
 - Proposed alt text (vi): Tab Structure của table reviews với một CHECK constraint và một index mới đang chờ lưu, bản xem trước DDL đang mở.
+- Proposed alt text (es): Pestaña Estructura de la tabla reviews con una restricción CHECK y un índice nuevos pendientes de guardar, y la vista previa DDL abierta.
+- Proposed alt text (de): Struktur-Tab der Tabelle reviews mit neuer CHECK-Einschränkung und neuem Index vor dem Speichern sowie geöffneter DDL-Vorschau.
+- Proposed alt text (fr): Onglet Structure de la table reviews avec une nouvelle contrainte CHECK et un nouvel index en attente d’enregistrement, aperçu DDL ouvert.
+- Proposed alt text (ja): reviews テーブルの Structure タブ。新しい CHECK 制約と新しいインデックスが保存を待ち、DDL プレビューが開いています。
+- Proposed alt text (pt-BR): A aba Structure da tabela reviews com uma nova restrição CHECK e um novo índice aguardando salvamento, e a prévia DDL aberta.
+- Proposed alt text (zh-Hans): reviews 表的 Structure 标签页中有等待保存的新 CHECK 约束和新索引，DDL 预览已打开。
+- Proposed alt text (ko): 새 CHECK 제약 조건과 새 인덱스가 저장을 기다리는 reviews 테이블의 Structure 탭과 열린 DDL 미리보기.
+- Proposed alt text (zh-Hant): reviews 資料表的 Structure 分頁內有等待儲存的新 CHECK 條件約束和新索引，DDL 預覽已開啟。
+- Proposed alt text (it): La scheda Structure della tabella reviews con un nuovo vincolo CHECK e un nuovo indice in attesa di salvataggio, e l’anteprima DDL aperta.
+- Proposed alt text (id): Tab Structure tabel reviews dengan batasan CHECK baru dan indeks baru yang menunggu penyimpanan, serta pratinjau DDL terbuka.
 
 **Purpose**
 
@@ -1262,7 +1622,7 @@ Load the `shop` schema (`demo/schema.postgres.sql`) into a local PostgreSQL firs
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/features/schema` · structure |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`) (through the `mac-structure-ddl-preview` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`) (through the `mac-structure-ddl-preview` slot, below 768 px) |
 | Aspect | 1:1 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -1272,8 +1632,28 @@ Load the `shop` schema (`demo/schema.postgres.sql`) into a local PostgreSQL firs
 
 - Placeholder text (en): Close-up of the DDL preview: the statements for the staged constraint and index.
 - Placeholder text (vi): Cận cảnh bản xem trước DDL: các câu lệnh cho constraint và index đang chờ lưu.
+- Placeholder text (es): Detalle de la vista previa DDL: instrucciones de la restricción y el índice pendientes.
+- Placeholder text (de): Detailansicht der DDL-Vorschau: Anweisungen für vorgemerkte Einschränkung und Index.
+- Placeholder text (fr): Gros plan de l’aperçu DDL : instructions pour la contrainte et l’index en attente.
+- Placeholder text (ja): DDL プレビューの拡大図。未保存の制約とインデックスに対応する文。
+- Placeholder text (pt-BR): Detalhe da prévia DDL: as instruções para a restrição e o índice preparados.
+- Placeholder text (zh-Hans): DDL 预览局部图：暂存的约束和索引所对应的语句。
+- Placeholder text (ko): DDL 미리보기의 확대 화면. 미저장 제약 조건과 인덱스에 대한 문입니다.
+- Placeholder text (zh-Hant): DDL 預覽局部圖：暫存的條件約束和索引所對應的陳述式。
+- Placeholder text (it): Dettaglio dell’anteprima DDL: le istruzioni per il vincolo e l’indice preparati.
+- Placeholder text (id): Tampilan dekat pratinjau DDL: pernyataan untuk batasan dan indeks yang disiapkan.
 - Proposed alt text (en): Close-up of a DDL preview with the statements that add a CHECK constraint and an index to the reviews table.
 - Proposed alt text (vi): Cận cảnh bản xem trước DDL với các câu lệnh thêm một CHECK constraint và một index vào table reviews.
+- Proposed alt text (es): Detalle de una vista previa DDL con las instrucciones que añaden una restricción CHECK y un índice a la tabla reviews.
+- Proposed alt text (de): Detailansicht einer DDL-Vorschau mit Anweisungen zum Hinzufügen einer CHECK-Einschränkung und eines Index zu reviews.
+- Proposed alt text (fr): Gros plan d’un aperçu DDL avec les instructions ajoutant une contrainte CHECK et un index à la table reviews.
+- Proposed alt text (ja): reviews テーブルに CHECK 制約とインデックスを追加する文を表示する DDL プレビューの拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma prévia DDL com as instruções que adicionam uma restrição CHECK e um índice à tabela reviews.
+- Proposed alt text (zh-Hans): DDL 预览的局部图，显示向 reviews 表添加 CHECK 约束和索引的语句。
+- Proposed alt text (ko): reviews 테이블에 CHECK 제약 조건과 인덱스를 추가하는 문이 있는 DDL 미리보기의 확대 화면.
+- Proposed alt text (zh-Hant): DDL 預覽的局部圖，顯示向 reviews 資料表新增 CHECK 條件約束和索引的陳述式。
+- Proposed alt text (it): Dettaglio di un’anteprima DDL con le istruzioni che aggiungono un vincolo CHECK e un indice alla tabella reviews.
+- Proposed alt text (id): Tampilan dekat pratinjau DDL dengan pernyataan yang menambahkan batasan CHECK dan indeks ke tabel reviews.
 
 **Purpose**
 
@@ -1317,7 +1697,7 @@ None beyond `mac-structure-ddl-preview`.
 |---|---|
 | Type | screenshot (`window`) · **P3** · supplied |
 | Used on | `/features/schema` · er-diagram |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-er-diagram-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -1328,8 +1708,28 @@ None beyond `mac-structure-ddl-preview`.
 
 - Placeholder text (en): ER diagram of the shop schema, product_tags drawn as a many-to-many link, the Export menu open.
 - Placeholder text (vi): ER diagram của schema shop, product_tags hiển thị như quan hệ nhiều-nhiều, menu Export đang mở.
+- Placeholder text (es): Diagrama ER del esquema shop, con product_tags como enlace de muchos a muchos y el menú Exportar abierto.
+- Placeholder text (de): ER-Diagramm des Schemas shop, product_tags als Viele-zu-viele-Verknüpfung und geöffnetes Exportmenü.
+- Placeholder text (fr): Diagramme ER du schéma shop, product_tags représenté comme lien plusieurs-à-plusieurs et menu Exporter ouvert.
+- Placeholder text (ja): shop スキーマの ER 図。product_tags は多対多のリンクとして描かれ、Export メニューが開いています。
+- Placeholder text (pt-BR): Diagrama ER do esquema shop, com product_tags desenhado como vínculo muitos-para-muitos e o menu Export aberto.
+- Placeholder text (zh-Hans): shop 模式的 ER 图，product_tags 绘制为多对多关系，Export 菜单已打开。
+- Placeholder text (ko): shop 스키마의 ER 다이어그램. product_tags는 다대다 연결로 그려져 있으며 Export 메뉴가 열려 있습니다.
+- Placeholder text (zh-Hant): shop 結構描述的 ER 圖，product_tags 繪製為多對多關聯，Export 選單已開啟。
+- Placeholder text (it): Diagramma ER dello schema shop, product_tags disegnato come collegamento molti-a-molti, con il menu Export aperto.
+- Placeholder text (id): Diagram ER skema shop, product_tags digambar sebagai tautan banyak-ke-banyak, dengan menu Export terbuka.
 - Proposed alt text (en): An ER diagram of the shop schema with its tables and relationships, product_tags shown as a many-to-many line between products and tags.
 - Proposed alt text (vi): ER diagram của schema shop với các table và quan hệ giữa chúng, product_tags hiển thị thành đường quan hệ nhiều-nhiều giữa products và tags.
+- Proposed alt text (es): Diagrama ER del esquema shop con sus tablas y relaciones, donde product_tags aparece como línea de muchos a muchos entre products y tags.
+- Proposed alt text (de): ER-Diagramm des Schemas shop mit Tabellen und Beziehungen; product_tags als Viele-zu-viele-Linie zwischen products und tags.
+- Proposed alt text (fr): Diagramme ER du schéma shop avec ses tables et relations, product_tags représenté comme ligne plusieurs-à-plusieurs entre products et tags.
+- Proposed alt text (ja): shop スキーマのテーブルとリレーションを示す ER 図。product_tags は products と tags の間の多対多の線で表されています。
+- Proposed alt text (pt-BR): Um diagrama ER do esquema shop com suas tabelas e relações, e product_tags representado como uma linha muitos-para-muitos entre products e tags.
+- Proposed alt text (zh-Hans): shop 模式的 ER 图显示各表及其关系，product_tags 表示为 products 和 tags 之间的多对多连线。
+- Proposed alt text (ko): shop 스키마의 테이블과 관계가 있는 ER 다이어그램. product_tags는 products와 tags 사이의 다대다 선으로 표시됩니다.
+- Proposed alt text (zh-Hant): shop 結構描述的 ER 圖顯示各資料表及其關聯，product_tags 表示為 products 和 tags 之間的多對多連線。
+- Proposed alt text (it): Un diagramma ER dello schema shop con tabelle e relazioni, product_tags rappresentato come linea molti-a-molti tra products e tags.
+- Proposed alt text (id): Diagram ER skema shop dengan tabel dan relasinya, product_tags ditampilkan sebagai garis banyak-ke-banyak antara products dan tags.
 
 **Purpose**
 
@@ -1371,7 +1771,7 @@ the schema to force it.
 |---|---|
 | Type | detail (`mobile-crop`) · **P3** · supplied |
 | Used on | `/features/schema` · er-diagram |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`) (through the `mac-er-diagram` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`) (through the `mac-er-diagram` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -1381,8 +1781,28 @@ the schema to force it.
 
 - Placeholder text (en): Close-up of the diagram: products and tags joined by a many-to-many link.
 - Placeholder text (vi): Cận cảnh sơ đồ: products và tags nối với nhau bằng quan hệ nhiều-nhiều.
+- Placeholder text (es): Detalle del diagrama: products y tags unidos mediante un enlace de muchos a muchos.
+- Placeholder text (de): Detailansicht des Diagramms: products und tags über eine Viele-zu-viele-Beziehung verknüpft.
+- Placeholder text (fr): Gros plan du diagramme : products et tags reliés par un lien plusieurs-à-plusieurs.
+- Placeholder text (ja): 図の拡大図。products と tags が多対多のリンクで結ばれています。
+- Placeholder text (pt-BR): Detalhe do diagrama: products e tags unidos por um vínculo muitos-para-muitos.
+- Placeholder text (zh-Hans): 关系图局部图：products 和 tags 以多对多关系连接。
+- Placeholder text (ko): 다이어그램의 확대 화면. products와 tags가 다대다 연결로 이어져 있습니다.
+- Placeholder text (zh-Hant): 關聯圖局部圖：products 和 tags 以多對多關聯連線。
+- Placeholder text (it): Dettaglio del diagramma: products e tags uniti da un collegamento molti-a-molti.
+- Placeholder text (id): Tampilan dekat diagram: products dan tags dihubungkan oleh tautan banyak-ke-banyak.
 - Proposed alt text (en): Close-up of an ER diagram linking products and tags many-to-many.
 - Proposed alt text (vi): Cận cảnh ER diagram nối products và tags theo quan hệ nhiều-nhiều.
+- Proposed alt text (es): Detalle de un diagrama ER que une products y tags con una relación de muchos a muchos.
+- Proposed alt text (de): Detailansicht eines ER-Diagramms mit Viele-zu-viele-Verknüpfung zwischen products und tags.
+- Proposed alt text (fr): Gros plan d’un diagramme ER reliant products et tags en plusieurs-à-plusieurs.
+- Proposed alt text (ja): products と tags を多対多で結ぶ ER 図の拡大図。
+- Proposed alt text (pt-BR): Detalhe de um diagrama ER ligando products e tags em uma relação muitos-para-muitos.
+- Proposed alt text (zh-Hans): ER 图的局部图，显示 products 与 tags 的多对多关系。
+- Proposed alt text (ko): products와 tags를 다대다로 연결하는 ER 다이어그램의 확대 화면.
+- Proposed alt text (zh-Hant): ER 圖的局部圖，顯示 products 與 tags 的多對多關聯。
+- Proposed alt text (it): Dettaglio di un diagramma ER che collega products e tags molti-a-molti.
+- Proposed alt text (id): Tampilan dekat diagram ER yang menghubungkan products dan tags secara banyak-ke-banyak.
 
 **Purpose**
 
@@ -1421,7 +1841,7 @@ None beyond `mac-er-diagram`.
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/` · features; `/features/schema` · compare-sync |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-compare-sync-structure-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -1433,8 +1853,28 @@ None beyond `mac-er-diagram`.
 
 - Placeholder text (en): Compare & Sync from shop to shop_staging: a column length difference and a DROP COLUMN held back.
 - Placeholder text (vi): Compare & Sync từ shop sang shop_staging: một cột khác độ dài và một lệnh DROP COLUMN chưa được đưa vào script.
+- Placeholder text (es): Comparar y sincronizar de shop a shop_staging: diferencia en la longitud de una columna y DROP COLUMN retenido.
+- Placeholder text (de): Vergleichen und synchronisieren von shop nach shop_staging: unterschiedliche Spaltenlänge und zurückgehaltenes DROP COLUMN.
+- Placeholder text (fr): Comparer et synchroniser de shop vers shop_staging : différence de longueur d’une colonne et DROP COLUMN retenu.
+- Placeholder text (ja): shop から shop_staging への Compare & Sync。列の長さの差異と、追加を保留された DROP COLUMN。
+- Placeholder text (pt-BR): Compare & Sync de shop para shop_staging: uma diferença no comprimento da coluna e um DROP COLUMN retido.
+- Placeholder text (zh-Hans): 从 shop 到 shop_staging 的 Compare & Sync：列长度不同，一条 DROP COLUMN 被排除。
+- Placeholder text (ko): shop에서 shop_staging으로의 Compare & Sync. 열 길이 차이와 보류된 DROP COLUMN입니다.
+- Placeholder text (zh-Hant): 從 shop 到 shop_staging 的 Compare & Sync：欄位長度不同，一項 DROP COLUMN 被排除。
+- Placeholder text (it): Compare & Sync da shop a shop_staging: una differenza nella lunghezza di una colonna e un DROP COLUMN trattenuto.
+- Placeholder text (id): Compare & Sync dari shop ke shop_staging: perbedaan panjang kolom dan DROP COLUMN yang ditahan.
 - Proposed alt text (en): Compare & Sync between shop and shop_staging, listing a column whose length differs and a DROP COLUMN held back from the script.
 - Proposed alt text (vi): Compare & Sync giữa shop và shop_staging, liệt kê một cột có độ dài khác nhau và một lệnh DROP COLUMN chưa được đưa vào script.
+- Proposed alt text (es): Comparar y sincronizar entre shop y shop_staging, con una columna de longitud distinta y un DROP COLUMN excluido del script.
+- Proposed alt text (de): Vergleichen und synchronisieren zwischen shop und shop_staging mit einer Spalte unterschiedlicher Länge und einem vom Skript zurückgehaltenen DROP COLUMN.
+- Proposed alt text (fr): Comparer et synchroniser entre shop et shop_staging, listant une colonne de longueur différente et un DROP COLUMN retenu du script.
+- Proposed alt text (ja): shop と shop_staging の Compare & Sync。長さの異なる列と、スクリプトへの追加を保留された DROP COLUMN が表示されています。
+- Proposed alt text (pt-BR): Compare & Sync entre shop e shop_staging, listando uma coluna com comprimento diferente e um DROP COLUMN retido do script.
+- Proposed alt text (zh-Hans): shop 和 shop_staging 之间的 Compare & Sync，列出长度不同的列，以及未加入脚本的 DROP COLUMN。
+- Proposed alt text (ko): shop과 shop_staging 간의 Compare & Sync. 길이가 다른 열과 스크립트에서 보류된 DROP COLUMN이 나열됩니다.
+- Proposed alt text (zh-Hant): shop 和 shop_staging 之間的 Compare & Sync，列出長度不同的欄位，以及未加入指令碼的 DROP COLUMN。
+- Proposed alt text (it): Compare & Sync tra shop e shop_staging, con una colonna di lunghezza diversa e un DROP COLUMN trattenuto dallo script.
+- Proposed alt text (id): Compare & Sync antara shop dan shop_staging, mencantumkan kolom dengan panjang berbeda dan DROP COLUMN yang ditahan dari skrip.
 
 **Purpose**
 
@@ -1481,7 +1921,7 @@ reference only.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/` · features; `/features/schema` · compare-sync |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) (through the `mac-compare-sync-structure` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) (through the `mac-compare-sync-structure` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -1491,8 +1931,28 @@ reference only.
 
 - Placeholder text (en): Close-up of the differences: the column length change and the DROP COLUMN held back.
 - Placeholder text (vi): Cận cảnh danh sách khác biệt: thay đổi độ dài cột và lệnh DROP COLUMN chưa được đưa vào script.
+- Placeholder text (es): Detalle de las diferencias: el cambio de longitud de columna y DROP COLUMN retenido.
+- Placeholder text (de): Detailansicht der Unterschiede: geänderte Spaltenlänge und zurückgehaltenes DROP COLUMN.
+- Placeholder text (fr): Gros plan des différences : modification de longueur de colonne et DROP COLUMN retenu.
+- Placeholder text (ja): 差異の拡大図。列の長さの変更と、保留された DROP COLUMN。
+- Placeholder text (pt-BR): Detalhe das diferenças: a mudança no comprimento da coluna e o DROP COLUMN retido.
+- Placeholder text (zh-Hans): 差异局部图：列长度的变化，以及被排除的 DROP COLUMN。
+- Placeholder text (ko): 차이의 확대 화면. 열 길이 변경과 보류된 DROP COLUMN입니다.
+- Placeholder text (zh-Hant): 差異局部圖：欄位長度的變化，以及被排除的 DROP COLUMN。
+- Placeholder text (it): Dettaglio delle differenze: la variazione di lunghezza della colonna e il DROP COLUMN trattenuto.
+- Placeholder text (id): Tampilan dekat perbedaan: perubahan panjang kolom dan DROP COLUMN yang ditahan.
 - Proposed alt text (en): Close-up of the Compare & Sync script, with a DROP COLUMN held back from this run and its data-loss warning.
 - Proposed alt text (vi): Cận cảnh script của Compare & Sync, với một lệnh DROP COLUMN chưa được đưa vào lần chạy này và cảnh báo mất dữ liệu.
+- Proposed alt text (es): Detalle del script de Comparar y sincronizar, con DROP COLUMN excluido de esta ejecución y su advertencia de pérdida de datos.
+- Proposed alt text (de): Detailansicht des Skripts von Vergleichen und synchronisieren mit einem für diesen Lauf zurückgehaltenen DROP COLUMN und seiner Datenverlustwarnung.
+- Proposed alt text (fr): Gros plan du script Comparer et synchroniser, avec un DROP COLUMN retenu pour cette exécution et son avertissement de perte de données.
+- Proposed alt text (ja): Compare & Sync スクリプトの拡大図。今回の実行から保留された DROP COLUMN と、そのデータ損失の警告。
+- Proposed alt text (pt-BR): Detalhe do script Compare & Sync, com um DROP COLUMN retido desta execução e seu aviso de perda de dados.
+- Proposed alt text (zh-Hans): Compare & Sync 脚本的局部图，一条 DROP COLUMN 被排除在本次运行之外，并显示数据丢失警告。
+- Proposed alt text (ko): 이번 실행에서 보류된 DROP COLUMN과 데이터 손실 경고를 보여 주는 Compare & Sync 스크립트의 확대 화면.
+- Proposed alt text (zh-Hant): Compare & Sync 指令碼的局部圖，一項 DROP COLUMN 被排除在本次執行之外，並顯示資料遺失警告。
+- Proposed alt text (it): Dettaglio dello script Compare & Sync, con un DROP COLUMN trattenuto da questa esecuzione e l’avviso di perdita di dati.
+- Proposed alt text (id): Tampilan dekat skrip Compare & Sync, dengan DROP COLUMN yang ditahan dari eksekusi ini beserta peringatan kehilangan datanya.
 
 **Purpose**
 
@@ -1532,7 +1992,7 @@ None beyond `mac-compare-sync-structure`.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/schema` · copy |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -1543,8 +2003,28 @@ None beyond `mac-compare-sync-structure`.
 
 - Placeholder text (en): Copy To from MariaDB shop to PostgreSQL shop_pg, listing type approximations before copying.
 - Placeholder text (vi): Copy To từ MariaDB shop sang PostgreSQL shop_pg, liệt kê các kiểu dữ liệu được chuyển gần đúng trước khi sao chép.
+- Placeholder text (es): Copiar a desde MariaDB shop a PostgreSQL shop_pg, con aproximaciones de tipos antes de copiar.
+- Placeholder text (de): Kopieren nach von MariaDB shop zu PostgreSQL shop_pg, mit Typannäherungen vor dem Kopieren.
+- Placeholder text (fr): Copier vers de MariaDB shop à PostgreSQL shop_pg, listant les approximations de types avant la copie.
+- Placeholder text (ja): MariaDB の shop から PostgreSQL の shop_pg への Copy To。コピー前に型の近似変換を一覧表示しています。
+- Placeholder text (pt-BR): Copy To de MariaDB shop para PostgreSQL shop_pg, listando aproximações de tipos antes da cópia.
+- Placeholder text (zh-Hans): 从 MariaDB shop 复制到 PostgreSQL shop_pg 的 Copy To，在复制前列出类型近似转换。
+- Placeholder text (ko): MariaDB shop에서 PostgreSQL shop_pg로의 Copy To. 복사 전에 타입의 근사 변환을 나열합니다.
+- Placeholder text (zh-Hant): 從 MariaDB shop 複製到 PostgreSQL shop_pg 的 Copy To，在複製前列出型別近似轉換。
+- Placeholder text (it): Copy To da MariaDB shop a PostgreSQL shop_pg, con le approssimazioni dei tipi elencate prima della copia.
+- Placeholder text (id): Copy To dari MariaDB shop ke PostgreSQL shop_pg, mencantumkan pendekatan tipe sebelum menyalin.
 - Proposed alt text (en): The Copy To review from MariaDB to PostgreSQL: the expected rows of each table, two enum columns under Type changes because their lists of allowed values are not carried over, and the CREATE TABLE script.
 - Proposed alt text (vi): Bước xem lại của Copy To từ MariaDB sang PostgreSQL: số dòng dự kiến của từng table, hai cột enum trong mục Type changes vì danh sách giá trị cho phép không được mang sang, và script CREATE TABLE.
+- Proposed alt text (es): Revisión de Copiar a desde MariaDB a PostgreSQL: filas previstas de cada tabla, dos columnas enum en Cambios de tipo porque no se trasladan sus listas de valores permitidos y el script CREATE TABLE.
+- Proposed alt text (de): Prüfung von Kopieren nach zwischen MariaDB und PostgreSQL: erwartete Zeilen jeder Tabelle, zwei enum-Spalten unter Typänderungen, da ihre Listen erlaubter Werte nicht übernommen werden, und das CREATE-TABLE-Skript.
+- Proposed alt text (fr): Vérification Copier vers de MariaDB à PostgreSQL : lignes attendues de chaque table, deux colonnes enum dans Modifications de type car leurs listes de valeurs autorisées ne sont pas transférées, et script CREATE TABLE.
+- Proposed alt text (ja): MariaDB から PostgreSQL への Copy To のレビュー。各テーブルの想定行数、許可する値のリストが引き継がれないため Type changes に表示された二つの enum 列、CREATE TABLE スクリプト。
+- Proposed alt text (pt-BR): A revisão Copy To de MariaDB para PostgreSQL: as linhas esperadas de cada tabela, duas colunas enum em Type changes porque suas listas de valores permitidos não são transferidas e o script CREATE TABLE.
+- Proposed alt text (zh-Hans): 从 MariaDB 到 PostgreSQL 的 Copy To 审核：各表的预期行数、Type changes 下的两个枚举列（允许值列表不会被带过去），以及 CREATE TABLE 脚本。
+- Proposed alt text (ko): MariaDB에서 PostgreSQL로 복사하는 Copy To 검토. 각 테이블의 예상 행 수, 허용 값 목록이 이전되지 않아 Type changes에 표시된 enum 열 두 개, CREATE TABLE 스크립트입니다.
+- Proposed alt text (zh-Hant): 從 MariaDB 到 PostgreSQL 的 Copy To 檢閱：各資料表的預期列數、Type changes 下的兩個列舉欄位（允許值清單不會一併轉移），以及 CREATE TABLE 指令碼。
+- Proposed alt text (it): La revisione Copy To da MariaDB a PostgreSQL: le righe previste per ogni tabella, due colonne enum in Type changes perché i loro elenchi di valori ammessi non vengono trasferiti, e lo script CREATE TABLE.
+- Proposed alt text (id): Peninjauan Copy To dari MariaDB ke PostgreSQL: jumlah baris yang diharapkan untuk setiap tabel, dua kolom enum dalam Type changes karena daftar nilai yang diizinkan tidak ikut dipindahkan, serta skrip CREATE TABLE.
 
 **Purpose**
 
@@ -1592,7 +2072,7 @@ be created as the Scene says. The legacy `/images/blog/copy-to-cross-engine-revi
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/schema` · administer; `/mysql-client` · operate |
-| Rendered by | `resources/js/components/databases/engine-section.tsx` (via `resources/data/content/en/databases/mysql-client.json`, `resources/data/content/vi/databases/mysql-client.json`); `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`) |
+| Rendered by | `resources/js/components/databases/engine-section.tsx` (via `resources/data/content/de/databases/mysql-client.json`, `resources/data/content/en/databases/mysql-client.json`, `resources/data/content/es/databases/mysql-client.json`, `resources/data/content/fr/databases/mysql-client.json`, `resources/data/content/id/databases/mysql-client.json`, `resources/data/content/it/databases/mysql-client.json`, `resources/data/content/ja/databases/mysql-client.json`, `resources/data/content/ko/databases/mysql-client.json`, `resources/data/content/pt-BR/databases/mysql-client.json`, `resources/data/content/vi/databases/mysql-client.json`, `resources/data/content/zh-Hans/databases/mysql-client.json`, `resources/data/content/zh-Hant/databases/mysql-client.json`); `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -1602,8 +2082,28 @@ be created as the Scene says. The legacy `/images/blog/copy-to-cross-engine-revi
 
 - Placeholder text (en): Users & Roles on MySQL: app_reader granted SELECT on one column, the SQL preview open.
 - Placeholder text (vi): Users & Roles trên MySQL: app_reader được cấp SELECT trên một cột, bản xem trước SQL đang mở.
+- Placeholder text (es): Usuarios y roles en MySQL: app_reader recibe SELECT sobre una columna, con la vista previa SQL abierta.
+- Placeholder text (de): Benutzer und Rollen in MySQL: app_reader erhält SELECT für eine Spalte, SQL-Vorschau geöffnet.
+- Placeholder text (fr): Utilisateurs et rôles sur MySQL : app_reader reçoit SELECT sur une colonne, aperçu SQL ouvert.
+- Placeholder text (ja): MySQL の Users & Roles。app_reader に一列への SELECT を付与し、SQL プレビューが開いています。
+- Placeholder text (pt-BR): Users & Roles no MySQL: app_reader recebe SELECT em uma coluna, com a prévia SQL aberta.
+- Placeholder text (zh-Hans): MySQL 的 Users & Roles：授予 app_reader 对单列的 SELECT 权限，SQL 预览已打开。
+- Placeholder text (ko): MySQL의 Users & Roles. app_reader에 한 열의 SELECT를 부여하며 SQL 미리보기가 열려 있습니다.
+- Placeholder text (zh-Hant): MySQL 的 Users & Roles：授予 app_reader 對單一欄位的 SELECT 權限，SQL 預覽已開啟。
+- Placeholder text (it): Users & Roles su MySQL: app_reader riceve SELECT su una colonna, con anteprima SQL aperta.
+- Placeholder text (id): Users & Roles di MySQL: app_reader diberi SELECT pada satu kolom, dengan pratinjau SQL terbuka.
 - Proposed alt text (en): Users & Roles on a MySQL server, with the SQL Preview showing the GRANT that gives the app_reader user SELECT on the total column of shop.orders.
 - Proposed alt text (vi): Users & Roles trên một server MySQL, hộp thoại SQL Preview hiển thị câu GRANT cấp cho user app_reader quyền SELECT trên cột total của shop.orders.
+- Proposed alt text (es): Usuarios y roles en un servidor MySQL, con la vista previa SQL que muestra el GRANT que concede SELECT a app_reader sobre la columna total de shop.orders.
+- Proposed alt text (de): Benutzer und Rollen auf einem MySQL-Server mit SQL-Vorschau des GRANT, das app_reader SELECT auf die Spalte total von shop.orders gewährt.
+- Proposed alt text (fr): Utilisateurs et rôles sur un serveur MySQL, avec l’aperçu SQL montrant le GRANT qui accorde SELECT à app_reader sur la colonne total de shop.orders.
+- Proposed alt text (ja): MySQL サーバーの Users & Roles。SQL Preview に、app_reader ユーザーに shop.orders の total 列への SELECT を付与する GRANT が表示されています。
+- Proposed alt text (pt-BR): Users & Roles em um servidor MySQL, com SQL Preview mostrando o GRANT que concede SELECT na coluna total de shop.orders ao usuário app_reader.
+- Proposed alt text (zh-Hans): MySQL 服务器的 Users & Roles，SQL Preview 显示一条 GRANT，授予 app_reader 用户对 shop.orders 的 total 列的 SELECT 权限。
+- Proposed alt text (ko): MySQL 서버의 Users & Roles. SQL Preview가 app_reader 사용자에게 shop.orders의 total 열에 대한 SELECT를 부여하는 GRANT를 보여 줍니다.
+- Proposed alt text (zh-Hant): MySQL 伺服器的 Users & Roles，SQL Preview 顯示一項 GRANT，授予 app_reader 使用者對 shop.orders 的 total 欄位的 SELECT 權限。
+- Proposed alt text (it): Users & Roles su un server MySQL, con SQL Preview che mostra il GRANT che concede all’utente app_reader SELECT sulla colonna total di shop.orders.
+- Proposed alt text (id): Users & Roles pada server MySQL, dengan SQL Preview menampilkan GRANT yang memberikan SELECT pada kolom total shop.orders kepada pengguna app_reader.
 
 **Purpose**
 
@@ -1647,7 +2147,7 @@ into a MySQL 8 server, never capture this on MariaDB. Create `app_reader` with n
 |---|---|
 | Type | screenshot (`window`) · **P3** · supplied |
 | Used on | `/features/schema` · administer; `/postgresql-client` · operate |
-| Rendered by | `resources/js/components/databases/engine-section.tsx` (via `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`); `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`) |
+| Rendered by | `resources/js/components/databases/engine-section.tsx` (via `resources/data/content/de/databases/postgresql-client.json`, `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/es/databases/postgresql-client.json`, `resources/data/content/fr/databases/postgresql-client.json`, `resources/data/content/id/databases/postgresql-client.json`, `resources/data/content/it/databases/postgresql-client.json`, `resources/data/content/ja/databases/postgresql-client.json`, `resources/data/content/ko/databases/postgresql-client.json`, `resources/data/content/pt-BR/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`, `resources/data/content/zh-Hans/databases/postgresql-client.json`, `resources/data/content/zh-Hant/databases/postgresql-client.json`); `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-server-dashboard-postgresql-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -1658,8 +2158,28 @@ into a MySQL 8 server, never capture this on MariaDB. Create `app_reader` with n
 
 - Placeholder text (en): Server Dashboard on PostgreSQL: active sessions, one long SELECT selected with Terminate.
 - Placeholder text (vi): Server Dashboard trên PostgreSQL: các session đang chạy, một câu SELECT chạy lâu được chọn cùng nút Terminate.
+- Placeholder text (es): Panel del servidor en PostgreSQL: sesiones activas y un SELECT largo seleccionado con Finalizar.
+- Placeholder text (de): Server-Dashboard für PostgreSQL: aktive Sitzungen und lang laufendes SELECT mit Beenden ausgewählt.
+- Placeholder text (fr): Tableau de bord serveur PostgreSQL : sessions actives et long SELECT sélectionné avec Terminer.
+- Placeholder text (ja): PostgreSQL の Server Dashboard。アクティブなセッションと、選択された長時間実行中の SELECT、Terminate。
+- Placeholder text (pt-BR): Server Dashboard no PostgreSQL: sessões ativas, um SELECT demorado selecionado com Terminate.
+- Placeholder text (zh-Hans): PostgreSQL 的 Server Dashboard：活动会话列表中选中了一条耗时较长的 SELECT，并显示 Terminate。
+- Placeholder text (ko): PostgreSQL의 Server Dashboard. 활성 세션과 선택된 장시간 SELECT, Terminate가 표시됩니다.
+- Placeholder text (zh-Hant): PostgreSQL 的 Server Dashboard：作用中的工作階段清單選取了一項耗時較長的 SELECT，並顯示 Terminate。
+- Placeholder text (it): Server Dashboard su PostgreSQL: sessioni attive, un SELECT lungo selezionato con Terminate.
+- Placeholder text (id): Server Dashboard di PostgreSQL: sesi aktif, satu SELECT lama dipilih dengan Terminate.
 - Proposed alt text (en): The Server Dashboard for a PostgreSQL server, listing active sessions with a long-running SELECT selected and the Terminate button visible.
 - Proposed alt text (vi): Server Dashboard của một server PostgreSQL liệt kê các session đang chạy, một câu SELECT chạy lâu đang được chọn và có nút Terminate.
+- Proposed alt text (es): Panel del servidor PostgreSQL que lista las sesiones activas, con un SELECT de larga duración seleccionado y el botón Finalizar visible.
+- Proposed alt text (de): Server-Dashboard eines PostgreSQL-Servers mit aktiven Sitzungen, einem ausgewählten lang laufenden SELECT und sichtbarer Schaltfläche Beenden.
+- Proposed alt text (fr): Tableau de bord d’un serveur PostgreSQL listant les sessions actives, avec un SELECT de longue durée sélectionné et le bouton Terminer visible.
+- Proposed alt text (ja): PostgreSQL サーバーの Server Dashboard。アクティブなセッションの一覧で長時間実行中の SELECT が選択され、Terminate ボタンが表示されています。
+- Proposed alt text (pt-BR): Server Dashboard de um servidor PostgreSQL, listando sessões ativas com um SELECT demorado selecionado e o botão Terminate visível.
+- Proposed alt text (zh-Hans): PostgreSQL 服务器的 Server Dashboard 列出活动会话，选中了一条运行时间较长的 SELECT，并显示 Terminate 按钮。
+- Proposed alt text (ko): PostgreSQL 서버의 Server Dashboard. 활성 세션 목록에서 오래 실행 중인 SELECT가 선택되어 있고 Terminate 버튼이 표시됩니다.
+- Proposed alt text (zh-Hant): PostgreSQL 伺服器的 Server Dashboard 列出作用中的工作階段，選取了一項執行時間較長的 SELECT，並顯示 Terminate 按鈕。
+- Proposed alt text (it): Server Dashboard per un server PostgreSQL, con sessioni attive, un SELECT di lunga durata selezionato e il pulsante Terminate visibile.
+- Proposed alt text (id): Server Dashboard untuk server PostgreSQL, mencantumkan sesi aktif dengan SELECT berdurasi panjang dipilih dan tombol Terminate terlihat.
 
 **Purpose**
 
@@ -1699,7 +2219,7 @@ sample server), or the long query shows as hidden.
 |---|---|
 | Type | detail (`mobile-crop`) · **P3** · supplied |
 | Used on | `/features/schema` · administer; `/postgresql-client` · operate |
-| Rendered by | `resources/js/components/databases/engine-section.tsx` (via `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`); `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/schema.json`, `resources/data/content/vi/features/schema.json`) (through the `mac-server-dashboard-postgresql` slot, below 768 px) |
+| Rendered by | `resources/js/components/databases/engine-section.tsx` (via `resources/data/content/de/databases/postgresql-client.json`, `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/es/databases/postgresql-client.json`, `resources/data/content/fr/databases/postgresql-client.json`, `resources/data/content/id/databases/postgresql-client.json`, `resources/data/content/it/databases/postgresql-client.json`, `resources/data/content/ja/databases/postgresql-client.json`, `resources/data/content/ko/databases/postgresql-client.json`, `resources/data/content/pt-BR/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`, `resources/data/content/zh-Hans/databases/postgresql-client.json`, `resources/data/content/zh-Hant/databases/postgresql-client.json`); `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/schema.json`, `resources/data/content/en/features/schema.json`, `resources/data/content/es/features/schema.json`, `resources/data/content/fr/features/schema.json`, `resources/data/content/id/features/schema.json`, `resources/data/content/it/features/schema.json`, `resources/data/content/ja/features/schema.json`, `resources/data/content/ko/features/schema.json`, `resources/data/content/pt-BR/features/schema.json`, `resources/data/content/vi/features/schema.json`, `resources/data/content/zh-Hans/features/schema.json`, `resources/data/content/zh-Hant/features/schema.json`) (through the `mac-server-dashboard-postgresql` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -1709,8 +2229,28 @@ sample server), or the long query shows as hidden.
 
 - Placeholder text (en): Close-up of the sessions list: the long-running SELECT and the Terminate button.
 - Placeholder text (vi): Cận cảnh danh sách session: câu SELECT chạy lâu và nút Terminate.
+- Placeholder text (es): Detalle de la lista de sesiones: el SELECT de larga duración y el botón Finalizar.
+- Placeholder text (de): Detailansicht der Sitzungsliste: lang laufendes SELECT und Schaltfläche Beenden.
+- Placeholder text (fr): Gros plan de la liste des sessions : SELECT de longue durée et bouton Terminer.
+- Placeholder text (ja): セッション一覧の拡大図。長時間実行中の SELECT と Terminate ボタン。
+- Placeholder text (pt-BR): Detalhe da lista de sessões: o SELECT demorado e o botão Terminate.
+- Placeholder text (zh-Hans): 会话列表局部图：长时间运行的 SELECT 和 Terminate 按钮。
+- Placeholder text (ko): 세션 목록의 확대 화면. 장시간 SELECT와 Terminate 버튼입니다.
+- Placeholder text (zh-Hant): 工作階段清單局部圖：長時間執行的 SELECT 和 Terminate 按鈕。
+- Placeholder text (it): Dettaglio dell’elenco sessioni: il SELECT lungo e il pulsante Terminate.
+- Placeholder text (id): Tampilan dekat daftar sesi: SELECT lama dan tombol Terminate.
 - Proposed alt text (en): Close-up of a long-running SELECT session selected in the Server Dashboard, beside the Terminate button.
 - Proposed alt text (vi): Cận cảnh một session SELECT chạy lâu được chọn trong Server Dashboard, cạnh nút Terminate.
+- Proposed alt text (es): Detalle de una sesión SELECT de larga duración seleccionada en el panel del servidor, junto al botón Finalizar.
+- Proposed alt text (de): Detailansicht einer im Server-Dashboard ausgewählten lang laufenden SELECT-Sitzung neben der Schaltfläche Beenden.
+- Proposed alt text (fr): Gros plan d’une session SELECT de longue durée sélectionnée dans le tableau de bord serveur, à côté du bouton Terminer.
+- Proposed alt text (ja): Server Dashboard で選択された長時間実行中の SELECT セッションと、その横の Terminate ボタンの拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma sessão SELECT demorada selecionada no Server Dashboard, ao lado do botão Terminate.
+- Proposed alt text (zh-Hans): Server Dashboard 中选中的长时间运行的 SELECT 会话局部图，旁边是 Terminate 按钮。
+- Proposed alt text (ko): Server Dashboard에서 선택된 장시간 SELECT 세션과 옆의 Terminate 버튼의 확대 화면.
+- Proposed alt text (zh-Hant): Server Dashboard 中選取的長時間執行的 SELECT 工作階段局部圖，旁邊是 Terminate 按鈕。
+- Proposed alt text (it): Dettaglio di una sessione SELECT di lunga durata selezionata in Server Dashboard, accanto al pulsante Terminate.
+- Proposed alt text (id): Tampilan dekat sesi SELECT berdurasi panjang yang dipilih dalam Server Dashboard, di samping tombol Terminate.
 
 **Purpose**
 
@@ -1749,7 +2289,7 @@ None beyond `mac-server-dashboard-postgresql`.
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/` · features; `/features/import-export` · data-files |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/import-export.json`, `resources/data/content/vi/features/import-export.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/import-export.json`, `resources/data/content/en/features/import-export.json`, `resources/data/content/es/features/import-export.json`, `resources/data/content/fr/features/import-export.json`, `resources/data/content/id/features/import-export.json`, `resources/data/content/it/features/import-export.json`, `resources/data/content/ja/features/import-export.json`, `resources/data/content/ko/features/import-export.json`, `resources/data/content/pt-BR/features/import-export.json`, `resources/data/content/vi/features/import-export.json`, `resources/data/content/zh-Hans/features/import-export.json`, `resources/data/content/zh-Hant/features/import-export.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-data-files-window-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -1761,8 +2301,28 @@ None beyond `mac-server-dashboard-postgresql`.
 
 - Placeholder text (en): Data Files window with orders.csv (20,000 rows) searched for "Hanoi": 2,498 matches.
 - Placeholder text (vi): Cửa sổ Data Files với orders.csv (20.000 dòng), tìm "Hanoi": 2.498 kết quả.
+- Placeholder text (es): Ventana Archivos de datos con orders.csv (20.000 filas), buscando «Hanoi»: 2.498 coincidencias.
+- Placeholder text (de): Daten-Dateien-Fenster mit orders.csv (20.000 Zeilen), Suche nach „Hanoi“: 2.498 Treffer.
+- Placeholder text (fr): Fenêtre Fichiers de données avec orders.csv (20 000 lignes), recherché sur « Hanoi » : 2 498 résultats.
+- Placeholder text (ja): Data Files ウインドウで orders.csv（20,000 行）から「Hanoi」を検索。2,498 件が一致しています。
+- Placeholder text (pt-BR): Janela Data Files com orders.csv (20.000 linhas) e busca por “Hanoi”: 2.498 correspondências.
+- Placeholder text (zh-Hans): Data Files 窗口打开 orders.csv（20,000 行）并搜索“Hanoi”：2,498 个匹配项。
+- Placeholder text (ko): orders.csv(20,000행)에서 “Hanoi”를 검색한 Data Files 창. 일치 항목은 2,498개입니다.
+- Placeholder text (zh-Hant): Data Files 視窗開啟 orders.csv（20,000 列）並搜尋「Hanoi」：2,498 個符合項目。
+- Placeholder text (it): Finestra Data Files con orders.csv (20.000 righe) e ricerca di “Hanoi”: 2.498 corrispondenze.
+- Placeholder text (id): Jendela Data Files dengan orders.csv (20.000 baris) dicari untuk “Hanoi”: 2.498 kecocokan.
 - Proposed alt text (en): The Data Files window with orders.csv open and searched for Hanoi, the status bar reading 2,498 of 20,000 rows.
 - Proposed alt text (vi): Cửa sổ Data Files mở file orders.csv, đang tìm Hanoi, thanh trạng thái hiển thị 2.498 trên 20.000 dòng.
+- Proposed alt text (es): Ventana Archivos de datos con orders.csv abierto y la búsqueda Hanoi; la barra de estado indica 2.498 de 20.000 filas.
+- Proposed alt text (de): Daten-Dateien-Fenster mit geöffnetem orders.csv und Suche nach Hanoi; die Statusleiste zeigt 2.498 von 20.000 Zeilen.
+- Proposed alt text (fr): Fenêtre Fichiers de données avec orders.csv ouvert et recherché sur Hanoi, barre d’état indiquant 2 498 lignes sur 20 000.
+- Proposed alt text (ja): Data Files ウインドウで orders.csv を開き、Hanoi を検索しています。ステータスバーは 20,000 行中 2,498 行を示しています。
+- Proposed alt text (pt-BR): A janela Data Files com orders.csv aberto e busca por Hanoi, e a barra de status indicando 2.498 de 20.000 linhas.
+- Proposed alt text (zh-Hans): Data Files 窗口打开 orders.csv 并搜索 Hanoi，状态栏显示 20,000 行中的 2,498 行。
+- Proposed alt text (ko): orders.csv를 열어 Hanoi를 검색한 Data Files 창. 상태 표시줄에 20,000행 중 2,498행이 표시됩니다.
+- Proposed alt text (zh-Hant): Data Files 視窗開啟 orders.csv 並搜尋 Hanoi，狀態列顯示 20,000 列中的 2,498 列。
+- Proposed alt text (it): La finestra Data Files con orders.csv aperto e ricerca di Hanoi, con la barra di stato che indica 2.498 di 20.000 righe.
+- Proposed alt text (id): Jendela Data Files dengan orders.csv terbuka dan pencarian Hanoi, bilah status menunjukkan 2.498 dari 20.000 baris.
 
 **Purpose**
 
@@ -1804,7 +2364,7 @@ manifest alt text exactly. The legacy `/images/blog/data-files-window.png` is re
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/` · features; `/features/import-export` · data-files |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/import-export.json`, `resources/data/content/vi/features/import-export.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) (through the `mac-data-files-window` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/import-export.json`, `resources/data/content/en/features/import-export.json`, `resources/data/content/es/features/import-export.json`, `resources/data/content/fr/features/import-export.json`, `resources/data/content/id/features/import-export.json`, `resources/data/content/it/features/import-export.json`, `resources/data/content/ja/features/import-export.json`, `resources/data/content/ko/features/import-export.json`, `resources/data/content/pt-BR/features/import-export.json`, `resources/data/content/vi/features/import-export.json`, `resources/data/content/zh-Hans/features/import-export.json`, `resources/data/content/zh-Hant/features/import-export.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) (through the `mac-data-files-window` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -1814,8 +2374,28 @@ manifest alt text exactly. The legacy `/images/blog/data-files-window.png` is re
 
 - Placeholder text (en): Close-up of the search: rows matching "Hanoi" and the 2,498 of 20,000 count.
 - Placeholder text (vi): Cận cảnh kết quả tìm: các dòng khớp với "Hanoi" và số đếm 2.498 trên 20.000.
+- Placeholder text (es): Detalle de la búsqueda: filas que coinciden con «Hanoi» y recuento de 2.498 de 20.000.
+- Placeholder text (de): Detailansicht der Suche: Zeilen mit „Hanoi“ und Zähler 2.498 von 20.000.
+- Placeholder text (fr): Gros plan de la recherche : lignes correspondant à « Hanoi » et compteur 2 498 sur 20 000.
+- Placeholder text (ja): 検索の拡大図。「Hanoi」に一致した行と、20,000 行中 2,498 行の件数表示。
+- Placeholder text (pt-BR): Detalhe da busca: linhas que correspondem a “Hanoi” e a contagem 2.498 de 20.000.
+- Placeholder text (zh-Hans): 搜索局部图：匹配“Hanoi”的行，以及 20,000 行中有 2,498 行的计数。
+- Placeholder text (ko): 검색의 확대 화면. “Hanoi”와 일치하는 행과 20,000행 중 2,498행이라는 개수입니다.
+- Placeholder text (zh-Hant): 搜尋局部圖：符合「Hanoi」的資料列，以及 20,000 列中有 2,498 列的計數。
+- Placeholder text (it): Dettaglio della ricerca: righe corrispondenti a “Hanoi” e conteggio 2.498 di 20.000.
+- Placeholder text (id): Tampilan dekat pencarian: baris yang cocok dengan “Hanoi” dan jumlah 2.498 dari 20.000.
 - Proposed alt text (en): Close-up of rows in orders.csv matching Hanoi, with the match count in the status bar.
 - Proposed alt text (vi): Cận cảnh các dòng trong orders.csv khớp với Hanoi, kèm số kết quả ở thanh trạng thái.
+- Proposed alt text (es): Detalle de filas de orders.csv que coinciden con Hanoi, con el número de coincidencias en la barra de estado.
+- Proposed alt text (de): Detailansicht der zu Hanoi passenden Zeilen in orders.csv mit Trefferzahl in der Statusleiste.
+- Proposed alt text (fr): Gros plan des lignes d’orders.csv correspondant à Hanoi, avec le nombre de résultats dans la barre d’état.
+- Proposed alt text (ja): orders.csv で Hanoi に一致した行の拡大図。ステータスバーに一致件数が表示されています。
+- Proposed alt text (pt-BR): Detalhe de linhas em orders.csv que correspondem a Hanoi, com a contagem de correspondências na barra de status.
+- Proposed alt text (zh-Hans): orders.csv 中匹配 Hanoi 的行局部图，状态栏显示匹配数量。
+- Proposed alt text (ko): orders.csv에서 Hanoi와 일치하는 행과 상태 표시줄의 일치 개수를 보여 주는 확대 화면.
+- Proposed alt text (zh-Hant): orders.csv 中符合 Hanoi 的資料列局部圖，狀態列顯示符合項目的數量。
+- Proposed alt text (it): Dettaglio delle righe in orders.csv che corrispondono a Hanoi, con il conteggio delle corrispondenze nella barra di stato.
+- Proposed alt text (id): Tampilan dekat baris orders.csv yang cocok dengan Hanoi, dengan jumlah kecocokan dalam bilah status.
 
 **Purpose**
 
@@ -1851,7 +2431,7 @@ None beyond `mac-data-files-window`.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/import-export` · data-files |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/import-export.json`, `resources/data/content/vi/features/import-export.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/import-export.json`, `resources/data/content/en/features/import-export.json`, `resources/data/content/es/features/import-export.json`, `resources/data/content/fr/features/import-export.json`, `resources/data/content/id/features/import-export.json`, `resources/data/content/it/features/import-export.json`, `resources/data/content/ja/features/import-export.json`, `resources/data/content/ko/features/import-export.json`, `resources/data/content/pt-BR/features/import-export.json`, `resources/data/content/vi/features/import-export.json`, `resources/data/content/zh-Hans/features/import-export.json`, `resources/data/content/zh-Hant/features/import-export.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -1861,8 +2441,28 @@ None beyond `mac-data-files-window`.
 
 - Placeholder text (en): Column statistics for the status column of orders.csv.
 - Placeholder text (vi): Thống kê cột status của orders.csv.
+- Placeholder text (es): Estadísticas de la columna status de orders.csv.
+- Placeholder text (de): Spaltenstatistik für status in orders.csv.
+- Placeholder text (fr): Statistiques de la colonne status d’orders.csv.
+- Placeholder text (ja): orders.csv の status 列の統計情報。
+- Placeholder text (pt-BR): Estatísticas da coluna status de orders.csv.
+- Placeholder text (zh-Hans): orders.csv 的 status 列统计信息。
+- Placeholder text (ko): orders.csv의 status 열 통계입니다.
+- Placeholder text (zh-Hant): orders.csv 的 status 欄位統計資訊。
+- Placeholder text (it): Statistiche della colonna status di orders.csv.
+- Placeholder text (id): Statistik kolom status orders.csv.
 - Proposed alt text (en): Column statistics for the status column of orders.csv in the Data Files window.
 - Proposed alt text (vi): Thống kê cột status của orders.csv trong cửa sổ Data Files.
+- Proposed alt text (es): Estadísticas de la columna status de orders.csv en la ventana Archivos de datos.
+- Proposed alt text (de): Spaltenstatistik für status in orders.csv im Daten-Dateien-Fenster.
+- Proposed alt text (fr): Statistiques de la colonne status d’orders.csv dans la fenêtre Fichiers de données.
+- Proposed alt text (ja): Data Files ウインドウで orders.csv の status 列の統計情報を表示しています。
+- Proposed alt text (pt-BR): Estatísticas da coluna status de orders.csv na janela Data Files.
+- Proposed alt text (zh-Hans): Data Files 窗口中 orders.csv 的 status 列统计信息。
+- Proposed alt text (ko): Data Files 창에서 표시된 orders.csv의 status 열 통계.
+- Proposed alt text (zh-Hant): Data Files 視窗中 orders.csv 的 status 欄位統計資訊。
+- Proposed alt text (it): Statistiche della colonna status di orders.csv nella finestra Data Files.
+- Proposed alt text (id): Statistik kolom status orders.csv dalam jendela Data Files.
 
 **Purpose**
 
@@ -1902,7 +2502,7 @@ The docs image `data-files-statistics.png` shows this popover; reuse its file so
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/import-export` · import |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/import-export.json`, `resources/data/content/vi/features/import-export.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/import-export.json`, `resources/data/content/en/features/import-export.json`, `resources/data/content/es/features/import-export.json`, `resources/data/content/fr/features/import-export.json`, `resources/data/content/id/features/import-export.json`, `resources/data/content/it/features/import-export.json`, `resources/data/content/ja/features/import-export.json`, `resources/data/content/ko/features/import-export.json`, `resources/data/content/pt-BR/features/import-export.json`, `resources/data/content/vi/features/import-export.json`, `resources/data/content/zh-Hans/features/import-export.json`, `resources/data/content/zh-Hant/features/import-export.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -1913,8 +2513,28 @@ The docs image `data-files-statistics.png` shows this popover; reuse its file so
 
 - Placeholder text (en): Importing a CSV into shop.orders: the column mapping and the on-error choice.
 - Placeholder text (vi): Import file CSV vào shop.orders: ghép cột và lựa chọn khi gặp lỗi.
+- Placeholder text (es): Importación de CSV en shop.orders: asignación de columnas y opción ante errores.
+- Placeholder text (de): CSV-Import nach shop.orders: Spaltenzuordnung und Auswahl für Fehlerfälle.
+- Placeholder text (fr): Importation d’un CSV dans shop.orders : correspondance des colonnes et choix en cas d’erreur.
+- Placeholder text (ja): shop.orders への CSV インポート。列のマッピングとエラー時の処理の選択。
+- Placeholder text (pt-BR): Importação de CSV para shop.orders: o mapeamento de colunas e a escolha em caso de erro.
+- Placeholder text (zh-Hans): 将 CSV 导入 shop.orders：列映射和出错时的处理选项。
+- Placeholder text (ko): shop.orders로 CSV 가져오기. 열 매핑과 오류 발생 시 처리 선택입니다.
+- Placeholder text (zh-Hant): 將 CSV 匯入 shop.orders：欄位對應和發生錯誤時的處理選項。
+- Placeholder text (it): Importazione di un CSV in shop.orders: associazione delle colonne e scelta in caso di errore.
+- Placeholder text (id): Mengimpor CSV ke shop.orders: pemetaan kolom dan pilihan saat terjadi kesalahan.
 - Proposed alt text (en): The import sheet for a CSV file going into the orders table, with each file column mapped to a table column and the on-error option.
 - Proposed alt text (vi): Hộp thoại import một file CSV vào table orders, mỗi cột trong file được ghép với một cột của table, kèm tùy chọn khi gặp lỗi.
+- Proposed alt text (es): Hoja de importación de un CSV en la tabla orders, con cada columna del archivo asignada a una de la tabla y la opción ante errores.
+- Proposed alt text (de): Importblatt für eine CSV-Datei nach orders, mit Zuordnung jeder Dateispalte zu einer Tabellenspalte und der Option bei Fehlern.
+- Proposed alt text (fr): Feuille d’importation d’un CSV vers la table orders, avec chaque colonne du fichier associée à une colonne de table et l’option en cas d’erreur.
+- Proposed alt text (ja): CSV ファイルを orders テーブルに取り込むインポートシート。ファイルの各列がテーブルの列にマッピングされ、エラー時の処理の選択肢も表示されています。
+- Proposed alt text (pt-BR): A folha de importação de um arquivo CSV para a tabela orders, com cada coluna do arquivo mapeada a uma coluna da tabela e a opção em caso de erro.
+- Proposed alt text (zh-Hans): 将 CSV 文件导入 orders 表的面板，文件的每列都映射到表列，并显示出错时的处理选项。
+- Proposed alt text (ko): CSV 파일을 orders 테이블로 가져오는 시트. 파일의 각 열이 테이블 열에 매핑되어 있고 오류 발생 시 처리 옵션이 있습니다.
+- Proposed alt text (zh-Hant): 將 CSV 檔案匯入 orders 資料表的面板，檔案的每個欄位都對應至資料表欄位，並顯示發生錯誤時的處理選項。
+- Proposed alt text (it): Il foglio di importazione di un file CSV nella tabella orders, con ogni colonna del file associata a una colonna della tabella e l’opzione in caso di errore.
+- Proposed alt text (id): Lembar impor berkas CSV ke tabel orders, dengan setiap kolom berkas dipetakan ke kolom tabel dan opsi saat terjadi kesalahan.
 
 **Purpose**
 
@@ -1956,7 +2576,7 @@ on the sheet so the crop can hold it with the mapping.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/import-export` · export |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/import-export.json`, `resources/data/content/vi/features/import-export.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/import-export.json`, `resources/data/content/en/features/import-export.json`, `resources/data/content/es/features/import-export.json`, `resources/data/content/fr/features/import-export.json`, `resources/data/content/id/features/import-export.json`, `resources/data/content/it/features/import-export.json`, `resources/data/content/ja/features/import-export.json`, `resources/data/content/ko/features/import-export.json`, `resources/data/content/pt-BR/features/import-export.json`, `resources/data/content/vi/features/import-export.json`, `resources/data/content/zh-Hans/features/import-export.json`, `resources/data/content/zh-Hant/features/import-export.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -1967,8 +2587,28 @@ on the sheet so the crop can hold it with the mapping.
 
 - Placeholder text (en): The Export dialog with XLSX chosen for three tables of shop.
 - Placeholder text (vi): Hộp thoại Export chọn định dạng XLSX cho ba table của shop.
+- Placeholder text (es): Diálogo Exportar con XLSX elegido para tres tablas de shop.
+- Placeholder text (de): Exportdialog mit XLSX für drei Tabellen von shop ausgewählt.
+- Placeholder text (fr): Boîte de dialogue Exporter avec XLSX choisi pour trois tables de shop.
+- Placeholder text (ja): shop の三つのテーブルに XLSX を選んだ Export ダイアログ。
+- Placeholder text (pt-BR): O diálogo Export com XLSX escolhido para três tabelas de shop.
+- Placeholder text (zh-Hans): Export 对话框选择以 XLSX 格式导出 shop 的三个表。
+- Placeholder text (ko): shop의 테이블 세 개에 XLSX를 선택한 Export 대화상자입니다.
+- Placeholder text (zh-Hant): Export 對話框選擇以 XLSX 格式匯出 shop 的三個資料表。
+- Placeholder text (it): La finestra Export con XLSX scelto per tre tabelle di shop.
+- Placeholder text (id): Dialog Export dengan XLSX dipilih untuk tiga tabel shop.
 - Proposed alt text (en): The Export dialog with the orders table ticked among the schema's tables and views, and XLSX chosen as the format.
 - Proposed alt text (vi): Hộp thoại Export với table orders được chọn trong danh sách table và view của schema, định dạng XLSX đã được chọn.
+- Proposed alt text (es): Diálogo Exportar con orders marcada entre las tablas y vistas del esquema y XLSX elegido como formato.
+- Proposed alt text (de): Exportdialog mit orders unter den Tabellen und Ansichten des Schemas ausgewählt und XLSX als Format.
+- Proposed alt text (fr): Boîte de dialogue Exporter avec orders cochée parmi les tables et vues du schéma, et XLSX choisi comme format.
+- Proposed alt text (ja): Export ダイアログ。スキーマのテーブルとビューの中から orders テーブルにチェックが入り、形式として XLSX が選ばれています。
+- Proposed alt text (pt-BR): O diálogo Export com a tabela orders marcada entre as tabelas e visualizações do esquema, e XLSX escolhido como formato.
+- Proposed alt text (zh-Hans): Export 对话框在模式的表和视图列表中勾选 orders 表，并选定 XLSX 格式。
+- Proposed alt text (ko): 스키마의 테이블 및 뷰 중 orders 테이블이 선택되어 있고 형식이 XLSX로 설정된 Export 대화상자.
+- Proposed alt text (zh-Hant): Export 對話框在結構描述的資料表和檢視清單中勾選 orders 資料表，並選定 XLSX 格式。
+- Proposed alt text (it): La finestra Export con la tabella orders selezionata tra tabelle e viste dello schema e XLSX scelto come formato.
+- Proposed alt text (id): Dialog Export dengan tabel orders dicentang di antara tabel dan tampilan skema, serta XLSX dipilih sebagai format.
 
 **Purpose**
 
@@ -2008,7 +2648,7 @@ The legacy `/images/blog/export-object-tree.png` is reference only.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/import-export` · backup |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/import-export.json`, `resources/data/content/vi/features/import-export.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/import-export.json`, `resources/data/content/en/features/import-export.json`, `resources/data/content/es/features/import-export.json`, `resources/data/content/fr/features/import-export.json`, `resources/data/content/id/features/import-export.json`, `resources/data/content/it/features/import-export.json`, `resources/data/content/ja/features/import-export.json`, `resources/data/content/ko/features/import-export.json`, `resources/data/content/pt-BR/features/import-export.json`, `resources/data/content/vi/features/import-export.json`, `resources/data/content/zh-Hans/features/import-export.json`, `resources/data/content/zh-Hant/features/import-export.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2019,8 +2659,28 @@ The legacy `/images/blog/export-object-tree.png` is reference only.
 
 - Placeholder text (en): Backup Dump of shop through pg_dump over the connection's SSH tunnel.
 - Placeholder text (vi): Backup Dump cơ sở dữ liệu shop bằng pg_dump qua SSH tunnel của connection.
+- Placeholder text (es): Copia de seguridad de shop mediante pg_dump a través del túnel SSH de la conexión.
+- Placeholder text (de): Dump-Sicherung von shop mit pg_dump über den SSH-Tunnel der Verbindung.
+- Placeholder text (fr): Sauvegarde de shop avec pg_dump via le tunnel SSH de la connexion.
+- Placeholder text (ja): 接続の SSH トンネルを通して pg_dump で shop の Backup Dump を行います。
+- Placeholder text (pt-BR): Backup Dump de shop por pg_dump através do túnel SSH da conexão.
+- Placeholder text (zh-Hans): 通过连接的 SSH 隧道使用 pg_dump 对 shop 进行 Backup Dump。
+- Placeholder text (ko): 연결의 SSH 터널을 통해 pg_dump로 shop의 Backup Dump를 실행합니다.
+- Placeholder text (zh-Hant): 透過連線的 SSH 通道使用 pg_dump 對 shop 進行 Backup Dump。
+- Placeholder text (it): Backup Dump di shop tramite pg_dump attraverso il tunnel SSH della connessione.
+- Placeholder text (id): Backup Dump shop melalui pg_dump lewat tunnel SSH koneksi.
 - Proposed alt text (en): The Back Up sheet for a connection through an SSH bastion, with only the shop database selected.
 - Proposed alt text (vi): Hộp thoại Back Up cho một connection qua SSH bastion, chỉ chọn cơ sở dữ liệu shop.
+- Proposed alt text (es): Hoja de copia de seguridad de una conexión mediante un bastión SSH, con solo la base shop seleccionada.
+- Proposed alt text (de): Sicherungsblatt für eine Verbindung über einen SSH-Bastion-Host, nur die Datenbank shop ausgewählt.
+- Proposed alt text (fr): Feuille de sauvegarde pour une connexion passant par un bastion SSH, avec uniquement la base shop sélectionnée.
+- Proposed alt text (ja): SSH 踏み台経由の接続の Back Up シート。shop データベースのみが選択されています。
+- Proposed alt text (pt-BR): A folha Back Up para uma conexão por um bastion SSH, com apenas o banco shop selecionado.
+- Proposed alt text (zh-Hans): 通过 SSH 堡垒机连接的 Back Up 面板，只选中了 shop 数据库。
+- Proposed alt text (ko): SSH 배스천을 통한 연결의 Back Up 시트. shop 데이터베이스만 선택되어 있습니다.
+- Proposed alt text (zh-Hant): 透過 SSH 堡壘主機連線的 Back Up 面板，只選取了 shop 資料庫。
+- Proposed alt text (it): Il foglio Back Up per una connessione tramite un bastion SSH, con solo il database shop selezionato.
+- Proposed alt text (id): Lembar Back Up untuk koneksi melalui bastion SSH, dengan hanya database shop dipilih.
 
 **Purpose**
 
@@ -2066,7 +2726,7 @@ The legacy `/images/blog/backup-dump-sheet.png` is reference only.
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/` · ai; `/features/ai-mcp` · assistant |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`); `resources/js/components/home/ai-section.tsx` |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/ai-mcp.json`, `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/es/features/ai-mcp.json`, `resources/data/content/fr/features/ai-mcp.json`, `resources/data/content/id/features/ai-mcp.json`, `resources/data/content/it/features/ai-mcp.json`, `resources/data/content/ja/features/ai-mcp.json`, `resources/data/content/ko/features/ai-mcp.json`, `resources/data/content/pt-BR/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`, `resources/data/content/zh-Hans/features/ai-mcp.json`, `resources/data/content/zh-Hant/features/ai-mcp.json`); `resources/js/components/home/ai-section.tsx` |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-ai-chat-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -2078,8 +2738,28 @@ The legacy `/images/blog/backup-dump-sheet.png` is reference only.
 
 - Placeholder text (en): AI chat on shop answering "top 5 customers by revenue last month" with a SQL query and its Insert button.
 - Placeholder text (vi): AI chat trên dữ liệu mẫu shop trả lời "5 khách hàng có doanh thu cao nhất tháng trước" kèm một query SQL và nút Insert.
+- Placeholder text (es): Chat de IA en shop que responde a «los 5 clientes con más ingresos el mes pasado» con una consulta SQL y su botón Insertar.
+- Placeholder text (de): KI-Chat für shop, der „Top 5 Kunden nach Umsatz im letzten Monat“ mit einer SQL-Abfrage und ihrer Schaltfläche Einfügen beantwortet.
+- Placeholder text (fr): Chat IA sur shop répondant à « les 5 meilleurs clients par chiffre d’affaires le mois dernier » avec une requête SQL et son bouton Insérer.
+- Placeholder text (ja): shop の AI チャット。「先月の売上上位 5 人の顧客」に SQL クエリで回答し、Insert ボタンを表示しています。
+- Placeholder text (pt-BR): Chat com IA em shop respondendo “5 principais clientes por receita no mês passado” com uma consulta SQL e seu botão Insert.
+- Placeholder text (zh-Hans): shop 的 AI 聊天用一条 SQL 查询回答“上个月按收入排名前 5 的客户”，并显示 Insert 按钮。
+- Placeholder text (ko): shop의 AI 채팅이 “지난달 매출 상위 고객 5명”에 SQL 쿼리로 답하며 Insert 버튼을 표시합니다.
+- Placeholder text (zh-Hant): shop 的 AI 聊天以一項 SQL 查詢回答「上個月按營收排名前 5 的客戶」，並顯示 Insert 按鈕。
+- Placeholder text (it): Chat AI su shop che risponde a “i 5 migliori clienti per ricavi del mese scorso” con una query SQL e il pulsante Insert.
+- Placeholder text (id): Chat AI pada shop menjawab “5 pelanggan teratas berdasarkan pendapatan bulan lalu” dengan kueri SQL dan tombol Insert.
 - Proposed alt text (en): The AI chat pane answering a question about last month's top customers by revenue, with a SQL query and its Copy and Insert buttons.
 - Proposed alt text (vi): Khung AI chat trả lời câu hỏi về những khách hàng có doanh thu cao nhất tháng trước, kèm một query SQL và các nút Copy và Insert.
+- Proposed alt text (es): Panel del chat de IA que responde sobre los clientes con más ingresos el mes pasado, con una consulta SQL y sus botones Copiar e Insertar.
+- Proposed alt text (de): KI-Chat-Bereich mit einer Antwort zu den umsatzstärksten Kunden des letzten Monats, einer SQL-Abfrage und den Schaltflächen Kopieren und Einfügen.
+- Proposed alt text (fr): Volet de chat IA répondant sur les meilleurs clients par chiffre d’affaires du mois dernier, avec une requête SQL et ses boutons Copier et Insérer.
+- Proposed alt text (ja): 先月の売上上位の顧客について回答する AI チャットパネル。SQL クエリと Copy、Insert ボタンが表示されています。
+- Proposed alt text (pt-BR): O painel de chat com IA respondendo a uma pergunta sobre os principais clientes do mês passado por receita, com uma consulta SQL e seus botões Copy e Insert.
+- Proposed alt text (zh-Hans): AI 聊天面板回答上个月按收入排名最高的客户问题，给出一条 SQL 查询及 Copy 和 Insert 按钮。
+- Proposed alt text (ko): 지난달 매출 상위 고객에 대한 질문에 답하는 AI 채팅 패널. SQL 쿼리와 Copy, Insert 버튼이 표시됩니다.
+- Proposed alt text (zh-Hant): AI 聊天面板回答上個月按營收排名最高的客戶問題，提供一項 SQL 查詢及 Copy 和 Insert 按鈕。
+- Proposed alt text (it): Il pannello della chat AI che risponde a una domanda sui migliori clienti per ricavi del mese scorso, con una query SQL e i pulsanti Copy e Insert.
+- Proposed alt text (id): Panel chat AI menjawab pertanyaan tentang pelanggan teratas bulan lalu berdasarkan pendapatan, dengan kueri SQL serta tombol Copy dan Insert.
 
 **Purpose**
 
@@ -2121,7 +2801,7 @@ The legacy `/images/features/ai-assistant-*.png` files are reference only.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/` · ai; `/features/ai-mcp` · assistant |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`); `resources/js/components/home/ai-section.tsx` (through the `mac-ai-chat` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/ai-mcp.json`, `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/es/features/ai-mcp.json`, `resources/data/content/fr/features/ai-mcp.json`, `resources/data/content/id/features/ai-mcp.json`, `resources/data/content/it/features/ai-mcp.json`, `resources/data/content/ja/features/ai-mcp.json`, `resources/data/content/ko/features/ai-mcp.json`, `resources/data/content/pt-BR/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`, `resources/data/content/zh-Hans/features/ai-mcp.json`, `resources/data/content/zh-Hant/features/ai-mcp.json`); `resources/js/components/home/ai-section.tsx` (through the `mac-ai-chat` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -2131,8 +2811,28 @@ The legacy `/images/features/ai-assistant-*.png` files are reference only.
 
 - Placeholder text (en): Close-up of the chat: the answer, its query and the Insert button.
 - Placeholder text (vi): Cận cảnh khung chat: câu trả lời, query đi kèm và nút Insert.
+- Placeholder text (es): Detalle del chat: la respuesta, su consulta y el botón Insertar.
+- Placeholder text (de): Detailansicht des Chats: Antwort, Abfrage und Schaltfläche Einfügen.
+- Placeholder text (fr): Gros plan du chat : réponse, requête et bouton Insérer.
+- Placeholder text (ja): チャットの拡大図。回答、クエリ、Insert ボタン。
+- Placeholder text (pt-BR): Detalhe do chat: a resposta, sua consulta e o botão Insert.
+- Placeholder text (zh-Hans): 聊天局部图：回答、查询和 Insert 按钮。
+- Placeholder text (ko): 채팅의 확대 화면. 답변, 쿼리, Insert 버튼입니다.
+- Placeholder text (zh-Hant): 聊天局部圖：回答、查詢和 Insert 按鈕。
+- Placeholder text (it): Dettaglio della chat: la risposta, la query e il pulsante Insert.
+- Placeholder text (id): Tampilan dekat chat: jawaban, kuerinya, dan tombol Insert.
 - Proposed alt text (en): Close-up of an AI chat answer with a SQL query and the Insert button.
 - Proposed alt text (vi): Cận cảnh câu trả lời của AI chat với một query SQL và nút Insert.
+- Proposed alt text (es): Detalle de una respuesta del chat de IA con una consulta SQL y el botón Insertar.
+- Proposed alt text (de): Detailansicht einer KI-Chat-Antwort mit SQL-Abfrage und Schaltfläche Einfügen.
+- Proposed alt text (fr): Gros plan d’une réponse du chat IA avec une requête SQL et le bouton Insérer.
+- Proposed alt text (ja): SQL クエリと Insert ボタンを含む AI チャットの回答の拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma resposta do chat com IA com uma consulta SQL e o botão Insert.
+- Proposed alt text (zh-Hans): AI 聊天回答的局部图，包含一条 SQL 查询和 Insert 按钮。
+- Proposed alt text (ko): SQL 쿼리와 Insert 버튼이 있는 AI 채팅 답변의 확대 화면.
+- Proposed alt text (zh-Hant): AI 聊天回答的局部圖，包含一項 SQL 查詢和 Insert 按鈕。
+- Proposed alt text (it): Dettaglio di una risposta della chat AI con una query SQL e il pulsante Insert.
+- Proposed alt text (id): Tampilan dekat jawaban chat AI dengan kueri SQL dan tombol Insert.
 
 **Purpose**
 
@@ -2169,7 +2869,7 @@ None beyond `mac-ai-chat`.
 |---|---|
 | Type | screenshot (`window`) · **P3** · placeholder |
 | Used on | `/features/ai-mcp` · agent-mode |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/ai-mcp.json`, `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/es/features/ai-mcp.json`, `resources/data/content/fr/features/ai-mcp.json`, `resources/data/content/id/features/ai-mcp.json`, `resources/data/content/it/features/ai-mcp.json`, `resources/data/content/ja/features/ai-mcp.json`, `resources/data/content/ko/features/ai-mcp.json`, `resources/data/content/pt-BR/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`, `resources/data/content/zh-Hans/features/ai-mcp.json`, `resources/data/content/zh-Hant/features/ai-mcp.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-agent-mode-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -2181,8 +2881,28 @@ None beyond `mac-ai-chat`.
 
 - Placeholder text (en): Agent mode session "Find orders with no items": three statements, one write waiting for Run.
 - Placeholder text (vi): Phiên Agent mode "Find orders with no items": ba câu lệnh, một lệnh ghi đang chờ bấm Run.
+- Placeholder text (es): Sesión de modo agente «Buscar pedidos sin artículos»: tres instrucciones y una escritura pendiente de Ejecutar.
+- Placeholder text (de): Agent-Modus-Sitzung „Bestellungen ohne Artikel finden“: drei Anweisungen, ein Schreibzugriff wartet auf Ausführen.
+- Placeholder text (fr): Session du mode agent « Trouver les commandes sans articles » : trois instructions, une écriture en attente d’Exécuter.
+- Placeholder text (ja): Agent モードの「Find orders with no items」セッション。三つのステートメントと、Run を待つ一つの書き込み。
+- Placeholder text (pt-BR): Sessão do modo Agent “Find orders with no items”: três instruções, uma gravação aguardando Run.
+- Placeholder text (zh-Hans): Agent mode 会话“Find orders with no items”：三条语句，一项写入等待点击 Run。
+- Placeholder text (ko): Agent 모드의 “Find orders with no items” 세션. 명령문 세 개와 Run을 기다리는 쓰기 작업 하나입니다.
+- Placeholder text (zh-Hant): Agent mode 工作階段「Find orders with no items」：三項陳述式，一項寫入等待點選 Run。
+- Placeholder text (it): Sessione in modalità Agent “Find orders with no items”: tre istruzioni, una scrittura in attesa di Run.
+- Placeholder text (id): Sesi mode Agent “Find orders with no items”: tiga pernyataan, satu penulisan menunggu Run.
 - Proposed alt text (en): A TablePro window in Agent mode with a session named Find orders with no items, three statements in its results and one write waiting for Run.
 - Proposed alt text (vi): Cửa sổ TablePro ở Agent mode với phiên Find orders with no items, ba câu lệnh trong phần kết quả và một lệnh ghi đang chờ bấm Run.
+- Proposed alt text (es): Ventana de TablePro en modo agente con una sesión llamada Buscar pedidos sin artículos, tres instrucciones en sus resultados y una escritura pendiente de Ejecutar.
+- Proposed alt text (de): TablePro-Fenster im Agent-Modus mit der Sitzung Bestellungen ohne Artikel finden, drei Anweisungen in den Ergebnissen und einem Schreibzugriff, der auf Ausführen wartet.
+- Proposed alt text (fr): Fenêtre TablePro en mode agent avec une session Trouver les commandes sans articles, trois instructions dans ses résultats et une écriture en attente d’Exécuter.
+- Proposed alt text (ja): Agent モードの TablePro ウインドウ。Find orders with no items というセッションで、結果に三つのステートメントがあり、一つの書き込みが Run を待っています。
+- Proposed alt text (pt-BR): Uma janela do TablePro em modo Agent com uma sessão chamada Find orders with no items, três instruções nos resultados e uma gravação aguardando Run.
+- Proposed alt text (zh-Hans): 处于 Agent mode 的 TablePro 窗口，会话名为 Find orders with no items，结果中有三条语句，一项写入等待点击 Run。
+- Proposed alt text (ko): Agent 모드의 TablePro 창. Find orders with no items라는 세션의 결과에 명령문 세 개가 있으며 쓰기 작업 하나가 Run을 기다립니다.
+- Proposed alt text (zh-Hant): 處於 Agent mode 的 TablePro 視窗，工作階段名稱為 Find orders with no items，結果中有三項陳述式，一項寫入等待點選 Run。
+- Proposed alt text (it): Una finestra di TablePro in modalità Agent con una sessione chiamata Find orders with no items, tre istruzioni nei risultati e una scrittura in attesa di Run.
+- Proposed alt text (id): Jendela TablePro dalam mode Agent dengan sesi bernama Find orders with no items, tiga pernyataan dalam hasilnya, dan satu penulisan menunggu Run.
 
 **Purpose**
 
@@ -2225,7 +2945,7 @@ that have no items so the SELECTs return rows. The legacy `/images/blog/agent-mo
 |---|---|
 | Type | detail (`mobile-crop`) · **P3** · placeholder |
 | Used on | `/features/ai-mcp` · agent-mode |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`) (through the `mac-agent-mode` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/ai-mcp.json`, `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/es/features/ai-mcp.json`, `resources/data/content/fr/features/ai-mcp.json`, `resources/data/content/id/features/ai-mcp.json`, `resources/data/content/it/features/ai-mcp.json`, `resources/data/content/ja/features/ai-mcp.json`, `resources/data/content/ko/features/ai-mcp.json`, `resources/data/content/pt-BR/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`, `resources/data/content/zh-Hans/features/ai-mcp.json`, `resources/data/content/zh-Hant/features/ai-mcp.json`) (through the `mac-agent-mode` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -2235,8 +2955,28 @@ that have no items so the SELECTs return rows. The legacy `/images/blog/agent-mo
 
 - Placeholder text (en): Close-up of the waiting write: its statement card with Run and Reject.
 - Placeholder text (vi): Cận cảnh lệnh ghi đang chờ: thẻ câu lệnh với nút Run và Reject.
+- Placeholder text (es): Detalle de la escritura pendiente: su tarjeta de instrucción con Ejecutar y Rechazar.
+- Placeholder text (de): Detailansicht des wartenden Schreibzugriffs: Anweisungskarte mit Ausführen und Ablehnen.
+- Placeholder text (fr): Gros plan de l’écriture en attente : sa carte d’instruction avec Exécuter et Rejeter.
+- Placeholder text (ja): 待機中の書き込みの拡大図。Run と Reject を表示したステートメントのカード。
+- Placeholder text (pt-BR): Detalhe da gravação pendente: seu cartão de instrução com Run e Reject.
+- Placeholder text (zh-Hans): 待执行写入的局部图：显示 Run 和 Reject 的语句卡片。
+- Placeholder text (ko): 대기 중인 쓰기 작업의 확대 화면. Run과 Reject가 있는 명령문 카드입니다.
+- Placeholder text (zh-Hant): 待執行寫入的局部圖：顯示 Run 和 Reject 的陳述式卡片。
+- Placeholder text (it): Dettaglio della scrittura in attesa: la scheda dell’istruzione con Run e Reject.
+- Placeholder text (id): Tampilan dekat penulisan yang menunggu: kartu pernyataannya dengan Run dan Reject.
 - Proposed alt text (en): Close-up of a write statement in Agent mode waiting on its card, with Run and Reject buttons.
 - Proposed alt text (vi): Cận cảnh thẻ của một lệnh ghi đang chờ trong Agent mode, với nút Run và Reject.
+- Proposed alt text (es): Detalle de una instrucción de escritura pendiente en su tarjeta de modo agente, con los botones Ejecutar y Rechazar.
+- Proposed alt text (de): Detailansicht einer wartenden Schreibanweisung auf ihrer Karte im Agent-Modus mit Ausführen und Ablehnen.
+- Proposed alt text (fr): Gros plan d’une instruction d’écriture en attente sur sa carte du mode agent, avec les boutons Exécuter et Rejeter.
+- Proposed alt text (ja): Agent モードでカード上の書き込みステートメントが実行を待ち、Run と Reject ボタンを表示している拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma instrução de gravação no modo Agent aguardando em seu cartão, com botões Run e Reject.
+- Proposed alt text (zh-Hans): Agent mode 中待执行写入语句的局部图，语句卡片显示 Run 和 Reject 按钮。
+- Proposed alt text (ko): Agent 모드에서 카드의 쓰기 명령문이 대기 중이고 Run과 Reject 버튼이 있는 확대 화면.
+- Proposed alt text (zh-Hant): Agent mode 中待執行寫入陳述式的局部圖，陳述式卡片顯示 Run 和 Reject 按鈕。
+- Proposed alt text (it): Dettaglio di un’istruzione di scrittura in modalità Agent in attesa sulla propria scheda, con pulsanti Run e Reject.
+- Proposed alt text (id): Tampilan dekat pernyataan penulisan dalam mode Agent yang menunggu pada kartunya, dengan tombol Run dan Reject.
 
 **Purpose**
 
@@ -2272,7 +3012,7 @@ None beyond `mac-agent-mode`.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/ai-mcp` · mcp |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/ai-mcp.json`, `resources/data/content/en/features/ai-mcp.json`, `resources/data/content/es/features/ai-mcp.json`, `resources/data/content/fr/features/ai-mcp.json`, `resources/data/content/id/features/ai-mcp.json`, `resources/data/content/it/features/ai-mcp.json`, `resources/data/content/ja/features/ai-mcp.json`, `resources/data/content/ko/features/ai-mcp.json`, `resources/data/content/pt-BR/features/ai-mcp.json`, `resources/data/content/vi/features/ai-mcp.json`, `resources/data/content/zh-Hans/features/ai-mcp.json`, `resources/data/content/zh-Hant/features/ai-mcp.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2283,8 +3023,28 @@ None beyond `mac-agent-mode`.
 
 - Placeholder text (en): Settings > Integrations: the MCP server running and the Claude Code setup snippet.
 - Placeholder text (vi): Cài đặt > Tích hợp (Settings > Integrations): MCP server đang chạy, kèm đoạn cấu hình cho Claude Code.
+- Placeholder text (es): Ajustes > Integraciones: servidor MCP en ejecución y fragmento de configuración de Claude Code.
+- Placeholder text (de): Einstellungen > Integrationen: laufender MCP-Server und Einrichtungsschnipsel für Claude Code.
+- Placeholder text (fr): Réglages > Intégrations : serveur MCP en cours d’exécution et extrait de configuration Claude Code.
+- Placeholder text (ja): Settings > Integrations。MCP サーバーが動作中で、Claude Code の設定スニペットを表示しています。
+- Placeholder text (pt-BR): Settings > Integrations: o servidor MCP em execução e o trecho de configuração do Claude Code.
+- Placeholder text (zh-Hans): Settings > Integrations：MCP 服务器正在运行，并显示 Claude Code 设置代码片段。
+- Placeholder text (ko): Settings > Integrations. MCP 서버가 실행 중이며 Claude Code 설정 코드 조각이 표시됩니다.
+- Placeholder text (zh-Hant): Settings > Integrations：MCP 伺服器正在執行，並顯示 Claude Code 設定程式碼片段。
+- Placeholder text (it): Settings > Integrations: il server MCP in esecuzione e il frammento di configurazione per Claude Code.
+- Placeholder text (id): Settings > Integrations: server MCP berjalan dan cuplikan pengaturan Claude Code.
 - Proposed alt text (en): The Connect a Client sheet in the MCP settings, with the claude mcp add command for Claude Code.
 - Proposed alt text (vi): Hộp thoại Connect a Client trong cài đặt MCP, với lệnh claude mcp add cho Claude Code.
+- Proposed alt text (es): Hoja Conectar un cliente en los ajustes MCP, con el comando claude mcp add para Claude Code.
+- Proposed alt text (de): Blatt Client verbinden in den MCP-Einstellungen mit dem Befehl claude mcp add für Claude Code.
+- Proposed alt text (fr): Feuille Connecter un client dans les réglages MCP, avec la commande claude mcp add pour Claude Code.
+- Proposed alt text (ja): MCP 設定の Connect a Client シート。Claude Code 用の claude mcp add コマンドが表示されています。
+- Proposed alt text (pt-BR): A folha Connect a Client nas configurações MCP, com o comando claude mcp add para Claude Code.
+- Proposed alt text (zh-Hans): MCP 设置中的 Connect a Client 面板，显示适用于 Claude Code 的 claude mcp add 命令。
+- Proposed alt text (ko): MCP 설정의 Connect a Client 시트. Claude Code용 claude mcp add 명령이 표시됩니다.
+- Proposed alt text (zh-Hant): MCP 設定中的 Connect a Client 面板，顯示適用於 Claude Code 的 claude mcp add 指令。
+- Proposed alt text (it): Il foglio Connect a Client nelle impostazioni MCP, con il comando claude mcp add per Claude Code.
+- Proposed alt text (id): Lembar Connect a Client dalam pengaturan MCP, dengan perintah claude mcp add untuk Claude Code.
 
 **Purpose**
 
@@ -2326,7 +3086,7 @@ The legacy `/images/blog/mcp-settings-panel.png` is reference only.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/` · features; `/features/connections` · network |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/connections.json`, `resources/data/content/vi/features/connections.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/connections.json`, `resources/data/content/en/features/connections.json`, `resources/data/content/es/features/connections.json`, `resources/data/content/fr/features/connections.json`, `resources/data/content/id/features/connections.json`, `resources/data/content/it/features/connections.json`, `resources/data/content/ja/features/connections.json`, `resources/data/content/ko/features/connections.json`, `resources/data/content/pt-BR/features/connections.json`, `resources/data/content/vi/features/connections.json`, `resources/data/content/zh-Hans/features/connections.json`, `resources/data/content/zh-Hant/features/connections.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-connection-ssh-form-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2338,8 +3098,28 @@ The legacy `/images/blog/mcp-settings-panel.png` is reference only.
 
 - Placeholder text (en): Connection form, Network tab: SSH through bastion.acme.internal with one jump host.
 - Placeholder text (vi): Form connection, tab Network: SSH qua bastion.acme.internal với một jump host.
+- Placeholder text (es): Formulario de conexión, pestaña Red: SSH mediante bastion.acme.internal con un host de salto.
+- Placeholder text (de): Verbindungsformular, Netzwerk-Tab: SSH über bastion.acme.internal mit einem Jump-Host.
+- Placeholder text (fr): Formulaire de connexion, onglet Réseau : SSH via bastion.acme.internal avec un hôte de rebond.
+- Placeholder text (ja): 接続フォームの Network タブ。一台のジャンプホストを使い、bastion.acme.internal 経由で SSH 接続します。
+- Placeholder text (pt-BR): Formulário de conexão, aba Network: SSH por bastion.acme.internal com um jump host.
+- Placeholder text (zh-Hans): 连接表单的 Network 标签页：通过 bastion.acme.internal 使用 SSH，并配置一个跳板主机。
+- Placeholder text (ko): 연결 양식의 Network 탭. 점프 호스트 하나를 사용해 bastion.acme.internal을 통한 SSH 연결입니다.
+- Placeholder text (zh-Hant): 連線表單的 Network 分頁：透過 bastion.acme.internal 使用 SSH，並設定一個跳板主機。
+- Placeholder text (it): Modulo di connessione, scheda Network: SSH tramite bastion.acme.internal con un jump host.
+- Placeholder text (id): Formulir koneksi, tab Network: SSH melalui bastion.acme.internal dengan satu jump host.
 - Proposed alt text (en): The SSH settings of a connection form: host bastion.acme.internal, user deploy, key authentication, and one jump host.
 - Proposed alt text (vi): Phần cài đặt SSH trong form connection: host bastion.acme.internal, user deploy, xác thực bằng key và một jump host.
+- Proposed alt text (es): Ajustes SSH de un formulario de conexión: host bastion.acme.internal, usuario deploy, autenticación con clave y un host de salto.
+- Proposed alt text (de): SSH-Einstellungen im Verbindungsformular: Host bastion.acme.internal, Benutzer deploy, Schlüsselauthentifizierung und ein Jump-Host.
+- Proposed alt text (fr): Paramètres SSH d’un formulaire de connexion : hôte bastion.acme.internal, utilisateur deploy, authentification par clé et un hôte de rebond.
+- Proposed alt text (ja): 接続フォームの SSH 設定。ホストは bastion.acme.internal、ユーザーは deploy、鍵認証を使用し、ジャンプホストが一台あります。
+- Proposed alt text (pt-BR): As configurações SSH de um formulário de conexão: host bastion.acme.internal, usuário deploy, autenticação por chave e um jump host.
+- Proposed alt text (zh-Hans): 连接表单的 SSH 设置：主机 bastion.acme.internal、用户 deploy、密钥认证，以及一个跳板主机。
+- Proposed alt text (ko): 연결 양식의 SSH 설정. 호스트 bastion.acme.internal, 사용자 deploy, 키 인증, 점프 호스트 하나입니다.
+- Proposed alt text (zh-Hant): 連線表單的 SSH 設定：主機 bastion.acme.internal、使用者 deploy、金鑰驗證，以及一個跳板主機。
+- Proposed alt text (it): Le impostazioni SSH di un modulo di connessione: host bastion.acme.internal, utente deploy, autenticazione con chiave e un jump host.
+- Proposed alt text (id): Pengaturan SSH formulir koneksi: host bastion.acme.internal, pengguna deploy, autentikasi kunci, dan satu jump host.
 
 **Purpose**
 
@@ -2383,7 +3163,7 @@ None. Do not capture this scene on iPhone or iPad: the App Store 1.0 app does no
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/` · features; `/features/connections` · network |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/connections.json`, `resources/data/content/vi/features/connections.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/en/home.json`, `resources/data/content/vi/home.json`) (through the `mac-connection-ssh-form` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/connections.json`, `resources/data/content/en/features/connections.json`, `resources/data/content/es/features/connections.json`, `resources/data/content/fr/features/connections.json`, `resources/data/content/id/features/connections.json`, `resources/data/content/it/features/connections.json`, `resources/data/content/ja/features/connections.json`, `resources/data/content/ko/features/connections.json`, `resources/data/content/pt-BR/features/connections.json`, `resources/data/content/vi/features/connections.json`, `resources/data/content/zh-Hans/features/connections.json`, `resources/data/content/zh-Hant/features/connections.json`); `resources/js/components/home/workflows-section.tsx` (via `resources/data/content/de/home.json`, `resources/data/content/en/home.json`, `resources/data/content/es/home.json`, `resources/data/content/fr/home.json`, `resources/data/content/id/home.json`, `resources/data/content/it/home.json`, `resources/data/content/ja/home.json`, `resources/data/content/ko/home.json`, `resources/data/content/pt-BR/home.json`, `resources/data/content/vi/home.json`, `resources/data/content/zh-Hans/home.json`, `resources/data/content/zh-Hant/home.json`) (through the `mac-connection-ssh-form` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -2393,8 +3173,28 @@ None. Do not capture this scene on iPhone or iPad: the App Store 1.0 app does no
 
 - Placeholder text (en): Close-up of the SSH settings: the bastion host, the user, SSH Agent and the jump host row.
 - Placeholder text (vi): Cận cảnh phần cài đặt SSH: host bastion, user, SSH Agent và dòng jump host.
+- Placeholder text (es): Detalle de los ajustes SSH: host bastión, usuario, SSH Agent y fila del host de salto.
+- Placeholder text (de): Detailansicht der SSH-Einstellungen: Bastion-Host, Benutzer, SSH Agent und Jump-Host-Zeile.
+- Placeholder text (fr): Gros plan des paramètres SSH : hôte bastion, utilisateur, SSH Agent et ligne de l’hôte de rebond.
+- Placeholder text (ja): SSH 設定の拡大図。踏み台ホスト、ユーザー、SSH Agent、ジャンプホストの行。
+- Placeholder text (pt-BR): Detalhe das configurações SSH: o host bastion, o usuário, SSH Agent e a linha do jump host.
+- Placeholder text (zh-Hans): SSH 设置局部图：堡垒主机、用户、SSH Agent 和跳板主机行。
+- Placeholder text (ko): SSH 설정의 확대 화면. 배스천 호스트, 사용자, SSH Agent, 점프 호스트 행입니다.
+- Placeholder text (zh-Hant): SSH 設定局部圖：堡壘主機、使用者、SSH Agent 和跳板主機資料列。
+- Placeholder text (it): Dettaglio delle impostazioni SSH: host bastion, utente, SSH Agent e riga del jump host.
+- Placeholder text (id): Tampilan dekat pengaturan SSH: host bastion, pengguna, SSH Agent, dan baris jump host.
 - Proposed alt text (en): Close-up of the SSH tunnel settings, with host bastion.acme.internal, user deploy, SSH Agent authentication and one jump host.
 - Proposed alt text (vi): Cận cảnh phần cài đặt SSH tunnel, với host bastion.acme.internal, user deploy, xác thực bằng SSH Agent và một jump host.
+- Proposed alt text (es): Detalle de los ajustes del túnel SSH, con host bastion.acme.internal, usuario deploy, autenticación SSH Agent y un host de salto.
+- Proposed alt text (de): Detailansicht der SSH-Tunneleinstellungen mit Host bastion.acme.internal, Benutzer deploy, SSH-Agent-Authentifizierung und einem Jump-Host.
+- Proposed alt text (fr): Gros plan des paramètres de tunnel SSH, avec hôte bastion.acme.internal, utilisateur deploy, authentification SSH Agent et un hôte de rebond.
+- Proposed alt text (ja): SSH トンネル設定の拡大図。ホストは bastion.acme.internal、ユーザーは deploy、SSH Agent 認証を使用し、ジャンプホストが一台あります。
+- Proposed alt text (pt-BR): Detalhe das configurações do túnel SSH, com host bastion.acme.internal, usuário deploy, autenticação SSH Agent e um jump host.
+- Proposed alt text (zh-Hans): SSH 隧道设置的局部图，显示主机 bastion.acme.internal、用户 deploy、SSH Agent 认证，以及一个跳板主机。
+- Proposed alt text (ko): SSH 터널 설정의 확대 화면. 호스트 bastion.acme.internal, 사용자 deploy, SSH Agent 인증, 점프 호스트 하나입니다.
+- Proposed alt text (zh-Hant): SSH 通道設定的局部圖，顯示主機 bastion.acme.internal、使用者 deploy、SSH Agent 驗證，以及一個跳板主機。
+- Proposed alt text (it): Dettaglio delle impostazioni del tunnel SSH, con host bastion.acme.internal, utente deploy, autenticazione SSH Agent e un jump host.
+- Proposed alt text (id): Tampilan dekat pengaturan tunnel SSH, dengan host bastion.acme.internal, pengguna deploy, autentikasi SSH Agent, dan satu jump host.
 
 **Purpose**
 
@@ -2445,7 +3245,7 @@ that capture.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/connections` · organize |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/connections.json`, `resources/data/content/vi/features/connections.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/connections.json`, `resources/data/content/en/features/connections.json`, `resources/data/content/es/features/connections.json`, `resources/data/content/fr/features/connections.json`, `resources/data/content/id/features/connections.json`, `resources/data/content/it/features/connections.json`, `resources/data/content/ja/features/connections.json`, `resources/data/content/ko/features/connections.json`, `resources/data/content/pt-BR/features/connections.json`, `resources/data/content/vi/features/connections.json`, `resources/data/content/zh-Hans/features/connections.json`, `resources/data/content/zh-Hant/features/connections.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2455,8 +3255,28 @@ that capture.
 
 - Placeholder text (en): Welcome window: Production and Staging groups, coloured tags and the Chinook sample.
 - Placeholder text (vi): Cửa sổ Welcome: nhóm Production và Staging, tag màu và cơ sở dữ liệu mẫu Chinook.
+- Placeholder text (es): Ventana de bienvenida: grupos Production y Staging, etiquetas de colores y el ejemplo Chinook.
+- Placeholder text (de): Willkommensfenster: Gruppen Production und Staging, farbige Tags und das Chinook-Beispiel.
+- Placeholder text (fr): Fenêtre d’accueil : groupes Production et Staging, étiquettes colorées et exemple Chinook.
+- Placeholder text (ja): Welcome ウインドウ。Production と Staging のグループ、色付きタグ、Chinook サンプル。
+- Placeholder text (pt-BR): Janela Welcome: grupos Production e Staging, etiquetas coloridas e o exemplo Chinook.
+- Placeholder text (zh-Hans): Welcome 窗口：Production 和 Staging 分组、彩色标签，以及 Chinook 示例。
+- Placeholder text (ko): Welcome 창. Production 및 Staging 그룹, 색상 태그, Chinook 샘플입니다.
+- Placeholder text (zh-Hant): Welcome 視窗：Production 和 Staging 群組、彩色標籤，以及 Chinook 範例。
+- Placeholder text (it): Finestra Welcome: gruppi Production e Staging, tag colorati ed esempio Chinook.
+- Placeholder text (id): Jendela Welcome: grup Production dan Staging, tag berwarna, serta contoh Chinook.
 - Proposed alt text (en): The Welcome window listing saved connections in Production and Staging groups with coloured tags, and the Chinook sample database.
 - Proposed alt text (vi): Cửa sổ Welcome liệt kê các connection đã lưu trong nhóm Production và Staging với tag màu, cùng cơ sở dữ liệu mẫu Chinook.
+- Proposed alt text (es): Ventana de bienvenida con conexiones guardadas en grupos Production y Staging con etiquetas de colores y la base de ejemplo Chinook.
+- Proposed alt text (de): Willkommensfenster mit gespeicherten Verbindungen in den Gruppen Production und Staging mit farbigen Tags und der Chinook-Beispieldatenbank.
+- Proposed alt text (fr): Fenêtre d’accueil listant les connexions enregistrées dans les groupes Production et Staging avec étiquettes colorées, et la base d’exemple Chinook.
+- Proposed alt text (ja): Welcome ウインドウ。色付きタグのある Production と Staging のグループに保存済み接続が並び、Chinook サンプルデータベースも表示されています。
+- Proposed alt text (pt-BR): A janela Welcome listando conexões salvas em grupos Production e Staging com etiquetas coloridas e o banco de exemplo Chinook.
+- Proposed alt text (zh-Hans): Welcome 窗口以带颜色标签的 Production 和 Staging 分组列出已保存的连接，同时显示 Chinook 示例数据库。
+- Proposed alt text (ko): Welcome 창에 색상 태그가 있는 Production 및 Staging 그룹의 저장된 연결과 Chinook 샘플 데이터베이스가 표시됩니다.
+- Proposed alt text (zh-Hant): Welcome 視窗以帶有顏色標籤的 Production 和 Staging 群組列出已儲存的連線，同時顯示 Chinook 範例資料庫。
+- Proposed alt text (it): La finestra Welcome che elenca le connessioni salvate nei gruppi Production e Staging con tag colorati, e il database di esempio Chinook.
+- Proposed alt text (id): Jendela Welcome mencantumkan koneksi tersimpan dalam grup Production dan Staging dengan tag berwarna, serta database contoh Chinook.
 
 **Purpose**
 
@@ -2509,7 +3329,7 @@ None. The fixed window size is settled by the `detail` kind above.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/connections` · import |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/connections.json`, `resources/data/content/vi/features/connections.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/connections.json`, `resources/data/content/en/features/connections.json`, `resources/data/content/es/features/connections.json`, `resources/data/content/fr/features/connections.json`, `resources/data/content/id/features/connections.json`, `resources/data/content/it/features/connections.json`, `resources/data/content/ja/features/connections.json`, `resources/data/content/ko/features/connections.json`, `resources/data/content/pt-BR/features/connections.json`, `resources/data/content/vi/features/connections.json`, `resources/data/content/zh-Hans/features/connections.json`, `resources/data/content/zh-Hant/features/connections.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2519,8 +3339,28 @@ None. The fixed window size is settled by the `detail` kind above.
 
 - Placeholder text (en): Import from Other App listing three DataGrip connections with their passwords found.
 - Placeholder text (vi): Import from Other App liệt kê ba connection từ DataGrip kèm mật khẩu đã tìm thấy.
+- Placeholder text (es): Importar desde otra app muestra tres conexiones de DataGrip con sus contraseñas encontradas.
+- Placeholder text (de): Import aus anderer App zeigt drei DataGrip-Verbindungen mit gefundenen Passwörtern.
+- Placeholder text (fr): Importer depuis une autre app liste trois connexions DataGrip dont les mots de passe ont été trouvés.
+- Placeholder text (ja): Import from Other App。パスワードが見つかった三つの DataGrip 接続が表示されています。
+- Placeholder text (pt-BR): Import from Other App listando três conexões do DataGrip com suas senhas encontradas.
+- Placeholder text (zh-Hans): Import from Other App 列出三个 DataGrip 连接，并已找到其密码。
+- Placeholder text (ko): Import from Other App. 저장된 비밀번호를 찾은 DataGrip 연결 세 개가 표시됩니다.
+- Placeholder text (zh-Hant): Import from Other App 列出三個 DataGrip 連線，並已找到其密碼。
+- Placeholder text (it): Import from Other App che elenca tre connessioni DataGrip con le password trovate.
+- Placeholder text (id): Import from Other App mencantumkan tiga koneksi DataGrip dengan kata sandinya ditemukan.
 - Proposed alt text (en): The Import from DataGrip sheet listing three connections found in DataGrip, each marked ready to import.
 - Proposed alt text (vi): Hộp thoại Import from DataGrip liệt kê ba connection tìm thấy trong DataGrip, mỗi connection được đánh dấu sẵn sàng để import.
+- Proposed alt text (es): Hoja Importar desde DataGrip con tres conexiones encontradas en DataGrip, cada una marcada como lista para importar.
+- Proposed alt text (de): Blatt Import aus DataGrip mit drei gefundenen Verbindungen, jede als bereit zum Import markiert.
+- Proposed alt text (fr): Feuille Importer depuis DataGrip listant trois connexions trouvées dans DataGrip, chacune marquée prête à importer.
+- Proposed alt text (ja): Import from DataGrip シート。DataGrip で見つかった三つの接続が表示され、それぞれインポート可能と示されています。
+- Proposed alt text (pt-BR): A folha Import from DataGrip listando três conexões encontradas no DataGrip, cada uma marcada como pronta para importar.
+- Proposed alt text (zh-Hans): Import from DataGrip 面板列出在 DataGrip 中找到的三个连接，每个都标记为可以导入。
+- Proposed alt text (ko): DataGrip에서 발견한 연결 세 개가 각각 가져오기 준비 완료로 표시된 Import from DataGrip 시트.
+- Proposed alt text (zh-Hant): Import from DataGrip 面板列出在 DataGrip 中找到的三個連線，每個都標記為可匯入。
+- Proposed alt text (it): Il foglio Import from DataGrip che elenca tre connessioni trovate in DataGrip, ciascuna contrassegnata pronta per l’importazione.
+- Proposed alt text (id): Lembar Import from DataGrip mencantumkan tiga koneksi yang ditemukan di DataGrip, masing-masing ditandai siap diimpor.
 
 **Purpose**
 
@@ -2566,7 +3406,7 @@ the preview step how a recovered password is shown before capturing; the alt tex
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/connections` · import |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/connections.json`, `resources/data/content/vi/features/connections.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/connections.json`, `resources/data/content/en/features/connections.json`, `resources/data/content/es/features/connections.json`, `resources/data/content/fr/features/connections.json`, `resources/data/content/id/features/connections.json`, `resources/data/content/it/features/connections.json`, `resources/data/content/ja/features/connections.json`, `resources/data/content/ko/features/connections.json`, `resources/data/content/pt-BR/features/connections.json`, `resources/data/content/vi/features/connections.json`, `resources/data/content/zh-Hans/features/connections.json`, `resources/data/content/zh-Hant/features/connections.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2576,8 +3416,28 @@ the preview step how a recovered password is shown before capturing; the alt tex
 
 - Placeholder text (en): Open Project Folder on a Laravel project: .env and .env.production, the second marked Alert.
 - Placeholder text (vi): Open Project Folder trên một project Laravel: .env và .env.production, file thứ hai được đánh dấu Alert.
+- Placeholder text (es): Abrir carpeta de proyecto en un proyecto Laravel: .env y .env.production, el segundo marcado Alerta.
+- Placeholder text (de): Projektordner öffnen für ein Laravel-Projekt: .env und .env.production, letzteres als Warnung markiert.
+- Placeholder text (fr): Ouvrir un dossier de projet sur un projet Laravel : .env et .env.production, le second marqué Alerte.
+- Placeholder text (ja): Laravel プロジェクトの Open Project Folder。.env と .env.production が表示され、後者には Alert とあります。
+- Placeholder text (pt-BR): Open Project Folder em um projeto Laravel: .env e .env.production, o segundo marcado como Alert.
+- Placeholder text (zh-Hans): Laravel 项目的 Open Project Folder：.env 和 .env.production，第二项标记为 Alert。
+- Placeholder text (ko): Laravel 프로젝트의 Open Project Folder. .env와 .env.production이 표시되며 두 번째는 Alert로 표시됩니다.
+- Placeholder text (zh-Hant): Laravel 專案的 Open Project Folder：.env 和 .env.production，第二項標記為 Alert。
+- Placeholder text (it): Open Project Folder su un progetto Laravel: .env e .env.production, il secondo contrassegnato Alert.
+- Placeholder text (id): Open Project Folder pada proyek Laravel: .env dan .env.production, yang kedua ditandai Alert.
 - Proposed alt text (en): Open Project Folder results for the acme-shop project, with connections found in .env and .env.production.
 - Proposed alt text (vi): Kết quả Open Project Folder cho project acme-shop, với các connection tìm thấy trong .env và .env.production.
+- Proposed alt text (es): Resultados de Abrir carpeta de proyecto para acme-shop, con conexiones encontradas en .env y .env.production.
+- Proposed alt text (de): Ergebnisse von Projektordner öffnen für acme-shop mit in .env und .env.production gefundenen Verbindungen.
+- Proposed alt text (fr): Résultats d’Ouvrir un dossier de projet pour acme-shop, avec connexions trouvées dans .env et .env.production.
+- Proposed alt text (ja): acme-shop プロジェクトの Open Project Folder の結果。.env と .env.production で見つかった接続が表示されています。
+- Proposed alt text (pt-BR): Resultados de Open Project Folder para o projeto acme-shop, com conexões encontradas em .env e .env.production.
+- Proposed alt text (zh-Hans): acme-shop 项目的 Open Project Folder 结果，显示在 .env 和 .env.production 中找到的连接。
+- Proposed alt text (ko): acme-shop 프로젝트의 Open Project Folder 결과. .env 및 .env.production에서 발견한 연결이 표시됩니다.
+- Proposed alt text (zh-Hant): acme-shop 專案的 Open Project Folder 結果，顯示在 .env 和 .env.production 中找到的連線。
+- Proposed alt text (it): Risultati di Open Project Folder per il progetto acme-shop, con connessioni trovate in .env e .env.production.
+- Proposed alt text (id): Hasil Open Project Folder untuk proyek acme-shop, dengan koneksi ditemukan dalam .env dan .env.production.
 
 **Purpose**
 
@@ -2622,7 +3482,7 @@ to confirm.
 |---|---|
 | Type | detail (`detail`) · **P3** · supplied |
 | Used on | `/features/connections` · network |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/connections.json`, `resources/data/content/vi/features/connections.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/connections.json`, `resources/data/content/en/features/connections.json`, `resources/data/content/es/features/connections.json`, `resources/data/content/fr/features/connections.json`, `resources/data/content/id/features/connections.json`, `resources/data/content/it/features/connections.json`, `resources/data/content/ja/features/connections.json`, `resources/data/content/ko/features/connections.json`, `resources/data/content/pt-BR/features/connections.json`, `resources/data/content/vi/features/connections.json`, `resources/data/content/zh-Hans/features/connections.json`, `resources/data/content/zh-Hant/features/connections.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2633,8 +3493,28 @@ to confirm.
 
 - Placeholder text (en): The Network tab with the kubectl port-forward preset filled in for svc/orders-db.
 - Placeholder text (vi): Tab Network với mẫu kubectl port-forward đã điền cho svc/orders-db.
+- Placeholder text (es): Pestaña Red con el ajuste predefinido kubectl port-forward completado para svc/orders-db.
+- Placeholder text (de): Netzwerk-Tab mit ausgefüllter kubectl-port-forward-Vorlage für svc/orders-db.
+- Placeholder text (fr): Onglet Réseau avec le préréglage kubectl port-forward rempli pour svc/orders-db.
+- Placeholder text (ja): Network タブ。kubectl port-forward のプリセットに svc/orders-db が入力されています。
+- Placeholder text (pt-BR): A aba Network com a predefinição kubectl port-forward preenchida para svc/orders-db.
+- Placeholder text (zh-Hans): Network 标签页，kubectl port-forward 预设中已填写 svc/orders-db。
+- Placeholder text (ko): Network 탭. kubectl port-forward 사전 설정에 svc/orders-db가 입력되어 있습니다.
+- Placeholder text (zh-Hant): Network 分頁，kubectl port-forward 預設中已填入 svc/orders-db。
+- Placeholder text (it): La scheda Network con la preimpostazione kubectl port-forward compilata per svc/orders-db.
+- Placeholder text (id): Tab Network dengan preset kubectl port-forward diisi untuk svc/orders-db.
 - Proposed alt text (en): A connection tunnelled with kubectl port-forward to svc/orders-db, with the command it will run.
 - Proposed alt text (vi): Một connection dùng tunnel kubectl port-forward tới svc/orders-db, kèm câu lệnh sẽ chạy.
+- Proposed alt text (es): Conexión mediante túnel kubectl port-forward a svc/orders-db, con el comando que ejecutará.
+- Proposed alt text (de): Über kubectl port-forward nach svc/orders-db getunnelte Verbindung mit dem auszuführenden Befehl.
+- Proposed alt text (fr): Connexion par tunnel kubectl port-forward vers svc/orders-db, avec la commande qui sera exécutée.
+- Proposed alt text (ja): kubectl port-forward で svc/orders-db にトンネル接続する接続と、実行予定のコマンド。
+- Proposed alt text (pt-BR): Uma conexão tunelada com kubectl port-forward para svc/orders-db, com o comando que será executado.
+- Proposed alt text (zh-Hans): 通过 kubectl port-forward 隧道连接 svc/orders-db 的连接，显示将执行的命令。
+- Proposed alt text (ko): kubectl port-forward로 svc/orders-db에 터널 연결하는 연결과 실행할 명령.
+- Proposed alt text (zh-Hant): 透過 kubectl port-forward 通道連線至 svc/orders-db 的連線，顯示將執行的指令。
+- Proposed alt text (it): Una connessione tramite tunnel con kubectl port-forward a svc/orders-db, con il comando che eseguirà.
+- Proposed alt text (id): Koneksi yang ditunnel dengan kubectl port-forward ke svc/orders-db, beserta perintah yang akan dijalankan.
 
 **Purpose**
 
@@ -2679,18 +3559,38 @@ to exist; the form only needs the command filled in.
 |---|---|
 | Type | diagram (`diagram`) · **P2** · supplied |
 | Used on | `/features/sync-and-teams` · icloud-sync; `/ios` · mac |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/sync-and-teams.json`, `resources/data/content/vi/features/sync-and-teams.json`); `resources/js/pages/Ios.tsx` |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/sync-and-teams.json`, `resources/data/content/en/features/sync-and-teams.json`, `resources/data/content/es/features/sync-and-teams.json`, `resources/data/content/fr/features/sync-and-teams.json`, `resources/data/content/id/features/sync-and-teams.json`, `resources/data/content/it/features/sync-and-teams.json`, `resources/data/content/ja/features/sync-and-teams.json`, `resources/data/content/ko/features/sync-and-teams.json`, `resources/data/content/pt-BR/features/sync-and-teams.json`, `resources/data/content/vi/features/sync-and-teams.json`, `resources/data/content/zh-Hans/features/sync-and-teams.json`, `resources/data/content/zh-Hant/features/sync-and-teams.json`); `resources/js/pages/Ios.tsx` |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone 343×193 |
 | Export | vector (SVG) · SVG · alpha as needed · max 60 KB per file |
 | Light and dark | Two images: light and dark, from the same frame |
-| Locale | One file per locale (en, vi) |
-| Replace with | `public/images/features/diagram-icloud-sync-{light,dark}-{en,vi}.svg` |
+| Locale | One file per locale (en, vi, es, de, fr, ja, pt-BR, zh-Hans, ko, zh-Hant, it, id) |
+| Replace with | `public/images/features/diagram-icloud-sync-{light,dark}-{en,vi,es,de,fr,ja,pt-BR,zh-Hans,ko,zh-Hant,it,id}.svg` |
 
 - Placeholder text (en): Diagram: connections, groups and tags syncing between Mac, iCloud and iPhone; passwords only with Sync Passwords on.
 - Placeholder text (vi): Sơ đồ: connection, nhóm và tag đồng bộ giữa Mac, iCloud và iPhone; mật khẩu chỉ đồng bộ khi bật Sync Passwords.
+- Placeholder text (es): Diagrama: conexiones, grupos y etiquetas sincronizados entre Mac, iCloud e iPhone; contraseñas solo con Sincronizar contraseñas activado.
+- Placeholder text (de): Diagramm: Verbindungen, Gruppen und Tags werden zwischen Mac, iCloud und iPhone synchronisiert; Passwörter nur bei aktivierter Passwortsynchronisierung.
+- Placeholder text (fr): Diagramme : connexions, groupes et étiquettes synchronisés entre Mac, iCloud et iPhone ; mots de passe uniquement si leur synchronisation est activée.
+- Placeholder text (ja): 同期の図。接続、グループ、タグは Mac、iCloud、iPhone 間で同期し、パスワードは Sync Passwords がオンの場合のみ同期します。
+- Placeholder text (pt-BR): Diagrama: conexões, grupos e etiquetas sincronizados entre Mac, iCloud e iPhone; senhas apenas com Sync Passwords ativado.
+- Placeholder text (zh-Hans): 示意图：连接、分组和标签在 Mac、iCloud 和 iPhone 之间同步；仅开启 Sync Passwords 后同步密码。
+- Placeholder text (ko): 동기화 다이어그램. Mac, iCloud, iPhone 간에 연결, 그룹, 태그가 동기화되며 비밀번호는 Sync Passwords가 켜져 있을 때만 동기화됩니다.
+- Placeholder text (zh-Hant): 示意圖：連線、群組和標籤在 Mac、iCloud 和 iPhone 之間同步；僅開啟 Sync Passwords 後同步密碼。
+- Placeholder text (it): Diagramma: connessioni, gruppi e tag sincronizzati tra Mac, iCloud e iPhone; password solo con Sync Passwords attivo.
+- Placeholder text (id): Diagram: koneksi, grup, dan tag disinkronkan antara Mac, iCloud, dan iPhone; kata sandi hanya saat Sync Passwords aktif.
 - Proposed alt text (en): A diagram of connections, groups and tags syncing between a Mac and an iPhone or iPad through your iCloud account, with passwords going separately through iCloud Keychain only when password sync is on.
 - Proposed alt text (vi): Sơ đồ connection, nhóm và tag đồng bộ giữa Mac và iPhone hoặc iPad qua tài khoản iCloud của bạn; mật khẩu đi riêng qua iCloud Keychain, chỉ khi bật đồng bộ mật khẩu.
+- Proposed alt text (es): Diagrama de conexiones, grupos y etiquetas sincronizados entre un Mac y un iPhone o iPad mediante tu cuenta de iCloud; las contraseñas pasan por separado mediante iCloud Keychain solo cuando su sincronización está activada.
+- Proposed alt text (de): Diagramm der Synchronisierung von Verbindungen, Gruppen und Tags zwischen einem Mac und einem iPhone oder iPad über dein iCloud-Konto; Passwörter werden getrennt über iCloud Keychain übertragen, nur bei aktivierter Passwortsynchronisierung.
+- Proposed alt text (fr): Diagramme de synchronisation des connexions, groupes et étiquettes entre un Mac et un iPhone ou iPad via votre compte iCloud ; les mots de passe passent séparément par iCloud Keychain, uniquement si leur synchronisation est activée.
+- Proposed alt text (ja): お客様の iCloud アカウントを通じて Mac と iPhone・iPad 間で接続、グループ、タグを同期する図。パスワードは、パスワード同期がオンの場合のみ、別途 iCloud キーチェーンを通じて同期します。
+- Proposed alt text (pt-BR): Diagrama de conexões, grupos e tags sincronizados entre um Mac e um iPhone ou iPad pela sua conta do iCloud, com as senhas passando separadamente pelo iCloud Keychain apenas quando a sincronização de senhas está ativada.
+- Proposed alt text (zh-Hans): 示意图：连接、分组和标签通过您的 iCloud 账户在 Mac 与 iPhone 或 iPad 之间同步；密码仅在开启密码同步后，单独通过 iCloud 钥匙串同步。
+- Proposed alt text (ko): 본인의 iCloud 계정을 통해 Mac과 iPhone 또는 iPad 간에 연결, 그룹 및 태그가 동기화되는 다이어그램입니다. 비밀번호는 비밀번호 동기화가 켜져 있을 때만 별도로 iCloud 키체인을 통해 동기화됩니다.
+- Proposed alt text (zh-Hant): 示意圖：連線、群組和標籤透過您的 iCloud 帳戶在 Mac 與 iPhone 或 iPad 之間同步；密碼僅在開啟密碼同步後，另外透過 iCloud 鑰匙圈同步。
+- Proposed alt text (it): Diagramma delle connessioni, dei gruppi e dei tag sincronizzati tra un Mac e un iPhone o iPad tramite il tuo account iCloud, con le password che passano separatamente da iCloud Keychain solo quando la sincronizzazione delle password è attiva.
+- Proposed alt text (id): Diagram koneksi, grup, dan tag yang disinkronkan antara Mac dan iPhone atau iPad melalui akun iCloud Anda, dengan kata sandi melalui iCloud Keychain secara terpisah hanya saat sinkronisasi kata sandi diaktifkan.
 
 **Purpose**
 
@@ -2739,7 +3639,7 @@ None. Source: `resources/data/facts.json` → `sync` (iPhone and iPad sync conne
 |---|---|
 | Type | detail (`detail`) · **P3** · placeholder |
 | Used on | `/features/sync-and-teams` · team |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/sync-and-teams.json`, `resources/data/content/vi/features/sync-and-teams.json`) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/sync-and-teams.json`, `resources/data/content/en/features/sync-and-teams.json`, `resources/data/content/es/features/sync-and-teams.json`, `resources/data/content/fr/features/sync-and-teams.json`, `resources/data/content/id/features/sync-and-teams.json`, `resources/data/content/it/features/sync-and-teams.json`, `resources/data/content/ja/features/sync-and-teams.json`, `resources/data/content/ko/features/sync-and-teams.json`, `resources/data/content/pt-BR/features/sync-and-teams.json`, `resources/data/content/vi/features/sync-and-teams.json`, `resources/data/content/zh-Hans/features/sync-and-teams.json`, `resources/data/content/zh-Hant/features/sync-and-teams.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone 343×257 |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2749,8 +3649,28 @@ None. Source: `resources/data/facts.json` → `sync` (iPhone and iPad sync conne
 
 - Placeholder text (en): Favorites sidebar with a Team Library section: three saved queries labelled by who published them.
 - Placeholder text (vi): Sidebar Favorites có mục Team Library: ba query đã lưu, ghi tên người chia sẻ.
+- Placeholder text (es): Barra lateral de favoritos con sección Biblioteca del equipo: tres consultas guardadas con el nombre de quien las publicó.
+- Placeholder text (de): Favoriten-Seitenleiste mit Teambibliothek: drei gespeicherte Abfragen mit dem Namen ihres Veröffentlichers.
+- Placeholder text (fr): Barre latérale des favoris avec section Bibliothèque d’équipe : trois requêtes enregistrées portant le nom de leur auteur.
+- Placeholder text (ja): Favorites サイドバーの Team Library セクション。公開者が示された三つの保存済みクエリ。
+- Placeholder text (pt-BR): Barra lateral Favorites com uma seção Team Library: três consultas salvas identificadas por quem as publicou.
+- Placeholder text (zh-Hans): Favorites 侧边栏的 Team Library 区域：三条已保存的查询，各自标注发布者。
+- Placeholder text (ko): Favorites 사이드바의 Team Library 섹션. 게시자가 표시된 저장된 쿼리 세 개입니다.
+- Placeholder text (zh-Hant): Favorites 側邊欄的 Team Library 區域：三項已儲存的查詢，各自標註發佈者。
+- Placeholder text (it): Barra laterale Favorites con una sezione Team Library: tre query salvate etichettate con chi le ha pubblicate.
+- Placeholder text (id): Sidebar Favorites dengan bagian Team Library: tiga kueri tersimpan diberi label penerbitnya.
 - Proposed alt text (en): The Favorites sidebar with a Team Library section listing three saved queries, each labelled with the teammate who published it.
 - Proposed alt text (vi): Sidebar Favorites có mục Team Library liệt kê ba query đã lưu, mỗi query ghi tên thành viên nhóm đã chia sẻ.
+- Proposed alt text (es): Barra lateral de favoritos con una sección Biblioteca del equipo que lista tres consultas guardadas, cada una etiquetada con el compañero que la publicó.
+- Proposed alt text (de): Favoriten-Seitenleiste mit einer Teambibliothek, die drei gespeicherte Abfragen jeweils mit dem Teammitglied auflistet, das sie veröffentlicht hat.
+- Proposed alt text (fr): Barre latérale des favoris avec une section Bibliothèque d’équipe listant trois requêtes enregistrées, chacune étiquetée avec le collègue qui l’a publiée.
+- Proposed alt text (ja): Favorites サイドバーの Team Library セクション。三つの保存済みクエリが並び、それぞれ公開したチームメンバーの名前が表示されています。
+- Proposed alt text (pt-BR): A barra lateral Favorites com uma seção Team Library listando três consultas salvas, cada uma identificada pelo colega de equipe que a publicou.
+- Proposed alt text (zh-Hans): Favorites 侧边栏的 Team Library 区域列出三条已保存的查询，每条都标注了发布该查询的队友。
+- Proposed alt text (ko): Favorites 사이드바의 Team Library 섹션. 저장된 쿼리 세 개에 각각 게시한 팀원의 이름이 표시됩니다.
+- Proposed alt text (zh-Hant): Favorites 側邊欄的 Team Library 區域列出三項已儲存的查詢，每項都標註了發佈該查詢的隊友。
+- Proposed alt text (it): La barra laterale Favorites con una sezione Team Library che elenca tre query salvate, ciascuna etichettata con il membro del team che l’ha pubblicata.
+- Proposed alt text (id): Sidebar Favorites dengan bagian Team Library yang mencantumkan tiga kueri tersimpan, masing-masing diberi label rekan tim yang menerbitkannya.
 
 **Purpose**
 
@@ -2797,7 +3717,7 @@ One English capture serves both sites.
 |---|---|
 | Type | illustration (`illustration`) · **P3** · placeholder |
 | Used on | `/features/sync-and-teams` · handoff; `/ios` · mac |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/sync-and-teams.json`, `resources/data/content/vi/features/sync-and-teams.json`); `resources/js/pages/Ios.tsx` |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/sync-and-teams.json`, `resources/data/content/en/features/sync-and-teams.json`, `resources/data/content/es/features/sync-and-teams.json`, `resources/data/content/fr/features/sync-and-teams.json`, `resources/data/content/id/features/sync-and-teams.json`, `resources/data/content/it/features/sync-and-teams.json`, `resources/data/content/ja/features/sync-and-teams.json`, `resources/data/content/ko/features/sync-and-teams.json`, `resources/data/content/pt-BR/features/sync-and-teams.json`, `resources/data/content/vi/features/sync-and-teams.json`, `resources/data/content/zh-Hans/features/sync-and-teams.json`, `resources/data/content/zh-Hant/features/sync-and-teams.json`); `resources/js/pages/Ios.tsx` |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-handoff-ios-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · alpha as needed · max 250 KB per file |
@@ -2808,8 +3728,28 @@ One English capture serves both sites.
 
 - Placeholder text (en): Handoff: the Chinook Track table open on iPhone, offered in the Mac Dock.
 - Placeholder text (vi): Handoff: table Track của Chinook đang mở trên iPhone, xuất hiện trong Dock của Mac.
+- Placeholder text (es): Handoff: tabla Track de Chinook abierta en iPhone, disponible en el Dock del Mac.
+- Placeholder text (de): Handoff: Chinook-Tabelle Track auf dem iPhone geöffnet und im Mac-Dock angeboten.
+- Placeholder text (fr): Handoff : table Track de Chinook ouverte sur iPhone, proposée dans le Dock du Mac.
+- Placeholder text (ja): Handoff。iPhone で開いた Chinook の Track テーブルを Mac の Dock から引き継げます。
+- Placeholder text (pt-BR): Handoff: a tabela Track do Chinook aberta no iPhone, oferecida no Dock do Mac.
+- Placeholder text (zh-Hans): Handoff：iPhone 打开 Chinook 的 Track 表，Mac Dock 中提供接续选项。
+- Placeholder text (ko): Handoff. iPhone에서 열린 Chinook Track 테이블이 Mac Dock에서 이어서 열도록 제공됩니다.
+- Placeholder text (zh-Hant): Handoff：iPhone 開啟 Chinook 的 Track 資料表，Mac Dock 中提供接續選項。
+- Placeholder text (it): Handoff: la tabella Track di Chinook aperta su iPhone, proposta nel Dock del Mac.
+- Placeholder text (id): Handoff: tabel Track Chinook terbuka di iPhone, ditawarkan dalam Dock Mac.
 - Proposed alt text (en): An iPhone showing the Chinook Track table in TablePro, and the Handoff icon for it in the Dock of a Mac.
 - Proposed alt text (vi): iPhone đang mở table Track của Chinook trong TablePro, và biểu tượng Handoff tương ứng trong Dock của Mac.
+- Proposed alt text (es): iPhone con la tabla Track de Chinook en TablePro y su icono Handoff en el Dock de un Mac.
+- Proposed alt text (de): Ein iPhone mit der Chinook-Tabelle Track in TablePro und das zugehörige Handoff-Symbol im Dock eines Mac.
+- Proposed alt text (fr): Un iPhone affichant la table Track de Chinook dans TablePro, et son icône Handoff dans le Dock d’un Mac.
+- Proposed alt text (ja): iPhone で TablePro の Chinook の Track テーブルが開き、Mac の Dock にその Handoff アイコンが表示されています。
+- Proposed alt text (pt-BR): Um iPhone mostrando a tabela Track do Chinook no TablePro, e seu ícone Handoff no Dock de um Mac.
+- Proposed alt text (zh-Hans): iPhone 在 TablePro 中显示 Chinook 的 Track 表，Mac 的 Dock 中显示该表的 Handoff 图标。
+- Proposed alt text (ko): iPhone에서 TablePro의 Chinook Track 테이블이 표시되고 Mac의 Dock에 해당 Handoff 아이콘이 있습니다.
+- Proposed alt text (zh-Hant): iPhone 在 TablePro 中顯示 Chinook 的 Track 資料表，Mac 的 Dock 中顯示該資料表的 Handoff 圖示。
+- Proposed alt text (it): Un iPhone che mostra la tabella Track di Chinook in TablePro e la relativa icona Handoff nel Dock di un Mac.
+- Proposed alt text (id): iPhone menampilkan tabel Track Chinook dalam TablePro, dan ikon Handoff-nya dalam Dock Mac.
 
 **Purpose**
 
@@ -2857,7 +3797,7 @@ Apple Account with Handoff on.
 |---|---|
 | Type | detail (`mobile-crop`) · **P3** · placeholder |
 | Used on | `/features/sync-and-teams` · handoff; `/ios` · mac |
-| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/en/features/sync-and-teams.json`, `resources/data/content/vi/features/sync-and-teams.json`); `resources/js/pages/Ios.tsx` (through the `mac-handoff-ios` slot, below 768 px) |
+| Rendered by | `resources/js/components/features/feature-section.tsx` (via `resources/data/content/de/features/sync-and-teams.json`, `resources/data/content/en/features/sync-and-teams.json`, `resources/data/content/es/features/sync-and-teams.json`, `resources/data/content/fr/features/sync-and-teams.json`, `resources/data/content/id/features/sync-and-teams.json`, `resources/data/content/it/features/sync-and-teams.json`, `resources/data/content/ja/features/sync-and-teams.json`, `resources/data/content/ko/features/sync-and-teams.json`, `resources/data/content/pt-BR/features/sync-and-teams.json`, `resources/data/content/vi/features/sync-and-teams.json`, `resources/data/content/zh-Hans/features/sync-and-teams.json`, `resources/data/content/zh-Hant/features/sync-and-teams.json`); `resources/js/pages/Ios.tsx` (through the `mac-handoff-ios` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -2867,8 +3807,28 @@ Apple Account with Handoff on.
 
 - Placeholder text (en): Close-up for phones: the iPhone showing the Track table above the Handoff icon in the Mac Dock.
 - Placeholder text (vi): Bản cho điện thoại: iPhone đang mở table Track, phía trên biểu tượng Handoff trong Dock của Mac.
+- Placeholder text (es): Detalle para teléfonos: iPhone con la tabla Track sobre el icono Handoff del Dock del Mac.
+- Placeholder text (de): Detailansicht für Smartphones: iPhone mit der Tabelle Track über dem Handoff-Symbol im Mac-Dock.
+- Placeholder text (fr): Gros plan pour téléphones : iPhone affichant la table Track au-dessus de l’icône Handoff dans le Dock du Mac.
+- Placeholder text (ja): 携帯電話向けの拡大図。Track テーブルを表示する iPhone の下に、Mac の Dock の Handoff アイコンがあります。
+- Placeholder text (pt-BR): Detalhe para celulares: o iPhone mostrando a tabela Track acima do ícone Handoff no Dock do Mac.
+- Placeholder text (zh-Hans): 手机局部图：iPhone 显示 Track 表，下方是 Mac Dock 中的 Handoff 图标。
+- Placeholder text (ko): 휴대폰용 확대 화면. Track 테이블을 표시하는 iPhone 아래에 Mac Dock의 Handoff 아이콘이 있습니다.
+- Placeholder text (zh-Hant): 手機局部圖：iPhone 顯示 Track 資料表，下方是 Mac Dock 中的 Handoff 圖示。
+- Placeholder text (it): Dettaglio per telefoni: l’iPhone con la tabella Track sopra l’icona Handoff nel Dock del Mac.
+- Placeholder text (id): Tampilan dekat untuk ponsel: iPhone menampilkan tabel Track di atas ikon Handoff dalam Dock Mac.
 - Proposed alt text (en): An iPhone showing the Chinook Track table in TablePro, above the Handoff icon for it in the Dock of a Mac.
 - Proposed alt text (vi): iPhone đang mở table Track của Chinook trong TablePro, phía trên biểu tượng Handoff tương ứng trong Dock của Mac.
+- Proposed alt text (es): iPhone con la tabla Track de Chinook en TablePro, sobre su icono Handoff en el Dock de un Mac.
+- Proposed alt text (de): Ein iPhone mit der Chinook-Tabelle Track in TablePro über dem zugehörigen Handoff-Symbol im Dock eines Mac.
+- Proposed alt text (fr): Un iPhone affichant la table Track de Chinook dans TablePro, au-dessus de son icône Handoff dans le Dock d’un Mac.
+- Proposed alt text (ja): Chinook の Track テーブルを TablePro で表示する iPhone と、その下に表示された Mac の Dock の Handoff アイコン。
+- Proposed alt text (pt-BR): Um iPhone mostrando a tabela Track do Chinook no TablePro, acima de seu ícone Handoff no Dock de um Mac.
+- Proposed alt text (zh-Hans): iPhone 在 TablePro 中显示 Chinook 的 Track 表，下方是 Mac Dock 中对应的 Handoff 图标。
+- Proposed alt text (ko): TablePro의 Chinook Track 테이블을 표시하는 iPhone과 그 아래 Mac Dock의 해당 Handoff 아이콘.
+- Proposed alt text (zh-Hant): iPhone 在 TablePro 中顯示 Chinook 的 Track 資料表，下方是 Mac Dock 中對應的 Handoff 圖示。
+- Proposed alt text (it): Un iPhone che mostra la tabella Track di Chinook in TablePro, sopra la relativa icona Handoff nel Dock di un Mac.
+- Proposed alt text (id): iPhone menampilkan tabel Track Chinook dalam TablePro, di atas ikon Handoff-nya dalam Dock Mac.
 
 **Purpose**
 
@@ -2932,7 +3892,7 @@ token.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/databases` · drivers |
-| Rendered by | `resources/js/pages/Databases/Index.tsx` (via `resources/data/content/en/databases/index.json`, `resources/data/content/vi/databases/index.json`) |
+| Rendered by | `resources/js/pages/Databases/Index.tsx` (via `resources/data/content/de/databases/index.json`, `resources/data/content/en/databases/index.json`, `resources/data/content/es/databases/index.json`, `resources/data/content/fr/databases/index.json`, `resources/data/content/id/databases/index.json`, `resources/data/content/it/databases/index.json`, `resources/data/content/ja/databases/index.json`, `resources/data/content/ko/databases/index.json`, `resources/data/content/pt-BR/databases/index.json`, `resources/data/content/vi/databases/index.json`, `resources/data/content/zh-Hans/databases/index.json`, `resources/data/content/zh-Hant/databases/index.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-engine-picker-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -2943,8 +3903,28 @@ token.
 
 - Placeholder text (en): The new-connection type chooser grouped by category, with MongoDB under Document marked Not Installed.
 - Placeholder text (vi): Hộp chọn loại connection theo nhóm, MongoDB trong nhóm Document được ghi Not Installed.
+- Placeholder text (es): Selector de tipo de conexión nueva agrupado por categoría, con MongoDB en Documento marcado No instalado.
+- Placeholder text (de): Nach Kategorien gruppierte Typauswahl für neue Verbindungen, MongoDB unter Dokument als Nicht installiert markiert.
+- Placeholder text (fr): Sélecteur de type de nouvelle connexion regroupé par catégorie, MongoDB sous Document marqué Non installé.
+- Placeholder text (ja): 新規接続の種別をカテゴリ別に表示した選択画面。Document の MongoDB に Not Installed と表示されています。
+- Placeholder text (pt-BR): O seletor de tipo da nova conexão agrupado por categoria, com MongoDB em Document marcado como Not Installed.
+- Placeholder text (zh-Hans): 新建连接的类型选择器按类别分组，Document 下的 MongoDB 标记为 Not Installed。
+- Placeholder text (ko): 범주별로 그룹화된 새 연결 유형 선택기. Document 아래의 MongoDB는 Not Installed로 표시됩니다.
+- Placeholder text (zh-Hant): 新增連線的類型選擇器按類別分組，Document 下的 MongoDB 標記為 Not Installed。
+- Placeholder text (it): Il selettore del tipo per una nuova connessione raggruppato per categoria, con MongoDB sotto Document contrassegnato Not Installed.
+- Placeholder text (id): Pemilih jenis koneksi baru dikelompokkan menurut kategori, dengan MongoDB dalam Document ditandai Not Installed.
 - Proposed alt text (en): The database type chooser for a new connection, with engines grouped by category and MongoDB marked Not Installed.
 - Proposed alt text (vi): Hộp chọn loại cơ sở dữ liệu cho connection mới, các engine được chia theo nhóm, MongoDB được ghi Not Installed.
+- Proposed alt text (es): Selector de tipo de base de datos para una conexión nueva, con motores por categoría y MongoDB marcado No instalado.
+- Proposed alt text (de): Datenbanktypauswahl für eine neue Verbindung mit nach Kategorien gruppierten Engines und MongoDB als Nicht installiert markiert.
+- Proposed alt text (fr): Sélecteur de type de base pour une nouvelle connexion, moteurs regroupés par catégorie et MongoDB marqué Non installé.
+- Proposed alt text (ja): 新規接続のデータベース種別の選択画面。エンジンはカテゴリ別に分かれ、MongoDB に Not Installed と表示されています。
+- Proposed alt text (pt-BR): O seletor do tipo de banco para uma nova conexão, com mecanismos agrupados por categoria e MongoDB marcado como Not Installed.
+- Proposed alt text (zh-Hans): 新建连接的数据库类型选择器，按类别分组列出引擎，MongoDB 标记为 Not Installed。
+- Proposed alt text (ko): 새 연결의 데이터베이스 유형 선택기. 엔진이 범주별로 그룹화되어 있으며 MongoDB는 Not Installed로 표시됩니다.
+- Proposed alt text (zh-Hant): 新增連線的資料庫類型選擇器，按類別分組列出引擎，MongoDB 標記為 Not Installed。
+- Proposed alt text (it): Il selettore del tipo di database per una nuova connessione, con motori raggruppati per categoria e MongoDB contrassegnato Not Installed.
+- Proposed alt text (id): Pemilih jenis database untuk koneksi baru, dengan mesin dikelompokkan menurut kategori dan MongoDB ditandai Not Installed.
 
 **Purpose**
 
@@ -2995,7 +3975,7 @@ manifest description says so).
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/databases` · drivers |
-| Rendered by | `resources/js/pages/Databases/Index.tsx` (via `resources/data/content/en/databases/index.json`, `resources/data/content/vi/databases/index.json`) (through the `mac-engine-picker` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Index.tsx` (via `resources/data/content/de/databases/index.json`, `resources/data/content/en/databases/index.json`, `resources/data/content/es/databases/index.json`, `resources/data/content/fr/databases/index.json`, `resources/data/content/id/databases/index.json`, `resources/data/content/it/databases/index.json`, `resources/data/content/ja/databases/index.json`, `resources/data/content/ko/databases/index.json`, `resources/data/content/pt-BR/databases/index.json`, `resources/data/content/vi/databases/index.json`, `resources/data/content/zh-Hans/databases/index.json`, `resources/data/content/zh-Hant/databases/index.json`) (through the `mac-engine-picker` slot, below 768 px) |
 | Aspect | 1:1 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3005,8 +3985,28 @@ manifest description says so).
 
 - Placeholder text (en): Close-up of the Document group, with MongoDB marked Not Installed.
 - Placeholder text (vi): Cận cảnh nhóm Document, MongoDB được ghi Not Installed.
+- Placeholder text (es): Detalle del grupo Documento, con MongoDB marcado No instalado.
+- Placeholder text (de): Detailansicht der Gruppe Dokument mit MongoDB als Nicht installiert markiert.
+- Placeholder text (fr): Gros plan du groupe Document, avec MongoDB marqué Non installé.
+- Placeholder text (ja): Document グループの拡大図。MongoDB に Not Installed と表示されています。
+- Placeholder text (pt-BR): Detalhe do grupo Document, com MongoDB marcado como Not Installed.
+- Placeholder text (zh-Hans): Document 分组局部图，MongoDB 标记为 Not Installed。
+- Placeholder text (ko): Document 그룹의 확대 화면. MongoDB는 Not Installed로 표시됩니다.
+- Placeholder text (zh-Hant): Document 群組局部圖，MongoDB 標記為 Not Installed。
+- Placeholder text (it): Dettaglio del gruppo Document, con MongoDB contrassegnato Not Installed.
+- Placeholder text (id): Tampilan dekat grup Document, dengan MongoDB ditandai Not Installed.
 - Proposed alt text (en): Close-up of the database type chooser, with Elasticsearch, MongoDB, SurrealDB and Typesense under Document, each marked Not Installed.
 - Proposed alt text (vi): Cận cảnh hộp chọn loại cơ sở dữ liệu, với Elasticsearch, MongoDB, SurrealDB và Typesense trong nhóm Document, mỗi mục được ghi Not Installed.
+- Proposed alt text (es): Detalle del selector de tipos, con Elasticsearch, MongoDB, SurrealDB y Typesense en Documento, todos marcados No instalado.
+- Proposed alt text (de): Detailansicht der Datenbanktypauswahl mit Elasticsearch, MongoDB, SurrealDB und Typesense unter Dokument, alle als Nicht installiert markiert.
+- Proposed alt text (fr): Gros plan du sélecteur de type de base, avec Elasticsearch, MongoDB, SurrealDB et Typesense sous Document, tous marqués Non installé.
+- Proposed alt text (ja): データベース種別の選択画面の拡大図。Document の Elasticsearch、MongoDB、SurrealDB、Typesense は、それぞれ Not Installed と表示されています。
+- Proposed alt text (pt-BR): Detalhe do seletor do tipo de banco, com Elasticsearch, MongoDB, SurrealDB e Typesense em Document, cada um marcado como Not Installed.
+- Proposed alt text (zh-Hans): 数据库类型选择器的局部图，Document 下的 Elasticsearch、MongoDB、SurrealDB 和 Typesense 都标记为 Not Installed。
+- Proposed alt text (ko): 데이터베이스 유형 선택기의 확대 화면. Document 아래의 Elasticsearch, MongoDB, SurrealDB, Typesense가 각각 Not Installed로 표시됩니다.
+- Proposed alt text (zh-Hant): 資料庫類型選擇器的局部圖，Document 下的 Elasticsearch、MongoDB、SurrealDB 和 Typesense 都標記為 Not Installed。
+- Proposed alt text (it): Dettaglio del selettore del tipo di database, con Elasticsearch, MongoDB, SurrealDB e Typesense sotto Document, ciascuno contrassegnato Not Installed.
+- Proposed alt text (id): Tampilan dekat pemilih jenis database, dengan Elasticsearch, MongoDB, SurrealDB, dan Typesense dalam Document, masing-masing ditandai Not Installed.
 
 **Purpose**
 
@@ -3059,7 +4059,7 @@ None beyond `mac-engine-picker`'s.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/postgresql-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/postgresql-client.json`, `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/es/databases/postgresql-client.json`, `resources/data/content/fr/databases/postgresql-client.json`, `resources/data/content/id/databases/postgresql-client.json`, `resources/data/content/it/databases/postgresql-client.json`, `resources/data/content/ja/databases/postgresql-client.json`, `resources/data/content/ko/databases/postgresql-client.json`, `resources/data/content/pt-BR/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`, `resources/data/content/zh-Hans/databases/postgresql-client.json`, `resources/data/content/zh-Hant/databases/postgresql-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-postgresql-explain-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -3070,8 +4070,28 @@ None beyond `mac-engine-picker`'s.
 
 - Placeholder text (en): EXPLAIN ANALYZE diagram for a query on shop.orders, with a cost badge on each step.
 - Placeholder text (vi): Sơ đồ EXPLAIN ANALYZE cho một query trên shop.orders, mỗi bước có một ký hiệu chi phí.
+- Placeholder text (es): Diagrama EXPLAIN ANALYZE para una consulta sobre shop.orders, con una insignia de coste en cada paso.
+- Placeholder text (de): EXPLAIN-ANALYZE-Diagramm einer Abfrage auf shop.orders mit Kostenanzeige bei jedem Schritt.
+- Placeholder text (fr): Diagramme EXPLAIN ANALYZE d’une requête sur shop.orders, avec un indicateur de coût à chaque étape.
+- Placeholder text (ja): shop.orders のクエリの EXPLAIN ANALYZE 図。各ステップにコストのバッジがあります。
+- Placeholder text (pt-BR): Diagrama EXPLAIN ANALYZE para uma consulta a shop.orders, com um indicador de custo em cada etapa.
+- Placeholder text (zh-Hans): shop.orders 查询的 EXPLAIN ANALYZE 图，每个步骤均显示成本标记。
+- Placeholder text (ko): shop.orders 쿼리의 EXPLAIN ANALYZE 다이어그램. 각 단계에 비용 배지가 있습니다.
+- Placeholder text (zh-Hant): shop.orders 查詢的 EXPLAIN ANALYZE 圖，每個步驟均顯示成本標記。
+- Placeholder text (it): Diagramma EXPLAIN ANALYZE per una query su shop.orders, con un indicatore di costo a ogni passo.
+- Placeholder text (id): Diagram EXPLAIN ANALYZE untuk kueri pada shop.orders, dengan lencana biaya pada setiap langkah.
 - Proposed alt text (en): An EXPLAIN ANALYZE plan for a query joining orders and users, drawn as a diagram, with the Seq Scan on orders flagged in red.
 - Proposed alt text (vi): Execution plan EXPLAIN ANALYZE của một query join orders và users, vẽ thành sơ đồ, bước Seq Scan trên orders được tô đỏ.
+- Proposed alt text (es): Plan EXPLAIN ANALYZE para una consulta que une orders y users, en forma de diagrama, con Seq Scan sobre orders marcado en rojo.
+- Proposed alt text (de): EXPLAIN-ANALYZE-Plan einer Abfrage, die orders und users verknüpft, als Diagramm mit rot markiertem Seq Scan auf orders.
+- Proposed alt text (fr): Plan EXPLAIN ANALYZE d’une requête joignant orders et users, sous forme de diagramme, avec Seq Scan sur orders signalé en rouge.
+- Proposed alt text (ja): orders と users を結合するクエリの EXPLAIN ANALYZE 計画を描いた図。orders の Seq Scan が赤く示されています。
+- Proposed alt text (pt-BR): Um plano EXPLAIN ANALYZE para uma consulta que une orders e users, desenhado como diagrama, com o Seq Scan em orders sinalizado em vermelho.
+- Proposed alt text (zh-Hans): orders 和 users 连接查询的 EXPLAIN ANALYZE 执行计划图，orders 的 Seq Scan 标为红色。
+- Proposed alt text (ko): orders와 users를 조인하는 쿼리의 EXPLAIN ANALYZE 계획 다이어그램. orders의 Seq Scan이 빨간색으로 표시됩니다.
+- Proposed alt text (zh-Hant): orders 和 users 聯結查詢的 EXPLAIN ANALYZE 執行計畫圖，orders 的 Seq Scan 標為紅色。
+- Proposed alt text (it): Un piano EXPLAIN ANALYZE per una query che unisce orders e users, disegnato come diagramma, con Seq Scan su orders segnalato in rosso.
+- Proposed alt text (id): Rencana EXPLAIN ANALYZE untuk kueri yang menggabungkan orders dan users, digambar sebagai diagram, dengan Seq Scan pada orders ditandai merah.
 
 **Purpose**
 
@@ -3121,7 +4141,7 @@ aggregate serves.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/postgresql-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`) (through the `mac-db-postgresql-explain` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/postgresql-client.json`, `resources/data/content/en/databases/postgresql-client.json`, `resources/data/content/es/databases/postgresql-client.json`, `resources/data/content/fr/databases/postgresql-client.json`, `resources/data/content/id/databases/postgresql-client.json`, `resources/data/content/it/databases/postgresql-client.json`, `resources/data/content/ja/databases/postgresql-client.json`, `resources/data/content/ko/databases/postgresql-client.json`, `resources/data/content/pt-BR/databases/postgresql-client.json`, `resources/data/content/vi/databases/postgresql-client.json`, `resources/data/content/zh-Hans/databases/postgresql-client.json`, `resources/data/content/zh-Hant/databases/postgresql-client.json`) (through the `mac-db-postgresql-explain` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3131,8 +4151,28 @@ aggregate serves.
 
 - Placeholder text (en): Close-up of the plan's most expensive step and its cost badge.
 - Placeholder text (vi): Cận cảnh bước tốn kém nhất của execution plan và ký hiệu chi phí của bước đó.
+- Placeholder text (es): Detalle del paso más costoso del plan y su insignia de coste.
+- Placeholder text (de): Detailansicht des teuersten Planschritts und seiner Kostenanzeige.
+- Placeholder text (fr): Gros plan de l’étape la plus coûteuse du plan et de son indicateur de coût.
+- Placeholder text (ja): 計画の最もコストが高いステップと、そのコストのバッジの拡大図。
+- Placeholder text (pt-BR): Detalhe da etapa mais cara do plano e seu indicador de custo.
+- Placeholder text (zh-Hans): 执行计划中成本最高的步骤及其成本标记局部图。
+- Placeholder text (ko): 계획에서 비용이 가장 큰 단계와 비용 배지의 확대 화면입니다.
+- Placeholder text (zh-Hant): 執行計畫中成本最高的步驟及其成本標記局部圖。
+- Placeholder text (it): Dettaglio del passo più costoso del piano e del relativo indicatore di costo.
+- Placeholder text (id): Tampilan dekat langkah termahal rencana dan lencana biayanya.
 - Proposed alt text (en): Close-up of an EXPLAIN ANALYZE diagram, down to the Seq Scan on orders flagged in red.
 - Proposed alt text (vi): Cận cảnh sơ đồ EXPLAIN ANALYZE, xuống tới bước Seq Scan trên orders được tô đỏ.
+- Proposed alt text (es): Detalle de un diagrama EXPLAIN ANALYZE centrado en Seq Scan sobre orders marcado en rojo.
+- Proposed alt text (de): Detailansicht eines EXPLAIN-ANALYZE-Diagramms, bis zum rot markierten Seq Scan auf orders.
+- Proposed alt text (fr): Gros plan d’un diagramme EXPLAIN ANALYZE centré sur Seq Scan sur orders, signalé en rouge.
+- Proposed alt text (ja): EXPLAIN ANALYZE 図の拡大図。orders の赤く示された Seq Scan までが表示されています。
+- Proposed alt text (pt-BR): Detalhe de um diagrama EXPLAIN ANALYZE, até o Seq Scan em orders sinalizado em vermelho.
+- Proposed alt text (zh-Hans): EXPLAIN ANALYZE 图的局部图，显示 orders 中标为红色的 Seq Scan 步骤。
+- Proposed alt text (ko): orders의 빨간색 Seq Scan까지 보여 주는 EXPLAIN ANALYZE 다이어그램의 확대 화면.
+- Proposed alt text (zh-Hant): EXPLAIN ANALYZE 圖的局部圖，顯示 orders 中標為紅色的 Seq Scan 步驟。
+- Proposed alt text (it): Dettaglio di un diagramma EXPLAIN ANALYZE, fino al Seq Scan su orders segnalato in rosso.
+- Proposed alt text (id): Tampilan dekat diagram EXPLAIN ANALYZE, hingga Seq Scan pada orders yang ditandai merah.
 
 **Purpose**
 
@@ -3179,7 +4219,7 @@ the diagram before capturing `mac-db-postgresql-explain` if the node and its bad
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/mysql-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/mysql-client.json`, `resources/data/content/vi/databases/mysql-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/mysql-client.json`, `resources/data/content/en/databases/mysql-client.json`, `resources/data/content/es/databases/mysql-client.json`, `resources/data/content/fr/databases/mysql-client.json`, `resources/data/content/id/databases/mysql-client.json`, `resources/data/content/it/databases/mysql-client.json`, `resources/data/content/ja/databases/mysql-client.json`, `resources/data/content/ko/databases/mysql-client.json`, `resources/data/content/pt-BR/databases/mysql-client.json`, `resources/data/content/vi/databases/mysql-client.json`, `resources/data/content/zh-Hans/databases/mysql-client.json`, `resources/data/content/zh-Hant/databases/mysql-client.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-db-mysql-query-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -3190,8 +4230,28 @@ the diagram before capturing `mac-db-postgresql-explain` if the node and its bad
 
 - Placeholder text (en): MySQL: orders joined to users in the shop database, results below.
 - Placeholder text (vi): MySQL: query join orders với users trong cơ sở dữ liệu shop, kết quả bên dưới.
+- Placeholder text (es): MySQL: orders unida a users en la base shop, con resultados debajo.
+- Placeholder text (de): MySQL: orders mit users in der Datenbank shop verknüpft, Ergebnisse darunter.
+- Placeholder text (fr): MySQL : orders jointe à users dans la base shop, résultats dessous.
+- Placeholder text (ja): MySQL。shop データベースの orders と users を結合し、下に結果を表示しています。
+- Placeholder text (pt-BR): MySQL: orders unido a users no banco shop, com resultados abaixo.
+- Placeholder text (zh-Hans): MySQL：连接 shop 数据库中的 orders 和 users，下方显示结果。
+- Placeholder text (ko): MySQL. shop 데이터베이스의 orders와 users를 조인하며 아래에 결과가 있습니다.
+- Placeholder text (zh-Hant): MySQL：聯結 shop 資料庫中的 orders 和 users，下方顯示結果。
+- Placeholder text (it): MySQL: orders unito a users nel database shop, con risultati sotto.
+- Placeholder text (id): MySQL: orders digabungkan ke users dalam database shop, dengan hasil di bawahnya.
 - Proposed alt text (en): TablePro connected to MySQL, with a query joining orders and users in the shop database and its results below.
 - Proposed alt text (vi): TablePro kết nối tới MySQL, với một query join orders và users trong cơ sở dữ liệu shop và kết quả bên dưới.
+- Proposed alt text (es): TablePro conectado a MySQL, con una consulta que une orders y users en la base shop y sus resultados debajo.
+- Proposed alt text (de): TablePro mit MySQL verbunden, mit einer Abfrage zur Verknüpfung von orders und users in shop und ihren Ergebnissen darunter.
+- Proposed alt text (fr): TablePro connecté à MySQL, avec une requête joignant orders et users dans la base shop et ses résultats dessous.
+- Proposed alt text (ja): MySQL に接続した TablePro。shop データベースで orders と users を結合するクエリと、その下の結果。
+- Proposed alt text (pt-BR): TablePro conectado a MySQL, com uma consulta que une orders e users no banco shop e seus resultados abaixo.
+- Proposed alt text (zh-Hans): TablePro 连接到 MySQL，在 shop 数据库中查询连接 orders 和 users，下方显示结果。
+- Proposed alt text (ko): MySQL에 연결된 TablePro. shop 데이터베이스에서 orders와 users를 조인하는 쿼리와 아래의 결과입니다.
+- Proposed alt text (zh-Hant): TablePro 連線至 MySQL，在 shop 資料庫中查詢聯結 orders 和 users，下方顯示結果。
+- Proposed alt text (it): TablePro connesso a MySQL, con una query che unisce orders e users nel database shop e i risultati sotto.
+- Proposed alt text (id): TablePro terhubung ke MySQL, dengan kueri yang menggabungkan orders dan users dalam database shop serta hasil di bawahnya.
 
 **Purpose**
 
@@ -3242,7 +4302,7 @@ page on a MariaDB server because the schema loads there too.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/mysql-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/mysql-client.json`, `resources/data/content/vi/databases/mysql-client.json`) (through the `mac-db-mysql-query` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/mysql-client.json`, `resources/data/content/en/databases/mysql-client.json`, `resources/data/content/es/databases/mysql-client.json`, `resources/data/content/fr/databases/mysql-client.json`, `resources/data/content/id/databases/mysql-client.json`, `resources/data/content/it/databases/mysql-client.json`, `resources/data/content/ja/databases/mysql-client.json`, `resources/data/content/ko/databases/mysql-client.json`, `resources/data/content/pt-BR/databases/mysql-client.json`, `resources/data/content/vi/databases/mysql-client.json`, `resources/data/content/zh-Hans/databases/mysql-client.json`, `resources/data/content/zh-Hant/databases/mysql-client.json`) (through the `mac-db-mysql-query` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3252,8 +4312,28 @@ page on a MariaDB server because the schema loads there too.
 
 - Placeholder text (en): Close-up of the MySQL query and its first result rows.
 - Placeholder text (vi): Cận cảnh query MySQL và các dòng kết quả đầu tiên.
+- Placeholder text (es): Detalle de la consulta MySQL y sus primeras filas de resultados.
+- Placeholder text (de): Detailansicht der MySQL-Abfrage und ihrer ersten Ergebniszeilen.
+- Placeholder text (fr): Gros plan de la requête MySQL et de ses premières lignes de résultat.
+- Placeholder text (ja): MySQL クエリと結果の最初の数行の拡大図。
+- Placeholder text (pt-BR): Detalhe da consulta MySQL e suas primeiras linhas de resultado.
+- Placeholder text (zh-Hans): MySQL 查询及结果前几行的局部图。
+- Placeholder text (ko): MySQL 쿼리와 결과의 첫 행들의 확대 화면입니다.
+- Placeholder text (zh-Hant): MySQL 查詢及結果前幾列的局部圖。
+- Placeholder text (it): Dettaglio della query MySQL e delle prime righe del risultato.
+- Placeholder text (id): Tampilan dekat kueri MySQL dan baris awal hasilnya.
 - Proposed alt text (en): Close-up of a MySQL query joining orders and users, with the first result rows.
 - Proposed alt text (vi): Cận cảnh một query MySQL join orders và users, kèm các dòng kết quả đầu tiên.
+- Proposed alt text (es): Detalle de una consulta MySQL que une orders y users, con las primeras filas de resultados.
+- Proposed alt text (de): Detailansicht einer MySQL-Abfrage, die orders und users verknüpft, mit den ersten Ergebniszeilen.
+- Proposed alt text (fr): Gros plan d’une requête MySQL joignant orders et users, avec les premières lignes de résultat.
+- Proposed alt text (ja): orders と users を結合する MySQL クエリと、結果の最初の数行の拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma consulta MySQL que une orders e users, com as primeiras linhas do resultado.
+- Proposed alt text (zh-Hans): 连接 orders 和 users 的 MySQL 查询局部图，显示结果的前几行。
+- Proposed alt text (ko): orders와 users를 조인하는 MySQL 쿼리와 결과의 첫 행들을 보여 주는 확대 화면.
+- Proposed alt text (zh-Hant): 聯結 orders 和 users 的 MySQL 查詢局部圖，顯示結果的前幾列。
+- Proposed alt text (it): Dettaglio di una query MySQL che unisce orders e users, con le prime righe del risultato.
+- Proposed alt text (id): Tampilan dekat kueri MySQL yang menggabungkan orders dan users, dengan baris awal hasilnya.
 
 **Purpose**
 
@@ -3298,7 +4378,7 @@ None beyond the window capture's.
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/sqlite-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/sqlite-client.json`, `resources/data/content/vi/databases/sqlite-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/sqlite-client.json`, `resources/data/content/en/databases/sqlite-client.json`, `resources/data/content/es/databases/sqlite-client.json`, `resources/data/content/fr/databases/sqlite-client.json`, `resources/data/content/id/databases/sqlite-client.json`, `resources/data/content/it/databases/sqlite-client.json`, `resources/data/content/ja/databases/sqlite-client.json`, `resources/data/content/ko/databases/sqlite-client.json`, `resources/data/content/pt-BR/databases/sqlite-client.json`, `resources/data/content/vi/databases/sqlite-client.json`, `resources/data/content/zh-Hans/databases/sqlite-client.json`, `resources/data/content/zh-Hant/databases/sqlite-client.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-db-sqlite-chinook-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -3309,8 +4389,28 @@ None beyond the window capture's.
 
 - Placeholder text (en): The bundled Chinook SQLite sample with the Track table filtered by genre.
 - Placeholder text (vi): Cơ sở dữ liệu mẫu Chinook (SQLite) đi kèm ứng dụng, table Track được lọc theo thể loại.
+- Placeholder text (es): Ejemplo SQLite Chinook incluido, con la tabla Track filtrada por género.
+- Placeholder text (de): Mitgeliefertes Chinook-SQLite-Beispiel mit nach Genre gefilterter Tabelle Track.
+- Placeholder text (fr): Exemple SQLite Chinook inclus, avec la table Track filtrée par genre.
+- Placeholder text (ja): 付属の Chinook SQLite サンプル。Track テーブルをジャンルで絞り込んでいます。
+- Placeholder text (pt-BR): O exemplo SQLite Chinook incluído, com a tabela Track filtrada por gênero.
+- Placeholder text (zh-Hans): 内置的 Chinook SQLite 示例，Track 表按流派筛选。
+- Placeholder text (ko): 기본 제공 Chinook SQLite 샘플. Track 테이블이 장르별로 필터링되어 있습니다.
+- Placeholder text (zh-Hant): 內建的 Chinook SQLite 範例，Track 資料表按曲風篩選。
+- Placeholder text (it): L’esempio SQLite Chinook incluso con la tabella Track filtrata per genere.
+- Placeholder text (id): Contoh SQLite Chinook bawaan dengan tabel Track difilter berdasarkan genre.
 - Proposed alt text (en): TablePro with the bundled Chinook SQLite sample open and the Track table filtered by genre.
 - Proposed alt text (vi): TablePro mở cơ sở dữ liệu mẫu Chinook (SQLite) đi kèm ứng dụng, table Track được lọc theo thể loại.
+- Proposed alt text (es): TablePro con el ejemplo SQLite Chinook incluido abierto y la tabla Track filtrada por género.
+- Proposed alt text (de): TablePro mit geöffnetem mitgeliefertem Chinook-SQLite-Beispiel und nach Genre gefilterter Tabelle Track.
+- Proposed alt text (fr): TablePro avec l’exemple SQLite Chinook inclus ouvert et la table Track filtrée par genre.
+- Proposed alt text (ja): TablePro で付属の Chinook SQLite サンプルを開き、Track テーブルをジャンルで絞り込んでいます。
+- Proposed alt text (pt-BR): TablePro com o exemplo SQLite Chinook incluído aberto e a tabela Track filtrada por gênero.
+- Proposed alt text (zh-Hans): TablePro 打开内置的 Chinook SQLite 示例，Track 表按流派筛选。
+- Proposed alt text (ko): TablePro에서 열린 기본 제공 Chinook SQLite 샘플. Track 테이블이 장르별로 필터링되어 있습니다.
+- Proposed alt text (zh-Hant): TablePro 開啟內建的 Chinook SQLite 範例，Track 資料表按曲風篩選。
+- Proposed alt text (it): TablePro con l’esempio SQLite Chinook incluso aperto e la tabella Track filtrata per genere.
+- Proposed alt text (id): TablePro dengan contoh SQLite Chinook bawaan terbuka dan tabel Track difilter berdasarkan genre.
 
 **Purpose**
 
@@ -3352,7 +4452,7 @@ None. Chinook is bundled with the Mac app since 0.38.0 (the app's `CHANGELOG.md`
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/sqlite-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/sqlite-client.json`, `resources/data/content/vi/databases/sqlite-client.json`) (through the `mac-db-sqlite-chinook` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/sqlite-client.json`, `resources/data/content/en/databases/sqlite-client.json`, `resources/data/content/es/databases/sqlite-client.json`, `resources/data/content/fr/databases/sqlite-client.json`, `resources/data/content/id/databases/sqlite-client.json`, `resources/data/content/it/databases/sqlite-client.json`, `resources/data/content/ja/databases/sqlite-client.json`, `resources/data/content/ko/databases/sqlite-client.json`, `resources/data/content/pt-BR/databases/sqlite-client.json`, `resources/data/content/vi/databases/sqlite-client.json`, `resources/data/content/zh-Hans/databases/sqlite-client.json`, `resources/data/content/zh-Hant/databases/sqlite-client.json`) (through the `mac-db-sqlite-chinook` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3362,8 +4462,28 @@ None. Chinook is bundled with the Mac app since 0.38.0 (the app's `CHANGELOG.md`
 
 - Placeholder text (en): Close-up of the Track table with its genre filter applied.
 - Placeholder text (vi): Cận cảnh table Track với bộ lọc thể loại đang áp dụng.
+- Placeholder text (es): Detalle de la tabla Track con su filtro de género aplicado.
+- Placeholder text (de): Detailansicht der Tabelle Track mit angewendetem Genrefilter.
+- Placeholder text (fr): Gros plan de la table Track avec son filtre de genre appliqué.
+- Placeholder text (ja): ジャンルのフィルタを適用した Track テーブルの拡大図。
+- Placeholder text (pt-BR): Detalhe da tabela Track com seu filtro de gênero aplicado.
+- Placeholder text (zh-Hans): Track 表局部图，已应用流派筛选。
+- Placeholder text (ko): 장르 필터가 적용된 Track 테이블의 확대 화면입니다.
+- Placeholder text (zh-Hant): Track 資料表局部圖，已套用曲風篩選。
+- Placeholder text (it): Dettaglio della tabella Track con il filtro per genere applicato.
+- Placeholder text (id): Tampilan dekat tabel Track dengan filter genrenya diterapkan.
 - Proposed alt text (en): Close-up of the Chinook Track table filtered by genre.
 - Proposed alt text (vi): Cận cảnh table Track của Chinook được lọc theo thể loại.
+- Proposed alt text (es): Detalle de la tabla Track de Chinook filtrada por género.
+- Proposed alt text (de): Detailansicht der nach Genre gefilterten Chinook-Tabelle Track.
+- Proposed alt text (fr): Gros plan de la table Track de Chinook filtrée par genre.
+- Proposed alt text (ja): ジャンルで絞り込んだ Chinook の Track テーブルの拡大図。
+- Proposed alt text (pt-BR): Detalhe da tabela Track do Chinook filtrada por gênero.
+- Proposed alt text (zh-Hans): 按流派筛选的 Chinook Track 表局部图。
+- Proposed alt text (ko): 장르별로 필터링된 Chinook Track 테이블의 확대 화면.
+- Proposed alt text (zh-Hant): 按曲風篩選的 Chinook Track 資料表局部圖。
+- Proposed alt text (it): Dettaglio della tabella Track di Chinook filtrata per genere.
+- Proposed alt text (id): Tampilan dekat tabel Track Chinook difilter berdasarkan genre.
 
 **Purpose**
 
@@ -3406,7 +4526,7 @@ None.
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/mongodb-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/mongodb-client.json`, `resources/data/content/vi/databases/mongodb-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/mongodb-client.json`, `resources/data/content/en/databases/mongodb-client.json`, `resources/data/content/es/databases/mongodb-client.json`, `resources/data/content/fr/databases/mongodb-client.json`, `resources/data/content/id/databases/mongodb-client.json`, `resources/data/content/it/databases/mongodb-client.json`, `resources/data/content/ja/databases/mongodb-client.json`, `resources/data/content/ko/databases/mongodb-client.json`, `resources/data/content/pt-BR/databases/mongodb-client.json`, `resources/data/content/vi/databases/mongodb-client.json`, `resources/data/content/zh-Hans/databases/mongodb-client.json`, `resources/data/content/zh-Hant/databases/mongodb-client.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-db-mongodb-document-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -3418,8 +4538,28 @@ None.
 
 - Placeholder text (en): The Insert Document sheet in Extended JSON over the events collection.
 - Placeholder text (vi): Hộp thoại Insert Document dạng Extended JSON trên collection events.
+- Placeholder text (es): Hoja Insertar documento en Extended JSON sobre la colección events.
+- Placeholder text (de): Blatt Dokument einfügen in Extended JSON über der Collection events.
+- Placeholder text (fr): Feuille Insérer un document en Extended JSON au-dessus de la collection events.
+- Placeholder text (ja): events コレクションの上の Insert Document シート。Extended JSON のドキュメントが表示されています。
+- Placeholder text (pt-BR): A folha Insert Document em Extended JSON sobre a coleção events.
+- Placeholder text (zh-Hans): events 集合上方的 Insert Document 面板，文档以 Extended JSON 编写。
+- Placeholder text (ko): events 컬렉션 위의 Insert Document 시트. Extended JSON 문서가 표시됩니다.
+- Placeholder text (zh-Hant): events 集合上方的 Insert Document 面板，文件以 Extended JSON 撰寫。
+- Placeholder text (it): Il foglio Insert Document in Extended JSON sopra la collezione events.
+- Placeholder text (id): Lembar Insert Document dalam Extended JSON di atas koleksi events.
 - Proposed alt text (en): The Insert Document sheet over a MongoDB events collection, with a document written in Extended JSON.
 - Proposed alt text (vi): Hộp thoại Insert Document trên collection events của MongoDB, với một document viết bằng Extended JSON.
+- Proposed alt text (es): Hoja Insertar documento sobre una colección events de MongoDB, con un documento escrito en Extended JSON.
+- Proposed alt text (de): Blatt Dokument einfügen über einer MongoDB-Collection events mit einem in Extended JSON geschriebenen Dokument.
+- Proposed alt text (fr): Feuille Insérer un document au-dessus d’une collection events MongoDB, avec un document écrit en Extended JSON.
+- Proposed alt text (ja): MongoDB の events コレクションの上に表示された Insert Document シート。ドキュメントは Extended JSON で書かれています。
+- Proposed alt text (pt-BR): A folha Insert Document sobre uma coleção events do MongoDB, com um documento escrito em Extended JSON.
+- Proposed alt text (zh-Hans): MongoDB 的 events 集合上方显示 Insert Document 面板，文档以 Extended JSON 编写。
+- Proposed alt text (ko): MongoDB의 events 컬렉션 위에 열린 Insert Document 시트. 문서는 Extended JSON으로 작성되어 있습니다.
+- Proposed alt text (zh-Hant): MongoDB 的 events 集合上方顯示 Insert Document 面板，文件以 Extended JSON 撰寫。
+- Proposed alt text (it): Il foglio Insert Document sopra una collezione MongoDB events, con un documento scritto in Extended JSON.
+- Proposed alt text (id): Lembar Insert Document di atas koleksi events MongoDB, dengan dokumen ditulis dalam Extended JSON.
 
 **Purpose**
 
@@ -3469,7 +4609,7 @@ the sheet but not its buttons).
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/mongodb-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/mongodb-client.json`, `resources/data/content/vi/databases/mongodb-client.json`) (through the `mac-db-mongodb-document` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/mongodb-client.json`, `resources/data/content/en/databases/mongodb-client.json`, `resources/data/content/es/databases/mongodb-client.json`, `resources/data/content/fr/databases/mongodb-client.json`, `resources/data/content/id/databases/mongodb-client.json`, `resources/data/content/it/databases/mongodb-client.json`, `resources/data/content/ja/databases/mongodb-client.json`, `resources/data/content/ko/databases/mongodb-client.json`, `resources/data/content/pt-BR/databases/mongodb-client.json`, `resources/data/content/vi/databases/mongodb-client.json`, `resources/data/content/zh-Hans/databases/mongodb-client.json`, `resources/data/content/zh-Hant/databases/mongodb-client.json`) (through the `mac-db-mongodb-document` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3479,8 +4619,28 @@ the sheet but not its buttons).
 
 - Placeholder text (en): Close-up of the Extended JSON document in the Insert Document sheet.
 - Placeholder text (vi): Cận cảnh document Extended JSON trong hộp thoại Insert Document.
+- Placeholder text (es): Detalle del documento Extended JSON en la hoja Insertar documento.
+- Placeholder text (de): Detailansicht des Extended-JSON-Dokuments im Blatt Dokument einfügen.
+- Placeholder text (fr): Gros plan du document Extended JSON dans la feuille Insérer un document.
+- Placeholder text (ja): Insert Document シートの Extended JSON ドキュメントの拡大図。
+- Placeholder text (pt-BR): Detalhe do documento Extended JSON na folha Insert Document.
+- Placeholder text (zh-Hans): Insert Document 面板中的 Extended JSON 文档局部图。
+- Placeholder text (ko): Insert Document 시트에 있는 Extended JSON 문서의 확대 화면입니다.
+- Placeholder text (zh-Hant): Insert Document 面板中的 Extended JSON 文件局部圖。
+- Placeholder text (it): Dettaglio del documento Extended JSON nel foglio Insert Document.
+- Placeholder text (id): Tampilan dekat dokumen Extended JSON dalam lembar Insert Document.
 - Proposed alt text (en): Close-up of a document written in Extended JSON, ready to insert into a MongoDB collection.
 - Proposed alt text (vi): Cận cảnh một document viết bằng Extended JSON, sẵn sàng để insert vào một collection MongoDB.
+- Proposed alt text (es): Detalle de un documento en Extended JSON listo para insertarse en una colección MongoDB.
+- Proposed alt text (de): Detailansicht eines in Extended JSON geschriebenen Dokuments, bereit zum Einfügen in eine MongoDB-Collection.
+- Proposed alt text (fr): Gros plan d’un document écrit en Extended JSON, prêt à être inséré dans une collection MongoDB.
+- Proposed alt text (ja): MongoDB コレクションに挿入する準備ができた、Extended JSON で書かれたドキュメントの拡大図。
+- Proposed alt text (pt-BR): Detalhe de um documento escrito em Extended JSON, pronto para inserir em uma coleção MongoDB.
+- Proposed alt text (zh-Hans): 使用 Extended JSON 编写的文档局部图，可插入 MongoDB 集合。
+- Proposed alt text (ko): MongoDB 컬렉션에 삽입할 준비가 된 Extended JSON 문서의 확대 화면.
+- Proposed alt text (zh-Hant): 使用 Extended JSON 撰寫的文件局部圖，可插入 MongoDB 集合。
+- Proposed alt text (it): Dettaglio di un documento scritto in Extended JSON, pronto per l’inserimento in una collezione MongoDB.
+- Proposed alt text (id): Tampilan dekat dokumen yang ditulis dalam Extended JSON, siap dimasukkan ke koleksi MongoDB.
 
 **Purpose**
 
@@ -3525,7 +4685,7 @@ None beyond the window capture's.
 |---|---|
 | Type | screenshot (`window`) · **P2** · supplied |
 | Used on | `/redis-gui` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/redis-gui.json`, `resources/data/content/vi/databases/redis-gui.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/redis-gui.json`, `resources/data/content/en/databases/redis-gui.json`, `resources/data/content/es/databases/redis-gui.json`, `resources/data/content/fr/databases/redis-gui.json`, `resources/data/content/id/databases/redis-gui.json`, `resources/data/content/it/databases/redis-gui.json`, `resources/data/content/ja/databases/redis-gui.json`, `resources/data/content/ko/databases/redis-gui.json`, `resources/data/content/pt-BR/databases/redis-gui.json`, `resources/data/content/vi/databases/redis-gui.json`, `resources/data/content/zh-Hans/databases/redis-gui.json`, `resources/data/content/zh-Hant/databases/redis-gui.json`) |
 | Aspect | 16:9 |
 | Rendered size | desktop 1216×684 · tablet 720×405 · phone: its crop `mac-db-redis-keys-mobile` |
 | Export | 2432×1368 px (2×) · PNG master → AVIF, WebP · keeps alpha · max 250 KB per file |
@@ -3536,8 +4696,28 @@ None beyond the window capture's.
 
 - Placeholder text (en): Redis key tree split on ":" with the Key, Type, TTL, Length and Value columns.
 - Placeholder text (vi): Cây key Redis phân theo dấu ":" với các cột Key, Type, TTL, Length và Value.
+- Placeholder text (es): Árbol de claves Redis dividido por «:», con columnas Clave, Tipo, TTL, Longitud y Valor.
+- Placeholder text (de): Redis-Schlüsselbaum mit „:“ als Trennzeichen und den Spalten Schlüssel, Typ, TTL, Länge und Wert.
+- Placeholder text (fr): Arbre des clés Redis séparées par « : », avec colonnes Clé, Type, TTL, Longueur et Valeur.
+- Placeholder text (ja): 「:」で分割した Redis のキーツリー。Key、Type、TTL、Length、Value 列が表示されています。
+- Placeholder text (pt-BR): Árvore de chaves Redis dividida por “:”, com as colunas Key, Type, TTL, Length e Value.
+- Placeholder text (zh-Hans): 按“:”拆分的 Redis 键树，显示 Key、Type、TTL、Length 和 Value 列。
+- Placeholder text (ko): “:”로 나뉜 Redis 키 트리. Key, Type, TTL, Length, Value 열이 표시됩니다.
+- Placeholder text (zh-Hant): 按「:」拆分的 Redis 索引鍵樹，顯示 Key、Type、TTL、Length 和 Value 欄位。
+- Placeholder text (it): Albero di chiavi Redis suddiviso su “:”, con colonne Key, Type, TTL, Length e Value.
+- Placeholder text (id): Pohon kunci Redis dipisah pada “:”, dengan kolom Key, Type, TTL, Length, dan Value.
 - Proposed alt text (en): Redis keys in TablePro grouped into a tree on the colon separator, with each key's type, TTL, length and value in the grid.
 - Proposed alt text (vi): Các key Redis trong TablePro được nhóm thành cây theo dấu hai chấm, data grid hiển thị type, TTL, độ dài và giá trị của từng key.
+- Proposed alt text (es): Claves Redis en TablePro agrupadas en árbol por el separador de dos puntos, con tipo, TTL, longitud y valor de cada clave en la cuadrícula.
+- Proposed alt text (de): Redis-Schlüssel in TablePro, durch Doppelpunkte als Trennzeichen in einem Baum gruppiert, mit Typ, TTL, Länge und Wert jedes Schlüssels in der Datentabelle.
+- Proposed alt text (fr): Clés Redis dans TablePro regroupées en arbre sur le séparateur deux-points, avec le type, TTL, longueur et valeur de chaque clé dans la grille.
+- Proposed alt text (ja): TablePro の Redis キー。コロン区切りのツリーにまとめられ、グリッドには各キーの型、TTL、長さ、値が表示されています。
+- Proposed alt text (pt-BR): Chaves Redis no TablePro agrupadas em árvore pelo separador de dois-pontos, com tipo, TTL, comprimento e valor de cada chave na grade.
+- Proposed alt text (zh-Hans): TablePro 中的 Redis 键以冒号分隔组成树形结构，数据网格显示每个键的类型、TTL、长度和值。
+- Proposed alt text (ko): TablePro의 Redis 키가 콜론 구분자로 트리에 그룹화되어 있고, 그리드에 각 키의 타입, TTL, 길이, 값이 표시됩니다.
+- Proposed alt text (zh-Hant): TablePro 中的 Redis 索引鍵以冒號分隔組成樹狀結構，資料網格顯示每個索引鍵的型別、TTL、長度和值。
+- Proposed alt text (it): Chiavi Redis in TablePro raggruppate in un albero tramite il separatore due punti, con tipo, TTL, lunghezza e valore di ogni chiave nella griglia.
+- Proposed alt text (id): Kunci Redis dalam TablePro dikelompokkan menjadi pohon dengan pemisah titik dua, dengan tipe, TTL, panjang, dan nilai setiap kunci dalam grid.
 
 **Purpose**
 
@@ -3584,7 +4764,7 @@ Do not capture any Redis screen on iPhone or iPad: App Store 1.0 cannot open key
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/redis-gui` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/redis-gui.json`, `resources/data/content/vi/databases/redis-gui.json`) (through the `mac-db-redis-keys` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/redis-gui.json`, `resources/data/content/en/databases/redis-gui.json`, `resources/data/content/es/databases/redis-gui.json`, `resources/data/content/fr/databases/redis-gui.json`, `resources/data/content/id/databases/redis-gui.json`, `resources/data/content/it/databases/redis-gui.json`, `resources/data/content/ja/databases/redis-gui.json`, `resources/data/content/ko/databases/redis-gui.json`, `resources/data/content/pt-BR/databases/redis-gui.json`, `resources/data/content/vi/databases/redis-gui.json`, `resources/data/content/zh-Hans/databases/redis-gui.json`, `resources/data/content/zh-Hant/databases/redis-gui.json`) (through the `mac-db-redis-keys` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3594,8 +4774,28 @@ Do not capture any Redis screen on iPhone or iPad: App Store 1.0 cannot open key
 
 - Placeholder text (en): Close-up of the key tree with the type and TTL of a few keys.
 - Placeholder text (vi): Cận cảnh cây key với type và TTL của một vài key.
+- Placeholder text (es): Detalle del árbol de claves con el tipo y TTL de algunas claves.
+- Placeholder text (de): Detailansicht des Schlüsselbaums mit Typ und TTL einiger Schlüssel.
+- Placeholder text (fr): Gros plan de l’arbre des clés avec le type et TTL de quelques clés.
+- Placeholder text (ja): キーツリーの拡大図。一部のキーの型と TTL。
+- Placeholder text (pt-BR): Detalhe da árvore de chaves com tipo e TTL de algumas chaves.
+- Placeholder text (zh-Hans): 键树局部图，显示部分键的类型和 TTL。
+- Placeholder text (ko): 키 트리의 확대 화면. 일부 키의 타입과 TTL입니다.
+- Placeholder text (zh-Hant): 索引鍵樹局部圖，顯示部分索引鍵的型別和 TTL。
+- Placeholder text (it): Dettaglio dell’albero di chiavi con tipo e TTL di alcune chiavi.
+- Placeholder text (id): Tampilan dekat pohon kunci dengan tipe dan TTL beberapa kunci.
 - Proposed alt text (en): Close-up of Redis keys in the data grid, with each key's type and TTL.
 - Proposed alt text (vi): Cận cảnh các key Redis trong data grid, kèm type và TTL của từng key.
+- Proposed alt text (es): Detalle de claves Redis en la cuadrícula, con tipo y TTL de cada clave.
+- Proposed alt text (de): Detailansicht von Redis-Schlüsseln in der Datentabelle mit Typ und TTL jedes Schlüssels.
+- Proposed alt text (fr): Gros plan des clés Redis dans la grille, avec le type et TTL de chaque clé.
+- Proposed alt text (ja): データグリッドの Redis キーの拡大図。各キーの型と TTL が表示されています。
+- Proposed alt text (pt-BR): Detalhe de chaves Redis na grade de dados, com tipo e TTL de cada chave.
+- Proposed alt text (zh-Hans): 数据网格中的 Redis 键局部图，显示每个键的类型和 TTL。
+- Proposed alt text (ko): 데이터 그리드의 Redis 키와 각 키의 타입 및 TTL을 보여 주는 확대 화면.
+- Proposed alt text (zh-Hant): 資料網格中的 Redis 索引鍵局部圖，顯示每個索引鍵的型別和 TTL。
+- Proposed alt text (it): Dettaglio di chiavi Redis nella griglia dati, con tipo e TTL di ogni chiave.
+- Proposed alt text (id): Tampilan dekat kunci Redis dalam grid data, dengan tipe dan TTL setiap kunci.
 
 **Purpose**
 
@@ -3637,7 +4837,7 @@ None.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/sql-server-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/sql-server-client.json`, `resources/data/content/vi/databases/sql-server-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/sql-server-client.json`, `resources/data/content/en/databases/sql-server-client.json`, `resources/data/content/es/databases/sql-server-client.json`, `resources/data/content/fr/databases/sql-server-client.json`, `resources/data/content/id/databases/sql-server-client.json`, `resources/data/content/it/databases/sql-server-client.json`, `resources/data/content/ja/databases/sql-server-client.json`, `resources/data/content/ko/databases/sql-server-client.json`, `resources/data/content/pt-BR/databases/sql-server-client.json`, `resources/data/content/vi/databases/sql-server-client.json`, `resources/data/content/zh-Hans/databases/sql-server-client.json`, `resources/data/content/zh-Hant/databases/sql-server-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-sqlserver-script-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -3648,8 +4848,28 @@ None.
 
 - Placeholder text (en): A T-SQL script with GO batches and PRINT output in the Output pane.
 - Placeholder text (vi): Script T-SQL với các batch GO và kết quả PRINT trong khung Output.
+- Placeholder text (es): Script T-SQL con lotes GO y salida PRINT en el panel de salida.
+- Placeholder text (de): T-SQL-Skript mit GO-Batches und PRINT-Ausgabe im Ausgabebereich.
+- Placeholder text (fr): Script T-SQL avec lots GO et sortie PRINT dans le volet de sortie.
+- Placeholder text (ja): GO バッチのある T-SQL スクリプトと、Output パネルの PRINT 出力。
+- Placeholder text (pt-BR): Um script T-SQL com lotes GO e saída PRINT no painel Output.
+- Placeholder text (zh-Hans): 包含 GO 批次的 T-SQL 脚本，以及 Output 面板中的 PRINT 输出。
+- Placeholder text (ko): GO 배치가 있는 T-SQL 스크립트와 Output 패널의 PRINT 출력입니다.
+- Placeholder text (zh-Hant): 包含 GO 批次的 T-SQL 指令碼，以及 Output 面板中的 PRINT 輸出。
+- Placeholder text (it): Uno script T-SQL con batch GO e output PRINT nel pannello Output.
+- Placeholder text (id): Skrip T-SQL dengan batch GO dan keluaran PRINT dalam panel Output.
 - Proposed alt text (en): A T-SQL script split into batches with GO, and the last batch's PRINT message in the Output tab.
 - Proposed alt text (vi): Một script T-SQL chia thành các batch bằng GO, thông báo PRINT của batch cuối trong tab Output.
+- Proposed alt text (es): Script T-SQL dividido en lotes con GO y el mensaje PRINT del último lote en la pestaña Salida.
+- Proposed alt text (de): T-SQL-Skript, mit GO in Batches aufgeteilt, und PRINT-Meldung des letzten Batches im Ausgabe-Tab.
+- Proposed alt text (fr): Script T-SQL divisé en lots avec GO, et message PRINT du dernier lot dans l’onglet Sortie.
+- Proposed alt text (ja): GO でバッチに分割された T-SQL スクリプト。Output タブに最後のバッチの PRINT メッセージが表示されています。
+- Proposed alt text (pt-BR): Um script T-SQL dividido em lotes com GO, e a mensagem PRINT do último lote na aba Output.
+- Proposed alt text (zh-Hans): 使用 GO 分隔批次的 T-SQL 脚本，Output 标签页显示最后一个批次的 PRINT 消息。
+- Proposed alt text (ko): GO로 배치를 나눈 T-SQL 스크립트와 Output 탭에 표시된 마지막 배치의 PRINT 메시지.
+- Proposed alt text (zh-Hant): 使用 GO 分隔批次的 T-SQL 指令碼，Output 分頁顯示最後一個批次的 PRINT 訊息。
+- Proposed alt text (it): Uno script T-SQL suddiviso in batch con GO, e il messaggio PRINT dell’ultimo batch nella scheda Output.
+- Proposed alt text (id): Skrip T-SQL dibagi menjadi batch dengan GO, dan pesan PRINT batch terakhir dalam tab Output.
 
 **Purpose**
 
@@ -3700,7 +4920,7 @@ both batches (`docs/databases/mssql.mdx` "Scripts and batches"; `docs/features/d
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/sql-server-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/sql-server-client.json`, `resources/data/content/vi/databases/sql-server-client.json`) (through the `mac-db-sqlserver-script` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/sql-server-client.json`, `resources/data/content/en/databases/sql-server-client.json`, `resources/data/content/es/databases/sql-server-client.json`, `resources/data/content/fr/databases/sql-server-client.json`, `resources/data/content/id/databases/sql-server-client.json`, `resources/data/content/it/databases/sql-server-client.json`, `resources/data/content/ja/databases/sql-server-client.json`, `resources/data/content/ko/databases/sql-server-client.json`, `resources/data/content/pt-BR/databases/sql-server-client.json`, `resources/data/content/vi/databases/sql-server-client.json`, `resources/data/content/zh-Hans/databases/sql-server-client.json`, `resources/data/content/zh-Hant/databases/sql-server-client.json`) (through the `mac-db-sqlserver-script` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3710,8 +4930,28 @@ both batches (`docs/databases/mssql.mdx` "Scripts and batches"; `docs/features/d
 
 - Placeholder text (en): Close-up of the GO lines and the PRINT messages in the Output pane.
 - Placeholder text (vi): Cận cảnh các dòng GO và thông báo PRINT trong khung Output.
+- Placeholder text (es): Detalle de las líneas GO y los mensajes PRINT del panel de salida.
+- Placeholder text (de): Detailansicht der GO-Zeilen und PRINT-Meldungen im Ausgabebereich.
+- Placeholder text (fr): Gros plan des lignes GO et des messages PRINT dans le volet de sortie.
+- Placeholder text (ja): GO の行と Output パネルの PRINT メッセージの拡大図。
+- Placeholder text (pt-BR): Detalhe das linhas GO e das mensagens PRINT no painel Output.
+- Placeholder text (zh-Hans): GO 行和 Output 面板中 PRINT 消息的局部图。
+- Placeholder text (ko): GO 줄과 Output 패널의 PRINT 메시지의 확대 화면입니다.
+- Placeholder text (zh-Hant): GO 指令行和 Output 面板中 PRINT 訊息的局部圖。
+- Placeholder text (it): Dettaglio delle righe GO e dei messaggi PRINT nel pannello Output.
+- Placeholder text (id): Tampilan dekat baris GO dan pesan PRINT dalam panel Output.
 - Proposed alt text (en): Close-up of the GO batch separators of a T-SQL script and a PRINT message in the Output tab.
 - Proposed alt text (vi): Cận cảnh các dòng GO phân tách batch trong một script T-SQL và một thông báo PRINT trong tab Output.
+- Proposed alt text (es): Detalle de los separadores GO de un script T-SQL y un mensaje PRINT en la pestaña Salida.
+- Proposed alt text (de): Detailansicht der GO-Batchtrenner eines T-SQL-Skripts und einer PRINT-Meldung im Ausgabe-Tab.
+- Proposed alt text (fr): Gros plan des séparateurs de lots GO d’un script T-SQL et d’un message PRINT dans l’onglet Sortie.
+- Proposed alt text (ja): T-SQL スクリプトの GO バッチ区切りと、Output タブの PRINT メッセージの拡大図。
+- Proposed alt text (pt-BR): Detalhe dos separadores de lote GO de um script T-SQL e uma mensagem PRINT na aba Output.
+- Proposed alt text (zh-Hans): T-SQL 脚本的 GO 批次分隔符局部图，以及 Output 标签页中的 PRINT 消息。
+- Proposed alt text (ko): T-SQL 스크립트의 GO 배치 구분자와 Output 탭의 PRINT 메시지의 확대 화면.
+- Proposed alt text (zh-Hant): T-SQL 指令碼的 GO 批次分隔符號局部圖，以及 Output 分頁中的 PRINT 訊息。
+- Proposed alt text (it): Dettaglio dei separatori di batch GO di uno script T-SQL e di un messaggio PRINT nella scheda Output.
+- Proposed alt text (id): Tampilan dekat pemisah batch GO skrip T-SQL dan pesan PRINT dalam tab Output.
 
 **Purpose**
 
@@ -3759,7 +4999,7 @@ must sit close enough to the Output view that both fit in 429 pt of height.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/oracle-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/oracle-client.json`, `resources/data/content/vi/databases/oracle-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/oracle-client.json`, `resources/data/content/en/databases/oracle-client.json`, `resources/data/content/es/databases/oracle-client.json`, `resources/data/content/fr/databases/oracle-client.json`, `resources/data/content/id/databases/oracle-client.json`, `resources/data/content/it/databases/oracle-client.json`, `resources/data/content/ja/databases/oracle-client.json`, `resources/data/content/ko/databases/oracle-client.json`, `resources/data/content/pt-BR/databases/oracle-client.json`, `resources/data/content/vi/databases/oracle-client.json`, `resources/data/content/zh-Hans/databases/oracle-client.json`, `resources/data/content/zh-Hant/databases/oracle-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-oracle-plsql-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -3770,8 +5010,28 @@ must sit close enough to the Output view that both fit in 429 pt of height.
 
 - Placeholder text (en): A PL/SQL block with its DBMS_OUTPUT lines under the result.
 - Placeholder text (vi): Một khối PL/SQL với các dòng DBMS_OUTPUT hiện dưới kết quả.
+- Placeholder text (es): Bloque PL/SQL con sus líneas DBMS_OUTPUT bajo el resultado.
+- Placeholder text (de): PL/SQL-Block mit seinen DBMS_OUTPUT-Zeilen unter dem Ergebnis.
+- Placeholder text (fr): Bloc PL/SQL avec ses lignes DBMS_OUTPUT sous le résultat.
+- Placeholder text (ja): PL/SQL ブロック。DBMS_OUTPUT の出力行が結果の下に表示されています。
+- Placeholder text (pt-BR): Um bloco PL/SQL com suas linhas DBMS_OUTPUT abaixo do resultado.
+- Placeholder text (zh-Hans): PL/SQL 块，结果下方显示其 DBMS_OUTPUT 输出行。
+- Placeholder text (ko): PL/SQL 블록. 결과 아래에 DBMS_OUTPUT 텍스트 줄이 표시됩니다.
+- Placeholder text (zh-Hant): PL/SQL 區塊，結果下方顯示其 DBMS_OUTPUT 輸出的文字行。
+- Placeholder text (it): Un blocco PL/SQL con le righe DBMS_OUTPUT sotto il risultato.
+- Placeholder text (id): Blok PL/SQL dengan baris DBMS_OUTPUT-nya di bawah hasil.
 - Proposed alt text (en): An Oracle PL/SQL block in the editor, with the lines it wrote through DBMS_OUTPUT shown under its result.
 - Proposed alt text (vi): Một khối PL/SQL của Oracle trong editor, các dòng ghi qua DBMS_OUTPUT hiện bên dưới kết quả của khối.
+- Proposed alt text (es): Bloque PL/SQL de Oracle en el editor, con las líneas escritas mediante DBMS_OUTPUT bajo su resultado.
+- Proposed alt text (de): Oracle-PL/SQL-Block im Editor mit den über DBMS_OUTPUT geschriebenen Zeilen unter seinem Ergebnis.
+- Proposed alt text (fr): Bloc PL/SQL Oracle dans l’éditeur, avec les lignes écrites via DBMS_OUTPUT sous son résultat.
+- Proposed alt text (ja): エディタ内の Oracle PL/SQL ブロック。DBMS_OUTPUT で出力したテキスト行が結果の下に表示されています。
+- Proposed alt text (pt-BR): Um bloco Oracle PL/SQL no editor, com as linhas que escreveu por DBMS_OUTPUT mostradas abaixo do resultado.
+- Proposed alt text (zh-Hans): 编辑器中的 Oracle PL/SQL 块，结果下方显示通过 DBMS_OUTPUT 输出的行。
+- Proposed alt text (ko): 편집기의 Oracle PL/SQL 블록. DBMS_OUTPUT으로 출력한 텍스트 줄이 결과 아래에 표시됩니다.
+- Proposed alt text (zh-Hant): 編輯器中的 Oracle PL/SQL 區塊，結果下方顯示透過 DBMS_OUTPUT 輸出的文字行。
+- Proposed alt text (it): Un blocco Oracle PL/SQL nell’editor, con le righe scritte tramite DBMS_OUTPUT mostrate sotto il risultato.
+- Proposed alt text (id): Blok Oracle PL/SQL dalam editor, dengan baris yang ditulis melalui DBMS_OUTPUT ditampilkan di bawah hasilnya.
 
 **Purpose**
 
@@ -3826,7 +5086,7 @@ the gutter.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/oracle-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/oracle-client.json`, `resources/data/content/vi/databases/oracle-client.json`) (through the `mac-db-oracle-plsql` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/oracle-client.json`, `resources/data/content/en/databases/oracle-client.json`, `resources/data/content/es/databases/oracle-client.json`, `resources/data/content/fr/databases/oracle-client.json`, `resources/data/content/id/databases/oracle-client.json`, `resources/data/content/it/databases/oracle-client.json`, `resources/data/content/ja/databases/oracle-client.json`, `resources/data/content/ko/databases/oracle-client.json`, `resources/data/content/pt-BR/databases/oracle-client.json`, `resources/data/content/vi/databases/oracle-client.json`, `resources/data/content/zh-Hans/databases/oracle-client.json`, `resources/data/content/zh-Hant/databases/oracle-client.json`) (through the `mac-db-oracle-plsql` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3836,8 +5096,28 @@ the gutter.
 
 - Placeholder text (en): Close-up of the DBMS_OUTPUT.PUT_LINE call and the lines it printed.
 - Placeholder text (vi): Cận cảnh lệnh gọi DBMS_OUTPUT.PUT_LINE và các dòng mà nó in ra.
+- Placeholder text (es): Detalle de la llamada DBMS_OUTPUT.PUT_LINE y las líneas que imprimió.
+- Placeholder text (de): Detailansicht des DBMS_OUTPUT.PUT_LINE-Aufrufs und der ausgegebenen Zeilen.
+- Placeholder text (fr): Gros plan de l’appel DBMS_OUTPUT.PUT_LINE et des lignes affichées.
+- Placeholder text (ja): DBMS_OUTPUT.PUT_LINE 呼び出しと、その出力行の拡大図。
+- Placeholder text (pt-BR): Detalhe da chamada DBMS_OUTPUT.PUT_LINE e das linhas que imprimiu.
+- Placeholder text (zh-Hans): DBMS_OUTPUT.PUT_LINE 调用及其输出行的局部图。
+- Placeholder text (ko): DBMS_OUTPUT.PUT_LINE 호출과 출력한 텍스트 줄의 확대 화면입니다.
+- Placeholder text (zh-Hant): DBMS_OUTPUT.PUT_LINE 呼叫及其印出文字行的局部圖。
+- Placeholder text (it): Dettaglio della chiamata DBMS_OUTPUT.PUT_LINE e delle righe stampate.
+- Placeholder text (id): Tampilan dekat pemanggilan DBMS_OUTPUT.PUT_LINE dan baris yang dicetaknya.
 - Proposed alt text (en): Close-up of the DBMS_OUTPUT.PUT_LINE call in a PL/SQL block and the department lines printed under the result.
 - Proposed alt text (vi): Cận cảnh lệnh gọi DBMS_OUTPUT.PUT_LINE trong một khối PL/SQL và các dòng phòng ban được in bên dưới kết quả.
+- Proposed alt text (es): Detalle de la llamada DBMS_OUTPUT.PUT_LINE en un bloque PL/SQL y las líneas de departamentos impresas bajo el resultado.
+- Proposed alt text (de): Detailansicht des DBMS_OUTPUT.PUT_LINE-Aufrufs in einem PL/SQL-Block und der unter dem Ergebnis ausgegebenen Abteilungszeilen.
+- Proposed alt text (fr): Gros plan de l’appel DBMS_OUTPUT.PUT_LINE dans un bloc PL/SQL et des lignes de départements affichées sous le résultat.
+- Proposed alt text (ja): PL/SQL ブロックの DBMS_OUTPUT.PUT_LINE 呼び出しと、結果の下に出力された部門のテキスト行の拡大図。
+- Proposed alt text (pt-BR): Detalhe da chamada DBMS_OUTPUT.PUT_LINE em um bloco PL/SQL e as linhas de departamentos impressas abaixo do resultado.
+- Proposed alt text (zh-Hans): PL/SQL 块中 DBMS_OUTPUT.PUT_LINE 调用的局部图，结果下方显示输出的部门信息行。
+- Proposed alt text (ko): PL/SQL 블록의 DBMS_OUTPUT.PUT_LINE 호출과 결과 아래에 출력된 부서 정보 줄의 확대 화면.
+- Proposed alt text (zh-Hant): PL/SQL 區塊中 DBMS_OUTPUT.PUT_LINE 呼叫的局部圖，結果下方顯示印出的部門資訊文字行。
+- Proposed alt text (it): Dettaglio della chiamata DBMS_OUTPUT.PUT_LINE in un blocco PL/SQL e delle righe dei reparti stampate sotto il risultato.
+- Proposed alt text (id): Tampilan dekat pemanggilan DBMS_OUTPUT.PUT_LINE dalam blok PL/SQL dan baris departemen yang dicetak di bawah hasil.
 
 **Purpose**
 
@@ -3884,7 +5164,7 @@ lines and the printed lines must fit in 429 pt of height.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/clickhouse-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/clickhouse-client.json`, `resources/data/content/vi/databases/clickhouse-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/clickhouse-client.json`, `resources/data/content/en/databases/clickhouse-client.json`, `resources/data/content/es/databases/clickhouse-client.json`, `resources/data/content/fr/databases/clickhouse-client.json`, `resources/data/content/id/databases/clickhouse-client.json`, `resources/data/content/it/databases/clickhouse-client.json`, `resources/data/content/ja/databases/clickhouse-client.json`, `resources/data/content/ko/databases/clickhouse-client.json`, `resources/data/content/pt-BR/databases/clickhouse-client.json`, `resources/data/content/vi/databases/clickhouse-client.json`, `resources/data/content/zh-Hans/databases/clickhouse-client.json`, `resources/data/content/zh-Hant/databases/clickhouse-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-clickhouse-parts-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -3895,8 +5175,28 @@ lines and the printed lines must fit in 429 pt of height.
 
 - Placeholder text (en): The Parts tab of a MergeTree table: partitions, parts and row counts.
 - Placeholder text (vi): Tab Parts của một table MergeTree: partition, part và số dòng.
+- Placeholder text (es): Pestaña Partes de una tabla MergeTree: particiones, partes y recuentos de filas.
+- Placeholder text (de): Teile-Tab einer MergeTree-Tabelle: Partitionen, Teile und Zeilenzahlen.
+- Placeholder text (fr): Onglet Parties d’une table MergeTree : partitions, parties et nombres de lignes.
+- Placeholder text (ja): MergeTree テーブルの Parts タブ。パーティション、パーツ、行数。
+- Placeholder text (pt-BR): A aba Parts de uma tabela MergeTree: partições, partes e contagens de linhas.
+- Placeholder text (zh-Hans): MergeTree 表的 Parts 标签页：分区、数据片及行数。
+- Placeholder text (ko): MergeTree 테이블의 Parts 탭. 파티션, 파트, 행 수입니다.
+- Placeholder text (zh-Hant): MergeTree 資料表的 Parts 分頁：分割區、資料片段及列數。
+- Placeholder text (it): La scheda Parts di una tabella MergeTree: partizioni, parti e conteggi delle righe.
+- Placeholder text (id): Tab Parts tabel MergeTree: partisi, bagian, dan jumlah baris.
 - Proposed alt text (en): The Parts tab for a ClickHouse MergeTree table, listing partitions and parts with their row counts.
 - Proposed alt text (vi): Tab Parts của một table MergeTree trong ClickHouse, liệt kê partition và part kèm số dòng.
+- Proposed alt text (es): Pestaña Partes de una tabla MergeTree de ClickHouse, con particiones y partes y sus recuentos de filas.
+- Proposed alt text (de): Teile-Tab einer ClickHouse-MergeTree-Tabelle mit Partitionen und Teilen samt Zeilenzahlen.
+- Proposed alt text (fr): Onglet Parties d’une table MergeTree ClickHouse, listant les partitions et parties avec leurs nombres de lignes.
+- Proposed alt text (ja): ClickHouse の MergeTree テーブルの Parts タブ。パーティションとパーツが、それぞれの行数とともに表示されています。
+- Proposed alt text (pt-BR): A aba Parts de uma tabela ClickHouse MergeTree, listando partições e partes com suas contagens de linhas.
+- Proposed alt text (zh-Hans): ClickHouse MergeTree 表的 Parts 标签页，列出分区、数据片及其行数。
+- Proposed alt text (ko): ClickHouse MergeTree 테이블의 Parts 탭. 파티션과 파트 및 각 행 수가 나열됩니다.
+- Proposed alt text (zh-Hant): ClickHouse MergeTree 資料表的 Parts 分頁，列出分割區、資料片段及其列數。
+- Proposed alt text (it): La scheda Parts di una tabella ClickHouse MergeTree, che elenca partizioni e parti con i conteggi delle righe.
+- Proposed alt text (id): Tab Parts untuk tabel ClickHouse MergeTree, mencantumkan partisi dan bagian beserta jumlah barisnya.
 
 **Purpose**
 
@@ -3946,7 +5246,7 @@ The Parts tab is documented at v0.77.0 (`docs/databases/clickhouse.mdx` "Browsin
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/clickhouse-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/clickhouse-client.json`, `resources/data/content/vi/databases/clickhouse-client.json`) (through the `mac-db-clickhouse-parts` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/clickhouse-client.json`, `resources/data/content/en/databases/clickhouse-client.json`, `resources/data/content/es/databases/clickhouse-client.json`, `resources/data/content/fr/databases/clickhouse-client.json`, `resources/data/content/id/databases/clickhouse-client.json`, `resources/data/content/it/databases/clickhouse-client.json`, `resources/data/content/ja/databases/clickhouse-client.json`, `resources/data/content/ko/databases/clickhouse-client.json`, `resources/data/content/pt-BR/databases/clickhouse-client.json`, `resources/data/content/vi/databases/clickhouse-client.json`, `resources/data/content/zh-Hans/databases/clickhouse-client.json`, `resources/data/content/zh-Hant/databases/clickhouse-client.json`) (through the `mac-db-clickhouse-parts` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -3956,8 +5256,28 @@ The Parts tab is documented at v0.77.0 (`docs/databases/clickhouse.mdx` "Browsin
 
 - Placeholder text (en): Close-up of the part list: partitions, parts, rows and the active flag.
 - Placeholder text (vi): Cận cảnh danh sách part: partition, part, số dòng và cờ active.
+- Placeholder text (es): Detalle de la lista de partes: particiones, partes, filas e indicador activo.
+- Placeholder text (de): Detailansicht der Teileliste: Partitionen, Teile, Zeilen und Aktiv-Kennzeichen.
+- Placeholder text (fr): Gros plan de la liste des parties : partitions, parties, lignes et indicateur actif.
+- Placeholder text (ja): パーツ一覧の拡大図。パーティション、パーツ、行数、有効フラグ。
+- Placeholder text (pt-BR): Detalhe da lista de partes: partições, partes, linhas e o indicador de atividade.
+- Placeholder text (zh-Hans): 数据片列表局部图：分区、数据片、行数和 active 标记。
+- Placeholder text (ko): 파트 목록의 확대 화면. 파티션, 파트, 행 수, 활성 플래그입니다.
+- Placeholder text (zh-Hant): 資料片段清單局部圖：分割區、資料片段、列數和 active 標記。
+- Placeholder text (it): Dettaglio dell’elenco delle parti: partizioni, parti, righe e indicatore di attività.
+- Placeholder text (id): Tampilan dekat daftar bagian: partisi, bagian, baris, dan penanda aktif.
 - Proposed alt text (en): Close-up of the Parts tab of a ClickHouse table, listing each part's partition, name and row count.
 - Proposed alt text (vi): Cận cảnh tab Parts của một table ClickHouse, liệt kê partition, tên và số dòng của từng part.
+- Proposed alt text (es): Detalle de la pestaña Partes de una tabla ClickHouse, con partición, nombre y número de filas de cada parte.
+- Proposed alt text (de): Detailansicht des Teile-Tabs einer ClickHouse-Tabelle mit Partition, Name und Zeilenzahl jedes Teils.
+- Proposed alt text (fr): Gros plan de l’onglet Parties d’une table ClickHouse, listant la partition, le nom et le nombre de lignes de chaque partie.
+- Proposed alt text (ja): ClickHouse テーブルの Parts タブの拡大図。各パーツのパーティション、名前、行数が表示されています。
+- Proposed alt text (pt-BR): Detalhe da aba Parts de uma tabela ClickHouse, listando a partição, o nome e a contagem de linhas de cada parte.
+- Proposed alt text (zh-Hans): ClickHouse 表的 Parts 标签页局部图，列出各数据片的分区、名称和行数。
+- Proposed alt text (ko): ClickHouse 테이블의 Parts 탭의 확대 화면. 각 파트의 파티션, 이름, 행 수가 나열됩니다.
+- Proposed alt text (zh-Hant): ClickHouse 資料表的 Parts 分頁局部圖，列出各資料片段的分割區、名稱和列數。
+- Proposed alt text (it): Dettaglio della scheda Parts di una tabella ClickHouse, che elenca partizione, nome e numero di righe di ogni parte.
+- Proposed alt text (id): Tampilan dekat tab Parts tabel ClickHouse, mencantumkan partisi, nama, dan jumlah baris setiap bagian.
 
 **Purpose**
 
@@ -4005,7 +5325,7 @@ first 343 pt.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/duckdb-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/duckdb-client.json`, `resources/data/content/vi/databases/duckdb-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/duckdb-client.json`, `resources/data/content/en/databases/duckdb-client.json`, `resources/data/content/es/databases/duckdb-client.json`, `resources/data/content/fr/databases/duckdb-client.json`, `resources/data/content/id/databases/duckdb-client.json`, `resources/data/content/it/databases/duckdb-client.json`, `resources/data/content/ja/databases/duckdb-client.json`, `resources/data/content/ko/databases/duckdb-client.json`, `resources/data/content/pt-BR/databases/duckdb-client.json`, `resources/data/content/vi/databases/duckdb-client.json`, `resources/data/content/zh-Hans/databases/duckdb-client.json`, `resources/data/content/zh-Hant/databases/duckdb-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-duckdb-parquet-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4016,8 +5336,28 @@ first 343 pt.
 
 - Placeholder text (en): A Parquet file opened in DuckDB as a view and queried with SQL.
 - Placeholder text (vi): File Parquet mở trong DuckDB dưới dạng view và được query bằng SQL.
+- Placeholder text (es): Archivo Parquet abierto en DuckDB como vista y consultado mediante SQL.
+- Placeholder text (de): Parquet-Datei als Ansicht in DuckDB geöffnet und mit SQL abgefragt.
+- Placeholder text (fr): Fichier Parquet ouvert dans DuckDB comme vue et interrogé en SQL.
+- Placeholder text (ja): DuckDB でビューとして開いた Parquet ファイルを SQL で照会しています。
+- Placeholder text (pt-BR): Um arquivo Parquet aberto no DuckDB como visualização e consultado com SQL.
+- Placeholder text (zh-Hans): Parquet 文件在 DuckDB 中打开为视图，并通过 SQL 查询。
+- Placeholder text (ko): DuckDB에서 뷰로 열린 Parquet 파일을 SQL로 조회합니다.
+- Placeholder text (zh-Hant): Parquet 檔案在 DuckDB 中開啟為檢視，並透過 SQL 查詢。
+- Placeholder text (it): Un file Parquet aperto in DuckDB come vista e interrogato con SQL.
+- Placeholder text (id): Berkas Parquet dibuka dalam DuckDB sebagai tampilan dan dikueri dengan SQL.
 - Proposed alt text (en): A Parquet file opened in DuckDB as a read-only view, with a SQL query over it and the results.
 - Proposed alt text (vi): Một file Parquet mở trong DuckDB dưới dạng view chỉ đọc, kèm một query SQL trên file và kết quả.
+- Proposed alt text (es): Archivo Parquet abierto en DuckDB como vista de solo lectura, con una consulta SQL y sus resultados.
+- Proposed alt text (de): Parquet-Datei in DuckDB als schreibgeschützte Ansicht geöffnet, mit SQL-Abfrage und Ergebnissen.
+- Proposed alt text (fr): Fichier Parquet ouvert dans DuckDB comme vue en lecture seule, avec une requête SQL et ses résultats.
+- Proposed alt text (ja): DuckDB で読み取り専用ビューとして開いた Parquet ファイルと、それに対する SQL クエリおよび結果。
+- Proposed alt text (pt-BR): Um arquivo Parquet aberto no DuckDB como visualização somente leitura, com uma consulta SQL sobre ele e os resultados.
+- Proposed alt text (zh-Hans): Parquet 文件在 DuckDB 中打开为只读视图，显示针对该视图的 SQL 查询和结果。
+- Proposed alt text (ko): DuckDB에서 읽기 전용 뷰로 열린 Parquet 파일과 이를 조회하는 SQL 쿼리 및 결과.
+- Proposed alt text (zh-Hant): Parquet 檔案在 DuckDB 中開啟為唯讀檢視，顯示針對該檢視的 SQL 查詢和結果。
+- Proposed alt text (it): Un file Parquet aperto in DuckDB come vista in sola lettura, con una query SQL e i risultati.
+- Proposed alt text (id): Berkas Parquet dibuka dalam DuckDB sebagai tampilan hanya baca, dengan kueri SQL atasnya dan hasilnya.
 
 **Purpose**
 
@@ -4068,7 +5408,7 @@ field accepts" says "one named after the file").
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/duckdb-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/duckdb-client.json`, `resources/data/content/vi/databases/duckdb-client.json`) (through the `mac-db-duckdb-parquet` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/duckdb-client.json`, `resources/data/content/en/databases/duckdb-client.json`, `resources/data/content/es/databases/duckdb-client.json`, `resources/data/content/fr/databases/duckdb-client.json`, `resources/data/content/id/databases/duckdb-client.json`, `resources/data/content/it/databases/duckdb-client.json`, `resources/data/content/ja/databases/duckdb-client.json`, `resources/data/content/ko/databases/duckdb-client.json`, `resources/data/content/pt-BR/databases/duckdb-client.json`, `resources/data/content/vi/databases/duckdb-client.json`, `resources/data/content/zh-Hans/databases/duckdb-client.json`, `resources/data/content/zh-Hant/databases/duckdb-client.json`) (through the `mac-db-duckdb-parquet` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -4078,8 +5418,28 @@ field accepts" says "one named after the file").
 
 - Placeholder text (en): Close-up of the query over the Parquet file and its first result rows.
 - Placeholder text (vi): Cận cảnh query trên file Parquet và các dòng kết quả đầu tiên.
+- Placeholder text (es): Detalle de la consulta sobre Parquet y sus primeras filas de resultados.
+- Placeholder text (de): Detailansicht der Abfrage auf die Parquet-Datei und ihrer ersten Ergebniszeilen.
+- Placeholder text (fr): Gros plan de la requête sur le fichier Parquet et de ses premières lignes de résultat.
+- Placeholder text (ja): Parquet ファイルへのクエリと、結果の最初の数行の拡大図。
+- Placeholder text (pt-BR): Detalhe da consulta ao arquivo Parquet e suas primeiras linhas de resultado.
+- Placeholder text (zh-Hans): 查询 Parquet 文件的语句及结果前几行的局部图。
+- Placeholder text (ko): Parquet 파일을 조회하는 쿼리와 결과의 첫 행들의 확대 화면입니다.
+- Placeholder text (zh-Hant): 查詢 Parquet 檔案的陳述式及結果前幾列的局部圖。
+- Placeholder text (it): Dettaglio della query sul file Parquet e delle prime righe del risultato.
+- Placeholder text (id): Tampilan dekat kueri atas berkas Parquet dan baris awal hasilnya.
 - Proposed alt text (en): Close-up of a SQL query reading a Parquet file through DuckDB, with the first result rows.
 - Proposed alt text (vi): Cận cảnh một query SQL đọc file Parquet qua DuckDB, kèm các dòng kết quả đầu tiên.
+- Proposed alt text (es): Detalle de una consulta SQL que lee Parquet mediante DuckDB, con las primeras filas de resultados.
+- Proposed alt text (de): Detailansicht einer SQL-Abfrage, die eine Parquet-Datei über DuckDB liest, mit den ersten Ergebniszeilen.
+- Proposed alt text (fr): Gros plan d’une requête SQL lisant un fichier Parquet via DuckDB, avec les premières lignes de résultat.
+- Proposed alt text (ja): DuckDB で Parquet ファイルを読み取る SQL クエリと、結果の最初の数行の拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma consulta SQL lendo um arquivo Parquet pelo DuckDB, com as primeiras linhas do resultado.
+- Proposed alt text (zh-Hans): 通过 DuckDB 读取 Parquet 文件的 SQL 查询局部图，显示结果的前几行。
+- Proposed alt text (ko): DuckDB를 통해 Parquet 파일을 읽는 SQL 쿼리와 결과의 첫 행들의 확대 화면.
+- Proposed alt text (zh-Hant): 透過 DuckDB 讀取 Parquet 檔案的 SQL 查詢局部圖，顯示結果的前幾列。
+- Proposed alt text (it): Dettaglio di una query SQL che legge un file Parquet tramite DuckDB, con le prime righe del risultato.
+- Proposed alt text (id): Tampilan dekat kueri SQL yang membaca berkas Parquet melalui DuckDB, dengan baris awal hasilnya.
 
 **Purpose**
 
@@ -4126,7 +5486,7 @@ short enough to fit in 343 pt once laid out on three lines.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/cassandra-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/cassandra-client.json`, `resources/data/content/vi/databases/cassandra-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/cassandra-client.json`, `resources/data/content/en/databases/cassandra-client.json`, `resources/data/content/es/databases/cassandra-client.json`, `resources/data/content/fr/databases/cassandra-client.json`, `resources/data/content/id/databases/cassandra-client.json`, `resources/data/content/it/databases/cassandra-client.json`, `resources/data/content/ja/databases/cassandra-client.json`, `resources/data/content/ko/databases/cassandra-client.json`, `resources/data/content/pt-BR/databases/cassandra-client.json`, `resources/data/content/vi/databases/cassandra-client.json`, `resources/data/content/zh-Hans/databases/cassandra-client.json`, `resources/data/content/zh-Hant/databases/cassandra-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-cassandra-table-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4137,8 +5497,28 @@ short enough to fit in 343 pt once laid out on three lines.
 
 - Placeholder text (en): A Cassandra table opened from the sidebar, with a scalar cell being edited.
 - Placeholder text (vi): Một table Cassandra mở từ sidebar, với một ô thuộc cột scalar đang được sửa.
+- Placeholder text (es): Tabla Cassandra abierta desde la barra lateral, con una celda escalar en edición.
+- Placeholder text (de): Cassandra-Tabelle aus der Seitenleiste geöffnet, mit einer bearbeiteten skalaren Zelle.
+- Placeholder text (fr): Table Cassandra ouverte depuis la barre latérale, avec une cellule scalaire en cours de modification.
+- Placeholder text (ja): サイドバーから開いた Cassandra テーブル。スカラー値のセルを編集中です。
+- Placeholder text (pt-BR): Uma tabela Cassandra aberta da barra lateral, com uma célula escalar sendo editada.
+- Placeholder text (zh-Hans): 从侧边栏打开 Cassandra 表，正在编辑一个标量单元格。
+- Placeholder text (ko): 사이드바에서 연 Cassandra 테이블. 스칼라 셀을 편집 중입니다.
+- Placeholder text (zh-Hant): 從側邊欄開啟 Cassandra 資料表，正在編輯一個純量儲存格。
+- Placeholder text (it): Una tabella Cassandra aperta dalla barra laterale, con una cella scalare in modifica.
+- Placeholder text (id): Tabel Cassandra dibuka dari sidebar, dengan sel skalar sedang diedit.
 - Proposed alt text (en): A Cassandra table opened from the sidebar in the data grid, with a changed status value marked as pending until it is saved and a set column shown as a collection.
 - Proposed alt text (vi): Một table Cassandra mở từ sidebar trong data grid, một giá trị status vừa sửa được đánh dấu đang chờ cho tới khi lưu, và một cột set hiển thị dưới dạng collection.
+- Proposed alt text (es): Tabla Cassandra abierta desde la barra lateral en la cuadrícula, con un valor status modificado pendiente de guardar y una columna set mostrada como colección.
+- Proposed alt text (de): Cassandra-Tabelle aus der Seitenleiste in der Datentabelle geöffnet, mit einem bis zum Speichern als ausstehend markierten geänderten status-Wert und einer als Sammlung gezeigten set-Spalte.
+- Proposed alt text (fr): Table Cassandra ouverte depuis la barre latérale dans la grille, avec une valeur status modifiée marquée en attente jusqu’à l’enregistrement et une colonne set affichée comme collection.
+- Proposed alt text (ja): サイドバーからデータグリッドに開いた Cassandra テーブル。変更した status 値は保存まで保留中と示され、set 列はコレクションとして表示されています。
+- Proposed alt text (pt-BR): Uma tabela Cassandra aberta da barra lateral na grade de dados, com um valor de status alterado marcado como pendente até ser salvo e uma coluna set mostrada como coleção.
+- Proposed alt text (zh-Hans): Cassandra 表从侧边栏打开到数据网格，修改后的 status 值在保存前标记为待处理，一个 set 列显示为集合。
+- Proposed alt text (ko): 사이드바에서 데이터 그리드로 연 Cassandra 테이블. 변경된 status 값은 저장 전까지 보류로 표시되고 set 열은 컬렉션으로 표시됩니다.
+- Proposed alt text (zh-Hant): Cassandra 資料表從側邊欄開啟至資料網格，修改後的 status 值在儲存前標記為待處理，一個 set 欄位顯示為集合。
+- Proposed alt text (it): Una tabella Cassandra aperta dalla barra laterale nella griglia dati, con un valore status modificato contrassegnato in attesa fino al salvataggio e una colonna set mostrata come collezione.
+- Proposed alt text (id): Tabel Cassandra dibuka dari sidebar dalam grid data, dengan nilai status yang diubah ditandai tertunda hingga disimpan dan kolom set ditampilkan sebagai koleksi.
 
 **Purpose**
 
@@ -4189,7 +5569,7 @@ alt text is final.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/cassandra-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/cassandra-client.json`, `resources/data/content/vi/databases/cassandra-client.json`) (through the `mac-db-cassandra-table` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/cassandra-client.json`, `resources/data/content/en/databases/cassandra-client.json`, `resources/data/content/es/databases/cassandra-client.json`, `resources/data/content/fr/databases/cassandra-client.json`, `resources/data/content/id/databases/cassandra-client.json`, `resources/data/content/it/databases/cassandra-client.json`, `resources/data/content/ja/databases/cassandra-client.json`, `resources/data/content/ko/databases/cassandra-client.json`, `resources/data/content/pt-BR/databases/cassandra-client.json`, `resources/data/content/vi/databases/cassandra-client.json`, `resources/data/content/zh-Hans/databases/cassandra-client.json`, `resources/data/content/zh-Hant/databases/cassandra-client.json`) (through the `mac-db-cassandra-table` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -4199,8 +5579,28 @@ alt text is final.
 
 - Placeholder text (en): Close-up of the status cell being edited, beside the tags set column.
 - Placeholder text (vi): Cận cảnh ô status đang được sửa, cạnh cột tags kiểu set.
+- Placeholder text (es): Detalle de la celda status en edición, junto a la columna set tags.
+- Placeholder text (de): Detailansicht der bearbeiteten status-Zelle neben der set-Spalte tags.
+- Placeholder text (fr): Gros plan de la cellule status en cours de modification, à côté de la colonne set tags.
+- Placeholder text (ja): 編集中の status セルの拡大図。隣には set 型の tags 列があります。
+- Placeholder text (pt-BR): Detalhe da célula status em edição, ao lado da coluna de conjunto tags.
+- Placeholder text (zh-Hans): 正在编辑的 status 单元格局部图，旁边是 tags 集合列。
+- Placeholder text (ko): 편집 중인 status 셀의 확대 화면. 옆에는 set 타입의 tags 열이 있습니다.
+- Placeholder text (zh-Hant): 正在編輯的 status 儲存格局部圖，旁邊是 tags 集合欄位。
+- Placeholder text (it): Dettaglio della cella status in modifica, accanto alla colonna set tags.
+- Placeholder text (id): Tampilan dekat sel status yang sedang diedit, di samping kolom set tags.
 - Proposed alt text (en): Close-up of Cassandra rows in the data grid, one status cell changed to shipped and marked as pending, beside the tags column showing a set.
 - Proposed alt text (vi): Cận cảnh các dòng Cassandra trong data grid, một ô status đã đổi thành shipped và được đánh dấu đang chờ lưu, cạnh cột tags hiển thị một set.
+- Proposed alt text (es): Detalle de filas Cassandra en la cuadrícula, con una celda status cambiada a shipped y marcada pendiente, junto a tags que muestra un set.
+- Proposed alt text (de): Detailansicht von Cassandra-Zeilen in der Datentabelle: eine zu shipped geänderte, als ausstehend markierte status-Zelle neben der Spalte tags mit einem set.
+- Proposed alt text (fr): Gros plan des lignes Cassandra dans la grille, une cellule status modifiée en shipped et marquée en attente, à côté de la colonne tags affichant un set.
+- Proposed alt text (ja): データグリッドの Cassandra の行の拡大図。status セルが shipped に変更されて保留中と示され、隣の tags 列に set が表示されています。
+- Proposed alt text (pt-BR): Detalhe de linhas Cassandra na grade de dados, uma célula status alterada para shipped e marcada como pendente, ao lado da coluna tags mostrando um set.
+- Proposed alt text (zh-Hans): Cassandra 数据网格的行局部图，一个 status 单元格改为 shipped 并标记为待处理，旁边的 tags 列显示一个 set。
+- Proposed alt text (ko): 데이터 그리드의 Cassandra 행의 확대 화면. status 셀 하나가 shipped로 변경되어 보류로 표시되고, 옆의 tags 열은 set을 표시합니다.
+- Proposed alt text (zh-Hant): Cassandra 資料網格的資料列局部圖，一個 status 儲存格改為 shipped 並標記為待處理，旁邊的 tags 欄位顯示一個 set。
+- Proposed alt text (it): Dettaglio di righe Cassandra nella griglia dati, una cella status modificata in shipped e contrassegnata in attesa, accanto alla colonna tags che mostra un set.
+- Proposed alt text (id): Tampilan dekat baris Cassandra dalam grid data, satu sel status diubah menjadi shipped dan ditandai tertunda, di samping kolom tags yang menampilkan set.
 
 **Purpose**
 
@@ -4247,7 +5647,7 @@ and `tags` columns must sit next to each other within 343 pt.
 |---|---|
 | Type | detail (`detail`) · **P2** · placeholder |
 | Used on | `/redshift-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/redshift-client.json`, `resources/data/content/vi/databases/redshift-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/redshift-client.json`, `resources/data/content/en/databases/redshift-client.json`, `resources/data/content/es/databases/redshift-client.json`, `resources/data/content/fr/databases/redshift-client.json`, `resources/data/content/id/databases/redshift-client.json`, `resources/data/content/it/databases/redshift-client.json`, `resources/data/content/ja/databases/redshift-client.json`, `resources/data/content/ko/databases/redshift-client.json`, `resources/data/content/pt-BR/databases/redshift-client.json`, `resources/data/content/vi/databases/redshift-client.json`, `resources/data/content/zh-Hans/databases/redshift-client.json`, `resources/data/content/zh-Hant/databases/redshift-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-redshift-ddl-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4258,8 +5658,28 @@ and `tags` columns must sit next to each other within 343 pt.
 
 - Placeholder text (en): A Redshift table's DDL with DISTKEY and SORTKEY; the structure is read-only.
 - Placeholder text (vi): DDL của một table Redshift với DISTKEY và SORTKEY; tab Structure ở chế độ chỉ đọc.
+- Placeholder text (es): DDL de una tabla Redshift con DISTKEY y SORTKEY; la estructura es de solo lectura.
+- Placeholder text (de): DDL einer Redshift-Tabelle mit DISTKEY und SORTKEY; die Struktur ist schreibgeschützt.
+- Placeholder text (fr): DDL d’une table Redshift avec DISTKEY et SORTKEY ; structure en lecture seule.
+- Placeholder text (ja): DISTKEY と SORTKEY を含む Redshift テーブルの DDL。構造は読み取り専用です。
+- Placeholder text (pt-BR): O DDL de uma tabela Redshift com DISTKEY e SORTKEY; a estrutura é somente leitura.
+- Placeholder text (zh-Hans): Redshift 表的 DDL，包含 DISTKEY 和 SORTKEY；结构为只读。
+- Placeholder text (ko): DISTKEY와 SORTKEY가 있는 Redshift 테이블의 DDL. 구조는 읽기 전용입니다.
+- Placeholder text (zh-Hant): Redshift 資料表的 DDL，包含 DISTKEY 和 SORTKEY；結構為唯讀。
+- Placeholder text (it): Il DDL di una tabella Redshift con DISTKEY e SORTKEY; la struttura è in sola lettura.
+- Placeholder text (id): DDL tabel Redshift dengan DISTKEY dan SORTKEY; strukturnya hanya baca.
 - Proposed alt text (en): The DDL of an Amazon Redshift table showing its DISTKEY and SORTKEY.
 - Proposed alt text (vi): DDL của một table Amazon Redshift, hiển thị DISTKEY và SORTKEY.
+- Proposed alt text (es): DDL de una tabla Amazon Redshift que muestra DISTKEY y SORTKEY.
+- Proposed alt text (de): DDL einer Amazon-Redshift-Tabelle mit DISTKEY und SORTKEY.
+- Proposed alt text (fr): DDL d’une table Amazon Redshift montrant DISTKEY et SORTKEY.
+- Proposed alt text (ja): DISTKEY と SORTKEY を表示する Amazon Redshift テーブルの DDL。
+- Proposed alt text (pt-BR): O DDL de uma tabela Amazon Redshift mostrando DISTKEY e SORTKEY.
+- Proposed alt text (zh-Hans): Amazon Redshift 表的 DDL，显示 DISTKEY 和 SORTKEY。
+- Proposed alt text (ko): DISTKEY와 SORTKEY를 보여 주는 Amazon Redshift 테이블의 DDL.
+- Proposed alt text (zh-Hant): Amazon Redshift 資料表的 DDL，顯示 DISTKEY 和 SORTKEY。
+- Proposed alt text (it): Il DDL di una tabella Amazon Redshift che mostra DISTKEY e SORTKEY.
+- Proposed alt text (id): DDL tabel Amazon Redshift menampilkan DISTKEY dan SORTKEY.
 
 **Purpose**
 
@@ -4310,7 +5730,7 @@ types.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · placeholder |
 | Used on | `/redshift-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/redshift-client.json`, `resources/data/content/vi/databases/redshift-client.json`) (through the `mac-db-redshift-ddl` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/redshift-client.json`, `resources/data/content/en/databases/redshift-client.json`, `resources/data/content/es/databases/redshift-client.json`, `resources/data/content/fr/databases/redshift-client.json`, `resources/data/content/id/databases/redshift-client.json`, `resources/data/content/it/databases/redshift-client.json`, `resources/data/content/ja/databases/redshift-client.json`, `resources/data/content/ko/databases/redshift-client.json`, `resources/data/content/pt-BR/databases/redshift-client.json`, `resources/data/content/vi/databases/redshift-client.json`, `resources/data/content/zh-Hans/databases/redshift-client.json`, `resources/data/content/zh-Hant/databases/redshift-client.json`) (through the `mac-db-redshift-ddl` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -4320,8 +5740,28 @@ types.
 
 - Placeholder text (en): Close-up of the DISTKEY and SORTKEY lines in the table's DDL.
 - Placeholder text (vi): Cận cảnh các dòng DISTKEY và SORTKEY trong DDL của table.
+- Placeholder text (es): Detalle de las líneas DISTKEY y SORTKEY del DDL de la tabla.
+- Placeholder text (de): Detailansicht der DISTKEY- und SORTKEY-Zeilen im Tabellen-DDL.
+- Placeholder text (fr): Gros plan des lignes DISTKEY et SORTKEY du DDL de la table.
+- Placeholder text (ja): テーブルの DDL の DISTKEY と SORTKEY の行の拡大図。
+- Placeholder text (pt-BR): Detalhe das linhas DISTKEY e SORTKEY no DDL da tabela.
+- Placeholder text (zh-Hans): 表的 DDL 中 DISTKEY 和 SORTKEY 行的局部图。
+- Placeholder text (ko): 테이블 DDL의 DISTKEY와 SORTKEY 줄의 확대 화면입니다.
+- Placeholder text (zh-Hant): 資料表 DDL 中 DISTKEY 和 SORTKEY 指令行的局部圖。
+- Placeholder text (it): Dettaglio delle righe DISTKEY e SORTKEY nel DDL della tabella.
+- Placeholder text (id): Tampilan dekat baris DISTKEY dan SORTKEY dalam DDL tabel.
 - Proposed alt text (en): Close-up of an Amazon Redshift CREATE TABLE statement with its DISTSTYLE, DISTKEY and SORTKEY lines.
 - Proposed alt text (vi): Cận cảnh câu CREATE TABLE của Amazon Redshift với các dòng DISTSTYLE, DISTKEY và SORTKEY.
+- Proposed alt text (es): Detalle de una instrucción CREATE TABLE de Amazon Redshift con sus líneas DISTSTYLE, DISTKEY y SORTKEY.
+- Proposed alt text (de): Detailansicht einer Amazon-Redshift-Anweisung CREATE TABLE mit den Zeilen DISTSTYLE, DISTKEY und SORTKEY.
+- Proposed alt text (fr): Gros plan d’une instruction CREATE TABLE Amazon Redshift avec ses lignes DISTSTYLE, DISTKEY et SORTKEY.
+- Proposed alt text (ja): DISTSTYLE、DISTKEY、SORTKEY の行を表示する Amazon Redshift の CREATE TABLE 文の拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma instrução CREATE TABLE do Amazon Redshift com suas linhas DISTSTYLE, DISTKEY e SORTKEY.
+- Proposed alt text (zh-Hans): Amazon Redshift CREATE TABLE 语句的局部图，显示 DISTSTYLE、DISTKEY 和 SORTKEY 行。
+- Proposed alt text (ko): DISTSTYLE, DISTKEY, SORTKEY 줄이 있는 Amazon Redshift CREATE TABLE 문의 확대 화면.
+- Proposed alt text (zh-Hant): Amazon Redshift CREATE TABLE 陳述式的局部圖，顯示 DISTSTYLE、DISTKEY 和 SORTKEY 指令行。
+- Proposed alt text (it): Dettaglio di un’istruzione CREATE TABLE Amazon Redshift con le righe DISTSTYLE, DISTKEY e SORTKEY.
+- Proposed alt text (id): Tampilan dekat pernyataan CREATE TABLE Amazon Redshift dengan baris DISTSTYLE, DISTKEY, dan SORTKEY.
 
 **Purpose**
 
@@ -4368,7 +5808,7 @@ must follow the column list closely enough to fit in 429 pt with one `ENCODE` li
 |---|---|
 | Type | detail (`detail`) · **P2** · placeholder |
 | Used on | `/cloudflare-d1-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/cloudflare-d1-client.json`, `resources/data/content/vi/databases/cloudflare-d1-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/cloudflare-d1-client.json`, `resources/data/content/en/databases/cloudflare-d1-client.json`, `resources/data/content/es/databases/cloudflare-d1-client.json`, `resources/data/content/fr/databases/cloudflare-d1-client.json`, `resources/data/content/id/databases/cloudflare-d1-client.json`, `resources/data/content/it/databases/cloudflare-d1-client.json`, `resources/data/content/ja/databases/cloudflare-d1-client.json`, `resources/data/content/ko/databases/cloudflare-d1-client.json`, `resources/data/content/pt-BR/databases/cloudflare-d1-client.json`, `resources/data/content/vi/databases/cloudflare-d1-client.json`, `resources/data/content/zh-Hans/databases/cloudflare-d1-client.json`, `resources/data/content/zh-Hant/databases/cloudflare-d1-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-d1-databases-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4379,8 +5819,28 @@ must follow the column list closely enough to fit in 429 pt with one `ENCODE` li
 
 - Placeholder text (en): The database switcher listing the account's D1 databases, over a query on one of them.
 - Placeholder text (vi): Bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản, mở phía trên một query trên một trong số đó.
+- Placeholder text (es): Selector de bases de datos con las bases D1 de la cuenta sobre una consulta en una de ellas.
+- Placeholder text (de): Datenbankauswahl mit den D1-Datenbanken des Kontos über einer Abfrage auf eine davon.
+- Placeholder text (fr): Sélecteur de bases listant les bases D1 du compte, au-dessus d’une requête sur l’une d’elles.
+- Placeholder text (ja): アカウントの D1 データベースを一覧表示する切り替えメニュー。一つのデータベースのクエリの上に開いています。
+- Placeholder text (pt-BR): O seletor de bancos listando os bancos D1 da conta, sobre uma consulta a um deles.
+- Placeholder text (zh-Hans): 数据库切换器列出该账户的 D1 数据库，下方是其中一个数据库的查询。
+- Placeholder text (ko): 계정의 D1 데이터베이스를 나열하는 전환기. 그중 한 데이터베이스의 쿼리 위에 열려 있습니다.
+- Placeholder text (zh-Hant): 資料庫切換器列出該帳戶的 D1 資料庫，下方是其中一個資料庫的查詢。
+- Placeholder text (it): Il selettore di database che elenca i database D1 dell’account, sopra una query su uno di essi.
+- Placeholder text (id): Pemilih database mencantumkan database D1 akun, di atas kueri pada salah satunya.
 - Proposed alt text (en): The database switcher listing the Cloudflare D1 databases of one account, open over a query tab on the chinook database.
 - Proposed alt text (vi): Bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu Cloudflare D1 của một tài khoản, mở phía trên tab query của cơ sở dữ liệu chinook.
+- Proposed alt text (es): Selector de bases de datos con las bases Cloudflare D1 de una cuenta, abierto sobre una pestaña de consulta de chinook.
+- Proposed alt text (de): Datenbankauswahl mit den Cloudflare-D1-Datenbanken eines Kontos, geöffnet über einem Abfrage-Tab der Datenbank chinook.
+- Proposed alt text (fr): Sélecteur de bases listant les bases Cloudflare D1 d’un compte, ouvert au-dessus d’un onglet de requête sur chinook.
+- Proposed alt text (ja): 一つのアカウントの Cloudflare D1 データベースを一覧表示するデータベース切り替えメニュー。chinook データベースのクエリタブの上に開いています。
+- Proposed alt text (pt-BR): O seletor de bancos listando os bancos Cloudflare D1 de uma conta, aberto sobre uma aba de consulta ao banco chinook.
+- Proposed alt text (zh-Hans): 数据库切换器在 chinook 数据库的查询标签页上方，列出某个账户的 Cloudflare D1 数据库。
+- Proposed alt text (ko): 한 계정의 Cloudflare D1 데이터베이스를 나열하는 데이터베이스 전환기. chinook 데이터베이스의 쿼리 탭 위에 열려 있습니다.
+- Proposed alt text (zh-Hant): 資料庫切換器在 chinook 資料庫的查詢分頁上方，列出某個帳戶的 Cloudflare D1 資料庫。
+- Proposed alt text (it): Il selettore di database che elenca i database Cloudflare D1 di un account, aperto sopra una scheda di query sul database chinook.
+- Proposed alt text (id): Pemilih database mencantumkan database Cloudflare D1 dari satu akun, terbuka di atas tab kueri pada database chinook.
 
 **Purpose**
 
@@ -4430,7 +5890,7 @@ description and alt text assume both.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · placeholder |
 | Used on | `/cloudflare-d1-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/cloudflare-d1-client.json`, `resources/data/content/vi/databases/cloudflare-d1-client.json`) (through the `mac-db-d1-databases` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/cloudflare-d1-client.json`, `resources/data/content/en/databases/cloudflare-d1-client.json`, `resources/data/content/es/databases/cloudflare-d1-client.json`, `resources/data/content/fr/databases/cloudflare-d1-client.json`, `resources/data/content/id/databases/cloudflare-d1-client.json`, `resources/data/content/it/databases/cloudflare-d1-client.json`, `resources/data/content/ja/databases/cloudflare-d1-client.json`, `resources/data/content/ko/databases/cloudflare-d1-client.json`, `resources/data/content/pt-BR/databases/cloudflare-d1-client.json`, `resources/data/content/vi/databases/cloudflare-d1-client.json`, `resources/data/content/zh-Hans/databases/cloudflare-d1-client.json`, `resources/data/content/zh-Hant/databases/cloudflare-d1-client.json`) (through the `mac-db-d1-databases` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -4440,8 +5900,28 @@ description and alt text assume both.
 
 - Placeholder text (en): Close-up of the database switcher listing the account's D1 databases.
 - Placeholder text (vi): Cận cảnh bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu D1 của tài khoản.
+- Placeholder text (es): Detalle del selector con las bases D1 de la cuenta.
+- Placeholder text (de): Detailansicht der Datenbankauswahl mit den D1-Datenbanken des Kontos.
+- Placeholder text (fr): Gros plan du sélecteur de bases listant les bases D1 du compte.
+- Placeholder text (ja): アカウントの D1 データベースを一覧表示する切り替えメニューの拡大図。
+- Placeholder text (pt-BR): Detalhe do seletor de bancos listando os bancos D1 da conta.
+- Placeholder text (zh-Hans): 数据库切换器局部图，列出该账户的 D1 数据库。
+- Placeholder text (ko): 계정의 D1 데이터베이스를 나열하는 데이터베이스 전환기의 확대 화면입니다.
+- Placeholder text (zh-Hant): 資料庫切換器局部圖，列出該帳戶的 D1 資料庫。
+- Placeholder text (it): Dettaglio del selettore di database che elenca i database D1 dell’account.
+- Placeholder text (id): Tampilan dekat pemilih database yang mencantumkan database D1 akun.
 - Proposed alt text (en): Close-up of the database switcher listing the Cloudflare D1 databases of an account, with chinook marked as current.
 - Proposed alt text (vi): Cận cảnh bộ chuyển cơ sở dữ liệu liệt kê các cơ sở dữ liệu Cloudflare D1 của một tài khoản, chinook được đánh dấu là cơ sở dữ liệu đang dùng.
+- Proposed alt text (es): Detalle del selector de bases Cloudflare D1 de una cuenta, con chinook marcada como actual.
+- Proposed alt text (de): Detailansicht der Datenbankauswahl eines Cloudflare-D1-Kontos, chinook als aktuell markiert.
+- Proposed alt text (fr): Gros plan du sélecteur des bases Cloudflare D1 d’un compte, avec chinook marquée comme actuelle.
+- Proposed alt text (ja): アカウントの Cloudflare D1 データベースを一覧表示する切り替えメニューの拡大図。chinook が現在のデータベースと示されています。
+- Proposed alt text (pt-BR): Detalhe do seletor de bancos listando os bancos Cloudflare D1 de uma conta, com chinook marcado como atual.
+- Proposed alt text (zh-Hans): 数据库切换器的局部图，列出某个账户的 Cloudflare D1 数据库，并将 chinook 标记为当前数据库。
+- Proposed alt text (ko): 계정의 Cloudflare D1 데이터베이스를 나열하는 전환기의 확대 화면. chinook이 현재 데이터베이스로 표시됩니다.
+- Proposed alt text (zh-Hant): 資料庫切換器的局部圖，列出某個帳戶的 Cloudflare D1 資料庫，並將 chinook 標記為目前資料庫。
+- Proposed alt text (it): Dettaglio del selettore di database che elenca i database Cloudflare D1 di un account, con chinook contrassegnato come corrente.
+- Proposed alt text (id): Tampilan dekat pemilih database yang mencantumkan database Cloudflare D1 suatu akun, dengan chinook ditandai sebagai saat ini.
 
 **Purpose**
 
@@ -4487,7 +5967,7 @@ switcher is narrower than 343 pt.
 |---|---|
 | Type | detail (`detail`) · **P2** · placeholder |
 | Used on | `/turso-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/turso-client.json`, `resources/data/content/vi/databases/turso-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/turso-client.json`, `resources/data/content/en/databases/turso-client.json`, `resources/data/content/es/databases/turso-client.json`, `resources/data/content/fr/databases/turso-client.json`, `resources/data/content/id/databases/turso-client.json`, `resources/data/content/it/databases/turso-client.json`, `resources/data/content/ja/databases/turso-client.json`, `resources/data/content/ko/databases/turso-client.json`, `resources/data/content/pt-BR/databases/turso-client.json`, `resources/data/content/vi/databases/turso-client.json`, `resources/data/content/zh-Hans/databases/turso-client.json`, `resources/data/content/zh-Hant/databases/turso-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-turso-remote-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4498,8 +5978,28 @@ switcher is narrower than 343 pt.
 
 - Placeholder text (en): A remote Turso database: tables in the sidebar and a query result.
 - Placeholder text (vi): Một cơ sở dữ liệu Turso từ xa: các table trong sidebar và kết quả query.
+- Placeholder text (es): Base Turso remota: tablas en la barra lateral y resultado de consulta.
+- Placeholder text (de): Entfernte Turso-Datenbank: Tabellen in der Seitenleiste und Abfrageergebnis.
+- Placeholder text (fr): Base Turso distante : tables dans la barre latérale et résultat de requête.
+- Placeholder text (ja): リモートの Turso データベース。サイドバーのテーブルとクエリ結果。
+- Placeholder text (pt-BR): Um banco Turso remoto: tabelas na barra lateral e um resultado de consulta.
+- Placeholder text (zh-Hans): 远程 Turso 数据库：侧边栏显示表，并展示查询结果。
+- Placeholder text (ko): 원격 Turso 데이터베이스. 사이드바의 테이블과 쿼리 결과입니다.
+- Placeholder text (zh-Hant): 遠端 Turso 資料庫：側邊欄顯示資料表，並呈現查詢結果。
+- Placeholder text (it): Un database Turso remoto: tabelle nella barra laterale e un risultato di query.
+- Placeholder text (id): Database Turso jarak jauh: tabel dalam sidebar dan hasil kueri.
 - Proposed alt text (en): A remote Turso database open in TablePro, its tables in the sidebar and a query result in the grid.
 - Proposed alt text (vi): Một cơ sở dữ liệu Turso từ xa mở trong TablePro, các table ở sidebar và kết quả query trong data grid.
+- Proposed alt text (es): Base Turso remota abierta en TablePro, con sus tablas en la barra lateral y un resultado de consulta en la cuadrícula.
+- Proposed alt text (de): Entfernte Turso-Datenbank in TablePro geöffnet, mit Tabellen in der Seitenleiste und einem Abfrageergebnis in der Datentabelle.
+- Proposed alt text (fr): Base Turso distante ouverte dans TablePro, ses tables dans la barre latérale et un résultat de requête dans la grille.
+- Proposed alt text (ja): TablePro で開いたリモートの Turso データベース。サイドバーにテーブル、グリッドにクエリ結果が表示されています。
+- Proposed alt text (pt-BR): Um banco Turso remoto aberto no TablePro, suas tabelas na barra lateral e um resultado de consulta na grade.
+- Proposed alt text (zh-Hans): 远程 Turso 数据库在 TablePro 中打开，侧边栏显示表，数据网格显示查询结果。
+- Proposed alt text (ko): TablePro에서 열린 원격 Turso 데이터베이스. 사이드바에 테이블, 그리드에 쿼리 결과가 표시됩니다.
+- Proposed alt text (zh-Hant): 遠端 Turso 資料庫在 TablePro 中開啟，側邊欄顯示資料表，資料網格顯示查詢結果。
+- Proposed alt text (it): Un database Turso remoto aperto in TablePro, con le tabelle nella barra laterale e un risultato di query nella griglia.
+- Proposed alt text (id): Database Turso jarak jauh terbuka dalam TablePro, tabelnya dalam sidebar dan hasil kueri dalam grid.
 
 **Purpose**
 
@@ -4546,7 +6046,7 @@ None beyond a sandbox Turso account. Do not substitute a local libSQL file: the 
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · placeholder |
 | Used on | `/turso-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/turso-client.json`, `resources/data/content/vi/databases/turso-client.json`) (through the `mac-db-turso-remote` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/turso-client.json`, `resources/data/content/en/databases/turso-client.json`, `resources/data/content/es/databases/turso-client.json`, `resources/data/content/fr/databases/turso-client.json`, `resources/data/content/id/databases/turso-client.json`, `resources/data/content/it/databases/turso-client.json`, `resources/data/content/ja/databases/turso-client.json`, `resources/data/content/ko/databases/turso-client.json`, `resources/data/content/pt-BR/databases/turso-client.json`, `resources/data/content/vi/databases/turso-client.json`, `resources/data/content/zh-Hans/databases/turso-client.json`, `resources/data/content/zh-Hant/databases/turso-client.json`) (through the `mac-db-turso-remote` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -4556,8 +6056,28 @@ None beyond a sandbox Turso account. Do not substitute a local libSQL file: the 
 
 - Placeholder text (en): Close-up of the query on the remote Turso database and its first rows.
 - Placeholder text (vi): Cận cảnh query trên cơ sở dữ liệu Turso từ xa và các dòng kết quả đầu tiên.
+- Placeholder text (es): Detalle de la consulta en la base Turso remota y sus primeras filas.
+- Placeholder text (de): Detailansicht der Abfrage auf die entfernte Turso-Datenbank und ihrer ersten Zeilen.
+- Placeholder text (fr): Gros plan de la requête sur la base Turso distante et de ses premières lignes.
+- Placeholder text (ja): リモートの Turso データベースへのクエリと、最初の結果行の拡大図。
+- Placeholder text (pt-BR): Detalhe da consulta ao banco Turso remoto e suas primeiras linhas.
+- Placeholder text (zh-Hans): 远程 Turso 数据库上的查询及其前几行结果的局部图。
+- Placeholder text (ko): 원격 Turso 데이터베이스의 쿼리와 결과의 첫 행들의 확대 화면입니다.
+- Placeholder text (zh-Hant): 遠端 Turso 資料庫上的查詢及其前幾列結果的局部圖。
+- Placeholder text (it): Dettaglio della query sul database Turso remoto e delle prime righe.
+- Placeholder text (id): Tampilan dekat kueri pada database Turso jarak jauh dan baris awalnya.
 - Proposed alt text (en): Close-up of a query joining Album and Artist on a remote Turso database, with the first result rows.
 - Proposed alt text (vi): Cận cảnh một query join Album và Artist trên cơ sở dữ liệu Turso từ xa, kèm các dòng kết quả đầu tiên.
+- Proposed alt text (es): Detalle de una consulta que une Album y Artist en una base Turso remota, con las primeras filas de resultados.
+- Proposed alt text (de): Detailansicht einer Abfrage, die Album und Artist in einer entfernten Turso-Datenbank verknüpft, mit den ersten Ergebniszeilen.
+- Proposed alt text (fr): Gros plan d’une requête joignant Album et Artist sur une base Turso distante, avec les premières lignes de résultat.
+- Proposed alt text (ja): リモートの Turso データベースで Album と Artist を結合するクエリと、結果の最初の数行の拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma consulta que une Album e Artist em um banco Turso remoto, com as primeiras linhas do resultado.
+- Proposed alt text (zh-Hans): 远程 Turso 数据库上连接 Album 和 Artist 的查询局部图，显示结果的前几行。
+- Proposed alt text (ko): 원격 Turso 데이터베이스에서 Album과 Artist를 조인하는 쿼리와 결과의 첫 행들의 확대 화면.
+- Proposed alt text (zh-Hant): 遠端 Turso 資料庫上聯結 Album 和 Artist 的查詢局部圖，顯示結果的前幾列。
+- Proposed alt text (it): Dettaglio di una query che unisce Album e Artist su un database Turso remoto, con le prime righe del risultato.
+- Proposed alt text (id): Tampilan dekat kueri yang menggabungkan Album dan Artist pada database Turso jarak jauh, dengan baris awal hasilnya.
 
 **Purpose**
 
@@ -4605,7 +6125,7 @@ on two or three lines so it fits in 343 pt.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/dynamodb-gui` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/dynamodb-gui.json`, `resources/data/content/vi/databases/dynamodb-gui.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/dynamodb-gui.json`, `resources/data/content/en/databases/dynamodb-gui.json`, `resources/data/content/es/databases/dynamodb-gui.json`, `resources/data/content/fr/databases/dynamodb-gui.json`, `resources/data/content/id/databases/dynamodb-gui.json`, `resources/data/content/it/databases/dynamodb-gui.json`, `resources/data/content/ja/databases/dynamodb-gui.json`, `resources/data/content/ko/databases/dynamodb-gui.json`, `resources/data/content/pt-BR/databases/dynamodb-gui.json`, `resources/data/content/vi/databases/dynamodb-gui.json`, `resources/data/content/zh-Hans/databases/dynamodb-gui.json`, `resources/data/content/zh-Hant/databases/dynamodb-gui.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-dynamodb-planner-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4616,8 +6136,28 @@ on two or three lines so it fits in 343 pt.
 
 - Placeholder text (en): The DynamoDB planner running a filter as a Query on an index, with the read capacity units it consumed.
 - Placeholder text (vi): Planner của DynamoDB chạy bộ lọc dưới dạng Query trên một index, kèm số read capacity unit đã dùng.
+- Placeholder text (es): Planificador DynamoDB que ejecuta un filtro como Query sobre un índice, con las unidades de capacidad de lectura consumidas.
+- Placeholder text (de): DynamoDB-Planer, der einen Filter als Query auf einem Index ausführt, mit den verbrauchten Lesekapazitätseinheiten.
+- Placeholder text (fr): Planificateur DynamoDB exécutant un filtre comme Query sur un index, avec les unités de capacité de lecture consommées.
+- Placeholder text (ja): DynamoDB プランナーがフィルタをインデックスへの Query として実行し、消費した読み取りキャパシティーユニットを表示しています。
+- Placeholder text (pt-BR): O planejador DynamoDB executando um filtro como Query em um índice, com as unidades de capacidade de leitura consumidas.
+- Placeholder text (zh-Hans): DynamoDB 规划器将筛选作为索引上的 Query 执行，并显示消耗的读取容量单位。
+- Placeholder text (ko): DynamoDB 플래너가 필터를 인덱스의 Query로 실행하고 사용한 읽기 용량 단위를 표시합니다.
+- Placeholder text (zh-Hant): DynamoDB 規劃器將篩選作為索引上的 Query 執行，並顯示消耗的讀取容量單位。
+- Placeholder text (it): Il pianificatore DynamoDB esegue un filtro come Query su un indice, con le unità di capacità di lettura consumate.
+- Placeholder text (id): Perencana DynamoDB menjalankan filter sebagai Query pada indeks, beserta unit kapasitas baca yang digunakan.
 - Proposed alt text (en): A filtered DynamoDB read, with the status bar showing a Query on the byStatus index, 44 items returned and 1 read capacity unit consumed.
 - Proposed alt text (vi): Một lần đọc DynamoDB có lọc, thanh trạng thái hiển thị Query trên index byStatus, 44 item trả về và 1 read capacity unit đã dùng.
+- Proposed alt text (es): Lectura DynamoDB filtrada, con la barra de estado que indica Query sobre el índice byStatus, 44 elementos devueltos y 1 unidad de capacidad de lectura consumida.
+- Proposed alt text (de): Gefilterter DynamoDB-Lesezugriff mit Statusleiste: Query auf dem Index byStatus, 44 zurückgegebene Elemente und 1 verbrauchte Lesekapazitätseinheit.
+- Proposed alt text (fr): Lecture DynamoDB filtrée, avec barre d’état indiquant Query sur l’index byStatus, 44 éléments renvoyés et 1 unité de capacité de lecture consommée.
+- Proposed alt text (ja): フィルタ付きの DynamoDB の読み取り。ステータスバーは byStatus インデックスでの Query、返された 44 項目、消費した 1 読み取りキャパシティーユニットを示しています。
+- Proposed alt text (pt-BR): Uma leitura DynamoDB filtrada, com a barra de status mostrando uma Query no índice byStatus, 44 itens retornados e 1 unidade de capacidade de leitura consumida.
+- Proposed alt text (zh-Hans): DynamoDB 的筛选读取，状态栏显示在 byStatus 索引上执行 Query，返回 44 个项目，消耗 1 个读取容量单位。
+- Proposed alt text (ko): 필터링된 DynamoDB 읽기. 상태 표시줄에 byStatus 인덱스의 Query, 반환된 항목 44개, 사용한 읽기 용량 단위 1개가 표시됩니다.
+- Proposed alt text (zh-Hant): DynamoDB 的篩選讀取，狀態列顯示在 byStatus 索引上執行 Query，傳回 44 個項目，消耗 1 個讀取容量單位。
+- Proposed alt text (it): Una lettura DynamoDB filtrata, con la barra di stato che mostra una Query sull’indice byStatus, 44 elementi restituiti e 1 unità di capacità di lettura consumata.
+- Proposed alt text (id): Pembacaan DynamoDB terfilter, dengan bilah status menunjukkan Query pada indeks byStatus, 44 item dikembalikan, dan 1 unit kapasitas baca digunakan.
 
 **Purpose**
 
@@ -4668,7 +6208,7 @@ capture the same table in a sandbox AWS account instead, with no account ID in t
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/dynamodb-gui` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/dynamodb-gui.json`, `resources/data/content/vi/databases/dynamodb-gui.json`) (through the `mac-db-dynamodb-planner` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/dynamodb-gui.json`, `resources/data/content/en/databases/dynamodb-gui.json`, `resources/data/content/es/databases/dynamodb-gui.json`, `resources/data/content/fr/databases/dynamodb-gui.json`, `resources/data/content/id/databases/dynamodb-gui.json`, `resources/data/content/it/databases/dynamodb-gui.json`, `resources/data/content/ja/databases/dynamodb-gui.json`, `resources/data/content/ko/databases/dynamodb-gui.json`, `resources/data/content/pt-BR/databases/dynamodb-gui.json`, `resources/data/content/vi/databases/dynamodb-gui.json`, `resources/data/content/zh-Hans/databases/dynamodb-gui.json`, `resources/data/content/zh-Hant/databases/dynamodb-gui.json`) (through the `mac-db-dynamodb-planner` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -4678,8 +6218,28 @@ capture the same table in a sandbox AWS account instead, with no account ID in t
 
 - Placeholder text (en): Close-up of the status bar: a Query on the byStatus index and the RCU it consumed.
 - Placeholder text (vi): Cận cảnh thanh trạng thái: một Query trên index byStatus và số RCU đã dùng.
+- Placeholder text (es): Detalle de la barra de estado: Query sobre byStatus y RCU consumida.
+- Placeholder text (de): Detailansicht der Statusleiste: Query auf dem Index byStatus und verbrauchte RCU.
+- Placeholder text (fr): Gros plan de la barre d’état : Query sur l’index byStatus et RCU consommée.
+- Placeholder text (ja): ステータスバーの拡大図。byStatus インデックスへの Query と、消費した RCU。
+- Placeholder text (pt-BR): Detalhe da barra de status: uma Query no índice byStatus e a RCU consumida.
+- Placeholder text (zh-Hans): 状态栏局部图：byStatus 索引上的 Query 及其消耗的 RCU。
+- Placeholder text (ko): 상태 표시줄의 확대 화면. byStatus 인덱스의 Query와 사용한 RCU입니다.
+- Placeholder text (zh-Hant): 狀態列局部圖：byStatus 索引上的 Query 及其消耗的 RCU。
+- Placeholder text (it): Dettaglio della barra di stato: una Query sull’indice byStatus e la RCU consumata.
+- Placeholder text (id): Tampilan dekat bilah status: Query pada indeks byStatus dan RCU yang digunakan.
 - Proposed alt text (en): Close-up of the DynamoDB status bar after a filtered read: a Query on the byStatus index, 44 items returned and 1 read capacity unit consumed.
 - Proposed alt text (vi): Cận cảnh thanh trạng thái DynamoDB sau một lần đọc có lọc: Query trên index byStatus, 44 item trả về và 1 read capacity unit đã dùng.
+- Proposed alt text (es): Detalle de la barra de estado DynamoDB tras una lectura filtrada: Query sobre byStatus, 44 elementos devueltos y 1 unidad de capacidad de lectura consumida.
+- Proposed alt text (de): Detailansicht der DynamoDB-Statusleiste nach einem gefilterten Lesezugriff: Query auf byStatus, 44 zurückgegebene Elemente und 1 verbrauchte Lesekapazitätseinheit.
+- Proposed alt text (fr): Gros plan de la barre d’état DynamoDB après une lecture filtrée : Query sur byStatus, 44 éléments renvoyés et 1 unité de capacité de lecture consommée.
+- Proposed alt text (ja): フィルタ付き読み取り後の DynamoDB ステータスバーの拡大図。byStatus インデックスでの Query、返された 44 項目、消費した 1 読み取りキャパシティーユニット。
+- Proposed alt text (pt-BR): Detalhe da barra de status do DynamoDB após uma leitura filtrada: uma Query no índice byStatus, 44 itens retornados e 1 unidade de capacidade de leitura consumida.
+- Proposed alt text (zh-Hans): DynamoDB 筛选读取后的状态栏局部图：在 byStatus 索引上执行 Query，返回 44 个项目，消耗 1 个读取容量单位。
+- Proposed alt text (ko): 필터링된 읽기 후 DynamoDB 상태 표시줄의 확대 화면. byStatus 인덱스의 Query, 반환된 항목 44개, 사용한 읽기 용량 단위 1개입니다.
+- Proposed alt text (zh-Hant): DynamoDB 篩選讀取後的狀態列局部圖：在 byStatus 索引上執行 Query，傳回 44 個項目，消耗 1 個讀取容量單位。
+- Proposed alt text (it): Dettaglio della barra di stato DynamoDB dopo una lettura filtrata: una Query sull’indice byStatus, 44 elementi restituiti e 1 unità di capacità di lettura consumata.
+- Proposed alt text (id): Tampilan dekat bilah status DynamoDB setelah pembacaan terfilter: Query pada indeks byStatus, 44 item dikembalikan, dan 1 unit kapasitas baca digunakan.
 
 **Purpose**
 
@@ -4727,7 +6287,7 @@ if the RCU figure falls outside 343 pt, say so before the alt text is final.
 |---|---|
 | Type | detail (`detail`) · **P2** · placeholder |
 | Used on | `/bigquery-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/bigquery-client.json`, `resources/data/content/vi/databases/bigquery-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/bigquery-client.json`, `resources/data/content/en/databases/bigquery-client.json`, `resources/data/content/es/databases/bigquery-client.json`, `resources/data/content/fr/databases/bigquery-client.json`, `resources/data/content/id/databases/bigquery-client.json`, `resources/data/content/it/databases/bigquery-client.json`, `resources/data/content/ja/databases/bigquery-client.json`, `resources/data/content/ko/databases/bigquery-client.json`, `resources/data/content/pt-BR/databases/bigquery-client.json`, `resources/data/content/vi/databases/bigquery-client.json`, `resources/data/content/zh-Hans/databases/bigquery-client.json`, `resources/data/content/zh-Hant/databases/bigquery-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-bigquery-dry-run-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4738,8 +6298,28 @@ if the RCU figure falls outside 343 pt, say so before the alt text is final.
 
 - Placeholder text (en): BigQuery Dry Run from the Explain menu: bytes processed and estimated cost.
 - Placeholder text (vi): Dry Run của BigQuery từ menu Explain: số byte xử lý và chi phí ước tính.
+- Placeholder text (es): Simulación de BigQuery desde el menú Explain: bytes procesados y coste estimado.
+- Placeholder text (de): BigQuery-Probelauf aus dem Explain-Menü: verarbeitete Bytes und geschätzte Kosten.
+- Placeholder text (fr): Simulation BigQuery depuis le menu Explain : octets traités et coût estimé.
+- Placeholder text (ja): Explain メニューから実行した BigQuery の Dry Run。処理されるバイト数と推定コスト。
+- Placeholder text (pt-BR): BigQuery Dry Run pelo menu Explain: bytes processados e custo estimado.
+- Placeholder text (zh-Hans): 从 Explain 菜单执行 BigQuery Dry Run：处理字节数及预计成本。
+- Placeholder text (ko): Explain 메뉴에서 실행한 BigQuery Dry Run. 처리할 바이트 수와 예상 비용입니다.
+- Placeholder text (zh-Hant): 從 Explain 選單執行 BigQuery Dry Run：處理位元組數及預估成本。
+- Placeholder text (it): BigQuery Dry Run dal menu Explain: byte elaborati e costo stimato.
+- Placeholder text (id): BigQuery Dry Run dari menu Explain: byte yang diproses dan perkiraan biaya.
 - Proposed alt text (en): A BigQuery Dry Run result showing the bytes the query would process and its estimated cost.
 - Proposed alt text (vi): Kết quả Dry Run của BigQuery hiển thị số byte query sẽ xử lý và chi phí ước tính.
+- Proposed alt text (es): Resultado de una simulación de BigQuery con los bytes que procesaría la consulta y su coste estimado.
+- Proposed alt text (de): Ergebnis eines BigQuery-Probelaufs mit den von der Abfrage zu verarbeitenden Bytes und den geschätzten Kosten.
+- Proposed alt text (fr): Résultat d’une simulation BigQuery montrant les octets que la requête traiterait et son coût estimé.
+- Proposed alt text (ja): BigQuery の Dry Run の結果。クエリで処理されるバイト数と推定コストが表示されています。
+- Proposed alt text (pt-BR): Um resultado BigQuery Dry Run mostrando os bytes que a consulta processaria e seu custo estimado.
+- Proposed alt text (zh-Hans): BigQuery Dry Run 结果，显示查询将处理的字节数及预计成本。
+- Proposed alt text (ko): BigQuery Dry Run 결과. 쿼리가 처리할 바이트 수와 예상 비용이 표시됩니다.
+- Proposed alt text (zh-Hant): BigQuery Dry Run 結果，顯示查詢將處理的位元組數及預估成本。
+- Proposed alt text (it): Un risultato BigQuery Dry Run che mostra i byte che la query elaborerebbe e il costo stimato.
+- Proposed alt text (id): Hasil BigQuery Dry Run menunjukkan byte yang akan diproses kueri dan perkiraan biayanya.
 
 **Purpose**
 
@@ -4788,7 +6368,7 @@ in the sidebar; keep the sidebar out of the crop, or use a project whose ID name
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · placeholder |
 | Used on | `/bigquery-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/bigquery-client.json`, `resources/data/content/vi/databases/bigquery-client.json`) (through the `mac-db-bigquery-dry-run` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/bigquery-client.json`, `resources/data/content/en/databases/bigquery-client.json`, `resources/data/content/es/databases/bigquery-client.json`, `resources/data/content/fr/databases/bigquery-client.json`, `resources/data/content/id/databases/bigquery-client.json`, `resources/data/content/it/databases/bigquery-client.json`, `resources/data/content/ja/databases/bigquery-client.json`, `resources/data/content/ko/databases/bigquery-client.json`, `resources/data/content/pt-BR/databases/bigquery-client.json`, `resources/data/content/vi/databases/bigquery-client.json`, `resources/data/content/zh-Hans/databases/bigquery-client.json`, `resources/data/content/zh-Hant/databases/bigquery-client.json`) (through the `mac-db-bigquery-dry-run` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -4798,8 +6378,28 @@ in the sidebar; keep the sidebar out of the crop, or use a project whose ID name
 
 - Placeholder text (en): Close-up of the Dry Run result: bytes processed and estimated cost.
 - Placeholder text (vi): Cận cảnh kết quả Dry Run: số byte xử lý và chi phí ước tính.
+- Placeholder text (es): Detalle del resultado de simulación: bytes procesados y coste estimado.
+- Placeholder text (de): Detailansicht des Probelaufergebnisses: verarbeitete Bytes und geschätzte Kosten.
+- Placeholder text (fr): Gros plan du résultat de simulation : octets traités et coût estimé.
+- Placeholder text (ja): Dry Run の結果の拡大図。処理されるバイト数と推定コスト。
+- Placeholder text (pt-BR): Detalhe do resultado Dry Run: bytes processados e custo estimado.
+- Placeholder text (zh-Hans): Dry Run 结果局部图：处理字节数及预计成本。
+- Placeholder text (ko): Dry Run 결과의 확대 화면. 처리할 바이트 수와 예상 비용입니다.
+- Placeholder text (zh-Hant): Dry Run 結果局部圖：處理位元組數及預估成本。
+- Placeholder text (it): Dettaglio del risultato Dry Run: byte elaborati e costo stimato.
+- Placeholder text (id): Tampilan dekat hasil Dry Run: byte yang diproses dan perkiraan biaya.
 - Proposed alt text (en): Close-up of a BigQuery Dry Run result showing the bytes the query would process and its estimated cost.
 - Proposed alt text (vi): Cận cảnh kết quả Dry Run của BigQuery hiển thị số byte query sẽ xử lý và chi phí ước tính.
+- Proposed alt text (es): Detalle de una simulación BigQuery con los bytes que procesaría la consulta y su coste estimado.
+- Proposed alt text (de): Detailansicht eines BigQuery-Probelaufergebnisses mit den zu verarbeitenden Bytes und geschätzten Kosten der Abfrage.
+- Proposed alt text (fr): Gros plan d’un résultat de simulation BigQuery montrant les octets que la requête traiterait et son coût estimé.
+- Proposed alt text (ja): BigQuery の Dry Run の結果の拡大図。クエリで処理されるバイト数と推定コストが表示されています。
+- Proposed alt text (pt-BR): Detalhe de um resultado BigQuery Dry Run mostrando os bytes que a consulta processaria e seu custo estimado.
+- Proposed alt text (zh-Hans): BigQuery Dry Run 结果的局部图，显示查询将处理的字节数及预计成本。
+- Proposed alt text (ko): 쿼리가 처리할 바이트 수와 예상 비용을 보여 주는 BigQuery Dry Run 결과의 확대 화면.
+- Proposed alt text (zh-Hant): BigQuery Dry Run 結果的局部圖，顯示查詢將處理的位元組數及預估成本。
+- Proposed alt text (it): Dettaglio di un risultato BigQuery Dry Run che mostra i byte che la query elaborerebbe e il costo stimato.
+- Proposed alt text (id): Tampilan dekat hasil BigQuery Dry Run menunjukkan byte yang akan diproses kueri dan perkiraan biayanya.
 
 **Purpose**
 
@@ -4847,7 +6447,7 @@ Metric column before capturing `mac-db-bigquery-dry-run` so both columns fit in 
 |---|---|
 | Type | detail (`detail`) · **P2** · placeholder |
 | Used on | `/snowflake-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/snowflake-client.json`, `resources/data/content/vi/databases/snowflake-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/snowflake-client.json`, `resources/data/content/en/databases/snowflake-client.json`, `resources/data/content/es/databases/snowflake-client.json`, `resources/data/content/fr/databases/snowflake-client.json`, `resources/data/content/id/databases/snowflake-client.json`, `resources/data/content/it/databases/snowflake-client.json`, `resources/data/content/ja/databases/snowflake-client.json`, `resources/data/content/ko/databases/snowflake-client.json`, `resources/data/content/pt-BR/databases/snowflake-client.json`, `resources/data/content/vi/databases/snowflake-client.json`, `resources/data/content/zh-Hans/databases/snowflake-client.json`, `resources/data/content/zh-Hant/databases/snowflake-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-snowflake-session-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4858,8 +6458,28 @@ Metric column before capturing `mac-db-bigquery-dry-run` so both columns fit in 
 
 - Placeholder text (en): A Snowflake connection with warehouse and role set in Session Context, a result below.
 - Placeholder text (vi): Connection Snowflake với warehouse và role đặt trong Session Context, kết quả bên dưới.
+- Placeholder text (es): Conexión Snowflake con almacén y rol configurados en Contexto de sesión y un resultado debajo.
+- Placeholder text (de): Snowflake-Verbindung mit Warehouse und Rolle im Sitzungskontext sowie Ergebnis darunter.
+- Placeholder text (fr): Connexion Snowflake avec entrepôt et rôle définis dans Contexte de session, résultat dessous.
+- Placeholder text (ja): Session Context でウェアハウスとロールを設定した Snowflake 接続と、その下の結果。
+- Placeholder text (pt-BR): Uma conexão Snowflake com warehouse e função definidos em Session Context, e um resultado abaixo.
+- Placeholder text (zh-Hans): Snowflake 连接在 Session Context 中设置了仓库和角色，下方显示结果。
+- Placeholder text (ko): Session Context에서 웨어하우스와 역할을 설정한 Snowflake 연결과 아래의 결과입니다.
+- Placeholder text (zh-Hant): Snowflake 連線在 Session Context 中設定了倉儲和角色，下方顯示結果。
+- Placeholder text (it): Una connessione Snowflake con warehouse e ruolo impostati in Session Context, e un risultato sotto.
+- Placeholder text (id): Koneksi Snowflake dengan warehouse dan peran diatur dalam Session Context, hasil di bawahnya.
 - Proposed alt text (en): A Snowflake connection with its warehouse and role chosen in Session Context, and a query result below.
 - Proposed alt text (vi): Một connection Snowflake với warehouse và role được chọn trong Session Context, kèm kết quả query bên dưới.
+- Proposed alt text (es): Conexión Snowflake con su almacén y rol elegidos en Contexto de sesión y un resultado de consulta debajo.
+- Proposed alt text (de): Snowflake-Verbindung mit im Sitzungskontext gewähltem Warehouse und Rolle sowie Abfrageergebnis darunter.
+- Proposed alt text (fr): Connexion Snowflake avec entrepôt et rôle choisis dans Contexte de session, résultat de requête dessous.
+- Proposed alt text (ja): Session Context でウェアハウスとロールを選択した Snowflake 接続。その下にクエリ結果が表示されています。
+- Proposed alt text (pt-BR): Uma conexão Snowflake com warehouse e função escolhidos em Session Context, e um resultado de consulta abaixo.
+- Proposed alt text (zh-Hans): Snowflake 连接在 Session Context 中选定了仓库和角色，下方显示查询结果。
+- Proposed alt text (ko): Session Context에서 웨어하우스와 역할을 선택한 Snowflake 연결. 아래에 쿼리 결과가 표시됩니다.
+- Proposed alt text (zh-Hant): Snowflake 連線在 Session Context 中選定了倉儲和角色，下方顯示查詢結果。
+- Proposed alt text (it): Una connessione Snowflake con warehouse e ruolo scelti in Session Context, e un risultato di query sotto.
+- Proposed alt text (id): Koneksi Snowflake dengan warehouse dan peran dipilih dalam Session Context, serta hasil kueri di bawahnya.
 
 **Purpose**
 
@@ -4910,7 +6530,7 @@ has a second warehouse to list.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · placeholder |
 | Used on | `/snowflake-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/snowflake-client.json`, `resources/data/content/vi/databases/snowflake-client.json`) (through the `mac-db-snowflake-session` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/snowflake-client.json`, `resources/data/content/en/databases/snowflake-client.json`, `resources/data/content/es/databases/snowflake-client.json`, `resources/data/content/fr/databases/snowflake-client.json`, `resources/data/content/id/databases/snowflake-client.json`, `resources/data/content/it/databases/snowflake-client.json`, `resources/data/content/ja/databases/snowflake-client.json`, `resources/data/content/ko/databases/snowflake-client.json`, `resources/data/content/pt-BR/databases/snowflake-client.json`, `resources/data/content/vi/databases/snowflake-client.json`, `resources/data/content/zh-Hans/databases/snowflake-client.json`, `resources/data/content/zh-Hant/databases/snowflake-client.json`) (through the `mac-db-snowflake-session` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -4920,8 +6540,28 @@ has a second warehouse to list.
 
 - Placeholder text (en): Close-up of the Session Context submenu with the checked warehouse.
 - Placeholder text (vi): Cận cảnh menu con Session Context với warehouse đang được chọn.
+- Placeholder text (es): Detalle del submenú Contexto de sesión con el almacén marcado.
+- Placeholder text (de): Detailansicht des Untermenüs Sitzungskontext mit ausgewähltem Warehouse.
+- Placeholder text (fr): Gros plan du sous-menu Contexte de session avec l’entrepôt coché.
+- Placeholder text (ja): 選択したウェアハウスにチェックが入った Session Context サブメニューの拡大図。
+- Placeholder text (pt-BR): Detalhe do submenu Session Context com o warehouse marcado.
+- Placeholder text (zh-Hans): Session Context 子菜单局部图，显示已勾选的仓库。
+- Placeholder text (ko): 선택한 웨어하우스에 체크 표시가 있는 Session Context 하위 메뉴의 확대 화면입니다.
+- Placeholder text (zh-Hant): Session Context 子選單局部圖，顯示已勾選的倉儲。
+- Placeholder text (it): Dettaglio del sottomenu Session Context con il warehouse selezionato.
+- Placeholder text (id): Tampilan dekat submenu Session Context dengan warehouse yang dicentang.
 - Proposed alt text (en): Close-up of the Session Context submenu of a Snowflake connection, with its warehouse and role entries and the chosen warehouse checked.
 - Proposed alt text (vi): Cận cảnh menu con Session Context của một connection Snowflake, với mục warehouse và role, warehouse đang dùng được đánh dấu.
+- Proposed alt text (es): Detalle del submenú Contexto de sesión de Snowflake, con entradas de almacén y rol y el almacén elegido marcado.
+- Proposed alt text (de): Detailansicht des Untermenüs Sitzungskontext einer Snowflake-Verbindung mit Warehouse- und Rolleneinträgen sowie markiertem gewähltem Warehouse.
+- Proposed alt text (fr): Gros plan du sous-menu Contexte de session d’une connexion Snowflake, avec entrées d’entrepôt et de rôle et l’entrepôt choisi coché.
+- Proposed alt text (ja): Snowflake 接続の Session Context サブメニューの拡大図。ウェアハウスとロールの項目があり、選択したウェアハウスにチェックが入っています。
+- Proposed alt text (pt-BR): Detalhe do submenu Session Context de uma conexão Snowflake, com entradas de warehouse e função e o warehouse escolhido marcado.
+- Proposed alt text (zh-Hans): Snowflake 连接的 Session Context 子菜单局部图，显示仓库和角色选项，并勾选了所选仓库。
+- Proposed alt text (ko): Snowflake 연결의 Session Context 하위 메뉴 확대 화면. 웨어하우스 및 역할 항목이 있고 선택한 웨어하우스에 체크 표시가 있습니다.
+- Proposed alt text (zh-Hant): Snowflake 連線的 Session Context 子選單局部圖，顯示倉儲和角色選項，並勾選了所選倉儲。
+- Proposed alt text (it): Dettaglio del sottomenu Session Context di una connessione Snowflake, con le voci di warehouse e ruolo e il warehouse scelto selezionato.
+- Proposed alt text (id): Tampilan dekat submenu Session Context koneksi Snowflake, dengan entri warehouse dan peran serta warehouse pilihan dicentang.
 
 **Purpose**
 
@@ -4967,7 +6607,7 @@ submenu and its Warehouse list must fit in 343 pt; leave the result grid out if 
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/etcd-gui` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/etcd-gui.json`, `resources/data/content/vi/databases/etcd-gui.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/etcd-gui.json`, `resources/data/content/en/databases/etcd-gui.json`, `resources/data/content/es/databases/etcd-gui.json`, `resources/data/content/fr/databases/etcd-gui.json`, `resources/data/content/id/databases/etcd-gui.json`, `resources/data/content/it/databases/etcd-gui.json`, `resources/data/content/ja/databases/etcd-gui.json`, `resources/data/content/ko/databases/etcd-gui.json`, `resources/data/content/pt-BR/databases/etcd-gui.json`, `resources/data/content/vi/databases/etcd-gui.json`, `resources/data/content/zh-Hans/databases/etcd-gui.json`, `resources/data/content/zh-Hant/databases/etcd-gui.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-etcd-keys-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -4978,8 +6618,28 @@ submenu and its Warehouse list must fit in 343 pt; leave the result grid out if 
 
 - Placeholder text (en): etcd keys under a prefix root with their values and leases.
 - Placeholder text (vi): Các key etcd dưới một prefix gốc, kèm value và lease.
+- Placeholder text (es): Claves etcd bajo una raíz de prefijo con sus valores y arrendamientos.
+- Placeholder text (de): etcd-Schlüssel unter einer Präfixwurzel mit Werten und Leases.
+- Placeholder text (fr): Clés etcd sous une racine de préfixe, avec leurs valeurs et baux.
+- Placeholder text (ja): プレフィックスのルート配下にある etcd キーと、それぞれの値およびリース。
+- Placeholder text (pt-BR): Chaves etcd sob uma raiz de prefixo com seus valores e leases.
+- Placeholder text (zh-Hans): 前缀根目录下的 etcd 键，以及各键的值和租约。
+- Placeholder text (ko): 접두사 루트 아래의 etcd 키와 값 및 리스입니다.
+- Placeholder text (zh-Hant): 前綴根目錄下的 etcd 索引鍵，以及各索引鍵的值和租約。
+- Placeholder text (it): Chiavi etcd sotto una radice di prefisso con valori e lease.
+- Placeholder text (id): Kunci etcd di bawah akar prefiks dengan nilai dan lease-nya.
 - Proposed alt text (en): etcd keys under the /acme/sessions/ prefix, three of them sharing one lease.
 - Proposed alt text (vi): Các key etcd dưới prefix /acme/sessions/, ba key dùng chung một lease.
+- Proposed alt text (es): Claves etcd bajo el prefijo /acme/sessions/, tres de ellas con el mismo arrendamiento.
+- Proposed alt text (de): etcd-Schlüssel unter dem Präfix /acme/sessions/, drei davon teilen sich einen Lease.
+- Proposed alt text (fr): Clés etcd sous le préfixe /acme/sessions/, dont trois partagent un même bail.
+- Proposed alt text (ja): /acme/sessions/ プレフィックスの配下にある etcd キー。そのうち三つが一つのリースを共有しています。
+- Proposed alt text (pt-BR): Chaves etcd sob o prefixo /acme/sessions/, três delas compartilhando um lease.
+- Proposed alt text (zh-Hans): /acme/sessions/ 前缀下的 etcd 键，其中三个键共享同一个租约。
+- Proposed alt text (ko): /acme/sessions/ 접두사 아래의 etcd 키. 이 중 세 개가 리스 하나를 공유합니다.
+- Proposed alt text (zh-Hant): /acme/sessions/ 前綴下的 etcd 索引鍵，其中三個索引鍵共用同一個租約。
+- Proposed alt text (it): Chiavi etcd sotto il prefisso /acme/sessions/, tre delle quali condividono un lease.
+- Proposed alt text (id): Kunci etcd di bawah prefiks /acme/sessions/, tiga di antaranya berbagi satu lease.
 
 **Purpose**
 
@@ -5030,7 +6690,7 @@ segment under the Key Prefix Root). 0.77.0 fixed value edits and renames detachi
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/etcd-gui` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/etcd-gui.json`, `resources/data/content/vi/databases/etcd-gui.json`) (through the `mac-db-etcd-keys` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/etcd-gui.json`, `resources/data/content/en/databases/etcd-gui.json`, `resources/data/content/es/databases/etcd-gui.json`, `resources/data/content/fr/databases/etcd-gui.json`, `resources/data/content/id/databases/etcd-gui.json`, `resources/data/content/it/databases/etcd-gui.json`, `resources/data/content/ja/databases/etcd-gui.json`, `resources/data/content/ko/databases/etcd-gui.json`, `resources/data/content/pt-BR/databases/etcd-gui.json`, `resources/data/content/vi/databases/etcd-gui.json`, `resources/data/content/zh-Hans/databases/etcd-gui.json`, `resources/data/content/zh-Hant/databases/etcd-gui.json`) (through the `mac-db-etcd-keys` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -5040,8 +6700,28 @@ segment under the Key Prefix Root). 0.77.0 fixed value edits and renames detachi
 
 - Placeholder text (en): Close-up of etcd keys with their values and leases.
 - Placeholder text (vi): Cận cảnh các key etcd kèm value và lease.
+- Placeholder text (es): Detalle de claves etcd con sus valores y arrendamientos.
+- Placeholder text (de): Detailansicht von etcd-Schlüsseln mit Werten und Leases.
+- Placeholder text (fr): Gros plan des clés etcd avec leurs valeurs et baux.
+- Placeholder text (ja): etcd キーと、それぞれの値およびリースの拡大図。
+- Placeholder text (pt-BR): Detalhe de chaves etcd com seus valores e leases.
+- Placeholder text (zh-Hans): etcd 键及其值和租约的局部图。
+- Placeholder text (ko): etcd 키와 값 및 리스의 확대 화면입니다.
+- Placeholder text (zh-Hant): etcd 索引鍵及其值和租約的局部圖。
+- Placeholder text (it): Dettaglio di chiavi etcd con valori e lease.
+- Placeholder text (id): Tampilan dekat kunci etcd dengan nilai dan lease-nya.
 - Proposed alt text (en): Close-up of etcd keys under the /acme/sessions/ prefix, with each key's lease.
 - Proposed alt text (vi): Cận cảnh các key etcd dưới prefix /acme/sessions/, kèm lease của từng key.
+- Proposed alt text (es): Detalle de claves etcd bajo /acme/sessions/, con el arrendamiento de cada clave.
+- Proposed alt text (de): Detailansicht von etcd-Schlüsseln unter /acme/sessions/ mit dem Lease jedes Schlüssels.
+- Proposed alt text (fr): Gros plan des clés etcd sous /acme/sessions/, avec le bail de chaque clé.
+- Proposed alt text (ja): /acme/sessions/ プレフィックス配下の etcd キーの拡大図。各キーのリースが表示されています。
+- Proposed alt text (pt-BR): Detalhe de chaves etcd sob o prefixo /acme/sessions/, com o lease de cada chave.
+- Proposed alt text (zh-Hans): /acme/sessions/ 前缀下的 etcd 键局部图，显示每个键的租约。
+- Proposed alt text (ko): /acme/sessions/ 접두사 아래의 etcd 키와 각 키의 리스를 보여 주는 확대 화면.
+- Proposed alt text (zh-Hant): /acme/sessions/ 前綴下的 etcd 索引鍵局部圖，顯示每個索引鍵的租約。
+- Proposed alt text (it): Dettaglio di chiavi etcd sotto il prefisso /acme/sessions/, con il lease di ogni chiave.
+- Proposed alt text (id): Tampilan dekat kunci etcd di bawah prefiks /acme/sessions/, dengan lease setiap kunci.
 
 **Purpose**
 
@@ -5088,7 +6768,7 @@ fit in 343 pt.
 |---|---|
 | Type | detail (`detail`) · **P2** · placeholder |
 | Used on | `/elasticsearch-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/elasticsearch-client.json`, `resources/data/content/vi/databases/elasticsearch-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/elasticsearch-client.json`, `resources/data/content/en/databases/elasticsearch-client.json`, `resources/data/content/es/databases/elasticsearch-client.json`, `resources/data/content/fr/databases/elasticsearch-client.json`, `resources/data/content/id/databases/elasticsearch-client.json`, `resources/data/content/it/databases/elasticsearch-client.json`, `resources/data/content/ja/databases/elasticsearch-client.json`, `resources/data/content/ko/databases/elasticsearch-client.json`, `resources/data/content/pt-BR/databases/elasticsearch-client.json`, `resources/data/content/vi/databases/elasticsearch-client.json`, `resources/data/content/zh-Hans/databases/elasticsearch-client.json`, `resources/data/content/zh-Hant/databases/elasticsearch-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-elasticsearch-console-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -5099,8 +6779,28 @@ fit in 343 pt.
 
 - Placeholder text (en): Query DSL console: a GET _search request and its hits as rows.
 - Placeholder text (vi): Console Query DSL: một request GET _search và các hit hiển thị thành dòng.
+- Placeholder text (es): Consola Query DSL: petición GET _search y sus coincidencias como filas.
+- Placeholder text (de): Query-DSL-Konsole: GET-_search-Anfrage und Treffer als Zeilen.
+- Placeholder text (fr): Console Query DSL : requête GET _search et ses résultats en lignes.
+- Placeholder text (ja): Query DSL コンソール。GET _search リクエストと、行として表示されたヒット。
+- Placeholder text (pt-BR): Console Query DSL: uma solicitação GET _search e seus hits como linhas.
+- Placeholder text (zh-Hans): Query DSL 控制台：GET _search 请求及以行显示的命中结果。
+- Placeholder text (ko): Query DSL 콘솔. GET _search 요청과 행으로 표시된 반환 결과입니다.
+- Placeholder text (zh-Hant): Query DSL 主控台：GET _search 請求及以資料列顯示的符合結果。
+- Placeholder text (it): Console Query DSL: una richiesta GET _search e i risultati come righe.
+- Placeholder text (id): Konsol Query DSL: permintaan GET _search dan hasilnya sebagai baris.
 - Proposed alt text (en): The Elasticsearch Query DSL console with a GET _search request and the returned hits shown as rows.
 - Proposed alt text (vi): Console Query DSL của Elasticsearch với một request GET _search và các hit trả về hiển thị thành dòng.
+- Proposed alt text (es): Consola Query DSL de Elasticsearch con una petición GET _search y las coincidencias devueltas en filas.
+- Proposed alt text (de): Elasticsearch-Query-DSL-Konsole mit einer GET-_search-Anfrage und den zurückgegebenen Treffern als Zeilen.
+- Proposed alt text (fr): Console Query DSL Elasticsearch avec une requête GET _search et les résultats renvoyés affichés en lignes.
+- Proposed alt text (ja): Elasticsearch の Query DSL コンソール。GET _search リクエストと、返されたヒットが行として表示されています。
+- Proposed alt text (pt-BR): O console Query DSL do Elasticsearch com uma solicitação GET _search e os hits retornados mostrados como linhas.
+- Proposed alt text (zh-Hans): Elasticsearch Query DSL 控制台包含一条 GET _search 请求，返回的命中结果显示为行。
+- Proposed alt text (ko): Elasticsearch Query DSL 콘솔. GET _search 요청과 행으로 표시된 반환 결과가 있습니다.
+- Proposed alt text (zh-Hant): Elasticsearch Query DSL 主控台包含一項 GET _search 請求，傳回的符合結果顯示為資料列。
+- Proposed alt text (it): La console Query DSL di Elasticsearch con una richiesta GET _search e i risultati restituiti mostrati come righe.
+- Proposed alt text (id): Konsol Query DSL Elasticsearch dengan permintaan GET _search dan hasil yang dikembalikan ditampilkan sebagai baris.
 
 **Purpose**
 
@@ -5148,7 +6848,7 @@ None.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · placeholder |
 | Used on | `/elasticsearch-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/elasticsearch-client.json`, `resources/data/content/vi/databases/elasticsearch-client.json`) (through the `mac-db-elasticsearch-console` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/elasticsearch-client.json`, `resources/data/content/en/databases/elasticsearch-client.json`, `resources/data/content/es/databases/elasticsearch-client.json`, `resources/data/content/fr/databases/elasticsearch-client.json`, `resources/data/content/id/databases/elasticsearch-client.json`, `resources/data/content/it/databases/elasticsearch-client.json`, `resources/data/content/ja/databases/elasticsearch-client.json`, `resources/data/content/ko/databases/elasticsearch-client.json`, `resources/data/content/pt-BR/databases/elasticsearch-client.json`, `resources/data/content/vi/databases/elasticsearch-client.json`, `resources/data/content/zh-Hans/databases/elasticsearch-client.json`, `resources/data/content/zh-Hant/databases/elasticsearch-client.json`) (through the `mac-db-elasticsearch-console` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -5158,8 +6858,28 @@ None.
 
 - Placeholder text (en): Close-up of the GET _search request and its first hits.
 - Placeholder text (vi): Cận cảnh request GET _search và các hit đầu tiên.
+- Placeholder text (es): Detalle de la petición GET _search y sus primeras coincidencias.
+- Placeholder text (de): Detailansicht der GET-_search-Anfrage und ihrer ersten Treffer.
+- Placeholder text (fr): Gros plan de la requête GET _search et de ses premiers résultats.
+- Placeholder text (ja): GET _search リクエストと最初のヒットの拡大図。
+- Placeholder text (pt-BR): Detalhe da solicitação GET _search e seus primeiros hits.
+- Placeholder text (zh-Hans): GET _search 请求及前几个命中结果的局部图。
+- Placeholder text (ko): GET _search 요청과 첫 반환 결과의 확대 화면입니다.
+- Placeholder text (zh-Hant): GET _search 請求及前幾個符合結果的局部圖。
+- Placeholder text (it): Dettaglio della richiesta GET _search e dei primi risultati.
+- Placeholder text (id): Tampilan dekat permintaan GET _search dan hasil awalnya.
 - Proposed alt text (en): Close-up of a GET _search request in the Elasticsearch console and the first hits shown as rows.
 - Proposed alt text (vi): Cận cảnh một request GET _search trong console Elasticsearch và các hit đầu tiên hiển thị thành dòng.
+- Proposed alt text (es): Detalle de una petición GET _search en la consola Elasticsearch y las primeras coincidencias en filas.
+- Proposed alt text (de): Detailansicht einer GET-_search-Anfrage in der Elasticsearch-Konsole und der ersten Treffer als Zeilen.
+- Proposed alt text (fr): Gros plan d’une requête GET _search dans la console Elasticsearch et des premiers résultats affichés en lignes.
+- Proposed alt text (ja): Elasticsearch コンソールの GET _search リクエストと、最初のヒットを行として表示した拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma solicitação GET _search no console Elasticsearch e os primeiros hits mostrados como linhas.
+- Proposed alt text (zh-Hans): Elasticsearch 控制台中 GET _search 请求的局部图，前几个命中结果显示为行。
+- Proposed alt text (ko): Elasticsearch 콘솔의 GET _search 요청과 행으로 표시된 첫 반환 결과의 확대 화면.
+- Proposed alt text (zh-Hant): Elasticsearch 主控台中 GET _search 請求的局部圖，前幾個符合結果顯示為資料列。
+- Proposed alt text (it): Dettaglio di una richiesta GET _search nella console Elasticsearch e dei primi risultati mostrati come righe.
+- Proposed alt text (id): Tampilan dekat permintaan GET _search dalam konsol Elasticsearch dan hasil awal ditampilkan sebagai baris.
 
 **Purpose**
 
@@ -5206,7 +6926,7 @@ the `_index` column may fall outside 343 pt; keep `_id`, `_score` and `name` ins
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/surrealdb-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/surrealdb-client.json`, `resources/data/content/vi/databases/surrealdb-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/surrealdb-client.json`, `resources/data/content/en/databases/surrealdb-client.json`, `resources/data/content/es/databases/surrealdb-client.json`, `resources/data/content/fr/databases/surrealdb-client.json`, `resources/data/content/id/databases/surrealdb-client.json`, `resources/data/content/it/databases/surrealdb-client.json`, `resources/data/content/ja/databases/surrealdb-client.json`, `resources/data/content/ko/databases/surrealdb-client.json`, `resources/data/content/pt-BR/databases/surrealdb-client.json`, `resources/data/content/vi/databases/surrealdb-client.json`, `resources/data/content/zh-Hans/databases/surrealdb-client.json`, `resources/data/content/zh-Hant/databases/surrealdb-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-surrealdb-query-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -5217,8 +6937,28 @@ the `_index` column may fall outside 343 pt; keep `_id`, `_score` and `name` ins
 
 - Placeholder text (en): A SurrealQL query and its records in the grid.
 - Placeholder text (vi): Một query SurrealQL và các record trong data grid.
+- Placeholder text (es): Consulta SurrealQL y sus registros en la cuadrícula.
+- Placeholder text (de): SurrealQL-Abfrage und ihre Datensätze in der Datentabelle.
+- Placeholder text (fr): Requête SurrealQL et ses enregistrements dans la grille.
+- Placeholder text (ja): SurrealQL クエリと、グリッド内のレコード。
+- Placeholder text (pt-BR): Uma consulta SurrealQL e seus registros na grade.
+- Placeholder text (zh-Hans): SurrealQL 查询及其在数据网格中的记录。
+- Placeholder text (ko): SurrealQL 쿼리와 그리드의 레코드입니다.
+- Placeholder text (zh-Hant): SurrealQL 查詢及其在資料網格中的紀錄。
+- Placeholder text (it): Una query SurrealQL e i record nella griglia.
+- Placeholder text (id): Kueri SurrealQL dan rekamannya dalam grid.
 - Proposed alt text (en): A SurrealQL query in the editor and the records it returned in the data grid.
 - Proposed alt text (vi): Một query SurrealQL trong editor và các record trả về trong data grid.
+- Proposed alt text (es): Consulta SurrealQL en el editor y los registros devueltos en la cuadrícula de datos.
+- Proposed alt text (de): SurrealQL-Abfrage im Editor und ihre zurückgegebenen Datensätze in der Datentabelle.
+- Proposed alt text (fr): Requête SurrealQL dans l’éditeur et enregistrements renvoyés dans la grille de données.
+- Proposed alt text (ja): エディタ内の SurrealQL クエリと、そのクエリが返したレコードを表示するデータグリッド。
+- Proposed alt text (pt-BR): Uma consulta SurrealQL no editor e os registros retornados na grade de dados.
+- Proposed alt text (zh-Hans): 编辑器中的 SurrealQL 查询，以及数据网格中返回的记录。
+- Proposed alt text (ko): 편집기의 SurrealQL 쿼리와 반환된 레코드를 표시하는 데이터 그리드.
+- Proposed alt text (zh-Hant): 編輯器中的 SurrealQL 查詢，以及資料網格中傳回的紀錄。
+- Proposed alt text (it): Una query SurrealQL nell’editor e i record restituiti nella griglia dati.
+- Proposed alt text (id): Kueri SurrealQL dalam editor dan rekaman yang dikembalikannya dalam grid data.
 
 **Purpose**
 
@@ -5265,7 +7005,7 @@ None.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/surrealdb-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/surrealdb-client.json`, `resources/data/content/vi/databases/surrealdb-client.json`) (through the `mac-db-surrealdb-query` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/surrealdb-client.json`, `resources/data/content/en/databases/surrealdb-client.json`, `resources/data/content/es/databases/surrealdb-client.json`, `resources/data/content/fr/databases/surrealdb-client.json`, `resources/data/content/id/databases/surrealdb-client.json`, `resources/data/content/it/databases/surrealdb-client.json`, `resources/data/content/ja/databases/surrealdb-client.json`, `resources/data/content/ko/databases/surrealdb-client.json`, `resources/data/content/pt-BR/databases/surrealdb-client.json`, `resources/data/content/vi/databases/surrealdb-client.json`, `resources/data/content/zh-Hans/databases/surrealdb-client.json`, `resources/data/content/zh-Hant/databases/surrealdb-client.json`) (through the `mac-db-surrealdb-query` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -5275,8 +7015,28 @@ None.
 
 - Placeholder text (en): Close-up of the SurrealQL query and the records it returned.
 - Placeholder text (vi): Cận cảnh query SurrealQL và các record trả về.
+- Placeholder text (es): Detalle de la consulta SurrealQL y los registros que devuelve.
+- Placeholder text (de): Detailansicht der SurrealQL-Abfrage und ihrer zurückgegebenen Datensätze.
+- Placeholder text (fr): Gros plan de la requête SurrealQL et des enregistrements renvoyés.
+- Placeholder text (ja): SurrealQL クエリと、返されたレコードの拡大図。
+- Placeholder text (pt-BR): Detalhe da consulta SurrealQL e dos registros retornados.
+- Placeholder text (zh-Hans): SurrealQL 查询及其返回记录的局部图。
+- Placeholder text (ko): SurrealQL 쿼리와 반환된 레코드의 확대 화면입니다.
+- Placeholder text (zh-Hant): SurrealQL 查詢及其傳回紀錄的局部圖。
+- Placeholder text (it): Dettaglio della query SurrealQL e dei record restituiti.
+- Placeholder text (id): Tampilan dekat kueri SurrealQL dan rekaman yang dikembalikannya.
 - Proposed alt text (en): Close-up of a SurrealQL query and the records it returned, with ids such as person:alice.
 - Proposed alt text (vi): Cận cảnh một query SurrealQL và các record trả về, với id dạng person:alice.
+- Proposed alt text (es): Detalle de una consulta SurrealQL y sus registros devueltos, con identificadores como person:alice.
+- Proposed alt text (de): Detailansicht einer SurrealQL-Abfrage und ihrer zurückgegebenen Datensätze mit IDs wie person:alice.
+- Proposed alt text (fr): Gros plan d’une requête SurrealQL et des enregistrements renvoyés, avec des identifiants comme person:alice.
+- Proposed alt text (ja): SurrealQL クエリと、返されたレコードの拡大図。person:alice などの ID が表示されています。
+- Proposed alt text (pt-BR): Detalhe de uma consulta SurrealQL e os registros retornados, com IDs como person:alice.
+- Proposed alt text (zh-Hans): SurrealQL 查询及返回记录的局部图，显示 person:alice 等 ID。
+- Proposed alt text (ko): SurrealQL 쿼리와 반환된 레코드의 확대 화면. person:alice와 같은 ID가 표시됩니다.
+- Proposed alt text (zh-Hant): SurrealQL 查詢及傳回紀錄的局部圖，顯示 person:alice 等 ID。
+- Proposed alt text (it): Dettaglio di una query SurrealQL e dei record restituiti, con ID come person:alice.
+- Proposed alt text (id): Tampilan dekat kueri SurrealQL dan rekaman yang dikembalikannya, dengan ID seperti person:alice.
 
 **Purpose**
 
@@ -5323,7 +7083,7 @@ query out on two lines so it fits in 343 pt.
 |---|---|
 | Type | detail (`detail`) · **P2** · placeholder |
 | Used on | `/teradata-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/teradata-client.json`, `resources/data/content/vi/databases/teradata-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/teradata-client.json`, `resources/data/content/en/databases/teradata-client.json`, `resources/data/content/es/databases/teradata-client.json`, `resources/data/content/fr/databases/teradata-client.json`, `resources/data/content/id/databases/teradata-client.json`, `resources/data/content/it/databases/teradata-client.json`, `resources/data/content/ja/databases/teradata-client.json`, `resources/data/content/ko/databases/teradata-client.json`, `resources/data/content/pt-BR/databases/teradata-client.json`, `resources/data/content/vi/databases/teradata-client.json`, `resources/data/content/zh-Hans/databases/teradata-client.json`, `resources/data/content/zh-Hant/databases/teradata-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-teradata-sidebar-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -5334,8 +7094,28 @@ query out on two lines so it fits in 343 pt.
 
 - Placeholder text (en): The Teradata sidebar listing procedures, with macros under Functions.
 - Placeholder text (vi): Sidebar Teradata liệt kê procedure, và macro trong mục Functions.
+- Placeholder text (es): Barra lateral Teradata con procedimientos y macros en Funciones.
+- Placeholder text (de): Teradata-Seitenleiste mit Prozeduren und Makros unter Funktionen.
+- Placeholder text (fr): Barre latérale Teradata listant les procédures, macros sous Fonctions.
+- Placeholder text (ja): Teradata のサイドバー。プロシージャの一覧と、Functions のマクロ。
+- Placeholder text (pt-BR): A barra lateral Teradata listando procedimentos, com macros em Functions.
+- Placeholder text (zh-Hans): Teradata 侧边栏列出过程，宏归入 Functions 分组。
+- Placeholder text (ko): 프로시저가 나열된 Teradata 사이드바와 Functions 아래의 매크로입니다.
+- Placeholder text (zh-Hant): Teradata 側邊欄列出程序，巨集歸入 Functions 群組。
+- Placeholder text (it): La barra laterale Teradata con le procedure elencate e le macro sotto Functions.
+- Placeholder text (id): Sidebar Teradata mencantumkan prosedur, dengan makro dalam Functions.
 - Proposed alt text (en): The sidebar of a Teradata connection listing stored procedures, with macros grouped under Functions.
 - Proposed alt text (vi): Sidebar của một connection Teradata liệt kê các stored procedure, macro được xếp trong mục Functions.
+- Proposed alt text (es): Barra lateral de una conexión Teradata con procedimientos almacenados y macros agrupadas en Funciones.
+- Proposed alt text (de): Seitenleiste einer Teradata-Verbindung mit gespeicherten Prozeduren und unter Funktionen gruppierten Makros.
+- Proposed alt text (fr): Barre latérale d’une connexion Teradata listant les procédures stockées, avec les macros regroupées sous Fonctions.
+- Proposed alt text (ja): Teradata 接続のサイドバー。ストアドプロシージャが一覧表示され、マクロは Functions にまとめられています。
+- Proposed alt text (pt-BR): A barra lateral de uma conexão Teradata listando procedimentos armazenados, com macros agrupadas em Functions.
+- Proposed alt text (zh-Hans): Teradata 连接的侧边栏列出存储过程，宏归入 Functions 分组。
+- Proposed alt text (ko): 저장 프로시저가 나열된 Teradata 연결의 사이드바. 매크로는 Functions에 그룹화되어 있습니다.
+- Proposed alt text (zh-Hant): Teradata 連線的側邊欄列出預存程序，巨集歸入 Functions 群組。
+- Proposed alt text (it): La barra laterale di una connessione Teradata che elenca procedure memorizzate, con macro raggruppate sotto Functions.
+- Proposed alt text (id): Sidebar koneksi Teradata mencantumkan prosedur tersimpan, dengan makro dikelompokkan dalam Functions.
 
 **Purpose**
 
@@ -5385,7 +7165,7 @@ its "Table Kind: M" attribute at capture.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · placeholder |
 | Used on | `/teradata-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/teradata-client.json`, `resources/data/content/vi/databases/teradata-client.json`) (through the `mac-db-teradata-sidebar` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/teradata-client.json`, `resources/data/content/en/databases/teradata-client.json`, `resources/data/content/es/databases/teradata-client.json`, `resources/data/content/fr/databases/teradata-client.json`, `resources/data/content/id/databases/teradata-client.json`, `resources/data/content/it/databases/teradata-client.json`, `resources/data/content/ja/databases/teradata-client.json`, `resources/data/content/ko/databases/teradata-client.json`, `resources/data/content/pt-BR/databases/teradata-client.json`, `resources/data/content/vi/databases/teradata-client.json`, `resources/data/content/zh-Hans/databases/teradata-client.json`, `resources/data/content/zh-Hant/databases/teradata-client.json`) (through the `mac-db-teradata-sidebar` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -5395,8 +7175,28 @@ its "Table Kind: M" attribute at capture.
 
 - Placeholder text (en): Close-up of the sidebar's Procedures and Functions groups.
 - Placeholder text (vi): Cận cảnh mục Procedures và Functions trong sidebar.
+- Placeholder text (es): Detalle de los grupos Procedimientos y Funciones de la barra lateral.
+- Placeholder text (de): Detailansicht der Gruppen Prozeduren und Funktionen in der Seitenleiste.
+- Placeholder text (fr): Gros plan des groupes Procédures et Fonctions de la barre latérale.
+- Placeholder text (ja): サイドバーの Procedures と Functions グループの拡大図。
+- Placeholder text (pt-BR): Detalhe dos grupos Procedures e Functions da barra lateral.
+- Placeholder text (zh-Hans): 侧边栏中 Procedures 和 Functions 分组的局部图。
+- Placeholder text (ko): 사이드바의 Procedures 및 Functions 그룹의 확대 화면입니다.
+- Placeholder text (zh-Hant): 側邊欄中 Procedures 和 Functions 群組的局部圖。
+- Placeholder text (it): Dettaglio dei gruppi Procedures e Functions della barra laterale.
+- Placeholder text (id): Tampilan dekat grup Procedures dan Functions pada sidebar.
 - Proposed alt text (en): Close-up of the sidebar of a Teradata connection, with a stored procedure under Procedures and a macro under Functions.
 - Proposed alt text (vi): Cận cảnh sidebar của một connection Teradata, với một stored procedure trong mục Procedures và một macro trong mục Functions.
+- Proposed alt text (es): Detalle de la barra lateral Teradata, con un procedimiento almacenado en Procedimientos y una macro en Funciones.
+- Proposed alt text (de): Detailansicht der Seitenleiste einer Teradata-Verbindung mit einer gespeicherten Prozedur unter Prozeduren und einem Makro unter Funktionen.
+- Proposed alt text (fr): Gros plan de la barre latérale d’une connexion Teradata, avec une procédure stockée sous Procédures et une macro sous Fonctions.
+- Proposed alt text (ja): Teradata 接続のサイドバーの拡大図。Procedures にストアドプロシージャ、Functions にマクロが表示されています。
+- Proposed alt text (pt-BR): Detalhe da barra lateral de uma conexão Teradata, com um procedimento armazenado em Procedures e uma macro em Functions.
+- Proposed alt text (zh-Hans): Teradata 连接侧边栏的局部图，Procedures 下有一个存储过程，Functions 下有一个宏。
+- Proposed alt text (ko): Teradata 연결 사이드바의 확대 화면. Procedures 아래에 저장 프로시저, Functions 아래에 매크로가 있습니다.
+- Proposed alt text (zh-Hant): Teradata 連線側邊欄的局部圖，Procedures 下有一個預存程序，Functions 下有一個巨集。
+- Proposed alt text (it): Dettaglio della barra laterale di una connessione Teradata, con una procedura memorizzata sotto Procedures e una macro sotto Functions.
+- Proposed alt text (id): Tampilan dekat sidebar koneksi Teradata, dengan prosedur tersimpan dalam Procedures dan makro dalam Functions.
 
 **Purpose**
 
@@ -5443,7 +7243,7 @@ else: the sidebar is narrower than 343 pt.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/trino-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/trino-client.json`, `resources/data/content/vi/databases/trino-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/trino-client.json`, `resources/data/content/en/databases/trino-client.json`, `resources/data/content/es/databases/trino-client.json`, `resources/data/content/fr/databases/trino-client.json`, `resources/data/content/id/databases/trino-client.json`, `resources/data/content/it/databases/trino-client.json`, `resources/data/content/ja/databases/trino-client.json`, `resources/data/content/ko/databases/trino-client.json`, `resources/data/content/pt-BR/databases/trino-client.json`, `resources/data/content/vi/databases/trino-client.json`, `resources/data/content/zh-Hans/databases/trino-client.json`, `resources/data/content/zh-Hant/databases/trino-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-trino-catalogs-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -5454,8 +7254,28 @@ else: the sidebar is narrower than 343 pt.
 
 - Placeholder text (en): A Trino query joining tables from two catalogs.
 - Placeholder text (vi): Một query Trino join các table từ hai catalog.
+- Placeholder text (es): Consulta Trino que une tablas de dos catálogos.
+- Placeholder text (de): Trino-Abfrage, die Tabellen aus zwei Katalogen verknüpft.
+- Placeholder text (fr): Requête Trino joignant des tables de deux catalogues.
+- Placeholder text (ja): 二つのカタログのテーブルを結合する Trino クエリ。
+- Placeholder text (pt-BR): Uma consulta Trino unindo tabelas de dois catálogos.
+- Placeholder text (zh-Hans): 连接两个目录中表的 Trino 查询。
+- Placeholder text (ko): 두 카탈로그의 테이블을 조인하는 Trino 쿼리입니다.
+- Placeholder text (zh-Hant): 聯結兩個目錄中資料表的 Trino 查詢。
+- Placeholder text (it): Una query Trino che unisce tabelle di due cataloghi.
+- Placeholder text (id): Kueri Trino yang menggabungkan tabel dari dua katalog.
 - Proposed alt text (en): A Trino query that joins tables from two catalogs, with its results below.
 - Proposed alt text (vi): Một query Trino join các table từ hai catalog, kèm kết quả bên dưới.
+- Proposed alt text (es): Consulta Trino que une tablas de dos catálogos, con resultados debajo.
+- Proposed alt text (de): Trino-Abfrage mit Tabellenverknüpfung aus zwei Katalogen und Ergebnissen darunter.
+- Proposed alt text (fr): Requête Trino joignant des tables de deux catalogues, avec ses résultats dessous.
+- Proposed alt text (ja): 二つのカタログのテーブルを結合する Trino クエリと、その下の結果。
+- Proposed alt text (pt-BR): Uma consulta Trino que une tabelas de dois catálogos, com seus resultados abaixo.
+- Proposed alt text (zh-Hans): Trino 查询连接来自两个目录的表，下方显示结果。
+- Proposed alt text (ko): 두 카탈로그의 테이블을 조인하는 Trino 쿼리와 아래의 결과.
+- Proposed alt text (zh-Hant): Trino 查詢聯結來自兩個目錄的資料表，下方顯示結果。
+- Proposed alt text (it): Una query Trino che unisce tabelle di due cataloghi, con i risultati sotto.
+- Proposed alt text (id): Kueri Trino yang menggabungkan tabel dari dua katalog, dengan hasil di bawahnya.
 
 **Purpose**
 
@@ -5504,7 +7324,7 @@ Check before capture.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/trino-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/trino-client.json`, `resources/data/content/vi/databases/trino-client.json`) (through the `mac-db-trino-catalogs` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/trino-client.json`, `resources/data/content/en/databases/trino-client.json`, `resources/data/content/es/databases/trino-client.json`, `resources/data/content/fr/databases/trino-client.json`, `resources/data/content/id/databases/trino-client.json`, `resources/data/content/it/databases/trino-client.json`, `resources/data/content/ja/databases/trino-client.json`, `resources/data/content/ko/databases/trino-client.json`, `resources/data/content/pt-BR/databases/trino-client.json`, `resources/data/content/vi/databases/trino-client.json`, `resources/data/content/zh-Hans/databases/trino-client.json`, `resources/data/content/zh-Hant/databases/trino-client.json`) (through the `mac-db-trino-catalogs` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -5514,8 +7334,28 @@ Check before capture.
 
 - Placeholder text (en): Close-up of the query that joins two catalogs, with its results.
 - Placeholder text (vi): Cận cảnh query join hai catalog, kèm kết quả.
+- Placeholder text (es): Detalle de la consulta que une dos catálogos y sus resultados.
+- Placeholder text (de): Detailansicht der Abfrage zur Verknüpfung zweier Kataloge mit ihren Ergebnissen.
+- Placeholder text (fr): Gros plan de la requête joignant deux catalogues, avec ses résultats.
+- Placeholder text (ja): 二つのカタログを結合するクエリと、その結果の拡大図。
+- Placeholder text (pt-BR): Detalhe da consulta que une dois catálogos, com seus resultados.
+- Placeholder text (zh-Hans): 连接两个目录的查询及其结果的局部图。
+- Placeholder text (ko): 두 카탈로그를 조인하는 쿼리와 결과의 확대 화면입니다.
+- Placeholder text (zh-Hant): 聯結兩個目錄的查詢及其結果的局部圖。
+- Placeholder text (it): Dettaglio della query che unisce due cataloghi, con i risultati.
+- Placeholder text (id): Tampilan dekat kueri yang menggabungkan dua katalog, dengan hasilnya.
 - Proposed alt text (en): Close-up of a Trino query joining tables from two catalogs, with its first results.
 - Proposed alt text (vi): Cận cảnh một query Trino join các table từ hai catalog, kèm các kết quả đầu tiên.
+- Proposed alt text (es): Detalle de una consulta Trino que une tablas de dos catálogos, con sus primeros resultados.
+- Proposed alt text (de): Detailansicht einer Trino-Abfrage, die Tabellen aus zwei Katalogen verknüpft, mit ihren ersten Ergebnissen.
+- Proposed alt text (fr): Gros plan d’une requête Trino joignant des tables de deux catalogues, avec ses premiers résultats.
+- Proposed alt text (ja): 二つのカタログのテーブルを結合する Trino クエリと、最初の結果の拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma consulta Trino unindo tabelas de dois catálogos, com seus primeiros resultados.
+- Proposed alt text (zh-Hans): 连接两个目录中表的 Trino 查询局部图，显示前几项结果。
+- Proposed alt text (ko): 두 카탈로그의 테이블을 조인하는 Trino 쿼리와 첫 결과의 확대 화면.
+- Proposed alt text (zh-Hant): 聯結兩個目錄中資料表的 Trino 查詢局部圖，顯示前幾項結果。
+- Proposed alt text (it): Dettaglio di una query Trino che unisce tabelle di due cataloghi, con i primi risultati.
+- Proposed alt text (id): Tampilan dekat kueri Trino yang menggabungkan tabel dari dua katalog, dengan hasil awalnya.
 
 **Purpose**
 
@@ -5561,7 +7401,7 @@ out so each table name starts its own line and fits in 343 pt.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/beancount-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/beancount-client.json`, `resources/data/content/vi/databases/beancount-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/beancount-client.json`, `resources/data/content/en/databases/beancount-client.json`, `resources/data/content/es/databases/beancount-client.json`, `resources/data/content/fr/databases/beancount-client.json`, `resources/data/content/id/databases/beancount-client.json`, `resources/data/content/it/databases/beancount-client.json`, `resources/data/content/ja/databases/beancount-client.json`, `resources/data/content/ko/databases/beancount-client.json`, `resources/data/content/pt-BR/databases/beancount-client.json`, `resources/data/content/vi/databases/beancount-client.json`, `resources/data/content/zh-Hans/databases/beancount-client.json`, `resources/data/content/zh-Hant/databases/beancount-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-beancount-bql-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -5572,8 +7412,28 @@ out so each table name starts its own line and fits in 343 pt.
 
 - Placeholder text (en): A Beancount ledger's projected tables with a BQL query result.
 - Placeholder text (vi): Các table được dựng từ sổ cái Beancount và kết quả một query BQL.
+- Placeholder text (es): Tablas proyectadas de un libro Beancount con el resultado de una consulta BQL.
+- Placeholder text (de): Projizierte Tabellen eines Beancount-Journals mit einem BQL-Abfrageergebnis.
+- Placeholder text (fr): Tables projetées d’un journal Beancount avec un résultat de requête BQL.
+- Placeholder text (ja): Beancount 台帳のデータを表すテーブルと BQL クエリの結果。
+- Placeholder text (pt-BR): As tabelas projetadas de um livro-razão Beancount com o resultado de uma consulta BQL.
+- Placeholder text (zh-Hans): Beancount 账本投影出的表及 BQL 查询结果。
+- Placeholder text (ko): Beancount 원장 데이터를 표현하는 테이블과 BQL 쿼리 결과입니다.
+- Placeholder text (zh-Hant): Beancount 帳本投影出的資料表及 BQL 查詢結果。
+- Placeholder text (it): Le tabelle proiettate di un libro contabile Beancount con un risultato di query BQL.
+- Placeholder text (id): Tabel proyeksi buku besar Beancount dengan hasil kueri BQL.
 - Proposed alt text (en): Tables projected from a Beancount ledger in the sidebar, and the result of a BQL query.
 - Proposed alt text (vi): Các table được dựng từ một sổ cái Beancount trong sidebar, và kết quả của một query BQL.
+- Proposed alt text (es): Tablas proyectadas de un libro Beancount en la barra lateral y el resultado de una consulta BQL.
+- Proposed alt text (de): Aus einem Beancount-Journal projizierte Tabellen in der Seitenleiste und das Ergebnis einer BQL-Abfrage.
+- Proposed alt text (fr): Tables projetées depuis un journal Beancount dans la barre latérale, et résultat d’une requête BQL.
+- Proposed alt text (ja): サイドバーに表示された、Beancount 台帳のデータを表すテーブルと BQL クエリの結果。
+- Proposed alt text (pt-BR): Tabelas projetadas de um livro-razão Beancount na barra lateral e o resultado de uma consulta BQL.
+- Proposed alt text (zh-Hans): 侧边栏显示 Beancount 账本投影出的表，并显示 BQL 查询结果。
+- Proposed alt text (ko): 사이드바에 표시된 Beancount 원장 데이터를 표현하는 테이블과 BQL 쿼리 결과.
+- Proposed alt text (zh-Hant): 側邊欄顯示 Beancount 帳本投影出的資料表，並顯示 BQL 查詢結果。
+- Proposed alt text (it): Tabelle proiettate da un libro contabile Beancount nella barra laterale, e il risultato di una query BQL.
+- Proposed alt text (id): Tabel yang diproyeksikan dari buku besar Beancount dalam sidebar, serta hasil kueri BQL.
 
 **Purpose**
 
@@ -5621,7 +7481,7 @@ does not.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/beancount-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/beancount-client.json`, `resources/data/content/vi/databases/beancount-client.json`) (through the `mac-db-beancount-bql` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/beancount-client.json`, `resources/data/content/en/databases/beancount-client.json`, `resources/data/content/es/databases/beancount-client.json`, `resources/data/content/fr/databases/beancount-client.json`, `resources/data/content/id/databases/beancount-client.json`, `resources/data/content/it/databases/beancount-client.json`, `resources/data/content/ja/databases/beancount-client.json`, `resources/data/content/ko/databases/beancount-client.json`, `resources/data/content/pt-BR/databases/beancount-client.json`, `resources/data/content/vi/databases/beancount-client.json`, `resources/data/content/zh-Hans/databases/beancount-client.json`, `resources/data/content/zh-Hant/databases/beancount-client.json`) (through the `mac-db-beancount-bql` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -5631,8 +7491,28 @@ does not.
 
 - Placeholder text (en): Close-up of the BQL query and its first result rows.
 - Placeholder text (vi): Cận cảnh query BQL và các dòng kết quả đầu tiên.
+- Placeholder text (es): Detalle de la consulta BQL y sus primeras filas de resultados.
+- Placeholder text (de): Detailansicht der BQL-Abfrage und ihrer ersten Ergebniszeilen.
+- Placeholder text (fr): Gros plan de la requête BQL et de ses premières lignes de résultat.
+- Placeholder text (ja): BQL クエリと結果の最初の数行の拡大図。
+- Placeholder text (pt-BR): Detalhe da consulta BQL e suas primeiras linhas de resultado.
+- Placeholder text (zh-Hans): BQL 查询及结果前几行的局部图。
+- Placeholder text (ko): BQL 쿼리와 결과의 첫 행들의 확대 화면입니다.
+- Placeholder text (zh-Hant): BQL 查詢及結果前幾列的局部圖。
+- Placeholder text (it): Dettaglio della query BQL e delle prime righe del risultato.
+- Placeholder text (id): Tampilan dekat kueri BQL dan baris awal hasilnya.
 - Proposed alt text (en): Close-up of a BQL query on a Beancount ledger, with the first result rows.
 - Proposed alt text (vi): Cận cảnh một query BQL trên sổ cái Beancount, kèm các dòng kết quả đầu tiên.
+- Proposed alt text (es): Detalle de una consulta BQL sobre un libro Beancount, con las primeras filas de resultados.
+- Proposed alt text (de): Detailansicht einer BQL-Abfrage auf ein Beancount-Journal mit den ersten Ergebniszeilen.
+- Proposed alt text (fr): Gros plan d’une requête BQL sur un journal Beancount, avec les premières lignes de résultat.
+- Proposed alt text (ja): Beancount 台帳に対する BQL クエリと、結果の最初の数行の拡大図。
+- Proposed alt text (pt-BR): Detalhe de uma consulta BQL a um livro-razão Beancount, com as primeiras linhas do resultado.
+- Proposed alt text (zh-Hans): Beancount 账本上的 BQL 查询局部图，显示结果的前几行。
+- Proposed alt text (ko): Beancount 원장의 BQL 쿼리와 결과의 첫 행들의 확대 화면.
+- Proposed alt text (zh-Hant): Beancount 帳本上的 BQL 查詢局部圖，顯示結果的前幾列。
+- Proposed alt text (it): Dettaglio di una query BQL su un libro contabile Beancount, con le prime righe del risultato.
+- Proposed alt text (id): Tampilan dekat kueri BQL pada buku besar Beancount, dengan baris awal hasilnya.
 
 **Purpose**
 
@@ -5678,7 +7558,7 @@ column may fall outside 343 pt; keep date, payee and account inside.
 |---|---|
 | Type | detail (`detail`) · **P2** · supplied |
 | Used on | `/kafka-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/kafka-client.json`, `resources/data/content/vi/databases/kafka-client.json`) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/kafka-client.json`, `resources/data/content/en/databases/kafka-client.json`, `resources/data/content/es/databases/kafka-client.json`, `resources/data/content/fr/databases/kafka-client.json`, `resources/data/content/id/databases/kafka-client.json`, `resources/data/content/it/databases/kafka-client.json`, `resources/data/content/ja/databases/kafka-client.json`, `resources/data/content/ko/databases/kafka-client.json`, `resources/data/content/pt-BR/databases/kafka-client.json`, `resources/data/content/vi/databases/kafka-client.json`, `resources/data/content/zh-Hans/databases/kafka-client.json`, `resources/data/content/zh-Hant/databases/kafka-client.json`) |
 | Aspect | 4:3 |
 | Rendered size | desktop 696×522 · tablet 720×540 · phone: its crop `mac-db-kafka-consume-mobile` |
 | Export | 1392×1044 px (2×) · PNG master → AVIF, WebP · opaque · max 150 KB per file |
@@ -5689,8 +7569,28 @@ column may fall outside 343 pt; keep date, payee and account inside.
 
 - Placeholder text (en): KafkaQL CONSUME on an orders topic: partition, offset, key and value.
 - Placeholder text (vi): KafkaQL CONSUME trên topic orders: partition, offset, key và value.
+- Placeholder text (es): KafkaQL CONSUME sobre un tema orders: partición, offset, clave y valor.
+- Placeholder text (de): KafkaQL CONSUME auf einem Topic orders: Partition, Offset, Schlüssel und Wert.
+- Placeholder text (fr): KafkaQL CONSUME sur un topic orders : partition, offset, clé et valeur.
+- Placeholder text (ja): orders トピックに対する KafkaQL の CONSUME。パーティション、オフセット、キー、値。
+- Placeholder text (pt-BR): KafkaQL CONSUME em um tópico orders: partição, offset, chave e valor.
+- Placeholder text (zh-Hans): 针对 orders 主题的 KafkaQL CONSUME：分区、偏移量、键和值。
+- Placeholder text (ko): orders 토픽에 대한 KafkaQL CONSUME. 파티션, 오프셋, 키, 값입니다.
+- Placeholder text (zh-Hant): 針對 orders 主題的 KafkaQL CONSUME：分割區、位移、索引鍵和值。
+- Placeholder text (it): KafkaQL CONSUME su un topic orders: partizione, offset, chiave e valore.
+- Placeholder text (id): KafkaQL CONSUME pada topik orders: partisi, offset, kunci, dan nilai.
 - Proposed alt text (en): A KafkaQL CONSUME statement on an orders topic, with messages listed by partition, offset, key and timestamp.
 - Proposed alt text (vi): Câu lệnh KafkaQL CONSUME trên topic orders, các message liệt kê theo partition, offset, key và timestamp.
+- Proposed alt text (es): Instrucción KafkaQL CONSUME sobre un tema orders, con mensajes listados por partición, offset, clave y marca de tiempo.
+- Proposed alt text (de): KafkaQL-CONSUME-Anweisung auf einem Topic orders, mit Nachrichten nach Partition, Offset, Schlüssel und Zeitstempel aufgelistet.
+- Proposed alt text (fr): Instruction KafkaQL CONSUME sur un topic orders, avec messages listés par partition, offset, clé et horodatage.
+- Proposed alt text (ja): orders トピックに対する KafkaQL の CONSUME 文。メッセージがパーティション、オフセット、キー、タイムスタンプごとに一覧表示されています。
+- Proposed alt text (pt-BR): Uma instrução KafkaQL CONSUME em um tópico orders, com mensagens listadas por partição, offset, chave e timestamp.
+- Proposed alt text (zh-Hans): 针对 orders 主题的 KafkaQL CONSUME 语句，消息按分区、偏移量、键和时间戳列出。
+- Proposed alt text (ko): orders 토픽에 대한 KafkaQL CONSUME 문. 메시지가 파티션, 오프셋, 키, 타임스탬프로 나열됩니다.
+- Proposed alt text (zh-Hant): 針對 orders 主題的 KafkaQL CONSUME 陳述式，訊息按分割區、位移、索引鍵和時間戳記列出。
+- Proposed alt text (it): Un’istruzione KafkaQL CONSUME su un topic orders, con messaggi elencati per partizione, offset, chiave e timestamp.
+- Proposed alt text (id): Pernyataan KafkaQL CONSUME pada topik orders, dengan pesan dicantumkan berdasarkan partisi, offset, kunci, dan timestamp.
 
 **Purpose**
 
@@ -5736,7 +7636,7 @@ None.
 |---|---|
 | Type | detail (`mobile-crop`) · **P2** · supplied |
 | Used on | `/kafka-client` · lead |
-| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/en/databases/kafka-client.json`, `resources/data/content/vi/databases/kafka-client.json`) (through the `mac-db-kafka-consume` slot, below 768 px) |
+| Rendered by | `resources/js/pages/Databases/Show.tsx` (via `resources/data/content/de/databases/kafka-client.json`, `resources/data/content/en/databases/kafka-client.json`, `resources/data/content/es/databases/kafka-client.json`, `resources/data/content/fr/databases/kafka-client.json`, `resources/data/content/id/databases/kafka-client.json`, `resources/data/content/it/databases/kafka-client.json`, `resources/data/content/ja/databases/kafka-client.json`, `resources/data/content/ko/databases/kafka-client.json`, `resources/data/content/pt-BR/databases/kafka-client.json`, `resources/data/content/vi/databases/kafka-client.json`, `resources/data/content/zh-Hans/databases/kafka-client.json`, `resources/data/content/zh-Hant/databases/kafka-client.json`) (through the `mac-db-kafka-consume` slot, below 768 px) |
 | Aspect | 4:5 |
 | Rendered size | desktop: not shown · tablet: not shown · phone 343×429 |
 | Export | 686×858 px (2×) · PNG master → AVIF, WebP · opaque · max 120 KB per file |
@@ -5746,8 +7646,28 @@ None.
 
 - Placeholder text (en): Close-up of the CONSUME statement and the messages by partition and offset.
 - Placeholder text (vi): Cận cảnh câu lệnh CONSUME và các message theo partition và offset.
+- Placeholder text (es): Detalle de la instrucción CONSUME y los mensajes por partición y offset.
+- Placeholder text (de): Detailansicht der CONSUME-Anweisung und Nachrichten nach Partition und Offset.
+- Placeholder text (fr): Gros plan de l’instruction CONSUME et des messages par partition et offset.
+- Placeholder text (ja): CONSUME 文と、パーティションおよびオフセットごとに表示されたメッセージの拡大図。
+- Placeholder text (pt-BR): Detalhe da instrução CONSUME e das mensagens por partição e offset.
+- Placeholder text (zh-Hans): CONSUME 语句及按分区和偏移量排列的消息局部图。
+- Placeholder text (ko): CONSUME 문과 파티션 및 오프셋으로 나열된 메시지의 확대 화면입니다.
+- Placeholder text (zh-Hant): CONSUME 陳述式及按分割區和位移排列的訊息局部圖。
+- Placeholder text (it): Dettaglio dell’istruzione CONSUME e dei messaggi per partizione e offset.
+- Placeholder text (id): Tampilan dekat pernyataan CONSUME dan pesan berdasarkan partisi serta offset.
 - Proposed alt text (en): Close-up of a KafkaQL CONSUME statement on an orders topic, with messages listed by partition, offset and key.
 - Proposed alt text (vi): Cận cảnh câu lệnh KafkaQL CONSUME trên topic orders, các message liệt kê theo partition, offset và key.
+- Proposed alt text (es): Detalle de una instrucción KafkaQL CONSUME sobre un tema orders, con mensajes listados por partición, offset y clave.
+- Proposed alt text (de): Detailansicht einer KafkaQL-CONSUME-Anweisung auf einem Topic orders mit Nachrichten nach Partition, Offset und Schlüssel.
+- Proposed alt text (fr): Gros plan d’une instruction KafkaQL CONSUME sur un topic orders, avec messages listés par partition, offset et clé.
+- Proposed alt text (ja): orders トピックに対する KafkaQL の CONSUME 文の拡大図。メッセージがパーティション、オフセット、キーごとに一覧表示されています。
+- Proposed alt text (pt-BR): Detalhe de uma instrução KafkaQL CONSUME em um tópico orders, com mensagens listadas por partição, offset e chave.
+- Proposed alt text (zh-Hans): 针对 orders 主题的 KafkaQL CONSUME 语句局部图，消息按分区、偏移量和键列出。
+- Proposed alt text (ko): orders 토픽에 대한 KafkaQL CONSUME 문의 확대 화면. 메시지가 파티션, 오프셋, 키로 나열됩니다.
+- Proposed alt text (zh-Hant): 針對 orders 主題的 KafkaQL CONSUME 陳述式局部圖，訊息按分割區、位移和索引鍵列出。
+- Proposed alt text (it): Dettaglio di un’istruzione KafkaQL CONSUME su un topic orders, con messaggi elencati per partizione, offset e chiave.
+- Proposed alt text (id): Tampilan dekat pernyataan KafkaQL CONSUME pada topik orders, dengan pesan dicantumkan berdasarkan partisi, offset, dan kunci.
 
 **Purpose**
 
@@ -5830,8 +7750,28 @@ Common to every screen:
 
 - Placeholder text (en): TablePro on iPhone: Favorites with the Chinook sample, a Production group and tagged connections.
 - Placeholder text (vi): TablePro trên iPhone: mục Favorites có cơ sở dữ liệu mẫu Chinook, nhóm Production và các connection có tag.
+- Placeholder text (es): TablePro en iPhone: favoritos con el ejemplo Chinook, un grupo Production y conexiones etiquetadas.
+- Placeholder text (de): TablePro auf dem iPhone: Favoriten mit Chinook-Beispiel, einer Gruppe Production und getaggten Verbindungen.
+- Placeholder text (fr): TablePro sur iPhone : favoris avec l’exemple Chinook, un groupe Production et des connexions étiquetées.
+- Placeholder text (ja): iPhone 上の TablePro。Favorites 内の Chinook サンプル、Production グループ、タグ付き接続。
+- Placeholder text (pt-BR): TablePro no iPhone: Favorites com o exemplo Chinook, um grupo Production e conexões etiquetadas.
+- Placeholder text (zh-Hans): iPhone 上的 TablePro：Favorites 中的 Chinook 示例、Production 分组，以及带标签的连接。
+- Placeholder text (ko): iPhone의 TablePro. Favorites의 Chinook 샘플, Production 그룹, 태그가 지정된 연결입니다.
+- Placeholder text (zh-Hant): iPhone 上的 TablePro：Favorites 中的 Chinook 範例、Production 群組，以及帶標籤的連線。
+- Placeholder text (it): TablePro su iPhone: Favorites con l’esempio Chinook, un gruppo Production e connessioni con tag.
+- Placeholder text (id): TablePro di iPhone: Favorites dengan contoh Chinook, grup Production, dan koneksi bertag.
 - Proposed alt text (en): TablePro on iPhone showing the connection list, with the Chinook sample under Favorites and a Production group of tagged connections.
 - Proposed alt text (vi): TablePro trên iPhone hiển thị danh sách connection, với cơ sở dữ liệu mẫu Chinook trong mục Favorites và nhóm Production gồm các connection có tag.
+- Proposed alt text (es): TablePro en iPhone con la lista de conexiones, el ejemplo Chinook en Favoritos y un grupo Production de conexiones etiquetadas.
+- Proposed alt text (de): TablePro auf dem iPhone mit Verbindungsliste, Chinook-Beispiel unter Favoriten und einer Gruppe Production mit getaggten Verbindungen.
+- Proposed alt text (fr): TablePro sur iPhone affichant la liste des connexions, avec l’exemple Chinook sous Favoris et un groupe Production de connexions étiquetées.
+- Proposed alt text (ja): iPhone 上の TablePro の接続一覧。Favorites に Chinook サンプルがあり、Production グループにはタグ付きの接続があります。
+- Proposed alt text (pt-BR): TablePro no iPhone mostrando a lista de conexões, com o exemplo Chinook em Favorites e um grupo Production de conexões etiquetadas.
+- Proposed alt text (zh-Hans): iPhone 上的 TablePro 显示连接列表，Favorites 下有 Chinook 示例，Production 分组包含带标签的连接。
+- Proposed alt text (ko): iPhone의 TablePro 연결 목록. Favorites에는 Chinook 샘플이 있고 Production 그룹에는 태그가 지정된 연결이 있습니다.
+- Proposed alt text (zh-Hant): iPhone 上的 TablePro 顯示連線清單，Favorites 下有 Chinook 範例，Production 群組包含帶標籤的連線。
+- Proposed alt text (it): TablePro su iPhone con l’elenco connessioni, l’esempio Chinook sotto Favorites e un gruppo Production di connessioni con tag.
+- Proposed alt text (id): TablePro di iPhone menampilkan daftar koneksi, dengan contoh Chinook dalam Favorites dan grup Production berisi koneksi bertag.
 
 **Purpose**
 
@@ -5886,8 +7826,28 @@ None. The layout (Favorites, groups, tags, search) matches the App Store listing
 
 - Placeholder text (en): TablePro on iPad showing the Chinook Track table.
 - Placeholder text (vi): TablePro trên iPad hiển thị table Track của Chinook.
+- Placeholder text (es): TablePro en iPad con la tabla Track de Chinook.
+- Placeholder text (de): TablePro auf dem iPad mit der Chinook-Tabelle Track.
+- Placeholder text (fr): TablePro sur iPad affichant la table Track de Chinook.
+- Placeholder text (ja): iPad 上の TablePro で表示した Chinook の Track テーブル。
+- Placeholder text (pt-BR): TablePro no iPad mostrando a tabela Track do Chinook.
+- Placeholder text (zh-Hans): iPad 上的 TablePro 显示 Chinook 的 Track 表。
+- Placeholder text (ko): iPad의 TablePro에서 표시한 Chinook Track 테이블입니다.
+- Placeholder text (zh-Hant): iPad 上的 TablePro 顯示 Chinook 的 Track 資料表。
+- Placeholder text (it): TablePro su iPad con la tabella Track di Chinook.
+- Placeholder text (id): TablePro di iPad menampilkan tabel Track Chinook.
 - Proposed alt text (en): TablePro on iPad in landscape, showing rows of the Chinook Track table as cards.
 - Proposed alt text (vi): TablePro trên iPad ở chế độ ngang, hiển thị các dòng của table Track (Chinook) dưới dạng thẻ.
+- Proposed alt text (es): TablePro en iPad en horizontal, con filas de la tabla Track de Chinook como tarjetas.
+- Proposed alt text (de): TablePro auf dem iPad im Querformat, mit Zeilen der Chinook-Tabelle Track als Karten.
+- Proposed alt text (fr): TablePro sur iPad en paysage, affichant les lignes de la table Track de Chinook sous forme de cartes.
+- Proposed alt text (ja): 横向きの iPad 上の TablePro。Chinook の Track テーブルの行をカードとして表示しています。
+- Proposed alt text (pt-BR): TablePro no iPad em orientação horizontal, mostrando linhas da tabela Track do Chinook como cartões.
+- Proposed alt text (zh-Hans): 横向使用的 iPad 上，TablePro 将 Chinook 的 Track 表行显示为卡片。
+- Proposed alt text (ko): 가로 방향 iPad의 TablePro. Chinook Track 테이블의 행을 카드로 표시합니다.
+- Proposed alt text (zh-Hant): 橫向使用的 iPad 上，TablePro 將 Chinook 的 Track 資料表資料列顯示為卡片。
+- Proposed alt text (it): TablePro su iPad in orizzontale, con righe della tabella Track di Chinook mostrate come schede.
+- Proposed alt text (id): TablePro di iPad dalam orientasi lanskap, menampilkan baris tabel Track Chinook sebagai kartu.
 
 **Purpose**
 
@@ -5941,8 +7901,28 @@ screenshots show this layout).
 
 - Placeholder text (en): Close-up of the iPad table browser: the first Track rows as cards.
 - Placeholder text (vi): Cận cảnh trình duyệt table trên iPad: các dòng đầu của table Track dưới dạng thẻ.
+- Placeholder text (es): Detalle del explorador de tablas del iPad: primeras filas Track como tarjetas.
+- Placeholder text (de): Detailansicht des iPad-Tabellenbrowsers: erste Track-Zeilen als Karten.
+- Placeholder text (fr): Gros plan du navigateur de tables iPad : premières lignes Track en cartes.
+- Placeholder text (ja): iPad のテーブルブラウザの拡大図。最初の Track の行をカードとして表示しています。
+- Placeholder text (pt-BR): Detalhe do navegador de tabelas no iPad: as primeiras linhas de Track como cartões.
+- Placeholder text (zh-Hans): iPad 表浏览器的局部图：前几行 Track 数据以卡片显示。
+- Placeholder text (ko): iPad 테이블 탐색기의 확대 화면. 첫 Track 행들이 카드로 표시됩니다.
+- Placeholder text (zh-Hant): iPad 資料表瀏覽器的局部圖：前幾列 Track 資料以卡片顯示。
+- Placeholder text (it): Dettaglio del navigatore di tabelle su iPad: le prime righe Track come schede.
+- Placeholder text (id): Tampilan dekat penjelajah tabel iPad: baris awal Track sebagai kartu.
 - Proposed alt text (en): Close-up of TablePro on iPad showing the first rows of the Chinook Track table as cards.
 - Proposed alt text (vi): Cận cảnh TablePro trên iPad hiển thị các dòng đầu của table Track (Chinook) dưới dạng thẻ.
+- Proposed alt text (es): Detalle de TablePro en iPad con las primeras filas de la tabla Track de Chinook como tarjetas.
+- Proposed alt text (de): Detailansicht von TablePro auf dem iPad mit den ersten Zeilen der Chinook-Tabelle Track als Karten.
+- Proposed alt text (fr): Gros plan de TablePro sur iPad affichant les premières lignes de la table Track de Chinook sous forme de cartes.
+- Proposed alt text (ja): iPad 上の TablePro の拡大図。Chinook の Track テーブルの最初の数行をカードとして表示しています。
+- Proposed alt text (pt-BR): Detalhe do TablePro no iPad mostrando as primeiras linhas da tabela Track do Chinook como cartões.
+- Proposed alt text (zh-Hans): iPad 上 TablePro 的局部图，将 Chinook 的 Track 表前几行显示为卡片。
+- Proposed alt text (ko): iPad의 TablePro 확대 화면. Chinook Track 테이블의 첫 행들을 카드로 표시합니다.
+- Proposed alt text (zh-Hant): iPad 上 TablePro 的局部圖，將 Chinook 的 Track 資料表前幾列顯示為卡片。
+- Proposed alt text (it): Dettaglio di TablePro su iPad con le prime righe della tabella Track di Chinook mostrate come schede.
+- Proposed alt text (id): Tampilan dekat TablePro di iPad menampilkan baris awal tabel Track Chinook sebagai kartu.
 
 **Purpose**
 
@@ -5999,8 +7979,28 @@ next.
 
 - Placeholder text (en): The Chinook Track table filtered by genre, with row cards and the page range.
 - Placeholder text (vi): Table Track của Chinook lọc theo thể loại, hiển thị dạng thẻ và khoảng trang.
+- Placeholder text (es): Tabla Track de Chinook filtrada por género, con tarjetas de filas e intervalo de la página.
+- Placeholder text (de): Nach Genre gefilterte Chinook-Tabelle Track mit Zeilenkarten und Seitenbereich.
+- Placeholder text (fr): Table Track de Chinook filtrée par genre, avec cartes de lignes et plage de page.
+- Placeholder text (ja): ジャンルで絞り込んだ Chinook の Track テーブル。行のカードとページ範囲。
+- Placeholder text (pt-BR): A tabela Track do Chinook filtrada por gênero, com cartões de linhas e o intervalo da página.
+- Placeholder text (zh-Hans): Chinook 的 Track 表按流派筛选，显示行卡片和页面范围。
+- Placeholder text (ko): 장르별로 필터링된 Chinook Track 테이블. 행 카드와 페이지 범위입니다.
+- Placeholder text (zh-Hant): Chinook 的 Track 資料表按曲風篩選，顯示資料列卡片和頁面範圍。
+- Placeholder text (it): La tabella Track di Chinook filtrata per genere, con schede delle righe e intervallo della pagina.
+- Placeholder text (id): Tabel Track Chinook difilter berdasarkan genre, dengan kartu baris dan rentang halaman.
 - Proposed alt text (en): The Chinook Track table on iPhone filtered by genre, its rows shown as cards with the page range below.
 - Proposed alt text (vi): Table Track của Chinook trên iPhone được lọc theo thể loại, các dòng hiển thị dạng thẻ, khoảng trang ở bên dưới.
+- Proposed alt text (es): Tabla Track de Chinook en iPhone filtrada por género, con filas como tarjetas y el intervalo de la página debajo.
+- Proposed alt text (de): Chinook-Tabelle Track auf dem iPhone nach Genre gefiltert, Zeilen als Karten mit Seitenbereich darunter.
+- Proposed alt text (fr): Table Track de Chinook sur iPhone filtrée par genre, lignes affichées en cartes et plage de page dessous.
+- Proposed alt text (ja): iPhone 上の Chinook の Track テーブル。ジャンルで絞り込んだ行がカードとして表示され、その下にページ範囲があります。
+- Proposed alt text (pt-BR): A tabela Track do Chinook no iPhone filtrada por gênero, com linhas mostradas como cartões e o intervalo da página abaixo.
+- Proposed alt text (zh-Hans): iPhone 上的 Chinook Track 表按流派筛选，行以卡片显示，下方标明页面范围。
+- Proposed alt text (ko): iPhone의 Chinook Track 테이블이 장르별로 필터링되어 있습니다. 행은 카드로 표시되고 아래에는 페이지 범위가 있습니다.
+- Proposed alt text (zh-Hant): iPhone 上的 Chinook Track 資料表按曲風篩選，資料列以卡片顯示，下方標明頁面範圍。
+- Proposed alt text (it): La tabella Track di Chinook su iPhone filtrata per genere, con righe mostrate come schede e intervallo della pagina sotto.
+- Proposed alt text (id): Tabel Track Chinook di iPhone difilter berdasarkan genre, barisnya ditampilkan sebagai kartu dengan rentang halaman di bawahnya.
 
 **Purpose**
 
@@ -6049,8 +8049,28 @@ None.
 
 - Placeholder text (en): Editing a track with Composer set to NULL and a link to the related album.
 - Placeholder text (vi): Sửa một track, đặt Composer thành NULL, kèm liên kết tới album liên quan.
+- Placeholder text (es): Edición de una pista con Composer en NULL y enlace al álbum relacionado.
+- Placeholder text (de): Bearbeitung eines Titels mit Composer auf NULL und Link zum zugehörigen Album.
+- Placeholder text (fr): Modification d’un morceau avec Composer défini sur NULL et lien vers l’album associé.
+- Placeholder text (ja): Composer を NULL に設定したトラックの編集画面。関連するアルバムへのリンクもあります。
+- Placeholder text (pt-BR): Edição de uma faixa com Composer definido como NULL e um link para o álbum relacionado.
+- Placeholder text (zh-Hans): 编辑音轨，将 Composer 设为 NULL，并提供相关专辑的链接。
+- Placeholder text (ko): Composer가 NULL로 설정된 트랙 편집 화면과 관련 앨범 링크입니다.
+- Placeholder text (zh-Hant): 編輯音軌，將 Composer 設為 NULL，並提供相關專輯的連結。
+- Placeholder text (it): Modifica di un brano con Composer impostato a NULL e un collegamento all’album correlato.
+- Placeholder text (id): Mengedit track dengan Composer diatur menjadi NULL dan tautan ke album terkait.
 - Proposed alt text (en): A Chinook track open for editing on iPhone, with Composer set to NULL before saving.
 - Proposed alt text (vi): Một track của Chinook đang được sửa trên iPhone, Composer được đặt thành NULL trước khi lưu.
+- Proposed alt text (es): Pista de Chinook abierta para editar en iPhone, con Composer en NULL antes de guardar.
+- Proposed alt text (de): Chinook-Titel zur Bearbeitung auf dem iPhone geöffnet, Composer vor dem Speichern auf NULL gesetzt.
+- Proposed alt text (fr): Morceau Chinook ouvert en modification sur iPhone, Composer défini sur NULL avant l’enregistrement.
+- Proposed alt text (ja): iPhone で編集のために開いた Chinook のトラック。保存前に Composer を NULL に設定しています。
+- Proposed alt text (pt-BR): Uma faixa do Chinook aberta para edição no iPhone, com Composer definido como NULL antes de salvar.
+- Proposed alt text (zh-Hans): iPhone 上打开 Chinook 的一条音轨进行编辑，保存前将 Composer 设为 NULL。
+- Proposed alt text (ko): iPhone에서 편집을 위해 열린 Chinook 트랙. 저장 전에 Composer가 NULL로 설정되어 있습니다.
+- Proposed alt text (zh-Hant): iPhone 上開啟 Chinook 的一筆音軌進行編輯，儲存前將 Composer 設為 NULL。
+- Proposed alt text (it): Un brano di Chinook aperto per la modifica su iPhone, con Composer impostato a NULL prima del salvataggio.
+- Proposed alt text (id): Track Chinook terbuka untuk diedit di iPhone, dengan Composer diatur menjadi NULL sebelum disimpan.
 
 **Purpose**
 
@@ -6100,8 +8120,28 @@ None.
 
 - Placeholder text (en): A grouped SQL query and its results in the Query tab.
 - Placeholder text (vi): Một query SQL có GROUP BY và kết quả trong tab Query.
+- Placeholder text (es): Consulta SQL agrupada y sus resultados en la pestaña Consulta.
+- Placeholder text (de): Gruppierte SQL-Abfrage und ihre Ergebnisse im Abfrage-Tab.
+- Placeholder text (fr): Requête SQL groupée et ses résultats dans l’onglet Requête.
+- Placeholder text (ja): Query タブのグループ化した SQL クエリと、その結果。
+- Placeholder text (pt-BR): Uma consulta SQL agrupada e seus resultados na aba Query.
+- Placeholder text (zh-Hans): Query 标签页中的分组 SQL 查询及其结果。
+- Placeholder text (ko): Query 탭의 그룹화된 SQL 쿼리와 결과입니다.
+- Placeholder text (zh-Hant): Query 分頁中的分組 SQL 查詢及其結果。
+- Placeholder text (it): Una query SQL raggruppata e i risultati nella scheda Query.
+- Placeholder text (id): Kueri SQL berkelompok dan hasilnya dalam tab Query.
 - Proposed alt text (en): The Query tab on iPhone with a SQL query that counts tracks per genre, and its results.
 - Proposed alt text (vi): Tab Query trên iPhone với một query SQL đếm số track theo thể loại, kèm kết quả.
+- Proposed alt text (es): Pestaña Consulta en iPhone con una consulta SQL que cuenta pistas por género y sus resultados.
+- Proposed alt text (de): Abfrage-Tab auf dem iPhone mit einer SQL-Abfrage, die Titel je Genre zählt, und ihren Ergebnissen.
+- Proposed alt text (fr): Onglet Requête sur iPhone avec une requête SQL comptant les morceaux par genre et ses résultats.
+- Proposed alt text (ja): iPhone の Query タブ。ジャンルごとにトラック数を数える SQL クエリと、その結果。
+- Proposed alt text (pt-BR): A aba Query no iPhone com uma consulta SQL que conta faixas por gênero e seus resultados.
+- Proposed alt text (zh-Hans): iPhone 的 Query 标签页中，SQL 查询按流派统计音轨数，并显示结果。
+- Proposed alt text (ko): iPhone의 Query 탭. 장르별 트랙 수를 세는 SQL 쿼리와 결과가 표시됩니다.
+- Proposed alt text (zh-Hant): iPhone 的 Query 分頁中，SQL 查詢按曲風統計音軌數，並顯示結果。
+- Proposed alt text (it): La scheda Query su iPhone con una query SQL che conta i brani per genere e i risultati.
+- Proposed alt text (id): Tab Query di iPhone dengan kueri SQL yang menghitung track per genre, serta hasilnya.
 
 **Purpose**
 
@@ -6151,8 +8191,28 @@ None.
 
 - Placeholder text (en): A running query as a Live Activity on the Lock Screen: the connection, the query, the elapsed time and the Running status.
 - Placeholder text (vi): Một query đang chạy hiển thị dạng Hoạt động trực tiếp trên Màn hình khóa: connection, câu query, thời gian đã chạy và trạng thái Running.
+- Placeholder text (es): Consulta en ejecución como actividad en directo en la pantalla bloqueada: conexión, consulta, tiempo transcurrido y estado En ejecución.
+- Placeholder text (de): Laufende Abfrage als Live-Aktivität auf dem Sperrbildschirm: Verbindung, Abfrage, verstrichene Zeit und Status Läuft.
+- Placeholder text (fr): Requête en cours sous forme d’activité en direct sur l’écran verrouillé : connexion, requête, temps écoulé et état En cours.
+- Placeholder text (ja): ロック画面のライブアクティビティとして表示された実行中のクエリ。接続、クエリ、経過時間、Running ステータス。
+- Placeholder text (pt-BR): Uma consulta em execução como Atividade ao Vivo na Tela Bloqueada: a conexão, a consulta, o tempo decorrido e o status Running.
+- Placeholder text (zh-Hans): 查询在锁定屏幕上以实时活动显示：连接、查询、已用时间和 Running 状态。
+- Placeholder text (ko): 잠금 화면에 실시간 현황으로 표시된 실행 중인 쿼리. 연결, 쿼리, 경과 시간, Running 상태입니다.
+- Placeholder text (zh-Hant): 查詢在鎖定畫面上以即時動態顯示：連線、查詢、已用時間和 Running 狀態。
+- Placeholder text (it): Una query in esecuzione come attività in tempo reale sulla schermata di blocco: connessione, query, tempo trascorso e stato Running.
+- Placeholder text (id): Kueri yang berjalan sebagai Aktivitas Langsung pada Layar Terkunci: koneksi, kueri, waktu berlalu, dan status Running.
 - Proposed alt text (en): A Live Activity on the iPhone Lock Screen for a running query, showing the connection name, the start of the query, the elapsed time and the Running status.
 - Proposed alt text (vi): Một Hoạt động trực tiếp trên Màn hình khóa của iPhone cho một query đang chạy, hiển thị tên connection, phần đầu câu query, thời gian đã chạy và trạng thái Running.
+- Proposed alt text (es): Actividad en directo en la pantalla bloqueada del iPhone para una consulta en ejecución, con nombre de conexión, inicio de la consulta, tiempo transcurrido y estado En ejecución.
+- Proposed alt text (de): Live-Aktivität einer laufenden Abfrage auf dem iPhone-Sperrbildschirm mit Verbindungsname, Abfrageanfang, verstrichener Zeit und Status Läuft.
+- Proposed alt text (fr): Activité en direct sur l’écran verrouillé iPhone pour une requête en cours, avec nom de connexion, début de la requête, temps écoulé et état En cours.
+- Proposed alt text (ja): 実行中のクエリを表示する iPhone のロック画面のライブアクティビティ。接続名、クエリの冒頭、経過時間、Running ステータスが表示されています。
+- Proposed alt text (pt-BR): Uma Atividade ao Vivo na Tela Bloqueada do iPhone para uma consulta em execução, mostrando o nome da conexão, o início da consulta, o tempo decorrido e o status Running.
+- Proposed alt text (zh-Hans): iPhone 锁定屏幕上的实时活动显示正在运行的查询，包含连接名称、查询开头、已用时间和 Running 状态。
+- Proposed alt text (ko): iPhone 잠금 화면에서 실행 중인 쿼리를 보여 주는 실시간 현황. 연결 이름, 쿼리의 시작 부분, 경과 시간, Running 상태가 표시됩니다.
+- Proposed alt text (zh-Hant): iPhone 鎖定畫面上的即時動態顯示正在執行的查詢，包含連線名稱、查詢開頭、已用時間和 Running 狀態。
+- Proposed alt text (it): Un’attività in tempo reale sulla schermata di blocco di iPhone per una query in esecuzione, con nome della connessione, inizio della query, tempo trascorso e stato Running.
+- Proposed alt text (id): Aktivitas Langsung pada Layar Terkunci iPhone untuk kueri yang berjalan, menampilkan nama koneksi, awal kueri, waktu berlalu, dan status Running.
 
 **Purpose**
 
@@ -6209,8 +8269,28 @@ At build 22 (`232e8dae6`), `TableProWidget/QueryLiveActivityWidget.swift` shows 
 
 - Placeholder text (en): A new PostgreSQL connection with Read-Only Safe Mode, SSL and an SSH tunnel.
 - Placeholder text (vi): Connection PostgreSQL mới với Safe Mode Read-Only, SSL và SSH tunnel.
+- Placeholder text (es): Nueva conexión PostgreSQL con modo seguro Solo lectura, SSL y túnel SSH.
+- Placeholder text (de): Neue PostgreSQL-Verbindung mit Sicherheitsmodus Schreibgeschützt, SSL und SSH-Tunnel.
+- Placeholder text (fr): Nouvelle connexion PostgreSQL avec mode sécurisé Lecture seule, SSL et tunnel SSH.
+- Placeholder text (ja): Read-Only Safe Mode、SSL、SSH トンネルを設定した新規 PostgreSQL 接続。
+- Placeholder text (pt-BR): Uma nova conexão PostgreSQL com Read-Only Safe Mode, SSL e um túnel SSH.
+- Placeholder text (zh-Hans): 新建 PostgreSQL 连接，配置 Read-Only Safe Mode、SSL 和 SSH 隧道。
+- Placeholder text (ko): Read-Only Safe Mode, SSL, SSH 터널이 설정된 새 PostgreSQL 연결입니다.
+- Placeholder text (zh-Hant): 新增 PostgreSQL 連線，設定 Read-Only Safe Mode、SSL 和 SSH 通道。
+- Placeholder text (it): Una nuova connessione PostgreSQL con Read-Only Safe Mode, SSL e un tunnel SSH.
+- Placeholder text (id): Koneksi PostgreSQL baru dengan Read-Only Safe Mode, SSL, dan tunnel SSH.
 - Proposed alt text (en): A new connection form on iPhone with SSL set to Verify Identity and an SSH tunnel to bastion.acme.internal that signs in with a private key.
 - Proposed alt text (vi): Form connection mới trên iPhone với SSL đặt ở Verify Identity và SSH tunnel tới bastion.acme.internal, đăng nhập bằng private key.
+- Proposed alt text (es): Formulario de nueva conexión en iPhone con SSL en Verificar identidad y túnel SSH a bastion.acme.internal autenticado con una clave privada.
+- Proposed alt text (de): Neues Verbindungsformular auf dem iPhone mit SSL auf Identität prüfen und SSH-Tunnel nach bastion.acme.internal mit privatem Schlüssel zur Anmeldung.
+- Proposed alt text (fr): Formulaire de nouvelle connexion sur iPhone, SSL défini sur Vérifier l’identité et tunnel SSH vers bastion.acme.internal authentifié par clé privée.
+- Proposed alt text (ja): iPhone の新規接続フォーム。SSL は Verify Identity に設定され、秘密鍵でログインする bastion.acme.internal への SSH トンネルがあります。
+- Proposed alt text (pt-BR): Um formulário de nova conexão no iPhone com SSL definido como Verify Identity e um túnel SSH para bastion.acme.internal que autentica com uma chave privada.
+- Proposed alt text (zh-Hans): iPhone 的新建连接表单将 SSL 设为 Verify Identity，并使用私钥登录通向 bastion.acme.internal 的 SSH 隧道。
+- Proposed alt text (ko): iPhone의 새 연결 양식. SSL은 Verify Identity로 설정되어 있으며 개인 키로 로그인하는 bastion.acme.internal까지의 SSH 터널이 있습니다.
+- Proposed alt text (zh-Hant): iPhone 的新增連線表單將 SSL 設為 Verify Identity，並使用私密金鑰登入通向 bastion.acme.internal 的 SSH 通道。
+- Proposed alt text (it): Un modulo di nuova connessione su iPhone con SSL impostato a Verify Identity e un tunnel SSH verso bastion.acme.internal che autentica con una chiave privata.
+- Proposed alt text (id): Formulir koneksi baru di iPhone dengan SSL diatur ke Verify Identity dan tunnel SSH ke bastion.acme.internal yang masuk dengan kunci privat.
 
 **Purpose**
 
@@ -6260,8 +8340,28 @@ None.
 
 - Placeholder text (en): Confirm Writes asking before an UPDATE runs.
 - Placeholder text (vi): Confirm Writes hỏi lại trước khi chạy câu UPDATE.
+- Placeholder text (es): Confirmar escrituras pregunta antes de ejecutar UPDATE.
+- Placeholder text (de): Schreibzugriffe bestätigen fragt vor einem UPDATE nach.
+- Placeholder text (fr): Confirmer les écritures demande une confirmation avant un UPDATE.
+- Placeholder text (ja): UPDATE の実行前に確認を求める Confirm Writes。
+- Placeholder text (pt-BR): Confirm Writes pedindo autorização antes de executar um UPDATE.
+- Placeholder text (zh-Hans): Confirm Writes 在执行 UPDATE 前要求确认。
+- Placeholder text (ko): UPDATE 실행 전에 확인을 요청하는 Confirm Writes입니다.
+- Placeholder text (zh-Hant): Confirm Writes 在執行 UPDATE 前要求確認。
+- Placeholder text (it): Confirm Writes che richiede l’autorizzazione prima di eseguire un UPDATE.
+- Placeholder text (id): Confirm Writes meminta persetujuan sebelum UPDATE dijalankan.
 - Proposed alt text (en): A confirmation on iPhone asking before an UPDATE statement runs on a connection set to Confirm Writes.
 - Proposed alt text (vi): Hộp xác nhận trên iPhone hỏi lại trước khi chạy câu UPDATE trên một connection đặt ở Confirm Writes.
+- Proposed alt text (es): Confirmación en iPhone antes de ejecutar UPDATE en una conexión configurada con Confirmar escrituras.
+- Proposed alt text (de): Bestätigung auf dem iPhone vor einer UPDATE-Anweisung auf einer Verbindung mit Schreibzugriffe bestätigen.
+- Proposed alt text (fr): Confirmation sur iPhone avant l’exécution d’un UPDATE sur une connexion réglée sur Confirmer les écritures.
+- Proposed alt text (ja): Confirm Writes に設定した接続で、UPDATE 文の実行前に iPhone が表示する確認。
+- Proposed alt text (pt-BR): Uma confirmação no iPhone pedindo autorização antes de executar uma instrução UPDATE em uma conexão definida como Confirm Writes.
+- Proposed alt text (zh-Hans): iPhone 上的确认提示，在配置为 Confirm Writes 的连接中执行 UPDATE 语句前询问。
+- Proposed alt text (ko): Confirm Writes로 설정된 연결에서 UPDATE 문을 실행하기 전에 iPhone에 표시되는 확인 메시지.
+- Proposed alt text (zh-Hant): iPhone 上的確認提示，在設定為 Confirm Writes 的連線中執行 UPDATE 陳述式前詢問。
+- Proposed alt text (it): Una conferma su iPhone che richiede l’autorizzazione prima di eseguire un’istruzione UPDATE su una connessione impostata a Confirm Writes.
+- Proposed alt text (id): Konfirmasi di iPhone yang meminta persetujuan sebelum pernyataan UPDATE dijalankan pada koneksi yang diatur ke Confirm Writes.
 
 **Purpose**
 
@@ -6309,8 +8409,28 @@ None.
 
 - Placeholder text (en): Two TablePro windows open at once on iPad in Stage Manager, each on a different table.
 - Placeholder text (vi): Hai cửa sổ TablePro mở cùng lúc trên iPad trong Stage Manager, mỗi cửa sổ một table.
+- Placeholder text (es): Dos ventanas de TablePro abiertas a la vez en iPad con Stage Manager, cada una en una tabla distinta.
+- Placeholder text (de): Zwei gleichzeitig in Stage Manager auf dem iPad geöffnete TablePro-Fenster, jedes mit einer anderen Tabelle.
+- Placeholder text (fr): Deux fenêtres TablePro ouvertes simultanément sur iPad dans Stage Manager, chacune sur une table différente.
+- Placeholder text (ja): iPad のステージマネージャで同時に開いた二つの TablePro ウインドウ。それぞれ異なるテーブル。
+- Placeholder text (pt-BR): Duas janelas do TablePro abertas ao mesmo tempo no iPad com Organizador Visual, cada uma em uma tabela diferente.
+- Placeholder text (zh-Hans): iPad 的台前调度中同时打开两个 TablePro 窗口，各自显示不同的表。
+- Placeholder text (ko): iPad의 스테이지 매니저에서 동시에 열린 TablePro 창 두 개. 각각 다른 테이블이 표시됩니다.
+- Placeholder text (zh-Hant): iPad 的幕前調度中同時開啟兩個 TablePro 視窗，各自顯示不同的資料表。
+- Placeholder text (it): Due finestre TablePro aperte contemporaneamente su iPad in Stage Manager, ciascuna su una tabella diversa.
+- Placeholder text (id): Dua jendela TablePro terbuka sekaligus di iPad dalam Stage Manager, masing-masing pada tabel berbeda.
 - Proposed alt text (en): Two TablePro windows open at once on iPad in Stage Manager, each showing a different Chinook table.
 - Proposed alt text (vi): Hai cửa sổ TablePro mở cùng lúc trên iPad trong Stage Manager, mỗi cửa sổ hiển thị một table khác nhau của Chinook.
+- Proposed alt text (es): Dos ventanas de TablePro abiertas a la vez en iPad con Stage Manager, cada una con una tabla distinta de Chinook.
+- Proposed alt text (de): Zwei gleichzeitig in Stage Manager auf dem iPad geöffnete TablePro-Fenster, jedes mit einer anderen Chinook-Tabelle.
+- Proposed alt text (fr): Deux fenêtres TablePro ouvertes simultanément sur iPad dans Stage Manager, chacune affichant une table Chinook différente.
+- Proposed alt text (ja): iPad のステージマネージャで同時に開いた二つの TablePro ウインドウ。それぞれ異なる Chinook テーブルを表示しています。
+- Proposed alt text (pt-BR): Duas janelas do TablePro abertas ao mesmo tempo no iPad com Organizador Visual, cada uma mostrando uma tabela diferente do Chinook.
+- Proposed alt text (zh-Hans): iPad 的台前调度中同时打开两个 TablePro 窗口，各自显示不同的 Chinook 表。
+- Proposed alt text (ko): iPad의 스테이지 매니저에서 동시에 열린 TablePro 창 두 개. 각각 다른 Chinook 테이블을 표시합니다.
+- Proposed alt text (zh-Hant): iPad 的幕前調度中同時開啟兩個 TablePro 視窗，各自顯示不同的 Chinook 資料表。
+- Proposed alt text (it): Due finestre TablePro aperte contemporaneamente su iPad in Stage Manager, ciascuna con una tabella Chinook diversa.
+- Proposed alt text (id): Dua jendela TablePro terbuka sekaligus di iPad dalam Stage Manager, masing-masing menampilkan tabel Chinook berbeda.
 
 **Purpose**
 
@@ -6359,8 +8479,28 @@ no in-app "New Window" command).
 
 - Placeholder text (en): Quick Connect widgets on the Home Screen.
 - Placeholder text (vi): Tiện ích Quick Connect trên Màn hình chính.
+- Placeholder text (es): Widgets de conexión rápida en la pantalla de inicio.
+- Placeholder text (de): Schnellverbindungs-Widgets auf dem Home-Bildschirm.
+- Placeholder text (fr): Widgets de connexion rapide sur l’écran d’accueil.
+- Placeholder text (ja): ホーム画面の Quick Connect ウィジェット。
+- Placeholder text (pt-BR): Widgets Quick Connect na Tela de Início.
+- Placeholder text (zh-Hans): 主屏幕上的 Quick Connect 小组件。
+- Placeholder text (ko): 홈 화면의 Quick Connect 위젯입니다.
+- Placeholder text (zh-Hant): 主畫面上的 Quick Connect 小工具。
+- Placeholder text (it): Widget Quick Connect sulla schermata Home.
+- Placeholder text (id): Widget Quick Connect pada Layar Utama.
 - Proposed alt text (en): Small and medium Quick Connect widgets on the iPhone Home Screen.
 - Proposed alt text (vi): Tiện ích Quick Connect cỡ nhỏ và cỡ vừa trên Màn hình chính của iPhone.
+- Proposed alt text (es): Widgets pequeños y medianos de conexión rápida en la pantalla de inicio del iPhone.
+- Proposed alt text (de): Kleine und mittlere Schnellverbindungs-Widgets auf dem iPhone-Home-Bildschirm.
+- Proposed alt text (fr): Widgets de connexion rapide petits et moyens sur l’écran d’accueil iPhone.
+- Proposed alt text (ja): iPhone のホーム画面に配置した、小サイズと中サイズの Quick Connect ウィジェット。
+- Proposed alt text (pt-BR): Widgets Quick Connect pequenos e médios na Tela de Início do iPhone.
+- Proposed alt text (zh-Hans): iPhone 主屏幕上的小号和中号 Quick Connect 小组件。
+- Proposed alt text (ko): iPhone 홈 화면의 작은 크기와 중간 크기 Quick Connect 위젯.
+- Proposed alt text (zh-Hant): iPhone 主畫面上的小型和中型 Quick Connect 小工具。
+- Proposed alt text (it): Widget Quick Connect piccoli e medi sulla schermata Home di iPhone.
+- Proposed alt text (id): Widget Quick Connect kecil dan sedang pada Layar Utama iPhone.
 
 **Purpose**
 
@@ -6407,8 +8547,28 @@ None.
 
 - Placeholder text (en): A Shortcuts action that adds CSV rows to a table.
 - Placeholder text (vi): Một tác vụ trong ứng dụng Phím tắt thêm các dòng CSV vào table.
+- Placeholder text (es): Acción de Atajos que añade filas CSV a una tabla.
+- Placeholder text (de): Kurzbefehle-Aktion, die CSV-Zeilen zu einer Tabelle hinzufügt.
+- Placeholder text (fr): Action Raccourcis ajoutant des lignes CSV à une table.
+- Placeholder text (ja): CSV の行をテーブルに追加するショートカットのアクション。
+- Placeholder text (pt-BR): Uma ação do Atalhos que adiciona linhas CSV a uma tabela.
+- Placeholder text (zh-Hans): 将 CSV 行添加到表的快捷指令操作。
+- Placeholder text (ko): CSV 행을 테이블에 추가하는 단축어 동작입니다.
+- Placeholder text (zh-Hant): 將 CSV 資料列加入資料表的捷徑動作。
+- Placeholder text (it): Un’azione Comandi Rapidi che aggiunge righe CSV a una tabella.
+- Placeholder text (id): Tindakan Pintasan yang menambahkan baris CSV ke tabel.
 - Proposed alt text (en): The Shortcuts editor with TablePro's Add Rows to Table action set to add CSV rows to a table.
 - Proposed alt text (vi): Trình chỉnh sửa Phím tắt với tác vụ Add Rows to Table của TablePro, được thiết lập để thêm các dòng CSV vào một table.
+- Proposed alt text (es): Editor de Atajos con la acción Añadir filas a tabla de TablePro configurada para añadir filas CSV a una tabla.
+- Proposed alt text (de): Kurzbefehle-Editor mit TablePros Aktion Zeilen zu Tabelle hinzufügen, eingerichtet zum Hinzufügen von CSV-Zeilen.
+- Proposed alt text (fr): Éditeur Raccourcis avec l’action Ajouter des lignes à une table de TablePro configurée pour ajouter des lignes CSV à une table.
+- Proposed alt text (ja): ショートカットのエディタ。TablePro の Add Rows to Table アクションは、CSV の行をテーブルに追加するように設定されています。
+- Proposed alt text (pt-BR): O editor do Atalhos com a ação Add Rows to Table do TablePro configurada para adicionar linhas CSV a uma tabela.
+- Proposed alt text (zh-Hans): 快捷指令编辑器中的 TablePro Add Rows to Table 操作，设置为将 CSV 行添加到表。
+- Proposed alt text (ko): 단축어 편집기에서 TablePro의 Add Rows to Table 동작이 CSV 행을 테이블에 추가하도록 설정되어 있습니다.
+- Proposed alt text (zh-Hant): 捷徑編輯器中的 TablePro Add Rows to Table 動作，設定為將 CSV 資料列加入資料表。
+- Proposed alt text (it): L’editor Comandi Rapidi con l’azione Add Rows to Table di TablePro impostata per aggiungere righe CSV a una tabella.
+- Proposed alt text (id): Editor Pintasan dengan tindakan Add Rows to Table TablePro diatur untuk menambahkan baris CSV ke tabel.
 
 **Purpose**
 
@@ -6456,8 +8616,28 @@ None.
 
 - Placeholder text (en): Settings on iPhone: Face ID lock and iCloud Sync on, usage data sharing off.
 - Placeholder text (vi): Cài đặt (Settings) trên iPhone: bật khóa Face ID và iCloud Sync, tắt chia sẻ dữ liệu sử dụng.
+- Placeholder text (es): Ajustes en iPhone: bloqueo con Face ID y sincronización iCloud activados, compartir datos de uso desactivado.
+- Placeholder text (de): Einstellungen auf dem iPhone: Face-ID-Sperre und iCloud-Synchronisierung aktiviert, Teilen von Nutzungsdaten deaktiviert.
+- Placeholder text (fr): Réglages sur iPhone : verrouillage Face ID et synchronisation iCloud activés, partage des données d’utilisation désactivé.
+- Placeholder text (ja): iPhone の設定。Face ID ロックと iCloud Sync はオン、利用データの共有はオフ。
+- Placeholder text (pt-BR): Ajustes no iPhone: bloqueio por Face ID e iCloud Sync ativados, compartilhamento de dados de uso desativado.
+- Placeholder text (zh-Hans): iPhone 设置：Face ID 锁定和 iCloud 同步已开启，使用数据共享已关闭。
+- Placeholder text (ko): iPhone 설정. Face ID 잠금과 iCloud Sync는 켜져 있고 사용 데이터 공유는 꺼져 있습니다.
+- Placeholder text (zh-Hant): iPhone 設定：Face ID 鎖定和 iCloud 同步已開啟，使用情況資料共享已關閉。
+- Placeholder text (it): Impostazioni su iPhone: blocco Face ID e iCloud Sync attivi, condivisione dei dati di utilizzo disattivata.
+- Placeholder text (id): Pengaturan di iPhone: kunci Face ID dan iCloud Sync aktif, berbagi data penggunaan nonaktif.
 - Proposed alt text (en): TablePro Settings on iPhone with the Face ID lock and iCloud Sync on and usage data sharing off.
 - Proposed alt text (vi): Cài đặt của TablePro trên iPhone: bật khóa Face ID và iCloud Sync, tắt chia sẻ dữ liệu sử dụng.
+- Proposed alt text (es): Ajustes de TablePro en iPhone con bloqueo Face ID y sincronización iCloud activados, y compartir datos de uso desactivado.
+- Proposed alt text (de): TablePro-Einstellungen auf dem iPhone mit aktivierter Face-ID-Sperre und iCloud-Synchronisierung sowie deaktiviertem Teilen von Nutzungsdaten.
+- Proposed alt text (fr): Réglages TablePro sur iPhone avec verrouillage Face ID et synchronisation iCloud activés, partage des données d’utilisation désactivé.
+- Proposed alt text (ja): iPhone の TablePro の設定。Face ID ロックと iCloud Sync はオンで、利用データの共有はオフです。
+- Proposed alt text (pt-BR): Ajustes do TablePro no iPhone com bloqueio por Face ID e iCloud Sync ativados e compartilhamento de dados de uso desativado.
+- Proposed alt text (zh-Hans): iPhone 上的 TablePro 设置，Face ID 锁定和 iCloud 同步已开启，使用数据共享已关闭。
+- Proposed alt text (ko): iPhone의 TablePro 설정. Face ID 잠금과 iCloud Sync는 켜져 있고 사용 데이터 공유는 꺼져 있습니다.
+- Proposed alt text (zh-Hant): iPhone 上的 TablePro 設定，Face ID 鎖定和 iCloud 同步已開啟，使用情況資料共享已關閉。
+- Proposed alt text (it): Impostazioni di TablePro su iPhone con blocco Face ID e iCloud Sync attivi e condivisione dei dati di utilizzo disattivata.
+- Proposed alt text (id): Pengaturan TablePro di iPhone dengan kunci Face ID dan iCloud Sync aktif serta berbagi data penggunaan nonaktif.
 
 **Purpose**
 
@@ -6529,10 +8709,40 @@ lại trên bản mới. Ba ảnh của bài 0.70 là ngoại lệ, cần chụp
 
 - Placeholder text (en): The results pane in Chart mode: a bar chart of a query result, beside the Data, Structure and JSON views.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro results pane in Chart mode with the Bar type selected, X Axis set to Row Number and Y Axis to ArtistId, a hover tooltip reading Row Number 140 and ArtistId 99, and the status bar still showing 1-347 of 347 rows
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Chart mode sits beside Data, Structure and JSON.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -6585,10 +8795,40 @@ The toolbar shows the sample file's path under the home folder. Keep the user na
 
 - Placeholder text (en): The SQL editor with three folded regions shown as chips, and a peek popover over a folded CREATE TABLE.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro SQL editor showing three folded regions, each collapsed to a chip naming its opening line and hidden line count, with a peek popover open over the folded CREATE TABLE and its full body syntax highlighted inside
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): A folded region becomes a chip. Hover it to peek without expanding.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -6638,10 +8878,40 @@ None.
 
 - Placeholder text (en): The editor gutter's run control beside one statement, which runs only that statement.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro SQL editor gutter with a run control beside the WITH statement on line 17, next to the fold chevrons for that statement and the one below it
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Hover the gutter and that statement's run control appears. Clicking it runs only that statement.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -6692,10 +8962,40 @@ None.
 
 - Placeholder text (en): The data grid find bar searching the Customer table for "rua", with the matching cell highlighted.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro data grid on the Customer table with the find bar open on the term rua, the counter reading 2 of 3, and the matching cell Rua da Assuncao 53 highlighted in the Address column
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Matching ignores case and accents, so rua finds Rua da Assunção.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -6745,10 +9045,40 @@ The toolbar shows the sample file's path under the home folder. Keep the user na
 
 - Placeholder text (en): The filter panel on a MongoDB orders collection, with the field path browser listing nested fields and their types.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro filter panel on a MongoDB orders collection with the field path browser open, listing customer.age, customer.city, customer.country and customer.name under customer and items.name, items.price, items.qty and items.sku under items, each with its detected type
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Search or type a path. The type beside each one is what the filter compares against.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -6800,10 +9130,40 @@ None.
 
 - Placeholder text (en): Two filter rows on fields inside one MongoDB array, with the array element scope control and the matching orders.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro filter panel on a MongoDB orders collection with two rows, items.price greater than 500 and items.name equals Laptop, and the two matching orders listed in the grid below
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Two conditions on fields inside one array. The scope control decides whether a single item has to satisfy both.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -6856,10 +9216,40 @@ None.
 
 - Placeholder text (en): Compare & Sync on two PostgreSQL databases: tables grouped by difference, and one table's definitions compared side by side.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Compare & Sync window comparing Shop Demo with Shop Demo (Copy), with tables grouped under Only in Source, Only in Target and Differs on the left, and the orders table's definitions side by side on the right, a changed total_cents type and an added index highlighted above the list of changes
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Compare & Sync walks seven object kinds and writes the script that makes the target match.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -6911,10 +9301,40 @@ None.
 
 - Placeholder text (en): Compare & Sync in row mode: id as the key column, each row to update with its old and new values, and the rows to insert.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Compare & Sync window in Rows mode with id as the key column, a list of rows to update showing each changed value as old and new, such as an email and a country on row 6, and two rows to insert below
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Row mode diffs values against the key columns you choose, not against row order.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -6964,10 +9384,40 @@ None.
 
 - Placeholder text (en): The sidebar with a PostgreSQL function selected, its overloads told apart by arguments, and the read-only source viewer.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro sidebar on a PostgreSQL database with Procedures, Functions and Triggers sections, three balance_of functions told apart by their arguments, and the read-only source viewer showing one of them with its volatility, security and owner above the syntax-highlighted body
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Three overloads of one name, told apart by their arguments. The source opens read-only.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7018,10 +9468,40 @@ None.
 
 - Placeholder text (en): The data grid scrolled far to the right on a table with several hundred columns, every cell painted.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro data grid on a table with several hundred columns, scrolled well to the right so column headers in the middle of the run are visible, every cell painted with no blank columns or gaps, and the status bar reporting the full row count
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): A few hundred columns in, scrolled sideways, with nothing left unpainted.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7072,10 +9552,40 @@ None.
 
 - Placeholder text (en): Settings, License pane: the license holder, a shortened key, the activated Macs and the team member list.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Settings window on the License pane for a Team lifetime license, with Refresh and Copy Key buttons, two activated Macs with their macOS versions under Devices, 2 of 5 devices, and the team's members, 2 of 5; the license holder's email address, the shortened license key and the Mac names are covered for privacy
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Devices and team roster in one pane. Personal details in this capture are covered.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7130,10 +9640,40 @@ Mac names, as the alt text and caption say. For a new capture, use a test licens
 
 - Placeholder text (en): The Restore Previous Values sheet for four deleted Customer rows, each marked Will restore, with the INSERT statements shown.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Restore Previous Values sheet over the Chinook Customer table, listing four deleted rows, CustomerId 12 to 15, each with the action Put the row back and the outcome Will restore, Show SQL ticked with the generated INSERT statements below, and Cancel and Restore buttons
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Every row from a committed save, with the ones that cannot be restored named and explained rather than skipped.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7184,10 +9724,40 @@ The sheet's subtitle and the toolbar show a path under the home folder; keep the
 
 - Placeholder text (en): The structure editor's Constraints tab on a SQLite table, listing five check constraints with their expressions.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro structure editor on a TrackPricing table added to the Chinook sample, with the Constraints tab selected and five check constraints listed by name beside their expressions, such as ListPrice > 0 and Currency IN ('USD', 'EUR', 'GBP', 'CAD')
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Check constraints read on four engines and edit on three. Generated columns carry their expression and their stored or virtual kind.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7237,10 +9807,40 @@ The toolbar shows a path under the home folder; keep the user name out of it in 
 
 - Placeholder text (en): A SQLite connection's Remote File pane: open a file on an SSH server as a read-only copy, host set and path still empty.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Edit Connection sheet for SQLite on the Remote File pane, with Open a database file on an SSH server switched on above a note that the file is copied to this Mac and opened read-only, an empty Path field, and the SSH tunnel settings with host ssh.example.com and port 22
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Point it at a path on an SSH server. What comes back is a read-only local copy, not a live connection.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7291,10 +9891,40 @@ None.
 
 - Placeholder text (en): A table being renamed inline in the sidebar, its name in an edit field.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro sidebar listing the Chinook sample's tables, with InvoiceLine in an inline text field ready to be renamed, and no tab open in the window
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): The label edits where it sits, in the tree, with no dialog.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7346,10 +9976,40 @@ None.
 
 - Placeholder text (en): The row inspector's JSON tab with a foreign key expanded in place into the row it references.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro row inspector on the JSON tab for a selected Chinook Invoice row, its CustomerId field expanded in place into the Customer row it references and that row's SupportRepId expanded one level further into an Employee row, with a filter field above the tree
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): A foreign key expands in place into the row it points at, and that row's keys expand too.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7404,10 +10064,40 @@ Confirm on 0.77.0 that the JSON tab expands `SupportRepId` from an expanded `Cus
 
 - Placeholder text (en): A multi-statement MongoDB JavaScript script in the editor, autocomplete open after find(), and documents below.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro query editor connected to MongoDB with a multi-statement JavaScript script, a var declaration on the first line and a db.orders.find chain with sort and limit below it, the autocomplete popup open after a find call listing cursor methods, and the resulting documents in the grid underneath
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Statements share a runtime, so a variable defined on one line is still defined on the next.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7460,10 +10150,40 @@ Confirm on 0.77.0 that autocomplete lists cursor methods right after `find()`.
 
 - Placeholder text (en): A column dragged to a new position, and the SQLite table rebuild script shown before it runs.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro structure editor on a Chinook table with a column dragged to a new position, and the SQL preview in front of it listing the SQLite rebuild script: a new table in the new column order, the INSERT SELECT that copies the rows, then the old table dropped and the new one renamed
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Where the engine has no positional DDL, the rebuild is shown in full before anything runs.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7519,10 +10239,40 @@ keep the alt below true to the capture.
 
 - Placeholder text (en): The Backup Database sheet listing the databases on a connection, with one ticked and Choose Destination.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Backup Database sheet listing the databases on the connection with a search field above them, tablepro_demo ticked, and Cancel and Choose Destination buttons along the bottom
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Backup Dump asks which database, then where to write it. The engine's own tool does the rest.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7572,10 +10322,40 @@ The file is 964 px wide, narrower than the figure's 1408 px export width. Export
 
 - Placeholder text (en): The export sheet with three tables ticked and a popover setting one table's WHERE, row limit and columns.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro export sheet with three tables ticked in the object tree and a popover open over the orders row, holding a Where field, a Row limit field reading All rows, and a checklist of the table's six columns, with the CSV format panel and its options visible to the right
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Each table carries its own WHERE, row limit and column list, set from the row itself.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7625,10 +10405,40 @@ None.
 
 - Placeholder text (en): The Transfer Tables sheet: a destination connection, source tables with mapped column counts, and a mapping popover.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Transfer Tables sheet with a Destination picker set to another open connection and a Database picker below it, a checklist of source tables each reporting how many of its columns mapped, and an open popover pairing every source column of the orders table with its destination column beside a Match by Name button
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): The destination list is the connections you already have open, and each table reports how many columns matched.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7679,10 +10489,40 @@ None.
 
 - Placeholder text (en): Script Editor's dictionary window for TablePro, listing the Standard Suite and the TablePro Suite.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): Script Editor's dictionary window for TablePro with the TablePro Suite selected beside the Standard Suite, its commands such as connect, run query and open table listed, and below them the suite's safe mode level, external access level and tab kind enumerations
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Open it in Script Editor with File > Open Dictionary and pick TablePro.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7735,10 +10575,40 @@ None.
 
 - Placeholder text (en): The Copy To review step: the PostgreSQL DDL generated for a MySQL table, the expected row count and an identity-value warning.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Copy To review step copying the customers table from a MySQL shop database to a PostgreSQL copy, with a warning that identity and auto-increment values are written as they are, the expected row count, and the generated CREATE TABLE and CREATE INDEX statements beside them, above Cancel, Back and Copy buttons
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): The review step is the whole feature: the DDL that will run, the rows each table expects, and every type it had to approximate.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7789,10 +10659,40 @@ None.
 
 - Placeholder text (en): The PostgreSQL connection editor with its General, Network, Options and Appearance sections.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro connection editor for a PostgreSQL connection, with a four-item sidebar reading General, Network, Options and Appearance, credential fields filling the pane, and Test Connection, Cancel and Save on a bar along the bottom
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Four sections, the same for every driver, with Test Connection, Cancel and Save on one bar along the bottom.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7843,10 +10743,40 @@ Keep the Username field empty, or set to a sample name such as `demo`, in any ex
 
 - Placeholder text (en): The Network section set to Tunnel Command with the kubectl port-forward method and the Will Run argument list.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Network section with Connect via set to Tunnel Command and the kubectl port-forward method selected, empty resource, namespace and context fields showing their placeholder text, an executable path, and a Will Run panel with the exact argument list and a {port} placeholder
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Will Run shows the exact argument list, with {port} standing in for the port allocated on connect.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7897,10 +10827,40 @@ None.
 
 - Placeholder text (en): The SQLite rebuild preview for a new foreign key: the rebuilt table's DDL and the row copy, before anything runs.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro SQL Preview of 14 statements for adding a foreign key to a SQLite orders table, starting with PRAGMA foreign_keys = off, then the rebuilt table's CREATE TABLE with the customer_fk constraint and the INSERT SELECT that copies the rows, above Open in Query Editor, Cancel and Apply and Rebuild buttons
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): The rebuild script is shown before it runs, and it ends by checking the rows against the key you just added.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -7953,10 +10913,40 @@ None.
 
 - Placeholder text (en): The Map view drawing PostGIS polygons, lines and points over an Apple Maps street map, with a line saying what was drawn.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro on the Map segment for a PostGIS table of San Francisco service areas, with fifteen blue polygons, four transit lines and six depot pins drawn over an Apple Maps street view, a line above the map reading Drawing 25 shapes in SRID 4326, 3 rows in other coordinate systems are not drawn, a Fit to Result button on the right, and Data, Structure, JSON, Chart and Map segments along the bottom with Map selected
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): The line above the map says what was drawn and what was skipped. Three rows here are in a state-plane coordinate system, so they are counted rather than placed.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8008,10 +10998,40 @@ None. The post carries a dated correction about map tiles; the figure itself is 
 
 - Placeholder text (en): The Highlight Rules popover over an invoice grid, with rows tinted by country and single cells tinted orange.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Highlight Rules popover over an invoice grid, listing three rules with a column, an operator, a value and a colour each, with US invoice rows tinted green, Canadian rows blue, and individual customer ID cells orange
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Rules run top to bottom and the first match colours the row. A cell rule tints its own cell over the row's colour.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8062,10 +11082,40 @@ None.
 
 - Placeholder text (en): The SQL editor marking invisible and look-alike characters in a pasted query.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro SQL editor holding a query pasted from a chat thread, with an orange BS box before SELECT on line 2, an outlined no-break space after zone on line 4, an orange ZWSP box after name on line 5, and orange underlines beneath the curly quotes around downtown and beneath a full-width greater-than sign on line 6
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): A mark is the character itself: select it, arrow past it, or delete it like any other text. The underlines are the separate warning for characters that are visible but wrong.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8118,10 +11168,40 @@ None.
 
 - Placeholder text (en): Agent mode on the Chinook sample: a session waiting, a proposed UPDATE with Run, Always Allow and Reject, and the results.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro connection window in Agent mode on the Chinook sample database, with one session on the left marked Waiting on you, a conversation in the middle where the assistant checked prices by genre and now proposes UPDATE Track SET UnitPrice = 1.29 for every Rock track on a card with Run, Always Allow and Reject buttons, and a Result column on the right listing the SELECT as Ran and the UPDATE as Waiting
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): The price check ran after one click. The UPDATE waits on its card, and the result column keeps both.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8172,10 +11252,40 @@ None.
 
 - Placeholder text (en): Settings > Integrations with the MCP server off and an Outside MCP Servers list with two servers.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro Settings open on Integrations, with Enable MCP Server switched off above an Outside MCP Servers list holding Runbooks at runbooks.internal.example/mcp allowed on 2 connections and Incident Tracker allowed on none, and an Add Server button below them
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): A server reaches nothing until a connection is ticked, and every call to it still waits for Run or Reject.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8226,10 +11336,40 @@ None.
 
 - Placeholder text (en): The Data Files window on orders.csv searched for Hanoi, with 2,498 of 20,000 rows in the status bar.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): A Data Files window on orders.csv with columns order_id, customer, city, status, total and ordered_at, searched for Hanoi, with the status bar reading 2,498 of 20,000 rows and 6 columns on the left and Comma, UTF-8, LF on the right
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): The status bar names the delimiter, encoding and line ending the file was read with, and Save writes them back.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8279,10 +11419,40 @@ None.
 
 - Placeholder text (en): The Insert Document sheet over an empty events collection, with a document written in Extended JSON.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): Insert Document sheet over an empty events collection, holding a document with a name, a channel, a sentAt date written as $date, a recipients count and a tags array, with a hint to quote every field name and Cancel and Insert buttons
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Insert Document takes Extended JSON, so a date and an ObjectId are written the way MongoDB stores them.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8335,10 +11505,40 @@ None.
 
 - Placeholder text (en): The Chinook sample with a Folders section in the sidebar holding Music and Sales folders, and the Track table open.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): TablePro connection window on the Chinook sample database, with a Folders section at the top of the sidebar holding a Music folder with Album and Artist and a Sales folder with Invoice and InvoiceLine, a Tables section below it with the remaining seven tables, and the Track table open in the data grid
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): Four tables sit in two folders, and the Tables section below lists only the ones not yet filed.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8388,10 +11588,40 @@ None.
 
 - Placeholder text (en): The import sheet for customers.csv into the Customer table, with a restored mapping and the Match Columns menu open.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): Import sheet for customers.csv into the existing Customer table of the Chinook sample database, with the note Restored the mapping saved for Customer beside an open Match Columns menu offering Match by Name, Match by Position and a dimmed Use Saved Mapping, above a field list that maps Company, City, Country and E-mail to the Company, City, Country and Email columns
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): E-mail comes back mapped to Email, the one column picked by hand in the last import.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8442,10 +11672,40 @@ None.
 
 - Placeholder text (en): A new PostgreSQL connection on Options, with Connect timeout and Query timeout fields showing inherited values.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): New PostgreSQL Connection sheet open on Options, with a Timeouts section holding Connect timeout showing Default (30) seconds and Query timeout showing Global (60) seconds, above the Startup Commands and Pre-Connect Script fields
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): An empty field shows the value it inherits, so you can see what applies before you type anything.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8498,10 +11758,40 @@ capture the same sheet again at 2× on 0.77.0 instead; otherwise export it at it
 
 - Placeholder text (en): The Chinook Track table in TablePro on iPhone, with the pager reading 1-100 of 3503.
 - Placeholder text (vi): — (the page is English only)
+- Placeholder text (es): — (the page is English only)
+- Placeholder text (de): — (the page is English only)
+- Placeholder text (fr): — (the page is English only)
+- Placeholder text (ja): — (the page is English only)
+- Placeholder text (pt-BR): — (the page is English only)
+- Placeholder text (zh-Hans): — (the page is English only)
+- Placeholder text (ko): — (the page is English only)
+- Placeholder text (zh-Hant): — (the page is English only)
+- Placeholder text (it): — (the page is English only)
+- Placeholder text (id): — (the page is English only)
 - Proposed alt text (en): The Chinook Track table open in TablePro on iPhone, listing TrackId, Name, AlbumId and MediaTypeId for the first rows, with a pager reading 1-100 of 3503 and Tables, Query, History and Info along the bottom
 - Proposed alt text (vi): — (the page is English only)
+- Proposed alt text (es): — (the page is English only)
+- Proposed alt text (de): — (the page is English only)
+- Proposed alt text (fr): — (the page is English only)
+- Proposed alt text (ja): — (the page is English only)
+- Proposed alt text (pt-BR): — (the page is English only)
+- Proposed alt text (zh-Hans): — (the page is English only)
+- Proposed alt text (ko): — (the page is English only)
+- Proposed alt text (zh-Hant): — (the page is English only)
+- Proposed alt text (it): — (the page is English only)
+- Proposed alt text (id): — (the page is English only)
 - Proposed caption (en): The bundled Chinook database, two taps from the connection list. There is something to read before you have set up a server.
 - Proposed caption (vi): — (the page is English only)
+- Proposed caption (es): — (the page is English only)
+- Proposed caption (de): — (the page is English only)
+- Proposed caption (fr): — (the page is English only)
+- Proposed caption (ja): — (the page is English only)
+- Proposed caption (pt-BR): — (the page is English only)
+- Proposed caption (zh-Hans): — (the page is English only)
+- Proposed caption (ko): — (the page is English only)
+- Proposed caption (zh-Hant): — (the page is English only)
+- Proposed caption (it): — (the page is English only)
+- Proposed caption (id): — (the page is English only)
 
 **Purpose**
 
@@ -8582,13 +11872,33 @@ từ 2026-10-03). Phần dưới mô tả ảnh OG mặc định 1200 × 630 nà
 | Aspect | 1200:630 |
 | Export | 1200×630 px (1×) · PNG · opaque · max 300 KB per file |
 | Light and dark | One image for both page themes |
-| Locale | One file per locale (en, vi) |
-| Replace with | `public/og/bespoke/og-site-{en,vi}.png` |
+| Locale | One file per locale (en, vi, es, de, fr, ja, pt-BR, zh-Hans, ko, zh-Hant, it, id) |
+| Replace with | `public/og/bespoke/og-site-{en,vi,es,de,fr,ja,pt-BR,zh-Hans,ko,zh-Hant,it,id}.png` |
 
 - Placeholder text (en): Designed social card for every page without its own OG image: the TablePro logo and the product sentence.
 - Placeholder text (vi): Ảnh chia sẻ mạng xã hội thiết kế riêng, dùng cho mọi trang không có ảnh OG riêng: logo TablePro và câu giới thiệu sản phẩm.
+- Placeholder text (es): Tarjeta social diseñada para las páginas sin imagen OG propia: logo de TablePro y frase del producto.
+- Placeholder text (de): Gestaltete Social-Media-Karte für Seiten ohne eigenes OG-Bild: TablePro-Logo und Produktbeschreibung.
+- Placeholder text (fr): Carte de partage conçue pour les pages sans image OG propre : logo TablePro et phrase de présentation du produit.
+- Placeholder text (ja): 独自の OG 画像がないすべてのページ向けにデザインしたソーシャルカード。TablePro のロゴと製品紹介の文。
+- Placeholder text (pt-BR): Cartão para redes sociais criado para toda página sem imagem OG própria: o logotipo do TablePro e a frase sobre o produto.
+- Placeholder text (zh-Hans): 为没有独立 OG 图片的页面设计的社交卡片：TablePro 标志和产品介绍句。
+- Placeholder text (ko): 별도 OG 이미지가 없는 모든 페이지용으로 디자인한 소셜 카드. TablePro 로고와 제품 소개 문장입니다.
+- Placeholder text (zh-Hant): 為沒有獨立 OG 圖片的頁面設計的社群卡片：TablePro 標誌和產品介紹句。
+- Placeholder text (it): Scheda social progettata per ogni pagina senza una propria immagine OG: il logo TablePro e la frase sul prodotto.
+- Placeholder text (id): Kartu sosial yang dirancang untuk setiap halaman tanpa gambar OG sendiri: logo TablePro dan kalimat produk.
 - Proposed alt text (en): The TablePro logo and the words: TablePro is a native, open-source database client for developers. Below them, the address tablepro.app.
 - Proposed alt text (vi): Logo TablePro và dòng chữ: TablePro là database client native, mã nguồn mở, dành cho lập trình viên. Bên dưới là địa chỉ tablepro.app.
+- Proposed alt text (es): Logo de TablePro y texto: TablePro es un cliente nativo de bases de datos de código abierto para desarrolladores. Debajo, la dirección tablepro.app.
+- Proposed alt text (de): TablePro-Logo und die Worte: TablePro ist ein nativer Open-Source-Datenbankclient für Entwickler. Darunter die Adresse tablepro.app.
+- Proposed alt text (fr): Logo TablePro et texte : TablePro est un client de bases de données natif et open source pour les développeurs. Dessous, l’adresse tablepro.app.
+- Proposed alt text (ja): TablePro のロゴと「TablePro は開発者向けの、ネイティブなオープンソースのデータベースクライアントです。」という文。その下に tablepro.app のアドレスがあります。
+- Proposed alt text (pt-BR): O logotipo do TablePro e as palavras: TablePro é um cliente nativo de banco de dados, de código aberto, para desenvolvedores. Abaixo, o endereço tablepro.app.
+- Proposed alt text (zh-Hans): TablePro 标志及文字：TablePro 是面向开发者的原生开源数据库客户端。下方为地址 tablepro.app。
+- Proposed alt text (ko): TablePro 로고와 “TablePro는 개발자를 위한 네이티브 오픈 소스 데이터베이스 클라이언트입니다.”라는 문장. 아래에는 tablepro.app 주소가 있습니다.
+- Proposed alt text (zh-Hant): TablePro 標誌及文字：TablePro 是為開發者打造的原生開放原始碼資料庫用戶端。下方為網址 tablepro.app。
+- Proposed alt text (it): Il logo TablePro e le parole: TablePro è un client di database nativo e open source per sviluppatori. Sotto, l’indirizzo tablepro.app.
+- Proposed alt text (id): Logo TablePro dan tulisan: TablePro adalah klien database native dan sumber terbuka untuk pengembang. Di bawahnya, alamat tablepro.app.
 
 **Purpose**
 
@@ -8697,5 +12007,5 @@ The earlier screenshots stay in `public/images` as reference for your captures; 
 
 Other files in `public/images` that no asset names:
 
-- **Still referenced by the site** (identity assets such as vendor marks, sponsor logos and store badges, or components not yet removed). Keep: `/images/app-store-dark-vi.svg`, `/images/app-store-dark.svg`, `/images/app-store-light-vi.svg`, `/images/app-store-light.svg`, `/images/databases/beancount.svg`, `/images/databases/bigquery.svg`, `/images/databases/cassandra.svg`, `/images/databases/clickhouse.svg`, `/images/databases/cloudflare-d1.svg`, `/images/databases/cockroachdb.svg`, `/images/databases/duckdb.svg`, `/images/databases/dynamodb.svg`, `/images/databases/elasticsearch.svg`, `/images/databases/etcd.svg`, `/images/databases/mariadb.svg`, `/images/databases/mongodb.svg`, `/images/databases/mysql.svg`, `/images/databases/oracle.svg`, `/images/databases/pglite.svg`, `/images/databases/postgresql.svg`, `/images/databases/redis.svg`, `/images/databases/redshift.svg`, `/images/databases/scylladb.svg`, `/images/databases/snowflake.svg`, `/images/databases/sqlite.svg`, `/images/databases/sqlserver.svg`, `/images/databases/surrealdb.svg`, `/images/databases/teradata.svg`, `/images/databases/trino.svg`, `/images/databases/turso.svg`, `/images/logo.png`, `/images/sponsors/coderabbit.svg`, `/images/sponsors/dwarves-foundation.png`, `/images/sponsors/nimbus.svg`, `/images/sponsors/simplelocalize.svg`.
+- **Still referenced by the site** (identity assets such as vendor marks, sponsor logos and store badges, or components not yet removed). Keep: `/images/app-store-dark-de.svg`, `/images/app-store-dark-es.svg`, `/images/app-store-dark-fr.svg`, `/images/app-store-dark-id.svg`, `/images/app-store-dark-it.svg`, `/images/app-store-dark-ja.svg`, `/images/app-store-dark-ko.svg`, `/images/app-store-dark-pt-BR.svg`, `/images/app-store-dark-vi.svg`, `/images/app-store-dark-zh-Hans.svg`, `/images/app-store-dark-zh-Hant.svg`, `/images/app-store-dark.svg`, `/images/app-store-light-de.svg`, `/images/app-store-light-es.svg`, `/images/app-store-light-fr.svg`, `/images/app-store-light-id.svg`, `/images/app-store-light-it.svg`, `/images/app-store-light-ja.svg`, `/images/app-store-light-ko.svg`, `/images/app-store-light-pt-BR.svg`, `/images/app-store-light-vi.svg`, `/images/app-store-light-zh-Hans.svg`, `/images/app-store-light-zh-Hant.svg`, `/images/app-store-light.svg`, `/images/databases/beancount.svg`, `/images/databases/bigquery.svg`, `/images/databases/cassandra.svg`, `/images/databases/clickhouse.svg`, `/images/databases/cloudflare-d1.svg`, `/images/databases/cockroachdb.svg`, `/images/databases/duckdb.svg`, `/images/databases/dynamodb.svg`, `/images/databases/elasticsearch.svg`, `/images/databases/etcd.svg`, `/images/databases/mariadb.svg`, `/images/databases/mongodb.svg`, `/images/databases/mysql.svg`, `/images/databases/oracle.svg`, `/images/databases/pglite.svg`, `/images/databases/postgresql.svg`, `/images/databases/redis.svg`, `/images/databases/redshift.svg`, `/images/databases/scylladb.svg`, `/images/databases/snowflake.svg`, `/images/databases/sqlite.svg`, `/images/databases/sqlserver.svg`, `/images/databases/surrealdb.svg`, `/images/databases/teradata.svg`, `/images/databases/trino.svg`, `/images/databases/turso.svg`, `/images/logo.png`, `/images/sponsors/coderabbit.svg`, `/images/sponsors/dwarves-foundation.png`, `/images/sponsors/nimbus.svg`, `/images/sponsors/simplelocalize.svg`.
 - **No literal reference found.** Review before removing, because a path built at runtime is not found by this scan: `/images/blog/mcp-activity-log.png`, `/images/blog/mcp-claude-conversation.png`, `/images/blog/mcp-claude-tablepro-hero.png`, `/images/ios/structure-dark.png`, `/images/ios/structure-light.png`, `/images/iphone-frame.svg`, `/images/sponsors/getapps-cafe.png`, `/images/sponsors/unikorn.svg`, `/images/sponsors/visnalize.svg`, `/images/sponsors/xermius.webp`.

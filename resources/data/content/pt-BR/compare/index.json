@@ -1,0 +1,240 @@
+{
+    "seo": {
+        "title": "Compare TablePro com outros clientes",
+        "description": "Compare TablePro com TablePlus, DBeaver, DataGrip, Navicat, Beekeeper Studio, Sequel Ace, Postico, HeidiSQL e phpMyAdmin, com fontes e datas."
+    },
+    "og": {
+        "kicker": "Comparação",
+        "title": "TablePro e outros clientes de banco de dados"
+    },
+    "header": {
+        "title": "Compare TablePro com outros clientes de banco de dados",
+        "lead": "Cada comparação mostra onde o outro cliente atende melhor, onde TablePro difere e o que TablePro não faz. As informações sobre outros produtos vêm de fontes oficiais e indicam a data de verificação."
+    },
+    "bySituation": {
+        "title": "Escolha conforme sua situação",
+        "lead": "Uma linha para cada cliente, com um link para a comparação completa.",
+        "items": {
+            "tableplus": "Escolha TablePlus se também trabalha em Windows ou Linux, ou se conecta a Vertica ou Greenplum.",
+            "dbeaver": "Escolha DBeaver se quer um cliente gratuito para Windows, macOS e Linux que conecta a qualquer mecanismo com driver JDBC.",
+            "datagrip": "Escolha DataGrip se quer uma IDE de banco de dados da JetBrains com controle de versão integrado e seu trabalho não é comercial ou você já paga pelas ferramentas JetBrains.",
+            "navicat": "Escolha Navicat se precisa de modelagem de dados ou Navicat Cloud para trabalhar em equipe e uma licença perpétua cabe no orçamento.",
+            "beekeeper-studio": "Escolha Beekeeper Studio se quer um cliente de código aberto que funciona da mesma forma em Windows, macOS e Linux.",
+            "sequel-ace": "Escolha Sequel Ace se usa apenas MySQL e MariaDB e quer um app Mac gratuito e de código aberto da Mac App Store.",
+            "sequel-pro": "Ainda usa Sequel Pro? Sua última versão, {status.version}, é de {status.date}. Sequel Ace dá continuidade a ele, e TablePro importa conexões de Sequel Ace.",
+            "postico": "Escolha Postico se usa apenas PostgreSQL e quer um app Mac especializado com licença de pagamento único.",
+            "heidisql": "Escolha HeidiSQL se já o usa no Windows e quer o mesmo cliente gratuito em um Mac com Apple silicon.",
+            "phpmyadmin": "Escolha phpMyAdmin se gerencia MySQL ou MariaDB em um navegador, por exemplo em uma hospedagem que o oferece pelo cPanel."
+        }
+    },
+    "atAGlance": {
+        "title": "Visão geral",
+        "lead": "Plataformas, código-fonte e preços de cada cliente comparado aqui. Os preços são os de tabela, em dólares americanos, antes dos impostos.",
+        "caption": "Clientes comparados em {date}. As fontes estão no fim da página."
+    },
+    "openSource": {
+        "title": "Clientes de código aberto no Mac",
+        "lead": "Esses clientes publicam o código-fonte sob uma licença de código aberto. Sequel Pro não é mais mantido, e phpMyAdmin funciona em um servidor web acessado pelo navegador.",
+        "caption": "Clientes de código aberto, verificados em {date}."
+    },
+    "switching": {
+        "title": "Migre para TablePro",
+        "body": "TablePro importa conexões salvas de {apps}, incluindo senhas salvas. As conexões Navicat vêm de um arquivo exportado no Navicat.",
+        "none": "Não há importador para {others}. Adicione essas conexões manualmente ou cole uma URL de conexão.",
+        "link": "Traga suas conexões",
+        "docs": "Guia de migração na documentação"
+    },
+    "method": {
+        "title": "Como estas páginas são escritas",
+        "paragraphs": [
+            "Toda informação sobre outro produto vem de uma fonte oficial: seu site, documentação, repositório, notas de versão ou página da loja, ou do gerenciador de pacotes ou fornecedor de plataforma que o distribui. Cada página lista suas fontes com a data de verificação.",
+            "As informações de TablePro vêm dos mesmos dados usados no restante do site, portanto preços, plataformas e recursos correspondem às páginas de preços e recursos.",
+            "Não há números de velocidade, memória ou tempo de inicialização, pois não encontramos uma medição reproduzível desses clientes para citar.",
+            "Preços e recursos mudam. Se algo estiver desatualizado, <issues>abra uma issue no GitHub</issues>."
+        ]
+    },
+    "labels": {
+        "factsChecked": "Informações verificadas em {date}",
+        "orList": {
+            "separator": ", ",
+            "last": " ou "
+        },
+        "sourcesLink": "Fontes",
+        "shortAnswer": {
+            "title": "Resposta direta",
+            "tablepro": "Escolha TablePro se",
+            "competitor": "Escolha {name} se"
+        },
+        "glance": {
+            "title": "Visão geral",
+            "caption": "TablePro e {name}, comparados em {date}. As fontes estão no fim da página.",
+            "feature": "Comparação",
+            "more": "Mais sobre {name}"
+        },
+        "rows": {
+            "platforms": "Plataformas",
+            "technology": "Desenvolvido com",
+            "price": "Preço",
+            "licence": "Código aberto",
+            "databases": "Bancos de dados",
+            "ai": "Assistente de IA",
+            "mcp": "Servidor MCP",
+            "ios": "iPhone e iPad",
+            "sync": "Sincronização",
+            "import": "Migração para TablePro"
+        },
+        "cell": {
+            "yes": "Suportado",
+            "no": "Não suportado",
+            "partial": "Parcial",
+            "edition": "Na edição {edition}",
+            "since": "Desde a versão {version}",
+            "sinceDated": "Desde a versão {version}, {date}",
+            "source": "Fonte",
+            "none": "Não se aplica"
+        },
+        "platforms": {
+            "mac": "Mac",
+            "windows": "Windows",
+            "linux": "Linux",
+            "ios": "iPhone e iPad",
+            "web": "App web em um servidor"
+        },
+        "macRequirement": "macOS {version} ou posterior",
+        "languages": {
+            "en": "Inglês",
+            "vi": "Vietnamita",
+            "zh-Hans": "Chinês simplificado",
+            "zh-Hant": "Chinês tradicional",
+            "ko": "Coreano",
+            "tr": "Turco"
+        },
+        "builds": {
+            "both": "Versões para Apple silicon e Intel",
+            "universal": "Funciona nativamente em Apple silicon e Intel",
+            "arm64": "Somente Apple silicon",
+            "x86_64": "Somente Intel"
+        },
+        "licence": {
+            "yes": "Sim: {licence}",
+            "yesEdition": "Sim: {licence}, para a edição {edition}",
+            "no": "Não"
+        },
+        "currency": {
+            "pattern": "US$ {amount}",
+            "decimal": ",",
+            "group": "."
+        },
+        "price": {
+            "free": "Gratuito",
+            "labelled": "{label}: {price}",
+            "amount": {
+                "once": "{amount} em pagamento único",
+                "month": "{amount} por mês",
+                "year": "{amount} por ano",
+                "none": "{amount}"
+            },
+            "per": {
+                "device": "{price} por dispositivo",
+                "user": "{price} por usuário",
+                "seat": "{price} por vaga",
+                "license": "{price} por licença",
+                "none": "{price}"
+            },
+            "units": {
+                "one": "{price}, para um dispositivo",
+                "other": "{price}, para até {count} dispositivos"
+            },
+            "minUnits": {
+                "one": "{price}, no mínimo uma vaga",
+                "other": "{price}, no mínimo {count} vagas"
+            },
+            "renewal": "Renovação",
+            "ios": "App para iPhone e iPad",
+            "macAppStore": "Mac App Store",
+            "audience": {
+                "individual": "Pessoas físicas",
+                "organization": "Organizações",
+                "personal": "Pessoal",
+                "commercial": "Comercial",
+                "student": "Estudantes",
+                "non-commercial": "Uso não comercial"
+            },
+            "continuity": {
+                "1": "primeiro ano",
+                "2": "segundo ano",
+                "3": "do terceiro ano em diante"
+            },
+            "withContinuity": "{label}, {year}"
+        },
+        "tablepro": {
+            "technology": "Swift, com drivers nativos de banco de dados",
+            "priceFree": "Uso gratuito. Planos pagos adicionam recursos opcionais ao app para Mac.",
+            "starter": "Starter: {monthly} por mês, {yearly} por ano ou {lifetime} em pagamento único",
+            "team": "Team: {monthly} por mês, {yearly} por ano ou {lifetime} em pagamento único, por vaga, com no mínimo {min} vagas",
+            "iosPrice": "O app para iPhone e iPad é gratuito, sem compras no app.",
+            "licence": "Sim: {licence}, incluindo o código dos recursos pagos",
+            "databases": "{engines} e outros",
+            "databasesLink": "Bancos de dados compatíveis",
+            "ai": "Gratuito no app para Mac, com o provedor de IA escolhido por você, na nuvem ou no Mac",
+            "mcp": "Gratuito no app para Mac. Escuta apenas no Mac, e cada conexão define o que apps externos podem fazer",
+            "ios": "Um app gratuito separado, sem compras dentro do app",
+            "sync": "iCloud Sync: parte de {tier} no Mac, gratuito no iPhone e iPad"
+        },
+        "import": {
+            "yes": "TablePro importa conexões de {name}, incluindo senhas salvas.",
+            "yesFile": "TablePro importa conexões de {name} de um arquivo {format} exportado em {name}, incluindo senhas salvas.",
+            "noPasswords": "TablePro importa conexões de {name}. As senhas não são importadas.",
+            "none": "TablePro não tem importador para {name}.",
+            "link": "Como migrar"
+        },
+        "tiers": {
+            "starter": "Starter",
+            "team": "Team"
+        },
+        "tierBadge": "Plano {tier}",
+        "sections": {
+            "stronger": "Onde {name} se destaca",
+            "differs": "Onde TablePro difere",
+            "limits": "O que TablePro não faz",
+            "switching": "Migração de {name}",
+            "faq": "Perguntas",
+            "sources": "Fontes",
+            "cta": "Baixe TablePro"
+        },
+        "switching": {
+            "docs": "Guia de migração na documentação"
+        },
+        "sources": {
+            "intro": "As informações de {name} foram verificadas em {date} nestas páginas. Os preços são os de tabela, em dólares americanos, antes dos impostos.",
+            "retrieved": "verificado em {date}",
+            "latest": "Última versão de {name} nessa data: {version}, publicada em {date}.",
+            "tablepro": "A coluna TablePro descreve TablePro {macVersion} para Mac e {iosVersion} para iPhone e iPad."
+        },
+        "cta": {
+            "body": "TablePro é gratuito para baixar. Planos pagos adicionam recursos opcionais ao app para Mac.",
+            "pricing": "Ver preços",
+            "hub": "Todas as comparações"
+        },
+        "status": {
+            "active": "Mantido",
+            "discontinued": "Descontinuado"
+        },
+        "hub": {
+            "client": "Cliente",
+            "platforms": "Plataformas",
+            "openSource": "Código aberto",
+            "free": "Uso gratuito",
+            "paid": "Planos pagos",
+            "paidFrom": "A partir de {price}",
+            "noPaid": "Nenhum",
+            "freeYes": "Sim",
+            "freeNo": "Não",
+            "license": "Licença",
+            "status": "Status",
+            "latest": "Última versão",
+            "latestValue": "{version}, {date}",
+            "compareLink": "TablePro vs. {name}"
+        }
+    }
+}

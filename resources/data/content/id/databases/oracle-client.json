@@ -1,0 +1,116 @@
+{
+    "seo": {
+        "title": "Oracle Database untuk {devices}",
+        "description": "Hubungkan Oracle tanpa Instant Client, jalankan PL/SQL dan skrip SQL*Plus, baca DBMS_OUTPUT, serta mulai ekspor Data Pump pada server."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien Oracle Database"
+    },
+    "engine": "oracle",
+    "breadcrumb": "Oracle",
+    "header": {
+        "title": "Klien Oracle Database untuk {devices}",
+        "lead": "Driver menggunakan protokol TNS Oracle dalam Swift, sehingga Instant Client dan perangkat lunak Oracle lainnya tidak perlu dipasang di Mac. Jalankan SQL dan PL/SQL, termasuk skrip SQL*Plus, dan baca keluaran DBMS_OUTPUT di samping setiap hasil."
+    },
+    "asset": "mac-db-oracle-plsql",
+    "links": {
+        "network": "/features/connections#network",
+        "parameters": "/features/querying#history",
+        "editing": "/features/data-editing#edit",
+        "safeMode": "/features/data-editing#safe-mode",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "importData": "/features/import-export#import",
+        "serverExport": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Masukkan host, port listener, dan Service Name, atau ubah <ui>Connection Type</ui> ke SID untuk instance tanpa layanan. Masuk dengan nama pengguna dan kata sandi sebagai Normal atau dengan peran SYSDBA maupun SYSOPER.",
+                "Native Network Encryption tidak memerlukan konfigurasi: saat server memintanya, AES dengan checksum SHA-2 ditawarkan, dan pengaturan <ui>Network Encryption</ui> mengubah tawaran TablePro. Untuk TLS, pilih Required untuk TCPS, atau Verify CA maupun Verify Identity dengan sertifikat CA. Koneksi baru menggunakan SSL nonaktif, dan Preferred tetap menggunakan TCP tanpa enkripsi.",
+                "Pada Oracle Autonomous Database, salin host, port, dan nama layanan dari string koneksi TLS, bukan mTLS, lalu atur SSL ke Required atau Verify CA. Berkas wallet tidak pernah dibaca, sehingga database harus menerima TLS tanpa TLS timbal balik.",
+                "Listener RAC SCAN, server bersama, atau load balancer di depan database tidak memerlukan konfigurasi, dan <network>tunnel SSH</network> mengakses listener pada jaringan pribadi."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SQL, PL/SQL, dan transaksi",
+            "paragraphs": [
+                "Blok PL/SQL atau unit tersimpan berjalan sebagai satu pernyataan, berapa pun jumlah titik komanya: letakkan kursor di dalamnya dan jalankan. Skrip SQL*Plus atau SQL Developer berjalan tanpa perubahan, dengan baris yang hanya berisi <code>/</code> mengakhiri unit di atasnya. Unit yang gagal dikompilasi mengembalikan kesalahan Oracle sendiri, satu per baris beserta posisinya.",
+                "Baris <code>DBMS_OUTPUT.PUT_LINE</code> ditampilkan bersama hasil pernyataan yang mencetaknya, tanpa memerlukan <code>SET SERVEROUTPUT ON</code>. Dalam blok anonim, <code>:name</code> adalah <parameters>parameter kueri</parameters> yang Anda isi dari panel.",
+                "Setiap pernyataan melakukan commit saat berhasil. Awali dengan <code>SET TRANSACTION</code>, <code>SAVEPOINT</code>, atau <code>LOCK TABLE</code> untuk menahan perubahan, dan semua setelahnya menunggu <code>COMMIT</code> atau <code>ROLLBACK</code>, termasuk penyimpanan grid.",
+                "Setiap pengguna adalah skema, dan <code>Cmd+K</code> mengganti skema aktif tanpa membuka ulang koneksi. Perubahan baris ditampung dengan <editing>Preview SQL</editing>. Blok yang menghapus atau melakukan truncate, bahkan melalui <code>EXECUTE IMMEDIATE</code>, memunculkan <safeMode>peringatan kueri berbahaya</safeMode> sebelum berjalan."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Skema",
+            "paragraphs": [
+                "<structure>Tab Structure</structure> menulis <code>ALTER TABLE</code> untuk menambah, mengganti nama, mengubah, dan menghapus kolom serta membuat indeks, dengan nama yang sensitif huruf besar-kecil dalam kutip ganda. Informasi tabel juga memuat primary key, foreign key, dan DDL CREATE TABLE.",
+                "Tabel berpartisi mencantumkan partisinya di bawah tabel, masing-masing dengan posisi, dan subpartisi berada di bawah partisinya. Kueri salah satunya dengan <code>SELECT * FROM orders PARTITION (p2024)</code>.",
+                "<compareSync>Compare & Sync</compareSync>, bagian dari paket {compareSyncTier}, membandingkan dua skema Oracle atau datanya dan menyimpan skrip dengan baris <code>/</code> setelah setiap unit, siap untuk SQL*Plus atau SQLcl."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Ekspor pada server",
+            "paragraphs": [
+                "<serverExport>Server-Side Export</serverExport> memulai job Data Pump yang menulis tabel ke objek <code>DIRECTORY</code> pada server dengan hak akses Anda sendiri. Tidak ada data yang disimpan di Mac. Job terus berjalan setelah lembar melaporkan bahwa job dimulai; pantau di <code>DBA_DATAPUMP_JOBS</code>."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "<importData>Impor</importData> berkas {importFormats}; saat berkas data membuat tabel baru, nama yang diusulkan menggunakan huruf besar dan sesuai batas panjang Oracle. Ekspor tabel atau hasil sebagai {exportFormats}. Ekspor SQL menambahkan baris <code>/</code> setelah setiap routine dan trigger agar SQL*Plus dapat memulihkannya."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone dan iPad",
+            "paragraphs": [
+                "Di iPhone dan iPad, driver Oracle disertakan dalam aplikasi. Formulir menerima Service Name atau SID, peran SYSDBA dan SYSOPER, serta pengaturan Network Encryption. Telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan SQL pada tab Query; pembuatan atau perubahan tabel tetap dilakukan di Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "pluggable-database",
+            "question": "Mengapa saya tidak melihat tabel aplikasi saya?",
+            "answer": "Anda mungkin terhubung ke database kontainer. Database pluggable memiliki nama layanan sendiri, seperti <code>XEPDB1</code> di dalam <code>XE</code>. Jalankan <code>lsnrctl services</code> pada server untuk mencantumkan nama yang dilayani listener."
+        },
+        {
+            "id": "sqlplus-commands",
+            "question": "Mengapa SET SERVEROUTPUT ON gagal?",
+            "answer": "Perintah SQL*Plus seperti <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code>, dan <code>EXEC</code> bukan SQL, sehingga server menolaknya. Hapus perintah itu: keluaran aktif sejak koneksi dibuka. Tulis <code>EXEC p</code> sebagai <code>BEGIN p; END;</code>."
+        },
+        {
+            "id": "password-verifier",
+            "question": "Apakah akun dengan verifier kata sandi 10G lama dapat terhubung?",
+            "answer": "Ya, meskipun Oracle telah mendeprekasi hashing berbasis DES yang digunakannya. Ubah kata sandi dengan <code>ALTER USER … IDENTIFIED BY</code> dan pastikan <code>password_versions</code> pada <code>dba_users</code> kemudian memuat 11G atau 12C."
+        }
+    ],
+    "related": [
+        {
+            "label": "Tulis, jalankan, dan pahami kueri",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Pencadangan dan ekspor pada server",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "Skema, perbandingan, dan sinkronisasi",
+            "href": "/features/schema"
+        },
+        {
+            "label": "TablePro untuk iPhone dan iPad",
+            "href": "/ios"
+        }
+    ]
+}

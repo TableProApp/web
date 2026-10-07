@@ -2,6 +2,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import { hydrateRoot } from 'react-dom/client';
 import { installAnchorGlide } from '@/lib/anchor-glide';
 import { captureAttribution } from '@/lib/attribution';
+import { resolvePage } from '@/resolve-page';
 
 /*
  * Before hydration, so the landing URL is read while it is still the one the
@@ -14,6 +15,7 @@ captureAttribution();
 installAnchorGlide(window);
 
 createInertiaApp({
+    resolve: resolvePage,
     setup({ el, App, props }) {
         if (!el) {
             throw new Error('Inertia root element is missing. Check @inertia in resources/views/app.blade.php.');

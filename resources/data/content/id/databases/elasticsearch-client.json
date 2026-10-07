@@ -1,0 +1,83 @@
+{
+    "seo": {
+        "title": "Elasticsearch untuk {devices}",
+        "description": "Kirim Query DSL dari konsol, telusuri indeks sebagai tabel, filter, urutkan, dan edit dokumen berdasarkan _id, dengan kata sandi atau kunci API."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien Elasticsearch"
+    },
+    "engine": "elasticsearch",
+    "breadcrumb": "Elasticsearch",
+    "header": {
+        "title": "Klien Elasticsearch untuk {devices}",
+        "lead": "Konsol untuk permintaan Query DSL dan grid yang membaca setiap indeks sebagai tabel serta mengedit dokumen berdasarkan <code>_id</code>. Keduanya tidak menggunakan SQL: setiap tindakan adalah permintaan REST ke cluster."
+    },
+    "asset": "mac-db-elasticsearch-console",
+    "links": {
+        "filters": "/features/data-editing#filters",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan",
+            "paragraphs": [
+                "Masukkan host dan port REST cluster, lalu pilih <ui>Auth Method</ui>. Username & Password mengirim HTTP Basic. API Key mengirim bidang melalui header <code>Authorization: ApiKey</code>, jadi tempel nilai <code>encoded</code> yang dikembalikan permintaan pembuatan kunci API. None cocok untuk cluster pengembangan dengan keamanan nonaktif. Satu koneksi mengakses satu cluster, sehingga formulir tidak memiliki bidang Database.",
+                "Koneksi baru menggunakan SSL Disabled, yaitu HTTP tanpa enkripsi. Mode lainnya menggunakan HTTPS: Preferred dan Required (skip verify) menerima sertifikat yang ditandatangani sendiri, sedangkan Verify CA dan Verify Identity memverifikasinya. Elasticsearch 8.x mengaktifkan keamanan dan TLS secara bawaan, sehingga cluster 8.x biasanya memerlukan HTTPS dan kredensial."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Indeks dan konsol Query DSL",
+            "paragraphs": [
+                "Konsol menerima metode, jalur, dan badan JSON opsional, seperti Kibana Dev Tools, misalnya <code>GET /orders/_search</code> dengan kueri <code>match</code>. Hasil pencarian dikembalikan sebagai baris, permintaan <code>_cat</code> dengan <code>format=json</code> dan respons array lainnya menjadi tabel, dan respons lainnya ditampilkan sebagai JSON terformat. Endpoint <code>_sql</code> tidak dapat diakses.",
+                "Bilah samping menampilkan indeks sebagai tabel dan menyembunyikan nama yang diawali titik. Kolom berasal dari mapping: bidang objek diratakan menjadi jalur bertitik seperti <code>address.city</code>, bidang nested memiliki satu kolom JSON untuk array-nya serta satu kolom per daun, dan setiap dokumen memiliki <code>_id</code>, <code>_index</code>, dan <code>_score</code>.",
+                "<filters>Filter kolom</filters> menjadi kueri <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code>, dan <code>exists</code>, sedangkan baris filter Raw SQL menerima sintaks Lucene, seperti <code>name:Widget</code>, yang dikirim sebagai <code>query_string</code>. Pengurutan bidang <code>text</code> menggunakan subbidang <code>.keyword</code> jika tersedia dalam mapping.",
+                "Perubahan grid menjadi panggilan REST berdasarkan <code>_id</code>: <code>_update</code> untuk dokumen yang diubah, <code>_doc</code> untuk membuat atau menghapus dokumen. Ketik <code>_id</code> pada baris baru untuk memberi nama dokumen. Ubah array nested melalui kolom JSON-nya; nilai yang diketik pada salah satu kolom daun menghentikan penyimpanan, menyebutkan kolomnya, dan tidak mengirim apa pun."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Mapping",
+            "paragraphs": [
+                "Mapping hanya dapat dibaca di TablePro. Truncate tidak tersedia karena padanan terdekat di Elasticsearch, <code>_delete_by_query</code>, berjalan secara asinkron dan melaporkan konflik per dokumen; kirim dari konsol. Menghapus indeks dari bilah samping mengirim permintaan DELETE yang ditampilkan dalam konfirmasi."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Ekspor",
+            "paragraphs": [
+                "Impor tidak tersedia. <export>Export</export> membaca seluruh indeks menggunakan point-in-time dan <code>search_after</code>, sehingga tidak dibatasi jendela hasil, lalu menulis CSV, JSON, atau XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "deep-paging",
+            "question": "Apakah saya dapat berpaginasi melewati jendela hasil?",
+            "answer": "Ya. Paginasi melewati jendela default Elasticsearch beralih ke <code>search_after</code> menggunakan point-in-time. Peralihan terjadi pada batas default, sehingga indeks dengan <code>max_result_window</code> lebih rendah mengalami kesalahan sebelumnya; kembalikan pengaturan ke nilai default."
+        },
+        {
+            "id": "sort-id",
+            "question": "Mengapa mengurutkan berdasarkan _id tidak mengubah urutan baris?",
+            "answer": "Elasticsearch tidak dapat mengurutkan berdasarkan <code>_id</code> atau bidang <code>text</code> tanpa subbidang <code>.keyword</code>, sehingga TablePro menghapus kolom tersebut dari pengurutan. Tambahkan subbidang keyword ke mapping atau urutkan berdasarkan bidang keyword."
+        }
+    ],
+    "related": [
+        {
+            "label": "Typesense dan Weaviate, mesin pencarian lainnya",
+            "href": "/databases#search"
+        },
+        {
+            "label": "Telusuri dan edit data dengan aman",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "Bahasa kueri selain SQL",
+            "href": "/features/querying#other-languages"
+        }
+    ]
+}

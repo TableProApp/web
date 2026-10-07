@@ -1,0 +1,198 @@
+{
+    "seo": {
+        "title": "TablePro vs Navicat：オープンソースの選択肢",
+        "description": "Navicat は永久ライセンス、サブスクリプション、無料の Lite 版を提供。TablePro は無料のオープンソースクライアント。価格、AI、各アプリを比較します。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs Navicat"
+    },
+    "header": {
+        "title": "TablePro vs Navicat",
+        "lead": "Navicat Premium は Windows、macOS、Linux 用のクライアントで、ユーザー単位の永久ライセンス、月額または年額のサブスクリプションとして販売され、無料の Premium Lite 版もあります。TablePro は Mac と iPhone・iPad それぞれにネイティブアプリを持つオープンソースクライアントです。無料で利用でき、有料プランで Mac アプリに任意の機能を追加できます。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "AI アシスタント、MCP サーバー、Safe Mode を含む無料アプリが欲しく、{starterExamples} などの機能にだけ有料プランを使いたい。",
+            "オープンソースのクライアントを使いたい。TablePro は有料機能のコードも含め、AGPLv3 のオープンソースです。",
+            "エンジンごとの有料アプリではなく、複数のエンジンに対応する無料の iPhone・iPad アプリを一つ使いたい。",
+            "ClickHouse、DuckDB、Cassandra など、Navicat Premium に記載されていないエンジンを使っている。"
+        ],
+        "competitor": [
+            "Mac に加え、Windows や Linux でも作業している。",
+            "データモデリングツールでスキーマを設計する。Navicat の Premium Enterprise にはそのツールが含まれる。",
+            "Navicat Cloud、または自社サーバー上の Navicat On-Prem Server で、接続、クエリ、モデルを同僚と同期したい。"
+        ]
+    },
+    "glance": {
+        "intro": "Navicat Premium はユーザー単位で販売され、1 年間のメンテナンス付き永久ライセンスか、月額・年額のサブスクリプションを選べます。Premium Lite は無料です。両製品に AI アシスタントがあり、Navicat は {cells.ai.date} 公開のバージョン {cells.ai.version} で追加しました。"
+    },
+    "rows": {
+        "schemaSync": {
+            "label": "構造の同期",
+            "tablepro": "Starter の Compare & Sync で構造とデータを比較・同期"
+        },
+        "dataModeling": {
+            "label": "データモデリング",
+            "tablepro": "モデリングツールなし。読み取り専用の ER 図を PNG または SQL に書き出せる。無料"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Navicat Premium は Windows、macOS、Linux で動作します。",
+                "cite": [
+                    "platforms"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium Enterprise はデータモデリングツールを追加します。TablePro の ER 図は既存のスキーマを表示するだけです。",
+                "cite": [
+                    "cells.dataModeling"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Navicat Cloud、またはすべてを社内に置く必要がある場合は Navicat On-Prem Server が、接続設定、クエリ、モデルを同期し、招待した相手と共有します。",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "基本機能で作業が足りるなら、Premium Lite は商用・非商用どちらでも無料です。",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro は有料機能のコードも含め、AGPLv3 のオープンソースです。Navicat のソースコードは非公開です。",
+                "cite": [
+                    "licence"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "無料アプリですべての対応エンジンに接続でき、AI アシスタント、MCP サーバー、Safe Mode も使えます。<link>有料プラン</link>は {starterExamples} などの機能を追加します。",
+                "cite": [],
+                "feature": null,
+                "href": "/pricing"
+            },
+            {
+                "text": "両製品とも構造を同期します。TablePro の <link>Compare & Sync</link> は二つのデータベースの構造またはデータを比較し、差分のスクリプトを生成します。データを破壊する文は、許可するまで保留します。Starter に含まれます。",
+                "cite": [
+                    "cells.schemaSync"
+                ],
+                "feature": "compare-sync",
+                "href": null
+            },
+            {
+                "text": "無料の <link>iPhone・iPad アプリ</link>一つで複数のエンジンに接続でき、アプリ内課金はありません。Navicat は Navicat for MySQL など、エンジンごとに別のアプリを販売しています。",
+                "cite": [
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": "/ios"
+            },
+            {
+                "text": "TablePro は Navicat Premium に記載されたエンジンに加え、ClickHouse、DuckDB、Cassandra、Elasticsearch など、<link>記載されていないエンジン</link>にも接続します。",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": "/databases"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro には Windows・Linux 用アプリがありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "データモデリングツールはありません。<link>ER 図</link>は既存のスキーマの読み取り専用ビューで、PNG または SQL に書き出せます。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/schema#er-diagram"
+            },
+            {
+                "text": "タスクスケジューラーはないため、比較、書き出し、バックアップは自分で開始したときだけ実行されます。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro の iPhone・iPad アプリ一つで複数のエンジンに対応しますが、Mac アプリより機能は少なく、AI アシスタント、MCP サーバー、自動補完はありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Navicat の永久ライセンスは 1 年のメンテナンス終了後も使え、TablePro の買い切りも同様です。TablePro の月額・年額プランでは、終了すると有料機能がロックされ、アプリのその他の機能は引き続き使えます。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro は Navicat から書き出したファイルを使って接続をインポートするため、移行は Navicat で始めます。Navicat 自体の設定は読み取ったり変更したりしません。",
+        "steps": [
+            "Navicat で <ui>File > Export Connections…</ui> を選び、接続を選択して <ui>Export Password</ui> をオンにし、.ncx ファイルを保存します。",
+            "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",
+            "Navicat を選び、<ui>Include passwords</ui> をオンにして <ui>Continue</ui> をクリックし、.ncx ファイルを選択します。TablePro が保存されたパスワードを復号するため、キーチェーンでの承認は不要です。",
+            "一覧を確認し、重複する接続の扱いを決めて <ui>Import</ui> をクリックします。SSH トンネルと SSL の設定も引き継がれます。TablePro 非対応のデータベースへの接続はチェックされていません。",
+            "Navicat を削除する前に、パスワード付きだった接続を開き、引き継がれたことを確認します。"
+        ],
+        "after": [
+            "接続には Navicat のグループが付いてこないため、TablePro でグループに整理します。",
+            ".ncx ファイルのパスワードは Navicat に組み込まれたキーで保護されているため、ファイルを持つ人は誰でも読み取れます。インポート後は削除してください。",
+            "クエリ、モデル、スニペット、Navicat Cloud のプロジェクトは Navicat に残ります。"
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "premium-lite",
+            "question": "Navicat Premium Lite も無料です。TablePro との違いは？",
+            "answer": "どちらも商用の作業に無料で使えます。Premium Lite は Navicat の基本機能を提供します。TablePro の無料アプリはすべての対応エンジンに接続でき、AI アシスタント、MCP サーバー、Safe Mode を含みます。Starter または Team プランで {starterExamples} などの機能を追加できます。",
+            "href": null
+        },
+        {
+            "id": "one-time",
+            "question": "Navicat のライセンスのように TablePro も買い切れますか？",
+            "answer": "はい。Starter と Team は月額、年額、買い切りで支払え、買い切りには有効期限がありません。Navicat Premium の永久ライセンスは一度の支払いで、1 年間のメンテナンスを含みます。<link>料金を見る</link>。",
+            "href": "/pricing"
+        },
+        {
+            "id": "iphone",
+            "question": "iPhone・iPad アプリはどのエンジンに接続できますか？",
+            "answer": "無料アプリ一つで MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、DuckDB などに接続でき、アプリ内課金はありません。Mac アプリより機能は少なめです。<link>iPhone・iPad アプリについて</link>。",
+            "href": "/ios"
+        }
+    ],
+    "notes": {
+        "navicat-lite-commercial-use": "基本機能を備え、商用・非商用の利用に対応する無料版",
+        "navicat-one-year-maintenance": "買い切りで 1 年間のメンテナンス付き。アップグレードと技術サポートを含みます。各版には月額・年額のサブスクリプションもあります。",
+        "navicat-databases": "MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis、Snowflake と、それぞれのクラウドサービス",
+        "navicat-ios-per-engine-apps": "Navicat for MySQL や Navicat for PostgreSQL など、エンジンごとに別の有料アプリ。iPhone 用の Navicat Premium アプリはありません。",
+        "navicat-cloud": "Navicat Cloud、または自社サーバー上の Navicat On-Prem Server が、接続設定、クエリ、モデルを同期し、招待した相手と共有します。"
+    }
+}

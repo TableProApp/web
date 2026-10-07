@@ -1,0 +1,183 @@
+{
+    "seo": {
+        "title": "{devices}용 MySQL·MariaDB 클라이언트",
+        "description": "SSH·SSL/TLS·AWS IAM으로 MySQL·MariaDB에 연결합니다. 같은 드라이버로 TiDB, OceanBase, Databend를 지원하며 EXPLAIN과 mysqldump 백업을 제공합니다."
+    },
+    "og": {
+        "kicker": "데이터베이스",
+        "title": "MySQL·MariaDB 클라이언트"
+    },
+    "engine": "mysql",
+    "breadcrumb": "MySQL 및 MariaDB",
+    "header": {
+        "title": "{devices}용 MySQL·MariaDB 클라이언트",
+        "lead": "스키마를 인식하는 자동 완성으로 SQL을 작성하고 모든 구문을 미리 보며 행을 편집하고 사용자, 세션 및 백업을 관리합니다. 같은 드라이버는 MariaDB, TiDB, OceanBase와 Databend도 지원합니다."
+    },
+    "asset": "mac-db-mysql-query",
+    "links": {
+        "network": "/features/connections#network",
+        "cloudAuth": "/features/connections#cloud-auth",
+        "importApps": "/features/connections#import",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "administer": "/features/schema#administer",
+        "copy": "/features/schema#copy",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup",
+        "erDiagram": "/features/schema#er-diagram"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "연결",
+            "paragraphs": [
+                "호스트, 포트와 사용자를 입력하거나 <code>mysql://</code> URL을 붙여넣습니다. <code>caching_sha2_password</code>를 쓰는 MySQL 8 계정도 처음부터 연결됩니다. 데이터베이스를 비워 두고 나중에 선택할 수 있으며 같은 연결에서 바로 전환합니다.",
+                "새 연결의 SSL은 Preferred로 시작해 TLS를 먼저 시도하고 TLS 핸드셰이크가 실패한 경우에만 평문으로 전환합니다. 엄격한 검증에는 제공업체 인증서와 함께 Verify CA 또는 Verify Identity를 선택하세요.",
+                "사설 네트워크 서버에는 <network>필요시 점프 호스트를 사용하는 SSH 터널, SOCKS5 프록시, Cloudflare Access 터널 또는 자체 터널 명령</network>인 kubectl port-forward 등으로 연결합니다.",
+                "Amazon RDS와 Aurora에서는 연결할 때마다 새 토큰에 서명하는 <cloudAuth>AWS IAM</cloudAuth>으로 로그인하고 AWS 계정에서 인스턴스를 직접 가져올 수 있습니다. Google Cloud SQL에서는 TablePro가 Cloud SQL Auth Proxy를 다운로드하고 실행합니다.",
+                "Sequel Ace에서 옮긴다면 <importApps>Import from Other App</importApps>이 즐겨찾기와 확인 후 키체인에 저장된 비밀번호를 읽습니다."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "쿼리 및 편집",
+            "paragraphs": [
+                "SQL 편집기는 별칭과 CTE를 포함해 스키마에서 테이블·열 이름을 완성하며 커서의 구문이나 전체 스크립트를 실행합니다. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE 및 EXPLAIN ANALYZE</explain>는 실행 계획 다이어그램이나 트리로 표시되고 EXPLAIN Compare는 두 실행의 차이를 보여 줍니다.",
+                "행 편집은 저장할 때까지 대기하며 <editing>Preview SQL</editing>로 정확한 구문을 먼저 확인합니다. 저장은 바인딩 매개변수로 실행하며 구문이 예상과 다른 수의 행을 바꾸면 중단합니다. 기본 키 없는 테이블도 모든 열로 행을 매칭해 편집할 수 있습니다.",
+                "모든 세션은 utf8mb4를 사용해 이모지와 비라틴 문자도 손실 없이 읽고 씁니다. 이전 클라이언트가 Latin 1으로 기록한 데이터베이스 텍스트는 UTF-8 via Latin 1 인코딩으로 그 클라이언트와 같은 방식으로 읽습니다.",
+                "분할 테이블은 <code>VALUES LESS THAN (2024)</code> 같은 경계와 함께 파티션을 나열하며 테이블·열 주석은 사이드바와 그리드 열 머리글에 표시됩니다."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "스키마",
+            "paragraphs": [
+                "<structure>Structure 탭</structure>은 열, 인덱스, 외래 키, CHECK 제약 조건과 생성 열의 변경을 임시 저장하고 실행 전에 DDL을 보여 줍니다. <code>lower(email)</code> 같은 표현식 인덱스 키에는 MySQL 8.0.13 이상이 필요합니다.",
+                "루틴과 트리거는 소스와 함께 사이드바에 표시됩니다. <erDiagram>ER 다이어그램</erDiagram>은 스키마를 읽기 전용 그림으로 보여 주며 PNG나 SQL로 내보낼 수 있습니다.",
+                "{compareSyncTier} 플랜의 <compareSync>Compare & Sync</compareSync>는 두 MySQL·MariaDB 스키마나 데이터를 비교하고 한쪽을 다른 쪽에 맞추는 스크립트를 작성합니다. 데이터 손실이 발생하는 변경은 포함하기 전까지 보류됩니다."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "관리",
+            "paragraphs": [
+                "<administer>Users & Roles</administer>는 각 계정의 권한을 개별 열까지 보여 주며 모든 GRANT와 REVOKE를 실행 전에 읽는 SQL로 임시 저장합니다.",
+                "Server Dashboard는 몇 초마다 갱신되는 세션, 서버 지표와 느린 쿼리를 나열합니다. <code>KILL QUERY</code>로 실행 중인 쿼리를 취소하고 <code>KILL</code>로 세션을 종료합니다. PROCESS 권한이 없는 계정은 자신의 세션만 볼 수 있습니다.",
+                "테이블 유지 관리는 OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE과 REPAIR TABLE을 실행하며 먼저 구문을 보여 줍니다.",
+                "<backup>Backup Dump</backup>는 {dumpTool}을, Restore Dump는 mysql 클라이언트를 연결의 SSH 터널로 실행합니다. 먼저 Mac에 MySQL 클라이언트 도구를 설치하세요. 복원은 덤프가 지정한 객체를 대체합니다.",
+                "자리를 비운 동안 서버 연결 슬롯을 반환하려면 몇 분간 유휴 상태가 되면 연결을 해제하도록 설정합니다. 다음 쿼리가 새 연결을 엽니다. 열린 트랜잭션이나 임시 테이블처럼 재연결로 잃을 상태가 세션에 있으면 TablePro는 연결을 유지합니다."
+            ],
+            "asset": "mac-users-roles-mysql"
+        },
+        {
+            "id": "move-data",
+            "title": "데이터 이동",
+            "paragraphs": [
+                "{importFormats} 파일을 <importData>가져오며</importData> 대상 테이블의 열 매핑과 행 실패 시 동작을 선택합니다. 테이블이나 결과는 {exportFormats}로 내보냅니다.",
+                "<copy>Copy To</copy>는 테이블, 데이터 또는 둘 다를 MySQL이나 다른 엔진의 연결로 보내고 근사 변환이 필요한 모든 열 유형을 나열합니다."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone과 iPad",
+            "paragraphs": [
+                "iPhone과 iPad에서는 테이블을 카드로 탐색하고 필터링·정렬하며 기본 키가 있는 행을 편집하고 Query 탭에서 SQL을 실행합니다. SSL은 Required부터 Verify Identity까지 제공하며 SSH 터널은 비밀번호나 키를 사용합니다. SSH 점프 호스트는 지원하지 않습니다."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "mariadb",
+            "title": "MariaDB",
+            "paragraphs": [
+                "MariaDB는 MySQL과 같은 드라이버로 연결하며 같은 SSH, SSL/TLS와 AWS IAM 옵션을 제공합니다. <code>mariadb://</code> URL은 MariaDB 연결을 만듭니다.",
+                "MariaDB가 LONGTEXT로 저장하는 JSON 열은 JSON 편집기에서 열립니다. 가상·영구 열을 감지해 생성하는 INSERT·UPDATE 구문에서 제외합니다. 시퀀스는 사이드바에 읽기 전용으로 표시되며 시스템 버전 관리 테이블은 일반 테이블로 표시됩니다.",
+                "Users & Roles, Server Dashboard, 테이블 유지 관리와 {dumpTool} 백업은 MySQL과 동일하게 작동합니다."
+            ]
+        },
+        {
+            "engine": "tidb",
+            "title": "TiDB",
+            "paragraphs": [
+                "TiDB 서버의 SQL 포트로 연결하고 PD나 TiKV로 연결하지 마세요. TiDB Cloud도 같은 포트를 사용하며 SSL Mode를 Required로 설정합니다.",
+                "Stop은 자신의 세션에 <code>KILL TIDB QUERY</code>를 보냅니다. TiProxy나 로드 밸런서 뒤에서는 Global Kill이 필요하며 TiDB는 6.1부터 기본 활성화합니다.",
+                "EXPLAIN과 EXPLAIN ANALYZE는 TiDB 계획을 텍스트로 표시합니다. TiDB 7.2 이상에서 클러스터가 활성화하면 Structure 탭에 CHECK 제약 조건이 나타나며 외래 키를 만들 수 있고 테이블 유지 관리에는 ANALYZE TABLE이 제공됩니다.",
+                "연결 유형을 MySQL이 아닌 TiDB로 선택해야 사이드바, 유형 선택기와 EXPLAIN이 TiDB에 맞게 동작합니다."
+            ]
+        },
+        {
+            "engine": "oceanbase",
+            "title": "OceanBase",
+            "paragraphs": [
+                "사용자 이름에 테넌트를 넣습니다. observer에서는 <code>root@test</code>, 포트 2883의 OBProxy를 통하면 <code>root@test#obcluster</code>를 사용합니다.",
+                "연결 시 서버가 OceanBase로 보고하는지 확인하므로 잘못된 호스트나 포트는 즉시 실패합니다. TablePro의 쿼리 제한 시간이 OceanBase 자체 구문 제한을 대체합니다.",
+                "EXPLAIN은 계획을 텍스트로 표시합니다. 기본 키 없는 테이블은 모든 열로 행을 매칭해 편집하며 저장이 여러 행을 변경하거나 아무 행도 변경하지 않으면 중단하고 알립니다.",
+                "연결 유형으로 OceanBase를 선택하세요. MySQL로 저장한 연결이 OceanBase에 접속하면 이러한 기능은 제공되지 않습니다."
+            ]
+        },
+        {
+            "engine": "databend",
+            "title": "Databend",
+            "paragraphs": [
+                "Databend는 HTTP API가 아닌 MySQL 핸들러로 연결합니다. 연결 유형으로 Databend를 선택하세요. MySQL 연결로 Databend 서버에 접속하면 거부되며 유형 변경을 요청합니다.",
+                "Databend Cloud에서는 지원팀에 웨어하우스의 MySQL 엔드포인트 활성화를 요청하고 Connect 대화상자에서 호스트와 포트를 복사하세요.",
+                "Structure 탭은 열과 CHECK 제약 조건을 편집하고 테이블, 뷰와 열 이름을 바꿉니다. EXPLAIN과 EXPLAIN ANALYZE는 계획을 텍스트로 보여 주며 테이블 유지 관리에는 ANALYZE TABLE이 있습니다.",
+                "ARRAY, MAP과 TUPLE 셀은 텍스트로 쓸 수 없습니다. 편집기에서 UPDATE로 변경하세요."
+            ]
+        }
+    ],
+    "otherTools": {
+        "items": [
+            {
+                "product": "sequel-ace",
+                "text": "Sequel Ace는 Sequel Pro를 잇는 MySQL·MariaDB용 Mac 앱입니다. MCP 서버는 기본적으로 꺼져 있고 변경하지 않으면 읽기 전용이며 AI 채팅은 없습니다. MySQL과 MariaDB만 사용한다면 적합합니다."
+            },
+            {
+                "product": "phpmyadmin",
+                "text": "phpMyAdmin은 웹 서버에서 실행되어 모든 브라우저에서 사용 가능하며 cPanel에도 포함됩니다. 데스크톱 앱에서 데이터베이스로 연결할 경로가 없고 호스팅 패널로만 접근하는 서버에 적합합니다."
+            },
+            {
+                "product": "heidisql",
+                "text": "HeidiSQL은 Windows에서 오랫동안 사용된 오픈 소스 클라이언트이며 현재는 macOS 앱도 제공합니다."
+            }
+        ],
+        "notes": {}
+    },
+    "faq": [
+        {
+            "id": "socket",
+            "question": "로컬 MySQL 소켓으로 연결할 수 있나요?",
+            "answer": "아니요. 연결은 TCP를 사용하므로 서버의 네트워킹을 켜야 합니다. 원격 서버의 소켓에 접근하려면 SSH 터널로 전달하세요."
+        },
+        {
+            "id": "mysqldump",
+            "question": "MySQL 클라이언트 도구를 설치해야 하나요?",
+            "answer": "{dumpTool}과 mysql을 실행하는 Backup Dump와 Restore Dump에만 필요합니다. 연결, 쿼리와 편집은 앱에 포함된 드라이버를 사용합니다."
+        },
+        {
+            "id": "er-diagram",
+            "question": "ER 다이어그램에서 스키마를 설계할 수 있나요?",
+            "answer": "아니요. <erDiagram>ER 다이어그램</erDiagram>은 내보낼 수 있는 읽기 전용 스키마 그림입니다. 테이블은 Structure 탭이나 SQL로 변경하세요."
+        }
+    ],
+    "related": [
+        {
+            "label": "쿼리 작성, 실행 및 이해",
+            "href": "/features/querying"
+        },
+        {
+            "label": "스키마, 비교 및 동기화",
+            "href": "/features/schema"
+        },
+        {
+            "label": "연결, 터널 및 자격 증명",
+            "href": "/features/connections"
+        },
+        {
+            "label": "TablePro와 다른 데이터베이스 클라이언트 비교",
+            "href": "/compare"
+        }
+    ]
+}

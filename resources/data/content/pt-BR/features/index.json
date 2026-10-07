@@ -1,0 +1,108 @@
+{
+    "seo": {
+        "title": "Recursos para gerenciar bancos de dados",
+        "description": "Consultas, edição de dados, esquema, importação, exportação, IA, MCP, conexões e sincronização no TablePro, com os recursos pagos identificados."
+    },
+    "og": {
+        "kicker": "Recursos",
+        "title": "O que você pode fazer no TablePro"
+    },
+    "header": {
+        "title": "O que você pode fazer no TablePro",
+        "lead": "O app para Mac é a ferramenta completa, e todas as páginas abaixo o descrevem primeiro. O app para iPhone e iPad é um app nativo separado com escopo menor; cada página termina explicando o que ele oferece."
+    },
+    "areas": {
+        "title": "Áreas de recursos",
+        "lead": "Cada área tem uma página com os detalhes, o plano que cada parte exige no Mac e os limites que você precisa conhecer.",
+        "paid": "{tier}: {features}",
+        "noPaid": "Sem recursos pagos",
+        "items": [
+            {
+                "slug": "querying",
+                "summary": "Preenchimento automático baseado no esquema, parâmetros <code>:name</code>, histórico pesquisável, consultas salvas, planos EXPLAIN que você pode comparar e resultados como gráficos ou mapas."
+            },
+            {
+                "slug": "data-editing",
+                "summary": "Filtros e regras de destaque, chaves estrangeiras que você pode seguir, edições que aguardam o salvamento, um nível de Modo Seguro por conexão e Recuperação de Dados para valores substituídos ao salvar."
+            },
+            {
+                "slug": "schema",
+                "summary": "Mudanças de estrutura com prévia DDL, diagrama ER somente leitura, Comparar e Sincronizar entre dois bancos, Copiar Para entre mecanismos e Usuários e Funções."
+            },
+            {
+                "slug": "import-export",
+                "summary": "Importe arquivos {importFormats}, exporte tabelas e resultados, abra arquivos de dados sem conexão e faça backup dos mecanismos compatíveis com suas próprias ferramentas de dump."
+            },
+            {
+                "slug": "ai-mcp",
+                "summary": "Um assistente de IA opcional que usa o provedor escolhido por você e um servidor MCP local que permite que clientes como Claude Code e Cursor usem suas conexões salvas."
+            },
+            {
+                "slug": "connections",
+                "summary": "Túneis SSH com hosts intermediários, TLS, autenticação na nuvem e comandos de túnel, senhas das Chaves ou de um gerenciador de segredos e conexões importadas de outros apps."
+            },
+            {
+                "slug": "sync-and-teams",
+                "summary": "Sincronização iCloud entre seus Macs, iPhone e iPad, arquivos de conexão que você pode compartilhar e Catálogo da Equipe e Biblioteca da Equipe para compartilhar com sua equipe."
+            }
+        ]
+    },
+    "ios": {
+        "title": "iPhone e iPad",
+        "body": "TablePro para iPhone e iPad é um app separado, gratuito e sem compras no app. Conecta por SSH ou TLS, explora e edita linhas e executa consultas, com Atalhos, widget na Tela de Início e Atividades ao Vivo para consultas em execução. Não tem assistente de IA, edição de esquema, Recuperação de Dados nem Comparar e Sincronizar.",
+        "link": "TablePro para iPhone e iPad"
+    },
+    "paid": {
+        "title": "Gratuito e pago",
+        "lead": "O app para Mac é gratuito para usar, sem período de avaliação. Um plano Starter ou Team adiciona os recursos abaixo ao app para Mac, e Team inclui tudo do Starter. Conectar-se a qualquer mecanismo compatível, usar o assistente de IA, o servidor MCP e o Modo Seguro não exige licença, e o app para iPhone e iPad é gratuito, sem compras no app.",
+        "caption": "Os recursos pagos do app para Mac, o plano que cada um exige e a página que o descreve",
+        "columns": {
+            "feature": "Recurso",
+            "plan": "Plano",
+            "page": "Descrito em"
+        },
+        "pricing": "Ver preços"
+    },
+    "docs": {
+        "title": "Documentação",
+        "body": "Cada recurso tem sua própria página na documentação do TablePro, com todas as configurações e atalhos.",
+        "link": "Ler a documentação",
+        "path": "/features/overview"
+    },
+    "labels": {
+        "number": {
+            "decimal": ",",
+            "group": "."
+        },
+        "tiers": {
+            "free": "Grátis",
+            "starter": "Starter",
+            "team": "Team"
+        },
+        "paidBadge": "{name}: plano {tier}",
+        "header": {
+            "paid": "Recursos pagos nesta página: {features}. Todo o restante é gratuito.",
+            "paidItem": "{name} ({tier})",
+            "allFree": "Tudo nesta página é gratuito.",
+            "docs": "Ler a documentação"
+        },
+        "sections": {
+            "availability": "Onde funciona",
+            "limits": "Limites que você precisa conhecer",
+            "docs": "Documentação",
+            "related": "Relacionados"
+        },
+        "availability": {
+            "caption": "Cada capacidade desta página, o plano que exige no Mac e o que está disponível no iPhone e iPad",
+            "capability": "Capacidade",
+            "free": "Grátis",
+            "notAvailable": "Indisponível",
+            "plan": "Plano {tier}"
+        },
+        "download": {
+            "title": "Baixar TablePro",
+            "body": "TablePro é de código aberto e gratuito para usar. Os planos pagos adicionam recursos opcionais ao app para Mac.",
+            "pricing": "Ver preços"
+        }
+    }
+}

@@ -20,7 +20,7 @@ on:
         required: true
         default: "all"
         type: choice
-        options: [all, en, vi]
+        options: [all, en, vi, es, de, fr, ja, pt-BR, zh-Hans, ko, zh-Hant, it, id]
       slug:
         description: "Single slug (optional)"
         required: false
@@ -74,6 +74,9 @@ jobs:
         run: |
           npm install -g puppeteer
           npx puppeteer browsers install chrome
+
+      - name: Install CJK fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
 
       - name: Prepare environment
         run: |

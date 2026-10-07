@@ -1,0 +1,116 @@
+{
+    "seo": {
+        "title": "Client Oracle pour {devices}",
+        "description": "Connectez Oracle sans Instant Client, exécutez PL/SQL et scripts SQL*Plus, lisez DBMS_OUTPUT et lancez des exports Data Pump sur le serveur."
+    },
+    "og": {
+        "kicker": "Bases de données",
+        "title": "Client Oracle Database"
+    },
+    "engine": "oracle",
+    "breadcrumb": "Oracle",
+    "header": {
+        "title": "Client Oracle Database pour {devices}",
+        "lead": "Le pilote parle le protocole TNS d’Oracle en Swift ; Instant Client et le reste de la pile Oracle restent donc hors de votre Mac. Exécutez SQL et PL/SQL, y compris les scripts SQL*Plus, et lisez la sortie DBMS_OUTPUT à côté de chaque résultat."
+    },
+    "asset": "mac-db-oracle-plsql",
+    "links": {
+        "network": "/features/connections#network",
+        "parameters": "/features/querying#history",
+        "editing": "/features/data-editing#edit",
+        "safeMode": "/features/data-editing#safe-mode",
+        "structure": "/features/schema#structure",
+        "compareSync": "/features/schema#compare-sync",
+        "importData": "/features/import-export#import",
+        "serverExport": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connexion",
+            "paragraphs": [
+                "Saisissez hôte, port du listener et Service Name, ou passez le <ui>Type de connexion</ui> à SID pour une instance sans service. Authentifiez-vous par utilisateur et mot de passe, en Normal ou avec le rôle SYSDBA ou SYSOPER.",
+                "Native Network Encryption ne nécessite aucun réglage : si le serveur la demande, AES avec somme SHA-2 est proposé ; <ui>Chiffrement réseau</ui> change ce que TablePro offre. Pour TLS, choisissez Requis pour TCPS, ou Vérifier l’AC ou Vérifier l’identité avec un certificat d’AC. Les nouvelles connexions ont SSL désactivé ; Préféré reste en TCP en clair.",
+                "Sur Oracle Autonomous Database, copiez hôte, port et nom de service depuis la chaîne TLS, pas mTLS, et définissez SSL sur Requis ou Vérifier l’AC. Les fichiers wallet ne sont jamais lus ; la base doit donc accepter TLS sans TLS mutuel.",
+                "Un listener RAC SCAN, serveur partagé ou répartiteur devant la base ne nécessite aucune configuration ; un <network>tunnel SSH</network> atteint un listener en réseau privé."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SQL, PL/SQL et transactions",
+            "paragraphs": [
+                "Un bloc PL/SQL ou une unité stockée s’exécute comme une instruction, quel que soit le nombre de points-virgules : placez-y le curseur et lancez-le. Les scripts SQL*Plus ou SQL Developer fonctionnent sans modification ; une ligne contenant seulement <code>/</code> termine l’unité précédente. Une unité non compilable échoue avec les erreurs Oracle, une par ligne avec leur position.",
+                "Les lignes <code>DBMS_OUTPUT.PUT_LINE</code> apparaissent avec le résultat de l’instruction qui les a imprimées, sans <code>SET SERVEROUTPUT ON</code>. Dans un bloc anonyme, <code>:name</code> est un <parameters>paramètre de requête</parameters> à remplir dans un panneau.",
+                "Chaque instruction réussie est validée. Commencez par <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> ou <code>LOCK TABLE</code> pour retenir les changements ; tout ce qui suit attend votre <code>COMMIT</code> ou <code>ROLLBACK</code>, y compris les enregistrements de grille.",
+                "Chaque utilisateur est un schéma et <code>Cmd+K</code> change le schéma actif sans reconnexion. Les modifications de lignes sont préparées avec l’<editing>Aperçu SQL</editing>. Un bloc supprimant ou vidant, même par <code>EXECUTE IMMEDIATE</code>, déclenche l’<safeMode>avertissement de requête dangereuse</safeMode> avant exécution."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Schéma",
+            "paragraphs": [
+                "L’<structure>onglet Structure</structure> écrit <code>ALTER TABLE</code> pour ajouter, renommer, modifier et supprimer des colonnes et créer des index, avec les noms sensibles à la casse entre guillemets doubles. Les informations de table incluent aussi clés primaires, étrangères et DDL CREATE TABLE.",
+                "Une table partitionnée liste ses partitions dessous, chacune avec sa position ; les sous-partitions sont imbriquées sous leur partition. Interrogez-en une avec <code>SELECT * FROM orders PARTITION (p2024)</code>.",
+                "<compareSync>Comparer et synchroniser</compareSync>, du forfait {compareSyncTier}, compare deux schémas Oracle ou leurs données et enregistre un script avec une ligne <code>/</code> après chaque unité, prêt pour SQL*Plus ou SQLcl."
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "Exportez sur le serveur",
+            "paragraphs": [
+                "L’<serverExport>Export côté serveur</serverExport> lance un job Data Pump qui écrit une table dans un objet <code>DIRECTORY</code> du serveur avec vos privilèges. Rien n’arrive sur le Mac. Le job continue après l’annonce de son démarrage ; suivez-le dans <code>DBA_DATAPUMP_JOBS</code>."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Transférez des données",
+            "paragraphs": [
+                "<importData>Importez</importData> des fichiers {importFormats} ; si un fichier crée une table, son nom proposé est en majuscules et respecte la longueur Oracle. Exportez tables ou résultats en {exportFormats}. Un export SQL ajoute une ligne <code>/</code> après chaque routine et déclencheur pour restauration par SQL*Plus."
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "iPhone et iPad",
+            "paragraphs": [
+                "Sur iPhone et iPad, le pilote Oracle est intégré. Le formulaire accepte Service Name ou SID, rôles SYSDBA et SYSOPER et Chiffrement réseau. Vous parcourez les tables en cartes, modifiez les lignes avec clé primaire et exécutez SQL dans Requête ; créer ou modifier des tables reste sur Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "pluggable-database",
+            "question": "Pourquoi ne vois-je aucune table de mon application ?",
+            "answer": "Vous avez probablement connecté la base conteneur. Une base enfichable a son propre service, comme <code>XEPDB1</code> dans <code>XE</code>. Exécutez <code>lsnrctl services</code> sur le serveur pour lister les noms servis par le listener."
+        },
+        {
+            "id": "sqlplus-commands",
+            "question": "Pourquoi SET SERVEROUTPUT ON échoue-t-il ?",
+            "answer": "Les commandes SQL*Plus <code>SET SERVEROUTPUT ON</code>, <code>SHOW ERRORS</code> et <code>EXEC</code> ne sont pas SQL et le serveur les refuse. Retirez-les : la sortie est active dès la connexion. Écrivez <code>EXEC p</code> comme <code>BEGIN p; END;</code>."
+        },
+        {
+            "id": "password-verifier",
+            "question": "Un compte avec ancien vérificateur de mot de passe 10G se connecte-t-il ?",
+            "answer": "Oui, bien qu’Oracle ait déprécié son hachage DES. Changez le mot de passe avec <code>ALTER USER … IDENTIFIED BY</code> et vérifiez que <code>password_versions</code> dans <code>dba_users</code> contient ensuite 11G ou 12C."
+        }
+    ],
+    "related": [
+        {
+            "label": "Écrivez, exécutez et comprenez des requêtes",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Sauvegardes et export côté serveur",
+            "href": "/features/import-export#backup"
+        },
+        {
+            "label": "Schémas, comparaison et synchronisation",
+            "href": "/features/schema"
+        },
+        {
+            "label": "TablePro pour iPhone et iPad",
+            "href": "/ios"
+        }
+    ]
+}

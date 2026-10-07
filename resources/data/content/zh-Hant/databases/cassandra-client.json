@@ -1,0 +1,109 @@
+{
+    "seo": {
+        "title": "適用於 {devices} 的 Cassandra、ScyllaDB 用戶端",
+        "description": "透過 TLS、雙向 TLS 或 SigV4 在 Cassandra、ScyllaDB、Amazon Keyspaces 執行 CQL，瀏覽索引鍵空間和資料表，依主索引鍵編輯列。"
+    },
+    "og": {
+        "kicker": "資料庫",
+        "title": "Cassandra 與 ScyllaDB 用戶端"
+    },
+    "engine": "cassandra",
+    "breadcrumb": "Cassandra 與 ScyllaDB",
+    "header": {
+        "title": "適用於 {devices} 的 Cassandra、ScyllaDB 用戶端",
+        "lead": "瀏覽索引鍵空間和資料表，在編輯器執行 CQL，編輯依完整主索引鍵寫回的列。同一驅動程式也連線 ScyllaDB 和 Amazon Keyspaces。"
+    },
+    "asset": "mac-db-cassandra-table",
+    "links": {
+        "network": "/features/connections#network",
+        "awsIam": "docs:/connections/aws-iam",
+        "filters": "/features/data-editing#filters",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "cassandraGuide": "docs:/databases/cassandra"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "連線",
+            "paragraphs": [
+                "提供接觸點和連接埠，叢集設定驗證器時再填使用者名稱和密碼。無索引鍵空間欄位：連線後在側欄選擇，或放入 <code>cassandra://</code>、<code>cql://</code> URL 路徑再匯入。索引鍵空間原地切換，清單排除系統索引鍵空間，已開啟分頁仍留在各自索引鍵空間。",
+                "新連線關閉 TLS。驅動程式沒有機會式 TLS，因此 Preferred、Required 均加密但不驗證憑證。Verify CA、Verify Identity 必須有 CA 憑證檔案，絕不退回系統根憑證。雙向 TLS 加入用戶端憑證、金鑰和金鑰通關密語。私有網路叢集透過 <network>SSH 通道</network>存取。",
+                "Amazon Keyspaces 用 SigV4 而非密碼登入。連線區域端點，例如 9142 連接埠的 <code>cassandra.us-east-1.amazonaws.com</code>，Authentication 設定為 <awsIam>AWS IAM 模式</awsIam>（存取金鑰、設定檔或 AWS IAM Identity Center），留空使用者名稱密碼並開啟 TLS，因為 Keyspaces 拒絕明文。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "瀏覽與執行 CQL",
+            "paragraphs": [
+                "從側欄開啟資料表讀取資料格線。清單、集合、對應和元組顯示為集合，使用者定義型別顯示欄位，<code>duration</code> 為 <code>1d2h30m</code>，向量為數字清單，blob 為十六進位。CQL 編輯器結果唯讀，請從側欄開啟的資料表修改列。",
+                "CQL 無 OFFSET，因此從首列向前分頁：已顯示頁的 Next、Previous 各讀一次，跳到遠處需讀取此前每頁。列依權杖順序傳回，欄頭不重新排序，因為 CQL 僅能依單分割區內叢集欄位排序。開啟資料表不計數；<ui>Count Exactly</ui> 執行 <code>SELECT COUNT(*)</code> 讀取所有分割區。",
+                "<filters>篩選</filters>加入 <code>ALLOW FILTERING</code>，除非固定完整分割區索引鍵，否則伺服器讀所有分割區。包含、開頭為、結尾為傳送 LIKE，Cassandra 僅在有 SASI 或 SAI 索引的欄位接受。CQL 無法表達的不等於、is NULL 等運算子依名稱拒絕；CQL 無 OR，條件僅以 AND 連接。",
+                "<editing>編輯值</editing>依欄位的 CQL 型別傳送，無法解析的值停止整個儲存。各列以完整主索引鍵用獨立陳述式寫入。<ui>Add Row</ui> 寫 <code>INSERT … IF NOT EXISTS</code>，新列絕不覆寫已有相同索引鍵的列。索引鍵欄不可原地修改，需刪除再新增列。",
+                "計數器欄位需在 CQL 編輯器執行 <code>UPDATE … SET c = c + 1</code>，伺服器拒絕格線編輯的一般 UPDATE。連線逾時取自 Options；CQL 請求保持驅動程式自身固定逾時，App 查詢逾時不改變它。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "索引鍵空間與資料表",
+            "paragraphs": [
+                "<structure>Structure 分頁</structure>列出各欄位 CQL 型別，將分割區索引鍵和叢集欄位均標為主索引鍵，並顯示次要索引。可新增刪除欄位；其他修改包括索引均在編輯器用 CQL 陳述式執行。",
+                "DDL 分頁從欄位清單重建 <code>CREATE TABLE</code>，省略 compaction 等資料表選項、叢集順序及分割區索引鍵和叢集索引鍵的區分。請在 cqlsh 用 <code>DESCRIBE TABLE</code> 讀取完整定義。使用者定義函式和彙總列在 Functions 下。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移動資料",
+            "paragraphs": [
+                "TablePro 不提供 Cassandra 或 ScyllaDB 匯入。將資料表或 CQL 結果<export>匯出</export>為 {exportFormats}。"
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "scylladb",
+            "title": "ScyllaDB",
+            "paragraphs": [
+                "ScyllaDB 在連線類型清單有獨立項目，透過相同 CQL 原生通訊協定使用 Cassandra 驅動程式，因此上述連線、瀏覽、編輯及限制完全適用。<code>scylladb://</code> 或 <code>scylla://</code> URL 建立 ScyllaDB 連線。",
+                "篩選列有一個區別：ScyllaDB 在任何欄位接受包含、開頭為、結尾為傳送的 LIKE，Cassandra 則需 SASI 或 SAI 索引。ScyllaDB 依 <cassandraGuide>Cassandra 設定指南</cassandraGuide>設定。"
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "cluster-status",
+            "question": "顯示節點或環狀結構狀態嗎？",
+            "answer": "不顯示。Cassandra、ScyllaDB 無 Server Dashboard。用 <code>nodetool status</code> 檢查節點，用 TablePro 操作索引鍵空間、資料表和 CQL。"
+        },
+        {
+            "id": "views-and-types",
+            "question": "如何查看具體化檢視表和使用者定義型別？",
+            "answer": "側欄不顯示，請在 CQL 編輯器查詢 <code>system_schema</code> 索引鍵空間，例如 <code>SELECT * FROM system_schema.views</code> 或 <code>system_schema.types</code>。"
+        },
+        {
+            "id": "cassandra-2",
+            "question": "能連線 Cassandra 2.x 嗎？",
+            "answer": "不能。驅動程式從 Cassandra 2.x 沒有的 <code>system_schema</code> 讀取結構，因此連線失敗。"
+        }
+    ],
+    "related": [
+        {
+            "label": "篩選、分頁與暫存編輯",
+            "href": "/features/data-editing"
+        },
+        {
+            "label": "連線、通道與 AWS 登入",
+            "href": "/features/connections"
+        },
+        {
+            "label": "Amazon DynamoDB，另一種 AWS 簽章引擎",
+            "href": "/dynamodb-gui"
+        },
+        {
+            "label": "支援的資料庫",
+            "href": "/databases#wide-column"
+        }
+    ]
+}

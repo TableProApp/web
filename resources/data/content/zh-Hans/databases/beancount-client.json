@@ -1,0 +1,79 @@
+{
+    "seo": {
+        "title": "在 {devices} 上用 SQL 查询 Beancount 账本",
+        "description": "将 Beancount 账本打开为交易、分录、余额和元数据的只读 SQL 表，处理 include，并通过 rledger 运行 BQL。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "用 SQL 查询 Beancount 账本"
+    },
+    "engine": "beancount",
+    "breadcrumb": "Beancount",
+    "header": {
+        "title": "在 {devices} 上用 SQL 查询 Beancount 账本",
+        "lead": "打开 <code>.beancount</code>，将交易、分录、余额和元数据作为 SQL 表查询，或向 rledger 发送 BQL。账本仍为文本文件，使用自己的编辑器修改。"
+    },
+    "asset": "mac-db-beancount-bql",
+    "links": {
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export",
+        "files": "/features/import-export#files"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "打开账本",
+            "paragraphs": [
+                "TablePro 运行 <code>rledger</code> 或 Python Beancount 读取账本。需要选择时请安装 rledger：两者并存时优先使用它，只有它能运行 BQL，并将验证输出填入 <code>diagnostics</code> 表。",
+                "在连接表单用 <ui>Browse…</ui> 选择文件。账本路径就是整个连接，无主机、端口、密码或数据库。<code>.beancount</code> 也可从 Finder 打开，并支持导入 <code>beancount:///path/to/main.beancount</code> URL。",
+                "从 Finder 打开的应用不继承 shell 的 <code>PATH</code>。若后端在 Terminal 可运行但在此不可用，请用 <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> 或 <code>TABLEPRO_BEANCOUNT_PYTHON</code> 指定并重启。",
+                "Python 后端运行 Beancount 附带插件，其他 <code>plugin</code> 指令属于第三方代码，在连接中启用 <ui>Run Ledger Plugins</ui> 前会跳过。跳过的插件列在 <code>diagnostics</code>。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查询账本",
+            "paragraphs": [
+                "表涵盖交易和分录、账户、余额及余额断言、价格和商品、所有其他指令、元数据、标签、链接及源文件。分录通过 <code>transaction_id</code> 连接交易，账户按名称连接。",
+                "金额已完成记账、算术、成本和价格解析，分录成本和行内价格有独立列。交易、分录及若干指令表含 <code>source_location</code>，例如 <code>main.beancount:42</code>，可从记录追溯源文件行。",
+                "查询前加 <code>BQL:</code> 将其发送给 rledger 而非表。BQL 结果支持浏览、行数和分页，不支持 SQL 参数。",
+                "<code>include</code> 支持具体路径和 glob，所有账本文件及引用文档均被监控。在编辑器保存后，下次查询无需重连即可读取。连接始终处于 <safeMode>安全模式</safeMode> Read-Only，拒绝 INSERT、UPDATE、DELETE 和结构修改。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "表或查询结果可导出为 {exportFormats}。<files>TablePro 可作为数据库打开的其他文件</files>包括 SQLite、DuckDB 和 Parquet。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "errors",
+            "question": "有错误的账本还能打开吗？",
+            "answer": "通过 rledger 可以。验证失败时仍映射账本，每个问题作为 <code>diagnostics</code> 中的一行，含文件、行号、严重程度和消息。"
+        },
+        {
+            "id": "several-ledgers",
+            "question": "一个连接能打开多个账本吗？",
+            "answer": "一个连接对应一个账本文件，无法切换。主文件若 include 其他文件，会全部加载，也支持 glob。"
+        }
+    ],
+    "related": [
+        {
+            "label": "用于分析文件的 DuckDB",
+            "href": "/duckdb-client"
+        },
+        {
+            "label": "SQLite，单文件数据库",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "导入、导出和数据文件",
+            "href": "/features/import-export"
+        }
+    ]
+}

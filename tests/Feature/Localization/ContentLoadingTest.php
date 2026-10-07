@@ -50,6 +50,14 @@ it('reads family entries and lists slugs without the index', function (): void {
     expect($this->content->slugs('features', 'en'))->toBe([]);
 });
 
+it('reads regional and script locale directories without changing page slugs', function (string $locale): void {
+    File::ensureDirectoryExists("{$this->contentDir}/{$locale}/databases");
+    File::put("{$this->contentDir}/{$locale}/databases/mysql-client.json", '{"seo":{"title":"MySQL"}}');
+
+    expect($this->content->entry('databases', 'mysql-client', $locale))->toBe(['seo' => ['title' => 'MySQL']]);
+    expect($this->content->slugs('databases', $locale))->toBe(['mysql-client']);
+})->with(['pt-BR', 'zh-Hans', 'zh-Hant']);
+
 it('reports a malformed file instead of rendering half a page', function (): void {
     $this->content->page('broken', 'vi');
 })->throws(ContentMissingException::class, 'not valid JSON');
@@ -62,6 +70,9 @@ it('refuses names that could leave the content directory', function (string $nam
     ['databases/../../x', 'en'],
     ['Home', 'en'],
     ['a/b/c', 'en'],
+    ['home', 'pt-BR/../en'],
+    ['home', 'EN'],
+    ['home', 'zh-hans'],
 ])->throws(InvalidArgumentException::class);
 
 it('gives headings locale-stable ids, explicit ones first', function (): void {

@@ -1,0 +1,85 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 Apache Kafka 客户端",
+        "description": "从最新、最旧消息、偏移量或时间读取 Kafka 主题，查看消费者延迟，以 SASL、TLS 连接用 KafkaQL 生成测试消息。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "Apache Kafka 客户端"
+    },
+    "engine": "kafka",
+    "breadcrumb": "Apache Kafka",
+    "header": {
+        "title": "适用于 {devices} 的 Apache Kafka 客户端",
+        "lead": "用 KafkaQL 从所选起点读取主题，查看每个消费者组的延迟，并生成测试消息。主题是日志，所以网格仅读取消息，从不编辑。"
+    },
+    "asset": "mac-db-kafka-consume",
+    "links": {
+        "network": "/features/connections#network",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接",
+            "paragraphs": [
+                "输入一个代理的主机和端口，从它发现集群其余部分。<ui>Additional Bootstrap Servers</ui> 列出首个代理无响应时尝试的代理。一个连接对应一个集群，无 Database 字段，侧栏直接显示主题。",
+                "<ui>Security Protocol</ui> 可选 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL Mechanism</ui> 可选 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 适合 Confluent Cloud，SCRAM 适合 Amazon MSK 和自托管代理。SSL 或 SASL_SSL 未选择 SSL 模式时验证证书链和主机名。私有 CA 填入 <ui>CA Certificate</ui>，客户端证书和密钥提供双向 TLS。",
+                "通过 <network>SSH 隧道</network>时连接停留在引导代理，仅读取该代理领导的分区。<ui>Import from URL…</ui> 接受 <code>kafka://</code> URL，macOS 不将其作为链接打开。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "读取、检查和生成",
+            "paragraphs": [
+                "打开主题显示最近消息，最新在最后，含分区、偏移量、时间戳、键、值、头和大小。不同分区的消息按时间戳交错以方便阅读；真正标识消息的是分区和偏移量。非 UTF-8 的键或值显示为十六进制，tombstone 与空消息保持区别。",
+                "KafkaQL 用起始位置替代排序和筛选：<code>CONSUME \"orders\" FROM NEWEST</code>、<code>FROM OLDEST</code>、<code>FROM OFFSET</code>，或带 ISO 8601 时间戳的 <code>FROM TIME</code>，可限定部分分区。<code>SHOW TOPICS</code>、<code>SHOW BROKERS</code>、<code>SHOW GROUPS</code>、<code>SHOW CLUSTER</code>、<code>DESCRIBE TOPIC</code> 查看集群其他信息。",
+                "<code>DESCRIBE GROUP</code> 是延迟报告，逐分区显示已提交偏移、末端偏移和差值。组从未提交过的分区显示无延迟，而不是从零计算。代理不可达时 <code>SHOW GROUPS</code> 标注列表已截断。",
+                "<code>PRODUCE INTO</code> 写入消息，可选键、头和分区。有键但未指定分区的消息落在 Kafka 自身生产者会选择的位置。读取时自动解压 gzip、snappy、lz4、zstd 批次，无需选择设置。",
+                "Kafka 无更新、逐消息删除或服务器端排序，因此无法编辑单元格、删除行或按列排序，相应控件显示禁用。每页从上页停止处继续，因此持续写入的主题也不重复或跳过消息。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "主题",
+            "paragraphs": [
+                "从侧栏或 <code>DROP TOPIC</code> 删除主题是唯一破坏性操作。集群随后移除日志，主题可能暂留列表。不提供 Truncate：Kafka 按保留策略或各分区偏移移除记录，两者均不清空主题。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "不提供导入；用 <code>PRODUCE INTO</code> 向主题写消息。将查询读取的消息<export>导出</export>为 CSV、JSON 或 XLSX。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "advertised-addresses",
+            "question": "为什么主题能加载但消息超时？",
+            "answer": "集群公布了此 Mac 无法访问的地址，如容器主机名或私有 IP。请修正 <code>advertised.listeners</code>，或设置 <ui>Broker Addresses</ui> 仅用引导地址。"
+        },
+        {
+            "id": "msk-iam",
+            "question": "支持 Amazon MSK IAM 登录吗？",
+            "answer": "不支持。提供的 SASL 机制为 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512，请在 MSK 集群创建 SCRAM 用户，以 SASL_SSL 连接。"
+        }
+    ],
+    "related": [
+        {
+            "label": "SQL 以外的查询语言",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "连接、隧道和凭据",
+            "href": "/features/connections"
+        },
+        {
+            "label": "支持的数据库",
+            "href": "/databases"
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "seo": {
+        "title": "Blog",
+        "description": "Versionsankündigungen vom TablePro-Team: Neuerungen und Fehlerbehebungen jeder Version, neueste zuerst.",
+        "indexable": false
+    },
+    "og": {
+        "kicker": "Blog",
+        "title": "Versionsankündigungen vom TablePro-Team"
+    },
+    "header": {
+        "title": "Blog",
+        "lead": "Versionsankündigungen, neueste zuerst. Die vollständigen Hinweise zu jeder Version stehen im <changelog>Änderungsprotokoll</changelog>."
+    },
+    "newsletter": {
+        "title": "Versionsbeiträge per E-Mail erhalten",
+        "body": "Gelegentliche E-Mails mit Versionshinweisen. Jede E-Mail enthält einen Abmeldelink."
+    },
+    "corrections": {
+        "tablepro-0-74": {
+            "date": "2026-10-02",
+            "text": "Die Kartenansicht lädt ihre Kartenkacheln von Apple. Dieser Beitrag übertreibt daher, was auf deinem Mac bleibt. Deine Zeilen bleiben auf dem Mac; Apple liefert die Kartenkacheln für den angezeigten Bereich."
+        },
+        "tablepro-for-iphone": {
+            "date": "2026-10-02",
+            "text": "Version 1.0 lehnt Verbindungen über einen SSH-Jump-Host nicht ab, wie dieser Beitrag behauptete. Jump-Hosts werden auf iPhone und iPad nicht unterstützt; öffne solche Verbindungen daher auf dem Mac. Bei Oracle wird wie bei SQLite, DuckDB und SQL Server nur das Speichern von mehr als einer Anweisung in einer Transaktion ausgeführt. Nur DuckDB kann im Arbeitsspeicher laufen; eine SQLite-Datei wird in die App kopiert."
+        }
+    }
+}

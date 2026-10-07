@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use App\Services\Legal\LegalDocuments;
 use App\Support\Seo\PageRegistry;
 use Inertia\Testing\AssertableInertia;
@@ -70,11 +71,11 @@ it('formats the update date in each language on the server', function (): void {
     get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '5 tháng 10 năm 2026'));
 });
 
-it('pairs each document with its translation and indexes both', function (string $route): void {
+it('indexes each document in every supported language', function (string $route): void {
     $entry = app(PageRegistry::class)->find($route, []);
 
-    expect($entry->renderLocales)->toBe(['en', 'vi']);
-    expect($entry->hreflangCluster())->toBe(['en', 'vi']);
+    expect($entry->renderLocales)->toBe(Locales::codes());
+    expect($entry->hreflangCluster())->toBe(Locales::codes());
 })->with(['landing.privacy', 'landing.terms', 'landing.refundPolicy']);
 
 it('gives every heading an explicit id, the same in both languages', function (string $document): void {

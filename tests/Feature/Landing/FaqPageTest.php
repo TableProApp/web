@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Arr;
 use Inertia\Testing\AssertableInertia;
@@ -104,11 +105,11 @@ it('renders in both languages with the facts its answers state', function (strin
     'Vietnamese' => ['/vi/faq', 'vi', 'Câu hỏi thường gặp'],
 ]);
 
-it('is a translated pair, indexed in both languages', function (): void {
+it('indexes every complete translation', function (): void {
     $entry = app(PageRegistry::class)->find('landing.faq', []);
 
-    expect($entry->renderLocales)->toBe(['en', 'vi']);
-    expect($entry->hreflangCluster())->toBe(['en', 'vi']);
+    expect($entry->renderLocales)->toBe(Locales::codes());
+    expect($entry->hreflangCluster())->toBe(Locales::codes());
 });
 
 it('groups the questions in the sitemap order, with stable ids in both languages', function (): void {

@@ -1,0 +1,102 @@
+{
+    "seo": {
+        "title": "适用于 {devices} 的 ClickHouse 客户端",
+        "description": "通过 HTTP、HTTPS 查询 ClickHouse，查看 Plan、Pipeline、Estimate 的 EXPLAIN，管理 MergeTree 数据部件、分区并监控 mutation。"
+    },
+    "og": {
+        "kicker": "数据库",
+        "title": "ClickHouse 客户端"
+    },
+    "engine": "clickhouse",
+    "breadcrumb": "ClickHouse",
+    "header": {
+        "title": "适用于 {devices} 的 ClickHouse 客户端",
+        "lead": "通过 ClickHouse HTTP 接口运行分析 SQL，查看查询计划、pipeline 或行数估计，并在表的 Parts 标签页管理 MergeTree 数据部件和分区。长查询在运行时报告已读行数，Stop 会在服务器端终止。"
+    },
+    "asset": "mac-db-clickhouse-parts",
+    "links": {
+        "network": "/features/connections#network",
+        "explain": "/features/querying#performance",
+        "map": "/features/querying#map",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "dashboard": "/features/schema#server-dashboard",
+        "importData": "/features/import-export#import"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "连接",
+            "paragraphs": [
+                "提供主机、HTTP 端口、用户，可选数据库。切换数据库原地完成，已打开标签页保持原数据库。<ui>View > Sidebar as Tree</ui> 将服务器数据库显示为可展开的树。",
+                "选择任意 SSL 模式切换为 HTTPS。443 或 ClickHouse Cloud 的 8443 端口会启用 Verify Identity，使用 CA 文件或系统信任库验证证书。Verify CA 需要 CA 文件，客户端证书和密钥可访问要求双向 TLS 的服务器。",
+                "未使用 TLS 时，请通过 <network>SSH 隧道</network>访问远程服务器，避免在网络上传输明文 HTTP。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "查询和编辑",
+            "paragraphs": [
+                "每个查询有独立 ID 并请求进度，长查询会持续报告读取行数。Stop 对该 ID 发送 <code>KILL QUERY</code>，连接的查询超时也传至服务器。",
+                "<explain>Explain 菜单</explain>提供 Plan、Pipeline、AST、Syntax、Estimate。缩进输出绘制为图或树，Estimate 显示查询预计读取的行、marks 和数据部件。",
+                "网格编辑先提供 <editing>Preview SQL</editing>，再发送 <code>INSERT</code>、<code>ALTER TABLE … UPDATE</code>、<code>ALTER TABLE … DELETE</code>。ClickHouse 以后台 mutation 执行更新删除，因此保存表示已接受而非已应用；<code>system.mutations</code> 显示进度。物化视图只读打开。",
+                "含 ClickHouse point 或 ring 元组的结果可在 <map>地图视图</map>打开。自带 <code>FORMAT</code> 子句的查询将服务器原始输出显示在单列中，要获得网格请省略该子句。"
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "表、数据部件和分区",
+            "paragraphs": [
+                "表提供 Structure、Indexes、DDL、Parts 标签页。Indexes 显示排序键和数据跳过索引，DDL 显示包含引擎和设置的完整 <code>CREATE TABLE</code>。",
+                "Parts 列出 <code>system.parts</code> 中每个数据部件及其分区、行数、磁盘大小、修改时间和 active 标志，可在此执行 Optimize、Drop Partition、Detach Partition。",
+                "<structure>Structure 标签页</structure>可添加、修改、删除列及删除数据跳过索引。排序键和主键在表创建时固定，新增数据跳过索引用 <code>ALTER TABLE … ADD INDEX</code>，其他修改需重建表。"
+            ]
+        },
+        {
+            "id": "operate",
+            "title": "监控",
+            "paragraphs": [
+                "<dashboard>Server Dashboard</dashboard> 显示活动查询、合并、数据部件 mutation 和磁盘使用，列出其他会话并各提供 <ui>Terminate Session</ui>。慢查询从 <code>system.query_log</code> 读取最近完成且耗时超过一秒的查询。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "移动数据",
+            "paragraphs": [
+                "通过<importData>导入</importData>加载 {importFormats}，表或查询结果导出为 {exportFormats}。某列只要有一个非有效 UTF-8 值，就在网格中显示为十六进制；选择 <code>toValidUTF8(column)</code> 可按文本读取。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "settings",
+            "question": "如何仅为一个查询修改设置？",
+            "answer": "在查询自身加入 <code>SETTINGS</code> 子句，例如 <code>SELECT … SETTINGS max_threads = 4</code>。每条语句是无会话的独立 HTTP 请求，单独的 <code>SET</code> 不保留到下一条。"
+        },
+        {
+            "id": "native-port",
+            "question": "为什么端口 9000 无法连接？",
+            "answer": "9000 是 ClickHouse 原生 TCP 端口，TablePro 不使用它。请连接 HTTP 端口，ClickHouse Cloud 的 HTTPS 为 8443，并确认服务器 HTTP 接口已开启：该端口上的 <code>/ping</code> 请求应返回 <code>Ok.</code>。"
+        }
+    ],
+    "related": [
+        {
+            "label": "EXPLAIN 计划和查询性能",
+            "href": "/features/querying#performance"
+        },
+        {
+            "label": "结构、对比和同步",
+            "href": "/features/schema"
+        },
+        {
+            "label": "导入、导出和数据文件",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "用于分析文件的 DuckDB",
+            "href": "/duckdb-client"
+        }
+    ]
+}

@@ -1,0 +1,217 @@
+{
+    "seo": {
+        "title": "KI-SQL-Assistent und lokaler MCP-Server",
+        "description": "SQL mit deinem KI-Anbieter erklären, optimieren und reparieren. MCP-Clients wie Claude Code nutzen gespeicherte Verbindungen über einen lokalen Server."
+    },
+    "og": {
+        "kicker": "KI und MCP",
+        "title": "KI-Assistent und MCP-Server"
+    },
+    "header": {
+        "title": "KI-Assistent und MCP-Server",
+        "lead": "Für Entwickler, die SQL-Hilfe von einem selbst gewählten Modell oder Datenbankarbeit mit einem KI-Client möchten: Frage zum Schema, lass Abfragen prüfen oder korrigieren oder gespeicherte Verbindungen durch Claude Code und Cursor nutzen. Alles ist optional und nur auf dem Mac; erst mit Anbieter oder verbundenem Client erreicht etwas ein Modell.",
+        "docs": "/features/ai-assistant"
+    },
+    "sections": [
+        {
+            "id": "assistant",
+            "title": "Nutze deinen gewählten Anbieter",
+            "paragraphs": [
+                "Der Assistent unterstützt {aiProviders}. Je nach Anbieter fügst du einen API-Schlüssel ein, meldest dich mit einem bestehenden Konto an oder führst ein Modell auf deinem Mac aus. TablePro betreibt keinen eigenen KI-Dienst: Anfragen gehen direkt an den Anbieter, und vorher wird nichts gesendet.",
+                "Jede Nachricht enthält die Tabellenstruktur der Verbindung bis zu deinem Limit und die Abfrage im Editor. Ergebniszeilen werden nur bei Aktivierung unter <ui>Einstellungen > KI</ui> gesendet. Jede Verbindung hat eine KI-Richtlinie; „Nie“ hält Assistent und MCP-Clients fern."
+            ],
+            "asset": "mac-ai-chat"
+        },
+        {
+            "id": "in-the-editor",
+            "title": "Prüfen, erklären, optimieren und korrigieren",
+            "paragraphs": [
+                "Setze den Cursor in eine Anweisung und wähle „Mit KI prüfen“ (<kbd>⌥⇧⌘L</kbd>) für Korrektheit, Kosten und Sicherheit, „Erklären“ (<kbd>⌘L</kbd>) für die Schritte oder „Optimieren“ (<kbd>⌥⌘L</kbd>) für Überarbeitung oder Index. Bei Fehlern steht „Mit KI korrigieren“ im Fehlerbanner. Die Anfrage enthält die Struktur genannter Tabellen; die Anweisung wird nicht ausgeführt. <ui>Im Editor anwenden</ui> ersetzt sie erst nach Bestätigung.",
+                "Inline-Vorschläge zeigen blassen Text beim Tippen und sind standardmäßig aus. KI-Regeln heften Textnotizen an eine Verbindung, etwa nie auszuwählende Spalten, und senden sie mit jeder Nachricht."
+            ]
+        },
+        {
+            "id": "agent-mode",
+            "title": "Chat-Modi und Agent-Modus",
+            "paragraphs": [
+                "Der Chat hat drei Modi. „Fragen“ ist Standard, liest das Schema und führt nichts aus. „Bearbeiten“ kann Abfragen ausführen, „Agent“ auch DROP, TRUNCATE und andere zerstörerische Anweisungen. Bei {macSafeModeDefault}, der Startstufe neuer Verbindungen, schreiben Bearbeiten und Agent ohne Nachfrage; von Warnung bis Sicherer Modus (vollständig) warten sie auf Ausführen, Schreibgeschützt verweigert sie. Zerstörerische Anweisungen warten immer auf einen Klick und lassen sich nie vorab genehmigen.",
+                "Agent-Modus (<kbd>⌥⇧⌘A</kbd>) gibt einer Sitzung das ganze Fenster: Sitzungen dieser Verbindung, Gespräch sowie vorgeschlagenes und ausgeführtes SQL. Dabei bleibt die Verbindung auf Warnung oder strenger; Schreiben wartet auf Ausführen. Das ist eine Erinnerung, keine Sperre: Ein Tastenkürzel schaltet es ab. Sitzungen bleiben auf diesem Mac."
+            ],
+            "asset": "mac-agent-mode",
+            "links": [
+                {
+                    "label": "Stufen des sicheren Modus",
+                    "href": "/features/data-editing#safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "Der MCP-Server",
+            "paragraphs": [
+                "Der integrierte MCP-Server lässt KI-Clients über gespeicherte Verbindungen arbeiten, ohne Passwörter zu sehen. Er lauscht nur auf {mcpHost}, ohne Remote-Modus, und bleibt aus, bis du oder ein eingerichteter Client ihn startet.",
+                "Die Werkzeuge umfassen Verbindungen, Schemaerkundung, Lesen und Schreiben, Datenbanken und Objekte, Serververwaltung sowie App-Tabs und Verlauf, mit Prompts und Ressourcen aus dem aktuellen Schema. Jeder Aufruf landet im lokalen Aktivitätsprotokoll mit Anweisungen als Digest statt Text; Client-Abfragen erscheinen auch im Abfrageverlauf."
+            ],
+            "asset": "mac-mcp-settings",
+            "blocks": [
+                {
+                    "id": "connect",
+                    "title": "Einen Client verbinden",
+                    "paragraphs": [
+                        "<ui>Einstellungen > Integrationen</ui> bietet Schritte und einen kopierbaren Ausschnitt für {mcpSetupClients}. Die enthaltene <code>tablepro-mcp</code>-Bridge funktioniert auch mit {mcpBridgeClients}: Sie startet TablePro bei Bedarf und findet den Server, ohne Port oder Token in der Client-Konfiguration. Die offizielle Raycast-Erweiterung koppelt sich stattdessen mit der App; du bestätigst am Mac.",
+                        "Eine typische Anfrage: Benutzer mit gleicher E-Mail-Adresse finden. Der Client ruft <code>list_tables</code> und <code>describe_table</code> auf, erkennt die Spalte <code>email_address</code> und führt ein SELECT über die gespeicherte Verbindung aus, ohne dass du das Schema in den Chat kopierst."
+                    ]
+                },
+                {
+                    "id": "permissions",
+                    "title": "Was ein Client darf",
+                    "paragraphs": [
+                        "Jeder Aufruf durchläuft diese Prüfungen; die strengste gilt."
+                    ],
+                    "points": [
+                        "Token-Bereich: Nur lesen, Lesen und schreiben oder Vollzugriff, optional auf benannte Verbindungen begrenzt. Die Bridge erhält selbst nur Lesen und schreiben; ihre Clients können keine zerstörerischen Anweisungen ausführen.",
+                        "Externe Clients pro Verbindung: Gesperrt, Nur lesen (Standard) oder Lesen und schreiben. Gesperrte Verbindungen werden nicht einmal aufgeführt.",
+                        "Verbindungsgenehmigung: Beim ersten Zugriff fragt ein Dialog am Mac. Wähle jedes Mal, einmal je Verbindung oder nie.",
+                        "KI-Richtlinie: Nie verweigert auch MCP-Clients.",
+                        "Sicherer Modus: Schreibvorgänge werden gemäß Stufe bestätigt. DROP und TRUNCATE benötigen Vollzugriff und jedes Mal deine Zustimmung. Anweisungen zum Lesen oder Schreiben von Dateien oder Ausführen von Servercode werden verweigert."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "outside-servers",
+            "title": "Externe MCP-Server",
+            "paragraphs": [
+                "Umgekehrt kann eine KI-Sitzung in TablePro Werkzeuge deines MCP-Servers über Streamable HTTP aufrufen, mit HTTPS außer auf diesem Mac. Du wählst die Verbindungen, auf denen jeder Server angeboten wird. Jeder Aufruf zeigt eine Karte und wartet auf deinen Klick; keine dauerhafte Genehmigung gilt. Adresse und Token bleiben auf diesem Mac."
+            ]
+        },
+        {
+            "id": "automation",
+            "title": "Automatisierung außerhalb des Chats",
+            "paragraphs": [
+                "AppleScript verbindet, führt Abfragen aus und öffnet Tabellen innerhalb der Stufe für externe Clients und des sicheren Modus. <code>tablepro://</code>-Links öffnen Verbindung, Tabelle oder Abfrage-Tab; enthaltenes SQL wird nach Bestätigung eingefügt, nie selbst ausgeführt. Datenbank-URLs wie <code>postgresql://</code> öffnen als Verbindungen.",
+                "Der Shell-Befehl <code>tablepro</code> öffnet diese URLs und Dateien in der App, führt aber keine Terminalabfragen aus. Die offizielle Raycast-Erweiterung durchsucht Verbindungen, Tabellen und Verlauf und führt Abfragen über die gekoppelte App aus."
+            ]
+        },
+        {
+            "id": "privacy",
+            "title": "Wohin deine Daten gehen",
+            "paragraphs": [
+                "Prompts, Schemakontext und Anhänge gehen nach den Bedingungen deines Kontos an den gewählten Anbieter. Mit Ollama, llama.cpp, MLX oder eigenem OpenAI-kompatiblem Server bleiben sie auf deinem Rechner. TablePro erhält nichts davon; der tägliche Mac-Nutzungsbericht enthält nichts über KI oder MCP.",
+                "Beim Hinzufügen von GitHub Copilot ist seine GitHub-Telemetrieoption aktiv. Deaktiviere sie in der Copilot-Einrichtung."
+            ],
+            "links": [
+                {
+                    "label": "Was die Mac-App sendet",
+                    "href": "/privacy#mac-app"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "Nicht auf iPhone oder iPad",
+            "paragraphs": [
+                "Die iPhone- und iPad-App hat keinen KI-Assistenten, Agent-Modus oder MCP-Server. Alles auf dieser Seite steht in der Mac-App bereit."
+            ],
+            "links": [
+                {
+                    "label": "Was die iPhone- und iPad-App bietet",
+                    "href": "/ios"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "KI-Chat mit eigenem Anbieter",
+            "ios": "no"
+        },
+        {
+            "label": "Prüfen, Erklären, Optimieren und Korrigieren mit KI",
+            "ios": "no"
+        },
+        {
+            "label": "Inline-Vorschläge und KI-Regeln",
+            "ios": "no"
+        },
+        {
+            "label": "Agent-Modus",
+            "ios": "no"
+        },
+        {
+            "label": "MCP-Server",
+            "ios": "no"
+        },
+        {
+            "label": "Externe MCP-Server",
+            "ios": "no"
+        },
+        {
+            "label": "AppleScript und Shell-Befehl <code>tablepro</code>",
+            "ios": "no"
+        },
+        {
+            "label": "Raycast-Erweiterung",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Cursor kann keine TablePro-Werkzeuge aufrufen; als Anbieter führen Bearbeiten und Agent daher keine Abfragen aus. Lokale Modelle rufen Werkzeuge nur bei eigener Unterstützung auf.",
+        "Claude Agent nutzt deine Claude-Code-Anmeldung und erreicht das Schema über den aktivierten MCP-Server. Es hängt von Claude Code ab und kann durch eine neue Veröffentlichung ausfallen.",
+        "MCP lauscht nur auf {mcpHost}. Für andere Rechner musst du den Port selbst weiterleiten und die Verantwortung für die Freigabe tragen.",
+        "Die Mac-App hat keine Kurzbefehle-Aktionen. Automatisiere mit AppleScript, Links oder MCP.",
+        "Agent-Sitzungen und externe MCP-Server bleiben auf dem eingerichteten Mac und synchronisieren nicht."
+    ],
+    "docs": [
+        {
+            "label": "KI-Assistent",
+            "docs": "/features/ai-assistant"
+        },
+        {
+            "label": "Agent-Modus",
+            "docs": "/features/agent-mode"
+        },
+        {
+            "label": "MCP-Server",
+            "docs": "/features/mcp"
+        },
+        {
+            "label": "MCP-Clients",
+            "docs": "/external-api/mcp-clients"
+        },
+        {
+            "label": "MCP-Tokens und Bereiche",
+            "docs": "/external-api/tokens"
+        },
+        {
+            "label": "Externe MCP-Server",
+            "docs": "/features/mcp-outside-servers"
+        },
+        {
+            "label": "AppleScript",
+            "docs": "/external-api/applescript"
+        },
+        {
+            "label": "Raycast-Erweiterung",
+            "docs": "/external-api/raycast"
+        }
+    ],
+    "related": [
+        {
+            "label": "Sicherer Modus",
+            "href": "/features/data-editing#safe-mode"
+        },
+        {
+            "label": "Verbindungsrichtlinien",
+            "href": "/features/connections#policies"
+        },
+        {
+            "label": "Was die Mac-App sendet",
+            "href": "/privacy#mac-app"
+        },
+        {
+            "label": "TablePro mit anderen Clients vergleichen",
+            "href": "/compare"
+        }
+    ]
+}

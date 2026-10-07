@@ -1,0 +1,103 @@
+{
+    "seo": {
+        "title": "Turso et libSQL pour {devices}",
+        "description": "Ouvrez Turso par URL et jeton, vos serveurs sqld ou fichiers libSQL locaux. Interrogez en SQLite, changez tables, index et déclencheurs."
+    },
+    "og": {
+        "kicker": "Bases de données",
+        "title": "Client Turso et libSQL"
+    },
+    "engine": "turso",
+    "breadcrumb": "Turso et libSQL",
+    "header": {
+        "title": "Client Turso et libSQL pour {devices}",
+        "lead": "Connectez Turso par URL et jeton, interrogez en syntaxe SQLite et changez tables, index et déclencheurs. Le même pilote ouvre vos serveurs sqld et fichiers libSQL sur Mac."
+    },
+    "asset": "mac-db-turso-remote",
+    "links": {
+        "explain": "/features/querying#explain",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "export": "/features/import-export#export",
+        "sqlite": "/sqlite-client",
+        "libsql": "#libsql",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connectez-vous à Turso",
+            "paragraphs": [
+                "Choisissez Turso comme type et laissez <ui>Mode de connexion</ui> sur <ui>Distant (Turso)</ui>. Collez l’URL HTTPS de la base terminant par <code>.turso.io</code> et un jeton dans <ui>Jeton API</ui>, conservé dans le Trousseau macOS. Le tableau Turso montre les deux, ainsi que <code>turso db show my-db --url</code> et <code>turso db tokens create my-db</code>.",
+                "Une URL <code>libsql://</code> est réécrite en HTTPS et son import crée une connexion distante. Il n’y a ni hôte, port ni base à saisir, car l’URL nomme une base. La connexion est chiffrée si elle utilise HTTPS plutôt que HTTP clair ; il n’y a pas de tunnel SSH."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Interrogez et modifiez",
+            "paragraphs": [
+                "libSQL parle SQLite ; navigation, diagrammes <explain>EXPLAIN QUERY PLAN</explain>, <editing>modifications en attente avec Aperçu SQL</editing> et export fonctionnent comme sur <sqlite>SQLite</sqlite>.",
+                "Une connexion distante n’exécute pas de transactions. Chaque instruction est une requête HTTP validée séparément et <code>BEGIN</code> échoue avec « Les transactions ne sont pas prises en charge dans ce mode ». Utilisez un fichier libSQL local, décrit dans la <libsql>section libSQL</libsql>, pour les transactions.",
+                "Le mode distant ne charge pas d’extensions SQLite : Turso exécute celles compilées dans son serveur. S’il limite une connexion, l’erreur indique combien de secondes attendre avant de réessayer."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Tables, index et déclencheurs",
+            "paragraphs": [
+                "L’<structure>onglet Structure</structure> crée des tables, ajoute et supprime colonnes et index, crée, modifie et supprime des déclencheurs. Les tables, pas les vues, se renomment dans la barre latérale.",
+                "Pour réordonner des colonnes ou changer une clé étrangère distante, TablePro écrit le script de reconstruction à lire et exécuter vous-même. Il ne peut le lancer, car la reconstruction nécessite une transaction entre requêtes HTTP distinctes."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Transférez des données",
+            "paragraphs": [
+                "TablePro n’importe pas vers Turso ou libSQL ; chargez les données par Turso CLI ou l’import de votre serveur sqld. Pour les extraire, <export>exportez</export> tables ou résultats en {exportFormats}."
+            ]
+        }
+    ],
+    "family": [
+        {
+            "engine": "libsql",
+            "title": "libSQL",
+            "paragraphs": [
+                "Choisissez libSQL pour votre serveur sqld ou un fichier local. En Distant, il atteint tout sqld offrant Hrana v2 pipeline, même local avec port 8080 par défaut. Laissez le jeton vide sans <code>--auth-jwt-key-file</code>, ou fournissez un JWT correspondant à la clé serveur.",
+                "<ui>Fichier local</ui> ouvre libSQL avec le moteur SQLite du pilote ; un chemin inexistant est créé, dossiers compris. Le fichier local exécute les transactions, charge les extensions de la liste Extensions et reconstruit pour réordonner les colonnes ou clés étrangères après confirmation.",
+                "Les instructions propres à libSQL comme <code>ALTER TABLE … ALTER COLUMN</code> échouent localement, car SQLite les reçoit. Les fichiers libSQL chiffrés ne s’ouvrent pas. N’ouvrez jamais un fichier qu’une app synchronise comme réplique embarquée Turso : deux programmes simultanés peuvent le corrompre.",
+                "<backup>Dump de sauvegarde et Restaurer un dump</backup> exécutent {dumpTool} sur un fichier libSQL local."
+            ]
+        }
+    ],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "remote-or-local",
+            "question": "Dois-je choisir Distant ou Fichier local ?",
+            "answer": "Distant pour Turso ou sqld par URL. Fichier local pour libSQL sur ce Mac, avec transactions, extensions SQLite et sauvegardes."
+        },
+        {
+            "id": "turso-cli",
+            "question": "Dois-je installer Turso CLI ?",
+            "answer": "Non. Le tableau Turso montre l’URL et crée les jetons. La CLI sert à charger depuis le terminal, car TablePro n’importe pas vers Turso."
+        }
+    ],
+    "related": [
+        {
+            "label": "SQLite, le moteur de base de libSQL",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Cloudflare D1, SQLite via l’API Cloudflare",
+            "href": "/cloudflare-d1-client"
+        },
+        {
+            "label": "Édition de structures et scripts de reconstruction",
+            "href": "/features/schema#structure"
+        },
+        {
+            "label": "Export et sauvegardes",
+            "href": "/features/import-export"
+        }
+    ]
+}

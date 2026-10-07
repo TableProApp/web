@@ -1,0 +1,278 @@
+{
+    "postgresql": {
+        "tagline": "배열, jsonb 및 PostGIS 값, EXPLAIN 다이어그램, Users & Roles 및 pg_dump 백업.",
+        "limits": {
+            "column-reorder-script-only": "열 순서 변경 시 테이블을 다시 만드는 스크립트를 작성합니다. TablePro는 스크립트를 표시하며 실행하지 않습니다."
+        }
+    },
+    "mysql": {
+        "tagline": "TCP 기반 MySQL 연결, EXPLAIN 다이어그램, Users & Roles, AWS IAM 로그인 및 mysqldump 백업.",
+        "limits": {
+            "tcp-only": "호스트와 포트를 통해 TCP로 연결합니다. 로컬 Unix 소켓은 지원하지 않습니다.",
+            "load-data-local-refused": "드라이버는 LOAD DATA LOCAL INFILE을 거부합니다. 대신 Import로 파일을 가져오세요."
+        }
+    },
+    "sqlserver": {
+        "tagline": "GO 배치 및 PRINT 출력이 있는 T-SQL, Kerberos 또는 Microsoft Entra ID 로그인 및 .bacpac 백업.",
+        "limits": {
+            "no-named-instances": "명명된 인스턴스는 지원하지 않습니다. 인스턴스의 TCP 포트로 연결하세요.",
+            "no-ntlm": "NTLM은 지원하지 않습니다. SQL Server 로그인, Kerberos 또는 Microsoft Entra ID를 사용하세요.",
+            "no-explain": "SQL Server용 EXPLAIN 또는 실행 계획 화면은 없습니다.",
+            "scripts-not-in-transaction": "SQL Server Management Studio와 마찬가지로 스크립트는 TablePro가 여는 트랜잭션 밖에서 실행됩니다. 오류 전에 실행된 문은 적용된 상태로 남습니다.",
+            "ios-tls-not-verified": "iPhone 및 iPad에서는 TLS를 필수로 설정할 수 있지만 서버 인증서는 검증하지 않습니다."
+        }
+    },
+    "sqlite": {
+        "tagline": "이 Mac 또는 SSH 서버의 데이터베이스 파일을 원래 위치에서 열며 확장 기능을 로드할 수 있습니다.",
+        "limits": {
+            "no-encryption": "SQLCipher 및 SEE 파일 같은 암호화된 데이터베이스는 열 수 없습니다. 먼저 파일을 복호화하세요.",
+            "no-primary-key-changes": "기본 키를 추가, 제거 또는 이동할 수 없습니다.",
+            "ios-file-copied": "iPhone 및 iPad에서 선택한 파일은 앱으로 복사되며 편집은 해당 사본을 변경합니다.",
+            "extensions-local-file-only": "확장 기능은 이 Mac에서 읽는 파일에만 로드할 수 있습니다. SSH 서버에서 연 데이터베이스는 로드할 수 없지만 읽기 전용 사본은 가능합니다.",
+            "attached-files-not-listed": "편집기에서 ATTACH한 파일은 쿼리할 수 있지만 사이드바에 표시되지 않습니다."
+        }
+    },
+    "mongodb": {
+        "tagline": "mongosh 방식의 JavaScript 셸, Extended JSON 문서 및 SRV를 통한 Atlas 클러스터.",
+        "limits": {
+            "no-transactions": "트랜잭션은 지원하지 않습니다.",
+            "no-gridfs-or-change-streams": "GridFS 및 변경 스트림은 지원하지 않습니다.",
+            "no-pipeline-builder": "시각적 집계 파이프라인 빌더는 없습니다. 셸에서 aggregate()를 작성하세요."
+        }
+    },
+    "redis": {
+        "tagline": "Redis 명령, 콜론으로 구분한 키 트리, TTL 및 Sentinel·Cluster 연결.",
+        "limits": {
+            "string-values-only": "그리드에서는 문자열 값만 편집할 수 있습니다. 리스트, 집합, 해시, 정렬된 집합 및 스트림은 명령으로 변경하세요.",
+            "no-pubsub": "pub/sub 화면은 없습니다. PUBLISH는 명령으로 실행되며 구독하지 않습니다.",
+            "key-tree-cap": "사이드바의 키 트리는 최대 {value}개의 키를 로드합니다.",
+            "filter-match-cap": "키 필터는 {value}개가 일치하면 중지합니다.",
+            "cluster-db0-only": "Cluster 연결은 데이터베이스 0을 사용하며 여러 데이터베이스로 설정한 Valkey 클러스터는 예외입니다.",
+            "ios-query-tab-only": "iPhone 및 iPad에서는 테이블 브라우저에서 키를 열 수 없습니다. Query 탭에서 명령을 실행하세요."
+        }
+    },
+    "mariadb": {
+        "tagline": "MySQL 드라이버로 MariaDB의 시퀀스, 가상·영구 열 및 JSON 열을 지원합니다.",
+        "limits": {
+            "no-cloud-sql-proxy": "MariaDB에는 Cloud SQL Auth Proxy를 제공하지 않습니다. 비공개 서버에는 SSH 터널로 연결하세요.",
+            "roles-listed-as-users": "Users & Roles는 MariaDB 역할을 사용자로 표시합니다. 편집기에서 SQL로 역할을 생성하고 부여하세요."
+        }
+    },
+    "tidb": {
+        "tagline": "MySQL 드라이버로 TiDB와 TiDB Cloud에 연결하며 중지 시 KILL TIDB QUERY를 보냅니다.",
+        "limits": {
+            "no-triggers-or-routines": "트리거, 저장 루틴 및 이벤트는 없습니다.",
+            "no-dashboard-or-dump": "Server Dashboard 및 Backup Dump는 없습니다. 대신 TiDB의 Dumpling으로 내보내세요.",
+            "structure-sync-same-engine": "Compare & Sync는 TiDB 데이터베이스 사이에서만 구조 스크립트를 작성하며 TiDB와 MySQL·MariaDB 사이에서는 작성하지 않습니다."
+        }
+    },
+    "oceanbase": {
+        "tagline": "MySQL 모드 OceanBase 테넌트에 user@tenant로 직접 또는 OBProxy를 통해 로그인합니다.",
+        "limits": {
+            "mysql-mode-only": "MySQL 모드 테넌트만 연결하며 Oracle 모드 테넌트는 거부합니다.",
+            "no-dashboard-or-dump": "Server Dashboard 및 Backup Dump는 없습니다.",
+            "structure-sync-same-engine": "Compare & Sync는 OceanBase 데이터베이스 사이에서만 구조 스크립트를 작성하며 OceanBase와 MySQL·MariaDB 사이에서는 작성하지 않습니다."
+        }
+    },
+    "databend": {
+        "tagline": "Databend의 MySQL 핸들러로 Databend 및 Databend Cloud에 연결합니다.",
+        "limits": {
+            "no-keys-or-indexes": "Databend에는 인덱스, 기본 키 및 외래 키가 없어 행 편집 시 모든 열로 일치 여부를 확인하며 여러 행을 변경하는 저장은 거부합니다.",
+            "no-compare-sync": "Compare & Sync를 사용할 수 없습니다.",
+            "no-url-scheme": "Databend 연결을 여는 URL 스킴은 없습니다. 연결 양식에서 만드세요.",
+            "not-on-ios": "iPhone 및 iPad에서는 제공하지 않습니다."
+        }
+    },
+    "redshift": {
+        "tagline": "PostgreSQL 드라이버로 Amazon Redshift에 연결하며 DDL에 DISTKEY와 SORTKEY를 표시합니다.",
+        "limits": {
+            "no-aws-iam": "Redshift에서는 AWS IAM 로그인을 제공하지 않습니다. 데이터베이스 사용자로 로그인하세요.",
+            "structure-read-only": "Structure 탭은 읽기 전용입니다. 편집기에서 DDL을 실행하세요.",
+            "ios-synced-only": "iPhone 및 iPad의 Redshift 연결은 Mac에서 동기화하거나 가져온 경우에만 열립니다."
+        }
+    },
+    "cockroachdb": {
+        "tagline": "PostgreSQL 와이어 프로토콜로 CockroachDB 및 CockroachDB Cloud에 연결합니다.",
+        "limits": {
+            "structure-read-only": "Structure 탭은 읽기 전용입니다. 편집기에서 SQL로 스키마 변경을 실행하세요.",
+            "no-dump-or-maintenance": "Backup Dump, Restore Dump 및 테이블 유지 관리 기능은 없습니다. CockroachDB 자체 BACKUP과 RESTORE 문을 사용하세요."
+        }
+    },
+    "pglite": {
+        "tagline": "소켓 서버로 제공되는 PGlite를 일반 PostgreSQL 연결로 사용합니다.",
+        "limits": {
+            "needs-socket-server": "PGlite는 @electric-sql/pglite-socket으로 제공해야 하며 직접 시작하고 계속 실행해야 합니다.",
+            "single-client": "소켓 서버는 한 번에 클라이언트 하나만 허용합니다.",
+            "cancel-has-no-effect": "취소는 효과가 없습니다. 쿼리는 항상 완료될 때까지 실행됩니다."
+        }
+    },
+    "oracle": {
+        "tagline": "Instant Client가 필요 없는 순수 Swift 드라이버, PL/SQL 스크립트 및 DBMS_OUTPUT.",
+        "limits": {
+            "no-wallet-os-auth-kerberos-ldap": "Oracle Wallet, OS 인증, Kerberos 및 LDAP는 지원하지 않습니다. 서비스 이름 또는 SID와 비밀번호로 연결하세요.",
+            "no-explain": "Oracle용 EXPLAIN 또는 실행 계획 화면은 없습니다.",
+            "no-users-roles": "Users & Roles는 제공되지 않습니다. 편집기에서 CREATE USER 및 GRANT로 계정을 관리하세요.",
+            "no-packages": "패키지는 사이드바에 표시되지 않습니다. 독립 프로시저와 함수는 표시됩니다."
+        }
+    },
+    "clickhouse": {
+        "tagline": "HTTP 또는 HTTPS로 ClickHouse에 연결하며 EXPLAIN 변형, 뮤테이션 및 Parts 탭을 지원합니다.",
+        "limits": {
+            "http-only": "ClickHouse의 HTTP 인터페이스로 연결하며 네이티브 TCP 프로토콜은 사용하지 않습니다.",
+            "tls-off-by-default": "TLS는 기본적으로 꺼져 있습니다. HTTPS를 사용하려면 연결 양식에서 SSL 모드를 선택하세요.",
+            "no-foreign-keys-or-transactions": "외래 키와 트랜잭션은 없습니다.",
+            "set-does-not-persist": "SET 문은 다음 쿼리로 이어지지 않습니다."
+        }
+    },
+    "duckdb": {
+        "tagline": "DuckDB 파일, 뷰로 사용하는 Parquet·CSV·JSON 파일 및 메모리 데이터베이스.",
+        "limits": {
+            "one-writer-per-file": "연결이 열린 동안 DuckDB 파일에는 한 번에 하나의 프로세스만 쓸 수 있습니다.",
+            "extensions-download-on-first-use": "드라이버에는 핵심 함수, JSON, Parquet, ICU 및 자동 완성 확장이 포함됩니다. httpfs 같은 나머지 확장은 쿼리에서 처음 필요할 때 DuckDB에서 다운로드합니다.",
+            "remote-quack-experimental": "Quack을 통한 원격 연결은 실험적입니다."
+        }
+    },
+    "cassandra": {
+        "tagline": "접점, TLS 및 Amazon Keyspaces SigV4 로그인을 지원하는 CQL.",
+        "limits": {
+            "scalar-edits-only": "그리드에서는 스칼라 열만 편집할 수 있습니다. 컬렉션, 튜플, 사용자 정의 유형 및 기간은 편집기에서 UPDATE가 필요합니다.",
+            "no-consistency-level": "일관성 수준 설정은 없습니다. 실행문은 드라이버 기본값인 LOCAL_ONE으로 실행됩니다.",
+            "no-astra-bundle": "보안 연결 번들을 로드할 수 없어 DataStax Astra DB에는 연결할 수 없습니다.",
+            "no-views-or-types-in-sidebar": "구체화된 뷰와 사용자 정의 유형은 사이드바에 표시되지 않습니다."
+        }
+    },
+    "scylladb": {
+        "tagline": "Cassandra 드라이버로 ScyllaDB에 연결하며 동일한 CQL 작업 흐름을 사용합니다.",
+        "limits": {}
+    },
+    "dynamodb": {
+        "tagline": "PartiQL 및 DynamoDB API JSON, 필터에 따라 Query 또는 Scan을 선택하는 플래너와 읽기마다 소비한 읽기 용량 보고.",
+        "limits": {
+            "one-account-and-region": "각 연결은 한 리전의 한 AWS 계정에 해당합니다.",
+            "no-dax-or-truncate": "DAX 엔드포인트는 지원하지 않으며 Truncate도 제공하지 않습니다."
+        }
+    },
+    "bigquery": {
+        "tagline": "Max Bytes Billed 및 실행 전 Dry Run 비용 추정이 있는 GoogleSQL.",
+        "limits": {
+            "structure-read-only": "Structure 탭은 읽기 전용입니다. 편집기에서 DDL을 실행하세요.",
+            "no-transactions": "트랜잭션은 지원하지 않습니다."
+        }
+    },
+    "snowflake": {
+        "tagline": "키 쌍, 브라우저 SSO, OAuth 또는 패스코드가 있는 비밀번호로 로그인하며 Session Context에 웨어하우스와 역할을 표시합니다.",
+        "limits": {
+            "duo-passcode-only": "Duo는 패스코드만 지원하며 푸시 승인은 지원하지 않습니다."
+        }
+    },
+    "cloudflare-d1": {
+        "tagline": "Cloudflare 계정의 모든 D1 데이터베이스에 D1 HTTP API로 연결합니다.",
+        "limits": {
+            "no-session-state-or-transactions": "각 실행문은 별도의 HTTP 요청이며 세션 상태가 이어지지 않고 트랜잭션도 지원하지 않습니다."
+        }
+    },
+    "turso": {
+        "tagline": "libSQL 드라이버로 토큰을 사용해 HTTP를 통해 원격 Turso 데이터베이스에 연결합니다.",
+        "limits": {
+            "no-database-switching-or-branches": "연결 하나는 데이터베이스 하나입니다. 데이터베이스 전환과 브랜치는 지원하지 않습니다.",
+            "no-embedded-replicas": "임베디드 복제본은 지원하지 않습니다. 로컬 파일은 독립적으로 열리고 동기화되지 않습니다."
+        }
+    },
+    "libsql": {
+        "tagline": "이 Mac의 libSQL 파일 또는 HTTP를 통한 sqld 서버.",
+        "limits": {
+            "dump-local-file-only": "Backup Dump는 로컬 libSQL 파일에만 작동하며 원격 데이터베이스에는 작동하지 않습니다."
+        }
+    },
+    "elasticsearch": {
+        "tagline": "Query DSL 콘솔, 테이블로 표시되는 인덱스 및 _id 기반 문서 편집.",
+        "limits": {
+            "no-opensearch": "OpenSearch는 지원하지 않습니다.",
+            "aliases-not-listed": "별칭과 데이터 스트림은 사이드바에 표시되지 않습니다. 콘솔에서 이름으로 지정하세요.",
+            "no-ssh": "SSH 터널은 지원하지 않습니다."
+        }
+    },
+    "etcd": {
+        "tagline": "v3 JSON 게이트웨이를 통한 etcdctl 일부 기능: 접두사 아래 키, 리스 및 구성원.",
+        "limits": {
+            "no-txn": "txn은 지원하지 않습니다.",
+            "json-gateway-only": "연결에는 gRPC가 아닌 v3 JSON 게이트웨이를 사용합니다.",
+            "watch-collects-until-timeout": "watch는 시간 초과까지 이벤트를 수집한 뒤 행으로 표시합니다."
+        }
+    },
+    "kafka": {
+        "tagline": "KafkaQL로 소비와 생성을 수행하고 토픽, 파티션 및 컨슈머 그룹 지연을 표시합니다.",
+        "limits": {
+            "no-schema-registry": "Schema Registry를 읽지 않아 Avro 및 Protobuf 값은 원시 바이트로 표시됩니다.",
+            "no-topic-create-or-offset-reset": "토픽 생성, 토픽 설정 편집 및 컨슈머 그룹 오프셋 초기화는 지원하지 않습니다.",
+            "approximate-counts": "메시지 수는 근삿값입니다."
+        }
+    },
+    "surrealdb": {
+        "tagline": "HTTP RPC를 통한 SurrealQL, root·네임스페이스·데이터베이스·레코드·토큰 로그인.",
+        "limits": {
+            "no-syntax-highlighting": "편집기에서 SurrealQL 구문 강조를 제공하지 않습니다.",
+            "no-live-queries": "실시간 쿼리는 지원하지 않습니다. 새 레코드를 보려면 쿼리를 다시 실행하세요."
+        }
+    },
+    "teradata": {
+        "tagline": "TD2 또는 TDNEGO 로그인 및 사이드바에 표시되는 프로시저와 매크로.",
+        "limits": {
+            "ldap-kerberos-jwt-refused": "LDAP, Kerberos 및 JWT 로그인은 거부합니다. TD2 또는 TDNEGO를 사용하세요.",
+            "foreign-keys-not-listed": "외래 키는 목록에 표시되지 않습니다. 테이블 DDL에서 확인하세요."
+        }
+    },
+    "trino": {
+        "tagline": "Trino REST API를 통한 카탈로그 간 SQL 및 비밀번호 또는 JWT 로그인.",
+        "limits": {
+            "no-presto": "Presto 서버는 지원하지 않습니다.",
+            "no-kerberos-or-oauth": "Kerberos 및 OAuth 로그인은 지원하지 않습니다."
+        }
+    },
+    "beancount": {
+        "tagline": "Beancount 원장을 SQL 테이블로 읽고 BQL 쿼리도 실행합니다.",
+        "limits": {
+            "projected-tables": "TablePro는 열 때 원장을 {value}개의 읽기 전용 SQL 테이블로 읽습니다. 원장에는 아무것도 다시 쓰지 않습니다.",
+            "needs-ledger-tool": "이 Mac에 rledger 또는 Python beancount가 설치되어 있어야 합니다."
+        }
+    },
+    "spanner": {
+        "tagline": "연결 시 GoogleSQL 또는 PostgreSQL 방언을 감지하며 Spanner 에뮬레이터를 지원합니다.",
+        "limits": {
+            "structure-read-only": "Structure 탭은 읽기 전용입니다. 편집기에서 ALTER TABLE로 테이블을 변경하세요."
+        }
+    },
+    "typesense": {
+        "tagline": "REST 요청 콘솔, 테이블로 표시되는 컬렉션 및 메트릭 대시보드.",
+        "limits": {
+            "api-keys-as-users": "Typesense에는 사용자 계정이 없어 다른 엔진이 사용자를 표시하는 위치에 API 키를 표시합니다."
+        }
+    },
+    "weaviate": {
+        "tagline": "컬렉션을 테이블로 표시하고 GraphQL로 읽고 REST로 씁니다.",
+        "limits": {
+            "graphql-reads-rest-writes": "GraphQL은 읽기만 합니다. 탐색과 행 편집은 Weaviate의 REST 엔드포인트를 사용합니다."
+        }
+    },
+    "cloudflare-r2-sql": {
+        "tagline": "Cloudflare R2에 저장된 Iceberg 테이블의 읽기 전용 SQL.",
+        "limits": {
+            "rows-per-query": "쿼리는 최대 {value}행을 반환합니다.",
+            "no-offset": "OFFSET은 지원하지 않습니다.",
+            "billed-per-scan": "Cloudflare는 각 쿼리가 스캔하는 데이터에 따라 R2 SQL 요금을 청구합니다."
+        }
+    },
+    "dameng": {
+        "tagline": "네이티브 프로토콜로 Dameng DM8에 연결하며 EXPLAIN 계획과 SSH 터널을 지원합니다.",
+        "limits": {
+            "no-tls": "TLS는 지원하지 않습니다. 사설 네트워크 밖의 서버에는 SSH 터널로 연결하세요."
+        }
+    },
+    "sap-hana": {
+        "tagline": "SAP HANA Cloud, HANA 2.0 및 HANA Express를 지원하며 구조를 읽기 전용으로 표시합니다.",
+        "limits": {
+            "no-tunnels": "SSH 터널, SOCKS 프록시, Cloudflare 터널 및 터널 명령은 지원하지 않습니다.",
+            "unsupported-auth-methods": "X.509 인증서, JWT, SAML, Kerberos 및 LDAP 로그인은 지원하지 않습니다. 데이터베이스 사용자와 비밀번호로 로그인하세요."
+        }
+    }
+}

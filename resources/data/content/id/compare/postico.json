@@ -1,0 +1,189 @@
+{
+    "seo": {
+        "title": "TablePro vs Postico: PostgreSQL dan mesin lain",
+        "description": "Postico 2 adalah aplikasi Mac PostgreSQL dengan lisensi sekali bayar. TablePro mendukung mesin lain. Bandingkan harga, alat server, dan sinkronisasi."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs Postico"
+    },
+    "header": {
+        "title": "TablePro vs Postico",
+        "lead": "Postico 2 adalah aplikasi Mac untuk PostgreSQL dan database yang menggunakan protokolnya, dijual dengan lisensi sekali bayar. TablePro adalah klien sumber terbuka untuk PostgreSQL dan mesin lain, dengan aplikasi iPhone dan iPad terpisah serta fitur berbayar opsional pada Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda juga menggunakan MySQL, SQL Server, SQLite, Redis, atau MongoDB, bukan hanya PostgreSQL.",
+            "Anda juga mengelola server. Users & Roles, Server Dashboard yang dapat menghentikan sesi, VACUUM, dan pencadangan pg_dump gratis dalam aplikasi Mac.",
+            "Anda mengoptimalkan kueri. EXPLAIN menampilkan rencana sebagai diagram, dan EXPLAIN Compare membandingkan rencana baru dengan acuan.",
+            "Anda menginginkan aplikasi iPhone dan iPad gratis yang terhubung ke PostgreSQL.",
+            "Anda menginginkan asisten AI dan server MCP tanpa biaya."
+        ],
+        "competitor": [
+            "Anda hanya menggunakan PostgreSQL, Redshift, CockroachDB, atau Greenplum dan menginginkan aplikasi khusus untuknya.",
+            "Anda menginginkan salinan Mac App Store atau harga lisensi untuk penggunaan pribadi, komersial, tim, maupun pelajar.",
+            "Anda ingin pengaturan server disinkronkan melalui iCloud atau Dropbox."
+        ]
+    },
+    "glance": {
+        "intro": "Postico 2 dijual dengan lisensi sekali bayar untuk pribadi, komersial, tim, dan pelajar, dan versi evaluasinya tidak memiliki batas waktu. TablePro gratis digunakan, dan paket berbayar menambah fitur opsional."
+    },
+    "rows": {
+        "administration": {
+            "label": "Administrasi server",
+            "tablepro": "Gratis dalam aplikasi Mac: Users & Roles, Server Dashboard, pemeliharaan seperti VACUUM, dan pencadangan melalui pg_dump yang Anda pasang"
+        },
+        "macAppStore": {
+            "label": "Mac App Store",
+            "tablepro": "Tidak tersedia di Mac App Store. Unduh dari situs ini atau pasang dengan Homebrew"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Postico 2 dibuat untuk PostgreSQL dan database yang menggunakan protokolnya, termasuk Greenplum yang tidak didukung TablePro.",
+                "cite": [
+                    "cells.databases"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Lisensi dibayar sekali, dengan harga untuk pribadi, komersial, tim, dan pelajar, serta salinan tersedia di Mac App Store.",
+                "cite": [
+                    "prices",
+                    "cells.macAppStore"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Versi evaluasi tidak memiliki batas waktu, meskipun beberapa fitur nonaktif sampai Anda membeli lisensi.",
+                "cite": [
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Pengaturan server disinkronkan melalui iCloud atau Dropbox.",
+                "cite": [
+                    "cells.sync"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Satu klien mencakup PostgreSQL dan mesin lain, dari MySQL dan SQL Server hingga Redis, MongoDB, dan DuckDB. Lihat <link>database yang didukung</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>Pekerjaan server</link> tersedia dalam aplikasi gratis: Users & Roles dengan izin hingga kolom, Server Dashboard dengan sesi dan kueri lambat, serta VACUUM dengan SQL ditampilkan terlebih dahulu. Postico menyatakan tidak dirancang untuk tugas tersebut.",
+                "cite": [
+                    "cells.administration"
+                ],
+                "feature": null,
+                "href": "/features/schema#administer"
+            },
+            {
+                "text": "<link>EXPLAIN</link> menampilkan rencana sebagai diagram, pohon, atau teks mentah, dan EXPLAIN Compare membandingkan rencana baru dengan acuan. Keduanya gratis.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "<link>iCloud Sync</link> menyelaraskan koneksi antara Mac dan iPhone atau iPad. Fitur termasuk Starter pada Mac dan gratis dalam aplikasi iPhone serta iPad.",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "<link>Aplikasi iPhone dan iPad gratis</link> terhubung ke PostgreSQL tanpa pembelian dalam aplikasi.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Greenplum tidak termasuk mesin yang didukung.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Redshift dan CockroachDB dapat terhubung, tetapi struktur tabelnya hanya baca di TablePro.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Untuk mengubah posisi kolom PostgreSQL, TablePro menulis skrip pembangunan ulang untuk Anda jalankan. Aplikasi tidak menjalankannya sendiri.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Postico 2 hanya dijual sebagai lisensi sekali bayar. Paket TablePro bulanan atau tahunan mengunci fitur berbayar saat berakhir, tetapi aplikasi lainnya tetap berfungsi; Starter dan Team juga tersedia sebagai pembelian sekali bayar tanpa kedaluwarsa.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro tidak memiliki pengimpor untuk Postico. Tambahkan setiap server sebagai koneksi TablePro: isi formulir atau tempel URL yang diawali postgresql:// pada <ui>File > Import > Import from URL…</ui>",
+        "steps": [],
+        "after": [
+            "Jika proyek menyimpan URL database dalam .env atau skema Prisma, <ui>File > Import > Open Project Folder…</ui> membacanya dan membuka formulir terisi.",
+            "Kata sandi dimasukkan ke Keychain macOS. TablePro juga membaca ~/.pgpass untuk koneksi PostgreSQL.",
+            "Riwayat kueri dimulai dari awal di TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "redshift-cockroachdb",
+            "question": "Apakah TablePro mendukung Redshift dan CockroachDB seperti Postico?",
+            "answer": "Ya, keduanya terhubung, dan struktur tabelnya hanya baca di TablePro. Greenplum, yang juga didukung Postico, tidak termasuk mesin TablePro.",
+            "href": null
+        },
+        {
+            "id": "icloud-sync",
+            "question": "Apakah iCloud Sync TablePro gratis?",
+            "answer": "Pada aplikasi iPhone dan iPad, ya. Pada Mac, fitur termasuk Starter. Postico 2 menyinkronkan pengaturan server melalui iCloud atau Dropbox.",
+            "href": null
+        },
+        {
+            "id": "admin",
+            "question": "Apakah saya dapat mengelola peran dan sesi di TablePro?",
+            "answer": "Ya, dalam aplikasi Mac secara gratis. Users & Roles memberi dan mencabut hak akses dengan SQL ditampilkan terlebih dahulu, dan Server Dashboard mencantumkan sesi serta dapat menghentikannya. <link>Baca tentang alat server</link>.",
+            "href": "/features/schema#administer"
+        },
+        {
+            "id": "license",
+            "question": "Apakah saya perlu lisensi untuk menggunakan TablePro dengan PostgreSQL?",
+            "answer": "Tidak. PostgreSQL dan semua mesin lain yang didukung gratis, bersama asisten AI dan server MCP. Starter atau Team menambah fitur opsional pada aplikasi Mac, seperti {starterExamples}. <link>Lihat harga</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "postico-evaluation": "Versi evaluasi tanpa batas waktu. Beberapa fitur nonaktif sampai Anda membeli lisensi.",
+        "postico-vat-included": "Termasuk PPN",
+        "postico-plus-vat": "Ditambah PPN",
+        "postico-databases": "PostgreSQL, Amazon Redshift, Greenplum, dan CockroachDB. Database lain yang menggunakan protokol PostgreSQL mungkin terhubung, tetapi sebagian besar fitur tidak berfungsi.",
+        "postico-sync-icloud-dropbox": "Pengaturan server disinkronkan melalui iCloud atau Dropbox",
+        "postico-no-admin": "Postico menyatakan tidak dirancang untuk pencadangan dan pemulihan, pengelolaan pengguna serta izin, atau pemantauan database"
+    }
+}

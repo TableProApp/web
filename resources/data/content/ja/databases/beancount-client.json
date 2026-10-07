@@ -1,0 +1,79 @@
+{
+    "seo": {
+        "title": "{devices} で Beancount 台帳を SQL クエリ",
+        "description": "Beancount 台帳を取引、仕訳、残高、メタデータの読み取り専用 SQL テーブルとして開き、include を辿り、rledger で BQL を実行できます。"
+    },
+    "og": {
+        "kicker": "データベース",
+        "title": "Beancount 台帳を SQL で問い合わせ"
+    },
+    "engine": "beancount",
+    "breadcrumb": "Beancount",
+    "header": {
+        "title": "{devices} で Beancount 台帳を SQL クエリ",
+        "lead": "<code>.beancount</code> ファイルを開き、取引、仕訳、残高とメタデータを SQL テーブルとして問い合わせるか、rledger に BQL を送れます。台帳はテキストファイルのままで、自分のエディタで編集します。"
+    },
+    "asset": "mac-db-beancount-bql",
+    "links": {
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export",
+        "files": "/features/import-export#files"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "台帳を開く",
+            "paragraphs": [
+                "TablePro は <code>rledger</code> または Python Beancount を実行して台帳を読みます。どちらかを選ぶなら rledger をインストールしてください。両方がある場合は優先し、BQL を実行できるのも、検証結果を <code>diagnostics</code> テーブルに入れるのも rledger だけです。",
+                "接続フォームの <ui>Browse…</ui> でファイルを選びます。接続に必要なのは台帳パスだけで、ホスト、ポート、パスワードやデータベースはありません。<code>.beancount</code> は Finder からも開け、<code>beancount:///path/to/main.beancount</code> URL をインポートできます。",
+                "Finder から起動したアプリはシェルの <code>PATH</code> を引き継ぎません。Terminal では動くバックエンドがここで動かない場合、<code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> または <code>TABLEPRO_BEANCOUNT_PYTHON</code> で指定し、再起動してください。",
+                "Python バックエンドは Beancount 同梱のプラグインを実行しますが、第三者のコードである他の <code>plugin</code> 指令は接続で <ui>Run Ledger Plugins</ui> を有効にするまでスキップします。スキップしたものは <code>diagnostics</code> に表示します。"
+            ]
+        },
+        {
+            "id": "work",
+            "title": "台帳を問い合わせる",
+            "paragraphs": [
+                "テーブルは取引と仕訳、口座、残高と残高アサーション、価格と商品、その他すべての指令、メタデータ、タグ、リンクとソースファイルを含みます。仕訳は <code>transaction_id</code> で取引と結合し、口座は名前で結合します。",
+                "金額は算術、原価と価格を解決した記帳済みの値で、仕訳の原価とインライン価格は専用カラムに入ります。取引、仕訳と一部の指令テーブルは <code>main.beancount:42</code> などの <code>source_location</code> を持ち、行から元の行番号を辿れます。",
+                "クエリの前に <code>BQL:</code> を付けると、テーブルではなく rledger に送ります。BQL 結果は閲覧、行数表示とページ分割に対応しますが、SQL パラメータは使えません。",
+                "<code>include</code> 指令はリテラルパスも glob も辿り、すべての台帳ファイルと参照ドキュメントを監視します。エディタで変更を保存すると次のクエリで再接続せず読み取れます。接続は常に <safeMode>セーフモード</safeMode> の Read-Only で、INSERT、UPDATE、DELETE とスキーマ変更を拒否します。"
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "データの移動",
+            "paragraphs": [
+                "テーブルやクエリ結果を {exportFormats} にエクスポートできます。<files>TablePro がデータベースとして開ける他のファイル</files>には SQLite、DuckDB、Parquet があります。"
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "errors",
+            "question": "エラーのある台帳も開けますか？",
+            "answer": "rledger 経由なら開けます。検証に失敗しても台帳をテーブル化し、各問題をファイル、行番号、重大度とメッセージ付きで <code>diagnostics</code> の行として表示します。"
+        },
+        {
+            "id": "several-ledgers",
+            "question": "一つの接続で複数の台帳を開けますか？",
+            "answer": "一つの接続は一つの台帳ファイルで、切り替えはできません。他のファイルを include するメインファイルなら、glob も含めすべて取り込めます。"
+        }
+    ],
+    "related": [
+        {
+            "label": "分析ファイル向け DuckDB",
+            "href": "/duckdb-client"
+        },
+        {
+            "label": "一つのファイルに収まる SQLite",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "インポート、エクスポートとデータファイル",
+            "href": "/features/import-export"
+        }
+    ]
+}

@@ -1,0 +1,194 @@
+{
+  "seo": {
+    "title": "TablePro vs TablePlus：オープンソースと各 OS",
+    "description": "Mac、iPhone、iPad 用アプリを持つ二つのネイティブデータベースクライアント。プラットフォーム、価格、AI、MCP、TablePlus の接続を TablePro に移す手順を比較します。"
+  },
+  "og": {
+    "kicker": "比較",
+    "title": "TablePro vs TablePlus"
+  },
+  "header": {
+    "title": "TablePro vs TablePlus",
+    "lead": "TablePlus と TablePro はどちらもネイティブと説明されているデータベースクライアントで、Mac、iPhone、iPad 用アプリを持ちます。TablePlus は Windows と Linux でも動作します。TablePro はオープンソースで、有料プランは Mac アプリに任意の機能を追加します。"
+  },
+  "shortAnswer": {
+    "tablepro": [
+      "オープンソースのクライアントを使いたい。TablePro は有料機能のコードも含め、AGPLv3 のオープンソースです。",
+      "AI アシスタントと MCP サーバーを無料で使いたい。Mac アプリではどちらも無料で、AI プロバイダーを選べる。",
+      "アプリ内課金のない無料の iPhone・iPad アプリを使いたい。",
+      "必要な機能にだけ支払いたい。無料アプリにタブやウィンドウの上限はなく、有料プランは {starterExamples} などの機能を追加する。"
+    ],
+    "competitor": [
+      "Windows や Linux でも作業している。",
+      "TablePlus に記載され、TablePro 非対応の Vertica や Greenplum に接続する。",
+      "Mac アプリを Setapp から入手している。"
+    ]
+  },
+  "glance": {
+    "intro": "両クライアントに AI チャット、MCP サーバー、スキーマ図、Excel エクスポートがあります。TablePlus は {cells.mcp.date} 公開のバージョン {cells.mcp.version} で MCP サーバー、図、Excel エクスポートを追加しました。"
+  },
+  "rows": {
+    "diagram": {
+      "label": "スキーマ図",
+      "tablepro": "読み取り専用の ER 図。PNG または SQL に書き出せる"
+    },
+    "excelExport": {
+      "label": "Excel にエクスポート",
+      "tablepro": "CSV、JSON、SQL などと同じく無料"
+    },
+    "safeMode": {
+      "label": "Safe Mode",
+      "tablepro": "接続ごとに Silent から Read-Only まで設定でき、厳しいレベルでは Touch ID を使用"
+    },
+    "setapp": {
+      "label": "Setapp",
+      "tablepro": "Setapp では提供していない"
+    }
+  },
+  "stronger": {
+    "intro": "",
+    "items": [
+      {
+        "text": "TablePlus は Mac に加え Windows と Linux でも動作するため、複数のコンピューターで同じクライアントを使えます。",
+        "cite": [
+          "platforms"
+        ],
+        "feature": null,
+        "href": null
+      },
+      {
+        "text": "Vertica や Greenplum など、TablePro 非対応のエンジンが記載されています。",
+        "cite": [
+          "cells.databases"
+        ],
+        "feature": null,
+        "href": null
+      },
+      {
+        "text": "Mac アプリを Setapp で入手するなら、TablePlus もそこから利用できます。",
+        "cite": [
+          "cells.setapp"
+        ],
+        "feature": null,
+        "href": null
+      }
+    ]
+  },
+  "differs": {
+    "intro": "",
+    "items": [
+      {
+        "text": "TablePro は有料機能のコードも含め、AGPLv3 のオープンソースです。TablePlus のソースコードは非公開です。",
+        "cite": [
+          "licence"
+        ],
+        "feature": null,
+        "href": null
+      },
+      {
+        "text": "無料アプリですべての対応エンジンに接続でき、AI アシスタント、MCP サーバー、Safe Mode を含み、タブやウィンドウの上限もありません。<link>有料プラン</link>は {starterExamples} などの機能を追加します。",
+        "cite": [],
+        "feature": null,
+        "href": "/pricing"
+      },
+      {
+        "text": "iPhone・iPad アプリは無料で、アプリ内課金もライセンスもありません。TablePlus の iPhone アプリにはアプリ内課金があり、TablePlus ライセンスでも利用できます。",
+        "cite": [
+          "cells.ios"
+        ],
+        "feature": null,
+        "href": null
+      },
+      {
+        "text": "<link>iCloud Sync</link> で Mac 間や iPhone・iPad と接続を同期します。Mac では Starter に含まれ、iPhone・iPad アプリでは無料です。",
+        "cite": [],
+        "feature": "icloud-sync",
+        "href": null
+      },
+      {
+        "text": "Team プランは <link>{teamExamples}</link> を追加し、チームで接続や保存済みクエリを共有できます。",
+        "cite": [],
+        "feature": null,
+        "href": "/features/sync-and-teams#team"
+      }
+    ]
+  },
+  "limits": {
+    "intro": "",
+    "items": [
+      {
+        "text": "TablePro には Windows・Linux 用アプリがありません。",
+        "cite": [],
+        "feature": null,
+        "href": null
+      },
+      {
+        "text": "TablePlus と同様、TablePro にも別の <link>iPhone・iPad アプリ</link>があります。Mac アプリより機能は少なく、AI アシスタント、MCP サーバー、自動補完はありません。",
+        "cite": [],
+        "feature": null,
+        "href": "/ios"
+      },
+      {
+        "text": "TablePro はスキーマ設計ツールではありません。ER 図は現在のスキーマの読み取り専用スナップショットです。",
+        "cite": [],
+        "feature": null,
+        "href": null
+      },
+      {
+        "text": "TablePlus のライセンスは 1 年の更新期間終了後も使え、TablePro の買い切りも同様です。TablePro の月額・年額プランでは、終了すると有料機能がロックされ、その他の機能は引き続き使えます。",
+        "cite": [],
+        "feature": null,
+        "href": null
+      }
+    ]
+  },
+  "switching": {
+    "intro": "TablePro は TablePlus が接続を保存している場所から読み取ります。Setapp 版の接続も対象です。TablePlus を開いておく必要はなく、ファイルも変更しません。",
+    "steps": [
+      "TablePro で <ui>File > Import > Import from Other App…</ui> を選びます。",
+      "TablePlus を選び、<ui>Include passwords</ui> をオンにして macOS キーチェーンの保存済みパスワードを読み取ります。",
+      "macOS は保存されたパスワードごとに一度、ログインパスワードを求めます。各ダイアログで <ui>Always Allow</ui> を選びます。",
+      "一覧を確認し、重複の扱いを決めて <ui>Import</ui> をクリックします。グループ、SSH トンネル、接続の色も引き継がれます。TablePro 非対応のエンジンへの接続はチェックされていません。",
+      "TablePlus を削除する前に、パスワード付きだった接続を開き、引き継がれたことを確認します。"
+    ],
+    "after": [
+      "保存済みクエリ、クエリ履歴、キーボードショートカットは TablePlus に残ります。",
+      "毎回パスワードを尋ねる設定の接続は、インポート後もパスワードを尋ねる設定になります。"
+    ],
+    "docs": "/switching"
+  },
+  "faq": [
+    {
+      "id": "keep-tableplus",
+      "question": "インポート後も TablePlus を使い続けられますか？",
+      "answer": "はい。インポートは TablePlus の接続ファイルを読み取るだけなので、どちらのアプリもそれぞれのコピーで引き続き動作します。",
+      "href": null
+    },
+    {
+      "id": "speed",
+      "question": "TablePro と TablePlus の速度はどう違いますか？",
+      "answer": "このページでは速度やメモリーについて主張しません。どちらのアプリも他者が再現できる測定結果を公開しておらず、結果は Mac、データベース、ネットワークに左右されます。",
+      "href": null
+    },
+    {
+      "id": "license",
+      "question": "TablePro を使うにはライセンスが必要ですか？",
+      "answer": "いいえ。TablePro は無料で使え、すべての対応エンジン、AI アシスタント、MCP サーバー、Safe Mode を含みます。Starter または Team プランは {starterExamples} など、Mac アプリの任意の機能を追加します。<link>料金を見る</link>。",
+      "href": "/pricing"
+    },
+    {
+      "id": "ios-license",
+      "question": "iPhone・iPad アプリにライセンスは必要ですか？",
+      "answer": "いいえ。iPhone・iPad アプリは無料で、アプリ内課金もありません。iCloud 経由で Mac と同期するには、Mac に Starter が必要です。",
+      "href": null
+    }
+  ],
+  "notes": {
+    "tableplus-free-limits": "時間制限はないが、同時に開けるタブ、ウィンドウ、高度なフィルターはそれぞれ最大 {value} 個、{value} 個、{value} 個",
+    "tableplus-one-year-updates": "一度の支払いで 1 年間の更新付き。その後もアプリは使える",
+    "tableplus-databases": "リレーショナル、ドキュメント、キー・バリュー、分析系のエンジンに対応。PostgreSQL、MySQL、SQL Server、SQLite、Redis、MongoDB、Oracle、Cassandra、Snowflake、Vertica、Greenplum など。一部のエンジンは特定のプラットフォームのみ対応。",
+    "tableplus-ai": "OpenAI、Anthropic、GitHub Copilot、ローカルモデルに対応するチャットプラグイン",
+    "tableplus-ios-purchase": "ダウンロードは無料で、アプリ内課金あり。有効な TablePlus ライセンスでも、決められた台数のデバイスで使える。",
+    "tableplus-safe-mode-levels": "{value} 段階で Touch ID に対応"
+  }
+}

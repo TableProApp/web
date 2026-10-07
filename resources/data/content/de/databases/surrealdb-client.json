@@ -1,0 +1,86 @@
+{
+    "seo": {
+        "title": "SurrealDB-Client für {devices}",
+        "description": "SurrealDB als Root, Namespace, Datenbank, Record oder Token anmelden, SurrealQL ausführen, Namespaces ansehen und Datensätze feldweise ändern."
+    },
+    "og": {
+        "kicker": "Datenbanken",
+        "title": "SurrealDB-Client"
+    },
+    "engine": "surrealdb",
+    "breadcrumb": "SurrealDB",
+    "header": {
+        "title": "SurrealDB-Client für {devices}",
+        "lead": "Melde dich auf der Ebene deines Benutzers an, führe SurrealQL-Skripte aus und bearbeite Datensätze feldweise, wobei Record-Links, Zeitpunkte und Dezimalzahlen ihren Typ behalten."
+    },
+    "asset": "mac-db-surrealdb-query",
+    "links": {
+        "network": "/features/connections#network",
+        "filters": "/features/data-editing#filters",
+        "explain": "/features/querying#performance",
+        "export": "/features/import-export#export"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Verbinden und anmelden",
+            "paragraphs": [
+                "SurrealDB kann aus Zugangsdaten nicht die Benutzerebene erkennen, daher benennt <ui>Authentifizierungsebene</ui> sie und das Formular fragt den Rest ab. Root nimmt Benutzer und Passwort, Namespace ergänzt den Namensraum, Database auch die Datenbank. Record Access nimmt Namespace, Datenbank, Zugriffsmethode aus <code>DEFINE ACCESS</code> und Anmeldefelder. Token nimmt einen vorhandenen JWT, auch für SurrealDB Cloud.",
+                "Der Treiber spricht CBOR über HTTP RPC, damit Record-Links, Zeitpunkte, Dauern, Dezimalzahlen und UUIDs ihre Typen behalten. Ein <code>surrealdb://</code>-Link öffnet das ausgefüllte Formular; ein Remote-Server lässt sich per <network>SSH-Tunnel</network> erreichen.",
+                "SSL beginnt deaktiviert mit Klartext-HTTP; alle anderen Modi nutzen HTTPS. CA prüfen und Identität prüfen prüfen gegen den System-Vertrauensspeicher. Eine CA-Datei im SSL/TLS-Bereich wird ignoriert; installiere daher private CAs zuerst in macOS."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "SurrealQL und Datensätze",
+            "paragraphs": [
+                "Der Editor führt ganze SurrealQL-Skripte einschließlich <code>RELATE</code> zwischen zwei Datensätzen mit Vervollständigung üblicher Anweisungen aus. <explain>Ausführungsplan und Vollständiger Ausführungsplan</explain> führen die Abfrage erneut mit <code>EXPLAIN</code> aus, zeigen Auflösung und Indexnutzung und liefern den Plan als Rohtext.",
+                "Namespaces stehen oben in der Seitenleiste mit ihren Datenbanken darin. Ein Wechsel verbindet nie neu, da Namespace und Datenbank bei jeder Anfrage mitgesendet werden. Nur Root sieht alle Namespaces.",
+                "Eine Zellenänderung führt <code>UPDATE</code> nur für berührte Felder als typisierte Parameter aus: <code>int</code> bleibt <code>int</code>, berechnete <code>FUTURE</code>-Felder und fremde Änderungen bleiben unberührt. Lasse <code>id</code> für eine generierte ID leer oder gib <code>table:id</code> ein. Eine <code>SCHEMALESS</code>-Tabelle bezieht Spalten aus den gelesenen Datensätzen.",
+                "<filters>Filter</filters> werden zu SurrealQL; eine direkte SQL-Zeile nimmt eine Bedingung wie Graph-Traversierung. Bedingungen mit Schreibzugriff, <code>;</code>, Kommentar oder Aufrufen von <code>fn::</code> oder <code>http::</code> werden abgelehnt; führe sie im Editor aus."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Struktur",
+            "paragraphs": [
+                "Struktur ist schreibgeschützt. Erstelle und ändere Felder und Indizes mit <code>DEFINE FIELD</code> und <code>DEFINE INDEX</code> im Editor. Ein Namespace oder eine Datenbank wird im Menü gelöscht; mehrere ausgewählte werden einmal gemeinsam bestätigt."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Daten übertragen",
+            "paragraphs": [
+                "Es gibt keinen Import. <export>Exportiere</export> Tabellen oder Ergebnisse als CSV, JSON oder XLSX."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "transactions",
+            "question": "Kann ich eine Transaktion ausführen?",
+            "answer": "Innerhalb einer Abfrage ja. HTTP RPC hält keine Transaktion zwischen Anfragen; sende <code>BEGIN TRANSACTION; … COMMIT TRANSACTION;</code> als eine Editorabfrage."
+        },
+        {
+            "id": "relations",
+            "question": "Wie ändere ich in oder out einer Relation?",
+            "answer": "Nicht im Raster: Speichern stoppt, nennt das Feld und hält alle Änderungen vorgemerkt. <code>UPDATE</code> verschiebt eine Relation auch nicht; lösche sie und nutze <code>RELATE</code> für das neue Paar."
+        }
+    ],
+    "related": [
+        {
+            "label": "MongoDB, die andere Dokumentendatenbank",
+            "href": "/mongodb-client"
+        },
+        {
+            "label": "Abfragesprachen jenseits von SQL",
+            "href": "/features/querying#other-languages"
+        },
+        {
+            "label": "Daten sicher durchsuchen und bearbeiten",
+            "href": "/features/data-editing"
+        }
+    ]
+}

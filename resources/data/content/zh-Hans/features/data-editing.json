@@ -1,0 +1,206 @@
+{
+    "seo": {
+        "title": "使用 SQL 预览和安全模式编辑表数据",
+        "description": "筛选和编辑行，保存前审查 SQL，并为每个连接设置安全模式。Data Rewind 可还原保存时被替换的值。"
+    },
+    "og": {
+        "kicker": "数据编辑",
+        "title": "安全浏览和编辑数据"
+    },
+    "header": {
+        "title": "安全浏览和编辑数据",
+        "lead": "直接处理行：找到所需记录，修改几个值，在生产数据库上操作也避免意外。编辑暂存至保存时才执行，每个连接决定 TablePro 在执行语句前采取何种谨慎措施。",
+        "docs": "/features/change-tracking"
+    },
+    "sections": [
+        {
+            "id": "browse",
+            "title": "查找所需的行",
+            "paragraphs": [
+                "排序和分页在服务器上执行，因此大表从第一页打开。超过 {countEstimate} 行后，行数为估计值，需要实际数量时可使用 Count Exactly。"
+            ],
+            "blocks": [
+                {
+                    "id": "filters",
+                    "title": "筛选和高亮规则",
+                    "paragraphs": [
+                        "筛选栏（<kbd>⌘⇧F</kbd>）使用从 =、BETWEEN 到 REGEX 的 {filterOperatorCount} 个运算符构建 WHERE 子句，也可接受原始 SQL 条件。可为表保存筛选，并在以后载入而不立即运行。高亮规则根据值为行或单元格着色，类似电子表格中的条件格式，设置仅保存在此 Mac 上。"
+                    ],
+                    "asset": "mac-grid-highlight-rules"
+                },
+                {
+                    "id": "foreign-keys",
+                    "title": "外键和 JSON",
+                    "paragraphs": [
+                        "可沿外键在新标签页打开引用行，或在浮窗中预览。编辑外键列时，值选择器按所选列列出被引用行，例如客户的姓和名。JSON 值在查看器中打开，树形模式便于浏览，文本模式用于编辑。"
+                    ],
+                    "asset": "mac-fk-picker"
+                }
+            ]
+        },
+        {
+            "id": "edit",
+            "title": "修改数据后统一保存",
+            "paragraphs": [
+                "单元格编辑、新增行和删除在标签页中标记并暂存，按下 <kbd>⌘S</kbd> 前不会发送任何修改。<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）列出已填入值的语句。保存时以绑定参数发送，在引擎允许时于同一事务中执行，并检查每条语句修改的行数是否符合预期；任一不符即回滚保存。"
+            ],
+            "points": [
+                "按列类型提供单元格编辑器：日期时间选择器、ENUM 和 SET 列表、数组、JSON、二进制值十六进制编辑器及图片查看器。",
+                "保存前可在每个标签页中撤销和重做。",
+                "读取单表且不含 JOIN、CTE 或 UNION 的查询结果可以编辑。",
+                "将行复制为 CSV、JSON、Markdown、IN 列表或 INSERT、UPDATE 语句。"
+            ],
+            "asset": "mac-edit-preview-sql"
+        },
+        {
+            "id": "safe-mode",
+            "title": "生产连接的安全模式",
+            "paragraphs": [
+                "每个连接都有安全模式级别：{macSafeModeLevels}。新连接默认为 {macSafeModeDefault}，直接执行语句。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也询问，Read-Only 拒绝写入并关闭编辑。安全模式免费。",
+                "所有级别下，DROP、TRUNCATE 和无 WHERE 的 DELETE 都会停止并先询问。某些条件在生效期间会提高连接级别，例如只读引擎、将级别至少提高至 Alert 的 Agent 模式，以及组织通过设备管理（MDM）设置的最低级别。"
+            ],
+            "asset": "mac-safe-mode-touchid",
+            "links": [
+                {
+                    "label": "安全模式和其他连接策略",
+                    "href": "/features/connections#policies"
+                },
+                {
+                    "label": "Agent 模式",
+                    "href": "/features/ai-mcp#agent-mode"
+                }
+            ]
+        },
+        {
+            "id": "data-rewind",
+            "title": "数据回溯",
+            "paragraphs": [
+                "Data Rewind 保留保存时被替换的值，可通过 <ui>Restore Previous Values</ui> 还原。审查面板先显示每行将发生的变化，包括保存后又被修改的行；还原遵循安全模式，在引擎允许时于同一事务中执行。还原操作本身也可还原。",
+                "保存的值使用钥匙串中的密钥加密，在此 Mac 上保留 {rewindDays} 天，从不同步。方案结束后，TablePro 停止记录保存操作，<ui>Restore Previous Values</ui> 将显示提示而不再还原。"
+            ],
+            "paid": [
+                "data-rewind"
+            ],
+            "asset": "mac-data-rewind-review"
+        },
+        {
+            "id": "documents-and-keys",
+            "title": "文档和键",
+            "paragraphs": [
+                "并非所有引擎都存储行。MongoDB 可用 Extended JSON 插入和编辑整个文档、从文档移除字段，并在 Structure 标签页为整个集合重命名或移除字段。Redis 可在网格中重命名键、设置 TTL 和编辑字符串值，添加 string、hash、list、set 或 sorted-set 键，其他类型通过编辑器命令修改。"
+            ],
+            "links": [
+                {
+                    "label": "在 TablePro 中使用 MongoDB",
+                    "href": "/mongodb-client"
+                },
+                {
+                    "label": "在 TablePro 中使用 Redis",
+                    "href": "/redis-gui"
+                }
+            ]
+        },
+        {
+            "id": "iphone",
+            "title": "在 iPhone 和 iPad 上",
+            "paragraphs": [
+                "iPhone 和 iPad 应用将行显示为卡片，支持排序、搜索及 AND、OR 筛选，点按外键可预览引用行。可编辑行，将值设为 NULL 或 DEFAULT，插入行并滑动删除；编辑和删除需要主键。",
+                "移动端安全模式有自己的级别 {iosSafeModeLevels}，新连接默认为 {iosSafeModeDefault}。暂存编辑、Preview SQL、高亮规则和 Data Rewind 仅在 Mac 应用中提供。"
+            ],
+            "links": [
+                {
+                    "label": "在 iPhone 和 iPad 上浏览和编辑",
+                    "href": "/ios#browse"
+                },
+                {
+                    "label": "iPhone 和 iPad 上的安全模式",
+                    "href": "/ios#safe-mode"
+                }
+            ]
+        }
+    ],
+    "availability": [
+        {
+            "label": "排序、分页和筛选",
+            "ios": "yes"
+        },
+        {
+            "label": "已保存筛选和高亮规则",
+            "ios": "no"
+        },
+        {
+            "label": "外键导航和值选择器",
+            "ios": "partial",
+            "iosNote": "点按预览引用行"
+        },
+        {
+            "label": "编辑、插入和删除行",
+            "ios": "partial",
+            "iosNote": "行编辑器；需要主键"
+        },
+        {
+            "label": "暂存编辑、Preview SQL 和撤销",
+            "ios": "no"
+        },
+        {
+            "label": "安全模式",
+            "ios": "partial",
+            "iosNote": "{iosSafeModeLevels}"
+        },
+        {
+            "label": "写入前要求 Touch ID 或密码",
+            "ios": "no"
+        },
+        {
+            "label": "数据回溯",
+            "paid": "data-rewind",
+            "ios": "no"
+        },
+        {
+            "label": "MongoDB 文档和 Redis 键",
+            "ios": "no"
+        }
+    ],
+    "limits": [
+        "Data Rewind 不是备份。它不能撤销触发器、级联操作或 TablePro 外部的修改，也无法还原无主键的行、超过 {rewindMaxValue} MB 的值或服务器计算的值。",
+        "无 WHERE 的 UPDATE 属于普通写入，仅在 Alert 或更严格级别下先询问。",
+        "在 {everyStatementWrites} 上，安全模式将每条语句视为写入，因此 Alert 在读取前也询问，Read-Only 则阻止读取。",
+        "JOIN、CTE 或 UNION 的结果在网格中只读；请打开表进行编辑。"
+    ],
+    "docs": [
+        {
+            "label": "数据网格",
+            "docs": "/features/data-grid"
+        },
+        {
+            "label": "筛选",
+            "docs": "/features/filtering"
+        },
+        {
+            "label": "修改跟踪和 SQL 预览",
+            "docs": "/features/change-tracking"
+        },
+        {
+            "label": "数据回溯",
+            "docs": "/features/change-tracking#restoring-a-save"
+        },
+        {
+            "label": "安全模式",
+            "docs": "/features/safe-mode"
+        }
+    ],
+    "related": [
+        {
+            "label": "查询",
+            "href": "/features/querying"
+        },
+        {
+            "label": "结构",
+            "href": "/features/schema"
+        },
+        {
+            "label": "付费方案提供的功能",
+            "href": "/pricing#features"
+        }
+    ]
+}

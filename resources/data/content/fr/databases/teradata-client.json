@@ -1,0 +1,92 @@
+{
+    "seo": {
+        "title": "Client Teradata pour {devices}",
+        "description": "Accédez à Teradata Vantage par TD2 ou TDNEGO, en clair ou TLS ; parcourez bases, utilisateurs, procédures et macros, créez et modifiez des tables."
+    },
+    "og": {
+        "kicker": "Bases de données",
+        "title": "Client Teradata"
+    },
+    "engine": "teradata",
+    "breadcrumb": "Teradata",
+    "header": {
+        "title": "Client Teradata pour {devices}",
+        "lead": "Authentifiez-vous avec TD2 ou TDNEGO, parcourez bases et utilisateurs avec leurs tables, vues, procédures et macros, et interrogez et modifiez via un pilote Swift natif sans logiciel client Teradata à installer."
+    },
+    "asset": "mac-db-teradata-sidebar",
+    "links": {
+        "network": "/features/connections#network",
+        "objects": "/features/schema#objects",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "copy": "/features/schema#copy"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Connectez-vous et authentifiez-vous",
+            "paragraphs": [
+                "Saisissez hôte, utilisateur et mot de passe. Tout système Vantage acceptant TD2 fonctionne, sans vérification de version. <ui>Mécanisme de connexion</ui> dans Options accepte <code>TD2</code> ou <code>TDNEGO</code> ; <ui>Base de données</ui> n’est nécessaire que pour un défaut différent de celui du compte.",
+                "Le port par défaut transporte une session en clair. Tout mode SSL la déplace au point WebSocket de la passerelle sur le port 443, non modifiable. Vérifier l’AC exige un certificat d’AC ; Vérifier l’identité contrôle chaîne et nom d’hôte avec ce certificat ou, sans lui, le magasin de confiance système.",
+                "Laissez <ui>Mode de transaction</ui> sur <code>DEFAULT</code> sauf si un script nécessite les règles de commit ANSI ou TERA et la sensibilité à la casse de session. Utilisez un <network>tunnel SSH</network> derrière un bastion. <ui>Importer depuis une URL…</ui> accepte les URL <code>teradata://</code>, que macOS n’ouvre pas comme liens."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Interrogez et modifiez",
+            "paragraphs": [
+                "Base et utilisateur sont tous deux des espaces de noms dans Teradata ; ils figurent en haut de la barre latérale avec tables et vues. Un onglet lié à une seconde base conserve la session et exécute <code>DATABASE</code> avant ses instructions.",
+                "Les procédures stockées figurent dans la barre latérale et les macros sous Fonctions, ouvrant leur <objects>source dans un onglet en lecture seule</objects>.",
+                "Teradata n’a pas de <code>LIMIT</code> : la première page utilise <code>TOP</code>, les suivantes <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> retourne le plan en texte brut. Les modifications attendent l’enregistrement et l’<editing>Aperçu SQL</editing> montre d’abord chaque instruction."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Structure",
+            "paragraphs": [
+                "Créez des tables et changez leurs colonnes dans l’<structure>onglet Structure</structure>. La vue DDL montre leur définition complète, contraintes comprises."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Transférez des données",
+            "paragraphs": [
+                "Chargez des fichiers {importFormats} avec <importData>Importer</importData> et enregistrez tables ou résultats en {exportFormats}. <copy>Copier vers</copy> envoie tables, lignes ou les deux à une autre connexion Teradata ; la copie vers un autre moteur est refusée."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "logon-mechanism",
+            "question": "Pourquoi mon mécanisme de connexion est-il ignoré ?",
+            "answer": "Saisissez-le en majuscules. Une valeur inconnue, comme <code>tdnego</code> en minuscules, est lue comme <code>TD2</code>."
+        },
+        {
+            "id": "tls-check",
+            "question": "Comment savoir si la session est chiffrée ?",
+            "answer": "Testez Requis (ignorer la vérification) ou un mode de vérification. Préféré revient au clair si le port TLS est inaccessible ; un échec de négociation ressemble donc encore à une connexion réussie."
+        }
+    ],
+    "related": [
+        {
+            "label": "Écrivez, exécutez et comprenez des requêtes",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Schémas, comparaison et synchronisation",
+            "href": "/features/schema"
+        },
+        {
+            "label": "Snowflake, un autre entrepôt de données",
+            "href": "/snowflake-client"
+        },
+        {
+            "label": "Trino pour les requêtes entre catalogues",
+            "href": "/trino-client"
+        }
+    ]
+}

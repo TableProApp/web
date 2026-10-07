@@ -1,0 +1,99 @@
+{
+    "seo": {
+        "title": "Snowflake untuk {devices}",
+        "description": "Masuk ke Snowflake dengan pasangan kunci, SSO, OAuth, atau kata sandi dan kode MFA. Ubah warehouse serta peran tanpa koneksi ulang dan ekspor ke stage."
+    },
+    "og": {
+        "kicker": "Database",
+        "title": "Klien Snowflake"
+    },
+    "engine": "snowflake",
+    "breadcrumb": "Snowflake",
+    "header": {
+        "title": "Klien Snowflake untuk {devices}",
+        "lead": "Masuk sesuai persyaratan akun, berpindah warehouse dan peran dalam sesi tanpa membuka ulang koneksi, lalu jalankan kueri, edit, dan ekspor tabel ke stage."
+    },
+    "asset": "mac-db-snowflake-session",
+    "links": {
+        "credentials": "/features/connections#credentials",
+        "explain": "/features/querying#performance",
+        "editing": "/features/data-editing#edit",
+        "structure": "/features/schema#structure",
+        "importData": "/features/import-export#import",
+        "backup": "/features/import-export#backup"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Hubungkan dan masuk",
+            "paragraphs": [
+                "Masukkan pengenal akun, seperti <code>myorg-myaccount</code> atau locator lama seperti <code>xy12345.us-east-1</code>: bagian sebelum <code>.snowflakecomputing.com</code>. Semua permintaan menggunakan HTTPS ke endpoint akun tersebut, sehingga tidak ada host, bagian SSL, atau panel SSH.",
+                "Pilih <ui>Auth Method</ui>, dan formulir hanya menampilkan bidang yang diperlukan. Pasangan kunci menandatangani setiap koneksi dengan kunci pribadi PKCS#8, sehingga jam Mac harus benar. Browser SSO mengarahkan Anda ke penyedia identitas. Token OAuth digunakan sebagaimana ditempel dan tidak pernah diperbarui. Kata sandi disertai kode terkini pada <ui>MFA Passcode (TOTP)</ui> jika akun mewajibkan MFA.",
+                "Dengan <code>ALLOW_CLIENT_MFA_CACHING</code> pada akun, satu kode baru sudah cukup: Snowflake mengembalikan token MFA yang disimpan TablePro di <credentials>Keychain</credentials>. Dengan <code>ALLOW_ID_TOKEN</code>, Browser SSO menyimpan token masuk di sana, dan koneksi berikutnya melewati peramban sampai Snowflake menolaknya.",
+                "Snowflake tidak memiliki skema URL. Sebutkan bagian pada <ui>CLI Connection Name</ui>, dan setiap bidang yang Anda kosongkan dibaca dari <code>~/.snowflake/connections.toml</code> saat terhubung."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Warehouse, peran, dan kueri",
+            "paragraphs": [
+                "<ui>Database > Session Context</ui> memindahkan sesi ke warehouse atau peran lain menggunakan <code>USE WAREHOUSE</code> dan <code>USE ROLE</code>, tanpa membuka ulang koneksi. Satu koneksi TablePro adalah satu sesi Snowflake yang tetap terbuka saat tidak aktif, dan tab yang terkait dengan database kedua menjalankan <code>USE DATABASE</code> sebelum pernyataannya pada sesi yang sama.",
+                "Bilah samping mengelompokkan objek berdasarkan database dan skema. Daftar objek berasal dari perintah <code>SHOW</code>, yang berjalan tanpa warehouse; detail kolom berasal dari <code>INFORMATION_SCHEMA</code>, yang memerlukannya. <explain>Explain</explain> mengembalikan rencana Snowflake sebagai teks mentah.",
+                "<editing>Perubahan grid</editing> mengikat nilai di server, dengan sel VARIANT, OBJECT, dan ARRAY dikirim melalui <code>PARSE_JSON</code>. Perubahan mencocokkan primary key yang dideklarasikan, atau semua kolom jika tidak ada. Snowflake tidak pernah menegakkan constraint kunci, sehingga nilai kunci duplikat membuat perubahan atau penghapusan memengaruhi setiap baris yang cocok: periksa duplikat sebelum mengedit tabel."
+            ]
+        },
+        {
+            "id": "schema",
+            "title": "Struktur",
+            "paragraphs": [
+                "Tampilan DDL berasal dari <code>GET_DDL</code>. <structure>Tab Structure</structure> menambah, mengganti nama, dan menghapus kolom, menetapkan NOT NULL, komentar, dan primary key, memperlebar VARCHAR, serta mengubah presisi NUMBER pada skala yang sama.",
+                "Perubahan yang akan ditolak Snowflake diblokir sebelum dijalankan: memperkecil VARCHAR, perubahan jenis lainnya, dan menetapkan nilai default kolom yang baru. Menghapus default dapat dijalankan."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Pindahkan data",
+            "paragraphs": [
+                "<importData>Impor</importData> berkas {importFormats} melalui koneksi, dan ekspor tabel atau hasil ke Mac sebagai {exportFormats}.",
+                "Untuk mengekspor tabel tanpa melewati Mac, pilih <ui>File > Server-Side Export…</ui> dan masukkan stage, dengan atau tanpa <code>@</code>. <backup>Server-Side Export</backup> menjalankan <code>COPY INTO</code> dengan hak akses Anda sendiri dan menulis CSV berkompresi gzip, Parquet, atau JSON; lembar menunggu hingga ekspor selesai, dan tidak ada data yang disimpan di Mac."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "no-columns",
+            "question": "Mengapa bilah samping menampilkan tabel tetapi tidak kolom?",
+            "answer": "Detail kolom berasal dari <code>INFORMATION_SCHEMA</code>, yang memerlukan warehouse aktif. Atur <ui>Warehouse</ui> pada koneksi atau di Session Context. Database yang objeknya tidak muncul sama sekali memerlukan izin <code>USAGE</code> untuk peran koneksi."
+        },
+        {
+            "id": "timestamp-ltz",
+            "question": "Mengapa nilai TIMESTAMP_LTZ ditampilkan dalam UTC?",
+            "answer": "TablePro membacanya sebagai waktu UTC, ditandai <code>Z</code>, alih-alih mengubahnya ke <code>TIMEZONE</code> sesi."
+        },
+        {
+            "id": "jwt-invalid",
+            "question": "Masuk dengan pasangan kunci menyatakan token JWT tidak valid. Apa yang harus diperiksa?",
+            "answer": "Token membawa locator akun dan timestamp. Periksa pengenal akun dan jam Mac, lalu pastikan kunci publik terdaftar pada pengguna dengan <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
+        }
+    ],
+    "related": [
+        {
+            "label": "Impor, ekspor, dan berkas data",
+            "href": "/features/import-export"
+        },
+        {
+            "label": "Tulis, jalankan, dan pahami kueri",
+            "href": "/features/querying"
+        },
+        {
+            "label": "Google BigQuery, data warehouse cloud lainnya",
+            "href": "/bigquery-client"
+        },
+        {
+            "label": "Trino, untuk kueri lintas katalog",
+            "href": "/trino-client"
+        }
+    ]
+}

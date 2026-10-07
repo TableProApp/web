@@ -1,0 +1,175 @@
+{
+    "seo": {
+        "title": "Alternatives à Sequel Pro : Sequel Ace et TablePro",
+        "description": "Sequel Pro date de 2016 et nécessite Rosetta sur Apple silicon. Sequel Ace lui succède ; TablePro importe les connexions de Sequel Ace."
+    },
+    "og": {
+        "kicker": "Comparer",
+        "title": "Alternatives à Sequel Pro sur Mac"
+    },
+    "header": {
+        "title": "Alternatives à Sequel Pro sur Mac",
+        "lead": "Sequel Pro n’est plus développé. Sa dernière version est une compilation Intel de 2016, Homebrew l’a supprimé et son site était indisponible lors de la vérification de cette page. Sequel Ace lui succède pour MySQL et MariaDB. TablePro est une autre option si vous voulez un seul client pour davantage de bases, et il importe les connexions Sequel Ace."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Vous travaillez aussi avec PostgreSQL, SQL Server, SQLite, Redis ou MongoDB, en plus de MySQL et MariaDB.",
+            "Vous voulez un assistant IA et un serveur MCP, gratuits dans l’app Mac, avec le fournisseur d’IA de votre choix.",
+            "Vous voulez une app gratuite pour iPhone et iPad qui se connecte à MySQL et MariaDB.",
+            "Vous êtes prêt à apprendre une autre interface et voulez récupérer vos connexions Sequel Ace avec leurs mots de passe."
+        ],
+        "competitor": [
+            "Vous voulez retrouver l’interface Sequel Pro que vous connaissez, gratuite et maintenue.",
+            "Vous utilisez uniquement MySQL et MariaDB.",
+            "Vous installez vos apps depuis le Mac App Store."
+        ],
+        "competitorTitle": "Choisissez Sequel Ace si"
+    },
+    "glance": {
+        "intro": "La dernière version de Sequel Pro est {status.version}, datée du {status.date}. Le tableau présente sa situation actuelle face à TablePro. Pour le comparer à son successeur maintenu, consultez TablePro vs Sequel Ace."
+    },
+    "rows": {
+        "homebrew": {
+            "label": "Homebrew",
+            "tablepro": "S’installe avec Homebrew via le cask tablepro"
+        },
+        "website": {
+            "label": "Site web",
+            "tablepro": "En ligne, avec notes de version et documentation"
+        },
+        "rosetta": {
+            "label": "Apple silicon",
+            "tablepro": "Une compilation distincte pour Apple silicon, sans Rosetta"
+        },
+        "successor": {
+            "label": "Successeur",
+            "tablepro": "Un projet distinct. Importe les connexions Sequel Ace, pas celles de Sequel Pro"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Sequel Pro est gratuit et open source sous licence MIT.",
+                "cite": [
+                    "licence",
+                    "prices"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Son code continue de vivre dans Sequel Ace, un successeur maintenu qui conserve son interface pour MySQL et MariaDB.",
+                "cite": [
+                    "cells.successor"
+                ],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro est maintenu et propose des compilations distinctes pour Apple silicon et Intel. La dernière version de Sequel Pro est une compilation Intel qui nécessite Rosetta sur Apple silicon.",
+                "cite": [
+                    "status",
+                    "cells.rosetta"
+                ],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Il se connecte à <link>MySQL et MariaDB</link> ainsi qu’à d’autres moteurs, comme PostgreSQL, SQL Server, SQLite, Redis et MongoDB.",
+                "cite": [],
+                "feature": null,
+                "href": "/mysql-client"
+            },
+            {
+                "text": "Il importe les connexions Sequel Ace avec leurs mots de passe ; Sequel Ace peut donc servir d’étape intermédiaire. Consultez <link>TablePro vs Sequel Ace</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/compare/sequel-ace"
+            },
+            {
+                "text": "L’<link>assistant IA et le serveur MCP</link> sont gratuits dans l’app Mac.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro ne peut pas lire directement les favoris Sequel Pro. Ils doivent d’abord passer par Sequel Ace.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Son interface diffère de celle de Sequel Pro : il faudra réapprendre où se trouvent certaines fonctions.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro se connecte à MySQL et MariaDB uniquement par TCP, pas via un fichier socket local.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Certaines fonctions sont payantes. Starter ajoute des fonctions comme {starterExamples}.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro n’a pas d’importateur pour Sequel Pro. La méthode passe par Sequel Ace : transférez vos favoris dans Sequel Ace, puis importez-les depuis Sequel Ace dans TablePro.",
+        "steps": [],
+        "after": [
+            "Dans Sequel Ace, suivez le guide « Migrating from Sequel Pro », qui copie le fichier de favoris et les préférences dans Sequel Ace. Le guide indique que les mots de passe ne sont pas transférés automatiquement et propose un script pour cela ; les clés SSH doivent être sélectionnées à nouveau.",
+            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui>, sélectionnez Sequel Ace et activez <ui>Inclure les mots de passe</ui>.",
+            "Avant de supprimer l’une des apps, ouvrez une connexion qui avait un mot de passe pour vérifier son transfert."
+        ],
+        "docs": "/switching"
+    },
+    "faq": [
+        {
+            "id": "apple-silicon",
+            "question": "Sequel Pro fonctionne-t-il sur Apple silicon ?",
+            "answer": "Uniquement via Rosetta, car la version {status.version} est une compilation Intel. Apple indique qu’à partir de macOS 28, Rosetta ne restera disponible que pour certains jeux anciens.",
+            "href": null
+        },
+        {
+            "id": "import",
+            "question": "TablePro peut-il importer les favoris Sequel Pro ?",
+            "answer": "Pas directement. Copiez-les dans Sequel Ace en suivant son guide de migration, puis importez-les depuis Sequel Ace. Le guide indique que les mots de passe ne sont pas transférés automatiquement : vérifiez-les dans Sequel Ace avant l’importation, ou saisissez-les dans TablePro.",
+            "href": null
+        },
+        {
+            "id": "which",
+            "question": "Devrais-je passer à Sequel Ace ou à TablePro ?",
+            "answer": "Sequel Ace si vous voulez l’interface Sequel Pro pour MySQL et MariaDB, gratuite et maintenue. TablePro si vous utilisez aussi d’autres moteurs, voulez une app iPhone et iPad ou un assistant IA intégré. <link>Comparez TablePro à Sequel Ace</link>.",
+            "href": "/compare/sequel-ace"
+        },
+        {
+            "id": "heidisql",
+            "question": "HeidiSQL est-il désormais une option sur Mac ?",
+            "answer": "Sur un Mac avec Apple silicon, oui. HeidiSQL, client gratuit pour MySQL, MariaDB et d’autres bases, propose une compilation Mac depuis janvier 2026, sans version pour les Mac Intel. <link>Comparez TablePro à HeidiSQL</link>.",
+            "href": "/compare/heidisql"
+        }
+    ],
+    "notes": {
+        "sequel-pro-databases": "MySQL et MariaDB",
+        "sequel-pro-cask-removed": "Homebrew a désactivé le cask car le projet était abandonné, recommandé Sequel Ace à sa place et supprimé le cask le {date}",
+        "sequel-pro-site-down": "sequelpro.com ne s’est pas chargé lors de la vérification ; un ticket ouvert dans le dépôt signale que le site est indisponible",
+        "sequel-pro-rosetta": "Une compilation Intel. Sur Apple silicon, elle nécessite Rosetta ; selon Apple, Rosetta ne restera disponible que pour certains jeux anciens à partir de macOS 28.",
+        "sequel-pro-successor": "Sequel Ace, qui se présente comme la « suite » de Sequel Pro et repose sur son code"
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "seo": {
+        "title": "Beancount SQL para {devices}",
+        "description": "Abra transações, lançamentos, saldos e metadados de Beancount como tabelas SQL somente leitura. Siga includes e execute BQL pelo rledger."
+    },
+    "og": {
+        "kicker": "Bancos de dados",
+        "title": "Consulte um livro-razão Beancount com SQL"
+    },
+    "engine": "beancount",
+    "breadcrumb": "Beancount",
+    "header": {
+        "title": "Consulte um livro-razão Beancount com SQL em {devices}",
+        "lead": "Abra um arquivo <code>.beancount</code> e consulte suas transações, lançamentos, saldos e metadados como tabelas SQL, ou envie BQL ao rledger. O livro-razão continua sendo um arquivo de texto que você edita no seu próprio editor."
+    },
+    "asset": "mac-db-beancount-bql",
+    "links": {
+        "safeMode": "/features/data-editing#safe-mode",
+        "export": "/features/import-export#export",
+        "files": "/features/import-export#files"
+    },
+    "sections": [
+        {
+            "id": "connect",
+            "title": "Abra um livro-razão",
+            "paragraphs": [
+                "TablePro executa <code>rledger</code> ou Python Beancount para ler o livro-razão. Se estiver escolhendo, instale rledger: ele tem prioridade quando ambos estão presentes, somente ele executa BQL e somente ele preenche a tabela <code>diagnostics</code> com os resultados da validação.",
+                "Escolha o arquivo com <ui>Browse…</ui> no formulário de conexão. O caminho do livro-razão define toda a conexão, sem host, porta, senha ou banco de dados. Um arquivo <code>.beancount</code> também abre pelo Finder, e URLs <code>beancount:///path/to/main.beancount</code> podem ser importadas.",
+                "Um app aberto pelo Finder não herda o <code>PATH</code> do seu shell. Se o backend funciona no Terminal, mas não aqui, indique-o com <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> ou <code>TABLEPRO_BEANCOUNT_PYTHON</code> e reinicie o app.",
+                "O backend Python executa os plugins que acompanham Beancount e ignora qualquer outra diretiva <code>plugin</code>, que contém código de terceiros, até você ativar <ui>Run Ledger Plugins</ui> para essa conexão. Os plugins ignorados são listados em <code>diagnostics</code>."
+            ]
+        },
+        {
+            "id": "work",
+            "title": "Consulte o livro-razão",
+            "paragraphs": [
+                "As tabelas abrangem transações e lançamentos, contas, saldos e verificações de saldo, preços e commodities, todas as outras diretivas, metadados, tags e links, e os arquivos de origem. Os lançamentos se unem às transações por <code>transaction_id</code>, e as contas pelo nome.",
+                "Os valores chegam contabilizados, com operações aritméticas, custos e preços resolvidos, e os custos dos lançamentos e preços inline em colunas próprias. Transações, lançamentos e várias tabelas de diretivas contêm uma <code>source_location</code>, como <code>main.beancount:42</code>, permitindo chegar à linha de origem a partir de uma linha de dados.",
+                "Comece uma consulta com <code>BQL:</code> para enviá-la ao rledger em vez de consultar as tabelas. Navegação, contagem de linhas e paginação funcionam nos resultados BQL; parâmetros SQL não.",
+                "As diretivas <code>include</code> são seguidas, tanto com caminhos literais quanto com globs, e todos os arquivos do livro-razão e documentos referenciados são monitorados. Salve uma alteração no editor e a próxima consulta a lerá sem reconectar. A conexão está sempre no nível Read-Only do <safeMode>Safe Mode</safeMode>, portanto INSERT, UPDATE, DELETE e alterações de esquema são recusados."
+            ]
+        },
+        {
+            "id": "move-data",
+            "title": "Mova dados",
+            "paragraphs": [
+                "Exporte uma tabela ou o resultado de uma consulta como {exportFormats}. <files>Outros arquivos que TablePro abre como bancos de dados</files> incluem SQLite, DuckDB e Parquet."
+            ]
+        }
+    ],
+    "family": [],
+    "otherTools": null,
+    "faq": [
+        {
+            "id": "errors",
+            "question": "Um livro-razão com erros ainda abre?",
+            "answer": "Pelo rledger, sim. O livro-razão é projetado em tabelas mesmo quando a validação falha, e cada problema aparece como uma linha em <code>diagnostics</code>, com arquivo, linha, gravidade e mensagem."
+        },
+        {
+            "id": "several-ledgers",
+            "question": "Uma conexão pode abrir vários livros-razão?",
+            "answer": "Uma conexão corresponde a um arquivo de livro-razão, sem alternância. Um arquivo principal que inclui os outros traz todos eles, inclusive por globs."
+        }
+    ],
+    "related": [
+        {
+            "label": "DuckDB, para arquivos analíticos",
+            "href": "/duckdb-client"
+        },
+        {
+            "label": "SQLite, um banco de dados em um arquivo",
+            "href": "/sqlite-client"
+        },
+        {
+            "label": "Importação, exportação e arquivos de dados",
+            "href": "/features/import-export"
+        }
+    ]
+}
