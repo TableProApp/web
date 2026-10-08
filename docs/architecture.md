@@ -16,6 +16,7 @@ database and no credentials: every page is built from markdown in
 /blog  /blog/{slug}        markdown in resources/blog
 /vi/…                      every page above, in Vietnamese, where it exists
 /robots.txt  /sitemap.xml
+/.well-known/security.txt  RFC 9116; `SecurityTxtController::EXPIRES` is moved by hand
 ```
 
 Pages resolve by convention from `resources/js/pages`. The shared
@@ -300,6 +301,30 @@ added after the page has loaded, and Cloudflare Web Analytics.
   pinned, are `checkoutSdk` in `resources/data/pricing.json`.
 - **Product Hunt** is a plain text link ("TablePro on Product Hunt", URL in
   `facts.json` → `links.productHunt`): no badge image, no hotlink, no request.
+
+## Response headers
+
+`SecurityHeaders` is first in the global stack, so it marks every response this
+app sends, redirects and error pages included: `X-Content-Type-Options`,
+`X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, and
+`Strict-Transport-Security` over HTTPS. Files nginx serves itself (`/build`,
+`/images`, `/og`, the sitemap) never reach it.
+
+HTML also carries a `Content-Security-Policy`, built by
+`App\Support\Security\ContentSecurityPolicy`:
+
+- Inline scripts are admitted by hash, computed from the response. There is no
+  nonce, so the page stays cacheable at the edge. An inline script added in the
+  browser is refused.
+- Third-party sources are listed per vendor in that class, and only for a
+  vendor that is configured. A new third party, or a new host for one already
+  there, is an edit to that class. Without it the browser blocks the request.
+- Every page carries the same sources, because an Inertia visit keeps the
+  policy of the document the reader loaded first.
+- No policy is sent while the Vite dev server runs, or with Laravel's debug page.
+- A Cloudflare feature that injects an inline script (JavaScript Detections,
+  Rocket Loader) would be blocked. None was on as of 2026-10-08. After turning
+  one on, open a page and read the browser console.
 
 ## Working on these forms locally
 
