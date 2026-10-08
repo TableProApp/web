@@ -526,21 +526,27 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
             const lines: CellLine[] = [
                 { text: t.priceFree },
                 {
-                    // The same "for up to N devices" a competitor's license gets, so the two columns compare.
-                    text: context.plural(labels.price.units, facts.starter.activations, {
-                        price: interpolate(t.starter, {
-                            monthly: money(facts.starter.monthly),
-                            yearly: money(facts.starter.yearly),
-                            lifetime: money(facts.starter.lifetime),
+                    // Built like a competitor's line, device limit included, so the two columns compare.
+                    text: interpolate(labels.price.labelled, {
+                        label: labels.tiers.starter,
+                        price: context.plural(labels.price.units, facts.starter.activations, {
+                            price: interpolate(t.starter, {
+                                monthly: money(facts.starter.monthly),
+                                yearly: money(facts.starter.yearly),
+                                lifetime: money(facts.starter.lifetime),
+                            }),
                         }),
                     }),
                 },
                 {
-                    text: interpolate(t.team, {
-                        monthly: money(facts.team.monthly),
-                        yearly: money(facts.team.yearly),
-                        lifetime: money(facts.team.lifetime),
-                        min: facts.team.minSeats,
+                    text: interpolate(labels.price.labelled, {
+                        label: labels.tiers.team,
+                        price: interpolate(t.team, {
+                            monthly: money(facts.team.monthly),
+                            yearly: money(facts.team.yearly),
+                            lifetime: money(facts.team.lifetime),
+                            min: facts.team.minSeats,
+                        }),
                     }),
                 },
             ];
