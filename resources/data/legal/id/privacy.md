@@ -1,10 +1,10 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan aplikasi, situs web, dan portal akun TablePro, tujuan pengirimannya, lama penyimpanannya, serta cara mengubah atau menghapusnya.
-updatedAt: "2026-10-05"
+updatedAt: "2026-10-08"
 ---
 
-Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dan portal akun di tablepro.app/account. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
+Kebijakan ini mencakup TablePro untuk Mac, TablePro untuk iPhone dan iPad, situs web di tablepro.app, dokumentasi di docs.tablepro.app, dan portal akun di tablepro.app/account. Kebijakan ini menjelaskan data yang benar-benar dikirim dan disimpan oleh masing-masing layanan saat ini. Kedua aplikasi bersifat sumber terbuka dengan lisensi AGPLv3, sehingga Anda dapat membaca kode yang mengirim data di bawah ini dalam [repositori TablePro]({github}).
 
 ## Ringkasan {#summary}
 
@@ -122,6 +122,8 @@ Handoff mengirim ID koneksi yang terbuka dan nama tabel yang terbuka antarperang
 
 **Atribusi pembelian.** Saat Anda tiba di situs, peramban menyimpan catatan kunjungan pertama bernama `tablepro:attribution` dalam penyimpanan lokal selama 90 hari: sumber kunjungan (tag `ref` atau `utm_*` pada tautan yang Anda ikuti, atau situs yang menautkan ke sini), halaman tujuan, dan waktunya. Jika Anda memulai pembelian, catatan dikirim bersama permintaan pembayaran. Server kami membuangnya: catatan tidak divalidasi, dibaca, atau disimpan, dan tidak diteruskan ke {merchant}.
 
+**Dokumentasi.** Dokumentasi di docs.tablepro.app dihosting oleh Mintlify dan tidak memasang cookie. Mintlify menyimpan ID pengunjung acak, `mintlify_anonymous_id`, di penyimpanan lokal peramban Anda untuk situs tersebut dan menggunakannya untuk menghitung kunjungan ke dokumentasi. Mintlify menerima alamat IP dan detail peramban Anda pada setiap halaman, dan halaman memuat fonnya dari Google Fonts. Dasar hukum: kepentingan yang sah.
+
 Membaca situs tidak memasang cookie milik situs sendiri. Berlangganan buletin, memulai pembayaran, atau memeriksa kode diskon mengirim permintaan ke server kami yang memasang dua cookie portal akun, `tablepro-session` dan `XSRF-TOKEN`. Semua data yang disimpan situs di peramban Anda tercantum di [Cookie dan penyimpanan peramban](#cookies).
 
 ## Pembelian {#purchases}
@@ -148,6 +150,7 @@ Membaca situs web publik tidak memasang cookie milik situs sendiri; berlangganan
 - **`tablepro:analytics-consent`** (penyimpanan lokal, sampai Anda menghapusnya): jawaban Anda atas pertanyaan analitik, agar tidak ditanyakan pada setiap halaman. Situs web dan portal akun berbagi data ini. Dasar hukum: benar-benar diperlukan untuk menghormati pilihan Anda.
 - **`tablepro:attribution`** (penyimpanan lokal, 90 hari): catatan kunjungan pertama yang dijelaskan di [Situs web](#website). Catatan ini tidak berisi pengenal Anda dan hanya dikirim bersama permintaan pembayaran, lalu dibuang oleh server kami. Dasar hukum: kepentingan yang sah.
 - **`theme`** dan **`tablepro:banner-dismissed`** (penyimpanan lokal, sampai Anda menghapusnya): pilihan tampilan terang, gelap, atau sistem, serta banner yang Anda tutup dan batas waktunya: 30 hari, atau satu tahun jika Anda menyatakan sudah memiliki lisensi atau membelinya. Dasar hukum: kepentingan yang sah.
+- **`mintlify_anonymous_id`** (penyimpanan lokal di docs.tablepro.app, dipasang oleh Mintlify, sampai Anda menghapusnya): ID pengunjung yang dijelaskan di [Situs web](#website). Dasar hukum: kepentingan yang sah.
 - **Cookie yang diawali `crisp-client/`** (Crisp, misalnya `crisp-client/session/…`; 6 bulan, diperbarui saat Anda kembali; dipasang pada setiap halaman setelah obrolan dimuat): mempertahankan obrolan dan percakapan lintas halaman dan kunjungan. Dasar hukum: kepentingan yang sah, untuk menawarkan dukungan di setiap halaman.
 - **`tablepro-session` dan `XSRF-TOKEN`** (cookie portal akun, 2 jam): menjaga sesi masuk dan melindungi formulir portal dari pemalsuan permintaan lintas situs. Halaman portal lainnya, seperti konfirmasi pembelian dan halaman buletin, juga memasangnya, demikian pula berlangganan buletin atau memulai pembayaran maupun pemeriksaan kode diskon dari halaman mana pun di situs ini. Dasar hukum: benar-benar diperlukan.
 
@@ -174,6 +177,7 @@ Kami hanya membagikan data pribadi kepada layanan yang diperlukan untuk menjalan
 - **Google**, untuk Google Analytics di situs web dan portal akun.
 - **Crisp**, untuk obrolan langsung pada setiap halaman situs web dan portal akun.
 - **jsDelivr**, yang menyajikan skrip pembayaran {merchant} ke peramban saat Anda mengarahkan penunjuk ke tombol Beli.
+- **Mintlify**, yang menghosting dokumentasi di docs.tablepro.app.
 - **ip-api.com, ipinfo.io, dan geoplugin.net**, yang menerima alamat IP dari laporan penggunaan untuk pencarian negara.
 - **GitHub**, yang menghosting feed pembaruan, katalog plugin, dan unduhan.
 
@@ -181,7 +185,7 @@ Kami tidak menjual data pribadi atau membagikannya kepada pengiklan.
 
 ## Transfer internasional {#transfers}
 
-Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses di luar negara Anda. {merchant}, Google, GitHub, dan Cloudflare memproses data di Amerika Serikat; Google melakukannya berdasarkan EU-US Data Privacy Framework dan Standard Contractual Clauses. Jika diwajibkan hukum, transfer dari EEA dan Britania Raya menggunakan Standard Contractual Clauses atau mekanisme lain yang disetujui.
+Layanan di atas beroperasi di beberapa negara, sehingga data Anda dapat diproses di luar negara Anda. {merchant}, Google, GitHub, Cloudflare, dan Mintlify memproses data di Amerika Serikat; Google melakukannya berdasarkan EU-US Data Privacy Framework dan Standard Contractual Clauses. Jika diwajibkan hukum, transfer dari EEA dan Britania Raya menggunakan Standard Contractual Clauses atau mekanisme lain yang disetujui.
 
 ## Lama penyimpanan data {#retention}
 

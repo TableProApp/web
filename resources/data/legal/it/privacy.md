@@ -1,10 +1,10 @@
 ---
 title: Informativa sulla privacy
 description: Quali dati raccolgono le app, il sito web e il portale account di TablePro, dove vanno, per quanto tempo restano e come modificarli o eliminarli.
-updatedAt: "2026-10-05"
+updatedAt: "2026-10-08"
 ---
 
-Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app e il portale account tablepro.app/account. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
+Questa informativa riguarda TablePro per Mac, TablePro per iPhone e iPad, il sito web tablepro.app, la documentazione su docs.tablepro.app e il portale account tablepro.app/account. Descrive quali dati ciascuno di essi invia e conserva effettivamente oggi. Entrambe le app sono open source con licenza AGPLv3: puoi quindi leggere il codice che invia i dati descritti di seguito nel [repository di TablePro]({github}).
 
 ## Riepilogo {#summary}
 
@@ -122,6 +122,8 @@ Handoff passa l'ID della connessione aperta e il nome della tabella aperta tra i
 
 **Attribuzione degli acquisti.** Quando arrivi sul sito, il browser conserva per 90 giorni nell'archiviazione locale un record della prima visita chiamato `tablepro:attribution`: l'origine della visita (i tag `ref` o `utm_*` del link seguito oppure il sito di provenienza), la pagina di arrivo e il momento della visita. Se inizi un acquisto, il record viene inviato con la richiesta di pagamento. Il nostro server lo scarta: non viene convalidato, letto o conservato e non viene passato a {merchant}.
 
+**Documentazione.** La documentazione su docs.tablepro.app è ospitata da Mintlify e non imposta cookie. Mintlify conserva un ID visitatore casuale, `mintlify_anonymous_id`, nell'archiviazione locale del tuo browser per quel sito e lo usa per contare le visite alla documentazione. Mintlify riceve il tuo indirizzo IP e i dati del tuo browser a ogni pagina, e le pagine caricano i caratteri da Google Fonts. Base giuridica: legittimo interesse.
+
 La consultazione del sito non imposta cookie propri. Iscriversi alla newsletter oppure avviare un acquisto o una verifica di un codice sconto invia una richiesta al nostro server che imposta i due cookie del portale account, `tablepro-session` e `XSRF-TOKEN`. Tutto ciò che il sito conserva nel browser è elencato in [Cookie e archiviazione nel browser](#cookies).
 
 ## Acquisti {#purchases}
@@ -148,6 +150,7 @@ La consultazione del sito pubblico non imposta cookie propri; iscriversi alla ne
 - **`tablepro:analytics-consent`** (archiviazione locale, finché non la cancelli): la risposta alla richiesta sulle analisi, per non riproporla su ogni pagina. Il sito web e il portale account la condividono. Base giuridica: strettamente necessaria per rispettare la tua scelta.
 - **`tablepro:attribution`** (archiviazione locale, 90 giorni): il record della prima visita descritto in [Sito web](#website). Non contiene un tuo identificatore e viene inviato solo con una richiesta di pagamento, dove il nostro server lo scarta. Base giuridica: legittimo interesse.
 - **`theme`** e **`tablepro:banner-dismissed`** (archiviazione locale, finché non la cancelli): la scelta di un aspetto chiaro, scuro o di sistema e il banner che hai chiuso e fino a quando: 30 giorni oppure un anno se dichiari di avere una licenza o ne acquisti una. Base giuridica: legittimo interesse.
+- **`mintlify_anonymous_id`** (archiviazione locale su docs.tablepro.app, impostato da Mintlify, finché non lo cancelli): l'ID visitatore descritto in [Sito web](#website). Base giuridica: legittimo interesse.
 - **Cookie che iniziano con `crisp-client/`** (Crisp, per esempio `crisp-client/session/…`; 6 mesi, rinnovati quando ritorni; impostati su ogni pagina dopo il caricamento della chat): mantengono la chat e la conversazione tra pagine e visite. Base giuridica: legittimo interesse, per offrire supporto su ogni pagina.
 - **`tablepro-session` e `XSRF-TOKEN`** (cookie del portale account, 2 ore): mantengono l'accesso e proteggono i moduli del portale dalla falsificazione delle richieste tra siti. Anche le altre pagine del portale, come la conferma d'acquisto e le pagine della newsletter, li impostano, così come l'iscrizione alla newsletter o l'avvio di un acquisto o di una verifica di un codice sconto da qualsiasi pagina di questo sito. Base giuridica: strettamente necessari.
 
@@ -174,6 +177,7 @@ Condividiamo dati personali solo con i servizi necessari al funzionamento di Tab
 - **Google**, per Google Analytics sul sito web e sul portale account.
 - **Crisp**, per la chat dal vivo su ogni pagina del sito web e del portale account.
 - **jsDelivr**, che serve al browser lo script di acquisto di {merchant} quando punti un pulsante Acquista.
+- **Mintlify**, che ospita la documentazione su docs.tablepro.app.
 - **ip-api.com, ipinfo.io e geoplugin.net**, che ricevono gli indirizzi IP dai rapporti sull'utilizzo per la ricerca del paese.
 - **GitHub**, che ospita il feed degli aggiornamenti, il catalogo dei plugin e i download.
 
@@ -181,7 +185,7 @@ Non vendiamo dati personali e non li condividiamo con gli inserzionisti.
 
 ## Trasferimenti internazionali {#transfers}
 
-I servizi elencati operano in diversi paesi, quindi i tuoi dati possono essere trattati fuori dal tuo paese. {merchant}, Google, GitHub e Cloudflare trattano dati negli Stati Uniti; Google lo fa nell'ambito dell'EU-US Data Privacy Framework e delle clausole contrattuali standard. Quando la legge lo richiede, i trasferimenti dallo SEE e dal Regno Unito si basano sulle clausole contrattuali standard o su un altro meccanismo approvato.
+I servizi elencati operano in diversi paesi, quindi i tuoi dati possono essere trattati fuori dal tuo paese. {merchant}, Google, GitHub, Cloudflare e Mintlify trattano dati negli Stati Uniti; Google lo fa nell'ambito dell'EU-US Data Privacy Framework e delle clausole contrattuali standard. Quando la legge lo richiede, i trasferimenti dallo SEE e dal Regno Unito si basano sulle clausole contrattuali standard o su un altro meccanismo approvato.
 
 ## Per quanto tempo conserviamo i dati {#retention}
 

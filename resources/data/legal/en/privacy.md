@@ -1,10 +1,10 @@
 ---
 title: Privacy policy
 description: What TablePro's apps, website and account portal collect, where it goes, how long it is kept, and how to change or delete it.
-updatedAt: "2026-10-05"
+updatedAt: "2026-10-08"
 ---
 
-This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
+This policy covers TablePro for Mac, TablePro for iPhone and iPad, the website at tablepro.app, the documentation at docs.tablepro.app, and the account portal at tablepro.app/account. It describes what each of them actually sends and stores today. Both apps are open source under the AGPLv3, so you can read the code that sends any of the data below in the [TablePro repository]({github}).
 
 ## Summary {#summary}
 
@@ -122,6 +122,8 @@ Handoff passes the ID of the open connection and the name of the open table betw
 
 **Purchase attribution.** When you arrive at the site, your browser keeps a first-visit record called `tablepro:attribution` in its local storage for 90 days: the source of the visit (the `ref` or `utm_*` tags on the link you followed, or the site that linked to you), the page you landed on and when. If you start a purchase, the record is sent with the checkout request. Our server discards it: it is not validated, read or stored, and it is not passed to {merchant}.
 
+**Documentation.** The documentation at docs.tablepro.app is hosted by Mintlify and sets no cookies. Mintlify keeps a random visitor ID, `mintlify_anonymous_id`, in your browser's local storage for that site and uses it to count visits to the documentation. Mintlify receives your IP address and your browser's details with each page, and the pages load their fonts from Google Fonts. Lawful basis: legitimate interest.
+
 Reading the site sets no cookies of its own. Subscribing to the newsletter, or starting a checkout or a discount code check, sends a request to our server that sets the two account portal cookies, `tablepro-session` and `XSRF-TOKEN`. Everything the site keeps in your browser is listed under [Cookies and browser storage](#cookies).
 
 ## Purchases {#purchases}
@@ -148,6 +150,7 @@ Reading the public website sets no cookies of its own; subscribing to the newsle
 - **`tablepro:analytics-consent`** (local storage, until you clear it): your answer to the analytics question, so you are not asked on every page. The website and the account portal share it. Lawful basis: strictly necessary to honor your choice.
 - **`tablepro:attribution`** (local storage, 90 days): the first-visit record described under [Website](#website). It holds no identifier of you and is sent only with a checkout request, where our server discards it. Lawful basis: legitimate interest.
 - **`theme`** and **`tablepro:banner-dismissed`** (local storage, until you clear it): whether you chose a light, dark or system appearance, and which banner you closed and until when: 30 days, or a year if you say you have a license or buy one. Lawful basis: legitimate interest.
+- **`mintlify_anonymous_id`** (local storage on docs.tablepro.app, set by Mintlify, until you clear it): the visitor ID described under [Website](#website). Lawful basis: legitimate interest.
 - **Cookies starting with `crisp-client/`** (Crisp, for example `crisp-client/session/…`; 6 months, renewed when you return; set on every page once the chat has loaded): keep the chat and your conversation across pages and visits. Lawful basis: legitimate interest, to offer support on every page.
 - **`tablepro-session` and `XSRF-TOKEN`** (account portal cookies, 2 hours): keep you signed in and protect the portal's forms against cross-site request forgery. The portal's other pages, such as the purchase confirmation and the newsletter pages, set them too, and so does subscribing to the newsletter or starting a checkout or a discount code check from any page of this site. Lawful basis: strictly necessary.
 
@@ -174,6 +177,7 @@ We share personal data only with the services needed to run TablePro:
 - **Google**, for Google Analytics on the website and the account portal.
 - **Crisp**, for the live chat on every page of the website and the account portal.
 - **jsDelivr**, which serves {merchant}'s checkout script to your browser when you point at a Buy button.
+- **Mintlify**, which hosts the documentation at docs.tablepro.app.
 - **ip-api.com, ipinfo.io and geoplugin.net**, which receive IP addresses from usage reports for the country lookup.
 - **GitHub**, which hosts the update feed, the plugin catalog and the downloads.
 
@@ -181,7 +185,7 @@ We do not sell personal data and do not share it with advertisers.
 
 ## International transfers {#transfers}
 
-The services above operate in several countries, so your data may be processed outside your own. {merchant}, Google, GitHub and Cloudflare process data in the United States; Google does so under the EU-US Data Privacy Framework and Standard Contractual Clauses. Where the law requires it, transfers from the EEA and the UK rely on Standard Contractual Clauses or another approved mechanism.
+The services above operate in several countries, so your data may be processed outside your own. {merchant}, Google, GitHub, Cloudflare and Mintlify process data in the United States; Google does so under the EU-US Data Privacy Framework and Standard Contractual Clauses. Where the law requires it, transfers from the EEA and the UK rely on Standard Contractual Clauses or another approved mechanism.
 
 ## How long we keep data {#retention}
 

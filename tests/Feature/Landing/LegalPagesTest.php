@@ -67,8 +67,8 @@ it('renders each document in both languages under its own component', function (
 ]);
 
 it('formats the update date in each language on the server', function (): void {
-    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 5, 2026'));
-    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '5 tháng 10 năm 2026'));
+    get('/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', 'October 8, 2026'));
+    get('/vi/privacy')->assertInertia(fn(AssertableInertia $page) => $page->where('document.updatedAtFormatted', '8 tháng 10 năm 2026'));
 });
 
 it('indexes each document in every supported language', function (string $route): void {
@@ -183,6 +183,22 @@ it('sets no retention period the server does not keep', function (string $locale
     Assert::assertStringNotContainsStringIgnoringCase('aggregated', legalSource('privacy', $locale));
     Assert::assertStringNotContainsStringIgnoringCase('anonymous analytics', legalSource('privacy', $locale));
 })->with(['en', 'vi']);
+
+it('covers the documentation site, which Mintlify hosts without cookies', function (string $locale): void {
+    /*
+     * docs.tablepro.app set Google Analytics cookies on .tablepro.app with no
+     * consent until the docs config dropped its GA4 integration, which made
+     * "Google Analytics cookies are not set until you allow them" false for
+     * anyone who had opened the docs.
+     */
+    $intro = strtok(YamlFrontMatter::parse(legalSource('privacy', $locale))->body(), "\n");
+
+    expect($intro)->toContain('docs.tablepro.app');
+    expect(legalSection('privacy', $locale, 'website'))->toContain('docs.tablepro.app')->toContain('`mintlify_anonymous_id`')->toContain('Google Fonts');
+    expect(legalSection('privacy', $locale, 'cookies'))->toContain('`mintlify_anonymous_id`');
+    expect(legalSection('privacy', $locale, 'sharing'))->toContain('**Mintlify**');
+    expect(legalSection('privacy', $locale, 'transfers'))->toContain('Mintlify');
+})->with(fn(): array => array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']));
 
 it('discloses Cloudflare Web Analytics and states Google\'s default retention, never 14 months', function (string $locale, string $twoMonths, string $sixMonths): void {
     /*

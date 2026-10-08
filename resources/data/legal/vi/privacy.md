@@ -1,10 +1,10 @@
 ---
 title: Chính sách quyền riêng tư
 description: Ứng dụng, website và trang tài khoản của TablePro thu thập những gì, gửi đi đâu, lưu trong bao lâu, và cách bạn thay đổi hoặc xóa dữ liệu đó.
-updatedAt: "2026-10-05"
+updatedAt: "2026-10-08"
 ---
 
-Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
+Chính sách này áp dụng cho TablePro cho Mac, TablePro cho iPhone và iPad, website tablepro.app, trang tài liệu docs.tablepro.app và trang tài khoản tablepro.app/account. Chính sách mô tả đúng những gì từng thành phần đang gửi đi và lưu lại ở thời điểm hiện tại. Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, nên bạn có thể đọc phần mã gửi đi mọi dữ liệu nêu dưới đây trong [kho mã nguồn TablePro]({github}).
 
 ## Tóm tắt {#summary}
 
@@ -122,6 +122,8 @@ Handoff chuyển mã của connection đang mở và tên của table đang mở
 
 **Nguồn truy cập khi mua hàng.** Khi bạn vào website, trình duyệt giữ một bản ghi về lần truy cập đầu tiên, tên là `tablepro:attribution`, trong local storage trong 90 ngày: nguồn của lượt truy cập (các tag `ref` hoặc `utm_*` trên liên kết bạn đã theo, hoặc trang web đã dẫn bạn tới), trang bạn vào đầu tiên và thời điểm đó. Nếu bạn bắt đầu mua hàng, bản ghi này được gửi kèm yêu cầu thanh toán. Máy chủ của chúng tôi bỏ nó đi: bản ghi không được kiểm tra, đọc hay lưu lại, và không được chuyển cho {merchant}.
 
+**Tài liệu.** Trang tài liệu docs.tablepro.app do Mintlify lưu trữ và không đặt cookie. Mintlify giữ một ID người xem ngẫu nhiên, `mintlify_anonymous_id`, trong local storage của trình duyệt cho trang đó và dùng nó để đếm lượt xem tài liệu. Mintlify nhận địa chỉ IP và thông tin trình duyệt của bạn với mỗi trang, và các trang tải font từ Google Fonts. Cơ sở pháp lý: lợi ích hợp pháp.
+
 Khi bạn chỉ đọc các trang, website không tự đặt cookie nào. Việc đăng ký nhận bản tin, hoặc bắt đầu thanh toán hay kiểm tra mã giảm giá, gửi một yêu cầu tới máy chủ của chúng tôi và yêu cầu đó đặt hai cookie của trang tài khoản là `tablepro-session` và `XSRF-TOKEN`. Mọi thứ website giữ trong trình duyệt của bạn được liệt kê trong mục [Cookie và bộ nhớ trình duyệt](#cookies).
 
 ## Mua hàng {#purchases}
@@ -148,6 +150,7 @@ Khi bạn chỉ đọc website công khai, website không tự đặt cookie nà
 - **`tablepro:analytics-consent`** (local storage, cho tới khi bạn xóa): câu trả lời của bạn cho câu hỏi về phân tích, để bạn không bị hỏi lại ở mỗi trang. Website và trang tài khoản dùng chung giá trị này. Cơ sở pháp lý: thực sự cần thiết để tôn trọng lựa chọn của bạn.
 - **`tablepro:attribution`** (local storage, 90 ngày): bản ghi lần truy cập đầu tiên được mô tả trong mục [Website](#website). Bản ghi không chứa mã định danh nào của bạn và chỉ được gửi kèm yêu cầu thanh toán, nơi máy chủ của chúng tôi bỏ nó đi. Cơ sở pháp lý: lợi ích hợp pháp.
 - **`theme`** và **`tablepro:banner-dismissed`** (local storage, cho tới khi bạn xóa): giao diện bạn chọn (sáng, tối hoặc theo hệ thống), và banner nào bạn đã đóng cùng thời hạn ẩn: 30 ngày, hoặc một năm nếu bạn cho biết đã có license hoặc vừa mua license. Cơ sở pháp lý: lợi ích hợp pháp.
+- **`mintlify_anonymous_id`** (local storage trên docs.tablepro.app, do Mintlify đặt, cho tới khi bạn xóa): ID người xem được mô tả trong mục [Website](#website). Cơ sở pháp lý: lợi ích hợp pháp.
 - **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; được đặt trên mọi trang sau khi khung chat được tải): giữ khung chat và cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: lợi ích hợp pháp, để hỗ trợ bạn trên mọi trang.
 - **`tablepro-session` và `XSRF-TOKEN`** (cookie của trang tài khoản, 2 giờ): giữ trạng thái đăng nhập và bảo vệ các biểu mẫu của trang tài khoản trước tấn công giả mạo yêu cầu liên trang (CSRF). Các trang khác của trang tài khoản, như trang xác nhận mua hàng và các trang bản tin, cũng đặt hai cookie này, và việc đăng ký nhận bản tin hay bắt đầu thanh toán hoặc kiểm tra mã giảm giá từ bất kỳ trang nào của website này cũng vậy. Cơ sở pháp lý: thực sự cần thiết.
 
@@ -174,6 +177,7 @@ Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần t
 - **Google**, cho Google Analytics trên website và trang tài khoản.
 - **Crisp**, cho chat trực tuyến trên mọi trang của website và trang tài khoản.
 - **jsDelivr**, nơi trình duyệt của bạn tải script thanh toán của {merchant} khi bạn trỏ tới một nút Mua.
+- **Mintlify**, nơi lưu trữ trang tài liệu docs.tablepro.app.
 - **ip-api.com, ipinfo.io và geoplugin.net**, nhận địa chỉ IP từ các báo cáo sử dụng để tra quốc gia.
 - **GitHub**, nơi lưu nguồn cập nhật, danh mục plugin và các bản tải về.
 
@@ -181,7 +185,7 @@ Chúng tôi không bán dữ liệu cá nhân và không chia sẻ dữ liệu �
 
 ## Chuyển dữ liệu ra nước ngoài {#transfers}
 
-Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ liệu của bạn có thể được xử lý bên ngoài quốc gia của bạn. {merchant}, Google, GitHub và Cloudflare xử lý dữ liệu tại Hoa Kỳ; Google làm việc này theo Khung bảo vệ quyền riêng tư dữ liệu EU-Hoa Kỳ (EU-US Data Privacy Framework) và các Điều khoản hợp đồng mẫu (Standard Contractual Clauses). Khi pháp luật yêu cầu, việc chuyển dữ liệu từ EEA và Vương quốc Anh dựa trên các Điều khoản hợp đồng mẫu hoặc một cơ chế được phê duyệt khác.
+Các dịch vụ nêu trên hoạt động ở nhiều quốc gia, nên dữ liệu của bạn có thể được xử lý bên ngoài quốc gia của bạn. {merchant}, Google, GitHub, Cloudflare và Mintlify xử lý dữ liệu tại Hoa Kỳ; Google làm việc này theo Khung bảo vệ quyền riêng tư dữ liệu EU-Hoa Kỳ (EU-US Data Privacy Framework) và các Điều khoản hợp đồng mẫu (Standard Contractual Clauses). Khi pháp luật yêu cầu, việc chuyển dữ liệu từ EEA và Vương quốc Anh dựa trên các Điều khoản hợp đồng mẫu hoặc một cơ chế được phê duyệt khác.
 
 ## Thời gian lưu dữ liệu {#retention}
 

@@ -1,10 +1,10 @@
 ---
 title: 개인정보 처리방침
 description: TablePro 앱, 웹사이트 및 계정 포털이 수집하는 정보, 전송 대상, 보관 기간과 변경 또는 삭제 방법을 설명합니다.
-updatedAt: "2026-10-05"
+updatedAt: "2026-10-08"
 ---
 
-이 방침은 Mac용 TablePro, iPhone 및 iPad용 TablePro, tablepro.app 웹사이트 및 tablepro.app/account 계정 포털에 적용됩니다. 각 제품이 현재 실제로 전송하고 저장하는 정보를 설명합니다. 두 앱은 모두 AGPLv3로 공개된 오픈 소스이므로 아래 데이터를 전송하는 코드를 [TablePro 저장소]({github})에서 확인할 수 있습니다.
+이 방침은 Mac용 TablePro, iPhone 및 iPad용 TablePro, tablepro.app 웹사이트, docs.tablepro.app 문서 및 tablepro.app/account 계정 포털에 적용됩니다. 각 제품이 현재 실제로 전송하고 저장하는 정보를 설명합니다. 두 앱은 모두 AGPLv3로 공개된 오픈 소스이므로 아래 데이터를 전송하는 코드를 [TablePro 저장소]({github})에서 확인할 수 있습니다.
 
 ## 요약 {#summary}
 
@@ -122,6 +122,8 @@ Handoff는 Apple을 통해 사용자 자신의 기기 간에 열린 연결의 ID
 
 **구매 유입 기록.** 사이트에 도착하면 브라우저는 첫 방문 기록인 `tablepro:attribution`을 로컬 저장소에 90일간 보관합니다. 방문 출처(따라온 링크의 `ref` 또는 `utm_*` 태그나 유입 사이트), 처음 방문한 페이지 및 시간이 포함됩니다. 구매를 시작하면 결제 요청과 함께 전송됩니다. 당사 서버는 이를 폐기하며 검증, 읽기 또는 저장을 하지 않고 {merchant}에도 전달하지 않습니다.
 
+**문서.** docs.tablepro.app의 문서는 Mintlify가 호스팅하며 쿠키를 설정하지 않습니다. Mintlify는 해당 사이트용으로 브라우저의 로컬 저장소에 무작위 방문자 ID인 `mintlify_anonymous_id`를 저장하고, 이를 문서 방문 수 집계에 사용합니다. Mintlify는 페이지마다 IP 주소와 브라우저 정보를 받으며, 페이지는 Google Fonts에서 글꼴을 불러옵니다. 법적 근거: 정당한 이익.
+
 사이트를 읽는 것만으로는 자체 쿠키가 설정되지 않습니다. 뉴스레터 구독, 결제 시작 또는 할인 코드 확인 시 서버에 요청을 보내며 계정 포털 쿠키인 `tablepro-session`과 `XSRF-TOKEN`을 설정합니다. 사이트가 브라우저에 보관하는 모든 항목은 [쿠키 및 브라우저 저장소](#cookies)에 나와 있습니다.
 
 ## 구매 {#purchases}
@@ -148,6 +150,7 @@ tablepro.app/account의 [계정 포털](/account?locale=ko)은 라이선스 구�
 - **`tablepro:analytics-consent`**(로컬 저장소, 사용자가 지울 때까지): 분석 질문에 대한 응답을 저장해 페이지마다 다시 묻지 않게 합니다. 웹사이트와 계정 포털이 공유합니다. 법적 근거: 선택을 존중하기 위해 반드시 필요.
 - **`tablepro:attribution`**(로컬 저장소, 90일): [웹사이트](#website)에 설명된 첫 방문 기록입니다. 사용자 식별자는 없으며 결제 요청과 함께만 전송되고 서버에서 폐기됩니다. 법적 근거: 정당한 이익.
 - **`theme`** 및 **`tablepro:banner-dismissed`**(로컬 저장소, 사용자가 지울 때까지): 선택한 라이트, 다크 또는 시스템 화면 모드, 닫은 배너와 숨김 기한을 저장합니다. 기한은 30일이며 라이선스 보유를 표시하거나 구매하면 1년입니다. 법적 근거: 정당한 이익.
+- **`mintlify_anonymous_id`**(docs.tablepro.app의 로컬 저장소, Mintlify가 설정, 사용자가 지울 때까지): [웹사이트](#website)에 설명된 방문자 ID입니다. 법적 근거: 정당한 이익.
 - **`crisp-client/`로 시작하는 쿠키**(Crisp, 예: `crisp-client/session/…`, 6개월, 재방문 시 갱신, 채팅 로딩 후 모든 페이지에 설정): 페이지와 방문 간에 채팅과 대화를 유지합니다. 법적 근거: 모든 페이지에서 지원을 제공하기 위한 정당한 이익.
 - **`tablepro-session` 및 `XSRF-TOKEN`**(계정 포털 쿠키, 2시간): 로그인 상태를 유지하고 포털 양식을 사이트 간 요청 위조로부터 보호합니다. 구매 확인과 뉴스레터 페이지 같은 포털의 다른 페이지도 설정하며, 이 사이트의 어떤 페이지에서든 뉴스레터 구독, 결제 시작 또는 할인 코드 확인 시에도 설정합니다. 법적 근거: 반드시 필요.
 
@@ -174,6 +177,7 @@ tablepro.app/account의 [계정 포털](/account?locale=ko)은 라이선스 구�
 - **Google**: 웹사이트와 계정 포털의 Google Analytics.
 - **Crisp**: 웹사이트와 계정 포털 모든 페이지의 실시간 채팅.
 - **jsDelivr**: 구매 버튼에 포인터를 올릴 때 브라우저에 {merchant} 결제 스크립트를 제공합니다.
+- **Mintlify**: docs.tablepro.app의 문서를 호스팅합니다.
 - **ip-api.com, ipinfo.io 및 geoplugin.net**: 국가 조회를 위해 사용 보고서의 IP 주소를 받습니다.
 - **GitHub**: 업데이트 피드, 플러그인 카탈로그 및 다운로드를 호스팅합니다.
 
@@ -181,7 +185,7 @@ tablepro.app/account의 [계정 포털](/account?locale=ko)은 라이선스 구�
 
 ## 국외 이전 {#transfers}
 
-위 서비스는 여러 국가에서 운영되므로 개인정보가 거주 국가 밖에서 처리될 수 있습니다. {merchant}, Google, GitHub 및 Cloudflare는 미국에서 데이터를 처리합니다. Google은 EU-US Data Privacy Framework 및 표준계약조항에 따라 처리합니다. 법률상 필요한 경우 EEA 및 영국에서의 이전은 표준계약조항 또는 다른 승인된 방식에 근거합니다.
+위 서비스는 여러 국가에서 운영되므로 개인정보가 거주 국가 밖에서 처리될 수 있습니다. {merchant}, Google, GitHub, Cloudflare 및 Mintlify는 미국에서 데이터를 처리합니다. Google은 EU-US Data Privacy Framework 및 표준계약조항에 따라 처리합니다. 법률상 필요한 경우 EEA 및 영국에서의 이전은 표준계약조항 또는 다른 승인된 방식에 근거합니다.
 
 ## 보관 기간 {#retention}
 

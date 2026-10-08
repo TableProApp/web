@@ -1,10 +1,10 @@
 ---
 title: Datenschutzerklärung
 description: Welche Daten die TablePro-Apps, die Website und das Kontoportal erfassen, wohin sie gehen, wie lange sie bleiben und wie du sie änderst oder löschst.
-updatedAt: "2026-10-05"
+updatedAt: "2026-10-08"
 ---
 
-Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die Website tablepro.app und das Kontoportal tablepro.app/account. Sie beschreibt, was diese heute tatsächlich senden und speichern. Beide Apps sind quelloffen unter der AGPLv3. Den Code, der die unten genannten Daten sendet, kannst du im [TablePro-Repository]({github}) lesen.
+Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die Website tablepro.app, die Dokumentation unter docs.tablepro.app und das Kontoportal tablepro.app/account. Sie beschreibt, was diese heute tatsächlich senden und speichern. Beide Apps sind quelloffen unter der AGPLv3. Den Code, der die unten genannten Daten sendet, kannst du im [TablePro-Repository]({github}) lesen.
 
 ## Überblick {#summary}
 
@@ -122,6 +122,8 @@ Handoff übermittelt über Apple die ID der offenen Verbindung und den Namen der
 
 **Kaufzuordnung.** Bei deiner Ankunft auf der Website speichert dein Browser 90 Tage lang einen Erstbesuchsdatensatz namens `tablepro:attribution` im lokalen Speicher: die Herkunft des Besuchs (die `ref`- oder `utm_*`-Parameter des gefolgten Links oder die verweisende Website), die Einstiegsseite und den Zeitpunkt. Wenn du einen Kauf beginnst, wird der Datensatz mit der Checkout-Anfrage gesendet. Unser Server verwirft ihn: Er wird nicht validiert, gelesen oder gespeichert und nicht an {merchant} übermittelt.
 
+**Dokumentation.** Die Dokumentation unter docs.tablepro.app wird von Mintlify gehostet und setzt keine Cookies. Mintlify speichert eine zufällige Besucher-ID, `mintlify_anonymous_id`, im lokalen Speicher deines Browsers für diese Website und zählt damit die Besuche der Dokumentation. Mintlify erhält mit jeder Seite deine IP-Adresse und Angaben zu deinem Browser, und die Seiten laden ihre Schriften von Google Fonts. Rechtsgrundlage: berechtigtes Interesse.
+
 Das Lesen der Website setzt keine eigenen Cookies. Das Abonnieren des Newsletters oder das Starten eines Checkouts oder einer Rabattcodeprüfung sendet eine Anfrage an unseren Server, die die beiden Kontoportal-Cookies `tablepro-session` und `XSRF-TOKEN` setzt. Alles, was die Website in deinem Browser aufbewahrt, steht unter [Cookies und Browserspeicher](#cookies).
 
 ## Käufe {#purchases}
@@ -148,6 +150,7 @@ Das Lesen der öffentlichen Website setzt keine eigenen Cookies. Das Abonnieren 
 - **`tablepro:analytics-consent`** (lokaler Speicher, bis du ihn löschst): deine Antwort auf die Analysefrage, damit sie nicht auf jeder Seite erscheint. Website und Kontoportal teilen diesen Eintrag. Rechtsgrundlage: unbedingt erforderlich, um deine Wahl zu beachten.
 - **`tablepro:attribution`** (lokaler Speicher, 90 Tage): der unter [Website](#website) beschriebene Erstbesuchsdatensatz. Er enthält keine persönliche Kennung und wird nur mit einer Checkout-Anfrage gesendet, bei der unser Server ihn verwirft. Rechtsgrundlage: berechtigtes Interesse.
 - **`theme`** und **`tablepro:banner-dismissed`** (lokaler Speicher, bis du ihn löschst): deine Wahl zwischen heller, dunkler oder Systemdarstellung sowie ausgeblendetes Banner und Ausblendungsdauer: 30 Tage oder ein Jahr, wenn du angibst, eine Lizenz zu haben, oder eine kaufst. Rechtsgrundlage: berechtigtes Interesse.
+- **`mintlify_anonymous_id`** (lokaler Speicher auf docs.tablepro.app, von Mintlify gesetzt, bis du ihn löschst): die unter [Website](#website) beschriebene Besucher-ID. Rechtsgrundlage: berechtigtes Interesse.
 - **Cookies beginnend mit `crisp-client/`** (Crisp, etwa `crisp-client/session/…`; 6 Monate, bei Rückkehr erneuert; auf jeder Seite nach dem Laden des Chats gesetzt): halten Chat und Gespräch über Seiten und Besuche hinweg verfügbar. Rechtsgrundlage: berechtigtes Interesse, um auf jeder Seite Support anzubieten.
 - **`tablepro-session` und `XSRF-TOKEN`** (Kontoportal-Cookies, 2 Stunden): halten dich angemeldet und schützen Portalformulare vor Cross-Site-Request-Forgery. Andere Portalseiten wie Kaufbestätigung und Newsletterseiten setzen sie ebenfalls, ebenso das Abonnieren des Newsletters oder das Starten eines Checkouts oder einer Rabattcodeprüfung von jeder Seite dieser Website. Rechtsgrundlage: unbedingt erforderlich.
 
@@ -174,6 +177,7 @@ Wir teilen personenbezogene Daten nur mit den Diensten, die für den Betrieb von
 - **Google**, für Google Analytics auf Website und Kontoportal.
 - **Crisp**, für den Live-Chat auf jeder Seite von Website und Kontoportal.
 - **jsDelivr**, das deinem Browser das Checkout-Skript von {merchant} liefert, wenn du auf eine Kaufen-Schaltfläche zeigst.
+- **Mintlify**, das die Dokumentation unter docs.tablepro.app hostet.
 - **ip-api.com, ipinfo.io und geoplugin.net**, die IP-Adressen aus Nutzungsberichten zur Länderermittlung erhalten.
 - **GitHub**, das Update-Feed, Plugin-Katalog und Downloads hostet.
 
@@ -181,7 +185,7 @@ Wir verkaufen keine personenbezogenen Daten und teilen sie nicht mit Werbetreibe
 
 ## Internationale Übermittlungen {#transfers}
 
-Die genannten Dienste sind in mehreren Ländern tätig; deine Daten können daher außerhalb deines Landes verarbeitet werden. {merchant}, Google, GitHub und Cloudflare verarbeiten Daten in den USA. Google tut dies auf Grundlage des EU-US Data Privacy Framework und der Standardvertragsklauseln. Soweit gesetzlich erforderlich, stützen sich Übermittlungen aus dem EWR und dem Vereinigten Königreich auf Standardvertragsklauseln oder einen anderen genehmigten Mechanismus.
+Die genannten Dienste sind in mehreren Ländern tätig; deine Daten können daher außerhalb deines Landes verarbeitet werden. {merchant}, Google, GitHub, Cloudflare und Mintlify verarbeiten Daten in den USA. Google tut dies auf Grundlage des EU-US Data Privacy Framework und der Standardvertragsklauseln. Soweit gesetzlich erforderlich, stützen sich Übermittlungen aus dem EWR und dem Vereinigten Königreich auf Standardvertragsklauseln oder einen anderen genehmigten Mechanismus.
 
 ## Wie lange wir Daten aufbewahren {#retention}
 

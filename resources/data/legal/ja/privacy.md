@@ -1,10 +1,10 @@
 ---
 title: プライバシーポリシー
 description: TablePro のアプリ、ウェブサイト、アカウントポータルが収集する情報、送信先、保存期間、変更・削除方法を説明します。
-updatedAt: "2026-10-05"
+updatedAt: "2026-10-08"
 ---
 
-このポリシーは、Mac 版 TablePro、iPhone・iPad 版 TablePro、tablepro.app のウェブサイト、tablepro.app/account のアカウントポータルに適用されます。それぞれが現在実際に送信・保存している情報を説明します。両アプリは AGPLv3 のオープンソースで、以下のデータを送信するコードは [TablePro のリポジトリ]({github})で確認できます。
+このポリシーは、Mac 版 TablePro、iPhone・iPad 版 TablePro、tablepro.app のウェブサイト、docs.tablepro.app のドキュメント、tablepro.app/account のアカウントポータルに適用されます。それぞれが現在実際に送信・保存している情報を説明します。両アプリは AGPLv3 のオープンソースで、以下のデータを送信するコードは [TablePro のリポジトリ]({github})で確認できます。
 
 ## 概要 {#summary}
 
@@ -122,6 +122,8 @@ Handoff は Apple を通じて、お客様自身のデバイス間で、開い�
 
 **購入の流入元。**サイトに到着すると、ブラウザは初回訪問の記録を `tablepro:attribution` としてローカルストレージに 90 日間保存します。記録は訪問元（アクセスしたリンクの `ref`・`utm_*` タグ、またはリンク元サイト）、最初に開いたページ、日時です。購入を開始するとチェックアウトリクエストとともに送られますが、当社サーバーは破棄します。検証、読み取り、保存はせず、{merchant} にも渡しません。
 
+**ドキュメント。**docs.tablepro.app のドキュメントは Mintlify がホストしており、Cookie を設定しません。Mintlify はそのサイト用にブラウザのローカルストレージへランダムな訪問者 ID `mintlify_anonymous_id` を保存し、ドキュメントの訪問数の集計に使います。Mintlify はページごとにお客様の IP アドレスとブラウザの情報を受け取り、ページは Google Fonts からフォントを読み込みます。法的根拠：正当な利益。
+
 サイトの閲覧では、サイト独自の Cookie は設定されません。ニュースレター登録、チェックアウトの開始、割引コードの確認は当社サーバーへリクエストを送り、アカウントポータルの 2 つの Cookie、`tablepro-session` と `XSRF-TOKEN` を設定します。サイトがブラウザに保持する情報はすべて [Cookie とブラウザストレージ](#cookies)に掲載しています。
 
 ## 購入 {#purchases}
@@ -148,6 +150,7 @@ tablepro.app/account の[アカウントポータル](/account?locale=ja)は、�
 - **`tablepro:analytics-consent`**（ローカルストレージ、消去するまで）：解析の質問への回答を保存し、ページごとに質問しないようにします。ウェブサイトとアカウントポータルで共有します。法的根拠：お客様の選択を尊重するために厳密に必要。
 - **`tablepro:attribution`**（ローカルストレージ、90 日）：[ウェブサイト](#website)で説明した初回訪問の記録です。お客様の識別子は含まず、チェックアウトリクエストとともにのみ送られ、サーバーで破棄されます。法的根拠：正当な利益。
 - **`theme`** と **`tablepro:banner-dismissed`**（ローカルストレージ、消去するまで）：ライト、ダーク、システムの表示設定と、閉じたバナーおよび非表示の期限を保存します。期限は 30 日、ライセンスを持っていると申告した場合や購入した場合は 1 年です。法的根拠：正当な利益。
+- **`mintlify_anonymous_id`**（docs.tablepro.app のローカルストレージ、Mintlify が設定、消去するまで）：[ウェブサイト](#website)で説明した訪問者 ID です。法的根拠：正当な利益。
 - **`crisp-client/` で始まる Cookie**（Crisp、例：`crisp-client/session/…`、6 か月、再訪時に更新、チャット読み込み後はすべてのページで設定）：ページや訪問をまたいでチャットと会話を維持します。法的根拠：すべてのページでサポートを提供するための正当な利益。
 - **`tablepro-session` と `XSRF-TOKEN`**（アカウントポータルの Cookie、2 時間）：ログイン状態を維持し、ポータルのフォームをクロスサイトリクエストフォージェリから保護します。購入確認やニュースレターのページなど、ポータルの他のページでも設定します。このサイトのどのページからでも、ニュースレター登録、チェックアウト開始、割引コード確認で設定されます。法的根拠：厳密に必要。
 
@@ -174,6 +177,7 @@ tablepro.app/account の[アカウントポータル](/account?locale=ja)は、�
 - **Google**：ウェブサイトとアカウントポータルの Google Analytics。
 - **Crisp**：ウェブサイトとアカウントポータルのすべてのページのチャット。
 - **jsDelivr**：購入ボタンにポインタを合わせたとき、{merchant} のチェックアウトスクリプトをブラウザへ配信。
+- **Mintlify**：docs.tablepro.app のドキュメントをホスト。
 - **ip-api.com、ipinfo.io、geoplugin.net**：国を調べるため、利用状況レポートの IP アドレスを受領。
 - **GitHub**：更新フィード、プラグインカタログ、ダウンロードのホスト。
 
@@ -181,7 +185,7 @@ tablepro.app/account の[アカウントポータル](/account?locale=ja)は、�
 
 ## 国際移転 {#transfers}
 
-上記のサービスは複数の国で運営されており、お客様のデータが居住国外で処理される場合があります。{merchant}、Google、GitHub、Cloudflare は米国でデータを処理します。Google は EU-US Data Privacy Framework と標準契約条項に基づいて処理します。法律で必要な場合、EEA と英国からの移転は標準契約条項またはその他の承認された仕組みに基づきます。
+上記のサービスは複数の国で運営されており、お客様のデータが居住国外で処理される場合があります。{merchant}、Google、GitHub、Cloudflare、Mintlify は米国でデータを処理します。Google は EU-US Data Privacy Framework と標準契約条項に基づいて処理します。法律で必要な場合、EEA と英国からの移転は標準契約条項またはその他の承認された仕組みに基づきます。
 
 ## データの保存期間 {#retention}
 
