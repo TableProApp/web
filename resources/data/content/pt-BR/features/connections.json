@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Conexões, túneis e credenciais",
-        "lead": "Para quem tem bancos atrás de um bastion, cluster ou autenticação na nuvem: configure uma conexão uma vez, com a rota e a fonte de senha necessárias, e atribua regras mais rigorosas às conexões de produção. Tudo aqui está no app para Mac; a última seção trata do iPhone e iPad.",
+        "lead": "Para quem tem bancos atrás de um bastion, cluster ou autenticação na nuvem: configure uma conexão uma vez, com a rota e a fonte de senha necessárias, e atribua regras mais rigorosas às conexões de produção. Tudo aqui está no app para Mac. O app para iPhone e iPad cobre uma parte.",
         "docs": "/connections"
     },
     "sections": [
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "De outro cliente de banco de dados",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> lê as conexões salvas em {connectionImportApps}, incluindo a edição Setapp do TablePlus, e traz as senhas de onde o app as armazenou, incluindo as senhas criptografadas do DBeaver e Navicat. As conexões Navicat vêm de um arquivo de exportação <code>.ncx</code>."
+                        "<ui>Import from Other App</ui> lê as conexões salvas em {connectionImportApps}, incluindo a edição Setapp do TablePlus. Traz as senhas de onde o app as armazenou, incluindo as senhas criptografadas do DBeaver e Navicat. As conexões Navicat vêm de um arquivo de exportação <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "Proxies, Cloudflare, Cloud SQL e comandos de túnel",
                     "paragraphs": [
-                        "Quando SSH não é o caminho, a aba Network conecta por um proxy SOCKS5 com DNS remoto, pelo Cloudflare Access, em que TablePro executa <code>cloudflared</code> e autentica pelo navegador ou token de serviço, ou pelo Cloud SQL Auth Proxy, que TablePro baixa, verifica e executa para {cloudSqlProxy}.",
+                        "Quando SSH não é o caminho, a aba Network conecta por um proxy SOCKS5 com DNS remoto. Também conecta pelo Cloudflare Access, em que TablePro executa <code>cloudflared</code> e autentica pelo navegador ou token de serviço. Para {cloudSqlProxy}, conecta pelo Cloud SQL Auth Proxy, que TablePro baixa, verifica e executa.",
                         "Tunnel Command inicia <code>kubectl port-forward</code>, <code>aws ssm start-session</code> ou um comando seu e depois conecta à porta local aberta. Uma conexão também pode executar um script de shell antes de conectar, pedindo confirmação a cada sessão, e instruções SQL logo após."
                     ],
                     "asset": "mac-tunnel-command"
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "Autentique com sua conta na nuvem",
             "paragraphs": [
-                "A autenticação de banco AWS IAM assina um token novo a cada conexão, a partir de uma chave de acesso, perfil em <code>~/.aws</code> (com <code>credential_process</code> e funções assumidas) ou AWS IAM Identity Center, e eleva TLS a Required. Amazon ElastiCache for Redis, Amazon Keyspaces e DynamoDB têm sua própria assinatura AWS.",
+                "A autenticação de banco AWS IAM assina um token novo a cada conexão, a partir de uma chave de acesso, perfil em <code>~/.aws</code> (com <code>credential_process</code> e funções assumidas) ou AWS IAM Identity Center. Também eleva TLS a Required. Amazon ElastiCache for Redis, Amazon Keyspaces e DynamoDB têm sua própria assinatura AWS.",
                 "SQL Server autentica com Microsoft Entra ID pelo navegador, usando o ID de cliente de um registro de app fornecido por você, ou com Kerberos a partir de um ticket ou principal e senha. Google BigQuery aceita chave de conta de serviço, Application Default Credentials ou Google OAuth com seu próprio cliente, e Google Cloud Spanner e Cloud SQL Auth Proxy podem usar sua conta Google."
             ],
             "engines": [
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Escreva <code>$DB_HOST</code> nos campos host, banco, nome de usuário, host SSH, usuário e caminho de chave SSH, caminhos SSL, comandos de inicialização ou campos do driver, e TablePro preenche o valor a partir de seu próprio ambiente ao conectar. Porta e senha nunca são lidas dessa forma; atribua uma fonte à senha."
+                        "Escreva <code>$DB_HOST</code> nos campos host, banco, nome de usuário, host SSH, usuário e caminho de chave SSH, caminhos de certificados TLS, comandos de inicialização ou campos do driver, e TablePro preenche o valor a partir de seu próprio ambiente ao conectar. Porta e senha nunca são lidas dessa forma; atribua uma fonte à senha."
                     ],
                     "paid": [
                         "environment-variables"

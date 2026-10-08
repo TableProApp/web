@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Schema, confronto e sincronizzazione",
-        "lead": "Per cambiare la struttura di un database e mantenere allineati due database: modifica una tabella con il DDL davanti a te, scopri le relazioni tra tabelle, allinea staging e sviluppo oppure copia tabelle su un altro server o motore. Tutto è disponibile nell’app per Mac; l’ultima sezione riguarda iPhone e iPad.",
+        "lead": "Per cambiare la struttura di un database e mantenere allineati due database. Modifica una tabella con il DDL davanti a te, scopri le relazioni tra tabelle, allinea staging e sviluppo oppure copia tabelle su un altro server o motore. Tutto è disponibile nell’app per Mac. L’app per iPhone e iPad ne copre una parte.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Scegli origine e destinazione, che possono essere due server o due database sullo stesso server; Compare & Sync elenca tutte le tabelle diverse, con viste, routine e trigger se li includi. In modalità dati abbina le righe per chiave e contrassegna ogni valore diverso, con un filtro e un limite di righe per tabella, così puoi confrontare una porzione di una grande tabella.",
-                "Lo script generato è ordinato per chiavi esterne e scritto per il client della destinazione. Le istruzioni che distruggono dati, come eliminare colonne, restringere tipi o cancellare righe, restano escluse finché non le autorizzi per quell’esecuzione; una connessione impostata su Read-Only non può essere scelta come destinazione. Salva un confronto per rieseguirlo con un clic."
+                "Scegli origine e destinazione, che possono essere due server o due database sullo stesso server. Compare & Sync elenca tutte le tabelle diverse, con viste, routine e trigger se li includi. In modalità dati abbina le righe per chiave e contrassegna ogni valore diverso, con un filtro e un limite di righe per tabella, così puoi confrontare una porzione di una grande tabella.",
+                "Lo script generato è ordinato per chiavi esterne e scritto per il client della destinazione. Le istruzioni che distruggono dati, come eliminare colonne, restringere tipi o cancellare righe, restano escluse finché non le autorizzi per quell’esecuzione. Una connessione impostata su Read-Only non può essere scelta come destinazione. Salva un confronto per rieseguirlo con un clic."
             ],
             "paid": [
                 "compare-sync"
@@ -74,7 +74,7 @@
             "id": "copy",
             "title": "Copy To, Duplicate Database e Transfer To",
             "paragraphs": [
-                "Copy To invia tabelle, viste, routine e trigger, come struttura, dati o entrambi, a un altro database su qualsiasi connessione salvata, anche con un motore diverso. Prima di ogni scrittura, una revisione elenca il DDL, le righe previste per ogni tabella e tutti i tipi di colonna modificati durante il trasferimento, come una colonna <code>ENUM</code> di MariaDB che arriva in PostgreSQL come <code>VARCHAR</code> senza l’elenco dei valori consentiti. Una clausola WHERE e un limite di righe per tabella permettono di copiarne solo una parte.",
+                "Copy To invia tabelle, viste, routine e trigger, come struttura, dati o entrambi, a un altro database su qualsiasi connessione salvata, anche con un motore diverso. Prima di ogni scrittura, una revisione elenca il DDL, le righe previste per ogni tabella e tutti i tipi di colonna modificati durante il trasferimento. Una colonna <code>ENUM</code> di MariaDB, per esempio, arriva in PostgreSQL come <code>VARCHAR</code> senza l’elenco dei valori consentiti. Una clausola WHERE e un limite di righe per tabella permettono di copiarne solo una parte.",
                 "Duplicate Database copia un intero database con un nuovo nome sulla stessa connessione. Transfer To sposta le righe direttamente in una tabella esistente su un’altra connessione aperta, con una mappatura delle colonne e senza file intermedi. Tutti e tre sono gratuiti."
             ],
             "asset": "mac-copy-to-review"

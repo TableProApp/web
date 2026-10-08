@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Esquemas, comparación y sincronización",
-        "lead": "Para modificar estructuras y mantener dos bases alineadas: edita tablas viendo el DDL, comprende sus relaciones, alinea staging con desarrollo o copia tablas a otro servidor o motor. Todo está en la app para Mac; la última sección cubre iPhone y iPad.",
+        "lead": "Para modificar estructuras y mantener dos bases alineadas. Edita tablas viendo el DDL, comprende sus relaciones, alinea staging con desarrollo o copia tablas a otro servidor o motor. Todo lo descrito aquí está en la app para Mac. La app para iPhone y iPad cubre una parte.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Elige origen y destino, dos servidores o dos bases en uno, y Compare & Sync lista todas las tablas distintas, con vistas, rutinas y triggers si los incluyes. En modo datos empareja filas por clave y marca valores distintos, con filtro y límite de filas por tabla para comparar una parte de tablas grandes.",
-                "El script generado se ordena por claves foráneas y se escribe para el cliente propio del destino. Las sentencias destructivas, como eliminar columnas, reducir tipos o borrar filas, se retienen hasta que las permitas para esa ejecución; una conexión Read-Only no puede ser destino. Guarda una comparación para repetirla con un clic."
+                "Elige origen y destino, dos servidores o dos bases en uno. Compare & Sync lista todas las tablas distintas, con vistas, rutinas y triggers si los incluyes. En modo datos empareja filas por clave y marca valores distintos, con filtro y límite de filas por tabla para comparar una parte de tablas grandes.",
+                "El script generado se ordena por claves foráneas y se escribe para el cliente propio del destino. Las sentencias destructivas, como eliminar columnas, reducir tipos o borrar filas, se retienen hasta que las permitas para esa ejecución. una conexión Read-Only no puede ser destino. Guarda una comparación para repetirla con un clic."
             ],
             "paid": [
                 "compare-sync"
@@ -74,7 +74,7 @@
             "id": "copy",
             "title": "Copy To, Duplicate Database y Transfer To",
             "paragraphs": [
-                "Copy To envía tablas, vistas, rutinas y triggers, estructura, datos o ambos, a otra base de cualquier conexión guardada, incluso otro motor. Antes de escribir, una revisión lista el DDL, las filas esperadas y los tipos que cambian, como <code>ENUM</code> de MariaDB que llega a PostgreSQL como <code>VARCHAR</code> sin lista de valores permitidos. WHERE y límite por tabla permiten copiar solo una parte.",
+                "Copy To envía tablas, vistas, rutinas y triggers, estructura, datos o ambos, a otra base de cualquier conexión guardada, incluso otro motor. Antes de escribir, una revisión lista el DDL, las filas esperadas y los tipos que cambian. Por ejemplo, <code>ENUM</code> de MariaDB llega a PostgreSQL como <code>VARCHAR</code> sin lista de valores permitidos. WHERE y límite por tabla permiten copiar solo una parte.",
                 "Duplicate Database copia una base completa con nombre nuevo en la misma conexión. Transfer To mueve filas directamente a una tabla existente en otra conexión abierta, con correspondencia de columnas y sin archivo intermedio. Las tres son gratis."
             ],
             "asset": "mac-copy-to-review"

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Schema, compare and sync",
-        "lead": "For changing a database’s structure and keeping two databases in step: edit a table with the DDL in front of you, see how the tables relate, bring staging in line with development, or copy tables to another server or engine. Everything here is in the Mac app; the last section covers iPhone and iPad.",
+        "lead": "For changing a database’s structure and keeping two databases in step. Edit a table with the DDL in front of you, see how the tables relate, bring staging in line with development, or copy tables to another server or engine. Everything here is in the Mac app. The iPhone and iPad app does part of it.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -56,8 +56,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Pick a source and a target, which can be two servers or two databases on one server, and Compare & Sync lists every table that differs, with views, routines and triggers if you include them. In data mode it matches rows by key and marks each value that differs, with a filter and a row limit per table, so you can compare one stretch of a large table.",
-                "The script it generates is ordered by foreign keys and written for the target’s own client. Statements that destroy data, such as dropping a column, narrowing a type or deleting rows, are held back until you allow them for that run, and a connection set to Read-Only cannot be picked as the target. Save a comparison to run it again in one click."
+                "Pick a source and a target, which can be two servers or two databases on one server. Compare & Sync lists every table that differs, with views, routines and triggers if you include them. In data mode it matches rows by key and marks each value that differs, with a filter and a row limit per table, so you can compare one stretch of a large table.",
+                "The script it generates is ordered by foreign keys and written for the target’s own client. Statements that destroy data, such as dropping a column, narrowing a type or deleting rows, are held back until you allow them for that run. A connection set to Read-Only cannot be picked as the target. Save a comparison to run it again in one click."
             ],
             "paid": ["compare-sync"],
             "asset": "mac-compare-sync-structure"
@@ -66,7 +66,7 @@
             "id": "copy",
             "title": "Copy To, Duplicate Database and Transfer To",
             "paragraphs": [
-                "Copy To sends tables, views, routines and triggers, as structure, data or both, to another database on any saved connection, including one running a different engine. Before anything is written, a review lists the DDL, the rows each table expects and every column type that changes on the way, such as an <code>ENUM</code> column from MariaDB arriving in PostgreSQL as <code>VARCHAR</code> without its list of allowed values. A WHERE clause and a row limit per table copy part of a table.",
+                "Copy To sends tables, views, routines and triggers, as structure, data or both, to another database on any saved connection, including one running a different engine. Before anything is written, a review lists the DDL, the rows each table expects and every column type that changes on the way. An <code>ENUM</code> column from MariaDB, for example, arrives in PostgreSQL as <code>VARCHAR</code> without its list of allowed values. A WHERE clause and a row limit per table copy part of a table.",
                 "Duplicate Database copies a whole database under a new name on the same connection. Transfer To moves rows straight into an existing table on another open connection, with a column mapping and no file in between. All three are free."
             ],
             "asset": "mac-copy-to-review"

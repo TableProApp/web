@@ -18,12 +18,12 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync menyamakan pustaka di setiap Mac, iPhone, dan iPad yang masuk ke akun iCloud Anda. Rekaman masuk ke database privat dalam akun tersebut, dan sinkronisasi tetap nonaktif hingga Anda mengaktifkannya pada setiap perangkat. Di iPhone dan iPad fitur ini gratis; Mac memerlukan paket yang mencakupnya.",
-                "Kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Sync Categories pada Mac, atau <ui>Sync Passwords</ui> pada iPhone dan iPad, melalui Rantai Kunci iCloud. Pada Mac, fitur ini juga membawa rahasia lain yang disimpan TablePro di Rantai Kunci, seperti kunci penyedia AI dan kunci lisensi. Tandai koneksi sebagai Local only untuk menyimpannya, beserta favorit dan kueri tersimpan, pada satu Mac."
+                "Kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Sync Categories pada Mac, atau <ui>Sync Passwords</ui> pada iPhone dan iPad. Kata sandi dikirim melalui Rantai Kunci iCloud. Pada Mac, sakelar yang sama juga membawa rahasia lain yang disimpan TablePro di Rantai Kunci, seperti kunci penyedia AI dan kunci lisensi. Tandai koneksi sebagai Local only untuk menyimpannya, beserta favorit dan kueri tersimpan, pada satu Mac."
             ],
             "points": [
                 "Di Mac Anda memilih yang disinkronkan: koneksi, grup dan tag, pengaturan, profil SSH, profil kredensial (nama dan nama pengguna, tanpa kata sandi), tabel dan database favorit, kueri tersimpan beserta SQL-nya, dan folder tabel.",
                 "Di iPhone dan iPad: koneksi, grup, dan tag.",
-                "Koneksi yang disinkronkan membawa host, port, nama pengguna, database, pengaturan SSH dan SSL, perintah startup, skrip prakoneksi, dan aturan AI.",
+                "Koneksi yang disinkronkan membawa host, port, nama pengguna, database, pengaturan SSH dan TLS, perintah startup, skrip prakoneksi, dan aturan AI.",
                 "Tidak pernah disinkronkan: riwayat kueri, Data Rewind, sumber kata sandi, perintah tunnel, serta level External Clients setiap koneksi."
             ],
             "paid": [
@@ -47,7 +47,7 @@
             "title": "Bagikan koneksi",
             "paragraphs": [
                 "Ekspor koneksi ke file <code>.tablepro</code> untuk dikirim ke rekan kerja atau disimpan bersama kode. File berisi koneksi dengan grup, tag, dan pengaturan SSH, tanpa kata sandi. Encrypted Export menambahkan kata sandi dan melindungi seluruh file dengan frasa sandi memakai AES-256-GCM. Impor file, terenkripsi atau tidak, gratis di Mac maupun iPhone dan iPad.",
-                "Di iPhone dan iPad, ekspor dengan kata sandi yang dilindungi frasa sandi gratis. Koneksi juga dapat dikirim sebagai tautan <code>tablepro://import</code>, yang membawa host, port, nama pengguna, database, serta pengaturan SSH dan SSL, tanpa kata sandi."
+                "Di iPhone dan iPad, ekspor dengan kata sandi yang dilindungi frasa sandi gratis. Koneksi juga dapat dikirim sebagai tautan <code>tablepro://import</code>, yang membawa host, port, nama pengguna, database, serta pengaturan SSH dan TLS, tanpa kata sandi."
             ],
             "paid": [
                 "encrypted-export"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> pada koneksi dan <ui>Publish Saved Queries to Team…</ui> di sidebar Favorites mengunggah koneksi serta kueri tersimpan ke server TablePro, lalu setiap Mac dalam lisensi mengunduhnya; kueri tampil di Favorites dengan nama penerbitnya. Yang diunggah adalah pengaturan koneksi dan teks SQL kueri, bukan kata sandi; Mac rekan tim mengabaikan perintah startup dan tunnel yang diterima, sehingga tidak ada yang berjalan sendiri. Publikasi ulang mengganti yang diterbitkan sebelumnya."
+                        "<ui>Share > Publish to Team Library…</ui> pada koneksi dan <ui>Publish Saved Queries to Team…</ui> di sidebar Favorites mengunggah koneksi serta kueri tersimpan ke server TablePro. Setiap Mac dalam lisensi mengunduhnya, dan kueri tampil di Favorites dengan nama penerbitnya. Yang diunggah adalah pengaturan koneksi dan teks SQL kueri, bukan kata sandi; Mac rekan tim mengabaikan perintah startup dan tunnel yang diterima, sehingga tidak ada yang berjalan sendiri. Publikasi ulang mengganti yang diterbitkan sebelumnya."
                     ],
                     "paid": [
                         "team-library"
@@ -192,8 +192,8 @@
         }
     ],
     "limits": [
-        "Saat paket berakhir di Mac, iCloud Sync dijeda dan menjelaskan alasannya; koneksi dari Linked Folders dan Team Library hilang dari daftar, perintah publikasi Team disembunyikan, dan Encrypted Export kehilangan opsi kata sandi.",
-        "Mengedit koneksi tersinkron di iPhone atau iPad dapat mengubah pengaturan yang tidak dimiliki aplikasi tersebut: level Safe Mode Mac yang lebih ketat, seperti Safe Mode (Full), kembali sebagai Alert, dan jump host SSH mungkin tidak dipertahankan. Ubah koneksi tersebut di Mac.",
+        "Saat paket berakhir di Mac, iCloud Sync dijeda dan menjelaskan alasannya, dan koneksi dari Linked Folders dan Team Library hilang dari daftar. Perintah publikasi Team disembunyikan, dan Encrypted Export kehilangan opsi kata sandi.",
+        "Mengedit koneksi tersinkron di iPhone atau iPad dapat mengubah pengaturan yang tidak dimiliki aplikasi tersebut. Level Safe Mode Mac yang lebih ketat, seperti Safe Mode (Full), kembali sebagai Alert, dan jump host SSH mungkin tidak dipertahankan. Ubah koneksi tersebut di Mac.",
         "Jika lisensi Team berakhir atau ditangguhkan, publikasi di Team Library tetap berada di server TablePro hingga Anda meminta penghapusannya."
     ],
     "docs": [

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Connessioni, tunnel e credenziali",
-        "lead": "Per chi ha database dietro un bastion, un cluster o un accesso cloud: configura una connessione una volta, con il percorso e la sorgente della password necessari, e assegna regole più restrittive a quelle di produzione. Tutto è disponibile nell’app per Mac; l’ultima sezione riguarda iPhone e iPad.",
+        "lead": "Per chi ha database dietro un bastion, un cluster o un accesso cloud: configura una connessione una volta, con il percorso e la sorgente della password necessari, e assegna regole più restrittive a quelle di produzione. Tutto è disponibile nell’app per Mac. L’app per iPhone e iPad ne copre una parte.",
         "docs": "/connections"
     },
     "sections": [
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Da un altro client database",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> legge le connessioni salvate in {connectionImportApps}, inclusa l’edizione Setapp di TablePlus, e trasferisce le password da dove l’app le conserva, comprese quelle cifrate di DBeaver e Navicat. Le connessioni Navicat provengono da un file di esportazione <code>.ncx</code>."
+                        "<ui>Import from Other App</ui> legge le connessioni salvate in {connectionImportApps}, inclusa l’edizione Setapp di TablePlus. Trasferisce le password da dove l’app le conserva, comprese quelle cifrate di DBeaver e Navicat. Le connessioni Navicat provengono da un file di esportazione <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "Proxy, Cloudflare, Cloud SQL e comandi di tunneling",
                     "paragraphs": [
-                        "Quando SSH non è la strada d’accesso, la scheda Network si connette tramite un proxy SOCKS5 con DNS remoto, Cloudflare Access, dove TablePro esegue <code>cloudflared</code> e accede tramite browser o token di servizio, oppure Cloud SQL Auth Proxy, che TablePro scarica, verifica ed esegue per {cloudSqlProxy}.",
+                        "Quando SSH non è la strada d’accesso, la scheda Network si connette tramite un proxy SOCKS5 con DNS remoto. Si connette anche tramite Cloudflare Access, dove TablePro esegue <code>cloudflared</code> e accede tramite browser o token di servizio. Per {cloudSqlProxy}, si connette tramite Cloud SQL Auth Proxy, che TablePro scarica, verifica ed esegue.",
                         "Tunnel Command avvia <code>kubectl port-forward</code>, <code>aws ssm start-session</code> o un tuo comando e si connette alla porta locale aperta. Una connessione può anche eseguire uno script shell prima di connettersi, chiedendo conferma a ogni sessione, e istruzioni SQL subito dopo."
                     ],
                     "asset": "mac-tunnel-command"
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "Accedi con il tuo account cloud",
             "paragraphs": [
-                "L’autenticazione database AWS IAM firma un nuovo token a ogni connessione, da una chiave di accesso, un profilo in <code>~/.aws</code> (con <code>credential_process</code> e ruoli assunti) oppure AWS IAM Identity Center e porta TLS a Required. Amazon ElastiCache for Redis, Amazon Keyspaces e DynamoDB hanno una propria firma AWS.",
+                "L’autenticazione database AWS IAM firma un nuovo token a ogni connessione, da una chiave di accesso, un profilo in <code>~/.aws</code> (con <code>credential_process</code> e ruoli assunti) oppure AWS IAM Identity Center. Porta anche TLS a Required. Amazon ElastiCache for Redis, Amazon Keyspaces e DynamoDB hanno una propria firma AWS.",
                 "SQL Server accede con Microsoft Entra ID nel browser, usando l’ID client di una registrazione di app fornita da te, oppure con Kerberos da un ticket o un principal e password. Google BigQuery accetta una chiave di account di servizio, Application Default Credentials oppure Google OAuth con il tuo client; Google Cloud Spanner e Cloud SQL Auth Proxy possono usare il tuo account Google."
             ],
             "engines": [
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Scrivi <code>$DB_HOST</code> nei campi host, database, nome utente, host SSH, utente e percorso della chiave SSH, percorsi SSL, comandi di avvio o campi del driver; TablePro inserisce il valore dal proprio ambiente quando si connette. Porta e password non vengono mai lette così; assegna invece una sorgente alla password."
+                        "Scrivi <code>$DB_HOST</code> nei campi host, database, nome utente, host SSH, utente e percorso della chiave SSH, percorsi dei certificati TLS, comandi di avvio o campi del driver; TablePro inserisce il valore dal proprio ambiente quando si connette. Porta e password non vengono mai lette così; assegna invece una sorgente alla password."
                     ],
                     "paid": [
                         "environment-variables"

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Assistant IA et serveur MCP",
-        "lead": "Pour les développeurs voulant une aide SQL d’un modèle choisi ou un client IA sur leurs bases : questions sur le schéma, contrôle ou correction des requêtes, utilisation des connexions par Claude Code et Cursor. Tout est facultatif et uniquement sur Mac ; rien n’atteint un modèle avant ajout d’un fournisseur ou connexion d’un client.",
+        "lead": "Pour les développeurs voulant une aide SQL d’un modèle choisi ou un client IA sur leurs bases. Questions sur le schéma, contrôle ou correction des requêtes, utilisation des connexions par des clients MCP (Model Context Protocol) comme Claude Code et Cursor. Tout est facultatif et uniquement sur Mac ; rien n’atteint un modèle avant ajout d’un fournisseur ou connexion d’un client.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Connectez un client",
                     "paragraphs": [
-                        "<ui>Réglages > Intégrations</ui> (Settings > Integrations) fournit les étapes et un extrait pour {mcpSetupClients}. Le pont <code>tablepro-mcp</code> fourni fonctionne aussi avec {mcpBridgeClients} : il démarre TablePro au besoin et trouve le serveur, sans port ni jeton dans la configuration. L’extension officielle Raycast s’associe à l’application, avec approbation sur Mac.",
+                        "<ui>Réglages > Intégrations</ui> (Settings > Integrations) fournit les étapes et un extrait pour {mcpSetupClients}. Le pont <code>tablepro-mcp</code> fourni fonctionne aussi avec {mcpBridgeClients}. Il démarre TablePro au besoin et trouve le serveur, sans port ni jeton dans la configuration. L’extension officielle Raycast s’associe à l’application, avec approbation sur Mac.",
                         "Exemple : cherchez des utilisateurs partageant une adresse e-mail. Le client peut appeler <code>list_tables</code> et <code>describe_table</code>, trouver <code>email_address</code> et exécuter SELECT via la connexion enregistrée, sans coller le schéma dans le chat."
                     ]
                 },

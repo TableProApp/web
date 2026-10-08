@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "Yang dapat Anda lakukan di TablePro",
-        "lead": "Aplikasi Mac adalah lingkungan kerja lengkap, dan setiap halaman di bawah menjelaskannya terlebih dahulu. Aplikasi iPhone dan iPad adalah aplikasi native terpisah dengan cakupan lebih kecil; setiap halaman diakhiri dengan fitur yang tersedia di sana."
+        "lead": "Aplikasi Mac adalah lingkungan kerja lengkap. Aplikasi iPhone dan iPad adalah aplikasi native terpisah dengan cakupan lebih kecil, dan setiap halaman fitur menyebutkan yang tersedia di sana."
     },
     "areas": {
-        "title": "Area fitur",
-        "lead": "Setiap area memiliki halaman berisi detail, paket yang diperlukan setiap bagian di Mac, dan batasan yang perlu diketahui.",
-        "paid": "{tier}: {features}",
+        "title": "Fitur menurut tugas",
+        "paid": "Paket {tier}: {features}",
         "noPaid": "Tidak ada fitur berbayar",
         "items": [
             {
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Asisten AI opsional yang memakai penyedia pilihan Anda, serta server MCP lokal yang memungkinkan klien seperti Claude Code dan Cursor memakai koneksi tersimpan."
+                "summary": "Asisten AI opsional yang memakai penyedia pilihan Anda, serta server MCP (Model Context Protocol) lokal yang memungkinkan klien seperti Claude Code dan Cursor memakai koneksi tersimpan."
             },
             {
                 "slug": "connections",

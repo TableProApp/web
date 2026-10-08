@@ -1369,14 +1369,14 @@ SiteHeader
              │ See pricing →  (localePath('/#pricing'): /#pricing or /vi#pricing)
     cols 1–12 ▒ mac-hero-window  16:9  1216×684        (< 768: ▒ mac-hero-window-mobile  4:5)
 §2  DATABASES  #databases
-    H2 + lead (cols 1–7) · EngineList (featured engines as cells, 2 / 3 / 6 across; the list by category rail to rail)
+    H2 + lead (cols 1–7) · the featured engines as cells, 2 / 3 / 6 across · the engine count and the hub's categories as links
     one small line: built-in drivers vs drivers downloaded on first pick · the engines that open on iPhone (names)
     Supported databases →  (/databases)
 §3  SPONSORS  #sponsors                         compact · flush: the logo cells close on the next join
     H2 (h3 style) · SponsorList (the 4 verified sponsors, cells 2 × 2, four across from 768) · Sponsor TablePro ↗
-§4  WORKFLOWS  #features                        H2 + lead, then five FeatureRows (H3 each) as cells, flush, in this order
+§4  WORKFLOWS  #features                        H2, then five FeatureRows (H3 each) as cells, flush, in this order
     Query                                  ▒ mac-query-autocomplete      window row   Querying →
-    Edit data                              ▒ mac-edit-preview-sql        window row   Data editing →
+    Edit data                              ▒ mac-edit-preview-sql        window row   Data editing → · Schema →
     Schemas and sync (Compare & Sync: Starter)  ▒ mac-compare-sync-structure  window row   Schema →
     Files                                  ▒ mac-data-files-window       window row   Import & export →
     Connect                                ▒ mac-connection-ssh-form     detail row   Connections →

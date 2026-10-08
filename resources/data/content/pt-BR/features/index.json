@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "O que você pode fazer no TablePro",
-        "lead": "O app para Mac é a ferramenta completa, e todas as páginas abaixo o descrevem primeiro. O app para iPhone e iPad é um app nativo separado com escopo menor; cada página termina explicando o que ele oferece."
+        "lead": "O app para Mac é a ferramenta completa. O app para iPhone e iPad é um app nativo separado com escopo menor; cada página de recursos diz o que ele oferece."
     },
     "areas": {
-        "title": "Áreas de recursos",
-        "lead": "Cada área tem uma página com os detalhes, o plano que cada parte exige no Mac e os limites que você precisa conhecer.",
-        "paid": "{tier}: {features}",
+        "title": "Recursos por tarefa",
+        "paid": "Plano {tier}: {features}",
         "noPaid": "Sem recursos pagos",
         "items": [
             {
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Um assistente de IA opcional que usa o provedor escolhido por você e um servidor MCP local que permite que clientes como Claude Code e Cursor usem suas conexões salvas."
+                "summary": "Um assistente de IA opcional que usa o provedor escolhido por você e um servidor MCP (Model Context Protocol) local que permite que clientes como Claude Code e Cursor usem suas conexões salvas."
             },
             {
                 "slug": "connections",

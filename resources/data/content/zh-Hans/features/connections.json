@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "连接、隧道和凭据",
-        "lead": "如果数据库位于堡垒机、集群或云账户登录之后，只需设置一次连接所需的访问路径和密码来源，并为生产连接制定更严格的规则。本页介绍的功能均在 Mac 应用中，最后一节介绍 iPhone 和 iPad。",
+        "lead": "如果数据库位于堡垒机、集群或云账户登录之后，只需设置一次连接所需的访问路径和密码来源，并为生产连接制定更严格的规则。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
         "docs": "/connections"
     },
     "sections": [
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "从其他数据库客户端导入",
                     "paragraphs": [
-                        "<ui>从其他应用导入</ui>（Import from Other App）读取 {connectionImportApps} 中保存的连接，包括 TablePlus 的 Setapp 版，并从这些应用的存储位置导入密码，也支持 DBeaver 和 Navicat 保存的加密密码。Navicat 连接从 <code>.ncx</code> 导出文件读取。"
+                        "<ui>从其他应用导入</ui>（Import from Other App）读取 {connectionImportApps} 中保存的连接，包括 TablePlus 的 Setapp 版。它会从这些应用的存储位置导入密码，也支持 DBeaver 和 Navicat 保存的加密密码。Navicat 连接从 <code>.ncx</code> 导出文件读取。"
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "代理、Cloudflare、Cloud SQL 和隧道命令",
                     "paragraphs": [
-                        "不通过 SSH 访问时，Network 标签页可使用支持远程 DNS 的 SOCKS5 代理、Cloudflare Access 或 Cloud SQL Auth Proxy。使用 Cloudflare Access 时，TablePro 运行 <code>cloudflared</code> 并通过浏览器或服务令牌登录；使用 Cloud SQL Auth Proxy 时，TablePro 为 {cloudSqlProxy} 下载、校验并运行该代理。",
+                        "不通过 SSH 访问时，Network 标签页可通过支持远程 DNS 的 SOCKS5 代理连接。也可通过 Cloudflare Access 连接，此时 TablePro 运行 <code>cloudflared</code> 并通过浏览器或服务令牌登录。对于 {cloudSqlProxy}，可通过 Cloud SQL Auth Proxy 连接，TablePro 会下载、校验并运行该代理。",
                         "Tunnel Command 启动 <code>kubectl port-forward</code>、<code>aws ssm start-session</code> 或自定义命令，再连接到它打开的本地端口。连接还可在建立前执行 shell 脚本，每个会话先征求确认，并在连接后立即执行 SQL 语句。"
                     ],
                     "asset": "mac-tunnel-command"
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "使用云账户登录",
             "paragraphs": [
-                "AWS IAM 数据库认证在每次连接时签发新令牌，可使用访问密钥、<code>~/.aws</code> 中的配置文件（支持 <code>credential_process</code> 和角色代入）或 AWS IAM Identity Center，并将 TLS 提升为 Required。Amazon ElastiCache for Redis、Amazon Keyspaces 和 DynamoDB 使用各自的 AWS 签名。",
+                "AWS IAM 数据库认证在每次连接时签发新令牌，可使用访问密钥、<code>~/.aws</code> 中的配置文件（支持 <code>credential_process</code> 和角色代入）或 AWS IAM Identity Center。它还会将 TLS 提升为 Required。Amazon ElastiCache for Redis、Amazon Keyspaces 和 DynamoDB 使用各自的 AWS 签名。",
                 "SQL Server 可使用提供的应用注册客户端 ID，在浏览器中通过 Microsoft Entra ID 登录，或使用票据、主体和密码进行 Kerberos 登录。Google BigQuery 支持服务账户密钥、Application Default Credentials，或使用自有客户端的 Google OAuth；Google Cloud Spanner 和 Cloud SQL Auth Proxy 可使用 Google 账户。"
             ],
             "engines": [
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "在连接的主机、数据库、用户名、SSH 主机、用户和密钥路径、SSL 路径、启动命令或驱动字段中填写 <code>$DB_HOST</code>，TablePro 会在连接时从自身环境填入其值。端口和密码不会通过这种方式读取，请为密码指定来源。"
+                        "在连接的主机、数据库、用户名、SSH 主机、用户和密钥路径、TLS 证书路径、启动命令或驱动字段中填写 <code>$DB_HOST</code>，TablePro 会在连接时从自身环境填入其值。端口和密码不会通过这种方式读取，请为密码指定来源。"
                     ],
                     "paid": [
                         "environment-variables"

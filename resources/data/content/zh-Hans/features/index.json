@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro 能做什么",
-        "lead": "Mac 应用提供完整工作环境，以下各页面均先介绍 Mac 版。iPhone 和 iPad 应用是功能范围较小的独立原生应用，每页最后说明其提供的功能。"
+        "lead": "Mac 应用提供完整工作环境。iPhone 和 iPad 应用是功能范围较小的独立原生应用，各功能页面会说明其提供的功能。"
     },
     "areas": {
-        "title": "功能领域",
-        "lead": "每个领域都有详细页面，说明各功能在 Mac 上需要的方案及值得了解的限制。",
-        "paid": "{tier}: {features}",
+        "title": "按任务查看功能",
+        "paid": "{tier} 方案：{features}",
         "noPaid": "无付费功能",
         "items": [
             {
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "使用自选提供商的可选 AI 助手，以及让 Claude Code、Cursor 等客户端使用已保存连接的本地 MCP 服务器。"
+                "summary": "使用自选提供商的可选 AI 助手，以及让 Claude Code、Cursor 等客户端使用已保存连接的本地 MCP（Model Context Protocol）服务器。"
             },
             {
                 "slug": "connections",

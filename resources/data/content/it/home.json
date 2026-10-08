@@ -10,7 +10,8 @@
     },
     "hero": {
         "title": "Un client database nativo per sviluppatori.",
-        "subtitle": "Esegui query, esplora e modifica dati in {featuredEngines} <more>e altri database</more>. TablePro ha un’app nativa separata per ogni piattaforma supportata.",
+        "subtitle": "Esegui query, esplora e modifica dati in {featuredEngines} <more>e altri database</more>.",
+        "native": "Nativo significa che ogni app è scritta in Swift per la propria piattaforma, con AppKit e SwiftUI sul Mac. Niente Electron, nessun runtime Java.",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Altri modi per installare",
@@ -19,19 +20,7 @@
     "databases": {
         "title": "Database relazionali, documentali, chiave-valore e analitici",
         "lead": "Alcuni driver sono inclusi nell’{macApp}. Gli altri vengono scaricati la prima volta che scegli quel database e si aggiornano separatamente dall’app.",
-        "byType": "Database supportati per tipo",
-        "categories": {
-            "relational": "Relazionali",
-            "document": "Documentali",
-            "key-value": "Chiave-valore",
-            "analytical": "Analitici",
-            "wide-column": "A colonne larghe",
-            "search": "Ricerca e vettori",
-            "streaming": "Streaming",
-            "coordination": "Configurazione e coordinamento",
-            "cloud": "Cloud",
-            "files": "File locali"
-        },
+        "count": "Sul Mac, TablePro si connette a {count} database, raggruppati per tipo:",
         "ios": "Su {iosDevices}, TablePro si connette a {iosEngines}.",
         "iosSynced": "Si aprono anche le connessioni {syncedOnly} sincronizzate da un Mac.",
         "link": "Database supportati"
@@ -41,16 +30,15 @@
         "link": "Sostieni TablePro"
     },
     "workflows": {
-        "title": "Lavora con i tuoi database",
-        "lead": "I flussi di lavoro di questa sezione sono disponibili nell’{macApp}. Per {iosDevices}, TablePro ha un’app separata con un proprio ambito di funzionalità, descritto più avanti.",
-        "paid": "Richiede un piano {tier}: {features}.",
+        "title": "Cosa fa l’app per Mac",
+        "paid": "Piano {tier}: {features}.",
         "link": "Tutte le funzionalità",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "Scrivi, esegui e comprendi le query",
-                "body": "Un editor SQL con completamento automatico basato sullo schema, parametri di query <code>:name</code>, cronologia ricercabile, query salvate e cartelle SQL collegate che mostrano lo stato Git. EXPLAIN rappresenta il piano con un diagramma sui motori supportati ed EXPLAIN Compare confronta un piano con un riferimento."
+                "body": "Un editor SQL con completamento automatico basato sullo schema, parametri di query <code>:name</code>, cronologia ricercabile, query salvate e cartelle di file <code>.sql</code> che mostrano lo stato Git. EXPLAIN rappresenta il piano con un diagramma sui motori supportati ed EXPLAIN Compare confronta un piano con un riferimento."
             },
             {
                 "id": "edit",
@@ -68,7 +56,7 @@
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "Importa, esporta e apri file di dati",
-                "body": "Importa file {importFormats} sui motori che supportano l’importazione ed esporta in {exportFormats}. La finestra Data Files apre file CSV, JSON e XLSX senza database: puoi cercare e filtrare, ripulire CSV e JSON e importare il risultato in una tabella. Backup Dump e Restore Dump eseguono gli strumenti a riga di comando propri di ogni motore ({dumpTools}). TablePro non li include, quindi installa quelli che mancano sul tuo Mac."
+                "body": "Importa file {importFormats} sui motori che supportano l’importazione ed esporta in {exportFormats}. La finestra Data Files apre file CSV, JSON e XLSX senza database, per cercare e filtrare e per ripulire CSV e JSON. Backup Dump e Restore Dump eseguono gli strumenti a riga di comando propri di ogni motore ({dumpTools}); installa quelli che mancano sul tuo Mac."
             },
             {
                 "id": "connect",
@@ -81,8 +69,8 @@
     "safety": {
         "title": "Protezioni per i database di produzione",
         "body": [
-            "Sul Mac, assegna alle connessioni tag e colori in base all’ambiente e un livello Safe Mode, da Silent a Read-Only, con Touch ID o password ai livelli più restrittivi. DROP, TRUNCATE e DELETE senza WHERE si fermano e chiedono conferma a ogni livello. Su iPhone e iPad, Confirm Writes chiede conferma prima di ogni scrittura e Read-Only le rifiuta.",
-            "Mentre una connessione è aperta in Agent mode, opera al livello Alert o superiore. Data Rewind può recuperare i valori sostituiti da un salvataggio recente. Non è un backup."
+            "Sul Mac, assegna alle connessioni tag e colori in base all’ambiente e un livello di Safe Mode. Silent esegue le istruzioni così come sono scritte, Alert chiede conferma prima di una scrittura, i livelli chiamati Safe Mode richiedono anche Touch ID o password e Read-Only rifiuta le scritture. DROP, TRUNCATE e DELETE senza WHERE si fermano e chiedono conferma a ogni livello. Su iPhone e iPad, Confirm Writes chiede conferma prima di ogni scrittura e Read-Only le rifiuta.",
+            "In Agent mode l’assistente IA può eseguire istruzioni. Mentre una connessione è aperta in Agent mode, opera al livello Alert o superiore. Data Rewind può recuperare i valori sostituiti da un salvataggio recente. Non è un backup."
         ],
         "levels": "Livelli di Safe Mode",
         "link": "Safe Mode"
@@ -92,7 +80,7 @@
         "body": [
             "Sul Mac, un assistente IA opzionale spiega, ottimizza e corregge le query e risponde a domande sul tuo schema. Scegli il provider: una chiave API, un account che possiedi già o un modello eseguito sul tuo Mac. TablePro non gestisce un proprio servizio IA e non invia nulla finché non aggiungi un provider.",
             "La chat inizia in modalità Ask, che consente solo la lettura. Nelle modalità Edit e Agent, l’assistente può eseguire istruzioni. Dal livello Alert a Safe Mode (Full), ogni scrittura attende la tua approvazione; Read-Only le rifiuta e DROP o TRUNCATE richiedono sempre un tuo clic.",
-            "Il server MCP integrato permette a client come {mcpClients} di usare le connessioni salvate senza vedere le password. Ascolta solo su {mcpHost} e ogni connessione stabilisce cosa possono fare le app esterne: Blocked, Read Only (predefinito) o Read & Write.",
+            "Il server MCP (Model Context Protocol) integrato permette a client IA come {mcpClients} di usare le connessioni salvate senza vedere le password. Ascolta solo su {mcpHost} e ogni connessione stabilisce cosa possono fare le app esterne: Blocked, Read Only (predefinito) o Read & Write.",
             "Tutto questo è gratuito."
         ],
         "providers": "Provider che puoi aggiungere: {providers}."
@@ -101,7 +89,7 @@
         "title": "App native per {deviceList}",
         "cardTitle": "TablePro per {devices}",
         "mac": "Sul Mac, TablePro è un’app Swift con build separate per {architectures}. Conserva le password nel Portachiavi, richiede Touch ID ai livelli Safe Mode più restrittivi e si aggiorna automaticamente.",
-        "ios": "Su {devices}, TablePro è un’app separata con un proprio ambito di funzionalità: connessioni tramite SSH o TLS, esplorazione delle tabelle, esecuzione di query e modifica delle righe, con blocco Face ID opzionale, Comandi Rapidi, un widget nella schermata Home e Attività in tempo reale per le query in esecuzione.",
+        "ios": "Su {devices}, TablePro è un’app separata con un proprio ambito di funzionalità. Connettiti tramite SSH o TLS, esplora le tabelle, esegui query e modifica le righe, con blocco Face ID opzionale, Comandi Rapidi, un widget nella schermata Home e Attività in tempo reale per le query in esecuzione.",
         "sync": "iCloud Sync mantiene allineati connessioni, gruppi e tag tra un Mac e un iPhone o iPad. È disattivato per impostazione predefinita e sul Mac richiede un piano {tier}. Con iCloud Sync attivo, Handoff permette di proseguire una connessione aperta sull’altro dispositivo."
     },
     "switch": {

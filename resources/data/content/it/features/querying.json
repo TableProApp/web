@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Scrivi, esegui e comprendi le query",
-        "lead": "Per chi scrive SQL su un database attivo: scrivi con lo schema a portata di mano, esegui una singola istruzione o un intero script, conserva le query utili e scopri perché una è rallentata. Tutto è disponibile nell’app per Mac; l’ultima sezione riguarda iPhone e iPad.",
+        "lead": "Per chi scrive SQL su un database attivo: scrivi con lo schema a portata di mano, esegui una singola istruzione o un intero script, conserva le query utili e scopri perché una è rallentata. Tutto è disponibile nell’app per Mac. L’app per iPhone e iPad ne copre una parte.",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Un editor che conosce il tuo schema",
             "paragraphs": [
                 "Il completamento automatico legge lo schema della connessione mentre scrivi: tabelle dopo FROM e JOIN, colonne di un alias e colonne di una CTE o sottoquery definita in precedenza nell’istruzione. L’evidenziazione usa tree-sitter e <kbd>⌘⇧L</kbd> formatta l’istruzione al cursore senza rimuovere i commenti.",
-                "<kbd>⌘⏎</kbd> esegue l’istruzione al cursore o la selezione, <kbd>⌘⇧⏎</kbd> le esegue tutte, <kbd>⌘⌥⏎</kbd> esegue senza limite di righe e <kbd>⌘.</kbd> annulla. Un gruppo di istruzioni ordinarie viene eseguito in una transazione e annullato se una fallisce; fanno eccezione gli script che gestiscono la propria transazione, gli script SQL Server, le istruzioni che non possono rientrare in transazioni come VACUUM e il DDL su MySQL, MariaDB e Oracle, che esegue autonomamente il commit."
+                "<kbd>⌘⏎</kbd> esegue l’istruzione al cursore o la selezione, <kbd>⌘⇧⏎</kbd> le esegue tutte, <kbd>⌘⌥⏎</kbd> esegue senza limite di righe e <kbd>⌘.</kbd> annulla. Un gruppo di istruzioni ordinarie viene eseguito in una transazione e annullato se una fallisce. Fanno eccezione gli script che gestiscono la propria transazione, gli script SQL Server e le istruzioni che non possono rientrare in transazioni, come VACUUM. Il DDL su MySQL, MariaDB e Oracle esegue autonomamente il commit."
             ],
             "points": [
                 "Indicatori delle istruzioni nel margine, ciascuno con un proprio pulsante di esecuzione.",
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Scrivi <code>:customer_id</code> in una query e TablePro chiede il valore e il tipo prima di eseguirla, associando il valore nativamente quando il driver lo supporta.",
                 "Ogni query eseguita entra in una cronologia locale (<kbd>⌘Y</kbd>) con ricerca a testo completo e filtri per origine, errori e intervallo temporale. Per impostazione predefinita conserva {historyEntries} voci per {historyDays} giorni e non viene mai sincronizzata.",
-                "Salva una query con una parola chiave come <code>dau</code>, poi scrivila nell’editor per espandere la query. Le query salvate conservano una cronologia delle versioni. Una cartella SQL collegata sincronizza una cartella di file <code>.sql</code> con la barra laterale in entrambe le direzioni, con lettere di stato Git per ogni file; è gratuita e distinta da Linked Folders, la funzionalità Starter per file di connessione condivisi."
+                "Salva una query con una parola chiave come <code>dau</code>, poi scrivila nell’editor per espandere la query. Le query salvate conservano una cronologia delle versioni. Una cartella SQL collegata sincronizza una cartella di file <code>.sql</code> con la barra laterale in entrambe le direzioni, con lettere di stato Git per ogni file. È gratuita e distinta da Linked Folders, la funzionalità Starter per file di connessione condivisi."
             ],
             "asset": "mac-query-parameters-history"
         },

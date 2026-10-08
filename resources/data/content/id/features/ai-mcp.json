@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Asisten AI dan server MCP",
-        "lead": "Untuk developer yang ingin bantuan SQL dari model pilihan sendiri atau klien AI yang bekerja dengan database mereka: tanyakan skema, minta tinjauan atau perbaikan kueri, atau izinkan Claude Code dan Cursor memakai koneksi tersimpan. Semuanya opsional dan hanya tersedia di aplikasi Mac; tidak ada yang mencapai model hingga Anda menambahkan penyedia atau menghubungkan klien.",
+        "lead": "Untuk developer yang ingin bantuan SQL dari model pilihan sendiri atau klien AI yang bekerja dengan database mereka. Tanyakan skema, minta tinjauan atau perbaikan kueri, atau izinkan klien MCP (Model Context Protocol) seperti Claude Code dan Cursor memakai koneksi tersimpan. Semuanya opsional dan hanya tersedia di aplikasi Mac; tidak ada yang mencapai model hingga Anda menambahkan penyedia atau menghubungkan klien.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Hubungkan klien",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> menyediakan langkah pengaturan dan cuplikan untuk disalin bagi {mcpSetupClients}. Bridge bawaan <code>tablepro-mcp</code> juga mendukung {mcpBridgeClients}: memulai TablePro saat diperlukan dan menemukan server, sehingga konfigurasi klien tidak menyimpan port atau token. Ekstensi resmi Raycast dipasangkan dengan aplikasi, dan Anda menyetujui pemasangannya di Mac.",
+                        "<ui>Settings > Integrations</ui> menyediakan langkah pengaturan dan cuplikan untuk disalin bagi {mcpSetupClients}. Bridge bawaan <code>tablepro-mcp</code> juga mendukung {mcpBridgeClients}. Bridge ini memulai TablePro saat diperlukan dan menemukan server, sehingga konfigurasi klien tidak menyimpan port atau token. Ekstensi resmi Raycast dipasangkan dengan aplikasi, dan Anda menyetujui pemasangannya di Mac.",
                         "Permintaan umum: minta klien mencari pengguna yang berbagi alamat email. Klien dapat memanggil <code>list_tables</code> dan <code>describe_table</code>, melihat nama kolom <code>email_address</code>, lalu menjalankan satu SELECT melalui koneksi tersimpan, tanpa Anda menempelkan skema ke chat."
                     ]
                 },

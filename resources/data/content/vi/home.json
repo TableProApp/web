@@ -10,7 +10,8 @@
     },
     "hero": {
         "title": "Database client native dành cho lập trình viên.",
-        "subtitle": "Chạy query, xem và chỉnh sửa dữ liệu trên {featuredEngines} <more>và nhiều cơ sở dữ liệu khác</more>. TablePro có ứng dụng native riêng cho từng nền tảng được hỗ trợ.",
+        "subtitle": "Chạy query, xem và chỉnh sửa dữ liệu trên {featuredEngines} <more>và nhiều cơ sở dữ liệu khác</more>.",
+        "native": "Native nghĩa là mỗi ứng dụng được viết bằng Swift cho đúng nền tảng của nó, trên Mac dùng AppKit và SwiftUI. Không dùng Electron, không cần Java runtime.",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Cách cài đặt khác",
@@ -19,19 +20,7 @@
     "databases": {
         "title": "Cơ sở dữ liệu quan hệ, document, key-value và phân tích",
         "lead": "Một số driver có sẵn trong {macApp}. Các driver còn lại được tải về vào lần đầu bạn chọn cơ sở dữ liệu đó, và được cập nhật riêng, không phụ thuộc vào bản cập nhật của ứng dụng.",
-        "byType": "Cơ sở dữ liệu được hỗ trợ, theo loại",
-        "categories": {
-            "relational": "Quan hệ",
-            "document": "Document",
-            "key-value": "Key-value",
-            "analytical": "Phân tích",
-            "wide-column": "Wide-column",
-            "search": "Tìm kiếm và vector",
-            "streaming": "Streaming",
-            "coordination": "Cấu hình và điều phối",
-            "cloud": "Cloud",
-            "files": "File cục bộ"
-        },
+        "count": "Trên Mac, TablePro kết nối được tới {count} cơ sở dữ liệu, chia theo loại:",
         "ios": "Trên {iosDevices}, TablePro kết nối được tới {iosEngines}.",
         "iosSynced": "Connection {syncedOnly} được đồng bộ từ máy Mac cũng mở được trên các thiết bị này.",
         "link": "Cơ sở dữ liệu được hỗ trợ"
@@ -41,16 +30,15 @@
         "link": "Tài trợ TablePro"
     },
     "workflows": {
-        "title": "Làm việc với cơ sở dữ liệu",
-        "lead": "Các quy trình trong phần này đều có trong {macApp}. Với {iosDevices}, TablePro có một ứng dụng riêng với phạm vi riêng, được giới thiệu ở phần sau.",
-        "paid": "Cần gói {tier}: {features}.",
+        "title": "Những gì ứng dụng Mac làm được",
+        "paid": "Gói {tier}: {features}.",
         "link": "Tất cả tính năng",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "Viết, chạy và phân tích query",
-                "body": "SQL editor có autocomplete theo schema, tham số query dạng <code>:name</code>, lịch sử query tìm kiếm được, query đã lưu và linked SQL folder có hiển thị trạng thái Git. EXPLAIN vẽ execution plan thành sơ đồ trên các engine được hỗ trợ, còn EXPLAIN Compare so sánh plan hiện tại với một baseline."
+                "body": "SQL editor có autocomplete theo schema, tham số query dạng <code>:name</code>, lịch sử query tìm kiếm được, query đã lưu và thư mục file <code>.sql</code> có hiển thị trạng thái Git. EXPLAIN vẽ execution plan thành sơ đồ trên các engine được hỗ trợ, còn EXPLAIN Compare so sánh plan hiện tại với một baseline."
             },
             {
                 "id": "edit",
@@ -68,7 +56,7 @@
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "Import, export và mở file dữ liệu",
-                "body": "Import file {importFormats} trên các engine hỗ trợ import, và export ra {exportFormats}. Cửa sổ Data Files mở file CSV, JSON và XLSX mà không cần cơ sở dữ liệu, để bạn tìm kiếm, lọc, làm sạch file CSV và JSON, rồi import kết quả vào table. Backup Dump và Restore Dump dùng công cụ dòng lệnh riêng của từng engine ({dumpTools}). TablePro không kèm sẵn các công cụ này, nên bạn cần cài những công cụ mà máy Mac chưa có."
+                "body": "Import file {importFormats} trên các engine hỗ trợ import, và export ra {exportFormats}. Cửa sổ Data Files mở file CSV, JSON và XLSX mà không cần cơ sở dữ liệu, để bạn tìm kiếm và lọc các file này, và làm sạch file CSV và JSON. Backup Dump và Restore Dump dùng công cụ dòng lệnh riêng của từng engine ({dumpTools}); bạn cần cài những công cụ mà máy Mac chưa có."
             },
             {
                 "id": "connect",
@@ -81,8 +69,8 @@
     "safety": {
         "title": "Lớp bảo vệ khi làm việc với production",
         "body": [
-            "Trên Mac, bạn gắn tag và màu cho connection theo môi trường, rồi đặt cho mỗi connection một mức Safe Mode, từ Silent đến Read‑Only, kèm Touch ID hoặc mật khẩu ở các mức nghiêm ngặt. DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi bạn, ở mọi mức. Trên iPhone và iPad, Confirm Writes hỏi trước mọi thao tác ghi, còn Read‑Only từ chối chúng.",
-            "Khi một connection đang mở ở Agent mode, connection đó chạy ở mức Alert hoặc nghiêm ngặt hơn. Data Rewind có thể khôi phục các giá trị mà một lần lưu gần đây đã ghi đè. Đây không phải là bản sao lưu."
+            "Trên Mac, bạn gắn tag và màu cho connection theo môi trường, rồi đặt cho mỗi connection một mức Safe Mode. Silent chạy câu lệnh đúng như bạn viết, Alert hỏi lại trước khi ghi, các mức mang tên Safe Mode còn yêu cầu Touch ID hoặc mật khẩu, còn Read‑Only từ chối câu lệnh ghi. DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi bạn, ở mọi mức. Trên iPhone và iPad, Confirm Writes hỏi trước mọi thao tác ghi, còn Read‑Only từ chối chúng.",
+            "Ở Agent mode, trợ lý AI có thể chạy câu lệnh. Khi một connection đang mở ở Agent mode, connection đó chạy ở mức Alert hoặc nghiêm ngặt hơn. Data Rewind có thể khôi phục các giá trị mà một lần lưu gần đây đã ghi đè. Đây không phải là bản sao lưu."
         ],
         "levels": "Các mức Safe Mode",
         "link": "Safe Mode"
@@ -92,7 +80,7 @@
         "body": [
             "Trên Mac, trợ lý AI (tùy chọn) giải thích, tối ưu và sửa lỗi query, đồng thời trả lời câu hỏi về schema của bạn. Bạn tự chọn nhà cung cấp AI: dùng API key, đăng nhập bằng tài khoản bạn đang có, hoặc chạy model ngay trên máy Mac. TablePro không vận hành dịch vụ AI nào, và không có gì được gửi đi cho tới khi bạn thêm nhà cung cấp.",
             "Chat mặc định ở chế độ Ask, chỉ đọc dữ liệu. Ở chế độ Edit và Agent, trợ lý có thể chạy câu lệnh. Từ mức Alert tới Safe Mode (Full), mỗi câu lệnh ghi chờ bạn duyệt, Read-Only từ chối chúng, còn DROP hay TRUNCATE luôn cần bạn bấm xác nhận.",
-            "MCP server tích hợp sẵn cho phép các client như {mcpClients} dùng connection đã lưu mà không thấy mật khẩu. Server chỉ lắng nghe trên {mcpHost}, và mỗi connection tự quyết định ứng dụng bên ngoài được làm gì: Blocked, Read Only (mặc định) hoặc Read & Write.",
+            "MCP (Model Context Protocol) server tích hợp sẵn cho phép các AI client như {mcpClients} dùng connection đã lưu mà không thấy mật khẩu. Server chỉ lắng nghe trên {mcpHost}, và mỗi connection tự quyết định ứng dụng bên ngoài được làm gì: Blocked, Read Only (mặc định) hoặc Read & Write.",
             "Tất cả đều miễn phí."
         ],
         "providers": "Nhà cung cấp AI bạn có thể thêm: {providers}."
@@ -101,7 +89,7 @@
         "title": "Ứng dụng native cho {deviceList}",
         "cardTitle": "TablePro cho {devices}",
         "mac": "Trên Mac, TablePro là ứng dụng Swift với bản build riêng cho {architectures}. Ứng dụng lưu mật khẩu trong Keychain, hỏi Touch ID ở các mức Safe Mode nghiêm ngặt và tự cập nhật.",
-        "ios": "Trên {devices}, TablePro là một ứng dụng riêng với phạm vi riêng: kết nối qua SSH hoặc TLS, xem table, chạy query và sửa dòng, kèm khóa Face ID tùy chọn, Phím tắt, tiện ích trên Màn hình chính và Hoạt động trực tiếp cho query đang chạy.",
+        "ios": "Trên {devices}, TablePro là một ứng dụng riêng với phạm vi riêng. Kết nối qua SSH hoặc TLS, xem table, chạy query và sửa dòng, kèm khóa Face ID tùy chọn, Phím tắt, tiện ích trên Màn hình chính và Hoạt động trực tiếp cho query đang chạy.",
         "sync": "iCloud Sync đồng bộ connection, nhóm connection và tag giữa máy Mac với iPhone hoặc iPad. Tính năng này tắt theo mặc định, và trên Mac cần gói {tier}. Khi bật iCloud Sync, Handoff cho bạn tiếp tục một connection đang mở trên thiết bị kia."
     },
     "switch": {

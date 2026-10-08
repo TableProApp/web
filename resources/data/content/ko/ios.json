@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "iPhone 및 iPad용 TablePro",
-        "description": "iPhone 및 iPad용 무료 데이터베이스 클라이언트입니다. SSH 또는 SSL로 MySQL, PostgreSQL, SQL Server, Oracle 등에 연결해 테이블을 탐색·편집하고 쿼리하세요."
+        "description": "iPhone 및 iPad용 무료 데이터베이스 클라이언트입니다. SSH 또는 TLS로 MySQL, PostgreSQL, SQL Server, Oracle 등에 연결해 테이블을 탐색·편집하고 쿼리하세요."
     },
     "og": {
         "kicker": "iPhone 및 iPad",
@@ -19,7 +19,7 @@
         "syncedOnly": "{engines} 연결은 Mac에서 iCloud Sync 또는 .tablepro 파일로 가져온 경우에 열 수 있습니다. 이 앱에서는 만들 수 없습니다.",
         "others": "다른 데이터베이스 연결도 Mac에서 동기화되어 목록에 나타나지만 이 앱에는 해당 드라이버가 없어 열 수 없습니다. Mac 앱이 지원하는 모든 엔진은 <databases>데이터베이스 페이지</databases>에 있습니다.",
         "files": "SQLite: 파일을 선택하면 앱 저장소로 복사하며 편집은 해당 사본을 변경합니다. 새 데이터베이스도 만들 수 있습니다. DuckDB는 파일을 원래 위치에서 열거나 메모리에서 실행합니다.",
-        "redis": "Redis: Query 탭에서 명령을 실행하세요. 이 버전에서는 Redis 키 탐색을 제공하지 않습니다.",
+        "redis": "Redis: Query 탭에서 명령을 실행하세요. iPhone 및 iPad 앱에서는 Redis 키 탐색을 제공하지 않습니다.",
         "sample": "먼저 둘러보려면 앱에 포함된 샘플 데이터베이스 Chinook을 여세요."
     },
     "browse": {
@@ -27,7 +27,7 @@
         "paragraphs": [
             "연결을 열면 테이블이 표시되며 쿼리 편집기, 기록 및 연결 정보는 각각의 탭에 있습니다.",
             "행은 카드로 표시되며 기본 키 또는 첫 열이 제목이 되고 다음 열이 아래에 표시됩니다. 모든 열로 정렬하고 바이너리 열을 제외한 전체 열을 검색하며 AND 또는 OR로 필터를 조합할 수 있습니다. 페이지당 행 수를 선택하고 원하는 페이지로 이동하세요. 외래 키 값을 탭하면 참조 행을 미리 봅니다. Structure 화면에는 열, 인덱스 및 외래 키가 표시됩니다.",
-            "행을 열어 값을 변경하거나 NULL로 설정하고 저장 전에 확인합니다. 행 삽입·삭제 및 테이블 비우기나 삭제도 가능합니다. 행 편집과 삭제에는 기본 키가 필요하며 Read-Only 연결에서는 변경할 수 없습니다. 이 버전에서는 긴 텍스트나 바이너리 값이 축약되어 표시될 때 행을 저장하지 마세요. 편집기가 전체 값을 축약된 텍스트로 덮어쓸 수 있습니다. 해당 행은 Mac에서 변경하세요."
+            "행을 열어 값을 변경하거나 NULL로 설정하고 저장 전에 확인합니다. 행 삽입·삭제 및 테이블 비우기나 삭제도 가능합니다. 행 편집과 삭제에는 기본 키가 필요하며 Read-Only 연결에서는 변경할 수 없습니다."
         ]
     },
     "query": {
@@ -42,7 +42,7 @@
         "title": "안전하게 연결",
         "paragraphs": [
             "SSH 터널은 비밀번호 또는 파일에서 읽거나 붙여 넣은 개인 키로 로그인하며 선택적으로 암호 문구를 사용할 수 있습니다. 처음 서버에 연결하면 호스트 키 지문을 보여주고 신뢰 여부를 확인합니다.",
-            "SSL은 연결별로 설정합니다. MySQL, MariaDB, TiDB, OceanBase 및 PostgreSQL은 서버 인증서와 호스트 이름을 검증하고 파일, 붙여 넣은 텍스트 또는 PKCS#12 번들의 클라이언트 인증서를 제시할 수 있습니다. Redis도 가능하지만 이 버전에서는 인증서만 확인하고 호스트 이름은 확인하지 않습니다. SQL Server는 연결 암호화(Required)가 가능하지만 인증서를 검증하지 않습니다. 인증서는 이 기기에 남으며 동기화하지 않습니다.",
+            "TLS는 연결별로 설정합니다. MySQL, MariaDB, TiDB, OceanBase 및 PostgreSQL은 서버 인증서와 호스트 이름을 검증하고 파일, 붙여 넣은 텍스트 또는 PKCS#12 번들의 클라이언트 인증서를 제시할 수 있습니다. Redis도 인증서를 검증하고 클라이언트 인증서를 제시할 수 있습니다. SQL Server는 연결 암호화(Required)가 가능하지만 인증서를 검증하지 않습니다. 인증서는 이 기기에 남으며 동기화하지 않습니다.",
             "비밀번호와 붙여 넣은 키는 키체인에 저장합니다. Microsoft Entra ID를 사용하는 SQL Server 연결은 Mac에서 동기화한 후 로그인할 수 있으며 Windows 인증은 지원하지 않습니다. 네트워크의 .local 이름으로 서버에 연결하려면 iOS에서 요청할 때 로컬 네트워크 접근을 허용하세요."
         ]
     },
@@ -66,7 +66,6 @@
         "paragraphs": [
             "설정 과정 또는 이후 Settings에서 iCloud Sync를 켜면 본인의 iCloud 계정을 통해 iPhone, iPad 및 Mac 간에 연결, 그룹과 태그가 동기화됩니다. 비밀번호는 Sync Passwords도 켜야 동기화됩니다. 저장된 쿼리, SSH 프로필 및 설정은 Mac끼리만 동기화됩니다.",
             "이 앱의 iCloud Sync는 무료입니다. Mac에서는 Starter 또는 Team 라이선스에 포함되므로 라이선스가 없는 Mac은 동기화하지 않습니다. 자세한 내용은 <pricing>요금 페이지</pricing>에 있습니다.",
-            "이 버전에서는 iPhone이나 iPad에서 동기화된 연결을 저장하면 SSH 점프 호스트 같은 Mac 전용 설정이 사라지고 Safe Mode 수준이 낮아질 수 있습니다. 해당 연결은 Mac에서 편집하세요.",
             "iCloud 없이 연결을 .tablepro 파일로 내보내고 AirDrop 또는 파일 앱으로 다른 기기에서 열 수 있습니다. 선택하지 않으면 비밀번호는 포함되지 않으며 포함할 경우 지정한 암호 문구로 파일을 암호화합니다. 이 앱에서는 둘 다 무료지만 Mac에서 비밀번호를 포함해 내보내려면 라이선스가 필요합니다.",
             "iCloud Sync가 켜져 있으면 Handoff로 Mac과 iPhone·iPad 간에 열린 연결이나 테이블을 이어갈 수 있습니다. <sync>동기화 및 팀</sync>에서 두 기능을 자세히 설명합니다."
         ]
@@ -74,7 +73,7 @@
     "automation": {
         "title": "단축어, 위젯 및 Spotlight",
         "paragraphs": [
-            "Open Connection은 단축어나 Siri에서 연결을 엽니다. Add Row to Table과 Add Rows to Table은 앱을 열지 않고 JSON·CSV 텍스트 또는 파일로 행을 삽입합니다. 기기가 잠겨 있지 않을 때만 작동하고 연결의 Safe Mode를 따르며 Redis 연결에서는 작동하지 않습니다. 이 버전의 CSV는 UTF-8 텍스트와 LF 줄바꿈이어야 합니다.",
+            "Open Connection은 단축어나 Siri에서 연결을 엽니다. Add Row to Table과 Add Rows to Table은 앱을 열지 않고 JSON·CSV 텍스트 또는 파일로 행을 삽입합니다. 기기가 잠겨 있지 않을 때만 작동하고 연결의 Safe Mode를 따르며 Redis 연결에서는 작동하지 않습니다.",
             "Quick Connect 위젯은 목록의 첫 연결들을 홈 화면에 표시하고 탭하면 엽니다. 연결은 Spotlight 검색에도 표시됩니다."
         ]
     },
@@ -93,6 +92,15 @@
             "Redis 키 탐색"
         ],
         "mac": "<download>Mac용 TablePro 다운로드</download>"
+    },
+    "knownIssues": {
+        "title": "버전 {version}의 알려진 문제",
+        "items": [
+            "행 편집 화면에서는 긴 텍스트나 바이너리 값이 축약되어 표시될 때 행을 저장하지 마세요. 편집기가 전체 값을 축약된 텍스트로 덮어쓸 수 있습니다. 해당 행은 Mac에서 변경하세요.",
+            "iPhone이나 iPad에서 동기화된 연결을 저장하면 SSH 점프 호스트 같은 Mac 전용 설정이 사라지고 Safe Mode 수준이 낮아질 수 있습니다. 해당 연결은 Mac에서 편집하세요.",
+            "Redis 연결이 서버 인증서를 검증할 때는 인증서만 확인하고 호스트 이름은 확인하지 않습니다.",
+            "행을 추가하는 단축어 동작에서 CSV는 UTF-8 텍스트와 LF 줄바꿈이어야 합니다."
+        ]
     },
     "privacy": {
         "title": "개인정보 보호",

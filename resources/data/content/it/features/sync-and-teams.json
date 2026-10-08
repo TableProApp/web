@@ -18,12 +18,12 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync mantiene identica la libreria su ogni Mac, iPhone e iPad connesso al tuo account iCloud. I record vanno in un database privato dell’account e la sincronizzazione resta disattivata finché non la attivi su ogni dispositivo. Su iPhone e iPad è gratuita; il Mac richiede un piano che la includa.",
-                "Le password si sincronizzano solo se attivi anche <ui>Passwords</ui> sotto Sync Categories sul Mac oppure <ui>Sync Passwords</ui> su iPhone e iPad, tramite il Portachiavi iCloud; sul Mac vengono trasferiti anche gli altri segreti conservati da TablePro nel Portachiavi, come le chiavi dei provider IA e la chiave di licenza. Contrassegna una connessione come Local only per mantenerla, con preferiti e query salvate, su un solo Mac."
+                "Le password si sincronizzano solo se attivi anche <ui>Passwords</ui> sotto Sync Categories sul Mac oppure <ui>Sync Passwords</ui> su iPhone e iPad. Passano dal Portachiavi iCloud. Sul Mac la stessa opzione trasferisce anche gli altri segreti conservati da TablePro nel Portachiavi, come le chiavi dei provider IA e la chiave di licenza. Contrassegna una connessione come Local only per mantenerla, con preferiti e query salvate, su un solo Mac."
             ],
             "points": [
                 "Sul Mac scegli cosa sincronizzare: connessioni, gruppi e tag, impostazioni, profili SSH, profili di credenziali (nome e nome utente, mai la password), tabelle e database preferiti, query salvate con il loro SQL e cartelle delle tabelle.",
                 "Su iPhone e iPad: connessioni, gruppi e tag.",
-                "Una connessione sincronizzata include host, porta, nome utente, database, impostazioni SSH e SSL, comandi di avvio, script di preconnessione e regole IA.",
+                "Una connessione sincronizzata include host, porta, nome utente, database, impostazioni SSH e TLS, comandi di avvio, script di preconnessione e regole IA.",
                 "Non vengono mai sincronizzati: cronologia delle query, Data Rewind, sorgenti delle password, comandi di tunneling e livello External Clients di ogni connessione."
             ],
             "paid": [
@@ -47,7 +47,7 @@
             "title": "Condividi una connessione",
             "paragraphs": [
                 "Esporta le connessioni in un file <code>.tablepro</code> da inviare a un collega o conservare accanto al codice. Include connessioni, gruppi, tag e impostazioni SSH, senza password. Encrypted Export aggiunge le password e protegge l’intero file con una passphrase usando AES-256-GCM. L’importazione di file, cifrati o meno, è gratuita sul Mac e su iPhone e iPad.",
-                "Su iPhone e iPad l’esportazione con password protette da passphrase è gratuita. Una connessione può anche essere trasferita come link <code>tablepro://import</code>, che include host, porta, nome utente, database e impostazioni SSH e SSL, mai la password."
+                "Su iPhone e iPad l’esportazione con password protette da passphrase è gratuita. Una connessione può anche essere trasferita come link <code>tablepro://import</code>, che include host, porta, nome utente, database e impostazioni SSH e TLS, mai la password."
             ],
             "paid": [
                 "encrypted-export"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> su una connessione e <ui>Publish Saved Queries to Team…</ui> nella barra laterale Favorites caricano connessioni e query salvate sul server di TablePro; ogni Mac sulla licenza le scarica e le query compaiono in Favorites con il nome di chi le ha pubblicate. Vengono caricati impostazioni di connessione e testo SQL delle query, mai password; il Mac di un collega ignora i comandi di avvio e di tunneling ricevuti, quindi nulla viene eseguito autonomamente. Una nuova pubblicazione sostituisce ciò che avevi pubblicato prima."
+                        "<ui>Share > Publish to Team Library…</ui> su una connessione e <ui>Publish Saved Queries to Team…</ui> nella barra laterale Favorites caricano connessioni e query salvate sul server di TablePro. Ogni Mac sulla licenza le scarica e le query compaiono in Favorites con il nome di chi le ha pubblicate. Vengono caricati impostazioni di connessione e testo SQL delle query, mai password; il Mac di un collega ignora i comandi di avvio e di tunneling ricevuti, quindi nulla viene eseguito autonomamente. Una nuova pubblicazione sostituisce ciò che avevi pubblicato prima."
                     ],
                     "paid": [
                         "team-library"
@@ -192,8 +192,8 @@
         }
     ],
     "limits": [
-        "Quando termina un piano sul Mac, iCloud Sync si interrompe e indica il motivo; le connessioni di Linked Folders e della Team Library spariscono dall’elenco, i comandi di pubblicazione Team vengono nascosti ed Encrypted Export perde l’opzione per le password.",
-        "Modificare una connessione sincronizzata su iPhone o iPad può cambiare impostazioni che l’app su quei dispositivi non ha: un livello Safe Mode più restrittivo sul Mac, come Safe Mode (Full), torna come Alert e i jump host SSH potrebbero non essere conservati. Modifica queste connessioni sul Mac.",
+        "Quando termina un piano sul Mac, iCloud Sync si interrompe e indica il motivo, e le connessioni di Linked Folders e della Team Library spariscono dall’elenco. I comandi di pubblicazione Team vengono nascosti ed Encrypted Export perde l’opzione per le password.",
+        "Modificare una connessione sincronizzata su iPhone o iPad può cambiare impostazioni che l’app su quei dispositivi non ha. Un livello Safe Mode più restrittivo sul Mac, come Safe Mode (Full), torna come Alert e i jump host SSH potrebbero non essere conservati. Modifica queste connessioni sul Mac.",
         "Se una licenza Team termina o viene sospesa, ciò che è stato pubblicato nella Team Library resta sul server di TablePro finché non ne chiedi l’eliminazione."
     ],
     "docs": [

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "编写、运行和理解查询",
-        "lead": "面向在实际数据库上编写 SQL 的用户：参考结构编写查询，运行一条语句或整个脚本，保存值得保留的查询，并找出变慢的原因。本页介绍的功能均在 Mac 应用中，最后一节介绍 iPhone 和 iPad。",
+        "lead": "面向在实际数据库上编写 SQL 的用户：参考结构编写查询，运行一条语句或整个脚本，保存值得保留的查询，并找出变慢的原因。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "了解数据库结构的编辑器",
             "paragraphs": [
                 "自动补全在输入时读取连接的结构：FROM 和 JOIN 后的表、别名对应的列，以及语句前面定义的 CTE 或子查询的列。语法高亮使用 tree-sitter；<kbd>⌘⇧L</kbd> 格式化光标所在语句，同时保留注释。",
-                "<kbd>⌘⏎</kbd> 运行光标所在语句或选中内容，<kbd>⌘⇧⏎</kbd> 运行全部，<kbd>⌘⌥⏎</kbd> 不限行数运行，<kbd>⌘.</kbd> 取消。普通语句批次在同一事务中执行，任一语句失败即回滚；例外包括自行管理事务的脚本、SQL Server 脚本、VACUUM 等不能放入事务的语句，以及会自行提交的 MySQL、MariaDB 和 Oracle DDL。"
+                "<kbd>⌘⏎</kbd> 运行光标所在语句或选中内容，<kbd>⌘⇧⏎</kbd> 运行全部，<kbd>⌘⌥⏎</kbd> 不限行数运行，<kbd>⌘.</kbd> 取消。普通语句批次在同一事务中执行，任一语句失败即回滚。例外包括自行管理事务的脚本、SQL Server 脚本，以及 VACUUM 等不能放入事务的语句。MySQL、MariaDB 和 Oracle 上的 DDL 会自行提交。"
             ],
             "points": [
                 "编辑器侧栏中的语句标记各有独立运行按钮。",
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "在查询中写入 <code>:customer_id</code>，TablePro 会在运行前询问其值和类型，并在驱动支持时使用原生参数绑定。",
                 "每次运行的查询都会进入本地历史（<kbd>⌘Y</kbd>），支持全文搜索及来源、失败和时间范围筛选。默认保存 {historyEntries} 条记录，保留 {historyDays} 天，从不同步。",
-                "以 <code>dau</code> 等关键字保存查询，然后在编辑器中输入关键字展开。已保存查询保留版本历史。关联 SQL 文件夹将 <code>.sql</code> 文件夹与侧栏双向同步，并显示各文件的 Git 状态字母；该功能免费，与用于共享连接文件的 Starter 功能 Linked Folders 相互独立。"
+                "以 <code>dau</code> 等关键字保存查询，然后在编辑器中输入关键字展开。已保存查询保留版本历史。关联 SQL 文件夹将 <code>.sql</code> 文件夹与侧栏双向同步，并显示各文件的 Git 状态字母。该功能免费，与用于共享连接文件的 Starter 功能 Linked Folders 相互独立。"
             ],
             "asset": "mac-query-parameters-history"
         },

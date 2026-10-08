@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Esquema, comparação e sincronização",
-        "lead": "Para mudar a estrutura de um banco e manter dois bancos alinhados: edite uma tabela vendo o DDL, veja como as tabelas se relacionam, alinhe o ambiente de homologação ao de desenvolvimento ou copie tabelas para outro servidor ou mecanismo. Tudo aqui está no app para Mac; a última seção trata do iPhone e iPad.",
+        "lead": "Para mudar a estrutura de um banco e manter dois bancos alinhados. Edite uma tabela vendo o DDL, veja como as tabelas se relacionam, alinhe o ambiente de homologação ao de desenvolvimento ou copie tabelas para outro servidor ou mecanismo. Tudo aqui está no app para Mac. O app para iPhone e iPad cobre uma parte.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Escolha origem e destino, que podem ser dois servidores ou dois bancos no mesmo servidor, e Compare & Sync lista todas as tabelas diferentes, com visualizações, rotinas e triggers se você os incluir. No modo de dados, combina linhas por chave e marca cada valor diferente, com filtro e limite de linhas por tabela, permitindo comparar um trecho de uma tabela grande.",
-                "O script gerado é ordenado por chaves estrangeiras e escrito para o cliente do próprio destino. Instruções que destroem dados, como remover colunas, restringir tipos ou excluir linhas, ficam retidas até você autorizá-las naquela execução; uma conexão Read-Only não pode ser escolhida como destino. Salve uma comparação para executá-la novamente com um clique."
+                "Escolha origem e destino, que podem ser dois servidores ou dois bancos no mesmo servidor. Compare & Sync lista todas as tabelas diferentes, com visualizações, rotinas e triggers se você os incluir. No modo de dados, combina linhas por chave e marca cada valor diferente, com filtro e limite de linhas por tabela, permitindo comparar um trecho de uma tabela grande.",
+                "O script gerado é ordenado por chaves estrangeiras e escrito para o cliente do próprio destino. Instruções que destroem dados, como remover colunas, restringir tipos ou excluir linhas, ficam retidas até você autorizá-las naquela execução. Uma conexão Read-Only não pode ser escolhida como destino. Salve uma comparação para executá-la novamente com um clique."
             ],
             "paid": [
                 "compare-sync"
@@ -74,7 +74,7 @@
             "id": "copy",
             "title": "Copy To, Duplicate Database e Transfer To",
             "paragraphs": [
-                "Copy To envia tabelas, visualizações, rotinas e triggers, como estrutura, dados ou ambos, para outro banco em qualquer conexão salva, inclusive com outro mecanismo. Antes de qualquer gravação, uma revisão lista o DDL, as linhas esperadas de cada tabela e todos os tipos de coluna alterados na transferência, como uma coluna <code>ENUM</code> de MariaDB que chega ao PostgreSQL como <code>VARCHAR</code> sem sua lista de valores permitidos. Uma cláusula WHERE e um limite de linhas por tabela permitem copiar parte de uma tabela.",
+                "Copy To envia tabelas, visualizações, rotinas e triggers, como estrutura, dados ou ambos, para outro banco em qualquer conexão salva, inclusive com outro mecanismo. Antes de qualquer gravação, uma revisão lista o DDL, as linhas esperadas de cada tabela e todos os tipos de coluna alterados na transferência. Uma coluna <code>ENUM</code> de MariaDB, por exemplo, chega ao PostgreSQL como <code>VARCHAR</code> sem sua lista de valores permitidos. Uma cláusula WHERE e um limite de linhas por tabela permitem copiar parte de uma tabela.",
                 "Duplicate Database copia um banco inteiro com outro nome na mesma conexão. Transfer To move linhas diretamente para uma tabela existente em outra conexão aberta, com mapeamento de colunas e sem arquivo intermediário. Os três são gratuitos."
             ],
             "asset": "mac-copy-to-review"

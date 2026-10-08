@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Verbindungen, Tunnel und Zugangsdaten",
-        "lead": "Wenn deine Datenbanken hinter einem Bastion-Host, einem Cluster oder einer Cloud-Anmeldung liegen: Richte eine Verbindung einmal mit dem nötigen Zugangsweg und der passenden Passwortquelle ein und gib Produktionsverbindungen strengere Regeln. Alles hier gilt für die Mac-App; der letzte Abschnitt behandelt iPhone und iPad.",
+        "lead": "Wenn deine Datenbanken hinter einem Bastion-Host, einem Cluster oder einer Cloud-Anmeldung liegen: Richte eine Verbindung einmal mit dem nötigen Zugangsweg und der passenden Passwortquelle ein und gib Produktionsverbindungen strengere Regeln. Alles hier gilt für die Mac-App. Die iPhone- und iPad-App bietet einen Teil davon.",
         "docs": "/connections"
     },
     "sections": [
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Aus einem anderen Datenbankclient",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> liest die in {connectionImportApps} gespeicherten Verbindungen, einschließlich der Setapp-Ausgabe von TablePlus, und übernimmt dort gespeicherte Passwörter, auch die verschlüsselten Passwörter von DBeaver und Navicat. Navicat-Verbindungen werden aus einer <code>.ncx</code>-Exportdatei gelesen."
+                        "<ui>Import from Other App</ui> liest die in {connectionImportApps} gespeicherten Verbindungen, einschließlich der Setapp-Ausgabe von TablePlus. Der Import übernimmt dort gespeicherte Passwörter, auch die verschlüsselten Passwörter von DBeaver und Navicat. Navicat-Verbindungen werden aus einer <code>.ncx</code>-Exportdatei gelesen."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "Proxys, Cloudflare, Cloud SQL und Tunnelbefehle",
                     "paragraphs": [
-                        "Wenn SSH keinen Zugang bietet, verbindet der Tab Network über einen SOCKS5-Proxy mit Remote-DNS, über Cloudflare Access, wobei TablePro <code>cloudflared</code> ausführt und sich im Browser oder mit einem Dienst-Token anmeldet, oder über den Cloud SQL Auth Proxy, den TablePro für {cloudSqlProxy} herunterlädt, prüft und ausführt.",
+                        "Wenn SSH keinen Zugang bietet, verbindet der Tab Network über einen SOCKS5-Proxy mit Remote-DNS. Er verbindet auch über Cloudflare Access, wobei TablePro <code>cloudflared</code> ausführt und sich im Browser oder mit einem Dienst-Token anmeldet. Für {cloudSqlProxy} verbindet er über den Cloud SQL Auth Proxy, den TablePro herunterlädt, prüft und ausführt.",
                         "Tunnel Command startet <code>kubectl port-forward</code>, <code>aws ssm start-session</code> oder einen eigenen Befehl und verbindet sich dann mit dem geöffneten lokalen Port. Eine Verbindung kann außerdem vor dem Verbinden ein Shell-Skript ausführen und dich dafür in jeder Sitzung zuerst fragen sowie direkt danach SQL-Anweisungen ausführen."
                     ],
                     "asset": "mac-tunnel-command"
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "Mit deinem Cloud-Konto anmelden",
             "paragraphs": [
-                "Die AWS-IAM-Datenbankauthentifizierung signiert bei jeder Verbindung einen neuen Token aus einem Zugriffsschlüssel, einem Profil in <code>~/.aws</code> (mit <code>credential_process</code> und übernommenen Rollen) oder AWS IAM Identity Center und setzt TLS dafür auf Required. Amazon ElastiCache for Redis, Amazon Keyspaces und DynamoDB verwenden ihre eigene AWS-Signierung.",
+                "Die AWS-IAM-Datenbankauthentifizierung signiert bei jeder Verbindung einen neuen Token aus einem Zugriffsschlüssel, einem Profil in <code>~/.aws</code> (mit <code>credential_process</code> und übernommenen Rollen) oder AWS IAM Identity Center. Sie setzt TLS außerdem auf Required. Amazon ElastiCache for Redis, Amazon Keyspaces und DynamoDB verwenden ihre eigene AWS-Signierung.",
                 "SQL Server meldet dich mit Microsoft Entra ID im Browser an, mit der Client-ID einer von dir bereitgestellten App-Registrierung, oder mit Kerberos über ein Ticket oder einen Prinzipal und ein Passwort. Google BigQuery akzeptiert einen Dienstkontoschlüssel, Application Default Credentials oder Google OAuth mit deinem eigenen Client; Google Cloud Spanner und der Cloud SQL Auth Proxy können dein Google-Konto verwenden."
             ],
             "engines": [
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Schreibe <code>$DB_HOST</code> in Host, Datenbank, Benutzername, SSH-Host, SSH-Benutzer und Schlüsselpfad, SSL-Pfade, Startbefehle oder Treiberfelder einer Verbindung, und TablePro setzt beim Verbinden den Wert aus seiner eigenen Umgebung ein. Port und Passwort werden nie so gelesen; gib dem Passwort stattdessen eine Quelle."
+                        "Schreibe <code>$DB_HOST</code> in Host, Datenbank, Benutzername, SSH-Host, SSH-Benutzer und Schlüsselpfad, TLS-Zertifikatspfade, Startbefehle oder Treiberfelder einer Verbindung, und TablePro setzt beim Verbinden den Wert aus seiner eigenen Umgebung ein. Port und Passwort werden nie so gelesen; gib dem Passwort stattdessen eine Quelle."
                     ],
                     "paid": [
                         "environment-variables"

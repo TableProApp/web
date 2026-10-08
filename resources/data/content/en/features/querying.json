@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Write, run and understand queries",
-        "lead": "For anyone who writes SQL against a live database: write with the schema at hand, run one statement or a whole script, keep the queries worth keeping, and find out why one got slower. Everything here is in the Mac app; the last section covers iPhone and iPad.",
+        "lead": "For anyone who writes SQL against a live database: write with the schema at hand, run one statement or a whole script, keep the queries worth keeping, and find out why one got slower. Everything here is in the Mac app. The iPhone and iPad app does part of it.",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "An editor that knows your schema",
             "paragraphs": [
                 "Autocomplete reads the connection’s schema as you type: tables after FROM and JOIN, the columns of an alias, and the columns of a CTE or subquery defined earlier in the statement. Highlighting uses tree-sitter, and <kbd>⌘⇧L</kbd> formats the statement at the cursor without dropping your comments.",
-                "<kbd>⌘⏎</kbd> runs the statement at the cursor or the selection, <kbd>⌘⇧⏎</kbd> runs them all, <kbd>⌘⌥⏎</kbd> runs without the row cap, and <kbd>⌘.</kbd> cancels. A batch of ordinary statements runs in one transaction and rolls back if one fails; the exceptions are scripts that manage their own transaction, SQL Server scripts, statements no transaction can hold such as VACUUM, and DDL on MySQL, MariaDB and Oracle, which commits on its own."
+                "<kbd>⌘⏎</kbd> runs the statement at the cursor or the selection, <kbd>⌘⇧⏎</kbd> runs them all, <kbd>⌘⌥⏎</kbd> runs without the row cap, and <kbd>⌘.</kbd> cancels. A batch of ordinary statements runs in one transaction and rolls back if one fails. The exceptions are scripts that manage their own transaction, SQL Server scripts and statements no transaction can hold, such as VACUUM. DDL on MySQL, MariaDB and Oracle commits on its own."
             ],
             "points": [
                 "Statement markers in the gutter, each with its own run button.",
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Write <code>:customer_id</code> in a query and TablePro asks for its value and type before running it, binding the value natively where the driver supports that.",
                 "Every query you run goes into a local history (<kbd>⌘Y</kbd>) with full-text search and filters for source, failures and time range. It keeps {historyEntries} entries for {historyDays} days by default and is never synced.",
-                "Save a query with a keyword such as <code>dau</code>, then type the keyword in the editor to expand it. Saved queries keep a version history. A linked SQL folder syncs a folder of <code>.sql</code> files with the sidebar both ways, with Git status letters for each file; it is free, and separate from Linked Folders, the Starter feature for shared connection files."
+                "Save a query with a keyword such as <code>dau</code>, then type the keyword in the editor to expand it. Saved queries keep a version history. A linked SQL folder syncs a folder of <code>.sql</code> files with the sidebar both ways, with Git status letters for each file. It is free, and separate from Linked Folders, the Starter feature for shared connection files."
             ],
             "asset": "mac-query-parameters-history"
         },

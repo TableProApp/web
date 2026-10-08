@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Assistente de IA e servidor MCP",
-        "lead": "Para desenvolvedores que querem ajuda com SQL de um modelo escolhido por eles ou que querem um cliente de IA trabalhando com seus bancos: pergunte sobre um esquema, peça revisão ou correção de uma consulta ou permita que Claude Code e Cursor usem suas conexões salvas. Tudo é opcional e está apenas no app para Mac; nada chega a um modelo até você adicionar um provedor ou conectar um cliente.",
+        "lead": "Para desenvolvedores que querem ajuda com SQL de um modelo escolhido por eles ou que querem um cliente de IA trabalhando com seus bancos. Pergunte sobre um esquema, peça revisão ou correção de uma consulta ou permita que clientes MCP (Model Context Protocol) como Claude Code e Cursor usem suas conexões salvas. Tudo é opcional e está apenas no app para Mac; nada chega a um modelo até você adicionar um provedor ou conectar um cliente.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -26,7 +26,7 @@
             "id": "in-the-editor",
             "title": "Revise, explique, otimize e corrija",
             "paragraphs": [
-                "Coloque o cursor em uma instrução e escolha Review with AI (<kbd>⌥⇧⌘L</kbd>) para verificar correção, custo e segurança, Explain (<kbd>⌘L</kbd>) para entender passo a passo ou Optimize (<kbd>⌥⌘L</kbd>) para reescrever ou sugerir um índice; quando uma consulta falha, Fix with AI aparece no aviso de erro. A solicitação leva a estrutura das tabelas mencionadas e não executa a instrução. <ui>Apply to Editor</ui> só substitui sua instrução após você confirmar.",
+                "Coloque o cursor em uma instrução e escolha Review with AI (<kbd>⌥⇧⌘L</kbd>) para verificar correção, custo e segurança, Explain (<kbd>⌘L</kbd>) para entender passo a passo ou Optimize (<kbd>⌥⌘L</kbd>) para reescrever ou sugerir um índice. Quando uma consulta falha, Fix with AI aparece no aviso de erro. A solicitação leva a estrutura das tabelas mencionadas e não executa a instrução. <ui>Apply to Editor</ui> só substitui sua instrução após você confirmar.",
                 "Sugestões em linha mostram texto fantasma enquanto você digita e vêm desativadas por padrão. AI Rules fixam notas de texto simples em uma conexão, como qual coluna nunca deve ser selecionada, e acompanham todas as mensagens."
             ]
         },
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Conecte um cliente",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> tem etapas de configuração e um trecho para copiar para {mcpSetupClients}. A ponte <code>tablepro-mcp</code> incluída também funciona com {mcpBridgeClients}: inicia TablePro quando necessário e encontra o servidor, portanto a configuração do cliente não contém porta nem token. A extensão oficial Raycast faz pareamento com o app, e você aprova o pareamento no Mac.",
+                        "<ui>Settings > Integrations</ui> tem etapas de configuração e um trecho para copiar para {mcpSetupClients}. A ponte <code>tablepro-mcp</code> incluída também funciona com {mcpBridgeClients}. Ela inicia TablePro quando necessário e encontra o servidor, portanto a configuração do cliente não contém porta nem token. A extensão oficial Raycast faz pareamento com o app, e você aprova o pareamento no Mac.",
                         "Uma solicitação típica: peça ao cliente usuários que compartilham um endereço de email. Ele pode chamar <code>list_tables</code> e <code>describe_table</code>, descobrir que a coluna se chama <code>email_address</code> e executar um SELECT pela conexão salva, sem você colar o esquema no chat."
                     ]
                 },

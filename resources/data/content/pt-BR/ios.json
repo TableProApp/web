@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro para iPhone e iPad",
-        "description": "Cliente gratuito para iPhone e iPad. Conecte a MySQL, PostgreSQL, SQL Server e Oracle por SSH ou SSL para explorar, editar e consultar tabelas."
+        "description": "Cliente gratuito para iPhone e iPad. Conecte a MySQL, PostgreSQL, SQL Server e Oracle por SSH ou TLS para explorar, editar e consultar tabelas."
     },
     "og": {
         "kicker": "iPhone e iPad",
@@ -19,7 +19,7 @@
         "syncedOnly": "Conexões {engines} abrem quando vêm do seu Mac pelo iCloud Sync ou por um arquivo .tablepro. Você não pode criá-las neste app.",
         "others": "Conexões com outros bancos também são sincronizadas do Mac e aparecem na lista, mas este app não tem drivers para elas, portanto não abrem aqui. A <databases>página de bancos de dados</databases> lista todos os mecanismos compatíveis com o app para Mac.",
         "files": "SQLite: escolha um arquivo de banco, e o app o copia para seu próprio armazenamento; suas edições alteram a cópia. Você também pode criar um banco novo. DuckDB abre um arquivo no local original ou executa em memória.",
-        "redis": "Redis: execute comandos na aba Consulta. A navegação por chaves Redis não está disponível nesta versão.",
+        "redis": "Redis: execute comandos na aba Consulta. A navegação por chaves Redis não está disponível no app para iPhone e iPad.",
         "sample": "Para explorar primeiro, abra Chinook, o banco de exemplo que vem com o app."
     },
     "browse": {
@@ -27,7 +27,7 @@
         "paragraphs": [
             "Cada conexão abre nas tabelas, com o editor de consultas, histórico e detalhes da conexão em abas próprias.",
             "As linhas aparecem como cartões, com a chave primária ou primeira coluna como título e as colunas seguintes abaixo. Ordene por qualquer coluna, pesquise todas exceto as binárias e combine filtros com AND ou OR. Escolha quantas linhas a página contém e vá para qualquer página. Toque em um valor de chave estrangeira para ver a prévia da linha referenciada. A visualização Structure lista colunas, índices e chaves estrangeiras da tabela.",
-            "Abra uma linha para editar: altere valores, defina NULL e confirme antes de salvar. Você também pode inserir e excluir linhas, truncar ou remover uma tabela. Editar e excluir linhas exige chave primária, e nada muda em uma conexão Read-Only. Nesta versão, não salve uma linha enquanto um valor de texto longo ou binário aparece abreviado: o editor pode sobrescrever o valor completo com o texto abreviado. Altere essas linhas no Mac."
+            "Abra uma linha para editar: altere valores, defina NULL e confirme antes de salvar. Você também pode inserir e excluir linhas, truncar ou remover uma tabela. Editar e excluir linhas exige chave primária, e nada muda em uma conexão Read-Only."
         ]
     },
     "query": {
@@ -42,7 +42,7 @@
         "title": "Conecte com segurança",
         "paragraphs": [
             "Túneis SSH autenticam com senha ou chave privada, de arquivo ou colada, com frase secreta opcional. Na primeira vez que você acessa um servidor, o app mostra a impressão digital da chave do host e pede que confie nela.",
-            "SSL é definido por conexão. Conexões MySQL, MariaDB, TiDB, OceanBase e PostgreSQL podem verificar o certificado e nome de host do servidor e apresentar um certificado de cliente, de arquivo, texto colado ou pacote PKCS#12. Conexões Redis também podem, mas nesta versão verificam o certificado, não o nome de host. SQL Server pode criptografar a conexão (Required), mas não verifica o certificado. Os certificados permanecem no dispositivo e nunca são sincronizados.",
+            "TLS é definido por conexão. Conexões MySQL, MariaDB, TiDB, OceanBase e PostgreSQL podem verificar o certificado e nome de host do servidor e apresentar um certificado de cliente, de arquivo, texto colado ou pacote PKCS#12. Conexões Redis também podem verificar o certificado e apresentar um certificado de cliente. SQL Server pode criptografar a conexão (Required), mas não verifica o certificado. Os certificados permanecem no dispositivo e nunca são sincronizados.",
             "Senhas e chaves coladas são armazenadas nas Chaves. Uma conexão SQL Server com Microsoft Entra ID pode autenticar aqui após ser sincronizada do Mac; autenticação Windows não é compatível. Para acessar um servidor pelo nome .local da rede, permita acesso à Rede Local quando iOS solicitar."
         ]
     },
@@ -66,7 +66,6 @@
         "paragraphs": [
             "Ative o iCloud Sync durante a configuração ou depois em Ajustes, e conexões, grupos e etiquetas são sincronizados entre iPhone, iPad e Mac pela sua própria conta iCloud. As senhas só são sincronizadas se você também ativar Sync Passwords. Consultas salvas, perfis SSH e configurações são sincronizados apenas entre Macs.",
             "O iCloud Sync é gratuito aqui. No Mac, faz parte de uma licença Starter ou Team; um Mac sem licença não sincroniza. A <pricing>página de preços</pricing> tem os detalhes.",
-            "Nesta versão, salvar uma conexão sincronizada no iPhone ou iPad pode remover configurações usadas apenas pelo Mac, como hosts intermediários SSH, e reduzir o nível de Safe Mode. Edite essas conexões no Mac.",
             "Sem iCloud, exporte conexões como arquivo .tablepro e abra em outro dispositivo por AirDrop ou Arquivos. Senhas ficam de fora, a menos que você as inclua; nesse caso, uma frase secreta escolhida por você criptografa o arquivo. Ambas as opções são gratuitas aqui; no Mac, exportar com senhas faz parte de uma licença.",
             "Com o iCloud Sync ativado, Handoff continua uma conexão ou tabela aberta entre Mac e iPhone ou iPad. <sync>Sincronização e equipes</sync> explica ambos com mais detalhes."
         ]
@@ -74,7 +73,7 @@
     "automation": {
         "title": "Atalhos, widgets e Spotlight",
         "paragraphs": [
-            "Open Connection abre uma conexão por um atalho ou Siri. Add Row to Table e Add Rows to Table inserem em uma tabela sem abrir o app, a partir de texto JSON ou CSV ou arquivo. Só executam com o dispositivo desbloqueado, seguem o Safe Mode da conexão e não funcionam com conexões Redis. Nesta versão, CSV precisa ser texto UTF-8 com quebras de linha LF.",
+            "Open Connection abre uma conexão por um atalho ou Siri. Add Row to Table e Add Rows to Table inserem em uma tabela sem abrir o app, a partir de texto JSON ou CSV ou arquivo. Só executam com o dispositivo desbloqueado, seguem o Safe Mode da conexão e não funcionam com conexões Redis.",
             "Widgets Quick Connect colocam suas primeiras conexões na Tela de Início; um toque abre uma delas. Suas conexões também aparecem na busca do Spotlight."
         ]
     },
@@ -93,6 +92,15 @@
             "Navegação por chaves Redis"
         ],
         "mac": "<download>Baixar TablePro para Mac</download>"
+    },
+    "knownIssues": {
+        "title": "Problemas conhecidos na versão {version}",
+        "items": [
+            "No editor de linhas, não salve uma linha enquanto um valor de texto longo ou binário aparece abreviado: o editor pode sobrescrever o valor completo com o texto abreviado. Altere essas linhas no Mac.",
+            "Salvar uma conexão sincronizada no iPhone ou iPad pode remover configurações usadas apenas pelo Mac, como hosts intermediários SSH, e reduzir o nível de Safe Mode. Edite essas conexões no Mac.",
+            "Quando conexões Redis verificam o certificado do servidor, elas verificam o certificado, não o nome de host.",
+            "Nas ações de Atalhos que adicionam linhas, CSV precisa ser texto UTF-8 com quebras de linha LF."
+        ]
     },
     "privacy": {
         "title": "Privacidade",

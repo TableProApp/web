@@ -10,7 +10,8 @@
     },
     "hero": {
         "title": "開発者のためのネイティブデータベースクライアント。",
-        "subtitle": "{featuredEngines} <more>などのデータベース</more>でクエリを実行し、データを閲覧・編集できます。TablePro は、対応するプラットフォームごとに専用のネイティブアプリを提供します。",
+        "subtitle": "{featuredEngines} <more>などのデータベース</more>でクエリを実行し、データを閲覧・編集できます。",
+        "native": "ネイティブとは、各アプリをそれぞれのプラットフォーム向けに Swift で書き、Mac では AppKit と SwiftUI を使っているという意味です。Electron も Java ランタイムも使いません。",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "その他のインストール方法",
@@ -19,19 +20,7 @@
     "databases": {
         "title": "リレーショナル、ドキュメント、キーバリュー、分析用データベース",
         "lead": "一部のドライバーは {macApp}に同梱されています。その他のドライバーは、そのデータベースを初めて選んだときにダウンロードされ、アプリとは別に更新されます。",
-        "byType": "種類別の対応データベース",
-        "categories": {
-            "relational": "リレーショナル",
-            "document": "ドキュメント",
-            "key-value": "キーバリュー",
-            "analytical": "分析用",
-            "wide-column": "ワイドカラム",
-            "search": "検索とベクトル",
-            "streaming": "ストリーミング",
-            "coordination": "設定と協調",
-            "cloud": "クラウド",
-            "files": "ローカルファイル"
-        },
+        "count": "Mac では、TablePro は以下のカテゴリの {count} 種類のデータベースに接続できます：",
         "ios": "{iosDevices} では、TablePro は {iosEngines} に接続できます。",
         "iosSynced": "Mac から同期した {syncedOnly} の接続も開けます。",
         "link": "対応データベース"
@@ -41,16 +30,15 @@
         "link": "TablePro を支援"
     },
     "workflows": {
-        "title": "データベースを使いこなす",
-        "lead": "このセクションのワークフローは {macApp}の機能です。{iosDevices} 向けには別のアプリを提供しており、その機能範囲は下で説明しています。",
-        "paid": "{tier} プランが必要です：{features}。",
+        "title": "Mac アプリでできること",
+        "paid": "{tier} プラン：{features}。",
         "link": "すべての機能",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "クエリを書く、実行する、理解する",
-                "body": "スキーマを把握した自動補完、<code>:name</code> クエリパラメーター、検索可能な履歴、保存済みクエリ、Git ステータスが表示されるリンク済み SQL フォルダーを備えた SQL エディターです。対応エンジンでは EXPLAIN が実行計画を図として描画し、EXPLAIN Compare で計画をベースラインと比較できます。"
+                "body": "スキーマを把握した自動補完、<code>:name</code> クエリパラメーター、検索可能な履歴、保存済みクエリ、Git ステータスが表示される <code>.sql</code> ファイルのフォルダーを備えた SQL エディターです。対応エンジンでは EXPLAIN が実行計画を図として描画し、EXPLAIN Compare で計画をベースラインと比較できます。"
             },
             {
                 "id": "edit",
@@ -68,7 +56,7 @@
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "データファイルをインポート、エクスポート、直接開く",
-                "body": "インポートに対応するエンジンでは {importFormats} ファイルを取り込み、{exportFormats} で書き出せます。Data Files ウィンドウではデータベースなしで CSV、JSON、XLSX ファイルを開き、検索や絞り込み、CSV と JSON の整形を行って、結果をテーブルに取り込めます。Backup Dump と Restore Dump は各エンジンのコマンドラインツール（{dumpTools}）を実行します。TablePro には同梱されていないため、Mac にないツールは別途インストールしてください。"
+                "body": "インポートに対応するエンジンでは {importFormats} ファイルを取り込み、{exportFormats} で書き出せます。Data Files ウィンドウではデータベースなしで CSV、JSON、XLSX ファイルを開き、検索や絞り込み、CSV と JSON の整形ができます。Backup Dump と Restore Dump は各エンジンのコマンドラインツール（{dumpTools}）を実行します。Mac にないツールは別途インストールしてください。"
             },
             {
                 "id": "connect",
@@ -81,8 +69,8 @@
     "safety": {
         "title": "本番データベースの安全対策",
         "body": [
-            "Mac では環境ごとに接続へタグや色を付け、Silent から Read-Only までの Safe Mode レベルを設定できます。厳しいレベルでは Touch ID またはパスワードが必要です。DROP、TRUNCATE、WHERE のない DELETE は、すべてのレベルで一旦停止して確認を求めます。iPhone・iPad では、Confirm Writes が書き込みのたびに確認し、Read-Only は書き込みを拒否します。",
-            "Agent mode で開いている接続は、Alert 以上の厳しいレベルで動作します。Data Rewind は直近の保存で置き換えられた値を戻せます。バックアップではありません。"
+            "Mac では環境ごとに接続へタグや色を付け、それぞれに Safe Mode レベルを設定できます。Silent は文をそのまま実行し、Alert は書き込み前に確認し、名前に Safe Mode が付くレベルは Touch ID またはパスワードも求め、Read-Only は書き込みを拒否します。DROP、TRUNCATE、WHERE のない DELETE は、すべてのレベルで一旦停止して確認を求めます。iPhone・iPad では、Confirm Writes が書き込みのたびに確認し、Read-Only は書き込みを拒否します。",
+            "Agent mode では AI アシスタントが SQL 文を実行できます。Agent mode で開いている接続は、Alert 以上の厳しいレベルで動作します。Data Rewind は直近の保存で置き換えられた値を戻せます。バックアップではありません。"
         ],
         "levels": "Safe Mode のレベル",
         "link": "Safe Mode"
@@ -92,7 +80,7 @@
         "body": [
             "Mac では、任意の AI アシスタントでクエリの説明、最適化、修正や、スキーマに関する質問への回答を得られます。プロバイダーは自分で選べます。API キー、既存のアカウント、Mac 上で実行するモデルを利用できます。TablePro は独自の AI サービスを運営しておらず、プロバイダーを追加するまで何も送信しません。",
             "チャットは読み取りのみの Ask モードで始まります。Edit と Agent モードでは、アシスタントが SQL 文を実行できます。Alert から Safe Mode (Full) までは書き込みごとに確認が必要で、Read-Only では書き込みを拒否し、DROP と TRUNCATE は常にクリックでの承認が必要です。",
-            "内蔵 MCP サーバーを使うと、{mcpClients} などのクライアントがパスワードを見ることなく保存済みの接続を利用できます。待ち受けは {mcpHost} のみで、外部アプリに許可する操作は接続ごとに Blocked、Read Only（初期設定）、Read & Write から選べます。",
+            "内蔵 MCP（Model Context Protocol）サーバーを使うと、{mcpClients} などの AI クライアントがパスワードを見ることなく保存済みの接続を利用できます。待ち受けは {mcpHost} のみで、外部アプリに許可する操作は接続ごとに Blocked、Read Only（初期設定）、Read & Write から選べます。",
             "これらはすべて無料です。"
         ],
         "providers": "追加できるプロバイダー：{providers}。"

@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro untuk iPhone dan iPad",
-        "description": "Klien gratis untuk iPhone dan iPad. Hubungkan MySQL, PostgreSQL, SQL Server, dan Oracle via SSH atau SSL untuk menelusuri, mengedit, dan mengueri tabel."
+        "description": "Klien gratis untuk iPhone dan iPad. Hubungkan MySQL, PostgreSQL, SQL Server, dan Oracle via SSH atau TLS untuk menelusuri, mengedit, dan mengueri tabel."
     },
     "og": {
         "kicker": "iPhone dan iPad",
@@ -19,7 +19,7 @@
         "syncedOnly": "Koneksi {engines} dapat dibuka jika berasal dari Mac, melalui iCloud Sync atau file .tablepro. Anda tidak dapat membuatnya dalam aplikasi ini.",
         "others": "Koneksi ke database lain juga disinkronkan dari Mac dan tampil dalam daftar, tetapi aplikasi ini tidak memiliki drivernya sehingga tidak dapat dibuka. <databases>Halaman database</databases> mencantumkan semua mesin yang didukung aplikasi Mac.",
         "files": "SQLite: pilih file database dan aplikasi menyalinnya ke penyimpanan sendiri, sehingga edit mengubah salinan. Anda juga dapat membuat database baru. DuckDB membuka file di lokasinya atau berjalan dalam memori.",
-        "redis": "Redis: jalankan perintah pada tab Kueri. Penelusuran key Redis tidak tersedia pada versi ini.",
+        "redis": "Redis: jalankan perintah pada tab Kueri. Penelusuran key Redis tidak tersedia di aplikasi iPhone dan iPad.",
         "sample": "Untuk mencoba terlebih dahulu, buka Chinook, database contoh yang disertakan."
     },
     "browse": {
@@ -27,7 +27,7 @@
         "paragraphs": [
             "Setiap koneksi terbuka pada tabelnya, dengan editor kueri, riwayat, dan detail koneksi dalam tab masing-masing.",
             "Baris tampil sebagai kartu, dengan primary key atau kolom pertama sebagai judul dan kolom berikutnya di bawah. Urutkan berdasarkan kolom apa pun, cari di semua kolom kecuali biner, serta gabungkan filter dengan AND atau OR. Pilih jumlah baris per halaman dan lompat ke halaman mana pun. Ketuk nilai foreign key untuk pratinjau baris rujukan. Tampilan Structure mencantumkan kolom, indeks, dan foreign key tabel.",
-            "Buka baris untuk mengedit: ubah nilai, atur NULL, dan konfirmasi sebelum disimpan. Anda juga dapat menyisipkan atau menghapus baris, melakukan truncate atau menghapus tabel. Pengeditan dan penghapusan baris memerlukan primary key, dan tidak ada yang berubah pada koneksi Read-Only. Pada versi ini, jangan simpan baris saat teks panjang atau nilai biner ditampilkan singkat: editor dapat menimpa nilai lengkap dengan teks singkat. Ubah baris tersebut di Mac."
+            "Buka baris untuk mengedit: ubah nilai, atur NULL, dan konfirmasi sebelum disimpan. Anda juga dapat menyisipkan atau menghapus baris, melakukan truncate atau menghapus tabel. Pengeditan dan penghapusan baris memerlukan primary key, dan tidak ada yang berubah pada koneksi Read-Only."
         ]
     },
     "query": {
@@ -42,7 +42,7 @@
         "title": "Terhubung dengan aman",
         "paragraphs": [
             "Tunnel SSH masuk dengan kata sandi atau private key dari file atau tempelan, dengan frasa sandi opsional. Saat pertama kali mengakses server, aplikasi menampilkan sidik jari host key dan meminta Anda memercayainya.",
-            "SSL diatur per koneksi. Koneksi MySQL, MariaDB, TiDB, OceanBase, dan PostgreSQL dapat memverifikasi sertifikat serta nama host server dan menyajikan sertifikat klien dari file, teks tempelan, atau bundel PKCS#12. Koneksi Redis juga mendukungnya, tetapi versi ini memeriksa sertifikat tanpa nama host. SQL Server dapat mengenkripsi koneksi (Required), tetapi tidak memverifikasi sertifikat. Sertifikat tetap di perangkat ini dan tidak pernah disinkronkan.",
+            "TLS diatur per koneksi. Koneksi MySQL, MariaDB, TiDB, OceanBase, dan PostgreSQL dapat memverifikasi sertifikat serta nama host server dan menyajikan sertifikat klien dari file, teks tempelan, atau bundel PKCS#12. Koneksi Redis juga dapat memverifikasi sertifikat dan menyajikan sertifikat klien. SQL Server dapat mengenkripsi koneksi (Required), tetapi tidak memverifikasi sertifikat. Sertifikat tetap di perangkat ini dan tidak pernah disinkronkan.",
             "Kata sandi dan key tempelan disimpan dalam Rantai Kunci. Koneksi SQL Server yang memakai Microsoft Entra ID dapat masuk di sini setelah disinkronkan dari Mac; autentikasi Windows tidak didukung. Untuk mengakses server dengan nama .local di jaringan Anda, izinkan akses Jaringan Lokal saat iOS meminta."
         ]
     },
@@ -66,7 +66,6 @@
         "paragraphs": [
             "Aktifkan iCloud Sync saat penyiapan atau nanti dalam Pengaturan, lalu koneksi, grup, dan tag disinkronkan antara iPhone, iPad, dan Mac melalui akun iCloud Anda sendiri. Kata sandi hanya disinkronkan jika Sync Passwords juga aktif. Kueri tersimpan, profil SSH, dan pengaturan hanya disinkronkan antar-Mac.",
             "iCloud Sync gratis di sini. Di Mac fitur ini termasuk lisensi Starter atau Team, sehingga Mac tanpa lisensi tidak disinkronkan. <pricing>Halaman harga</pricing> menjelaskan detailnya.",
-            "Pada versi ini, menyimpan koneksi tersinkron di iPhone atau iPad dapat menghapus pengaturan khusus Mac seperti jump host SSH dan menurunkan level Safe Mode. Edit koneksi tersebut di Mac.",
             "Tanpa iCloud, ekspor koneksi sebagai file .tablepro dan buka di perangkat lain melalui AirDrop atau File. Kata sandi tidak disertakan kecuali Anda memasukkannya, lalu file dienkripsi dengan frasa sandi pilihan Anda. Keduanya gratis di sini; di Mac, ekspor dengan kata sandi termasuk fitur berlisensi.",
             "Saat iCloud Sync aktif, Handoff melanjutkan koneksi atau tabel terbuka antara Mac dan iPhone atau iPad. <sync>Sinkronisasi dan tim</sync> menjelaskan keduanya lebih lanjut."
         ]
@@ -74,7 +73,7 @@
     "automation": {
         "title": "Pintasan, widget, dan Spotlight",
         "paragraphs": [
-            "Open Connection membuka koneksi dari pintasan atau Siri. Add Row to Table dan Add Rows to Table menyisipkan data ke tabel tanpa membuka aplikasi dari teks JSON atau CSV atau file. Keduanya hanya berjalan saat perangkat tidak terkunci, mengikuti level Safe Mode koneksi, dan tidak mendukung koneksi Redis. Pada versi ini, CSV harus berupa teks UTF-8 dengan akhir baris LF.",
+            "Open Connection membuka koneksi dari pintasan atau Siri. Add Row to Table dan Add Rows to Table menyisipkan data ke tabel tanpa membuka aplikasi dari teks JSON atau CSV atau file. Keduanya hanya berjalan saat perangkat tidak terkunci, mengikuti level Safe Mode koneksi, dan tidak mendukung koneksi Redis.",
             "Widget Quick Connect menempatkan koneksi awal Anda pada Layar Utama, dan satu ketukan membukanya. Koneksi juga tampil dalam pencarian Spotlight."
         ]
     },
@@ -93,6 +92,15 @@
             "Penelusuran key Redis"
         ],
         "mac": "<download>Unduh TablePro untuk Mac</download>"
+    },
+    "knownIssues": {
+        "title": "Masalah yang diketahui di versi {version}",
+        "items": [
+            "Di editor baris, jangan simpan baris saat teks panjang atau nilai biner ditampilkan singkat: editor dapat menimpa nilai lengkap dengan teks singkat. Ubah baris tersebut di Mac.",
+            "Menyimpan koneksi tersinkron di iPhone atau iPad dapat menghapus pengaturan khusus Mac seperti jump host SSH dan menurunkan level Safe Mode. Edit koneksi tersebut di Mac.",
+            "Saat koneksi Redis memverifikasi sertifikat server, yang diperiksa adalah sertifikat, bukan nama host.",
+            "Pada tindakan Pintasan yang menambah baris, CSV harus berupa teks UTF-8 dengan akhir baris LF."
+        ]
     },
     "privacy": {
         "title": "Privasi",

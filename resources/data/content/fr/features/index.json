@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "Ce que vous pouvez faire dans TablePro",
-        "lead": "L’application Mac offre l’environnement de travail complet et chaque page ci-dessous la décrit en premier. L’application iPhone et iPad est une application native distincte aux possibilités plus restreintes ; chaque page se termine par ce qu’elle y propose."
+        "lead": "L’application Mac offre l’environnement de travail complet. L’application iPhone et iPad est une application native distincte aux possibilités plus restreintes, et chaque page de fonctionnalité indique ce qu’elle y propose."
     },
     "areas": {
-        "title": "Domaines fonctionnels",
-        "lead": "Chaque domaine a sa page avec les détails, l’offre nécessaire sur Mac pour chaque partie et les limites à connaître.",
-        "paid": "{tier} : {features}",
+        "title": "Fonctionnalités par tâche",
+        "paid": "Offre {tier} : {features}",
         "noPaid": "Aucune fonctionnalité payante",
         "items": [
             {
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Assistant IA facultatif utilisant le fournisseur choisi et serveur MCP local permettant à des clients comme Claude Code et Cursor d’utiliser vos connexions enregistrées."
+                "summary": "Assistant IA facultatif utilisant le fournisseur choisi et serveur MCP (Model Context Protocol) local permettant à des clients comme Claude Code et Cursor d’utiliser vos connexions enregistrées."
             },
             {
                 "slug": "connections",

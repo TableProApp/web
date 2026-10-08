@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Importación, exportación y archivos de datos",
-        "lead": "Para mover datos entre archivos y bases: cargar una hoja de cálculo en una tabla, entregar un resultado como Excel, limpiar un CSV antes de usarlo o crear un volcado antes de un cambio arriesgado. Todo está en el Mac; la última sección cubre la parte más pequeña de iPhone y iPad.",
+        "lead": "Para mover datos entre archivos y bases: cargar una hoja de cálculo en una tabla, entregar un resultado como Excel, limpiar un CSV antes de usarlo o crear un volcado antes de un cambio arriesgado. Todo lo descrito aquí está en la app para Mac. La app para iPhone y iPad cubre una parte.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Importa archivos a una tabla",
             "paragraphs": [
                 "<kbd>⌘⇧I</kbd> importa archivos {importFormats}. Un archivo SQL se ejecuta como sentencias, incluidos volcados <code>.sql.gz</code> y scripts SQL Server separados por <code>GO</code>. Otros formatos cargan una tabla existente o una nueva con nombre del archivo y columnas derivadas de él; los libros Excel importan su primera hoja.",
-                "Cada campo se asigna a una columna y la importación se ejecuta en una transacción salvo que lo desactives. Si falla una fila, elige detener y revertir, detener y conservar lo importado u omitir la fila y continuar; después guarda un informe CSV de filas omitidas."
+                "Cada campo se asigna a una columna y la importación se ejecuta en una transacción salvo que lo desactives. Si falla una fila, elige detener y revertir, detener y conservar lo importado u omitir la fila y continuar. Después puedes guardar un informe CSV de filas omitidas."
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "Correspondencias guardadas y codificaciones",
                     "paragraphs": [
-                        "TablePro recuerda la correspondencia elegida por tabla para importar CSV, JSON y Excel; <ui>Match by Name</ui> o <ui>Match by Position</ui> asigna todos los campos con un clic. Por posición funciona con CSV y Excel, cuyo orden procede del archivo. CSV y SQL leen UTF-16 y codificaciones japonesas, chinas y coreanas como Shift JIS, GB 18030, Big5 y EUC-KR."
+                        "TablePro recuerda la correspondencia elegida por tabla para importar CSV, JSON y Excel. <ui>Match by Name</ui> o <ui>Match by Position</ui> asigna todos los campos con un clic. Por posición funciona con CSV y Excel, cuyo orden procede del archivo. CSV y SQL leen UTF-16 y codificaciones japonesas, chinas y coreanas como Shift JIS, GB 18030, Big5 y EUC-KR."
                     ],
                     "since": "0.77.0"
                 }
@@ -42,7 +42,7 @@
             "id": "export",
             "title": "Exporta tablas y resultados",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> exporta tablas y vistas marcadas a {exportFormats}. Cada una se transmite desde la base mientras se escribe, sin límite de filas de la cuadrícula; en motores SQL, cada tabla admite WHERE, límite de filas y columnas elegidas. SQL puede incluir estructura, comprimir con gzip y dividir en partes; Excel usa una hoja por tabla. Las colecciones MongoDB también se exportan como script mongosh; SQL no está disponible para MongoDB ni Redis.",
+                "<kbd>⌘⇧E</kbd> exporta tablas y vistas marcadas a {exportFormats}. Cada una se transmite desde la base mientras se escribe, sin límite de filas de la cuadrícula. En motores SQL, cada tabla admite WHERE, límite de filas y columnas elegidas. SQL puede incluir estructura, comprimir con gzip y dividir en partes; Excel usa una hoja por tabla. Las colecciones MongoDB también se exportan como script mongosh; SQL no está disponible para MongoDB ni Redis.",
                 "<ui>Export Results</ui> escribe lo devuelto por una consulta; si el límite recortó el resultado, se ejecuta otra vez y se transmite completo. La exportación {exportPluginFormats} procede de un plugin gratuito instalado en <ui>Settings > Plugins</ui> y escribe un archivo por tabla."
             ],
             "asset": "mac-export-dialog"
@@ -75,7 +75,7 @@
             "id": "backup",
             "title": "Crea copias con las herramientas de tu motor",
             "paragraphs": [
-                "Backup Dump y Restore Dump usan {backupTools}, el túnel SSH de la conexión y sus ajustes SSL; un servidor tras un bastión no necesita otro túnel. Todas salvo DuckDB son herramientas de línea de comandos que instalas; DuckDB escribe el volcado como archivo de base o carpeta de archivos Parquet.",
+                "Backup Dump y Restore Dump usan {backupTools}, el túnel SSH de la conexión y sus ajustes TLS; un servidor tras un bastión no necesita otro túnel. Todas salvo DuckDB son herramientas de línea de comandos que instalas; DuckDB escribe el volcado como archivo de base o carpeta de archivos Parquet.",
                 "En {serverSideExport}, Server-Side Export hace que escriba el servidor: tarea Oracle Data Pump, stage Snowflake o bucket Cloud Storage. Nada llega al Mac."
             ],
             "engines": [
@@ -175,7 +175,7 @@
     ],
     "limits": [
         "Una exportación SQL incluye DROP TABLE IF EXISTS antes de cada tabla salvo que lo desmarques; revisa las opciones antes de ejecutar el archivo en una base cuyas tablas quieras conservar.",
-        "Backup Dump usa herramientas que instalas y solo motores listados. Reciben la contraseña mediante entorno o archivo temporal, salvo sqlpackage, que acepta la contraseña SQL Server en su línea de comandos, visible para otros procesos del Mac; TablePro pregunta antes de comenzar.",
+        "Backup Dump usa herramientas que instalas y solo motores listados. Reciben la contraseña mediante entorno o archivo temporal. La excepción es sqlpackage, que acepta la contraseña SQL Server en su línea de comandos, visible para otros procesos del Mac; TablePro pregunta antes de comenzar.",
         "Restore Dump reemplaza las tablas de un volcado MySQL o MariaDB. En otros motores no reemplaza objetos existentes, y <code>.bacpac</code> de SQL Server necesita una base vacía.",
         "Abrir archivos de base de datos mediante SSH solo funciona con SQLite.",
         "Las extensiones DuckDB no integradas, como httpfs para S3, Iceberg y Delta, se descargan de sus servidores la primera vez que una consulta las necesita.",

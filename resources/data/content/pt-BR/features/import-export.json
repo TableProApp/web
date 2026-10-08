@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Importação, exportação e arquivos de dados",
-        "lead": "Para mover dados entre arquivos e bancos: carregar uma planilha em uma tabela, entregar um resultado de consulta como Excel, limpar um CSV antes de usá-lo ou gerar um dump antes de uma mudança arriscada. Tudo aqui está no app para Mac; a última seção trata do conjunto menor disponível no iPhone e iPad.",
+        "lead": "Para mover dados entre arquivos e bancos: carregar uma planilha em uma tabela, entregar um resultado de consulta como Excel, limpar um CSV antes de usá-lo ou gerar um dump antes de uma mudança arriscada. Tudo aqui está no app para Mac. O app para iPhone e iPad cobre uma parte.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Importe arquivos para uma tabela",
             "paragraphs": [
                 "<kbd>⌘⇧I</kbd> importa arquivos {importFormats}. Um arquivo SQL é executado como instruções, incluindo dumps <code>.sql.gz</code> e scripts SQL Server separados por <code>GO</code>. Os outros formatos são carregados em uma tabela existente ou em uma nova com o nome do arquivo e colunas obtidas dele; uma pasta de trabalho Excel importa sua primeira planilha.",
-                "Cada campo é mapeado para uma coluna, e a importação roda em uma transação, a menos que você desative isso. Quando uma linha falha, você escolhe entre parar e reverter, parar e manter o que foi importado ou pular a linha e continuar; depois, pode salvar um relatório das linhas ignoradas como CSV."
+                "Cada campo é mapeado para uma coluna, e a importação roda em uma transação, a menos que você desative isso. Quando uma linha falha, você escolhe entre parar e reverter, parar e manter o que foi importado ou pular a linha e continuar. Depois, pode salvar um relatório das linhas ignoradas como CSV."
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "Mapeamentos salvos e codificações",
                     "paragraphs": [
-                        "TablePro lembra o mapeamento escolhido para cada tabela nas importações CSV, JSON e Excel, e <ui>Match by Name</ui> ou <ui>Match by Position</ui> mapeia todos os campos com um clique; a correspondência por posição funciona para CSV e Excel, onde a ordem dos campos vem do arquivo. As importações CSV e SQL leem UTF-16 e codificações japonesas, chinesas e coreanas como Shift JIS, GB 18030, Big5 e EUC-KR."
+                        "TablePro lembra o mapeamento escolhido para cada tabela nas importações CSV, JSON e Excel. <ui>Match by Name</ui> ou <ui>Match by Position</ui> mapeia todos os campos com um clique. A correspondência por posição funciona para CSV e Excel, onde a ordem dos campos vem do arquivo. As importações CSV e SQL leem UTF-16 e codificações japonesas, chinesas e coreanas como Shift JIS, GB 18030, Big5 e EUC-KR."
                     ],
                     "since": "0.77.0"
                 }
@@ -42,7 +42,7 @@
             "id": "export",
             "title": "Exporte tabelas e resultados",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> exporta as tabelas e visualizações selecionadas para {exportFormats}. Cada uma é lida em fluxo do banco enquanto é gravada, portanto o limite de linhas da grade não se aplica; nos mecanismos SQL, cada tabela pode ter sua cláusula WHERE, limite de linhas e seleção de colunas. Exportações SQL podem incluir estrutura, comprimir com gzip e dividir em partes, e Excel coloca cada tabela em uma planilha própria. Coleções MongoDB também podem ser exportadas como script mongosh, e a exportação SQL não é oferecida para MongoDB nem Redis.",
+                "<kbd>⌘⇧E</kbd> exporta as tabelas e visualizações selecionadas para {exportFormats}. Cada uma é lida em fluxo do banco enquanto é gravada, portanto o limite de linhas da grade não se aplica. Nos mecanismos SQL, cada tabela pode ter sua cláusula WHERE, limite de linhas e seleção de colunas. Exportações SQL podem incluir estrutura, comprimir com gzip e dividir em partes, e Excel coloca cada tabela em uma planilha própria. Coleções MongoDB também podem ser exportadas como script mongosh, e a exportação SQL não é oferecida para MongoDB nem Redis.",
                 "<ui>Export Results</ui> grava o que uma consulta retornou; resultados cortados pelo limite de linhas são executados novamente e lidos integralmente em fluxo. A exportação {exportPluginFormats} vem de um plugin gratuito instalado em <ui>Settings > Plugins</ui> e grava um arquivo por tabela."
             ],
             "asset": "mac-export-dialog"
@@ -75,7 +75,7 @@
             "id": "backup",
             "title": "Faça backup com as ferramentas do seu mecanismo",
             "paragraphs": [
-                "Backup Dump e Restore Dump usam {backupTools}, pelo túnel SSH da conexão e com suas configurações SSL, portanto um servidor atrás de um bastion não precisa de outro túnel. Todas essas ferramentas, exceto DuckDB, são ferramentas de linha de comando que você instala; DuckDB grava o dump diretamente, como arquivo de banco ou pasta de arquivos Parquet.",
+                "Backup Dump e Restore Dump usam {backupTools}, pelo túnel SSH da conexão e com suas configurações TLS, portanto um servidor atrás de um bastion não precisa de outro túnel. Todas essas ferramentas, exceto DuckDB, são ferramentas de linha de comando que você instala; DuckDB grava o dump diretamente, como arquivo de banco ou pasta de arquivos Parquet.",
                 "Em {serverSideExport}, Server-Side Export faz o próprio servidor gravar a exportação: um job Oracle Data Pump, um stage Snowflake ou um bucket Cloud Storage. Nada é salvo no seu Mac."
             ],
             "engines": [
@@ -175,7 +175,7 @@
     ],
     "limits": [
         "Uma exportação SQL inclui DROP TABLE IF EXISTS antes de cada tabela, a menos que você desmarque a opção; confira as opções antes de executar o arquivo em um banco cujas tabelas deseja manter.",
-        "Backup Dump usa ferramentas de linha de comando instaladas por você, apenas nos mecanismos listados. As ferramentas recebem a senha pelo ambiente ou por um arquivo temporário, exceto sqlpackage, que recebe a senha SQL Server na linha de comando, onde outros processos do Mac podem lê-la; TablePro pede confirmação antes de iniciar.",
+        "Backup Dump usa ferramentas de linha de comando instaladas por você, apenas nos mecanismos listados. As ferramentas recebem a senha pelo ambiente ou por um arquivo temporário. A exceção é sqlpackage, que recebe a senha SQL Server na linha de comando, onde outros processos do Mac podem lê-la; TablePro pede confirmação antes de iniciar.",
         "Restore Dump substitui as tabelas de um dump MySQL ou MariaDB. Nos outros mecanismos, não substitui objetos existentes, e um <code>.bacpac</code> SQL Server exige um banco vazio.",
         "Abrir um arquivo de banco por SSH funciona apenas para SQLite.",
         "Extensões DuckDB não integradas, como httpfs para S3, Iceberg e Delta, são baixadas dos próprios servidores DuckDB na primeira vez que uma consulta precisa delas.",

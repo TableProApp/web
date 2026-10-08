@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro でできること",
-        "lead": "Mac アプリはすべての作業を行える環境です。以下の各ページはまず Mac 版を説明します。iPhone・iPad アプリは機能範囲が小さい別のネイティブアプリで、各ページの末尾で対応内容を説明しています。"
+        "lead": "Mac アプリはすべての作業を行える環境です。iPhone・iPad アプリは機能範囲が小さい別のネイティブアプリで、各機能ページで対応内容を説明しています。"
     },
     "areas": {
-        "title": "機能分野",
-        "lead": "各分野のページで詳細、Mac で各機能に必要なプラン、知っておきたい制約を説明します。",
-        "paid": "{tier}: {features}",
+        "title": "作業別の機能",
+        "paid": "{tier} プラン：{features}",
         "noPaid": "有料機能なし",
         "items": [
             {
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "自分で選んだプロバイダーを使う任意の AI アシスタントと、Claude Code や Cursor などが保存済み接続を使えるローカル MCP サーバー。"
+                "summary": "自分で選んだプロバイダーを使う任意の AI アシスタントと、Claude Code や Cursor などが保存済み接続を使えるローカル MCP（Model Context Protocol）サーバー。"
             },
             {
                 "slug": "connections",

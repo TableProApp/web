@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Abfragen schreiben, ausführen und verstehen",
-        "lead": "Für alle, die SQL gegen eine laufende Datenbank schreiben: Arbeite mit dem Schema zur Hand, führe eine Anweisung oder ein ganzes Skript aus, behalte nützliche Abfragen und finde heraus, warum eine langsamer wurde. Alles hier steht in der Mac-App bereit; der letzte Abschnitt behandelt iPhone und iPad.",
+        "lead": "Für alle, die SQL gegen eine laufende Datenbank schreiben: Arbeite mit dem Schema zur Hand, führe eine Anweisung oder ein ganzes Skript aus, behalte nützliche Abfragen und finde heraus, warum eine langsamer wurde. Alles hier steht in der Mac-App bereit. Die iPhone- und iPad-App bietet einen Teil davon.",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Ein Editor, der dein Schema kennt",
             "paragraphs": [
                 "Die Autovervollständigung liest beim Tippen das Verbindungsschema: Tabellen nach FROM und JOIN, Spalten eines Alias sowie Spalten einer zuvor definierten CTE oder Unterabfrage. Die Hervorhebung verwendet tree-sitter; <kbd>⌘⇧L</kbd> formatiert die Anweisung am Cursor, ohne Kommentare zu entfernen.",
-                "<kbd>⌘⏎</kbd> führt die Anweisung am Cursor oder die Auswahl aus, <kbd>⌘⇧⏎</kbd> alle, <kbd>⌘⌥⏎</kbd> ohne Zeilenlimit und <kbd>⌘.</kbd> bricht ab. Ein Batch gewöhnlicher Anweisungen läuft in einer Transaktion und wird bei einem Fehler zurückgerollt. Ausnahmen sind Skripte mit eigener Transaktionssteuerung, SQL-Server-Skripte, nicht transaktionsfähige Anweisungen wie VACUUM und DDL auf MySQL, MariaDB und Oracle, das implizit committet."
+                "<kbd>⌘⏎</kbd> führt die Anweisung am Cursor oder die Auswahl aus, <kbd>⌘⇧⏎</kbd> alle, <kbd>⌘⌥⏎</kbd> ohne Zeilenlimit und <kbd>⌘.</kbd> bricht ab. Ein Batch gewöhnlicher Anweisungen läuft in einer Transaktion und wird bei einem Fehler zurückgerollt. Ausnahmen sind Skripte mit eigener Transaktionssteuerung, SQL-Server-Skripte und nicht transaktionsfähige Anweisungen wie VACUUM. DDL auf MySQL, MariaDB und Oracle committet implizit."
             ],
             "points": [
                 "Anweisungsmarkierungen am Rand mit jeweils eigener Ausführungsschaltfläche.",

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Tulis, jalankan, dan pahami kueri",
-        "lead": "Untuk siapa pun yang menulis SQL pada database aktif: tulis dengan skema yang mudah diakses, jalankan satu pernyataan atau seluruh skrip, simpan kueri yang penting, dan cari tahu penyebab kueri melambat. Semua fitur ini tersedia di aplikasi Mac; bagian terakhir membahas iPhone dan iPad.",
+        "lead": "Untuk siapa pun yang menulis SQL pada database aktif: tulis dengan skema yang mudah diakses, jalankan satu pernyataan atau seluruh skrip, simpan kueri yang penting, dan cari tahu penyebab kueri melambat. Semua fitur ini tersedia di aplikasi Mac. Aplikasi iPhone dan iPad menyediakan sebagian di antaranya.",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Editor yang memahami skema Anda",
             "paragraphs": [
                 "Pelengkapan otomatis membaca skema koneksi saat Anda mengetik: tabel setelah FROM dan JOIN, kolom alias, serta kolom CTE atau subkueri yang didefinisikan sebelumnya dalam pernyataan. Sorotan sintaks memakai tree-sitter, dan <kbd>⌘⇧L</kbd> memformat pernyataan di kursor tanpa menghapus komentar.",
-                "<kbd>⌘⏎</kbd> menjalankan pernyataan di kursor atau seleksi, <kbd>⌘⇧⏎</kbd> menjalankan semuanya, <kbd>⌘⌥⏎</kbd> menjalankan tanpa batas baris, dan <kbd>⌘.</kbd> membatalkan. Sekumpulan pernyataan biasa berjalan dalam satu transaksi dan dibatalkan jika salah satunya gagal; pengecualiannya adalah skrip yang mengelola transaksi sendiri, skrip SQL Server, pernyataan yang tidak dapat berada dalam transaksi seperti VACUUM, serta DDL pada MySQL, MariaDB, dan Oracle, yang melakukan commit sendiri."
+                "<kbd>⌘⏎</kbd> menjalankan pernyataan di kursor atau seleksi, <kbd>⌘⇧⏎</kbd> menjalankan semuanya, <kbd>⌘⌥⏎</kbd> menjalankan tanpa batas baris, dan <kbd>⌘.</kbd> membatalkan. Sekumpulan pernyataan biasa berjalan dalam satu transaksi dan dibatalkan jika salah satunya gagal. Pengecualiannya adalah skrip yang mengelola transaksi sendiri, skrip SQL Server, dan pernyataan yang tidak dapat berada dalam transaksi seperti VACUUM. DDL pada MySQL, MariaDB, dan Oracle melakukan commit sendiri."
             ],
             "points": [
                 "Penanda pernyataan di margin, masing-masing dengan tombol jalankan sendiri.",
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Tulis <code>:customer_id</code> dalam kueri, lalu TablePro meminta nilai dan tipenya sebelum dijalankan, dengan pengikatan nilai secara native jika driver mendukungnya.",
                 "Setiap kueri yang dijalankan masuk ke riwayat lokal (<kbd>⌘Y</kbd>) dengan pencarian teks lengkap dan filter sumber, kegagalan, serta rentang waktu. Secara bawaan, riwayat menyimpan {historyEntries} entri selama {historyDays} hari dan tidak pernah disinkronkan.",
-                "Simpan kueri dengan kata kunci seperti <code>dau</code>, lalu ketik kata kunci di editor untuk mengembangkannya. Kueri tersimpan memiliki riwayat versi. Folder SQL tertaut menyinkronkan folder file <code>.sql</code> dengan sidebar dua arah, dengan huruf status Git untuk setiap file; fitur ini gratis dan terpisah dari Linked Folders, fitur Starter untuk file koneksi bersama."
+                "Simpan kueri dengan kata kunci seperti <code>dau</code>, lalu ketik kata kunci di editor untuk mengembangkannya. Kueri tersimpan memiliki riwayat versi. Folder SQL tertaut menyinkronkan folder file <code>.sql</code> dengan sidebar dua arah, dengan huruf status Git untuk setiap file. Fitur ini gratis dan terpisah dari Linked Folders, fitur Starter untuk file koneksi bersama."
             ],
             "asset": "mac-query-parameters-history"
         },

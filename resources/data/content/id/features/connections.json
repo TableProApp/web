@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Koneksi, tunnel, dan kredensial",
-        "lead": "Untuk database di balik bastion, cluster, atau login cloud: siapkan koneksi sekali dengan jalur dan sumber kata sandi yang diperlukan, lalu beri aturan lebih ketat pada koneksi produksi. Semua fitur ini tersedia di aplikasi Mac; bagian terakhir membahas iPhone dan iPad.",
+        "lead": "Untuk database di balik bastion, cluster, atau login cloud: siapkan koneksi sekali dengan jalur dan sumber kata sandi yang diperlukan, lalu beri aturan lebih ketat pada koneksi produksi. Semua fitur ini tersedia di aplikasi Mac. Aplikasi iPhone dan iPad menyediakan sebagian di antaranya.",
         "docs": "/connections"
     },
     "sections": [
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Dari klien database lain",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> membaca koneksi tersimpan di {connectionImportApps}, termasuk edisi Setapp TablePlus, dan membawa kata sandi dari tempat penyimpanannya, termasuk kata sandi terenkripsi DBeaver dan Navicat. Koneksi Navicat berasal dari file ekspor <code>.ncx</code>."
+                        "<ui>Import from Other App</ui> membaca koneksi tersimpan di {connectionImportApps}, termasuk edisi Setapp TablePlus. Fitur ini membawa kata sandi dari tempat penyimpanannya, termasuk kata sandi terenkripsi DBeaver dan Navicat. Koneksi Navicat berasal dari file ekspor <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "Proxy, Cloudflare, Cloud SQL, dan perintah tunnel",
                     "paragraphs": [
-                        "Jika SSH bukan jalur akses, tab Network terhubung melalui proxy SOCKS5 dengan DNS jarak jauh, Cloudflare Access tempat TablePro menjalankan <code>cloudflared</code> dan masuk melalui browser atau token layanan, atau Cloud SQL Auth Proxy yang diunduh, diperiksa, dan dijalankan TablePro untuk {cloudSqlProxy}.",
+                        "Jika SSH bukan jalur akses, tab Network terhubung melalui proxy SOCKS5 dengan DNS jarak jauh. Tab ini juga terhubung melalui Cloudflare Access, tempat TablePro menjalankan <code>cloudflared</code> dan masuk melalui browser atau token layanan. Untuk {cloudSqlProxy}, tab ini terhubung melalui Cloud SQL Auth Proxy, yang diunduh, diperiksa, dan dijalankan TablePro.",
                         "Tunnel Command memulai <code>kubectl port-forward</code>, <code>aws ssm start-session</code>, atau perintah Anda sendiri, lalu terhubung ke port lokal yang dibuka. Koneksi juga dapat menjalankan skrip shell sebelum terhubung, dengan konfirmasi setiap sesi, dan pernyataan SQL tepat setelahnya."
                     ],
                     "asset": "mac-tunnel-command"
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "Masuk dengan akun cloud",
             "paragraphs": [
-                "Autentikasi database AWS IAM menandatangani token baru setiap koneksi, dari access key, profil di <code>~/.aws</code> (dengan <code>credential_process</code> dan assumed role), atau AWS IAM Identity Center, serta menaikkan TLS ke Required. Amazon ElastiCache for Redis, Amazon Keyspaces, dan DynamoDB memiliki penandatanganan AWS sendiri.",
+                "Autentikasi database AWS IAM menandatangani token baru setiap koneksi, dari access key, profil di <code>~/.aws</code> (dengan <code>credential_process</code> dan assumed role), atau AWS IAM Identity Center. Autentikasi ini juga menaikkan TLS ke Required. Amazon ElastiCache for Redis, Amazon Keyspaces, dan DynamoDB memiliki penandatanganan AWS sendiri.",
                 "SQL Server masuk dengan Microsoft Entra ID melalui browser, memakai client ID dari app registration yang Anda sediakan, atau Kerberos dari tiket maupun principal dan kata sandi. Google BigQuery menerima key akun layanan, Application Default Credentials, atau Google OAuth dengan klien Anda sendiri; Google Cloud Spanner dan Cloud SQL Auth Proxy dapat memakai akun Google Anda."
             ],
             "engines": [
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Tulis <code>$DB_HOST</code> pada host, database, nama pengguna, host SSH, pengguna dan jalur key SSH, jalur SSL, perintah startup, atau field driver; TablePro mengisi nilainya dari lingkungan sendiri saat terhubung. Port dan kata sandi tidak pernah dibaca dengan cara ini; gunakan sumber untuk kata sandi."
+                        "Tulis <code>$DB_HOST</code> pada host, database, nama pengguna, host SSH, pengguna dan jalur key SSH, jalur sertifikat TLS, perintah startup, atau field driver; TablePro mengisi nilainya dari lingkungan sendiri saat terhubung. Port dan kata sandi tidak pernah dibaca dengan cara ini; gunakan sumber untuk kata sandi."
                     ],
                     "paid": [
                         "environment-variables"

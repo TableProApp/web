@@ -219,7 +219,7 @@ dataset('reviewed facts', [
     ],
     'the homepage scopes Safe Mode, Agent mode, importers and dump tools' => [
         'content/en/home.json',
-        ['On the Mac, tag and colour connections', 'While a connection is open in Agent mode', 'install any your Mac doesn’t already have', '<code>$VAR</code>'],
+        ['On the Mac, tag and color connections', 'While a connection is open in Agent mode', 'install any your Mac doesn’t already have', '<code>$VAR</code>'],
         ['While Agent mode is on, every connection', 'which you install yourself', 'Drivers for common databases'],
     ],
     'the homepage (vi)' => [

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Asistente de IA y servidor MCP",
-        "lead": "Para desarrolladores que quieren ayuda con SQL de un modelo elegido o que un cliente IA trabaje con sus bases: pregunta por el esquema, revisa o corrige consultas, o deja que Claude Code y Cursor usen tus conexiones guardadas. Todo es opcional y solo en el Mac; nada llega a un modelo hasta añadir un proveedor o conectar un cliente.",
+        "lead": "Para desarrolladores que quieren ayuda con SQL de un modelo elegido o que un cliente IA trabaje con sus bases. Pregunta por el esquema, revisa o corrige consultas, o deja que clientes MCP (Model Context Protocol) como Claude Code y Cursor usen tus conexiones guardadas. Todo es opcional y solo en el Mac; nada llega a un modelo hasta añadir un proveedor o conectar un cliente.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Conecta un cliente",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> ofrece pasos y un fragmento para {mcpSetupClients}. El puente <code>tablepro-mcp</code> incluido también funciona con {mcpBridgeClients}: inicia TablePro cuando hace falta y encuentra el servidor, sin puerto ni token en la configuración del cliente. La extensión oficial Raycast se empareja con la app y apruebas el emparejamiento en el Mac.",
+                        "<ui>Settings > Integrations</ui> ofrece pasos y un fragmento para {mcpSetupClients}. El puente <code>tablepro-mcp</code> incluido también funciona con {mcpBridgeClients}. Inicia TablePro cuando hace falta y encuentra el servidor, sin puerto ni token en la configuración del cliente. La extensión oficial Raycast se empareja con la app y apruebas el emparejamiento en el Mac.",
                         "Ejemplo: pide usuarios que comparten correo. El cliente puede llamar <code>list_tables</code> y <code>describe_table</code>, descubrir la columna <code>email_address</code> y ejecutar SELECT mediante la conexión guardada sin pegar el esquema en el chat."
                     ]
                 },

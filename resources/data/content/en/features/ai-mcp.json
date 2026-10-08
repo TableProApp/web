@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "AI assistant and MCP server",
-        "lead": "For developers who want help with SQL from a model they choose, or want an AI client to work with their databases: ask about a schema, have a query reviewed or fixed, or let Claude Code and Cursor use your saved connections. All of it is optional and in the Mac app only, and nothing reaches a model until you add a provider or connect a client.",
+        "lead": "For developers who want help with SQL from a model they choose, or want an AI client to work with their databases. Ask about a schema, have a query reviewed or fixed, or let MCP (Model Context Protocol) clients such as Claude Code and Cursor use your saved connections. All of it is optional and in the Mac app only, and nothing reaches a model until you add a provider or connect a client.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -26,7 +26,7 @@
             "id": "in-the-editor",
             "title": "Review, explain, optimize and fix",
             "paragraphs": [
-                "Put the cursor in a statement and choose Review with AI (<kbd>⌥⇧⌘L</kbd>) for its correctness, cost and safety, Explain (<kbd>⌘L</kbd>) for what it does step by step, or Optimize (<kbd>⌥⌘L</kbd>) for a rewrite or an index; when a query fails, Fix with AI sits on the error banner. The request carries the structure of the tables the statement names, and the statement itself does not run. <ui>Apply to Editor</ui> replaces your statement only after you confirm.",
+                "Put the cursor in a statement and choose Review with AI (<kbd>⌥⇧⌘L</kbd>) for its correctness, cost and safety, Explain (<kbd>⌘L</kbd>) for what it does step by step, or Optimize (<kbd>⌥⌘L</kbd>) for a rewrite or an index. When a query fails, Fix with AI sits on the error banner. The request carries the structure of the tables the statement names, and the statement itself does not run. <ui>Apply to Editor</ui> replaces your statement only after you confirm.",
                 "Inline suggestions show ghost text as you type and are off by default. AI Rules pin plain-text notes to a connection, such as which column must never be selected, and go with every message."
             ]
         },
@@ -53,7 +53,7 @@
                     "id": "connect",
                     "title": "Connect a client",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> has setup steps and a snippet to copy for {mcpSetupClients}. The bundled <code>tablepro-mcp</code> bridge also works with {mcpBridgeClients}: it starts TablePro when needed and finds the server, so the client’s config holds no port or token. The official Raycast extension pairs with the app instead, and you approve the pairing on your Mac.",
+                        "<ui>Settings > Integrations</ui> has setup steps and a snippet to copy for {mcpSetupClients}. The bundled <code>tablepro-mcp</code> bridge also works with {mcpBridgeClients}. It starts TablePro when needed and finds the server, so the client’s config holds no port or token. The official Raycast extension pairs with the app instead, and you approve the pairing on your Mac.",
                         "A typical request: ask your client for users who share an email address. It can call <code>list_tables</code> and <code>describe_table</code>, see that the column is named <code>email_address</code>, and run one SELECT through your saved connection, without you pasting the schema into the chat."
                     ]
                 },

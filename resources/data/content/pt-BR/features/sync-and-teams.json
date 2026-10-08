@@ -18,12 +18,12 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "O iCloud Sync mantém sua biblioteca igual em todos os Macs, iPhones e iPads conectados à sua conta iCloud. Os registros vão para um banco privado dessa conta, e a sincronização permanece desativada até você ativá-la em cada dispositivo. No iPhone e iPad é gratuita; o Mac exige um plano que a inclua.",
-                "As senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad, usando as Chaves do iCloud; no Mac, isso também leva os outros segredos que TablePro guarda nas Chaves, como chaves de provedores de IA e a chave de licença. Marque uma conexão como Local only para mantê-la, com seus favoritos e consultas salvas, em um único Mac."
+                "As senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad. Elas passam pelas Chaves do iCloud. No Mac, a mesma opção também leva os outros segredos que TablePro guarda nas Chaves, como chaves de provedores de IA e a chave de licença. Marque uma conexão como Local only para mantê-la, com seus favoritos e consultas salvas, em um único Mac."
             ],
             "points": [
                 "No Mac, você escolhe o que sincronizar: conexões, grupos e etiquetas, configurações, perfis SSH, perfis de credenciais (nome e nome de usuário, nunca a senha), tabelas e bancos favoritos, consultas salvas com seu SQL e pastas de tabelas.",
                 "No iPhone e iPad: conexões, grupos e etiquetas.",
-                "Uma conexão sincronizada leva host, porta, nome de usuário, banco de dados, configurações SSH e SSL, comandos de inicialização, script de pré-conexão e regras de IA.",
+                "Uma conexão sincronizada leva host, porta, nome de usuário, banco de dados, configurações SSH e TLS, comandos de inicialização, script de pré-conexão e regras de IA.",
                 "Nunca são sincronizados: histórico de consultas, Data Rewind, fontes de senhas, comandos de túnel e o nível de External Clients de cada conexão."
             ],
             "paid": [
@@ -47,7 +47,7 @@
             "title": "Compartilhe uma conexão",
             "paragraphs": [
                 "Exporte conexões para um arquivo <code>.tablepro</code> para enviar a um colega ou guardar junto ao código. Ele contém as conexões com seus grupos, etiquetas e configurações SSH, sem senhas. Encrypted Export adiciona as senhas e protege o arquivo inteiro com uma frase secreta usando AES-256-GCM. Importar arquivos, criptografados ou não, é gratuito no Mac e no iPhone e iPad.",
-                "No iPhone e iPad, exportar com senhas protegidas por frase secreta é gratuito. Uma conexão também pode ser enviada como link <code>tablepro://import</code>, que leva host, porta, nome de usuário, banco de dados e configurações SSH e SSL, nunca a senha."
+                "No iPhone e iPad, exportar com senhas protegidas por frase secreta é gratuito. Uma conexão também pode ser enviada como link <code>tablepro://import</code>, que leva host, porta, nome de usuário, banco de dados e configurações SSH e TLS, nunca a senha."
             ],
             "paid": [
                 "encrypted-export"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> em uma conexão e <ui>Publish Saved Queries to Team…</ui> na barra lateral Favorites enviam conexões e consultas salvas ao servidor do TablePro, e cada Mac da licença as baixa; as consultas aparecem em Favorites com o nome de quem as publicou. São enviadas as configurações de conexão e o texto SQL das consultas, nunca senhas; o Mac de um colega ignora os comandos de inicialização e de túnel recebidos, portanto nada executa sozinho. Publicar novamente substitui o que você publicou antes."
+                        "<ui>Share > Publish to Team Library…</ui> em uma conexão e <ui>Publish Saved Queries to Team…</ui> na barra lateral Favorites enviam conexões e consultas salvas ao servidor do TablePro. Cada Mac da licença as baixa, e as consultas aparecem em Favorites com o nome de quem as publicou. São enviadas as configurações de conexão e o texto SQL das consultas, nunca senhas; o Mac de um colega ignora os comandos de inicialização e de túnel recebidos, portanto nada executa sozinho. Publicar novamente substitui o que você publicou antes."
                     ],
                     "paid": [
                         "team-library"
@@ -192,8 +192,8 @@
         }
     ],
     "limits": [
-        "Quando um plano termina no Mac, o iCloud Sync pausa e informa o motivo, conexões de Linked Folders e da Team Library desaparecem da lista, comandos de publicação Team ficam ocultos e Encrypted Export perde a opção de senhas.",
-        "Editar uma conexão sincronizada no iPhone ou iPad pode alterar configurações que o app desses dispositivos não possui: um nível mais rigoroso do Safe Mode no Mac, como Safe Mode (Full), volta como Alert, e hosts intermediários SSH podem não ser preservados. Altere essas conexões no Mac.",
+        "Quando um plano termina no Mac, o iCloud Sync pausa e informa o motivo, e conexões de Linked Folders e da Team Library desaparecem da lista. Comandos de publicação Team ficam ocultos e Encrypted Export perde a opção de senhas.",
+        "Editar uma conexão sincronizada no iPhone ou iPad pode alterar configurações que o app desses dispositivos não possui. Um nível mais rigoroso do Safe Mode no Mac, como Safe Mode (Full), volta como Alert, e hosts intermediários SSH podem não ser preservados. Altere essas conexões no Mac.",
         "Se uma licença Team termina ou é suspensa, o que foi publicado na Team Library fica no servidor do TablePro até você solicitar a exclusão."
     ],
     "docs": [
