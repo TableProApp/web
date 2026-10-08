@@ -94,8 +94,8 @@ export default {
     },
     "allFeatures": "所有付费功能",
     "refund": {
-        "one": "所有付费方案均可在购买后 {count} 天内退款。详见<link>退款政策</link>。",
-        "other": "所有付费方案均可在购买后 {count} 天内退款。详见<link>退款政策</link>。"
+        "one": "所有付费方案均可在购买后 {count} 天内退款，月付或年付方案的每次续订也可在扣款后 {count} 天内退款。详见<link>退款政策</link>。",
+        "other": "所有付费方案均可在购买后 {count} 天内退款，月付或年付方案的每次续订也可在扣款后 {count} 天内退款。详见<link>退款政策</link>。"
     },
     "finePrint": "价格以美元计。{merchant} 为 merchant of record，负责收款，并在结账时计算销售税或增值税。",
     "finePrintCurrency": "价格以美元计。",

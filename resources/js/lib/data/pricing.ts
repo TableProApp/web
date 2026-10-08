@@ -46,7 +46,7 @@ export interface PricingData {
         starter: StarterTier;
         team: TeamTier;
     };
-    /** Refunds within `days` of purchase, on every paid plan. */
+    /** Refunds within `days` of purchase or of a renewal charge, on every paid plan. */
     refund: { days: number; scope: 'all-paid-plans' };
     /** Revalidated every `revalidateDays`; works offline for `offlineGraceDays`; no perpetual fallback. */
     license: { revalidateDays: number; offlineGraceDays: number; perpetualFallback: false };

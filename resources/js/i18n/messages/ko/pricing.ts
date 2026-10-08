@@ -94,8 +94,8 @@ export default {
     },
     "allFeatures": "모든 유료 기능",
     "refund": {
-        "one": "모든 유료 플랜은 구매 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요.",
-        "other": "모든 유료 플랜은 구매 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요."
+        "one": "모든 유료 플랜은 구매 후 {count}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요.",
+        "other": "모든 유료 플랜은 구매 후 {count}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요."
     },
     "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 받고 결제 시 판매세 또는 VAT를 계산합니다.",
     "finePrintCurrency": "가격은 미국 달러 기준입니다.",

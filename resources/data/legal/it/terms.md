@@ -8,7 +8,7 @@ Questi termini regolano il sito tablepro.app, il portale dell’account, il nost
 
 ## Definizioni {#definitions}
 
-- **"TablePro", "noi", "ci" e "nostro"** indicano il progetto TablePro e i suoi responsabili.
+- **"TablePro", "noi", "ci" e "nostro"** indicano {publisherName}, sviluppatore indipendente a {publisherCity}, in {publisherCountry}, che pubblica TablePro.
 - **"Applicazione"** indica TablePro per Mac e TablePro per iPhone e iPad, inclusi aggiornamenti e plugin.
 - **"Sito"** indica tablepro.app, docs.tablepro.app e gli altri domini che gestiamo.
 - **"Servizi"** indica il Sito, il portale dell’account e il server che l’app per Mac contatta per le verifiche delle licenze e la Team Library.

@@ -94,8 +94,8 @@ export default {
     },
     "allFeatures": "Tutte le funzionalità a pagamento",
     "refund": {
-        "one": "Ogni piano a pagamento può essere rimborsato entro {count} giorno dall’acquisto. Consulta la <link>politica di rimborso</link>.",
-        "other": "Ogni piano a pagamento può essere rimborsato entro {count} giorni dall’acquisto. Consulta la <link>politica di rimborso</link>."
+        "one": "Ogni piano a pagamento può essere rimborsato entro {count} giorno dall’acquisto, e ogni rinnovo mensile o annuale entro {count} giorno dal suo addebito. Consulta la <link>politica di rimborso</link>.",
+        "other": "Ogni piano a pagamento può essere rimborsato entro {count} giorni dall’acquisto, e ogni rinnovo mensile o annuale entro {count} giorni dal suo addebito. Consulta la <link>politica di rimborso</link>."
     },
     "finePrint": "Prezzi in dollari statunitensi. {merchant} è il merchant of record: incassa il pagamento e calcola le eventuali imposte sulle vendite o l’IVA al checkout.",
     "finePrintCurrency": "Prezzi in dollari statunitensi.",

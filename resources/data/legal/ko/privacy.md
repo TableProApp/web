@@ -18,7 +18,7 @@ updatedAt: "2026-10-08"
 
 ## 책임 주체 {#controller}
 
-앱과 이 웹사이트를 배포하는 TablePro가 여기에 설명된 개인정보의 책임 주체(개인정보처리자)입니다. 이 방침 또는 개인정보에 관한 질문은 [{email}](mailto:{email})로 이메일을 보내주세요.
+여기에 설명된 개인정보의 책임 주체(개인정보처리자)는 TablePro 앱과 이 웹사이트를 배포하는 {publisherCountry} {publisherCity}의 개인 개발자 {publisherName}입니다. 이 방침 또는 개인정보에 관한 질문은 [{email}](mailto:{email})로 이메일을 보내주세요.
 
 ## Mac용 TablePro {#mac-app}
 
@@ -221,7 +221,7 @@ TablePro는 16세 미만 아동을 대상으로 하지 않으며 아동의 개�
 
 ## 보안 {#security}
 
-앱, 웹사이트, 계정 포털 및 당사 서버 간 통신은 HTTPS를 사용합니다. [사용 보고서](#mac-usage-report)에 설명된 국가 조회는 예외이며 암호화되지 않은 HTTP로 이루어집니다. 계정 로그인 링크는 해시로만 저장되며 당사 시스템 접근 권한은 TablePro 운영자에게만 주어집니다. 완벽하게 안전한 시스템은 없습니다. 취약점 신고는 [{email}](mailto:{email})로 이메일을 보내주세요.
+앱, 웹사이트, 계정 포털 및 당사 서버 간 통신은 HTTPS를 사용합니다. [사용 보고서](#mac-usage-report)에 설명된 국가 조회는 예외이며 암호화되지 않은 HTTP로 이루어집니다. 계정 로그인 링크는 해시로만 저장되며 당사 시스템 접근 권한은 TablePro 운영자에게만 주어집니다. 완벽하게 안전한 시스템은 없습니다. 취약점은 [보안 페이지](/ko/security#report)의 안내에 따라 신고하거나 [{email}](mailto:{email})로 이메일을 보내주세요.
 
 ## 방침 변경 {#changes}
 

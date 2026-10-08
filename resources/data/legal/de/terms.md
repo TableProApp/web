@@ -8,7 +8,7 @@ Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lize
 
 ## Begriffsbestimmungen {#definitions}
 
-- **„TablePro“, „wir“, „uns“ und „unser“** bezeichnen das TablePro-Projekt und seine Verantwortlichen.
+- **„TablePro“, „wir“, „uns“ und „unser“** bezeichnen {publisherName}, einen Einzelentwickler in {publisherCity}, {publisherCountry}, der TablePro veröffentlicht.
 - **„Anwendung“** bezeichnet TablePro für Mac und TablePro für iPhone und iPad einschließlich ihrer Updates und Plugins.
 - **„Website“** bezeichnet tablepro.app, docs.tablepro.app und die weiteren Domains, die wir betreiben.
 - **„Dienste“** bezeichnet die Website, das Kontoportal und den Server, den die Mac-App für Lizenzprüfungen und die Team Library kontaktiert.

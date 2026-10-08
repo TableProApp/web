@@ -446,13 +446,13 @@ describe('server-rendered', function (): void {
             'and' => ' and ',
             'starter' => 'Adds features such as {examples} to the Mac app.',
             'person' => 'One license for one person, on up to {macs} Macs.',
-            'refund' => 'Every paid plan can be refunded within {days} days of purchase.',
+            'refund' => 'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.',
         ], '$%s', '.'],
         'Vietnamese' => ['/vi', 'vi', [
             'and' => ' và ',
             'starter' => 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
             'person' => 'Một license cho một người, dùng trên tối đa {macs} máy Mac.',
-            'refund' => 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua.',
+            'refund' => 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.',
         ], "%s\u{a0}US$", ','],
     ]);
 

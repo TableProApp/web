@@ -8,7 +8,7 @@ These terms govern the website at tablepro.app, the account portal, our license 
 
 ## Definitions {#definitions}
 
-- **"TablePro", "we", "us" and "our"** mean the TablePro project and its maintainers.
+- **"TablePro", "we", "us" and "our"** mean {publisherName}, an individual developer based in {publisherCity}, {publisherCountry}, who publishes TablePro.
 - **"Application"** means TablePro for Mac and TablePro for iPhone and iPad, including their updates and plugins.
 - **"Website"** means tablepro.app, docs.tablepro.app and the other domains we operate.
 - **"Services"** means the Website, the account portal, and the server the Mac app contacts for license checks and the Team Library.

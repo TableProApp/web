@@ -22,10 +22,10 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
  *
  * Facts enter the prose only through `{token}` slots filled from
  * `resources/data` (the refund window from `pricing.json`, the support
- * address and the licence URL from `facts.json`, …), so a number or address in
- * a policy cannot drift from the data the rest of the site states. A token
- * with no value is an error, not a gap: the document is not rendered half
- * filled.
+ * address, the licence URL and the publisher from `facts.json`, …), so a
+ * number, address or name in a policy cannot drift from the data the rest of
+ * the site states. A token with no value is an error, not a gap: the document
+ * is not rendered half filled.
  *
  * `<cookie-settings></cookie-settings>` on a line of its own marks where the
  * privacy page puts its "Cookie settings" button; the page splits the HTML on
@@ -83,12 +83,12 @@ class LegalDocuments
         $parsed = YamlFrontMatter::parse((string) File::get($path));
         $updatedAt = $this->date($parsed->matter('updatedAt'), $path);
 
-        $html = $this->renderer->render($this->fill($parsed->body(), $path), $permalinkLabel);
+        $html = $this->renderer->render($this->fill($parsed->body(), $path, $locale), $permalinkLabel);
         $html = (string) preg_replace('#<p>\s*' . preg_quote(self::COOKIE_SETTINGS_MARKER, '#') . '\s*</p>#', self::COOKIE_SETTINGS_MARKER, $html);
 
         return [
-            'title' => $this->fill((string) $parsed->matter('title'), $path),
-            'description' => $this->fill((string) $parsed->matter('description'), $path),
+            'title' => $this->fill((string) $parsed->matter('title'), $path, $locale),
+            'description' => $this->fill((string) $parsed->matter('description'), $path, $locale),
             'updatedAt' => $updatedAt->toDateString(),
             'updatedAtFormatted' => $updatedAt->locale($locale)->isoFormat('LL'),
             'html' => $html,
@@ -97,14 +97,15 @@ class LegalDocuments
     }
 
     /**
-     * The values a document's `{token}` slots take.
+     * The values a document's `{token}` slots take in a locale.
      *
      * @return array<string, string>
      */
-    public function tokens(): array
+    public function tokens(string $locale): array
     {
         $links = $this->facts->links();
         $commerce = $this->facts->commerce();
+        $publisher = $this->facts->publisher($locale);
 
         $values = [
             'email' => $links['email'],
@@ -121,6 +122,9 @@ class LegalDocuments
             'starterActivations' => $commerce['starterActivations'],
             'teamMinSeats' => $commerce['teamMinSeats'],
             'teamMaxSeats' => $commerce['teamMaxSeats'],
+            'publisherName' => $publisher['name'] ?? null,
+            'publisherCity' => $publisher['city'] ?? null,
+            'publisherCountry' => $publisher['country'] ?? null,
         ];
 
         return array_map('strval', array_filter($values, static fn(mixed $value): bool => $value !== null));
@@ -144,9 +148,9 @@ class LegalDocuments
         return $names;
     }
 
-    private function fill(string $body, string $path): string
+    private function fill(string $body, string $path, string $locale): string
     {
-        $values = $this->tokens();
+        $values = $this->tokens($locale);
 
         return (string) preg_replace_callback(self::TOKEN, function (array $match) use ($values, $path): string {
             if (! array_key_exists($match[1], $values)) {

@@ -256,8 +256,8 @@ it('states the refund window under the buy buttons, with the policy linked', fun
         ->toContain(str_replace('{days}', (string) pricingPageJson('pricing.json')['refund']['days'], $sentence))
         ->toContain('href="' . $href . '"');
 })->with([
-    'English' => ['/pricing', 'Every paid plan can be refunded within {days} days of purchase.', '/refund-policy'],
-    'Vietnamese' => ['/vi/pricing', 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua.', '/vi/refund-policy'],
+    'English' => ['/pricing', 'Every paid plan can be refunded within {days} days of purchase, and each monthly or yearly renewal within {days} days of its charge.', '/refund-policy'],
+    'Vietnamese' => ['/vi/pricing', 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua, và mỗi lần gia hạn theo tháng hoặc theo năm trong vòng {days} ngày kể từ ngày tính phí.', '/vi/refund-policy'],
 ]);
 
 it('states each licensing fact once in the body, and repeats none in the short FAQ', function (): void {

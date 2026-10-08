@@ -94,8 +94,8 @@ export default {
     },
     "allFeatures": "Semua fitur berbayar",
     "refund": {
-        "one": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian. Lihat <link>kebijakan pengembalian dana</link>.",
-        "other": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian. Lihat <link>kebijakan pengembalian dana</link>."
+        "one": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {count} hari setelah penagihannya. Lihat <link>kebijakan pengembalian dana</link>.",
+        "other": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian, dan setiap perpanjangan bulanan atau tahunan dalam {count} hari setelah penagihannya. Lihat <link>kebijakan pengembalian dana</link>."
     },
     "finePrint": "Harga dalam dolar AS. {merchant} adalah merchant of record: menerima pembayaran dan menghitung pajak penjualan atau PPN saat checkout.",
     "finePrintCurrency": "Harga dalam dolar AS.",

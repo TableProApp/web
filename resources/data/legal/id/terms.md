@@ -8,7 +8,7 @@ Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami,
 
 ## Definisi {#definitions}
 
-- **"TablePro", "kami", dan "milik kami"** berarti proyek TablePro dan pengelolanya.
+- **"TablePro", "kami", dan "milik kami"** berarti {publisherName}, pengembang perorangan di {publisherCity}, {publisherCountry}, yang menerbitkan TablePro.
 - **"Aplikasi"** berarti TablePro untuk Mac dan TablePro untuk iPhone dan iPad, termasuk pembaruan dan plugin.
 - **"Situs Web"** berarti tablepro.app, docs.tablepro.app, dan domain lain yang kami operasikan.
 - **"Layanan"** berarti Situs Web, portal akun, dan server yang dihubungi aplikasi Mac untuk pemeriksaan lisensi dan Team Library.

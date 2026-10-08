@@ -1,10 +1,10 @@
 ---
 title: 환불 정책
-description: 모든 TablePro 플랜은 구매 후 {refundDays}일 이내, 연간 플랜은 최근 갱신 후 같은 기간 이내에 환불받을 수 있습니다. 신청 방법과 라이선스 처리 방식을 안내합니다.
-updatedAt: "2026-10-02"
+description: 모든 TablePro 플랜은 구매 후 {refundDays}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {refundDays}일 이내에 환불받을 수 있습니다. 신청 방법과 라이선스 처리 방식을 안내합니다.
+updatedAt: "2026-10-08"
 ---
 
-모든 유료 플랜은 {refundDays}일 이내에 환불받을 수 있습니다. Starter와 Team의 월간, 연간 및 일회성 구매 모두 해당합니다. {refundDays}일은 구매일 또는 연간 구독의 최근 갱신일부터 계산합니다. 플랜 자체에 관한 설명은 [요금 페이지](/ko/pricing#refunds)에 있습니다.
+모든 유료 플랜은 {refundDays}일 이내에 환불받을 수 있습니다. Starter와 Team의 월간, 연간 및 일회성 구매 모두 해당합니다. {refundDays}일은 구매일부터 계산하며, 월간 또는 연간 플랜의 각 갱신도 결제 후 {refundDays}일 이내에 환불받을 수 있습니다. 플랜 자체에 관한 설명은 [요금 페이지](/ko/pricing#refunds)에 있습니다.
 
 ## 환불 신청 방법 {#request}
 
