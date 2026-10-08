@@ -611,7 +611,7 @@ The order is fixed. Each block is filled from `engines.json` facts and engine-sp
 ### E.6 Release posts (English-only archive)
 
 - The body is unchanged. The front-matter date stays `datePublished`, and there is no refreshed date.
-- A dated archive note above the body comes from the template, not from an edit to the post.
+- A dated archive note above the body comes from the template, not from an edit to the post. It appears once a newer release than the post's is out, so the post about the current release opens without it.
 - A correction note is added only where a claim was **never** true. It is dated and visible; the post is never edited silently.
 - Figures become `blog-{slug}-{n}` placeholder slots. The existing image files are kept as source material.
 - The CTA block at the end is rendered from current `platforms.json` data, so it never repeats a stale requirement.
