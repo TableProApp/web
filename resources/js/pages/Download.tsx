@@ -105,7 +105,8 @@ export default function Download({ content, release, mac, ios, unreleased, links
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     const [device, setDevice] = useState<DeviceKind | null>(null);
-    const [hint, setHint] = useState<MacArch | null>(null);
+    // Undefined until the browser has answered; only a Mac is asked.
+    const [hint, setHint] = useState<MacArch | null | undefined>(undefined);
 
     useEffect(() => {
         let cancelled = false;

@@ -899,6 +899,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Mac: `Button` `primary` `lg` "Download for Mac" + AvailabilityLine.
 - iPhone and iPad: `AppStoreBadge` (40px) + AvailabilityLine.
 - Side by side at ≥ 640 with a 24px gap; stacked below.
+- Mac first in the markup on every device. On an iPhone or iPad the badge is drawn first (CSS `order` under the `ios` class the root template sets before first paint), so the actions never swap after the page is shown.
 - **DownloadBand:** an H2 + one sentence + PlatformActions, at `wide` width, on `--background`.
 
 **PlatformCard** (download page, the homepage's `#platforms`):
@@ -1555,6 +1556,7 @@ rule runs from wall to wall. Each topic below is a Section of its own at `text` 
 - **No auto-download**, and an iPhone user agent is never detected as a Mac.
 - Both arch links are server-rendered. The UA-CH hint only swaps which of the two is `primary`; the sizes are identical, so there is no CLS.
 - On an iPhone or iPad UA, both Mac buttons become `secondary`, which leaves the App Store badge as the strongest action, again with no layout change.
+- On a Mac whose browser gives no hint (Safari, Firefox), both buttons stay equal and "Which Mac do I have?" opens by itself.
 - If the release API fails, the links fall back to GitHub `releases/latest` (server-rendered).
 
 ### 8.8 iPhone & iPad (`/ios`)

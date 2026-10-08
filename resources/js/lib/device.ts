@@ -13,7 +13,7 @@
  *   "Macintosh" with more than one touch point is an iPad.
  * - Only Chromium's `architecture` client hint says which chip a Mac has.
  *   Safari and Firefox report "Intel Mac OS X" on every Mac, so without the
- *   hint the page never guesses, and offers "Which Mac do I have?" instead.
+ *   hint the page never guesses, and opens "Which Mac do I have?" instead.
  *
  * Pure, with no imports, so `node --test` loads it directly
  * (tests/js/device.test.ts).
@@ -87,6 +87,11 @@ export async function archHint(source: ArchitectureHintSource | null | undefined
  */
 export function buildVariant(build: MacArch, device: DeviceKind, hint: MacArch | null): ButtonVariant {
     return device === 'mac' && hint === build ? 'primary' : 'secondary';
+}
+
+// "Which Mac do I have?" opens by itself on a Mac whose browser gave no hint. `undefined` is a hint still pending.
+export function chipHelpOpen(device: DeviceKind | null, hint: MacArch | null | undefined): boolean {
+    return device === 'mac' && hint === null;
 }
 
 /** The App Store card leads on an iPhone or iPad, and only there. */
