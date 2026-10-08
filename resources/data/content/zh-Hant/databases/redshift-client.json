@@ -31,7 +31,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "主機使用叢集端點，Redshift Serverless 使用工作群組端點，兩者接聽相同連接埠。資料庫必填，每個叢集建立時都有名為 <code>dev</code> 的資料庫。匯入 <code>redshift://</code> URL 可填入表單。",
+                "主機使用叢集端點，Redshift Serverless 使用工作群組端點，兩者監聽相同連接埠。資料庫必填，每個叢集建立時都有名為 <code>dev</code> 的資料庫。匯入 <code>redshift://</code> URL 可填入表單。",
                 "新連線 SSL 為 Preferred，不檢查版本，因此 AWS 仍執行的任何叢集都可連線。密碼存入鑰匙圈或從 <code>~/.pgpass</code> 讀取，是連線的兩種<credentials>認證資訊選項</credentials>。無法公開存取的叢集透過通往其 VPC 堡壘主機的 <network>SSH 通道</network>存取。"
             ]
         },
@@ -49,8 +49,8 @@
             "id": "schema",
             "title": "結構",
             "paragraphs": [
-                "Redshift 無索引、列舉、序列或觸發程序可管理：DISTKEY、SORTKEY 承擔索引作用，Structure 中無 Triggers 分頁，側欄不列出常式。",
-                "可從側欄重新命名資料表、資料庫和 schema，並建立指定擁有者的 schema。"
+                "Redshift 無索引、列舉、序列或觸發程序可管理：DISTKEY、SORTKEY 承擔索引作用，Structure 中無 Triggers 分頁，側邊欄不列出常式。",
+                "可從側邊欄重新命名資料表、資料庫和 schema，並建立指定擁有者的 schema。"
             ]
         },
         {
@@ -73,7 +73,7 @@
             "id": "iphone",
             "title": "iPhone 與 iPad",
             "paragraphs": [
-                "將 Redshift 連線帶到 iPhone、iPad，可啟用 Mac 的 {icloudSyncTier} 方案中的 <icloudSync>iCloud Sync</icloudSync>，或<share>匯出連線</share>檔案在裝置開啟。之後使用內建 PostgreSQL 驅動程式，依卡片瀏覽、篩選排序資料表，在 Query 分頁執行 SQL。密碼僅在密碼同步開啟時透過 iCloud Sync 傳遞，或透過 {encryptedExportTier} 方案中含密碼的加密匯出檔案傳遞。憑證保留在各裝置上。"
+                "將 Redshift 連線帶到 iPhone、iPad，可啟用 Mac 的 {icloudSyncTier} 方案中的 <icloudSync>iCloud Sync</icloudSync>，或<share>匯出連線</share>檔案在裝置開啟。之後使用內建 PostgreSQL 驅動程式，以卡片形式瀏覽、篩選排序資料表，在 Query 分頁執行 SQL。密碼僅在密碼同步開啟時透過 iCloud Sync 傳遞，或透過 {encryptedExportTier} 方案中含密碼的加密匯出檔案傳遞。憑證保留在各裝置上。"
             ]
         }
     ],

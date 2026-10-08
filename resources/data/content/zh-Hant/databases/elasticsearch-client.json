@@ -32,7 +32,7 @@
             "title": "索引與 Query DSL 主控台",
             "paragraphs": [
                 "主控台像 Kibana Dev Tools 一樣接受方法、路徑及選用 JSON 本文，例如帶 <code>match</code> 查詢的 <code>GET /orders/_search</code>。搜尋命中傳回為列，帶 <code>format=json</code> 的 <code>_cat</code> 請求及其他陣列回應轉為資料表，其餘顯示格式化 JSON。無法存取 <code>_sql</code> 端點。",
-                "側欄將索引列為資料表，隱藏點號開頭的名稱。欄位來自對應：物件欄位展開為 <code>address.city</code> 等點分路徑，nested 欄位有一個存放陣列的 JSON 欄及每個葉欄位的欄，每個文件含 <code>_id</code>、<code>_index</code>、<code>_score</code>。",
+                "側邊欄將索引列為資料表，隱藏點號開頭的名稱。欄位來自對應：物件欄位展開為 <code>address.city</code> 等點分路徑，nested 欄位有一個存放陣列的 JSON 欄及每個葉欄位的欄，每個文件含 <code>_id</code>、<code>_index</code>、<code>_score</code>。",
                 "<filters>欄位篩選</filters>轉換為 <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> 查詢，Raw SQL 篩選列接受 <code>name:Widget</code> 等 Lucene 語法，以 <code>query_string</code> 傳送。排序 <code>text</code> 欄位時，對應存在 <code>.keyword</code> 子欄位則使用它。",
                 "格線編輯轉換為以 <code>_id</code> 為鍵的 REST 呼叫：修改用 <code>_update</code>，建立刪除用 <code>_doc</code>。新列輸入 <code>_id</code> 為文件命名。透過 JSON 欄修改 nested 陣列；在葉欄輸入值會停止儲存，指出欄名且不傳送任何內容。"
             ]
@@ -41,7 +41,7 @@
             "id": "schema",
             "title": "對應",
             "paragraphs": [
-                "TablePro 中對應唯讀。不提供 Truncate，因為 Elasticsearch 最接近的 <code>_delete_by_query</code> 非同步執行並逐文件報告衝突，請從主控台傳送。從側欄刪除索引傳送確認中顯示的 DELETE 請求。"
+                "TablePro 中對應唯讀。不提供 Truncate，因為 Elasticsearch 最接近的 <code>_delete_by_query</code> 非同步執行並逐文件報告衝突，請從主控台傳送。從側邊欄刪除索引傳送確認中顯示的 DELETE 請求。"
             ]
         },
         {

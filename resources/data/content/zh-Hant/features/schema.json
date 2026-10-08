@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "結構、比較與同步",
-        "lead": "用於修改資料庫結構並保持兩個資料庫一致。查看 DDL 編輯資料表，了解資料表間關係，讓預備環境與開發環境一致，或將資料表複製到其他伺服器或引擎。本頁介紹的功能均在 Mac App 中。iPhone 與 iPad App 提供其中一部分。",
+        "lead": "用於修改資料庫結構並保持兩個資料庫一致。對照 DDL 編輯資料表，了解資料表間關係，讓預備環境與開發環境一致，或將資料表複製到其他伺服器或引擎。本頁介紹的功能均在 Mac App 中。iPhone 與 iPad App 提供其中一部分。",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -36,23 +36,23 @@
             "id": "er-diagram",
             "title": "了解資料表間關係",
             "paragraphs": [
-                "<ui>檢視 ER 圖</ui>（View ER Diagram）繪製目前結構的資料表與外部索引鍵，根據主索引鍵和唯一索引鍵計算烏鴉腳表示法中的關係基數。<code>product_tags</code> 等關聯資料表會摺疊為一條多對多連線。可將圖匯出為 PNG、複製為圖片，或匯出為包含外部索引鍵的 CREATE TABLE SQL 陳述式。",
-                "圖表是用於查看和分享的快照。資料表需在 Structure 分頁修改，不能在畫布上修改。"
+                "<ui>檢視 ER 圖</ui>（View ER Diagram）繪製目前 schema 的資料表與外部索引鍵，根據主索引鍵和唯一索引鍵計算烏鴉腳表示法中的關係基數。<code>product_tags</code> 等關聯資料表會摺疊為一條多對多連線。可將圖匯出為 PNG、複製為圖片，或匯出為包含外部索引鍵的 CREATE TABLE SQL 陳述式。",
+                "ER 圖是用於查看和分享的快照。資料表需在 Structure 分頁修改，不能在畫布上修改。"
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "側欄中的常式、觸發程序與檔案夾",
+            "title": "側邊欄中的常式、觸發程序與資料夾",
             "paragraphs": [
-                "引擎支援時，側欄在每個結構下列出預存程序、函式與觸發程序，並以唯讀分頁開啟其原始碼，可複製或在編輯器中開啟。Redshift、CockroachDB、PGlite 與 SAP HANA 不列出這些物件。PostgreSQL 分割區顯示在父資料表下。"
+                "引擎支援時，側邊欄在每個 schema 下列出預存程序、函式與觸發程序，並以唯讀分頁開啟其原始碼，可複製或在編輯器中開啟。Redshift、CockroachDB、PGlite 與 SAP HANA 不列出這些物件。PostgreSQL 分割區顯示在父資料表下。"
             ],
             "blocks": [
                 {
                     "id": "table-folders",
-                    "title": "資料表與檢視表的檔案夾",
+                    "title": "資料表與檢視表的資料夾",
                     "paragraphs": [
-                        "在側欄清單或樹狀配置中，拖移資料表和檢視表或使用<ui>移動至</ui>（Move to）將其歸入檔案夾。篩選欄也會搜尋檔案夾內部。檔案夾僅存在於 TablePro 中，不改變伺服器；啟用 iCloud Sync 後會同步到其他 Mac。"
+                        "在側邊欄清單或樹狀配置中，拖移資料表和檢視表或使用<ui>移動至</ui>（Move to）將其歸入資料夾。篩選欄也會搜尋資料夾內部。資料夾僅存在於 TablePro 中，不改變伺服器；啟用 iCloud Sync 後會同步到其他 Mac。"
                     ],
                     "since": "0.77.0"
                 }
@@ -83,7 +83,7 @@
             "id": "administer",
             "title": "使用者、工作階段與維護",
             "paragraphs": [
-                "PostgreSQL 的 VACUUM、REINDEX 或 MySQL 的 OPTIMIZE、CHECK 等資料表維護操作會在執行前顯示 SQL。引擎支援時，可在側欄建立、刪除和重新命名資料庫及結構。"
+                "PostgreSQL 的 VACUUM、REINDEX 或 MySQL 的 OPTIMIZE、CHECK 等資料表維護操作會在執行前顯示 SQL。引擎支援時，可在側邊欄建立、刪除和重新命名資料庫及 schema。"
             ],
             "blocks": [
                 {
@@ -150,7 +150,7 @@
             "ios": "no"
         },
         {
-            "label": "常式、觸發程序與資料表檔案夾",
+            "label": "常式、觸發程序與資料表資料夾",
             "ios": "no"
         },
         {
@@ -175,7 +175,7 @@
         "Compare & Sync 僅在相同引擎的兩個資料庫之間產生結構指令碼，MySQL 與 MariaDB 視為同一引擎。其他組合只能唯讀比較，MongoDB 結構從不產生指令碼；跨引擎同步資料時會提醒檢查值的寫入方式。將資料表移至其他引擎請使用 Copy To。",
         "調整欄位順序時，SQLite 和本機 libSQL 檔案會在確認後重建資料表。PostgreSQL、Turso、遠端 libSQL 和 Cloudflare D1 則由 TablePro 產生重建指令碼，需自行執行。",
         "ER 圖唯讀，不能用於設計結構。",
-        "Server Dashboard 可顯示的工作階段和查詢文字取決於連線帳號的權限。"
+        "Server Dashboard 可顯示的工作階段和查詢文字取決於連線帳戶的權限。"
     ],
     "docs": [
         {

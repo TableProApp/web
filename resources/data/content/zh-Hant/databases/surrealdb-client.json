@@ -35,7 +35,7 @@
             "title": "SurrealQL 與記錄",
             "paragraphs": [
                 "編輯器執行整個 SurrealQL 指令碼，包括兩筆記錄間的 <code>RELATE</code>，並提供常用陳述式補全。<explain>Explain 與 Explain Full</explain> 加上 <code>EXPLAIN</code> 重新執行目前查詢，顯示其解析方式及是否使用索引；計畫以原始文字傳回。",
-                "命名空間位於側欄頂層，內含資料庫。兩者隨每次請求傳送，切換均無須重新連線。只有根使用者能看到所有命名空間。",
+                "命名空間位於側邊欄頂層，內含資料庫。兩者隨每次請求傳送，切換均無須重新連線。只有根使用者能看到所有命名空間。",
                 "修改儲存格執行 <code>UPDATE</code>，僅用具型別參數設定改動的欄位，讓 <code>int</code> 仍為 <code>int</code>，不觸碰計算的 <code>FUTURE</code> 欄位或其他寫入者的改動。新列留空 <code>id</code> 自動產生，或填寫 <code>table:id</code>。<code>SCHEMALESS</code> 資料表從取得的記錄決定欄位。",
                 "<filters>篩選</filters>轉換為 SurrealQL，Raw SQL 列接受單一條件，例如圖遍歷。寫入、含 <code>;</code> 或註解、呼叫 <code>fn::</code> 或 <code>http::</code> 的條件被拒絕，請在編輯器執行。"
             ]

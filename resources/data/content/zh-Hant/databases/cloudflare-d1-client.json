@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "適用於 {devices} 的 Cloudflare D1 用戶端",
-        "description": "使用帳號 ID 和 API 權杖連線 Cloudflare D1，切換帳號中的資料庫，以 SQLite 方言查詢並查看計畫圖。"
+        "description": "使用帳戶 ID 和 API 權杖連線 Cloudflare D1，切換帳戶中的資料庫，以 SQLite 方言查詢並查看計畫圖。"
     },
     "og": {
         "kicker": "資料庫",
@@ -11,7 +11,7 @@
     "breadcrumb": "Cloudflare D1",
     "header": {
         "title": "適用於 {devices} 的 Cloudflare D1 用戶端",
-        "lead": "從一個連線存取 Cloudflare 帳號中的 D1 資料庫，透過 Cloudflare API 使用 SQLite 方言查詢，並在 Structure 分頁管理資料表、索引和觸發程序。"
+        "lead": "從一個連線存取 Cloudflare 帳戶中的 D1 資料庫，透過 Cloudflare API 使用 SQLite 方言查詢，並在 Structure 分頁管理資料表、索引和觸發程序。"
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,16 +27,16 @@
             "id": "connect",
             "title": "使用 API 權杖連線",
             "paragraphs": [
-                "D1 連線需要三個值：資料庫名稱或 UUID、Cloudflare 帳號 ID 和 API 權杖。權杖填入 <ui>API Token</ui> 欄位，儲存在 <credentials>macOS 鑰匙圈</credentials>。所有請求經 HTTPS 傳送至 Cloudflare API，因此沒有主機、連接埠、SSL 設定或 SSH 通道。",
-                "透過 Custom token 範本建立含 <ui>Account > D1 > Edit</ui> 權限的權杖，Cloudflare 僅顯示一次，請及時複製。權杖可存取帳號中所有 D1 資料庫，不僅是目前連線的資料庫。",
-                "匯入 <code>d1://account-id/database-name</code> URL 會填入帳號和資料庫；權杖從不包含在 URL 中，需隨後貼上。"
+                "D1 連線需要三個值：資料庫名稱或 UUID、Cloudflare 帳戶 ID 和 API 權杖。權杖填入 <ui>API Token</ui> 欄位，儲存在 <credentials>macOS 鑰匙圈</credentials>。所有請求經 HTTPS 傳送至 Cloudflare API，因此沒有主機、連接埠、SSL 設定或 SSH 通道。",
+                "透過 Custom token 範本建立含 <ui>Account > D1 > Edit</ui> 權限的權杖，Cloudflare 僅顯示一次，請及時複製。權杖可存取帳戶中所有 D1 資料庫，不僅是目前連線的資料庫。",
+                "匯入 <code>d1://account-id/database-name</code> URL 會填入帳戶和資料庫；權杖從不包含在 URL 中，需隨後貼上。"
             ]
         },
         {
             "id": "work",
             "title": "切換資料庫並查詢",
             "paragraphs": [
-                "工具列資料庫切換器列出帳號的 D1 資料庫，無須重新連線即可切換，也可建立和刪除資料庫。各分頁保持在開啟時的資料庫。",
+                "工具列資料庫切換器列出帳戶的 D1 資料庫，無須重新連線即可切換，也可建立和刪除資料庫。各分頁保持在開啟時的資料庫。",
                 "查詢使用 SQLite 方言。<explain>EXPLAIN QUERY PLAN</explain> 繪製為圖形，列編輯在格線中暫存至儲存，<editing>Preview SQL</editing> 先顯示陳述式。",
                 "請讓每個陳述式獨立成立：一個陳述式設定的 <code>PRAGMA</code> 或暫存資料表在下一個時消失，每個執行即提交，無法復原。Cloudflare 限流時，錯誤包含重試前要求等待的時間。"
             ]
@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "資料表、索引與觸發程序",
             "paragraphs": [
-                "<structure>Structure 分頁</structure> 可建立和刪除資料表、新增和刪除欄位、建立和刪除索引，包括含 WHERE 條件的部分索引；Preview SQL 在儲存前顯示 DDL。Triggers 分頁可建立、編輯和刪除觸發程序，資料表可從側欄重新命名。",
+                "<structure>Structure 分頁</structure> 可建立和刪除資料表、新增和刪除欄位、建立和刪除索引，包括含 WHERE 條件的部分索引；Preview SQL 在儲存前顯示 DDL。Triggers 分頁可建立、編輯和刪除觸發程序，資料表可從側邊欄重新命名。",
                 "調整欄位順序或修改外部索引鍵需要重建資料表。在 D1 上每個陳述式都是獨立請求，無法用交易將重建合併，TablePro 只產生重建指令碼供自行執行。"
             ]
         },

@@ -39,7 +39,7 @@
                     "id": "native",
                     "question": "這裡的「原生」是什麼意思？",
                     "answer": [
-                        "每款 TablePro App 都以 Swift 為對應平台編寫。Mac 上使用 AppKit、SwiftUI、鑰匙圈與 Touch ID；iPhone 與 iPad 上使用 Face ID、小工具、捷徑和即時動態。資料庫驅動程式也為原生實作，不使用 JDBC。"
+                        "每款 TablePro App 都針對各自的平台使用 Swift 編寫。Mac 上使用 AppKit、SwiftUI、鑰匙圈與 Touch ID；iPhone 與 iPad 上使用 Face ID、小工具、捷徑和即時動態。資料庫驅動程式也為原生實作，不使用 JDBC。"
                     ]
                 },
                 {
@@ -74,7 +74,7 @@
                     "id": "mac-requirements",
                     "question": "哪些 Mac 可以執行 TablePro？",
                     "answer": [
-                        "Mac 版 TablePro 需要 {macRequirement}。Apple 晶片與 Intel 有獨立建置版本，<download>下載頁面</download>提供兩者，Homebrew 會自動安裝合適的版本。"
+                        "Mac 版 TablePro 需要 {macRequirement}。Apple silicon 與 Intel 有獨立建置版本，<download>下載頁面</download>提供兩者，Homebrew 會自動安裝合適的版本。"
                     ]
                 },
                 {
