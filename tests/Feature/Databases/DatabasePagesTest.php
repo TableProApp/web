@@ -6,6 +6,7 @@ use App\Support\Localization\Locales;
 use App\Support\Seo\RedirectMap;
 use Dom\HTMLDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 use Inertia\Testing\AssertableInertia;
 use PHPUnit\Framework\Assert;
@@ -332,7 +333,7 @@ it('types no count, number-led claim or banned phrase into database copy', funct
     $banned = [
         'every database', 'all databases', 'any database', 'cross-platform', 'all platforms', 'unlock', 'unlocks', 'seamless',
         'powerful', 'effortless', 'blazing', 'lightweight', 'free forever', 'no feature gating', 'Mac App Store', 'Setapp',
-        'MySQL Workbench', 'coming soon', 'mọi cơ sở dữ liệu', 'tất cả cơ sở dữ liệu', 'đa nền tảng', 'mở khóa', 'mạnh mẽ',
+        'coming soon', 'mọi cơ sở dữ liệu', 'tất cả cơ sở dữ liệu', 'đa nền tảng', 'mở khóa', 'mạnh mẽ',
         'liền mạch', 'siêu nhanh', 'tức thì', 'sắp ra mắt', 'miễn phí mãi mãi',
     ];
     $counted = '/\b\d+\s+(databases?|engines?|drivers?|features?|tools?|providers?|plugins?|cơ sở dữ liệu|tính năng|công cụ|nhà cung cấp)\b/iu';
@@ -451,12 +452,14 @@ it('leaves a format out of an engine’s imports when its plugin refuses that en
         ->where('engine.formats.import', fn($formats): bool => collect($formats)->contains('SQL')));
 });
 
-it('dates the tools the PostgreSQL page cites from comparisons.json, in the page’s language', function (string $prefix, string $date): void {
+it('dates the tools the PostgreSQL page cites from comparisons.json, in the page’s language', function (string $prefix, string $locale): void {
     $products = collect(json_decode((string) file_get_contents(resource_path('data/comparisons.json')), true)['products'])->keyBy('id');
+    $date = Carbon::createFromFormat('!Y-m-d', $products['pgadmin']['checkedAt'])->locale($locale)->isoFormat('LL');
 
     get("{$prefix}/postgresql-client")->assertInertia(fn(AssertableInertia $page) => $page
         ->where('tools.0.id', 'pgadmin')
-        ->where('tools.0.comparePath', null)
+        ->where('tools.0.comparePath', '/compare/pgadmin')
+        ->where('tools.0.compareTitle', json_decode((string) file_get_contents(resource_path("data/content/{$locale}/compare/pgadmin.json")), true)['header']['title'])
         ->where('tools.0.version', $products['pgadmin']['status']['lastRelease']['version'])
         ->where('tools.0.checked', $date)
         ->where('tools.0.free', true)
@@ -466,8 +469,8 @@ it('dates the tools the PostgreSQL page cites from comparisons.json, in the page
         ->where('tools.1.comparePath', '/compare/postico')
         ->where('tools.1.free', false));
 })->with([
-    'English' => ['', 'October 2, 2026'],
-    'Vietnamese' => ['/vi', '2 tháng 10 năm 2026'],
+    'English' => ['', 'en'],
+    'Vietnamese' => ['/vi', 'vi'],
 ]);
 
 it('links the comparisons with clients for the page’s engine that its paragraphs do not already link', function (string $slug, string $engine): void {
@@ -497,7 +500,7 @@ it('links the comparisons with clients for the page’s engine that its paragrap
 
 it('keeps a single-engine client’s comparison off another engine’s page', function (): void {
     get('/postgresql-client')->assertInertia(fn(AssertableInertia $page) => $page
-        ->where('comparisons', fn($comparisons): bool => collect($comparisons)->pluck('path')->intersect(['/compare/sequel-ace', '/compare/sequel-pro', '/compare/phpmyadmin', '/compare/postico'])->isEmpty())
+        ->where('comparisons', fn($comparisons): bool => collect($comparisons)->pluck('path')->intersect(['/compare/sequel-ace', '/compare/sequel-pro', '/compare/phpmyadmin', '/compare/postico', '/compare/mysql-workbench', '/compare/mongodb-compass', '/compare/ssms'])->isEmpty())
         ->where('tools.1.compareTitle', 'TablePro vs Postico'));
 
     get('/sqlite-client')->assertInertia(fn(AssertableInertia $page) => $page->where('comparisons', []));

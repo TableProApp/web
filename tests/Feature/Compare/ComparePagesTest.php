@@ -229,6 +229,26 @@ it('server-renders each comparison with a jump list, the word a searcher types, 
     }
 });
 
+it('server-renders the added comparisons with the facts they turn on', function (): void {
+    $workbench = comparedProduct('mysql-workbench');
+    $document = HTMLDocument::createFromString(ssrHtml('/compare/mysql-workbench'), LIBXML_NOERROR);
+
+    // The new Workbench ships an Apple silicon build only, and 8.0 ends at its last release.
+    expect($document->querySelector('#row-platforms td:last-child')->textContent)->toContain('Apple silicon only');
+    expect($document->querySelector('#row-workbench8 td:last-child')->textContent)->toContain($workbench['cells']['workbench8']['version']);
+
+    // SSMS has no Mac version, so its page is framed as the alternatives, never as a head-to-head.
+    $ssms = HTMLDocument::createFromString(ssrHtml('/compare/ssms'), LIBXML_NOERROR)->querySelector('main');
+
+    expect(trim($ssms->querySelector('h1')->textContent))->toBe('SQL Server Management Studio alternatives for Mac');
+    expect($ssms->textContent)->toContain('Keep SQL Server Management Studio, on Windows, if')->not->toContain('TablePro vs SQL Server Management Studio');
+    expect($ssms->querySelector('#row-ios'))->not->toBeNull();
+
+    $monthly = collect(comparedProduct('dbgate')['prices'])->where('period', 'month')->whereNull('minUnits')->min('amount');
+
+    expect(html_entity_decode(ssrHtml('/compare'), ENT_QUOTES | ENT_HTML5))->toContain('From $' . $monthly . ' a month per user');
+});
+
 it('server-renders TablePro’s device limit beside a competitor’s, and yes or no where a cell has no words', function (): void {
     $activations = json_decode(File::get(resource_path('data/pricing.json')), true)['tiers']['starter']['activations'];
     $document = HTMLDocument::createFromString(ssrHtml('/compare/tableplus'), LIBXML_NOERROR);

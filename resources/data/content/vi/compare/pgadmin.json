@@ -1,0 +1,205 @@
+{
+    "seo": {
+        "title": "TablePro vs pgAdmin: công cụ quản trị PostgreSQL hay client",
+        "description": "pgAdmin là công cụ quản trị PostgreSQL miễn phí, mã nguồn mở, chạy trên desktop hoặc web server. TablePro hỗ trợ PostgreSQL và nhiều engine khác."
+    },
+    "og": {
+        "kicker": "So sánh",
+        "title": "TablePro vs pgAdmin"
+    },
+    "header": {
+        "title": "TablePro vs pgAdmin",
+        "lead": "pgAdmin 4 là công cụ quản trị và phát triển miễn phí, mã nguồn mở dành cho PostgreSQL. pgAdmin chạy như một ứng dụng desktop trên Windows, macOS và Linux, hoặc trên một web server dùng chung cho nhiều người. TablePro là client mã nguồn mở cho PostgreSQL và nhiều engine khác, có ứng dụng riêng cho iPhone và iPad, cùng một số tính năng trả phí tùy chọn trên Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Bạn còn làm việc với MySQL, SQL Server, SQLite, Redis hay MongoDB, không chỉ PostgreSQL.",
+            "Bạn muốn một ứng dụng Mac native viết bằng Swift, lưu mật khẩu trong Keychain của macOS.",
+            "Bạn muốn mỗi connection có một mức Safe Mode, như Read-Only cho production, hoặc yêu cầu Touch ID trước khi ghi.",
+            "Bạn muốn có MCP server để các AI client như Claude Code hay Cursor dùng được connection đã lưu của bạn.",
+            "Bạn muốn một ứng dụng miễn phí cho iPhone và iPad, kết nối được tới PostgreSQL."
+        ],
+        "competitor": [
+            "Bạn chỉ dùng PostgreSQL, và phần lớn công việc là quản trị.",
+            "Bạn debug function PL/pgSQL, hoặc lên lịch job bằng pgAgent.",
+            "Bạn muốn có sẵn psql, pg_dump và pg_restore đi kèm, không phải cài thêm gì.",
+            "Bạn muốn cài một lần trên web server để cả nhóm mở bằng trình duyệt.",
+            "Bạn còn làm việc trên Windows hoặc Linux."
+        ]
+    },
+    "glance": {
+        "intro": "pgAdmin hỗ trợ các phiên bản PostgreSQL còn được hỗ trợ vào lúc mỗi bản phát hành ra mắt. Cả hai công cụ đều có trợ lý AI làm việc với nhà cung cấp do bạn cấu hình."
+    },
+    "rows": {
+        "debugger": {
+            "label": "Debugger cho procedural language",
+            "tablepro": "Không có"
+        },
+        "schemaDiff": {
+            "label": "So sánh schema",
+            "tablepro": "Compare & Sync so sánh cấu trúc hoặc dữ liệu của hai cơ sở dữ liệu và viết script đồng bộ. Thuộc gói Starter"
+        },
+        "diagram": {
+            "label": "Sơ đồ ER",
+            "tablepro": "Sơ đồ ER chỉ đọc, export ra PNG hoặc SQL, miễn phí"
+        },
+        "backupRestore": {
+            "label": "Sao lưu và khôi phục",
+            "tablepro": "Miễn phí: Backup Dump và Restore Dump chạy pg_dump và pg_restore do bạn tự cài"
+        },
+        "jobScheduler": {
+            "label": "Lên lịch job",
+            "tablepro": "Không có"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "pgAdmin được làm cho PostgreSQL, và cho cả EDB Postgres Advanced Server.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Debugger của pgAdmin chạy từng bước qua function PL/pgSQL, còn công cụ schema diff so sánh hai schema. Cả hai đều miễn phí.",
+                "cite": ["cells.debugger", "cells.schemaDiff"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Công cụ ERD dùng để thiết kế và tài liệu hóa schema.",
+                "cite": ["cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "psql, pg_dump, pg_dumpall và pg_restore đi kèm pgAdmin, nên sao lưu và khôi phục không cần cài thêm gì.",
+                "cite": ["cells.backupRestore"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "pgAdmin chạy trên Windows, macOS và Linux, hoặc trên web server cho nhiều người dùng, và pgAgent lên lịch các job SQL, shell và batch.",
+                "cite": ["platforms", "cells.jobScheduler"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Một client dùng cho PostgreSQL và nhiều engine khác, từ MySQL, SQL Server đến Redis, MongoDB và DuckDB. Xem danh sách <link>cơ sở dữ liệu được hỗ trợ</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "TablePro là ứng dụng Mac viết bằng Swift, dùng driver cơ sở dữ liệu native. pgAdmin là một ứng dụng web viết bằng Python, chạy trong runtime desktop {technology} hoặc trên web server.",
+                "cite": ["technology"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "EXPLAIN hiện execution plan dưới dạng sơ đồ, cây hoặc văn bản thô, còn <link>EXPLAIN Compare</link> so plan mới với một plan gốc. Cả hai đều miễn phí.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "Mỗi connection có một mức <link>Safe Mode</link>, từ Silent tới Read-Only, với Touch ID ở các mức nghiêm ngặt hơn.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "<link>MCP server</link> cho phép các AI client như Claude Code hay Cursor dùng connection đã lưu của bạn mà không thấy mật khẩu. Tính năng này miễn phí trong ứng dụng Mac.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Ứng dụng cho iPhone và iPad</link> miễn phí, kết nối được tới PostgreSQL, không có mua hàng trong ứng dụng.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Không có ứng dụng TablePro cho Windows hay Linux, và không có bản web để cài lên server.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Không có debugger cho procedural language và không có trình lên lịch job.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Sơ đồ ER chỉ đọc: bạn sửa table trong tab Structure, không phải bằng cách vẽ.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Để sao lưu, bạn cần pg_dump và pg_restore trên máy Mac, cài bằng Homebrew.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Compare & Sync</link> thuộc gói Starter, trong khi schema diff của pgAdmin miễn phí.",
+                "cite": ["cells.schemaDiff"],
+                "feature": "compare-sync",
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro không có công cụ import từ pgAdmin. Hãy thêm từng server thành một connection trong TablePro: điền vào form connection, hoặc dán URL bắt đầu bằng postgresql:// vào <ui>Tệp > Nhập > Nhập từ URL…</ui> (File > Import > Import from URL…).",
+        "steps": [],
+        "after": [
+            "Nếu project lưu URL cơ sở dữ liệu trong file .env hoặc Prisma schema, <ui>Tệp > Nhập > Mở thư mục dự án…</ui> (File > Import > Open Project Folder…) sẽ đọc URL đó và mở form connection đã điền sẵn.",
+            "Mật khẩu được lưu trong Keychain của macOS. TablePro cũng đọc ~/.pgpass cho connection PostgreSQL.",
+            "Lịch sử query không được chuyển sang. TablePro ghi lại từ query đầu tiên bạn chạy."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "ai",
+            "question": "Cả hai đều có trợ lý AI chứ?",
+            "answer": "Có. Query Tool của pgAdmin viết SQL từ ngôn ngữ tự nhiên, và AI Reports đánh giá bảo mật, hiệu năng và thiết kế, với Anthropic, OpenAI hoặc một model chạy cục bộ qua Ollama hay Docker Model Runner. Trợ lý AI của TablePro miễn phí trong ứng dụng Mac, với nhà cung cấp do bạn chọn, và TablePro có thêm MCP server cho các AI client bên ngoài. <link>Tìm hiểu AI trong TablePro</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "web",
+            "question": "Nhóm của tôi có dùng chung TablePro được như dùng chung một server pgAdmin không?",
+            "answer": "Không qua trình duyệt: TablePro chạy trên từng máy Mac. Mọi người chia sẻ connection qua file connection, hoặc qua Team Catalog và Team Library với gói Team. <link>Tìm hiểu cách chia sẻ</link>.",
+            "href": "/features/sync-and-teams"
+        },
+        {
+            "id": "free",
+            "question": "TablePro có miễn phí như pgAdmin không?",
+            "answer": "TablePro dùng miễn phí. PostgreSQL và các engine khác được hỗ trợ, trợ lý AI và MCP server đều không mất phí, và mã nguồn mở theo giấy phép AGPLv3. Khác với pgAdmin, TablePro có thêm gói trả phí: Starter và Team bổ sung các tính năng tùy chọn cho ứng dụng Mac, như {starterExamples}. <link>Xem bảng giá</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "pgadmin-web-application": "Ứng dụng web viết bằng Python, chạy trong runtime desktop hoặc trên web server",
+        "pgadmin-databases": "PostgreSQL và EDB Postgres Advanced Server, ở các phiên bản còn được hỗ trợ vào lúc mỗi bản pgAdmin ra mắt",
+        "pgadmin-ai": "AI Assistant trong Query Tool, và AI Reports về bảo mật, hiệu năng và thiết kế, với nhà cung cấp là Anthropic, OpenAI, Ollama hoặc Docker Model Runner",
+        "pgadmin-debugger": "Cho PL/pgSQL và EDB SPL",
+        "pgadmin-erd-design": "Công cụ ERD để thiết kế và tài liệu hóa schema",
+        "pgadmin-bundled-utilities": "Sao lưu, khôi phục, VACUUM và ANALYZE, với psql, pg_dump, pg_dumpall và pg_restore đi kèm",
+        "pgadmin-pgagent": "pgAgent, do bạn cài trên server, lên lịch các job SQL, shell và batch"
+    }
+}

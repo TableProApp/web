@@ -9,7 +9,7 @@ namespace App\Support\Content\Slugs;
  * route cache only rebuilds on a PHP change, so a slug that existed only as a
  * content file would ship without a route.
  *
- * The list is the sitemap's ten comparisons (§A.4) in the order of
+ * The list is the sitemap's comparisons (§A.4) in the order of
  * `resources/data/comparisons.json`. `azimutt` is gone: `/compare/azimutt`
  * answers 410 from `resources/data/redirects.json` (sitemap §C.4).
  * `Data/ComparisonsDataTest` pins this list to the products with a slug and to
@@ -31,5 +31,10 @@ final class CompareSlugs
         'postico',
         'heidisql',
         'phpmyadmin',
+        'mysql-workbench',
+        'pgadmin',
+        'dbgate',
+        'mongodb-compass',
+        'ssms',
     ];
 }
