@@ -67,7 +67,7 @@ class SiteFacts
         $links = $this->json('facts.json')['links'] ?? [];
         $profiles = [];
 
-        foreach (['github', 'x', 'discord', 'facebook', 'telegram'] as $key) {
+        foreach (['github', 'x', 'discord', 'telegram'] as $key) {
             $url = is_array($links) ? $this->url($links[$key] ?? null) : null;
 
             if ($url !== null) {

@@ -14,8 +14,8 @@ return [
     |
     | Config holds the switch, the link and the dismissal version, and nothing
     | else. The words live in the `banner` UI catalog, once per language
-    | (resources/js/i18n/messages/{en,vi}/banner.ts), so the banner reads in
-    | the page's language and its length limits are checked in both
+    | (resources/js/i18n/messages/{locale}/banner.ts), so the banner reads in
+    | the page's language and its length limits are checked in each
     | (TopBannerTest).
     |
     | It states a fact and never pleads: no "we need your help", no countdown,

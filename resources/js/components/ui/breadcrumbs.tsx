@@ -64,7 +64,7 @@ export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
             {parent?.href !== undefined && (
                 <LocaleLink
                     href={parent.href}
-                    className="inline-flex min-h-8 items-center gap-1.5 rounded-[2px] text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground sm:hidden"
+                    className="flex min-h-8 w-fit items-center gap-1.5 rounded-[2px] text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground sm:hidden"
                 >
                     <ArrowLeft className="size-4 shrink-0" aria-hidden="true" />
                     {parent.label}

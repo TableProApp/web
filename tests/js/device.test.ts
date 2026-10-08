@@ -1,11 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
 import {
     appStoreFirst,
     archFromHint,
     archHint,
     buildVariant,
+    chipHelpOpen,
     classifyDevice,
     type ArchitectureHintSource,
 } from '../../resources/js/lib/device.ts';
@@ -113,4 +115,41 @@ test('the App Store card leads only on an iPhone or iPad', () => {
     assert.equal(appStoreFirst('ios'), true);
     assert.equal(appStoreFirst('mac'), false);
     assert.equal(appStoreFirst('other'), false);
+});
+
+test('with no hint on a Mac, "Which Mac do I have?" opens; a pending or answered hint leaves it closed', () => {
+    assert.equal(chipHelpOpen('mac', null), true);
+    assert.equal(chipHelpOpen('mac', undefined), false);
+    assert.equal(chipHelpOpen('mac', 'arm64'), false);
+    assert.equal(chipHelpOpen('mac', 'x86_64'), false);
+    assert.equal(chipHelpOpen('ios', null), false);
+    assert.equal(chipHelpOpen('other', null), false);
+    assert.equal(chipHelpOpen(null, null), false);
+});
+
+/*
+ * The root template marks an iPhone or iPad with an `ios` class before first
+ * paint, which puts the App Store badge first and keeps the license banner off
+ * the iPhone and iPad page. It cannot import this module, so it repeats the
+ * rule; this runs it against `classifyDevice` for every user agent above.
+ */
+test('the head script marks exactly the devices classifyDevice calls ios', () => {
+    const blade = readFileSync(new URL('../../resources/views/app.blade.php', import.meta.url), 'utf8');
+    const start = blade.indexOf('var ua = navigator.userAgent;');
+    const end = blade.indexOf('})();', start);
+
+    assert.ok(start > 0 && end > start, 'the device script is in app.blade.php');
+    assert.ok(start < blade.indexOf("localStorage.getItem('tablepro:banner-dismissed')"), 'the device is known before the banner script reads it');
+
+    const run = new Function('navigator', 'document', blade.slice(start, end));
+
+    for (const [name, userAgent] of Object.entries(UA)) {
+        for (const maxTouchPoints of [0, 1, 5]) {
+            const added: string[] = [];
+
+            run({ userAgent, maxTouchPoints }, { documentElement: { classList: { add: (cls: string) => added.push(cls) } } });
+
+            assert.deepEqual(added, appStoreFirst(classifyDevice(userAgent, maxTouchPoints)) ? ['ios'] : [], `${name}, ${maxTouchPoints} touch points`);
+        }
+    }
 });

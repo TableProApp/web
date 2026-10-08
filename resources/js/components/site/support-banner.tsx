@@ -25,10 +25,12 @@ import { dismissBanner } from '@/lib/banner';
  * height.
  *
  * One 40px line at every width, never truncated: the sentence and its link
- * show from 1024px, and below that only the short link, which is the whole
- * message. "Have a license? Hide this" joins from 1280px, where the line has
- * room for it. TopBannerTest holds the catalog strings in both languages to
- * lengths that fit.
+ * show from 1024px, and below that the short question and the same link, so a
+ * phone reader is still asked whether they are a regular user. "Have a
+ * license? Hide this" joins from 1280px, where the line has room for it.
+ * TopBannerTest holds the catalog strings in every language to lengths that
+ * fit. The link and the dismiss button take the band's height as their
+ * target, and the 32px button 44px of its width.
  *
  * It reports `license_banner_view`, `_click` and `_dismiss` to Google
  * Analytics, which applies the reader's consent choice itself.
@@ -56,15 +58,15 @@ export default function SupportBanner() {
     return (
         <div role="region" aria-label={m.banner.label} className="support-banner border-b border-rule bg-surface">
             <Container className="flex h-full items-center gap-3">
-                <p className="type-small min-w-0 flex-1 text-foreground">
+                <p className="type-small min-w-0 flex-1 text-foreground max-lg:whitespace-nowrap">
                     <span className="max-lg:hidden">{m.banner.message} </span>
+                    <span className="lg:hidden">{m.banner.short} </span>
                     <LocaleLink
                         href={banner.href}
                         onClick={() => trackEvent('license_banner_click', { version })}
-                        className={textLinkClasses('standalone', 'whitespace-nowrap')}
+                        className={textLinkClasses('standalone', 'relative whitespace-nowrap after:absolute after:-inset-x-1 after:-inset-y-3')}
                     >
-                        <span className="max-lg:hidden">{m.banner.cta}</span>
-                        <span className="lg:hidden">{m.banner.short}</span>
+                        {m.banner.cta}
                         <span aria-hidden="true">→</span>
                     </LocaleLink>
                 </p>
@@ -79,7 +81,7 @@ export default function SupportBanner() {
                     type="button"
                     onClick={() => dismiss(false)}
                     aria-label={m.controls.dismiss}
-                    className="-mr-1 inline-flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-control text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:bg-surface-strong"
+                    className="relative -mr-1 inline-flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-control text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) after:absolute after:-inset-1.5 hover:bg-surface-strong"
                 >
                     <X className="size-4" aria-hidden="true" />
                 </button>

@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use App\Support\Localization\LocalizedUrl;
 use Illuminate\Http\Request;
 
 /**
@@ -14,16 +15,29 @@ use Illuminate\Http\Request;
 final class Banner
 {
     /**
-     * Pages the banner stays off: Pricing is where it leads, so asking there
-     * repeats the page.
+     * Base route names the banner stays off, in every language: Pricing is
+     * where it leads, so asking there repeats the page.
      *
      * @var list<string>
      */
-    public const HIDDEN_ON = ['landing.pricing', 'vi.landing.pricing'];
+    public const HIDDEN_ON = ['landing.pricing'];
+
+    /**
+     * The iPhone and iPad app has no license, so on its page the root
+     * template's head script drops the banner for a reader on one.
+     *
+     * @var list<string>
+     */
+    public const HIDDEN_ON_IOS_DEVICES = ['landing.ios'];
 
     public static function shownOn(Request $request): bool
     {
-        return (bool) config('banner.enabled') && ! $request->routeIs(...self::HIDDEN_ON);
+        return (bool) config('banner.enabled') && ! in_array(self::page($request), self::HIDDEN_ON, true);
+    }
+
+    public static function hiddenOnIosDevices(Request $request): bool
+    {
+        return in_array(self::page($request), self::HIDDEN_ON_IOS_DEVICES, true);
     }
 
     /**
@@ -42,5 +56,10 @@ final class Banner
             'href' => (string) config('banner.href'),
             'version' => (string) config('banner.version'),
         ];
+    }
+
+    private static function page(Request $request): ?string
+    {
+        return LocalizedUrl::baseName($request->route()?->getName());
     }
 }

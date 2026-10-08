@@ -23,14 +23,15 @@ export default {
         "support": {
             "title": "Dukungan",
             "account": "Akun",
+            "troubleshooting": "Pemecahan masalah (bahasa Inggris)",
             "email": "Dukungan email",
             "chat": "Chat langsung"
         },
         "community": {
             "title": "Komunitas",
+            "discussions": "GitHub Discussions",
             "discord": "Discord",
             "x": "X",
-            "facebook": "Facebook",
             "telegram": "Telegram",
             "sponsor": "Dukung TablePro"
         },

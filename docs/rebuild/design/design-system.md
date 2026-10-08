@@ -833,7 +833,8 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - ≥ 1024 (items and order from sitemap §B.1):
   - Nav: **Features ▾** · Databases · Pricing · Docs ↗ · Blog. Features is a `<button aria-expanded>` that opens a disclosure panel (`--raised`, `--shadow-overlay`, 12px radius) listing All features, the seven feature pages (Querying, Data editing, Schema, Import & export, AI & MCP, Connections, Sync & teams) and iPhone & iPad. Escape closes it and returns focus. With a mouse it also opens on hover, 80ms after the pointer rests on the button, and closes 150ms after it leaves the button and the panel; a click on a panel that hover opened pins it open. Touch and pen keep the click (decided 2026-10-06).
   - Right: LanguageSwitcher, ThemeControl, Account (`quiet`, a plain `<a>` to `/account?locale={locale}`), **Download** (`primary` `sm`, to `/download`).
-- < 1024: logo, Download (`primary` `sm`), Menu button (44 × 44, `aria-expanded`, `aria-controls`).
+- < 1024: logo, Download (`primary` `sm`, in a 44px target), Menu button (44 × 44, `aria-expanded`, `aria-controls`).
+- The desktop row needs more than the 960px a 1024px window gives it in French (1065px), Portuguese (1040), Spanish (1008), German (980) and Italian (965), so those languages switch at 1152px instead (`headerLayout`, `site-links.ts`). `SiteChromeTest` holds the measured widths and fails when a header label grows.
 - Internal hrefs go through `LocaleLink`, which is why this component never moves to the license repo (§9).
 - `scroll-padding-top: 80px`, so anchors and focused elements clear the header (WCAG 2.4.11). The banner scrolls away, so it adds nothing.
 
@@ -841,16 +842,16 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 - A `<dialog>` sheet filling the viewport below the header, on `--raised`.
 - Links at 18/500 with 48px rows: Features (expands in place to the same links as the desktop panel), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, then Account.
-- Then a Language list and a Theme segmented control.
-- At the bottom: a full-width `primary` `lg` "Download for Mac" (→ `/download`) and the App Store badge, each with its AvailabilityLine.
+- Then a full-width `primary` `lg` "Download for Mac" (→ `/download`) and the App Store badge, each with its AvailabilityLine. On an iPhone or iPad the badge is drawn first.
+- At the bottom: Language, one row showing the current language that opens the list (a `<details>`), and a Theme segmented control.
 - Focus is trapped (native modal); Escape closes and focus returns to the toggle.
 - "iPhone & iPad" is the one label for that link; the old menu used two.
 
 **SupportBanner:**
 
-- The license banner (decided 2026-10-05): on by default on every public page except Pricing, above the sticky header, scrolling away with the page.
-- 40px `--surface` band with a 1px `--rule` bottom border; text `small` `--foreground`; link `standalone`. From 1024px the sentence and "Get a license"; below, the short link alone; from 1280px also "Have a license? Hide this".
-- Dismiss is a 32px `quiet` icon button labelled "Dismiss" / "Ẩn thông báo". Closing it hides the bar for 30 days at that version; "Have a license?" and a purchase hide it for a year at every version (`lib/banner.ts`).
+- The license banner (decided 2026-10-05): on by default on every public page except Pricing, above the sticky header, scrolling away with the page. Off on `/ios` for a reader on an iPhone or iPad, whose app has no license.
+- 40px `--surface` band with a 1px `--rule` bottom border; text `small` `--foreground`; link `standalone`. From 1024px the sentence and "Get a license"; below, the short question ("Use TablePro daily?") and the same link, within 248px so it fits a 320px screen; from 1280px also "Have a license? Hide this".
+- Dismiss is a 32px `quiet` icon button labelled "Dismiss" / "Ẩn thông báo", in a 44px-wide target. Closing it hides the bar for 30 days at that version; "Have a license?" and a purchase hide it for a year at every version (`lib/banner.ts`).
 - Mechanics: `--banner-h`, `has-banner` stamped server-side on the pages that show it, and the dismissal record settled before first paint.
 
 **SiteFooter:**
@@ -861,7 +862,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - The newsletter is a full-width cell: its words beside its form from 768px of cell width, stacked below that.
   - The groups are two to a row below 640, three from 640 and five from 1024. Below 640 the cells draw their horizontals only.
   - Six cells in one row was measured and rejected: at 1280 it leaves 131px per group, and labels run to 196px (Indonesian) with unbreakable words of 150px (German).
-- Groups and links come from sitemap §B.3, with the labels in positioning §10.2 (for example "Supported databases", never "All databases"). Group titles are `h3` at 14/600; links are `small` `--muted-foreground` with `--foreground` on hover, 32px rows. A group cell keeps half its right padding and hyphenates a word that still cannot fit.
+- Groups and links come from sitemap §B.3, with the labels in positioning §10.2 (for example "Supported databases", never "All databases"). Group titles are `h3` at 14/600; links are `small` `--muted-foreground` with `--foreground` on hover, 32px rows (44px on a touch screen, where the rows are the tap targets). A group cell keeps half its right padding and hyphenates a word that still cannot fit.
 - **FooterBar** closes it: one shared file, `components/shared/footer-bar.tsx`, byte-identical in the account app, whose footer ends on the same row.
   - Left: the logo at 20px (decorative) and "© year TablePro. Source code under the AGPLv3."
   - Right: the language menu (§5.3.15) and ThemeControl `icons` (§5.3.16). Below 640 they sit on a second row, language left and theme right.
@@ -898,6 +899,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Mac: `Button` `primary` `lg` "Download for Mac" + AvailabilityLine.
 - iPhone and iPad: `AppStoreBadge` (40px) + AvailabilityLine.
 - Side by side at ≥ 640 with a 24px gap; stacked below.
+- Mac first in the markup on every device. On an iPhone or iPad the badge is drawn first (CSS `order` under the `ios` class the root template sets before first paint), so the actions never swap after the page is shown.
 - **DownloadBand:** an H2 + one sentence + PlatformActions, at `wide` width, on `--background`.
 
 **PlatformCard** (download page, the homepage's `#platforms`):
@@ -1555,6 +1557,7 @@ rule runs from wall to wall. Each topic below is a Section of its own at `text` 
 - **No auto-download**, and an iPhone user agent is never detected as a Mac.
 - Both arch links are server-rendered. The UA-CH hint only swaps which of the two is `primary`; the sizes are identical, so there is no CLS.
 - On an iPhone or iPad UA, both Mac buttons become `secondary`, which leaves the App Store badge as the strongest action, again with no layout change.
+- On a Mac whose browser gives no hint (Safari, Firefox), both buttons stay equal and "Which Mac do I have?" opens by itself.
 - If the release API fails, the links fall back to GitHub `releases/latest` (server-rendered).
 
 ### 8.8 iPhone & iPad (`/ios`)
@@ -1634,7 +1637,7 @@ Callout note a block of its own: Didn't find it? Email us · Live chat (loads on
 
 ```
 SiteHeader   (public) · the transactional shell's header (license app, §5.4)
-NoticePage   caption "404" · H1 "Page not found" · one sentence · links (public): Home · Features · Databases · Download · Blog
+NoticePage   caption "404" · H1 "Page not found" · one sentence · links (public): Home · Features · Databases · Pricing · Download · Blog · Docs ↗
              (/vi/* paths render Vietnamese with /vi links; HTTP 404 or 410)
 SiteFooter   (public) · the transactional shell's footer (license app)
 ```

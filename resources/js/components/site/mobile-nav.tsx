@@ -31,11 +31,13 @@ interface MobileNavProps {
     id: string;
     open: boolean;
     onClose: () => void;
+    /** The media query from which the header shows its desktop row (`headerLayout`). */
+    desktop: string;
 }
 
 /**
- * The menu below 1024px (sitemap §B.2; design-system §5.3.17): a modal
- * `<dialog>` sheet over the whole viewport.
+ * The menu below the desktop header (sitemap §B.2; design-system §5.3.17): a
+ * modal `<dialog>` sheet over the whole viewport.
  *
  * `showModal()` traps focus and makes the page behind it inert; Escape and the
  * close button close it, and focus returns to the toggle that opened it.
@@ -43,11 +45,13 @@ interface MobileNavProps {
  * tablet never keeps a scroll-locked page with no visible control.
  *
  * Order: Features (expanding in place to the same links as the desktop menu),
- * Databases, Pricing, the platform pages, Docs, Blog, FAQ, Account; then the
- * language links and the theme control; last, Download for Mac and the App
- * Store badge, each with the system it needs.
+ * Databases, Pricing, the platform pages, Docs, Blog, FAQ, Account; then
+ * Download for Mac and the App Store badge, each with the system it needs, so
+ * both are on the first screen of a phone; last, the language, one row that
+ * opens the list, and the theme control. On an iPhone or iPad the badge comes
+ * before the Mac button.
  */
-export default function MobileNav({ id, open, onClose }: MobileNavProps) {
+export default function MobileNav({ id, open, onClose, desktop }: MobileNavProps) {
     const { locale, m, fmt } = useI18n();
     const { url } = usePage();
     const path = basePath(url);
@@ -87,6 +91,7 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
             opener.current?.focus();
             opener.current = null;
             setFeaturesOpen(false);
+            node.querySelectorAll('details[open]').forEach((details) => details.removeAttribute('open'));
         };
 
         node.addEventListener('close', restore);
@@ -102,21 +107,21 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
             return;
         }
 
-        const desktop = window.matchMedia('(min-width: 64rem)');
+        const query = window.matchMedia(desktop);
         const onChange = (event: MediaQueryListEvent): void => {
             if (event.matches) {
                 onClose();
             }
         };
 
-        if (desktop.matches) {
+        if (query.matches) {
             onClose();
         }
 
-        desktop.addEventListener('change', onChange);
+        query.addEventListener('change', onChange);
 
-        return () => desktop.removeEventListener('change', onChange);
-    }, [open, onClose]);
+        return () => query.removeEventListener('change', onChange);
+    }, [open, onClose, desktop]);
 
     const row =
         'flex min-h-12 w-full items-center gap-2 rounded-control text-lg leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-accent-text';
@@ -232,16 +237,6 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
                 </ul>
 
                 <div className="mt-8 grid gap-6 border-t border-rule pt-6">
-                    <LanguageSwitcher variant="stack" />
-                    <div className="grid gap-2">
-                        <p className="type-small font-medium text-muted-foreground" aria-hidden="true">
-                            {m.controls.theme.label}
-                        </p>
-                        <ThemeControl variant="segmented" labels={m.controls.theme} />
-                    </div>
-                </div>
-
-                <div className="mt-8 grid gap-6 border-t border-rule pt-6">
                     <div className="grid gap-2">
                         <LocaleLink
                             href="/download"
@@ -258,11 +253,21 @@ export default function MobileNav({ id, open, onClose }: MobileNavProps) {
                         )}
                     </div>
                     {appStoreUrl && ios && (
-                        <div className="grid justify-items-start gap-2">
+                        <div className="grid justify-items-start gap-2 in-[.ios]:order-first">
                             <AppStoreBadge href={appStoreUrl} location="mobile-nav" />
                             <p className="type-small text-muted-foreground">{fmt(m.platforms.requires, { requirement: requirementLine(ios.requirements, m.platforms) })}</p>
                         </div>
                     )}
+                </div>
+
+                <div className="mt-8 grid gap-4 border-t border-rule pt-4">
+                    <LanguageSwitcher variant="stack" />
+                    <div className="grid gap-2">
+                        <p className="type-small font-medium text-muted-foreground" aria-hidden="true">
+                            {m.controls.theme.label}
+                        </p>
+                        <ThemeControl variant="segmented" labels={m.controls.theme} />
+                    </div>
                 </div>
             </nav>
         </dialog>

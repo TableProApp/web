@@ -23,14 +23,15 @@ export default {
         support: {
             title: 'Hỗ trợ',
             account: 'Tài khoản',
+            troubleshooting: 'Khắc phục sự cố (tiếng Anh)',
             email: 'Gửi email hỗ trợ',
             chat: 'Chat trực tuyến',
         },
         community: {
             title: 'Cộng đồng',
+            discussions: 'GitHub Discussions',
             discord: 'Discord',
             x: 'X',
-            facebook: 'Facebook',
             telegram: 'Telegram',
             sponsor: 'Tài trợ TablePro',
         },

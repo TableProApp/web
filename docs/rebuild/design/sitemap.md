@@ -287,7 +287,9 @@ Not slots, because they are identity assets: the logo, favicon, database vendor 
 
 Collapsed bar: logo · [Download] (compact) · menu button (36×36 minimum target, `aria-expanded`, `aria-controls`).
 
-The open panel lists, in order: Features (expands to the same 9 links), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, Account. Then **Language** as two plain links, then **Theme** as a 3-option segmented control. Last come "Download for Mac" (→ /download) and the App Store badge, firing `download_click{location:'mobile-nav'}` with platform `mac` and `ios`.
+The open panel lists, in order: Features (expands to the same 9 links), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, Account. Then "Download for Mac" (→ /download) and the App Store badge, firing `download_click{location:'mobile-nav'}` with platform `mac` and `ios`; on an iPhone or iPad the badge is drawn first. Last come **Language**, one row that opens the list of languages (a `<details>`; twelve rows pushed the download actions 1,273px down an 844px screen), and **Theme** as a 3-option segmented control.
+
+In French, Portuguese, Spanish, German and Italian the desktop row is wider than a 1024px window, so those languages keep this bar and menu to 1152px (design-system §5.3.17).
 
 ### B.3 Footer (every public page)
 
@@ -297,8 +299,8 @@ The footer replaces the 11 comparison links and 26 database links with hubs, and
 |---|---|
 | Product / Sản phẩm | Features · Databases · iPhone & iPad · Pricing · Download · Compare |
 | Resources / Tài nguyên | Documentation ↗ (VI: "Tài liệu (tiếng Anh)") · Changelog ↗ (docs `/changelog`) · Blog · FAQ · Source code ↗ (GitHub) · Report a bug ↗ (GitHub issues) |
-| Support / Hỗ trợ | Account (`/account?locale=`) · Email (`hello@tablepro.app`) · Live chat (a button that loads Crisp only on click) |
-| Community / Cộng đồng | Discord · X · Facebook · Telegram · Sponsor TablePro (GitHub Sponsors). The repository is linked once, as "Source code" under Resources |
+| Support / Hỗ trợ | Account (`/account?locale=`) · Troubleshooting ↗ (docs `/troubleshooting`) · Email (`hello@tablepro.app`) · Live chat (a button that loads Crisp only on click) |
+| Community / Cộng đồng | GitHub Discussions · Discord · X · Telegram (Vietnamese pages only: the group is in Vietnamese) · Sponsor TablePro (GitHub Sponsors). The repository is linked once, as "Source code" under Resources |
 | Legal / Pháp lý | Privacy · Terms · Refund policy · Cookie settings (a button that reopens the consent bar; key `tablepro:analytics-consent`) |
 
 - **Newsletter block.** The form posts to `/newsletter/subscribe` with a `locale` field, following the `useEmailForm` pattern, and fires `newsletter_signup_clicked{source:'footer'}`. It shows **no subscriber count**. Fetching `/api/newsletter/stats` from public pages also sets platform cookies, so the footer does not call it. The endpoint itself stays available and unchanged.
@@ -341,7 +343,7 @@ Two lists drive this. **`alternates`** (for hreflang) holds real translations on
 
 **Theme across both apps.** Both use the same localStorage `theme` key on the same origin. Both head scripts default to light when nothing is stored, guard storage access with try/catch, and set the class before first paint. Screenshot variants follow the site's theme class, not `prefers-color-scheme`.
 
-**License banner.** `config/banner.php` is on by default (owner decision, 2026-10-05), on every public page except /pricing, and links to /pricing or to a release post. It asks a regular user to buy a license and says what a license adds and pays for; it never pleads. Its dismiss key `tablepro:banner-dismissed` holds the closed version and an end date: 30 days after closing, a year for a license holder or a buyer. The copy "The whole app is free" stays deleted.
+**License banner.** `config/banner.php` is on by default (owner decision, 2026-10-05), on every public page except /pricing in every language, and links to /pricing or to a release post. On /ios a reader on an iPhone or iPad does not get it: the license is for the Mac app. It asks a regular user to buy a license and says what a license adds and pays for; it never pleads. Its dismiss key `tablepro:banner-dismissed` holds the closed version and an end date: 30 days after closing, a year for a license holder or a buyer. The copy "The whole app is free" stays deleted.
 
 ---
 
@@ -435,6 +437,8 @@ These apply to the public app only. Platform paths are routed by nginx before th
 |---|---|---|---|---|---|
 | `/docs/raycast` | **the live Raycast extension "Pair" command** | redirect (external) | `https://docs.tablepro.app/external-api/raycast` | 301 | A genuine replacement for a broken live link |
 | `/docs` | old README revisions (Feb 2026) | redirect (external) | `https://docs.tablepro.app/` | 301 | A genuine replacement |
+| `/changelog`, `/releases` | none; paths people type for a developer tool | redirect (external) | `https://docs.tablepro.app/changelog` | 301 | The changelog is one page, on the documentation site |
+| `/support` | none; a path people type | redirect | `/faq` | 301 | The FAQ ends with email, GitHub issues and live chat |
 | `/docs/logo/logo.png`, `/docs/images/hero-dark.png` | README, one day in Feb 2026 | none | — | 404 | No current reference |
 | `/databases/oracle`, `/databases/clickhouse` | plugin registry `homepage`, 2026-03-10 to 03-14 | redirect (through the `/databases/{docsSlug}` route) | `/oracle-client`, `/clickhouse-client` | 301 | Genuine equivalents |
 | `/databases/sqlite`, `/databases/duckdb` | CI only (2026-03-11) | redirect (through the `/databases/{docsSlug}` route) | `/sqlite-client`, `/duckdb-client` | 301 | Same rule |
@@ -813,6 +817,7 @@ Five lines of G.3 described a plan that architecture §1.7 and §1.14 changed. T
   - [x] `/docs` → docs root
   - [x] `/docs/raycast` → docs `/external-api/raycast`
   - [x] `/sitemap-index.xml` → `/sitemap.xml`
+  - [x] `/changelog`, `/releases` → docs `/changelog`; `/support` → `/faq`
   - [x] `/databases/{docsSlug}` (rewritten): `RedirectMap` answers it from each engine's `docsSlug` in `engines.json`, through the one `EnginePaths` rule (including oracle, clickhouse, sqlite and duckdb), before routing, so there is no slug list to keep in step (`RedirectsTest`, `EnginePathsTest`)
 - [x] Test: every redirect lands on a 200 in one hop, and `?ref`/`utm_*` survive
 - [x] Redirect map (rewritten): `resources/data/redirects.json` holds every 301 and 410 entry, read by `RedirectMap` (architecture §1.7, `RedirectsDataTest`). `CanonicalizeRequest` answers them before routing. It is data read at runtime, so the deploy needs no config step for it

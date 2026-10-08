@@ -12,7 +12,7 @@ import FeaturesMenu from './features-menu';
 import FrameRails from '@/components/shared/frame-rails';
 import LanguageSwitcher from './language-switcher';
 import MobileNav from './mobile-nav';
-import { EXTERNAL, NAV_LABEL, accountHref, basePath, sectionOf } from './site-links';
+import { EXTERNAL, NAV_LABEL, accountHref, basePath, headerLayout, sectionOf } from './site-links';
 
 const NAV_LINK =
     'group relative inline-flex h-16 items-center text-sm leading-[1.3] font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground focus-visible:outline-none';
@@ -40,8 +40,8 @@ function NavLink({ href, current, exact, children }: { href: string; current: bo
  * From 1024px: the logo, Features ▾ · Databases · Pricing · Docs ↗ · Blog,
  * then the language, the theme, Account and Download. Below 1024px: the logo,
  * a compact Download and the Menu button; everything else moves into the menu.
- * The full Vietnamese row was measured to fit at 1024px with 14px to spare
- * (design-system §4.4).
+ * The row does not fit 1024px in every language, so the ones it is too wide
+ * for switch at 1152px instead (`headerLayout`, site-links.ts).
  *
  * The current section takes the text colour and a 2px indicator bar, never
  * colour alone. Internal links go through `LocaleLink`, so they stay in the
@@ -59,6 +59,7 @@ export default function SiteHeader() {
     const path = basePath(url);
     const [menuOpen, setMenuOpen] = useState(false);
     const closeMenu = useCallback(() => setMenuOpen(false), []);
+    const layout = headerLayout(locale);
 
     return (
         <header className="relative border-b border-rule bg-background print:hidden">
@@ -68,7 +69,7 @@ export default function SiteHeader() {
                     <span className="text-lg leading-none font-semibold text-foreground">{m.common.brand}</span>
                 </LocaleLink>
 
-                <nav aria-label={m.nav.label} className="hidden lg:block">
+                <nav aria-label={m.nav.label} className={layout.nav}>
                     <ul className="flex items-center gap-6">
                         <li>
                             <FeaturesMenu current={section === 'features'} path={path} />
@@ -100,14 +101,19 @@ export default function SiteHeader() {
                 </nav>
 
                 <div className="ml-auto flex items-center gap-2">
-                    <div className="hidden items-center gap-2 lg:flex">
+                    <div className={layout.controls}>
                         <LanguageSwitcher variant="menu" />
                         <ThemeControl variant="menu" labels={m.controls.theme} />
                         <Button variant="quiet" size="sm" href={accountHref(locale)}>
                             {m.nav.account}
                         </Button>
                     </div>
-                    <LocaleLink href="/download" onClick={() => trackDownload('header', 'mac')} className={buttonClasses('primary', 'sm')}>
+                    {/* A 44px target around the 32px button. */}
+                    <LocaleLink
+                        href="/download"
+                        onClick={() => trackDownload('header', 'mac')}
+                        className={buttonClasses('primary', 'sm', 'relative after:absolute after:inset-x-0 after:-inset-y-[7px]')}
+                    >
                         {m.nav.download}
                     </LocaleLink>
                     <button
@@ -115,7 +121,10 @@ export default function SiteHeader() {
                         aria-expanded={menuOpen}
                         aria-controls="site-menu"
                         onClick={() => setMenuOpen(true)}
-                        className="-mr-2 inline-flex size-11 cursor-pointer items-center justify-center rounded-control text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:bg-surface lg:hidden"
+                        className={cn(
+                            '-mr-2 inline-flex size-11 cursor-pointer items-center justify-center rounded-control text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:bg-surface',
+                            layout.menuButton,
+                        )}
                     >
                         <Menu className="size-5" aria-hidden="true" />
                         <span className="sr-only">{m.nav.menu}</span>
@@ -123,7 +132,7 @@ export default function SiteHeader() {
                 </div>
             </Container>
             <FrameRails />
-            <MobileNav id="site-menu" open={menuOpen} onClose={closeMenu} />
+            <MobileNav id="site-menu" open={menuOpen} onClose={closeMenu} desktop={layout.desktop} />
         </header>
     );
 }
