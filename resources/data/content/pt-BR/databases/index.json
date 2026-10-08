@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "Streaming",
-            "intro": "Um log em vez de uma tabela: leia e grave mensagens com KafkaQL."
+            "intro": "Um log em vez de uma tabela: leia e grave mensagens com KafkaQL, a linguagem de comandos própria do TablePro."
         },
         "coordination": {
             "title": "Coordenação",
@@ -108,7 +108,7 @@
             "defaultPort": "Porta padrão",
             "minimumVersion": "Versão mínima",
             "enforced": "{version}, obrigatória: servidores mais antigos são recusados",
-            "documented": "{version}, documentada",
+            "noMinimum": "Nenhuma",
             "embedded": "Mecanismo integrado",
             "embeddedValue": "{name} {version}",
             "ios": "iPhone e iPad"
@@ -134,7 +134,8 @@
         "availability": {
             "devices": "Funciona em {devices}",
             "bundled": "O driver acompanha o app para Mac",
-            "registry": "O driver é baixado na primeira vez que você escolhe {name}"
+            "registry": "O driver é baixado na primeira vez que você escolhe {name}",
+            "free": "Gratuito para usar, com <pricing>planos pagos opcionais</pricing>"
         },
         "release": "Novo na versão {version}",
         "docs": "Guia de configuração de {name}",
@@ -180,7 +181,8 @@
         "download": {
             "title": "Baixe TablePro",
             "mac": "O app para Mac é gratuito para baixar e usar. Um plano Starter ou Team adiciona recursos opcionais.",
-            "ios": "O app para iPhone e iPad está na App Store."
+            "ios": "O app para iPhone e iPad está na App Store.",
+            "pricing": "Ver preços"
         }
     }
 }

@@ -84,7 +84,8 @@
             "title": "iPhone et iPad",
             "paragraphs": [
                 "Sur iPhone et iPad, vous parcourez les tables en cartes, filtrez et triez, modifiez les lignes avec clé primaire et exécutez du SQL dans Requête. Les connexions offrent SSL de Requis à Vérifier l’identité et des tunnels SSH avec mot de passe ou clé. Les hôtes de rebond SSH n’y sont pas pris en charge."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "Pointez vers le port SQL du serveur TiDB, jamais PD ou TiKV. TiDB Cloud utilise le même port ; définissez-y le Mode SSL sur Requis.",
                 "Arrêter envoie <code>KILL TIDB QUERY</code> pour votre session. Derrière TiProxy ou un répartiteur de charge, cela nécessite Global Kill, activé par défaut dans TiDB depuis la version 6.1.",
-                "EXPLAIN et EXPLAIN ANALYZE montrent le plan TiDB en texte. Les contraintes CHECK apparaissent dans Structure à partir de TiDB 7.2 si le cluster les active ; les clés étrangères peuvent être créées et la maintenance propose ANALYZE TABLE.",
+                "EXPLAIN et EXPLAIN ANALYZE montrent le plan TiDB en texte. Les contraintes CHECK apparaissent dans Structure à partir de TiDB 7.2 si le cluster les active ; les clés étrangères peuvent être créées et la maintenance propose ANALYZE TABLE. <administer>Utilisateurs et rôles (Users & Roles)</administer> fonctionne sur TiDB, sans le champ de limite de connexions.",
                 "Choisissez TiDB comme type plutôt que MySQL pour que barre latérale, sélecteur de types et EXPLAIN suivent TiDB."
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL est un client open source historique sous Windows qui propose désormais aussi une app macOS."
+                "text": "HeidiSQL est un client open source historique sous Windows qui propose désormais aussi une app macOS. Il convient si vous l’utilisez déjà sur Windows et voulez le même client sur votre Mac."
             }
         ],
         "notes": {}

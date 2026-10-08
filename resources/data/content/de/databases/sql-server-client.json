@@ -42,7 +42,7 @@
                 "Ein Skript erreicht den Server Batch für Batch, geteilt an Zeilen mit nur <code>GO</code> wie bei sqlcmd; <code>GO 5</code> führt den vorherigen Batch fünfmal aus. Jede Ergebnismenge öffnet einen eigenen Tab; <code>PRINT</code> und Informationsmeldungen erscheinen in Ausgabe.",
                 "Setze <code>BEGIN TRAN</code> und <code>COMMIT</code> ins Skript, wenn ein Fehler vorherige Batches rückgängig machen muss; eine offen gebliebene Transaktion wird am Ende gemeldet. Die Ausführung stoppt beim ersten fehlgeschlagenen Batch, und der Fehler nennt seine Editorzeile.",
                 "Jede Sitzung startet mit den SET-Optionen für gefilterte Indizes, indizierte Sichten und Indizes berechneter Spalten, etwa aktivem <code>ANSI_NULLS</code> und <code>QUOTED_IDENTIFIER</code>. Daher findet <code>col = NULL</code> nichts: Vergleiche mit <code>IS NULL</code>.",
-                "Tabellen liegen unter ihren Schemas; <code>Cmd+K</code> wechselt die Datenbank ohne Neuverbinden. Änderungen werden mit <editing>SQL-Vorschau</editing> vorgemerkt, neue Zeilen überlassen IDENTITY-Spalten dem Server, und <code>nvarchar(max)</code> kommt vollständig an."
+                "Tabellen liegen unter ihren Schemas; <code>⌘K</code> wechselt die Datenbank ohne Neuverbinden. Änderungen werden mit <editing>SQL-Vorschau</editing> vorgemerkt, neue Zeilen überlassen IDENTITY-Spalten dem Server, und <code>nvarchar(max)</code> kommt vollständig an."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone und iPad",
             "paragraphs": [
                 "Auf iPhone und iPad meldest du dich mit SQL-Server-Login an, durchsuchst Tabellen als Karten, bearbeitest Zeilen mit Primärschlüssel und führst T-SQL im Abfrage-Tab aus. Windows-Anmeldung fehlt. Eine Entra-ID-Verbindung kommt per iCloud oder Exportdatei vom Mac; beim Öffnen meldest du dich bei Microsoft an."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "Warum meldet ein Skript „Must declare the scalar variable“?",
-            "answer": "Die lesende Anweisung lief in einem anderen Batch als <code>DECLARE</code>: Dazwischen steht <code>GO</code>, oder <code>Cmd+Enter</code> führte nur die Cursoranweisung aus. Wähle beide oder führe das ganze Skript aus."
+            "answer": "Die lesende Anweisung lief in einem anderen Batch als <code>DECLARE</code>: Dazwischen steht <code>GO</code>, oder <code>⌘⏎</code> führte nur die Cursoranweisung aus. Wähle beide oder führe das ganze Skript aus."
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "Verbindungen, Tunnel und Anmeldung",
+            "label": "Cloud-Anmeldung für AWS, Google und Microsoft",
             "href": "/features/connections#cloud-auth"
         },
         {

@@ -77,12 +77,13 @@ apply and name each one for the engine's real workflow:
 its `usedOn` in `assets.json`.
 
 **Blocks the template renders from data, with no copy of yours:** the facts card (query language, driver and the
-engines that share it, how to connect, default port, minimum version marked enforced or documented, the embedded
-engine version, iPhone and iPad status), the availability line, the actions (Download for Mac, the App Store badge
-only when the engine is in the iPhone and iPad picker, the setup guide), the iPhone and iPad status sentence, the
-Limits list (`engines.json` `limits[]` with the sentences in `content/*/engines.json`), each family section's facts
-line, limits and setup guide, the dated facts of every other tool, the docs links under Related, and the download
-band. Do not repeat any of these in prose.
+engines that share it, how to connect, default port, minimum version, marked where the app enforces it and "None"
+where the docs say there is none, the embedded engine version, iPhone and iPad status), the availability line, the line under it that says TablePro is free to use and open source, the
+actions (Download for Mac, the App Store badge only when the engine is in the iPhone and iPad picker, the setup
+guide), the iPhone and iPad status sentence, the Limits list (`engines.json` `limits[]` with the sentences in
+`content/*/engines.json`), each family section's facts line, limits and setup guide, the dated facts of every other
+tool, the docs links under Related, and the download band with its link to pricing. Do not repeat any of these in
+prose.
 
 **`family`** (block 10). Only on a page with merged engines: one entry per engine whose `page` is `section` and whose
 `parent` is this page's engine, all of them, in `engines.json` order. Its anchor (`#scylladb`, `#libsql`) comes from
@@ -115,8 +116,8 @@ Every string in `header.lead`, `sections`, `family`, `otherTools`, `faq` and `no
 - These `{tokens}`, filled from data: `{name}` (the engine's name), `{dumpTool}` (only if the engine has a backup
   tool), `{importFormats}` (only if it imports), `{exportFormats}`, `{engineVersion}` (only if it embeds its engine,
   such as SQLite or DuckDB), and `{compareSyncTier}`, `{queryInsightsTier}`, … (the plan name of a paid feature:
-  the feature id in camelCase plus `Tier`). `{devices}` is for `header.title` only. A family section's tokens are
-  its own engine's.
+  the feature id in camelCase plus `Tier`). The template links each plan name to `/pricing`, so `plan` is not
+  available as a link name. `{devices}` is for `header.title` only. A family section's tokens are its own engine's.
 
 Tags do not nest. A number that belongs to the product (a cap, a count) belongs in data, not in copy.
 

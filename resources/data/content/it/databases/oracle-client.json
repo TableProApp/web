@@ -42,7 +42,7 @@
                 "Un blocco PL/SQL o un’unità memorizzata viene eseguito come una sola istruzione, indipendentemente dal numero di punti e virgola: posiziona il cursore al suo interno ed eseguilo. Gli script per SQL*Plus o SQL Developer funzionano senza modifiche, con una riga contenente solo <code>/</code> che termina l’unità precedente. Un’unità che non compila fallisce con gli errori di Oracle, uno per riga con relativa posizione.",
                 "Le righe di <code>DBMS_OUTPUT.PUT_LINE</code> compaiono con il risultato dell’istruzione che le ha stampate, senza richiedere <code>SET SERVEROUTPUT ON</code>. In un blocco anonimo, <code>:name</code> è un <parameters>parametro di query</parameters> da compilare in un pannello.",
                 "Ogni istruzione viene confermata quando riesce. Inizia con <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> o <code>LOCK TABLE</code> per mantenere le modifiche in attesa e tutto ciò che segue aspetta il tuo <code>COMMIT</code> o <code>ROLLBACK</code>, salvataggi della griglia inclusi.",
-                "Ogni utente è uno schema e <code>Cmd+K</code> cambia quello attivo senza riconnettersi. Le modifiche alle righe restano in attesa con <editing>Preview SQL</editing>. Un blocco che elimina o tronca, anche tramite <code>EXECUTE IMMEDIATE</code>, attiva l’<safeMode>avviso di query pericolosa</safeMode> prima dell’esecuzione."
+                "Ogni utente è uno schema e <code>⌘K</code> cambia quello attivo senza riconnettersi. Le modifiche alle righe restano in attesa con <editing>Preview SQL</editing>. Un blocco che elimina o tronca, anche tramite <code>EXECUTE IMMEDIATE</code>, attiva l’<safeMode>avviso di query pericolosa</safeMode> prima dell’esecuzione."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone e iPad",
             "paragraphs": [
                 "Su iPhone e iPad il driver Oracle è incluso nell’app. Il modulo accetta Service Name o SID, ruoli SYSDBA e SYSOPER e l’impostazione Network Encryption. Esplora le tabelle come schede, modifica righe con chiave primaria ed esegui SQL nella scheda Query; creazione e modifica delle tabelle rimangono sul Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

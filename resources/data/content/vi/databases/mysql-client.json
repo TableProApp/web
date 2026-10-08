@@ -84,7 +84,8 @@
             "title": "iPhone và iPad",
             "paragraphs": [
                 "Trên iPhone và iPad, bạn xem table dưới dạng thẻ, lọc và sắp xếp, sửa các dòng có khóa chính và chạy SQL trong tab Truy vấn (Query). Connection hỗ trợ SSL từ mức Required tới Xác minh danh tính (Verify Identity), và SSH tunnel bằng mật khẩu hoặc key. Trên đó không hỗ trợ SSH jump host."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "Hãy trỏ connection vào port SQL của server TiDB, không bao giờ vào PD hay TiKV. TiDB Cloud dùng cùng port đó; trên TiDB Cloud, hãy đặt Chế độ SSL (SSL Mode) là Required.",
                 "Nút Dừng (Stop) gửi <code>KILL TIDB QUERY</code> cho session của chính bạn. Khi đi qua TiProxy hay một load balancer, việc này cần Global Kill, được TiDB bật mặc định từ phiên bản 6.1.",
-                "EXPLAIN và EXPLAIN ANALYZE hiển thị execution plan của TiDB dưới dạng văn bản. Ràng buộc CHECK hiện trong tab Structure từ TiDB 7.2 khi cluster bật tính năng này, bạn tạo được khóa ngoại, và phần bảo trì table có ANALYZE TABLE.",
+                "EXPLAIN và EXPLAIN ANALYZE hiển thị execution plan của TiDB dưới dạng văn bản. Ràng buộc CHECK hiện trong tab Structure từ TiDB 7.2 khi cluster bật tính năng này, bạn tạo được khóa ngoại, và phần bảo trì table có ANALYZE TABLE. <administer>Users & Roles</administer> cũng dùng được trên TiDB, không có ô giới hạn số connection.",
                 "Hãy chọn loại connection là TiDB thay vì MySQL, để sidebar, bộ chọn kiểu dữ liệu và EXPLAIN đều theo TiDB."
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL là client mã nguồn mở lâu năm trên Windows, nay có thêm ứng dụng cho macOS."
+                "text": "HeidiSQL là client mã nguồn mở lâu năm trên Windows, nay có thêm ứng dụng cho macOS. HeidiSQL phù hợp nếu bạn đã quen dùng nó trên Windows và muốn dùng cùng client đó trên máy Mac."
             }
         ],
         "notes": {}

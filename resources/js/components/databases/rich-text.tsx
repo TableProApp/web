@@ -3,6 +3,7 @@ import { InlineCode } from '@/components/ui/code';
 import LocaleLink from '@/components/ui/locale-link';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { Trans, useI18n, type Values } from '@/i18n';
+import { splitTags } from '@/i18n/core';
 import { resolveHref } from './format';
 
 interface RichTextScope {
@@ -26,6 +27,15 @@ interface RichTextProps {
     values?: Values;
 }
 
+const TIER_SLOT = /\{[A-Za-z][A-Za-z0-9]*Tier\}/g;
+
+// Tags do not nest, so a plan-name slot is wrapped only where it sits outside one.
+function linkPlanNames(text: string): string {
+    return splitTags(text)
+        .map((token) => (token.type === 'text' ? token.text.replace(TIER_SLOT, '<plan>$&</plan>') : `<${token.name}>${token.text}</${token.name}>`))
+        .join('');
+}
+
 /**
  * One string of database-page copy, with its inline markup.
  *
@@ -34,6 +44,7 @@ interface RichTextProps {
  * - `<name>text</name>`, where `name` is a key of the page's `links`: a link.
  *   Site paths stay in the reader's language. Docs links leave the site for
  *   English pages, so outside English they say so in words, not only with ↗.
+ * - `{compareSyncTier}` and the other plan-name slots link to pricing.
  *
  * Tags do not nest, and a tag with no renderer prints its text plainly, so a
  * typo in a link name degrades to words rather than breaking the sentence.
@@ -44,6 +55,11 @@ export default function RichText({ text, values }: RichTextProps) {
     const tags: Record<string, (content: string) => ReactNode> = {
         ui: (content) => <span className="font-medium">{content}</span>,
         code: (content) => <InlineCode>{content}</InlineCode>,
+        plan: (content) => (
+            <LocaleLink href="/pricing" className={textLinkClasses('inline')}>
+                {content}
+            </LocaleLink>
+        ),
     };
 
     for (const [name, value] of Object.entries(scope.links)) {
@@ -79,5 +95,5 @@ export default function RichText({ text, values }: RichTextProps) {
         };
     }
 
-    return <Trans text={text} tags={tags} values={{ ...scope.values, ...values }} />;
+    return <Trans text={linkPlanNames(text)} tags={tags} values={{ ...scope.values, ...values }} />;
 }

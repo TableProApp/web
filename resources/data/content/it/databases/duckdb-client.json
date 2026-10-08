@@ -40,7 +40,7 @@
             "id": "work",
             "title": "Esegui query e modifica",
             "paragraphs": [
-                "Qualsiasi connessione può leggere un file direttamente da SQL, come in <code>SELECT * FROM 'data.csv'</code> o <code>read_parquet('events.parquet')</code>. Usa <code>ATTACH</code> su un altro file DuckDB per aggiungerlo alla barra laterale come secondo database e <code>Cmd+K</code> per passare tra i due senza riconnetterti. DuckDB non mantiene i collegamenti dopo la riconnessione.",
+                "Qualsiasi connessione può leggere un file direttamente da SQL, come in <code>SELECT * FROM 'data.csv'</code> o <code>read_parquet('events.parquet')</code>. Usa <code>ATTACH</code> su un altro file DuckDB per aggiungerlo alla barra laterale come secondo database e <code>⌘K</code> per passare tra i due senza riconnetterti. DuckDB non mantiene i collegamenti dopo la riconnessione.",
                 "<explain>EXPLAIN</explain> viene rappresentato come diagramma del piano. Le righe di una tabella si modificano con <editing>Preview SQL</editing> che mostra prima ogni istruzione, mentre le viste su un file di dati restano in sola lettura."
             ]
         },
@@ -72,7 +72,8 @@
             "title": "iPhone e iPad",
             "paragraphs": [
                 "Su iPhone e iPad, DuckDB è incluso nell’app. Un file scelto nell’app File si apre nella sua posizione anziché come copia oppure puoi scegliere In-Memory per un database temporaneo. Esplora le tabelle come schede ed esegui SQL nella scheda Query. Le connessioni Remote (Quack) sono disponibili solo sul Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

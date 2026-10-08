@@ -42,7 +42,7 @@
                 "Một khối PL/SQL hay một stored unit chạy như một câu lệnh duy nhất, dù bên trong có bao nhiêu dấu chấm phẩy: đặt con trỏ vào trong rồi chạy. Script viết cho SQL*Plus hay SQL Developer chạy nguyên văn, với dòng chỉ có <code>/</code> kết thúc unit phía trên nó. Unit không biên dịch được sẽ báo lỗi bằng chính thông báo của Oracle, mỗi lỗi một dòng kèm vị trí.",
                 "Các dòng <code>DBMS_OUTPUT.PUT_LINE</code> hiện cùng kết quả của câu lệnh đã in ra chúng, không cần <code>SET SERVEROUTPUT ON</code>. Trong một anonymous block, <code>:name</code> là một <parameters>tham số query</parameters> bạn điền từ một bảng nhập.",
                 "Mỗi câu lệnh được commit ngay khi chạy thành công. Hãy bắt đầu bằng <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> hoặc <code>LOCK TABLE</code> để giữ thay đổi lại, và mọi thứ sau đó chờ tới khi bạn <code>COMMIT</code> hoặc <code>ROLLBACK</code>, kể cả các lần lưu từ data grid.",
-                "Mỗi user là một schema, và <code>Cmd+K</code> đổi schema đang dùng mà không cần kết nối lại. Thay đổi trên các dòng được giữ chờ lưu cùng <editing>Preview SQL</editing>. Khối lệnh nào drop hay truncate, kể cả qua <code>EXECUTE IMMEDIATE</code>, đều bật <safeMode>cảnh báo câu lệnh nguy hiểm</safeMode> trước khi chạy."
+                "Mỗi user là một schema, và <code>⌘K</code> đổi schema đang dùng mà không cần kết nối lại. Thay đổi trên các dòng được giữ chờ lưu cùng <editing>Preview SQL</editing>. Khối lệnh nào drop hay truncate, kể cả qua <code>EXECUTE IMMEDIATE</code>, đều bật <safeMode>cảnh báo câu lệnh nguy hiểm</safeMode> trước khi chạy."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone và iPad",
             "paragraphs": [
                 "Trên iPhone và iPad, driver Oracle có sẵn trong ứng dụng. Form connection nhận Service Name hoặc SID, vai trò SYSDBA và SYSOPER, và thiết lập Network Encryption. Bạn xem table dưới dạng thẻ, sửa các dòng có khóa chính và chạy SQL trong tab Truy vấn (Query); việc tạo hay sửa cấu trúc table vẫn làm trên Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

@@ -62,7 +62,7 @@
             "id": "move-data",
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
-                "TablePro không có import cho DynamoDB. Hãy ghi item từ editor bằng câu <code>INSERT</code> của PartiQL hoặc request <code>BatchWriteItem</code>, request này gửi lại các item chưa được xử lý và báo những item không ghi được. <export>Export</export> table hoặc kết quả ra file từ hộp thoại Export."
+                "TablePro không có import cho DynamoDB. Hãy ghi item từ editor bằng câu <code>INSERT</code> của PartiQL hoặc request <code>BatchWriteItem</code>, request này gửi lại các item chưa được xử lý và báo những item không ghi được. <export>Export</export> table hoặc kết quả ra {exportFormats} từ hộp thoại Export."
             ]
         }
     ],

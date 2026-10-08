@@ -3,6 +3,7 @@
  * they read as rules: which devices an engine opens on, what "Connect with"
  * lists, where a link points, and which `{token}` values the copy can use.
  */
+import { interpolate } from '@/i18n/core';
 import { joinList, type ListStyle } from '@/i18n/format';
 import type { DatabaseLabels, EngineDetail, EngineSummary, PlatformSummary } from './types';
 
@@ -64,6 +65,15 @@ export function connectWith(engine: Pick<EngineDetail, 'connectionMode' | 'capab
  */
 export function shownPort(engine: Pick<EngineDetail, 'connectionMode' | 'defaultPort'>): number | null {
     return engine.connectionMode === 'api' ? null : engine.defaultPort;
+}
+
+// A floor with no version is the docs saying there is no minimum.
+export function versionFloorText(floor: NonNullable<EngineDetail['versionFloor']>, labels: Pick<DatabaseLabels['facts'], 'enforced' | 'noMinimum'>): string {
+    if (floor.text === null) {
+        return labels.noMinimum;
+    }
+
+    return floor.enforced ? interpolate(labels.enforced, { version: floor.text }) : floor.text;
 }
 
 export type ResolvedHref =

@@ -42,7 +42,7 @@
                 "Script được gửi tới server từng batch một, tách tại mỗi dòng chỉ có <code>GO</code>, giống cách sqlcmd gửi, và <code>GO 5</code> chạy batch đứng trước nó năm lần. Mỗi result set mở trong một tab riêng, còn kết quả <code>PRINT</code> và các thông báo thông tin hiện trong chế độ Output.",
                 "Hãy đặt <code>BEGIN TRAN</code> và <code>COMMIT</code> trong script khi một lỗi cần hoàn tác các batch đã chạy trước đó; script nào để một transaction còn mở sẽ kết thúc bằng một thông báo nhắc điều này. Lần chạy dừng ở batch đầu tiên bị lỗi, và thông báo lỗi nêu đúng dòng trong editor.",
                 "Mọi session đều mở với các tùy chọn SET mà filtered index, indexed view và index trên cột computed cần, như bật <code>ANSI_NULLS</code> và <code>QUOTED_IDENTIFIER</code>. Vì vậy <code>col = NULL</code> không khớp dòng nào: hãy so sánh bằng <code>IS NULL</code>.",
-                "Table nằm dưới schema của nó trong sidebar, và <code>Cmd+K</code> đổi cơ sở dữ liệu ngay tại chỗ, không cần kết nối lại. Thay đổi trên các dòng được giữ chờ lưu cùng <editing>Preview SQL</editing>, dòng mới để server tự gán giá trị cho cột IDENTITY, và giá trị <code>nvarchar(max)</code> được nhận đầy đủ."
+                "Table nằm dưới schema của nó trong sidebar, và <code>⌘K</code> đổi cơ sở dữ liệu ngay tại chỗ, không cần kết nối lại. Thay đổi trên các dòng được giữ chờ lưu cùng <editing>Preview SQL</editing>, dòng mới để server tự gán giá trị cho cột IDENTITY, và giá trị <code>nvarchar(max)</code> được nhận đầy đủ."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone và iPad",
             "paragraphs": [
                 "Trên iPhone và iPad, bạn đăng nhập bằng SQL Server login, xem table dưới dạng thẻ, sửa các dòng có khóa chính và chạy T-SQL trong tab Truy vấn (Query). Windows Authentication không dùng được trên đó. Connection dùng Microsoft Entra ID đến từ máy Mac qua iCloud Sync hoặc một file connection đã export, và bạn đăng nhập Microsoft khi mở nó."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -104,7 +105,7 @@
         {
             "id": "declare",
             "question": "Vì sao script báo “Must declare the scalar variable”?",
-            "answer": "Câu lệnh đọc biến đã chạy trong một batch khác với câu <code>DECLARE</code> của nó: có một dòng <code>GO</code> nằm giữa hai câu, hoặc <code>Cmd+Enter</code> chỉ chạy câu lệnh tại con trỏ. Hãy chọn cả hai câu lệnh, hoặc chạy toàn bộ script."
+            "answer": "Câu lệnh đọc biến đã chạy trong một batch khác với câu <code>DECLARE</code> của nó: có một dòng <code>GO</code> nằm giữa hai câu, hoặc <code>⌘⏎</code> chỉ chạy câu lệnh tại con trỏ. Hãy chọn cả hai câu lệnh, hoặc chạy toàn bộ script."
         },
         {
             "id": "freetds",
@@ -114,7 +115,7 @@
     ],
     "related": [
         {
-            "label": "Connection, tunnel và đăng nhập",
+            "label": "Đăng nhập cloud cho AWS, Google và Microsoft",
             "href": "/features/connections#cloud-auth"
         },
         {

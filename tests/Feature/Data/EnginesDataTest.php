@@ -287,8 +287,9 @@ it('pins the capability lists the feature pages derive', function (): void {
     expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['dashboard']))->toEqualCanonicalizing([
         'postgresql', 'redshift', 'cockroachdb', 'mysql', 'mariadb', 'sqlserver', 'clickhouse', 'duckdb', 'sqlite', 'typesense',
     ]);
+    // TiDB: MySQLPluginDriver.swift:116-129 gives every flavor but Databend `.userManagement`, and docs/databases/tidb.mdx:34 says it works (v0.78.0).
     expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['usersRoles']))->toEqualCanonicalizing([
-        'mysql', 'mariadb', 'postgresql', 'pglite',
+        'mysql', 'mariadb', 'tidb', 'postgresql', 'pglite',
     ]);
     expect(enginesWhere(fn(array $engine): bool => $engine['capabilities']['awsIam']))->toEqualCanonicalizing([
         'mysql', 'mariadb', 'postgresql',
@@ -407,6 +408,12 @@ it('records version floors, embedded versions and limits with evidence', functio
             expect(array_keys($engine['versionFloor']))->toBe(['text', 'enforced', 'evidence']);
             expect($engine['versionFloor']['enforced'])->toBeBool();
             expect($engine['versionFloor']['evidence'])->toBeString()->not->toBe('');
+
+            if ($engine['versionFloor']['text'] === null) {
+                expect($engine['versionFloor']['enforced'])->toBeFalse("{$id}: no minimum version cannot be enforced");
+            } else {
+                expect($engine['versionFloor']['text'])->toBeString()->not->toBe('');
+            }
         }
 
         $limitIds = array_column($engine['limits'], 'id');
@@ -431,6 +438,30 @@ it('records version floors, embedded versions and limits with evidence', functio
     expect(array_column($engines['sqlite']['limits'], 'id'))->toContain('no-encryption');
     expect(array_column($engines['redis']['limits'], 'id'))->toContain('no-pubsub');
     expect(array_column($engines['mongodb']['limits'], 'id'))->toContain('no-pipeline-builder');
+});
+
+/*
+ * A floor whose `text` is null is the docs saying there is no minimum version
+ * (docs/databases/{redis,clickhouse,redshift,teradata,cockroachdb,databend,tidb,oceanbase}.mdx
+ * at v0.78.0), which the page shows as "None". An engine whose docs say
+ * nothing, such as Trino, has no floor at all and shows no row.
+ */
+it('says there is no minimum version only where the docs say so', function (): void {
+    expect(enginesWhere(fn(array $engine): bool => $engine['versionFloor'] !== null && $engine['versionFloor']['text'] === null))->toEqualCanonicalizing([
+        'redis', 'clickhouse', 'redshift', 'teradata', 'cockroachdb', 'databend', 'tidb', 'oceanbase',
+    ]);
+
+    foreach (enginesJson() as $engine) {
+        if ($engine['versionFloor'] !== null && $engine['versionFloor']['text'] === null) {
+            expect($engine['versionFloor']['evidence'])->toMatch('#^docs/databases/[a-z0-9-]+\.mdx:\d+$#', "{$engine['id']}: no minimum needs the docs line that says so");
+        }
+    }
+
+    expect(enginesById()['trino']['versionFloor'])->toBeNull();
+});
+
+it('gives every engine with its own page a mark for the page header', function (): void {
+    expect(enginesWhere(fn(array $engine): bool => $engine['page'] === 'own' && $engine['icon'] === null))->toBe([]);
 });
 
 /*

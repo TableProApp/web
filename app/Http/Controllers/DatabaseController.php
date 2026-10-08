@@ -90,6 +90,7 @@ class DatabaseController extends Controller
             'tools' => $this->citedTools($page, $locale),
             'platforms' => $this->platformSummaries(),
             'links' => $this->links(),
+            'product' => $this->product(),
         ]);
     }
 
@@ -142,7 +143,7 @@ class DatabaseController extends Controller
             'defaultPort' => is_int($engine['defaultPort'] ?? null) ? $engine['defaultPort'] : null,
             'connectionMode' => (string) $engine['connectionMode'],
             'bundledVersion' => is_string($engine['bundledVersion'] ?? null) ? $engine['bundledVersion'] : null,
-            'versionFloor' => $floor === null ? null : ['text' => (string) $floor['text'], 'enforced' => ($floor['enforced'] ?? false) === true],
+            'versionFloor' => $floor === null ? null : ['text' => is_string($floor['text'] ?? null) ? $floor['text'] : null, 'enforced' => ($floor['enforced'] ?? false) === true],
             'capabilities' => [
                 'ssh' => ($capabilities['ssh'] ?? false) === true,
                 'ssl' => ($capabilities['ssl'] ?? false) === true,
@@ -252,9 +253,9 @@ class DatabaseController extends Controller
      * The outbound links the pages build: docs paths are joined to `docs`, and
      * the request form is the issue tracker's feature request template. The
      * App Store action is null while the iPhone and iPad app is not released,
-     * as `appStoreUrl` is on /download and /ios.
+     * as `appStoreUrl` is on /download and /ios. `source` is the repository.
      *
-     * @return array{docs: string|null, request: string|null, appStore: string|null}
+     * @return array{docs: string|null, request: string|null, appStore: string|null, source: string|null}
      */
     private function links(): array
     {
@@ -268,6 +269,24 @@ class DatabaseController extends Controller
             'appStore' => $this->platforms->isReleased('ios')
                 ? ($this->url($this->platforms->destination('ios', 'app-store')['url'] ?? null) ?? $this->url($links['appStore'] ?? null))
                 : null,
+            'source' => $this->url($links['github'] ?? null),
+        ];
+    }
+
+    /**
+     * What an engine page says about TablePro itself, under its availability
+     * line: free while `pricing.json` prices the free tier at 0, and the
+     * licence `facts.json` names.
+     *
+     * @return array{free: bool, licence: string|null}
+     */
+    private function product(): array
+    {
+        $licence = $this->json('facts.json')['openSource']['license'] ?? null;
+
+        return [
+            'free' => ($this->json('pricing.json')['tiers']['free']['price'] ?? null) === 0,
+            'licence' => is_string($licence) && $licence !== '' ? $licence : null,
         ];
     }
 

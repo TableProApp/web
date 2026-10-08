@@ -84,7 +84,8 @@
             "title": "iPhone dan iPad",
             "paragraphs": [
                 "Di iPhone dan iPad, telusuri tabel sebagai kartu, filter dan urutkan, edit baris dengan primary key, dan jalankan SQL pada tab Query. Koneksi menyediakan SSL dari Required hingga Verify Identity, serta tunnel SSH dengan kata sandi atau kunci. Jump host SSH tidak didukung."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "Arahkan koneksi ke port SQL server TiDB, bukan PD atau TiKV. TiDB Cloud menggunakan port yang sama; atur SSL Mode ke Required di sana.",
                 "Stop mengirim <code>KILL TIDB QUERY</code> untuk sesi Anda sendiri. Di balik TiProxy atau load balancer, tindakan ini memerlukan Global Kill, yang diaktifkan TiDB secara bawaan sejak versi 6.1.",
-                "EXPLAIN dan EXPLAIN ANALYZE menampilkan rencana TiDB sebagai teks. Constraint CHECK muncul di tab Structure pada TiDB 7.2 dan lebih baru jika cluster mengaktifkannya, foreign key dapat dibuat, dan pemeliharaan tabel menyediakan ANALYZE TABLE.",
+                "EXPLAIN dan EXPLAIN ANALYZE menampilkan rencana TiDB sebagai teks. Constraint CHECK muncul di tab Structure pada TiDB 7.2 dan lebih baru jika cluster mengaktifkannya, foreign key dapat dibuat, dan pemeliharaan tabel menyediakan ANALYZE TABLE. <administer>Users & Roles</administer> berfungsi di TiDB, tanpa bidang batas koneksi.",
                 "Pilih TiDB sebagai jenis koneksi, bukan MySQL, agar bilah samping, pemilih jenis, dan EXPLAIN mengikuti TiDB."
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL adalah klien sumber terbuka yang telah lama berasal dari Windows dan kini juga menyediakan aplikasi macOS."
+                "text": "HeidiSQL adalah klien sumber terbuka yang telah lama berasal dari Windows dan kini juga menyediakan aplikasi macOS. Cocok jika Anda sudah menggunakannya di Windows dan menginginkan klien yang sama di Mac Anda."
             }
         ],
         "notes": {}

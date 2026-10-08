@@ -42,7 +42,7 @@
                 "Ein PL/SQL-Block oder eine gespeicherte Einheit läuft als eine Anweisung, unabhängig von der Zahl ihrer Semikolons: Setze den Cursor hinein und führe sie aus. SQL*Plus- oder SQL-Developer-Skripte laufen unverändert; eine Zeile mit nur <code>/</code> beendet die vorherige Einheit. Kompiliert eine Einheit nicht, meldet Oracle seine Fehler einzeln pro Zeile mit Position.",
                 "<code>DBMS_OUTPUT.PUT_LINE</code>-Zeilen erscheinen mit dem Ergebnis der Anweisung, die sie ausgab, ohne <code>SET SERVEROUTPUT ON</code>. In einem anonymen Block ist <code>:name</code> ein <parameters>Abfrageparameter</parameters>, den du in einem Panel ausfüllst.",
                 "Jede erfolgreiche Anweisung wird bestätigt. Beginne mit <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> oder <code>LOCK TABLE</code>, um Änderungen zu halten; alles danach wartet auf dein <code>COMMIT</code> oder <code>ROLLBACK</code>, einschließlich Raster-Speichern.",
-                "Jeder Benutzer ist ein Schema; <code>Cmd+K</code> wechselt das aktive ohne Neuverbinden. Zeilenänderungen werden mit <editing>SQL-Vorschau</editing> vorgemerkt. Ein Block mit Löschen oder Leeren, auch über <code>EXECUTE IMMEDIATE</code>, zeigt vorher die <safeMode>Warnung vor gefährlichen Abfragen</safeMode>."
+                "Jeder Benutzer ist ein Schema; <code>⌘K</code> wechselt das aktive ohne Neuverbinden. Zeilenänderungen werden mit <editing>SQL-Vorschau</editing> vorgemerkt. Ein Block mit Löschen oder Leeren, auch über <code>EXECUTE IMMEDIATE</code>, zeigt vorher die <safeMode>Warnung vor gefährlichen Abfragen</safeMode>."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone und iPad",
             "paragraphs": [
                 "Auf iPhone und iPad ist der Oracle-Treiber Teil der App. Das Formular nimmt Service Name oder SID, SYSDBA- und SYSOPER-Rollen und Netzwerkverschlüsselung entgegen. Du durchsuchst Tabellen als Karten, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Abfrage-Tab aus; Tabellen erstellen oder ändern bleibt auf dem Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

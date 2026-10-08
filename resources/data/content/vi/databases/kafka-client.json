@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Client Apache Kafka cho {devices}",
-        "lead": "Đọc một topic từ vị trí bắt đầu bạn chọn, xem mỗi consumer group đang trễ bao xa, và produce một message thử, tất cả bằng KafkaQL. Topic là một log, nên data grid chỉ đọc message và không bao giờ sửa chúng."
+        "lead": "Đọc một topic từ vị trí bắt đầu bạn chọn, xem mỗi consumer group đang trễ bao xa, và produce một message thử, tất cả bằng KafkaQL, ngôn ngữ lệnh riêng của TablePro. Topic là một log, nên data grid chỉ đọc message và không bao giờ sửa chúng."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
-                "TablePro không có import cho Kafka; hãy đưa message vào topic bằng <code>PRODUCE INTO</code>. Bạn có thể <export>export</export> các message mà một query đã đọc ra CSV, JSON hoặc XLSX."
+                "TablePro không có import cho Kafka; hãy đưa message vào topic bằng <code>PRODUCE INTO</code>. Bạn có thể <export>export</export> các message mà một query đã đọc ra {exportFormats}."
             ]
         }
     ],

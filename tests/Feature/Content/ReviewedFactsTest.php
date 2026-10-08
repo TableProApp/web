@@ -306,6 +306,54 @@ dataset('reviewed facts', [
         ['giao thức native', 'màn hình xem table', 'tab Truy vấn (Query)'],
         ['gốc', 'trình duyệt table', 'script structure'],
     ],
+    // Plugins/KafkaDriverPlugin/KafkaQL.swift is the parser; Kafka itself has no such language (v0.78.0).
+    'KafkaQL is introduced as TablePro’s own command language' => [
+        'content/en/databases/kafka-client.json',
+        ['all with KafkaQL, TablePro’s own command language.'],
+        ['all with KafkaQL.'],
+    ],
+    'KafkaQL (vi)' => [
+        'content/vi/databases/kafka-client.json',
+        ['bằng KafkaQL, ngôn ngữ lệnh riêng của TablePro.'],
+        ['tất cả bằng KafkaQL.'],
+    ],
+    'the hub says whose language KafkaQL is' => [
+        'content/en/databases/index.json',
+        ['with KafkaQL, TablePro’s own command language.'],
+        ['messages with KafkaQL.'],
+    ],
+    'another tool’s AI feature is named as that tool’s' => [
+        'content/en/databases/redis-gui.json',
+        ['Redis Insight’s Redis Copilot answers Redis questions'],
+        ['Its Redis Copilot'],
+    ],
+    'Redis Copilot (vi)' => [
+        'content/vi/databases/redis-gui.json',
+        ['Redis Copilot của Redis Insight'],
+        ['Redis Copilot của nó'],
+    ],
+    'Compass, not TablePro, is the subject of its note' => [
+        'content/en/databases/mongodb-client.json',
+        ['Compass can also write a query from a question in plain language.'],
+        ['It can also write a query'],
+    ],
+    // docs/databases/index.mdx:76 and docs/connections/ssl.mdx:6 at v0.78.0 name these three. A provider the app's docs do not name stays out.
+    'hosted PostgreSQL names the services the app’s docs name' => [
+        'content/en/databases/postgresql-client.json',
+        ['such as Amazon RDS, Neon or Supabase?', 'Neon, Supabase and Heroku connect with the host they give you.'],
+        ['PlanetScale', 'pooler'],
+    ],
+    'hosted PostgreSQL (vi)' => [
+        'content/vi/databases/postgresql-client.json',
+        ['như Amazon RDS, Neon hay Supabase không?', 'Neon, Supabase và Heroku kết nối bằng host'],
+        ['PlanetScale'],
+    ],
+    // docs/databases/tidb.mdx:34 at v0.78.0.
+    'TiDB has Users & Roles, without the connection limit field' => [
+        'content/en/databases/mysql-client.json',
+        ['<administer>Users & Roles</administer> works on TiDB, without the connection limit field.'],
+        [],
+    ],
     // SyncRecordMapper.swift:773-793 at v0.78.0 writes the name, the username and the password mode.
     'iCloud Sync carries credential profiles, never their password' => [
         'content/en/features/sync-and-teams.json',

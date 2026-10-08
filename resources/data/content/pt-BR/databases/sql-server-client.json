@@ -42,7 +42,7 @@
                 "Um script chega ao servidor um lote por vez, dividido em cada linha que contém apenas <code>GO</code>, como enviado por sqlcmd, e <code>GO 5</code> executa o lote anterior cinco vezes. Cada conjunto de resultados abre na própria aba, e a saída de <code>PRINT</code> e as mensagens informativas aparecem na visualização Output.",
                 "Coloque <code>BEGIN TRAN</code> e <code>COMMIT</code> em um script quando uma falha precisar desfazer os lotes anteriores; um script que deixa uma transação aberta termina com um aviso. A execução para no primeiro lote com falha, e o erro informa a linha no editor.",
                 "Cada sessão abre com as opções SET exigidas por índices filtrados, views indexadas e índices em colunas calculadas, como <code>ANSI_NULLS</code> e <code>QUOTED_IDENTIFIER</code> ativados. Isso também significa que <code>col = NULL</code> não corresponde a nada: compare com <code>IS NULL</code>.",
-                "As tabelas ficam dentro de seus esquemas na barra lateral, e <code>Cmd+K</code> muda o banco na mesma conexão, sem reconectar. Edições de linhas ficam pendentes com <editing>Preview SQL</editing>, novas linhas deixam as colunas IDENTITY para o servidor, e valores <code>nvarchar(max)</code> chegam completos."
+                "As tabelas ficam dentro de seus esquemas na barra lateral, e <code>⌘K</code> muda o banco na mesma conexão, sem reconectar. Edições de linhas ficam pendentes com <editing>Preview SQL</editing>, novas linhas deixam as colunas IDENTITY para o servidor, e valores <code>nvarchar(max)</code> chegam completos."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone e iPad",
             "paragraphs": [
                 "No iPhone e iPad, entre com login SQL Server, navegue por tabelas como cartões, edite linhas com chave primária e execute T-SQL na aba Query. Windows Authentication não está disponível. Uma conexão Microsoft Entra ID vem do Mac por iCloud Sync ou arquivo de conexão exportado, e você entra na Microsoft ao abri-la."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "Por que um script diz “Must declare the scalar variable”?",
-            "answer": "A instrução que lê a variável executou em um lote diferente do seu <code>DECLARE</code>: há uma linha <code>GO</code> entre elas, ou <code>Cmd+Enter</code> executou apenas a instrução no cursor. Selecione ambas ou execute o script inteiro."
+            "answer": "A instrução que lê a variável executou em um lote diferente do seu <code>DECLARE</code>: há uma linha <code>GO</code> entre elas, ou <code>⌘⏎</code> executou apenas a instrução no cursor. Selecione ambas ou execute o script inteiro."
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "Conexões, túneis e autenticação",
+            "label": "Autenticação na nuvem para AWS, Google e Microsoft",
             "href": "/features/connections#cloud-auth"
         },
         {

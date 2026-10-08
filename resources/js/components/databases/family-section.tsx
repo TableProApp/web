@@ -3,7 +3,7 @@ import DotList from '@/components/ui/dot-list';
 import TextLink from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 import EngineSection from './engine-section';
-import { docsUrl, engineValues, iosStatus, shownPort } from './format';
+import { docsUrl, engineValues, iosStatus, shownPort, versionFloorText } from './format';
 import LimitsList from './limits-list';
 import type { DatabaseLabels, EngineCopy, EngineDetail, FamilySection as FamilySectionContent } from './types';
 
@@ -32,9 +32,7 @@ export default function FamilySection({ section, engine, copy, labels, docsBase 
         shownPort(engine) !== null ? fmt(labels.family.port, { port: String(shownPort(engine)) }) : null,
         labels.driver[engine.distribution],
         `${labels.facts.ios}: ${labels.ios[iosStatus(engine)]}`,
-        engine.versionFloor !== null
-            ? `${labels.facts.minimumVersion}: ${fmt(engine.versionFloor.enforced ? labels.facts.enforced : labels.facts.documented, { version: engine.versionFloor.text })}`
-            : null,
+        engine.versionFloor !== null ? `${labels.facts.minimumVersion}: ${versionFloorText(engine.versionFloor, labels.facts)}` : null,
     ].filter((fact): fact is string => fact !== null);
 
     return (

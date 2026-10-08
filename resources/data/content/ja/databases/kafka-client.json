@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "{devices} 用 Apache Kafka クライアント",
-        "lead": "選んだ開始位置からトピックを読み、各コンシューマーグループの遅延を確認し、テストメッセージを送信します。すべて KafkaQL で行います。トピックはログなので、グリッドはメッセージを読み取り、編集はしません。"
+        "lead": "選んだ開始位置からトピックを読み、各コンシューマーグループの遅延を確認し、テストメッセージを送信します。すべて TablePro 独自のコマンド言語 KafkaQL で行います。トピックはログなので、グリッドはメッセージを読み取り、編集はしません。"
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "データの移動",
             "paragraphs": [
-                "インポートはありません。<code>PRODUCE INTO</code> でトピックにメッセージを書き込みます。クエリで読んだメッセージを CSV、JSON または XLSX で <export>エクスポート</export> できます。"
+                "インポートはありません。<code>PRODUCE INTO</code> でトピックにメッセージを書き込みます。クエリで読んだメッセージを {exportFormats} で <export>エクスポート</export> できます。"
             ]
         }
     ],

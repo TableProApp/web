@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Apache Kafka client for {devices}",
-        "lead": "Read a topic from the start position you choose, see how far each consumer group lags, and produce a test message, all with KafkaQL. A topic is a log, so the grid reads messages and never edits them."
+        "lead": "Read a topic from the start position you choose, see how far each consumer group lags, and produce a test message, all with KafkaQL, TablePro’s own command language. A topic is a log, so the grid reads messages and never edits them."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "Move data",
             "paragraphs": [
-                "There is no import; put messages into a topic with <code>PRODUCE INTO</code>. <export>Export</export> the messages a query read as CSV, JSON or XLSX."
+                "There is no import; put messages into a topic with <code>PRODUCE INTO</code>. <export>Export</export> the messages a query read as {exportFormats}."
             ]
         }
     ],

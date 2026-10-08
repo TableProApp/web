@@ -1460,6 +1460,7 @@ At 375, EngineTable folds Query language, Driver, iPhone and Notes into the Engi
 ```
 Breadcrumbs  Databases / {Engine}
 cols 1–8:  [mark 40] H1 · lead (1–2 sentences) · AvailabilityLine (platforms · driver delivery · "0.77" where it applies)
+           · one line from data: free to use with optional paid plans → /pricing · open source (licence) → repository ↗
            [Download for Mac] primary · App Store badge only if the engine opens on iPhone · Setup guide ↗
 cols 9–12: Card "Facts" → DescriptionList { Query language · Driver · Connect with · Minimum version · iPhone and iPad }
 ▒ lead slot  the first ID in sitemap §A.3's Slots column for this page (engine-specific; never shared across engines)
@@ -1475,7 +1476,7 @@ Related      feature pages, comparisons, docs ↗ (standalone links)
 DownloadBand
 ```
 
-**The "Minimum version" row** shows the engine's recorded server version floor from `engines.json` with its marker, as sitemap §E.1 requires: "enforced" when the app refuses older servers (Oracle 10g, for example), "documented" when the floor comes from documentation (MySQL 5.7, for example). The row is left out when the engine has no recorded floor. The site never says "tested": there is no test evidence for any engine version.
+**The "Minimum version" row** shows the engine's recorded server version floor from `engines.json`. A floor the app enforces says so ("enforced: older servers are refused", Oracle 10g for example). A floor that comes from documentation is the bare version (MySQL 5.7, for example): the word "documented" told a reader nothing. Where the documentation says there is no minimum, the floor's `text` is null and the row reads "None". The row is left out when the engine has no recorded floor. The site never says "tested": there is no test evidence for any engine version.
 
 At 375 the Facts card moves under the lead, before the slot.
 
