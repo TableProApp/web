@@ -86,7 +86,8 @@
             "title": "iPhone과 iPad",
             "paragraphs": [
                 "iPhone과 iPad에서는 도구 막대에서 데이터베이스·스키마를 전환하고 테이블을 카드로 탐색하며 기본 키가 있는 행을 편집하고 Query 탭에서 SQL을 실행합니다. SSL은 Required부터 Verify Identity까지, SSH 터널은 비밀번호나 키를 지원하며 점프 호스트는 지원하지 않습니다."
-            ]
+            ],
+            "asset": "ios-connection-form"
         }
     ],
     "family": [
@@ -114,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin은 오랫동안 사용된 PostgreSQL 오픈 소스 관리 도구로 디버거, 스키마 차이 비교, 백업·복원을 제공합니다.",
+                "text": "pgAdmin은 오랫동안 사용된 PostgreSQL 오픈 소스 관리 도구로 디버거, 스키마 차이 비교, 백업·복원을 제공합니다. PostgreSQL만 사용하고 관리 작업이 대부분이라면 적합합니다.",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2는 탐색과 편집 중심의 PostgreSQL Mac 앱입니다. 공식 문서에서도 백업·복원, 사용자 관리와 모니터링 같은 관리 기능을 제외합니다."
+                "text": "Postico 2는 탐색과 편집 중심의 PostgreSQL Mac 앱입니다. 공식 문서에서도 백업·복원, 사용자 관리와 모니터링 같은 관리 기능을 제외합니다. PostgreSQL만 사용하고 그에 특화된 Mac 앱을 원한다면 적합합니다."
             }
         ],
         "notes": {
@@ -131,8 +132,8 @@
     "faq": [
         {
             "id": "hosted",
-            "question": "Amazon RDS 같은 호스팅 PostgreSQL을 지원하나요?",
-            "answer": "네. 호스팅 서버도 다른 서버처럼 호스트와 포트로 연결합니다. RDS와 Aurora는 AWS IAM 로그인도 가능하며 Google Cloud SQL은 TablePro가 Cloud SQL Auth Proxy를 실행합니다."
+            "question": "Amazon RDS, Neon, Supabase 같은 호스팅 PostgreSQL을 지원하나요?",
+            "answer": "네. 호스팅 서버도 다른 서버처럼 호스트와 포트로 연결합니다. Neon, Supabase, Heroku는 서비스가 알려 주는 호스트로 연결합니다. 이들은 TLS를 요구하며 새 연결은 TLS를 먼저 시도합니다. RDS와 Aurora는 AWS IAM 로그인도 가능하며 Google Cloud SQL은 TablePro가 Cloud SQL Auth Proxy를 실행합니다."
         },
         {
             "id": "column-order",

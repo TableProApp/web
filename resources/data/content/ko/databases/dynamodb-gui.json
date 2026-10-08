@@ -62,7 +62,7 @@
             "id": "move-data",
             "title": "데이터 이동",
             "paragraphs": [
-                "DynamoDB 가져오기는 없습니다. 편집기의 PartiQL <code>INSERT</code>·<code>BatchWriteItem</code> 요청으로 쓰며 후자는 미처리 항목을 재전송하고 쓰지 못한 것을 보고합니다. Export 대화상자에서 테이블·결과를 파일로 <export>내보냅니다</export>."
+                "DynamoDB 가져오기는 없습니다. 편집기의 PartiQL <code>INSERT</code>·<code>BatchWriteItem</code> 요청으로 쓰며 후자는 미처리 항목을 재전송하고 쓰지 못한 것을 보고합니다. Export 대화상자에서 테이블·결과를 {exportFormats}로 <export>내보냅니다</export>."
             ]
         }
     ],

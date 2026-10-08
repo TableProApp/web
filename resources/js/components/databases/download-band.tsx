@@ -1,7 +1,9 @@
 import ActionPair from '@/components/download/action-pair';
 import { requirementLine } from '@/components/download/format';
 import DotList from '@/components/ui/dot-list';
+import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
+import { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 import type { DatabaseLabels, PlatformSummary } from './types';
 
@@ -19,8 +21,9 @@ interface DownloadBandProps {
  * The closing band of the database pages (design-system §8.3, §8.4): the
  * explanation as the section's lead, then the shared `ActionPair` row: the
  * Mac action with its requirement, and the App Store badge with the iPhone
- * and iPad requirement where the engine opens there. The requirements come
- * from platforms.json through the `platforms` catalog, never typed here.
+ * and iPad requirement where the engine opens there, then the way to pricing.
+ * The requirements come from platforms.json through the `platforms` catalog,
+ * never typed here.
  */
 export default function DownloadBand({ labels, platforms, showIos, appStoreUrl, location }: DownloadBandProps) {
     const { m, fmt } = useI18n();
@@ -44,6 +47,12 @@ export default function DownloadBand({ labels, platforms, showIos, appStoreUrl, 
                         : null
                 }
             />
+            <p className="mt-8">
+                <LocaleLink href="/pricing" className={textLinkClasses('standalone')}>
+                    {labels.download.pricing}
+                    <span aria-hidden="true">→</span>
+                </LocaleLink>
+            </p>
         </Section>
     );
 }

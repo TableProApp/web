@@ -28,6 +28,10 @@ export default {
         "summary": "Mac apa yang saya miliki?",
         "body": "Buka menu Apple lalu pilih Mengenai Mac Ini. Mac dengan Apple silicon menampilkan baris Chip, misalnya Apple M2. Mac Intel menampilkan baris Prosesor yang menyebutkan Intel."
     },
+    "checksum": {
+        "summary": "Verifikasi unduhan Anda",
+        "body": "Jalankan <code>shasum -a 256</code> pada file tersebut di Terminal. Hasilnya harus sama dengan checksum SHA-256 di bawah."
+    },
     "afterClick": {
         "title": "Selanjutnya, instal aplikasi",
         "body": "Buka {file} dari folder Unduhan lalu seret TablePro ke Aplikasi.",

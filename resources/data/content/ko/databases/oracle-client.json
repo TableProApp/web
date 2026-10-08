@@ -42,7 +42,7 @@
                 "PL/SQL 블록·저장 단위는 세미콜론 수에 관계없이 명령문 하나로 실행하니 안에 커서를 두고 실행하세요. SQL*Plus·SQL Developer 스크립트는 변경 없이 실행되며 <code>/</code>만 있는 행이 위 단위를 끝냅니다. 컴파일 실패는 Oracle 오류를 위치와 함께 한 줄씩 표시합니다.",
                 "<code>DBMS_OUTPUT.PUT_LINE</code> 출력은 출력한 명령문 결과와 함께 표시돼 <code>SET SERVEROUTPUT ON</code>이 필요 없습니다. 익명 블록의 <code>:name</code>은 패널에서 입력하는 <parameters>쿼리 매개변수</parameters>입니다.",
                 "각 명령문은 성공하면 커밋합니다. <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> 또는 <code>LOCK TABLE</code>로 시작하면 변경을 유지하며 그 뒤 그리드 저장까지 모두 <code>COMMIT</code>·<code>ROLLBACK</code>을 기다립니다.",
-                "각 사용자는 스키마이고 <code>Cmd+K</code>로 재연결 없이 활성 스키마를 바꿉니다. 행 편집은 <editing>Preview SQL</editing>로 대기합니다. <code>EXECUTE IMMEDIATE</code>를 통한 경우도 drop·truncate 블록은 실행 전 <safeMode>위험한 쿼리 경고</safeMode>를 표시합니다."
+                "각 사용자는 스키마이고 <code>⌘K</code>로 재연결 없이 활성 스키마를 바꿉니다. 행 편집은 <editing>Preview SQL</editing>로 대기합니다. <code>EXECUTE IMMEDIATE</code>를 통한 경우도 drop·truncate 블록은 실행 전 <safeMode>위험한 쿼리 경고</safeMode>를 표시합니다."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone과 iPad",
             "paragraphs": [
                 "iPhone·iPad에는 Oracle 드라이버가 앱에 포함됩니다. 연결 폼은 Service Name·SID, SYSDBA·SYSOPER 역할과 Network Encryption 설정을 받습니다. 테이블을 카드로 탐색하고 기본 키가 있는 행을 편집하며 Query 탭에서 SQL을 실행합니다. 테이블 생성·변경은 Mac에서 합니다."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

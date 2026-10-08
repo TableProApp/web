@@ -42,7 +42,7 @@
                 "PL/SQL 块或存储单元无论含多少分号都作为一个语句运行，光标置于其中即可。SQL*Plus 或 SQL Developer 脚本无需修改，单独 <code>/</code> 行结束上方单元。编译失败显示 Oracle 原始错误，每行附位置。",
                 "<code>DBMS_OUTPUT.PUT_LINE</code> 行与打印它的语句结果一起显示，无需 <code>SET SERVEROUTPUT ON</code>。匿名块中的 <code>:name</code> 是在面板填写的<parameters>查询参数</parameters>。",
                 "各语句成功即提交。用 <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> 或 <code>LOCK TABLE</code> 开始保留改动，其后包括网格保存均等待 <code>COMMIT</code> 或 <code>ROLLBACK</code>。",
-                "每个用户是一个 schema，<code>Cmd+K</code> 无需重连切换活动 schema。行编辑暂存并可 <editing>Preview SQL</editing>。执行 drop 或 truncate 的块即使通过 <code>EXECUTE IMMEDIATE</code>，也在运行前触发<safeMode>危险查询警告</safeMode>。"
+                "每个用户是一个 schema，<code>⌘K</code> 无需重连切换活动 schema。行编辑暂存并可 <editing>Preview SQL</editing>。执行 drop 或 truncate 的块即使通过 <code>EXECUTE IMMEDIATE</code>，也在运行前触发<safeMode>危险查询警告</safeMode>。"
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone 和 iPad",
             "paragraphs": [
                 "iPhone、iPad 的 Oracle 驱动内置于应用。连接表单接受 Service Name 或 SID、SYSDBA、SYSOPER 角色及 Network Encryption 设置。以卡片浏览表，编辑有主键的行，在 Query 标签页运行 SQL；创建修改表仍在 Mac。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

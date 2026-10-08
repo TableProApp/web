@@ -3,6 +3,7 @@ import { ChevronRight, Download } from 'lucide-react';
 import Badge from '@/components/ui/badge';
 import Button from '@/components/ui/button';
 import Callout from '@/components/ui/callout';
+import { InlineCode } from '@/components/ui/code';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { Trans, useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
@@ -31,7 +32,8 @@ interface MacCardProps {
 
 /**
  * The Mac card (`#mac`): the release badge, both builds, the help for choosing
- * one, and the other ways to install (design-system §5.3.18 `PlatformCard`,
+ * one, each build's SHA-256 when the release data carries it, and the other
+ * ways to install (design-system §5.3.18 `PlatformCard`,
  * §8.7). It is a cell of the download page's `CellGrid`, so it draws no box of
  * its own, and its inner rule runs from wall to wall (§4.7).
  *
@@ -56,6 +58,9 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
 
     const available = release.source !== 'unavailable';
     const chosen = clicked !== null ? release.assets[clicked] : null;
+    const checksums = BUILDS.map((build) => release.assets[build]).filter(
+        (asset): asset is ReleaseAsset & { name: string; sha256: string } => asset.name !== null && asset.sha256 !== null,
+    );
 
     let badge: string | null = null;
 
@@ -162,6 +167,31 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
                 </summary>
                 <p className="type-small mt-2 pl-6 text-foreground">{m.download.whichMac.body}</p>
             </details>
+
+            {checksums.length > 0 && (
+                <details className="group mt-1">
+                    <summary className="type-label inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-chip text-foreground [&::-webkit-details-marker]:hidden">
+                        <ChevronRight
+                            aria-hidden="true"
+                            className="size-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-state) group-open:rotate-90"
+                        />
+                        {m.download.checksum.summary}
+                    </summary>
+                    <div className="mt-2 space-y-3 pl-6">
+                        <p className="type-small text-foreground">
+                            <Trans text={m.download.checksum.body} tags={{ code: (text) => <InlineCode>{text}</InlineCode> }} />
+                        </p>
+                        <ul className="space-y-2 font-mono text-[0.75rem] [overflow-wrap:anywhere]">
+                            {checksums.map((asset) => (
+                                <li key={asset.name}>
+                                    <span className="block text-muted-foreground">{asset.name}</span>
+                                    <span className="block text-foreground">{asset.sha256}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </details>
+            )}
 
             {chosen !== null && chosen.name !== null && (
                 <Callout role="status" title={m.download.afterClick.title} className="mt-6">

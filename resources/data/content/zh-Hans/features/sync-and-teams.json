@@ -21,7 +21,7 @@
                 "密码仅在同时启用 Mac 的 Sync Categories 下的<ui>密码</ui>（Passwords），或 iPhone、iPad 上的<ui>同步密码</ui>（Sync Passwords）时，通过 iCloud 钥匙串同步；Mac 还会同步 TablePro 在钥匙串中保存的其他秘密，例如 AI 提供商密钥和许可证密钥。将连接标为 Local only，可让连接及其收藏和已保存查询仅保留在一台 Mac 上。"
             ],
             "points": [
-                "Mac 可选择同步内容：连接、分组和标签、设置、SSH 配置文件、表和数据库收藏、包含 SQL 的已保存查询，以及表文件夹。",
+                "Mac 可选择同步内容：连接、分组和标签、设置、SSH 配置文件、凭据配置文件（名称和用户名，从不包含密码）、表和数据库收藏、包含 SQL 的已保存查询，以及表文件夹。",
                 "iPhone 和 iPad：连接、分组和标签。",
                 "同步的连接包含主机、端口、用户名、数据库、SSH 和 SSL 设置、启动命令、连接前脚本及 AI 规则。",
                 "从不同步：查询历史、Data Rewind、密码来源、隧道命令以及每个连接的 External Clients 级别。"

@@ -62,7 +62,7 @@
             "id": "move-data",
             "title": "Mova dados",
             "paragraphs": [
-                "Não há importação para DynamoDB. Grave itens pelo editor com um <code>INSERT</code> PartiQL ou uma requisição <code>BatchWriteItem</code>, que reenvia itens não processados e informa os que não conseguiu gravar. <export>Exporte</export> uma tabela ou um resultado para um arquivo pela janela Export."
+                "Não há importação para DynamoDB. Grave itens pelo editor com um <code>INSERT</code> PartiQL ou uma requisição <code>BatchWriteItem</code>, que reenvia itens não processados e informa os que não conseguiu gravar. <export>Exporte</export> uma tabela ou um resultado como {exportFormats} pela janela Export."
             ]
         }
     ],

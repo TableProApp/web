@@ -104,7 +104,7 @@
             "id": "iphone",
             "title": "Di iPhone dan iPad",
             "paragraphs": [
-                "Dalam aplikasi iPhone dan iPad, baris tampil sebagai kartu yang dapat diurutkan, dicari, dan difilter dengan AND dan OR; mengetuk foreign key menampilkan pratinjau baris rujukan. Anda dapat mengedit baris, mengatur nilai ke NULL atau DEFAULT, menyisipkan baris, dan menghapusnya dengan geseran; pengeditan dan penghapusan memerlukan primary key.",
+                "Dalam aplikasi iPhone dan iPad, baris tampil sebagai kartu yang dapat diurutkan, dicari, dan difilter dengan AND dan OR; mengetuk foreign key menampilkan pratinjau baris rujukan. Anda dapat mengedit baris, mengatur nilai ke NULL, menyisipkan baris, dan menghapusnya dengan geseran; pengeditan dan penghapusan memerlukan primary key. Pada baris baru, setiap kolom awalnya DEFAULT dan dapat diatur ke NULL atau string kosong.",
                 "Safe Mode di sana memiliki level sendiri, {iosSafeModeLevels}, dengan {iosSafeModeDefault} sebagai bawaan koneksi baru. Edit tertunda, Preview SQL, aturan sorotan, dan Data Rewind hanya tersedia di aplikasi Mac."
             ],
             "links": [

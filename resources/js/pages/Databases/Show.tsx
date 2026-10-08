@@ -39,7 +39,7 @@ import LandingLayout from '@/layouts/landing-layout';
  * Structured data is a `WebPage` about the Mac app with its breadcrumb: no
  * per-database pseudo-app, no FAQPage, no rating.
  */
-export default function DatabaseShow({ content, labels, engine, family, copy, tools, platforms, links }: EnginePageProps) {
+export default function DatabaseShow({ content, labels, engine, family, copy, tools, platforms, links, product }: EnginePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
 
@@ -95,6 +95,7 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
                     engine={engine}
                     platforms={platforms}
                     links={links}
+                    product={product}
                     lead={lead !== null && !leadIsWindow ? <AssetSlot id={lead} /> : undefined}
                 />
 
@@ -120,6 +121,7 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
                     title={iphone?.title ?? labels.sections.iphone}
                     paragraphs={status === 'none' ? [] : (iphone?.paragraphs ?? [])}
                     points={status === 'none' ? undefined : iphone?.points}
+                    asset={status === 'none' ? undefined : iphone?.asset}
                     before={<p>{fmt(labels.iphone[status], { name: engine.name })}</p>}
                     after={
                         status !== 'none' && (

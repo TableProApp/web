@@ -84,7 +84,8 @@
             "title": "iPhone 與 iPad",
             "paragraphs": [
                 "iPhone 與 iPad 上可依卡片瀏覽資料表、篩選排序、編輯有主索引鍵的列，並在 Query 分頁執行 SQL。連線提供 Required 到 Verify Identity 的 SSL，以及密碼或金鑰 SSH 通道，不支援 SSH 跳板主機。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "連線至 TiDB 伺服器的 SQL 連接埠，不要連線 PD 或 TiKV。TiDB Cloud 使用相同連接埠，請將 SSL Mode 設為 Required。",
                 "Stop 對自己的工作階段傳送 <code>KILL TIDB QUERY</code>。在 TiProxy 或負載平衡器後需要 Global Kill，TiDB 自 6.1 版本起預設啟用。",
-                "EXPLAIN 和 EXPLAIN ANALYZE 以文字顯示 TiDB 計畫。TiDB 7.2 及以上在叢集啟用後於 Structure 分頁顯示 CHECK 條件約束，可建立外部索引鍵，資料表維護提供 ANALYZE TABLE。",
+                "EXPLAIN 和 EXPLAIN ANALYZE 以文字顯示 TiDB 計畫。TiDB 7.2 及以上在叢集啟用後於 Structure 分頁顯示 CHECK 條件約束，可建立外部索引鍵，資料表維護提供 ANALYZE TABLE。<administer>Users & Roles</administer> 也可用於 TiDB，但沒有連線數限制欄位。",
                 "請選 TiDB 而非 MySQL 作為連線類型，使側欄、型別選擇器和 EXPLAIN 依 TiDB 運作。"
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL 是源自 Windows 的老牌開放原始碼用戶端，如今也提供 macOS App。"
+                "text": "HeidiSQL 是源自 Windows 的老牌開放原始碼用戶端，如今也提供 macOS App。已在 Windows 上使用它、希望在 Mac 上使用同一用戶端時較合適。"
             }
         ],
         "notes": {}

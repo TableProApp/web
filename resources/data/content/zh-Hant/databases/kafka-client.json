@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "適用於 {devices} 的 Apache Kafka 用戶端",
-        "lead": "用 KafkaQL 從所選起點讀取主題，查看每個消費者群組的延遲，並產生測試訊息。主題是記錄，所以格線僅讀取訊息，從不編輯。"
+        "lead": "用 TablePro 自有的指令語言 KafkaQL 從所選起點讀取主題，查看每個消費者群組的延遲，並產生測試訊息。主題是記錄，所以格線僅讀取訊息，從不編輯。"
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "移動資料",
             "paragraphs": [
-                "不提供匯入；用 <code>PRODUCE INTO</code> 向主題寫入訊息。將查詢讀取的訊息<export>匯出</export>為 CSV、JSON 或 XLSX。"
+                "不提供匯入；用 <code>PRODUCE INTO</code> 向主題寫入訊息。將查詢讀取的訊息<export>匯出</export>為 {exportFormats}。"
             ]
         }
     ],

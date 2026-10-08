@@ -42,7 +42,7 @@
                 "Le script arrive lot par lot, divisé aux lignes contenant seulement <code>GO</code>, comme sqlcmd ; <code>GO 5</code> répète le lot précédent cinq fois. Chaque résultat ouvre son onglet ; <code>PRINT</code> et messages informatifs apparaissent dans Sortie.",
                 "Mettez <code>BEGIN TRAN</code> et <code>COMMIT</code> si un échec doit annuler les lots précédents ; un script laissant une transaction ouverte termine par un avis. L’exécution s’arrête au premier lot échoué et l’erreur nomme sa ligne dans l’éditeur.",
                 "Chaque session ouvre avec les options SET requises pour index filtrés, vues indexées et index de colonnes calculées, comme <code>ANSI_NULLS</code> et <code>QUOTED_IDENTIFIER</code> activés. Ainsi <code>col = NULL</code> ne correspond à rien : utilisez <code>IS NULL</code>.",
-                "Les tables sont imbriquées dans leur schéma ; <code>Cmd+K</code> change la base sans reconnexion. Les modifications sont préparées avec <editing>Preview SQL</editing>, les nouvelles lignes laissent IDENTITY au serveur et <code>nvarchar(max)</code> arrive entier."
+                "Les tables sont imbriquées dans leur schéma ; <code>⌘K</code> change la base sans reconnexion. Les modifications sont préparées avec <editing>Preview SQL</editing>, les nouvelles lignes laissent IDENTITY au serveur et <code>nvarchar(max)</code> arrive entier."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone et iPad",
             "paragraphs": [
                 "Sur iPhone et iPad, login SQL Server, tables en cartes, édition des lignes avec clé primaire et T-SQL dans Requête. Windows n’est pas disponible. Une connexion Entra ID vient du Mac par iCloud Sync ou fichier exporté ; vous vous connectez à Microsoft à l’ouverture."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "Pourquoi un script dit-il « Must declare the scalar variable » ?",
-            "answer": "L’instruction lisant la variable était dans un autre lot que <code>DECLARE</code> : un <code>GO</code> les sépare ou <code>Cmd+Enter</code> n’a lancé que l’instruction au curseur. Sélectionnez les deux ou lancez tout le script."
+            "answer": "L’instruction lisant la variable était dans un autre lot que <code>DECLARE</code> : un <code>GO</code> les sépare ou <code>⌘⏎</code> n’a lancé que l’instruction au curseur. Sélectionnez les deux ou lancez tout le script."
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "Connexions, tunnels et authentification",
+            "label": "Authentification cloud pour AWS, Google et Microsoft",
             "href": "/features/connections#cloud-auth"
         },
         {

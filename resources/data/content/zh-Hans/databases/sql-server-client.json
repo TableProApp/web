@@ -42,7 +42,7 @@
                 "脚本按仅含 <code>GO</code> 的行分隔，像 sqlcmd 一样逐批次发送服务器；<code>GO 5</code> 将前一批次运行五次。每个结果集在独立标签页打开，<code>PRINT</code> 输出和信息消息显示在 Output 视图。",
                 "若失败需回滚之前的批次，请在脚本加入 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>；脚本留下未结束事务时会在结尾提示。运行在首个失败批次停止，错误指出编辑器中的行号。",
                 "每个会话以筛选索引、索引视图和计算列索引所需的 SET 选项打开，例如启用 <code>ANSI_NULLS</code> 和 <code>QUOTED_IDENTIFIER</code>。因此 <code>col = NULL</code> 不匹配任何记录，请用 <code>IS NULL</code> 比较。",
-                "表在侧栏 schema 下嵌套显示，<code>Cmd+K</code> 无需重新连接即可切换数据库。行编辑暂存并提供 <editing>Preview SQL</editing>，新行的 IDENTITY 列交给服务器生成，<code>nvarchar(max)</code> 值完整读取。"
+                "表在侧栏 schema 下嵌套显示，<code>⌘K</code> 无需重新连接即可切换数据库。行编辑暂存并提供 <editing>Preview SQL</editing>，新行的 IDENTITY 列交给服务器生成，<code>nvarchar(max)</code> 值完整读取。"
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone 和 iPad",
             "paragraphs": [
                 "iPhone 和 iPad 上可通过 SQL Server 登录，按卡片浏览表、编辑有主键的行，并在 Query 标签页运行 T-SQL。不提供 Windows Authentication。Microsoft Entra ID 连接需通过 iCloud Sync 或导出的连接文件从 Mac 导入，打开时登录 Microsoft。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "为什么脚本报错“Must declare the scalar variable”？",
-            "answer": "读取变量的语句与其 <code>DECLARE</code> 在不同批次运行：两者间有 <code>GO</code> 行，或 <code>Cmd+Enter</code> 仅运行了光标所在语句。请选择两条语句或运行整个脚本。"
+            "answer": "读取变量的语句与其 <code>DECLARE</code> 在不同批次运行：两者间有 <code>GO</code> 行，或 <code>⌘⏎</code> 仅运行了光标所在语句。请选择两条语句或运行整个脚本。"
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "连接、隧道和登录",
+            "label": "AWS、Google 和 Microsoft 云登录",
             "href": "/features/connections#cloud-auth"
         },
         {

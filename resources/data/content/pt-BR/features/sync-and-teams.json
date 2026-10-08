@@ -21,7 +21,7 @@
                 "As senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad, usando as Chaves do iCloud; no Mac, isso também leva os outros segredos que TablePro guarda nas Chaves, como chaves de provedores de IA e a chave de licença. Marque uma conexão como Local only para mantê-la, com seus favoritos e consultas salvas, em um único Mac."
             ],
             "points": [
-                "No Mac, você escolhe o que sincronizar: conexões, grupos e etiquetas, configurações, perfis SSH, tabelas e bancos favoritos, consultas salvas com seu SQL e pastas de tabelas.",
+                "No Mac, você escolhe o que sincronizar: conexões, grupos e etiquetas, configurações, perfis SSH, perfis de credenciais (nome e nome de usuário, nunca a senha), tabelas e bancos favoritos, consultas salvas com seu SQL e pastas de tabelas.",
                 "No iPhone e iPad: conexões, grupos e etiquetas.",
                 "Uma conexão sincronizada leva host, porta, nome de usuário, banco de dados, configurações SSH e SSL, comandos de inicialização, script de pré-conexão e regras de IA.",
                 "Nunca são sincronizados: histórico de consultas, Data Rewind, fontes de senhas, comandos de túnel e o nível de External Clients de cada conexão."

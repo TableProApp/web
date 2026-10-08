@@ -21,7 +21,7 @@
                 "Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) dans Catégories de synchronisation sur Mac, ou <ui>Sync Passwords</ui> sur iPhone et iPad, via le Trousseau iCloud. Sur Mac, cela transmet aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs d’IA et la clé de licence. Marquez une connexion comme Local only pour la conserver, avec ses favoris et requêtes enregistrées, sur un seul Mac."
             ],
             "points": [
-                "Sur Mac, vous choisissez ce qui se synchronise : connexions, groupes et étiquettes, réglages, profils SSH, favoris de tables et de bases, requêtes enregistrées avec leur SQL et dossiers de tables.",
+                "Sur Mac, vous choisissez ce qui se synchronise : connexions, groupes et étiquettes, réglages, profils SSH, profils d’identifiants (nom et nom d’utilisateur, jamais le mot de passe), favoris de tables et de bases, requêtes enregistrées avec leur SQL et dossiers de tables.",
                 "Sur iPhone et iPad : connexions, groupes et étiquettes.",
                 "Une connexion synchronisée contient l’hôte, le port, le nom d’utilisateur, la base de données, les paramètres SSH et SSL, les commandes de démarrage, le script avant connexion et les règles d’IA.",
                 "Ne sont jamais synchronisés : l’historique des requêtes, Data Rewind, les sources de mot de passe, les commandes de tunnel et le niveau External Clients de chaque connexion."

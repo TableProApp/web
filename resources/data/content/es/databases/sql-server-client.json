@@ -42,7 +42,7 @@
                 "El script llega por lotes, divididos en líneas con solo <code>GO</code>, como sqlcmd; <code>GO 5</code> repite cinco veces el lote anterior. Cada conjunto de resultados abre su pestaña; <code>PRINT</code> y mensajes informativos aparecen en Salida.",
                 "Incluye <code>BEGIN TRAN</code> y <code>COMMIT</code> si un fallo debe deshacer los lotes anteriores; un script que deje una transacción abierta termina con un aviso. La ejecución para en el primer lote fallido y el error señala su línea en el editor.",
                 "Cada sesión abre con las opciones SET necesarias para índices filtrados, vistas indexadas e índices de columnas calculadas, como <code>ANSI_NULLS</code> y <code>QUOTED_IDENTIFIER</code> activados. Por eso <code>col = NULL</code> no coincide con nada: usa <code>IS NULL</code>.",
-                "Las tablas se anidan en sus esquemas; <code>Cmd+K</code> cambia de base sin reconectar. Las ediciones se preparan con <editing>Preview SQL</editing>, las filas nuevas dejan IDENTITY al servidor y <code>nvarchar(max)</code> llega completo."
+                "Las tablas se anidan en sus esquemas; <code>⌘K</code> cambia de base sin reconectar. Las ediciones se preparan con <editing>Preview SQL</editing>, las filas nuevas dejan IDENTITY al servidor y <code>nvarchar(max)</code> llega completo."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone y iPad",
             "paragraphs": [
                 "En iPhone y iPad accedes con login SQL Server, exploras tablas como tarjetas, editas filas con clave primaria y ejecutas T-SQL en Consulta. No hay autenticación Windows. Una conexión Entra ID viene del Mac por iCloud Sync o archivo exportado; inicias sesión en Microsoft al abrirla."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "¿Por qué un script dice «Must declare the scalar variable»?",
-            "answer": "La sentencia que lee la variable se ejecutó en un lote distinto de <code>DECLARE</code>: hay <code>GO</code> entre ellas, o <code>Cmd+Enter</code> ejecutó solo la del cursor. Selecciona ambas o ejecuta todo el script."
+            "answer": "La sentencia que lee la variable se ejecutó en un lote distinto de <code>DECLARE</code>: hay <code>GO</code> entre ellas, o <code>⌘⏎</code> ejecutó solo la del cursor. Selecciona ambas o ejecuta todo el script."
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "Conexiones, túneles y autenticación",
+            "label": "Autenticación en la nube para AWS, Google y Microsoft",
             "href": "/features/connections#cloud-auth"
         },
         {

@@ -28,6 +28,10 @@ export default {
         "summary": "自分の Mac の種類を確認する",
         "body": "Apple メニューから「この Mac について」を開きます。Apple silicon 搭載 Mac には「チップ」欄があり、Apple M2 などと表示されます。Intel Mac には「プロセッサ」欄があり、Intel と表示されます。"
     },
+    "checksum": {
+        "summary": "ダウンロードを検証する",
+        "body": "ターミナルでファイルに対して <code>shasum -a 256</code> を実行します。結果が下の SHA-256 チェックサムと一致することを確認してください。"
+    },
     "afterClick": {
         "title": "次はインストール",
         "body": "ダウンロードフォルダーの {file} を開き、TablePro をアプリケーションフォルダーにドラッグします。",

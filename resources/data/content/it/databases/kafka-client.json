@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Client Apache Kafka per {devices}",
-        "lead": "Leggi un topic dalla posizione iniziale che scegli, verifica il ritardo di ogni gruppo di consumer e produci un messaggio di prova, tutto con KafkaQL. Un topic è un log, quindi la griglia legge i messaggi senza mai modificarli."
+        "lead": "Leggi un topic dalla posizione iniziale che scegli, verifica il ritardo di ogni gruppo di consumer e produci un messaggio di prova, tutto con KafkaQL, il linguaggio di comandi proprio di TablePro. Un topic è un log, quindi la griglia legge i messaggi senza mai modificarli."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "Sposta i dati",
             "paragraphs": [
-                "L’importazione non è disponibile; inserisci messaggi in un topic con <code>PRODUCE INTO</code>. <export>Esporta</export> i messaggi letti da una query in CSV, JSON o XLSX."
+                "L’importazione non è disponibile; inserisci messaggi in un topic con <code>PRODUCE INTO</code>. <export>Esporta</export> i messaggi letti da una query in {exportFormats}."
             ]
         }
     ],

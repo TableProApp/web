@@ -42,7 +42,7 @@
                 "Uno script raggiunge il server un batch alla volta, separato a ogni riga che contiene solo <code>GO</code>, come fa sqlcmd, e <code>GO 5</code> esegue cinque volte il batch precedente. Ogni insieme di risultati si apre in una propria scheda e l’output <code>PRINT</code> e i messaggi informativi appaiono nella vista Output.",
                 "Inserisci <code>BEGIN TRAN</code> e <code>COMMIT</code> in uno script quando un errore deve annullare i batch precedenti; uno script che lascia aperta una transazione termina con un avviso. L’esecuzione si ferma al primo batch che fallisce e l’errore indica la riga nell’editor.",
                 "Ogni sessione si apre con le opzioni SET richieste da indici filtrati, viste indicizzate e indici su colonne calcolate, come <code>ANSI_NULLS</code> e <code>QUOTED_IDENTIFIER</code> attivi. Ciò significa anche che <code>col = NULL</code> non trova nulla: confronta con <code>IS NULL</code>.",
-                "Le tabelle sono annidate nel proprio schema nella barra laterale e <code>Cmd+K</code> cambia database sulla stessa connessione, senza riconnettersi. Le modifiche alle righe restano in attesa con <editing>Preview SQL</editing>, le nuove righe lasciano le colonne IDENTITY al server e i valori <code>nvarchar(max)</code> arrivano completi."
+                "Le tabelle sono annidate nel proprio schema nella barra laterale e <code>⌘K</code> cambia database sulla stessa connessione, senza riconnettersi. Le modifiche alle righe restano in attesa con <editing>Preview SQL</editing>, le nuove righe lasciano le colonne IDENTITY al server e i valori <code>nvarchar(max)</code> arrivano completi."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone e iPad",
             "paragraphs": [
                 "Su iPhone e iPad accedi con un login SQL Server, esplora tabelle come schede, modifica righe con chiave primaria ed esegui T-SQL nella scheda Query. Windows Authentication non è disponibile. Una connessione Microsoft Entra ID proviene dal Mac tramite iCloud Sync o un file esportato e accedi a Microsoft quando la apri."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "Perché uno script dice “Must declare the scalar variable”?",
-            "answer": "L’istruzione che legge la variabile è stata eseguita in un batch diverso dal suo <code>DECLARE</code>: una riga <code>GO</code> li separa oppure <code>Cmd+Enter</code> ha eseguito solo l’istruzione al cursore. Seleziona entrambe o esegui l’intero script."
+            "answer": "L’istruzione che legge la variabile è stata eseguita in un batch diverso dal suo <code>DECLARE</code>: una riga <code>GO</code> li separa oppure <code>⌘⏎</code> ha eseguito solo l’istruzione al cursore. Seleziona entrambe o esegui l’intero script."
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "Connessioni, tunnel e accesso",
+            "label": "Accesso cloud per AWS, Google e Microsoft",
             "href": "/features/connections#cloud-auth"
         },
         {

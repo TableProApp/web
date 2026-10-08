@@ -109,16 +109,33 @@ function githubReleasePayload(string $tag = 'v0.77.0', array $overrides = [], ?a
 }
 
 /**
- * @return array{name: string, size: int, state: string, browser_download_url: string}
+ * `$digest` is the API's `digest` field, `sha256:…` on a current upload and
+ * null on an asset uploaded before GitHub computed one.
+ *
+ * @return array{name: string, size: int, state: string, browser_download_url: string, digest: string|null}
  */
-function githubAsset(string $name, int $size, string $tag = 'v0.77.0'): array
+function githubAsset(string $name, int $size, string $tag = 'v0.77.0', ?string $digest = null): array
 {
     return [
         'name' => $name,
         'size' => $size,
         'state' => 'uploaded',
         'browser_download_url' => "https://github.com/TableProApp/TablePro/releases/download/{$tag}/{$name}",
+        'digest' => $digest,
     ];
+}
+
+/**
+ * A release whose two DMGs carry the given SHA-256 digests.
+ *
+ * @return array<string, mixed>
+ */
+function githubReleasePayloadWithDigests(string $arm64, string $x86_64): array
+{
+    return githubReleasePayload(assets: [
+        githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352, digest: "sha256:{$arm64}"),
+        githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607, digest: "sha256:{$x86_64}"),
+    ]);
 }
 
 /**

@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "流式处理",
-            "intro": "以日志而非表存储，通过 KafkaQL 读写消息。"
+            "intro": "以日志而非表存储，通过 TablePro 自有的命令语言 KafkaQL 读写消息。"
         },
         "coordination": {
             "title": "协调",
@@ -108,7 +108,7 @@
             "defaultPort": "默认端口",
             "minimumVersion": "最低版本",
             "enforced": "{version}，强制执行：拒绝旧版服务器",
-            "documented": "{version}，文档所述",
+            "noMinimum": "无要求",
             "embedded": "内置引擎",
             "embeddedValue": "{name} {version}",
             "ios": "iPhone 和 iPad"
@@ -134,7 +134,8 @@
         "availability": {
             "devices": "适用于 {devices}",
             "bundled": "Mac 应用内置驱动",
-            "registry": "首次选择 {name} 时下载驱动"
+            "registry": "首次选择 {name} 时下载驱动",
+            "free": "可免费使用，<pricing>付费方案</pricing>可选"
         },
         "release": "{version} 新增",
         "docs": "{name} 设置指南",
@@ -180,7 +181,8 @@
         "download": {
             "title": "获取 TablePro",
             "mac": "Mac 应用可免费下载和使用。Starter 或 Team 方案添加可选功能。",
-            "ios": "iPhone 和 iPad 应用可在 App Store 获取。"
+            "ios": "iPhone 和 iPad 应用可在 App Store 获取。",
+            "pricing": "查看价格"
         }
     }
 }

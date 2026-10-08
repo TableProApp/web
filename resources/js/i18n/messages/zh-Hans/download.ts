@@ -28,6 +28,10 @@ export default {
         "summary": "我的 Mac 是哪种型号？",
         "body": "打开 Apple 菜单并选择“关于本机”。Apple 芯片 Mac 会显示“芯片”一栏，如 Apple M2。Intel Mac 则显示“处理器”一栏，其中标有 Intel。"
     },
+    "checksum": {
+        "summary": "验证下载的文件",
+        "body": "在终端中对该文件运行 <code>shasum -a 256</code>，结果应与下方的 SHA-256 校验和一致。"
+    },
     "afterClick": {
         "title": "接下来，安装应用",
         "body": "从“下载”文件夹打开 {file}，将 TablePro 拖到“应用程序”。",

@@ -252,8 +252,9 @@ class MacReleaseService
     }
 
     /**
-     * The release from the Sparkle appcast's top item, or null. Sizes are not
-     * in the feed (its enclosures are the update zips), so they stay null.
+     * The release from the Sparkle appcast's top item, or null. Sizes and
+     * checksums are not in the feed (its enclosures are the update zips), so
+     * they stay null.
      */
     public function fromAppcast(): ?MacRelease
     {
@@ -274,6 +275,7 @@ class MacReleaseService
                 'url' => $this->platforms->macAssetUrl($arch, $version)
                     ?? 'https://github.com/' . $this->repo() . "/releases/download/v{$version}/" . rawurlencode($name),
                 'bytes' => null,
+                'sha256' => null,
             ];
         }
 
@@ -309,7 +311,7 @@ class MacReleaseService
     /**
      * The uploaded asset with exactly this name.
      *
-     * @return array{name: string, url: string, bytes: int|null}|null
+     * @return array{name: string, url: string, bytes: int|null, sha256: string|null}|null
      */
     private function findAsset(mixed $assets, string $name): ?array
     {
@@ -330,11 +332,13 @@ class MacReleaseService
             }
 
             $bytes = $asset['size'] ?? null;
+            $digest = $asset['digest'] ?? null;
 
             return [
                 'name' => $name,
                 'url' => $url,
                 'bytes' => is_int($bytes) && $bytes > 0 ? $bytes : null,
+                'sha256' => is_string($digest) && preg_match('/^sha256:([0-9a-f]{64})$/', $digest, $matches) === 1 ? $matches[1] : null,
             ];
         }
 

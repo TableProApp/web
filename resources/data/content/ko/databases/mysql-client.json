@@ -84,7 +84,8 @@
             "title": "iPhone과 iPad",
             "paragraphs": [
                 "iPhone과 iPad에서는 테이블을 카드로 탐색하고 필터링·정렬하며 기본 키가 있는 행을 편집하고 Query 탭에서 SQL을 실행합니다. SSL은 Required부터 Verify Identity까지 제공하며 SSH 터널은 비밀번호나 키를 사용합니다. SSH 점프 호스트는 지원하지 않습니다."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "TiDB 서버의 SQL 포트로 연결하고 PD나 TiKV로 연결하지 마세요. TiDB Cloud도 같은 포트를 사용하며 SSL Mode를 Required로 설정합니다.",
                 "Stop은 자신의 세션에 <code>KILL TIDB QUERY</code>를 보냅니다. TiProxy나 로드 밸런서 뒤에서는 Global Kill이 필요하며 TiDB는 6.1부터 기본 활성화합니다.",
-                "EXPLAIN과 EXPLAIN ANALYZE는 TiDB 계획을 텍스트로 표시합니다. TiDB 7.2 이상에서 클러스터가 활성화하면 Structure 탭에 CHECK 제약 조건이 나타나며 외래 키를 만들 수 있고 테이블 유지 관리에는 ANALYZE TABLE이 제공됩니다.",
+                "EXPLAIN과 EXPLAIN ANALYZE는 TiDB 계획을 텍스트로 표시합니다. TiDB 7.2 이상에서 클러스터가 활성화하면 Structure 탭에 CHECK 제약 조건이 나타나며 외래 키를 만들 수 있고 테이블 유지 관리에는 ANALYZE TABLE이 제공됩니다. <administer>Users & Roles</administer>도 TiDB에서 작동하며 연결 제한 필드는 없습니다.",
                 "연결 유형을 MySQL이 아닌 TiDB로 선택해야 사이드바, 유형 선택기와 EXPLAIN이 TiDB에 맞게 동작합니다."
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL은 Windows에서 오랫동안 사용된 오픈 소스 클라이언트이며 현재는 macOS 앱도 제공합니다."
+                "text": "HeidiSQL은 Windows에서 오랫동안 사용된 오픈 소스 클라이언트이며 현재는 macOS 앱도 제공합니다. 이미 Windows에서 쓰고 있고 Mac에서도 같은 클라이언트를 원한다면 적합합니다."
             }
         ],
         "notes": {}

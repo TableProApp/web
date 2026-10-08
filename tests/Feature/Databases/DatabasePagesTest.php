@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\DatabaseController;
 use App\Support\Content\Slugs\DatabaseSlugs;
+use App\Support\Localization\Locales;
 use App\Support\Seo\RedirectMap;
+use Dom\HTMLDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Testing\AssertableInertia;
@@ -175,7 +177,7 @@ it('holds every page file to the schema in components/databases/README.md', func
             expect($assets[$copy['asset']]['family'])->toBe('databases', "{$where}: the lead slot must be this engine's own");
 
             foreach ($copy['links'] as $name => $target) {
-                expect($name)->toMatch('/^[a-z][A-Za-z0-9]*$/')->not->toBeIn(['ui', 'code']);
+                expect($name)->toMatch('/^[a-z][A-Za-z0-9]*$/')->not->toBeIn(['ui', 'code', 'plan']);
                 expect($target)->toBeString();
 
                 if (str_starts_with($target, 'docs:/')) {
@@ -573,5 +575,232 @@ it('writes the iPhone status line without an article in front of the engine name
     foreach (['/kafka-client', '/dynamodb-gui', '/elasticsearch-client', '/etcd-gui', '/redshift-client'] as $path) {
         expect(html_entity_decode((string) get($path)->getContent(), ENT_QUOTES | ENT_HTML5))
             ->not->toMatch('/\b[Aa] (Apache Kafka|Amazon DynamoDB|Elasticsearch|etcd|Amazon Redshift) connection/');
+    }
+});
+
+/**
+ * The hub file's `labels` in one locale.
+ *
+ * @return array<string, mixed>
+ */
+function databasePagesLabels(string $locale): array
+{
+    return json_decode((string) file_get_contents(resource_path("data/content/{$locale}/databases/index.json")), true, 512, JSON_THROW_ON_ERROR)['labels'];
+}
+
+/**
+ * A server-rendered engine page's `<main>`, entities decoded.
+ */
+function databasePagesMain(string $path): string
+{
+    $html = html_entity_decode((string) get($path)->assertOk()->getContent(), ENT_QUOTES | ENT_HTML5);
+
+    return substr($html, (int) strpos($html, '<main'));
+}
+
+/**
+ * The facts card of a rendered engine page, term => value.
+ *
+ * @return array<string, string>
+ */
+function databasePagesFacts(string $path): array
+{
+    $document = HTMLDocument::createFromString((string) get($path)->assertOk()->getContent(), LIBXML_NOERROR);
+    $rows = [];
+
+    foreach ($document->querySelectorAll('main header dl > div') as $row) {
+        $rows[trim((string) $row->querySelector('dt')?->textContent)] = trim((string) preg_replace('/\s+/u', ' ', (string) $row->querySelector('dd')?->textContent));
+    }
+
+    return $rows;
+}
+
+it('sends what TablePro costs and its licence from data, and the repository', function (): void {
+    $facts = json_decode((string) file_get_contents(resource_path('data/facts.json')), true, 512, JSON_THROW_ON_ERROR);
+
+    foreach (['/mysql-client', '/vi/kafka-client'] as $path) {
+        get($path)->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('product', ['free' => true, 'licence' => $facts['openSource']['license']])
+            ->where('links.source', $facts['links']['github']));
+    }
+});
+
+it('says under the availability line that TablePro is free to use and open source, in every language', function (): void {
+    requireSsr();
+
+    $facts = json_decode((string) file_get_contents(resource_path('data/facts.json')), true, 512, JSON_THROW_ON_ERROR);
+
+    foreach (Locales::codes() as $locale) {
+        $prefix = $locale === 'en' ? '' : "/{$locale}";
+        $labels = databasePagesLabels($locale);
+
+        foreach (['mysql-client', 'redis-gui', 'kafka-client'] as $slug) {
+            $main = databasePagesMain("{$prefix}/{$slug}");
+            // The header's text column ends where the facts card's heading starts.
+            $header = substr($main, 0, (int) strpos($main, '<h2'));
+
+            expect(strip_tags($header))
+                ->toContain(strip_tags($labels['availability']['free']))
+                ->toContain(str_replace('{licence}', $facts['openSource']['license'], $labels['otherTools']['openSource']));
+            expect($header)
+                ->toContain("href=\"{$prefix}/pricing\"")
+                ->toContain('href="' . $facts['links']['github'] . '"');
+        }
+    }
+});
+
+it('links pricing from the closing band and from every plan a page names', function (): void {
+    requireSsr();
+
+    $starter = '#<a[^>]*href="/pricing"[^>]*>Starter</a>#';
+    $named = array_keys(array_filter(databasePagesFiles('en'), fn(array $copy): bool => preg_match('/\{[A-Za-z]+Tier\}/', json_encode($copy)) === 1));
+
+    expect($named)->toContain('postgresql-client', 'redshift-client');
+
+    foreach ($named as $slug) {
+        $main = databasePagesMain("/{$slug}");
+        $band = substr($main, (int) strpos($main, 'id="get-tablepro"'));
+
+        expect(preg_match($starter, substr($main, 0, (int) strpos($main, 'id="get-tablepro"'))))->toBe(1, "/{$slug} names a plan without linking pricing");
+        expect($band)->toContain('href="/pricing"', databasePagesLabels('en')['download']['pricing']);
+    }
+
+    $main = databasePagesMain('/vi/mongodb-client');
+
+    expect(substr($main, (int) strpos($main, 'id="get-tablepro"')))->toContain('href="/vi/pricing"', databasePagesLabels('vi')['download']['pricing']);
+});
+
+it('states the minimum version plainly: the bare version, the refusal where the app enforces it, or none', function (): void {
+    requireSsr();
+
+    $facts = databasePagesLabels('en')['facts'];
+
+    foreach (databasePagesEngines() as $engine) {
+        if ($engine['page'] !== 'own') {
+            continue;
+        }
+
+        $card = databasePagesFacts("/{$engine['slug']}");
+        $floor = $engine['versionFloor'];
+        $where = "/{$engine['slug']}";
+
+        if ($floor === null) {
+            expect($card)->not->toHaveKey($facts['minimumVersion']);
+        } elseif ($floor['text'] === null) {
+            expect($card[$facts['minimumVersion']] ?? null)->toBe($facts['noMinimum'], "{$where}: no minimum version");
+        } elseif ($floor['enforced']) {
+            expect($card[$facts['minimumVersion']] ?? null)->toBe(str_replace('{version}', $floor['text'], $facts['enforced']), "{$where}: enforced floor");
+        } else {
+            expect($card[$facts['minimumVersion']] ?? null)->toBe($floor['text'], "{$where}: a documented floor is the bare version");
+        }
+    }
+
+    $vi = databasePagesLabels('vi')['facts'];
+
+    expect(databasePagesFacts('/vi/redis-gui')[$vi['minimumVersion']])->toBe($vi['noMinimum']);
+    // A family section's facts line uses the same wording.
+    expect(strip_tags(databasePagesMain('/mysql-client')))
+        ->toContain("{$facts['minimumVersion']}: 10.x")
+        ->toContain("{$facts['minimumVersion']}: {$facts['noMinimum']}");
+});
+
+it('names export formats through the token wherever an engine exports, in every language', function (): void {
+    $engines = collect(databasePagesEngines())->keyBy('id');
+
+    foreach (Locales::codes() as $locale) {
+        foreach (databasePagesFiles($locale) as $slug => $copy) {
+            $section = collect($copy['sections'])->firstWhere('id', 'move-data');
+
+            if ($section === null || ! $engines[$copy['engine']]['capabilities']['export']) {
+                continue;
+            }
+
+            expect(str_contains(implode(' ', $section['paragraphs']), '{exportFormats}'))->toBeTrue("content/{$locale}/databases/{$slug}.json types its export formats or names none");
+        }
+    }
+});
+
+it('writes shortcuts with Mac key glyphs, never as Cmd+', function (): void {
+    foreach (Locales::codes() as $locale) {
+        foreach (databasePagesFiles($locale) as $slug => $copy) {
+            foreach (databasePagesStrings($copy) as $path => $text) {
+                expect(preg_match('/\b(Cmd|Command|Ctrl|Opt|Option)\s?\+/u', $text))->toBe(0, "content/{$locale}/databases/{$slug}.json {$path} spells a shortcut out");
+            }
+        }
+    }
+});
+
+it('calls the section on other query languages by one name on every page that links it', function (): void {
+    foreach (Locales::codes() as $locale) {
+        $labels = [];
+
+        foreach (databasePagesFiles($locale) as $copy) {
+            foreach ($copy['related'] as $link) {
+                if ($link['href'] === '/features/querying#other-languages') {
+                    $labels[$link['label']] = true;
+                }
+            }
+        }
+
+        expect(array_keys($labels))->toHaveCount(1, "{$locale}: the other-languages section goes by more than one name");
+    }
+});
+
+it('labels a link to the cloud sign-in section the same way on every page', function (): void {
+    foreach (Locales::codes() as $locale) {
+        $files = databasePagesFiles($locale);
+        $label = fn(string $slug): ?string => collect($files[$slug]['related'])->firstWhere('href', '/features/connections#cloud-auth')['label'] ?? null;
+
+        expect($label('sql-server-client'))->not->toBeNull()->toBe($label('bigquery-client'));
+    }
+});
+
+it('says when each other tool fits, unless it is discontinued', function (): void {
+    $products = collect(json_decode((string) file_get_contents(resource_path('data/comparisons.json')), true, 512, JSON_THROW_ON_ERROR)['products'])->keyBy('id');
+    $checked = 0;
+
+    foreach (databasePagesFiles('en') as $slug => $copy) {
+        foreach ($copy['otherTools']['items'] ?? [] as $item) {
+            if ($products[$item['product']]['status']['state'] === 'discontinued') {
+                continue;
+            }
+
+            $checked++;
+
+            expect(preg_match('/\b(fits|Choose it)\b/', $item['text']))->toBe(1, "content/en/databases/{$slug}.json: {$item['product']} does not say when to choose it");
+        }
+    }
+
+    expect($checked)->toBeGreaterThan(5);
+});
+
+it('shows a phone capture where a page’s heading promises the iPhone and iPad app', function (): void {
+    $engines = collect(databasePagesEngines())->keyBy('id');
+    $assets = json_decode((string) file_get_contents(resource_path('data/assets.json')), true, 512, JSON_THROW_ON_ERROR)['assets'];
+    $promising = [];
+
+    foreach (databasePagesFiles('en') as $slug => $copy) {
+        if (! str_contains($copy['header']['title'], '{devices}') || ! $engines[$copy['engine']]['ios']['inPicker']) {
+            continue;
+        }
+
+        $promising[] = $slug;
+        $slot = collect($copy['sections'])->firstWhere('id', 'iphone')['asset'] ?? null;
+
+        expect($slot)->not->toBeNull("/{$slug} names iPhone and iPad in its heading and shows no capture of that app");
+        expect($assets[$slot]['kind'])->toBe('phone');
+        expect($assets[$slot]['status'])->toBe('supplied');
+    }
+
+    expect($promising)->toEqualCanonicalizing(['postgresql-client', 'mysql-client', 'sql-server-client', 'sqlite-client', 'oracle-client', 'duckdb-client']);
+});
+
+it('renders the iPhone section’s capture', function (): void {
+    requireSsr();
+
+    foreach (['/postgresql-client' => 'ios-connection-form', '/vi/sqlite-client' => 'ios-query', '/duckdb-client' => 'ios-table-browse'] as $path => $slot) {
+        $main = databasePagesMain($path);
+
+        expect(substr($main, (int) strpos($main, 'id="iphone"')))->toContain("/images/ios/{$slot}-light-");
     }
 });

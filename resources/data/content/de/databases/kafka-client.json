@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Apache-Kafka-Client für {devices}",
-        "lead": "Lies ein Topic ab einer frei gewählten Startposition, sieh den Rückstand jeder Consumer-Gruppe und erzeuge eine Testnachricht, alles mit KafkaQL. Ein Topic ist ein Log: Das Raster liest Nachrichten und bearbeitet sie nie."
+        "lead": "Lies ein Topic ab einer frei gewählten Startposition, sieh den Rückstand jeder Consumer-Gruppe und erzeuge eine Testnachricht, alles mit KafkaQL, der eigenen Befehlssprache von TablePro. Ein Topic ist ein Log: Das Raster liest Nachrichten und bearbeitet sie nie."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "Daten übertragen",
             "paragraphs": [
-                "Es gibt keinen Import; schreibe Nachrichten mit <code>PRODUCE INTO</code> in ein Topic. <export>Exportiere</export> die von einer Abfrage gelesenen Nachrichten als CSV, JSON oder XLSX."
+                "Es gibt keinen Import; schreibe Nachrichten mit <code>PRODUCE INTO</code> in ein Topic. <export>Exportiere</export> die von einer Abfrage gelesenen Nachrichten als {exportFormats}."
             ]
         }
     ],

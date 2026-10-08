@@ -42,7 +42,7 @@
                 "Un bloc PL/SQL ou une unité stockée s’exécute comme une instruction, quel que soit le nombre de points-virgules : placez-y le curseur et lancez-le. Les scripts SQL*Plus ou SQL Developer fonctionnent sans modification ; une ligne contenant seulement <code>/</code> termine l’unité précédente. Une unité non compilable échoue avec les erreurs Oracle, une par ligne avec leur position.",
                 "Les lignes <code>DBMS_OUTPUT.PUT_LINE</code> apparaissent avec le résultat de l’instruction qui les a imprimées, sans <code>SET SERVEROUTPUT ON</code>. Dans un bloc anonyme, <code>:name</code> est un <parameters>paramètre de requête</parameters> à remplir dans un panneau.",
                 "Chaque instruction réussie est validée. Commencez par <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> ou <code>LOCK TABLE</code> pour retenir les changements ; tout ce qui suit attend votre <code>COMMIT</code> ou <code>ROLLBACK</code>, y compris les enregistrements de grille.",
-                "Chaque utilisateur est un schéma et <code>Cmd+K</code> change le schéma actif sans reconnexion. Les modifications de lignes sont préparées avec <editing>Preview SQL</editing>. Un bloc supprimant ou vidant, même par <code>EXECUTE IMMEDIATE</code>, déclenche l’<safeMode>avertissement de requête dangereuse</safeMode> avant exécution."
+                "Chaque utilisateur est un schéma et <code>⌘K</code> change le schéma actif sans reconnexion. Les modifications de lignes sont préparées avec <editing>Preview SQL</editing>. Un bloc supprimant ou vidant, même par <code>EXECUTE IMMEDIATE</code>, déclenche l’<safeMode>avertissement de requête dangereuse</safeMode> avant exécution."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone et iPad",
             "paragraphs": [
                 "Sur iPhone et iPad, le pilote Oracle est intégré. Le formulaire accepte Service Name ou SID, rôles SYSDBA et SYSOPER et Network Encryption. Vous parcourez les tables en cartes, modifiez les lignes avec clé primaire et exécutez SQL dans Requête ; créer ou modifier des tables reste sur Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

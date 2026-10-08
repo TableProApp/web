@@ -40,7 +40,7 @@
             "id": "work",
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
-                "Setiap koneksi dapat membaca berkas langsung dari SQL, seperti <code>SELECT * FROM 'data.csv'</code> atau <code>read_parquet('events.parquet')</code>. Gunakan <code>ATTACH</code> pada berkas DuckDB lain untuk menambahkannya ke bilah samping sebagai database kedua, dan <code>Cmd+K</code> berpindah di antaranya tanpa menghubungkan ulang. DuckDB tidak mempertahankan lampiran setelah koneksi dibuka ulang.",
+                "Setiap koneksi dapat membaca berkas langsung dari SQL, seperti <code>SELECT * FROM 'data.csv'</code> atau <code>read_parquet('events.parquet')</code>. Gunakan <code>ATTACH</code> pada berkas DuckDB lain untuk menambahkannya ke bilah samping sebagai database kedua, dan <code>⌘K</code> berpindah di antaranya tanpa menghubungkan ulang. DuckDB tidak mempertahankan lampiran setelah koneksi dibuka ulang.",
                 "<explain>EXPLAIN</explain> digambar sebagai diagram rencana. Baris tabel dapat diedit dengan <editing>Preview SQL</editing> yang menampilkan setiap pernyataan terlebih dahulu, sedangkan view atas berkas data tetap hanya baca."
             ]
         },
@@ -72,7 +72,8 @@
             "title": "iPhone dan iPad",
             "paragraphs": [
                 "Di iPhone dan iPad, DuckDB disertakan dalam aplikasi. Berkas yang dipilih di aplikasi File dibuka di lokasi aslinya, bukan sebagai salinan, atau pilih In-Memory untuk database sementara. Anda dapat menelusuri tabel sebagai kartu dan menjalankan SQL di tab Query. Koneksi Remote (Quack) hanya tersedia di Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

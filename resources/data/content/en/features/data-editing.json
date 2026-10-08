@@ -90,7 +90,7 @@
             "id": "iphone",
             "title": "On iPhone and iPad",
             "paragraphs": [
-                "In the iPhone and iPad app, rows show as cards you can sort, search and filter with AND and OR, and tapping a foreign key previews the row it points to. You can edit a row, set a value to NULL or DEFAULT, insert rows and delete them with a swipe; editing and deleting need a primary key.",
+                "In the iPhone and iPad app, rows show as cards you can sort, search and filter with AND and OR, and tapping a foreign key previews the row it points to. You can edit a row and set a value to NULL, insert rows and delete them with a swipe; editing and deleting need a primary key. In a new row, each field starts at its DEFAULT and can be set to NULL or an empty string instead.",
                 "Safe Mode there has its own levels, {iosSafeModeLevels}, with {iosSafeModeDefault} as the default for new connections. Staged edits, Preview SQL, highlight rules and Data Rewind are in the Mac app only."
             ],
             "links": [

@@ -42,7 +42,7 @@
                 "A script reaches the server one batch at a time, split at each line that holds only <code>GO</code>, as sqlcmd sends it, and <code>GO 5</code> runs the batch before it five times. Each result set opens in its own tab, and <code>PRINT</code> output and informational messages show in the Output view.",
                 "Put <code>BEGIN TRAN</code> and <code>COMMIT</code> in a script when a failure has to undo the batches before it; a script that leaves a transaction open ends with a notice saying so. The run stops at the first batch that fails, and the error names its line in the editor.",
                 "Every session opens with the SET options that filtered indexes, indexed views and indexes on computed columns require, such as <code>ANSI_NULLS</code> and <code>QUOTED_IDENTIFIER</code> on. That also means <code>col = NULL</code> matches nothing: compare with <code>IS NULL</code>.",
-                "Tables nest under their schema in the sidebar, and <code>Cmd+K</code> changes database in place, with no reconnect. Row edits are staged with <editing>Preview SQL</editing>, new rows leave IDENTITY columns to the server, and <code>nvarchar(max)</code> values arrive whole."
+                "Tables nest under their schema in the sidebar, and <code>⌘K</code> changes database in place, with no reconnect. Row edits are staged with <editing>Preview SQL</editing>, new rows leave IDENTITY columns to the server, and <code>nvarchar(max)</code> values arrive whole."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone and iPad",
             "paragraphs": [
                 "On iPhone and iPad, you sign in with a SQL Server login, browse tables as cards, edit rows that have a primary key and run T-SQL in the Query tab. Windows Authentication is not available there. A connection that uses Microsoft Entra ID comes from your Mac through iCloud Sync or an exported connection file, and you sign in to Microsoft when you open it."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -104,7 +105,7 @@
         {
             "id": "declare",
             "question": "Why does a script say “Must declare the scalar variable”?",
-            "answer": "The statement that reads the variable ran in a different batch from its <code>DECLARE</code>: a <code>GO</code> line sits between them, or <code>Cmd+Enter</code> ran only the statement at the cursor. Select both statements, or run the whole script."
+            "answer": "The statement that reads the variable ran in a different batch from its <code>DECLARE</code>: a <code>GO</code> line sits between them, or <code>⌘⏎</code> ran only the statement at the cursor. Select both statements, or run the whole script."
         },
         {
             "id": "freetds",
@@ -114,7 +115,7 @@
     ],
     "related": [
         {
-            "label": "Connections, tunnels and sign-in",
+            "label": "Cloud sign-in for AWS, Google and Microsoft",
             "href": "/features/connections#cloud-auth"
         },
         {

@@ -7,18 +7,18 @@ use Illuminate\Support\Carbon;
 /**
  * The Mac release the download buttons point at, from wherever it was found.
  *
- * `source` says where: `github` (the releases API, with file sizes),
- * `appcast` (the Sparkle feed, no sizes) or `unavailable` (neither answered
- * and there is no earlier good copy). An unavailable release has no version,
- * and both of its asset URLs are GitHub's "latest release" page, so a button
- * still leads somewhere real while the page states no version it cannot
- * stand behind.
+ * `source` says where: `github` (the releases API, with file sizes and
+ * SHA-256 digests), `appcast` (the Sparkle feed, with neither) or
+ * `unavailable` (neither answered and there is no earlier good copy). An
+ * unavailable release has no version, and both of its asset URLs are GitHub's
+ * "latest release" page, so a button still leads somewhere real while the page
+ * states no version it cannot stand behind.
  *
  * `toArray()` is the cached, locale-neutral form. `toProps()` adds the date
  * formatted for the reader's locale, which is why the date is never cached
  * pre-formatted.
  *
- * @phpstan-type Asset array{name: string|null, url: string, bytes: int|null}
+ * @phpstan-type Asset array{name: string|null, url: string, bytes: int|null, sha256: string|null}
  * @phpstan-type Cached array{version: string|null, publishedAt: string|null, assets: array{arm64: Asset, x86_64: Asset}, releaseUrl: string, releasesUrl: string, source: string}
  */
 final readonly class MacRelease
@@ -32,7 +32,7 @@ final readonly class MacRelease
     /**
      * @param  string|null  $version  e.g. `0.77.0`, without the `v`
      * @param  string|null  $publishedAt  `Y-m-d`
-     * @param  array{arm64: array{name: string|null, url: string, bytes: int|null}, x86_64: array{name: string|null, url: string, bytes: int|null}}  $assets
+     * @param  array{arm64: array{name: string|null, url: string, bytes: int|null, sha256: string|null}, x86_64: array{name: string|null, url: string, bytes: int|null, sha256: string|null}}  $assets
      * @param  string  $releaseUrl  this release's page (notes and every asset), or the latest-release page
      * @param  string  $releasesUrl  every release
      */
@@ -51,7 +51,7 @@ final readonly class MacRelease
     public static function unavailable(string $repo, string $releasesUrl): self
     {
         $latest = "https://github.com/{$repo}/releases/latest";
-        $asset = ['name' => null, 'url' => $latest, 'bytes' => null];
+        $asset = ['name' => null, 'url' => $latest, 'bytes' => null, 'sha256' => null];
 
         return new self(
             version: null,
@@ -89,6 +89,7 @@ final readonly class MacRelease
                 'name' => is_string($asset['name'] ?? null) ? $asset['name'] : null,
                 'url' => $asset['url'],
                 'bytes' => is_int($asset['bytes'] ?? null) ? $asset['bytes'] : null,
+                'sha256' => is_string($asset['sha256'] ?? null) ? $asset['sha256'] : null,
             ];
         }
 
@@ -108,7 +109,7 @@ final readonly class MacRelease
     }
 
     /**
-     * @return array{version: string|null, publishedAt: string|null, assets: array{arm64: array{name: string|null, url: string, bytes: int|null}, x86_64: array{name: string|null, url: string, bytes: int|null}}, releaseUrl: string, releasesUrl: string, source: string}
+     * @return array{version: string|null, publishedAt: string|null, assets: array{arm64: array{name: string|null, url: string, bytes: int|null, sha256: string|null}, x86_64: array{name: string|null, url: string, bytes: int|null, sha256: string|null}}, releaseUrl: string, releasesUrl: string, source: string}
      */
     public function toArray(): array
     {
@@ -131,7 +132,7 @@ final readonly class MacRelease
      * (architecture §1.5). `LL` is "October 2, 2026" in English and
      * "2 tháng 10 năm 2026" in Vietnamese.
      *
-     * @return array{version: string|null, publishedAt: string|null, publishedAtFormatted: string|null, assets: array{arm64: array{name: string|null, url: string, bytes: int|null}, x86_64: array{name: string|null, url: string, bytes: int|null}}, releaseUrl: string, releasesUrl: string, source: string}
+     * @return array{version: string|null, publishedAt: string|null, publishedAtFormatted: string|null, assets: array{arm64: array{name: string|null, url: string, bytes: int|null, sha256: string|null}, x86_64: array{name: string|null, url: string, bytes: int|null, sha256: string|null}}, releaseUrl: string, releasesUrl: string, source: string}
      */
     public function toProps(string $locale): array
     {

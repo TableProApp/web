@@ -21,7 +21,7 @@
                 "Mật khẩu chỉ được đồng bộ khi bạn bật thêm mục <ui>Mật khẩu</ui> (Passwords) trong Danh mục đồng bộ trên Mac, hoặc <ui>Đồng bộ mật khẩu</ui> (Sync Passwords) trên iPhone và iPad, đi qua iCloud Keychain; trên Mac, tùy chọn này còn mang theo các secret khác mà TablePro lưu trong Keychain, như API key của nhà cung cấp AI và license key. Đánh dấu một connection là <ui>Chỉ cục bộ</ui> (Local only) để giữ nó, cùng các mục yêu thích và query đã lưu của nó, trên một máy Mac."
             ],
             "points": [
-                "Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm connection và tag, cài đặt, SSH profile, table và cơ sở dữ liệu yêu thích, query đã lưu kèm nội dung SQL, và thư mục table.",
+                "Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm connection và tag, cài đặt, SSH profile, credential profile (tên profile và tên người dùng, không bao giờ gồm mật khẩu), table và cơ sở dữ liệu yêu thích, query đã lưu kèm nội dung SQL, và thư mục table.",
                 "Trên iPhone và iPad: connection, nhóm connection và tag.",
                 "Một connection được đồng bộ mang theo host, port, tên người dùng, tên cơ sở dữ liệu, thiết lập SSH và SSL, startup command, pre-connect script và AI rules.",
                 "Không bao giờ được đồng bộ: lịch sử query, Data Rewind, nguồn mật khẩu, tunnel command và mức External Clients của từng connection."

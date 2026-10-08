@@ -62,7 +62,7 @@
             "id": "move-data",
             "title": "移動資料",
             "paragraphs": [
-                "DynamoDB 無匯入。編輯器用 PartiQL <code>INSERT</code> 或 <code>BatchWriteItem</code> 請求寫入項目，後者重送未處理項目並報告無法寫入者。在 Export 對話方塊將資料表或結果<export>匯出</export>為檔案。"
+                "DynamoDB 無匯入。編輯器用 PartiQL <code>INSERT</code> 或 <code>BatchWriteItem</code> 請求寫入項目，後者重送未處理項目並報告無法寫入者。在 Export 對話方塊將資料表或結果<export>匯出</export>為 {exportFormats}。"
             ]
         }
     ],

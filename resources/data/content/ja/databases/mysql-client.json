@@ -84,7 +84,8 @@
             "title": "iPhone と iPad",
             "paragraphs": [
                 "iPhone と iPad ではカード表示でテーブルを閲覧し、絞り込みと並べ替え、主キーのある行の編集、Query タブでの SQL 実行ができます。SSL は Required から Verify Identity に対応し、SSH トンネルはパスワードや鍵で認証します。SSH 踏み台ホストには対応しません。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "接続先は TiDB サーバーの SQL ポートにし、PD や TiKV には接続しないでください。TiDB Cloud も同じポートを使い、SSL Mode は Required に設定します。",
                 "Stop は自分のセッションに <code>KILL TIDB QUERY</code> を送ります。TiProxy やロードバランサーの背後では Global Kill が必要で、TiDB はバージョン 6.1 から既定で有効にしています。",
-                "EXPLAIN と EXPLAIN ANALYZE は TiDB のプランをテキストで表示します。TiDB 7.2 以降でクラスターが有効にすると CHECK 制約が Structure タブに表示されます。外部キーを作成でき、テーブル保守には ANALYZE TABLE があります。",
+                "EXPLAIN と EXPLAIN ANALYZE は TiDB のプランをテキストで表示します。TiDB 7.2 以降でクラスターが有効にすると CHECK 制約が Structure タブに表示されます。外部キーを作成でき、テーブル保守には ANALYZE TABLE があります。<administer>Users & Roles</administer> も TiDB で使えますが、接続数上限のフィールドはありません。",
                 "接続の種類は MySQL ではなく TiDB を選び、サイドバー、型の選択と EXPLAIN を TiDB に合わせてください。"
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL は長年 Windows で使われてきたオープンソースのクライアントで、現在は macOS アプリも提供しています。"
+                "text": "HeidiSQL は長年 Windows で使われてきたオープンソースのクライアントで、現在は macOS アプリも提供しています。すでに Windows で使っていて、Mac でも同じクライアントを使いたい場合に適しています。"
             }
         ],
         "notes": {}

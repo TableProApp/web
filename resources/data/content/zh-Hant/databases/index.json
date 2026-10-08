@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "串流",
-            "intro": "以記錄而非資料表儲存，透過 KafkaQL 讀寫訊息。"
+            "intro": "以記錄而非資料表儲存，透過 TablePro 自有的指令語言 KafkaQL 讀寫訊息。"
         },
         "coordination": {
             "title": "協調",
@@ -108,7 +108,7 @@
             "defaultPort": "預設連接埠",
             "minimumVersion": "最低版本",
             "enforced": "{version}，強制執行：拒絕舊版伺服器",
-            "documented": "{version}，文件所述",
+            "noMinimum": "無要求",
             "embedded": "內建引擎",
             "embeddedValue": "{name} {version}",
             "ios": "iPhone 與 iPad"
@@ -134,7 +134,8 @@
         "availability": {
             "devices": "適用於 {devices}",
             "bundled": "Mac App 內建驅動程式",
-            "registry": "首次選擇 {name} 時下載驅動程式"
+            "registry": "首次選擇 {name} 時下載驅動程式",
+            "free": "可免費使用，<pricing>付費方案</pricing>為選用"
         },
         "release": "{version} 新增",
         "docs": "{name} 設定指南",
@@ -180,7 +181,8 @@
         "download": {
             "title": "取得 TablePro",
             "mac": "Mac App 可免費下載和使用。Starter 或 Team 方案新增選用功能。",
-            "ios": "iPhone 與 iPad App 可在 App Store 取得。"
+            "ios": "iPhone 與 iPad App 可在 App Store 取得。",
+            "pricing": "查看價格"
         }
     }
 }
