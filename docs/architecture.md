@@ -262,6 +262,12 @@ The platform app also redacts what it sends: its pages are reached through
 signed links and order IDs, and GA — unlike Plausible — records the full URL.
 See `App\Support\AnalyticsLocation` there.
 
+Events are sent only once the reader has chosen Allow: `trackEvent`
+(`resources/js/lib/analytics.ts`) reads the stored answer and drops the event
+otherwise. With no answer, or after Decline, Consent Mode would still send it
+as a cookieless ping, and the privacy policy promises one signal per page and
+nothing else. An event before the answer is dropped, not queued.
+
 Events keep the names the Plausible goals had: `download_click` (`location`,
 `platform`), `checkout_started` (`tier`, `cycle`) and
 `newsletter_signup_clicked` (`source`). The license banner adds
