@@ -1,10 +1,10 @@
 ---
 title: Política de privacidad
 description: Qué recopilan las apps, el sitio web y el portal de cuentas de TablePro, adónde se envía, cuánto tiempo se conserva y cómo modificarlo o eliminarlo.
-updatedAt: "2026-10-05"
+updatedAt: "2026-10-08"
 ---
 
-Esta política cubre TablePro para Mac, TablePro para iPhone y iPad, el sitio web tablepro.app y el portal de cuentas tablepro.app/account. Describe qué envía y almacena realmente cada uno de ellos en la actualidad. Ambas apps son de código abierto bajo AGPLv3, por lo que puedes consultar el código que envía cualquiera de los datos siguientes en el [repositorio de TablePro]({github}).
+Esta política cubre TablePro para Mac, TablePro para iPhone y iPad, el sitio web tablepro.app, la documentación en docs.tablepro.app y el portal de cuentas tablepro.app/account. Describe qué envía y almacena realmente cada uno de ellos en la actualidad. Ambas apps son de código abierto bajo AGPLv3, por lo que puedes consultar el código que envía cualquiera de los datos siguientes en el [repositorio de TablePro]({github}).
 
 ## Resumen {#summary}
 
@@ -122,6 +122,8 @@ Handoff transmite el identificador de la conexión abierta y el nombre de la tab
 
 **Atribución de compras.** Al llegar al sitio, tu navegador conserva durante 90 días un registro de primera visita llamado `tablepro:attribution` en su almacenamiento local: el origen de la visita (las etiquetas `ref` o `utm_*` del enlace seguido, o el sitio que te enlazó), la página de llegada y la fecha. Si inicias una compra, el registro se envía con la solicitud de compra. Nuestro servidor lo descarta: no lo valida, lee ni almacena, ni lo transmite a {merchant}.
 
+**Documentación.** La documentación en docs.tablepro.app está alojada en Mintlify, que recibe tu dirección IP y los datos de tu navegador con cada página, y las páginas cargan sus fuentes desde Google Fonts. La documentación hace su propia pregunta sobre cookies, porque no puede leer la respuesta que diste en este sitio. Hasta que selecciones **Allow** allí, no establece cookies ni guarda ningún ID de visitante. Si lo permites, Google Analytics establece las cookies `_ga` y `_ga_<ID>` y mide tus visitas a la documentación, y Mintlify guarda un ID de visitante aleatorio, `mintlify_anonymous_id`, en el almacenamiento local para contarlas. **Cookie settings**, en el pie de la documentación, cambia tu respuesta, y al rechazar se eliminan ambos. Base jurídica: tu consentimiento.
+
 Leer el sitio no establece cookies propias. Suscribirse al boletín o iniciar una compra o una comprobación de código de descuento envía una solicitud a nuestro servidor que establece las dos cookies del portal de cuentas, `tablepro-session` y `XSRF-TOKEN`. Todo lo que el sitio conserva en tu navegador aparece en [Cookies y almacenamiento del navegador](#cookies).
 
 ## Compras {#purchases}
@@ -148,6 +150,7 @@ Leer el sitio público no establece cookies propias; suscribirse al boletín o i
 - **`tablepro:analytics-consent`** (almacenamiento local, hasta que lo borres): tu respuesta a la pregunta sobre análisis, para no preguntarte en todas las páginas. El sitio web y el portal de cuentas lo comparten. Base jurídica: estrictamente necesario para respetar tu elección.
 - **`tablepro:attribution`** (almacenamiento local, 90 días): el registro de primera visita descrito en [Sitio web](#website). No contiene un identificador tuyo y solo se envía con una solicitud de compra, donde nuestro servidor lo descarta. Base jurídica: interés legítimo.
 - **`theme`** y **`tablepro:banner-dismissed`** (almacenamiento local, hasta que lo borres): si elegiste apariencia clara, oscura o del sistema, y qué aviso cerraste y hasta cuándo: 30 días, o un año si indicas que tienes licencia o compras una. Base jurídica: interés legítimo.
+- **`mintlify_anonymous_id`** (almacenamiento local en docs.tablepro.app, lo guarda Mintlify, solo si permites Google Analytics allí): el ID de visitante descrito en [Sitio web](#website). Al rechazar se elimina. La documentación guarda su propia respuesta `tablepro:analytics-consent`. Base jurídica: consentimiento.
 - **Cookies que comienzan por `crisp-client/`** (Crisp, por ejemplo `crisp-client/session/…`; 6 meses, renovados cuando vuelves; establecidas en todas las páginas al cargar el chat): mantienen el chat y tu conversación entre páginas y visitas. Base jurídica: interés legítimo, para ofrecer soporte en todas las páginas.
 - **`tablepro-session` y `XSRF-TOKEN`** (cookies del portal de cuentas, 2 horas): mantienen tu sesión iniciada y protegen los formularios del portal contra falsificación de solicitudes entre sitios. Otras páginas del portal, como la confirmación de compra y las páginas del boletín, también las establecen, al igual que suscribirse al boletín o iniciar una compra o una comprobación de código de descuento desde cualquier página del sitio. Base jurídica: estrictamente necesarias.
 
@@ -171,9 +174,10 @@ Solo compartimos datos personales con los servicios necesarios para operar Table
 - **{merchant}**, el comerciante registrado para las compras.
 - **Un proveedor de envío de correo**, para enlaces de acceso, recibos enviados por nosotros, invitaciones de equipo y boletines.
 - **Nuestro proveedor de alojamiento y Cloudflare**, para el sitio web, el portal de cuentas y el servidor con el que se comunican las apps. Cloudflare también cuenta las visitas mediante Cloudflare Web Analytics.
-- **Google**, para Google Analytics en el sitio web y el portal de cuentas.
+- **Google**, para Google Analytics en el sitio web, la documentación y el portal de cuentas.
 - **Crisp**, para el chat en directo en todas las páginas del sitio web y del portal de cuentas.
 - **jsDelivr**, que proporciona al navegador el script de compra de {merchant} cuando apuntas a un botón Comprar.
+- **Mintlify**, que aloja la documentación en docs.tablepro.app.
 - **ip-api.com, ipinfo.io y geoplugin.net**, que reciben direcciones IP de los informes de uso para buscar el país.
 - **GitHub**, que aloja el canal de actualizaciones, el catálogo de plugins y las descargas.
 
@@ -181,7 +185,7 @@ No vendemos datos personales ni los compartimos con anunciantes.
 
 ## Transferencias internacionales {#transfers}
 
-Los servicios anteriores operan en varios países, por lo que tus datos pueden tratarse fuera del tuyo. {merchant}, Google, GitHub y Cloudflare tratan datos en Estados Unidos; Google lo hace según el Marco de Privacidad de Datos UE-EE. UU. y las Cláusulas Contractuales Tipo. Cuando la ley lo exige, las transferencias desde el EEE y el Reino Unido se basan en Cláusulas Contractuales Tipo u otro mecanismo aprobado.
+Los servicios anteriores operan en varios países, por lo que tus datos pueden tratarse fuera del tuyo. {merchant}, Google, GitHub, Cloudflare y Mintlify tratan datos en Estados Unidos; Google lo hace según el Marco de Privacidad de Datos UE-EE. UU. y las Cláusulas Contractuales Tipo. Cuando la ley lo exige, las transferencias desde el EEE y el Reino Unido se basan en Cláusulas Contractuales Tipo u otro mecanismo aprobado.
 
 ## Cuánto tiempo conservamos los datos {#retention}
 
