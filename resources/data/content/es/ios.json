@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro para iPhone y iPad",
-        "description": "Cliente gratuito para iPhone y iPad: MySQL, PostgreSQL, SQL Server, Oracle y más por SSH o SSL. Explora, edita y consulta tablas."
+        "description": "Cliente gratuito para iPhone y iPad: MySQL, PostgreSQL, SQL Server, Oracle y más por SSH o TLS. Explora, edita y consulta tablas."
     },
     "og": {
         "kicker": "iPhone y iPad",
@@ -19,7 +19,7 @@
         "syncedOnly": "Las conexiones de {engines} se abren cuando vienen de tu Mac, mediante iCloud Sync o un archivo .tablepro. No puedes crearlas en esta app.",
         "others": "Las conexiones a otras bases de datos también se sincronizan desde el Mac y aparecen en tu lista, pero esta app no tiene sus controladores, así que no se abren aquí. La <databases>página de bases de datos</databases> enumera todos los motores compatibles con la app para Mac.",
         "files": "SQLite: elige un archivo de base de datos y la app lo copia a su propio almacenamiento, por lo que tus ediciones modifican la copia. También puedes crear una base de datos nueva. DuckDB abre los archivos donde están o se ejecuta en memoria.",
-        "redis": "Redis: ejecuta comandos en la pestaña Consulta. Esta versión no permite explorar las claves de Redis.",
+        "redis": "Redis: ejecuta comandos en la pestaña Consulta. La app para iPhone y iPad no permite explorar las claves de Redis.",
         "sample": "Para explorar primero, abre Chinook, la base de datos de ejemplo incluida con la app."
     },
     "browse": {
@@ -27,7 +27,7 @@
         "paragraphs": [
             "Cada conexión se abre en sus tablas, con el editor de consultas, el historial y los detalles de la conexión en sus propias pestañas.",
             "Las filas se muestran como tarjetas, con la clave primaria o la primera columna como título y las siguientes debajo. Ordena por cualquier columna, busca en todas salvo las binarias y combina filtros con AND u OR. Elige cuántas filas tiene cada página y salta a cualquiera. Toca un valor de clave foránea para ver la fila a la que apunta. La vista Estructura enumera las columnas, los índices y las claves foráneas de la tabla.",
-            "Abre una fila para editarla: cambia valores, establece NULL y confirma antes de guardar. También puedes insertar y eliminar filas y truncar o eliminar una tabla. Editar y eliminar filas requiere una clave primaria, y nada cambia en una conexión de Solo lectura. En esta versión, no guardes una fila mientras un texto largo o un valor binario aparezca abreviado: el editor puede sobrescribir el valor completo con el texto abreviado. Modifica esas filas en el Mac."
+            "Abre una fila para editarla: cambia valores, establece NULL y confirma antes de guardar. También puedes insertar y eliminar filas y truncar o eliminar una tabla. Editar y eliminar filas requiere una clave primaria, y nada cambia en una conexión de Solo lectura."
         ]
     },
     "query": {
@@ -42,7 +42,7 @@
         "title": "Conecta de forma segura",
         "paragraphs": [
             "Los túneles SSH inician sesión con contraseña o clave privada, desde un archivo o pegada, con frase de contraseña opcional. Al acceder por primera vez a un servidor, la app muestra la huella de su clave de host y te pide que confíes en ella.",
-            "SSL se configura por conexión. Las conexiones MySQL, MariaDB, TiDB, OceanBase y PostgreSQL pueden verificar el certificado y el nombre de host del servidor y presentar un certificado de cliente desde un archivo, texto pegado o un paquete PKCS#12. Las conexiones Redis también, pero en esta versión comprueban el certificado y no el nombre de host. SQL Server puede cifrar la conexión (Obligatorio), pero no verifica el certificado. Los certificados permanecen en este dispositivo y nunca se sincronizan.",
+            "TLS se configura por conexión. Las conexiones MySQL, MariaDB, TiDB, OceanBase y PostgreSQL pueden verificar el certificado y el nombre de host del servidor y presentar un certificado de cliente desde un archivo, texto pegado o un paquete PKCS#12. Las conexiones Redis también pueden verificar el certificado y presentar un certificado de cliente. SQL Server puede cifrar la conexión (Obligatorio), pero no verifica el certificado. Los certificados permanecen en este dispositivo y nunca se sincronizan.",
             "Las contraseñas y claves pegadas se almacenan en el Llavero. Una conexión SQL Server con Microsoft Entra ID puede iniciar sesión aquí después de sincronizarse desde tu Mac; la autenticación Windows no es compatible. Para acceder a un servidor por su nombre .local en tu red, permite el acceso a la red local cuando iOS lo solicite."
         ]
     },
@@ -66,7 +66,6 @@
         "paragraphs": [
             "Activa iCloud Sync durante la configuración o después en Ajustes, y tus conexiones, grupos y etiquetas se sincronizan entre iPhone, iPad y Mac mediante tu propia cuenta iCloud. Las contraseñas solo se sincronizan si también activas Sincronizar contraseñas. Las consultas guardadas, los perfiles SSH y los ajustes solo se sincronizan entre Mac.",
             "iCloud Sync es gratis aquí. En el Mac forma parte de una licencia Starter o Team, por lo que un Mac sin ella no se sincroniza. La <pricing>página de precios</pricing> tiene los detalles.",
-            "En esta versión, guardar una conexión sincronizada en iPhone o iPad puede eliminar ajustes que solo usa el Mac, como hosts de salto SSH, y reducir su nivel de modo seguro. Edita esas conexiones en el Mac.",
             "Sin iCloud, exporta conexiones como archivo .tablepro y ábrelo en otro dispositivo mediante AirDrop o Archivos. Las contraseñas se omiten salvo que las incluyas; entonces una frase de contraseña que elijas cifra el archivo. Ambas opciones son gratis aquí; en el Mac, exportar con contraseñas forma parte de una licencia.",
             "Con iCloud Sync activado, Handoff continúa una conexión o tabla abierta entre tu Mac y tu iPhone o iPad. <sync>Sincronización y equipos</sync> describe ambos con más detalle."
         ]
@@ -74,7 +73,7 @@
     "automation": {
         "title": "Atajos, widgets y Spotlight",
         "paragraphs": [
-            "Abrir conexión abre una conexión desde un atajo o Siri. Añadir fila a tabla y Añadir filas a tabla insertan en una tabla sin abrir la app, desde texto JSON o CSV o un archivo. Solo funcionan con el dispositivo desbloqueado, respetan el nivel de modo seguro de la conexión y no funcionan con Redis. En esta versión, el CSV debe ser texto UTF-8 con finales de línea LF.",
+            "Abrir conexión abre una conexión desde un atajo o Siri. Añadir fila a tabla y Añadir filas a tabla insertan en una tabla sin abrir la app, desde texto JSON o CSV o un archivo. Solo funcionan con el dispositivo desbloqueado, respetan el nivel de modo seguro de la conexión y no funcionan con Redis.",
             "Los widgets Conexión rápida ponen tus primeras conexiones en la pantalla de inicio y un toque abre una. Tus conexiones también aparecen en la búsqueda de Spotlight."
         ]
     },
@@ -93,6 +92,15 @@
             "Exploración de claves Redis"
         ],
         "mac": "<download>Descargar TablePro para Mac</download>"
+    },
+    "knownIssues": {
+        "title": "Problemas conocidos de la versión {version}",
+        "items": [
+            "En el editor de filas, no guardes una fila mientras un texto largo o un valor binario aparezca abreviado: el editor puede sobrescribir el valor completo con el texto abreviado. Modifica esas filas en el Mac.",
+            "Guardar una conexión sincronizada en iPhone o iPad puede eliminar ajustes que solo usa el Mac, como hosts de salto SSH, y reducir su nivel de Safe Mode. Edita esas conexiones en el Mac.",
+            "Cuando las conexiones Redis verifican el certificado del servidor, comprueban el certificado y no el nombre de host.",
+            "En las acciones de Atajos que añaden filas, el CSV debe ser texto UTF-8 con finales de línea LF."
+        ]
     },
     "privacy": {
         "title": "Privacidad",

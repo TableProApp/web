@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro pour iPhone et iPad",
-        "description": "Client gratuit pour iPhone et iPad : MySQL, PostgreSQL, SQL Server, Oracle et plus via SSH ou SSL. Parcourez, modifiez et interrogez vos tables."
+        "description": "Client gratuit pour iPhone et iPad : MySQL, PostgreSQL, SQL Server, Oracle et plus via SSH ou TLS. Parcourez, modifiez et interrogez vos tables."
     },
     "og": {
         "kicker": "iPhone et iPad",
@@ -19,7 +19,7 @@
         "syncedOnly": "Les connexions {engines} s’ouvrent lorsqu’elles proviennent de votre Mac, via iCloud Sync ou un fichier .tablepro. Vous ne pouvez pas les créer dans cette application.",
         "others": "Les connexions à d’autres bases se synchronisent aussi depuis le Mac et apparaissent dans votre liste, mais cette application n’a pas leurs pilotes ; elles ne s’ouvrent donc pas ici. La <databases>page des bases de données</databases> liste tous les moteurs pris en charge sur Mac.",
         "files": "SQLite : choisissez un fichier de base de données ; l’application le copie dans son propre stockage, vos modifications affectent donc la copie. Vous pouvez aussi créer une base. DuckDB ouvre un fichier à son emplacement ou fonctionne en mémoire.",
-        "redis": "Redis : exécutez des commandes dans l’onglet Requête. La navigation dans les clés Redis n’est pas disponible dans cette version.",
+        "redis": "Redis : exécutez des commandes dans l’onglet Requête. La navigation dans les clés Redis n’est pas disponible dans l’application iPhone et iPad.",
         "sample": "Pour explorer d’abord, ouvrez Chinook, la base d’exemple fournie avec l’application."
     },
     "browse": {
@@ -27,7 +27,7 @@
         "paragraphs": [
             "Chaque connexion s’ouvre sur ses tables ; l’éditeur de requêtes, votre historique et les détails de connexion ont leurs propres onglets.",
             "Les lignes s’affichent en cartes, avec la clé primaire ou la première colonne comme titre et les suivantes en dessous. Triez par toute colonne, recherchez dans toutes sauf les binaires et combinez les filtres avec AND ou OR. Choisissez le nombre de lignes par page et accédez à toute page. Touchez une clé étrangère pour prévisualiser la ligne référencée. La vue Structure liste les colonnes, index et clés étrangères.",
-            "Ouvrez une ligne pour modifier ses valeurs, définir NULL et confirmer avant sauvegarde. Vous pouvez aussi insérer et supprimer des lignes, tronquer ou supprimer une table. Modifier et supprimer des lignes nécessite une clé primaire, et rien ne change sur une connexion Lecture seule. Dans cette version, n’enregistrez pas une ligne lorsqu’un texte long ou une valeur binaire s’affiche en abrégé : l’éditeur peut remplacer la valeur complète par le texte abrégé. Modifiez ces lignes sur Mac."
+            "Ouvrez une ligne pour modifier ses valeurs, définir NULL et confirmer avant sauvegarde. Vous pouvez aussi insérer et supprimer des lignes, tronquer ou supprimer une table. Modifier et supprimer des lignes nécessite une clé primaire, et rien ne change sur une connexion Lecture seule."
         ]
     },
     "query": {
@@ -42,7 +42,7 @@
         "title": "Connectez-vous en sécurité",
         "paragraphs": [
             "Les tunnels SSH s’authentifient par mot de passe ou clé privée, depuis un fichier ou collée, avec phrase secrète facultative. Au premier accès à un serveur, l’application affiche l’empreinte de sa clé d’hôte et vous demande de lui faire confiance.",
-            "SSL se configure par connexion. MySQL, MariaDB, TiDB, OceanBase et PostgreSQL peuvent vérifier le certificat et le nom d’hôte du serveur et présenter un certificat client depuis un fichier, du texte collé ou un paquet PKCS#12. Redis le peut aussi, mais ne vérifie dans cette version que le certificat, pas le nom d’hôte. SQL Server peut chiffrer la connexion (Obligatoire), sans vérifier le certificat. Les certificats restent sur cet appareil et ne se synchronisent jamais.",
+            "TLS se configure par connexion. MySQL, MariaDB, TiDB, OceanBase et PostgreSQL peuvent vérifier le certificat et le nom d’hôte du serveur et présenter un certificat client depuis un fichier, du texte collé ou un paquet PKCS#12. Redis peut aussi vérifier le certificat et présenter un certificat client. SQL Server peut chiffrer la connexion (Obligatoire), sans vérifier le certificat. Les certificats restent sur cet appareil et ne se synchronisent jamais.",
             "Les mots de passe et clés collées sont stockés dans le Trousseau. Une connexion SQL Server utilisant Microsoft Entra ID peut s’authentifier ici après synchronisation depuis votre Mac ; l’authentification Windows n’est pas prise en charge. Pour joindre un serveur par son nom .local sur votre réseau, autorisez l’accès au réseau local lorsque iOS le demande."
         ]
     },
@@ -66,7 +66,6 @@
         "paragraphs": [
             "Activez iCloud Sync pendant la configuration ou plus tard dans Réglages ; connexions, groupes et tags se synchronisent entre iPhone, iPad et Mac via votre propre compte iCloud. Les mots de passe ne se synchronisent que si vous activez aussi Synchroniser les mots de passe. Requêtes enregistrées, profils SSH et réglages ne se synchronisent qu’entre Mac.",
             "iCloud Sync est gratuit ici. Sur Mac, il fait partie d’une licence Starter ou Team ; un Mac sans licence ne se synchronise donc pas. La <pricing>page des tarifs</pricing> fournit les détails.",
-            "Dans cette version, enregistrer une connexion synchronisée sur iPhone ou iPad peut supprimer des paramètres propres au Mac, comme les hôtes de rebond SSH, et abaisser son niveau de mode sécurisé. Modifiez ces connexions sur Mac.",
             "Sans iCloud, exportez les connexions en fichier .tablepro et ouvrez-le sur un autre appareil via AirDrop ou Fichiers. Les mots de passe sont exclus sauf si vous les incluez ; une phrase secrète choisie chiffre alors le fichier. Les deux options sont gratuites ici ; sur Mac, exporter avec mots de passe nécessite une licence.",
             "Avec iCloud Sync activé, Handoff reprend une connexion ou table ouverte entre Mac et iPhone ou iPad. <sync>Synchronisation et équipes</sync> détaille les deux."
         ]
@@ -74,7 +73,7 @@
     "automation": {
         "title": "Raccourcis, widgets et Spotlight",
         "paragraphs": [
-            "Ouvrir la connexion ouvre une connexion depuis un raccourci ou Siri. Ajouter une ligne à la table et Ajouter des lignes à la table insèrent du texte JSON ou CSV ou un fichier sans ouvrir l’application. Ils fonctionnent uniquement sur appareil déverrouillé, respectent le mode sécurisé et ne fonctionnent pas avec Redis. Dans cette version, le CSV doit être du texte UTF-8 avec fins de ligne LF.",
+            "Ouvrir la connexion ouvre une connexion depuis un raccourci ou Siri. Ajouter une ligne à la table et Ajouter des lignes à la table insèrent du texte JSON ou CSV ou un fichier sans ouvrir l’application. Ils fonctionnent uniquement sur appareil déverrouillé, respectent le mode sécurisé et ne fonctionnent pas avec Redis.",
             "Les widgets Connexion rapide affichent vos premières connexions sur l’écran d’accueil ; un toucher en ouvre une. Vos connexions apparaissent aussi dans la recherche Spotlight."
         ]
     },
@@ -93,6 +92,15 @@
             "Navigation dans les clés Redis"
         ],
         "mac": "<download>Télécharger TablePro pour Mac</download>"
+    },
+    "knownIssues": {
+        "title": "Problèmes connus dans la version {version}",
+        "items": [
+            "Dans l’éditeur de ligne, n’enregistrez pas une ligne lorsqu’un texte long ou une valeur binaire s’affiche en abrégé : l’éditeur peut remplacer la valeur complète par le texte abrégé. Modifiez ces lignes sur Mac.",
+            "Enregistrer une connexion synchronisée sur iPhone ou iPad peut supprimer des paramètres propres au Mac, comme les hôtes de rebond SSH, et abaisser son niveau de Safe Mode. Modifiez ces connexions sur Mac.",
+            "Lorsque les connexions Redis vérifient le certificat du serveur, elles contrôlent le certificat et non le nom d’hôte.",
+            "Dans les actions Raccourcis qui ajoutent des lignes, le CSV doit être du texte UTF-8 avec fins de ligne LF."
+        ]
     },
     "privacy": {
         "title": "Confidentialité",

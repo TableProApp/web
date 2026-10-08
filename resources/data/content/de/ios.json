@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro für iPhone und iPad",
-        "description": "Kostenloser Client für iPhone und iPad: MySQL, PostgreSQL, SQL Server, Oracle und mehr über SSH oder SSL. Tabellen ansehen, ändern und abfragen."
+        "description": "Kostenloser Client für iPhone und iPad: MySQL, PostgreSQL, SQL Server, Oracle und mehr über SSH oder TLS. Tabellen ansehen, ändern und abfragen."
     },
     "og": {
         "kicker": "iPhone & iPad",
@@ -19,7 +19,7 @@
         "syncedOnly": "{engines}-Verbindungen lassen sich öffnen, wenn sie über iCloud Sync oder eine .tablepro-Datei von deinem Mac stammen. In dieser App kannst du sie nicht erstellen.",
         "others": "Verbindungen zu anderen Datenbanken werden ebenfalls vom Mac synchronisiert und erscheinen in deiner Liste. Diese App hat jedoch keine Treiber dafür, daher lassen sie sich hier nicht öffnen. Die <databases>Datenbankseite</databases> listet alle von der Mac-App unterstützten Systeme auf.",
         "files": "SQLite: Wähle eine Datenbankdatei; die App kopiert sie in ihren eigenen Speicher. Deine Änderungen betreffen daher die Kopie. Du kannst auch eine neue Datenbank erstellen. DuckDB öffnet eine Datei an ihrem Speicherort oder läuft im Arbeitsspeicher.",
-        "redis": "Redis: Führe Befehle im Tab „Abfrage“ aus. Das Durchsuchen von Redis-Schlüsseln ist in dieser Version nicht verfügbar.",
+        "redis": "Redis: Führe Befehle im Tab „Abfrage“ aus. Das Durchsuchen von Redis-Schlüsseln ist in der iPhone- und iPad-App nicht verfügbar.",
         "sample": "Öffne zunächst Chinook, die mitgelieferte Beispieldatenbank, um dich umzusehen."
     },
     "browse": {
@@ -27,7 +27,7 @@
         "paragraphs": [
             "Jede Verbindung öffnet ihre Tabellen. Abfrageeditor, Verlauf und Verbindungsdetails stehen in eigenen Tabs bereit.",
             "Zeilen erscheinen als Karten mit Primärschlüssel oder erster Spalte als Titel und weiteren Spalten darunter. Sortiere nach beliebigen Spalten, durchsuche alle außer binären Spalten und kombiniere Filter mit AND oder OR. Wähle die Zeilenzahl pro Seite und springe zu jeder Seite. Tippe einen Fremdschlüsselwert an, um die zugehörige Zeile anzuzeigen. Die Strukturansicht listet Spalten, Indizes und Fremdschlüssel der Tabelle auf.",
-            "Öffne eine Zeile zum Bearbeiten: Ändere Werte, setze NULL und bestätige vor dem Speichern. Du kannst auch Zeilen einfügen und löschen sowie Tabellen leeren oder löschen. Das Bearbeiten und Löschen von Zeilen benötigt einen Primärschlüssel; in einer schreibgeschützten Verbindung wird nichts geändert. Speichere in dieser Version keine Zeile, solange ein langer Text oder Binärwert gekürzt angezeigt wird: Der Editor kann den vollständigen Wert durch den gekürzten Text ersetzen. Bearbeite solche Zeilen auf dem Mac."
+            "Öffne eine Zeile zum Bearbeiten: Ändere Werte, setze NULL und bestätige vor dem Speichern. Du kannst auch Zeilen einfügen und löschen sowie Tabellen leeren oder löschen. Das Bearbeiten und Löschen von Zeilen benötigt einen Primärschlüssel; in einer schreibgeschützten Verbindung wird nichts geändert."
         ]
     },
     "query": {
@@ -42,7 +42,7 @@
         "title": "Sicher verbinden",
         "paragraphs": [
             "SSH-Tunnel melden sich mit Passwort oder privatem Schlüssel aus einer Datei oder eingefügtem Text an, mit optionaler Passphrase. Beim ersten Kontakt zeigt die App den Fingerabdruck des Hostschlüssels und bittet um Vertrauen.",
-            "SSL wird pro Verbindung eingestellt. MySQL-, MariaDB-, TiDB-, OceanBase- und PostgreSQL-Verbindungen können Serverzertifikat und Hostnamen prüfen und ein Clientzertifikat aus Datei, eingefügtem Text oder PKCS#12-Paket vorlegen. Redis-Verbindungen können dies ebenfalls, prüfen in dieser Version aber nur das Zertifikat, nicht den Hostnamen. SQL Server kann die Verbindung verschlüsseln („Erforderlich“), prüft das Zertifikat jedoch nicht. Zertifikate bleiben auf diesem Gerät und werden nie synchronisiert.",
+            "TLS wird pro Verbindung eingestellt. MySQL-, MariaDB-, TiDB-, OceanBase- und PostgreSQL-Verbindungen können Serverzertifikat und Hostnamen prüfen und ein Clientzertifikat aus Datei, eingefügtem Text oder PKCS#12-Paket vorlegen. Redis-Verbindungen können ebenfalls das Zertifikat prüfen und ein Clientzertifikat vorlegen. SQL Server kann die Verbindung verschlüsseln („Erforderlich“), prüft das Zertifikat jedoch nicht. Zertifikate bleiben auf diesem Gerät und werden nie synchronisiert.",
             "Passwörter und eingefügte Schlüssel werden im Schlüsselbund gespeichert. Eine SQL-Server-Verbindung mit Microsoft Entra ID kann sich hier anmelden, sobald sie vom Mac synchronisiert wurde; Windows-Authentifizierung wird nicht unterstützt. Um einen Server über seinen .local-Namen im Netzwerk zu erreichen, erlaube den Zugriff auf das lokale Netzwerk, wenn iOS danach fragt."
         ]
     },
@@ -66,7 +66,6 @@
         "paragraphs": [
             "Aktiviere iCloud Sync bei der Einrichtung oder später in den Einstellungen. Verbindungen, Gruppen und Tags synchronisieren sich über dein eigenes iCloud-Konto zwischen iPhone, iPad und Mac. Passwörter werden nur synchronisiert, wenn du zusätzlich „Passwörter synchronisieren“ aktivierst. Gespeicherte Abfragen, SSH-Profile und Einstellungen synchronisieren sich nur zwischen Macs.",
             "iCloud Sync ist hier kostenlos. Auf dem Mac gehört es zu einer Starter- oder Team-Lizenz; ein Mac ohne Lizenz synchronisiert daher nicht. Details findest du auf der <pricing>Preisseite</pricing>.",
-            "In dieser Version kann das Speichern einer synchronisierten Verbindung auf iPhone oder iPad reine Mac-Einstellungen wie SSH-Jump-Hosts entfernen und ihre Stufe des sicheren Modus herabsetzen. Bearbeite solche Verbindungen auf dem Mac.",
             "Ohne iCloud kannst du Verbindungen als .tablepro-Datei exportieren und über AirDrop oder Dateien auf einem anderen Gerät öffnen. Passwörter bleiben ausgeschlossen, sofern du sie nicht einschließt; dann verschlüsselt eine gewählte Passphrase die Datei. Beides ist hier kostenlos; auf dem Mac gehört der Export mit Passwörtern zu einer Lizenz.",
             "Mit aktiviertem iCloud Sync setzt Handoff eine offene Verbindung oder Tabelle zwischen Mac und iPhone oder iPad fort. <sync>Synchronisierung und Teams</sync> beschreibt beides ausführlicher."
         ]
@@ -74,7 +73,7 @@
     "automation": {
         "title": "Kurzbefehle, Widgets und Spotlight",
         "paragraphs": [
-            "„Verbindung öffnen“ öffnet eine Verbindung über einen Kurzbefehl oder Siri. „Zeile zu Tabelle hinzufügen“ und „Zeilen zu Tabelle hinzufügen“ fügen Daten aus JSON- oder CSV-Text oder einer Datei ein, ohne die App zu öffnen. Sie laufen nur bei entsperrtem Gerät, beachten die Stufe des sicheren Modus und funktionieren nicht mit Redis. CSV muss in dieser Version UTF-8-Text mit LF-Zeilenenden sein.",
+            "„Verbindung öffnen“ öffnet eine Verbindung über einen Kurzbefehl oder Siri. „Zeile zu Tabelle hinzufügen“ und „Zeilen zu Tabelle hinzufügen“ fügen Daten aus JSON- oder CSV-Text oder einer Datei ein, ohne die App zu öffnen. Sie laufen nur bei entsperrtem Gerät, beachten die Stufe des sicheren Modus und funktionieren nicht mit Redis.",
             "Schnellverbindungs-Widgets zeigen deine ersten Verbindungen auf dem Home-Bildschirm; ein Tippen öffnet eine. Deine Verbindungen erscheinen auch in der Spotlight-Suche."
         ]
     },
@@ -93,6 +92,15 @@
             "Redis-Schlüssel durchsuchen"
         ],
         "mac": "<download>TablePro für Mac herunterladen</download>"
+    },
+    "knownIssues": {
+        "title": "Bekannte Probleme in Version {version}",
+        "items": [
+            "Speichere im Zeileneditor keine Zeile, solange ein langer Text oder Binärwert gekürzt angezeigt wird: Der Editor kann den vollständigen Wert durch den gekürzten Text ersetzen. Bearbeite solche Zeilen auf dem Mac.",
+            "Das Speichern einer synchronisierten Verbindung auf iPhone oder iPad kann reine Mac-Einstellungen wie SSH-Jump-Hosts entfernen und ihre Safe-Mode-Stufe herabsetzen. Bearbeite solche Verbindungen auf dem Mac.",
+            "Wenn Redis-Verbindungen das Serverzertifikat prüfen, prüfen sie nur das Zertifikat, nicht den Hostnamen.",
+            "In den Kurzbefehl-Aktionen, die Zeilen hinzufügen, muss CSV UTF-8-Text mit LF-Zeilenenden sein."
+        ]
     },
     "privacy": {
         "title": "Datenschutz",

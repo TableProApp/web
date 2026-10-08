@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro cho iPhone và iPad",
-        "description": "Database client miễn phí cho iPhone và iPad. Kết nối MySQL, PostgreSQL, SQL Server, Oracle và nhiều engine khác qua SSH hoặc SSL, xem, sửa và query table."
+        "description": "Database client miễn phí cho iPhone và iPad. Kết nối MySQL, PostgreSQL, SQL Server, Oracle và nhiều engine khác qua SSH hoặc TLS, xem, sửa và query table."
     },
     "og": {
         "kicker": "iPhone và iPad",
@@ -19,7 +19,7 @@
         "syncedOnly": "Connection {engines} mở được khi chúng đến từ máy Mac của bạn, qua iCloud Sync hoặc một file .tablepro. Bạn không tạo được connection loại này trong ứng dụng.",
         "others": "Connection tới các cơ sở dữ liệu khác cũng được đồng bộ từ Mac và hiện trong danh sách, nhưng ứng dụng này không có driver cho chúng, nên chúng không mở được ở đây. <databases>Trang Cơ sở dữ liệu</databases> liệt kê mọi engine mà ứng dụng Mac hỗ trợ.",
         "files": "SQLite: khi bạn chọn một file cơ sở dữ liệu, ứng dụng sao chép file vào bộ nhớ riêng của nó, nên các thay đổi của bạn áp dụng lên bản sao. Bạn cũng có thể tạo cơ sở dữ liệu mới. DuckDB mở file ngay tại chỗ, hoặc chạy trong bộ nhớ.",
-        "redis": "Redis: chạy lệnh trong tab Truy vấn (Query). Phiên bản này chưa hỗ trợ duyệt các key của Redis.",
+        "redis": "Redis: chạy lệnh trong tab Truy vấn (Query). Duyệt các key của Redis không có trong ứng dụng cho iPhone và iPad.",
         "sample": "Muốn xem thử trước, bạn có thể mở Chinook, cơ sở dữ liệu mẫu đi kèm ứng dụng."
     },
     "browse": {
@@ -27,7 +27,7 @@
         "paragraphs": [
             "Mỗi connection mở ra danh sách table của nó, còn query editor, lịch sử và thông tin của connection nằm ở các tab riêng.",
             "Các dòng hiện dưới dạng thẻ, với khóa chính hoặc cột đầu tiên làm tiêu đề và các cột tiếp theo bên dưới. Bạn có thể sắp xếp theo bất kỳ cột nào, tìm trên mọi cột trừ cột nhị phân, và chồng nhiều bộ lọc với AND hoặc OR. Chọn số dòng mỗi trang và chuyển tới trang bất kỳ. Chạm vào một giá trị khóa ngoại để xem trước dòng mà nó trỏ tới. Phần Structure liệt kê cột, index và khóa ngoại của table.",
-            "Mở một dòng để sửa: thay đổi giá trị, đặt NULL, và xác nhận trước khi lưu. Bạn cũng có thể thêm và xóa dòng, truncate hoặc drop một table. Sửa và xóa dòng cần table có khóa chính, và không có gì thay đổi được trên một connection Read-Only. Ở phiên bản này, đừng lưu một dòng khi giá trị văn bản dài hoặc nhị phân đang hiển thị dạng rút gọn: trình sửa có thể ghi phần rút gọn đè lên giá trị đầy đủ. Hãy sửa những dòng này trên máy Mac."
+            "Mở một dòng để sửa: thay đổi giá trị, đặt NULL, và xác nhận trước khi lưu. Bạn cũng có thể thêm và xóa dòng, truncate hoặc drop một table. Sửa và xóa dòng cần table có khóa chính, và không có gì thay đổi được trên một connection Read-Only."
         ]
     },
     "query": {
@@ -42,7 +42,7 @@
         "title": "Kết nối an toàn",
         "paragraphs": [
             "SSH tunnel xác thực bằng mật khẩu hoặc private key, lấy từ file hoặc dán vào, kèm passphrase nếu có. Lần đầu bạn kết nối tới một máy chủ, ứng dụng hiện dấu vân tay host key của máy chủ và hỏi bạn có tin cậy nó không.",
-            "SSL được thiết lập riêng cho từng connection. Connection MySQL, MariaDB, TiDB, OceanBase và PostgreSQL có thể xác minh chứng chỉ và hostname của máy chủ, và gửi chứng chỉ client, lấy từ file, văn bản dán vào hoặc gói PKCS#12. Connection Redis cũng vậy, nhưng ở phiên bản này chỉ kiểm tra chứng chỉ mà không kiểm tra hostname. SQL Server có thể mã hóa kết nối (Required) nhưng không xác minh chứng chỉ. Chứng chỉ nằm lại trên thiết bị này và không bao giờ được đồng bộ.",
+            "TLS được thiết lập riêng cho từng connection. Connection MySQL, MariaDB, TiDB, OceanBase và PostgreSQL có thể xác minh chứng chỉ và hostname của máy chủ, và gửi chứng chỉ client, lấy từ file, văn bản dán vào hoặc gói PKCS#12. Connection Redis cũng có thể xác minh chứng chỉ và gửi chứng chỉ client. SQL Server có thể mã hóa kết nối (Required) nhưng không xác minh chứng chỉ. Chứng chỉ nằm lại trên thiết bị này và không bao giờ được đồng bộ.",
             "Mật khẩu và key dán vào được lưu trong Keychain. Một connection SQL Server dùng Microsoft Entra ID có thể đăng nhập ở đây sau khi được đồng bộ từ máy Mac; ứng dụng không hỗ trợ xác thực Windows. Để kết nối tới một máy chủ trong mạng nội bộ bằng tên .local, hãy cho phép truy cập Mạng cục bộ khi iOS hỏi."
         ]
     },
@@ -66,7 +66,6 @@
         "paragraphs": [
             "Bật iCloud Sync khi thiết lập ứng dụng hoặc sau đó trong Cài đặt, rồi connection, nhóm và tag của bạn được đồng bộ giữa iPhone, iPad và Mac qua tài khoản iCloud của chính bạn. Mật khẩu chỉ được đồng bộ nếu bạn bật thêm Đồng bộ mật khẩu (Sync Passwords). Query đã lưu, SSH profile và cài đặt chỉ được đồng bộ giữa các máy Mac.",
             "iCloud Sync miễn phí ở đây. Trên Mac, tính năng này thuộc license Starter hoặc Team, nên máy Mac không có license sẽ không đồng bộ. Xem chi tiết tại <pricing>trang bảng giá</pricing>.",
-            "Ở phiên bản này, việc lưu một connection đã đồng bộ trên iPhone hoặc iPad có thể làm mất các cài đặt chỉ máy Mac dùng, chẳng hạn SSH jump host, và có thể hạ mức Safe Mode của connection đó. Hãy sửa những connection này trên máy Mac.",
             "Không dùng iCloud, bạn có thể export connection ra file .tablepro rồi mở file trên thiết bị khác qua AirDrop hoặc ứng dụng Tệp. Mật khẩu không được đưa vào file trừ khi bạn chọn đưa vào, và khi đó file được mã hóa bằng một passphrase do bạn đặt. Cả hai đều miễn phí ở đây; trên Mac, export kèm mật khẩu thuộc license.",
             "Khi bật iCloud Sync, Handoff tiếp tục một connection hoặc table đang mở giữa máy Mac và iPhone hoặc iPad của bạn. Trang <sync>Đồng bộ và làm việc nhóm</sync> trình bày chi tiết cả hai tính năng này."
         ]
@@ -74,7 +73,7 @@
     "automation": {
         "title": "Phím tắt, tiện ích và Spotlight",
         "paragraphs": [
-            "Tác vụ Mở kết nối (Open Connection) mở một connection từ ứng dụng Phím tắt hoặc từ Siri. Thêm dòng vào bảng (Add Row to Table) và Thêm nhiều dòng vào bảng (Add Rows to Table) thêm dữ liệu vào một table mà không cần mở ứng dụng, từ văn bản JSON hoặc CSV, hoặc từ một file. Các tác vụ này chỉ chạy khi thiết bị không bị khóa, tuân theo mức Safe Mode của connection, và không dùng được với connection Redis. Ở phiên bản này, CSV phải là văn bản UTF-8 với ký tự xuống dòng LF.",
+            "Tác vụ Mở kết nối (Open Connection) mở một connection từ ứng dụng Phím tắt hoặc từ Siri. Thêm dòng vào bảng (Add Row to Table) và Thêm nhiều dòng vào bảng (Add Rows to Table) thêm dữ liệu vào một table mà không cần mở ứng dụng, từ văn bản JSON hoặc CSV, hoặc từ một file. Các tác vụ này chỉ chạy khi thiết bị không bị khóa, tuân theo mức Safe Mode của connection, và không dùng được với connection Redis.",
             "Tiện ích Kết nối nhanh (Quick Connect) đặt các connection đầu tiên của bạn lên Màn hình chính, chạm vào là mở. Các connection của bạn cũng hiện trong kết quả tìm kiếm Spotlight."
         ]
     },
@@ -93,6 +92,15 @@
             "Duyệt các key của Redis"
         ],
         "mac": "<download>Tải TablePro cho Mac</download>"
+    },
+    "knownIssues": {
+        "title": "Các lỗi đã biết ở phiên bản {version}",
+        "items": [
+            "Trong trình sửa dòng, đừng lưu một dòng khi giá trị văn bản dài hoặc nhị phân đang hiển thị dạng rút gọn: trình sửa có thể ghi phần rút gọn đè lên giá trị đầy đủ. Hãy sửa những dòng này trên máy Mac.",
+            "Việc lưu một connection đã đồng bộ trên iPhone hoặc iPad có thể làm mất các cài đặt chỉ máy Mac dùng, chẳng hạn SSH jump host, và có thể hạ mức Safe Mode của connection đó. Hãy sửa những connection này trên máy Mac.",
+            "Khi connection Redis xác minh chứng chỉ của máy chủ, ứng dụng chỉ kiểm tra chứng chỉ mà không kiểm tra hostname.",
+            "Trong các tác vụ Phím tắt thêm dòng, CSV phải là văn bản UTF-8 với ký tự xuống dòng LF."
+        ]
     },
     "privacy": {
         "title": "Quyền riêng tư",

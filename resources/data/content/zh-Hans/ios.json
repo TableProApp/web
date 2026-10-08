@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "iPhone 和 iPad 版 TablePro",
-        "description": "适用于 iPhone 和 iPad 的免费数据库客户端。通过 SSH 或 SSL 连接 MySQL、PostgreSQL、SQL Server、Oracle 等，浏览、编辑和查询表。"
+        "description": "适用于 iPhone 和 iPad 的免费数据库客户端。通过 SSH 或 TLS 连接 MySQL、PostgreSQL、SQL Server、Oracle 等，浏览、编辑和查询表。"
     },
     "og": {
         "kicker": "iPhone 和 iPad",
@@ -19,7 +19,7 @@
         "syncedOnly": "{engines} 连接可在通过 iCloud 同步或 .tablepro 文件从 Mac 导入后打开，无法在此应用中创建。",
         "others": "其他数据库的连接也会从 Mac 同步并显示在列表中，但本应用没有相应驱动，无法打开。<databases>数据库页面</databases>列出了 Mac 应用支持的所有引擎。",
         "files": "SQLite：选择数据库文件后，应用会复制到自身存储中，编辑修改的是副本。也可创建新数据库。DuckDB 直接在原位置打开文件，或在内存中运行。",
-        "redis": "Redis：在 Query 选项卡运行命令。此版本不支持浏览 Redis 键。",
+        "redis": "Redis：在 Query 选项卡运行命令。iPhone 和 iPad 应用不支持浏览 Redis 键。",
         "sample": "先体验看看，可打开随应用提供的 Chinook 示例数据库。"
     },
     "browse": {
@@ -27,7 +27,7 @@
         "paragraphs": [
             "打开连接后首先显示其表，查询编辑器、历史记录和连接详情各有独立选项卡。",
             "行以卡片显示，主键或第一列作为标题，后续列在下方展示。可按任意列排序、搜索除二进制列外的所有列，并以 AND 或 OR 叠加筛选条件。可选择每页行数并跳转至任意页。点击外键值可预览对应行。Structure 视图列出表的列、索引和外键。",
-            "打开行后可修改值、设置 NULL，并在保存前确认。还可插入和删除行，以及截断或删除表。编辑和删除行需要主键，Read-Only 连接不会修改任何内容。此版本中，当长文本或二进制值显示为缩略内容时，请勿保存该行：编辑器可能用缩略文本覆盖完整值。请在 Mac 上修改这些行。"
+            "打开行后可修改值、设置 NULL，并在保存前确认。还可插入和删除行，以及截断或删除表。编辑和删除行需要主键，Read-Only 连接不会修改任何内容。"
         ]
     },
     "query": {
@@ -42,7 +42,7 @@
         "title": "安全连接",
         "paragraphs": [
             "SSH 隧道使用密码或私钥登录，私钥可来自文件或粘贴内容，并可设口令。首次访问服务器时，应用会显示主机密钥指纹并询问是否信任。",
-            "SSL 按连接设置。MySQL、MariaDB、TiDB、OceanBase 和 PostgreSQL 可验证服务器证书和主机名，并提供来自文件、粘贴文本或 PKCS#12 包的客户端证书。Redis 也支持，但此版本只检查证书，不检查主机名。SQL Server 可加密连接（Required），但不验证证书。证书留在本设备，从不同步。",
+            "TLS 按连接设置。MySQL、MariaDB、TiDB、OceanBase 和 PostgreSQL 可验证服务器证书和主机名，并提供来自文件、粘贴文本或 PKCS#12 包的客户端证书。Redis 连接也可验证证书并提供客户端证书。SQL Server 可加密连接（Required），但不验证证书。证书留在本设备，从不同步。",
             "密码和粘贴的密钥保存在钥匙串中。使用 Microsoft Entra ID 的 SQL Server 连接从 Mac 同步后可在这里登录；不支持 Windows 认证。若要通过网络中的 .local 名称访问服务器，请在 iOS 询问时允许本地网络访问。"
         ]
     },
@@ -66,7 +66,6 @@
         "paragraphs": [
             "在设置时或之后的 Settings 中开启 iCloud 同步，即可通过自己的 iCloud 账户在 iPhone、iPad 和 Mac 间同步连接、分组和标签。密码仅在同时开启 Sync Passwords 后同步。已保存查询、SSH 配置和设置只在 Mac 之间同步。",
             "此应用的 iCloud 同步免费。Mac 上属于 Starter 或 Team 许可证功能，没有许可证的 Mac 不会同步。详情见<pricing>定价页面</pricing>。",
-            "此版本中，在 iPhone 或 iPad 保存已同步连接可能丢失 SSH 跳板机等 Mac 专用设置，并可能降低安全模式级别。请在 Mac 上编辑这些连接。",
             "不用 iCloud 时，可将连接导出为 .tablepro 文件，通过 AirDrop 或“文件”在另一设备打开。默认不含密码；选择包含时，文件使用您指定的口令加密。两种方式在此应用均免费，Mac 上包含密码的导出属于许可证功能。",
             "开启 iCloud 同步后，Handoff 可在 Mac 与 iPhone 或 iPad 之间继续使用已打开的连接或表。<sync>同步和团队</sync>详细介绍两者。"
         ]
@@ -74,7 +73,7 @@
     "automation": {
         "title": "快捷指令、小组件和 Spotlight",
         "paragraphs": [
-            "Open Connection 从快捷指令或 Siri 打开连接。Add Row to Table 和 Add Rows to Table 可在不打开应用的情况下，从 JSON、CSV 文本或文件插入行。仅在设备未锁定时运行，遵循连接的安全模式级别，不适用于 Redis。此版本要求 CSV 为 UTF-8 文本且使用 LF 换行。",
+            "Open Connection 从快捷指令或 Siri 打开连接。Add Row to Table 和 Add Rows to Table 可在不打开应用的情况下，从 JSON、CSV 文本或文件插入行。仅在设备未锁定时运行，遵循连接的安全模式级别，不适用于 Redis。",
             "Quick Connect 小组件将列表最前面的连接放在主屏幕上，点击即可打开。连接也会出现在 Spotlight 搜索中。"
         ]
     },
@@ -93,6 +92,15 @@
             "浏览 Redis 键"
         ],
         "mac": "<download>下载 Mac 版 TablePro</download>"
+    },
+    "knownIssues": {
+        "title": "版本 {version} 的已知问题",
+        "items": [
+            "在行编辑器中，当长文本或二进制值显示为缩略内容时，请勿保存该行：编辑器可能用缩略文本覆盖完整值。请在 Mac 上修改这些行。",
+            "在 iPhone 或 iPad 保存已同步连接可能丢失 SSH 跳板机等 Mac 专用设置，并可能降低 Safe Mode 级别。请在 Mac 上编辑这些连接。",
+            "Redis 连接验证服务器证书时，只检查证书，不检查主机名。",
+            "在添加行的快捷指令操作中，CSV 必须为 UTF-8 文本且使用 LF 换行。"
+        ]
     },
     "privacy": {
         "title": "隐私",
