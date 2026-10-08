@@ -148,6 +148,35 @@ it('normalises the trailing slash and /index.php of any path in one hop', functi
     'the query exactly as sent' => ['/blog/?q=a%20b&tag=x&tag=y', 'https://localhost/blog?q=a%20b&tag=x&tag=y'],
 ]);
 
+/*
+ * A shared link loses its capitals easily, and `/en` is the first guess for
+ * English. The language is fixed, the rest of the path is not touched.
+ */
+it('sends a language prefix in another case, or the default language spelled out, to the canonical URL in one hop', function (string $uri, string $location): void {
+    $response = redirectsThroughMiddleware($uri);
+
+    expect($response->getStatusCode())->toBe(301);
+    expect($response->headers->get('Location'))->toBe($location);
+})->with([
+    'a lowercase region' => ['/pt-br', 'https://localhost/pt-BR'],
+    'a lowercase script, with a page' => ['/zh-hans/pricing', 'https://localhost/zh-Hans/pricing'],
+    'uppercase' => ['/ZH-HANT/download', 'https://localhost/zh-Hant/download'],
+    'an uppercase two-letter code' => ['/VI', 'https://localhost/vi'],
+    'the default language' => ['/en', 'https://localhost/'],
+    'a page under the default language' => ['/en/pricing?ref=x', 'https://localhost/pricing?ref=x'],
+    'with a trailing slash, still one hop' => ['/pt-br/pricing/?ref=x', 'https://localhost/pt-BR/pricing?ref=x'],
+    'a retired path under the default language' => ['/en/mariadb-client', 'https://localhost/mysql-client#mariadb'],
+]);
+
+it('lands a corrected language prefix on a page that answers', function (string $path, string $canonical): void {
+    $this->get($path)->assertStatus(301)->assertHeader('Location', 'https://localhost' . $canonical);
+    $this->get($canonical)->assertOk();
+})->with([
+    ['/pt-br/pricing', '/pt-BR/pricing'],
+    ['/zh-hans', '/zh-Hans'],
+    ['/en/download', '/download'],
+]);
+
 it('normalises through the whole stack, before routing', function (): void {
     $this->get('http://localhost/blog/?ref=x')->assertStatus(301)->assertHeader('Location', 'https://localhost/blog?ref=x');
     $this->get('http://localhost/vi/download/?ref=x')->assertStatus(301)->assertHeader('Location', 'https://localhost/vi/download?ref=x');
@@ -205,6 +234,10 @@ it('never guesses: unknown paths stay 404 and nothing goes to the homepage', fun
     'an unknown page' => ['/no-such-page'],
     'a slug that never existed' => ['/compare/sql-workbench'],
     'an uppercase path' => ['/Download'],
+    'an uppercase path under a language' => ['/vi/Download'],
+    'a language the site does not have' => ['/zh-CN'],
+    'a region the site does not have' => ['/pt-PT/pricing'],
+    'a word that only starts like a language' => ['/enterprise'],
     'a retired path in Vietnamese, which never existed' => ['/vi/mariadb-client'],
     'a retired post in Vietnamese' => ['/vi/blog/mcp-database-claude'],
 ]);
@@ -213,9 +246,9 @@ it('answers 404 for every URL the disposition table says never existed or has no
     /*
      * Sitemap §C lists these with their evidence: probed slugs that were
      * never routed, release numbers with no post, feeds that never existed,
-     * one-day README assets, the platform's old mail previews, an `/en`
-     * prefix nobody used, and platform paths under `/vi`. None gets a guessed
-     * redirect, and none may quietly start answering.
+     * one-day README assets, the platform's old mail previews, and platform
+     * paths under `/vi`. None gets a guessed redirect, and none may quietly
+     * start answering.
      */
     $this->get($path)->assertNotFound()->assertHeaderMissing('Location');
 })->with([
@@ -241,8 +274,6 @@ it('answers 404 for every URL the disposition table says never existed or has no
     '/mail-preview/waitlist-launch',
     '/images/connections-dark.png',
     '/sponsors/nimbus.svg',
-    '/en',
-    '/en/download',
     '/vi/account',
     '/vi/account/login',
     '/vi/checkout',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
 use App\Support\Seo\RedirectMap;
 use Closure;
@@ -19,11 +20,15 @@ use Symfony\Component\HttpFoundation\Response;
  * 1. A trailing slash is dropped (`/blog/` → `/blog`, `/vi/` → `/vi`), and a
  *    leading `/index.php` too (`/index.php/blog` → `/blog`). Both used to
  *    answer 200 as duplicates of the clean URL.
- * 2. The clean path is looked up in the redirect map (`RedirectMap`):
+ * 2. A first segment that names a language in another letter case takes the
+ *    prefix as `locales.json` writes it (`/pt-br/pricing` → `/pt-BR/pricing`),
+ *    and the default language spelled out is dropped (`/en/pricing` →
+ *    `/pricing`). Both used to answer 404 for a page that exists.
+ * 3. The clean path is looked up in the redirect map (`RedirectMap`):
  *    `resources/data/redirects.json`, then the `/databases/{docsSlug}` rule.
- * 3. A 410 entry aborts with 410, which the exception handler renders as the
- *    branded Error page. A 301 entry, or a path step 1 changed, gets exactly
- *    one 301, so `/mariadb-client/?ref=x` goes straight to
+ * 4. A 410 entry aborts with 410, which the exception handler renders as the
+ *    branded Error page. A 301 entry, or a path steps 1 and 2 changed, gets
+ *    exactly one 301, so `/mariadb-client/?ref=x` goes straight to
  *    `/mysql-client?ref=x#mariadb`.
  *
  * The `Location` is absolute and built from the canonical origin, never from
@@ -34,8 +39,9 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * It never invents a destination: a path goes to its own clean form or to the
  * target the map names, and an unknown path falls through to the router's
- * 404, never to the homepage. It leaves alone uppercase paths and `//x` (both
- * stay 404, with no evidence of inbound links), anything under `/vi/` the map
+ * 404, never to the homepage. It leaves alone uppercase letters after the
+ * language and `//x` (both stay 404, with no evidence of inbound links), a
+ * language the site does not have (`/zh-CN`), anything under `/vi/` the map
  * does not list (no Vietnamese URL was ever retired), and every method other
  * than `GET` and `HEAD`.
  *
@@ -82,7 +88,8 @@ class CanonicalizeRequest
     }
 
     /**
-     * The clean form of a path: no `/index.php` prefix and no trailing slash.
+     * The clean form of a path: no `/index.php` prefix, no trailing slash, and
+     * its language prefix as the site writes it.
      *
      * A path that would come out with a double slash is left as it is, so
      * `/index.php//x` stays a 404 like `//x` instead of turning into a
@@ -104,7 +111,33 @@ class CanonicalizeRequest
             return '/';
         }
 
+        $clean = $this->withCanonicalLocale($clean);
+
         return str_contains($clean, '//') ? $path : $clean;
+    }
+
+    /**
+     * `/pt-br/x` as `/pt-BR/x`, and `/en/x` as `/x`. Only the first segment is
+     * read, and only against the languages in `locales.json`.
+     */
+    private function withCanonicalLocale(string $path): string
+    {
+        [, $first, $rest] = explode('/', $path, 3) + [2 => null];
+        $rest = $rest === null ? '' : '/' . $rest;
+
+        foreach (Locales::all() as $code => $locale) {
+            if (strcasecmp($first, $locale['prefix'] ?? $code) !== 0) {
+                continue;
+            }
+
+            if ($locale['prefix'] === null) {
+                return $rest === '' ? '/' : $rest;
+            }
+
+            return '/' . $locale['prefix'] . $rest;
+        }
+
+        return $path;
     }
 
     /**
