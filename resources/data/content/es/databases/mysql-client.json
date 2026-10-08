@@ -33,11 +33,11 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Indica host, puerto y usuario, o pega una URL <code>mysql://</code>. Las cuentas MySQL 8 con <code>caching_sha2_password</code> conectan al primer intento. Deja la base vacía y elígela después: cambiar de base se hace directamente en la misma conexión.",
+                "Indica host, puerto y usuario, o pega una URL <code>mysql://</code>. Las cuentas MySQL 8 con <code>caching_sha2_password</code> se conectan al primer intento. Deja vacía la base de datos y elige una después: el cambio de base de datos se hace allí mismo, en la misma conexión.",
                 "Las conexiones nuevas empiezan con SSL en Preferred, que intenta TLS primero y solo recurre a texto sin cifrar tras fallar el handshake TLS. Elige Verify CA o Verify Identity con el certificado de tu proveedor para una comprobación estricta.",
-                "Para un servidor en red privada, conecta mediante un <network>túnel SSH con hosts de salto si los necesitas, un proxy SOCKS5, un túnel Cloudflare Access o tu propio comando de túnel</network>, como kubectl port-forward.",
+                "Para un servidor en una red privada, conéctate mediante un <network>túnel SSH con hosts de salto si los necesitas, un proxy SOCKS5, un túnel Cloudflare Access o tu propio comando de túnel</network>, como kubectl port-forward.",
                 "En Amazon RDS y Aurora, autentícate con <cloudAuth>AWS IAM</cloudAuth>, que firma un token nuevo en cada conexión, e importa instancias directamente desde tu cuenta AWS. Para Google Cloud SQL, TablePro descarga y ejecuta Cloud SQL Auth Proxy por ti.",
-                "¿Vienes de Sequel Ace? <importApps>Importar desde otra app</importApps> lee sus favoritos y, tras tu confirmación, las contraseñas guardadas en el Llavero."
+                "¿Vienes de Sequel Ace? <importApps>Import from Other App</importApps> lee sus favoritos y, tras tu confirmación, las contraseñas guardadas en el Llavero."
             ]
         },
         {
@@ -45,7 +45,7 @@
             "title": "Consulta y edita",
             "paragraphs": [
                 "El editor SQL completa nombres de tablas y columnas del esquema, incluidos alias y CTE, y ejecuta la sentencia bajo el cursor o el script completo. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE y EXPLAIN ANALYZE</explain> se representan como diagrama o árbol del plan; EXPLAIN Compare muestra los cambios entre dos ejecuciones.",
-                "Las ediciones quedan pendientes hasta guardar, y <editing>Preview SQL</editing> muestra primero las sentencias exactas. El guardado usa parámetros enlazados y se detiene si una sentencia cambiaría un número de filas distinto del previsto. También puedes editar una tabla sin clave primaria: se identifica la fila mediante todas las columnas.",
+                "Las ediciones quedan pendientes hasta guardar, y <editing>Preview SQL</editing> muestra primero las sentencias exactas. El guardado usa parámetros vinculados y se detiene si una sentencia cambiaría un número de filas distinto del previsto. También puedes editar una tabla sin clave primaria: se identifica la fila mediante todas las columnas.",
                 "Todas las sesiones usan utf8mb4, por lo que emoji y texto no latino conservan su contenido. Para una base cuyo texto escribió un cliente antiguo mediante Latin 1, la codificación UTF-8 vía Latin 1 lo lee como aquel cliente.",
                 "Las tablas particionadas muestran sus particiones y límites, como <code>VALUES LESS THAN (2024)</code>; los comentarios de tablas y columnas aparecen en la barra lateral y en los encabezados de la cuadrícula."
             ]
@@ -64,10 +64,10 @@
             "title": "Administrar",
             "paragraphs": [
                 "<administer>Users & Roles</administer> muestra los privilegios de cada cuenta hasta columnas individuales y prepara cada GRANT y REVOKE como SQL que lees antes de ejecutarlo.",
-                "El Server Dashboard enumera sesiones, métricas y consultas lentas, actualizadas cada pocos segundos. Cancela una consulta con <code>KILL QUERY</code> o termina una sesión con <code>KILL</code>. Una cuenta sin privilegio PROCESS solo ve sus sesiones.",
+                "El Server Dashboard enumera sesiones, métricas y consultas lentas, actualizadas cada pocos segundos. Cancela una consulta con <code>KILL QUERY</code> o termina una sesión con <code>KILL</code>. Una cuenta sin el privilegio PROCESS solo ve sus propias sesiones.",
                 "El mantenimiento ejecuta OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE y REPAIR TABLE, mostrando antes la sentencia.",
                 "<backup>Backup Dump</backup> ejecuta {dumpTool} y Restore Dump usa el cliente mysql, ambos por el túnel SSH de la conexión; instala primero las herramientas de cliente MySQL en tu Mac. La restauración sustituye los objetos nombrados por el volcado.",
-                "Para liberar un puesto del servidor cuando no estés, configura la conexión para liberarse tras unos minutos de inactividad; la siguiente consulta abre otra. TablePro la mantiene si la sesión contiene algo que se perdería al reconectar, como una transacción abierta o tabla temporal."
+                "Para devolver al servidor una conexión mientras no estás, configura la conexión para que se libere tras unos minutos de inactividad; la siguiente consulta abre una nueva. TablePro mantiene la conexión si la sesión contiene algo que se perdería al reconectar, como una transacción abierta o una tabla temporal."
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -83,7 +83,7 @@
             "id": "iphone",
             "title": "iPhone y iPad",
             "paragraphs": [
-                "En iPhone y iPad exploras tablas como tarjetas, filtras y ordenas, editas filas con clave primaria y ejecutas SQL en Consulta. Las conexiones ofrecen SSL desde Required hasta Verify Identity y túneles SSH con contraseña o clave. No se admiten hosts de salto SSH allí."
+                "En iPhone y iPad exploras tablas como tarjetas, filtras y ordenas, editas filas con clave primaria y ejecutas SQL en la pestaña Query. Las conexiones ofrecen SSL desde Required hasta Verify Identity y túneles SSH con contraseña o clave. Allí no se admiten hosts de salto SSH."
             ],
             "asset": "ios-table-browse"
         }
@@ -95,16 +95,16 @@
             "paragraphs": [
                 "MariaDB usa el mismo controlador que MySQL y las mismas opciones SSH, SSL/TLS y AWS IAM. Una URL <code>mariadb://</code> crea una conexión MariaDB.",
                 "Las columnas JSON, almacenadas como LONGTEXT en MariaDB, se abren en el editor JSON. Se detectan columnas virtuales y persistentes y se excluyen de INSERT y UPDATE generados. Las secuencias aparecen en la barra lateral en solo lectura; una tabla con versionado del sistema aparece como tabla normal.",
-                "Users & Roles, Server Dashboard, mantenimiento y copias con {dumpTool} funcionan igual que en MySQL."
+                "Users & Roles, el Server Dashboard, el mantenimiento de tablas y las copias con {dumpTool} funcionan igual que en MySQL."
             ]
         },
         {
             "engine": "tidb",
             "title": "TiDB",
             "paragraphs": [
-                "Apunta al puerto SQL del servidor TiDB, nunca a PD o TiKV. TiDB Cloud usa el mismo puerto; configura allí SSL Mode como Required.",
-                "Stop envía <code>KILL TIDB QUERY</code> para tu sesión. Detrás de TiProxy o un balanceador requiere Global Kill, activado por defecto en TiDB desde 6.1.",
-                "EXPLAIN y EXPLAIN ANALYZE muestran el plan TiDB como texto. Las restricciones CHECK aparecen en Structure desde TiDB 7.2 si el clúster las activa; se pueden crear claves foráneas y el mantenimiento ofrece ANALYZE TABLE. <administer>Users & Roles</administer> funciona en TiDB, sin el campo de límite de conexiones.",
+                "Apunta la conexión al puerto SQL del servidor TiDB, nunca a PD ni a TiKV. TiDB Cloud usa el mismo puerto; configura allí SSL Mode como Required.",
+                "Stop envía <code>KILL TIDB QUERY</code> para tu sesión. Detrás de TiProxy o de un balanceador de carga, eso requiere Global Kill, que TiDB activa por defecto desde la versión 6.1.",
+                "EXPLAIN y EXPLAIN ANALYZE muestran el plan TiDB como texto. Las restricciones CHECK aparecen en la pestaña Structure desde TiDB 7.2 si el clúster las activa; se pueden crear claves foráneas y el mantenimiento ofrece ANALYZE TABLE. <administer>Users & Roles</administer> funciona en TiDB, sin el campo de límite de conexiones.",
                 "Elige TiDB como tipo de conexión en lugar de MySQL para que la barra lateral, el selector de tipos y EXPLAIN sigan TiDB."
             ]
         },
@@ -112,19 +112,19 @@
             "engine": "oceanbase",
             "title": "OceanBase",
             "paragraphs": [
-                "Incluye el tenant en el usuario: <code>root@test</code> en un observer o <code>root@test#obcluster</code> por OBProxy, que escucha en 2883.",
-                "Al conectar se comprueba que el servidor se identifique como OceanBase; un host o puerto incorrecto falla de inmediato. El tiempo de consulta de TablePro sustituye el límite de sentencias de OceanBase.",
-                "EXPLAIN muestra el plan como texto. Una tabla sin clave primaria se edita comparando todas las columnas; guardar un cambio que afectaría a varias filas o a ninguna se detiene e informa.",
-                "Elige OceanBase como tipo: una conexión guardada como MySQL que acceda a OceanBase no obtiene estas funciones."
+                "Incluye el tenant en el usuario: <code>root@test</code> en un observer o <code>root@test#obcluster</code> por OBProxy, que escucha en el puerto 2883.",
+                "Al conectar se comprueba que el servidor se identifique como OceanBase; un host o puerto incorrecto falla de inmediato. El tiempo de espera de consulta de TablePro sustituye al límite de sentencias propio de OceanBase.",
+                "EXPLAIN muestra el plan como texto. Una tabla sin clave primaria se edita comparando todas las columnas; guardar un cambio que afectaría a varias filas o a ninguna se detiene y lo indica.",
+                "Elige OceanBase como tipo de conexión: una conexión guardada como MySQL que acceda a OceanBase no obtiene estas funciones."
             ]
         },
         {
             "engine": "databend",
             "title": "Databend",
             "paragraphs": [
-                "Databend conecta mediante su interfaz MySQL, no su API HTTP. Elige Databend como tipo; una conexión MySQL a un servidor Databend se rechaza y pide cambiar el tipo.",
-                "En Databend Cloud, pide a soporte que active el endpoint MySQL del almacén y copia host y puerto del diálogo Connect.",
-                "Structure edita columnas y restricciones CHECK y renombra tablas, vistas y columnas. EXPLAIN y EXPLAIN ANALYZE muestran el plan como texto; el mantenimiento ofrece ANALYZE TABLE.",
+                "Databend se conecta mediante su handler MySQL, no mediante su API HTTP. Elige Databend como tipo de conexión; una conexión MySQL que llega a un servidor Databend se rechaza y te pide que cambies el tipo.",
+                "En Databend Cloud, pide al soporte de Databend que active el endpoint MySQL del almacén y copia el host y el puerto del diálogo Connect.",
+                "La pestaña Structure edita columnas y restricciones CHECK y renombra tablas, vistas y columnas. EXPLAIN y EXPLAIN ANALYZE muestran el plan como texto; el mantenimiento ofrece ANALYZE TABLE.",
                 "Las celdas ARRAY, MAP y TUPLE no se pueden escribir desde texto. Cámbialas con UPDATE en el editor."
             ]
         }
@@ -133,11 +133,11 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace continúa Sequel Pro como app Mac para MySQL y MariaDB. Tiene un servidor MCP desactivado por defecto y de solo lectura salvo que lo cambies, sin chat IA. Encaja si solo usas MySQL y MariaDB."
+                "text": "Sequel Ace continúa Sequel Pro como app Mac para MySQL y MariaDB. Tiene un servidor MCP desactivado por defecto y de solo lectura salvo que lo cambies, y no tiene chat de IA. Encaja si solo usas MySQL y MariaDB."
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin se ejecuta en tu servidor web y funciona en cualquier navegador; cPanel lo incluye. Encaja para un servidor accesible solo desde un panel de hosting, donde una app de escritorio no tiene ruta a la base."
+                "text": "phpMyAdmin se ejecuta en tu servidor web y funciona en cualquier navegador; cPanel lo incluye. Encaja para un servidor accesible solo desde un panel de hosting, donde una app de escritorio no tiene forma de llegar a la base de datos."
             },
             {
                 "product": "heidisql",
@@ -149,18 +149,18 @@
     "faq": [
         {
             "id": "socket",
-            "question": "¿Puede TablePro conectar por un socket MySQL local?",
+            "question": "¿Puede TablePro conectarse mediante un socket MySQL local?",
             "answer": "No. Las conexiones usan TCP, así que el servidor necesita tener la red activada. Para acceder a un socket remoto, reenvíalo por un túnel SSH."
         },
         {
             "id": "mysqldump",
             "question": "¿Necesito instalar herramientas cliente de MySQL?",
-            "answer": "Solo para Backup Dump y Restore Dump, que ejecutan {dumpTool} y mysql. Conectar, consultar y editar usa el controlador incluido en la app."
+            "answer": "Solo para Backup Dump y Restore Dump, que ejecutan {dumpTool} y mysql. Para conectarse, consultar y editar se usa el controlador incluido en la app."
         },
         {
             "id": "er-diagram",
             "question": "¿Puedo diseñar esquemas en el diagrama ER?",
-            "answer": "No. El <erDiagram>diagrama ER</erDiagram> es una imagen de solo lectura del esquema que puedes exportar. Cambia las tablas en Structure o con SQL."
+            "answer": "No. El <erDiagram>diagrama ER</erDiagram> es una imagen de solo lectura del esquema que puedes exportar. Cambia las tablas en la pestaña Structure o con SQL."
         }
     ],
     "related": [

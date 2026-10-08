@@ -9,22 +9,22 @@
     },
     "header": {
         "title": "Compara TablePro con otros clientes de bases de datos",
-        "lead": "Cada comparación indica dónde destaca el otro cliente, cómo difiere TablePro y qué no hace. Los datos de otros productos proceden de fuentes oficiales y llevan la fecha de comprobación."
+        "lead": "Cada comparación indica dónde encaja mejor el otro cliente, en qué se diferencia TablePro y qué no hace TablePro. Los datos sobre otros productos proceden de fuentes oficiales y llevan la fecha en que se comprobaron."
     },
     "bySituation": {
         "title": "Elige según tu situación",
         "lead": "Una línea por cliente, con enlace a la comparación completa.",
         "tablepro": "Elige TablePro si quieres un cliente de código abierto con una app nativa para Mac y otra independiente para iPhone y iPad. El asistente de IA y el servidor MCP son gratuitos en la app para Mac, y TablePro importa las conexiones guardadas de {apps}.",
         "items": {
-            "tableplus": "Elige TablePlus si también trabajas en Windows o Linux, o conectas a Vertica o Greenplum.",
-            "dbeaver": "Elige DBeaver si quieres un cliente gratuito para Windows, macOS y Linux que conecte a cualquier motor con controlador JDBC.",
-            "datagrip": "Elige DataGrip si quieres un IDE de bases JetBrains con control de versiones integrado y tu trabajo es no comercial o ya pagas sus herramientas.",
-            "navicat": "Elige Navicat si necesitas modelado de datos o Navicat Cloud para equipo y una licencia perpetua encaja en tu presupuesto.",
+            "tableplus": "Elige TablePlus si también trabajas en Windows o Linux, o te conectas a Vertica o Greenplum.",
+            "dbeaver": "Elige DBeaver si quieres un cliente gratuito para Windows, macOS y Linux que se conecte a cualquier motor con controlador JDBC.",
+            "datagrip": "Elige DataGrip si quieres un IDE de bases de datos de JetBrains con control de versiones integrado, y tu trabajo no es comercial o ya pagas por herramientas de JetBrains.",
+            "navicat": "Elige Navicat si necesitas modelado de datos o Navicat Cloud para trabajar en equipo, y una licencia perpetua encaja en tu presupuesto.",
             "beekeeper-studio": "Elige Beekeeper Studio si quieres un cliente de código abierto que funcione igual en Windows, macOS y Linux.",
             "sequel-ace": "Elige Sequel Ace si solo usas MySQL y MariaDB y quieres una app Mac gratuita y de código abierto del Mac App Store.",
             "sequel-pro": "¿Sigues con Sequel Pro? Su última versión, {status.version}, es del {status.date}. Sequel Ace lo continúa y TablePro importa conexiones de Sequel Ace.",
             "postico": "Elige Postico si solo usas PostgreSQL y quieres una app Mac especializada con licencia de pago único.",
-            "heidisql": "Elige HeidiSQL si ya lo usas en Windows y quieres el mismo cliente gratuito en Mac con Apple silicon.",
+            "heidisql": "Elige HeidiSQL si ya lo usas en Windows y quieres el mismo cliente gratuito en un Mac con Apple silicon.",
             "phpmyadmin": "Elige phpMyAdmin si gestionas MySQL o MariaDB desde navegador, por ejemplo en un hosting que lo ofrece con cPanel."
         }
     },
@@ -40,7 +40,7 @@
     },
     "switching": {
         "title": "Cambiar a TablePro",
-        "body": "TablePro importa conexiones guardadas de {apps}, incluidas contraseñas. Las conexiones Navicat vienen de un archivo exportado en Navicat.",
+        "body": "TablePro importa conexiones guardadas de {apps}, incluidas las contraseñas guardadas. Las conexiones Navicat vienen de un archivo exportado en Navicat.",
         "none": "No hay importador para {others}. Añade las conexiones a mano o pega una URL.",
         "link": "Importa tus conexiones",
         "docs": "Guía de cambio en la documentación"
@@ -48,7 +48,7 @@
     "method": {
         "title": "Cómo se escriben estas páginas",
         "paragraphs": [
-            "Cada dato de otro producto procede de una fuente oficial: su web, documentación, repositorio, notas de versión o ficha de tienda, o el gestor de paquetes o proveedor de plataforma que lo distribuye. Cada página enumera fuentes con fecha de comprobación.",
+            "Cada dato de otro producto procede de una fuente oficial: su web, documentación, repositorio, notas de versión o ficha de tienda, o el gestor de paquetes o proveedor de plataforma que lo distribuye. Cada página enumera sus fuentes con la fecha en que se comprobaron.",
             "Los datos de TablePro son los mismos que en el resto del sitio; precios, plataformas y funciones coinciden con las páginas correspondientes.",
             "No hay cifras de velocidad, memoria o inicio porque no se encontró ninguna medición reproducible de estos clientes que citar.",
             "Los precios y funciones cambian. Si algo está desactualizado, <issues>abre una incidencia en GitHub</issues>."
@@ -70,7 +70,7 @@
         "glance": {
             "title": "De un vistazo",
             "caption": "TablePro y {name}, comparados el {date}. Las fuentes están al final.",
-            "feature": "Compared",
+            "feature": "Comparación",
             "more": "Más sobre {name}"
         },
         "rows": {
@@ -90,7 +90,7 @@
             "no": "No",
             "partial": "Parcial",
             "edition": "En la edición {edition}",
-            "since": "Since version {version}",
+            "since": "Desde la versión {version}",
             "sinceDated": "Desde la versión {version}, {date}",
             "source": "Fuente",
             "none": "No aplica"
@@ -132,7 +132,7 @@
             "free": "Gratis",
             "labelled": "{label}: {price}",
             "amount": {
-                "once": "{amount} una vez",
+                "once": "{amount}, pago único",
                 "month": "{amount} al mes",
                 "year": "{amount} al año",
                 "none": "{amount}"
@@ -172,21 +172,21 @@
         },
         "tablepro": {
             "technology": "Swift, con controladores nativos de bases de datos",
-            "priceFree": "Gratis. Los planes de pago añaden funciones opcionales en Mac.",
-            "starter": "{monthly} al mes, {yearly} al año o {lifetime} una vez",
-            "team": "{monthly} al mes, {yearly} al año o {lifetime} una vez, por puesto, mínimo {min} puestos",
-            "iosPrice": "La app para iPhone y iPad es gratuita, sin compras integradas.",
+            "priceFree": "Uso gratuito. Los planes de pago añaden funciones opcionales a la app para Mac.",
+            "starter": "{monthly} al mes, {yearly} al año o {lifetime} en un solo pago",
+            "team": "{monthly} al mes, {yearly} al año o {lifetime} en un solo pago, por puesto, mínimo {min} puestos",
+            "iosPrice": "La app para iPhone y iPad es gratuita, sin compras dentro de la app.",
             "licence": "Sí: {licence}, incluido el código de las funciones de pago",
             "databases": "{engines} y más",
             "databasesLink": "Bases de datos compatibles",
-            "ai": "Gratis en Mac, con el proveedor IA que elijas, en nube o en tu Mac",
-            "mcp": "Gratis en Mac. Solo escucha en tu Mac y cada conexión define lo que pueden hacer apps externas",
-            "ios": "App gratuita separada, sin compras integradas",
+            "ai": "Gratis en la app para Mac, con el proveedor de IA que elijas, en la nube o en tu Mac",
+            "mcp": "Gratis en la app para Mac. Solo escucha en tu Mac, y cada conexión decide lo que pueden hacer las apps externas",
+            "ios": "App gratuita independiente, sin compras dentro de la app",
             "sync": "iCloud Sync: incluido en {tier} en Mac, gratis en iPhone y iPad"
         },
         "import": {
-            "yes": "TablePro importa conexiones de {name}, incluidas contraseñas.",
-            "yesFile": "TablePro importa conexiones de {name} desde un archivo {format} exportado en {name}, incluidas contraseñas.",
+            "yes": "TablePro importa conexiones de {name}, incluidas las contraseñas guardadas.",
+            "yesFile": "TablePro importa conexiones de {name} desde un archivo {format} exportado en {name}, incluidas las contraseñas guardadas.",
             "noPasswords": "TablePro importa conexiones de {name}, pero no sus contraseñas.",
             "none": "TablePro no tiene importador para {name}.",
             "link": "Cómo cambiar"
@@ -217,7 +217,7 @@
             "trademarks": "TablePro es un proyecto independiente de código abierto, sin afiliación con los creadores de los productos comparados aquí ni respaldo por su parte. Los nombres de producto son marcas de sus respectivos propietarios."
         },
         "cta": {
-            "body": "TablePro se descarga gratis. Los planes de pago añaden funciones opcionales en Mac.",
+            "body": "TablePro se descarga gratis. Los planes de pago añaden funciones opcionales a la app para Mac.",
             "pricing": "Ver precios",
             "hub": "Todas las comparaciones"
         },
