@@ -26,27 +26,27 @@
             "id": "connect",
             "title": "Connectez-vous et authentifiez-vous",
             "paragraphs": [
-                "Saisissez hôte et port du coordinateur et un <ui>Nom d’utilisateur</ui> (Username), sous lequel tournent les requêtes. <ui>Catalog</ui> et <ui>Schéma</ui> (Schema) sont des points initiaux facultatifs ; laissez Catalogue vide pour tous les parcourir. Un <ui>Fuseau horaire</ui> (Time Zone) IANA dans Options définit celui de la session.",
-                "Authentifiez-vous par mot de passe en HTTP Basic pour LDAP ou fichier de mots de passe, ou jeton JWT comme identifiant bearer. Les deux ne passent que par TLS : avec SSL Désactivé, une connexion qui en contient est refusée avant tout envoi. Certificat client et clé dans SSL ajoutent TLS mutuel.",
-                "SSL commence Désactivé, soit HTTP en clair ; les autres modes imposent TLS sans repli en clair, et le port 443 active Vérifier l’identité. Une redirection d’un proxy devant le coordinateur n’est jamais suivie ; l’erreur nomme sa destination. Accédez derrière un bastion par <network>tunnel SSH</network> et importez une URL <code>trino://</code> avec <ui>Importer depuis une URL…</ui> (Import from URL…)."
+                "Saisissez hôte et port du coordinateur et un <ui>Nom d’utilisateur</ui> (Username), sous lequel tournent les requêtes. <ui>Catalog</ui> et <ui>Schéma</ui> (Schema) sont des points initiaux facultatifs ; laissez Catalogue vide pour tous les parcourir. Un <ui>Fuseau horaire</ui> (Time Zone) IANA dans Options définit celui de la session.",
+                "Authentifiez-vous par mot de passe en HTTP Basic pour LDAP ou fichier de mots de passe, ou jeton JWT comme identifiant bearer. Les deux ne passent que par TLS : avec SSL sur Disabled, une connexion qui en contient est refusée avant tout envoi. Certificat client et clé dans SSL ajoutent TLS mutuel.",
+                "SSL commence sur Disabled, soit HTTP en clair ; les autres modes imposent TLS sans repli en clair, et le port 443 active Verify Identity. Une redirection d’un proxy devant le coordinateur n’est jamais suivie ; l’erreur nomme sa destination. Accédez derrière un bastion par <network>tunnel SSH</network> et importez une URL <code>trino://</code> avec <ui>Importer depuis une URL…</ui> (Import from URL…)."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez entre catalogues",
             "paragraphs": [
-                "La connexion ouvre un catalogue et schéma ; toute requête peut toujours nommer <code>catalog.schema.table</code> en entier, comme une jointure Hive-PostgreSQL. La barre latérale développe les catalogues en schémas et tables, avec vues matérialisées près des tables et vues, et comptages issus de <code>SHOW STATS</code>.",
-                "<code>bigint</code> et <code>decimal</code> se lisent en texte exact, pas en flottant. <code>varbinary</code> s’affiche en hexadécimal, <code>array</code>, <code>map</code> et <code>row</code> en JSON ; les horodatages conservent la valeur du serveur.",
-                "<explain>Expliquer</explain> propose Logique, Distribué, IO, Valider et Analyser. Valider vérifie sans exécution, Analyser exécute et rapporte les temps réels ; tous les plans reviennent en texte brut.",
-                "<code>SET SESSION</code> dure le reste de la connexion. <ui>Requête > Annuler la requête</ui> (Query > Cancel Query) demande au coordinateur de terminer la requête ; c’est ainsi qu’on l’arrête, car le délai de connexion n’atteint pas Trino.",
-                "Les <editing>modifications de cellules</editing> deviennent INSERT, UPDATE et DELETE, chaque valeur portant son type Trino. Trino ne rapporte pas de clés primaires ; toutes les colonnes lues sont donc comparées, sans transaction pour annuler. Modifier une de deux lignes identiques change les deux ; vérifiez les doublons d’abord."
+                "La connexion ouvre un catalogue et schéma ; toute requête peut toujours nommer <code>catalog.schema.table</code> en entier, comme une jointure Hive-PostgreSQL. La barre latérale développe les catalogues en schémas et tables, avec vues matérialisées près des tables et vues, et comptages issus de <code>SHOW STATS</code>.",
+                "<code>bigint</code> et <code>decimal</code> se lisent en texte exact, pas en flottant. <code>varbinary</code> s’affiche en hexadécimal, <code>array</code>, <code>map</code> et <code>row</code> en JSON ; les horodatages conservent la valeur du serveur.",
+                "<explain>Explain</explain> propose Logical, Distributed, IO, Validate et Analyze. Validate vérifie sans exécution, Analyze exécute et rapporte les temps réels ; tous les plans reviennent en texte brut.",
+                "<code>SET SESSION</code> dure le reste de la connexion. <ui>Requête > Annuler la requête</ui> (Query > Cancel Query) demande au coordinateur de terminer la requête ; c’est ainsi qu’on l’arrête, car le délai de connexion n’atteint pas Trino.",
+                "Les <editing>modifications de cellules</editing> deviennent INSERT, UPDATE et DELETE, chaque valeur portant son type Trino. Trino ne rapporte pas de clés primaires ; toutes les colonnes lues sont donc comparées, sans transaction pour annuler. Modifier une de deux lignes identiques change les deux ; vérifiez les doublons d’abord."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "L’<structure>onglet Structure</structure> crée des tables et ajoute, supprime, renomme et change les types des colonnes en autocommit. Le connecteur décide si le changement s’exécute ; le changement de type est le moins accepté."
+                "L’<structure>onglet Structure</structure> crée des tables et ajoute, supprime, renomme et change les types des colonnes en autocommit. Le connecteur décide si le changement s’exécute ; le changement de type est le moins accepté."
             ]
         },
         {
@@ -62,12 +62,12 @@
     "faq": [
         {
             "id": "not-supported",
-            "question": "Pourquoi une instruction valide retourne-t-elle NOT_SUPPORTED ?",
+            "question": "Pourquoi une instruction valide retourne-t-elle NOT_SUPPORTED ?",
             "answer": "Le connecteur du catalogue n’implémente pas l’opération, quelle que soit la grammaire Trino. Un connecteur en lecture seule refuse toute écriture. Consultez sa documentation pour ce qu’il prend en charge."
         },
         {
             "id": "encrypted-key",
-            "question": "Puis-je utiliser une clé client chiffrée ?",
+            "question": "Puis-je utiliser une clé client chiffrée ?",
             "answer": "Non. Les connexions Trino n’ont pas de champ de phrase secrète. Créez une copie déchiffrée avec <code>openssl pkey -in encrypted.key -out client.key</code> et choisissez ce fichier."
         }
     ],

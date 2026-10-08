@@ -23,7 +23,7 @@
             "points": [
                 "ガターに文のマーカーを表示し、それぞれに実行ボタンを用意。",
                 "正規表現に対応した検索と置換。",
-                "移動、レジスターとマクロに対応する Vim モード。<code>:w</code> でクエリを実行。",
+                "移動、レジスターとマクロに対応する Vim mode。<code>:w</code> でクエリを実行。",
                 "<code>.sql</code> ファイルをクエリタブとして開き、編集し、保存。"
             ],
             "asset": "mac-query-autocomplete"
@@ -40,7 +40,7 @@
         },
         {
             "id": "open-quickly",
-            "title": "クイックオープンとタブ",
+            "title": "Open Quickly とタブ",
             "paragraphs": [
                 "Open Quickly（<kbd>⌘⇧O</kbd>）は、開いているすべての接続からテーブル、ビュー、システムテーブルを探し、保存済みと最近のクエリも検索します。各タブは独自の SQL、並べ替え、フィルターとカラム幅を保持し、アプリを終了して再び開いても復元されます。<kbd>⌃Tab</kbd> で直近に使ったタブを切り替えられます。"
             ]
@@ -78,7 +78,7 @@
                 },
                 {
                     "id": "query-insights",
-                    "title": "クエリ分析",
+                    "title": "Query Insights",
                     "paragraphs": [
                         "Query Insights はこの Mac のクエリ履歴を読み、最も多く実行したクエリ、最も遅いクエリ、失敗したクエリ、前の期間より遅くなったクエリを順位付けします。クエリは形式ごとにまとめるため、異なる値で実行した同じ文は一つとして数えます。数値は Mac 上で計算し、アップロードしません。"
                     ],
@@ -98,7 +98,7 @@
             "blocks": [
                 {
                     "id": "result-charts",
-                    "title": "結果グラフ",
+                    "title": "Result Charts",
                     "paragraphs": [
                         "結果を棒、折れ線、面、散布図として描けます。日付には時間軸を使い、選んだカラムの値ごとに系列を作成します。グラフは先頭 {chartInspectedRows} 行から最大 {chartPoints} 点、{chartSeries} 系列を描画し、すべてを描けない場合はツールバーに表示します。"
                     ],
@@ -165,7 +165,7 @@
             "ios": "no"
         },
         {
-            "label": "クイックオープン",
+            "label": "Open Quickly",
             "ios": "no"
         },
         {
@@ -173,12 +173,12 @@
             "ios": "no"
         },
         {
-            "label": "クエリ分析",
+            "label": "Query Insights",
             "paid": "query-insights",
             "ios": "no"
         },
         {
-            "label": "結果グラフ",
+            "label": "Result Charts",
             "paid": "result-charts",
             "ios": "no"
         },
@@ -214,7 +214,7 @@
             "docs": "/features/explain-visualization"
         },
         {
-            "label": "クエリ分析",
+            "label": "Query Insights",
             "docs": "/features/query-insights"
         },
         {

@@ -44,7 +44,7 @@
         },
         {
             "id": "schema",
-            "title": "구조",
+            "title": "Structure",
             "paragraphs": [
                 "<structure>Structure 탭</structure>은 자동 커밋으로 테이블 생성과 열 추가·삭제·이름 변경·유형 변경을 합니다. 허용 여부는 카탈로그 커넥터가 결정하며 유형 변경을 지원하는 커넥터는 가장 적습니다."
             ]
@@ -62,7 +62,7 @@
     "faq": [
         {
             "id": "not-supported",
-            "question": "유효한 구문이 NOT_SUPPORTED로 반환되는 이유는 무엇인가요?",
+            "question": "유효한 명령문이 NOT_SUPPORTED로 반환되는 이유는 무엇인가요?",
             "answer": "Trino 문법과 관계없이 해당 카탈로그 커넥터가 작업을 구현하지 않았기 때문입니다. 읽기 전용 커넥터는 모든 쓰기를 거부합니다. 지원 범위는 커넥터 문서를 확인하세요."
         },
         {

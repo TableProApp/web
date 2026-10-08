@@ -5,5 +5,5 @@ export default {
     "message": "Une licence ajoute les fonctions payantes et finance la prochaine version de TablePro.",
     "short": "Une licence pour aider TablePro",
     "cta": "Acheter une licence",
-    "licensed": "Déjà une licence ? Masquer"
+    "licensed": "Déjà une licence ? Masquer"
 } satisfies Messages['banner'];

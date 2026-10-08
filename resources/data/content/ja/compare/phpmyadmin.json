@@ -15,7 +15,7 @@
         "tablepro": [
             "サーバーには何もインストールせず、Mac から直接か SSH で接続して作業したい。",
             "PostgreSQL、SQL Server、SQLite、Redis なども使う。",
-            "本番接続を Read-Only にしたり、書き込み前に Touch ID を求めたり、接続ごとのセーフモードが欲しい。",
+            "本番接続を Read-Only にしたり、書き込み前に Touch ID を求めたり、接続ごとの Safe Mode が欲しい。",
             "データを頻繁に出し入れする。CSV、JSON、XLSX や SQL のインポート・エクスポートは無料です。",
             "Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。"
         ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "接続ごとに Silent から Read-Only まで <link>セーフモード</link>を設定し、厳しいレベルは Touch ID を使います。",
+                "text": "接続ごとに Silent から Read-Only まで <link>Safe Mode</link> を設定し、厳しいレベルは Touch ID を使います。",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -174,7 +174,7 @@
         "steps": [],
         "after": [
             "サイトのコードが Mac にあれば、<ui>File > Import > Open Project Folder…</ui> が wp-config.php や .env などの設定を読み、入力済み接続フォームを開きます。",
-            "本番データベースは始める前に接続のセーフモードを設定します。",
+            "本番データベースは始める前に接続の Safe Mode を設定します。",
             "phpMyAdmin の SQL エクスポートは gzip 圧縮の有無に関わらず MySQL・MariaDB 接続にインポートできます。"
         ],
         "docs": null

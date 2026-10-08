@@ -15,7 +15,7 @@
         "tablepro": [
             "서버에 설치하지 않고 Mac에서 직접·SSH 연결로 작업하고 싶습니다.",
             "PostgreSQL, SQL Server, SQLite, Redis 등도 사용합니다.",
-            "운영 연결 Read-Only나 쓰기 전 Touch ID 등 연결별 안전 모드를 원합니다.",
+            "운영 연결 Read-Only나 쓰기 전 Touch ID 등 연결별 Safe Mode를 원합니다.",
             "데이터를 자주 옮깁니다. CSV·JSON·XLSX·SQL 파일 가져오기·내보내기는 무료입니다.",
             "Mac 앱에서 무료 AI 도우미·MCP 서버를 원합니다."
         ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "연결마다 Silent부터 Read-Only까지 <link>안전 모드</link>가 있고 엄격한 수준은 Touch ID를 씁니다.",
+                "text": "연결마다 Silent부터 Read-Only까지 <link>Safe Mode</link>가 있고 엄격한 수준은 Touch ID를 씁니다.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -174,7 +174,7 @@
         "steps": [],
         "after": [
             "사이트 코드가 Mac에 있으면 <ui>파일 > 가져오기 > 프로젝트 폴더 열기…</ui>(File > Import > Open Project Folder…)가 wp-config.php·.env 같은 파일의 데이터베이스 설정을 읽어 채워진 폼을 엽니다.",
-            "운영 데이터베이스는 시작 전 연결 안전 모드를 설정하세요.",
+            "운영 데이터베이스는 시작 전 연결 Safe Mode를 설정하세요.",
             "phpMyAdmin SQL 내보내기 파일은 gzip 여부와 관계없이 MySQL·MariaDB 연결에 가져옵니다."
         ],
         "docs": null
@@ -189,7 +189,7 @@
         {
             "id": "sql-import",
             "question": "phpMyAdmin에서 내보낸 SQL 파일을 가져오나요?",
-            "answer": "네. .sql·.sql.gz 파일을 받아 선택 연결에서 구문을 실행합니다. <link>가져오기·내보내기 읽기</link>.",
+            "answer": "네. .sql·.sql.gz 파일을 받아 선택 연결에서 명령문을 실행합니다. <link>가져오기·내보내기 읽기</link>.",
             "href": "/features/import-export"
         },
         {

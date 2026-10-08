@@ -31,7 +31,7 @@
     "rows": {
         "vcs": {
             "label": "Versionsverwaltung",
-            "tablepro": "Kostenlos für einen verknüpften SQL-Ordner: Git-Statusbuchstaben, Commit-Verlauf jeder Datei mit nebeneinander angezeigten Änderungen, Diese Version wiederherstellen und Änderungen verwerfen. Kein Staging, Commit, Push oder Branching"
+            "tablepro": "Kostenlos für einen verknüpften SQL-Ordner: Git-Statusbuchstaben, Commit-Verlauf jeder Datei mit nebeneinander angezeigten Änderungen, Restore This Version und Discard Changes. Kein Staging, Commit, Push oder Branching"
         }
     },
     "stronger": {
@@ -100,7 +100,7 @@
                 "href": "/features/ai-mcp"
             },
             {
-                "text": "Beide haben einen MCP-Server. <link>Der von TablePro</link> ist kostenlos, lauscht nur auf deinem Mac und lässt jede Verbindung festlegen, was externe Apps dürfen: Gesperrt, Nur lesen oder Lesen und schreiben.",
+                "text": "Beide haben einen MCP-Server. <link>Der von TablePro</link> ist kostenlos, lauscht nur auf deinem Mac und lässt jede Verbindung festlegen, was externe Apps dürfen: Blocked, Read Only oder Read & Write.",
                 "cite": [
                     "cells.mcp"
                 ],
@@ -108,7 +108,7 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>Vergleichen und synchronisieren</link> vergleicht die Struktur oder Daten zweier Datenbanken und erstellt das Skript, das eine an die andere anpasst. Die Funktion gehört zu Starter.",
+                "text": "<link>Compare & Sync</link> vergleicht die Struktur oder Daten zweier Datenbanken und erstellt das Skript, das eine an die andere anpasst. Die Funktion gehört zu Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -177,7 +177,7 @@
         {
             "id": "mcp",
             "question": "DataGrip hat ebenfalls einen MCP-Server. Was macht der von TablePro?",
-            "answer": "Er lässt Clients wie Claude Code und Cursor deine gespeicherten TablePro-Verbindungen nutzen, ohne ein Passwort zu sehen. Er lauscht nur auf 127.0.0.1, jede Verbindung ist für externe Apps schreibgeschützt, bis du das änderst, und er ist kostenlos. DataGrip bietet seinen seit Version {cells.mcp.version}.",
+            "answer": "Er lässt Clients wie Claude Code und Cursor deine gespeicherten TablePro-Verbindungen nutzen, ohne ein Passwort zu sehen. Er lauscht nur auf 127.0.0.1, jede Verbindung steht für externe Apps auf Read Only, bis du das änderst, und er ist kostenlos. DataGrip bietet seinen seit Version {cells.mcp.version}.",
             "href": null
         },
         {

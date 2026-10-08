@@ -23,7 +23,7 @@
             "points": [
                 "Indicatori delle istruzioni nel margine, ciascuno con un proprio pulsante di esecuzione.",
                 "Trova e sostituisci, con espressioni regolari.",
-                "Modalità Vim con movimenti, registri e macro, dove <code>:w</code> esegue la query.",
+                "Vim mode con movimenti, registri e macro, dove <code>:w</code> esegue la query.",
                 "I file <code>.sql</code> si aprono, modificano e salvano come schede di query."
             ],
             "asset": "mac-query-autocomplete"
@@ -34,15 +34,15 @@
             "paragraphs": [
                 "Scrivi <code>:customer_id</code> in una query e TablePro chiede il valore e il tipo prima di eseguirla, associando il valore nativamente quando il driver lo supporta.",
                 "Ogni query eseguita entra in una cronologia locale (<kbd>⌘Y</kbd>) con ricerca a testo completo e filtri per origine, errori e intervallo temporale. Per impostazione predefinita conserva {historyEntries} voci per {historyDays} giorni e non viene mai sincronizzata.",
-                "Salva una query con una parola chiave come <code>dau</code>, poi scrivila nell’editor per espandere la query. Le query salvate conservano una cronologia delle versioni. Una cartella SQL collegata sincronizza una cartella di file <code>.sql</code> con la barra laterale in entrambe le direzioni, con lettere di stato Git per ogni file; è gratuita e distinta da Cartelle collegate, la funzionalità Starter per file di connessione condivisi."
+                "Salva una query con una parola chiave come <code>dau</code>, poi scrivila nell’editor per espandere la query. Le query salvate conservano una cronologia delle versioni. Una cartella SQL collegata sincronizza una cartella di file <code>.sql</code> con la barra laterale in entrambe le direzioni, con lettere di stato Git per ogni file; è gratuita e distinta da Linked Folders, la funzionalità Starter per file di connessione condivisi."
             ],
             "asset": "mac-query-parameters-history"
         },
         {
             "id": "open-quickly",
-            "title": "Apri rapidamente e schede",
+            "title": "Open Quickly e schede",
             "paragraphs": [
-                "Apri rapidamente (<kbd>⌘⇧O</kbd>) trova tabelle, viste e tabelle di sistema in tutte le connessioni aperte, insieme alle query salvate e recenti. Ogni scheda mantiene il proprio SQL, ordinamento, filtri e larghezze delle colonne; le schede tornano quando chiudi e riapri l’app. <kbd>⌃Tab</kbd> passa tra le schede usate per ultime."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) trova tabelle, viste e tabelle di sistema in tutte le connessioni aperte, insieme alle query salvate e recenti. Ogni scheda mantiene il proprio SQL, ordinamento, filtri e larghezze delle colonne; le schede tornano quando chiudi e riapri l’app. <kbd>⌃Tab</kbd> passa tra le schede usate per ultime."
             ]
         },
         {
@@ -54,7 +54,7 @@
                     "id": "explain",
                     "title": "EXPLAIN ed EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> mostra il piano di una query come diagramma, albero con barre di costo o output grezzo del motore. Scegli un’esecuzione precedente della stessa query come riferimento e Confronta indica se è rallentata e se il piano è cambiato; una differenza inferiore al {explainNoise}% è considerata rumore. Entrambi sono gratuiti."
+                        "<kbd>⌥⌘E</kbd> mostra il piano di una query come diagramma, albero con barre di costo o output grezzo del motore. Scegli un’esecuzione precedente della stessa query come riferimento e Compare indica se è rallentata e se il piano è cambiato; una differenza inferiore al {explainNoise}% è considerata rumore. Entrambi sono gratuiti."
                     ],
                     "engines": [
                         {
@@ -78,9 +78,9 @@
                 },
                 {
                     "id": "query-insights",
-                    "title": "Analisi delle query",
+                    "title": "Query Insights",
                     "paragraphs": [
-                        "Analisi delle query legge la cronologia di questo Mac e classifica ciò che trova: le query più eseguite, le più lente, quelle che falliscono e quelle rallentate rispetto al periodo precedente. Le query vengono raggruppate per forma, quindi un’istruzione eseguita con valori diversi conta una sola volta. I numeri vengono calcolati sul tuo Mac e non vengono mai caricati."
+                        "Query Insights legge la cronologia di questo Mac e classifica ciò che trova: le query più eseguite, le più lente, quelle che falliscono e quelle rallentate rispetto al periodo precedente. Le query vengono raggruppate per forma, quindi un’istruzione eseguita con valori diversi conta una sola volta. I numeri vengono calcolati sul tuo Mac e non vengono mai caricati."
                     ],
                     "paid": [
                         "query-insights"
@@ -98,7 +98,7 @@
             "blocks": [
                 {
                     "id": "result-charts",
-                    "title": "Grafici dei risultati",
+                    "title": "Result Charts",
                     "paragraphs": [
                         "Rappresenta un risultato con un grafico a barre, a linee, ad area o a dispersione, con un asse temporale per le date e una serie per ogni valore di una colonna scelta. Un grafico mostra fino a {chartPoints} punti e {chartSeries} serie dalle prime {chartInspectedRows} righe; la barra degli strumenti segnala quando la rappresentazione viene limitata."
                     ],
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "Su iPhone e iPad",
             "paragraphs": [
-                "L’app per iPhone e iPad ha una scheda Query con evidenziazione SQL, Esegui e Interrompi (<kbd>⌘↩</kbd> con una tastiera) e una cronologia delle ultime {historyEntriesIos} query eseguite sul dispositivo. Puoi copiare o condividere un risultato come JSON, CSV o istruzioni SQL INSERT.",
+                "L’app per iPhone e iPad ha una scheda Query con evidenziazione SQL, Run e Stop (<kbd>⌘↩</kbd> con una tastiera) e una cronologia delle ultime {historyEntriesIos} query eseguite sul dispositivo. Puoi copiare o condividere un risultato come JSON, CSV o istruzioni SQL INSERT.",
                 "Non ha completamento automatico, formattazione, parametri, EXPLAIN o query salvate e conserva al massimo {resultBufferIos} righe di un risultato; aggiungi un LIMIT per vedere la porzione necessaria."
             ],
             "links": [
@@ -149,7 +149,7 @@
         {
             "label": "Editor SQL con completamento automatico e formattazione",
             "ios": "partial",
-            "iosNote": "Evidenziazione, Esegui e Interrompi; nessun completamento automatico"
+            "iosNote": "Evidenziazione, Run e Stop; nessun completamento automatico"
         },
         {
             "label": "Parametri di query",
@@ -165,7 +165,7 @@
             "ios": "no"
         },
         {
-            "label": "Apri rapidamente",
+            "label": "Open Quickly",
             "ios": "no"
         },
         {
@@ -173,12 +173,12 @@
             "ios": "no"
         },
         {
-            "label": "Analisi delle query",
+            "label": "Query Insights",
             "paid": "query-insights",
             "ios": "no"
         },
         {
-            "label": "Grafici dei risultati",
+            "label": "Result Charts",
             "paid": "result-charts",
             "ios": "no"
         },
@@ -193,7 +193,7 @@
     ],
     "limits": [
         "Una query restituisce al massimo {rowCap} righe, a meno che non aumenti il limite in Impostazioni, fino a {rowCapMax}, o la esegua con <kbd>⌘⌥⏎</kbd>. Un LIMIT scritto da te prevale sempre.",
-        "La cronologia e Analisi delle query riguardano solo questo Mac: non includono le query eseguite su un altro Mac o su iPhone.",
+        "La cronologia delle query e Query Insights riguardano solo questo Mac: non includono le query eseguite su un altro Mac o su iPhone.",
         "Il comando shell <code>tablepro</code> apre connessioni e file nell’app. Non esegue query dal terminale."
     ],
     "docs": [
@@ -214,7 +214,7 @@
             "docs": "/features/explain-visualization"
         },
         {
-            "label": "Analisi delle query",
+            "label": "Query Insights",
             "docs": "/features/query-insights"
         },
         {

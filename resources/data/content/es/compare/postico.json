@@ -14,8 +14,8 @@
     "shortAnswer": {
         "tablepro": [
             "También trabajas con MySQL, SQL Server, SQLite, Redis o MongoDB, además de PostgreSQL.",
-            "También administras el servidor. Usuarios y roles, un panel del servidor que permite finalizar sesiones, VACUUM y las copias de seguridad con pg_dump son gratuitos en la app para Mac.",
-            "Optimizas consultas. EXPLAIN muestra el plan como diagrama y la comparación de EXPLAIN contrasta un plan nuevo con una referencia.",
+            "También administras el servidor. Users & Roles, un Server Dashboard que permite finalizar sesiones, VACUUM y las copias de seguridad con pg_dump son gratuitos en la app para Mac.",
+            "Optimizas consultas. EXPLAIN muestra el plan como diagrama y EXPLAIN Compare contrasta un plan nuevo con una referencia.",
             "Quieres una app gratuita para iPhone y iPad que se conecte a PostgreSQL.",
             "Quieres el asistente de IA y el servidor MCP sin coste."
         ],
@@ -31,7 +31,7 @@
     "rows": {
         "administration": {
             "label": "Administración del servidor",
-            "tablepro": "Gratis en la app para Mac: usuarios y roles, panel del servidor, mantenimiento como VACUUM y copias de seguridad con pg_dump, que debes instalar"
+            "tablepro": "Gratis en la app para Mac: Users & Roles, Server Dashboard, mantenimiento como VACUUM y copias de seguridad con pg_dump, que debes instalar"
         },
         "macAppStore": {
             "label": "Mac App Store",
@@ -86,7 +86,7 @@
                 "href": "/databases"
             },
             {
-                "text": "La <link>administración del servidor</link> está incluida en la app gratuita: usuarios y roles con permisos hasta el nivel de columna, un panel del servidor con sesiones y consultas lentas, y VACUUM con vista previa del SQL. Postico indica que no está diseñado para estas tareas.",
+                "text": "La <link>administración del servidor</link> está incluida en la app gratuita: Users & Roles con permisos hasta el nivel de columna, un Server Dashboard con sesiones y consultas lentas, y VACUUM con vista previa del SQL. Postico indica que no está diseñado para estas tareas.",
                 "cite": [
                     "cells.administration"
                 ],
@@ -94,13 +94,13 @@
                 "href": "/features/schema#administer"
             },
             {
-                "text": "<link>EXPLAIN</link> muestra el plan como diagrama, árbol o texto sin procesar, y la comparación de EXPLAIN contrasta un plan nuevo con una referencia. Ambos son gratuitos.",
+                "text": "<link>EXPLAIN</link> muestra el plan como diagrama, árbol o texto sin procesar, y EXPLAIN Compare contrasta un plan nuevo con una referencia. Ambos son gratuitos.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/querying#performance"
             },
             {
-                "text": "<link>Sincronización con iCloud</link> mantiene conexiones entre Macs e iPhone o iPad. Es parte de Starter en Mac y gratis en iPhone y iPad.",
+                "text": "<link>iCloud Sync</link> mantiene conexiones entre Macs e iPhone o iPad. Es parte de Starter en Mac y gratis en iPhone y iPad.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -161,14 +161,14 @@
         },
         {
             "id": "icloud-sync",
-            "question": "¿La sincronización con iCloud de TablePro es gratuita?",
+            "question": "¿iCloud Sync de TablePro es gratuito?",
             "answer": "En la app para iPhone y iPad, sí. En el Mac forma parte de Starter. Postico 2 sincroniza la configuración de los servidores mediante iCloud o Dropbox.",
             "href": null
         },
         {
             "id": "admin",
             "question": "¿Puedo gestionar roles y sesiones en TablePro?",
-            "answer": "Sí, en la app para Mac y gratis. Usuarios y roles concede y revoca permisos con vista previa del SQL, y el panel del servidor lista las sesiones y permite finalizarlas. <link>Consulta las herramientas del servidor</link>.",
+            "answer": "Sí, en la app para Mac y gratis. Users & Roles concede y revoca permisos con vista previa del SQL, y el Server Dashboard lista las sesiones y permite finalizarlas. <link>Consulta las herramientas del servidor</link>.",
             "href": "/features/schema#administer"
         },
         {

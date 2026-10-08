@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Alternatives à Sequel Pro : Sequel Ace et TablePro",
-        "description": "Sequel Pro date de 2016 et nécessite Rosetta sur Apple silicon. Sequel Ace lui succède ; TablePro importe les connexions de Sequel Ace."
+        "title": "Alternatives à Sequel Pro : Sequel Ace et TablePro",
+        "description": "Sequel Pro date de 2016 et nécessite Rosetta sur Apple silicon. Sequel Ace lui succède ; TablePro importe les connexions de Sequel Ace."
     },
     "og": {
         "kicker": "Comparer",
@@ -87,7 +87,7 @@
                 "href": "/mysql-client"
             },
             {
-                "text": "Il importe les connexions Sequel Ace avec leurs mots de passe ; Sequel Ace peut donc servir d’étape intermédiaire. Consultez <link>TablePro vs Sequel Ace</link>.",
+                "text": "Il importe les connexions Sequel Ace avec leurs mots de passe ; Sequel Ace peut donc servir d’étape intermédiaire. Consultez <link>TablePro vs Sequel Ace</link>.",
                 "cite": [],
                 "feature": null,
                 "href": "/compare/sequel-ace"
@@ -110,7 +110,7 @@
                 "href": null
             },
             {
-                "text": "Son interface diffère de celle de Sequel Pro : il faudra réapprendre où se trouvent certaines fonctions.",
+                "text": "Son interface diffère de celle de Sequel Pro : il faudra réapprendre où se trouvent certaines fonctions.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -130,10 +130,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro n’a pas d’importateur pour Sequel Pro. La méthode passe par Sequel Ace : transférez vos favoris dans Sequel Ace, puis importez-les depuis Sequel Ace dans TablePro.",
+        "intro": "TablePro n’a pas d’importateur pour Sequel Pro. La méthode passe par Sequel Ace : transférez vos favoris dans Sequel Ace, puis importez-les depuis Sequel Ace dans TablePro.",
         "steps": [],
         "after": [
-            "Dans Sequel Ace, suivez le guide « Migrating from Sequel Pro », qui copie le fichier de favoris et les préférences dans Sequel Ace. Le guide indique que les mots de passe ne sont pas transférés automatiquement et propose un script pour cela ; les clés SSH doivent être sélectionnées à nouveau.",
+            "Dans Sequel Ace, suivez le guide « Migrating from Sequel Pro », qui copie le fichier de favoris et les préférences dans Sequel Ace. Le guide indique que les mots de passe ne sont pas transférés automatiquement et propose un script pour cela ; les clés SSH doivent être sélectionnées à nouveau.",
             "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui> (File > Import > Import from Other App…), sélectionnez Sequel Ace et activez <ui>Inclure les mots de passe</ui> (Include passwords).",
             "Avant de supprimer l’une des apps, ouvrez une connexion qui avait un mot de passe pour vérifier son transfert."
         ],
@@ -142,25 +142,25 @@
     "faq": [
         {
             "id": "apple-silicon",
-            "question": "Sequel Pro fonctionne-t-il sur Apple silicon ?",
+            "question": "Sequel Pro fonctionne-t-il sur Apple silicon ?",
             "answer": "Uniquement via Rosetta, car la version {status.version} est une compilation Intel. Apple indique qu’à partir de macOS 28, Rosetta ne restera disponible que pour certains jeux anciens.",
             "href": null
         },
         {
             "id": "import",
-            "question": "TablePro peut-il importer les favoris Sequel Pro ?",
-            "answer": "Pas directement. Copiez-les dans Sequel Ace en suivant son guide de migration, puis importez-les depuis Sequel Ace. Le guide indique que les mots de passe ne sont pas transférés automatiquement : vérifiez-les dans Sequel Ace avant l’importation, ou saisissez-les dans TablePro.",
+            "question": "TablePro peut-il importer les favoris Sequel Pro ?",
+            "answer": "Pas directement. Copiez-les dans Sequel Ace en suivant son guide de migration, puis importez-les depuis Sequel Ace. Le guide indique que les mots de passe ne sont pas transférés automatiquement : vérifiez-les dans Sequel Ace avant l’importation, ou saisissez-les dans TablePro.",
             "href": null
         },
         {
             "id": "which",
-            "question": "Devrais-je passer à Sequel Ace ou à TablePro ?",
+            "question": "Devrais-je passer à Sequel Ace ou à TablePro ?",
             "answer": "Sequel Ace si vous voulez l’interface Sequel Pro pour MySQL et MariaDB, gratuite et maintenue. TablePro si vous utilisez aussi d’autres moteurs, voulez une app iPhone et iPad ou un assistant IA intégré. <link>Comparez TablePro à Sequel Ace</link>.",
             "href": "/compare/sequel-ace"
         },
         {
             "id": "heidisql",
-            "question": "HeidiSQL est-il désormais une option sur Mac ?",
+            "question": "HeidiSQL est-il désormais une option sur Mac ?",
             "answer": "Sur un Mac avec Apple silicon, oui. HeidiSQL, client gratuit pour MySQL, MariaDB et d’autres bases, propose une compilation Mac depuis janvier 2026, sans version pour les Mac Intel. <link>Comparez TablePro à HeidiSQL</link>.",
             "href": "/compare/heidisql"
         }
@@ -168,8 +168,8 @@
     "notes": {
         "sequel-pro-databases": "MySQL et MariaDB",
         "sequel-pro-cask-removed": "Homebrew a désactivé le cask car le projet était abandonné, recommandé Sequel Ace à sa place et supprimé le cask le {date}",
-        "sequel-pro-site-down": "sequelpro.com ne s’est pas chargé lors de la vérification ; un ticket ouvert dans le dépôt signale que le site est indisponible",
-        "sequel-pro-rosetta": "Une compilation Intel. Sur Apple silicon, elle nécessite Rosetta ; selon Apple, Rosetta ne restera disponible que pour certains jeux anciens à partir de macOS 28.",
-        "sequel-pro-successor": "Sequel Ace, qui se présente comme la « suite » de Sequel Pro et repose sur son code"
+        "sequel-pro-site-down": "sequelpro.com ne s’est pas chargé lors de la vérification ; un ticket ouvert dans le dépôt signale que le site est indisponible",
+        "sequel-pro-rosetta": "Une compilation Intel. Sur Apple silicon, elle nécessite Rosetta ; selon Apple, Rosetta ne restera disponible que pour certains jeux anciens à partir de macOS 28.",
+        "sequel-pro-successor": "Sequel Ace, qui se présente comme la « suite » de Sequel Pro et repose sur son code"
     }
 }

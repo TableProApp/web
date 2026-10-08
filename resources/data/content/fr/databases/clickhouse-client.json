@@ -11,7 +11,7 @@
     "breadcrumb": "ClickHouse",
     "header": {
         "title": "Client ClickHouse pour {devices}",
-        "lead": "Exécutez du SQL analytique via l’interface HTTP de ClickHouse, lisez le plan, le pipeline ou l’estimation de lignes d’une requête et gérez les parts et partitions MergeTree depuis l’onglet Parts. Les longues requêtes indiquent les lignes lues pendant l’exécution et Arrêter les termine sur le serveur."
+        "lead": "Exécutez du SQL analytique via l’interface HTTP de ClickHouse, lisez le plan, le pipeline ou l’estimation de lignes d’une requête et gérez les parts et partitions MergeTree depuis l’onglet Parts. Les longues requêtes indiquent les lignes lues pendant l’exécution et Stop les termine sur le serveur."
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -29,7 +29,7 @@
             "title": "Connexion",
             "paragraphs": [
                 "Indiquez l’hôte et le port HTTP, un utilisateur et, si vous le souhaitez, une base de données. Le changement de base s’effectue sur place et un onglet ouvert conserve sa base initiale. <ui>Présentation > Barre latérale en arborescence</ui> (View > Sidebar as Tree) affiche les bases du serveur dans une arborescence à développer sur place.",
-                "Choisissez un mode SSL pour passer à HTTPS. Un port 443 ou 8443, ce dernier utilisé par ClickHouse Cloud, active Vérifier l’identité, qui contrôle le certificat avec votre fichier d’AC ou le magasin de confiance du système. Vérifier l’AC nécessite un fichier d’AC ; un certificat client et sa clé permettent d’accéder aux serveurs exigeant TLS mutuel.",
+                "Choisissez un mode SSL pour passer à HTTPS. Un port 443 ou 8443, ce dernier utilisé par ClickHouse Cloud, active Verify Identity, qui contrôle le certificat avec votre fichier d’AC ou le magasin de confiance du système. Verify CA nécessite un fichier d’AC ; un certificat client et sa clé permettent d’accéder aux serveurs exigeant TLS mutuel.",
                 "Sans TLS, accédez à un serveur distant via un <network>tunnel SSH</network> plutôt que d’envoyer du HTTP en clair sur le réseau."
             ]
         },
@@ -37,33 +37,33 @@
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "Chaque requête porte son propre ID et demande des informations de progression ; une longue requête indique ainsi les lignes lues. Arrêter envoie <code>KILL QUERY</code> pour cet ID et le délai de requête de la connexion est transmis au serveur.",
-                "Le <explain>menu Expliquer</explain> propose Plan, Pipeline, AST, Syntaxe et Estimation. La sortie indentée est représentée en diagramme ou en arbre ; Estimation affiche les lignes, marks et parts que la requête lirait.",
-                "Les modifications de la grille partent comme <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> et <code>ALTER TABLE … DELETE</code>, précédées d’un <editing>Aperçu SQL</editing>. ClickHouse effectue mises à jour et suppressions comme mutations en arrière-plan : enregistrer signifie donc accepté, pas encore appliqué ; <code>system.mutations</code> montre la progression. Une vue matérialisée s’ouvre en lecture seule.",
-                "Un résultat contenant des tuples de points ou d’anneaux ClickHouse s’ouvre dans la <map>vue Carte</map>. Une requête avec sa propre clause <code>FORMAT</code> affiche la sortie brute du serveur dans une colonne ; omettez cette clause pour obtenir une grille."
+                "Chaque requête porte son propre ID et demande des informations de progression ; une longue requête indique ainsi les lignes lues. Stop envoie <code>KILL QUERY</code> pour cet ID et le délai de requête de la connexion est transmis au serveur.",
+                "Le <explain>menu Explain</explain> propose Plan, Pipeline, AST, Syntax et Estimate. La sortie indentée est représentée en diagramme ou en arbre ; Estimate affiche les lignes, marks et parts que la requête lirait.",
+                "Les modifications de la grille partent comme <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> et <code>ALTER TABLE … DELETE</code>, précédées de <editing>Preview SQL</editing>. ClickHouse effectue mises à jour et suppressions comme mutations en arrière-plan : enregistrer signifie donc accepté, pas encore appliqué ; <code>system.mutations</code> montre la progression. Une vue matérialisée s’ouvre en lecture seule.",
+                "Un résultat contenant des tuples de points ou d’anneaux ClickHouse s’ouvre dans la <map>vue Carte</map>. Une requête avec sa propre clause <code>FORMAT</code> affiche la sortie brute du serveur dans une colonne ; omettez cette clause pour obtenir une grille."
             ]
         },
         {
             "id": "schema",
             "title": "Tables, parts et partitions",
             "paragraphs": [
-                "Une table s’ouvre avec les onglets Structure, Index, DDL et Parts. Index affiche la clé de tri et les index de saut de données ; DDL montre le <code>CREATE TABLE</code> complet, moteur et paramètres compris.",
-                "Parts répertorie chaque part de <code>system.parts</code> avec sa partition, ses lignes, sa taille sur disque, sa date de modification et son indicateur d’activité, puis permet d’exécuter Optimiser, Supprimer la partition et Détacher la partition.",
-                "L’<structure>onglet Structure</structure> ajoute, modifie et supprime des colonnes et supprime les index de saut de données. La clé de tri et la clé primaire sont fixées à la création ; ajoutez donc un index de saut avec <code>ALTER TABLE … ADD INDEX</code> et recréez la table pour les autres changements."
+                "Une table s’ouvre avec les onglets Structure, Indexes, DDL et Parts. Indexes affiche la clé de tri et les index de saut de données ; DDL montre le <code>CREATE TABLE</code> complet, moteur et paramètres compris.",
+                "Parts répertorie chaque part de <code>system.parts</code> avec sa partition, ses lignes, sa taille sur disque, sa date de modification et son indicateur d’activité, puis permet d’exécuter Optimize, Drop Partition et Detach Partition.",
+                "L’<structure>onglet Structure</structure> ajoute, modifie et supprime des colonnes et supprime les index de saut de données. La clé de tri et la clé primaire sont fixées à la création ; ajoutez donc un index de saut avec <code>ALTER TABLE … ADD INDEX</code> et recréez la table pour les autres changements."
             ]
         },
         {
             "id": "operate",
             "title": "Surveiller",
             "paragraphs": [
-                "Le <dashboard>Tableau de bord serveur</dashboard> affiche les requêtes et fusions actives, les mutations de parts et l’utilisation disque, liste les autres sessions avec <ui>Mettre fin à la session</ui> (Terminate Session) et lit les requêtes lentes dans <code>system.query_log</code> : les dernières requêtes terminées ayant duré plus d’une seconde."
+                "<dashboard>Server Dashboard</dashboard> affiche les requêtes et fusions actives, les mutations de parts et l’utilisation disque, liste les autres sessions avec <ui>Mettre fin à la session</ui> (Terminate Session) et lit les requêtes lentes dans <code>system.query_log</code> : les dernières requêtes terminées ayant duré plus d’une seconde."
             ]
         },
         {
             "id": "move-data",
             "title": "Transférez des données",
             "paragraphs": [
-                "Chargez des fichiers {importFormats} avec <importData>Importer</importData> et exportez tables ou résultats de requête en {exportFormats}. Une colonne contenant ne serait-ce qu’une valeur UTF-8 invalide s’affiche en hexadécimal dans la grille ; sélectionnez <code>toValidUTF8(column)</code> pour la lire en texte."
+                "Chargez des fichiers {importFormats} avec <importData>Importer</importData> et exportez tables ou résultats de requête en {exportFormats}. Une colonne contenant ne serait-ce qu’une valeur UTF-8 invalide s’affiche en hexadécimal dans la grille ; sélectionnez <code>toValidUTF8(column)</code> pour la lire en texte."
             ]
         }
     ],
@@ -72,13 +72,13 @@
     "faq": [
         {
             "id": "settings",
-            "question": "Comment modifier un paramètre pour une seule requête ?",
-            "answer": "Placez-le dans une clause <code>SETTINGS</code> de la requête elle-même, par exemple <code>SELECT … SETTINGS max_threads = 4</code>. Chaque instruction est sa propre requête HTTP sans session ; un <code>SET</code> séparé ne subsiste donc pas à la suivante."
+            "question": "Comment modifier un paramètre pour une seule requête ?",
+            "answer": "Placez-le dans une clause <code>SETTINGS</code> de la requête elle-même, par exemple <code>SELECT … SETTINGS max_threads = 4</code>. Chaque instruction est sa propre requête HTTP sans session ; un <code>SET</code> séparé ne subsiste donc pas à la suivante."
         },
         {
             "id": "native-port",
-            "question": "Pourquoi le port 9000 ne se connecte-t-il pas ?",
-            "answer": "Le port 9000 est le port TCP natif de ClickHouse, que TablePro n’utilise pas. Connectez-vous au port HTTP, ou au 8443 pour HTTPS sur ClickHouse Cloud, et vérifiez que l’interface HTTP est active : une requête à <code>/ping</code> sur ce port répond <code>Ok.</code>"
+            "question": "Pourquoi le port 9000 ne se connecte-t-il pas ?",
+            "answer": "Le port 9000 est le port TCP natif de ClickHouse, que TablePro n’utilise pas. Connectez-vous au port HTTP, ou au 8443 pour HTTPS sur ClickHouse Cloud, et vérifiez que l’interface HTTP est active : une requête à <code>/ping</code> sur ce port répond <code>Ok.</code>"
         }
     ],
     "related": [

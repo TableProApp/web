@@ -9,14 +9,14 @@
     },
     "hero": {
         "title": "iPhone 與 iPad 版 TablePro",
-        "lead": "從手機或平板連線至資料庫、瀏覽和編輯列、執行查詢，支援 SSH 通道、安全模式和 Face ID。它是為 iPhone 與 iPad 打造的獨立 App，並非 Mac App 的複製版。",
+        "lead": "從手機或平板連線至資料庫、瀏覽和編輯列、執行查詢，支援 SSH 通道、Safe Mode 和 Face ID。它是為 iPhone 與 iPad 打造的獨立 App，並非 Mac App 的複製版。",
         "noSignUp": "無需註冊或授權",
         "mac": "在找 Mac App？<download>下載 Mac 版 TablePro</download>。"
     },
     "databases": {
         "title": "資料庫",
         "lead": "可在 iPhone 與 iPad 上建立以下資料庫的連線。驅動程式內建於 App，無需下載。",
-        "syncedOnly": "{engines} 連線可在透過 iCloud 同步或 .tablepro 檔案從 Mac 匯入後開啟，無法在此 App 中建立。",
+        "syncedOnly": "{engines} 連線可在透過 iCloud Sync 或 .tablepro 檔案從 Mac 匯入後開啟，無法在此 App 中建立。",
         "others": "其他資料庫的連線也會從 Mac 同步並顯示在清單中，但本 App 沒有相應驅動程式，無法開啟。<databases>資料庫頁面</databases>列出了 Mac App 支援的所有引擎。",
         "files": "SQLite：選擇資料庫檔案後，App 會複製至自身儲存空間，編輯修改的是副本。也可建立新資料庫。DuckDB 直接在原位置開啟檔案，或在記憶體中執行。",
         "redis": "Redis：在 Query 分頁執行指令。此版本不支援瀏覽 Redis 鍵。",
@@ -47,9 +47,9 @@
         ]
     },
     "safeMode": {
-        "title": "安全模式和 App 鎖定",
+        "title": "Safe Mode 和 App 鎖定",
         "paragraphs": [
-            "每個連線都有安全模式等級：{levels}。Confirm Writes 會在執行修改資料的陳述式前詢問；Read-Only 在陳述式傳送至伺服器前拒絕。App 無法判定為讀取的陳述式均視為寫入。",
+            "每個連線都有 Safe Mode 等級：{levels}。Confirm Writes 會在執行修改資料的陳述式前詢問；Read-Only 在陳述式傳送至伺服器前拒絕。App 無法判定為讀取的陳述式均視為寫入。",
             "在連線的 Organization 區域設定等級，在 Settings 中設定新連線的預設等級。新增列的捷徑也遵循相同等級。",
             "在<ui>設定 > 安全性</ui>（Settings > Security）中使用 Face ID 或 Touch ID 鎖定 App，密碼可作為備用驗證方式。開啟後，每次啟動及經過所選 Auto-Lock 時長後都會要求驗證。"
         ]
@@ -64,17 +64,17 @@
     "mac": {
         "title": "與 Mac 搭配使用",
         "paragraphs": [
-            "在設定時或之後的 Settings 中開啟 iCloud 同步，即可透過自己的 iCloud 帳戶在 iPhone、iPad 和 Mac 間同步連線、群組和標籤。密碼僅在同時開啟 Sync Passwords 後同步。已儲存查詢、SSH 設定檔和設定只在 Mac 之間同步。",
-            "此 App 的 iCloud 同步免費。Mac 上屬於 Starter 或 Team 授權功能，沒有授權的 Mac 不會同步。詳情見<pricing>價格方案頁面</pricing>。",
-            "此版本中，在 iPhone 或 iPad 儲存已同步連線可能遺失 SSH 跳板主機等 Mac 專用設定，並可能降低安全模式等級。請在 Mac 上編輯這些連線。",
+            "在設定時或之後的 Settings 中開啟 iCloud Sync，即可透過自己的 iCloud 帳戶在 iPhone、iPad 和 Mac 間同步連線、群組和標籤。密碼僅在同時開啟 Sync Passwords 後同步。已儲存查詢、SSH 設定檔和設定只在 Mac 之間同步。",
+            "此 App 的 iCloud Sync 免費。Mac 上屬於 Starter 或 Team 授權功能，沒有授權的 Mac 不會同步。詳情見<pricing>價格方案頁面</pricing>。",
+            "此版本中，在 iPhone 或 iPad 儲存已同步連線可能遺失 SSH 跳板主機等 Mac 專用設定，並可能降低 Safe Mode 等級。請在 Mac 上編輯這些連線。",
             "不用 iCloud 時，可將連線匯出為 .tablepro 檔案，透過 AirDrop 或「檔案」在另一裝置開啟。預設不含密碼；選擇包含時，檔案使用您指定的通關密語加密。兩種方式在此 App 均免費，Mac 上包含密碼的匯出屬於授權功能。",
-            "開啟 iCloud 同步後，接力可在 Mac 與 iPhone 或 iPad 之間繼續使用已開啟的連線或資料表。<sync>同步和團隊</sync>詳細介紹兩者。"
+            "開啟 iCloud Sync 後，接力可在 Mac 與 iPhone 或 iPad 之間繼續使用已開啟的連線或資料表。<sync>同步和團隊</sync>詳細介紹兩者。"
         ]
     },
     "automation": {
         "title": "捷徑、小工具與 Spotlight",
         "paragraphs": [
-            "Open Connection 從捷徑或 Siri 開啟連線。Add Row to Table 和 Add Rows to Table 可在不開啟 App 的情況下，從 JSON、CSV 文字或檔案插入列。僅在裝置未鎖定時執行，遵循連線的安全模式等級，不適用於 Redis。此版本要求 CSV 為 UTF-8 文字且使用 LF 換行。",
+            "Open Connection 從捷徑或 Siri 開啟連線。Add Row to Table 和 Add Rows to Table 可在不開啟 App 的情況下，從 JSON、CSV 文字或檔案插入列。僅在裝置未鎖定時執行，遵循連線的 Safe Mode 等級，不適用於 Redis。此版本要求 CSV 為 UTF-8 文字且使用 LF 換行。",
             "Quick Connect 小工具將清單最前面的連線放在主畫面上，點按即可開啟。連線也會出現在 Spotlight 搜尋中。"
         ]
     },
@@ -98,7 +98,7 @@
         "title": "隱私權",
         "paragraphs": [
             "除非在設定時或之後的<ui>設定 > 隱私權</ui>（Settings > Privacy）中開啟 Share Usage Data，否則不會向 TablePro 傳送資訊。開啟後，每天傳送一次報告，含雜湊後的裝置 ID、App 和 iOS 版本、處理器架構、語言、所用資料庫類型、連線數量及若干首次使用日期。從不包含主機名稱、使用者名稱、密碼、查詢或列資料。",
-            "App 不進行授權驗證、更新檢查或外掛程式請求。查詢發往您自己的伺服器，iCloud 同步發往您自己的 iCloud 帳戶，Entra 登入發往 Microsoft。詳情見<privacyIos>隱私權政策</privacyIos>。"
+            "App 不進行授權驗證、更新檢查或外掛程式請求。查詢發往您自己的伺服器，iCloud Sync 發往您自己的 iCloud 帳戶，Entra 登入發往 Microsoft。詳情見<privacyIos>隱私權政策</privacyIos>。"
         ]
     },
     "get": {
@@ -107,11 +107,11 @@
         "faq": [
             {
                 "question": "需要 Mac App 嗎？",
-                "answer": "不需要，iPhone 與 iPad App 可獨立使用。如果也使用 Mac，iCloud 同步和接力可連接兩者。"
+                "answer": "不需要，iPhone 與 iPad App 可獨立使用。如果也使用 Mac，iCloud Sync 和接力可連接兩者。"
             },
             {
                 "question": "需要授權嗎？",
-                "answer": "不需要。App 沒有付費功能、App 內購買或授權。此 App 的 iCloud 同步免費，只有 Mac 需要 Starter 或 Team 授權才能同步。"
+                "answer": "不需要。App 沒有付費功能、App 內購買或授權。此 App 的 iCloud Sync 免費，只有 Mac 需要 Starter 或 Team 授權才能同步。"
             },
             {
                 "question": "與 Mac App 相同嗎？",

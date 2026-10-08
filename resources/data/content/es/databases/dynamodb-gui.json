@@ -48,7 +48,7 @@
             "title": "Tablas e índices",
             "paragraphs": [
                 "<ui>New Table…</ui> abre un formulario para las claves de partición y ordenación, capacidad bajo demanda o provisionada, clase de tabla, protección contra eliminación e índices secundarios; <ui>Preview</ui> muestra la solicitud <code>CreateTable</code> antes de enviarla. Un índice secundario local solo puede definirse ahí, al crear la tabla.",
-                "En Estructura añades o eliminas un índice secundario global, un cambio por guardado, porque DynamoDB acepta uno por solicitud <code>UpdateTable</code>. Los atributos no se editan ahí: escribe uno en un elemento para que aparezca como columna. DDL muestra la solicitud <code>CreateTable</code> que recrea la tabla, con sus ajustes de Time to Live y recuperación a un punto en el tiempo."
+                "En Structure añades o eliminas un índice secundario global, un cambio por guardado, porque DynamoDB acepta uno por solicitud <code>UpdateTable</code>. Los atributos no se editan ahí: escribe uno en un elemento para que aparezca como columna. DDL muestra la solicitud <code>CreateTable</code> que recrea la tabla, con sus ajustes de Time to Live y recuperación a un punto en el tiempo."
             ]
         },
         {

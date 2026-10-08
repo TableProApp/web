@@ -59,7 +59,7 @@
         }
     },
     "tidb": {
-        "tagline": "MySQL ドライバーで TiDB と TiDB Cloud に接続。停止操作は KILL TIDB QUERY を送信します。",
+        "tagline": "MySQL ドライバーで TiDB と TiDB Cloud に接続。Stop は KILL TIDB QUERY を送信します。",
         "limits": {
             "no-triggers-or-routines": "トリガー、ストアドルーチン、イベントはありません。",
             "no-dashboard-or-dump": "Server Dashboard と Backup Dump はありません。TiDB の Dumpling でエクスポートしてください。",
@@ -103,7 +103,7 @@
         "limits": {
             "needs-socket-server": "PGlite は @electric-sql/pglite-socket で提供する必要があり、自分で起動して動作を続けてください。",
             "single-client": "ソケットサーバーは同時に 1 クライアントのみ接続できます。",
-            "cancel-has-no-effect": "キャンセルは効きません。クエリは常に完了まで実行します。"
+            "cancel-has-no-effect": "Cancel は効きません。クエリは常に完了まで実行します。"
         }
     },
     "oracle": {

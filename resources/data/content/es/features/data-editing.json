@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Edita datos con vista previa SQL y modo seguro",
-        "description": "Filtra y edita filas, revisa el SQL antes de guardar y asigna un Modo seguro por conexión. Rebobinado de datos recupera los valores sustituidos."
+        "title": "Edita datos con Preview SQL y Safe Mode",
+        "description": "Filtra y edita filas, revisa el SQL antes de guardar y asigna un nivel de Safe Mode por conexión. Data Rewind recupera los valores sustituidos."
     },
     "og": {
         "kicker": "Edición de datos",
@@ -17,7 +17,7 @@
             "id": "browse",
             "title": "Encuentra las filas necesarias",
             "paragraphs": [
-                "El orden y la paginación se ejecutan en el servidor, por lo que una tabla grande se abre en su primera página. Por encima de {countEstimate} filas, el recuento es estimado; Contar exactamente proporciona el número real cuando lo necesitas."
+                "El orden y la paginación se ejecutan en el servidor, por lo que una tabla grande se abre en su primera página. Por encima de {countEstimate} filas, el recuento es estimado; Count Exactly proporciona el número real cuando lo necesitas."
             ],
             "blocks": [
                 {
@@ -54,19 +54,19 @@
         },
         {
             "id": "safe-mode",
-            "title": "Modo seguro para conexiones de producción",
+            "title": "Safe Mode para conexiones de producción",
             "paragraphs": [
-                "Cada conexión tiene un nivel de modo seguro: {macSafeModeLevels}. Las nuevas empiezan en {macSafeModeDefault}, donde las sentencias se ejecutan tal como están. Alerta pregunta antes de una escritura; los niveles de modo seguro también piden Touch ID o contraseña; los niveles completos preguntan antes de lecturas y Solo lectura rechaza escrituras y desactiva la edición. El modo seguro es gratis.",
-                "En todos los niveles, DROP, TRUNCATE y DELETE sin WHERE se detienen y preguntan primero. Algunas condiciones aumentan el nivel mientras se aplican: motores que solo leen, modo Agente, que lo eleva al menos a Alerta, y nivel mínimo fijado por tu organización mediante gestión de dispositivos (MDM)."
+                "Cada conexión tiene un nivel de Safe Mode: {macSafeModeLevels}. Las nuevas empiezan en {macSafeModeDefault}, donde las sentencias se ejecutan tal como están. Alert pregunta antes de una escritura; los niveles Safe Mode también piden Touch ID o contraseña; los niveles Full preguntan antes de lecturas y Read-Only rechaza escrituras y desactiva la edición. Safe Mode es gratis.",
+                "En todos los niveles, DROP, TRUNCATE y DELETE sin WHERE se detienen y preguntan primero. Algunas condiciones aumentan el nivel mientras se aplican: motores que solo leen, Agent mode, que lo eleva al menos a Alert, y nivel mínimo fijado por tu organización mediante gestión de dispositivos (MDM)."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
                 {
-                    "label": "Modo seguro y otras políticas de conexión",
+                    "label": "Safe Mode y otras políticas de conexión",
                     "href": "/features/connections#policies"
                 },
                 {
-                    "label": "Modo Agente",
+                    "label": "Agent mode",
                     "href": "/features/ai-mcp#agent-mode"
                 }
             ]
@@ -75,7 +75,7 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind conserva los valores sustituidos al guardar para que <ui>Restore Previous Values</ui> los recupere. Primero muestra lo que ocurrirá con cada fila, incluidas las cambiadas después del guardado, y restaura mediante modo seguro en una transacción si el motor lo permite. Una restauración también puede restaurarse.",
+                "Data Rewind conserva los valores sustituidos al guardar para que <ui>Restore Previous Values</ui> los recupere. Primero muestra lo que ocurrirá con cada fila, incluidas las cambiadas después del guardado, y restaura mediante Safe Mode en una transacción si el motor lo permite. Una restauración también puede restaurarse.",
                 "Los valores guardados permanecen en este Mac durante {rewindDays} días, cifrados con una clave del Llavero, y nunca se sincronizan. Al terminar un plan, TablePro deja de registrar guardados y <ui>Restore Previous Values</ui> muestra un aviso."
             ],
             "paid": [
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Documentos y claves",
             "paragraphs": [
-                "No todos los motores almacenan filas. En MongoDB insertas y editas documentos completos como Extended JSON, eliminas un campo de un documento y renombras o eliminas un campo en toda una colección desde Estructura. En Redis renombras claves, configuras TTL y editas cadenas en la cuadrícula, añades claves string, hash, list, set o sorted-set y cambias otros tipos con comandos en el editor."
+                "No todos los motores almacenan filas. En MongoDB insertas y editas documentos completos como Extended JSON, eliminas un campo de un documento y renombras o eliminas un campo en toda una colección desde Structure. En Redis renombras claves, configuras TTL y editas cadenas en la cuadrícula, añades claves string, hash, list, set o sorted-set y cambias otros tipos con comandos en el editor."
             ],
             "links": [
                 {
@@ -105,7 +105,7 @@
             "title": "En iPhone y iPad",
             "paragraphs": [
                 "En iPhone y iPad, las filas son tarjetas que puedes ordenar, buscar y filtrar con AND y OR, y tocar una clave foránea previsualiza su fila. Puedes editar una fila, establecer NULL o DEFAULT, insertar filas y eliminarlas deslizando; editar y eliminar requiere clave primaria.",
-                "El modo seguro tiene allí niveles propios, {iosSafeModeLevels}, con {iosSafeModeDefault} por defecto para conexiones nuevas. Las ediciones pendientes, la vista previa SQL, las reglas de resaltado y Data Rewind solo están en el Mac."
+                "Safe Mode tiene allí niveles propios, {iosSafeModeLevels}, con {iosSafeModeDefault} por defecto para conexiones nuevas. Las ediciones pendientes, Preview SQL, las reglas de resaltado y Data Rewind solo están en el Mac."
             ],
             "links": [
                 {
@@ -113,7 +113,7 @@
                     "href": "/ios#browse"
                 },
                 {
-                    "label": "Modo seguro en iPhone y iPad",
+                    "label": "Safe Mode en iPhone y iPad",
                     "href": "/ios#safe-mode"
                 }
             ]
@@ -139,11 +139,11 @@
             "iosNote": "Editor de filas; requiere clave primaria"
         },
         {
-            "label": "Ediciones pendientes, vista previa SQL y deshacer",
+            "label": "Ediciones pendientes, Preview SQL y deshacer",
             "ios": "no"
         },
         {
-            "label": "Modo seguro",
+            "label": "Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -163,8 +163,8 @@
     ],
     "limits": [
         "Data Rewind no es una copia de seguridad. No deshace triggers, cascadas ni cambios fuera de TablePro y no restaura filas sin clave primaria, valores superiores a {rewindMaxValue} MB ni valores calculados por el servidor.",
-        "UPDATE sin WHERE es una escritura normal: solo pregunta primero en Alerta o niveles más estrictos.",
-        "En {everyStatementWrites}, el modo seguro cuenta cada sentencia como escritura; Alerta pregunta también antes de lecturas y Solo lectura las bloquea.",
+        "UPDATE sin WHERE es una escritura normal: solo pregunta primero en Alert o niveles más estrictos.",
+        "En {everyStatementWrites}, Safe Mode cuenta cada sentencia como escritura; Alert pregunta también antes de lecturas y Read-Only las bloquea.",
         "El resultado de join, CTE o UNION es de solo lectura en la cuadrícula; abre la tabla para editar."
     ],
     "docs": [
@@ -177,7 +177,7 @@
             "docs": "/features/filtering"
         },
         {
-            "label": "Seguimiento de cambios y vista previa SQL",
+            "label": "Seguimiento de cambios y Preview SQL",
             "docs": "/features/change-tracking"
         },
         {
@@ -185,7 +185,7 @@
             "docs": "/features/change-tracking#restoring-a-save"
         },
         {
-            "label": "Modo seguro",
+            "label": "Safe Mode",
             "docs": "/features/safe-mode"
         }
     ],

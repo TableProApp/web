@@ -37,7 +37,7 @@
                 "資料表涵蓋交易和分錄、帳戶、餘額及餘額斷言、價格和商品、所有其他指令、中繼資料、標籤、連結及來源檔案。分錄透過 <code>transaction_id</code> 聯結交易，帳戶依名稱聯結。",
                 "金額已完成記帳、算術、成本和價格解析，分錄成本和行內價格有獨立欄位。交易、分錄及若干指令資料表含 <code>source_location</code>，例如 <code>main.beancount:42</code>，可從紀錄追溯來源檔案行。",
                 "查詢前加 <code>BQL:</code> 將其傳送給 rledger 而非資料表。BQL 結果支援瀏覽、列數和分頁，不支援 SQL 參數。",
-                "<code>include</code> 支援具體路徑和 glob，所有帳本檔案及參照文件均被監控。在編輯器儲存後，下次查詢無須重新連線即可讀取。連線始終處於 <safeMode>安全模式</safeMode> Read-Only，拒絕 INSERT、UPDATE、DELETE 和結構修改。"
+                "<code>include</code> 支援具體路徑和 glob，所有帳本檔案及參照文件均被監控。在編輯器儲存後，下次查詢無須重新連線即可讀取。連線始終處於 <safeMode>Safe Mode</safeMode> Read-Only，拒絕 INSERT、UPDATE、DELETE 和結構修改。"
             ]
         },
         {

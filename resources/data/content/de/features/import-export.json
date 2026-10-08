@@ -49,14 +49,14 @@
         },
         {
             "id": "data-files",
-            "title": "Datendateien: an Dateien ohne Datenbank arbeiten",
+            "title": "Data Files: an Dateien ohne Datenbank arbeiten",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
                     "title": "Öffnen, suchen und bereinigen",
                     "paragraphs": [
-                        "Öffne CSV, TSV, andere getrennte Textdateien, JSON oder JSON Lines aus Finder oder mit <kbd>⌘O</kbd>; „Datendateien“ zeigt sie als bearbeitbare Tabelle. Nutze die Filterleiste, durchsuche alle Spalten, ersetze mit regulären Ausdrücken und bereinige mit Nach unten ausfüllen, Leerraum entfernen, Groß-/Kleinschreibung ändern und Duplikatzeilen entfernen. Excel öffnet einen Tab je Blatt; komprimierte Dateien wie <code>.csv.gz</code> öffnen ebenfalls, beides schreibgeschützt.",
+                        "Öffne CSV, TSV, andere getrennte Textdateien, JSON oder JSON Lines aus Finder oder mit <kbd>⌘O</kbd>; das Fenster Data Files zeigt sie als bearbeitbare Tabelle. Nutze die Filterleiste, durchsuche alle Spalten, ersetze mit regulären Ausdrücken und bereinige mit Fill Down, Trim Whitespace, Change Case und Remove Duplicate Rows. Excel öffnet einen Tab je Blatt; komprimierte Dateien wie <code>.csv.gz</code> öffnen ebenfalls, beides schreibgeschützt.",
                         "Das Fenster arbeitet mit einer privaten Kopie; <kbd>⌘S</kbd> schreibt die Datei in ihrem Format zurück und lässt unberührte Zeilen unverändert."
                     ],
                     "asset": "mac-data-files-window"
@@ -75,12 +75,12 @@
             "id": "backup",
             "title": "Mit den Werkzeugen deines Systems sichern",
             "paragraphs": [
-                "Backup-Dump und Dump-Wiederherstellung nutzen {backupTools}, den SSH-Tunnel und die SSL-Einstellungen der Verbindung; ein Server hinter einem Bastion-Host benötigt keinen zweiten Tunnel. Alle außer DuckDB sind selbst zu installierende Kommandozeilenwerkzeuge. DuckDB schreibt den Dump als Datenbankdatei oder Ordner mit Parquet-Dateien selbst.",
-                "Auf {serverSideExport} lässt der serverseitige Export den Server schreiben: als Oracle-Data-Pump-Job, Snowflake-Stage oder Cloud-Storage-Bucket. Nichts landet auf deinem Mac."
+                "Backup Dump und Restore Dump nutzen {backupTools}, den SSH-Tunnel und die SSL-Einstellungen der Verbindung; ein Server hinter einem Bastion-Host benötigt keinen zweiten Tunnel. Alle außer DuckDB sind selbst zu installierende Kommandozeilenwerkzeuge. DuckDB schreibt den Dump als Datenbankdatei oder Ordner mit Parquet-Dateien selbst.",
+                "Auf {serverSideExport} lässt Server-Side Export den Server schreiben: als Oracle-Data-Pump-Job, Snowflake-Stage oder Cloud-Storage-Bucket. Nichts landet auf deinem Mac."
             ],
             "engines": [
                 {
-                    "label": "Backup-Dump mit zugehörigem Werkzeug",
+                    "label": "Backup Dump mit zugehörigem Werkzeug",
                     "list": "backupEngines"
                 }
             ],
@@ -90,7 +90,7 @@
             "id": "files",
             "title": "Dateien, die Datenbanken sind",
             "paragraphs": [
-                "SQLite- und DuckDB-Dateien öffnen aus Finder als Verbindungen. DuckDB liest auch Parquet, CSV und JSON als schreibgeschützte Views; <code>.parquet</code> öffnet daher eine DuckDB-Verbindung statt „Datendateien“. SQLite auf einem SSH-Server öffnet live über einen kleinen Agenten mit Python 3.6 oder neuer auf dem Server oder als schreibgeschützte Kopie.",
+                "SQLite- und DuckDB-Dateien öffnen aus Finder als Verbindungen. DuckDB liest auch Parquet, CSV und JSON als schreibgeschützte Views; <code>.parquet</code> öffnet daher eine DuckDB-Verbindung statt Data Files. SQLite auf einem SSH-Server öffnet live über einen kleinen Agenten mit Python 3.6 oder neuer auf dem Server oder als schreibgeschützte Kopie.",
                 "<code>.sql</code>-Dateien öffnen als Abfrage-Tabs und speichern auf die Festplatte zurück; ein Beancount-Hauptbuch öffnet schreibgeschützt als Tabellen."
             ],
             "links": [
@@ -108,11 +108,11 @@
             "id": "between-databases",
             "title": "Von einer Datenbank zur anderen",
             "paragraphs": [
-                "Tabellen oder Zeilen zwischen Verbindungen benötigen keine Zwischendatei. Kopieren nach und Übertragen nach erledigen dies direkt, auch systemübergreifend, und zeigen vor Ausführung, was sie schreiben."
+                "Tabellen oder Zeilen zwischen Verbindungen benötigen keine Zwischendatei. Copy To und Transfer To erledigen dies direkt, auch systemübergreifend, und zeigen vor Ausführung, was sie schreiben."
             ],
             "links": [
                 {
-                    "label": "Kopieren nach und Übertragen nach",
+                    "label": "Copy To und Transfer To",
                     "href": "/features/schema#copy"
                 }
             ]
@@ -122,7 +122,7 @@
             "title": "Auf iPhone und iPad",
             "paragraphs": [
                 "Die iPhone- und iPad-App kopiert oder teilt geladene Zeilen und Ergebnisse als JSON, CSV oder SQL-INSERT-Anweisungen. Eine Kopie bleibt in der Zwischenablage dieses Geräts und wird nicht mit anderen Geräten geteilt.",
-                "Zeilen werden über die Kurzbefehle „Zeile zu Tabelle hinzufügen“ und „Zeilen zu Tabelle hinzufügen“ aus JSON-, CSV-Text oder Dateien eingefügt und beachten den sicheren Modus. Importdialog, Dateiexport, Datendateien-Fenster und Backup fehlen auf iPhone und iPad."
+                "Zeilen werden über die Kurzbefehle „Zeile zu Tabelle hinzufügen“ und „Zeilen zu Tabelle hinzufügen“ aus JSON-, CSV-Text oder Dateien eingefügt und beachten den Safe Mode. Importdialog, Dateiexport, das Fenster Data Files und Backup fehlen auf iPhone und iPad."
             ],
             "links": [
                 {
@@ -139,7 +139,7 @@
             "iosNote": "Kurzbefehle aus JSON oder CSV"
         },
         {
-            "label": "Gespeicherte Zuordnungen, nach Namen und Position",
+            "label": "Gespeicherte Zuordnungen, Match by Name und Match by Position",
             "ios": "no"
         },
         {
@@ -152,15 +152,15 @@
             "ios": "no"
         },
         {
-            "label": "Datendateien-Fenster",
+            "label": "Fenster Data Files",
             "ios": "no"
         },
         {
-            "label": "Backup-Dump und Dump-Wiederherstellung",
+            "label": "Backup Dump und Restore Dump",
             "ios": "no"
         },
         {
-            "label": "Serverseitiger Export",
+            "label": "Server-Side Export",
             "ios": "no"
         },
         {
@@ -175,8 +175,8 @@
     ],
     "limits": [
         "SQL-Export enthält vor jeder Tabelle DROP TABLE IF EXISTS, sofern du es nicht abwählst. Prüfe die Optionen, bevor du die Datei auf einer Datenbank mit zu erhaltenden Tabellen ausführst.",
-        "Backup-Dump nutzt selbst installierte Werkzeuge und nur die aufgeführten Systeme. Passwörter gelangen über Umgebung oder temporäre Datei an die Werkzeuge, außer sqlpackage: Es erhält das SQL-Server-Passwort in der Kommandozeile, wo andere Mac-Prozesse es lesen können. TablePro fragt vor dem Start.",
-        "Dump-Wiederherstellung ersetzt Tabellen eines MySQL- oder MariaDB-Dumps. Auf anderen Systemen ersetzt sie keine bestehenden Objekte; SQL-Server-<code>.bacpac</code> benötigt eine leere Datenbank.",
+        "Backup Dump nutzt selbst installierte Werkzeuge und nur die aufgeführten Systeme. Passwörter gelangen über Umgebung oder temporäre Datei an die Werkzeuge, außer sqlpackage: Es erhält das SQL-Server-Passwort in der Kommandozeile, wo andere Mac-Prozesse es lesen können. TablePro fragt vor dem Start.",
+        "Restore Dump ersetzt Tabellen eines MySQL- oder MariaDB-Dumps. Auf anderen Systemen ersetzt es keine bestehenden Objekte; SQL-Server-<code>.bacpac</code> benötigt eine leere Datenbank.",
         "Das Öffnen von Datenbankdateien über SSH funktioniert nur für SQLite.",
         "Nicht integrierte DuckDB-Erweiterungen wie httpfs für S3, Iceberg und Delta laden beim ersten Bedarf einer Abfrage von DuckDBs eigenen Servern.",
         "In der aktuellen App-Store-Version lesen Kurzbefehle CSV und JSON nur als UTF-8 und CSV nur mit LF-Zeilenenden."
@@ -187,7 +187,7 @@
             "docs": "/features/import-export"
         },
         {
-            "label": "Datendateien",
+            "label": "Data Files",
             "docs": "/features/data-files"
         },
         {

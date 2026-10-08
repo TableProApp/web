@@ -15,7 +15,7 @@
         "tablepro": [
             "Mac 使用 Intel 处理器。TablePro 有 Intel、Apple silicon 独立构建。",
             "除 SQL 服务器，也使用 MongoDB、Redis、ClickHouse 或 DuckDB。",
-            "希望密码保存在 macOS 钥匙串，安全模式在生产连接写入前要求 Touch ID。",
+            "希望密码保存在 macOS 钥匙串，Safe Mode 在生产连接写入前要求 Touch ID。",
             "希望在 Mac 应用免费使用 AI 助手和 MCP 服务器。",
             "也需要 iPhone、iPad 应用。"
         ],
@@ -83,7 +83,7 @@
                 "href": "/databases"
             },
             {
-                "text": "密码保存在 macOS 钥匙串，连接的<link>安全模式</link>级别可在写入前要求 Touch ID 或密码。",
+                "text": "密码保存在 macOS 钥匙串，连接的 <link>Safe Mode</link> 级别可在写入前要求 Touch ID 或密码。",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"

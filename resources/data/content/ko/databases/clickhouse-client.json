@@ -73,7 +73,7 @@
         {
             "id": "settings",
             "question": "쿼리 하나의 설정은 어떻게 바꾸나요?",
-            "answer": "<code>SELECT … SETTINGS max_threads = 4</code>처럼 쿼리 자체에 <code>SETTINGS</code> 절을 넣으세요. 각 구문은 세션 없는 HTTP 요청이므로 별도 <code>SET</code>은 다음 구문에 남지 않습니다."
+            "answer": "<code>SELECT … SETTINGS max_threads = 4</code>처럼 쿼리 자체에 <code>SETTINGS</code> 절을 넣으세요. 각 명령문은 세션 없는 HTTP 요청이므로 별도 <code>SET</code>은 다음 명령문에 남지 않습니다."
         },
         {
             "id": "native-port",

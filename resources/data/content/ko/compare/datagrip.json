@@ -108,7 +108,7 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>비교 및 동기화</link>는 두 데이터베이스의 구조나 데이터를 비교하고 한쪽을 다른 쪽에 맞추는 스크립트를 작성합니다. Starter에 포함됩니다.",
+                "text": "<link>Compare & Sync</link>는 두 데이터베이스의 구조나 데이터를 비교하고 한쪽을 다른 쪽에 맞추는 스크립트를 작성합니다. Starter에 포함됩니다.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -177,7 +177,7 @@
         {
             "id": "mcp",
             "question": "DataGrip에도 MCP 서버가 있습니다. TablePro의 서버는 무엇을 하나요?",
-            "answer": "Claude Code나 Cursor 같은 클라이언트가 암호를 보지 않고 저장된 TablePro 연결을 사용하게 합니다. 127.0.0.1에서만 수신하며 변경하지 않는 한 각 연결은 외부 앱에 읽기 전용이고 무료입니다. DataGrip도 {cells.mcp.version} 버전부터 자체 서버를 제공합니다.",
+            "answer": "Claude Code나 Cursor 같은 클라이언트가 암호를 보지 않고 저장된 TablePro 연결을 사용하게 합니다. 127.0.0.1에서만 수신하며 변경하지 않는 한 각 연결은 외부 앱에 Read Only이고 무료입니다. DataGrip도 {cells.mcp.version} 버전부터 자체 서버를 제공합니다.",
             "href": null
         },
         {

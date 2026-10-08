@@ -25,8 +25,8 @@ export default {
     "detected": "Votre navigateur indique un Mac avec {chip}.",
     "onAnotherDevice": "Pour installer l’application Mac, ouvrez cette page sur votre Mac.",
     "whichMac": {
-        "summary": "Quel Mac ai-je ?",
-        "body": "Ouvrez le menu Apple et choisissez « À propos de ce Mac ». Un Mac avec Apple silicon affiche une ligne « Puce », par exemple Apple M2. Un Mac Intel affiche une ligne « Processeur » mentionnant Intel."
+        "summary": "Quel Mac ai-je ?",
+        "body": "Ouvrez le menu Apple et choisissez « À propos de ce Mac ». Un Mac avec Apple silicon affiche une ligne « Puce », par exemple Apple M2. Un Mac Intel affiche une ligne « Processeur » mentionnant Intel."
     },
     "afterClick": {
         "title": "Installez ensuite l’application",

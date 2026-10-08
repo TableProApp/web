@@ -34,7 +34,7 @@
             "id": "work",
             "title": "SurrealQL 및 레코드",
             "paragraphs": [
-                "편집기는 두 레코드 사이의 <code>RELATE</code>를 포함한 전체 SurrealQL 스크립트를 실행하며 일반 구문을 완성합니다. <explain>Explain과 Explain Full</explain>은 현재 쿼리를 <code>EXPLAIN</code>으로 재실행해 해석 방식과 인덱스 사용 여부를 원시 텍스트 계획으로 보여 줍니다.",
+                "편집기는 두 레코드 사이의 <code>RELATE</code>를 포함한 전체 SurrealQL 스크립트를 실행하며 일반 명령문을 완성합니다. <explain>Explain과 Explain Full</explain>은 현재 쿼리를 <code>EXPLAIN</code>으로 재실행해 해석 방식과 인덱스 사용 여부를 원시 텍스트 계획으로 보여 줍니다.",
                 "사이드바 최상위에 네임스페이스, 그 안에 데이터베이스가 있습니다. 각 요청에 둘 다 실려 전환해도 재연결하지 않습니다. 모든 네임스페이스는 루트 사용자만 볼 수 있습니다.",
                 "셀 변경은 건드린 필드만 유형 지정 매개변수로 설정하는 <code>UPDATE</code>를 실행합니다. <code>int</code>는 <code>int</code>로 유지하고 계산된 <code>FUTURE</code> 필드나 다른 작성자의 변경은 그대로 둡니다. 새 행의 <code>id</code>를 비우면 생성하며 <code>table:id</code>를 입력할 수도 있습니다. <code>SCHEMALESS</code> 테이블은 가져온 레코드에서 열을 구성합니다.",
                 "<filters>필터</filters>는 SurrealQL로 변환되고 Raw SQL 행은 그래프 순회 등 조건 하나를 받습니다. 쓰기, <code>;</code>·주석 포함 또는 <code>fn::</code>·<code>http::</code> 호출 조건은 거부하니 편집기에서 실행하세요."
@@ -42,7 +42,7 @@
         },
         {
             "id": "schema",
-            "title": "구조",
+            "title": "Structure",
             "paragraphs": [
                 "Structure 탭은 읽기 전용입니다. 편집기에서 <code>DEFINE FIELD</code>와 <code>DEFINE INDEX</code>로 필드·인덱스를 만들고 변경합니다. 네임스페이스·데이터베이스는 메뉴로 삭제하며 여러 개를 선택하면 모두 한 번에 확인합니다."
             ]

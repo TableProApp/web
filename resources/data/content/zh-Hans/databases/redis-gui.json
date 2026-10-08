@@ -38,7 +38,7 @@
                 "键名在每个冒号或 Options 标签页设置的分隔符处分为文件夹。每键一行含 Key、Type、TTL、Length、Value。字符串完整显示；hash、list、set、sorted set、stream 显示开头条目，Length 标明数量。非有效 UTF-8 值（如 gzip 数据）在十六进制编辑器打开。",
                 "<editing>网格中</editing>编辑键名运行 <code>RENAME</code>，TTL 运行 <code>EXPIRE</code> 或 <code>PERSIST</code>，字符串值运行 <code>SET</code>。Add Row 用 <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> 或 <code>SET</code> 写所选类型。筛选栏在服务器用 <code>SCAN MATCH</code>、<code>SCAN TYPE</code> 按 Redis glob 模式匹配键名并限定类型。",
                 "编辑器每语句接受一条命令，按 redis-cli 引号规则，无法识别的命令原样发送。<code>DB 3 GET key</code> 不移动会话而在其他数据库执行单条命令。<code>MULTI</code> 块内各命令返回 <code>QUEUED</code>，直到 <code>EXEC</code> 按顺序返回所有响应。",
-                "<safeMode>安全模式</safeMode>将包括 <code>GET</code> 的所有 Redis 命令视为写入，Alert、Safe Mode 逐条确认，Read-Only 全部阻止。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先确认。"
+                "<safeMode>Safe Mode</safeMode> 将包括 <code>GET</code> 的所有 Redis 命令视为写入，Alert、Safe Mode 逐条确认，Read-Only 全部阻止。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先确认。"
             ]
         },
         {

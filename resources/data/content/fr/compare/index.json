@@ -21,7 +21,7 @@
             "navicat": "Choisissez Navicat pour la modélisation ou Navicat Cloud en équipe, si une licence perpétuelle convient à votre budget.",
             "beekeeper-studio": "Choisissez Beekeeper Studio pour un client open source fonctionnant de la même façon sous Windows, macOS et Linux.",
             "sequel-ace": "Choisissez Sequel Ace si vous utilisez seulement MySQL et MariaDB et voulez une app Mac gratuite et open source du Mac App Store.",
-            "sequel-pro": "Toujours sur Sequel Pro ? Sa dernière version {status.version} date du {status.date}. Sequel Ace le poursuit et TablePro importe ses connexions.",
+            "sequel-pro": "Toujours sur Sequel Pro ? Sa dernière version {status.version} date du {status.date}. Sequel Ace le poursuit et TablePro importe ses connexions.",
             "postico": "Choisissez Postico si vous utilisez seulement PostgreSQL et voulez une app Mac spécialisée avec licence à paiement unique.",
             "heidisql": "Choisissez HeidiSQL si vous l’utilisez déjà sur Windows et voulez le même client gratuit sur Mac Apple silicon.",
             "phpmyadmin": "Choisissez phpMyAdmin si vous gérez MySQL ou MariaDB dans un navigateur, par exemple sur un hébergement le proposant avec cPanel."
@@ -47,8 +47,8 @@
     "method": {
         "title": "Comment ces pages sont écrites",
         "paragraphs": [
-            "Chaque fait sur un autre produit vient d’une source officielle : site, documentation, dépôt, notes de version ou fiche boutique du produit, ou gestionnaire de paquets ou fournisseur de plateforme le distribuant. Chaque page liste ses sources et dates de vérification.",
-            "Les informations TablePro viennent des mêmes données que le reste du site ; prix, plateformes et fonctions correspondent aux pages tarifs et fonctions.",
+            "Chaque fait sur un autre produit vient d’une source officielle : site, documentation, dépôt, notes de version ou fiche boutique du produit, ou gestionnaire de paquets ou fournisseur de plateforme le distribuant. Chaque page liste ses sources et dates de vérification.",
+            "Les informations TablePro viennent des mêmes données que le reste du site ; prix, plateformes et fonctions correspondent aux pages tarifs et fonctions.",
             "Il n’y a pas de chiffres de vitesse, mémoire ou démarrage, car aucune mesure reproductible de ces clients n’a été trouvée à citer.",
             "Prix et fonctions changent. Si une information est dépassée, <issues>ouvrez une issue sur GitHub</issues>."
         ]
@@ -117,8 +117,8 @@
             "x86_64": "Intel uniquement"
         },
         "licence": {
-            "yes": "Oui : {licence}",
-            "yesEdition": "Oui : {licence}, pour l’édition {edition}",
+            "yes": "Oui : {licence}",
+            "yesEdition": "Oui : {licence}, pour l’édition {edition}",
             "no": "Non"
         },
         "currency": {
@@ -128,7 +128,7 @@
         },
         "price": {
             "free": "Gratuit",
-            "labelled": "{label} : {price}",
+            "labelled": "{label} : {price}",
             "amount": {
                 "once": "{amount} une fois",
                 "month": "{amount} par mois",
@@ -170,17 +170,17 @@
         },
         "tablepro": {
             "technology": "Swift avec pilotes de bases natifs",
-            "priceFree": "Gratuit. Les forfaits payants ajoutent des fonctions facultatives sur Mac.",
-            "starter": "Starter : {monthly} par mois, {yearly} par an ou {lifetime} une fois",
-            "team": "Équipe : {monthly} par mois, {yearly} par an ou {lifetime} une fois, par poste, minimum {min} postes",
+            "priceFree": "Gratuit. Les offres payantes ajoutent des fonctions facultatives sur Mac.",
+            "starter": "Starter : {monthly} par mois, {yearly} par an ou {lifetime} une fois",
+            "team": "Team : {monthly} par mois, {yearly} par an ou {lifetime} une fois, par poste, minimum {min} postes",
             "iosPrice": "L’app iPhone et iPad est gratuite, sans achats intégrés.",
-            "licence": "Oui : {licence}, y compris le code des fonctions payantes",
+            "licence": "Oui : {licence}, y compris le code des fonctions payantes",
             "databases": "{engines} et plus",
             "databasesLink": "Bases de données prises en charge",
             "ai": "Gratuit sur Mac, avec votre fournisseur IA dans le cloud ou sur votre Mac",
             "mcp": "Gratuit sur Mac. Écoute seulement sur votre Mac et chaque connexion fixe les droits des apps externes",
             "ios": "App gratuite séparée, sans achats intégrés",
-            "sync": "Synchronisation iCloud : incluse dans {tier} sur Mac, gratuite sur iPhone et iPad"
+            "sync": "iCloud Sync : inclus dans {tier} sur Mac, gratuit sur iPhone et iPad"
         },
         "import": {
             "yes": "TablePro importe les connexions {name}, mots de passe compris.",
@@ -191,9 +191,9 @@
         },
         "tiers": {
             "starter": "Starter",
-            "team": "Équipe"
+            "team": "Team"
         },
-        "tierBadge": "Forfait {tier}",
+        "tierBadge": "Offre {tier}",
         "sections": {
             "stronger": "Les points forts de {name}",
             "differs": "Les différences de TablePro",
@@ -209,11 +209,11 @@
         "sources": {
             "intro": "Faits sur {name} vérifiés le {date} avec ces pages. Tarifs catalogue en dollars américains, hors taxes.",
             "retrieved": "vérifié le {date}",
-            "latest": "Dernière version {name} à cette date : {version}, publiée le {date}.",
+            "latest": "Dernière version {name} à cette date : {version}, publiée le {date}.",
             "tablepro": "La colonne TablePro décrit TablePro {macVersion} sur Mac et {iosVersion} sur iPhone et iPad."
         },
         "cta": {
-            "body": "TablePro se télécharge gratuitement. Les forfaits payants ajoutent des fonctions facultatives sur Mac.",
+            "body": "TablePro se télécharge gratuitement. Les offres payantes ajoutent des fonctions facultatives sur Mac.",
             "pricing": "Voir les tarifs",
             "hub": "Toutes les comparaisons"
         },
@@ -226,7 +226,7 @@
             "platforms": "Plateformes",
             "openSource": "Open source",
             "free": "Utilisation gratuite",
-            "paid": "Forfaits payants",
+            "paid": "Offres payantes",
             "paidFrom": "À partir de {price}",
             "noPaid": "Aucun",
             "freeYes": "Oui",

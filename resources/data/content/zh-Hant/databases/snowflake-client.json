@@ -44,7 +44,7 @@
         },
         {
             "id": "schema",
-            "title": "結構",
+            "title": "Structure",
             "paragraphs": [
                 "DDL 檢視來自 <code>GET_DDL</code>。<structure>Structure 分頁</structure> 可新增、重新命名、刪除欄位，設定 NOT NULL、註解和主索引鍵，擴寬 VARCHAR，並在小數位數相同的情況下修改 NUMBER 精確度。",
                 "Snowflake 會拒絕的修改在執行前即被拒絕，包括縮窄 VARCHAR、其他型別修改及將欄位預設值改為新值。清除預設值可以執行。"

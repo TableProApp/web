@@ -44,7 +44,7 @@
         },
         {
             "id": "schema",
-            "title": "Struttura",
+            "title": "Structure",
             "paragraphs": [
                 "La vista DDL proviene da <code>GET_DDL</code>. La <structure>scheda Structure</structure> aggiunge, rinomina ed elimina colonne, imposta NOT NULL, commenti e chiave primaria, amplia un VARCHAR e modifica la precisione di un NUMBER mantenendo la stessa scala.",
                 "Le modifiche che Snowflake rifiuterebbe vengono bloccate prima dell’esecuzione: ridurre un VARCHAR, qualsiasi altro cambio di tipo e impostare un nuovo valore predefinito per una colonna. Rimuovere un valore predefinito è consentito."

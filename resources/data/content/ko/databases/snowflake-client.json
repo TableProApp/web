@@ -37,14 +37,14 @@
             "id": "work",
             "title": "웨어하우스, 역할 및 쿼리",
             "paragraphs": [
-                "<ui>데이터베이스 > Session Context</ui>(Database > Session Context)는 <code>USE WAREHOUSE</code>와 <code>USE ROLE</code>로 재연결 없이 웨어하우스·역할을 바꿉니다. TablePro 연결 하나는 유휴 시에도 유지하는 Snowflake 세션 하나이며 다른 데이터베이스 탭은 같은 세션에서 구문 앞에 <code>USE DATABASE</code>를 실행합니다.",
+                "<ui>데이터베이스 > Session Context</ui>(Database > Session Context)는 <code>USE WAREHOUSE</code>와 <code>USE ROLE</code>로 재연결 없이 웨어하우스·역할을 바꿉니다. TablePro 연결 하나는 유휴 시에도 유지하는 Snowflake 세션 하나이며 다른 데이터베이스 탭은 같은 세션에서 명령문 앞에 <code>USE DATABASE</code>를 실행합니다.",
                 "사이드바는 데이터베이스·스키마별로 객체를 묶습니다. 목록은 웨어하우스 없이 실행되는 <code>SHOW</code> 명령에서, 열 상세는 웨어하우스가 필요한 <code>INFORMATION_SCHEMA</code>에서 읽습니다. <explain>Explain</explain>은 Snowflake 계획을 원시 텍스트로 반환합니다.",
                 "<editing>그리드 편집</editing>은 값을 서버에 바인딩하고 VARIANT, OBJECT와 ARRAY 셀은 <code>PARSE_JSON</code>으로 전송합니다. 선언된 기본 키나 없으면 모든 열로 매칭합니다. Snowflake는 키 제약을 강제하지 않아 키가 중복되면 편집·삭제가 모든 일치 행에 적용되니 먼저 중복을 확인하세요."
             ]
         },
         {
             "id": "schema",
-            "title": "구조",
+            "title": "Structure",
             "paragraphs": [
                 "DDL 보기는 <code>GET_DDL</code>에서 읽습니다. <structure>Structure 탭</structure>은 열 추가·이름 변경·삭제, NOT NULL·주석·기본 키 설정, VARCHAR 확장과 같은 소수 자릿수의 NUMBER 정밀도 변경을 지원합니다.",
                 "VARCHAR 축소, 기타 유형 변경과 열 기본값을 새 값으로 설정하는 등 Snowflake가 거부하는 변경은 실행 전에 거부합니다. 기본값 제거는 가능합니다."

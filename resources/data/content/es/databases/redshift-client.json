@@ -32,14 +32,14 @@
             "title": "Conectar",
             "paragraphs": [
                 "Usa como host el endpoint del clúster o del workgroup en Redshift Serverless; ambos usan el mismo puerto. Se requiere una base, y todos los clústeres se crean con una llamada <code>dev</code>. Importar una URL <code>redshift://</code> rellena el formulario.",
-                "Las conexiones nuevas usan SSL Preferido, sin comprobar versión, así que conecta cualquier clúster que AWS siga ejecutando. La contraseña se guarda en el Llavero o se lee de <code>~/.pgpass</code>, dos <credentials>opciones de credenciales</credentials>. Un clúster no público se alcanza con <network>túnel SSH</network> a un bastión de su VPC."
+                "Las conexiones nuevas usan SSL en Preferred, sin comprobar versión, así que conecta cualquier clúster que AWS siga ejecutando. La contraseña se guarda en el Llavero o se lee de <code>~/.pgpass</code>, dos <credentials>opciones de credenciales</credentials>. Un clúster no público se alcanza con <network>túnel SSH</network> a un bastión de su VPC."
             ]
         },
         {
             "id": "work",
             "title": "Consulta y edita",
             "paragraphs": [
-                "Las consultas y <editing>ediciones pendientes con Vista previa SQL</editing> funcionan como en <postgresql>PostgreSQL</postgresql>, con el mismo controlador. Una pestaña asociada a una base distinta de la activa abre una segunda conexión.",
+                "Las consultas y <editing>ediciones pendientes con Preview SQL</editing> funcionan como en <postgresql>PostgreSQL</postgresql>, con el mismo controlador. Una pestaña asociada a una base distinta de la activa abre una segunda conexión.",
                 "La información de tabla lee <code>svv_table_info</code> para distribución, claves de ordenación y tamaño; DDL escribe DISTKEY, SORTKEY, DISTSTYLE y ENCODE. Se enumeran claves foráneas, pero Redshift no las impone: nada detiene una fila que las incumpla.",
                 "<explain>EXPLAIN y EXPLAIN VERBOSE</explain> devuelven el plan Redshift como texto, sin diagrama.",
                 "Los esquemas de <code>CREATE EXTERNAL SCHEMA</code>, ya sean Spectrum sobre S3, consulta federada, referencia entre bases o datashare, aparecen junto a los tuyos marcados Externo. Sus tablas admiten explorar, filtrar, ordenar y exportar, pero son de solo lectura: Redshift no acepta UPDATE ni DELETE ahí. No muestran recuento; los tipos de columna proceden del catálogo externo."
@@ -49,7 +49,7 @@
             "id": "schema",
             "title": "Esquema",
             "paragraphs": [
-                "Redshift no tiene índices, enums, secuencias ni triggers que gestionar: DISTKEY y SORTKEY hacen el trabajo de un índice, y Estructura no tiene pestaña Triggers. Las rutinas no aparecen en la barra lateral.",
+                "Redshift no tiene índices, enums, secuencias ni triggers que gestionar: DISTKEY y SORTKEY hacen el trabajo de un índice, y Structure no tiene pestaña Triggers. Las rutinas no aparecen en la barra lateral.",
                 "Desde la barra lateral puedes renombrar tablas, bases y esquemas y crear un esquema con su propietario."
             ]
         },
@@ -57,9 +57,9 @@
             "id": "operate",
             "title": "Supervisa y haz copias",
             "paragraphs": [
-                "El <dashboard>Panel del servidor</dashboard> enumera sesiones y consultas lentas, con conexiones, tasa de aciertos de caché, tamaño, tiempo activo y consultas activas como métricas. Cancelar consulta envía <code>pg_cancel_backend</code>; Terminar sesión, <code>pg_terminate_backend</code>, ambos tras confirmar.",
-                "Redshift no tiene menú Mantenimiento ni Usuarios y roles: ejecuta VACUUM, ANALYZE y GRANT en el editor SQL.",
-                "<backup>Volcado de copia de seguridad y Restaurar volcado</backup> ejecutan {dumpTool} y pg_restore desde el Mac, por el túnel SSH si existe. Instálalos primero con libpq de Homebrew."
+                "El <dashboard>Server Dashboard</dashboard> enumera sesiones y consultas lentas, con conexiones, tasa de aciertos de caché, tamaño, tiempo activo y consultas activas como métricas. Cancel Query envía <code>pg_cancel_backend</code>; Terminate Session, <code>pg_terminate_backend</code>, ambos tras confirmar.",
+                "Redshift no tiene menú Mantenimiento ni Users & Roles: ejecuta VACUUM, ANALYZE y GRANT en el editor SQL.",
+                "<backup>Backup Dump y Restore Dump</backup> ejecutan {dumpTool} y pg_restore desde el Mac, por el túnel SSH si existe. Instálalos primero con libpq de Homebrew."
             ]
         },
         {
@@ -73,7 +73,7 @@
             "id": "iphone",
             "title": "iPhone y iPad",
             "paragraphs": [
-                "Para llevar una conexión Redshift a iPhone o iPad, activa <icloudSync>Sincronización con iCloud</icloudSync>, del plan {icloudSyncTier} en Mac, o <share>exporta la conexión</share> a un archivo y ábrelo en el dispositivo. Usa entonces el controlador PostgreSQL integrado: exploras tablas como tarjetas, filtras, ordenas y ejecutas SQL en Consulta. Las contraseñas viajan por iCloud solo con sincronización de contraseñas activa, o en un archivo cifrado que las incluya, del plan {encryptedExportTier}. Los certificados permanecen en cada dispositivo."
+                "Para llevar una conexión Redshift a iPhone o iPad, activa <icloudSync>iCloud Sync</icloudSync>, del plan {icloudSyncTier} en Mac, o <share>exporta la conexión</share> a un archivo y ábrelo en el dispositivo. Usa entonces el controlador PostgreSQL integrado: exploras tablas como tarjetas, filtras, ordenas y ejecutas SQL en Consulta. Las contraseñas viajan por iCloud Sync solo con sincronización de contraseñas activa, o en un archivo cifrado que las incluya, del plan {encryptedExportTier}. Los certificados permanecen en cada dispositivo."
             ]
         }
     ],
@@ -97,7 +97,7 @@
             "href": "/postgresql-client"
         },
         {
-            "label": "Panel del servidor y herramientas de esquema",
+            "label": "Server Dashboard y herramientas de esquema",
             "href": "/features/schema"
         },
         {

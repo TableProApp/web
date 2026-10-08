@@ -1,12 +1,12 @@
 {
     "postgresql": {
-        "tagline": "Valeurs de tableaux, jsonb et PostGIS, diagrammes EXPLAIN, Utilisateurs et rôles et sauvegardes pg_dump.",
+        "tagline": "Valeurs de tableaux, jsonb et PostGIS, diagrammes EXPLAIN, Users & Roles et sauvegardes pg_dump.",
         "limits": {
             "column-reorder-script-only": "Réordonner les colonnes génère un script reconstruisant la table. TablePro l’affiche sans jamais l’exécuter."
         }
     },
     "mysql": {
-        "tagline": "MySQL via TCP, avec diagrammes EXPLAIN, Utilisateurs et rôles, authentification AWS IAM et sauvegardes mysqldump.",
+        "tagline": "MySQL via TCP, avec diagrammes EXPLAIN, Users & Roles, authentification AWS IAM et sauvegardes mysqldump.",
         "limits": {
             "tcp-only": "Les connexions utilisent un hôte et un port via TCP. Les sockets Unix locaux ne sont pas pris en charge.",
             "load-data-local-refused": "Le pilote refuse LOAD DATA LOCAL INFILE. Chargez un fichier via Importer."
@@ -18,7 +18,7 @@
             "no-named-instances": "Les instances nommées ne sont pas prises en charge. Connectez-vous au port TCP de l’instance.",
             "no-ntlm": "NTLM n’est pas pris en charge. Utilisez une connexion SQL Server, Kerberos ou Microsoft Entra ID.",
             "no-explain": "Il n’y a ni EXPLAIN ni vue du plan d’exécution pour SQL Server.",
-            "scripts-not-in-transaction": "Un script s’exécute hors des transactions ouvertes par TablePro, comme dans SQL Server Management Studio ; les instructions exécutées avant une erreur restent donc appliquées.",
+            "scripts-not-in-transaction": "Un script s’exécute hors des transactions ouvertes par TablePro, comme dans SQL Server Management Studio ; les instructions exécutées avant une erreur restent donc appliquées.",
             "ios-tls-not-verified": "Sur iPhone et iPad, TLS peut être exigé, mais le certificat serveur n’est pas vérifié."
         }
     },
@@ -28,7 +28,7 @@
             "no-encryption": "Les bases chiffrées, comme les fichiers SQLCipher et SEE, ne s’ouvrent pas. Déchiffrez d’abord le fichier.",
             "no-primary-key-changes": "Une clé primaire ne peut être ajoutée, supprimée ni déplacée.",
             "ios-file-copied": "Sur iPhone et iPad, le fichier choisi est copié dans l’application et les modifications affectent cette copie.",
-            "extensions-local-file-only": "Les extensions ne se chargent que pour un fichier lu sur ce Mac. Une base ouverte sur un serveur SSH ne peut pas les charger ; une copie en lecture seule le peut.",
+            "extensions-local-file-only": "Les extensions ne se chargent que pour un fichier lu sur ce Mac. Une base ouverte sur un serveur SSH ne peut pas les charger ; une copie en lecture seule le peut.",
             "attached-files-not-listed": "Un fichier ajouté avec ATTACH dans l’éditeur peut être interrogé, mais n’apparaît pas dans la barre latérale."
         }
     },
@@ -55,30 +55,30 @@
         "tagline": "Le pilote MySQL avec séquences MariaDB, colonnes virtuelles et persistantes et colonnes JSON.",
         "limits": {
             "no-cloud-sql-proxy": "Cloud SQL Auth Proxy n’est pas proposé pour MariaDB. Accédez à un serveur privé via un tunnel SSH.",
-            "roles-listed-as-users": "Utilisateurs et rôles liste les rôles MariaDB comme utilisateurs. Créez et attribuez les rôles en SQL dans l’éditeur."
+            "roles-listed-as-users": "Users & Roles liste les rôles MariaDB comme utilisateurs. Créez et attribuez les rôles en SQL dans l’éditeur."
         }
     },
     "tidb": {
-        "tagline": "TiDB et TiDB Cloud via le pilote MySQL ; Arrêter envoie KILL TIDB QUERY.",
+        "tagline": "TiDB et TiDB Cloud via le pilote MySQL ; Stop envoie KILL TIDB QUERY.",
         "limits": {
             "no-triggers-or-routines": "Aucun déclencheur, routine stockée ou événement.",
-            "no-dashboard-or-dump": "Aucun tableau de bord serveur ni sauvegarde de dump. Exportez avec Dumpling de TiDB.",
-            "structure-sync-same-engine": "Comparer et synchroniser génère des scripts de structure uniquement entre bases TiDB, pas entre TiDB et MySQL ou MariaDB."
+            "no-dashboard-or-dump": "Ni Server Dashboard ni Backup Dump. Exportez avec Dumpling de TiDB.",
+            "structure-sync-same-engine": "Compare & Sync génère des scripts de structure uniquement entre bases TiDB, pas entre TiDB et MySQL ou MariaDB."
         }
     },
     "oceanbase": {
         "tagline": "Tenants OceanBase en mode MySQL, connectés en user@tenant, directement ou via OBProxy.",
         "limits": {
             "mysql-mode-only": "Seuls les tenants en mode MySQL se connectent. Ceux en mode Oracle sont refusés.",
-            "no-dashboard-or-dump": "Aucun tableau de bord serveur ni sauvegarde de dump.",
-            "structure-sync-same-engine": "Comparer et synchroniser génère des scripts de structure uniquement entre bases OceanBase, pas entre OceanBase et MySQL ou MariaDB."
+            "no-dashboard-or-dump": "Ni Server Dashboard ni Backup Dump.",
+            "structure-sync-same-engine": "Compare & Sync génère des scripts de structure uniquement entre bases OceanBase, pas entre OceanBase et MySQL ou MariaDB."
         }
     },
     "databend": {
         "tagline": "Databend et Databend Cloud via le gestionnaire MySQL de Databend.",
         "limits": {
-            "no-keys-or-indexes": "Databend n’a ni index, ni clés primaires ou étrangères ; une modification compare donc toutes les colonnes et une sauvegarde affectant plusieurs lignes est refusée.",
-            "no-compare-sync": "Comparer et synchroniser n’est pas disponible.",
+            "no-keys-or-indexes": "Databend n’a ni index, ni clés primaires ou étrangères ; une modification compare donc toutes les colonnes et un enregistrement affectant plusieurs lignes est refusé.",
+            "no-compare-sync": "Compare & Sync n’est pas disponible.",
             "no-url-scheme": "Aucun schéma d’URL n’ouvre une connexion Databend. Créez-la dans le formulaire de connexion.",
             "not-on-ios": "Non disponible sur iPhone et iPad."
         }
@@ -95,7 +95,7 @@
         "tagline": "CockroachDB et CockroachDB Cloud via le protocole réseau PostgreSQL.",
         "limits": {
             "structure-read-only": "L’onglet Structure est en lecture seule. Exécutez les changements de schéma en SQL dans l’éditeur.",
-            "no-dump-or-maintenance": "Aucune sauvegarde ou restauration de dump ni maintenance de tables. Utilisez BACKUP et RESTORE de CockroachDB."
+            "no-dump-or-maintenance": "Ni Backup Dump, ni Restore Dump, ni maintenance de tables. Utilisez BACKUP et RESTORE de CockroachDB."
         }
     },
     "pglite": {
@@ -103,7 +103,7 @@
         "limits": {
             "needs-socket-server": "PGlite doit être servi par @electric-sql/pglite-socket, que vous démarrez et maintenez en fonctionnement.",
             "single-client": "Le serveur de sockets accepte un seul client à la fois.",
-            "cancel-has-no-effect": "Annuler n’a aucun effet : une requête s’exécute toujours jusqu’au bout."
+            "cancel-has-no-effect": "Cancel n’a aucun effet : une requête s’exécute toujours jusqu’au bout."
         }
     },
     "oracle": {
@@ -111,7 +111,7 @@
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "Les wallets Oracle, l’authentification système, Kerberos et LDAP ne sont pas pris en charge. Utilisez un nom de service ou SID et un mot de passe.",
             "no-explain": "Il n’y a ni EXPLAIN ni vue du plan d’exécution pour Oracle.",
-            "no-users-roles": "Utilisateurs et rôles n’est pas disponible. Gérez les comptes avec CREATE USER et GRANT dans l’éditeur.",
+            "no-users-roles": "Users & Roles n’est pas disponible. Gérez les comptes avec CREATE USER et GRANT dans l’éditeur.",
             "no-packages": "Les packages ne sont pas listés dans la barre latérale. Les procédures et fonctions autonomes le sont."
         }
     },
@@ -160,7 +160,7 @@
         }
     },
     "snowflake": {
-        "tagline": "Paire de clés, SSO navigateur, OAuth ou mot de passe avec code, avec entrepôt et rôle dans le contexte de session.",
+        "tagline": "Paire de clés, SSO navigateur, OAuth ou mot de passe avec code, avec entrepôt et rôle dans Session Context.",
         "limits": {
             "duo-passcode-only": "Duo fonctionne uniquement avec un code. L’approbation push n’est pas prise en charge."
         }
@@ -168,20 +168,20 @@
     "cloudflare-d1": {
         "tagline": "Toutes les bases D1 d’un compte Cloudflare via l’API HTTP D1.",
         "limits": {
-            "no-session-state-or-transactions": "Chaque instruction est une requête HTTP distincte : aucun état de session ne persiste et les transactions ne sont pas prises en charge."
+            "no-session-state-or-transactions": "Chaque instruction est une requête HTTP distincte : aucun état de session ne persiste et les transactions ne sont pas prises en charge."
         }
     },
     "turso": {
         "tagline": "Bases Turso distantes via HTTP avec jeton, via le pilote libSQL.",
         "limits": {
             "no-database-switching-or-branches": "Chaque connexion correspond à une base. Le changement de base et les branches ne sont pas pris en charge.",
-            "no-embedded-replicas": "Les réplicas embarqués ne sont pas pris en charge : un fichier local s’ouvre seul et ne se synchronise pas."
+            "no-embedded-replicas": "Les réplicas embarqués ne sont pas pris en charge : un fichier local s’ouvre seul et ne se synchronise pas."
         }
     },
     "libsql": {
         "tagline": "Fichiers libSQL sur ce Mac ou serveurs sqld via HTTP.",
         "limits": {
-            "dump-local-file-only": "Sauvegarder un dump fonctionne uniquement pour un fichier libSQL local, pas une base distante."
+            "dump-local-file-only": "Backup Dump fonctionne uniquement pour un fichier libSQL local, pas une base distante."
         }
     },
     "elasticsearch": {
@@ -193,7 +193,7 @@
         }
     },
     "etcd": {
-        "tagline": "Un sous-ensemble d’etcdctl via la passerelle JSON v3 : clés sous un préfixe, baux et membres.",
+        "tagline": "Un sous-ensemble d’etcdctl via la passerelle JSON v3 : clés sous un préfixe, baux et membres.",
         "limits": {
             "no-txn": "txn n’est pas pris en charge.",
             "json-gateway-only": "Les connexions utilisent la passerelle JSON v3, pas gRPC.",
@@ -203,7 +203,7 @@
     "kafka": {
         "tagline": "Consommation et production avec KafkaQL, avec topics, partitions et retard des groupes de consommateurs.",
         "limits": {
-            "no-schema-registry": "Schema Registry n’est pas lu ; les valeurs Avro et Protobuf apparaissent donc en octets bruts.",
+            "no-schema-registry": "Schema Registry n’est pas lu ; les valeurs Avro et Protobuf apparaissent donc en octets bruts.",
             "no-topic-create-or-offset-reset": "La création de topics, leur configuration et la réinitialisation des offsets des groupes de consommateurs ne sont pas prises en charge.",
             "approximate-counts": "Les nombres de messages sont approximatifs."
         }
@@ -245,7 +245,7 @@
     "typesense": {
         "tagline": "Console de requêtes REST, collections comme tables et tableau de bord de métriques.",
         "limits": {
-            "api-keys-as-users": "Typesense n’a pas de comptes utilisateurs ; les clés API sont listées là où les autres moteurs affichent les utilisateurs."
+            "api-keys-as-users": "Typesense n’a pas de comptes utilisateurs ; les clés API sont listées là où les autres moteurs affichent les utilisateurs."
         }
     },
     "weaviate": {

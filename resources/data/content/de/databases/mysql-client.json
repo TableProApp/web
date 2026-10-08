@@ -34,7 +34,7 @@
             "title": "Verbinden",
             "paragraphs": [
                 "Gib Host, Port und Benutzer an oder füge eine <code>mysql://</code>-URL ein. MySQL-8-Konten mit <code>caching_sha2_password</code> verbinden sich beim ersten Versuch. Lasse die Datenbank leer und wähle später eine: Der Wechsel erfolgt direkt auf derselben Verbindung.",
-                "Neue Verbindungen beginnen mit SSL Bevorzugt: TLS wird zuerst versucht, Klartext erst nach einem fehlgeschlagenen TLS-Handshake. Wähle CA prüfen oder Identität prüfen mit dem Zertifikat deines Anbieters für strikte Prüfung.",
+                "Neue Verbindungen beginnen mit SSL Preferred: TLS wird zuerst versucht, Klartext erst nach einem fehlgeschlagenen TLS-Handshake. Wähle Verify CA oder Verify Identity mit dem Zertifikat deines Anbieters für strikte Prüfung.",
                 "Verbinde einen Server im privaten Netzwerk über einen <network>SSH-Tunnel mit Sprunghosts bei Bedarf, einen SOCKS5-Proxy, einen Cloudflare-Access-Tunnel oder deinen eigenen Tunnelbefehl</network> wie kubectl port-forward.",
                 "Melde dich bei Amazon RDS und Aurora mit <cloudAuth>AWS IAM</cloudAuth> an, das bei jeder Verbindung einen neuen Token signiert, und importiere Instanzen direkt aus deinem AWS-Konto. Für Google Cloud SQL lädt TablePro den Cloud SQL Auth Proxy herunter und führt ihn aus.",
                 "Wechselst du von Sequel Ace? <importApps>Aus anderer App importieren</importApps> liest dessen Favoriten und nach deiner Bestätigung die im Schlüsselbund gespeicherten Passwörter."
@@ -44,8 +44,8 @@
             "id": "work",
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
-                "Der SQL-Editor vervollständigt Tabellen- und Spaltennamen aus dem Schema einschließlich Aliasen und CTEs und führt die Anweisung am Cursor oder das ganze Skript aus. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE und EXPLAIN ANALYZE</explain> werden als Plandiagramm oder Baum gezeichnet; EXPLAIN-Vergleich zeigt Änderungen zwischen zwei Ausführungen.",
-                "Zeilenänderungen werden bis zum Speichern vorgemerkt, und <editing>SQL-Vorschau</editing> zeigt zuerst die genauen Anweisungen. Speichern nutzt gebundene Parameter und stoppt, wenn eine Anweisung eine unerwartete Zeilenzahl ändern würde. Auch Tabellen ohne Primärschlüssel lassen sich bearbeiten: Die Zeile wird über jede Spalte identifiziert.",
+                "Der SQL-Editor vervollständigt Tabellen- und Spaltennamen aus dem Schema einschließlich Aliasen und CTEs und führt die Anweisung am Cursor oder das ganze Skript aus. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE und EXPLAIN ANALYZE</explain> werden als Plandiagramm oder Baum gezeichnet; EXPLAIN Compare zeigt Änderungen zwischen zwei Ausführungen.",
+                "Zeilenänderungen werden bis zum Speichern vorgemerkt, und <editing>Preview SQL</editing> zeigt zuerst die genauen Anweisungen. Speichern nutzt gebundene Parameter und stoppt, wenn eine Anweisung eine unerwartete Zeilenzahl ändern würde. Auch Tabellen ohne Primärschlüssel lassen sich bearbeiten: Die Zeile wird über jede Spalte identifiziert.",
                 "Jede Sitzung nutzt utf8mb4, damit Emojis und nichtlateinische Texte unverändert bleiben. Für Datenbanken, deren Text ein alter Client über Latin 1 schrieb, liest die Kodierung UTF-8 über Latin 1 ihn wie dieser Client.",
                 "Partitionierte Tabellen zeigen ihre Partitionen mit Grenzen wie <code>VALUES LESS THAN (2024)</code>; Tabellen- und Spaltenkommentare erscheinen in der Seitenleiste und den Rasterspaltenköpfen."
             ]
@@ -54,19 +54,19 @@
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "Der <structure>Struktur-Tab</structure> merkt Änderungen an Spalten, Indizes, Fremdschlüsseln, CHECK-Bedingungen und generierten Spalten vor und zeigt das DDL vor Ausführung. Indexschlüssel über Ausdrücke wie <code>lower(email)</code> brauchen MySQL 8.0.13 oder neuer.",
+                "Der <structure>Structure-Tab</structure> merkt Änderungen an Spalten, Indizes, Fremdschlüsseln, CHECK-Bedingungen und generierten Spalten vor und zeigt das DDL vor Ausführung. Indexschlüssel über Ausdrücke wie <code>lower(email)</code> brauchen MySQL 8.0.13 oder neuer.",
                 "Routinen und Trigger erscheinen mit ihrem Quelltext in der Seitenleiste. Das <erDiagram>ER-Diagramm</erDiagram> zeichnet das Schema als schreibgeschütztes Bild, das du als PNG oder SQL exportieren kannst.",
-                "<compareSync>Vergleichen und synchronisieren</compareSync>, Teil des Tarifs {compareSyncTier}, vergleicht zwei MySQL- oder MariaDB-Schemas oder deren Daten und schreibt ein Skript zum Abgleichen. Änderungen mit Datenverlust werden zurückgehalten, bis du sie einbeziehst."
+                "<compareSync>Compare & Sync</compareSync>, Teil des Tarifs {compareSyncTier}, vergleicht zwei MySQL- oder MariaDB-Schemas oder deren Daten und schreibt ein Skript zum Abgleichen. Änderungen mit Datenverlust werden zurückgehalten, bis du sie einbeziehst."
             ]
         },
         {
             "id": "operate",
             "title": "Verwalten",
             "paragraphs": [
-                "<administer>Benutzer und Rollen</administer> zeigt die Rechte jedes Kontos bis zu einzelnen Spalten und merkt jedes GRANT und REVOKE als SQL vor, das du vor Ausführung liest.",
+                "<administer>Users & Roles</administer> zeigt die Rechte jedes Kontos bis zu einzelnen Spalten und merkt jedes GRANT und REVOKE als SQL vor, das du vor Ausführung liest.",
                 "Das Server-Dashboard listet Sitzungen, Servermetriken und langsame Abfragen, alle paar Sekunden aktualisiert. Es bricht Abfragen mit <code>KILL QUERY</code> ab oder beendet Sitzungen mit <code>KILL</code>. Ein Konto ohne PROCESS-Recht sieht nur eigene Sitzungen.",
                 "Tabellenwartung führt OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE und REPAIR TABLE aus und zeigt vorher die Anweisung.",
-                "<backup>Backup-Dump</backup> führt {dumpTool} aus, Dump wiederherstellen den mysql-Client, beides über den SSH-Tunnel der Verbindung. Installiere zuerst die MySQL-Clientwerkzeuge auf deinem Mac. Eine Wiederherstellung ersetzt die im Dump benannten Objekte.",
+                "<backup>Backup Dump</backup> führt {dumpTool} aus, Restore Dump den mysql-Client, beides über den SSH-Tunnel der Verbindung. Installiere zuerst die MySQL-Clientwerkzeuge auf deinem Mac. Eine Wiederherstellung ersetzt die im Dump benannten Objekte.",
                 "Um bei Abwesenheit einen Serverplatz freizugeben, lasse die Verbindung nach einigen inaktiven Minuten los; die nächste Abfrage öffnet eine neue. TablePro behält die Verbindung, wenn die Sitzung etwas hält, das beim Neuverbinden verloren ginge, etwa eine offene Transaktion oder temporäre Tabelle."
             ],
             "asset": "mac-users-roles-mysql"
@@ -76,14 +76,14 @@
             "title": "Daten übertragen",
             "paragraphs": [
                 "<importData>Importiere</importData> {importFormats}-Dateien mit Spaltenzuordnung zur Zieltabelle und wählbarem Verhalten bei einer fehlerhaften Zeile. Exportiere Tabellen oder Ergebnisse als {exportFormats}.",
-                "<copy>Kopieren nach</copy> sendet Tabellen, Daten oder beides an eine andere MySQL-Verbindung oder Engine und listet jeden angenäherten Spaltentyp auf."
+                "<copy>Copy To</copy> sendet Tabellen, Daten oder beides an eine andere MySQL-Verbindung oder Engine und listet jeden angenäherten Spaltentyp auf."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone und iPad",
             "paragraphs": [
-                "Auf iPhone und iPad durchsuchst du Tabellen als Karten, filterst und sortierst sie, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Abfrage-Tab aus. Verbindungen bieten SSL von Erforderlich bis Identität prüfen und SSH-Tunnel mit Passwort oder Schlüssel. SSH-Sprunghosts werden dort nicht unterstützt."
+                "Auf iPhone und iPad durchsuchst du Tabellen als Karten, filterst und sortierst sie, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Abfrage-Tab aus. Verbindungen bieten SSL von Required bis Verify Identity und SSH-Tunnel mit Passwort oder Schlüssel. SSH-Sprunghosts werden dort nicht unterstützt."
             ]
         }
     ],
@@ -94,16 +94,16 @@
             "paragraphs": [
                 "MariaDB nutzt denselben Treiber wie MySQL mit denselben SSH-, SSL/TLS- und AWS-IAM-Optionen. Eine <code>mariadb://</code>-URL erstellt eine MariaDB-Verbindung.",
                 "JSON-Spalten, die MariaDB als LONGTEXT speichert, öffnen im JSON-Editor. Virtuelle und persistente Spalten werden erkannt und aus generierten INSERT- und UPDATE-Anweisungen ausgelassen. Sequenzen stehen schreibgeschützt in der Seitenleiste; systemversionierte Tabellen werden als normale Tabellen gelistet.",
-                "Benutzer und Rollen, Server-Dashboard, Tabellenwartung und Backups mit {dumpTool} funktionieren wie bei MySQL."
+                "Users & Roles, Server-Dashboard, Tabellenwartung und Backups mit {dumpTool} funktionieren wie bei MySQL."
             ]
         },
         {
             "engine": "tidb",
             "title": "TiDB",
             "paragraphs": [
-                "Richte die Verbindung auf den SQL-Port des TiDB-Servers, nie auf PD oder TiKV. TiDB Cloud nutzt denselben Port; stelle dort den SSL-Modus auf Erforderlich.",
-                "Stoppen sendet <code>KILL TIDB QUERY</code> für deine Sitzung. Hinter TiProxy oder einem Load Balancer braucht das Global Kill, das TiDB seit Version 6.1 standardmäßig aktiviert.",
-                "EXPLAIN und EXPLAIN ANALYZE zeigen den TiDB-Plan als Text. CHECK-Bedingungen erscheinen ab TiDB 7.2 im Struktur-Tab, wenn der Cluster sie aktiviert; Fremdschlüssel können erstellt werden, und Wartung bietet ANALYZE TABLE.",
+                "Richte die Verbindung auf den SQL-Port des TiDB-Servers, nie auf PD oder TiKV. TiDB Cloud nutzt denselben Port; stelle dort SSL Mode auf Required.",
+                "Stop sendet <code>KILL TIDB QUERY</code> für deine Sitzung. Hinter TiProxy oder einem Load Balancer braucht das Global Kill, das TiDB seit Version 6.1 standardmäßig aktiviert.",
+                "EXPLAIN und EXPLAIN ANALYZE zeigen den TiDB-Plan als Text. CHECK-Bedingungen erscheinen ab TiDB 7.2 im Structure-Tab, wenn der Cluster sie aktiviert; Fremdschlüssel können erstellt werden, und Wartung bietet ANALYZE TABLE.",
                 "Wähle TiDB statt MySQL als Verbindungstyp, damit Seitenleiste, Typauswahl und EXPLAIN TiDB folgen."
             ]
         },
@@ -123,7 +123,7 @@
             "paragraphs": [
                 "Databend verbindet über seinen MySQL-Handler, nicht die HTTP-API. Wähle Databend als Typ; eine MySQL-Verbindung zu einem Databend-Server wird abgelehnt und fordert den Typwechsel.",
                 "Bitte bei Databend Cloud den Support, den MySQL-Endpunkt des Warehouses zu aktivieren, und kopiere Host und Port aus dessen Connect-Dialog.",
-                "Der Struktur-Tab bearbeitet Spalten und CHECK-Bedingungen und benennt Tabellen, Sichten und Spalten um. EXPLAIN und EXPLAIN ANALYZE zeigen den Plan als Text; Wartung bietet ANALYZE TABLE.",
+                "Der Structure-Tab bearbeitet Spalten und CHECK-Bedingungen und benennt Tabellen, Sichten und Spalten um. EXPLAIN und EXPLAIN ANALYZE zeigen den Plan als Text; Wartung bietet ANALYZE TABLE.",
                 "ARRAY-, MAP- und TUPLE-Zellen lassen sich nicht aus Text schreiben. Ändere sie mit UPDATE im Editor."
             ]
         }
@@ -154,12 +154,12 @@
         {
             "id": "mysqldump",
             "question": "Brauche ich installierte MySQL-Clientwerkzeuge?",
-            "answer": "Nur für Backup-Dump und Dump wiederherstellen, die {dumpTool} und mysql ausführen. Verbinden, Abfragen und Bearbeiten nutzen den mitgelieferten Treiber."
+            "answer": "Nur für Backup Dump und Restore Dump, die {dumpTool} und mysql ausführen. Verbinden, Abfragen und Bearbeiten nutzen den mitgelieferten Treiber."
         },
         {
             "id": "er-diagram",
             "question": "Kann ich im ER-Diagramm ein Schema entwerfen?",
-            "answer": "Nein. Das <erDiagram>ER-Diagramm</erDiagram> ist ein exportierbares, schreibgeschütztes Bild des Schemas. Ändere Tabellen im Struktur-Tab oder mit SQL."
+            "answer": "Nein. Das <erDiagram>ER-Diagramm</erDiagram> ist ein exportierbares, schreibgeschütztes Bild des Schemas. Ändere Tabellen im Structure-Tab oder mit SQL."
         }
     ],
     "related": [

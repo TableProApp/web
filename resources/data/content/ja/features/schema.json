@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "構造を変更する前に DDL を確認",
             "paragraphs": [
-                "Structure タブではテーブルのカラム、インデックス、外部キーと CHECK 制約をグリッドで編集します。変更は保存まで保留され、<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）で実行前に ALTER TABLE 文を確認できます。削除、型の変更、NOT NULL の追加や主キーの変更は、接続のセーフモードが {macSafeModeDefault} でも事前確認を求めます。",
+                "Structure タブではテーブルのカラム、インデックス、外部キーと CHECK 制約をグリッドで編集します。変更は保存まで保留され、<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）で実行前に ALTER TABLE 文を確認できます。削除、型の変更、NOT NULL の追加や主キーの変更は、接続の Safe Mode が {macSafeModeDefault} でも事前確認を求めます。",
                 "インデックスには <code>lower(email)</code> などの式をキーとして使えます。New Table も同じ方式でテーブルを作成し、SQL プレビューを随時表示します。外部キーをその場で変更できない SQLite、libSQL、Turso、Cloudflare D1 では、TablePro が確認用のテーブル再構築スクリプトを生成します。SQLite とローカル libSQL ファイルでは確認後に実行し、Turso、リモート libSQL、D1 では実行をユーザーに任せます。"
             ],
             "engines": [
@@ -60,7 +60,7 @@
         },
         {
             "id": "compare-sync",
-            "title": "比較と同期",
+            "title": "Compare & Sync",
             "paragraphs": [
                 "ソースとターゲットを選ぶと、Compare & Sync は差のあるテーブルをすべて一覧表示します。二つのサーバーでも、一つのサーバー内の二つのデータベースでも構いません。指定すればビュー、ルーチンとトリガーも対象です。データモードではキーで行を対応付け、異なる値をすべてマークします。テーブルごとにフィルターと行数制限を設定でき、大きなテーブルの一部だけを比較できます。",
                 "生成するスクリプトは外部キーの順序に従い、ターゲット固有のクライアント向けに記述します。カラム削除、型の縮小、行の削除などデータを破壊する文は、その実行で許可するまで保留します。Read-Only に設定した接続はターゲットに選べません。比較を保存すれば、ワンクリックで再実行できます。"
@@ -88,13 +88,13 @@
             "blocks": [
                 {
                     "id": "users-roles",
-                    "title": "ユーザーとロール",
+                    "title": "Users & Roles",
                     "paragraphs": [
                         "Users & Roles は各ユーザーの権限を、サーバーから個々のカラムまでのツリーで表示します。権限の付与と取り消しは変更として保留し、実行前に SQL を表示するため、手書きの GRANT は不要です。"
                     ],
                     "engines": [
                         {
-                            "label": "ユーザーとロール",
+                            "label": "Users & Roles",
                             "list": "usersRoles"
                         }
                     ],
@@ -102,13 +102,13 @@
                 },
                 {
                     "id": "server-dashboard",
-                    "title": "サーバーダッシュボード",
+                    "title": "Server Dashboard",
                     "paragraphs": [
-                        "Server Dashboard はライブセッション、サーバーメトリクスと遅いクエリを、選んだ間隔で更新して表示します。エンジンが許可する場合、その行から実行中のクエリをキャンセルしたりセッションを終了したりできます。どちらも接続のセーフモードを通します。SQLite、DuckDB、Typesense ではメトリクスだけを表示します。"
+                        "Server Dashboard はライブセッション、サーバーメトリクスと遅いクエリを、選んだ間隔で更新して表示します。エンジンが許可する場合、その行から実行中のクエリをキャンセルしたりセッションを終了したりできます。どちらも接続の Safe Mode を通します。SQLite、DuckDB、Typesense ではメトリクスだけを表示します。"
                     ],
                     "engines": [
                         {
-                            "label": "サーバーダッシュボード",
+                            "label": "Server Dashboard",
                             "list": "dashboard"
                         }
                     ],
@@ -138,7 +138,7 @@
             "iosNote": "カラム、インデックスと外部キーは読み取り専用"
         },
         {
-            "label": "テーブル作成",
+            "label": "New Table",
             "ios": "no"
         },
         {
@@ -154,7 +154,7 @@
             "ios": "no"
         },
         {
-            "label": "比較と同期",
+            "label": "Compare & Sync",
             "paid": "compare-sync",
             "ios": "no"
         },
@@ -163,11 +163,11 @@
             "ios": "no"
         },
         {
-            "label": "ユーザーとロール",
+            "label": "Users & Roles",
             "ios": "no"
         },
         {
-            "label": "サーバーダッシュボードとテーブル保守",
+            "label": "Server Dashboard とテーブル保守",
             "ios": "no"
         }
     ],
@@ -191,7 +191,7 @@
             "docs": "/features/routines-triggers"
         },
         {
-            "label": "比較と同期",
+            "label": "Compare & Sync",
             "docs": "/features/compare-sync"
         },
         {
@@ -199,11 +199,11 @@
             "docs": "/features/copy-objects"
         },
         {
-            "label": "ユーザーとロール",
+            "label": "Users & Roles",
             "docs": "/features/users-roles"
         },
         {
-            "label": "サーバーダッシュボード",
+            "label": "Server Dashboard",
             "docs": "/features/server-dashboard"
         },
         {

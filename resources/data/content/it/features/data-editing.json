@@ -17,7 +17,7 @@
             "id": "browse",
             "title": "Trova le righe necessarie",
             "paragraphs": [
-                "Ordinamento e paginazione avvengono sul server, quindi una grande tabella si apre alla prima pagina. Oltre {countEstimate} righe, il conteggio è una stima; Conta esattamente è disponibile quando ti serve il numero reale."
+                "Ordinamento e paginazione avvengono sul server, quindi una grande tabella si apre alla prima pagina. Oltre {countEstimate} righe, il conteggio è una stima; Count Exactly è disponibile quando ti serve il numero reale."
             ],
             "blocks": [
                 {
@@ -54,28 +54,28 @@
         },
         {
             "id": "safe-mode",
-            "title": "Modalità sicura per le connessioni di produzione",
+            "title": "Safe Mode per le connessioni di produzione",
             "paragraphs": [
-                "Ogni connessione ha un livello di Modalità sicura: {macSafeModeLevels}. Le nuove connessioni iniziano da {macSafeModeDefault}, dove le istruzioni vengono eseguite così come sono scritte. Avviso chiede conferma prima di una scrittura; i livelli Modalità sicura richiedono anche Touch ID o la password del Mac, i livelli Completi chiedono conferma anche prima delle letture e Sola lettura rifiuta le scritture e disattiva la modifica. La Modalità sicura è gratuita.",
-                "A ogni livello, DROP, TRUNCATE e DELETE senza WHERE si fermano e chiedono prima conferma. Alcune condizioni alzano il livello della connessione mentre sono attive: un motore che consente solo letture, la modalità Agente, che lo porta almeno ad Avviso, e un livello minimo imposto dall’organizzazione tramite la gestione dei dispositivi (MDM)."
+                "Ogni connessione ha un livello Safe Mode: {macSafeModeLevels}. Le nuove connessioni iniziano da {macSafeModeDefault}, dove le istruzioni vengono eseguite così come sono scritte. Alert chiede conferma prima di una scrittura; i livelli Safe Mode e Safe Mode (Full) richiedono anche Touch ID o la password del Mac, i livelli Full chiedono conferma anche prima delle letture e Read-Only rifiuta le scritture e disattiva la modifica. Safe Mode è gratuita.",
+                "A ogni livello, DROP, TRUNCATE e DELETE senza WHERE si fermano e chiedono prima conferma. Alcune condizioni alzano il livello della connessione mentre sono attive: un motore che consente solo letture, Agent mode, che lo porta almeno ad Alert, e un livello minimo imposto dall’organizzazione tramite la gestione dei dispositivi (MDM)."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
                 {
-                    "label": "Modalità sicura e altre politiche di connessione",
+                    "label": "Safe Mode e altre politiche di connessione",
                     "href": "/features/connections#policies"
                 },
                 {
-                    "label": "Modalità Agente",
+                    "label": "Agent mode",
                     "href": "/features/ai-mcp#agent-mode"
                 }
             ]
         },
         {
             "id": "data-rewind",
-            "title": "Ripristino dati",
+            "title": "Data Rewind",
             "paragraphs": [
-                "Ripristino dati conserva i valori sostituiti da un salvataggio, così <ui>Restore Previous Values</ui> può recuperarli. Una schermata di revisione mostra prima cosa accadrà a ogni riga, incluse quelle cambiate dopo il salvataggio; il ripristino passa attraverso la Modalità sicura, in una transazione quando il motore lo consente. Anche un ripristino può essere ripristinato.",
+                "Data Rewind conserva i valori sostituiti da un salvataggio, così <ui>Restore Previous Values</ui> può recuperarli. Una schermata di revisione mostra prima cosa accadrà a ogni riga, incluse quelle cambiate dopo il salvataggio; il ripristino passa attraverso Safe Mode, in una transazione quando il motore lo consente. Anche un ripristino può essere ripristinato.",
                 "I valori salvati restano su questo Mac per {rewindDays} giorni, cifrati con una chiave conservata nel Portachiavi, e non vengono mai sincronizzati. Quando termina un piano, TablePro smette di registrare i salvataggi e <ui>Restore Previous Values</ui> mostra invece un avviso."
             ],
             "paid": [
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Documenti e chiavi",
             "paragraphs": [
-                "Non tutti i motori memorizzano righe. Su MongoDB inserisci e modifichi interi documenti come Extended JSON, rimuovi un campo da un documento e rinomini o rimuovi un campo nell’intera collezione dalla scheda Struttura. Su Redis rinomini chiavi, imposti TTL e modifichi valori stringa nella griglia, aggiungi chiavi string, hash, list, set o sorted-set e modifichi gli altri tipi con i comandi nell’editor."
+                "Non tutti i motori memorizzano righe. Su MongoDB inserisci e modifichi interi documenti come Extended JSON, rimuovi un campo da un documento e rinomini o rimuovi un campo nell’intera collezione dalla scheda Structure. Su Redis rinomini chiavi, imposti TTL e modifichi valori stringa nella griglia, aggiungi chiavi string, hash, list, set o sorted-set e modifichi gli altri tipi con i comandi nell’editor."
             ],
             "links": [
                 {
@@ -105,7 +105,7 @@
             "title": "Su iPhone e iPad",
             "paragraphs": [
                 "Nell’app per iPhone e iPad, le righe appaiono come schede che puoi ordinare, cercare e filtrare con AND e OR; toccando una chiave esterna visualizzi l’anteprima della riga referenziata. Puoi modificare una riga, impostare un valore a NULL o DEFAULT, inserire righe ed eliminarle scorrendo; modifica ed eliminazione richiedono una chiave primaria.",
-                "La Modalità sicura ha livelli propri, {iosSafeModeLevels}, con {iosSafeModeDefault} come valore predefinito per le nuove connessioni. Modifiche in attesa, Anteprima SQL, regole di evidenziazione e Ripristino dati sono disponibili solo nell’app per Mac."
+                "Safe Mode ha livelli propri, {iosSafeModeLevels}, con {iosSafeModeDefault} come valore predefinito per le nuove connessioni. Modifiche in attesa, Preview SQL, regole di evidenziazione e Data Rewind sono disponibili solo nell’app per Mac."
             ],
             "links": [
                 {
@@ -113,7 +113,7 @@
                     "href": "/ios#browse"
                 },
                 {
-                    "label": "Modalità sicura su iPhone e iPad",
+                    "label": "Safe Mode su iPhone e iPad",
                     "href": "/ios#safe-mode"
                 }
             ]
@@ -139,11 +139,11 @@
             "iosNote": "Editor di righe; richiede una chiave primaria"
         },
         {
-            "label": "Modifiche in attesa, Anteprima SQL e annullamento",
+            "label": "Modifiche in attesa, Preview SQL e annullamento",
             "ios": "no"
         },
         {
-            "label": "Modalità sicura",
+            "label": "Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -152,7 +152,7 @@
             "ios": "no"
         },
         {
-            "label": "Ripristino dati",
+            "label": "Data Rewind",
             "paid": "data-rewind",
             "ios": "no"
         },
@@ -162,9 +162,9 @@
         }
     ],
     "limits": [
-        "Ripristino dati non è un backup. Non annulla trigger, modifiche a cascata o modifiche esterne a TablePro e non può recuperare righe senza chiave primaria, valori oltre {rewindMaxValue} MB o valori calcolati dal server.",
-        "Un UPDATE senza WHERE è una scrittura ordinaria: chiede prima conferma solo al livello Avviso o superiore.",
-        "Su {everyStatementWrites}, la Modalità sicura considera ogni istruzione una scrittura, quindi Avviso chiede conferma anche prima delle letture e Sola lettura le blocca.",
+        "Data Rewind non è un backup. Non annulla trigger, modifiche a cascata o modifiche esterne a TablePro e non può recuperare righe senza chiave primaria, valori oltre {rewindMaxValue} MB o valori calcolati dal server.",
+        "Un UPDATE senza WHERE è una scrittura ordinaria: chiede prima conferma solo al livello Alert o superiore.",
+        "Su {everyStatementWrites}, Safe Mode considera ogni istruzione una scrittura, quindi Alert chiede conferma anche prima delle letture e Read-Only le blocca.",
         "Il risultato di un join, una CTE o una UNION è in sola lettura nella griglia; apri la tabella per modificarla."
     ],
     "docs": [
@@ -177,15 +177,15 @@
             "docs": "/features/filtering"
         },
         {
-            "label": "Tracciamento delle modifiche e Anteprima SQL",
+            "label": "Tracciamento delle modifiche e Preview SQL",
             "docs": "/features/change-tracking"
         },
         {
-            "label": "Ripristino dati",
+            "label": "Data Rewind",
             "docs": "/features/change-tracking#restoring-a-save"
         },
         {
-            "label": "Modalità sicura",
+            "label": "Safe Mode",
             "docs": "/features/safe-mode"
         }
     ],

@@ -37,7 +37,7 @@
                 "Las tablas abarcan transacciones y apuntes, cuentas, saldos y aserciones de saldo, precios y unidades de valor, todas las demás directivas, metadatos, etiquetas y enlaces, y los archivos de origen. Los apuntes se unen a las transacciones por <code>transaction_id</code>, y las cuentas por nombre.",
                 "Los importes llegan contabilizados, con las operaciones, los costes y los precios resueltos, y los costes de los apuntes y los precios en línea en columnas propias. Las transacciones, los apuntes y varias tablas de directivas incluyen un <code>source_location</code> como <code>main.beancount:42</code>, para volver de una fila a su línea de origen.",
                 "Antepon <code>BQL:</code> a una consulta para enviarla a rledger en lugar de consultar las tablas. Los resultados BQL admiten exploración, recuento de filas y paginación, pero no parámetros SQL.",
-                "Se siguen las directivas <code>include</code>, tanto rutas literales como patrones glob, y se supervisan todos los archivos del libro y documentos referenciados. Guarda un cambio en tu editor y la siguiente consulta lo leerá sin reconectar. La conexión siempre está en <safeMode>Modo seguro</safeMode> de Solo lectura, así que se rechazan INSERT, UPDATE, DELETE y los cambios de esquema."
+                "Se siguen las directivas <code>include</code>, tanto rutas literales como patrones glob, y se supervisan todos los archivos del libro y documentos referenciados. Guarda un cambio en tu editor y la siguiente consulta lo leerá sin reconectar. La conexión siempre está en <safeMode>Safe Mode</safeMode> Read-Only, así que se rechazan INSERT, UPDATE, DELETE y los cambios de esquema."
             ]
         },
         {

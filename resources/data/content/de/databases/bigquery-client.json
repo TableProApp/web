@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Google-BigQuery-Client für {devices}",
-        "description": "BigQuery mit Dienstkonto, ADC oder OAuth abfragen. Bytes und Kosten simulieren, abgerechnete Bytes begrenzen und nach Cloud Storage exportieren."
+        "description": "BigQuery mit Dienstkonto, ADC oder OAuth abfragen. Bytes und Kosten per Dry Run prüfen, mit Max Bytes Billed begrenzen und nach Cloud Storage exportieren."
     },
     "og": {
         "kicker": "Datenbanken",
@@ -35,8 +35,8 @@
             "id": "work",
             "title": "Abfragen und Kosten steuern",
             "paragraphs": [
-                "Wähle vor der Abfrageausführung <ui>Dry Run (Cost)</ui> im Menü <explain>Ausführungsplan</explain>. Das Ergebnis nennt die Bytes, die die Abfrage verarbeiten und abrechnen würde, ein Cache-Treffer-Flag und geschätzte Kosten in US-Dollar; die Abfrage selbst wird nicht ausgeführt.",
-                "Nach der Ausführung zeigt die Statusleiste verarbeitete und abgerechnete Bytes sowie eine Schätzung zum On-Demand-Tarif und kennzeichnet einen Cache-Treffer. Für eine feste Obergrenze setze <ui>Max Bytes Billed</ui> im Tab Erweitert der Verbindung: BigQuery lehnt dann einen Job ab, der mehr abrechnen würde, statt ihn auszuführen.",
+                "Wähle vor der Abfrageausführung <ui>Dry Run (Cost)</ui> im Menü <explain>Explain</explain>. Das Ergebnis nennt die Bytes, die die Abfrage verarbeiten und abrechnen würde, ein Cache-Treffer-Flag und geschätzte Kosten in US-Dollar; die Abfrage selbst wird nicht ausgeführt.",
+                "Nach der Ausführung zeigt die Statusleiste verarbeitete und abgerechnete Bytes sowie eine Schätzung zum On-Demand-Tarif und kennzeichnet einen Cache-Treffer. Für eine feste Obergrenze setze <ui>Max Bytes Billed</ui> im Tab Advanced der Verbindung: BigQuery lehnt dann einen Job ab, der mehr abrechnen würde, statt ihn auszuführen.",
                 "Vervollständigung, Quotierung und Formatierung folgen GoogleSQL, mit Backticks um Tabellennamen; STRUCT- und ARRAY-Spalten werden als JSON angezeigt. Datasets stehen für Datenbanken: Sie erscheinen in der Seitenleiste, <code>⌘K</code> wechselt zwischen ihnen, und jeder Tab bleibt beim Dataset, mit dem er geöffnet wurde. Ein Job wird bis zum Abfragezeitlimit abgefragt und dann abgebrochen; bei Kein Limit wartet TablePro bis zum Abschluss.",
                 "Zellen, Einfügen und Löschen laufen über das <editing>Raster</editing>. UPDATE und DELETE identifizieren eine Zeile über ihren deklarierten Primärschlüssel; ohne einen solchen vergleichen sie alle Spalten außer ARRAY, JSON und GEOGRAPHY, sodass identische Zeilen gemeinsam geändert werden. Deklariere <code>PRIMARY KEY (…) NOT ENFORCED</code>, um genau eine Zeile zu bearbeiten. Schreibe bei partitionierten Tabellen UPDATE und DELETE mit einem Partitionsfilter im Editor."
             ]
@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "Datasets und DDL",
             "paragraphs": [
-                "DDL wird im Editor ausgeführt, etwa <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> und <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> erstellt ein Dataset mit <code>CREATE SCHEMA</code>; Tabellen lassen sich in der Seitenleiste umbenennen. Der DDL-Tab liest Definitionen aus <code>INFORMATION_SCHEMA.TABLES</code>, und Clustering sowie Partitionierung erscheinen unter Indizes."
+                "DDL wird im Editor ausgeführt, etwa <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> und <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> erstellt ein Dataset mit <code>CREATE SCHEMA</code>; Tabellen lassen sich in der Seitenleiste umbenennen. Der DDL-Tab liest Definitionen aus <code>INFORMATION_SCHEMA.TABLES</code>, und Clustering sowie Partitionierung erscheinen unter Indexes."
             ]
         },
         {
@@ -53,7 +53,7 @@
             "title": "Daten übertragen",
             "paragraphs": [
                 "TablePro bietet keinen Import für BigQuery. <export>Exportiere</export> eine Tabelle oder ein Abfrageergebnis als {exportFormats} auf deinen Mac.",
-                "<backup>Serverseitiger Export</backup> exportiert eine Tabelle mit <code>EXPORT DATA</code> unter einem <code>gs://</code>-Präfix als CSV, Parquet oder zeilengetrenntes JSON, verteilt auf Dateien unter diesem Präfix. Er läuft über deine Verbindung mit deinen Berechtigungen; der Dialog wartet bis zum Abschluss, und auf deinem Mac wird keine Datei geschrieben."
+                "<backup>Server-Side Export</backup> exportiert eine Tabelle mit <code>EXPORT DATA</code> unter einem <code>gs://</code>-Präfix als CSV, Parquet oder zeilengetrenntes JSON, verteilt auf Dateien unter diesem Präfix. Er läuft über deine Verbindung mit deinen Berechtigungen; der Dialog wartet bis zum Abschluss, und auf deinem Mac wird keine Datei geschrieben."
             ]
         }
     ],
@@ -77,7 +77,7 @@
             "href": "/features/connections#cloud-auth"
         },
         {
-            "label": "Export, Backups und serverseitiger Export",
+            "label": "Export, Backups und Server-Side Export",
             "href": "/features/import-export#backup"
         },
         {

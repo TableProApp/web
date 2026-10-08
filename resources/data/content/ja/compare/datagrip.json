@@ -177,7 +177,7 @@
         {
             "id": "mcp",
             "question": "DataGrip にも MCP サーバーがあります。TablePro のサーバーは何をしますか？",
-            "answer": "Claude Code や Cursor などのクライアントが、パスワードを見ずに保存済みの TablePro 接続を使えるようにします。127.0.0.1 でのみ待ち受け、変更しない限り各接続は外部アプリから読み取り専用で、無料です。DataGrip もバージョン {cells.mcp.version} から提供しています。",
+            "answer": "Claude Code や Cursor などのクライアントが、パスワードを見ずに保存済みの TablePro 接続を使えるようにします。127.0.0.1 でのみ待ち受け、変更しない限り各接続は外部アプリに対して Read Only で、無料です。DataGrip もバージョン {cells.mcp.version} から提供しています。",
             "href": null
         },
         {

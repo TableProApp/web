@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro 免费吗？",
                     "answer": [
-                        "Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 许可证可增加可选功能，<pricing>定价页面</pricing>列出了这些功能。连接任何受支持的引擎，以及使用 AI 助手、MCP 服务器或安全模式，均无需许可证。",
+                        "Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 许可证可增加可选功能，<pricing>定价页面</pricing>列出了这些功能。连接任何受支持的引擎，以及使用 AI 助手、MCP 服务器或 Safe Mode，均无需许可证。",
                         "iPhone 和 iPad 应用免费，没有应用内购买，也无需许可证。"
                     ]
                 },
@@ -81,7 +81,7 @@
                     "id": "iphone-ipad",
                     "question": "有 iPhone 和 iPad 应用吗？",
                     "answer": [
-                        "有。iPhone 和 iPad 版 TablePro 在 App Store 提供，需要 {iosRequirement}，免费且无应用内购买。可连接 {iosEngines}，支持 SSH 隧道、安全模式和 Face ID，能浏览、编辑表和运行查询。",
+                        "有。iPhone 和 iPad 版 TablePro 在 App Store 提供，需要 {iosRequirement}，免费且无应用内购买。可连接 {iosEngines}，支持 SSH 隧道、Safe Mode 和 Face ID，能浏览、编辑表和运行查询。",
                         "它是为手机和平板打造的独立应用，并非 Mac 应用的复制版，例如没有 AI 助手、MCP 服务器和已保存查询。<ios>iPhone 和 iPad 页面</ios>列出了提供及未提供的功能。"
                     ]
                 },
@@ -135,7 +135,7 @@
                     "question": "密码存在哪里？",
                     "answer": [
                         "Mac 上保存在 macOS 钥匙串中，也可在连接时从文件、环境变量、Shell 命令、1Password、HashiCorp Vault 或 AWS Secrets Manager 读取。iPhone 和 iPad 上保存在设备钥匙串中。",
-                        "开启 iCloud 同步后，还必须开启 Mac 上 Sync Categories 中的<ui>密码</ui>（Passwords），或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords），才会通过 iCloud 钥匙串同步密码。"
+                        "开启 iCloud Sync 后，还必须开启 Mac 上 Sync Categories 中的<ui>密码</ui>（Passwords），或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords），才会通过 iCloud 钥匙串同步密码。"
                     ]
                 },
                 {
@@ -177,7 +177,7 @@
                     "id": "subscription-ends",
                     "question": "订阅结束后会怎样？",
                     "answer": [
-                        "付费功能会锁定，例如 iCloud 同步暂停，Linked Folders 或 Team Library 中的连接被隐藏。其余功能继续运行，连接、查询和设置原样保留在 Mac 上。续订后付费功能恢复。",
+                        "付费功能会锁定，例如 iCloud Sync 暂停，Linked Folders 或 Team Library 中的连接被隐藏。其余功能继续运行，连接、查询和设置原样保留在 Mac 上。续订后付费功能恢复。",
                         "一次性购买没有到期日。iPhone 和 iPad 不受影响。"
                     ]
                 },
@@ -247,10 +247,10 @@
                 },
                 {
                     "id": "icloud-data",
-                    "question": "iCloud 同步存储什么，存在哪里？",
+                    "question": "iCloud Sync 存储什么，存在哪里？",
                     "answer": [
-                        "iCloud 同步默认关闭。同步的连接和 Mac 上选择的其他类别存入您自己 iCloud 账户的私有数据库，TablePro 无法读取。只有同时开启 Mac 上 Sync Categories 中的<ui>密码</ui>（Passwords），或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords）才会同步密码。",
-                        "Mac 上的 iCloud 同步属于 Starter 或 Team 许可证功能，iPhone 和 iPad 上免费。"
+                        "iCloud Sync 默认关闭。同步的连接和 Mac 上选择的其他类别存入您自己 iCloud 账户的私有数据库，TablePro 无法读取。只有同时开启 Mac 上 Sync Categories 中的<ui>密码</ui>（Passwords），或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords）才会同步密码。",
+                        "Mac 上的 iCloud Sync 属于 Starter 或 Team 许可证功能，iPhone 和 iPad 上免费。"
                     ]
                 }
             ]

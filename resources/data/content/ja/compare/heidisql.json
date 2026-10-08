@@ -15,7 +15,7 @@
         "tablepro": [
             "Intel Mac を使う。TablePro は Intel と Apple silicon に別のビルドがあります。",
             "SQL サーバーだけでなく MongoDB、Redis、ClickHouse や DuckDB も使う。",
-            "パスワードを macOS キーチェーンに保存し、本番接続の書き込み前に Touch ID を求めるセーフモードが欲しい。",
+            "パスワードを macOS キーチェーンに保存し、本番接続の書き込み前に Touch ID を求める Safe Mode が欲しい。",
             "Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。",
             "iPhone・iPad アプリも欲しい。"
         ],
@@ -83,7 +83,7 @@
                 "href": "/databases"
             },
             {
-                "text": "パスワードは macOS キーチェーンに保存し、接続の <link>セーフモード</link> レベルは書き込み前に Touch ID かパスワードを求められます。",
+                "text": "パスワードは macOS キーチェーンに保存し、接続の <link>Safe Mode</link> レベルは書き込み前に Touch ID かパスワードを求められます。",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"

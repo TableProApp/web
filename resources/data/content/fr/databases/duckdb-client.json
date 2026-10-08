@@ -11,7 +11,7 @@
     "breadcrumb": "DuckDB",
     "header": {
         "title": "Client DuckDB pour {devices}",
-        "lead": "Ouvrez un fichier de base DuckDB ou sélectionnez un fichier Parquet, CSV ou JSON et interrogez-le en SQL sur place. DuckDB s’exécute dans le pilote ; aucun serveur ne tourne donc, sauf si vous vous connectez à un serveur."
+        "lead": "Ouvrez un fichier de base DuckDB ou sélectionnez un fichier Parquet, CSV ou JSON et interrogez-le en SQL sur place. DuckDB s’exécute dans le pilote ; aucun serveur ne tourne donc, sauf si vous vous connectez à un serveur."
     },
     "asset": "mac-db-duckdb-parquet",
     "links": {
@@ -31,24 +31,24 @@
             "title": "Ouvrez un fichier",
             "paragraphs": [
                 "Choisissez un fichier <code>.duckdb</code> ou <code>.ddb</code>, ou saisissez un chemin inexistant pour en créer un. Saisissez plutôt <code>:memory:</code> pour une base qui dure le temps de la session. Une base s’ouvre comme DuckDB quel que soit son nom de fichier, car DuckDB marque ses fichiers dans leurs premiers octets.",
-                "Choisissez un fichier <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> ou <code>.ndjson</code> : il s’ouvre comme vues en lecture seule dans une base en mémoire, l’une nommée <code>file</code>, l’autre portant le nom du fichier. Le fichier sur disque reste identique octet par octet ; pour modifier son contenu, créez une table à partir de lui dans une base <code>.duckdb</code>.",
-                "Double-cliquez sur un fichier <code>.duckdb</code> dans le Finder pour l’ouvrir ici. TablePro figure sous Ouvrir avec pour les fichiers Parquet ; un fichier Parquet choisi avec <ui>Fichier > Ouvrir un fichier</ui> (File > Open File) s’ouvre comme connexion DuckDB plutôt que dans la <dataFiles>fenêtre Fichiers de données</dataFiles>.",
-                "<ui>Distant (Quack, expérimental)</ui> (Remote (Quack, experimental)) se connecte à un serveur DuckDB lancé avec <code>quack_serve</code> et l’attache sous un alias tel que <code>remotedb</code> ; accédez à ses tables par leur nom via cet alias. La première connexion distante télécharge l’extension <code>quack</code> depuis DuckDB."
+                "Choisissez un fichier <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> ou <code>.ndjson</code> : il s’ouvre comme vues en lecture seule dans une base en mémoire, l’une nommée <code>file</code>, l’autre portant le nom du fichier. Le fichier sur disque reste identique octet par octet ; pour modifier son contenu, créez une table à partir de lui dans une base <code>.duckdb</code>.",
+                "Double-cliquez sur un fichier <code>.duckdb</code> dans le Finder pour l’ouvrir ici. TablePro figure sous Ouvrir avec pour les fichiers Parquet ; un fichier Parquet choisi avec <ui>Fichier > Ouvrir un fichier</ui> (File > Open File) s’ouvre comme connexion DuckDB plutôt que dans la <dataFiles>fenêtre Data Files</dataFiles>.",
+                "<ui>Distant (Quack, expérimental)</ui> (Remote (Quack, experimental)) se connecte à un serveur DuckDB lancé avec <code>quack_serve</code> et l’attache sous un alias tel que <code>remotedb</code> ; accédez à ses tables par leur nom via cet alias. La première connexion distante télécharge l’extension <code>quack</code> depuis DuckDB."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "Toute connexion peut lire directement un fichier depuis SQL, par exemple avec <code>SELECT * FROM 'data.csv'</code> ou <code>read_parquet('events.parquet')</code>. Utilisez <code>ATTACH</code> pour un autre fichier DuckDB : il rejoint la barre latérale comme seconde base et <code>Cmd+K</code> permet d’en changer sans reconnexion. DuckDB ne conserve aucune base attachée après reconnexion.",
-                "<explain>EXPLAIN</explain> est représenté en diagramme de plan. Les lignes d’une table se modifient avec un <editing>Aperçu SQL</editing> montrant d’abord chaque instruction, tandis que les vues sur un fichier de données restent en lecture seule."
+                "Toute connexion peut lire directement un fichier depuis SQL, par exemple avec <code>SELECT * FROM 'data.csv'</code> ou <code>read_parquet('events.parquet')</code>. Utilisez <code>ATTACH</code> pour un autre fichier DuckDB : il rejoint la barre latérale comme seconde base et <code>Cmd+K</code> permet d’en changer sans reconnexion. DuckDB ne conserve aucune base attachée après reconnexion.",
+                "<explain>EXPLAIN</explain> est représenté en diagramme de plan. Les lignes d’une table se modifient avec <editing>Preview SQL</editing> montrant d’abord chaque instruction, tandis que les vues sur un fichier de données restent en lecture seule."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "L’<structure>onglet Structure</structure> modifie les tables et montre le DDL avant son exécution. Ici, une base est un fichier : l’app ne permet donc pas d’en créer ni d’en supprimer ; <code>ATTACH</code> donne accès à un second fichier."
+                "L’<structure>onglet Structure</structure> modifie les tables et montre le DDL avant son exécution. Ici, une base est un fichier : l’app ne permet donc pas d’en créer ni d’en supprimer ; <code>ATTACH</code> donne accès à un second fichier."
             ]
         },
         {
@@ -56,8 +56,8 @@
             "title": "Partagez le fichier et sauvegardez-le",
             "paragraphs": [
                 "Tant que TablePro verrouille un fichier, la CLI <code>duckdb</code>, un notebook ou une exécution dbt ne peuvent pas l’ouvrir. Définissez <ui>Libérer le verrou du fichier après</ui> (Release the File Lock After) pour le rendre après quelques minutes d’inactivité et le reprendre à la prochaine requête, ou <ui>Ouvrir le fichier en lecture seule</ui> (Open the File Read-Only) pour permettre plusieurs lecteurs. <ui>Base de données > Libérer le verrou du fichier</ui> (Database > Release File Lock) le rend immédiatement et conserve vos onglets. La libération est refusée, avec sa raison, si la session conserve une transaction ouverte, une table temporaire, une base attachée ou un paramètre modifié.",
-                "Le <dashboard>Tableau de bord serveur</dashboard> affiche la taille de la base, la taille des blocs, le nombre total de blocs, la limite mémoire et les threads.",
-                "Le <backup>Dump de sauvegarde</backup> ne nécessite aucune installation, car {dumpTool} l’écrit via la connexion ouverte. Choisissez un fichier <code>.duckdb</code> à restaurer plus tard dans TablePro, ou un dossier contenant <code>schema.sql</code>, <code>load.sql</code> et un fichier Parquet par table, lisible directement par pandas, Spark et BigQuery. Restaurer un dump s’arrête au premier objet dont le nom est déjà pris."
+                "<dashboard>Server Dashboard</dashboard> affiche la taille de la base, la taille des blocs, le nombre total de blocs, la limite mémoire et les threads.",
+                "<backup>Backup Dump</backup> ne nécessite aucune installation, car {dumpTool} l’écrit via la connexion ouverte. Choisissez un fichier <code>.duckdb</code> à restaurer plus tard dans TablePro, ou un dossier contenant <code>schema.sql</code>, <code>load.sql</code> et un fichier Parquet par table, lisible directement par pandas, Spark et BigQuery. Restore Dump s’arrête au premier objet dont le nom est déjà pris."
             ]
         },
         {
@@ -71,7 +71,7 @@
             "id": "iphone",
             "title": "iPhone et iPad",
             "paragraphs": [
-                "Sur iPhone et iPad, DuckDB fait partie de l’app. Un fichier choisi dans Fichiers s’ouvre sur place plutôt qu’en copie ; choisissez aussi En mémoire pour une base temporaire. Vous parcourez les tables sous forme de cartes et exécutez du SQL dans l’onglet Requête. Les connexions Distant (Quack) sont réservées au Mac."
+                "Sur iPhone et iPad, DuckDB fait partie de l’app. Un fichier choisi dans Fichiers s’ouvre sur place plutôt qu’en copie ; choisissez aussi En mémoire pour une base temporaire. Vous parcourez les tables sous forme de cartes et exécutez du SQL dans l’onglet Requête. Les connexions Distant (Quack) sont réservées au Mac."
             ]
         }
     ],
@@ -80,13 +80,13 @@
     "faq": [
         {
             "id": "version",
-            "question": "Quelle version de DuckDB utilise TablePro ?",
+            "question": "Quelle version de DuckDB utilise TablePro ?",
             "answer": "DuckDB {engineVersion}, compilé dans le pilote. Il ne dépend d’aucune installation DuckDB sur votre appareil."
         },
         {
             "id": "csv-or-data-files",
-            "question": "Dois-je ouvrir un CSV dans DuckDB ou dans la fenêtre Fichiers de données ?",
-            "answer": "Ouvrez-le dans la <dataFiles>fenêtre Fichiers de données</dataFiles> pour le parcourir, le nettoyer et le réenregistrer. Ouvrez-le comme DuckDB pour le joindre à d’autres fichiers ou tables en SQL ; il y reste en lecture seule."
+            "question": "Dois-je ouvrir un CSV dans DuckDB ou dans la fenêtre Data Files ?",
+            "answer": "Ouvrez-le dans la <dataFiles>fenêtre Data Files</dataFiles> pour le parcourir, le nettoyer et le réenregistrer. Ouvrez-le comme DuckDB pour le joindre à d’autres fichiers ou tables en SQL ; il y reste en lecture seule."
         }
     ],
     "related": [

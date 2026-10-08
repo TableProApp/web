@@ -38,7 +38,7 @@
                 "キー名はコロンか Options タブで指定した区切り文字でフォルダーに分けます。各グリッド行は Key、Type、TTL、Length と Value を持ちます。文字列は全体、hash、list、set、sorted set や stream は最初の項目を表示し、Length は件数を示します。gzip データなど有効な UTF-8 でない値は十六進エディターで開きます。",
                 "<editing>グリッド</editing> でキー名の編集は <code>RENAME</code>、TTL は <code>EXPIRE</code> または <code>PERSIST</code>、文字列値は <code>SET</code> を実行します。Add Row は選んだ型を <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> か <code>SET</code> で書きます。フィルターバーはサーバーの <code>SCAN MATCH</code> と <code>SCAN TYPE</code> で Redis glob によるキー名と型を絞り込みます。",
                 "エディターは一文一コマンドを redis-cli の引用符形式で受け付け、認識しないものもそのまま送ります。<code>DB 3 GET key</code> はセッションを移さず別のデータベースで一つのコマンドを実行します。<code>MULTI</code> 内は各コマンドが <code>QUEUED</code> を返し、<code>EXEC</code> が全応答を順に返します。",
-                "<safeMode>セーフモード</safeMode> は <code>GET</code> も含むすべての Redis コマンドを書き込みとするため、Alert と Safe Mode は毎回確認し、Read-Only はすべてブロックします。<code>FLUSHDB</code> と <code>FLUSHALL</code> は Silent でも実行前に確認します。"
+                "<safeMode>Safe Mode</safeMode> は <code>GET</code> も含むすべての Redis コマンドを書き込みとするため、Alert と Safe Mode は毎回確認し、Read-Only はすべてブロックします。<code>FLUSHDB</code> と <code>FLUSHALL</code> は Silent でも実行前に確認します。"
             ]
         },
         {

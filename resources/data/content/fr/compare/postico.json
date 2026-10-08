@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "TablePro vs Postico : PostgreSQL et autres moteurs",
-        "description": "Comparez TablePro et Postico 2 sur Mac : PostgreSQL, autres moteurs, prix, administration du serveur, synchronisation et configuration."
+        "title": "TablePro vs Postico : PostgreSQL et autres moteurs",
+        "description": "Comparez TablePro et Postico 2 sur Mac : PostgreSQL, autres moteurs, prix, administration du serveur, synchronisation et configuration."
     },
     "og": {
         "kicker": "Comparer",
@@ -14,8 +14,8 @@
     "shortAnswer": {
         "tablepro": [
             "Vous travaillez aussi avec MySQL, SQL Server, SQLite, Redis ou MongoDB, en plus de PostgreSQL.",
-            "Vous administrez aussi le serveur. Utilisateurs et rôles, un tableau de bord serveur capable de terminer une session, VACUUM et les sauvegardes avec pg_dump sont gratuits dans l’app Mac.",
-            "Vous optimisez les requêtes. EXPLAIN affiche le plan sous forme de diagramme, et la comparaison EXPLAIN confronte un nouveau plan à une référence.",
+            "Vous administrez aussi le serveur. Users & Roles, un Server Dashboard capable de terminer une session, VACUUM et les sauvegardes avec pg_dump sont gratuits dans l’app Mac.",
+            "Vous optimisez les requêtes. EXPLAIN affiche le plan sous forme de diagramme, et EXPLAIN Compare confronte un nouveau plan à une référence.",
             "Vous voulez une app gratuite pour iPhone et iPad qui se connecte à PostgreSQL.",
             "Vous voulez utiliser gratuitement l’assistant IA et le serveur MCP."
         ],
@@ -26,12 +26,12 @@
         ]
     },
     "glance": {
-        "intro": "Postico 2 propose des licences à achat unique pour un usage personnel, commercial, en équipe et étudiant, et sa version d’évaluation n’est pas limitée dans le temps. TablePro est gratuit ; ses offres payantes ajoutent des fonctions facultatives."
+        "intro": "Postico 2 propose des licences à achat unique pour un usage personnel, commercial, en équipe et étudiant, et sa version d’évaluation n’est pas limitée dans le temps. TablePro est gratuit ; ses offres payantes ajoutent des fonctions facultatives."
     },
     "rows": {
         "administration": {
             "label": "Administration du serveur",
-            "tablepro": "Gratuit dans l’app Mac : utilisateurs et rôles, tableau de bord serveur, maintenance comme VACUUM et sauvegardes avec pg_dump, à installer vous-même"
+            "tablepro": "Gratuit dans l’app Mac : Users & Roles, Server Dashboard, maintenance comme VACUUM et sauvegardes avec pg_dump, à installer vous-même"
         },
         "macAppStore": {
             "label": "Mac App Store",
@@ -50,7 +50,7 @@
                 "href": null
             },
             {
-                "text": "La licence se paie une seule fois, avec des tarifs pour un usage personnel, commercial, en équipe et étudiant ; une version est disponible sur le Mac App Store.",
+                "text": "La licence se paie une seule fois, avec des tarifs pour un usage personnel, commercial, en équipe et étudiant ; une version est disponible sur le Mac App Store.",
                 "cite": [
                     "prices",
                     "cells.macAppStore"
@@ -86,7 +86,7 @@
                 "href": "/databases"
             },
             {
-                "text": "Les <link>outils serveur</link> font partie de l’app gratuite : utilisateurs et rôles avec droits jusqu’à la colonne, tableau de bord serveur avec sessions et requêtes lentes, et VACUUM avec aperçu préalable du SQL. Postico indique ne pas être conçu pour ces tâches.",
+                "text": "Les <link>outils serveur</link> font partie de l’app gratuite : Users & Roles avec droits jusqu’à la colonne, Server Dashboard avec sessions et requêtes lentes, et VACUUM avec aperçu préalable du SQL. Postico indique ne pas être conçu pour ces tâches.",
                 "cite": [
                     "cells.administration"
                 ],
@@ -94,13 +94,13 @@
                 "href": "/features/schema#administer"
             },
             {
-                "text": "<link>EXPLAIN</link> affiche le plan en diagramme, en arbre ou en texte brut, et la comparaison EXPLAIN confronte un nouveau plan à une référence. Les deux sont gratuits.",
+                "text": "<link>EXPLAIN</link> affiche le plan en diagramme, en arbre ou en texte brut, et EXPLAIN Compare confronte un nouveau plan à une référence. Les deux sont gratuits.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/querying#performance"
             },
             {
-                "text": "La <link>synchronisation iCloud</link> conserve les connexions entre Mac et iPhone ou iPad. Elle est dans Starter sur Mac et gratuite sur iPhone et iPad.",
+                "text": "<link>iCloud Sync</link> conserve les connexions entre Mac et iPhone ou iPad. Il est dans Starter sur Mac et gratuit sur iPhone et iPad.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -135,7 +135,7 @@
                 "href": null
             },
             {
-                "text": "Postico 2 est vendu uniquement sous licence à achat unique. À la fin d’une offre TablePro mensuelle ou annuelle, ses fonctions payantes se verrouillent, tandis que le reste de l’app continue de fonctionner ; Starter et Team existent aussi en achat unique sans date d’expiration.",
+                "text": "Postico 2 est vendu uniquement sous licence à achat unique. À la fin d’une offre TablePro mensuelle ou annuelle, ses fonctions payantes se verrouillent, tandis que le reste de l’app continue de fonctionner ; Starter et Team existent aussi en achat unique sans date d’expiration.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -143,7 +143,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro n’a pas d’importateur pour Postico. Ajoutez chaque serveur comme connexion TablePro : remplissez le formulaire de connexion ou collez une URL commençant par postgresql:// dans <ui>Fichier > Importer > Importer depuis une URL…</ui> (File > Import > Import from URL…)",
+        "intro": "TablePro n’a pas d’importateur pour Postico. Ajoutez chaque serveur comme connexion TablePro : remplissez le formulaire de connexion ou collez une URL commençant par postgresql:// dans <ui>Fichier > Importer > Importer depuis une URL…</ui> (File > Import > Import from URL…)",
         "steps": [],
         "after": [
             "Si un projet conserve l’URL de sa base dans un fichier .env ou un schéma Prisma, <ui>Fichier > Importer > Ouvrir le dossier du projet…</ui> (File > Import > Open Project Folder…) la lit et ouvre le formulaire de connexion prérempli.",
@@ -155,25 +155,25 @@
     "faq": [
         {
             "id": "redshift-cockroachdb",
-            "question": "TablePro fonctionne-t-il avec Redshift et CockroachDB comme Postico ?",
+            "question": "TablePro fonctionne-t-il avec Redshift et CockroachDB comme Postico ?",
             "answer": "Oui, les deux se connectent et la structure de leurs tables est en lecture seule dans TablePro. Greenplum, également pris en charge par Postico, ne fait pas partie des moteurs de TablePro.",
             "href": null
         },
         {
             "id": "icloud-sync",
-            "question": "La synchronisation iCloud de TablePro est-elle gratuite ?",
+            "question": "iCloud Sync de TablePro est-il gratuit ?",
             "answer": "Dans l’app iPhone et iPad, oui. Sur Mac, elle fait partie de Starter. Postico 2 synchronise les paramètres des serveurs via iCloud ou Dropbox.",
             "href": null
         },
         {
             "id": "admin",
-            "question": "Puis-je gérer les rôles et les sessions dans TablePro ?",
-            "answer": "Oui, gratuitement dans l’app Mac. Utilisateurs et rôles accorde et révoque les droits avec aperçu préalable du SQL ; le tableau de bord serveur liste les sessions et peut les terminer. <link>Découvrez les outils serveur</link>.",
+            "question": "Puis-je gérer les rôles et les sessions dans TablePro ?",
+            "answer": "Oui, gratuitement dans l’app Mac. Users & Roles accorde et révoque les droits avec aperçu préalable du SQL ; Server Dashboard liste les sessions et peut les terminer. <link>Découvrez les outils serveur</link>.",
             "href": "/features/schema#administer"
         },
         {
             "id": "license",
-            "question": "Ai-je besoin d’une licence pour utiliser TablePro avec PostgreSQL ?",
+            "question": "Ai-je besoin d’une licence pour utiliser TablePro avec PostgreSQL ?",
             "answer": "Non. PostgreSQL et tous les autres moteurs pris en charge sont gratuits, tout comme l’assistant IA et le serveur MCP. Une offre Starter ou Team ajoute des fonctions facultatives à l’app Mac, comme {starterExamples}. <link>Voir les tarifs</link>.",
             "href": "/pricing"
         }

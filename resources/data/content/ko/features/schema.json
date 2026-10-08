@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "DDL을 먼저 확인하고 구조 변경",
             "paragraphs": [
-                "Structure 탭에서 테이블의 열, 인덱스, 외래 키 및 CHECK 제약 조건을 그리드로 편집합니다. 변경은 저장할 때까지 대기하며 <ui>SQL 미리보기</ui>(Preview SQL, <kbd>⌘⇧P</kbd>)로 실행 전에 ALTER TABLE 구문을 확인합니다. 항목 삭제, 유형 변경, NOT NULL 추가 또는 기본 키 변경은 연결의 안전 모드가 {macSafeModeDefault}여도 먼저 확인을 요청합니다.",
+                "Structure 탭에서 테이블의 열, 인덱스, 외래 키 및 CHECK 제약 조건을 그리드로 편집합니다. 변경은 저장할 때까지 대기하며 <ui>SQL 미리보기</ui>(Preview SQL, <kbd>⌘⇧P</kbd>)로 실행 전에 ALTER TABLE 문을 확인합니다. 항목 삭제, 유형 변경, NOT NULL 추가 또는 기본 키 변경은 연결의 Safe Mode가 {macSafeModeDefault}여도 먼저 확인을 요청합니다.",
                 "인덱스는 <code>lower(email)</code> 같은 표현식 키를 사용할 수 있습니다. New Table도 같은 방식으로 테이블을 만들며 SQL 미리 보기를 실시간으로 표시합니다. 외래 키를 직접 변경할 수 없는 SQLite, libSQL, Turso 및 Cloudflare D1에서는 TablePro가 검토할 테이블 재구성 스크립트를 작성합니다. SQLite와 로컬 libSQL 파일에서는 확인 후 실행하고 Turso, 원격 libSQL 및 D1에서는 사용자가 실행해야 합니다."
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "테이블 관계 확인",
             "paragraphs": [
-                "<ui>ER 다이어그램 보기</ui>(View ER Diagram)는 현재 스키마의 테이블과 외래 키를 그리며 기본 키와 고유 키로 까마귀발 표기법의 카디널리티를 계산합니다. <code>product_tags</code> 같은 연결 테이블은 하나의 다대다 선으로 표시합니다. 다이어그램을 PNG로 내보내거나 이미지로 복사하거나 외래 키가 포함된 CREATE TABLE 구문을 SQL로 내보낼 수 있습니다.",
+                "<ui>ER 다이어그램 보기</ui>(View ER Diagram)는 현재 스키마의 테이블과 외래 키를 그리며 기본 키와 고유 키로 까마귀발 표기법의 카디널리티를 계산합니다. <code>product_tags</code> 같은 연결 테이블은 하나의 다대다 선으로 표시합니다. 다이어그램을 PNG로 내보내거나 이미지로 복사하거나 외래 키가 포함된 CREATE TABLE 문을 SQL로 내보낼 수 있습니다.",
                 "다이어그램은 확인하고 공유하기 위한 스냅샷입니다. 테이블 변경은 캔버스가 아니라 Structure 탭에서 합니다."
             ],
             "asset": "mac-er-diagram"
@@ -60,10 +60,10 @@
         },
         {
             "id": "compare-sync",
-            "title": "비교 및 동기화",
+            "title": "Compare & Sync",
             "paragraphs": [
                 "소스와 대상을 선택하면 Compare & Sync가 차이가 있는 모든 테이블을 나열합니다. 두 서버 또는 한 서버의 두 데이터베이스를 선택할 수 있으며 포함하도록 설정하면 뷰, 루틴 및 트리거도 비교합니다. 데이터 모드에서는 키로 행을 매칭하고 다른 값을 표시하며 테이블별 필터와 행 제한으로 큰 테이블의 일부만 비교할 수 있습니다.",
-                "생성된 스크립트는 외래 키 순서로 정렬되며 대상의 고유 클라이언트에 맞게 작성됩니다. 열 삭제, 유형 범위 축소 또는 행 삭제처럼 데이터를 파괴하는 구문은 해당 실행에서 허용할 때까지 보류됩니다. Read-Only로 설정한 연결은 대상으로 선택할 수 없습니다. 비교를 저장하면 한 번의 클릭으로 다시 실행할 수 있습니다."
+                "생성된 스크립트는 외래 키 순서로 정렬되며 대상의 고유 클라이언트에 맞게 작성됩니다. 열 삭제, 유형 범위 축소 또는 행 삭제처럼 데이터를 파괴하는 명령문은 해당 실행에서 허용할 때까지 보류됩니다. Read-Only로 설정한 연결은 대상으로 선택할 수 없습니다. 비교를 저장하면 한 번의 클릭으로 다시 실행할 수 있습니다."
             ],
             "paid": [
                 "compare-sync"
@@ -88,13 +88,13 @@
             "blocks": [
                 {
                     "id": "users-roles",
-                    "title": "사용자 및 역할",
+                    "title": "Users & Roles",
                     "paragraphs": [
                         "Users & Roles는 서버부터 개별 열까지 각 사용자의 권한을 트리로 표시합니다. 권한 부여와 취소는 변경 사항으로 대기하고 실행 전에 SQL을 보여 주므로 GRANT를 직접 작성할 필요가 없습니다."
                     ],
                     "engines": [
                         {
-                            "label": "사용자 및 역할",
+                            "label": "Users & Roles",
                             "list": "usersRoles"
                         }
                     ],
@@ -102,13 +102,13 @@
                 },
                 {
                     "id": "server-dashboard",
-                    "title": "서버 대시보드",
+                    "title": "Server Dashboard",
                     "paragraphs": [
-                        "Server Dashboard는 선택한 주기로 갱신되는 실시간 세션, 서버 지표 및 느린 쿼리를 보여 줍니다. 엔진이 허용하면 해당 행에서 실행 중인 쿼리를 취소하거나 세션을 종료할 수 있으며 두 작업 모두 연결의 안전 모드를 거칩니다. SQLite, DuckDB 및 Typesense에서는 지표만 표시합니다."
+                        "Server Dashboard는 선택한 주기로 갱신되는 실시간 세션, 서버 지표 및 느린 쿼리를 보여 줍니다. 엔진이 허용하면 해당 행에서 실행 중인 쿼리를 취소하거나 세션을 종료할 수 있으며 두 작업 모두 연결의 Safe Mode를 거칩니다. SQLite, DuckDB 및 Typesense에서는 지표만 표시합니다."
                     ],
                     "engines": [
                         {
-                            "label": "서버 대시보드",
+                            "label": "Server Dashboard",
                             "list": "dashboard"
                         }
                     ],
@@ -138,7 +138,7 @@
             "iosNote": "열, 인덱스 및 외래 키는 읽기 전용"
         },
         {
-            "label": "새 테이블",
+            "label": "New Table",
             "ios": "no"
         },
         {
@@ -154,7 +154,7 @@
             "ios": "no"
         },
         {
-            "label": "비교 및 동기화",
+            "label": "Compare & Sync",
             "paid": "compare-sync",
             "ios": "no"
         },
@@ -163,11 +163,11 @@
             "ios": "no"
         },
         {
-            "label": "사용자 및 역할",
+            "label": "Users & Roles",
             "ios": "no"
         },
         {
-            "label": "서버 대시보드 및 테이블 유지 관리",
+            "label": "Server Dashboard 및 테이블 유지 관리",
             "ios": "no"
         }
     ],
@@ -191,7 +191,7 @@
             "docs": "/features/routines-triggers"
         },
         {
-            "label": "비교 및 동기화",
+            "label": "Compare & Sync",
             "docs": "/features/compare-sync"
         },
         {
@@ -199,11 +199,11 @@
             "docs": "/features/copy-objects"
         },
         {
-            "label": "사용자 및 역할",
+            "label": "Users & Roles",
             "docs": "/features/users-roles"
         },
         {
-            "label": "서버 대시보드",
+            "label": "Server Dashboard",
             "docs": "/features/server-dashboard"
         },
         {

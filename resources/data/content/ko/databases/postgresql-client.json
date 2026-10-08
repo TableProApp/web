@@ -48,7 +48,7 @@
                 "SQL 편집기는 스키마에서 테이블·열 이름을 완성합니다. <explain>EXPLAIN과 EXPLAIN ANALYZE</explain>는 FORMAT JSON으로 실행해 계획 다이어그램이나 트리로 보여 주며 EXPLAIN Compare는 변경 후 계획이 느려졌는지를 표시합니다.",
                 "jsonb는 서식 정리되고 uuid, inet, timestamptz, interval과 bytea는 고유 형식으로 표시됩니다. 배열 열은 목록 편집기에서 개별 요소를 추가·제거·재정렬하거나 null로 설정하며 enum 열은 해당 라벨을 제공합니다.",
                 "PostGIS의 geometry·geography 값은 SRID가 포함된 EWKT로 읽히며 지오메트리 결과는 <results>지도 보기</results>로 열립니다. 지도 타일은 Apple이 제공하고 행 데이터는 Mac에 남습니다.",
-                "행 편집은 저장까지 대기하고 <editing>Preview SQL</editing>이 모든 구문을 먼저 보여 주며 바인딩 매개변수로 저장합니다. 구체화된 뷰의 행은 읽기 전용입니다. 메뉴에서 새로 고치며 PostgreSQL이 요구하는 고유 인덱스가 있으면 동시 새로 고침이 가능합니다."
+                "행 편집은 저장까지 대기하고 <editing>Preview SQL</editing>이 모든 명령문을 먼저 보여 주며 바인딩 매개변수로 저장합니다. 구체화된 뷰의 행은 읽기 전용입니다. 메뉴에서 새로 고치며 PostgreSQL이 요구하는 고유 인덱스가 있으면 동시 새로 고침이 가능합니다."
             ],
             "asset": "mac-result-map"
         },
@@ -66,9 +66,9 @@
             "id": "operate",
             "title": "관리",
             "paragraphs": [
-                "<administer>Users & Roles</administer>는 권한 부여·취소 전에 각 권한의 출처를 보여 주고 모든 구문을 SQL로 임시 저장합니다.",
+                "<administer>Users & Roles</administer>는 권한 부여·취소 전에 각 권한의 출처를 보여 주고 모든 명령문을 SQL로 임시 저장합니다.",
                 "Server Dashboard는 세션, 연결, 캐시 적중률, 데이터베이스 크기와 느린 쿼리를 보여 줍니다. <code>pg_cancel_backend</code>로 쿼리를 취소하거나 <code>pg_terminate_backend</code>로 세션을 종료합니다. 슈퍼유저도 <code>pg_monitor</code> 멤버도 아닌 역할은 다른 세션은 보지만 쿼리는 보지 못합니다.",
-                "테이블 유지 관리는 FULL, ANALYZE, VERBOSE 옵션의 VACUUM과 ANALYZE, REINDEX, CLUSTER를 실행하며 구문을 먼저 보여 줍니다.",
+                "테이블 유지 관리는 FULL, ANALYZE, VERBOSE 옵션의 VACUUM과 ANALYZE, REINDEX, CLUSTER를 실행하며 명령문을 먼저 보여 줍니다.",
                 "<backup>Backup Dump와 Restore Dump</backup>는 연결의 SSH 터널로 직접 설치한 {dumpTool}과 pg_restore를 실행합니다. Homebrew로 설치하세요. PostgreSQL 9.1 서버를 백업하려면 pg_dump 14 이하를 사용합니다."
             ],
             "asset": "mac-server-dashboard-postgresql"

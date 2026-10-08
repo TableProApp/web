@@ -27,19 +27,19 @@
             "id": "connect",
             "title": "Connectez-vous et authentifiez-vous",
             "paragraphs": [
-                "Saisissez l’identifiant du compte, tel que <code>myorg-myaccount</code> ou un ancien locator comme <code>xy12345.us-east-1</code> : ce qui précède <code>.snowflakecomputing.com</code>. Chaque requête passe par HTTPS vers ce compte ; il n’y a donc ni hôte, ni section SSL, ni panneau SSH.",
-                "Choisissez une <ui>Méthode d’authentification</ui> (Auth Method) ; le formulaire ne montre que les champs nécessaires. Une paire de clés signe chaque connexion avec votre clé privée PKCS#8 ; l’horloge du Mac doit être juste. SSO navigateur vous envoie au fournisseur d’identité. Un jeton OAuth est utilisé tel que collé, jamais actualisé. Un mot de passe s’accompagne d’un code actuel dans <ui>Code MFA (TOTP)</ui> (MFA Passcode (TOTP)) si le compte impose MFA.",
-                "Avec <code>ALLOW_CLIENT_MFA_CACHING</code> sur le compte, un code frais suffit : Snowflake retourne un jeton MFA conservé par TablePro dans le <credentials>Trousseau</credentials>. Avec <code>ALLOW_ID_TOKEN</code>, SSO y garde un jeton de connexion et les connexions suivantes évitent le navigateur jusqu’à son rejet par Snowflake.",
-                "Snowflake n’a pas de schéma d’URL. Nommez une section dans <ui>Nom de connexion CLI</ui> (CLI Connection Name) ; chaque champ laissé vide est lu depuis <code>~/.snowflake/connections.toml</code> à la connexion."
+                "Saisissez l’identifiant du compte, tel que <code>myorg-myaccount</code> ou un ancien locator comme <code>xy12345.us-east-1</code> : ce qui précède <code>.snowflakecomputing.com</code>. Chaque requête passe par HTTPS vers ce compte ; il n’y a donc ni hôte, ni section SSL, ni panneau SSH.",
+                "Choisissez une <ui>Méthode d’authentification</ui> (Auth Method) ; le formulaire ne montre que les champs nécessaires. Une paire de clés signe chaque connexion avec votre clé privée PKCS#8 ; l’horloge du Mac doit être juste. SSO navigateur vous envoie au fournisseur d’identité. Un jeton OAuth est utilisé tel que collé, jamais actualisé. Un mot de passe s’accompagne d’un code actuel dans <ui>Code MFA (TOTP)</ui> (MFA Passcode (TOTP)) si le compte impose MFA.",
+                "Avec <code>ALLOW_CLIENT_MFA_CACHING</code> sur le compte, un code frais suffit : Snowflake retourne un jeton MFA conservé par TablePro dans le <credentials>Trousseau</credentials>. Avec <code>ALLOW_ID_TOKEN</code>, SSO y garde un jeton de connexion et les connexions suivantes évitent le navigateur jusqu’à son rejet par Snowflake.",
+                "Snowflake n’a pas de schéma d’URL. Nommez une section dans <ui>Nom de connexion CLI</ui> (CLI Connection Name) ; chaque champ laissé vide est lu depuis <code>~/.snowflake/connections.toml</code> à la connexion."
             ]
         },
         {
             "id": "work",
             "title": "Entrepôts, rôles et requêtes",
             "paragraphs": [
-                "<ui>Base de données > Contexte de session</ui> (Database > Session Context) change d’entrepôt ou rôle avec <code>USE WAREHOUSE</code> et <code>USE ROLE</code>, sans reconnexion. Une connexion TablePro est une session Snowflake gardée ouverte au repos ; un onglet lié à une autre base exécute <code>USE DATABASE</code> avant ses instructions sur cette même session.",
-                "La barre latérale regroupe les objets par base et schéma. Les listes viennent des commandes <code>SHOW</code>, sans entrepôt ; les détails de colonnes de <code>INFORMATION_SCHEMA</code> en nécessitent un. <explain>Expliquer</explain> retourne le plan Snowflake en texte brut.",
-                "Les <editing>modifications de grille</editing> lient les valeurs sur le serveur ; VARIANT, OBJECT et ARRAY passent par <code>PARSE_JSON</code>. La ligne est identifiée par la clé primaire déclarée, ou toutes les colonnes sans clé. Snowflake n’impose jamais les contraintes de clé ; une clé dupliquée fait donc modifier ou supprimer toutes les lignes correspondantes : vérifiez les doublons avant édition."
+                "<ui>Base de données > Contexte de session</ui> (Database > Session Context) change d’entrepôt ou rôle avec <code>USE WAREHOUSE</code> et <code>USE ROLE</code>, sans reconnexion. Une connexion TablePro est une session Snowflake gardée ouverte au repos ; un onglet lié à une autre base exécute <code>USE DATABASE</code> avant ses instructions sur cette même session.",
+                "La barre latérale regroupe les objets par base et schéma. Les listes viennent des commandes <code>SHOW</code>, sans entrepôt ; les détails de colonnes de <code>INFORMATION_SCHEMA</code> en nécessitent un. <explain>Explain</explain> retourne le plan Snowflake en texte brut.",
+                "Les <editing>modifications de grille</editing> lient les valeurs sur le serveur ; VARIANT, OBJECT et ARRAY passent par <code>PARSE_JSON</code>. La ligne est identifiée par la clé primaire déclarée, ou toutes les colonnes sans clé. Snowflake n’impose jamais les contraintes de clé ; une clé dupliquée fait donc modifier ou supprimer toutes les lignes correspondantes : vérifiez les doublons avant édition."
             ]
         },
         {
@@ -47,7 +47,7 @@
             "title": "Structure",
             "paragraphs": [
                 "La vue DDL vient de <code>GET_DDL</code>. L’<structure>onglet Structure</structure> ajoute, renomme et supprime des colonnes, définit NOT NULL, commentaires et clé primaire, élargit VARCHAR et change la précision de NUMBER à échelle identique.",
-                "Les changements refusés par Snowflake sont bloqués avant exécution : réduire VARCHAR, tout autre changement de type ou définir une nouvelle valeur par défaut. Retirer une valeur par défaut s’exécute."
+                "Les changements refusés par Snowflake sont bloqués avant exécution : réduire VARCHAR, tout autre changement de type ou définir une nouvelle valeur par défaut. Retirer une valeur par défaut s’exécute."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "Transférez des données",
             "paragraphs": [
                 "<importData>Importez</importData> des fichiers {importFormats} via la connexion et exportez tables ou résultats sur votre Mac en {exportFormats}.",
-                "Pour exporter une table sans passer par votre Mac, choisissez <ui>Fichier > Exportation côté serveur…</ui> (File > Server-Side Export…) et nommez un stage, avec ou sans <code>@</code>. L’<backup>Export côté serveur</backup> exécute <code>COPY INTO</code> avec vos privilèges et écrit CSV gzip, Parquet ou JSON ; le dialogue attend la fin et rien n’arrive sur le Mac."
+                "Pour exporter une table sans passer par votre Mac, choisissez <ui>Fichier > Exportation côté serveur…</ui> (File > Server-Side Export…) et nommez un stage, avec ou sans <code>@</code>. <backup>Server-Side Export</backup> exécute <code>COPY INTO</code> avec vos privilèges et écrit CSV gzip, Parquet ou JSON ; le dialogue attend la fin et rien n’arrive sur le Mac."
             ]
         }
     ],
@@ -64,17 +64,17 @@
     "faq": [
         {
             "id": "no-columns",
-            "question": "Pourquoi la barre latérale affiche-t-elle des tables sans colonnes ?",
-            "answer": "Les détails viennent de <code>INFORMATION_SCHEMA</code>, nécessitant un entrepôt actif. Définissez <ui>Entrepôt</ui> (Warehouse) sur la connexion ou dans Contexte de session. Une base dont aucun objet n’apparaît nécessite <code>USAGE</code> accordé au rôle de connexion."
+            "question": "Pourquoi la barre latérale affiche-t-elle des tables sans colonnes ?",
+            "answer": "Les détails viennent de <code>INFORMATION_SCHEMA</code>, nécessitant un entrepôt actif. Définissez <ui>Entrepôt</ui> (Warehouse) sur la connexion ou dans Session Context. Une base dont aucun objet n’apparaît nécessite <code>USAGE</code> accordé au rôle de connexion."
         },
         {
             "id": "timestamp-ltz",
-            "question": "Pourquoi les valeurs TIMESTAMP_LTZ s’affichent-elles en UTC ?",
+            "question": "Pourquoi les valeurs TIMESTAMP_LTZ s’affichent-elles en UTC ?",
             "answer": "TablePro les lit comme heure UTC marquée <code>Z</code>, sans les convertir dans la <code>TIMEZONE</code> de la session."
         },
         {
             "id": "jwt-invalid",
-            "question": "La connexion par clés indique un JWT invalide. Que vérifier ?",
+            "question": "La connexion par clés indique un JWT invalide. Que vérifier ?",
             "answer": "Le jeton contient le locator de compte et un horodatage. Vérifiez l’identifiant et l’horloge du Mac, puis confirmez la clé publique enregistrée sur l’utilisateur avec <code>ALTER USER … SET RSA_PUBLIC_KEY</code>."
         }
     ],

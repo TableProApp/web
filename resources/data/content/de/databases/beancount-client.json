@@ -37,7 +37,7 @@
                 "Die Tabellen decken Transaktionen und Buchungen, Konten, Salden und Saldenprüfungen, Preise und Commodities, alle anderen Direktiven, Metadaten, Tags und Links sowie Quelldateien ab. Buchungen werden über <code>transaction_id</code> mit Transaktionen verknüpft, Konten über ihren Namen.",
                 "Beträge sind bereits verbucht, mit aufgelöster Arithmetik, Kosten und Preisen; Buchungskosten und Inline-Preise stehen in eigenen Spalten. Transaktionen, Buchungen und mehrere Direktivtabellen enthalten eine <code>source_location</code> wie <code>main.beancount:42</code>, sodass eine Zeile zu ihrer Quellzeile zurückführt.",
                 "Stelle einer Abfrage <code>BQL:</code> voran, um sie statt an die Tabellen an rledger zu senden. Durchsuchen, Zeilenzählung und Seitennavigation funktionieren für BQL-Ergebnisse; SQL-Parameter nicht.",
-                "<code>include</code>-Direktiven werden verfolgt, sowohl konkrete Pfade als auch Glob-Muster, und jede Journaldatei sowie jedes referenzierte Dokument wird überwacht. Speichere eine Änderung in deinem Editor, und die nächste Abfrage liest sie ohne erneutes Verbinden. Die Verbindung steht immer auf <safeMode>Sicherer Modus</safeMode> Nur lesen; INSERT, UPDATE, DELETE und Schemaänderungen werden daher abgelehnt."
+                "<code>include</code>-Direktiven werden verfolgt, sowohl konkrete Pfade als auch Glob-Muster, und jede Journaldatei sowie jedes referenzierte Dokument wird überwacht. Speichere eine Änderung in deinem Editor, und die nächste Abfrage liest sie ohne erneutes Verbinden. Die Verbindung steht immer auf <safeMode>Safe Mode</safeMode> Read-Only; INSERT, UPDATE, DELETE und Schemaänderungen werden daher abgelehnt."
             ]
         },
         {

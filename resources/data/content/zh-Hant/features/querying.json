@@ -23,7 +23,7 @@
             "points": [
                 "編輯器側欄中的陳述式標記各有獨立執行按鈕。",
                 "支援正規表示式的尋找與取代。",
-                "Vim 模式支援移動、暫存器與巨集，使用 <code>:w</code> 執行查詢。",
+                "Vim mode 支援移動、暫存器與巨集，使用 <code>:w</code> 執行查詢。",
                 "在查詢分頁中開啟、編輯與儲存 <code>.sql</code> 檔案。"
             ],
             "asset": "mac-query-autocomplete"
@@ -40,7 +40,7 @@
         },
         {
             "id": "open-quickly",
-            "title": "快速開啟與分頁",
+            "title": "Open Quickly 與分頁",
             "paragraphs": [
                 "Open Quickly（<kbd>⌘⇧O</kbd>）在所有已開啟連線中尋找資料表、檢視表與系統資料表，也搜尋已儲存和最近的查詢。每個分頁保留自己的 SQL、排序、篩選與欄寬，結束並重新開啟 App 後會還原；<kbd>⌃Tab</kbd> 可在最近使用的分頁間切換。"
             ]
@@ -78,7 +78,7 @@
                 },
                 {
                     "id": "query-insights",
-                    "title": "查詢分析",
+                    "title": "Query Insights",
                     "paragraphs": [
                         "Query Insights 讀取此 Mac 的查詢歷史，並依執行次數、速度最慢、失敗以及比上一期間變慢的查詢進行排名。查詢依結構分類，因此使用不同值執行的同一陳述式只算一種。數據在 Mac 上計算，從不上傳。"
                     ],
@@ -98,7 +98,7 @@
             "blocks": [
                 {
                     "id": "result-charts",
-                    "title": "結果圖表",
+                    "title": "Result Charts",
                     "paragraphs": [
                         "將結果繪製為長條圖、折線圖、區域圖或散佈圖，日期使用時間軸，所選欄位的每個值對應一個數列。圖表從前 {chartInspectedRows} 列中最多繪製 {chartPoints} 個點和 {chartSeries} 個數列，未全部繪製時工具列會提示。"
                     ],
@@ -165,7 +165,7 @@
             "ios": "no"
         },
         {
-            "label": "快速開啟",
+            "label": "Open Quickly",
             "ios": "no"
         },
         {
@@ -173,12 +173,12 @@
             "ios": "no"
         },
         {
-            "label": "查詢分析",
+            "label": "Query Insights",
             "paid": "query-insights",
             "ios": "no"
         },
         {
-            "label": "結果圖表",
+            "label": "Result Charts",
             "paid": "result-charts",
             "ios": "no"
         },
@@ -214,7 +214,7 @@
             "docs": "/features/explain-visualization"
         },
         {
-            "label": "查詢分析",
+            "label": "Query Insights",
             "docs": "/features/query-insights"
         },
         {

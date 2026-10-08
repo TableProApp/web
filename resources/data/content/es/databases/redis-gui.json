@@ -27,7 +27,7 @@
             "paragraphs": [
                 "Elige <ui>Connection Mode</ui>. Standalone requiere host y puerto. Sentinel acepta uno o varios nodos y nombre de grupo primario, sigue el quorum al primario y lo acompaña tras una conmutación. Cluster usa un miembro accesible como semilla, lee el mapa de shards y envía cada comando al shard dueño de su clave.",
                 "Autentícate con contraseña o completa Usuario para usar un usuario ACL de Redis 6. En Amazon ElastiCache elige un modo <cloudAuth>AWS IAM</cloudAuth>: un token breve se convierte en contraseña; IAM de ElastiCache requiere TLS.",
-                "Las conexiones nuevas empiezan sin TLS. Upstash, Redis Cloud y similares lo requieren; pegar una URL <code>rediss://</code> lo activa. No hay alternativa sin cifrar, así que Preferido actúa como Obligatorio. Valkey conecta igual que Redis.",
+                "Las conexiones nuevas empiezan sin TLS. Upstash, Redis Cloud y similares lo requieren; pegar una URL <code>rediss://</code> lo activa. No hay alternativa sin cifrar, así que Preferred actúa como Required. Valkey conecta igual que Redis.",
                 "La barra lateral enumera bases numeradas desde <code>db0</code>; pulsar una la explora directamente."
             ]
         },
@@ -35,10 +35,10 @@
             "id": "work",
             "title": "Claves y comandos",
             "paragraphs": [
-                "Los nombres de clave se dividen en carpetas por cada dos puntos o por el separador de Opciones. Cada clave es una fila con Clave, Tipo, TTL, Longitud y Valor. Una cadena se muestra completa; hash, lista, conjunto, conjunto ordenado o stream muestra sus primeras entradas y Longitud indica cuántas hay. Un valor no UTF-8, como gzip, abre el editor hexadecimal.",
+                "Los nombres de clave se dividen en carpetas por cada dos puntos o por el separador de Options. Cada clave es una fila con Key, Type, TTL, Length y Value. Una cadena se muestra completa; hash, lista, conjunto, conjunto ordenado o stream muestra sus primeras entradas y Length indica cuántas hay. Un valor no UTF-8, como gzip, abre el editor hexadecimal.",
                 "<editing>En la cuadrícula</editing>, editar un nombre usa <code>RENAME</code>, un TTL <code>EXPIRE</code> o <code>PERSIST</code>, y una cadena <code>SET</code>. Añadir fila escribe el tipo elegido con <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code> o <code>SET</code>. La barra filtra nombres con patrones glob Redis y por tipo mediante <code>SCAN MATCH</code> y <code>SCAN TYPE</code> en el servidor.",
                 "El editor acepta un comando por sentencia, con comillas como redis-cli, y envía sin modificar comandos desconocidos. <code>DB 3 GET key</code> ejecuta uno en otra base sin cambiar de sesión; en <code>MULTI</code> cada comando responde <code>QUEUED</code> hasta que <code>EXEC</code> devuelve todas las respuestas en orden.",
-                "<safeMode>Modo seguro</safeMode> considera escritura todo comando Redis, incluido <code>GET</code>; Alerta y Modo seguro confirman cada uno y Solo lectura los bloquea todos. <code>FLUSHDB</code> y <code>FLUSHALL</code> piden permiso incluso en Silencioso."
+                "<safeMode>Safe Mode</safeMode> considera escritura todo comando Redis, incluido <code>GET</code>; Alert y Safe Mode confirman cada uno y Read-Only los bloquea todos. <code>FLUSHDB</code> y <code>FLUSHALL</code> piden permiso incluso en Silent."
             ]
         },
         {

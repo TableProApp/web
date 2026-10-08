@@ -9,14 +9,14 @@
     },
     "hero": {
         "title": "iPhone 和 iPad 版 TablePro",
-        "lead": "从手机或平板连接数据库、浏览和编辑行、运行查询，支持 SSH 隧道、安全模式和 Face ID。它是为 iPhone 和 iPad 打造的独立应用，并非 Mac 应用的复制版。",
+        "lead": "从手机或平板连接数据库、浏览和编辑行、运行查询，支持 SSH 隧道、Safe Mode 和 Face ID。它是为 iPhone 和 iPad 打造的独立应用，并非 Mac 应用的复制版。",
         "noSignUp": "无需注册或许可证",
         "mac": "在找 Mac 应用？<download>下载 Mac 版 TablePro</download>。"
     },
     "databases": {
         "title": "数据库",
         "lead": "可在 iPhone 和 iPad 上创建以下数据库的连接。驱动内置于应用，无需下载。",
-        "syncedOnly": "{engines} 连接可在通过 iCloud 同步或 .tablepro 文件从 Mac 导入后打开，无法在此应用中创建。",
+        "syncedOnly": "{engines} 连接可在通过 iCloud Sync 或 .tablepro 文件从 Mac 导入后打开，无法在此应用中创建。",
         "others": "其他数据库的连接也会从 Mac 同步并显示在列表中，但本应用没有相应驱动，无法打开。<databases>数据库页面</databases>列出了 Mac 应用支持的所有引擎。",
         "files": "SQLite：选择数据库文件后，应用会复制到自身存储中，编辑修改的是副本。也可创建新数据库。DuckDB 直接在原位置打开文件，或在内存中运行。",
         "redis": "Redis：在 Query 选项卡运行命令。此版本不支持浏览 Redis 键。",
@@ -47,9 +47,9 @@
         ]
     },
     "safeMode": {
-        "title": "安全模式和应用锁",
+        "title": "Safe Mode 和应用锁",
         "paragraphs": [
-            "每个连接都有安全模式级别：{levels}。Confirm Writes 会在执行修改数据的语句前询问；Read-Only 在语句发送至服务器前拒绝。应用无法判定为读取的语句均视为写入。",
+            "每个连接都有 Safe Mode 级别：{levels}。Confirm Writes 会在执行修改数据的语句前询问；Read-Only 在语句发送至服务器前拒绝。应用无法判定为读取的语句均视为写入。",
             "在连接的 Organization 区域设置级别，在 Settings 中设置新连接的默认级别。添加行的快捷指令也遵循相同级别。",
             "在<ui>设置 > 安全</ui>（Settings > Security）中使用 Face ID 或 Touch ID 锁定应用，密码可作为备用验证方式。开启后，每次启动及经过所选 Auto-Lock 时长后都会要求验证。"
         ]
@@ -64,17 +64,17 @@
     "mac": {
         "title": "与 Mac 配合使用",
         "paragraphs": [
-            "在设置时或之后的 Settings 中开启 iCloud 同步，即可通过自己的 iCloud 账户在 iPhone、iPad 和 Mac 间同步连接、分组和标签。密码仅在同时开启 Sync Passwords 后同步。已保存查询、SSH 配置和设置只在 Mac 之间同步。",
-            "此应用的 iCloud 同步免费。Mac 上属于 Starter 或 Team 许可证功能，没有许可证的 Mac 不会同步。详情见<pricing>定价页面</pricing>。",
-            "此版本中，在 iPhone 或 iPad 保存已同步连接可能丢失 SSH 跳板机等 Mac 专用设置，并可能降低安全模式级别。请在 Mac 上编辑这些连接。",
+            "在设置时或之后的 Settings 中开启 iCloud Sync，即可通过自己的 iCloud 账户在 iPhone、iPad 和 Mac 间同步连接、分组和标签。密码仅在同时开启 Sync Passwords 后同步。已保存查询、SSH 配置和设置只在 Mac 之间同步。",
+            "此应用的 iCloud Sync 免费。Mac 上属于 Starter 或 Team 许可证功能，没有许可证的 Mac 不会同步。详情见<pricing>定价页面</pricing>。",
+            "此版本中，在 iPhone 或 iPad 保存已同步连接可能丢失 SSH 跳板机等 Mac 专用设置，并可能降低 Safe Mode 级别。请在 Mac 上编辑这些连接。",
             "不用 iCloud 时，可将连接导出为 .tablepro 文件，通过 AirDrop 或“文件”在另一设备打开。默认不含密码；选择包含时，文件使用您指定的口令加密。两种方式在此应用均免费，Mac 上包含密码的导出属于许可证功能。",
-            "开启 iCloud 同步后，Handoff 可在 Mac 与 iPhone 或 iPad 之间继续使用已打开的连接或表。<sync>同步和团队</sync>详细介绍两者。"
+            "开启 iCloud Sync 后，Handoff 可在 Mac 与 iPhone 或 iPad 之间继续使用已打开的连接或表。<sync>同步和团队</sync>详细介绍两者。"
         ]
     },
     "automation": {
         "title": "快捷指令、小组件和 Spotlight",
         "paragraphs": [
-            "Open Connection 从快捷指令或 Siri 打开连接。Add Row to Table 和 Add Rows to Table 可在不打开应用的情况下，从 JSON、CSV 文本或文件插入行。仅在设备未锁定时运行，遵循连接的安全模式级别，不适用于 Redis。此版本要求 CSV 为 UTF-8 文本且使用 LF 换行。",
+            "Open Connection 从快捷指令或 Siri 打开连接。Add Row to Table 和 Add Rows to Table 可在不打开应用的情况下，从 JSON、CSV 文本或文件插入行。仅在设备未锁定时运行，遵循连接的 Safe Mode 级别，不适用于 Redis。此版本要求 CSV 为 UTF-8 文本且使用 LF 换行。",
             "Quick Connect 小组件将列表最前面的连接放在主屏幕上，点击即可打开。连接也会出现在 Spotlight 搜索中。"
         ]
     },
@@ -98,7 +98,7 @@
         "title": "隐私",
         "paragraphs": [
             "除非在设置时或之后的<ui>设置 > 隐私</ui>（Settings > Privacy）中开启 Share Usage Data，否则不会向 TablePro 发送信息。开启后，每天发送一次报告，含哈希后的设备 ID、应用和 iOS 版本、处理器架构、语言、所用数据库类型、连接数量及若干首次使用日期。从不包含主机名、用户名、密码、查询或行数据。",
-            "应用不进行许可证验证、更新检查或插件请求。查询发往您自己的服务器，iCloud 同步发往您自己的 iCloud 账户，Entra 登录发往 Microsoft。详情见<privacyIos>隐私政策</privacyIos>。"
+            "应用不进行许可证验证、更新检查或插件请求。查询发往您自己的服务器，iCloud Sync 发往您自己的 iCloud 账户，Entra 登录发往 Microsoft。详情见<privacyIos>隐私政策</privacyIos>。"
         ]
     },
     "get": {
@@ -107,11 +107,11 @@
         "faq": [
             {
                 "question": "需要 Mac 应用吗？",
-                "answer": "不需要，iPhone 和 iPad 应用可独立使用。如果也使用 Mac，iCloud 同步和 Handoff 可连接两者。"
+                "answer": "不需要，iPhone 和 iPad 应用可独立使用。如果也使用 Mac，iCloud Sync 和 Handoff 可连接两者。"
             },
             {
                 "question": "需要许可证吗？",
-                "answer": "不需要。应用没有付费功能、应用内购买或许可证。此应用的 iCloud 同步免费，只有 Mac 需要 Starter 或 Team 许可证才能同步。"
+                "answer": "不需要。应用没有付费功能、应用内购买或许可证。此应用的 iCloud Sync 免费，只有 Mac 需要 Starter 或 Team 许可证才能同步。"
             },
             {
                 "question": "与 Mac 应用相同吗？",

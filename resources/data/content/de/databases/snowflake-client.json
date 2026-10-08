@@ -38,15 +38,15 @@
             "title": "Warehouses, Rollen und Abfragen",
             "paragraphs": [
                 "<ui>Database > Session Context</ui> wechselt mit <code>USE WAREHOUSE</code> und <code>USE ROLE</code> Warehouse oder Rolle ohne Neuverbinden. Eine TablePro-Verbindung ist eine Snowflake-Sitzung, die auch bei Inaktivität offen bleibt. Ein an eine zweite Datenbank gebundener Tab führt vor seinen Anweisungen <code>USE DATABASE</code> auf derselben Sitzung aus.",
-                "Die Seitenleiste gruppiert Objekte nach Datenbank und Schema. Objektlisten stammen aus <code>SHOW</code>-Befehlen ohne Warehouse; Spaltendetails aus <code>INFORMATION_SCHEMA</code> benötigen eines. <explain>Ausführungsplan</explain> liefert Snowflakes Plan als Rohtext.",
+                "Die Seitenleiste gruppiert Objekte nach Datenbank und Schema. Objektlisten stammen aus <code>SHOW</code>-Befehlen ohne Warehouse; Spaltendetails aus <code>INFORMATION_SCHEMA</code> benötigen eines. <explain>Explain</explain> liefert Snowflakes Plan als Rohtext.",
                 "<editing>Rasteränderungen</editing> binden Werte auf dem Server; VARIANT-, OBJECT- und ARRAY-Zellen werden über <code>PARSE_JSON</code> gesendet. Identifiziert wird über den deklarierten Primärschlüssel oder ohne ihn über alle Spalten. Snowflake erzwingt Schlüsselbedingungen nie; ein doppelter Schlüssel bedeutet daher, dass Änderungen oder Löschungen alle passenden Zeilen treffen. Prüfe vor dem Bearbeiten auf Duplikate."
             ]
         },
         {
             "id": "schema",
-            "title": "Struktur",
+            "title": "Structure",
             "paragraphs": [
-                "Die DDL-Ansicht stammt aus <code>GET_DDL</code>. Der <structure>Struktur-Tab</structure> fügt Spalten hinzu, benennt sie um und entfernt sie, setzt NOT NULL, Kommentare und Primärschlüssel, erweitert VARCHAR und ändert NUMBER-Präzision bei gleicher Skalierung.",
+                "Die DDL-Ansicht stammt aus <code>GET_DDL</code>. Der <structure>Structure-Tab</structure> fügt Spalten hinzu, benennt sie um und entfernt sie, setzt NOT NULL, Kommentare und Primärschlüssel, erweitert VARCHAR und ändert NUMBER-Präzision bei gleicher Skalierung.",
                 "Änderungen, die Snowflake ablehnen würde, werden vor Ausführung verweigert: VARCHAR verkleinern, andere Typänderungen und einen Spaltenstandardwert neu setzen. Das Entfernen eines Standardwerts wird ausgeführt."
             ]
         },
@@ -55,7 +55,7 @@
             "title": "Daten übertragen",
             "paragraphs": [
                 "<importData>Importiere</importData> {importFormats}-Dateien über die Verbindung und exportiere Tabellen oder Ergebnisse als {exportFormats} auf deinen Mac.",
-                "Wähle zum Export ohne deinen Mac <ui>File > Server-Side Export…</ui> und nenne eine Stage mit oder ohne <code>@</code>. <backup>Serverseitiger Export</backup> führt <code>COPY INTO</code> mit deinen Rechten aus und schreibt gzip-komprimiertes CSV, Parquet oder JSON. Der Dialog wartet bis zum Abschluss; nichts landet auf dem Mac."
+                "Wähle zum Export ohne deinen Mac <ui>File > Server-Side Export…</ui> und nenne eine Stage mit oder ohne <code>@</code>. <backup>Server-Side Export</backup> führt <code>COPY INTO</code> mit deinen Rechten aus und schreibt gzip-komprimiertes CSV, Parquet oder JSON. Der Dialog wartet bis zum Abschluss; nichts landet auf dem Mac."
             ]
         }
     ],
@@ -65,7 +65,7 @@
         {
             "id": "no-columns",
             "question": "Warum zeigt die Seitenleiste Tabellen ohne Spalten?",
-            "answer": "Spaltendetails stammen aus <code>INFORMATION_SCHEMA</code>, das ein laufendes Warehouse braucht. Setze <ui>Warehouse</ui> in Verbindung oder Sitzungskontext. Erscheinen die Objekte einer Datenbank gar nicht, benötigt die Verbindungsrolle <code>USAGE</code>."
+            "answer": "Spaltendetails stammen aus <code>INFORMATION_SCHEMA</code>, das ein laufendes Warehouse braucht. Setze <ui>Warehouse</ui> in Verbindung oder Session Context. Erscheinen die Objekte einer Datenbank gar nicht, benötigt die Verbindungsrolle <code>USAGE</code>."
         },
         {
             "id": "timestamp-ltz",

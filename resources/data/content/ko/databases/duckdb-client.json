@@ -41,12 +41,12 @@
             "title": "쿼리 및 편집",
             "paragraphs": [
                 "모든 연결에서 <code>SELECT * FROM 'data.csv'</code>나 <code>read_parquet('events.parquet')</code>처럼 SQL로 파일을 직접 읽을 수 있습니다. 다른 DuckDB 파일을 <code>ATTACH</code>하면 사이드바에 두 번째 데이터베이스로 나타나고 <code>Cmd+K</code>로 재연결 없이 전환합니다. 재연결 후에는 연결한 데이터베이스가 유지되지 않습니다.",
-                "<explain>EXPLAIN</explain>은 계획 다이어그램으로 표시됩니다. 테이블 행을 편집할 때 <editing>Preview SQL</editing>이 각 구문을 먼저 보여 주며 데이터 파일의 뷰는 읽기 전용입니다."
+                "<explain>EXPLAIN</explain>은 계획 다이어그램으로 표시됩니다. 테이블 행을 편집할 때 <editing>Preview SQL</editing>이 각 명령문을 먼저 보여 주며 데이터 파일의 뷰는 읽기 전용입니다."
             ]
         },
         {
             "id": "schema",
-            "title": "구조",
+            "title": "Structure",
             "paragraphs": [
                 "<structure>Structure 탭</structure>은 테이블을 편집하고 실행 전에 DDL을 보여 줍니다. 여기서 데이터베이스는 파일이므로 앱에서 생성·삭제하지 않으며 두 번째 파일에 접근하려면 <code>ATTACH</code>를 사용합니다."
             ]

@@ -28,7 +28,7 @@ export default {
                 "Conexiones a cualquier motor compatible",
                 "El editor SQL y la cuadrícula de datos",
                 "El asistente de IA y el servidor MCP",
-                "Modo seguro",
+                "Safe Mode",
                 "La app para iPhone y iPad"
             ]
         },
@@ -107,7 +107,7 @@ export default {
         },
         "macsTeam": "Uno por puesto",
         "everythingElse": "Todo lo demás en la app",
-        "everythingElseDetail": "Todos los motores compatibles, el editor SQL, el asistente de IA, el servidor MCP y el modo seguro",
+        "everythingElseDetail": "Todos los motores compatibles, el editor SQL, el asistente de IA, el servidor MCP y Safe Mode",
         "iphoneNote": "La app para iPhone y iPad no tiene funciones de pago. iCloud Sync es gratis en ella; para sincronizar con un Mac, este necesita Starter o Team."
     },
     "discount": {

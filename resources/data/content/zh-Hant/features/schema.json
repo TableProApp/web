@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "修改結構前先查看 DDL",
             "paragraphs": [
-                "Structure 分頁可在格線中編輯資料表的欄位、索引、外部索引鍵與 CHECK 條件約束。修改暫存至儲存時才執行，<ui>預覽 SQL</ui>（Preview SQL，<kbd>⌘⇧P</kbd>）在執行前顯示 ALTER TABLE 陳述式。刪除項目、修改型別、新增 NOT NULL 或修改主索引鍵的操作會先徵求確認，即使連線的安全模式等級為 {macSafeModeDefault}。",
+                "Structure 分頁可在格線中編輯資料表的欄位、索引、外部索引鍵與 CHECK 條件約束。修改暫存至儲存時才執行，<ui>預覽 SQL</ui>（Preview SQL，<kbd>⌘⇧P</kbd>）在執行前顯示 ALTER TABLE 陳述式。刪除項目、修改型別、新增 NOT NULL 或修改主索引鍵的操作會先徵求確認，即使連線的 Safe Mode 等級為 {macSafeModeDefault}。",
                 "索引可使用 <code>lower(email)</code> 等運算式索引鍵。New Table 以相同方式建立資料表，並提供即時 SQL 預覽。對於不能直接修改外部索引鍵的 SQLite、libSQL、Turso 與 Cloudflare D1，TablePro 產生資料表重建指令碼供檢閱；SQLite 和本機 libSQL 檔案在確認後執行，Turso、遠端 libSQL 和 D1 則需自行執行。"
             ],
             "engines": [
@@ -60,7 +60,7 @@
         },
         {
             "id": "compare-sync",
-            "title": "比較與同步",
+            "title": "Compare & Sync",
             "paragraphs": [
                 "選擇來源與目標，可為兩台伺服器或同一伺服器上的兩個資料庫，Compare & Sync 會列出所有存在差異的資料表，也可包含檢視表、常式與觸發程序。資料模式依索引鍵比對列並標記每個不同值，支援各資料表的篩選和列數限制，以便比較大型資料表的一部分。",
                 "產生的指令碼依外部索引鍵順序排列，並針對目標原生用戶端撰寫。刪除欄位、縮小型別或刪除列等破壞資料的陳述式，會暫緩到本次執行明確允許後才執行；Read-Only 連線不能選為目標。儲存比較後可一鍵重新執行。"
@@ -88,13 +88,13 @@
             "blocks": [
                 {
                     "id": "users-roles",
-                    "title": "使用者與角色",
+                    "title": "Users & Roles",
                     "paragraphs": [
                         "Users & Roles 以樹狀圖顯示每個使用者從伺服器到單一欄位的權限。授權和撤銷先作為暫存修改，並在執行前展示 SQL，因此無須自行撰寫 GRANT。"
                     ],
                     "engines": [
                         {
-                            "label": "使用者與角色",
+                            "label": "Users & Roles",
                             "list": "usersRoles"
                         }
                     ],
@@ -102,13 +102,13 @@
                 },
                 {
                     "id": "server-dashboard",
-                    "title": "伺服器儀表板",
+                    "title": "Server Dashboard",
                     "paragraphs": [
-                        "Server Dashboard 依所選間隔重新整理即時工作階段、伺服器指標與慢查詢。引擎允許時，可從對應列取消執行中的查詢或終止工作階段，兩項操作均遵循連線的安全模式。在 SQLite、DuckDB 與 Typesense 上僅顯示指標。"
+                        "Server Dashboard 依所選間隔重新整理即時工作階段、伺服器指標與慢查詢。引擎允許時，可從對應列取消執行中的查詢或終止工作階段，兩項操作均遵循連線的 Safe Mode。在 SQLite、DuckDB 與 Typesense 上僅顯示指標。"
                     ],
                     "engines": [
                         {
-                            "label": "伺服器儀表板",
+                            "label": "Server Dashboard",
                             "list": "dashboard"
                         }
                     ],
@@ -138,7 +138,7 @@
             "iosNote": "欄位、索引與外部索引鍵唯讀"
         },
         {
-            "label": "新增資料表",
+            "label": "New Table",
             "ios": "no"
         },
         {
@@ -154,7 +154,7 @@
             "ios": "no"
         },
         {
-            "label": "比較與同步",
+            "label": "Compare & Sync",
             "paid": "compare-sync",
             "ios": "no"
         },
@@ -163,11 +163,11 @@
             "ios": "no"
         },
         {
-            "label": "使用者與角色",
+            "label": "Users & Roles",
             "ios": "no"
         },
         {
-            "label": "伺服器儀表板與資料表維護",
+            "label": "Server Dashboard 與資料表維護",
             "ios": "no"
         }
     ],
@@ -191,7 +191,7 @@
             "docs": "/features/routines-triggers"
         },
         {
-            "label": "比較與同步",
+            "label": "Compare & Sync",
             "docs": "/features/compare-sync"
         },
         {
@@ -199,11 +199,11 @@
             "docs": "/features/copy-objects"
         },
         {
-            "label": "使用者與角色",
+            "label": "Users & Roles",
             "docs": "/features/users-roles"
         },
         {
-            "label": "伺服器儀表板",
+            "label": "Server Dashboard",
             "docs": "/features/server-dashboard"
         },
         {

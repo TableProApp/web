@@ -81,11 +81,11 @@
     "safety": {
         "title": "本番データベースの安全対策",
         "body": [
-            "Mac では環境ごとに接続へタグや色を付け、Silent から Read-Only までのセーフモードレベルを設定できます。厳しいレベルでは Touch ID またはパスワードが必要です。DROP、TRUNCATE、WHERE のない DELETE は、すべてのレベルで一旦停止して確認を求めます。iPhone・iPad では、Confirm Writes が書き込みのたびに確認し、Read-Only は書き込みを拒否します。",
-            "Agent モードで開いている接続は、Alert 以上の厳しいレベルで動作します。Data Rewind は直近の保存で置き換えられた値を戻せます。バックアップではありません。"
+            "Mac では環境ごとに接続へタグや色を付け、Silent から Read-Only までの Safe Mode レベルを設定できます。厳しいレベルでは Touch ID またはパスワードが必要です。DROP、TRUNCATE、WHERE のない DELETE は、すべてのレベルで一旦停止して確認を求めます。iPhone・iPad では、Confirm Writes が書き込みのたびに確認し、Read-Only は書き込みを拒否します。",
+            "Agent mode で開いている接続は、Alert 以上の厳しいレベルで動作します。Data Rewind は直近の保存で置き換えられた値を戻せます。バックアップではありません。"
         ],
-        "levels": "セーフモードのレベル",
-        "link": "セーフモード"
+        "levels": "Safe Mode のレベル",
+        "link": "Safe Mode"
     },
     "ai": {
         "title": "AI アシスタントと MCP サーバー",
@@ -100,9 +100,9 @@
     "platforms": {
         "title": "{deviceList} 向けのネイティブアプリ",
         "cardTitle": "{devices} 版 TablePro",
-        "mac": "Mac 版 TablePro は Swift 製のアプリで、{architectures} 向けにそれぞれのビルドを用意しています。パスワードをキーチェーンに保存し、厳しいセーフモードレベルでは Touch ID を求め、自動で更新します。",
+        "mac": "Mac 版 TablePro は Swift 製のアプリで、{architectures} 向けにそれぞれのビルドを用意しています。パスワードをキーチェーンに保存し、厳しい Safe Mode レベルでは Touch ID を求め、自動で更新します。",
         "ios": "{devices} 版 TablePro は独自の機能範囲を持つ別のアプリです。SSH や TLS で接続し、テーブルの閲覧、クエリの実行、行の編集ができ、任意の Face ID ロック、ショートカット、ホーム画面ウィジェット、実行中のクエリのライブアクティビティにも対応します。",
-        "sync": "iCloud 同期は Mac と iPhone・iPad の間で接続、グループ、タグを同期します。初期設定ではオフで、Mac では {tier} プランが必要です。iCloud 同期がオンなら、Handoff で開いている接続を別のデバイスで続けられます。"
+        "sync": "iCloud Sync は Mac と iPhone・iPad の間で接続、グループ、タグを同期します。初期設定ではオフで、Mac では {tier} プランが必要です。iCloud Sync がオンなら、Handoff で開いている接続を別のデバイスで続けられます。"
     },
     "switch": {
         "title": "別のアプリから移行する",

@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "SQL プレビューとセーフモードでテーブルデータを編集",
-        "description": "行を絞り込み、編集し、保存前に SQL を確認。接続ごとにセーフモードを設定できます。Data Rewind は保存で置き換えた値を復元します。"
+        "title": "Preview SQL と Safe Mode でテーブルデータを編集",
+        "description": "行を絞り込み、編集し、保存前に SQL を確認。接続ごとに Safe Mode を設定できます。Data Rewind は保存で置き換えた値を復元します。"
     },
     "og": {
         "kicker": "データ編集",
@@ -54,28 +54,28 @@
         },
         {
             "id": "safe-mode",
-            "title": "本番接続を守るセーフモード",
+            "title": "本番接続を守る Safe Mode",
             "paragraphs": [
-                "各接続にはセーフモードのレベル {macSafeModeLevels} があります。新規接続は {macSafeModeDefault} で始まり、文をそのまま実行します。Alert は書き込み前に確認し、Safe Mode 系のレベルは Touch ID または Mac のパスワードも求めます。Full 系は読み取り前も確認し、Read-Only は書き込みを拒否して編集を無効にします。セーフモードは無料です。",
-                "どのレベルでも DROP、TRUNCATE、WHERE のない DELETE は停止して事前確認します。読み取り専用のエンジン、最低 Alert に引き上げる Agent モード、組織がデバイス管理（MDM）で定める最低レベルなど、一部の条件は適用中に接続のレベルを引き上げます。"
+                "各接続には Safe Mode のレベル {macSafeModeLevels} があります。新規接続は {macSafeModeDefault} で始まり、文をそのまま実行します。Alert は書き込み前に確認し、Safe Mode 系のレベルは Touch ID または Mac のパスワードも求めます。Full 系は読み取り前も確認し、Read-Only は書き込みを拒否して編集を無効にします。Safe Mode は無料です。",
+                "どのレベルでも DROP、TRUNCATE、WHERE のない DELETE は停止して事前確認します。読み取り専用のエンジン、最低 Alert に引き上げる Agent mode、組織がデバイス管理（MDM）で定める最低レベルなど、一部の条件は適用中に接続のレベルを引き上げます。"
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
                 {
-                    "label": "セーフモードとその他の接続ポリシー",
+                    "label": "Safe Mode とその他の接続ポリシー",
                     "href": "/features/connections#policies"
                 },
                 {
-                    "label": "Agent モード",
+                    "label": "Agent mode",
                     "href": "/features/ai-mcp#agent-mode"
                 }
             ]
         },
         {
             "id": "data-rewind",
-            "title": "データの巻き戻し",
+            "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind は保存で置き換えた値を保持し、<ui>Restore Previous Values</ui> で戻せます。最初の確認シートで、保存後に変更された行も含め各行に何が起きるか表示します。復元はセーフモードを通し、エンジンが許す場合は一つのトランザクションで実行します。復元操作自体も復元できます。",
+                "Data Rewind は保存で置き換えた値を保持し、<ui>Restore Previous Values</ui> で戻せます。最初の確認シートで、保存後に変更された行も含め各行に何が起きるか表示します。復元は Safe Mode を通し、エンジンが許す場合は一つのトランザクションで実行します。復元操作自体も復元できます。",
                 "保存した値は、キーチェーンの鍵で暗号化してこの Mac に {rewindDays} 日間保持し、同期しません。プランが終了すると保存内容の記録が止まり、<ui>Restore Previous Values</ui> は復元の代わりにアラートを表示します。"
             ],
             "paid": [
@@ -105,7 +105,7 @@
             "title": "iPhone と iPad では",
             "paragraphs": [
                 "iPhone と iPad アプリでは行をカードで表示し、並べ替え、検索、AND と OR による絞り込みができます。外部キーをタップすると参照先の行をプレビューします。行を編集し、値を NULL や DEFAULT に設定し、行を追加し、スワイプで削除できます。編集と削除には主キーが必要です。",
-                "セーフモードには独自のレベル {iosSafeModeLevels} があり、新規接続の既定は {iosSafeModeDefault} です。編集の保留、Preview SQL、ハイライトルールと Data Rewind は Mac アプリ専用です。"
+                "Safe Mode には独自のレベル {iosSafeModeLevels} があり、新規接続の既定は {iosSafeModeDefault} です。編集の保留、Preview SQL、ハイライトルールと Data Rewind は Mac アプリ専用です。"
             ],
             "links": [
                 {
@@ -113,7 +113,7 @@
                     "href": "/ios#browse"
                 },
                 {
-                    "label": "iPhone と iPad のセーフモード",
+                    "label": "iPhone と iPad の Safe Mode",
                     "href": "/ios#safe-mode"
                 }
             ]
@@ -143,7 +143,7 @@
             "ios": "no"
         },
         {
-            "label": "セーフモード",
+            "label": "Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -152,7 +152,7 @@
             "ios": "no"
         },
         {
-            "label": "データの巻き戻し",
+            "label": "Data Rewind",
             "paid": "data-rewind",
             "ios": "no"
         },
@@ -164,7 +164,7 @@
     "limits": [
         "Data Rewind はバックアップではありません。トリガー、カスケードや TablePro 外の変更は戻せず、主キーのない行、{rewindMaxValue} MB を超える値やサーバーが計算した値は復元できません。",
         "WHERE のない UPDATE は通常の書き込みです。Alert 以上のレベルの場合にだけ事前確認します。",
-        "{everyStatementWrites} ではセーフモードがすべての文を書き込みとみなすため、Alert は読み取り前も確認し、Read-Only は読み取りも拒否します。",
+        "{everyStatementWrites} では Safe Mode がすべての文を書き込みとみなすため、Alert は読み取り前も確認し、Read-Only は読み取りも拒否します。",
         "JOIN、CTE、UNION の結果はグリッドで読み取り専用です。編集するにはテーブルを開いてください。"
     ],
     "docs": [
@@ -177,15 +177,15 @@
             "docs": "/features/filtering"
         },
         {
-            "label": "変更追跡と SQL プレビュー",
+            "label": "変更追跡と Preview SQL",
             "docs": "/features/change-tracking"
         },
         {
-            "label": "データの巻き戻し",
+            "label": "Data Rewind",
             "docs": "/features/change-tracking#restoring-a-save"
         },
         {
-            "label": "セーフモード",
+            "label": "Safe Mode",
             "docs": "/features/safe-mode"
         }
     ],

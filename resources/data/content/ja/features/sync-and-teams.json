@@ -15,7 +15,7 @@
     "sections": [
         {
             "id": "icloud-sync",
-            "title": "iCloud 同期",
+            "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync は、同じ iCloud アカウントでサインインしたすべての Mac、iPhone、iPad のライブラリを揃えます。レコードはそのアカウントのプライベートデータベースに保存します。同期は各デバイスで有効にするまでオフです。iPhone と iPad では無料で、Mac にはこの機能を含むプランが必要です。",
                 "パスワードは、Mac の Sync Categories で <ui>Passwords</ui>、または iPhone と iPad で <ui>Sync Passwords</ui> も有効にした場合のみ、iCloud キーチェーン経由で同期します。Mac では AI プロバイダーのキーやライセンスキーなど、TablePro がキーチェーンに保存する他のシークレットも同期します。接続を Local only にすると、お気に入りと保存済みクエリも含め一台の Mac にだけ保持します。"
@@ -61,7 +61,7 @@
         },
         {
             "id": "linked-folders",
-            "title": "リンクしたフォルダー",
+            "title": "Linked Folders",
             "paragraphs": [
                 "Git のチェックアウトや共有ドライブなどのフォルダーを追加すると、TablePro は各 <code>.tablepro</code> ファイルを接続として一覧表示し、ファイルの追加や変更に合わせて更新します。リンクした接続は TablePro 内で読み取り専用で、変更するにはファイルを変更します。暗号化ファイルはスキップするため、共有フォルダーにあるのは設定でありパスワードではありません。リンクファイル内の起動コマンドとトンネルコマンドは無視します。",
                 "Linked Folders は接続ファイルを監視します。リンクした SQL フォルダーは別の機能で、保存済みクエリの無料機能として、<code>.sql</code> ファイルのフォルダーを保存済みクエリと同期します。"
@@ -78,14 +78,14 @@
         },
         {
             "id": "team",
-            "title": "チームカタログとチームライブラリ",
+            "title": "Team Catalog と Team Library",
             "paragraphs": [
                 "Team ライセンスの全員に同じ接続を配る二つの方法です。一つは既存の共有フォルダー経由、もう一つは TablePro のサーバー経由です。"
             ],
             "blocks": [
                 {
                     "id": "team-catalog",
-                    "title": "チームカタログ",
+                    "title": "Team Catalog",
                     "paragraphs": [
                         "<ui>Share > Publish to Team Catalog…</ui> は、選んだ接続をパスワードなしで <code>.tablepro</code> ファイルとして共有フォルダーに書き込みます。チームメンバーはそのフォルダーを Linked Folder として追加します。カタログは TablePro ではなく、既存の共有ドライブやリポジトリを通じて配布されます。"
                     ],
@@ -95,7 +95,7 @@
                 },
                 {
                     "id": "team-library",
-                    "title": "チームライブラリ",
+                    "title": "Team Library",
                     "paragraphs": [
                         "接続の <ui>Share > Publish to Team Library…</ui> と Favorites サイドバーの <ui>Publish Saved Queries to Team…</ui> は、接続や保存済みクエリを TablePro のサーバーにアップロードし、ライセンス上のすべての Mac がダウンロードします。クエリは公開者の名前とともに Favorites サイドバーに表示します。アップロードするのは接続設定とクエリの SQL テキストで、パスワードは送りません。受け取った起動コマンドやトンネルコマンドはチームメンバーの Mac が無視するため、勝手に実行されません。再公開すると以前公開した内容を置き換えます。"
                     ],
@@ -146,7 +146,7 @@
     ],
     "availability": [
         {
-            "label": "iCloud 同期",
+            "label": "iCloud Sync",
             "paid": "icloud-sync",
             "ios": "partial",
             "iosNote": "接続、グループとタグ、無料"
@@ -171,34 +171,34 @@
             "ios": "yes"
         },
         {
-            "label": "パスワード付き暗号化エクスポート",
+            "label": "パスワード付き Encrypted Export",
             "paid": "encrypted-export",
             "ios": "yes"
         },
         {
-            "label": "リンクしたフォルダー",
+            "label": "Linked Folders",
             "paid": "linked-folders",
             "ios": "no"
         },
         {
-            "label": "チームカタログ",
+            "label": "Team Catalog",
             "paid": "team-catalog",
             "ios": "no"
         },
         {
-            "label": "チームライブラリ",
+            "label": "Team Library",
             "paid": "team-library",
             "ios": "no"
         }
     ],
     "limits": [
         "Mac のプランが終了すると、iCloud Sync は一時停止して理由を表示し、Linked Folders と Team Library の接続は一覧から消えます。チーム公開コマンドは非表示になり、Encrypted Export のパスワードオプションもなくなります。",
-        "iPhone や iPad で同期した接続を編集すると、そのアプリにない設定が変わることがあります。Safe Mode (Full) などの厳しい Mac のセーフモードレベルは Alert として戻り、SSH 踏み台ホストも維持されない場合があります。これらの接続は Mac で変更してください。",
+        "iPhone や iPad で同期した接続を編集すると、そのアプリにない設定が変わることがあります。Safe Mode (Full) などの厳しい Mac の Safe Mode レベルは Alert として戻り、SSH 踏み台ホストも維持されない場合があります。これらの接続は Mac で変更してください。",
         "Team ライセンスが終了または停止しても、Team Library に公開した内容は削除を依頼するまで TablePro のサーバーに残ります。"
     ],
     "docs": [
         {
-            "label": "iCloud 同期",
+            "label": "iCloud Sync",
             "docs": "/features/icloud-sync"
         },
         {
@@ -206,19 +206,19 @@
             "docs": "/features/handoff"
         },
         {
-            "label": "接続ファイルと暗号化エクスポート",
+            "label": "接続ファイルと Encrypted Export",
             "docs": "/features/connection-sharing#export"
         },
         {
-            "label": "リンクしたフォルダー",
+            "label": "Linked Folders",
             "docs": "/features/connection-sharing#linked-folders"
         },
         {
-            "label": "チームカタログ",
+            "label": "Team Catalog",
             "docs": "/features/connection-sharing#team-catalog"
         },
         {
-            "label": "チームライブラリ",
+            "label": "Team Library",
             "docs": "/features/favorites#team-library"
         },
         {

@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "Conecta e inicia sesión",
             "paragraphs": [
-                "Introduce host y puerto del coordinador y un <ui>Username</ui>, bajo el cual se ejecutan las consultas. <ui>Catalog</ui> y <ui>Schema</ui> son puntos iniciales opcionales; deja Catálogo vacío para explorar todos. Una <ui>Time Zone</ui> IANA en Opciones fija la zona de la sesión.",
-                "Autentícate con contraseña enviada como HTTP Basic para LDAP o archivo de contraseñas, o token JWT enviado como credencial bearer. Ambos solo van por TLS: con SSL Desactivado, una conexión que los tenga se rechaza antes de enviar nada. Un certificado de cliente y clave en SSL añaden TLS mutuo.",
-                "SSL empieza Desactivado, es decir HTTP sin cifrar; los demás modos fuerzan TLS sin alternativa en claro, y 443 activa Verificar identidad. Nunca se sigue una redirección de un proxy delante del coordinador; el error indica su destino. Accede detrás de un bastión con un <network>túnel SSH</network> e importa una URL <code>trino://</code> con <ui>Import from URL…</ui>."
+                "Introduce host y puerto del coordinador y un <ui>Username</ui>, bajo el cual se ejecutan las consultas. <ui>Catalog</ui> y <ui>Schema</ui> son puntos iniciales opcionales; deja Catálogo vacío para explorar todos. Una <ui>Time Zone</ui> IANA en Options fija la zona de la sesión.",
+                "Autentícate con contraseña enviada como HTTP Basic para LDAP o archivo de contraseñas, o token JWT enviado como credencial bearer. Ambos solo van por TLS: con SSL en Disabled, una conexión que los tenga se rechaza antes de enviar nada. Un certificado de cliente y clave en SSL añaden TLS mutuo.",
+                "SSL empieza en Disabled, es decir HTTP sin cifrar; los demás modos fuerzan TLS sin alternativa en claro, y 443 activa Verify Identity. Nunca se sigue una redirección de un proxy delante del coordinador; el error indica su destino. Accede detrás de un bastión con un <network>túnel SSH</network> e importa una URL <code>trino://</code> con <ui>Import from URL…</ui>."
             ]
         },
         {
@@ -37,16 +37,16 @@
             "paragraphs": [
                 "La conexión abre un catálogo y esquema; cualquier consulta puede seguir usando el nombre completo <code>catalog.schema.table</code>, como una unión entre tablas Hive y PostgreSQL. La barra lateral despliega catálogos en esquemas y tablas, con vistas materializadas junto a tablas y vistas, y recuentos de <code>SHOW STATS</code>.",
                 "<code>bigint</code> y <code>decimal</code> se leen como texto exacto, no como coma flotante. <code>varbinary</code> aparece en hexadecimal; <code>array</code>, <code>map</code> y <code>row</code>, como JSON; las fechas conservan el valor del servidor.",
-                "<explain>Explicar</explain> ofrece Lógico, Distribuido, E/S, Validar y Analizar. Validar comprueba sin ejecutar; Analizar ejecuta y mide tiempos reales; todos los planes vuelven como texto sin procesar.",
+                "<explain>Explain</explain> ofrece Logical, Distributed, IO, Validate y Analyze. Validate comprueba sin ejecutar; Analyze ejecuta y mide tiempos reales; todos los planes vuelven como texto sin procesar.",
                 "<code>SET SESSION</code> dura el resto de la conexión. <ui>Query > Cancel Query</ui> pide al coordinador terminar la consulta: así se detiene, porque el tiempo de espera de la conexión no llega a Trino.",
                 "Las <editing>ediciones de celda</editing> generan INSERT, UPDATE y DELETE con el tipo Trino de cada valor. Trino no informa de claves primarias, así que se compara cada columna original de la fila, sin transacción para revertir. Editar una de dos filas idénticas cambia ambas; comprueba duplicados antes."
             ]
         },
         {
             "id": "schema",
-            "title": "Estructura",
+            "title": "Structure",
             "paragraphs": [
-                "La <structure>pestaña Estructura</structure> crea tablas y añade, elimina, renombra y cambia tipos de columnas en autocommit. El conector decide si el cambio se ejecuta; el cambio de tipo es el menos aceptado."
+                "La <structure>pestaña Structure</structure> crea tablas y añade, elimina, renombra y cambia tipos de columnas en autocommit. El conector decide si el cambio se ejecuta; el cambio de tipo es el menos aceptado."
             ]
         },
         {

@@ -15,7 +15,7 @@
         "tablepro": [
             "希望伺服器不安裝任何軟體，從 Mac 直接或經 SSH 工作。",
             "也使用 PostgreSQL、SQL Server、SQLite、Redis 等引擎。",
-            "希望每個連線都有安全模式層級，如正式環境 Read-Only，或寫入前 Touch ID。",
+            "希望每個連線都有 Safe Mode 層級，如正式環境 Read-Only，或寫入前 Touch ID。",
             "經常移入移出資料。CSV、JSON、XLSX、SQL 檔案匯入匯出免費。",
             "希望 Mac App 內免費 AI 助手和 MCP 伺服器。"
         ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "每連線有從 Silent 到 Read-Only 的<link>安全模式</link>，嚴格層級使用 Touch ID。",
+                "text": "每連線有從 Silent 到 Read-Only 的 <link>Safe Mode</link>，嚴格層級使用 Touch ID。",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -174,7 +174,7 @@
         "steps": [],
         "after": [
             "網站程式碼在 Mac 時，<ui>檔案 > 匯入 > 開啟專案資料夾…</ui>（File > Import > Open Project Folder…）從 wp-config.php、.env 等檔案讀取資料庫設定，開啟填好的表單。",
-            "正式環境資料庫請開始前設定連線安全模式層級。",
+            "正式環境資料庫請開始前設定連線 Safe Mode 層級。",
             "phpMyAdmin 匯出的 SQL 檔案無論 gzip 與否，均可匯入任意 MySQL、MariaDB 連線。"
         ],
         "docs": null

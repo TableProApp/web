@@ -37,7 +37,7 @@
             "title": "쿼리 및 편집",
             "paragraphs": [
                 "libSQL은 SQLite 문법을 사용하므로 탐색, <explain>EXPLAIN QUERY PLAN</explain> 다이어그램, <editing>Preview SQL을 통한 편집 임시 저장</editing>과 내보내기가 <sqlite>SQLite</sqlite>와 동일하게 작동합니다.",
-                "원격 연결은 트랜잭션을 실행하지 않습니다. 각 구문이 별도 HTTP 요청으로 커밋되며 <code>BEGIN</code>은 “Transactions are not supported in this mode” 오류로 실패합니다. 트랜잭션은 <libsql>libSQL 절</libsql>의 로컬 libSQL 파일이 필요합니다.",
+                "원격 연결은 트랜잭션을 실행하지 않습니다. 각 명령문이 별도 HTTP 요청으로 커밋되며 <code>BEGIN</code>은 “Transactions are not supported in this mode” 오류로 실패합니다. 트랜잭션은 <libsql>libSQL 절</libsql>의 로컬 libSQL 파일이 필요합니다.",
                 "원격 모드는 SQLite 확장을 로드하지 않으며 Turso 데이터베이스는 서버에 포함된 확장을 실행합니다. Turso가 연결을 제한하면 오류에 재시도 전 대기 초가 표시됩니다."
             ]
         },
@@ -64,7 +64,7 @@
             "paragraphs": [
                 "자체 sqld 서버나 이 Mac의 파일은 libSQL을 선택합니다. Remote 모드는 Hrana v2 pipeline 엔드포인트를 제공하는 모든 sqld에 연결하며 이 Mac의 기본 포트 8080 서버도 지원합니다. <code>--auth-jwt-key-file</code> 없이 시작한 서버는 토큰을 비우고 그 외에는 서버 키와 맞는 JWT를 입력합니다.",
                 "<ui>로컬 파일</ui>(Local File) 모드는 드라이버에 포함된 SQLite로 libSQL 파일을 열고 아직 없는 경로는 폴더까지 만듭니다. 로컬 파일은 트랜잭션, 연결의 Extensions 목록에서 SQLite 확장 로드와 확인 후 열 순서·외래 키 재구성을 지원합니다.",
-                "<code>ALTER TABLE … ALTER COLUMN</code>처럼 libSQL만 이해하는 구문은 SQLite 엔진이 받기 때문에 로컬 파일에서 실패합니다. 암호화된 libSQL 파일은 열리지 않습니다. 실행 중인 앱이 Turso 내장 복제본으로 동기화하는 파일은 두 프로그램의 동시 접근으로 손상될 수 있으므로 절대로 열지 마세요.",
+                "<code>ALTER TABLE … ALTER COLUMN</code>처럼 libSQL만 이해하는 명령문은 SQLite 엔진이 받기 때문에 로컬 파일에서 실패합니다. 암호화된 libSQL 파일은 열리지 않습니다. 실행 중인 앱이 Turso 내장 복제본으로 동기화하는 파일은 두 프로그램의 동시 접근으로 손상될 수 있으므로 절대로 열지 마세요.",
                 "<backup>Backup Dump와 Restore Dump</backup>는 로컬 libSQL 파일에 {dumpTool}을 실행합니다."
             ]
         }

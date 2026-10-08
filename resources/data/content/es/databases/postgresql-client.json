@@ -35,20 +35,20 @@
             "title": "Conectar",
             "paragraphs": [
                 "Indica host, puerto, usuario y base de datos, o pega una URL <code>postgresql://</code> o <code>postgres://</code>. PostgreSQL necesita la base para conectar.",
-                "Las conexiones nuevas empiezan con SSL Preferido, el <code>sslmode=prefer</code> de libpq. Elige Verificar CA o Verificar identidad para comprobar el certificado del servidor.",
+                "Las conexiones nuevas empiezan con SSL en Preferred, el <code>sslmode=prefer</code> de libpq. Elige Verify CA o Verify Identity para comprobar el certificado del servidor.",
                 "Activa Usar ~/.pgpass para leer la contraseña de <code>~/.pgpass</code>. El formulario informa de lo encontrado, incluido un archivo cuyos permisos harían que libpq lo ignorase.",
                 "Accede a un servidor privado mediante <network>túnel SSH con hosts de salto si los necesitas, proxy SOCKS5, túnel Cloudflare Access o comando de túnel</network>, como kubectl port-forward. En Amazon RDS y Aurora, autentícate con <cloudAuth>AWS IAM</cloudAuth> con un rol que tenga <code>rds_iam</code>. Para Google Cloud SQL, TablePro descarga y ejecuta Cloud SQL Auth Proxy.",
-                "Cualquier opción que libpq acepte, como <code>-c application_name=reporting</code>, se introduce en Opciones de conexión."
+                "Cualquier opción que libpq acepte, como <code>-c application_name=reporting</code>, se introduce en Connection Options."
             ]
         },
         {
             "id": "work",
             "title": "Consulta y edita",
             "paragraphs": [
-                "El editor SQL completa nombres de tablas y columnas del esquema. <explain>EXPLAIN y EXPLAIN ANALYZE</explain> usan FORMAT JSON y se representan como diagrama o árbol; Comparar EXPLAIN muestra si un plan se ralentizó después de un cambio.",
+                "El editor SQL completa nombres de tablas y columnas del esquema. <explain>EXPLAIN y EXPLAIN ANALYZE</explain> usan FORMAT JSON y se representan como diagrama o árbol; EXPLAIN Compare muestra si un plan se ralentizó después de un cambio.",
                 "jsonb se formatea; uuid, inet, timestamptz, interval y bytea se muestran en su formato propio. Las columnas array abren un editor de listas para añadir, eliminar, reordenar y poner en null elementos individuales; las columnas enum ofrecen sus etiquetas.",
                 "Los valores PostGIS geometry y geography se leen como EWKT con su SRID; un resultado con geometría abre la <results>vista Mapa</results>. Los mapas provienen de Apple; tus filas permanecen en el Mac.",
-                "Las ediciones quedan pendientes hasta guardar; <editing>Vista previa SQL</editing> muestra antes cada sentencia y el guardado usa parámetros enlazados. Las filas de vistas materializadas son de solo lectura: actualízalas desde su menú, de forma concurrente si tienen el índice único requerido por PostgreSQL."
+                "Las ediciones quedan pendientes hasta guardar; <editing>Preview SQL</editing> muestra antes cada sentencia y el guardado usa parámetros enlazados. Las filas de vistas materializadas son de solo lectura: actualízalas desde su menú, de forma concurrente si tienen el índice único requerido por PostgreSQL."
             ],
             "asset": "mac-result-map"
         },
@@ -57,19 +57,19 @@
             "title": "Esquemas y estructura",
             "paragraphs": [
                 "Se enumeran todos los esquemas accesibles. Crea y edita esquemas con un cuadro que escribe CREATE SCHEMA, propietario, comentario y permisos USAGE y CREATE, y los muestra antes de ejecutar.",
-                "La <structure>pestaña Estructura</structure> prepara cambios en columnas, índices, claves foráneas, restricciones CHECK y columnas generadas. Las tablas particionadas enumeran particiones con límites, anidadas si vuelven a particionarse. En Tipos aparecen enums, compuestos, dominios y rangos; se pueden añadir y renombrar etiquetas enum.",
-                "La definición de vista se reconstruye con cada tabla calificada por esquema; un índice que quedó inválido tras fallar su creación concurrente se identifica en Índices.",
-                "<compareSync>Comparar y sincronizar</compareSync>, del plan {compareSyncTier}, compara dos esquemas PostgreSQL o sus datos y escribe un script para alinearlos, reservando los cambios que perderían datos."
+                "La <structure>pestaña Structure</structure> prepara cambios en columnas, índices, claves foráneas, restricciones CHECK y columnas generadas. Las tablas particionadas enumeran particiones con límites, anidadas si vuelven a particionarse. En Tipos aparecen enums, compuestos, dominios y rangos; se pueden añadir y renombrar etiquetas enum.",
+                "La definición de vista se reconstruye con cada tabla calificada por esquema; un índice que quedó inválido tras fallar su creación concurrente se identifica en Indexes.",
+                "<compareSync>Compare & Sync</compareSync>, del plan {compareSyncTier}, compara dos esquemas PostgreSQL o sus datos y escribe un script para alinearlos, reservando los cambios que perderían datos."
             ]
         },
         {
             "id": "operate",
             "title": "Administrar",
             "paragraphs": [
-                "<administer>Usuarios y roles</administer> muestra el origen de cada privilegio antes de concederlo o revocarlo, y prepara cada sentencia como SQL.",
-                "El Panel del servidor muestra sesiones, conexiones, aciertos de caché, tamaño y consultas lentas. Cancela consultas con <code>pg_cancel_backend</code> o sesiones con <code>pg_terminate_backend</code>. Un rol que no sea superusuario ni miembro de <code>pg_monitor</code> ve las otras sesiones sin sus consultas.",
+                "<administer>Users & Roles</administer> muestra el origen de cada privilegio antes de concederlo o revocarlo, y prepara cada sentencia como SQL.",
+                "El Server Dashboard muestra sesiones, conexiones, aciertos de caché, tamaño y consultas lentas. Cancela consultas con <code>pg_cancel_backend</code> o sesiones con <code>pg_terminate_backend</code>. Un rol que no sea superusuario ni miembro de <code>pg_monitor</code> ve las otras sesiones sin sus consultas.",
                 "El mantenimiento ejecuta VACUUM con opciones FULL, ANALYZE y VERBOSE, además de ANALYZE, REINDEX y CLUSTER, mostrando antes la sentencia.",
-                "<backup>Volcado de copia de seguridad y Restaurar volcado</backup> ejecutan tu propio {dumpTool} y pg_restore por el túnel SSH de la conexión. Instálalos con Homebrew; para un servidor PostgreSQL 9.1 usa pg_dump 14 o anterior."
+                "<backup>Backup Dump y Restore Dump</backup> ejecutan tu propio {dumpTool} y pg_restore por el túnel SSH de la conexión. Instálalos con Homebrew; para un servidor PostgreSQL 9.1 usa pg_dump 14 o anterior."
             ],
             "asset": "mac-server-dashboard-postgresql"
         },
@@ -78,14 +78,14 @@
             "title": "Transfiere datos",
             "paragraphs": [
                 "<importData>Importa</importData> archivos {importFormats}; un archivo de datos se carga en una tabla con correspondencia columna a columna y elección del comportamiento ante una fila fallida. Exporta tablas o resultados como {exportFormats}; la exportación SQL conserva comentarios de tablas, vistas y vistas materializadas.",
-                "<copy>Copiar a</copy> envía tablas, datos o ambos a otra conexión PostgreSQL o de otro motor, y enumera cada tipo de columna que deba aproximar."
+                "<copy>Copy To</copy> envía tablas, datos o ambos a otra conexión PostgreSQL o de otro motor, y enumera cada tipo de columna que deba aproximar."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone y iPad",
             "paragraphs": [
-                "En iPhone y iPad cambias bases y esquemas desde la barra de herramientas, exploras tablas como tarjetas, editas filas con clave primaria y ejecutas SQL en Consulta. SSL va de Obligatorio a Verificar identidad; los túneles SSH se autentican con contraseña o clave, sin hosts de salto."
+                "En iPhone y iPad cambias bases y esquemas desde la barra de herramientas, exploras tablas como tarjetas, editas filas con clave primaria y ejecutas SQL en Consulta. SSL va de Required a Verify Identity; los túneles SSH se autentican con contraseña o clave, sin hosts de salto."
             ]
         }
     ],
@@ -95,8 +95,8 @@
             "title": "CockroachDB",
             "paragraphs": [
                 "CockroachDB usa el controlador PostgreSQL incluido, sin instalar nada. Los clústeres nuevos empiezan con <code>defaultdb</code>.",
-                "Para CockroachDB Cloud, copia host, usuario, contraseña y base de su consola, introduce el valor de enrutamiento <code>--cluster=your-cluster</code> en Opciones de conexión y configura SSL como Verificar identidad. Para un nodo local inseguro, elige Desactivado.",
-                "DDL de tablas y vistas procede del SHOW CREATE de CockroachDB. Los planes de texto EXPLAIN y EXPLAIN ANALYZE se interpretan como árbol; el Panel del servidor enumera sesiones y consultas activas.",
+                "Para CockroachDB Cloud, copia host, usuario, contraseña y base de su consola, introduce el valor de enrutamiento <code>--cluster=your-cluster</code> en Connection Options y configura SSL como Verify Identity. Para un nodo local inseguro, elige Disabled.",
+                "DDL de tablas y vistas procede del SHOW CREATE de CockroachDB. Los planes de texto EXPLAIN y EXPLAIN ANALYZE se interpretan como árbol; el Server Dashboard enumera sesiones y consultas activas.",
                 "No se pueden diferir las comprobaciones de claves foráneas."
             ]
         },
@@ -106,7 +106,7 @@
             "paragraphs": [
                 "PGlite es PostgreSQL compilado a WebAssembly y no es accesible hasta iniciar su servidor de sockets: <code>npx @electric-sql/pglite-socket</code>, con <code>--db=./my-pgdata</code> para conservar datos en disco.",
                 "Conecta a <code>127.0.0.1</code>, no localhost. El servidor no comprueba contraseñas ni tiene TLS, así que el formulario no pide ninguno.",
-                "Los catálogos PGlite son completos, así que editar estructura, Usuarios y roles y diagramas EXPLAIN funcionan como en un servidor. Expone una base: <code>postgres</code>."
+                "Los catálogos PGlite son completos, así que editar estructura, Users & Roles y diagramas EXPLAIN funcionan como en un servidor. Expone una base: <code>postgres</code>."
             ]
         }
     ],

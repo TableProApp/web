@@ -37,8 +37,8 @@
             "paragraphs": [
                 "키 이름은 콜론 또는 Options 탭의 구분자로 폴더를 나눕니다. 각 그리드 행은 Key, Type, TTL, Length, Value를 가집니다. 문자열은 전체, hash·list·set·sorted set·stream은 첫 항목을 표시하고 Length는 개수입니다. gzip 데이터 등 유효한 UTF-8이 아닌 값은 십육진수 편집기로 열립니다.",
                 "<editing>그리드</editing>에서 키 이름 변경은 <code>RENAME</code>, TTL은 <code>EXPIRE</code>·<code>PERSIST</code>, 문자열 값은 <code>SET</code>을 실행합니다. Add Row는 고른 유형을 <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code>·<code>SET</code>으로 씁니다. 필터 바는 서버의 <code>SCAN MATCH</code>·<code>SCAN TYPE</code>으로 Redis glob 패턴의 키 이름과 유형을 좁힙니다.",
-                "편집기는 구문당 명령 하나를 redis-cli 인용 방식으로 받고 인식 못한 명령도 그대로 보냅니다. <code>DB 3 GET key</code>는 세션 이동 없이 다른 데이터베이스에 명령 하나를 실행합니다. <code>MULTI</code> 블록에서 각 명령은 <code>QUEUED</code>를 답하고 <code>EXEC</code>가 모든 응답을 순서대로 반환합니다.",
-                "<safeMode>안전 모드</safeMode>는 <code>GET</code>까지 모든 Redis 명령을 쓰기로 취급해 Alert·Safe Mode는 각각 확인하고 Read-Only는 모두 차단합니다. <code>FLUSHDB</code>·<code>FLUSHALL</code>은 Silent에서도 실행 전 확인합니다."
+                "편집기는 명령문당 명령 하나를 redis-cli 인용 방식으로 받고 인식 못한 명령도 그대로 보냅니다. <code>DB 3 GET key</code>는 세션 이동 없이 다른 데이터베이스에 명령 하나를 실행합니다. <code>MULTI</code> 블록에서 각 명령은 <code>QUEUED</code>를 답하고 <code>EXEC</code>가 모든 응답을 순서대로 반환합니다.",
+                "<safeMode>Safe Mode</safeMode>는 <code>GET</code>까지 모든 Redis 명령을 쓰기로 취급해 Alert·Safe Mode는 각각 확인하고 Read-Only는 모두 차단합니다. <code>FLUSHDB</code>·<code>FLUSHALL</code>은 Silent에서도 실행 전 확인합니다."
             ]
         },
         {

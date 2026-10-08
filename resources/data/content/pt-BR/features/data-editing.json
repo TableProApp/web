@@ -17,7 +17,7 @@
             "id": "browse",
             "title": "Encontre as linhas necessárias",
             "paragraphs": [
-                "A ordenação e a paginação são feitas no servidor; uma tabela grande abre na primeira página. Acima de {countEstimate} linhas, a contagem é estimada, com Contar Exatamente disponível quando você precisa do número real."
+                "A ordenação e a paginação são feitas no servidor; uma tabela grande abre na primeira página. Acima de {countEstimate} linhas, a contagem é estimada, com Count Exactly disponível quando você precisa do número real."
             ],
             "blocks": [
                 {
@@ -54,28 +54,28 @@
         },
         {
             "id": "safe-mode",
-            "title": "Modo Seguro para conexões de produção",
+            "title": "Safe Mode para conexões de produção",
             "paragraphs": [
-                "Cada conexão tem um nível de Modo Seguro: {macSafeModeLevels}. Novas conexões começam em {macSafeModeDefault}, onde as instruções são executadas como escritas. Alerta pede confirmação antes de gravar; os níveis Modo Seguro também pedem Touch ID ou a senha do Mac, os níveis Completos pedem confirmação antes de ler e Somente Leitura recusa gravações e desativa a edição. O Modo Seguro é gratuito.",
-                "Em todos os níveis, DROP, TRUNCATE e DELETE sem WHERE param e pedem confirmação primeiro. Algumas condições elevam o nível da conexão enquanto se aplicam: um mecanismo somente leitura, o modo Agente, que o eleva a pelo menos Alerta, e um nível mínimo definido pela sua organização via gerenciamento de dispositivos (MDM)."
+                "Cada conexão tem um nível de Safe Mode: {macSafeModeLevels}. Novas conexões começam em {macSafeModeDefault}, onde as instruções são executadas como escritas. Alert pede confirmação antes de gravar; os níveis Safe Mode também pedem Touch ID ou a senha do Mac, os níveis Full pedem confirmação antes de ler e Read-Only recusa gravações e desativa a edição. O Safe Mode é gratuito.",
+                "Em todos os níveis, DROP, TRUNCATE e DELETE sem WHERE param e pedem confirmação primeiro. Algumas condições elevam o nível da conexão enquanto se aplicam: um mecanismo somente leitura, o Agent mode, que o eleva a pelo menos Alert, e um nível mínimo definido pela sua organização via gerenciamento de dispositivos (MDM)."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
                 {
-                    "label": "Modo Seguro e outras políticas de conexão",
+                    "label": "Safe Mode e outras políticas de conexão",
                     "href": "/features/connections#policies"
                 },
                 {
-                    "label": "Modo Agente",
+                    "label": "Agent mode",
                     "href": "/features/ai-mcp#agent-mode"
                 }
             ]
         },
         {
             "id": "data-rewind",
-            "title": "Recuperação de Dados",
+            "title": "Data Rewind",
             "paragraphs": [
-                "Recuperação de Dados guarda os valores substituídos ao salvar para que <ui>Restore Previous Values</ui> possa restaurá-los. Primeiro, uma tela de revisão mostra o que acontecerá com cada linha, incluindo linhas alteradas após seu salvamento; a restauração passa pelo Modo Seguro, em uma transação quando o mecanismo permite. Uma restauração também pode ser restaurada.",
+                "Data Rewind guarda os valores substituídos ao salvar para que <ui>Restore Previous Values</ui> possa restaurá-los. Primeiro, uma tela de revisão mostra o que acontecerá com cada linha, incluindo linhas alteradas após seu salvamento; a restauração passa pelo Safe Mode, em uma transação quando o mecanismo permite. Uma restauração também pode ser restaurada.",
                 "Os valores salvos permanecem neste Mac por {rewindDays} dias, criptografados com uma chave armazenada nas Chaves, e nunca são sincronizados. Quando um plano termina, TablePro para de registrar salvamentos, e <ui>Restore Previous Values</ui> passa a mostrar um alerta."
             ],
             "paid": [
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Documentos e chaves",
             "paragraphs": [
-                "Nem todo mecanismo armazena linhas. No MongoDB, você insere e edita documentos inteiros como Extended JSON, remove um campo de um documento e renomeia ou remove um campo em toda uma coleção pela aba Estrutura. No Redis, você renomeia chaves, define TTLs e edita valores string na grade, adiciona chaves string, hash, list, set ou sorted-set e altera os outros tipos com comandos no editor."
+                "Nem todo mecanismo armazena linhas. No MongoDB, você insere e edita documentos inteiros como Extended JSON, remove um campo de um documento e renomeia ou remove um campo em toda uma coleção pela aba Structure. No Redis, você renomeia chaves, define TTLs e edita valores string na grade, adiciona chaves string, hash, list, set ou sorted-set e altera os outros tipos com comandos no editor."
             ],
             "links": [
                 {
@@ -105,7 +105,7 @@
             "title": "No iPhone e iPad",
             "paragraphs": [
                 "No app para iPhone e iPad, as linhas aparecem como cartões que você pode ordenar, pesquisar e filtrar com AND e OR; tocar em uma chave estrangeira mostra a prévia da linha referenciada. Você pode editar uma linha, definir um valor como NULL ou DEFAULT, inserir linhas e excluí-las com um gesto; edição e exclusão exigem uma chave primária.",
-                "O Modo Seguro nesses dispositivos tem níveis próprios, {iosSafeModeLevels}, com {iosSafeModeDefault} como padrão para novas conexões. Edições pendentes, Prévia SQL, regras de destaque e Recuperação de Dados estão apenas no app para Mac."
+                "O Safe Mode nesses dispositivos tem níveis próprios, {iosSafeModeLevels}, com {iosSafeModeDefault} como padrão para novas conexões. Edições pendentes, Preview SQL, regras de destaque e Data Rewind estão apenas no app para Mac."
             ],
             "links": [
                 {
@@ -113,7 +113,7 @@
                     "href": "/ios#browse"
                 },
                 {
-                    "label": "Modo Seguro no iPhone e iPad",
+                    "label": "Safe Mode no iPhone e iPad",
                     "href": "/ios#safe-mode"
                 }
             ]
@@ -139,11 +139,11 @@
             "iosNote": "Editor de linhas; exige chave primária"
         },
         {
-            "label": "Edições pendentes, Prévia SQL e desfazer",
+            "label": "Edições pendentes, Preview SQL e desfazer",
             "ios": "no"
         },
         {
-            "label": "Modo Seguro",
+            "label": "Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -152,7 +152,7 @@
             "ios": "no"
         },
         {
-            "label": "Recuperação de Dados",
+            "label": "Data Rewind",
             "paid": "data-rewind",
             "ios": "no"
         },
@@ -162,9 +162,9 @@
         }
     ],
     "limits": [
-        "Recuperação de Dados não é um backup. Não desfaz triggers, cascatas nem mudanças feitas fora do TablePro e não pode restaurar linhas sem chave primária, valores acima de {rewindMaxValue} MB nem valores calculados pelo servidor.",
-        "UPDATE sem WHERE é uma gravação comum: pede confirmação apenas no nível Alerta ou mais rigoroso.",
-        "Em {everyStatementWrites}, o Modo Seguro considera toda instrução uma gravação, portanto Alerta também pede confirmação antes de ler e Somente Leitura bloqueia as leituras.",
+        "Data Rewind não é um backup. Não desfaz triggers, cascatas nem mudanças feitas fora do TablePro e não pode restaurar linhas sem chave primária, valores acima de {rewindMaxValue} MB nem valores calculados pelo servidor.",
+        "UPDATE sem WHERE é uma gravação comum: pede confirmação apenas no nível Alert ou mais rigoroso.",
+        "Em {everyStatementWrites}, o Safe Mode considera toda instrução uma gravação, portanto Alert também pede confirmação antes de ler e Read-Only bloqueia as leituras.",
         "O resultado de um join, CTE ou UNION é somente leitura na grade; abra a tabela para editá-la."
     ],
     "docs": [
@@ -177,15 +177,15 @@
             "docs": "/features/filtering"
         },
         {
-            "label": "Rastreamento de alterações e Prévia SQL",
+            "label": "Rastreamento de alterações e Preview SQL",
             "docs": "/features/change-tracking"
         },
         {
-            "label": "Recuperação de Dados",
+            "label": "Data Rewind",
             "docs": "/features/change-tracking#restoring-a-save"
         },
         {
-            "label": "Modo Seguro",
+            "label": "Safe Mode",
             "docs": "/features/safe-mode"
         }
     ],

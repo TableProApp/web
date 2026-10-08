@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Indiquez un point de contact et son port, ainsi qu’un nom d’utilisateur et un mot de passe si le cluster a un authentificateur configuré. Il n’y a pas de champ d’espace de clés : choisissez-en un dans la barre latérale après connexion, ou placez-le dans le chemin d’une URL <code>cassandra://</code> ou <code>cql://</code> et importez-la. Le changement s’effectue sur place et exclut les espaces système de la liste ; les onglets déjà ouverts conservent leur propre espace de clés.",
-                "TLS est désactivé pour une nouvelle connexion. Préféré et Requis chiffrent tous deux sans vérifier le certificat, car le pilote n’offre pas de TLS opportuniste. Vérifier l’AC et Vérifier l’identité nécessitent un fichier de certificat d’AC et ne se rabattent jamais sur les autorités racines du système. Pour TLS mutuel, ajoutez un certificat client, sa clé et la phrase secrète de la clé. Un cluster en réseau privé est accessible via un <network>tunnel SSH</network>.",
+                "Indiquez un point de contact et son port, ainsi qu’un nom d’utilisateur et un mot de passe si le cluster a un authentificateur configuré. Il n’y a pas de champ d’espace de clés : choisissez-en un dans la barre latérale après connexion, ou placez-le dans le chemin d’une URL <code>cassandra://</code> ou <code>cql://</code> et importez-la. Le changement s’effectue sur place et exclut les espaces système de la liste ; les onglets déjà ouverts conservent leur propre espace de clés.",
+                "TLS est désactivé pour une nouvelle connexion. Preferred et Required chiffrent tous deux sans vérifier le certificat, car le pilote n’offre pas de TLS opportuniste. Verify CA et Verify Identity nécessitent un fichier de certificat d’AC et ne se rabattent jamais sur les autorités racines du système. Pour TLS mutuel, ajoutez un certificat client, sa clé et la phrase secrète de la clé. Un cluster en réseau privé est accessible via un <network>tunnel SSH</network>.",
                 "Amazon Keyspaces s’authentifie avec SigV4 plutôt qu’un mot de passe. Pointez vers le point de terminaison régional, par exemple <code>cassandra.us-east-1.amazonaws.com</code> sur le port 9142, choisissez <awsIam>un mode AWS IAM</awsIam> pour l’authentification (clé d’accès, profil ou AWS IAM Identity Center), laissez utilisateur et mot de passe vides et activez TLS, car Keyspaces refuse le texte en clair."
             ]
         },
@@ -37,19 +37,19 @@
             "id": "work",
             "title": "Parcourez et exécutez du CQL",
             "paragraphs": [
-                "Ouvrez une table depuis la barre latérale pour la lire dans la grille. Les listes, ensembles, maps et tuples s’affichent comme collections, un type utilisateur comme ses champs, une <code>duration</code> comme <code>1d2h30m</code>, un vecteur comme liste de nombres et un blob en hexadécimal. Les résultats de l’éditeur CQL sont en lecture seule ; les lignes se modifient donc dans la table ouverte depuis la barre latérale.",
-                "CQL n’a pas d’OFFSET ; les pages se lisent donc depuis la première ligne : Suivant et Précédent sur des pages déjà affichées coûtent chacun une lecture, et un saut vers une page lointaine lit toutes les pages précédentes. Les lignes arrivent dans l’ordre des tokens ; un en-tête ne les retrie pas, car CQL ne trie que par colonnes de clustering dans une partition. Aucun comptage n’a lieu à l’ouverture ; <ui>Compter exactement</ui> (Count Exactly) exécute <code>SELECT COUNT(*)</code>, qui lit toutes les partitions.",
-                "Les <filters>filtres</filters> ajoutent <code>ALLOW FILTERING</code> ; le serveur lit donc toutes les partitions sauf si le filtre fixe toute la clé de partition. Contient, Commence par et Se termine par sont envoyés comme LIKE, que Cassandra n’accepte que sur une colonne avec index SASI ou SAI. Les opérateurs que CQL ne peut pas exprimer, tels que Différent de ou Est NULL, sont refusés par leur nom ; les conditions ne sont reliées que par AND, car CQL n’a pas d’OR.",
-                "Une <editing>valeur modifiée</editing> est envoyée avec le type CQL de sa colonne ; une valeur impossible à analyser bloque tout l’enregistrement. Chaque ligne s’écrit par sa propre instruction, identifiée par sa clé primaire complète. <ui>Ajouter une ligne</ui> (Add Row) utilise <code>INSERT … IF NOT EXISTS</code> : une nouvelle ligne n’écrase donc jamais une ligne ayant déjà sa clé. Une colonne de clé ne peut pas être modifiée sur place : supprimez la ligne et ajoutez-la à nouveau.",
-                "Les colonnes compteurs nécessitent <code>UPDATE … SET c = c + 1</code> dans l’éditeur CQL ; le serveur refuse l’UPDATE simple écrit par une modification dans la grille. Le délai de connexion provient des Options de la connexion, tandis que les requêtes CQL conservent le délai fixe du pilote, non modifié par le délai de requête de l’app."
+                "Ouvrez une table depuis la barre latérale pour la lire dans la grille. Les listes, ensembles, maps et tuples s’affichent comme collections, un type utilisateur comme ses champs, une <code>duration</code> comme <code>1d2h30m</code>, un vecteur comme liste de nombres et un blob en hexadécimal. Les résultats de l’éditeur CQL sont en lecture seule ; les lignes se modifient donc dans la table ouverte depuis la barre latérale.",
+                "CQL n’a pas d’OFFSET ; les pages se lisent donc depuis la première ligne : Suivant et Précédent sur des pages déjà affichées coûtent chacun une lecture, et un saut vers une page lointaine lit toutes les pages précédentes. Les lignes arrivent dans l’ordre des tokens ; un en-tête ne les retrie pas, car CQL ne trie que par colonnes de clustering dans une partition. Aucun comptage n’a lieu à l’ouverture ; <ui>Compter exactement</ui> (Count Exactly) exécute <code>SELECT COUNT(*)</code>, qui lit toutes les partitions.",
+                "Les <filters>filtres</filters> ajoutent <code>ALLOW FILTERING</code> ; le serveur lit donc toutes les partitions sauf si le filtre fixe toute la clé de partition. Contient, Commence par et Se termine par sont envoyés comme LIKE, que Cassandra n’accepte que sur une colonne avec index SASI ou SAI. Les opérateurs que CQL ne peut pas exprimer, tels que Différent de ou Est NULL, sont refusés par leur nom ; les conditions ne sont reliées que par AND, car CQL n’a pas d’OR.",
+                "Une <editing>valeur modifiée</editing> est envoyée avec le type CQL de sa colonne ; une valeur impossible à analyser bloque tout l’enregistrement. Chaque ligne s’écrit par sa propre instruction, identifiée par sa clé primaire complète. <ui>Ajouter une ligne</ui> (Add Row) utilise <code>INSERT … IF NOT EXISTS</code> : une nouvelle ligne n’écrase donc jamais une ligne ayant déjà sa clé. Une colonne de clé ne peut pas être modifiée sur place : supprimez la ligne et ajoutez-la à nouveau.",
+                "Les colonnes compteurs nécessitent <code>UPDATE … SET c = c + 1</code> dans l’éditeur CQL ; le serveur refuse l’UPDATE simple écrit par une modification dans la grille. Le délai de connexion provient des Options de la connexion, tandis que les requêtes CQL conservent le délai fixe du pilote, non modifié par le délai de requête de l’app."
             ]
         },
         {
             "id": "schema",
             "title": "Espaces de clés et tables",
             "paragraphs": [
-                "L’<structure>onglet Structure</structure> liste le type CQL de chaque colonne, marque les colonnes de clé de partition et de clustering comme clé primaire et affiche les index secondaires. Il ajoute et supprime des colonnes ; toute autre modification, y compris les index, s’effectue par une instruction CQL dans l’éditeur.",
-                "L’onglet DDL reconstruit <code>CREATE TABLE</code> à partir des colonnes ; il omet donc les options telles que la compaction, l’ordre de clustering et la séparation entre clés de partition et de clustering. Lisez la définition complète avec <code>DESCRIBE TABLE</code> dans cqlsh. Les fonctions et agrégats utilisateur figurent dans Fonctions."
+                "L’<structure>onglet Structure</structure> liste le type CQL de chaque colonne, marque les colonnes de clé de partition et de clustering comme clé primaire et affiche les index secondaires. Il ajoute et supprime des colonnes ; toute autre modification, y compris les index, s’effectue par une instruction CQL dans l’éditeur.",
+                "L’onglet DDL reconstruit <code>CREATE TABLE</code> à partir des colonnes ; il omet donc les options telles que la compaction, l’ordre de clustering et la séparation entre clés de partition et de clustering. Lisez la définition complète avec <code>DESCRIBE TABLE</code> dans cqlsh. Les fonctions et agrégats utilisateur figurent dans Fonctions."
             ]
         },
         {
@@ -65,8 +65,8 @@
             "engine": "scylladb",
             "title": "ScyllaDB",
             "paragraphs": [
-                "ScyllaDB a sa propre entrée dans les types de connexion et utilise le pilote Cassandra via le même protocole natif CQL ; connexion, navigation, édition et limites ci-dessus s’appliquent donc telles quelles. Une URL <code>scylladb://</code> ou <code>scylla://</code> crée une connexion ScyllaDB.",
-                "Une différence apparaît dans la barre de filtres : ScyllaDB accepte le LIKE envoyé par Contient, Commence par et Se termine par sur toute colonne, là où Cassandra exige un index SASI ou SAI. ScyllaDB se configure comme décrit dans le <cassandraGuide>guide de configuration de Cassandra</cassandraGuide>."
+                "ScyllaDB a sa propre entrée dans les types de connexion et utilise le pilote Cassandra via le même protocole natif CQL ; connexion, navigation, édition et limites ci-dessus s’appliquent donc telles quelles. Une URL <code>scylladb://</code> ou <code>scylla://</code> crée une connexion ScyllaDB.",
+                "Une différence apparaît dans la barre de filtres : ScyllaDB accepte le LIKE envoyé par Contient, Commence par et Se termine par sur toute colonne, là où Cassandra exige un index SASI ou SAI. ScyllaDB se configure comme décrit dans le <cassandraGuide>guide de configuration de Cassandra</cassandraGuide>."
             ]
         }
     ],
@@ -74,18 +74,18 @@
     "faq": [
         {
             "id": "cluster-status",
-            "question": "TablePro affiche-t-il l’état des nœuds ou de l’anneau ?",
-            "answer": "Non. Cassandra et ScyllaDB n’ont pas de Tableau de bord serveur. Vérifiez les nœuds avec <code>nodetool status</code> et utilisez TablePro pour les espaces de clés, les tables et CQL."
+            "question": "TablePro affiche-t-il l’état des nœuds ou de l’anneau ?",
+            "answer": "Non. Cassandra et ScyllaDB n’ont pas de Server Dashboard. Vérifiez les nœuds avec <code>nodetool status</code> et utilisez TablePro pour les espaces de clés, les tables et CQL."
         },
         {
             "id": "views-and-types",
-            "question": "Comment voir les vues matérialisées et les types utilisateur ?",
-            "answer": "Ils ne figurent pas dans la barre latérale ; interrogez donc l’espace de clés <code>system_schema</code> dans l’éditeur CQL, par exemple <code>SELECT * FROM system_schema.views</code> ou <code>system_schema.types</code>."
+            "question": "Comment voir les vues matérialisées et les types utilisateur ?",
+            "answer": "Ils ne figurent pas dans la barre latérale ; interrogez donc l’espace de clés <code>system_schema</code> dans l’éditeur CQL, par exemple <code>SELECT * FROM system_schema.views</code> ou <code>system_schema.types</code>."
         },
         {
             "id": "cassandra-2",
-            "question": "TablePro se connecte-t-il à Cassandra 2.x ?",
-            "answer": "Non. Le pilote lit le schéma dans <code>system_schema</code>, absent de Cassandra 2.x ; la connexion échoue donc."
+            "question": "TablePro se connecte-t-il à Cassandra 2.x ?",
+            "answer": "Non. Le pilote lit le schéma dans <code>system_schema</code>, absent de Cassandra 2.x ; la connexion échoue donc."
         }
     ],
     "related": [

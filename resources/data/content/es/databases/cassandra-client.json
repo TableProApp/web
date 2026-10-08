@@ -29,7 +29,7 @@
             "title": "Conectar",
             "paragraphs": [
                 "Indica un punto de contacto y su puerto, junto con usuario y contraseña si el clúster tiene configurado un autenticador. No hay campo de espacio de claves: elige uno en la barra lateral después de conectar o inclúyelo en la ruta de una URL <code>cassandra://</code> o <code>cql://</code> e impórtala. El cambio de espacio de claves se hace sin reconectar y excluye los espacios del sistema de la lista; las pestañas abiertas conservan su propio espacio de claves.",
-                "TLS está desactivado en las conexiones nuevas. Preferido y Obligatorio cifran sin comprobar el certificado, porque el controlador no ofrece TLS oportunista. Verificar CA y Verificar identidad requieren un archivo de certificado de CA y nunca recurren a las autoridades del sistema. Para TLS mutuo, añade un certificado de cliente, su clave y la frase de contraseña de esta. Accede a un clúster en una red privada mediante un <network>túnel SSH</network>.",
+                "TLS está desactivado en las conexiones nuevas. Preferred y Required cifran sin comprobar el certificado, porque el controlador no ofrece TLS oportunista. Verify CA y Verify Identity requieren un archivo de certificado de CA y nunca recurren a las autoridades del sistema. Para TLS mutuo, añade un certificado de cliente, su clave y la frase de contraseña de esta. Accede a un clúster en una red privada mediante un <network>túnel SSH</network>.",
                 "Amazon Keyspaces se autentica con SigV4 en lugar de contraseña. Apunta al endpoint regional, como <code>cassandra.us-east-1.amazonaws.com</code> en el puerto 9142, establece Autenticación en <awsIam>un modo AWS IAM</awsIam> —clave de acceso, perfil o AWS IAM Identity Center—, deja vacíos el usuario y la contraseña y activa TLS, porque Keyspaces rechaza el texto sin cifrar."
             ]
         },
@@ -41,14 +41,14 @@
                 "CQL no tiene OFFSET, así que las páginas se leen desde la primera fila: Siguiente y Anterior en páginas ya mostradas cuestan una lectura cada uno, y saltar a una página lejana lee todas las anteriores. Las filas llegan en orden de token y pulsar un encabezado no las reordena, porque CQL solo ordena por columnas de clustering dentro de una partición. Al abrir una tabla no se cuentan filas; <ui>Count Exactly</ui> ejecuta <code>SELECT COUNT(*)</code>, que lee todas las particiones.",
                 "Los <filters>filtros</filters> añaden <code>ALLOW FILTERING</code>, por lo que el servidor lee todas las particiones salvo que el filtro fije la clave de partición completa. Contiene, empieza por y termina en se envían como LIKE, que Cassandra solo acepta en una columna con índice SASI o SAI. Los operadores que CQL no puede expresar, como distinto de o es NULL, se rechazan indicando su nombre; las condiciones solo se unen con AND, porque CQL no tiene OR.",
                 "Un <editing>valor editado</editing> se envía con el tipo CQL de su columna; si no se puede interpretar, se detiene todo el guardado. Cada fila se escribe con su propia sentencia, identificada por su clave primaria completa. <ui>Add Row</ui> usa <code>INSERT … IF NOT EXISTS</code>, por lo que nunca sobrescribe una fila que ya tenga esa clave. Una columna de clave no puede modificarse directamente: elimina la fila y vuelve a añadirla.",
-                "Las columnas de contador requieren <code>UPDATE … SET c = c + 1</code> en el editor CQL; el servidor rechaza el UPDATE simple que genera una edición en la cuadrícula. El tiempo de espera de conexión procede de Opciones de la conexión, mientras que las solicitudes CQL mantienen el tiempo fijo del controlador, que el tiempo de espera de consulta de la app no cambia."
+                "Las columnas de contador requieren <code>UPDATE … SET c = c + 1</code> en el editor CQL; el servidor rechaza el UPDATE simple que genera una edición en la cuadrícula. El tiempo de espera de conexión procede de Options de la conexión, mientras que las solicitudes CQL mantienen el tiempo fijo del controlador, que el tiempo de espera de consulta de la app no cambia."
             ]
         },
         {
             "id": "schema",
             "title": "Espacios de claves y tablas",
             "paragraphs": [
-                "La <structure>pestaña Estructura</structure> muestra el tipo CQL de cada columna, marca las columnas de clave de partición y de clustering como clave primaria y muestra los índices secundarios. Permite añadir y eliminar columnas; cualquier otro cambio, incluidos los índices, se hace con una sentencia CQL en el editor.",
+                "La <structure>pestaña Structure</structure> muestra el tipo CQL de cada columna, marca las columnas de clave de partición y de clustering como clave primaria y muestra los índices secundarios. Permite añadir y eliminar columnas; cualquier otro cambio, incluidos los índices, se hace con una sentencia CQL en el editor.",
                 "La pestaña DDL reconstruye <code>CREATE TABLE</code> desde la lista de columnas, por lo que omite opciones como compactación, el orden de clustering y la separación entre claves de partición y de clustering. Lee la definición completa con <code>DESCRIBE TABLE</code> en cqlsh. Las funciones y agregados definidos por el usuario aparecen en Funciones."
             ]
         },
@@ -75,7 +75,7 @@
         {
             "id": "cluster-status",
             "question": "¿TablePro muestra el estado de los nodos o del anillo?",
-            "answer": "No. No hay Panel del servidor para Cassandra ni ScyllaDB. Comprueba los nodos con <code>nodetool status</code> y usa TablePro para espacios de claves, tablas y CQL."
+            "answer": "No. No hay Server Dashboard para Cassandra ni ScyllaDB. Comprueba los nodos con <code>nodetool status</code> y usa TablePro para espacios de claves, tablas y CQL."
         },
         {
             "id": "views-and-types",

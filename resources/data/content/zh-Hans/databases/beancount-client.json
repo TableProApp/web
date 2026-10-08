@@ -37,7 +37,7 @@
                 "表涵盖交易和分录、账户、余额及余额断言、价格和商品、所有其他指令、元数据、标签、链接及源文件。分录通过 <code>transaction_id</code> 连接交易，账户按名称连接。",
                 "金额已完成记账、算术、成本和价格解析，分录成本和行内价格有独立列。交易、分录及若干指令表含 <code>source_location</code>，例如 <code>main.beancount:42</code>，可从记录追溯源文件行。",
                 "查询前加 <code>BQL:</code> 将其发送给 rledger 而非表。BQL 结果支持浏览、行数和分页，不支持 SQL 参数。",
-                "<code>include</code> 支持具体路径和 glob，所有账本文件及引用文档均被监控。在编辑器保存后，下次查询无需重连即可读取。连接始终处于 <safeMode>安全模式</safeMode> Read-Only，拒绝 INSERT、UPDATE、DELETE 和结构修改。"
+                "<code>include</code> 支持具体路径和 glob，所有账本文件及引用文档均被监控。在编辑器保存后，下次查询无需重连即可读取。连接始终处于 <safeMode>Safe Mode</safeMode> Read-Only，拒绝 INSERT、UPDATE、DELETE 和结构修改。"
             ]
         },
         {

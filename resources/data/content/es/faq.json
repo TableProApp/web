@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "¿TablePro es gratis?",
                     "answer": [
-                        "La app para Mac se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Una licencia Starter o Team añade funciones opcionales; la <pricing>página de precios</pricing> las enumera. Conectar a cualquier motor compatible no requiere licencia, ni tampoco el asistente de IA, el servidor MCP o el modo seguro.",
+                        "La app para Mac se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Una licencia Starter o Team añade funciones opcionales; la <pricing>página de precios</pricing> las enumera. Conectar a cualquier motor compatible no requiere licencia, ni tampoco el asistente de IA, el servidor MCP o Safe Mode.",
                         "La app para iPhone y iPad es gratis, sin compras dentro de la app, y no necesita licencia."
                     ]
                 },
@@ -81,7 +81,7 @@
                     "id": "iphone-ipad",
                     "question": "¿Hay una app para iPhone y iPad?",
                     "answer": [
-                        "Sí. TablePro para iPhone y iPad está en el App Store, requiere {iosRequirement} y es gratis, sin compras dentro de la app. Se conecta a {iosEngines}, con túneles SSH, modo seguro y Face ID, y permite explorar y editar tablas y ejecutar consultas.",
+                        "Sí. TablePro para iPhone y iPad está en el App Store, requiere {iosRequirement} y es gratis, sin compras dentro de la app. Se conecta a {iosEngines}, con túneles SSH, Safe Mode y Face ID, y permite explorar y editar tablas y ejecutar consultas.",
                         "Es una app independiente creada para teléfono y tableta, no una copia de la app para Mac: por ejemplo, no tiene asistente de IA, servidor MCP ni consultas guardadas. La <ios>página de iPhone y iPad</ios> enumera lo que hace y lo que deja fuera."
                     ]
                 },
@@ -177,7 +177,7 @@
                     "id": "subscription-ends",
                     "question": "¿Qué pasa cuando termina mi suscripción?",
                     "answer": [
-                        "Las funciones de pago se bloquean: por ejemplo, iCloud Sync se pausa y las conexiones de carpetas vinculadas o de la biblioteca de equipo se ocultan. Todo lo demás sigue funcionando y tus conexiones, consultas y ajustes permanecen en tu Mac como están. Renovar vuelve a activar las funciones de pago.",
+                        "Las funciones de pago se bloquean: por ejemplo, iCloud Sync se pausa y las conexiones de Linked Folders o de Team Library se ocultan. Todo lo demás sigue funcionando y tus conexiones, consultas y ajustes permanecen en tu Mac como están. Renovar vuelve a activar las funciones de pago.",
                         "Una compra de pago único no tiene fecha de caducidad. Nada cambia en iPhone o iPad."
                     ]
                 },
@@ -228,7 +228,7 @@
                     "question": "¿Qué envían las apps a TablePro?",
                     "answer": [
                         "Sin una licencia activada, la única solicitud de la app para Mac a TablePro es un informe diario de uso, activado por defecto y configurable en <ui>Settings > General > Privacy</ui>. Incluye un identificador de máquina con hash y datos de la app, como versión, idioma y tipos de bases de datos a los que conectas, y nunca nombres de host, nombres de usuario, contraseñas, consultas ni filas.",
-                        "Con una licencia, la app para Mac también la comprueba cada {revalidateDays} días, enviando la clave, el mismo identificador de máquina, el nombre de tu Mac y las versiones de la app y de macOS. En iPhone y iPad no se envía nada a TablePro salvo que actives Compartir datos de uso. La <privacy>política de privacidad</privacy> incluye la lista completa, también de lo que almacena nuestro servidor."
+                        "Con una licencia, la app para Mac también la comprueba cada {revalidateDays} días, enviando la clave, el mismo identificador de máquina, el nombre de tu Mac y las versiones de la app y de macOS. En iPhone y iPad no se envía nada a TablePro salvo que actives Share Usage Data. La <privacy>política de privacidad</privacy> incluye la lista completa, también de lo que almacena nuestro servidor."
                     ]
                 },
                 {
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "¿Cómo añado o elimino miembros del equipo?",
                     "answer": [
-                        "En <account>tu cuenta</account>, invita a alguien por correo. Recibe un código para introducir en TablePro en su Mac, en <ui>Settings > License</ui>, y su Mac ocupa un puesto. Eliminar un miembro libera su puesto, cierra la sesión de sus Mac y elimina lo que publicó en la biblioteca de equipo."
+                        "En <account>tu cuenta</account>, invita a alguien por correo. Recibe un código para introducir en TablePro en su Mac, en <ui>Settings > License</ui>, y su Mac ocupa un puesto. Eliminar un miembro libera su puesto, cierra la sesión de sus Mac y elimina lo que publicó en Team Library."
                     ]
                 },
                 {

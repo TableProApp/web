@@ -32,7 +32,7 @@
             "paragraphs": [
                 "Gib einen Host oder mehrere <code>host:port</code>-Paare für ein Replica Set an; der Primary wird automatisch gefunden. Du kannst auch eine <code>mongodb://</code>- oder <code>mongodb+srv://</code>-URL einfügen. Melde dich mit SCRAM-SHA-1, SCRAM-SHA-256, X.509 oder AWS IAM an und setze <ui>Auth Database</ui>, wenn dein Benutzer in <code>admin</code> definiert ist, du aber eine andere Datenbank durchsuchst.",
                 "Ein Host mit der Endung <code>.mongodb.net</code> aktiviert SRV und TLS automatisch, wie MongoDB Atlas es verlangt. Füge zuerst deine IP zur Zugriffsliste des Clusters hinzu: Verkehr von einer nicht gelisteten Adresse läuft ins Zeitlimit, statt sofort fehlzuschlagen.",
-                "Neue Verbindungen beginnen ohne TLS; der Treiber bietet keinen Fallback, daher verhält sich Bevorzugt wie Erforderlich. Read Preference und Write Concern werden pro Verbindung festgelegt; Write Concern wird bei jedem Einfügen, Ändern und Löschen aus der Shell oder beim Rasterspeichern mitgesendet.",
+                "Neue Verbindungen beginnen ohne TLS; der Treiber bietet keinen Fallback, daher verhält sich Preferred wie Required. Read Preference und Write Concern werden pro Verbindung festgelegt; Write Concern wird bei jedem Einfügen, Ändern und Löschen aus der Shell oder beim Rasterspeichern mitgesendet.",
                 "Über einen <network>SSH-Tunnel</network> wird nur der erste Host der Liste genutzt; Replica-Set-Erkennung und Failover sind daher für diese Sitzung deaktiviert."
             ]
         },
@@ -42,17 +42,17 @@
             "paragraphs": [
                 "Der Abfrage-Tab ist eine JavaScript-Shell mit mongosh-Syntax: unquotierte Schlüssel, Regex-Literale, <code>ISODate()</code>, Variablen, Schleifen und <code>forEach</code>. Sie läuft in TablePro ohne weitere Installation; eine definierte Variable bleibt in allen Tabs der Verbindung bis zum Trennen verfügbar. Die Vervollständigung bietet Sammlungen, Methoden, verschachtelte Feldpfade und die an der Cursorposition gültigen <code>$</code>-Operatoren.",
                 "Eine Sammlung öffnet als Raster mit Feldern der obersten Ebene als Spalten und verschachtelten Objekten als Extended JSON. Eine bearbeitete Zelle behält den Feldtyp: Ein Datum bleibt Datum, eine ObjectId bleibt ObjectId. Eine Änderung im verschachtelten Objekt schreibt nur den geänderten Pfad wie <code>address.city</code>.",
-                "<editing>Dokument einfügen und Dokument bearbeiten</editing> nehmen ein ganzes Dokument als Extended JSON entgegen. Dokument bearbeiten liest es erneut vom Server; hat jemand es nach dem Öffnen geändert oder gelöscht, wird nichts gespeichert und der Dialog meldet es. <ui>Remove Field</ui> auf einer Zelle sendet <code>$unset</code>.",
+                "<editing>Insert Document und Edit Document</editing> nehmen ein ganzes Dokument als Extended JSON entgegen. Edit Document liest es erneut vom Server; hat jemand es nach dem Öffnen geändert oder gelöscht, wird nichts gespeichert und der Dialog meldet es. <ui>Remove Field</ui> auf einer Zelle sendet <code>$unset</code>.",
                 "Die <filters>Filterleiste</filters> erreicht verschachtelte Objekte und Objektarrays, sodass <code>customer.country</code> und <code>items.sku</code> direkt filtern. Ein GeoJSON-Feld öffnet in der <map>Kartenansicht</map>.",
-                "<safeMode>Sicherer Modus</safeMode> behandelt jede MongoDB-Anweisung als Schreibzugriff, da der Treiber keine schreibgeschützte Sitzung öffnen kann. Warnung und Sicherer Modus bestätigen jede Anweisung; Nur lesen blockiert alle."
+                "<safeMode>Safe Mode</safeMode> behandelt jede MongoDB-Anweisung als Schreibzugriff, da der Treiber keine schreibgeschützte Sitzung öffnen kann. Alert und Safe Mode bestätigen jede Anweisung; Read-Only blockiert alle."
             ]
         },
         {
             "id": "schema",
             "title": "Sammlungen, Indizes und Validatoren",
             "paragraphs": [
-                "Der <structure>Struktur-Tab</structure> listet jeden Index mit seinen Feldern in Schlüsselreihenfolge und seiner Art wie hashed, text, 2dsphere oder wildcard. DDL anzeigen schreibt die <code>createIndex</code>-Aufrufe zum Wiederherstellen mit jeder vom Server gemeldeten Option.",
-                "Benenne im selben Tab ein Feld in der ganzen Sammlung um oder entferne es. Jede Änderung ist ein in SQL-Vorschau gezeigtes <code>updateMany</code>; ein vom <code>$jsonSchema</code>-Validator deklariertes Feld wird dort ebenfalls geändert. Solange ein Index, Suchindex oder eine Sicht den Namen nutzt, wird das Speichern vor jedem Schreibvorgang abgelehnt.",
+                "Der <structure>Structure-Tab</structure> listet jeden Index mit seinen Feldern in Schlüsselreihenfolge und seiner Art wie hashed, text, 2dsphere oder wildcard. Show DDL schreibt die <code>createIndex</code>-Aufrufe zum Wiederherstellen mit jeder vom Server gemeldeten Option.",
+                "Benenne im selben Tab ein Feld in der ganzen Sammlung um oder entferne es. Jede Änderung ist ein in Preview SQL gezeigtes <code>updateMany</code>; ein vom <code>$jsonSchema</code>-Validator deklariertes Feld wird dort ebenfalls geändert. Solange ein Index, Suchindex oder eine Sicht den Namen nutzt, wird das Speichern vor jedem Schreibvorgang abgelehnt.",
                 "<ui>New Table</ui> erstellt eine Sammlung, deren Felder zu einem <code>$jsonSchema</code>-Validator werden, und erstellt danach die aufgeführten Indizes. Sichten und Zeitreihensammlungen erscheinen in der Seitenleiste; Sichten öffnen schreibgeschützt."
             ]
         },
@@ -60,7 +60,7 @@
             "id": "operate",
             "title": "Sichern",
             "paragraphs": [
-                "<backup>Backup-Dump</backup> schreibt jede markierte Datenbank mit {dumpTool} in ein gzip-Archiv, mit Hosts, Authentifizierungsdatenbank, SRV- und TLS-Einstellungen der Verbindung; ein Dump lässt sich auf einzelne Sammlungen begrenzen. Dump wiederherstellen führt mongorestore in der gewählten Datenbank aus und behält Vorhandenes. Installiere zuerst MongoDB Database Tools auf deinem Mac."
+                "<backup>Backup Dump</backup> schreibt jede markierte Datenbank mit {dumpTool} in ein gzip-Archiv, mit Hosts, Auth Database, SRV- und TLS-Einstellungen der Verbindung; ein Dump lässt sich auf einzelne Sammlungen begrenzen. Restore Dump führt mongorestore in der gewählten Datenbank aus und behält Vorhandenes. Installiere zuerst MongoDB Database Tools auf deinem Mac."
             ]
         },
         {

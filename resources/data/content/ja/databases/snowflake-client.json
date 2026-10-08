@@ -44,7 +44,7 @@
         },
         {
             "id": "schema",
-            "title": "構造",
+            "title": "Structure",
             "paragraphs": [
                 "DDL ビューは <code>GET_DDL</code> から取得します。<structure>Structure タブ</structure> はカラムの追加、名前変更と削除、NOT NULL、コメントと主キーの設定、VARCHAR の拡大、同じスケールでの NUMBER 精度変更に対応します。",
                 "VARCHAR の縮小、その他の型変更、カラムの既定値を新しい値にする操作など、Snowflake が拒否する変更は実行前に拒否します。既定値の解除は実行できます。"

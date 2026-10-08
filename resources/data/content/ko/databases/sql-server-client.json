@@ -50,7 +50,7 @@
             "title": "스키마",
             "paragraphs": [
                 "<structure>Structure 탭</structure>은 열, 인덱스, 외래 키와 제약 조건 변경을 임시 저장하고 실행 전에 T-SQL을 보여 줍니다. 사이드바에서 스키마를 삭제할 수 있지만 객체가 남으면 SQL Server가 거부합니다. 생성은 편집기에서 CREATE SCHEMA를 사용합니다.",
-                "{compareSyncTier} 플랜의 <compareSync>Compare & Sync</compareSync>는 두 SQL Server 스키마나 데이터를 비교하며 각 구문 뒤에 <code>GO</code> 줄이 있는 스크립트를 저장해 sqlcmd나 SQL Server Management Studio에서 바로 사용합니다."
+                "{compareSyncTier} 플랜의 <compareSync>Compare & Sync</compareSync>는 두 SQL Server 스키마나 데이터를 비교하며 각 명령문 뒤에 <code>GO</code> 줄이 있는 스크립트를 저장해 sqlcmd나 SQL Server Management Studio에서 바로 사용합니다."
             ]
         },
         {
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "데이터 이동",
             "paragraphs": [
-                "{importFormats} 파일을 <importData>가져옵니다</importData>. <code>GO</code> 줄이 있는 <code>.sql</code> 파일은 sqlcmd처럼 배치별로 실행됩니다. 테이블이나 결과는 {exportFormats}로 내보내며 SQL 내보내기는 각 구문을 <code>GO</code> 줄로 끝내 각각 별도 배치로 실행합니다."
+                "{importFormats} 파일을 <importData>가져옵니다</importData>. <code>GO</code> 줄이 있는 <code>.sql</code> 파일은 sqlcmd처럼 배치별로 실행됩니다. 테이블이나 결과는 {exportFormats}로 내보내며 SQL 내보내기는 각 명령문을 <code>GO</code> 줄로 끝내 각각 별도 배치로 실행합니다."
             ]
         },
         {
@@ -108,7 +108,7 @@
         {
             "id": "declare",
             "question": "왜 “Must declare the scalar variable” 오류가 나오나요?",
-            "answer": "변수를 읽는 구문이 <code>DECLARE</code>와 다른 배치에서 실행되었습니다. 사이에 <code>GO</code> 줄이 있거나 <code>Cmd+Enter</code>로 커서의 구문만 실행한 경우입니다. 두 구문을 모두 선택하거나 전체 스크립트를 실행하세요."
+            "answer": "변수를 읽는 명령문이 <code>DECLARE</code>와 다른 배치에서 실행되었습니다. 사이에 <code>GO</code> 줄이 있거나 <code>Cmd+Enter</code>로 커서의 명령문만 실행한 경우입니다. 두 명령문을 모두 선택하거나 전체 스크립트를 실행하세요."
         },
         {
             "id": "freetds",

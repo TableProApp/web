@@ -17,8 +17,8 @@
             "id": "structure",
             "title": "Modifica la estructura; lee primero el DDL",
             "paragraphs": [
-                "Estructura edita columnas, índices, claves foráneas y restricciones CHECK en una cuadrícula. Los cambios esperan al guardado y <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) muestra ALTER TABLE antes de ejecutar nada. Eliminar elementos, cambiar tipos, añadir NOT NULL o modificar la clave primaria pide confirmación incluso con modo seguro {macSafeModeDefault}.",
-                "Los índices pueden usar expresiones como <code>lower(email)</code>. Nueva tabla crea tablas del mismo modo, con vista previa SQL en directo. En SQLite, libSQL, Turso y Cloudflare D1, que no pueden modificar claves foráneas directamente, TablePro escribe una reconstrucción para revisar. La ejecuta al confirmar en SQLite y archivos libSQL locales, y la deja a tu cargo en Turso, libSQL remoto y D1."
+                "Structure edita columnas, índices, claves foráneas y restricciones CHECK en una cuadrícula. Los cambios esperan al guardado y <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) muestra ALTER TABLE antes de ejecutar nada. Eliminar elementos, cambiar tipos, añadir NOT NULL o modificar la clave primaria pide confirmación incluso con Safe Mode {macSafeModeDefault}.",
+                "Los índices pueden usar expresiones como <code>lower(email)</code>. New Table crea tablas del mismo modo, con vista previa SQL en directo. En SQLite, libSQL, Turso y Cloudflare D1, que no pueden modificar claves foráneas directamente, TablePro escribe una reconstrucción para revisar. La ejecuta al confirmar en SQLite y archivos libSQL locales, y la deja a tu cargo en Turso, libSQL remoto y D1."
             ],
             "engines": [
                 {
@@ -37,7 +37,7 @@
             "title": "Comprende las relaciones entre tablas",
             "paragraphs": [
                 "<ui>View ER Diagram</ui> dibuja tablas y claves foráneas del esquema, con cardinalidad pata de gallo calculada según claves primarias y únicas. Tablas de unión como <code>product_tags</code> se reducen a una línea muchos-a-muchos. Exporta como PNG, copia como imagen o exporta SQL: sentencias CREATE TABLE con claves foráneas.",
-                "El diagrama es una instantánea para leer y compartir. Las tablas se modifican en Estructura, no en el lienzo."
+                "El diagrama es una instantánea para leer y compartir. Las tablas se modifican en Structure, no en el lienzo."
             ],
             "asset": "mac-er-diagram"
         },
@@ -60,10 +60,10 @@
         },
         {
             "id": "compare-sync",
-            "title": "Comparar y sincronizar",
+            "title": "Compare & Sync",
             "paragraphs": [
-                "Elige origen y destino, dos servidores o dos bases en uno, y Comparar y sincronizar lista todas las tablas distintas, con vistas, rutinas y triggers si los incluyes. En modo datos empareja filas por clave y marca valores distintos, con filtro y límite de filas por tabla para comparar una parte de tablas grandes.",
-                "El script generado se ordena por claves foráneas y se escribe para el cliente propio del destino. Las sentencias destructivas, como eliminar columnas, reducir tipos o borrar filas, se retienen hasta que las permitas para esa ejecución; Solo lectura no puede ser destino. Guarda una comparación para repetirla con un clic."
+                "Elige origen y destino, dos servidores o dos bases en uno, y Compare & Sync lista todas las tablas distintas, con vistas, rutinas y triggers si los incluyes. En modo datos empareja filas por clave y marca valores distintos, con filtro y límite de filas por tabla para comparar una parte de tablas grandes.",
+                "El script generado se ordena por claves foráneas y se escribe para el cliente propio del destino. Las sentencias destructivas, como eliminar columnas, reducir tipos o borrar filas, se retienen hasta que las permitas para esa ejecución; una conexión Read-Only no puede ser destino. Guarda una comparación para repetirla con un clic."
             ],
             "paid": [
                 "compare-sync"
@@ -72,10 +72,10 @@
         },
         {
             "id": "copy",
-            "title": "Copiar a, Duplicar base de datos y Transferir a",
+            "title": "Copy To, Duplicate Database y Transfer To",
             "paragraphs": [
-                "Copiar a envía tablas, vistas, rutinas y triggers, estructura, datos o ambos, a otra base de cualquier conexión guardada, incluso otro motor. Antes de escribir, una revisión lista el DDL, las filas esperadas y los tipos que cambian, como <code>ENUM</code> de MariaDB que llega a PostgreSQL como <code>VARCHAR</code> sin lista de valores permitidos. WHERE y límite por tabla permiten copiar solo una parte.",
-                "Duplicar base de datos copia una base completa con nombre nuevo en la misma conexión. Transferir a mueve filas directamente a una tabla existente en otra conexión abierta, con correspondencia de columnas y sin archivo intermedio. Las tres son gratis."
+                "Copy To envía tablas, vistas, rutinas y triggers, estructura, datos o ambos, a otra base de cualquier conexión guardada, incluso otro motor. Antes de escribir, una revisión lista el DDL, las filas esperadas y los tipos que cambian, como <code>ENUM</code> de MariaDB que llega a PostgreSQL como <code>VARCHAR</code> sin lista de valores permitidos. WHERE y límite por tabla permiten copiar solo una parte.",
+                "Duplicate Database copia una base completa con nombre nuevo en la misma conexión. Transfer To mueve filas directamente a una tabla existente en otra conexión abierta, con correspondencia de columnas y sin archivo intermedio. Las tres son gratis."
             ],
             "asset": "mac-copy-to-review"
         },
@@ -88,13 +88,13 @@
             "blocks": [
                 {
                     "id": "users-roles",
-                    "title": "Usuarios y roles",
+                    "title": "Users & Roles",
                     "paragraphs": [
-                        "Usuarios y roles muestra los privilegios de cada usuario como árbol desde el servidor hasta una columna. Las concesiones y revocaciones esperan como cambios pendientes y muestran SQL antes de ejecutarse, sin escribir GRANT a mano."
+                        "Users & Roles muestra los privilegios de cada usuario como árbol desde el servidor hasta una columna. Las concesiones y revocaciones esperan como cambios pendientes y muestran SQL antes de ejecutarse, sin escribir GRANT a mano."
                     ],
                     "engines": [
                         {
-                            "label": "Usuarios y roles",
+                            "label": "Users & Roles",
                             "list": "usersRoles"
                         }
                     ],
@@ -102,13 +102,13 @@
                 },
                 {
                     "id": "server-dashboard",
-                    "title": "Panel del servidor",
+                    "title": "Server Dashboard",
                     "paragraphs": [
-                        "El panel muestra sesiones en directo, métricas y consultas lentas, actualizadas al intervalo elegido. Si el motor lo permite, cancela consultas o termina sesiones desde su fila; ambas pasan por modo seguro. En SQLite, DuckDB y Typesense solo muestra métricas."
+                        "El Server Dashboard muestra sesiones en directo, métricas y consultas lentas, actualizadas al intervalo elegido. Si el motor lo permite, cancela consultas o termina sesiones desde su fila; ambas pasan por Safe Mode. En SQLite, DuckDB y Typesense solo muestra métricas."
                     ],
                     "engines": [
                         {
-                            "label": "Panel del servidor",
+                            "label": "Server Dashboard",
                             "list": "dashboard"
                         }
                     ],
@@ -120,8 +120,8 @@
             "id": "iphone",
             "title": "En iPhone y iPad",
             "paragraphs": [
-                "La app muestra columnas, índices y claves foráneas de una tabla en solo lectura. Desde la lista de tablas puedes truncar o eliminar tablas de motores SQL, salvo en conexiones Solo lectura.",
-                "Editar estructuras, diagrama ER, Comparar y sincronizar, Copiar a, Usuarios y roles y panel del servidor solo están en el Mac."
+                "La app muestra columnas, índices y claves foráneas de una tabla en solo lectura. Desde la lista de tablas puedes truncar o eliminar tablas de motores SQL, salvo en conexiones Read-Only.",
+                "Editar estructuras, diagrama ER, Compare & Sync, Copy To, Users & Roles y Server Dashboard solo están en el Mac."
             ],
             "links": [
                 {
@@ -138,7 +138,7 @@
             "iosNote": "Columnas, índices y claves foráneas en solo lectura"
         },
         {
-            "label": "Nueva tabla",
+            "label": "New Table",
             "ios": "no"
         },
         {
@@ -154,28 +154,28 @@
             "ios": "no"
         },
         {
-            "label": "Comparar y sincronizar",
+            "label": "Compare & Sync",
             "paid": "compare-sync",
             "ios": "no"
         },
         {
-            "label": "Copiar a, Duplicar base de datos y Transferir a",
+            "label": "Copy To, Duplicate Database y Transfer To",
             "ios": "no"
         },
         {
-            "label": "Usuarios y roles",
+            "label": "Users & Roles",
             "ios": "no"
         },
         {
-            "label": "Panel del servidor y mantenimiento de tablas",
+            "label": "Server Dashboard y mantenimiento de tablas",
             "ios": "no"
         }
     ],
     "limits": [
-        "Comparar y sincronizar solo genera scripts de estructura entre bases del mismo motor, contando MySQL y MariaDB como uno. Otros pares se comparan en solo lectura, MongoDB nunca genera scripts de estructura y la sincronización de datos entre motores advierte que revises cómo se escriben los valores. Para mover tablas a otro motor, usa Copiar a.",
+        "Compare & Sync solo genera scripts de estructura entre bases del mismo motor, contando MySQL y MariaDB como uno. Otros pares se comparan en solo lectura, MongoDB nunca genera scripts de estructura y la sincronización de datos entre motores advierte que revises cómo se escriben los valores. Para mover tablas a otro motor, usa Copy To.",
         "Reordenar columnas reconstruye la tabla en SQLite y archivos libSQL locales tras confirmar. En PostgreSQL, Turso, libSQL remoto y Cloudflare D1, TablePro escribe el script de reconstrucción y deja que lo ejecutes.",
         "El diagrama ER es de solo lectura. No es un diseñador de esquemas.",
-        "Las sesiones y el texto de consultas visibles en el panel dependen de los privilegios de la cuenta usada para conectar."
+        "Las sesiones y el texto de consultas visibles en el Server Dashboard dependen de los privilegios de la cuenta usada para conectar."
     ],
     "docs": [
         {
@@ -191,7 +191,7 @@
             "docs": "/features/routines-triggers"
         },
         {
-            "label": "Comparar y sincronizar",
+            "label": "Compare & Sync",
             "docs": "/features/compare-sync"
         },
         {
@@ -199,11 +199,11 @@
             "docs": "/features/copy-objects"
         },
         {
-            "label": "Usuarios y roles",
+            "label": "Users & Roles",
             "docs": "/features/users-roles"
         },
         {
-            "label": "Panel del servidor",
+            "label": "Server Dashboard",
             "docs": "/features/server-dashboard"
         },
         {

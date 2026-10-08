@@ -39,8 +39,8 @@
                 "정렬 키의 <filters>필터</filters>가 =, <, <=, >, >=, BETWEEN·STARTS WITH면 키 조건에 합칩니다. 나머지는 DynamoDB가 읽은 뒤 적용하는 FilterExpression으로 행을 좁혀도 요금은 줄지 않습니다. 중첩 속성은 <code>address.city</code>·<code>items[0].sku</code> 같은 경로로 필터링합니다.",
                 "한 파티션 Query에서 정렬 키 헤더를 클릭하면 DynamoDB가 그 순서로 반환합니다. 다른 정렬은 일치 항목을 모두 읽었을 때 그리드에서 하며 아닐 때 상태 표시줄이 알립니다. 다음 페이지는 이전 끝에서 이어집니다. 아래 총계는 DynamoDB 자체 항목 수이며 <ui>정확히 계산</ui>(Count Exactly)은 필터에 맞는 모든 항목을 읽어 전액 과금됩니다.",
                 "테이블은 키만 선언해 열은 항목에서 가져옵니다. 키 속성, 테이블 첫 항목 표본에서 찾은 속성과 현재 페이지 속성입니다. 맵·리스트·세트는 JSON으로 표시해 JSON 편집기로 열고 숫자는 모든 자릿수를 유지합니다.",
-                "변경 행마다 PartiQL 구문 하나로 저장하며 <editing>모든 값이 유형을 유지합니다</editing>. Number는 Number, <code>02134</code> 같은 String은 String, JSON으로 편집한 String Set은 String Set으로 돌아갑니다. 업데이트는 변경 속성마다 그리드가 읽은 값과 비교해 다른 사람의 변경을 덮어쓰지 않고 실패합니다. <ui>NULL로 설정</ui>(Set NULL)은 속성을 제거합니다.",
-                "편집기는 이름을 큰따옴표, 문자열을 작은따옴표로 감싼 PartiQL 또는 <code>Query</code>·<code>BatchWriteItem</code>·<code>TransactWriteItems</code> 같은 DynamoDB 작업명 뒤 요청 JSON을 받습니다. 다른 작업명은 거부합니다. 항목은 그리드, 다른 응답은 JSON입니다. 제한된 요청은 백오프로 재시도하고 <code>⌘.</code>가 실행 구문을 멈춥니다."
+                "변경 행마다 PartiQL 문 하나로 저장하며 <editing>모든 값이 유형을 유지합니다</editing>. Number는 Number, <code>02134</code> 같은 String은 String, JSON으로 편집한 String Set은 String Set으로 돌아갑니다. 업데이트는 변경 속성마다 그리드가 읽은 값과 비교해 다른 사람의 변경을 덮어쓰지 않고 실패합니다. <ui>NULL로 설정</ui>(Set NULL)은 속성을 제거합니다.",
+                "편집기는 이름을 큰따옴표, 문자열을 작은따옴표로 감싼 PartiQL 또는 <code>Query</code>·<code>BatchWriteItem</code>·<code>TransactWriteItems</code> 같은 DynamoDB 작업명 뒤 요청 JSON을 받습니다. 다른 작업명은 거부합니다. 항목은 그리드, 다른 응답은 JSON입니다. 제한된 요청은 백오프로 재시도하고 <code>⌘.</code>가 실행 중인 명령문을 멈춥니다."
             ]
         },
         {

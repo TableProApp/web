@@ -81,11 +81,11 @@
     "safety": {
         "title": "生产数据库的安全防护",
         "body": [
-            "在 Mac 上，可按环境为连接添加标签和颜色，并设置从 Silent 到 Read-Only 的安全模式级别；较严格的级别需要 Touch ID 或密码验证。在所有级别下，DROP、TRUNCATE 和不带 WHERE 的 DELETE 都会暂停并要求确认。在 iPhone 和 iPad 上，Confirm Writes 会在每次写入前询问，Read-Only 则拒绝写入。",
-            "以 Agent 模式打开的连接会使用 Alert 或更严格的级别。Data Rewind 可恢复最近一次保存所替换的值，但它不是备份。"
+            "在 Mac 上，可按环境为连接添加标签和颜色，并设置从 Silent 到 Read-Only 的 Safe Mode 级别；较严格的级别需要 Touch ID 或密码验证。在所有级别下，DROP、TRUNCATE 和不带 WHERE 的 DELETE 都会暂停并要求确认。在 iPhone 和 iPad 上，Confirm Writes 会在每次写入前询问，Read-Only 则拒绝写入。",
+            "以 Agent mode 打开的连接会使用 Alert 或更严格的级别。Data Rewind 可恢复最近一次保存所替换的值，但它不是备份。"
         ],
-        "levels": "安全模式级别",
-        "link": "安全模式"
+        "levels": "Safe Mode 级别",
+        "link": "Safe Mode"
     },
     "ai": {
         "title": "AI 助手和 MCP 服务器",
@@ -100,9 +100,9 @@
     "platforms": {
         "title": "适用于 {deviceList} 的原生应用",
         "cardTitle": "{devices} 版 TablePro",
-        "mac": "Mac 版 TablePro 是使用 Swift 编写的应用，为 {architectures} 提供独立构建版本。它将密码保存在钥匙串中，在更严格的安全模式级别下要求 Touch ID 验证，并自动更新。",
+        "mac": "Mac 版 TablePro 是使用 Swift 编写的应用，为 {architectures} 提供独立构建版本。它将密码保存在钥匙串中，在更严格的 Safe Mode 级别下要求 Touch ID 验证，并自动更新。",
         "ios": "在 {devices} 上，TablePro 是具有独立功能范围的应用：通过 SSH 或 TLS 连接，浏览表、运行查询和编辑行，并提供可选 Face ID 锁定、快捷指令、主屏幕小组件和显示运行中查询的实时活动。",
-        "sync": "iCloud 同步可在 Mac 与 iPhone 或 iPad 之间同步连接、分组和标签。默认关闭，Mac 上需要 {tier} 方案。开启 iCloud 同步后，可通过 Handoff 在另一设备继续使用已打开的连接。"
+        "sync": "iCloud Sync 可在 Mac 与 iPhone 或 iPad 之间同步连接、分组和标签。默认关闭，Mac 上需要 {tier} 方案。开启 iCloud Sync 后，可通过 Handoff 在另一设备继续使用已打开的连接。"
     },
     "switch": {
         "title": "从其他应用迁移",

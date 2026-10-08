@@ -38,7 +38,7 @@
                 "索引鍵名稱在每個冒號或 Options 分頁設定的分隔符號處分為資料夾。每索引鍵一列含 Key、Type、TTL、Length、Value。字串完整顯示；hash、list、set、sorted set、stream 顯示開頭項目，Length 標明數量。非有效 UTF-8 值（如 gzip 資料）在十六進位編輯器開啟。",
                 "<editing>格線中</editing>編輯索引鍵名稱執行 <code>RENAME</code>，TTL 執行 <code>EXPIRE</code> 或 <code>PERSIST</code>，字串值執行 <code>SET</code>。Add Row 用 <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> 或 <code>SET</code> 寫入所選型別。篩選列在伺服器用 <code>SCAN MATCH</code>、<code>SCAN TYPE</code> 依 Redis glob 模式比對索引鍵名稱並限定型別。",
                 "編輯器每陳述式接受一條指令，依 redis-cli 引號規則，無法識別的指令原樣傳送。<code>DB 3 GET key</code> 不移動工作階段而在其他資料庫執行單一指令。<code>MULTI</code> 區塊內各指令傳回 <code>QUEUED</code>，直到 <code>EXEC</code> 依順序傳回所有回應。",
-                "<safeMode>安全模式</safeMode>將包括 <code>GET</code> 的所有 Redis 指令視為寫入，Alert、Safe Mode 逐一確認，Read-Only 全部阻擋。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先確認。"
+                "<safeMode>Safe Mode</safeMode> 將包括 <code>GET</code> 的所有 Redis 指令視為寫入，Alert、Safe Mode 逐一確認，Read-Only 全部阻擋。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先確認。"
             ]
         },
         {

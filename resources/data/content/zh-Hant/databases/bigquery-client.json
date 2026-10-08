@@ -53,7 +53,7 @@
             "title": "移動資料",
             "paragraphs": [
                 "TablePro 不提供 BigQuery 匯入。可將資料表或查詢結果以 {exportFormats} <export>匯出</export>至 Mac。",
-                "<backup>Server-Side Export</backup> 用 <code>EXPORT DATA</code> 將資料表卸載至 <code>gs://</code> 前綴，以 CSV、Parquet 或換行分隔 JSON 分片儲存。使用你的連線和權限執行，面板等待完成，不在 Mac 寫入檔案。"
+                "<backup>Server-Side Export</backup> 用 <code>EXPORT DATA</code> 將資料表卸載至 <code>gs://</code> 前綴，以 CSV、Parquet 或換行分隔 JSON 分片儲存。使用您的連線和權限執行，面板等待完成，不在 Mac 寫入檔案。"
             ]
         }
     ],
@@ -77,7 +77,7 @@
             "href": "/features/connections#cloud-auth"
         },
         {
-            "label": "匯出、備份與伺服器端匯出",
+            "label": "匯出、備份與 Server-Side Export",
             "href": "/features/import-export#backup"
         },
         {

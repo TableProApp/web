@@ -37,7 +37,7 @@
                 "<ui>Key Prefix Root</ui> に <code>/app</code> などを設定し、接続を一つのサブツリーに限定します。サイドバーはその下の最初のパス要素でキーをまとめ、各行にキーの値、バージョン、変更・作成リビジョンとリースを表示します。",
                 "編集の保存はコマンドを送信します。値やリースの変更はキーを再度 put し、NULL リースはリースを解除、キーの名前変更は新しい名前を put して古い名前を削除します。リビジョン列は etcd が管理するため、変更すると保存を止めて列名を示します。",
                 "エディターは etcdctl 形式でコマンドとフラグを補完します。<code>get</code> の <code>--prefix</code>、<code>--limit</code>、<code>--keys-only</code> と並べ替え、<code>put</code> の <code>--lease</code>、<code>del</code>、<code>watch</code>、<code>lease</code> サブコマンド、<code>member list</code>、<code>endpoint status</code> と <code>health</code>、<code>compaction</code>、<code>auth</code>、<code>user</code>、<code>role</code> コマンドに対応します。それ以外はサーバーに送らず不明なコマンドとして返します。",
-                "etcd ドライバーは読み取り専用セッションを開けないため、<safeMode>セーフモード</safeMode> はすべてのコマンドを書き込みとして扱います。Alert と Safe Mode レベルでは毎回確認し、Read-Only ではすべてをブロックします。"
+                "etcd ドライバーは読み取り専用セッションを開けないため、<safeMode>Safe Mode</safeMode> はすべてのコマンドを書き込みとして扱います。Alert と Safe Mode レベルでは毎回確認し、Read-Only ではすべてをブロックします。"
             ]
         },
         {

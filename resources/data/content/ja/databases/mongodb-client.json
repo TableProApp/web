@@ -44,7 +44,7 @@
                 "コレクションは最上位フィールドをカラム、入れ子オブジェクトを Extended JSON とするグリッドで開きます。編集セルは型を保持し、日付は日付、ObjectId は ObjectId のままです。入れ子の編集は <code>address.city</code> など変更したパスだけを書き込みます。",
                 "<editing>Insert Document と Edit Document</editing> は文書全体を Extended JSON で受け付けます。Edit Document はサーバーから再取得し、シートを開いてから他の人が変更・削除していれば何も保存せず通知します。セルの <ui>Remove Field</ui> は <code>$unset</code> を送ります。",
                 "<filters>フィルターバー</filters> は入れ子オブジェクトやオブジェクトの配列に対応し、<code>customer.country</code> と <code>items.sku</code> を直接絞り込めます。GeoJSON のフィールドは <map>マップビュー</map> で開きます。",
-                "ドライバーが読み取り専用セッションを開けないため、<safeMode>セーフモード</safeMode> は MongoDB のすべての文を書き込みとして扱います。Alert と Safe Mode レベルは毎回確認し、Read-Only はすべてブロックします。"
+                "ドライバーが読み取り専用セッションを開けないため、<safeMode>Safe Mode</safeMode> は MongoDB のすべての文を書き込みとして扱います。Alert と Safe Mode レベルは毎回確認し、Read-Only はすべてブロックします。"
             ]
         },
         {

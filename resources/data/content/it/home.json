@@ -56,19 +56,19 @@
                 "id": "edit",
                 "asset": "mac-edit-preview-sql",
                 "title": "Modifica dati e schema e visualizza l’SQL prima di salvare",
-                "body": "Le modifiche alle celle, le nuove righe e le eliminazioni attendono il salvataggio; Anteprima SQL mostra prima le istruzioni. Sui motori di cui TablePro può modificare la struttura, la scheda Struttura prepara allo stesso modo le modifiche a colonne, indici, chiavi esterne e CHECK. Sono inclusi filtri, filtri salvati, regole di evidenziazione, un selettore di chiavi esterne e l’annullamento per scheda."
+                "body": "Le modifiche alle celle, le nuove righe e le eliminazioni attendono il salvataggio; Preview SQL mostra prima le istruzioni. Sui motori di cui TablePro può modificare la struttura, la scheda Structure prepara allo stesso modo le modifiche a colonne, indici, chiavi esterne e CHECK. Sono inclusi filtri, filtri salvati, regole di evidenziazione, un selettore di chiavi esterne e l’annullamento per scheda."
             },
             {
                 "id": "schema",
                 "asset": "mac-compare-sync-structure",
                 "title": "Confronta, sincronizza e copia tra database",
-                "body": "Confronta e sincronizza confronta la struttura o i dati di due database e genera uno script per allineare l’uno all’altro. Le modifiche rischiose, come l’eliminazione di una colonna, restano in attesa della tua revisione. Copia in copia tabelle o un intero database su un’altra connessione, anche con un motore diverso, ed elenca tutti i tipi che deve approssimare. Sono inclusi un diagramma ER in sola lettura e Utenti e ruoli per {usersRolesEngines}."
+                "body": "Compare & Sync confronta la struttura o i dati di due database e genera uno script per allineare l’uno all’altro. Le modifiche rischiose, come l’eliminazione di una colonna, restano in attesa della tua revisione. Copy To copia tabelle o un intero database su un’altra connessione, anche con un motore diverso, ed elenca tutti i tipi che deve approssimare. Sono inclusi un diagramma ER in sola lettura e Users & Roles per {usersRolesEngines}."
             },
             {
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "Importa, esporta e apri file di dati",
-                "body": "Importa file {importFormats} sui motori che supportano l’importazione ed esporta in {exportFormats}. La finestra File di dati apre file CSV, JSON e XLSX senza database: puoi cercare e filtrare, ripulire CSV e JSON e importare il risultato in una tabella. Backup Dump e Restore Dump eseguono gli strumenti a riga di comando propri di ogni motore ({dumpTools}). TablePro non li include, quindi installa quelli che mancano sul tuo Mac."
+                "body": "Importa file {importFormats} sui motori che supportano l’importazione ed esporta in {exportFormats}. La finestra Data Files apre file CSV, JSON e XLSX senza database: puoi cercare e filtrare, ripulire CSV e JSON e importare il risultato in una tabella. Backup Dump e Restore Dump eseguono gli strumenti a riga di comando propri di ogni motore ({dumpTools}). TablePro non li include, quindi installa quelli che mancano sul tuo Mac."
             },
             {
                 "id": "connect",
@@ -81,18 +81,18 @@
     "safety": {
         "title": "Protezioni per i database di produzione",
         "body": [
-            "Sul Mac, assegna alle connessioni tag e colori in base all’ambiente e un livello di Modalità sicura, da Silenziosa a Sola lettura, con Touch ID o password ai livelli più restrittivi. DROP, TRUNCATE e DELETE senza WHERE si fermano e chiedono conferma a ogni livello. Su iPhone e iPad, Conferma scritture chiede conferma prima di ogni scrittura e Sola lettura le rifiuta.",
-            "Mentre una connessione è aperta in modalità Agente, opera al livello Avviso o superiore. Ripristino dati può recuperare i valori sostituiti da un salvataggio recente. Non è un backup."
+            "Sul Mac, assegna alle connessioni tag e colori in base all’ambiente e un livello Safe Mode, da Silent a Read-Only, con Touch ID o password ai livelli più restrittivi. DROP, TRUNCATE e DELETE senza WHERE si fermano e chiedono conferma a ogni livello. Su iPhone e iPad, Confirm Writes chiede conferma prima di ogni scrittura e Read-Only le rifiuta.",
+            "Mentre una connessione è aperta in Agent mode, opera al livello Alert o superiore. Data Rewind può recuperare i valori sostituiti da un salvataggio recente. Non è un backup."
         ],
-        "levels": "Livelli della Modalità sicura",
-        "link": "Modalità sicura"
+        "levels": "Livelli di Safe Mode",
+        "link": "Safe Mode"
     },
     "ai": {
         "title": "Assistente IA e server MCP",
         "body": [
             "Sul Mac, un assistente IA opzionale spiega, ottimizza e corregge le query e risponde a domande sul tuo schema. Scegli il provider: una chiave API, un account che possiedi già o un modello eseguito sul tuo Mac. TablePro non gestisce un proprio servizio IA e non invia nulla finché non aggiungi un provider.",
-            "La chat inizia in modalità Chiedi, che consente solo la lettura. Nelle modalità Modifica e Agente, l’assistente può eseguire istruzioni. Dal livello Avviso a Modalità sicura (Completa), ogni scrittura attende la tua approvazione; Sola lettura le rifiuta e DROP o TRUNCATE richiedono sempre un tuo clic.",
-            "Il server MCP integrato permette a client come {mcpClients} di usare le connessioni salvate senza vedere le password. Ascolta solo su {mcpHost} e ogni connessione stabilisce cosa possono fare le app esterne: Bloccato, Sola lettura (predefinito) o Lettura e scrittura.",
+            "La chat inizia in modalità Ask, che consente solo la lettura. Nelle modalità Edit e Agent, l’assistente può eseguire istruzioni. Dal livello Alert a Safe Mode (Full), ogni scrittura attende la tua approvazione; Read-Only le rifiuta e DROP o TRUNCATE richiedono sempre un tuo clic.",
+            "Il server MCP integrato permette a client come {mcpClients} di usare le connessioni salvate senza vedere le password. Ascolta solo su {mcpHost} e ogni connessione stabilisce cosa possono fare le app esterne: Blocked, Read Only (predefinito) o Read & Write.",
             "Tutto questo è gratuito."
         ],
         "providers": "Provider che puoi aggiungere: {providers}."
@@ -100,16 +100,16 @@
     "platforms": {
         "title": "App native per {deviceList}",
         "cardTitle": "TablePro per {devices}",
-        "mac": "Sul Mac, TablePro è un’app Swift con build separate per {architectures}. Conserva le password nel Portachiavi, richiede Touch ID ai livelli più restrittivi della Modalità sicura e si aggiorna automaticamente.",
+        "mac": "Sul Mac, TablePro è un’app Swift con build separate per {architectures}. Conserva le password nel Portachiavi, richiede Touch ID ai livelli Safe Mode più restrittivi e si aggiorna automaticamente.",
         "ios": "Su {devices}, TablePro è un’app separata con un proprio ambito di funzionalità: connessioni tramite SSH o TLS, esplorazione delle tabelle, esecuzione di query e modifica delle righe, con blocco Face ID opzionale, Comandi Rapidi, un widget nella schermata Home e Attività in tempo reale per le query in esecuzione.",
-        "sync": "La sincronizzazione iCloud mantiene allineati connessioni, gruppi e tag tra un Mac e un iPhone o iPad. È disattivata per impostazione predefinita e sul Mac richiede un piano {tier}. Quando è attiva, Handoff permette di proseguire una connessione aperta sull’altro dispositivo."
+        "sync": "iCloud Sync mantiene allineati connessioni, gruppi e tag tra un Mac e un iPhone o iPad. È disattivato per impostazione predefinita e sul Mac richiede un piano {tier}. Con iCloud Sync attivo, Handoff permette di proseguire una connessione aperta sull’altro dispositivo."
     },
     "switch": {
         "title": "Passi da un’altra app?",
         "lead": "L’importazione da altre app e Open Project Folder sono disponibili solo nell’{macApp}.",
         "import": "Importa le connessioni da {apps}, incluse le password salvate.",
         "importWithoutPasswords": "Le connessioni da {apps} vengono importate senza password.",
-        "project": "Apri cartella progetto legge i file <code>.env</code> e <code>docker-compose.yml</code>, lo schema Prisma e altri file di configurazione di un progetto e compila nuove connessioni con ciò che trova.",
+        "project": "Open Project Folder legge i file <code>.env</code> e <code>docker-compose.yml</code>, lo schema Prisma e altri file di configurazione di un progetto e compila nuove connessioni con ciò che trova.",
         "link": "Confronta TablePro con altri client"
     },
     "pricing": {

@@ -48,7 +48,7 @@
             "title": "Tabellen und Indizes",
             "paragraphs": [
                 "<ui>New Table…</ui> öffnet ein Formular für Partitions- und Sortierschlüssel, On-Demand- oder bereitgestellte Kapazität, Tabellenklasse, Löschschutz und sekundäre Indizes. <ui>Preview</ui> zeigt die <code>CreateTable</code>-Anfrage vor dem Senden. Ein lokaler sekundärer Index kann nur dort beim Erstellen definiert werden.",
-                "Im Struktur-Tab fügst du einen globalen sekundären Index hinzu oder entfernst ihn, eine Änderung pro Speichern, da DynamoDB eine Indexänderung pro <code>UpdateTable</code>-Anfrage akzeptiert. Attribute werden dort nicht bearbeitet: Schreibe eines in ein Element, und es erscheint als Spalte. Der DDL-Tab zeigt die <code>CreateTable</code>-Anfrage zum Neuerstellen samt Time-to-Live- und Point-in-Time-Recovery-Einstellungen."
+                "Im Structure-Tab fügst du einen globalen sekundären Index hinzu oder entfernst ihn, eine Änderung pro Speichern, da DynamoDB eine Indexänderung pro <code>UpdateTable</code>-Anfrage akzeptiert. Attribute werden dort nicht bearbeitet: Schreibe eines in ein Element, und es erscheint als Spalte. Der DDL-Tab zeigt die <code>CreateTable</code>-Anfrage zum Neuerstellen samt Time-to-Live- und Point-in-Time-Recovery-Einstellungen."
             ]
         },
         {

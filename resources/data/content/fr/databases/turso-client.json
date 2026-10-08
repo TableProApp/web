@@ -29,16 +29,16 @@
             "title": "Connectez-vous à Turso",
             "paragraphs": [
                 "Choisissez Turso comme type et laissez <ui>Mode de connexion</ui> (Connection Mode) sur <ui>Distant (Turso)</ui> (Remote (Turso)). Collez l’URL HTTPS de la base terminant par <code>.turso.io</code> et un jeton dans <ui>Jeton API</ui> (API Token), conservé dans le Trousseau macOS. Le tableau Turso montre les deux, ainsi que <code>turso db show my-db --url</code> et <code>turso db tokens create my-db</code>.",
-                "Une URL <code>libsql://</code> est réécrite en HTTPS et son import crée une connexion distante. Il n’y a ni hôte, port ni base à saisir, car l’URL nomme une base. La connexion est chiffrée si elle utilise HTTPS plutôt que HTTP clair ; il n’y a pas de tunnel SSH."
+                "Une URL <code>libsql://</code> est réécrite en HTTPS et son import crée une connexion distante. Il n’y a ni hôte, port ni base à saisir, car l’URL nomme une base. La connexion est chiffrée si elle utilise HTTPS plutôt que HTTP clair ; il n’y a pas de tunnel SSH."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "libSQL parle SQLite ; navigation, diagrammes <explain>EXPLAIN QUERY PLAN</explain>, <editing>modifications en attente avec Aperçu SQL</editing> et export fonctionnent comme sur <sqlite>SQLite</sqlite>.",
-                "Une connexion distante n’exécute pas de transactions. Chaque instruction est une requête HTTP validée séparément et <code>BEGIN</code> échoue avec « Les transactions ne sont pas prises en charge dans ce mode ». Utilisez un fichier libSQL local, décrit dans la <libsql>section libSQL</libsql>, pour les transactions.",
-                "Le mode distant ne charge pas d’extensions SQLite : Turso exécute celles compilées dans son serveur. S’il limite une connexion, l’erreur indique combien de secondes attendre avant de réessayer."
+                "libSQL parle SQLite ; navigation, diagrammes <explain>EXPLAIN QUERY PLAN</explain>, <editing>modifications en attente avec Preview SQL</editing> et export fonctionnent comme sur <sqlite>SQLite</sqlite>.",
+                "Une connexion distante n’exécute pas de transactions. Chaque instruction est une requête HTTP validée séparément et <code>BEGIN</code> échoue avec « Les transactions ne sont pas prises en charge dans ce mode ». Utilisez un fichier libSQL local, décrit dans la <libsql>section libSQL</libsql>, pour les transactions.",
+                "Le mode distant ne charge pas d’extensions SQLite : Turso exécute celles compilées dans son serveur. S’il limite une connexion, l’erreur indique combien de secondes attendre avant de réessayer."
             ]
         },
         {
@@ -53,7 +53,7 @@
             "id": "move-data",
             "title": "Transférez des données",
             "paragraphs": [
-                "TablePro n’importe pas vers Turso ou libSQL ; chargez les données par Turso CLI ou l’import de votre serveur sqld. Pour les extraire, <export>exportez</export> tables ou résultats en {exportFormats}."
+                "TablePro n’importe pas vers Turso ou libSQL ; chargez les données par Turso CLI ou l’import de votre serveur sqld. Pour les extraire, <export>exportez</export> tables ou résultats en {exportFormats}."
             ]
         }
     ],
@@ -63,9 +63,9 @@
             "title": "libSQL",
             "paragraphs": [
                 "Choisissez libSQL pour votre serveur sqld ou un fichier local. En Distant, il atteint tout sqld offrant Hrana v2 pipeline, même local avec port 8080 par défaut. Laissez le jeton vide sans <code>--auth-jwt-key-file</code>, ou fournissez un JWT correspondant à la clé serveur.",
-                "<ui>Fichier local</ui> (Local File) ouvre libSQL avec le moteur SQLite du pilote ; un chemin inexistant est créé, dossiers compris. Le fichier local exécute les transactions, charge les extensions de la liste Extensions et reconstruit pour réordonner les colonnes ou clés étrangères après confirmation.",
-                "Les instructions propres à libSQL comme <code>ALTER TABLE … ALTER COLUMN</code> échouent localement, car SQLite les reçoit. Les fichiers libSQL chiffrés ne s’ouvrent pas. N’ouvrez jamais un fichier qu’une app synchronise comme réplique embarquée Turso : deux programmes simultanés peuvent le corrompre.",
-                "<backup>Dump de sauvegarde et Restaurer un dump</backup> exécutent {dumpTool} sur un fichier libSQL local."
+                "<ui>Fichier local</ui> (Local File) ouvre libSQL avec le moteur SQLite du pilote ; un chemin inexistant est créé, dossiers compris. Le fichier local exécute les transactions, charge les extensions de la liste Extensions et reconstruit pour réordonner les colonnes ou clés étrangères après confirmation.",
+                "Les instructions propres à libSQL comme <code>ALTER TABLE … ALTER COLUMN</code> échouent localement, car SQLite les reçoit. Les fichiers libSQL chiffrés ne s’ouvrent pas. N’ouvrez jamais un fichier qu’une app synchronise comme réplique embarquée Turso : deux programmes simultanés peuvent le corrompre.",
+                "<backup>Backup Dump et Restore Dump</backup> exécutent {dumpTool} sur un fichier libSQL local."
             ]
         }
     ],
@@ -73,12 +73,12 @@
     "faq": [
         {
             "id": "remote-or-local",
-            "question": "Dois-je choisir Distant ou Fichier local ?",
+            "question": "Dois-je choisir Distant ou Fichier local ?",
             "answer": "Distant pour Turso ou sqld par URL. Fichier local pour libSQL sur ce Mac, avec transactions, extensions SQLite et sauvegardes."
         },
         {
             "id": "turso-cli",
-            "question": "Dois-je installer Turso CLI ?",
+            "question": "Dois-je installer Turso CLI ?",
             "answer": "Non. Le tableau Turso montre l’URL et crée les jetons. La CLI sert à charger depuis le terminal, car TablePro n’importe pas vers Turso."
         }
     ],

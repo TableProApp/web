@@ -15,7 +15,7 @@
     "sections": [
         {
             "id": "icloud-sync",
-            "title": "iCloud 同步",
+            "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync 在登录同一 iCloud 账户的所有 Mac、iPhone 和 iPad 上保持连接库一致。记录存入该账户的私有数据库；各设备默认关闭同步，需自行开启。iPhone 和 iPad 上免费，Mac 需要包含此功能的方案。",
                 "密码仅在同时启用 Mac 的 Sync Categories 下的<ui>密码</ui>（Passwords），或 iPhone、iPad 上的<ui>同步密码</ui>（Sync Passwords）时，通过 iCloud 钥匙串同步；Mac 还会同步 TablePro 在钥匙串中保存的其他秘密，例如 AI 提供商密钥和许可证密钥。将连接标为 Local only，可让连接及其收藏和已保存查询仅保留在一台 Mac 上。"
@@ -61,7 +61,7 @@
         },
         {
             "id": "linked-folders",
-            "title": "关联文件夹",
+            "title": "Linked Folders",
             "paragraphs": [
                 "添加 Git 检出目录或共享云盘等文件夹，TablePro 会将其中每个 <code>.tablepro</code> 文件列为连接，并随文件新增或修改更新列表。关联连接在 TablePro 中只读，需修改文件来更改。加密文件会跳过，因此共享文件夹保存的是设置而非密码，关联文件中的启动命令和隧道命令也会被忽略。",
                 "Linked Folders 监控连接文件。关联 SQL 文件夹是另一项功能，属于已保存查询的免费功能，用于让 <code>.sql</code> 文件夹与已保存查询保持同步。"
@@ -78,14 +78,14 @@
         },
         {
             "id": "team",
-            "title": "团队目录和团队库",
+            "title": "Team Catalog 和 Team Library",
             "paragraphs": [
                 "为 Team 许可证下的所有人提供相同连接的两种方式：一种通过已有共享文件夹，另一种通过 TablePro 服务器。"
             ],
             "blocks": [
                 {
                     "id": "team-catalog",
-                    "title": "团队目录",
+                    "title": "Team Catalog",
                     "paragraphs": [
                         "<ui>分享 > 发布到团队目录…</ui>（Share > Publish to Team Catalog…）将所选连接以不含密码的 <code>.tablepro</code> 文件写入共享文件夹。团队成员将该文件夹添加为 Linked Folder，因此目录通过现有共享云盘或仓库分发，不经过 TablePro。"
                     ],
@@ -95,7 +95,7 @@
                 },
                 {
                     "id": "team-library",
-                    "title": "团队库",
+                    "title": "Team Library",
                     "paragraphs": [
                         "连接上的<ui>分享 > 发布到团队库…</ui>（Share > Publish to Team Library…）和 Favorites 侧栏的<ui>将已保存的查询发布到团队…</ui>（Publish Saved Queries to Team…）将连接及已保存查询上传到 TablePro 服务器，许可证下的每台 Mac 会下载；查询在 Favorites 侧栏中显示发布者姓名。上传连接设置和查询 SQL 文本，从不上传密码。成员的 Mac 会忽略接收到的启动命令和隧道命令，因此不会自行运行任何命令。再次发布会替换先前发布的内容。"
                     ],
@@ -125,7 +125,7 @@
                     "href": "/pricing#team"
                 },
                 {
-                    "label": "你的账户",
+                    "label": "您的账户",
                     "href": "/account?locale=zh-Hans"
                 }
             ]
@@ -146,7 +146,7 @@
     ],
     "availability": [
         {
-            "label": "iCloud 同步",
+            "label": "iCloud Sync",
             "paid": "icloud-sync",
             "ios": "partial",
             "iosNote": "连接、分组和标签，免费"
@@ -171,34 +171,34 @@
             "ios": "yes"
         },
         {
-            "label": "含密码的加密导出",
+            "label": "含密码的 Encrypted Export",
             "paid": "encrypted-export",
             "ios": "yes"
         },
         {
-            "label": "关联文件夹",
+            "label": "Linked Folders",
             "paid": "linked-folders",
             "ios": "no"
         },
         {
-            "label": "团队目录",
+            "label": "Team Catalog",
             "paid": "team-catalog",
             "ios": "no"
         },
         {
-            "label": "团队库",
+            "label": "Team Library",
             "paid": "team-library",
             "ios": "no"
         }
     ],
     "limits": [
         "Mac 方案结束后，iCloud Sync 暂停并说明原因，Linked Folders 和 Team Library 的连接从列表消失，团队发布命令隐藏，Encrypted Export 不再提供密码选项。",
-        "在 iPhone 或 iPad 编辑同步连接可能改变该应用没有的设置：Safe Mode (Full) 等更严格的 Mac 安全模式会回传为 Alert，SSH 跳板机设置也可能丢失。请在 Mac 上修改这些连接。",
-        "Team 许可证结束或暂停后，发布到 Team Library 的内容仍保留在 TablePro 服务器上，直到你要求删除。"
+        "在 iPhone 或 iPad 编辑同步连接可能改变该应用没有的设置：Safe Mode (Full) 等更严格的 Mac Safe Mode 级别会回传为 Alert，SSH 跳板机设置也可能丢失。请在 Mac 上修改这些连接。",
+        "Team 许可证结束或暂停后，发布到 Team Library 的内容仍保留在 TablePro 服务器上，直到您要求删除。"
     ],
     "docs": [
         {
-            "label": "iCloud 同步",
+            "label": "iCloud Sync",
             "docs": "/features/icloud-sync"
         },
         {
@@ -206,19 +206,19 @@
             "docs": "/features/handoff"
         },
         {
-            "label": "连接文件和加密导出",
+            "label": "连接文件和 Encrypted Export",
             "docs": "/features/connection-sharing#export"
         },
         {
-            "label": "关联文件夹",
+            "label": "Linked Folders",
             "docs": "/features/connection-sharing#linked-folders"
         },
         {
-            "label": "团队目录",
+            "label": "Team Catalog",
             "docs": "/features/connection-sharing#team-catalog"
         },
         {
-            "label": "团队库",
+            "label": "Team Library",
             "docs": "/features/favorites#team-library"
         },
         {

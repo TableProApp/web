@@ -13,15 +13,15 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "你希望使用開源用戶端。TablePro 包括付費功能程式碼在內，均以 AGPLv3 開源。",
-            "你希望免費使用 AI 助手和 MCP 伺服器。兩者在 Mac 應用程式中均免費，可選擇 AI 服務商。",
-            "你希望使用免費的 iPhone 與 iPad 應用程式，無 App 內購買。",
-            "你希望只為所需功能付費。免費應用程式沒有分頁或視窗數量限制，付費方案新增 {starterExamples} 等功能。"
+            "您希望使用開源用戶端。TablePro 包括付費功能程式碼在內，均以 AGPLv3 開源。",
+            "您希望免費使用 AI 助手和 MCP 伺服器。兩者在 Mac 應用程式中均免費，可選擇 AI 服務商。",
+            "您希望使用免費的 iPhone 與 iPad 應用程式，無 App 內購買。",
+            "您希望只為所需功能付費。免費應用程式沒有分頁或視窗數量限制，付費方案新增 {starterExamples} 等功能。"
         ],
         "competitor": [
-            "你也在 Windows 或 Linux 上工作。",
-            "你連接 TablePlus 列出而 TablePro 不支援的 Vertica 或 Greenplum。",
-            "你透過 Setapp 取得 Mac 應用程式。"
+            "您也在 Windows 或 Linux 上工作。",
+            "您連接 TablePlus 列出而 TablePro 不支援的 Vertica 或 Greenplum。",
+            "您透過 Setapp 取得 Mac 應用程式。"
         ]
     },
     "glance": {
@@ -37,7 +37,7 @@
             "tablepro": "免費，也支援 CSV、JSON、SQL 等格式"
         },
         "safeMode": {
-            "label": "安全模式",
+            "label": "Safe Mode",
             "tablepro": "每個連線可從 Silent 到 Read-Only 設定等級，較嚴格等級支援 Touch ID"
         },
         "setapp": {
@@ -49,7 +49,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePlus 除 Mac 外，也可在 Windows 與 Linux 上執行，讓同一個用戶端伴隨你使用不同電腦。",
+                "text": "TablePlus 除 Mac 外，也可在 Windows 與 Linux 上執行，讓同一個用戶端伴隨您使用不同電腦。",
                 "cite": [
                     "platforms"
                 ],
@@ -65,7 +65,7 @@
                 "href": null
             },
             {
-                "text": "如果你透過 Setapp 取得 Mac 應用程式，TablePlus 也可在那裡使用。",
+                "text": "如果您透過 Setapp 取得 Mac 應用程式，TablePlus 也可在那裡使用。",
                 "cite": [
                     "cells.setapp"
                 ],
@@ -86,7 +86,7 @@
                 "href": null
             },
             {
-                "text": "免費應用程式可連接所有支援引擎，包含 AI 助手、MCP 伺服器和安全模式，沒有分頁或視窗數量限制。<link>付費方案</link>新增 {starterExamples} 等功能。",
+                "text": "免費應用程式可連接所有支援引擎，包含 AI 助手、MCP 伺服器和 Safe Mode，沒有分頁或視窗數量限制。<link>付費方案</link>新增 {starterExamples} 等功能。",
                 "cite": [],
                 "feature": null,
                 "href": "/pricing"
@@ -100,7 +100,7 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud 同步</link>讓多台 Mac 與 iPhone 或 iPad 的連線保持一致。在 Mac 上包含於 Starter，在 iPhone 與 iPad 應用程式中免費。",
+                "text": "<link>iCloud Sync</link> 讓多台 Mac 與 iPhone 或 iPad 的連線保持一致。在 Mac 上包含於 Starter，在 iPhone 與 iPad 應用程式中免費。",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -167,13 +167,13 @@
         {
             "id": "speed",
             "question": "TablePro 與 TablePlus 的速度相比如何？",
-            "answer": "本頁不做速度或記憶體方面的宣稱。兩款應用程式都沒有發佈他人可重現的測量結果，結果取決於你的 Mac、資料庫和網路。",
+            "answer": "本頁不做速度或記憶體方面的宣稱。兩款應用程式都沒有發佈他人可重現的測量結果，結果取決於您的 Mac、資料庫和網路。",
             "href": null
         },
         {
             "id": "license",
             "question": "使用 TablePro 需要授權嗎？",
-            "answer": "不需要。TablePro 可免費使用，包含所有支援引擎、AI 助手、MCP 伺服器和安全模式。Starter 或 Team 方案為 Mac 應用程式新增 {starterExamples} 等選用功能。<link>查看價格</link>。",
+            "answer": "不需要。TablePro 可免費使用，包含所有支援引擎、AI 助手、MCP 伺服器和 Safe Mode。Starter 或 Team 方案為 Mac 應用程式新增 {starterExamples} 等選用功能。<link>查看價格</link>。",
             "href": "/pricing"
         },
         {

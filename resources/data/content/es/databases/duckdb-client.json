@@ -32,7 +32,7 @@
             "paragraphs": [
                 "Elige un archivo <code>.duckdb</code> o <code>.ddb</code>, o escribe una ruta que aún no exista para crearlo. Escribe <code>:memory:</code> para una base que dure lo mismo que la sesión. Una base se abre como DuckDB sea cual sea su nombre de archivo, porque DuckDB identifica sus archivos en los primeros bytes.",
                 "Elige un archivo <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> o <code>.ndjson</code> y se abrirá como vistas de solo lectura en una base en memoria: una llamada <code>file</code> y otra con el nombre del archivo. El archivo en disco permanece idéntico byte a byte; para cambiar su contenido, crea una tabla a partir de él en una base <code>.duckdb</code>.",
-                "Haz doble clic en un archivo <code>.duckdb</code> en Finder para abrirlo aquí. TablePro aparece en Abrir con para los archivos Parquet; un Parquet elegido mediante <ui>File > Open File</ui> se abre como conexión DuckDB, en lugar de en la <dataFiles>ventana Archivos de datos</dataFiles>.",
+                "Haz doble clic en un archivo <code>.duckdb</code> en Finder para abrirlo aquí. TablePro aparece en Abrir con para los archivos Parquet; un Parquet elegido mediante <ui>File > Open File</ui> se abre como conexión DuckDB, en lugar de en la <dataFiles>ventana Data Files</dataFiles>.",
                 "<ui>Remote (Quack, experimental)</ui> conecta a un servidor DuckDB iniciado con <code>quack_serve</code> y lo adjunta con un alias, como <code>remotedb</code>; accede a sus tablas por nombre mediante ese alias. La primera conexión remota descarga la extensión <code>quack</code> de DuckDB."
             ]
         },
@@ -41,14 +41,14 @@
             "title": "Consulta y edita",
             "paragraphs": [
                 "Cualquier conexión puede leer un archivo directamente desde SQL, como <code>SELECT * FROM 'data.csv'</code> o <code>read_parquet('events.parquet')</code>. Usa <code>ATTACH</code> con otro archivo DuckDB para añadirlo a la barra lateral como segunda base, y <code>Cmd+K</code> para cambiar entre ellas sin reconectar. DuckDB no conserva los adjuntos tras reconectar.",
-                "<explain>EXPLAIN</explain> se representa como diagrama del plan. Las filas de una tabla se editan con <editing>Vista previa SQL</editing> mostrando cada sentencia antes, mientras que las vistas sobre un archivo de datos siguen siendo de solo lectura."
+                "<explain>EXPLAIN</explain> se representa como diagrama del plan. Las filas de una tabla se editan con <editing>Preview SQL</editing> mostrando cada sentencia antes, mientras que las vistas sobre un archivo de datos siguen siendo de solo lectura."
             ]
         },
         {
             "id": "schema",
-            "title": "Estructura",
+            "title": "Structure",
             "paragraphs": [
-                "La <structure>pestaña Estructura</structure> edita tablas y muestra el DDL antes de ejecutarlo. Aquí una base de datos es un archivo, por lo que no se puede crear ni eliminar desde la app; <code>ATTACH</code> permite acceder a un segundo archivo."
+                "La <structure>pestaña Structure</structure> edita tablas y muestra el DDL antes de ejecutarlo. Aquí una base de datos es un archivo, por lo que no se puede crear ni eliminar desde la app; <code>ATTACH</code> permite acceder a un segundo archivo."
             ]
         },
         {
@@ -56,8 +56,8 @@
             "title": "Comparte el archivo y haz copias de seguridad",
             "paragraphs": [
                 "Mientras TablePro tiene el archivo bloqueado, la CLI <code>duckdb</code>, un notebook o una ejecución de dbt no pueden abrirlo. Configura <ui>Release the File Lock After</ui> para liberarlo tras unos minutos de inactividad y recuperarlo en la siguiente consulta, o <ui>Open the File Read-Only</ui> para compartirlo entre varios lectores. <ui>Database > Release File Lock</ui> lo libera de inmediato y conserva tus pestañas. Se rechaza la liberación, indicando el motivo, si la sesión mantiene una transacción abierta, una tabla temporal, una base adjunta o un ajuste modificado.",
-                "El <dashboard>Panel del servidor</dashboard> muestra el tamaño de la base, el tamaño de bloque, los bloques totales, el límite de memoria y los hilos.",
-                "<backup>Volcado de copia de seguridad</backup> no requiere instalar nada, porque {dumpTool} lo escribe mediante la conexión abierta. Elige un archivo <code>.duckdb</code> para restaurarlo después en TablePro, o una carpeta con <code>schema.sql</code>, <code>load.sql</code> y un archivo Parquet por tabla, que pandas, Spark y BigQuery leen directamente. Restaurar volcado se detiene en el primer objeto cuyo nombre ya esté ocupado."
+                "El <dashboard>Server Dashboard</dashboard> muestra el tamaño de la base, el tamaño de bloque, los bloques totales, el límite de memoria y los hilos.",
+                "<backup>Backup Dump</backup> no requiere instalar nada, porque {dumpTool} lo escribe mediante la conexión abierta. Elige un archivo <code>.duckdb</code> para restaurarlo después en TablePro, o una carpeta con <code>schema.sql</code>, <code>load.sql</code> y un archivo Parquet por tabla, que pandas, Spark y BigQuery leen directamente. Restore Dump se detiene en el primer objeto cuyo nombre ya esté ocupado."
             ]
         },
         {
@@ -85,8 +85,8 @@
         },
         {
             "id": "csv-or-data-files",
-            "question": "¿Debo abrir un CSV en DuckDB o en la ventana Archivos de datos?",
-            "answer": "Ábrelo en la <dataFiles>ventana Archivos de datos</dataFiles> para revisarlo, limpiarlo y guardarlo de nuevo. Ábrelo como DuckDB para unirlo con otros archivos o tablas mediante SQL; allí el archivo sigue siendo de solo lectura."
+            "question": "¿Debo abrir un CSV en DuckDB o en la ventana Data Files?",
+            "answer": "Ábrelo en la <dataFiles>ventana Data Files</dataFiles> para revisarlo, limpiarlo y guardarlo de nuevo. Ábrelo como DuckDB para unirlo con otros archivos o tablas mediante SQL; allí el archivo sigue siendo de solo lectura."
         }
     ],
     "related": [

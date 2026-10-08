@@ -26,26 +26,26 @@
             "title": "Connexion",
             "paragraphs": [
                 "Choisissez un <ui>Mode de connexion</ui> (Connection Mode). Standalone prend hôte et port. Sentinel prend un ou plusieurs nœuds et le nom du groupe primaire, suit le quorum au primaire et le suit après basculement. Cluster prend un membre accessible comme amorce, lit la carte des shards et envoie chaque commande au shard possédant sa clé.",
-                "Authentifiez-vous par mot de passe ou renseignez Utilisateur pour un utilisateur ACL Redis 6. Sur Amazon ElastiCache, choisissez un mode <cloudAuth>AWS IAM</cloudAuth> : un jeton court devient le mot de passe ; IAM ElastiCache exige TLS.",
-                "Les nouvelles connexions démarrent sans TLS. Upstash, Redis Cloud et services similaires l’exigent ; coller une URL <code>rediss://</code> l’active. Sans repli en clair, Préféré agit comme Requis. Valkey se connecte comme Redis.",
-                "La barre latérale liste les bases numérotées depuis <code>db0</code> ; cliquer l’une la parcourt sur place."
+                "Authentifiez-vous par mot de passe ou renseignez Utilisateur pour un utilisateur ACL Redis 6. Sur Amazon ElastiCache, choisissez un mode <cloudAuth>AWS IAM</cloudAuth> : un jeton court devient le mot de passe ; IAM ElastiCache exige TLS.",
+                "Les nouvelles connexions démarrent sans TLS. Upstash, Redis Cloud et services similaires l’exigent ; coller une URL <code>rediss://</code> l’active. Sans repli en clair, Preferred agit comme Required. Valkey se connecte comme Redis.",
+                "La barre latérale liste les bases numérotées depuis <code>db0</code> ; cliquer l’une la parcourt sur place."
             ]
         },
         {
             "id": "work",
             "title": "Clés et commandes",
             "paragraphs": [
-                "Les noms de clés sont divisés en dossiers à chaque deux-points ou séparateur défini dans Options. Chaque clé est une ligne avec Clé, Type, TTL, Longueur et Valeur. Une chaîne s’affiche entière ; hash, liste, ensemble, ensemble trié ou stream montre ses premières entrées et Longueur leur nombre. Une valeur non UTF-8, comme gzip, s’ouvre dans l’éditeur hexadécimal.",
+                "Les noms de clés sont divisés en dossiers à chaque deux-points ou séparateur défini dans Options. Chaque clé est une ligne avec Key, Type, TTL, Length et Value. Une chaîne s’affiche entière ; hash, liste, ensemble, ensemble trié ou stream montre ses premières entrées et Length leur nombre. Une valeur non UTF-8, comme gzip, s’ouvre dans l’éditeur hexadécimal.",
                 "<editing>Dans la grille</editing>, changer un nom lance <code>RENAME</code>, un TTL <code>EXPIRE</code> ou <code>PERSIST</code>, une chaîne <code>SET</code>. Ajouter une ligne écrit le type choisi avec <code>HSET</code>, <code>RPUSH</code>, <code>SADD</code>, <code>ZADD</code> ou <code>SET</code>. Les filtres recherchent les noms par motifs glob Redis et le type via <code>SCAN MATCH</code> et <code>SCAN TYPE</code> sur le serveur.",
-                "L’éditeur prend une commande par instruction, avec guillemets façon redis-cli, et envoie les commandes inconnues telles quelles. <code>DB 3 GET key</code> lance une commande dans une autre base sans changer la session ; dans <code>MULTI</code>, chacune répond <code>QUEUED</code> jusqu’à ce que <code>EXEC</code> retourne toutes les réponses dans l’ordre.",
-                "Le <safeMode>Mode sécurisé</safeMode> compte toute commande Redis, même <code>GET</code>, comme écriture ; Alerte et Mode sécurisé confirment chacune, Lecture seule bloque toutes. <code>FLUSHDB</code> et <code>FLUSHALL</code> demandent confirmation même en Silencieux."
+                "L’éditeur prend une commande par instruction, avec guillemets façon redis-cli, et envoie les commandes inconnues telles quelles. <code>DB 3 GET key</code> lance une commande dans une autre base sans changer la session ; dans <code>MULTI</code>, chacune répond <code>QUEUED</code> jusqu’à ce que <code>EXEC</code> retourne toutes les réponses dans l’ordre.",
+                "<safeMode>Safe Mode</safeMode> compte toute commande Redis, même <code>GET</code>, comme écriture ; les niveaux Alert et Safe Mode confirment chacune, Read-Only bloque toutes. <code>FLUSHDB</code> et <code>FLUSHALL</code> demandent confirmation même au niveau Silent."
             ]
         },
         {
             "id": "move-data",
             "title": "Transférez des données",
             "paragraphs": [
-                "<export>Exportez</export> clés ou résultats de commandes en {exportFormats}. L’import Redis n’est pas disponible ; chargez par commandes dans l’éditeur."
+                "<export>Exportez</export> clés ou résultats de commandes en {exportFormats}. L’import Redis n’est pas disponible ; chargez par commandes dans l’éditeur."
             ]
         },
         {
@@ -61,7 +61,7 @@
         "items": [
             {
                 "product": "redis-insight",
-                "text": "Redis Insight est l’outil officiel. Outre navigateur de clés et Workbench de commandes, il offre espace Pub/Sub, profileur de commandes, inspection des logs lents et analyse mémoire. Choisissez-le pour surveiller et régler Redis ; TablePro convient si Redis accompagne vos bases SQL quotidiennes.",
+                "text": "Redis Insight est l’outil officiel. Outre navigateur de clés et Workbench de commandes, il offre espace Pub/Sub, profileur de commandes, inspection des logs lents et analyse mémoire. Choisissez-le pour surveiller et régler Redis ; TablePro convient si Redis accompagne vos bases SQL quotidiennes.",
                 "notes": [
                     "redis-insight-copilot"
                 ]
@@ -74,18 +74,18 @@
     "faq": [
         {
             "id": "acl-scan",
-            "question": "Pourquoi l’arbre de clés est-il vide pour mon utilisateur ACL ?",
+            "question": "Pourquoi l’arbre de clés est-il vide pour mon utilisateur ACL ?",
             "answer": "L’arbre lit les noms par <code>SCAN</code> et types par <code>TYPE</code>. Accordez les deux, par exemple <code>ACL SETUSER app +scan +type</code>, puis clic droit sur <ui>Clés</ui> (Keys) et <ui>Actualiser</ui> (Refresh)."
         },
         {
             "id": "select",
-            "question": "Pourquoi SELECT ne change-t-il pas la barre latérale ?",
-            "answer": "<code>SELECT</code> change seulement la session d’éditeur ; les commandes suivantes utilisent cette base, barre et arbre gardent votre sélection. Cliquez une base pour changer les deux, ou préfixez une commande par <code>DB</code> et le numéro."
+            "question": "Pourquoi SELECT ne change-t-il pas la barre latérale ?",
+            "answer": "<code>SELECT</code> change seulement la session d’éditeur ; les commandes suivantes utilisent cette base, barre et arbre gardent votre sélection. Cliquez une base pour changer les deux, ou préfixez une commande par <code>DB</code> et le numéro."
         },
         {
             "id": "managed",
-            "question": "Pourquoi un Redis géré liste-t-il des bases inexistantes ?",
-            "answer": "Upstash, Redis Cloud et ElastiCache refusent <code>CONFIG</code> ; TablePro ne peut lire leur nombre de bases et liste une plage par défaut. Avec une seule base, ouvrir une autre que <code>db0</code> montre l’erreur serveur."
+            "question": "Pourquoi un Redis géré liste-t-il des bases inexistantes ?",
+            "answer": "Upstash, Redis Cloud et ElastiCache refusent <code>CONFIG</code> ; TablePro ne peut lire leur nombre de bases et liste une plage par défaut. Avec une seule base, ouvrir une autre que <code>db0</code> montre l’erreur serveur."
         }
     ],
     "related": [

@@ -28,7 +28,7 @@ export default {
                 "Verbindungen zu allen unterstützten Datenbanksystemen",
                 "SQL-Editor und Datentabelle",
                 "KI-Assistent und MCP-Server",
-                "Sicherer Modus",
+                "Safe Mode",
                 "Die iPhone- und iPad-App"
             ]
         },
@@ -107,7 +107,7 @@ export default {
         },
         "macsTeam": "Einer pro Arbeitsplatz",
         "everythingElse": "Alles andere in der App",
-        "everythingElseDetail": "Alle unterstützten Datenbanksysteme, SQL-Editor, KI-Assistent, MCP-Server und sicherer Modus",
+        "everythingElseDetail": "Alle unterstützten Datenbanksysteme, SQL-Editor, KI-Assistent, MCP-Server und Safe Mode",
         "iphoneNote": "Die iPhone- und iPad-App hat keine Bezahlfunktionen. iCloud Sync ist dort kostenlos; für die Synchronisierung mit einem Mac benötigt der Mac Starter oder Team."
     },
     "discount": {

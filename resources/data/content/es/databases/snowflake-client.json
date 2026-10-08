@@ -38,15 +38,15 @@
             "title": "Almacenes, roles y consultas",
             "paragraphs": [
                 "<ui>Database > Session Context</ui> cambia de almacén o rol con <code>USE WAREHOUSE</code> y <code>USE ROLE</code>, sin reconectar. Una conexión TablePro es una sesión Snowflake, mantenida abierta en inactividad; una pestaña asociada a otra base ejecuta <code>USE DATABASE</code> antes de sus sentencias en esa misma sesión.",
-                "La barra lateral agrupa objetos por base y esquema. Las listas proceden de comandos <code>SHOW</code>, que no requieren almacén; los detalles de columnas vienen de <code>INFORMATION_SCHEMA</code>, que sí lo requiere. <explain>Explicar</explain> devuelve el plan Snowflake como texto sin procesar.",
+                "La barra lateral agrupa objetos por base y esquema. Las listas proceden de comandos <code>SHOW</code>, que no requieren almacén; los detalles de columnas vienen de <code>INFORMATION_SCHEMA</code>, que sí lo requiere. <explain>Explain</explain> devuelve el plan Snowflake como texto sin procesar.",
                 "Las <editing>ediciones de cuadrícula</editing> enlazan valores en el servidor; las celdas VARIANT, OBJECT y ARRAY se envían mediante <code>PARSE_JSON</code>. Se identifica la fila por la clave primaria declarada o todas las columnas si no existe. Snowflake nunca impone restricciones de clave, por lo que una clave duplicada hace que editar o borrar alcance todas las filas coincidentes: comprueba duplicados antes de editar."
             ]
         },
         {
             "id": "schema",
-            "title": "Estructura",
+            "title": "Structure",
             "paragraphs": [
-                "DDL procede de <code>GET_DDL</code>. La <structure>pestaña Estructura</structure> añade, renombra y elimina columnas, establece NOT NULL, comentarios y clave primaria, amplía VARCHAR y cambia la precisión de NUMBER manteniendo su escala.",
+                "DDL procede de <code>GET_DDL</code>. La <structure>pestaña Structure</structure> añade, renombra y elimina columnas, establece NOT NULL, comentarios y clave primaria, amplía VARCHAR y cambia la precisión de NUMBER manteniendo su escala.",
                 "Los cambios que Snowflake rechazaría se bloquean antes de ejecutar: reducir VARCHAR, cualquier otro cambio de tipo y cambiar un valor predeterminado. Eliminar un valor predeterminado sí se ejecuta."
             ]
         },
@@ -55,7 +55,7 @@
             "title": "Transfiere datos",
             "paragraphs": [
                 "<importData>Importa</importData> archivos {importFormats} por la conexión y exporta tablas o resultados al Mac como {exportFormats}.",
-                "Para exportar una tabla sin pasar por tu Mac, elige <ui>File > Server-Side Export…</ui> e indica un stage, con o sin <code>@</code>. <backup>Exportación en el servidor</backup> ejecuta <code>COPY INTO</code> con tus privilegios y escribe CSV comprimido con gzip, Parquet o JSON; el cuadro espera al final y nada llega al Mac."
+                "Para exportar una tabla sin pasar por tu Mac, elige <ui>File > Server-Side Export…</ui> e indica un stage, con o sin <code>@</code>. <backup>Server-Side Export</backup> ejecuta <code>COPY INTO</code> con tus privilegios y escribe CSV comprimido con gzip, Parquet o JSON; el cuadro espera al final y nada llega al Mac."
             ]
         }
     ],
@@ -65,7 +65,7 @@
         {
             "id": "no-columns",
             "question": "¿Por qué la barra lateral muestra tablas sin columnas?",
-            "answer": "Los detalles vienen de <code>INFORMATION_SCHEMA</code>, que necesita un almacén activo. Configura <ui>Warehouse</ui> en la conexión o Contexto de sesión. Si no aparece ningún objeto de una base, el rol necesita <code>USAGE</code> concedido."
+            "answer": "Los detalles vienen de <code>INFORMATION_SCHEMA</code>, que necesita un almacén activo. Configura <ui>Warehouse</ui> en la conexión o en Session Context. Si no aparece ningún objeto de una base, el rol necesita <code>USAGE</code> concedido."
         },
         {
             "id": "timestamp-ltz",

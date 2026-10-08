@@ -56,19 +56,19 @@
                 "id": "edit",
                 "asset": "mac-edit-preview-sql",
                 "title": "Edit data dan skema, lalu lihat SQL sebelum menyimpan",
-                "body": "Edit sel, baris baru, dan penghapusan menunggu hingga Anda menyimpan; Pratinjau SQL menampilkan pernyataannya terlebih dahulu. Pada mesin yang strukturnya dapat diedit TablePro, tab Struktur menyiapkan perubahan kolom, indeks, foreign key, dan CHECK dengan cara yang sama. Tersedia filter, filter tersimpan, aturan sorotan, pemilih foreign key, dan pembatalan per tab."
+                "body": "Edit sel, baris baru, dan penghapusan menunggu hingga Anda menyimpan; Preview SQL menampilkan pernyataannya terlebih dahulu. Pada mesin yang strukturnya dapat diedit TablePro, tab Structure menyiapkan perubahan kolom, indeks, foreign key, dan CHECK dengan cara yang sama. Tersedia filter, filter tersimpan, aturan sorotan, pemilih foreign key, dan pembatalan per tab."
             },
             {
                 "id": "schema",
                 "asset": "mac-compare-sync-structure",
                 "title": "Bandingkan, sinkronkan, dan salin antar-database",
-                "body": "Bandingkan dan Sinkronkan membandingkan struktur atau data dua database dan menghasilkan skrip untuk menyelaraskan salah satunya. Perubahan berisiko, seperti menghapus kolom, ditahan untuk Anda tinjau. Salin Ke menyalin tabel atau seluruh database ke koneksi lain, bahkan pada mesin berbeda, dan mencantumkan semua tipe yang harus dipetakan secara mendekati. Diagram ER hanya-baca serta Pengguna dan Peran untuk {usersRolesEngines} juga tersedia."
+                "body": "Compare & Sync membandingkan struktur atau data dua database dan menghasilkan skrip untuk menyelaraskan salah satunya. Perubahan berisiko, seperti menghapus kolom, ditahan untuk Anda tinjau. Copy To menyalin tabel atau seluruh database ke koneksi lain, bahkan pada mesin berbeda, dan mencantumkan semua tipe yang harus dipetakan secara mendekati. Diagram ER hanya-baca serta Users & Roles untuk {usersRolesEngines} juga tersedia."
             },
             {
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "Impor, ekspor, dan buka file data",
-                "body": "Impor file {importFormats} pada mesin yang mendukung impor dan ekspor ke {exportFormats}. Jendela File Data membuka file CSV, JSON, dan XLSX tanpa database, sehingga Anda dapat mencari dan memfilter, merapikan CSV dan JSON, lalu mengimpor hasilnya ke tabel. Backup Dump dan Restore Dump menjalankan alat baris perintah masing-masing mesin ({dumpTools}). TablePro tidak menyertakannya, jadi instal alat yang belum ada di Mac Anda."
+                "body": "Impor file {importFormats} pada mesin yang mendukung impor dan ekspor ke {exportFormats}. Jendela Data Files membuka file CSV, JSON, dan XLSX tanpa database, sehingga Anda dapat mencari dan memfilter, merapikan CSV dan JSON, lalu mengimpor hasilnya ke tabel. Backup Dump dan Restore Dump menjalankan alat baris perintah masing-masing mesin ({dumpTools}). TablePro tidak menyertakannya, jadi instal alat yang belum ada di Mac Anda."
             },
             {
                 "id": "connect",
@@ -81,18 +81,18 @@
     "safety": {
         "title": "Pengamanan untuk database produksi",
         "body": [
-            "Di Mac, beri tag dan warna koneksi berdasarkan lingkungan, lalu atur level Mode Aman untuk masing-masing koneksi, dari Senyap hingga Hanya-Baca, dengan Touch ID atau kata sandi pada level yang lebih ketat. DROP, TRUNCATE, dan DELETE tanpa WHERE berhenti dan meminta konfirmasi di setiap level. Di iPhone dan iPad, Konfirmasi Penulisan meminta persetujuan sebelum setiap penulisan dan Hanya-Baca menolaknya.",
-            "Selama koneksi terbuka dalam mode Agen, koneksi berjalan pada level Peringatan atau lebih ketat. Pemulihan Data dapat mengembalikan nilai yang diganti oleh penyimpanan terbaru. Fitur ini bukan cadangan."
+            "Di Mac, beri tag dan warna koneksi berdasarkan lingkungan, lalu atur level Safe Mode untuk masing-masing koneksi, dari Silent hingga Read-Only, dengan Touch ID atau kata sandi pada level yang lebih ketat. DROP, TRUNCATE, dan DELETE tanpa WHERE berhenti dan meminta konfirmasi di setiap level. Di iPhone dan iPad, Confirm Writes meminta persetujuan sebelum setiap penulisan dan Read-Only menolaknya.",
+            "Selama koneksi terbuka dalam Agent mode, koneksi berjalan pada level Alert atau lebih ketat. Data Rewind dapat mengembalikan nilai yang diganti oleh penyimpanan terbaru. Fitur ini bukan cadangan."
         ],
-        "levels": "Level Mode Aman",
-        "link": "Mode Aman"
+        "levels": "Level Safe Mode",
+        "link": "Safe Mode"
     },
     "ai": {
         "title": "Asisten AI dan server MCP",
         "body": [
             "Di Mac, asisten AI opsional menjelaskan, mengoptimalkan, dan memperbaiki kueri serta menjawab pertanyaan tentang skema Anda. Anda memilih penyedia: kunci API, akun yang sudah Anda miliki, atau model yang berjalan di Mac Anda. TablePro tidak menjalankan layanan AI sendiri, dan tidak ada yang dikirim hingga Anda menambahkan penyedia.",
-            "Chat dimulai dalam mode Tanya, yang hanya membaca. Dalam mode Edit dan Agen, asisten dapat menjalankan pernyataan. Dari Peringatan hingga Mode Aman (Penuh), setiap penulisan menunggu persetujuan Anda; Hanya-Baca menolaknya, dan DROP atau TRUNCATE selalu memerlukan klik Anda.",
-            "Server MCP bawaan memungkinkan klien seperti {mcpClients} memakai koneksi tersimpan tanpa melihat kata sandi. Server hanya mendengarkan di {mcpHost}, dan setiap koneksi menentukan tindakan yang diizinkan bagi aplikasi luar: Diblokir, Hanya-Baca (bawaan), atau Baca dan Tulis.",
+            "Chat dimulai dalam mode Ask, yang hanya membaca. Dalam mode Edit dan Agent, asisten dapat menjalankan pernyataan. Dari Alert hingga Safe Mode (Full), setiap penulisan menunggu persetujuan Anda; Read-Only menolaknya, dan DROP atau TRUNCATE selalu memerlukan klik Anda.",
+            "Server MCP bawaan memungkinkan klien seperti {mcpClients} memakai koneksi tersimpan tanpa melihat kata sandi. Server hanya mendengarkan di {mcpHost}, dan setiap koneksi menentukan tindakan yang diizinkan bagi aplikasi luar: Blocked, Read Only (bawaan), atau Read & Write.",
             "Semua ini gratis."
         ],
         "providers": "Penyedia yang dapat Anda tambahkan: {providers}."
@@ -100,16 +100,16 @@
     "platforms": {
         "title": "Aplikasi native untuk {deviceList}",
         "cardTitle": "TablePro untuk {devices}",
-        "mac": "Di Mac, TablePro adalah aplikasi Swift dengan build terpisah untuk {architectures}. Aplikasi menyimpan kata sandi di Rantai Kunci, meminta Touch ID pada level Mode Aman yang lebih ketat, dan memperbarui dirinya sendiri.",
+        "mac": "Di Mac, TablePro adalah aplikasi Swift dengan build terpisah untuk {architectures}. Aplikasi menyimpan kata sandi di Rantai Kunci, meminta Touch ID pada level Safe Mode yang lebih ketat, dan memperbarui dirinya sendiri.",
         "ios": "Di {devices}, TablePro adalah aplikasi terpisah dengan cakupan sendiri: terhubung lewat SSH atau TLS, menelusuri tabel, menjalankan kueri, dan mengedit baris, dengan kunci Face ID opsional, Pintasan, widget Layar Utama, serta Aktivitas Langsung untuk kueri yang sedang berjalan.",
-        "sync": "Sinkronisasi iCloud menyelaraskan koneksi, grup, dan tag antara Mac dan iPhone atau iPad. Fitur ini nonaktif secara bawaan dan di Mac memerlukan paket {tier}. Saat Sinkronisasi iCloud aktif, Handoff melanjutkan koneksi yang terbuka di perangkat lain."
+        "sync": "iCloud Sync menyelaraskan koneksi, grup, dan tag antara Mac dan iPhone atau iPad. Fitur ini nonaktif secara bawaan dan di Mac memerlukan paket {tier}. Saat iCloud Sync aktif, Handoff melanjutkan koneksi yang terbuka di perangkat lain."
     },
     "switch": {
         "title": "Beralih dari aplikasi lain",
         "lead": "Impor dari aplikasi lain dan Open Project Folder hanya tersedia dalam {macApp}.",
         "import": "Impor koneksi dari {apps}, termasuk kata sandi tersimpan.",
         "importWithoutPasswords": "Koneksi dari {apps} diimpor tanpa kata sandinya.",
-        "project": "Buka Folder Proyek membaca <code>.env</code>, <code>docker-compose.yml</code>, skema Prisma, dan file konfigurasi lain dalam proyek, lalu mengisi koneksi baru berdasarkan temuan tersebut.",
+        "project": "Open Project Folder membaca <code>.env</code>, <code>docker-compose.yml</code>, skema Prisma, dan file konfigurasi lain dalam proyek, lalu mengisi koneksi baru berdasarkan temuan tersebut.",
         "link": "Bandingkan TablePro dengan klien lain"
     },
     "pricing": {
