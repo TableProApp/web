@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Preview SQL과 Safe Mode로 테이블 데이터 편집",
-        "description": "행을 필터링하고 편집하며 저장 전에 SQL을 검토하고 연결별 Safe Mode를 설정합니다. Data Rewind는 저장으로 바뀐 값을 복원합니다."
+        "description": "행을 필터링하고 편집하며 저장 전에 SQL을 검토하고 연결별 Safe Mode 수준을 설정합니다. Data Rewind는 저장으로 바뀐 값을 복원합니다."
     },
     "og": {
         "kicker": "데이터 편집",
@@ -56,7 +56,7 @@
             "id": "safe-mode",
             "title": "운영 연결을 위한 Safe Mode",
             "paragraphs": [
-                "각 연결에는 {macSafeModeLevels} Safe Mode 수준이 있습니다. 새 연결은 명령문을 그대로 실행하는 {macSafeModeDefault}로 시작합니다. Alert는 쓰기 전에 확인하고 Safe Mode 수준은 Touch ID나 Mac 비밀번호도 요구합니다. Full 수준은 읽기 전에도 확인하며 Read-Only는 쓰기를 거부하고 편집을 끕니다. Safe Mode는 무료입니다.",
+                "각 연결에는 Safe Mode 수준이 있으며 {macSafeModeLevels} 중에서 선택합니다. 새 연결은 명령문을 그대로 실행하는 {macSafeModeDefault}로 시작합니다. Alert는 쓰기 전에 확인하고 이름에 Safe Mode가 들어간 수준은 Touch ID나 Mac 비밀번호도 요구합니다. 이름에 Full이 붙은 수준은 읽기 전에도 확인하며 Read-Only는 쓰기를 거부하고 편집을 끕니다. Safe Mode는 무료입니다.",
                 "모든 수준에서 DROP, TRUNCATE 및 WHERE 없는 DELETE는 멈추고 먼저 확인합니다. 읽기만 가능한 엔진, 최소 Alert로 높이는 Agent mode, 조직이 기기 관리(MDM)로 설정한 최소 수준 등 일부 조건은 적용되는 동안 연결 수준을 높입니다."
             ],
             "asset": "mac-safe-mode-touchid",
@@ -105,7 +105,7 @@
             "title": "iPhone과 iPad에서",
             "paragraphs": [
                 "iPhone과 iPad 앱에서 행은 카드로 표시되며 정렬, 검색 및 AND·OR 필터를 사용할 수 있습니다. 외래 키를 탭하면 참조 행을 미리 봅니다. 행 편집, NULL 값 설정, 행 삽입 및 스와이프 삭제가 가능하며 편집과 삭제에는 기본 키가 필요합니다. 새 행에서 각 필드는 처음에 DEFAULT이며 NULL이나 빈 문자열로 바꿀 수 있습니다.",
-                "Safe Mode는 자체 수준인 {iosSafeModeLevels}을 사용하며 새 연결의 기본값은 {iosSafeModeDefault}입니다. 편집 내용 임시 저장, Preview SQL, 강조 규칙 및 Data Rewind는 Mac 앱에서만 사용할 수 있습니다."
+                "이 앱의 Safe Mode에는 자체 수준({iosSafeModeLevels})이 있으며 새 연결의 기본값은 {iosSafeModeDefault}입니다. 편집 보류, Preview SQL, 강조 규칙 및 Data Rewind는 Mac 앱에서만 사용할 수 있습니다."
             ],
             "links": [
                 {
@@ -139,7 +139,7 @@
             "iosNote": "행 편집기; 기본 키 필요"
         },
         {
-            "label": "편집 내용 임시 저장, Preview SQL 및 실행 취소",
+            "label": "편집 보류, Preview SQL 및 실행 취소",
             "ios": "no"
         },
         {

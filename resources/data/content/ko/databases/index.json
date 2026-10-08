@@ -103,7 +103,7 @@
             "title": "한눈에 보기",
             "queryLanguage": "쿼리 언어",
             "driver": "드라이버",
-            "sharedWith": "{engines}와 공유",
+            "sharedWith": "공유 대상: {engines}",
             "connect": "연결 방식",
             "defaultPort": "기본 포트",
             "minimumVersion": "최소 버전",
@@ -134,7 +134,7 @@
         "availability": {
             "devices": "{devices}에서 사용 가능",
             "bundled": "Mac 앱에 드라이버 포함",
-            "registry": "처음 {name}을 선택하면 드라이버 다운로드",
+            "registry": "{name} 첫 선택 시 드라이버 다운로드",
             "free": "무료로 사용 가능, <pricing>유료 플랜</pricing>은 선택 사항"
         },
         "release": "{version}의 새 기능",
@@ -147,7 +147,7 @@
             "related": "관련 항목"
         },
         "iphone": {
-            "picker": "iPhone과 iPad 앱에서 연결을 만들 때 {name}을 선택할 수 있으며 앱이 직접 연결합니다.",
+            "picker": "iPhone과 iPad 앱에서 {name} 연결을 만들 수 있으며 앱이 직접 연결합니다.",
             "synced": "iPhone과 iPad 앱은 iCloud Sync나 내보낸 연결 파일로 Mac에서 가져온 {name} 연결만 엽니다. 앱에서 직접 만들 수는 없습니다.",
             "none": "iPhone과 iPad 앱에는 {name} 드라이버가 없습니다. Mac에서 동기화한 {name} 연결은 목록에 표시되지만 열리지 않습니다.",
             "link": "iPhone 및 iPad용 TablePro"
@@ -158,7 +158,7 @@
         "otherTools": {
             "title": "다른 도구",
             "released": "버전 {version}, {date} 출시",
-            "discontinued": "{name}은 개발이 중단되었습니다. 마지막 버전 {version}은 {date}에 출시되었습니다.",
+            "discontinued": "{name} 개발은 중단되었습니다. 마지막 버전({version})은 {date}에 출시되었습니다.",
             "free": "무료",
             "openSource": "오픈 소스({licence})",
             "closedSource": "비공개 소스",

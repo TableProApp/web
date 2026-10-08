@@ -46,7 +46,7 @@
             "title": "쿼리 및 편집",
             "paragraphs": [
                 "SQL 편집기는 스키마에서 테이블·열 이름을 완성합니다. <explain>EXPLAIN과 EXPLAIN ANALYZE</explain>는 FORMAT JSON으로 실행해 계획 다이어그램이나 트리로 보여 주며 EXPLAIN Compare는 변경 후 계획이 느려졌는지를 표시합니다.",
-                "jsonb는 서식 정리되고 uuid, inet, timestamptz, interval과 bytea는 고유 형식으로 표시됩니다. 배열 열은 목록 편집기에서 개별 요소를 추가·제거·재정렬하거나 null로 설정하며 enum 열은 해당 라벨을 제공합니다.",
+                "jsonb는 서식을 갖춰 표시되고 uuid, inet, timestamptz, interval과 bytea는 고유 형식으로 표시됩니다. 배열 열은 목록 편집기에서 개별 요소를 추가·제거·재정렬하거나 null로 설정하며 enum 열은 해당 라벨을 제공합니다.",
                 "PostGIS의 geometry·geography 값은 SRID가 포함된 EWKT로 읽히며 지오메트리 결과는 <results>지도 보기</results>로 열립니다. 지도 타일은 Apple이 제공하고 행 데이터는 Mac에 남습니다.",
                 "행 편집은 저장까지 대기하고 <editing>Preview SQL</editing>이 모든 명령문을 먼저 보여 주며 바인딩 매개변수로 저장합니다. 구체화된 뷰의 행은 읽기 전용입니다. 메뉴에서 새로 고치며 PostgreSQL이 요구하는 고유 인덱스가 있으면 동시 새로 고침이 가능합니다."
             ],
@@ -69,7 +69,7 @@
                 "<administer>Users & Roles</administer>는 권한 부여·취소 전에 각 권한의 출처를 보여 주고 모든 명령문을 SQL로 임시 저장합니다.",
                 "Server Dashboard는 세션, 연결, 캐시 적중률, 데이터베이스 크기와 느린 쿼리를 보여 줍니다. <code>pg_cancel_backend</code>로 쿼리를 취소하거나 <code>pg_terminate_backend</code>로 세션을 종료합니다. 슈퍼유저도 <code>pg_monitor</code> 멤버도 아닌 역할은 다른 세션은 보지만 쿼리는 보지 못합니다.",
                 "테이블 유지 관리는 FULL, ANALYZE, VERBOSE 옵션의 VACUUM과 ANALYZE, REINDEX, CLUSTER를 실행하며 명령문을 먼저 보여 줍니다.",
-                "<backup>Backup Dump와 Restore Dump</backup>는 연결의 SSH 터널로 직접 설치한 {dumpTool}과 pg_restore를 실행합니다. Homebrew로 설치하세요. PostgreSQL 9.1 서버를 백업하려면 pg_dump 14 이하를 사용합니다."
+                "<backup>Backup Dump와 Restore Dump</backup>는 연결의 SSH 터널로 직접 설치한 {dumpTool}와 pg_restore를 실행합니다. Homebrew로 설치하세요. PostgreSQL 9.1 서버를 백업하려면 pg_dump 14 이하를 사용합니다."
             ],
             "asset": "mac-server-dashboard-postgresql"
         },
@@ -96,7 +96,7 @@
             "title": "CockroachDB",
             "paragraphs": [
                 "CockroachDB는 앱에 포함된 PostgreSQL 드라이버를 사용하므로 추가 설치가 필요 없습니다. 새 클러스터는 <code>defaultdb</code> 데이터베이스로 시작합니다.",
-                "CockroachDB Cloud에서는 Cloud 콘솔에서 호스트, 사용자, 비밀번호와 데이터베이스를 복사하고 클러스터 라우팅 값 <code>--cluster=your-cluster</code>를 Connection Options에 넣고 SSL Mode를 Verify Identity로 설정합니다. 로컬 insecure 노드는 SSL Mode를 Disabled로 설정합니다.",
+                "CockroachDB Cloud에서는 Cloud 콘솔에서 호스트, 사용자, 비밀번호와 데이터베이스를 복사하고 클러스터 라우팅 값 <code>--cluster=your-cluster</code>를 Connection Options에 넣고 SSL Mode를 Verify Identity로 설정합니다. 보안 설정 없이(insecure) 실행한 로컬 노드는 SSL Mode를 Disabled로 설정합니다.",
                 "테이블·뷰 DDL은 CockroachDB의 SHOW CREATE에서 읽습니다. EXPLAIN·EXPLAIN ANALYZE 텍스트 계획은 계획 트리로 파싱되며 Server Dashboard는 세션과 활성 쿼리를 나열합니다.",
                 "외래 키 검사를 지연할 수 없습니다."
             ]
@@ -105,7 +105,7 @@
             "engine": "pglite",
             "title": "PGlite",
             "paragraphs": [
-                "PGlite는 WebAssembly로 컴파일된 PostgreSQL이며 소켓 서버 <code>npx @electric-sql/pglite-socket</code>를 시작하기 전에는 접근할 수 없습니다. <code>--db=./my-pgdata</code>로 데이터를 디스크에 유지합니다.",
+                "PGlite는 WebAssembly로 컴파일된 PostgreSQL이며 소켓 서버 <code>npx @electric-sql/pglite-socket</code>을 시작하기 전에는 접근할 수 없습니다. <code>--db=./my-pgdata</code>로 데이터를 디스크에 유지합니다.",
                 "localhost 대신 <code>127.0.0.1</code>로 연결합니다. 소켓 서버는 비밀번호를 검사하지 않고 TLS도 없어 양식에서 둘 다 요청하지 않습니다.",
                 "PGlite의 카탈로그는 완전하므로 구조 편집, Users & Roles와 EXPLAIN 다이어그램은 서버와 동일하게 작동합니다. <code>postgres</code> 데이터베이스 하나를 제공합니다."
             ]

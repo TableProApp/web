@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "Mac 앱을 설치하려면 Mac에서 이 페이지를 여세요.",
     "whichMac": {
         "summary": "내 Mac은 어떤 모델인가요?",
-        "body": "Apple 메뉴에서 이 Mac에 관하여를 선택하세요. Apple silicon Mac에는 Apple M2와 같은 칩 항목이 표시됩니다. Intel Mac에는 Intel 이름이 표시된 프로세서 항목이 있습니다."
+        "body": "Apple 메뉴에서 '이 Mac에 관하여'를 선택하세요. Apple silicon Mac에는 Apple M2와 같은 칩 항목이 표시됩니다. Intel Mac에는 Intel 이름이 표시된 프로세서 항목이 있습니다."
     },
     "checksum": {
         "summary": "다운로드 파일 확인",
@@ -34,8 +34,8 @@ export default {
     },
     "afterClick": {
         "title": "이제 설치하세요",
-        "body": "다운로드 폴더에서 {file}을 열고 TablePro를 응용 프로그램 폴더로 드래그하세요.",
-        "retry": "다운로드가 시작되지 않았다면 <link>{file}을 다시 다운로드</link>하세요.",
+        "body": "다운로드 폴더에서 {file} 파일을 열고 TablePro를 응용 프로그램 폴더로 드래그하세요.",
+        "retry": "다운로드가 시작되지 않았다면 <link>{file} 파일을 다시 다운로드</link>하세요.",
         "steps": "설치 및 첫 실행"
     },
     "homebrew": {
