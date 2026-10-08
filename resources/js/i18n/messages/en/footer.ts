@@ -45,6 +45,7 @@ export default {
         legal: {
             title: 'Legal',
             privacy: 'Privacy',
+            security: 'Security',
             terms: 'Terms',
             refund: 'Refund policy',
             cookies: 'Cookie settings',

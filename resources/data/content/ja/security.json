@@ -1,0 +1,265 @@
+{
+    "seo": {
+        "title": "セキュリティと脆弱性の報告",
+        "description": "TablePro が認証情報をどこに保存し、アプリが何を送信し、どう署名・更新されるか。Safe Mode が守る範囲と、脆弱性の報告方法も説明します。"
+    },
+    "og": {
+        "kicker": "セキュリティ",
+        "title": "TablePro のセキュリティ"
+    },
+    "header": {
+        "title": "セキュリティ",
+        "lead": "TablePro が認証情報をどこに保存し、アプリが何を送信し、どう署名・更新されるか、そして各保護がどこまで及ぶかをまとめています。"
+    },
+    "breadcrumb": "セキュリティ",
+    "jump": "このページの内容",
+    "limits": "知っておきたい制約",
+    "more": "詳しい情報",
+    "sections": [
+        {
+            "id": "credentials",
+            "title": "認証情報の保存場所",
+            "items": [
+                {
+                    "id": "mac-keychain",
+                    "title": "Mac",
+                    "text": "パスワード、鍵のパスフレーズ、AI プロバイダーの API キー、ライセンスキーは macOS キーチェーンに保存します。ディスク上の接続一覧にパスワードは含まれず、SSH 鍵はディスク上のファイルのままです。"
+                },
+                {
+                    "id": "ios-keychain",
+                    "title": "iPhone・iPad",
+                    "text": "パスワードと貼り付けた SSH 鍵はキーチェーンに保存します。"
+                },
+                {
+                    "id": "icloud",
+                    "title": "iCloud Sync",
+                    "text": "iCloud Sync はオンにするまで無効です。レコードはお客様自身の iCloud アカウント内の非公開データベースに保存され、TablePro は読めず、パスワードも含みません。パスワードは Mac の <ui>Passwords</ui>、または iPhone・iPad の <ui>Sync Passwords</ui> もオンにした場合のみ同期し、その場合は iCloud キーチェーンを通ります。"
+                },
+                {
+                    "id": "not-sent",
+                    "title": "TablePro が受け取るもの",
+                    "text": "実行したクエリ、その結果、パスワードは TablePro に送信しません。例外は、自分で公開を選んだ Team Library です。接続設定と保存したクエリを受け取りますが、パスワードは含みません。"
+                }
+            ],
+            "limits": [
+                "Mac では、パスワード同期で AI プロバイダーの API キーとライセンスキーも同期します。",
+                "1Password やシェルコマンドなどのパスワードソースは、接続のたびに Mac 上でプログラムを実行します。"
+            ],
+            "links": [
+                {
+                    "label": "認証情報とパスワードソース",
+                    "href": "/features/connections#credentials"
+                },
+                {
+                    "label": "iCloud Sync で同期するもの",
+                    "href": "/features/sync-and-teams#icloud-sync"
+                }
+            ]
+        },
+        {
+            "id": "network",
+            "title": "デバイスの外に出るもの",
+            "items": [
+                {
+                    "id": "your-servers",
+                    "title": "自分のサーバーとプロバイダーへ",
+                    "text": "クエリと結果はアプリと自分のデータベースサーバーの間でやり取りし、TablePro を経由しません。AI のリクエストは追加したプロバイダーへ直接送ります。"
+                },
+                {
+                    "id": "to-tablepro",
+                    "title": "TablePro へ",
+                    "text": "ライセンスを有効化していない場合、Mac アプリが TablePro に送るのは 1 日 1 回の利用状況レポートだけです。初期設定でオンですが、設定で切り替えられます。iPhone・iPad は Share Usage Data をオンにしない限り、TablePro へ何も送信しません。レポートにホスト名、ユーザー名、パスワード、クエリ、行データは含まれず、どちらのアプリにもクラッシュレポーターやサードパーティの分析ライブラリはありません。"
+                }
+            ],
+            "limits": [
+                "Mac アプリは最初の利用状況レポートを確認なしで送信します。また、サーバーはすべてのレポートとライセンス確認の IP アドレスを保存します。"
+            ],
+            "links": [
+                {
+                    "label": "プライバシーポリシー：Mac アプリが送るもの",
+                    "href": "/privacy#mac-app"
+                },
+                {
+                    "label": "プライバシーポリシー：iPhone・iPad アプリが送るもの",
+                    "href": "/privacy#ios-app"
+                },
+                {
+                    "label": "すべての外部への通信",
+                    "docs": "/security/privacy"
+                }
+            ]
+        },
+        {
+            "id": "distribution",
+            "title": "アプリの配布方法",
+            "items": [
+                {
+                    "id": "signing",
+                    "title": "署名と公証",
+                    "text": "Mac 版のビルドは Developer ID で署名し、Hardened Runtime を使い、Apple の公証を受けています。ディスクイメージは GitHub Releases にあり、それぞれに SHA-256 チェックサムがあります。Homebrew の cask は同じイメージをダウンロードし、SHA-256 を確認します。"
+                },
+                {
+                    "id": "updates",
+                    "title": "アップデート",
+                    "text": "Mac アプリは Sparkle で更新し、インストール前に各アップデートの EdDSA 署名をアプリ内の公開鍵で検証します。この検証はオフにできません。自動アップデートは、設定または構成プロファイルでオフにできます。"
+                },
+                {
+                    "id": "plugins",
+                    "title": "ドライバープラグイン",
+                    "text": "Mac アプリに同梱されていないドライバーは GitHub からダウンロードします。各ドライバーはプラグインレジストリの SHA-256 と一致し、有効なコード署名を持つ必要があります。署名は TablePro 自身のもの、または名前を確認して信頼することに同意した他の開発者の Developer ID です。"
+                },
+                {
+                    "id": "app-store",
+                    "title": "iPhone・iPad",
+                    "text": "iPhone・iPad アプリは App Store で配布し、アップデートも App Store から届きます。ドライバーは内蔵で、プラグインはダウンロードしません。"
+                }
+            ],
+            "limits": [
+                "Mac アプリは macOS の App Sandbox を使いません。ユーザーアカウントが持つファイルとネットワークへのアクセス権で動作します。",
+                "ドライバープラグインは TablePro の一部として動作し、開いたすべての接続の認証情報を読めます。"
+            ],
+            "links": [
+                {
+                    "label": "ダウンロードとアップデート",
+                    "href": "/download#updates"
+                },
+                {
+                    "label": "管理されたアップデート",
+                    "docs": "/security/managed-updates"
+                },
+                {
+                    "label": "プラグイン",
+                    "docs": "/features/plugins"
+                }
+            ]
+        },
+        {
+            "id": "safe-mode",
+            "title": "データベースを操作ミスから守るもの",
+            "items": [
+                {
+                    "id": "levels",
+                    "title": "Safe Mode のレベル",
+                    "text": "各接続には Safe Mode のレベル {macSafeModeLevels} があります。Alert は書き込み前に確認し、Safe Mode 系のレベルは Touch ID または Mac のパスワードも求め、Full 系は読み取り前も確認し、Read-Only は書き込みを拒否します。組織は構成プロファイルで、自組織の Mac に最低レベルを強制できます。iPhone・iPad のレベルは {iosSafeModeLevels} です。"
+                },
+                {
+                    "id": "destructive",
+                    "title": "破壊的な文",
+                    "text": "Mac ではどのレベルでも、DROP、TRUNCATE、WHERE のない DELETE は停止して事前に確認し、文全体を表示します。"
+                }
+            ],
+            "limits": [
+                "Safe Mode は TablePro の中で動作し、操作ミスを防ぎます。サンドボックスや権限管理の仕組みではありません。必ず守るべきルールには、データベース自体の権限を使ってください。",
+                "新規接続は {macSafeModeDefault} で始まり、WHERE のない UPDATE も含め、文をそのまま実行します。",
+                "チャットの Edit と Agent では AI アシスタントが文を実行でき、{macSafeModeDefault} では書き込みを確認なしで実行します。ウィンドウ全体を使う Agent mode は接続を Alert 以上に保ちますが、これは注意喚起であり、ロックではありません。"
+            ],
+            "links": [
+                {
+                    "label": "本番接続を守る Safe Mode",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "チャットのモードと Agent mode",
+                    "href": "/features/ai-mcp#agent-mode"
+                },
+                {
+                    "label": "Safe Mode",
+                    "docs": "/features/safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "MCP サーバー",
+            "items": [
+                {
+                    "id": "local",
+                    "title": "ローカル専用",
+                    "text": "MCP サーバーは Mac アプリだけにあり、有効にするか、設定したクライアントが起動するまでオフです。{mcpHost} で待ち受け、リモートモードはなく、クライアントがパスワードを見ることはありません。"
+                },
+                {
+                    "id": "approval",
+                    "title": "クライアントの承認",
+                    "text": "既定では、すべてのリクエストにスコープ（Read Only、Read & Write、Full Access）付きのトークンが必要です。クライアントが初めて接続にアクセスすると、Mac のダイアログで確認します。"
+                },
+                {
+                    "id": "permissions",
+                    "title": "クライアントに許可する操作",
+                    "text": "外部クライアントに許可する操作は接続ごとに Blocked、Read Only（既定）、Read & Write から選びます。書き込みはその接続の Safe Mode レベルを通り、DROP と TRUNCATE には Full Access トークンと毎回の承認が必要です。すべての呼び出しは Mac に記録します。"
+                }
+            ],
+            "limits": [
+                "{mcpHost} はサーバーが待ち受ける場所を示すだけで、誰が到達できるかではありません。Mac 上のどのプログラムも接続でき、claude.ai や app.cursor.com で開いたページも同様です。どれもトークンが必要なので、認証の必須設定はオンのままにしてください。",
+                "クライアントは読み取った内容を、自身の AI サービスへそのサービスの条件に従って送ります。"
+            ],
+            "links": [
+                {
+                    "label": "MCP サーバーとクライアントの権限",
+                    "href": "/features/ai-mcp#mcp"
+                },
+                {
+                    "label": "MCP のトークンとスコープ",
+                    "docs": "/external-api/tokens"
+                }
+            ]
+        },
+        {
+            "id": "open-source",
+            "title": "オープンソース",
+            "items": [
+                {
+                    "id": "source",
+                    "title": "コードは公開",
+                    "text": "両アプリは有料機能のコードも含め、AGPLv3 のオープンソースです。このページの内容は、各リリースに署名して公証するスクリプトとともにリポジトリで確認でき、Mac アプリを自分でビルドすることもできます。"
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "GitHub のソースコード",
+                    "to": "github"
+                },
+                {
+                    "label": "AGPLv3 ライセンス全文",
+                    "to": "license"
+                },
+                {
+                    "label": "ソースからのビルド",
+                    "docs": "/development/building"
+                }
+            ]
+        },
+        {
+            "id": "report",
+            "title": "脆弱性の報告",
+            "items": [
+                {
+                    "id": "contact",
+                    "title": "報告の方法",
+                    "text": "<email>{email}</email> にメールを送るか、<advisory>GitHub で非公開に報告</advisory>してください。英語またはベトナム語で受け付けます。脆弱性について、公開の issue、discussion、pull request は作成しないでください。"
+                },
+                {
+                    "id": "include",
+                    "title": "記載してほしい内容",
+                    "text": "影響を受けるものとそのバージョン（Mac アプリ、iPhone・iPad アプリ、プラグイン、このウェブサイト）。macOS または iOS のバージョン、ドライバーが関係する場合はデータベースの種類、再現手順または概念実証、攻撃者が得られるものも記載してください。"
+                },
+                {
+                    "id": "fixes",
+                    "title": "修正の対象となるバージョン",
+                    "text": "セキュリティ修正の対象は、各アプリとプラグインの最新リリースだけです。報告の前に、最新リリースでも問題が起きることを確認してください。"
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "GitHub のセキュリティポリシー",
+                    "to": "securityPolicy"
+                },
+                {
+                    "label": "security.txt",
+                    "to": "securityTxt"
+                }
+            ]
+        }
+    ]
+}

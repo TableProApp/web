@@ -39,6 +39,7 @@ export default {
         "legal": {
             "title": "法律信息",
             "privacy": "隐私",
+            "security": "安全",
             "terms": "条款",
             "refund": "退款政策",
             "cookies": "Cookie 设置"

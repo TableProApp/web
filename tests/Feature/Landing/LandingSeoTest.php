@@ -264,6 +264,8 @@ it('renders the registry head on every page family, in each language', function 
     'an English-only release post' => ['/blog/tablepro-0-77', 'en'],
     'a legal page' => ['/privacy', 'en'],
     'a legal page, in Vietnamese' => ['/vi/privacy', 'vi'],
+    'security' => ['/security', 'en'],
+    'security, in Japanese' => ['/ja/security', 'ja'],
 ]);
 
 it('marks an error page noindex, follow and points it at nothing', function (string $path, int $status, string $locale): void {

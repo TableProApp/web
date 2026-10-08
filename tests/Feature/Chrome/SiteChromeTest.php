@@ -350,7 +350,7 @@ it('groups the footer links under a hidden heading, in five groups', function (s
         expect($titles[1])->toContain($group);
     }
 
-    foreach (['/features', '/databases', '/ios', '/pricing', '/download', '/compare', '/blog', '/faq', '/about', '/privacy', '/terms', '/refund-policy'] as $page) {
+    foreach (['/features', '/databases', '/ios', '/pricing', '/download', '/compare', '/blog', '/faq', '/about', '/security', '/privacy', '/terms', '/refund-policy'] as $page) {
         Assert::assertNotNull(chromeLink($footer, $prefix . $page), "The footer has no link to {$prefix}{$page}");
     }
 

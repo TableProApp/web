@@ -30,6 +30,7 @@ it('publishes a security contact at the RFC 9116 address', function (): void {
         'Contact' => 'mailto:' . $facts['support']['email'],
         'Preferred-Languages' => 'en, vi',
         'Canonical' => 'https://tablepro.app/.well-known/security.txt',
+        'Policy' => 'https://tablepro.app/security',
     ]);
 });
 
