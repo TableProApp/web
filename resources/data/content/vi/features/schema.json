@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Schema, so sánh và đồng bộ",
-        "lead": "Dành cho lúc bạn thay đổi cấu trúc cơ sở dữ liệu và cần giữ hai cơ sở dữ liệu khớp nhau: sửa table khi câu lệnh DDL nằm ngay trước mắt, xem các table liên quan với nhau ra sao, đưa staging về khớp với development, hoặc sao chép table sang server hay engine khác. Mọi thứ ở đây có trong ứng dụng Mac; phần cuối nói về iPhone và iPad.",
+        "lead": "Dành cho lúc bạn thay đổi cấu trúc cơ sở dữ liệu và cần giữ hai cơ sở dữ liệu khớp nhau. Sửa table khi câu lệnh DDL nằm ngay trước mắt, xem các table liên quan với nhau ra sao, đưa staging về khớp với development, hoặc sao chép table sang server hay engine khác. Mọi thứ ở đây có trong ứng dụng Mac. Ứng dụng cho iPhone và iPad làm được một phần trong số đó.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -56,8 +56,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Chọn nguồn và đích, có thể là hai server hoặc hai cơ sở dữ liệu trên cùng một server, rồi Compare & Sync liệt kê mọi table có khác biệt, cùng view, routine và trigger nếu bạn chọn so sánh cả chúng. Ở chế độ dữ liệu, các dòng được ghép theo khóa và từng giá trị khác nhau được đánh dấu, với bộ lọc và giới hạn số dòng cho từng table, nên bạn có thể so sánh lần lượt từng đoạn của một table lớn.",
-                "Script được tạo ra sắp xếp theo thứ tự khóa ngoại và viết theo cú pháp mà client của engine đích đọc được. Những câu lệnh làm mất dữ liệu, như xóa cột, thu hẹp kiểu dữ liệu hay xóa dòng, bị giữ lại cho tới khi bạn cho phép trong lần chạy đó, và connection đặt Read-Only không thể được chọn làm đích. Lưu một phép so sánh để chạy lại chỉ bằng một cú nhấp."
+                "Chọn nguồn và đích, có thể là hai server hoặc hai cơ sở dữ liệu trên cùng một server. Compare & Sync liệt kê mọi table có khác biệt, cùng view, routine và trigger nếu bạn chọn so sánh cả chúng. Ở chế độ dữ liệu, các dòng được ghép theo khóa và từng giá trị khác nhau được đánh dấu, với bộ lọc và giới hạn số dòng cho từng table, nên bạn có thể so sánh lần lượt từng đoạn của một table lớn.",
+                "Script được tạo ra sắp xếp theo thứ tự khóa ngoại và viết theo cú pháp mà client của engine đích đọc được. Những câu lệnh làm mất dữ liệu, như xóa cột, thu hẹp kiểu dữ liệu hay xóa dòng, bị giữ lại cho tới khi bạn cho phép trong lần chạy đó. Connection đặt Read-Only không thể được chọn làm đích. Lưu một phép so sánh để chạy lại chỉ bằng một cú nhấp."
             ],
             "paid": ["compare-sync"],
             "asset": "mac-compare-sync-structure"
@@ -66,7 +66,7 @@
             "id": "copy",
             "title": "Copy To, Duplicate Database và Transfer To",
             "paragraphs": [
-                "Copy To gửi table, view, routine và trigger, dưới dạng cấu trúc, dữ liệu hoặc cả hai, sang một cơ sở dữ liệu trên bất kỳ connection đã lưu nào, kể cả connection dùng engine khác. Trước khi ghi bất cứ thứ gì, bước xem lại liệt kê câu lệnh DDL, số dòng dự kiến của từng table và mọi kiểu cột bị thay đổi khi chuyển, ví dụ cột <code>ENUM</code> của MariaDB sang PostgreSQL thành <code>VARCHAR</code> và mất danh sách giá trị cho phép. Mệnh đề WHERE và giới hạn số dòng cho từng table giúp bạn chỉ sao chép một phần.",
+                "Copy To gửi table, view, routine và trigger, dưới dạng cấu trúc, dữ liệu hoặc cả hai, sang một cơ sở dữ liệu trên bất kỳ connection đã lưu nào, kể cả connection dùng engine khác. Trước khi ghi bất cứ thứ gì, bước xem lại liệt kê câu lệnh DDL, số dòng dự kiến của từng table và mọi kiểu cột bị thay đổi khi chuyển. Ví dụ, cột <code>ENUM</code> của MariaDB sang PostgreSQL thành <code>VARCHAR</code> và mất danh sách giá trị cho phép. Mệnh đề WHERE và giới hạn số dòng cho từng table giúp bạn chỉ sao chép một phần.",
                 "Duplicate Database sao chép nguyên một cơ sở dữ liệu với tên mới trên cùng connection. Transfer To chuyển dòng thẳng vào một table có sẵn trên một connection khác đang mở, có ghép cột và không cần file trung gian. Cả ba đều miễn phí."
             ],
             "asset": "mac-copy-to-review"

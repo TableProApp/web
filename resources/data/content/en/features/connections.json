@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Connections, tunnels and credentials",
-        "lead": "For anyone whose databases sit behind a bastion, a cluster or a cloud login: set a connection up once, with the route and the password source it needs, and give production ones stricter rules. Everything here is in the Mac app; the last section covers iPhone and iPad.",
+        "lead": "For anyone whose databases sit behind a bastion, a cluster or a cloud login: set a connection up once, with the route and the password source it needs, and give production ones stricter rules. Everything here is in the Mac app. The iPhone and iPad app does part of it.",
         "docs": "/connections"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Keep a library of connections",
             "paragraphs": [
                 "Each connection is edited in one form with General, Network, Options and Appearance tabs. Import a connection URL, including <code>jdbc:</code> URLs and <code>+ssh</code> URLs that carry an SSH hop, and the form fills itself in; when one is already on your clipboard, the form offers <ui>Use clipboard URL</ui>.",
-                "Give a connection a colour, as many tags as you like and a place in nested groups, and star the ones you use most as favorites. Environments are tags: local, development, production and testing are built in, and you can add your own. An empty library offers <ui>Open Sample Database</ui>, a bundled SQLite copy of Chinook.",
+                "Give a connection a color, as many tags as you like and a place in nested groups, and star the ones you use most as favorites. Environments are tags: local, development, production and testing are built in, and you can add your own. An empty library offers <ui>Open Sample Database</ui>, a bundled SQLite copy of Chinook.",
                 "Open several connections in one window. The connections strip down its left edge moves between them, and each connection comes back on the tab you last used there. <ui>Open in New Window</ui> puts one beside another."
             ],
             "asset": "mac-connection-library"
@@ -35,7 +35,7 @@
                     "id": "other-apps",
                     "title": "From another database client",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> reads the connections saved in {connectionImportApps}, TablePlus's Setapp edition included, and brings their passwords across where that app stored them, including the encrypted passwords DBeaver and Navicat keep. Navicat connections come from an <code>.ncx</code> export file."
+                        "<ui>Import from Other App</ui> reads the connections saved in {connectionImportApps}, TablePlus’s Setapp edition included. It brings their passwords across where that app stored them, including the encrypted passwords DBeaver and Navicat keep. Navicat connections come from an <code>.ncx</code> export file."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -75,7 +75,7 @@
                     "id": "tunnels",
                     "title": "Proxies, Cloudflare, Cloud SQL and tunnel commands",
                     "paragraphs": [
-                        "When SSH is not the way in, the Network tab connects through a SOCKS5 proxy with remote DNS, through Cloudflare Access, where TablePro runs <code>cloudflared</code> and signs in with the browser or a service token, or through the Cloud SQL Auth Proxy, which TablePro downloads, checks and runs for {cloudSqlProxy}.",
+                        "When SSH is not the way in, the Network tab connects through a SOCKS5 proxy with remote DNS. It also connects through Cloudflare Access, where TablePro runs <code>cloudflared</code> and signs in with the browser or a service token. For {cloudSqlProxy}, it connects through the Cloud SQL Auth Proxy, which TablePro downloads, checks and runs.",
                         "Tunnel Command starts <code>kubectl port-forward</code>, <code>aws ssm start-session</code> or a command of your own, then connects to the local port it opens. A connection can also run a shell script before connecting, asking you first each session, and SQL statements right after."
                     ],
                     "asset": "mac-tunnel-command"
@@ -86,7 +86,7 @@
             "id": "cloud-auth",
             "title": "Sign in with your cloud account",
             "paragraphs": [
-                "AWS IAM database authentication signs a fresh token at every connect, from an access key, a profile in <code>~/.aws</code> (with <code>credential_process</code> and assumed roles) or AWS IAM Identity Center, and turns TLS up to Required for it. Amazon ElastiCache for Redis, Amazon Keyspaces and DynamoDB have their own AWS signing.",
+                "AWS IAM database authentication signs a fresh token at every connect, from an access key, a profile in <code>~/.aws</code> (with <code>credential_process</code> and assumed roles) or AWS IAM Identity Center. It also turns TLS up to Required. Amazon ElastiCache for Redis, Amazon Keyspaces and DynamoDB have their own AWS signing.",
                 "SQL Server signs in with Microsoft Entra ID in the browser, using the client ID of an app registration you provide, or with Kerberos from a ticket or a principal and password. Google BigQuery takes a service account key, Application Default Credentials or Google OAuth with your own client, and Google Cloud Spanner and the Cloud SQL Auth Proxy can use your Google account."
             ],
             "engines": [{ "label": "AWS IAM authentication on RDS and Aurora", "list": "awsIam" }],
@@ -108,7 +108,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Write <code>$DB_HOST</code> into a connection’s host, database, username, SSH host, user and key path, SSL paths, startup commands or driver fields, and TablePro fills in the value from its own environment when it connects. The port and the password are never read this way; give the password a source instead."
+                        "Write <code>$DB_HOST</code> into a connection’s host, database, username, SSH host, user and key path, TLS certificate paths, startup commands or driver fields, and TablePro fills in the value from its own environment when it connects. The port and the password are never read this way; give the password a source instead."
                     ],
                     "paid": ["environment-variables"]
                 }
@@ -119,7 +119,7 @@
             "title": "Rules each connection carries",
             "paragraphs": [
                 "A connection’s Safe Mode level decides whether a statement runs as written, asks first, asks for Touch ID or your password, or is refused. Its External Clients level, Blocked, Read Only or Read & Write, sets what MCP clients and AppleScript may do with it, and stays on this Mac. Its AI policy sets whether the AI assistant may use it without asking, only after asking, or never; Never also shuts out MCP clients.",
-                "An organisation can enforce a minimum Safe Mode level for every connection, and control updates, through a configuration profile."
+                "An organization can enforce a minimum Safe Mode level for every connection, and control updates, through a configuration profile."
             ],
             "links": [
                 { "label": "Safe Mode levels", "href": "/features/data-editing#safe-mode" },
@@ -147,7 +147,7 @@
         }
     ],
     "availability": [
-        { "label": "Connection form, groups, tags and favorites", "ios": "partial", "iosNote": "One tag per connection; no colours" },
+        { "label": "Connection form, groups, tags and favorites", "ios": "partial", "iosNote": "One tag per connection; no colors" },
         { "label": "Import from a URL or the clipboard", "ios": "no" },
         { "label": "Import from other apps, project folders and AWS", "ios": "no" },
         { "label": "SSH tunnel with a password or private key", "ios": "yes" },

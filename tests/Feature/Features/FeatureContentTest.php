@@ -142,6 +142,17 @@ it('has a hub with the shared labels in every locale', function (string $locale)
     expect($hub['labels']['availability']['plan'])->toContain('{tier}');
 })->with(['en', 'vi']);
 
+it('spells out MCP where the hub and the AI page first name it, in every language', function (): void {
+    $locales = array_keys(json_decode(File::get(resource_path('data/locales.json')), true, 512, JSON_THROW_ON_ERROR)['supported']);
+
+    foreach ($locales as $locale) {
+        $summary = collect(featureSchemaContent($locale, 'index')['areas']['items'])->firstWhere('slug', 'ai-mcp')['summary'];
+
+        expect($summary)->toContain('Model Context Protocol');
+        expect(featureSchemaContent($locale, 'ai-mcp')['header']['lead'])->toContain('Model Context Protocol');
+    }
+});
+
 it('follows the feature page schema', function (string $locale, string $slug): void {
     $content = featureSchemaContent($locale, $slug);
     $where = "content/{$locale}/features/{$slug}.json";

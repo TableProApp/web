@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "AI 어시스턴트 및 MCP 서버",
-        "lead": "직접 선택한 모델로 SQL 도움을 받거나 AI 클라이언트가 데이터베이스를 다루게 하려는 개발자를 위한 기능입니다. 스키마에 관해 묻고 쿼리를 검토·수정하거나 Claude Code와 Cursor가 저장된 연결을 사용하게 합니다. 모두 선택 사항이며 Mac 앱에서만 제공됩니다. 제공업체를 추가하거나 클라이언트를 연결하기 전에는 모델에 아무것도 전달되지 않습니다.",
+        "lead": "직접 선택한 모델로 SQL 도움을 받거나 AI 클라이언트가 데이터베이스를 다루게 하려는 개발자를 위한 기능입니다. 스키마에 관해 묻고 쿼리를 검토·수정하거나 Claude Code와 Cursor 같은 MCP(Model Context Protocol) 클라이언트가 저장된 연결을 사용하게 합니다. 모두 선택 사항이며 Mac 앱에서만 제공됩니다. 제공업체를 추가하거나 클라이언트를 연결하기 전에는 모델에 아무것도 전달되지 않습니다.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "클라이언트 연결",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui>에는 {mcpSetupClients} 설정 단계와 복사할 코드 조각이 있습니다. 번들 <code>tablepro-mcp</code> 브리지는 {mcpBridgeClients}도 지원하며 필요하면 TablePro를 시작하고 서버를 찾으므로 클라이언트 설정에 포트나 토큰을 넣지 않습니다. 공식 Raycast 확장은 앱과 페어링하며 Mac에서 이를 승인합니다.",
+                        "<ui>Settings > Integrations</ui>에는 {mcpSetupClients} 설정 단계와 복사할 코드 조각이 있습니다. 번들 <code>tablepro-mcp</code> 브리지는 {mcpBridgeClients}도 지원합니다. 필요하면 TablePro를 시작하고 서버를 찾으므로 클라이언트 설정에 포트나 토큰을 넣지 않습니다. 공식 Raycast 확장은 앱과 페어링하며 Mac에서 이를 승인합니다.",
                         "예를 들어 클라이언트에 같은 이메일 주소를 쓰는 사용자를 찾아달라고 할 수 있습니다. 클라이언트는 <code>list_tables</code>와 <code>describe_table</code>을 호출해 열 이름이 <code>email_address</code>임을 확인하고 저장된 연결로 SELECT 하나를 실행합니다. 채팅에 스키마를 붙여넣을 필요가 없습니다."
                     ]
                 },

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "연결, 터널 및 자격 증명",
-        "lead": "데이터베이스가 배스천, 클러스터 또는 클라우드 로그인 뒤에 있다면 필요한 경로와 비밀번호 소스를 지정해 연결을 한 번 설정하고 운영 연결에는 더 엄격한 규칙을 적용하세요. 여기서 소개하는 기능은 Mac 앱에 있으며 마지막 절에서 iPhone과 iPad를 다룹니다.",
+        "lead": "데이터베이스가 배스천, 클러스터 또는 클라우드 로그인 뒤에 있다면 필요한 경로와 비밀번호 소스를 지정해 연결을 한 번 설정하고 운영 연결에는 더 엄격한 규칙을 적용하세요. 여기서 소개하는 기능은 Mac 앱에 있습니다. iPhone과 iPad 앱은 그중 일부를 제공합니다.",
         "docs": "/connections"
     },
     "sections": [
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "클라우드 계정으로 로그인",
             "paragraphs": [
-                "AWS IAM 데이터베이스 인증은 액세스 키, <code>~/.aws</code>의 프로필(<code>credential_process</code>와 역할 수임 지원) 또는 AWS IAM Identity Center를 사용해 연결할 때마다 새 토큰에 서명하며 TLS를 Required로 높입니다. Amazon ElastiCache for Redis, Amazon Keyspaces 및 DynamoDB는 각자의 AWS 서명을 사용합니다.",
+                "AWS IAM 데이터베이스 인증은 액세스 키, <code>~/.aws</code>의 프로필(<code>credential_process</code>와 역할 수임 지원) 또는 AWS IAM Identity Center를 사용해 연결할 때마다 새 토큰에 서명합니다. 또한 TLS를 Required로 높입니다. Amazon ElastiCache for Redis, Amazon Keyspaces 및 DynamoDB는 각자의 AWS 서명을 사용합니다.",
                 "SQL Server는 제공한 앱 등록의 클라이언트 ID를 사용해 브라우저에서 Microsoft Entra ID로 로그인하거나 티켓 또는 보안 주체와 비밀번호를 사용해 Kerberos로 로그인합니다. Google BigQuery는 서비스 계정 키, Application Default Credentials 또는 자체 클라이언트를 통한 Google OAuth를 지원하며 Google Cloud Spanner와 Cloud SQL Auth Proxy에서는 Google 계정을 사용할 수 있습니다."
             ],
             "engines": [
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "환경 변수",
                     "paragraphs": [
-                        "연결의 호스트, 데이터베이스, 사용자 이름, SSH 호스트·사용자·키 경로, SSL 경로, 시작 명령 또는 드라이버 필드에 <code>$DB_HOST</code>를 쓰면 TablePro가 연결할 때 자체 환경에서 값을 채웁니다. 포트와 비밀번호는 이 방식으로 읽지 않습니다. 비밀번호에는 별도의 소스를 지정하세요."
+                        "연결의 호스트, 데이터베이스, 사용자 이름, SSH 호스트·사용자·키 경로, TLS 인증서 경로, 시작 명령 또는 드라이버 필드에 <code>$DB_HOST</code>를 쓰면 TablePro가 연결할 때 자체 환경에서 값을 채웁니다. 포트와 비밀번호는 이 방식으로 읽지 않습니다. 비밀번호에는 별도의 소스를 지정하세요."
                     ],
                     "paid": [
                         "environment-variables"

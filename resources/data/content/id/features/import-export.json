@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Impor, ekspor, dan file data",
-        "lead": "Untuk memindahkan data antara file dan database: memuat spreadsheet ke tabel, menyerahkan hasil kueri sebagai Excel, merapikan CSV sebelum dipakai, atau membuat dump sebelum perubahan berisiko. Semua fitur ini tersedia di aplikasi Mac; bagian terakhir membahas cakupan yang lebih kecil di iPhone dan iPad.",
+        "lead": "Untuk memindahkan data antara file dan database: memuat spreadsheet ke tabel, menyerahkan hasil kueri sebagai Excel, merapikan CSV sebelum dipakai, atau membuat dump sebelum perubahan berisiko. Semua fitur ini tersedia di aplikasi Mac. Aplikasi iPhone dan iPad menyediakan sebagian di antaranya.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Impor file ke tabel",
             "paragraphs": [
                 "<kbd>⌘⇧I</kbd> mengimpor file {importFormats}. File SQL dijalankan sebagai pernyataan, termasuk dump <code>.sql.gz</code> dan skrip SQL Server yang dipisahkan dengan <code>GO</code>. Format lain dimuat ke tabel yang ada atau tabel baru bernama sesuai file dengan kolom yang diambil darinya; workbook Excel mengimpor sheet pertama.",
-                "Setiap field dipetakan ke kolom, dan impor berjalan dalam satu transaksi kecuali Anda menonaktifkannya. Saat baris gagal, Anda memilih berhenti dan membatalkan semuanya, berhenti dan mempertahankan yang sudah diimpor, atau melewati baris dan melanjutkan; setelah itu, Anda dapat menyimpan laporan baris yang dilewati sebagai CSV."
+                "Setiap field dipetakan ke kolom, dan impor berjalan dalam satu transaksi kecuali Anda menonaktifkannya. Saat baris gagal, Anda memilih berhenti dan membatalkan semuanya, berhenti dan mempertahankan yang sudah diimpor, atau melewati baris dan melanjutkan. Setelah itu, Anda dapat menyimpan laporan baris yang dilewati sebagai CSV."
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "Pemetaan tersimpan dan encoding",
                     "paragraphs": [
-                        "TablePro mengingat pemetaan pilihan Anda untuk setiap tabel pada impor CSV, JSON, dan Excel; <ui>Match by Name</ui> atau <ui>Match by Position</ui> memetakan semua field dengan satu klik. Pencocokan berdasarkan posisi berlaku untuk CSV dan Excel, yang urutan field-nya berasal dari file. Impor CSV dan SQL membaca UTF-16 serta encoding Jepang, Mandarin, dan Korea seperti Shift JIS, GB 18030, Big5, dan EUC-KR."
+                        "TablePro mengingat pemetaan pilihan Anda untuk setiap tabel pada impor CSV, JSON, dan Excel. <ui>Match by Name</ui> atau <ui>Match by Position</ui> memetakan semua field dengan satu klik. Pencocokan berdasarkan posisi berlaku untuk CSV dan Excel, yang urutan field-nya berasal dari file. Impor CSV dan SQL membaca UTF-16 serta encoding Jepang, Mandarin, dan Korea seperti Shift JIS, GB 18030, Big5, dan EUC-KR."
                     ],
                     "since": "0.77.0"
                 }
@@ -42,7 +42,7 @@
             "id": "export",
             "title": "Ekspor tabel dan hasil",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> mengekspor tabel dan view yang dicentang ke {exportFormats}. Setiap tabel dialirkan dari database saat ditulis, sehingga batas baris grid data tidak berlaku; pada mesin SQL setiap tabel dapat memiliki klausa WHERE, batas baris, dan pilihan kolom sendiri. Ekspor SQL dapat menyertakan struktur, dikompresi dengan gzip, dan dibagi menjadi beberapa bagian; Excel menempatkan setiap tabel pada sheet sendiri. Koleksi MongoDB juga dapat diekspor sebagai skrip mongosh, sedangkan ekspor SQL tidak tersedia untuk MongoDB atau Redis.",
+                "<kbd>⌘⇧E</kbd> mengekspor tabel dan view yang dicentang ke {exportFormats}. Setiap tabel dialirkan dari database saat ditulis, sehingga batas baris grid data tidak berlaku. Pada mesin SQL setiap tabel dapat memiliki klausa WHERE, batas baris, dan pilihan kolom sendiri. Ekspor SQL dapat menyertakan struktur, dikompresi dengan gzip, dan dibagi menjadi beberapa bagian; Excel menempatkan setiap tabel pada sheet sendiri. Koleksi MongoDB juga dapat diekspor sebagai skrip mongosh, sedangkan ekspor SQL tidak tersedia untuk MongoDB atau Redis.",
                 "<ui>Export Results</ui> menulis hasil kueri; hasil yang terpotong batas baris dijalankan ulang dan dialirkan secara lengkap. Ekspor {exportPluginFormats} berasal dari plugin gratis yang Anda instal di <ui>Settings > Plugins</ui> dan menulis satu file per tabel."
             ],
             "asset": "mac-export-dialog"
@@ -75,7 +75,7 @@
             "id": "backup",
             "title": "Cadangkan dengan alat mesin database Anda sendiri",
             "paragraphs": [
-                "Backup Dump dan Restore Dump bekerja melalui {backupTools}, lewat tunnel SSH koneksi dan pengaturan SSL-nya, sehingga server di balik bastion tidak memerlukan tunnel kedua. Semua kecuali DuckDB adalah alat baris perintah yang harus Anda instal; DuckDB menulis dump sendiri, sebagai file database atau folder file Parquet.",
+                "Backup Dump dan Restore Dump bekerja melalui {backupTools}, lewat tunnel SSH koneksi dan pengaturan TLS-nya, sehingga server di balik bastion tidak memerlukan tunnel kedua. Semua kecuali DuckDB adalah alat baris perintah yang harus Anda instal; DuckDB menulis dump sendiri, sebagai file database atau folder file Parquet.",
                 "Pada {serverSideExport}, Ekspor Sisi Server meminta server menulis ekspor: job Oracle Data Pump, stage Snowflake, atau bucket Cloud Storage. Tidak ada yang disimpan di Mac Anda."
             ],
             "engines": [
@@ -175,7 +175,7 @@
     ],
     "limits": [
         "Ekspor SQL menyertakan DROP TABLE IF EXISTS sebelum setiap tabel kecuali Anda menghapus centangnya; periksa opsi sebelum menjalankan file pada database yang tabelnya ingin dipertahankan.",
-        "Backup Dump memakai alat baris perintah yang Anda instal sendiri, hanya pada mesin yang dicantumkan. Alat menerima kata sandi melalui lingkungan atau file sementara, kecuali sqlpackage yang menerima kata sandi SQL Server pada baris perintah, tempat proses lain di Mac dapat membacanya; TablePro meminta konfirmasi sebelum memulai.",
+        "Backup Dump memakai alat baris perintah yang Anda instal sendiri, hanya pada mesin yang dicantumkan. Alat menerima kata sandi melalui lingkungan atau file sementara. Pengecualiannya adalah sqlpackage, yang menerima kata sandi SQL Server pada baris perintah, tempat proses lain di Mac dapat membacanya; TablePro meminta konfirmasi sebelum memulai.",
         "Restore Dump mengganti tabel dalam dump MySQL atau MariaDB. Pada mesin lain, objek yang sudah ada tidak diganti, dan <code>.bacpac</code> SQL Server memerlukan database kosong.",
         "Membuka file database lewat SSH hanya didukung untuk SQLite.",
         "Ekstensi DuckDB yang tidak disertakan, seperti httpfs untuk S3, Iceberg, dan Delta, diunduh dari server DuckDB saat kueri pertama kali memerlukannya.",

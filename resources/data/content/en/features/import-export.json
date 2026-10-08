@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Import, export and data files",
-        "lead": "For moving data between files and databases: loading a spreadsheet into a table, handing a query result to someone as Excel, cleaning up a CSV before you use it, or taking a dump before a risky change. Everything here is in the Mac app; the last section covers the smaller part on iPhone and iPad.",
+        "lead": "For moving data between files and databases: loading a spreadsheet into a table, handing a query result to someone as Excel, cleaning up a CSV before you use it, or taking a dump before a risky change. Everything here is in the Mac app. The iPhone and iPad app does part of it.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Import files into a table",
             "paragraphs": [
                 "<kbd>⌘⇧I</kbd> imports {importFormats} files. A SQL file runs as statements, including <code>.sql.gz</code> dumps and SQL Server scripts split with <code>GO</code>. The other formats load into an existing table, or into a new one named after the file with columns taken from it; an Excel workbook imports its first sheet.",
-                "Each field maps to a column, and the import runs in one transaction unless you turn that off. When a row fails, you choose whether to stop and roll back, stop and keep what was imported, or skip the row and carry on, then save a report of the skipped rows as CSV."
+                "Each field maps to a column, and the import runs in one transaction unless you turn that off. When a row fails, you choose whether to stop and roll back, stop and keep what was imported, or skip the row and carry on. You can then save a report of the skipped rows as CSV."
             ],
             "engines": [{ "label": "Engines without import", "list": "noImport" }],
             "asset": "mac-import-mapping",
@@ -27,7 +27,7 @@
                     "id": "mappings",
                     "title": "Saved mappings and encodings",
                     "paragraphs": [
-                        "TablePro remembers the mapping you chose for each table, for CSV, JSON and Excel imports, and <ui>Match by Name</ui> or <ui>Match by Position</ui> maps every field in one click; matching by position works for CSV and Excel, where the order of fields comes from the file. CSV and SQL imports read UTF-16 and Japanese, Chinese and Korean encodings such as Shift JIS, GB 18030, Big5 and EUC-KR."
+                        "TablePro remembers the mapping you chose for each table, for CSV, JSON and Excel imports. <ui>Match by Name</ui> or <ui>Match by Position</ui> maps every field in one click. Matching by position works for CSV and Excel, where the order of fields comes from the file. CSV and SQL imports read UTF-16 and Japanese, Chinese and Korean encodings such as Shift JIS, GB 18030, Big5 and EUC-KR."
                     ],
                     "since": "0.77.0"
                 }
@@ -37,7 +37,7 @@
             "id": "export",
             "title": "Export tables and results",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> exports the tables and views you tick to {exportFormats}. Each one streams from the database as it is written, so the row cap of the data grid does not apply, and on SQL engines each table can take its own WHERE clause, row limit and choice of columns. SQL exports can carry structure, compress with gzip and split into parts, and Excel puts each table on its own sheet. MongoDB collections also export as a mongosh script, and SQL export is not offered for MongoDB or Redis.",
+                "<kbd>⌘⇧E</kbd> exports the tables and views you select to {exportFormats}. Each one streams from the database as it is written, so the row cap of the data grid does not apply. On SQL engines each table can take its own WHERE clause, row limit and choice of columns. SQL exports can carry structure, compress with gzip and split into parts, and Excel puts each table on its own sheet. MongoDB collections also export as a mongosh script, and SQL export is not offered for MongoDB or Redis.",
                 "<ui>Export Results</ui> writes what a query returned; a result the row cap cut short runs again and streams in full. {exportPluginFormats} export comes from a free plugin you install in <ui>Settings > Plugins</ui>, and writes one file per table."
             ],
             "asset": "mac-export-dialog"
@@ -70,7 +70,7 @@
             "id": "backup",
             "title": "Back up with your engine’s own tools",
             "paragraphs": [
-                "Backup Dump and Restore Dump work through {backupTools}, over the connection’s SSH tunnel and with its SSL settings, so a server behind a bastion needs no second tunnel. Each of these except DuckDB is a command-line tool you install; DuckDB writes the dump itself, as a database file or a folder of Parquet files.",
+                "Backup Dump and Restore Dump work through {backupTools}, over the connection’s SSH tunnel and with its TLS settings, so a server behind a bastion needs no second tunnel. Each of these except DuckDB is a command-line tool you install; DuckDB writes the dump itself, as a database file or a folder of Parquet files.",
                 "On {serverSideExport}, Server-Side Export has the server write the export instead: an Oracle Data Pump job, a Snowflake stage or a Cloud Storage bucket. Nothing lands on your Mac."
             ],
             "engines": [{ "label": "Backup Dump, with its tool", "list": "backupEngines" }],
@@ -118,8 +118,8 @@
         { "label": "SQLite files over SSH", "ios": "no" }
     ],
     "limits": [
-        "A SQL export includes DROP TABLE IF EXISTS before each table unless you untick it, so check the options before running the file against a database whose tables you want to keep.",
-        "Backup Dump uses command-line tools you install yourself, and only on the engines listed. The tools get the password through the environment or a temporary file, except sqlpackage, which takes the SQL Server password on its command line, where other processes on the Mac can read it; TablePro asks before it starts.",
+        "A SQL export includes DROP TABLE IF EXISTS before each table unless you turn that off, so check the options before running the file against a database whose tables you want to keep.",
+        "Backup Dump uses command-line tools you install yourself, and only on the engines listed. The tools get the password through the environment or a temporary file. The exception is sqlpackage, which takes the SQL Server password on its command line, where other processes on the Mac can read it; TablePro asks before it starts.",
         "Restore Dump replaces the tables in a MySQL or MariaDB dump. On the other engines it does not replace an object that already exists, and a SQL Server <code>.bacpac</code> needs an empty database.",
         "Opening a database file over SSH works for SQLite only.",
         "DuckDB extensions that are not built in, such as httpfs for S3, Iceberg and Delta, download from DuckDB’s own servers the first time a query needs them.",

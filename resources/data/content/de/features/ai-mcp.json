@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "KI-Assistent und MCP-Server",
-        "lead": "Für Entwickler, die SQL-Hilfe von einem selbst gewählten Modell oder Datenbankarbeit mit einem KI-Client möchten: Frage zum Schema, lass Abfragen prüfen oder korrigieren oder gespeicherte Verbindungen durch Claude Code und Cursor nutzen. Alles ist optional und nur auf dem Mac; erst mit Anbieter oder verbundenem Client erreicht etwas ein Modell.",
+        "lead": "Für Entwickler, die SQL-Hilfe von einem selbst gewählten Modell oder Datenbankarbeit mit einem KI-Client möchten. Frage zum Schema, lass Abfragen prüfen oder korrigieren oder gespeicherte Verbindungen durch Clients für MCP (Model Context Protocol) wie Claude Code und Cursor nutzen. Alles ist optional und nur auf dem Mac; erst mit Anbieter oder verbundenem Client erreicht etwas ein Modell.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Einen Client verbinden",
                     "paragraphs": [
-                        "<ui>Einstellungen > Integrationen</ui> bietet Schritte und einen kopierbaren Ausschnitt für {mcpSetupClients}. Die enthaltene <code>tablepro-mcp</code>-Bridge funktioniert auch mit {mcpBridgeClients}: Sie startet TablePro bei Bedarf und findet den Server, ohne Port oder Token in der Client-Konfiguration. Die offizielle Raycast-Erweiterung koppelt sich stattdessen mit der App; du bestätigst am Mac.",
+                        "<ui>Einstellungen > Integrationen</ui> bietet Schritte und einen kopierbaren Ausschnitt für {mcpSetupClients}. Die enthaltene <code>tablepro-mcp</code>-Bridge funktioniert auch mit {mcpBridgeClients}. Sie startet TablePro bei Bedarf und findet den Server, ohne Port oder Token in der Client-Konfiguration. Die offizielle Raycast-Erweiterung koppelt sich stattdessen mit der App; du bestätigst am Mac.",
                         "Eine typische Anfrage: Benutzer mit gleicher E-Mail-Adresse finden. Der Client ruft <code>list_tables</code> und <code>describe_table</code> auf, erkennt die Spalte <code>email_address</code> und führt ein SELECT über die gespeicherte Verbindung aus, ohne dass du das Schema in den Chat kopierst."
                     ]
                 },

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "匯入、匯出與資料檔案",
-        "lead": "用於在檔案與資料庫間移動資料：將試算表載入資料表，把查詢結果以 Excel 交給他人，使用前清理 CSV，或在風險修改前做傾印。本頁介紹的功能均在 Mac App 中，最後一節介紹 iPhone 與 iPad 提供的較少部分功能。",
+        "lead": "用於在檔案與資料庫間移動資料：將試算表載入資料表，把查詢結果以 Excel 交給他人，使用前清理 CSV，或在風險修改前做傾印。本頁介紹的功能均在 Mac App 中。iPhone 與 iPad App 提供其中一部分。",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "將檔案匯入資料表",
             "paragraphs": [
                 "<kbd>⌘⇧I</kbd> 匯入 {importFormats} 檔案。SQL 檔案依陳述式執行，支援 <code>.sql.gz</code> 傾印和以 <code>GO</code> 分隔的 SQL Server 指令碼。其他格式載入現有資料表，或根據檔名建立新資料表並從檔案取得欄位；Excel 活頁簿匯入第一個工作表。",
-                "每個欄位會進行對應，除非關閉該選項，否則匯入在同一交易中執行。某列失敗時，可選擇停止並復原、停止但保留已匯入內容，或跳過該列繼續，之後將跳過列的報告儲存為 CSV。"
+                "每個欄位會進行對應，除非關閉該選項，否則匯入在同一交易中執行。某列失敗時，可選擇停止並復原、停止但保留已匯入內容，或跳過該列繼續。之後可將跳過列的報告儲存為 CSV。"
             ],
             "engines": [
                 {
@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "儲存對應與編碼",
                     "paragraphs": [
-                        "TablePro 記住每個資料表的 CSV、JSON 和 Excel 匯入對應，<ui>Match by Name</ui> 或 <ui>Match by Position</ui> 可一鍵對應全部欄位；依位置配對適用於欄位順序來自檔案的 CSV 和 Excel。CSV 和 SQL 匯入支援 UTF-16，以及 Shift JIS、GB 18030、Big5、EUC-KR 等日文、中文與韓文編碼。"
+                        "TablePro 記住每個資料表的 CSV、JSON 和 Excel 匯入對應。<ui>Match by Name</ui> 或 <ui>Match by Position</ui> 可一鍵對應全部欄位。依位置配對適用於欄位順序來自檔案的 CSV 和 Excel。CSV 和 SQL 匯入支援 UTF-16，以及 Shift JIS、GB 18030、Big5、EUC-KR 等日文、中文與韓文編碼。"
                     ],
                     "since": "0.77.0"
                 }
@@ -42,7 +42,7 @@
             "id": "export",
             "title": "匯出資料表與結果",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> 將勾選的資料表和檢視表匯出為 {exportFormats}。每項在寫入時從資料庫串流讀取，不受資料格線列數上限影響；SQL 引擎允許各資料表獨立設定 WHERE 子句、列數限制和所選欄位。SQL 匯出可包含結構、使用 gzip 壓縮及分割檔案，Excel 為每個資料表建立單獨工作表。MongoDB 集合也可匯出為 mongosh 指令碼，MongoDB 和 Redis 不提供 SQL 匯出。",
+                "<kbd>⌘⇧E</kbd> 將勾選的資料表和檢視表匯出為 {exportFormats}。每項在寫入時從資料庫串流讀取，不受資料格線列數上限影響。SQL 引擎允許各資料表獨立設定 WHERE 子句、列數限制和所選欄位。SQL 匯出可包含結構、使用 gzip 壓縮及分割檔案，Excel 為每個資料表建立單獨工作表。MongoDB 集合也可匯出為 mongosh 指令碼，MongoDB 和 Redis 不提供 SQL 匯出。",
                 "<ui>Export Results</ui> 寫入查詢結果；被列數上限截斷的結果會重新執行並完整串流匯出。{exportPluginFormats} 匯出由 <ui>Settings > Plugins</ui> 中安裝的免費外掛程式提供，每個資料表寫入一個檔案。"
             ],
             "asset": "mac-export-dialog"
@@ -75,7 +75,7 @@
             "id": "backup",
             "title": "使用引擎原生工具備份",
             "paragraphs": [
-                "Backup Dump 和 Restore Dump 透過 {backupTools} 運作，使用連線的 SSH 通道和 SSL 設定，因此堡壘主機後的伺服器無須第二條通道。除 DuckDB 外，這些都是需自行安裝的命令列工具；DuckDB 自行將傾印寫為資料庫檔案或 Parquet 檔案夾。",
+                "Backup Dump 和 Restore Dump 透過 {backupTools} 運作，使用連線的 SSH 通道和 TLS 設定，因此堡壘主機後的伺服器無須第二條通道。除 DuckDB 外，這些都是需自行安裝的命令列工具；DuckDB 自行將傾印寫為資料庫檔案或 Parquet 檔案夾。",
                 "在 {serverSideExport} 上，Server-Side Export 讓伺服器直接匯出至 Oracle Data Pump 工作、Snowflake stage 或 Cloud Storage 儲存桶，不會將資料下載至 Mac。"
             ],
             "engines": [
@@ -175,7 +175,7 @@
     ],
     "limits": [
         "SQL 匯出預設在每個資料表前包含 DROP TABLE IF EXISTS，除非取消勾選。因此，在需要保留資料表的資料庫上執行檔案前，請檢查選項。",
-        "Backup Dump 使用自行安裝的命令列工具，僅支援列出的引擎。工具透過環境或暫存檔取得密碼，sqlpackage 例外：它在命令列接收 SQL Server 密碼，Mac 上的其他程序可以讀取；TablePro 會在啟動前徵求確認。",
+        "Backup Dump 使用自行安裝的命令列工具，僅支援列出的引擎。工具透過環境或暫存檔取得密碼。sqlpackage 例外：它在命令列接收 SQL Server 密碼，Mac 上的其他程序可以讀取；TablePro 會在啟動前徵求確認。",
         "Restore Dump 會取代 MySQL 或 MariaDB 傾印中的資料表。其他引擎不會取代已存在的物件，SQL Server 的 <code>.bacpac</code> 需要空資料庫。",
         "透過 SSH 開啟資料庫檔案僅支援 SQLite。",
         "S3 的 httpfs、Iceberg、Delta 等非內建 DuckDB 擴充功能，會在查詢首次需要時從 DuckDB 自有伺服器下載。",

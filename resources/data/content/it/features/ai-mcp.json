@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Assistente IA e server MCP",
-        "lead": "Per sviluppatori che vogliono aiuto con SQL da un modello scelto da loro o un client IA che lavori con i loro database: fai domande sullo schema, chiedi di rivedere o correggere una query oppure consenti a Claude Code e Cursor di usare le connessioni salvate. Tutto è opzionale e disponibile solo nell’app per Mac; nulla raggiunge un modello finché non aggiungi un provider o connetti un client.",
+        "lead": "Per sviluppatori che vogliono aiuto con SQL da un modello scelto da loro o un client IA che lavori con i loro database. Fai domande sullo schema, chiedi di rivedere o correggere una query oppure consenti a client MCP (Model Context Protocol) come Claude Code e Cursor di usare le connessioni salvate. Tutto è opzionale e disponibile solo nell’app per Mac; nulla raggiunge un modello finché non aggiungi un provider o connetti un client.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -26,7 +26,7 @@
             "id": "in-the-editor",
             "title": "Rivedi, spiega, ottimizza e correggi",
             "paragraphs": [
-                "Posiziona il cursore in un’istruzione e scegli Rivedi con IA (<kbd>⌥⇧⌘L</kbd>) per verificarne correttezza, costo e sicurezza, Spiega (<kbd>⌘L</kbd>) per sapere cosa fa passo dopo passo oppure Ottimizza (<kbd>⌥⌘L</kbd>) per una riscrittura o un indice; quando una query fallisce, Correggi con IA compare nell’avviso di errore. La richiesta include la struttura delle tabelle nominate e l’istruzione non viene eseguita. <ui>Apply to Editor</ui> sostituisce l’istruzione solo dopo la tua conferma.",
+                "Posiziona il cursore in un’istruzione e scegli Rivedi con IA (<kbd>⌥⇧⌘L</kbd>) per verificarne correttezza, costo e sicurezza, Spiega (<kbd>⌘L</kbd>) per sapere cosa fa passo dopo passo oppure Ottimizza (<kbd>⌥⌘L</kbd>) per una riscrittura o un indice. Quando una query fallisce, Correggi con IA compare nell’avviso di errore. La richiesta include la struttura delle tabelle nominate e l’istruzione non viene eseguita. <ui>Apply to Editor</ui> sostituisce l’istruzione solo dopo la tua conferma.",
                 "I suggerimenti in linea mostrano testo fantasma mentre scrivi e sono disattivati per impostazione predefinita. Le Regole IA associano note di testo semplice a una connessione, come quale colonna non deve mai essere selezionata, e accompagnano ogni messaggio."
             ]
         },
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Connetti un client",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> contiene istruzioni di configurazione e un frammento da copiare per {mcpSetupClients}. Il bridge incluso <code>tablepro-mcp</code> funziona anche con {mcpBridgeClients}: avvia TablePro quando serve e trova il server, quindi la configurazione del client non contiene porta o token. L’estensione ufficiale Raycast si abbina invece all’app e approvi l’abbinamento sul Mac.",
+                        "<ui>Settings > Integrations</ui> contiene istruzioni di configurazione e un frammento da copiare per {mcpSetupClients}. Il bridge incluso <code>tablepro-mcp</code> funziona anche con {mcpBridgeClients}. Avvia TablePro quando serve e trova il server, quindi la configurazione del client non contiene porta o token. L’estensione ufficiale Raycast si abbina invece all’app e approvi l’abbinamento sul Mac.",
                         "Una richiesta tipica: chiedi al client gli utenti che condividono un indirizzo email. Può chiamare <code>list_tables</code> e <code>describe_table</code>, scoprire che la colonna si chiama <code>email_address</code> ed eseguire un SELECT tramite la connessione salvata, senza che tu incolli lo schema nella chat."
                     ]
                 },

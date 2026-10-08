@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Skema, perbandingan, dan sinkronisasi",
-        "lead": "Untuk mengubah struktur database dan menyelaraskan dua database: edit tabel sambil melihat DDL, lihat hubungan antartabel, selaraskan staging dengan pengembangan, atau salin tabel ke server atau mesin lain. Semua fitur ini tersedia di aplikasi Mac; bagian terakhir membahas iPhone dan iPad.",
+        "lead": "Untuk mengubah struktur database dan menyelaraskan dua database. Edit tabel sambil melihat DDL, lihat hubungan antartabel, selaraskan staging dengan pengembangan, atau salin tabel ke server atau mesin lain. Semua fitur ini tersedia di aplikasi Mac. Aplikasi iPhone dan iPad menyediakan sebagian di antaranya.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Bandingkan dan Sinkronkan",
             "paragraphs": [
-                "Pilih sumber dan tujuan, yang dapat berupa dua server atau dua database pada satu server, lalu Bandingkan dan Sinkronkan mencantumkan setiap tabel yang berbeda, beserta view, routine, dan trigger jika disertakan. Dalam mode data, baris dicocokkan berdasarkan key dan setiap nilai berbeda ditandai, dengan filter serta batas baris per tabel, sehingga Anda dapat membandingkan sebagian tabel besar.",
-                "Skrip yang dihasilkan diurutkan berdasarkan foreign key dan ditulis untuk klien tujuan. Pernyataan yang menghancurkan data, seperti menghapus kolom, mempersempit tipe, atau menghapus baris, ditahan hingga Anda mengizinkannya untuk eksekusi tersebut; koneksi Hanya-Baca tidak dapat dipilih sebagai tujuan. Simpan perbandingan untuk menjalankannya lagi dengan satu klik."
+                "Pilih sumber dan tujuan, yang dapat berupa dua server atau dua database pada satu server. Bandingkan dan Sinkronkan mencantumkan setiap tabel yang berbeda, beserta view, routine, dan trigger jika disertakan. Dalam mode data, baris dicocokkan berdasarkan key dan setiap nilai berbeda ditandai, dengan filter serta batas baris per tabel, sehingga Anda dapat membandingkan sebagian tabel besar.",
+                "Skrip yang dihasilkan diurutkan berdasarkan foreign key dan ditulis untuk klien tujuan. Pernyataan yang menghancurkan data, seperti menghapus kolom, mempersempit tipe, atau menghapus baris, ditahan hingga Anda mengizinkannya untuk eksekusi tersebut. Koneksi Hanya-Baca tidak dapat dipilih sebagai tujuan. Simpan perbandingan untuk menjalankannya lagi dengan satu klik."
             ],
             "paid": [
                 "compare-sync"
@@ -74,7 +74,7 @@
             "id": "copy",
             "title": "Salin Ke, Duplikasi Database, dan Transfer Ke",
             "paragraphs": [
-                "Salin Ke mengirim tabel, view, routine, dan trigger, sebagai struktur, data, atau keduanya, ke database lain pada koneksi tersimpan mana pun, termasuk mesin berbeda. Sebelum penulisan, tinjauan mencantumkan DDL, perkiraan baris setiap tabel, dan setiap tipe kolom yang berubah selama transfer, seperti kolom <code>ENUM</code> MariaDB yang tiba di PostgreSQL sebagai <code>VARCHAR</code> tanpa daftar nilai yang diizinkan. Klausa WHERE dan batas baris per tabel memungkinkan penyalinan sebagian tabel.",
+                "Salin Ke mengirim tabel, view, routine, dan trigger, sebagai struktur, data, atau keduanya, ke database lain pada koneksi tersimpan mana pun, termasuk mesin berbeda. Sebelum penulisan, tinjauan mencantumkan DDL, perkiraan baris setiap tabel, dan setiap tipe kolom yang berubah selama transfer. Kolom <code>ENUM</code> MariaDB, misalnya, tiba di PostgreSQL sebagai <code>VARCHAR</code> tanpa daftar nilai yang diizinkan. Klausa WHERE dan batas baris per tabel memungkinkan penyalinan sebagian tabel.",
                 "Duplikasi Database menyalin seluruh database dengan nama baru pada koneksi yang sama. Transfer Ke memindahkan baris langsung ke tabel yang sudah ada pada koneksi lain yang terbuka, dengan pemetaan kolom dan tanpa file perantara. Ketiganya gratis."
             ],
             "asset": "mac-copy-to-review"

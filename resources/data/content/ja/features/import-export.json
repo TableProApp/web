@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "インポート、エクスポートとデータファイル",
-        "lead": "ファイルとデータベースの間でデータを移すための機能です。スプレッドシートをテーブルに読み込み、クエリ結果を Excel で渡し、CSV を使う前に整え、危険な変更の前にダンプを取得できます。ここで紹介するのは Mac アプリの機能です。最後の節では iPhone と iPad で使える一部の機能を説明します。",
+        "lead": "ファイルとデータベースの間でデータを移すための機能です。スプレッドシートをテーブルに読み込み、クエリ結果を Excel で渡し、CSV を使う前に整え、危険な変更の前にダンプを取得できます。ここで紹介するのは Mac アプリの機能です。iPhone と iPad アプリではその一部を使えます。",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -75,7 +75,7 @@
             "id": "backup",
             "title": "エンジン固有のツールでバックアップ",
             "paragraphs": [
-                "Backup Dump と Restore Dump は、接続の SSH トンネルと SSL 設定を使って {backupTools} を実行します。踏み台の先のサーバーでも二つ目のトンネルは不要です。DuckDB 以外は別途インストールするコマンドラインツールです。DuckDB はデータベースファイルまたは Parquet ファイルのフォルダとして自らダンプを書き込みます。",
+                "Backup Dump と Restore Dump は、接続の SSH トンネルと TLS 設定を使って {backupTools} を実行します。踏み台の先のサーバーでも二つ目のトンネルは不要です。DuckDB 以外は別途インストールするコマンドラインツールです。DuckDB はデータベースファイルまたは Parquet ファイルのフォルダとして自らダンプを書き込みます。",
                 "{serverSideExport} では、Server-Side Export がサーバーにエクスポートさせます。出力先は Oracle Data Pump ジョブ、Snowflake ステージや Cloud Storage バケットです。Mac には何も保存しません。"
             ],
             "engines": [

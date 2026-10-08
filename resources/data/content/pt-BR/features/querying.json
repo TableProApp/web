@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Escreva, execute e entenda consultas",
-        "lead": "Para quem escreve SQL em um banco ativo: escreva com o esquema à mão, execute uma instrução ou um script inteiro, guarde as consultas que valem a pena e descubra por que uma ficou mais lenta. Tudo aqui está no app para Mac; a última seção trata do iPhone e iPad.",
+        "lead": "Para quem escreve SQL em um banco ativo: escreva com o esquema à mão, execute uma instrução ou um script inteiro, guarde as consultas que valem a pena e descubra por que uma ficou mais lenta. Tudo aqui está no app para Mac. O app para iPhone e iPad cobre uma parte.",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Um editor que conhece seu esquema",
             "paragraphs": [
                 "O preenchimento automático lê o esquema da conexão enquanto você digita: tabelas após FROM e JOIN, as colunas de um alias e as colunas de uma CTE ou subconsulta definida antes na instrução. O destaque usa tree-sitter, e <kbd>⌘⇧L</kbd> formata a instrução no cursor sem remover seus comentários.",
-                "<kbd>⌘⏎</kbd> executa a instrução no cursor ou a seleção, <kbd>⌘⇧⏎</kbd> executa todas, <kbd>⌘⌥⏎</kbd> executa sem o limite de linhas e <kbd>⌘.</kbd> cancela. Um lote de instruções comuns roda em uma transação e é revertido se uma falhar; as exceções são scripts que gerenciam sua própria transação, scripts SQL Server, instruções que não podem estar em transações, como VACUUM, e DDL no MySQL, MariaDB e Oracle, que confirma por conta própria."
+                "<kbd>⌘⏎</kbd> executa a instrução no cursor ou a seleção, <kbd>⌘⇧⏎</kbd> executa todas, <kbd>⌘⌥⏎</kbd> executa sem o limite de linhas e <kbd>⌘.</kbd> cancela. Um lote de instruções comuns roda em uma transação e é revertido se uma falhar. As exceções são scripts que gerenciam sua própria transação, scripts SQL Server e instruções que não podem estar em transações, como VACUUM. DDL no MySQL, MariaDB e Oracle confirma por conta própria."
             ],
             "points": [
                 "Marcadores de instrução na margem, cada um com seu botão de execução.",
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Escreva <code>:customer_id</code> em uma consulta e TablePro pede seu valor e tipo antes de executá-la, vinculando o valor nativamente quando o driver permite.",
                 "Todas as consultas executadas vão para um histórico local (<kbd>⌘Y</kbd>) com busca de texto completo e filtros por origem, falhas e intervalo de tempo. Por padrão, ele mantém {historyEntries} entradas por {historyDays} dias e nunca é sincronizado.",
-                "Salve uma consulta com uma palavra-chave como <code>dau</code> e digite-a no editor para expandir a consulta. As consultas salvas mantêm um histórico de versões. Uma pasta SQL vinculada sincroniza uma pasta de arquivos <code>.sql</code> com a barra lateral nos dois sentidos, com letras de status do Git para cada arquivo; é gratuita e separada das Pastas Vinculadas, o recurso Starter para arquivos de conexão compartilhados."
+                "Salve uma consulta com uma palavra-chave como <code>dau</code> e digite-a no editor para expandir a consulta. As consultas salvas mantêm um histórico de versões. Uma pasta SQL vinculada sincroniza uma pasta de arquivos <code>.sql</code> com a barra lateral nos dois sentidos, com letras de status do Git para cada arquivo. É gratuita e separada das Pastas Vinculadas, o recurso Starter para arquivos de conexão compartilhados."
             ],
             "asset": "mac-query-parameters-history"
         },

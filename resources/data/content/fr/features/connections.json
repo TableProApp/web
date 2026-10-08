@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Connexions, tunnels et identifiants",
-        "lead": "Si vos bases de données se trouvent derrière un bastion, un cluster ou une authentification cloud, configurez chaque connexion une fois avec le chemin d’accès et la source de mot de passe nécessaires, puis imposez des règles plus strictes aux connexions de production. Tout ce qui suit concerne l’app Mac ; la dernière section couvre l’iPhone et l’iPad.",
+        "lead": "Si vos bases de données se trouvent derrière un bastion, un cluster ou une authentification cloud, configurez chaque connexion une fois avec le chemin d’accès et la source de mot de passe nécessaires, puis imposez des règles plus strictes aux connexions de production. Tout ce qui suit concerne l’app Mac. L’application iPhone et iPad en couvre une partie.",
         "docs": "/connections"
     },
     "sections": [
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Depuis un autre client de bases de données",
                     "paragraphs": [
-                        "<ui>Importer depuis une autre app</ui> lit les connexions enregistrées dans {connectionImportApps}, y compris l’édition Setapp de TablePlus, et récupère les mots de passe lorsque l’app les a stockés, y compris les mots de passe chiffrés de DBeaver et Navicat. Les connexions Navicat proviennent d’un fichier d’export <code>.ncx</code>."
+                        "<ui>Importer depuis une autre app</ui> lit les connexions enregistrées dans {connectionImportApps}, y compris l’édition Setapp de TablePlus. L’import récupère les mots de passe lorsque l’app les a stockés, y compris les mots de passe chiffrés de DBeaver et Navicat. Les connexions Navicat proviennent d’un fichier d’export <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "Proxys, Cloudflare, Cloud SQL et commandes de tunnel",
                     "paragraphs": [
-                        "Lorsque SSH n’est pas la voie d’accès, l’onglet Réseau permet de se connecter via un proxy SOCKS5 avec DNS distant, via Cloudflare Access, où TablePro exécute <code>cloudflared</code> et s’authentifie dans le navigateur ou avec un jeton de service, ou via Cloud SQL Auth Proxy, que TablePro télécharge, vérifie et exécute pour {cloudSqlProxy}.",
+                        "Lorsque SSH n’est pas la voie d’accès, l’onglet Réseau permet de se connecter via un proxy SOCKS5 avec DNS distant. Il permet aussi de se connecter via Cloudflare Access, où TablePro exécute <code>cloudflared</code> et s’authentifie dans le navigateur ou avec un jeton de service. Pour {cloudSqlProxy}, il passe par Cloud SQL Auth Proxy, que TablePro télécharge, vérifie et exécute.",
                         "Commande de tunnel lance <code>kubectl port-forward</code>, <code>aws ssm start-session</code> ou votre propre commande, puis se connecte au port local ouvert. Une connexion peut aussi exécuter un script shell avant de se connecter, en demandant votre accord à chaque session, puis des instructions SQL immédiatement après."
                     ],
                     "asset": "mac-tunnel-command"
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "Authentifiez-vous avec votre compte cloud",
             "paragraphs": [
-                "L’authentification des bases de données avec AWS IAM signe un nouveau jeton à chaque connexion à partir d’une clé d’accès, d’un profil dans <code>~/.aws</code> (avec <code>credential_process</code> et les rôles assumés) ou d’AWS IAM Identity Center, et impose le mode TLS Requis. Amazon ElastiCache for Redis, Amazon Keyspaces et DynamoDB ont leur propre signature AWS.",
+                "L’authentification des bases de données avec AWS IAM signe un nouveau jeton à chaque connexion à partir d’une clé d’accès, d’un profil dans <code>~/.aws</code> (avec <code>credential_process</code> et les rôles assumés) ou d’AWS IAM Identity Center. Elle impose aussi le mode TLS Requis. Amazon ElastiCache for Redis, Amazon Keyspaces et DynamoDB ont leur propre signature AWS.",
                 "SQL Server s’authentifie avec Microsoft Entra ID dans le navigateur, avec l’ID client d’une inscription d’application que vous fournissez, ou avec Kerberos à partir d’un ticket ou d’un principal et d’un mot de passe. Google BigQuery accepte une clé de compte de service, Application Default Credentials ou Google OAuth avec votre propre client ; Google Cloud Spanner et Cloud SQL Auth Proxy peuvent utiliser votre compte Google."
             ],
             "engines": [
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Variables d’environnement",
                     "paragraphs": [
-                        "Inscrivez <code>$DB_HOST</code> dans l’hôte, la base de données, le nom d’utilisateur, l’hôte et l’utilisateur SSH, le chemin de clé SSH, les chemins SSL, les commandes de démarrage ou les champs du pilote d’une connexion ; TablePro remplace la référence par la valeur de son propre environnement à la connexion. Le port et le mot de passe ne sont jamais lus de cette façon ; attribuez plutôt une source au mot de passe."
+                        "Inscrivez <code>$DB_HOST</code> dans l’hôte, la base de données, le nom d’utilisateur, l’hôte et l’utilisateur SSH, le chemin de clé SSH, les chemins des certificats TLS, les commandes de démarrage ou les champs du pilote d’une connexion ; TablePro remplace la référence par la valeur de son propre environnement à la connexion. Le port et le mot de passe ne sont jamais lus de cette façon ; attribuez plutôt une source au mot de passe."
                     ],
                     "paid": [
                         "environment-variables"

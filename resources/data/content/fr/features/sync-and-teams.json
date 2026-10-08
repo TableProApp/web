@@ -18,12 +18,12 @@
             "title": "Synchronisation iCloud",
             "paragraphs": [
                 "La synchronisation iCloud conserve la même bibliothèque sur chaque Mac, iPhone et iPad connecté à votre compte iCloud. Les données vont dans une base privée de ce compte et la synchronisation reste désactivée jusqu’à ce que vous l’activiez sur chaque appareil. Elle est gratuite sur iPhone et iPad ; sur Mac, elle nécessite un forfait qui l’inclut.",
-                "Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> dans Catégories de synchronisation sur Mac, ou <ui>Synchroniser les mots de passe</ui> sur iPhone et iPad, via le Trousseau iCloud. Sur Mac, cela transmet aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs d’IA et la clé de licence. Marquez une connexion comme Locale uniquement pour la conserver, avec ses favoris et requêtes enregistrées, sur un seul Mac."
+                "Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> dans Catégories de synchronisation sur Mac, ou <ui>Synchroniser les mots de passe</ui> sur iPhone et iPad. Ils passent par le Trousseau iCloud. Sur Mac, cela transmet aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs d’IA et la clé de licence. Marquez une connexion comme Locale uniquement pour la conserver, avec ses favoris et requêtes enregistrées, sur un seul Mac."
             ],
             "points": [
                 "Sur Mac, vous choisissez ce qui se synchronise : connexions, groupes et étiquettes, réglages, profils SSH, favoris de tables et de bases, requêtes enregistrées avec leur SQL et dossiers de tables.",
                 "Sur iPhone et iPad : connexions, groupes et étiquettes.",
-                "Une connexion synchronisée contient l’hôte, le port, le nom d’utilisateur, la base de données, les paramètres SSH et SSL, les commandes de démarrage, le script avant connexion et les règles d’IA.",
+                "Une connexion synchronisée contient l’hôte, le port, le nom d’utilisateur, la base de données, les paramètres SSH et TLS, les commandes de démarrage, le script avant connexion et les règles d’IA.",
                 "Ne sont jamais synchronisés : l’historique des requêtes, le Retour des données, les sources de mot de passe, les commandes de tunnel et le niveau Clients externes de chaque connexion."
             ],
             "paid": [
@@ -47,7 +47,7 @@
             "title": "Partagez une connexion",
             "paragraphs": [
                 "Exportez des connexions dans un fichier <code>.tablepro</code> pour l’envoyer à un collègue ou le conserver à côté du code. Il contient les connexions avec leurs groupes, étiquettes et paramètres SSH, sans mots de passe. L’Export chiffré ajoute les mots de passe et protège tout le fichier par une phrase secrète avec AES-256-GCM. L’import d’un fichier, chiffré ou non, est gratuit sur Mac, iPhone et iPad.",
-                "Sur iPhone et iPad, l’export avec mots de passe protégés par une phrase secrète est gratuit. Une connexion peut aussi être transmise par un lien <code>tablepro://import</code>, qui contient l’hôte, le port, le nom d’utilisateur, la base de données et les paramètres SSH et SSL, mais jamais le mot de passe."
+                "Sur iPhone et iPad, l’export avec mots de passe protégés par une phrase secrète est gratuit. Une connexion peut aussi être transmise par un lien <code>tablepro://import</code>, qui contient l’hôte, le port, le nom d’utilisateur, la base de données et les paramètres SSH et TLS, mais jamais le mot de passe."
             ],
             "paid": [
                 "encrypted-export"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Bibliothèque d’équipe",
                     "paragraphs": [
-                        "<ui>Partager > Publier dans la bibliothèque d’équipe…</ui> sur une connexion et <ui>Publier les requêtes enregistrées pour l’équipe…</ui> dans la barre latérale Favoris envoient les connexions et requêtes enregistrées au serveur de TablePro, puis chaque Mac de la licence les télécharge. Les requêtes apparaissent dans Favoris avec le nom de leur auteur. Les paramètres de connexion et le texte SQL des requêtes sont envoyés, jamais les mots de passe ; le Mac d’un collègue ignore les commandes de démarrage et de tunnel reçues, afin que rien ne s’y exécute spontanément. Une nouvelle publication remplace votre publication précédente."
+                        "<ui>Partager > Publier dans la bibliothèque d’équipe…</ui> sur une connexion et <ui>Publier les requêtes enregistrées pour l’équipe…</ui> dans la barre latérale Favoris envoient les connexions et requêtes enregistrées au serveur de TablePro. Chaque Mac de la licence les télécharge, et les requêtes apparaissent dans Favoris avec le nom de leur auteur. Les paramètres de connexion et le texte SQL des requêtes sont envoyés, jamais les mots de passe ; le Mac d’un collègue ignore les commandes de démarrage et de tunnel reçues, afin que rien ne s’y exécute spontanément. Une nouvelle publication remplace votre publication précédente."
                     ],
                     "paid": [
                         "team-library"
@@ -192,8 +192,8 @@
         }
     ],
     "limits": [
-        "Lorsqu’un forfait prend fin sur Mac, la synchronisation iCloud se met en pause et indique pourquoi, les connexions des Dossiers liés et de la Bibliothèque d’équipe disparaissent de la liste, les commandes de publication Équipe sont masquées et l’Export chiffré perd son option de mot de passe.",
-        "Modifier une connexion synchronisée sur iPhone ou iPad peut changer des paramètres absents de cette app : un niveau de Mode sécurisé Mac plus strict, comme Mode sécurisé (Complet), revient au niveau Alerte, et les hôtes de rebond SSH peuvent être perdus. Modifiez ces connexions sur Mac.",
+        "Lorsqu’un forfait prend fin sur Mac, la synchronisation iCloud se met en pause et indique pourquoi, et les connexions des Dossiers liés et de la Bibliothèque d’équipe disparaissent de la liste. Les commandes de publication Équipe sont masquées et l’Export chiffré perd son option de mot de passe.",
+        "Modifier une connexion synchronisée sur iPhone ou iPad peut changer des paramètres absents de cette app. Un niveau de Mode sécurisé Mac plus strict, comme Mode sécurisé (Complet), revient au niveau Alerte, et les hôtes de rebond SSH peuvent être perdus. Modifiez ces connexions sur Mac.",
         "Si une licence Équipe expire ou est suspendue, les publications de la Bibliothèque d’équipe restent sur le serveur de TablePro jusqu’à ce que vous demandiez leur suppression."
     ],
     "docs": [

@@ -24,7 +24,7 @@
                     "id": "filters",
                     "title": "Filters and highlight rules",
                     "paragraphs": [
-                        "The filter bar (<kbd>⌘⇧F</kbd>) builds a WHERE clause from {filterOperatorCount} operators, from = and BETWEEN to REGEX, or takes a raw SQL condition. Save a filter for a table and bring it back later without running it. Highlight rules colour rows or cells by their values, like conditional formatting in a spreadsheet, and stay on this Mac."
+                        "The filter bar (<kbd>⌘⇧F</kbd>) builds a WHERE clause from {filterOperatorCount} operators, from = and BETWEEN to REGEX, or takes a raw SQL condition. Save a filter for a table and bring it back later without running it. Highlight rules color rows or cells by their values, like conditional formatting in a spreadsheet, and stay on this Mac."
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -57,7 +57,7 @@
             "title": "Safe Mode for production connections",
             "paragraphs": [
                 "Each connection has a Safe Mode level: {macSafeModeLevels}. New connections start at {macSafeModeDefault}, where statements run as written. Alert asks before a write runs, the Safe Mode levels also ask for Touch ID or your Mac password, the Full levels ask before reads too, and Read-Only refuses writes and turns editing off. Safe Mode is free.",
-                "At every level, DROP, TRUNCATE and a DELETE without WHERE stop and ask first. Some things raise a connection’s level while they apply: an engine that only reads, Agent mode, which raises it to at least Alert, and a minimum level your organisation sets through device management (MDM)."
+                "At every level, DROP, TRUNCATE and a DELETE without WHERE stop and ask first. Some things raise a connection’s level while they apply: an engine that only reads, Agent mode, which raises it to at least Alert, and a minimum level your organization sets through device management (MDM)."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [

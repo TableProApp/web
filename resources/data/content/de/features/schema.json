@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Schema, Vergleich und Synchronisierung",
-        "lead": "Für Strukturänderungen und den Gleichlauf zweier Datenbanken: Bearbeite Tabellen mit sichtbarem DDL, sieh ihre Beziehungen, gleiche Staging an Entwicklung an oder kopiere Tabellen zu anderen Servern oder Systemen. Alles steht in der Mac-App bereit; zuletzt geht es um iPhone und iPad.",
+        "lead": "Für Strukturänderungen und den Gleichlauf zweier Datenbanken. Bearbeite Tabellen mit sichtbarem DDL, sieh ihre Beziehungen, gleiche Staging an Entwicklung an oder kopiere Tabellen zu anderen Servern oder Systemen. Alles steht in der Mac-App bereit. Die iPhone- und iPad-App bietet einen Teil davon.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -74,7 +74,7 @@
             "id": "copy",
             "title": "Kopieren nach, Datenbank duplizieren und Übertragen nach",
             "paragraphs": [
-                "„Kopieren nach“ sendet Tabellen, Views, Routinen und Trigger als Struktur, Daten oder beides an eine andere Datenbank jeder gespeicherten Verbindung, auch eines anderen Systems. Vor dem Schreiben zeigt eine Prüfung DDL, erwartete Zeilen und geänderte Spaltentypen, etwa MariaDB-<code>ENUM</code> als PostgreSQL-<code>VARCHAR</code> ohne erlaubte Werteliste. WHERE und Zeilenlimit je Tabelle kopieren Ausschnitte.",
+                "„Kopieren nach“ sendet Tabellen, Views, Routinen und Trigger als Struktur, Daten oder beides an eine andere Datenbank jeder gespeicherten Verbindung, auch eines anderen Systems. Vor dem Schreiben zeigt eine Prüfung DDL, erwartete Zeilen und geänderte Spaltentypen. Eine <code>ENUM</code>-Spalte aus MariaDB kommt zum Beispiel in PostgreSQL als <code>VARCHAR</code> ohne ihre Liste erlaubter Werte an. WHERE und Zeilenlimit je Tabelle kopieren Ausschnitte.",
                 "„Datenbank duplizieren“ kopiert eine ganze Datenbank unter neuem Namen auf derselben Verbindung. „Übertragen nach“ bewegt Zeilen direkt in eine bestehende Tabelle einer anderen offenen Verbindung, mit Spaltenzuordnung und ohne Zwischendatei. Alle drei sind kostenlos."
             ],
             "asset": "mac-copy-to-review"

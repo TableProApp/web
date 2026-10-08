@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Schéma, comparaison et synchronisation",
-        "lead": "Pour modifier la structure et garder deux bases alignées : éditez avec le DDL visible, comprenez les relations, alignez la préproduction sur le développement ou copiez vers un autre serveur ou moteur. Tout est sur Mac ; la dernière section couvre iPhone et iPad.",
+        "lead": "Pour modifier la structure et garder deux bases alignées. Éditez avec le DDL visible, comprenez les relations, alignez la préproduction sur le développement ou copiez vers un autre serveur ou moteur. Tout est sur Mac. L’application iPhone et iPad en couvre une partie.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -62,7 +62,7 @@
             "id": "compare-sync",
             "title": "Comparer et synchroniser",
             "paragraphs": [
-                "Choisissez source et cible, deux serveurs ou deux bases d’un serveur ; Comparer et synchroniser liste les tables différentes, avec vues, routines et déclencheurs si inclus. En mode données, il associe les lignes par clé et marque les valeurs différentes, avec filtre et limite par table pour comparer une partie d’une grande table.",
+                "Choisissez source et cible, deux serveurs ou deux bases d’un serveur. Comparer et synchroniser liste les tables différentes, avec vues, routines et déclencheurs si inclus. En mode données, il associe les lignes par clé et marque les valeurs différentes, avec filtre et limite par table pour comparer une partie d’une grande table.",
                 "Le script généré est ordonné par clés étrangères et écrit pour le client de la cible. Les instructions destructrices, comme supprimer une colonne, réduire un type ou effacer des lignes, sont retenues jusqu’à autorisation pour cette exécution. Une connexion Lecture seule ne peut être cible. Enregistrez une comparaison pour la relancer en un clic."
             ],
             "paid": [
@@ -74,7 +74,7 @@
             "id": "copy",
             "title": "Copier vers, Dupliquer la base et Transférer vers",
             "paragraphs": [
-                "Copier vers envoie tables, vues, routines et déclencheurs, structure, données ou les deux, vers une base de toute connexion enregistrée, même d’un autre moteur. Avant écriture, un contrôle liste DDL, lignes attendues et types modifiés, comme <code>ENUM</code> MariaDB arrivant en <code>VARCHAR</code> PostgreSQL sans valeurs autorisées. WHERE et limite par table copient une partie.",
+                "Copier vers envoie tables, vues, routines et déclencheurs, structure, données ou les deux, vers une base de toute connexion enregistrée, même d’un autre moteur. Avant écriture, un contrôle liste DDL, lignes attendues et types modifiés. Par exemple, une colonne <code>ENUM</code> MariaDB arrive en <code>VARCHAR</code> PostgreSQL sans valeurs autorisées. WHERE et limite par table copient une partie.",
                 "Dupliquer la base copie une base entière sous un nouveau nom sur la même connexion. Transférer vers déplace les lignes directement dans une table existante d’une autre connexion ouverte, avec correspondance des colonnes et sans fichier intermédiaire. Les trois sont gratuits."
             ],
             "asset": "mac-copy-to-review"

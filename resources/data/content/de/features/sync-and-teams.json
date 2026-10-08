@@ -18,12 +18,12 @@
             "title": "iCloud-Synchronisierung",
             "paragraphs": [
                 "Die iCloud-Synchronisierung hält deine Bibliothek auf jedem Mac, iPhone und iPad mit deinem iCloud-Konto identisch. Die Datensätze gehen in eine private Datenbank dieses Kontos, und die Synchronisierung bleibt aus, bis du sie auf jedem Gerät aktivierst. Auf iPhone und iPad ist sie kostenlos; der Mac braucht einen Tarif, der sie enthält.",
-                "Passwörter werden nur synchronisiert, wenn du zusätzlich <ui>Passwörter</ui> unter Synchronisierungskategorien auf dem Mac oder <ui>Passwörter synchronisieren</ui> auf iPhone und iPad aktivierst. Das läuft über den iCloud-Schlüsselbund; auf dem Mac überträgt es auch andere Geheimnisse, die TablePro im Schlüsselbund speichert, etwa KI-Anbieterschlüssel und den Lizenzschlüssel. Markiere eine Verbindung als Nur lokal, um sie samt Favoriten und gespeicherten Abfragen auf einem Mac zu behalten."
+                "Passwörter werden nur synchronisiert, wenn du zusätzlich <ui>Passwörter</ui> unter Synchronisierungskategorien auf dem Mac oder <ui>Passwörter synchronisieren</ui> auf iPhone und iPad aktivierst. Sie laufen über den iCloud-Schlüsselbund. Auf dem Mac überträgt derselbe Schalter auch andere Geheimnisse, die TablePro im Schlüsselbund speichert, etwa KI-Anbieterschlüssel und den Lizenzschlüssel. Markiere eine Verbindung als Nur lokal, um sie samt Favoriten und gespeicherten Abfragen auf einem Mac zu behalten."
             ],
             "points": [
                 "Auf dem Mac wählst du, was synchronisiert wird: Verbindungen, Gruppen und Tags, Einstellungen, SSH-Profile, Tabellen- und Datenbankfavoriten, gespeicherte Abfragen mit ihrem SQL und Tabellenordner.",
                 "Auf iPhone und iPad: Verbindungen, Gruppen und Tags.",
-                "Eine synchronisierte Verbindung enthält Host, Port, Benutzername, Datenbank, SSH- und SSL-Einstellungen, Startbefehle, das Skript vor dem Verbinden und KI-Regeln.",
+                "Eine synchronisierte Verbindung enthält Host, Port, Benutzername, Datenbank, SSH- und TLS-Einstellungen, Startbefehle, das Skript vor dem Verbinden und KI-Regeln.",
                 "Nie synchronisiert werden: Abfrageverlauf, Daten zurückspulen, Passwortquellen, Tunnelbefehle und die Stufe für Externe Clients jeder Verbindung."
             ],
             "paid": [
@@ -47,7 +47,7 @@
             "title": "Eine Verbindung teilen",
             "paragraphs": [
                 "Exportiere Verbindungen in eine <code>.tablepro</code>-Datei, um sie an Kollegen zu schicken oder neben dem Code abzulegen. Sie enthält Verbindungen mit Gruppen, Tags und SSH-Einstellungen, aber keine Passwörter. Verschlüsselter Export fügt die Passwörter hinzu und schützt die gesamte Datei mit einer Passphrase und AES-256-GCM. Der Import einer Datei, verschlüsselt oder nicht, ist auf Mac, iPhone und iPad kostenlos.",
-                "Auf iPhone und iPad ist der Export mit passphrasegeschützten Passwörtern kostenlos. Eine Verbindung lässt sich auch als <code>tablepro://import</code>-Link weitergeben, der Host, Port, Benutzername, Datenbank sowie SSH- und SSL-Einstellungen enthält, aber nie das Passwort."
+                "Auf iPhone und iPad ist der Export mit passphrasegeschützten Passwörtern kostenlos. Eine Verbindung lässt sich auch als <code>tablepro://import</code>-Link weitergeben, der Host, Port, Benutzername, Datenbank sowie SSH- und TLS-Einstellungen enthält, aber nie das Passwort."
             ],
             "paid": [
                 "encrypted-export"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team-Bibliothek",
                     "paragraphs": [
-                        "<ui>Teilen > In Team-Bibliothek veröffentlichen…</ui> bei einer Verbindung und <ui>Gespeicherte Abfragen im Team veröffentlichen…</ui> in der Favoriten-Seitenleiste laden Verbindungen und gespeicherte Abfragen auf den Server von TablePro hoch; jeder Mac der Lizenz lädt sie herunter. Die Abfragen erscheinen mit dem Namen des Veröffentlichenden in der Favoriten-Seitenleiste. Hochgeladen werden Verbindungseinstellungen und SQL-Text, nie Passwörter. Der Mac eines Teammitglieds ignoriert empfangene Start- und Tunnelbefehle, damit dort nichts von selbst ausgeführt wird. Erneutes Veröffentlichen ersetzt deine vorherige Veröffentlichung."
+                        "<ui>Teilen > In Team-Bibliothek veröffentlichen…</ui> bei einer Verbindung und <ui>Gespeicherte Abfragen im Team veröffentlichen…</ui> in der Favoriten-Seitenleiste laden Verbindungen und gespeicherte Abfragen auf den Server von TablePro hoch. Jeder Mac der Lizenz lädt sie herunter, und die Abfragen erscheinen mit dem Namen des Veröffentlichenden in der Favoriten-Seitenleiste. Hochgeladen werden Verbindungseinstellungen und SQL-Text, nie Passwörter. Der Mac eines Teammitglieds ignoriert empfangene Start- und Tunnelbefehle, damit dort nichts von selbst ausgeführt wird. Erneutes Veröffentlichen ersetzt deine vorherige Veröffentlichung."
                     ],
                     "paid": [
                         "team-library"
@@ -192,8 +192,8 @@
         }
     ],
     "limits": [
-        "Wenn ein Tarif auf dem Mac endet, pausiert die iCloud-Synchronisierung mit einer Begründung. Verbindungen aus Verknüpften Ordnern und der Team-Bibliothek verschwinden aus der Liste, die Team-Veröffentlichungsbefehle werden ausgeblendet und Verschlüsselter Export verliert die Passwortoption.",
-        "Das Bearbeiten einer synchronisierten Verbindung auf iPhone oder iPad kann Einstellungen ändern, die es dort nicht gibt: Eine strengere Mac-Stufe des sicheren Modus wie Sicherer Modus (Vollständig) kommt als Warnung zurück, und SSH-Sprunghosts können verloren gehen. Ändere solche Verbindungen auf dem Mac.",
+        "Wenn ein Tarif auf dem Mac endet, pausiert die iCloud-Synchronisierung mit einer Begründung, und Verbindungen aus Verknüpften Ordnern und der Team-Bibliothek verschwinden aus der Liste. Die Team-Veröffentlichungsbefehle werden ausgeblendet, und Verschlüsselter Export verliert die Passwortoption.",
+        "Das Bearbeiten einer synchronisierten Verbindung auf iPhone oder iPad kann Einstellungen ändern, die es dort nicht gibt. Eine strengere Mac-Stufe des sicheren Modus wie Sicherer Modus (Vollständig) kommt als Warnung zurück, und SSH-Sprunghosts können verloren gehen. Ändere solche Verbindungen auf dem Mac.",
         "Wenn eine Team-Lizenz endet oder gesperrt wird, bleiben Veröffentlichungen in der Team-Bibliothek auf dem Server von TablePro, bis du ihre Löschung anforderst."
     ],
     "docs": [

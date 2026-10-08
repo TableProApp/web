@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Escribe, ejecuta y comprende consultas",
-        "lead": "Para quien escribe SQL contra una base de datos activa: escribe con el esquema a mano, ejecuta una sentencia o un script completo, conserva las consultas útiles y averigua por qué una se volvió más lenta. Todo lo descrito está en la app para Mac; la última sección cubre iPhone y iPad.",
+        "lead": "Para quien escribe SQL contra una base de datos activa: escribe con el esquema a mano, ejecuta una sentencia o un script completo, conserva las consultas útiles y averigua por qué una se volvió más lenta. Todo lo descrito aquí está en la app para Mac. La app para iPhone y iPad cubre una parte.",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Un editor que conoce tu esquema",
             "paragraphs": [
                 "El autocompletado lee el esquema de la conexión mientras escribes: tablas después de FROM y JOIN, columnas de un alias y columnas de una CTE o subconsulta definida antes en la sentencia. El resaltado usa tree-sitter y <kbd>⌘⇧L</kbd> da formato a la sentencia del cursor sin eliminar tus comentarios.",
-                "<kbd>⌘⏎</kbd> ejecuta la sentencia del cursor o la selección; <kbd>⌘⇧⏎</kbd> las ejecuta todas; <kbd>⌘⌥⏎</kbd> ejecuta sin límite de filas y <kbd>⌘.</kbd> cancela. Un lote de sentencias normales se ejecuta en una transacción y se revierte si alguna falla; las excepciones son scripts que gestionan su propia transacción, scripts SQL Server, sentencias que no admiten transacciones como VACUUM y DDL en MySQL, MariaDB y Oracle, que se confirma por sí solo."
+                "<kbd>⌘⏎</kbd> ejecuta la sentencia del cursor o la selección; <kbd>⌘⇧⏎</kbd> las ejecuta todas; <kbd>⌘⌥⏎</kbd> ejecuta sin límite de filas y <kbd>⌘.</kbd> cancela. Un lote de sentencias normales se ejecuta en una transacción y se revierte si alguna falla. Las excepciones son scripts que gestionan su propia transacción, scripts SQL Server y sentencias que no admiten transacciones, como VACUUM. El DDL en MySQL, MariaDB y Oracle se confirma por sí solo."
             ],
             "points": [
                 "Marcadores de sentencia en el margen, cada uno con su botón de ejecución.",
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Escribe <code>:customer_id</code> en una consulta y TablePro pide su valor y tipo antes de ejecutarla, vinculando el valor de forma nativa si el controlador lo admite.",
                 "Cada consulta ejecutada entra en el historial local (<kbd>⌘Y</kbd>), con búsqueda de texto completo y filtros por origen, fallos y periodo. Por defecto conserva {historyEntries} entradas durante {historyDays} días y nunca se sincroniza.",
-                "Guarda una consulta con una palabra clave como <code>dau</code> y escríbela en el editor para expandirla. Las consultas guardadas conservan historial de versiones. Una carpeta SQL vinculada sincroniza una carpeta de archivos <code>.sql</code> con la barra lateral en ambos sentidos, con letras de estado Git por archivo; es gratis e independiente de Carpetas vinculadas, la función Starter para archivos de conexión compartidos."
+                "Guarda una consulta con una palabra clave como <code>dau</code> y escríbela en el editor para expandirla. Las consultas guardadas conservan historial de versiones. Una carpeta SQL vinculada sincroniza una carpeta de archivos <code>.sql</code> con la barra lateral en ambos sentidos, con letras de estado Git por archivo. Es gratis e independiente de Carpetas vinculadas, la función Starter para archivos de conexión compartidos."
             ],
             "asset": "mac-query-parameters-history"
         },

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Rédigez, exécutez et comprenez vos requêtes",
-        "lead": "Pour ceux qui écrivent du SQL sur une base active : rédigez avec le schéma à portée de main, exécutez une instruction ou un script entier, gardez les requêtes utiles et trouvez pourquoi l’une a ralenti. Tout est disponible sur Mac ; la dernière section couvre iPhone et iPad.",
+        "lead": "Pour ceux qui écrivent du SQL sur une base active : rédigez avec le schéma à portée de main, exécutez une instruction ou un script entier, gardez les requêtes utiles et trouvez pourquoi l’une a ralenti. Tout est disponible sur Mac. L’application iPhone et iPad en couvre une partie.",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Un éditeur qui connaît votre schéma",
             "paragraphs": [
                 "L’autocomplétion lit le schéma pendant la saisie : tables après FROM et JOIN, colonnes d’un alias et colonnes d’une CTE ou sous-requête définie plus tôt. La coloration utilise tree-sitter ; <kbd>⌘⇧L</kbd> formate l’instruction au curseur sans supprimer vos commentaires.",
-                "<kbd>⌘⏎</kbd> exécute l’instruction au curseur ou la sélection, <kbd>⌘⇧⏎</kbd> les exécute toutes, <kbd>⌘⌥⏎</kbd> sans limite de lignes et <kbd>⌘.</kbd> annule. Un lot d’instructions ordinaires s’exécute dans une transaction et est annulé si l’une échoue. Exceptions : scripts gérant leur transaction, scripts SQL Server, instructions incompatibles avec les transactions comme VACUUM, et DDL sur MySQL, MariaDB et Oracle, qui valide de lui-même."
+                "<kbd>⌘⏎</kbd> exécute l’instruction au curseur ou la sélection, <kbd>⌘⇧⏎</kbd> les exécute toutes, <kbd>⌘⌥⏎</kbd> sans limite de lignes et <kbd>⌘.</kbd> annule. Un lot d’instructions ordinaires s’exécute dans une transaction et est annulé si l’une échoue. Exceptions : scripts gérant leur transaction, scripts SQL Server et instructions incompatibles avec les transactions, comme VACUUM. Le DDL sur MySQL, MariaDB et Oracle valide de lui-même."
             ],
             "points": [
                 "Repères d’instructions dans la marge, chacun avec son bouton d’exécution.",
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Écrivez <code>:customer_id</code> dans une requête ; TablePro demande sa valeur et son type avant exécution, puis lie la valeur nativement si le pilote le permet.",
                 "Chaque requête exécutée entre dans l’historique local (<kbd>⌘Y</kbd>), avec recherche plein texte et filtres par source, échecs et période. Il conserve par défaut {historyEntries} entrées pendant {historyDays} jours et ne se synchronise jamais.",
-                "Enregistrez une requête avec un mot-clé comme <code>dau</code>, puis saisissez-le pour la développer. Les requêtes enregistrées gardent un historique des versions. Un dossier SQL lié synchronise les fichiers <code>.sql</code> avec la barre latérale dans les deux sens, avec lettres d’état Git par fichier ; c’est gratuit et distinct des Dossiers liés, fonction Starter pour les fichiers de connexion partagés."
+                "Enregistrez une requête avec un mot-clé comme <code>dau</code>, puis saisissez-le pour la développer. Les requêtes enregistrées gardent un historique des versions. Un dossier SQL lié synchronise les fichiers <code>.sql</code> avec la barre latérale dans les deux sens, avec lettres d’état Git par fichier. C’est gratuit et distinct des Dossiers liés, fonction Starter pour les fichiers de connexion partagés."
             ],
             "asset": "mac-query-parameters-history"
         },

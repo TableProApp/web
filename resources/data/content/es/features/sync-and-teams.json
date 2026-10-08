@@ -18,12 +18,12 @@
             "title": "Sincronización con iCloud",
             "paragraphs": [
                 "Sincronización con iCloud mantiene la misma biblioteca en todos los Macs, iPhone y iPad conectados a tu cuenta de iCloud. Los registros se guardan en una base de datos privada de esa cuenta; la sincronización permanece desactivada hasta que la actives en cada dispositivo. Es gratuita en iPhone y iPad; en Mac necesitas un plan que la incluya.",
-                "Las contraseñas solo se sincronizan si también activas <ui>Contraseñas</ui> en Categorías de sincronización en Mac, o <ui>Sincronizar contraseñas</ui> en iPhone y iPad, mediante el Llavero de iCloud. En Mac también se sincronizan otros secretos que TablePro guarda en el Llavero, como las claves de proveedores de IA y la clave de licencia. Marca una conexión como Solo local para mantenerla, junto con sus favoritos y consultas guardadas, en un único Mac."
+                "Las contraseñas solo se sincronizan si también activas <ui>Contraseñas</ui> en Categorías de sincronización en Mac, o <ui>Sincronizar contraseñas</ui> en iPhone y iPad. Viajan mediante el Llavero de iCloud. En Mac, el mismo ajuste también sincroniza otros secretos que TablePro guarda en el Llavero, como las claves de proveedores de IA y la clave de licencia. Marca una conexión como Solo local para mantenerla, junto con sus favoritos y consultas guardadas, en un único Mac."
             ],
             "points": [
                 "En Mac eliges qué sincronizar: conexiones, grupos y etiquetas, ajustes, perfiles SSH, favoritos de tablas y bases de datos, consultas guardadas con su SQL y carpetas de tablas.",
                 "En iPhone y iPad: conexiones, grupos y etiquetas.",
-                "Una conexión sincronizada incluye el host, el puerto, el nombre de usuario, la base de datos, los ajustes SSH y SSL, los comandos de inicio, el script previo a la conexión y las reglas de IA.",
+                "Una conexión sincronizada incluye el host, el puerto, el nombre de usuario, la base de datos, los ajustes SSH y TLS, los comandos de inicio, el script previo a la conexión y las reglas de IA.",
                 "Nunca se sincronizan: el historial de consultas, Rebobinado de datos, los orígenes de contraseña, los comandos de túnel ni el nivel de Clientes externos de cada conexión."
             ],
             "paid": [
@@ -47,7 +47,7 @@
             "title": "Comparte una conexión",
             "paragraphs": [
                 "Exporta conexiones a un archivo <code>.tablepro</code> para enviarlas a un compañero o guardarlas junto al código. Incluye las conexiones con sus grupos, etiquetas y ajustes SSH, sin contraseñas. Exportación cifrada añade las contraseñas y protege todo el archivo con una frase de contraseña y AES-256-GCM. Importar un archivo, cifrado o no, es gratuito en Mac, iPhone y iPad.",
-                "En iPhone y iPad, exportar con contraseñas protegidas por una frase de contraseña es gratuito. Una conexión también puede compartirse como enlace <code>tablepro://import</code>, que incluye el host, el puerto, el nombre de usuario, la base de datos y los ajustes SSH y SSL, pero nunca la contraseña."
+                "En iPhone y iPad, exportar con contraseñas protegidas por una frase de contraseña es gratuito. Una conexión también puede compartirse como enlace <code>tablepro://import</code>, que incluye el host, el puerto, el nombre de usuario, la base de datos y los ajustes SSH y TLS, pero nunca la contraseña."
             ],
             "paid": [
                 "encrypted-export"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Biblioteca de equipo",
                     "paragraphs": [
-                        "<ui>Compartir > Publicar en la biblioteca de equipo…</ui> en una conexión y <ui>Publicar consultas guardadas en el equipo…</ui> en la barra lateral Favoritos suben conexiones y consultas guardadas al servidor de TablePro, y todos los Macs de la licencia las descargan; las consultas aparecen en Favoritos con el nombre de quien las publicó. Se suben los ajustes de conexión y el texto SQL de las consultas, nunca las contraseñas; el Mac del compañero ignora los comandos de inicio y de túnel recibidos, así que nada se ejecuta por sí solo. Volver a publicar sustituye lo publicado anteriormente."
+                        "<ui>Compartir > Publicar en la biblioteca de equipo…</ui> en una conexión y <ui>Publicar consultas guardadas en el equipo…</ui> en la barra lateral Favoritos suben conexiones y consultas guardadas al servidor de TablePro. Todos los Macs de la licencia las descargan, y las consultas aparecen en Favoritos con el nombre de quien las publicó. Se suben los ajustes de conexión y el texto SQL de las consultas, nunca las contraseñas; el Mac del compañero ignora los comandos de inicio y de túnel recibidos, así que nada se ejecuta por sí solo. Volver a publicar sustituye lo publicado anteriormente."
                     ],
                     "paid": [
                         "team-library"
@@ -192,8 +192,8 @@
         }
     ],
     "limits": [
-        "Cuando un plan termina en Mac, Sincronización con iCloud se pausa e indica el motivo, las conexiones de Carpetas vinculadas y Biblioteca de equipo desaparecen de la lista, los comandos de publicación de Equipo se ocultan y Exportación cifrada pierde la opción de contraseña.",
-        "Editar una conexión sincronizada en iPhone o iPad puede cambiar ajustes que la app de esos dispositivos no tiene: un nivel más estricto de Modo seguro de Mac, como Modo seguro (Completo), vuelve como Alerta, y los hosts de salto SSH pueden perderse. Modifica esas conexiones en Mac.",
+        "Cuando un plan termina en Mac, Sincronización con iCloud se pausa e indica el motivo, y las conexiones de Carpetas vinculadas y Biblioteca de equipo desaparecen de la lista. Los comandos de publicación de Equipo se ocultan y Exportación cifrada pierde la opción de contraseña.",
+        "Editar una conexión sincronizada en iPhone o iPad puede cambiar ajustes que la app de esos dispositivos no tiene. Un nivel más estricto de Modo seguro de Mac, como Modo seguro (Completo), vuelve como Alerta, y los hosts de salto SSH pueden perderse. Modifica esas conexiones en Mac.",
         "Si una licencia de Equipo termina o se suspende, lo publicado en la Biblioteca de equipo permanece en el servidor de TablePro hasta que solicites su eliminación."
     ],
     "docs": [

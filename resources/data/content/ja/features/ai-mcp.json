@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "AI アシスタントと MCP サーバー",
-        "lead": "自分で選んだモデルから SQL の支援を受けたい開発者や、AI クライアントにデータベースを扱わせたい方へ。スキーマを尋ね、クエリをレビュー・修正し、Claude Code や Cursor に保存済み接続を使わせられます。すべて任意の Mac 専用機能です。プロバイダーの追加やクライアントの接続まで、モデルには何も送信しません。",
+        "lead": "自分で選んだモデルから SQL の支援を受けたい開発者や、AI クライアントにデータベースを扱わせたい方へ。スキーマを尋ね、クエリをレビュー・修正し、Claude Code や Cursor などの MCP（Model Context Protocol）クライアントに保存済み接続を使わせられます。すべて任意の Mac 専用機能です。プロバイダーの追加やクライアントの接続まで、モデルには何も送信しません。",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "クライアントを接続する",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> に {mcpSetupClients} の設定手順とコピー用のスニペットがあります。同梱の <code>tablepro-mcp</code> ブリッジは {mcpBridgeClients} にも対応し、必要なら TablePro を起動してサーバーを見つけるため、クライアントの設定にポートやトークンは不要です。公式 Raycast 拡張は代わりにアプリとペアリングし、Mac 上で承認します。",
+                        "<ui>Settings > Integrations</ui> に {mcpSetupClients} の設定手順とコピー用のスニペットがあります。同梱の <code>tablepro-mcp</code> ブリッジは {mcpBridgeClients} にも対応します。必要なら TablePro を起動してサーバーを見つけるため、クライアントの設定にポートやトークンは不要です。公式 Raycast 拡張は代わりにアプリとペアリングし、Mac 上で承認します。",
                         "典型的なリクエストは、同じメールアドレスを使うユーザーを探すことです。クライアントは <code>list_tables</code> と <code>describe_table</code> を呼び、カラム名が <code>email_address</code> だと確認して、保存済み接続で一つの SELECT を実行できます。チャットにスキーマを貼り付ける必要はありません。"
                     ]
                 },

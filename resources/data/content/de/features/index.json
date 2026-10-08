@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "Was du mit TablePro tun kannst",
-        "lead": "Die Mac-App bietet den vollständigen Arbeitsplatz; jede der folgenden Seiten beschreibt sie zuerst. Die iPhone- und iPad-App ist eine eigenständige native App mit kleinerem Umfang. Jede Seite endet mit ihren dort verfügbaren Funktionen."
+        "lead": "Die Mac-App bietet den vollständigen Arbeitsplatz. Die iPhone- und iPad-App ist eine eigenständige native App mit kleinerem Umfang, und jede Funktionsseite nennt, was sie dort bietet."
     },
     "areas": {
-        "title": "Funktionsbereiche",
-        "lead": "Jeder Bereich hat eine Seite mit Details, dem für jede Funktion nötigen Mac-Tarif und den relevanten Einschränkungen.",
-        "paid": "{tier}: {features}",
+        "title": "Funktionen nach Aufgabe",
+        "paid": "{tier}-Tarif: {features}",
         "noPaid": "Keine Bezahlfunktionen",
         "items": [
             {
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Ein optionaler KI-Assistent mit deinem gewählten Anbieter und ein lokaler MCP-Server, über den Clients wie Claude Code und Cursor deine gespeicherten Verbindungen nutzen."
+                "summary": "Ein optionaler KI-Assistent mit deinem gewählten Anbieter und ein lokaler Server für MCP (Model Context Protocol), über den Clients wie Claude Code und Cursor deine gespeicherten Verbindungen nutzen."
             },
             {
                 "slug": "connections",

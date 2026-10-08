@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "AI 助手與 MCP 伺服器",
-        "lead": "適合希望使用自選模型協助 SQL，或讓 AI 用戶端操作資料庫的開發者：詢問結構、檢閱或修正查詢，或讓 Claude Code、Cursor 使用已儲存連線。所有功能均可選且僅在 Mac App 中提供，新增供應商或連線用戶端前不會向模型傳送任何內容。",
+        "lead": "適合希望使用自選模型協助 SQL，或讓 AI 用戶端操作資料庫的開發者。可詢問結構、檢閱或修正查詢，或讓 Claude Code、Cursor 等 MCP（Model Context Protocol）用戶端使用已儲存連線。所有功能均可選且僅在 Mac App 中提供，新增供應商或連線用戶端前不會向模型傳送任何內容。",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -26,7 +26,7 @@
             "id": "in-the-editor",
             "title": "檢閱、解釋、最佳化與修正",
             "paragraphs": [
-                "將游標放在陳述式中，選擇 Review with AI（<kbd>⌥⇧⌘L</kbd>）檢閱正確性、成本和安全性，Explain（<kbd>⌘L</kbd>）逐步解釋，或 Optimize（<kbd>⌥⌘L</kbd>）建議改寫或索引；查詢失敗時，錯誤橫幅提供 Fix with AI。請求包含陳述式所參照資料表的結構，陳述式本身不會執行。<ui>Apply to Editor</ui> 僅在確認後取代陳述式。",
+                "將游標放在陳述式中，選擇 Review with AI（<kbd>⌥⇧⌘L</kbd>）檢閱正確性、成本和安全性，Explain（<kbd>⌘L</kbd>）逐步解釋，或 Optimize（<kbd>⌥⌘L</kbd>）建議改寫或索引。查詢失敗時，錯誤橫幅提供 Fix with AI。請求包含陳述式所參照資料表的結構，陳述式本身不會執行。<ui>Apply to Editor</ui> 僅在確認後取代陳述式。",
                 "行內建議在輸入時顯示淡色文字，預設關閉。AI Rules 可為連線固定純文字說明，例如哪些欄位絕不能選取，並隨每則訊息傳送。"
             ]
         },
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "連線用戶端",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> 提供 {mcpSetupClients} 的設定步驟和可複製片段。附帶的 <code>tablepro-mcp</code> 橋接也支援 {mcpBridgeClients}：它依需啟動 TablePro 並探索伺服器，因此用戶端設定無須連接埠或權杖。官方 Raycast 擴充功能則與 App 配對，由你在 Mac 上核准。",
+                        "<ui>Settings > Integrations</ui> 提供 {mcpSetupClients} 的設定步驟和可複製片段。附帶的 <code>tablepro-mcp</code> 橋接也支援 {mcpBridgeClients}。它依需啟動 TablePro 並探索伺服器，因此用戶端設定無須連接埠或權杖。官方 Raycast 擴充功能則與 App 配對，由你在 Mac 上核准。",
                         "典型請求：讓用戶端找出使用同一電子郵件地址的使用者。它可呼叫 <code>list_tables</code> 和 <code>describe_table</code>，發現欄位名稱為 <code>email_address</code>，再透過已儲存連線執行一個 SELECT，無須將結構貼到聊天中。"
                     ]
                 },

@@ -18,12 +18,12 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync giữ thư viện của bạn giống nhau trên mọi máy Mac, iPhone và iPad đăng nhập cùng tài khoản iCloud. Dữ liệu được lưu trong một cơ sở dữ liệu riêng tư thuộc tài khoản đó, và tính năng này tắt cho tới khi bạn bật trên từng thiết bị. Trên iPhone và iPad, iCloud Sync miễn phí; máy Mac cần một gói có kèm tính năng này.",
-                "Mật khẩu chỉ được đồng bộ khi bạn bật thêm mục <ui>Mật khẩu</ui> (Passwords) trong Danh mục đồng bộ trên Mac, hoặc <ui>Đồng bộ mật khẩu</ui> (Sync Passwords) trên iPhone và iPad, đi qua iCloud Keychain; trên Mac, tùy chọn này còn mang theo các secret khác mà TablePro lưu trong Keychain, như API key của nhà cung cấp AI và license key. Đánh dấu một connection là <ui>Chỉ cục bộ</ui> (Local only) để giữ nó, cùng các mục yêu thích và query đã lưu của nó, trên một máy Mac."
+                "Mật khẩu chỉ được đồng bộ khi bạn bật thêm mục <ui>Mật khẩu</ui> (Passwords) trong Danh mục đồng bộ trên Mac, hoặc <ui>Đồng bộ mật khẩu</ui> (Sync Passwords) trên iPhone và iPad. Mật khẩu đi qua iCloud Keychain. Trên Mac, tùy chọn này còn mang theo các secret khác mà TablePro lưu trong Keychain, như API key của nhà cung cấp AI và license key. Đánh dấu một connection là <ui>Chỉ cục bộ</ui> (Local only) để giữ nó, cùng các mục yêu thích và query đã lưu của nó, trên một máy Mac."
             ],
             "points": [
                 "Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm connection và tag, cài đặt, SSH profile, table và cơ sở dữ liệu yêu thích, query đã lưu kèm nội dung SQL, và thư mục table.",
                 "Trên iPhone và iPad: connection, nhóm connection và tag.",
-                "Một connection được đồng bộ mang theo host, port, tên người dùng, tên cơ sở dữ liệu, thiết lập SSH và SSL, startup command, pre-connect script và AI rules.",
+                "Một connection được đồng bộ mang theo host, port, tên người dùng, tên cơ sở dữ liệu, thiết lập SSH và TLS, startup command, pre-connect script và AI rules.",
                 "Không bao giờ được đồng bộ: lịch sử query, Data Rewind, nguồn mật khẩu, tunnel command và mức External Clients của từng connection."
             ],
             "paid": ["icloud-sync"],
@@ -43,7 +43,7 @@
             "title": "Chia sẻ một connection",
             "paragraphs": [
                 "Export connection ra file <code>.tablepro</code> để gửi cho đồng nghiệp hoặc để cạnh mã nguồn. File chứa các connection kèm nhóm connection, tag và thiết lập SSH của chúng, không có mật khẩu. Encrypted Export thêm mật khẩu vào và mã hóa toàn bộ file bằng một passphrase với AES-256-GCM. Import một file, dù có mã hóa hay không, đều miễn phí trên Mac cũng như trên iPhone và iPad.",
-                "Trên iPhone và iPad, export kèm mật khẩu được bảo vệ bằng passphrase là miễn phí. Một connection cũng có thể được gửi đi dưới dạng liên kết <code>tablepro://import</code>, mang theo host, port, tên người dùng, tên cơ sở dữ liệu cùng thiết lập SSH và SSL, không bao giờ kèm mật khẩu."
+                "Trên iPhone và iPad, export kèm mật khẩu được bảo vệ bằng passphrase là miễn phí. Một connection cũng có thể được gửi đi dưới dạng liên kết <code>tablepro://import</code>, mang theo host, port, tên người dùng, tên cơ sở dữ liệu cùng thiết lập SSH và TLS, không bao giờ kèm mật khẩu."
             ],
             "paid": ["encrypted-export"],
             "links": [{ "label": "Import connection từ các client khác", "href": "/features/connections#import" }]
@@ -77,7 +77,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Chia sẻ > Xuất bản lên thư viện nhóm…</ui> (Share > Publish to Team Library…) trên một connection, và <ui>Xuất bản truy vấn đã lưu cho nhóm…</ui> (Publish Saved Queries to Team…) trong sidebar Favorites, tải connection và query đã lưu lên server của TablePro, và mọi máy Mac trong license sẽ tải chúng về; các query hiện trong sidebar Favorites kèm tên người đã xuất bản chúng. Thứ được tải lên là thiết lập connection và nội dung SQL của query, không bao giờ có mật khẩu, và máy Mac của thành viên nhóm bỏ qua startup command và tunnel command trong những gì nhận về, nên không có gì tự chạy trên máy của họ. Xuất bản lại sẽ thay thế những gì bạn đã xuất bản trước đó."
+                        "<ui>Chia sẻ > Xuất bản lên thư viện nhóm…</ui> (Share > Publish to Team Library…) trên một connection, và <ui>Xuất bản truy vấn đã lưu cho nhóm…</ui> (Publish Saved Queries to Team…) trong sidebar Favorites, tải connection và query đã lưu lên server của TablePro. Mọi máy Mac trong license sẽ tải chúng về, và các query hiện trong sidebar Favorites kèm tên người đã xuất bản chúng. Thứ được tải lên là thiết lập connection và nội dung SQL của query, không bao giờ có mật khẩu, và máy Mac của thành viên nhóm bỏ qua startup command và tunnel command trong những gì nhận về, nên không có gì tự chạy trên máy của họ. Xuất bản lại sẽ thay thế những gì bạn đã xuất bản trước đó."
                     ],
                     "paid": ["team-library"],
                     "asset": "mac-team-library",
@@ -118,8 +118,8 @@
         { "label": "Team Library", "paid": "team-library", "ios": "no" }
     ],
     "limits": [
-        "Khi gói trả phí trên Mac kết thúc, iCloud Sync tạm dừng và cho biết lý do, connection từ Linked Folders và Team Library biến mất khỏi danh sách, các lệnh xuất bản lên Team Catalog và Team Library bị ẩn, và Encrypted Export mất tùy chọn kèm mật khẩu.",
-        "Sửa một connection đã đồng bộ trên iPhone hoặc iPad có thể thay đổi những thiết lập mà ứng dụng ở đó không có: một mức Safe Mode chặt hơn trên Mac, như Safe Mode (Full), quay về thành Alert, và jump host SSH có thể bị mất qua lần đồng bộ đó. Hãy sửa các connection này trên Mac.",
+        "Khi gói trả phí trên Mac kết thúc, iCloud Sync tạm dừng và cho biết lý do, còn connection từ Linked Folders và Team Library biến mất khỏi danh sách. Các lệnh xuất bản lên Team Catalog và Team Library bị ẩn, và Encrypted Export mất tùy chọn kèm mật khẩu.",
+        "Sửa một connection đã đồng bộ trên iPhone hoặc iPad có thể thay đổi những thiết lập mà ứng dụng ở đó không có. Một mức Safe Mode chặt hơn trên Mac, như Safe Mode (Full), quay về thành Alert, và jump host SSH có thể bị mất qua lần đồng bộ đó. Hãy sửa các connection này trên Mac.",
         "Nếu license Team kết thúc hoặc bị tạm ngưng, những gì đã xuất bản lên Team Library vẫn nằm trên server của TablePro cho tới khi bạn yêu cầu xóa."
     ],
     "docs": [
