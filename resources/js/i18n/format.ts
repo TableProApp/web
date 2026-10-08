@@ -20,7 +20,7 @@ export interface NumberStyle {
 }
 
 export interface CurrencyStyle extends NumberStyle {
-    /** Where the number sits, as `{amount}`: `${amount}` or `{amount} US$`. */
+    /** Where the number sits, as `{amount}`: `${amount}` or `{amount} US$`. A space in it is written as a no-break space. */
     pattern: string;
 }
 
@@ -43,7 +43,8 @@ export function formatNumber(value: number, style: NumberStyle, fractionDigits =
 export function formatUsd(amount: number, style: CurrencyStyle): string {
     const digits = Number.isInteger(amount) ? 0 : 2;
 
-    return interpolate(style.pattern, { amount: formatNumber(amount, style, digits) });
+    // A no-break space, so "2,99 US$" never wraps between the number and the currency.
+    return interpolate(style.pattern.replace(/ /g, '\u00a0'), { amount: formatNumber(amount, style, digits) });
 }
 
 export interface ListStyle {
