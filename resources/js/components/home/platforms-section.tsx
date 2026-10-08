@@ -1,5 +1,5 @@
 import AppStoreBadge from '@/components/download/app-store-badge';
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import { buttonClasses } from '@/components/ui/button';
 import CellGrid from '@/components/ui/cell-grid';
 import LocaleLink from '@/components/ui/locale-link';
@@ -33,6 +33,7 @@ export default function PlatformsSection({ content, availability }: PlatformsSec
     const ios = releasedIos();
     const macDevices = devicesOf(mac, m.common.list);
     const iosDevices = ios !== null ? devicesOf(ios, m.common.list) : '';
+    const phone = useShownSlot()('ios-connection-list');
 
     return (
         <Section
@@ -53,9 +54,9 @@ export default function PlatformsSection({ content, availability }: PlatformsSec
               * 1024), with the iCloud Sync note under them. Inside the iPhone cell, the
               * 607px slot made it four times the Mac cell's height. Each cell's actions
               * sit at its foot, so the two line up. The cells close on the next join
-              * (design-system §4.7).
+              * (design-system §4.7). Without the screenshot its column goes too.
               */}
-            <CellGrid className="md:grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]">
+            <CellGrid className={phone ? 'md:grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]' : 'lg:grid-cols-2'}>
                 <div className="flex flex-col md:col-start-1 md:row-start-1">
                     <h3 className="type-h3 text-foreground">{fmt(content.cardTitle, { devices: macDevices })}</h3>
                     <p className="type-body mt-3 text-foreground">{fmt(content.mac, { architectures: macArchitectureList(m) })}</p>
@@ -93,7 +94,7 @@ export default function PlatformsSection({ content, availability }: PlatformsSec
                     </div>
                 )}
 
-                {ios !== null && (
+                {ios !== null && phone && (
                     <div className="flex justify-center md:col-start-2 md:row-span-3 md:row-start-1 lg:col-start-3 lg:row-span-2">
                         <AssetSlot id="ios-connection-list" />
                     </div>

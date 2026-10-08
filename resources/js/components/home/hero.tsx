@@ -1,4 +1,4 @@
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import Container from '@/components/ui/container';
 import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
@@ -28,10 +28,13 @@ interface HeroProps {
  * unlined.
  *
  * The window below is the page's one priority image. While it is a
- * placeholder it requests nothing; once supplied, the controller's `lcpAsset`
- * preloads the variant the reader's theme and width show.
+ * placeholder it requests nothing, and in production it is left out; once
+ * supplied, the controller's `lcpAsset` preloads the variant the reader's
+ * theme and width show.
  */
 export default function Hero({ content, availability, featuredEngines }: HeroProps) {
+    const shown = useShownSlot();
+
     return (
         <section id="top" aria-labelledby="top-title" className="pt-12 pb-8 md:pt-16 md:pb-10 xl:pt-18 xl:pb-12">
             <Container>
@@ -80,9 +83,11 @@ export default function Hero({ content, availability, featuredEngines }: HeroPro
                     />
                 </p>
 
-                <div className="mt-12 md:mt-16">
-                    <AssetSlot id="mac-hero-window" />
-                </div>
+                {shown('mac-hero-window') && (
+                    <div className="mt-12 md:mt-16">
+                        <AssetSlot id="mac-hero-window" />
+                    </div>
+                )}
             </Container>
         </section>
     );

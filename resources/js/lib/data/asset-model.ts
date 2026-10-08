@@ -310,6 +310,11 @@ function entryFor(manifest: SlotManifestData, id: string): SlotEntry {
     return entry;
 }
 
+// The main image decides: a crop alone cannot fill a slot above 768px.
+export function slotSupplied(manifest: SlotManifestData, id: string, locale: string): boolean {
+    return themedSources(entryFor(manifest, id), locale) !== null;
+}
+
 /** The entry's text for a field, which the bundled projection keeps only for the state that shows it. */
 function required(text: LocalizedText | undefined, id: string, field: string): LocalizedText {
     if (text === undefined) {

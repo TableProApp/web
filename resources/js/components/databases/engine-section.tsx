@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import Section from '@/components/ui/section';
-import { assetEntry, isAssetId } from '@/lib/data/assets';
+import { assetEntry } from '@/lib/data/assets';
 import type { Values } from '@/i18n';
 import RichText from './rich-text';
 
@@ -11,7 +11,7 @@ interface EngineSectionProps {
     title: ReactNode;
     paragraphs: string[];
     points?: string[];
-    /** At most one slot, from the content file. An id the manifest does not know renders nothing. */
+    /** At most one slot, from the content file. An id the manifest does not know renders nothing, like a slot with no image in production. */
     asset?: string;
     /** `{token}` values for this section only. */
     values?: Values;
@@ -27,11 +27,11 @@ interface EngineSectionProps {
  * The text keeps the reading width. A section with a detail slot puts the
  * text in columns 1-5 and the image in columns 6-12 from 1024px, which is
  * the width the detail kind's `sizes` assume; a window slot runs full width
- * under the text. Placeholders and supplied images take the same box, so the
- * layout never shifts when the owner's image arrives.
+ * under the text. Placeholders and supplied images take the same box. In
+ * production a slot with no image leaves the section as text only.
  */
 export default function EngineSection({ id, title, paragraphs, points, asset, values, before, after }: EngineSectionProps) {
-    const slot = asset !== undefined && isAssetId(asset) ? asset : null;
+    const slot = useShownSlot()(asset);
     const wide = slot !== null && assetEntry(slot).kind === 'window';
 
     const body = (

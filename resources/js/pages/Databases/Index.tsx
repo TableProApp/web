@@ -3,15 +3,15 @@ import DownloadBand from '@/components/databases/download-band';
 import EngineTable from '@/components/databases/engine-table';
 import type { EngineCategory, HubPageProps } from '@/components/databases/types';
 import SEOHead from '@/components/seo/seo-head';
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
-import { isAssetId } from '@/lib/data/assets';
 import { absoluteUrl, breadcrumbNode, collectionPageNode, graph, macAppId } from '@/lib/structured-data';
+import { cn } from '@/lib/utils';
 import LandingLayout from '@/layouts/landing-layout';
 
 /**
@@ -44,7 +44,7 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
     const onIos = iosEngines.map((id) => byId.get(id)?.name).filter((name): name is string => name !== undefined);
     const syncedOnly = engines.filter((engine) => engine.ios.openable && !engine.ios.inPicker).map((engine) => engine.name);
     const docsBase = links.docs;
-    const slot = isAssetId(content.drivers.asset) ? content.drivers.asset : null;
+    const slot = useShownSlot()(content.drivers.asset);
 
     const pageUrl = absoluteUrl(canonicalBaseUrl, path('/databases'));
     const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
@@ -102,8 +102,8 @@ export default function DatabasesIndex({ content, engines, copy, iosEngines, pla
             })}
 
             <Section id="drivers" title={content.drivers.title}>
-                <div className="grid items-start gap-8 lg:grid-cols-12">
-                    <div className="type-body space-y-4 text-foreground lg:col-span-5">
+                <div className={slot !== null ? 'grid items-start gap-8 lg:grid-cols-12' : undefined}>
+                    <div className={cn('type-body space-y-4 text-foreground', slot !== null ? 'lg:col-span-5' : 'max-w-[44rem]')}>
                         {content.drivers.paragraphs.map((paragraph, index) => (
                             <p key={index}>{fmt(paragraph, { bundled })}</p>
                         ))}

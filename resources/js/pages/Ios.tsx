@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react';
+import { Children, isValidElement, type ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
 import AppStoreBadge from '@/components/download/app-store-badge';
 import { requirementLine } from '@/components/download/format';
 import { useContentTags, type SiteLinks } from '@/components/faq/content-links';
 import SEOHead from '@/components/seo/seo-head';
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import Container from '@/components/ui/container';
 import DotList from '@/components/ui/dot-list';
 import FaqList from '@/components/ui/faq-list';
@@ -69,9 +69,17 @@ function Paragraphs({ items, tags, values }: { items: string[]; tags: Record<str
  * Text beside its phone screens from 1024px (text in columns 1–6, the screens
  * from column 7 on one left edge, whether there are one or two), and below
  * that the screens centred above their text (design-system §6.2, §8.8). A
- * right-aligned single slot left a 340px hole between it and its text.
+ * right-aligned single slot left a 340px hole between it and its text. The
+ * children are `AssetSlot`s; with none to show, the row is its text.
  */
-function Row({ text, screens }: { text: ReactNode; screens: ReactNode }) {
+function Row({ text, children }: { text: ReactNode; children: ReactNode }) {
+    const shown = useShownSlot();
+    const screens = Children.toArray(children).filter((slot) => isValidElement<{ id: unknown }>(slot) && shown(slot.props.id) !== null);
+
+    if (screens.length === 0) {
+        return text;
+    }
+
     return (
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-6">{text}</div>
@@ -89,12 +97,14 @@ function Row({ text, screens }: { text: ReactNode; screens: ReactNode }) {
  * the page says plainly what the app leaves to the Mac: jump hosts, Redis key
  * browsing, the AI assistant and the rest of `#limits`.
  *
- * Every image is an `AssetSlot` placeholder from the manifest until the owner
- * supplies the captures. The App Store badge is Apple's artwork.
+ * Every image is an `AssetSlot` from the manifest; one the owner has not
+ * supplied yet leaves no gap in production. The App Store badge is Apple's
+ * artwork.
  */
 export default function Ios({ content, ios, macRequirements, engines, safeModeLevels, limits, links, organizationProfiles, ipadSizes }: IosProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path, format } = useI18n();
+    const shown = useShownSlot();
     const tags = useContentTags(links);
     const number = m.download.file.number;
     const list = (items: string[]): string => joinList(items, m.common.list);
@@ -173,17 +183,21 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
                 </div>
             </PageHeader>
 
-            <div className="py-8 md:py-10 xl:py-12">
-                <Container>
-                    {/* The page's first images: eager, with high fetch priority, and the iPad is preloaded (`lcpAsset`). A block of their own, between two joins. */}
-                    <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-end">
-                        <AssetSlot id="ios-connection-list" priority />
-                        <div className="w-full min-w-0 lg:flex-1">
-                            <AssetSlot id="ipad-table-browse" priority sizes={ipadSizes} />
+            {(shown('ios-connection-list') || shown('ipad-table-browse')) && (
+                <div className="py-8 md:py-10 xl:py-12">
+                    <Container>
+                        {/* The page's first images: eager, with high fetch priority, and the iPad is preloaded (`lcpAsset`). A block of their own, between two joins. */}
+                        <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-end">
+                            <AssetSlot id="ios-connection-list" priority />
+                            {shown('ipad-table-browse') && (
+                                <div className="w-full min-w-0 lg:flex-1">
+                                    <AssetSlot id="ipad-table-browse" priority sizes={ipadSizes} />
+                                </div>
+                            )}
                         </div>
-                    </div>
-                </Container>
-            </div>
+                    </Container>
+                </div>
+            )}
 
             <Section id="databases" title={content.databases.title} lead={content.databases.lead}>
                 <ul className="grid max-w-[44rem] grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3">
@@ -215,69 +229,56 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
             </Section>
 
             <Section id="browse" title={content.browse.title}>
-                <Row
-                    text={<Paragraphs items={content.browse.paragraphs} tags={tags} values={values} />}
-                    screens={
-                        <>
-                            <AssetSlot id="ios-table-browse" />
-                            <AssetSlot id="ios-row-edit" />
-                        </>
-                    }
-                />
+                <Row text={<Paragraphs items={content.browse.paragraphs} tags={tags} values={values} />}>
+                    <AssetSlot id="ios-table-browse" />
+                    <AssetSlot id="ios-row-edit" />
+                </Row>
             </Section>
 
             <Section id="query" title={content.query.title}>
-                <Row
-                    text={<Paragraphs items={content.query.paragraphs} tags={tags} values={values} />}
-                    screens={
-                        <>
-                            <AssetSlot id="ios-query" />
-                            <AssetSlot id="ios-live-activity" />
-                        </>
-                    }
-                />
+                <Row text={<Paragraphs items={content.query.paragraphs} tags={tags} values={values} />}>
+                    <AssetSlot id="ios-query" />
+                    <AssetSlot id="ios-live-activity" />
+                </Row>
             </Section>
 
             <Section id="security" title={content.security.title}>
-                <Row
-                    text={<Paragraphs items={content.security.paragraphs} tags={tags} values={values} />}
-                    screens={<AssetSlot id="ios-connection-form" />}
-                />
+                <Row text={<Paragraphs items={content.security.paragraphs} tags={tags} values={values} />}>
+                    <AssetSlot id="ios-connection-form" />
+                </Row>
             </Section>
 
             <Section id="safe-mode" title={content.safeMode.title}>
-                <Row
-                    text={<Paragraphs items={content.safeMode.paragraphs} tags={tags} values={values} />}
-                    screens={<AssetSlot id="ios-safe-mode-confirm" />}
-                />
+                <Row text={<Paragraphs items={content.safeMode.paragraphs} tags={tags} values={values} />}>
+                    <AssetSlot id="ios-safe-mode-confirm" />
+                </Row>
             </Section>
 
             <Section id="ipad" title={content.ipad.title}>
                 <Paragraphs items={content.ipad.paragraphs} tags={tags} values={values} />
                 {/* Columns 2-11 of the 12-column grid, the iPad kind's 1008 x 756 at 1280 and wider. */}
-                <div className="mt-10 lg:mx-auto lg:w-[calc(83.333%-5.333px)]">
-                    <AssetSlot id="ipad-two-windows" />
-                </div>
+                {shown('ipad-two-windows') && (
+                    <div className="mt-10 lg:mx-auto lg:w-[calc(83.333%-5.333px)]">
+                        <AssetSlot id="ipad-two-windows" />
+                    </div>
+                )}
             </Section>
 
             <Section id="mac" title={content.mac.title}>
                 <Paragraphs items={content.mac.paragraphs} tags={tags} values={values} />
-                <div className="mt-10 grid gap-8">
-                    <AssetSlot id="diagram-icloud-sync" />
-                    <AssetSlot id="mac-handoff-ios" />
-                </div>
+                {(shown('diagram-icloud-sync') || shown('mac-handoff-ios')) && (
+                    <div className="mt-10 grid gap-8">
+                        <AssetSlot id="diagram-icloud-sync" />
+                        <AssetSlot id="mac-handoff-ios" />
+                    </div>
+                )}
             </Section>
 
             <Section id="automation" title={content.automation.title}>
-                <Row
-                    text={<Paragraphs items={content.automation.paragraphs} tags={tags} values={values} />}
-                    screens={
-                        <>
-                            <AssetSlot id="ios-widgets" />
-                            <AssetSlot id="ios-shortcuts-add-rows" />
-                        </>
-                    }
-                />
+                <Row text={<Paragraphs items={content.automation.paragraphs} tags={tags} values={values} />}>
+                    <AssetSlot id="ios-widgets" />
+                    <AssetSlot id="ios-shortcuts-add-rows" />
+                </Row>
             </Section>
 
             <Section id="limits" title={content.limits.title} width="text">
@@ -306,10 +307,9 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
             </Section>
 
             <Section id="privacy" title={content.privacy.title}>
-                <Row
-                    text={<Paragraphs items={content.privacy.paragraphs} tags={tags} values={values} />}
-                    screens={<AssetSlot id="ios-settings-privacy" />}
-                />
+                <Row text={<Paragraphs items={content.privacy.paragraphs} tags={tags} values={values} />}>
+                    <AssetSlot id="ios-settings-privacy" />
+                </Row>
             </Section>
 
             <Section id="get" title={content.get.title} width="text">

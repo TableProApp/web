@@ -9,7 +9,7 @@ import OtherTools from '@/components/databases/other-tools';
 import RichText, { RichTextProvider } from '@/components/databases/rich-text';
 import type { EnginePageProps } from '@/components/databases/types';
 import SEOHead from '@/components/seo/seo-head';
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import Callout from '@/components/ui/callout';
 import Container from '@/components/ui/container';
 import FaqList from '@/components/ui/faq-list';
@@ -18,7 +18,7 @@ import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
-import { assetEntry, isAssetId } from '@/lib/data/assets';
+import { assetEntry } from '@/lib/data/assets';
 import { PAID_FEATURES } from '@/lib/data/paid-features';
 import { absoluteUrl, breadcrumbNode, graph, macAppId, webPageNode } from '@/lib/structured-data';
 import LandingLayout from '@/layouts/landing-layout';
@@ -51,7 +51,7 @@ export default function DatabaseShow({ content, labels, engine, family, copy, to
     const tiers = Object.fromEntries(PAID_FEATURES.map((feature) => [tierToken(feature.id), m.pricing.tiers[feature.tier].name]));
     const values = { ...tiers, ...engineValues(engine, m.common.list), devices };
 
-    const lead = isAssetId(content.asset) ? content.asset : null;
+    const lead = useShownSlot()(content.asset);
     const leadIsWindow = lead !== null && assetEntry(lead).kind === 'window';
     const status = iosStatus(engine);
     const iphone = content.sections.find((section) => section.id === 'iphone');

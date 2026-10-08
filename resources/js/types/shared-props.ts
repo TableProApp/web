@@ -46,4 +46,6 @@ export interface SharedProps extends Record<string, unknown> {
     banner: BannerProp | null;
     /** Public website ID, read only by the click-to-load chat helper. */
     crispWebsiteId: string | null;
+    /** False in production, where an asset slot with no image renders nothing. */
+    assetPlaceholders: boolean;
 }

@@ -1,4 +1,4 @@
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
@@ -18,6 +18,7 @@ import type { HomeContent } from './types';
  */
 export default function AiSection({ content }: { content: HomeContent['ai'] }) {
     const { m, fmt } = useI18n();
+    const shown = useShownSlot();
 
     const values = {
         mcpClients: joinList(FACTS.mcp.clients.setupSheet, m.common.list),
@@ -51,9 +52,11 @@ export default function AiSection({ content }: { content: HomeContent['ai'] }) {
                     </LocaleLink>
                 </p>
             </div>
-            <div className="mt-8">
-                <AssetSlot id="mac-ai-chat" />
-            </div>
+            {shown('mac-ai-chat') && (
+                <div className="mt-8">
+                    <AssetSlot id="mac-ai-chat" />
+                </div>
+            )}
         </Section>
     );
 }
