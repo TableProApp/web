@@ -220,10 +220,28 @@ it('gives the small controls of the header and the banner a finger-sized target'
      * invisible box around it: 44px for Download, and for the banner's two
      * controls 44px wide and as tall as its 40px band lets them be.
      */
-    expect($read('site-header.tsx'))->toContain("buttonClasses('primary', 'sm', 'relative after:absolute after:inset-x-0 after:-inset-y-[7px]')");
+    expect($read('site-header.tsx'))->toContain("buttonClasses('primary', 'sm', 'relative whitespace-nowrap after:absolute after:inset-x-0 after:-inset-y-[7px]')");
     expect($read('support-banner.tsx'))->toContain('after:absolute after:-inset-x-1 after:-inset-y-3')
         ->toContain('after:absolute after:-inset-1.5');
 });
+
+it('keeps the phone header on one row at 320px, with Download on one line, in every language', function (string $code, string $prefix): void {
+    /*
+     * Measured in Chromium at 320px: Japanese ダウンロード broke into two lines
+     * in a 46px-tall button. The row has 288px: the logo 112, the gap 16 below
+     * 640px, the menu button 36 (44 less its -8px margin) and the gap before
+     * it 8, which leaves 116 for Download. ダウンロード, 12 display columns,
+     * is 108 with its padding, the widest of the labels.
+     */
+    $label = chromeCatalog($code, 'nav')['download'];
+
+    Assert::assertLessThanOrEqual(12, mb_strwidth($label), "{$code}: the header Download label grew. Measure the phone header again.");
+
+    $header = chromeRegion(ssrHtml("{$prefix}/pricing"), 'header');
+
+    expect($header)->toContain(' flex h-16 items-center gap-4 sm:gap-8"')
+        ->toMatch('/<a[^>]*class="[^"]*whitespace-nowrap[^"]*"[^>]*href="' . preg_quote($prefix, '/') . '\/download"/');
+})->with(chromeLocales(...));
 
 it('puts the download actions above a closed language list in the menu', function (string $path, string $locale, string $prefix): void {
     /*
