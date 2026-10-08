@@ -25,7 +25,7 @@ export default {
     "detected": "Il browser indica un Mac con {chip}.",
     "onAnotherDevice": "Per installare l’app per Mac, apri questa pagina sul tuo Mac.",
     "whichMac": {
-        "summary": "Quale Mac possiedo?",
+        "summary": "Quale Mac ho?",
         "body": "Apri il menu Apple e scegli Informazioni su questo Mac. Un Mac con Apple silicon mostra una voce Chip, ad esempio Apple M2. Un Mac Intel mostra una voce Processore che riporta Intel."
     },
     "checksum": {

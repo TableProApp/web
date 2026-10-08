@@ -46,7 +46,7 @@ export default {
             "name": "Team",
             "description": "Aggiunge connessioni e query condivise con il tuo team alle funzionalità Starter.",
             "activation": "Ogni posto corrisponde a un Mac attivato.",
-            "includesTitle": "Tutto Starter, più",
+            "includesTitle": "Tutto il piano Starter, più",
             "cta": "Acquista Team"
         }
     },

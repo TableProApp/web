@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro è gratuito?",
                     "answer": [
-                        "L’app per Mac si scarica e si usa gratuitamente, senza periodo di prova né limiti di tempo. Una licenza Starter o Team aggiunge funzionalità opzionali all’app per Mac; la <pricing>pagina dei prezzi</pricing> le elenca. La connessione a qualsiasi motore supportato non richiede una licenza, né l’assistente IA, il server MCP o Safe Mode.",
+                        "L’app per Mac si scarica e si usa gratuitamente, senza periodo di prova né limiti di tempo. Una licenza Starter o Team aggiunge funzionalità opzionali all’app per Mac; la <pricing>pagina dei prezzi</pricing> le elenca. Per connettersi a qualsiasi motore supportato non serve una licenza, e nemmeno per usare l’assistente IA, il server MCP o Safe Mode.",
                         "L’app per iPhone e iPad è gratuita, senza acquisti in-app, e non richiede una licenza."
                     ]
                 },
@@ -81,7 +81,7 @@
                     "id": "iphone-ipad",
                     "question": "Esiste un’app per iPhone e iPad?",
                     "answer": [
-                        "Sì. TablePro per iPhone e iPad è su App Store, richiede {iosRequirement} ed è gratuita, senza acquisti in-app. Si connette a {iosEngines}, con tunnel SSH, Safe Mode e Face ID, e permette di esplorare e modificare tabelle ed eseguire query.",
+                        "Sì. TablePro per iPhone e iPad è su App Store, richiede {iosRequirement} ed è gratuito, senza acquisti in-app. Si connette a {iosEngines}, con tunnel SSH, Safe Mode e Face ID, e permette di esplorare e modificare tabelle ed eseguire query.",
                         "È un’app separata realizzata per telefono e tablet, non una copia dell’app per Mac: per esempio non ha assistente IA, server MCP o query salvate. La <ios>pagina iPhone e iPad</ios> elenca ciò che offre e ciò che esclude."
                     ]
                 },
@@ -155,7 +155,7 @@
                     "id": "what-a-license-adds",
                     "question": "Cosa aggiunge una licenza?",
                     "answer": [
-                        "Una licenza Starter aggiunge {starterFeatures} all’app per Mac. Team include tutto Starter e aggiunge {teamFeatures}, per condividere connessioni e query con il team. La <pricing>pagina dei prezzi</pricing> descrive ogni funzionalità."
+                        "Una licenza Starter aggiunge {starterFeatures} all’app per Mac. Team include tutto ciò che offre Starter e aggiunge {teamFeatures}, per condividere connessioni e query con il team. La <pricing>pagina dei prezzi</pricing> descrive ogni funzionalità."
                     ]
                 },
                 {
@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Quanti Mac copre una licenza?",
                     "answer": [
-                        "Una licenza Starter è per una persona, su un massimo di {starterActivations} Mac. Una licenza Team ha da {teamMinSeats} a {teamMaxSeats} posti e ogni posto è un Mac attivato. Un iPhone o iPad non ne usa mai: quell’app non ha licenza.",
+                        "Una licenza Starter è per una persona, su un massimo di {starterActivations} Mac. Una licenza Team ha da {teamMinSeats} a {teamMaxSeats} posti e ogni posto è un Mac attivato. Un iPhone o un iPad non ne occupa mai uno: quell’app non ha licenza.",
                         "Per spostare una licenza su un altro Mac, rimuovi quello precedente nel <account>tuo account</account>."
                     ]
                 },
@@ -242,7 +242,7 @@
                     "question": "Cosa inviano le app a TablePro?",
                     "answer": [
                         "Senza licenza attivata, l’unica richiesta dell’app per Mac a TablePro è un rapporto giornaliero d’uso, attivo per impostazione predefinita e disattivabile in <ui>Settings > General > Privacy</ui>. Contiene un hash dell’ID della macchina e dati dell’app, come versione, lingua e tipi di database a cui ti connetti, mai nomi host, nomi utente, password, query o righe.",
-                        "Con una licenza, l’app per Mac la verifica anche ogni {revalidateDays} giorni, inviando chiave, stesso ID macchina, nome del Mac e versioni dell’app e di macOS. Su iPhone e iPad nulla va a TablePro finché non attivi Share Usage Data. L’<privacy>informativa sulla privacy</privacy> contiene l’elenco completo, incluso ciò che conserva il nostro server."
+                        "Con una licenza, l’app per Mac la verifica anche ogni {revalidateDays} giorni, inviando la chiave, lo stesso ID della macchina, il nome del Mac e le versioni dell’app e di macOS. Su iPhone e iPad nulla viene inviato a TablePro finché non attivi Share Usage Data. L’<privacy>informativa sulla privacy</privacy> contiene l’elenco completo, incluso ciò che conserva il nostro server."
                     ]
                 },
                 {
@@ -277,7 +277,7 @@
                     "id": "sign-in",
                     "question": "Come accedo al mio account?",
                     "answer": [
-                        "Vai al <account>tuo account</account> e inserisci l’email usata per l’acquisto. Inviamo un link di accesso monouso che scade poco dopo. Solo l’indirizzo che ha acquistato una licenza può accedere; i membri del team partecipano tramite un codice di invito nell’app per Mac."
+                        "Vai al <account>tuo account</account> e inserisci l’email usata per l’acquisto. Inviamo un link di accesso monouso che scade poco dopo. Solo l’indirizzo che ha acquistato una licenza può accedere; i membri del team si uniscono con un codice di invito nell’app per Mac."
                     ]
                 },
                 {
@@ -291,7 +291,7 @@
                     "id": "seats",
                     "question": "Come modifico il numero di posti?",
                     "answer": [
-                        "Su un abbonamento Team mensile o annuale, modificalo nel <account>tuo account</account>; la variazione compare sulla prossima fattura. Per una licenza Team una tantum, scrivi a <email>{email}</email>."
+                        "Con un abbonamento Team mensile o annuale, modificalo nel <account>tuo account</account>; la variazione compare sulla prossima fattura. Per una licenza Team una tantum, scrivi a <email>{email}</email>."
                     ]
                 },
                 {
@@ -316,7 +316,7 @@
                 },
                 {
                     "id": "compare",
-                    "question": "Come si confronta TablePro con altri client database?",
+                    "question": "Com’è TablePro rispetto ad altri client database?",
                     "answer": [
                         "I <compare>confronti</compare> affiancano TablePro ad altri client, con la data di verifica di ogni dato, e indicano dove ciascuno è più adatto."
                     ]

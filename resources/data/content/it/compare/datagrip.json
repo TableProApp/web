@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro vs DataGrip: IDE o client nativo",
-        "description": "DataGrip è un IDE JetBrains, gratuito solo per uso non commerciale. TablePro è un client nativo open source. Confronta AI, MCP, Git e importazione."
+        "description": "DataGrip è un IDE JetBrains, gratuito solo per uso non commerciale. TablePro è un client nativo open source. Confronta IA, MCP, Git e importazione."
     },
     "og": {
         "kicker": "Confronto",
@@ -14,7 +14,7 @@
     "shortAnswer": {
         "tablepro": [
             "Vuoi un client da usare per lavori retribuiti senza pagare. TablePro è gratuito per qualsiasi lavoro, e i piani a pagamento aggiungono funzionalità come {starterExamples}.",
-            "Vuoi un assistente AI che invii le richieste direttamente al provider che aggiungi, senza un servizio AI o crediti propri di TablePro come intermediari. È gratuito nell’app Mac, così come il server MCP.",
+            "Vuoi un assistente IA che invii le richieste direttamente al provider che aggiungi, senza un servizio IA o crediti propri di TablePro come intermediari. È gratuito nell’app Mac, così come il server MCP.",
             "Preferisci un’app Mac scritta in Swift a un IDE completo.",
             "Vuoi anche un’app per iPhone e iPad."
         ],
@@ -26,7 +26,7 @@
         ]
     },
     "glance": {
-        "intro": "Il prezzo di DataGrip è per utente. Per i privati, il prezzo annuale scende nel secondo e terzo anno. Entrambi i prodotti hanno un assistente AI e un server MCP; il server MCP di DataGrip è arrivato nella versione {cells.mcp.version}."
+        "intro": "Il prezzo di DataGrip è per utente. Per i privati, il prezzo annuale scende nel secondo e terzo anno. Entrambi i prodotti hanno un assistente IA e un server MCP; il server MCP di DataGrip è arrivato nella versione {cells.mcp.version}."
     },
     "rows": {
         "vcs": {
@@ -96,7 +96,7 @@
                 "href": null
             },
             {
-                "text": "L’<link>assistente AI</link> è gratuito nell’app Mac e funziona con il provider che scegli, nel cloud o sul tuo Mac; TablePro non gestisce servizi AI né vende crediti AI. DataGrip usa JetBrains AI, che ha un proprio servizio con una quota di crediti e accetta anche una tua chiave del provider o un modello locale.",
+                "text": "L’<link>assistente IA</link> è gratuito nell’app Mac e funziona con il provider che scegli, nel cloud o sul tuo Mac; TablePro non gestisce servizi IA né vende crediti IA. DataGrip usa JetBrains AI, che ha un proprio servizio con una quota di crediti e accetta anche una tua chiave del provider o un modello locale.",
                 "cite": [
                     "cells.ai"
                 ],
@@ -174,8 +174,8 @@
         },
         {
             "id": "ai-provider",
-            "question": "L’assistente AI di TablePro richiede un piano come JetBrains AI?",
-            "answer": "No. TablePro non gestisce un proprio servizio AI. Aggiungi un provider: una chiave API, un account che già possiedi o un modello in esecuzione sul tuo Mac. Non viene inviato nulla finché non ne aggiungi uno. <link>Come funziona l’assistente AI</link>.",
+            "question": "L’assistente IA di TablePro richiede un piano come JetBrains AI?",
+            "answer": "No. TablePro non gestisce un proprio servizio IA. Aggiungi un provider: una chiave API, un account che già possiedi o un modello in esecuzione sul tuo Mac. Non viene inviato nulla finché non ne aggiungi uno. <link>Come funziona l’assistente IA</link>.",
             "href": "/features/ai-mcp"
         },
         {
@@ -194,7 +194,7 @@
     "notes": {
         "datagrip-non-commercial": "Per apprendimento, progetti personali, creazione di contenuti e lavoro open source senza benefici commerciali, con tutte le funzionalità. Si attiva tramite un JetBrains Account.",
         "datagrip-databases": "Supporto completo, con ispezioni del codice e correzioni rapide, per i motori principali. Altri, come DuckDB, Firebird, Informix e Databricks, hanno supporto di base tramite il loro driver JDBC: evidenziazione e navigazione degli oggetti, senza controllo degli errori.",
-        "datagrip-ai-quota": "JetBrains AI: un livello gratuito con una piccola quota ricorrente di crediti AI, piani AI a pagamento per un maggiore utilizzo del servizio JetBrains, oppure una tua chiave del provider o un modello locale.",
+        "datagrip-ai-quota": "JetBrains AI: un livello gratuito con una piccola quota ricorrente di crediti IA, piani IA a pagamento per un maggiore utilizzo del servizio JetBrains, oppure una tua chiave del provider o un modello locale.",
         "datagrip-usage-statistics": "Con la licenza gratuita per uso non commerciale vengono raccolte statistiche di utilizzo senza possibilità di disattivarle"
     }
 }

@@ -29,7 +29,7 @@
             "paragraphs": [
                 "Inserisci l’identificatore dell’account, come <code>myorg-myaccount</code> o un locator precedente come <code>xy12345.us-east-1</code>: ciò che precede <code>.snowflakecomputing.com</code>. Ogni richiesta usa HTTPS verso l’endpoint dell’account, quindi non ci sono host, sezione SSL o pannello SSH.",
                 "Scegli un <ui>Auth Method</ui> e il modulo mostra solo i campi necessari. Una coppia di chiavi firma ogni connessione con la chiave privata PKCS#8, quindi l’orologio del Mac deve essere corretto. Browser SSO ti invia al fornitore di identità. Un token OAuth viene usato come incollato e non viene mai aggiornato. Una password si accompagna a un codice attuale in <ui>MFA Passcode (TOTP)</ui> quando l’account impone MFA.",
-                "Con <code>ALLOW_CLIENT_MFA_CACHING</code> sull’account basta un codice nuovo: Snowflake restituisce un token MFA che TablePro conserva nel <credentials>portachiavi</credentials>. Con <code>ALLOW_ID_TOKEN</code>, Browser SSO conserva lì un token di accesso e le connessioni successive saltano il browser finché Snowflake non lo rifiuta.",
+                "Con <code>ALLOW_CLIENT_MFA_CACHING</code> sull’account basta un codice nuovo: Snowflake restituisce un token MFA che TablePro conserva nel <credentials>Portachiavi</credentials>. Con <code>ALLOW_ID_TOKEN</code>, Browser SSO conserva lì un token di accesso e le connessioni successive saltano il browser finché Snowflake non lo rifiuta.",
                 "Snowflake non ha uno schema URL. Indica invece una sezione in <ui>CLI Connection Name</ui> e ogni campo lasciato vuoto viene letto da <code>~/.snowflake/connections.toml</code> alla connessione."
             ]
         },

@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro vs Sequel Ace: MySQL o più motori",
-        "description": "Confronta due client gratuiti e open source per Mac: database, AI, MCP, Mac App Store e importazione di connessioni Sequel Ace con password."
+        "description": "Confronta due client gratuiti e open source per Mac: database, IA, MCP, Mac App Store e importazione di connessioni Sequel Ace con password."
     },
     "og": {
         "kicker": "Confronto",
@@ -14,7 +14,7 @@
     "shortAnswer": {
         "tablepro": [
             "Lavori anche con PostgreSQL, SQL Server, Redis, MongoDB o altri motori e vuoi un unico client per tutti.",
-            "Vuoi un assistente AI gratuito nell’app, con il provider AI che scegli.",
+            "Vuoi un assistente IA gratuito nell’app, con il provider IA che scegli.",
             "Vuoi EXPLAIN come diagramma, un diagramma ER in sola lettura e la modalità Vim nell’editor.",
             "Vuoi un’app gratuita per iPhone e iPad che si connetta a MySQL e MariaDB."
         ],
@@ -26,7 +26,7 @@
         ]
     },
     "glance": {
-        "intro": "Entrambe le app sono scaricabili gratuitamente e open source. Sequel Ace ha aggiunto un server MCP integrato nella versione {cells.mcp.version}, pubblicata il {cells.mcp.date}. Non offre una chat AI nell’app."
+        "intro": "Entrambe le app sono scaricabili gratuitamente e open source. Sequel Ace ha aggiunto un server MCP integrato nella versione {cells.mcp.version}, pubblicata il {cells.mcp.date}. Non offre una chat IA nell’app."
     },
     "rows": {
         "macAppStore": {
@@ -95,7 +95,7 @@
                 "href": "/databases"
             },
             {
-                "text": "L’<link>assistente AI</link> è gratuito nell’app Mac. Spiega, ottimizza e corregge le query con il provider AI che scegli. Sequel Ace non ha una chat AI, e i client AI esterni vi accedono tramite il suo server MCP.",
+                "text": "L’<link>assistente IA</link> è gratuito nell’app Mac. Spiega, ottimizza e corregge le query con il provider IA che scegli. Sequel Ace non ha una chat IA, e i client IA esterni vi accedono tramite il suo server MCP.",
                 "cite": [
                     "cells.ai"
                 ],
@@ -180,13 +180,13 @@
         {
             "id": "mcp",
             "question": "Entrambe le app hanno un server MCP. In cosa differiscono?",
-            "answer": "Il server di Sequel Ace, aggiunto nella versione {cells.mcp.version}, è disattivato per impostazione predefinita, ascolta solo sul tuo Mac ed è in sola lettura per impostazione predefinita. Anche il server di TablePro ascolta solo sul tuo Mac, e ogni connessione decide se le app esterne sono bloccate, hanno accesso in sola lettura (impostazione predefinita) o possono scrivere. TablePro ha anche una chat AI nell’app. <link>Leggi di AI e MCP</link>.",
+            "answer": "Il server di Sequel Ace, aggiunto nella versione {cells.mcp.version}, è disattivato per impostazione predefinita, ascolta solo sul tuo Mac ed è in sola lettura per impostazione predefinita. Anche il server di TablePro ascolta solo sul tuo Mac, e ogni connessione decide se le app esterne sono bloccate, hanno accesso in sola lettura (impostazione predefinita) o possono scrivere. TablePro ha anche una chat IA nell’app. <link>Leggi di IA e MCP</link>.",
             "href": "/features/ai-mcp"
         },
         {
             "id": "free",
             "question": "TablePro è gratuito come Sequel Ace?",
-            "answer": "TablePro è gratuito e open source con licenza AGPLv3, inclusi MySQL, MariaDB, assistente AI e server MCP. Un piano Starter o Team aggiunge funzionalità facoltative all’app Mac, come {starterExamples}. Sequel Ace non ha piani a pagamento. <link>Consulta i prezzi</link>.",
+            "answer": "TablePro è gratuito e open source con licenza AGPLv3, inclusi MySQL, MariaDB, assistente IA e server MCP. Un piano Starter o Team aggiunge funzionalità facoltative all’app Mac, come {starterExamples}. Sequel Ace non ha piani a pagamento. <link>Consulta i prezzi</link>.",
             "href": "/pricing"
         },
         {
@@ -198,7 +198,7 @@
     ],
     "notes": {
         "sequel-ace-databases": "MySQL 5.7 o successivo e MariaDB 10.0 o successivo, e nessun altro database",
-        "sequel-ace-no-ai-chat": "Nessuna chat AI nell’app. I client AI esterni possono usare il suo server MCP.",
+        "sequel-ace-no-ai-chat": "Nessuna chat IA nell’app. I client IA esterni possono usare il suo server MCP.",
         "sequel-ace-mcp-read-only": "Integrato, disattivato per impostazione predefinita, ascolta solo sul tuo Mac ed è in sola lettura per impostazione predefinita. Offre {value} strumenti.",
         "sequel-ace-sequel-pro-migration": "Una guida copia i preferiti e le impostazioni di Sequel Pro in Sequel Ace. Le password richiedono uno script separato e le chiavi SSH devono essere selezionate nuovamente."
     }

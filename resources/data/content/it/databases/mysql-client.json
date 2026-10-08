@@ -34,10 +34,10 @@
             "title": "Connetti",
             "paragraphs": [
                 "Fornisci host, porta e utente a TablePro oppure incolla un URL <code>mysql://</code>. Gli account MySQL 8 che usano <code>caching_sha2_password</code> si connettono al primo tentativo. Lascia vuoto il database e scegline uno in seguito: il cambio avviene sulla stessa connessione.",
-                "Le nuove connessioni iniziano con SSL su Preferred, che prova prima TLS e ripiega sul traffico in chiaro solo dopo un handshake TLS fallito. Scegli Verify CA o Verify Identity con il certificato del fornitore per una verifica rigorosa.",
+                "Le nuove connessioni iniziano con SSL su Preferred, che prova prima TLS e ripiega sul traffico in chiaro solo dopo un handshake TLS fallito. Scegli Verify CA o Verify Identity con il certificato del tuo provider per una verifica rigorosa.",
                 "Per un server su una rete privata, connettiti tramite un <network>tunnel SSH, con jump host se necessari, proxy SOCKS5, tunnel Cloudflare Access o un tuo comando di tunnel</network> come kubectl port-forward.",
                 "Su Amazon RDS e Aurora accedi con <cloudAuth>AWS IAM</cloudAuth>, che firma un token nuovo a ogni connessione, e importa istanze direttamente dall’account AWS. Per Google Cloud SQL, TablePro scarica ed esegue Cloud SQL Auth Proxy per te.",
-                "Provieni da Sequel Ace? <importApps>Import from Other App</importApps> legge i preferiti e, dopo la conferma, le password conservate nel portachiavi."
+                "Provieni da Sequel Ace? <importApps>Import from Other App</importApps> legge i preferiti e, dopo la conferma, le password conservate nel Portachiavi."
             ]
         },
         {
@@ -67,7 +67,7 @@
                 "Il Server Dashboard elenca sessioni, metriche del server e query lente, aggiornate ogni pochi secondi. Annulla una query con <code>KILL QUERY</code> o termina una sessione con <code>KILL</code>. Un account senza privilegio PROCESS vede solo le proprie sessioni.",
                 "La manutenzione delle tabelle esegue OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE e REPAIR TABLE e mostra prima l’istruzione.",
                 "<backup>Backup Dump</backup> esegue {dumpTool} e Restore Dump esegue il client mysql, entrambi tramite il tunnel SSH della connessione; installa prima gli strumenti client MySQL sul Mac. Un ripristino sostituisce gli oggetti indicati dal dump.",
-                "Per liberare un posto sul server mentre sei assente, imposta la connessione per rilasciarsi dopo qualche minuto di inattività; la query successiva ne apre una nuova. TablePro mantiene la connessione quando la sessione contiene qualcosa che una riconnessione perderebbe, come una transazione aperta o una tabella temporanea."
+                "Per liberare uno slot di connessione sul server mentre sei assente, imposta la connessione per rilasciarsi dopo qualche minuto di inattività; la query successiva ne apre una nuova. TablePro mantiene la connessione quando la sessione contiene qualcosa che una riconnessione perderebbe, come una transazione aperta o una tabella temporanea."
             ],
             "asset": "mac-users-roles-mysql"
         },
