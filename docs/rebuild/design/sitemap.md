@@ -437,6 +437,8 @@ These apply to the public app only. Platform paths are routed by nginx before th
 |---|---|---|---|---|---|
 | `/docs/raycast` | **the live Raycast extension "Pair" command** | redirect (external) | `https://docs.tablepro.app/external-api/raycast` | 301 | A genuine replacement for a broken live link |
 | `/docs` | old README revisions (Feb 2026) | redirect (external) | `https://docs.tablepro.app/` | 301 | A genuine replacement |
+| `/changelog`, `/releases` | none; paths people type for a developer tool | redirect (external) | `https://docs.tablepro.app/changelog` | 301 | The changelog is one page, on the documentation site |
+| `/support` | none; a path people type | redirect | `/faq` | 301 | The FAQ ends with email, GitHub issues and live chat |
 | `/docs/logo/logo.png`, `/docs/images/hero-dark.png` | README, one day in Feb 2026 | none | — | 404 | No current reference |
 | `/databases/oracle`, `/databases/clickhouse` | plugin registry `homepage`, 2026-03-10 to 03-14 | redirect (through the `/databases/{docsSlug}` route) | `/oracle-client`, `/clickhouse-client` | 301 | Genuine equivalents |
 | `/databases/sqlite`, `/databases/duckdb` | CI only (2026-03-11) | redirect (through the `/databases/{docsSlug}` route) | `/sqlite-client`, `/duckdb-client` | 301 | Same rule |
@@ -815,6 +817,7 @@ Five lines of G.3 described a plan that architecture §1.7 and §1.14 changed. T
   - [x] `/docs` → docs root
   - [x] `/docs/raycast` → docs `/external-api/raycast`
   - [x] `/sitemap-index.xml` → `/sitemap.xml`
+  - [x] `/changelog`, `/releases` → docs `/changelog`; `/support` → `/faq`
   - [x] `/databases/{docsSlug}` (rewritten): `RedirectMap` answers it from each engine's `docsSlug` in `engines.json`, through the one `EnginePaths` rule (including oracle, clickhouse, sqlite and duckdb), before routing, so there is no slug list to keep in step (`RedirectsTest`, `EnginePathsTest`)
 - [x] Test: every redirect lands on a 200 in one hop, and `?ref`/`utm_*` survive
 - [x] Redirect map (rewritten): `resources/data/redirects.json` holds every 301 and 410 entry, read by `RedirectMap` (architecture §1.7, `RedirectsDataTest`). `CanonicalizeRequest` answers them before routing. It is data read at runtime, so the deploy needs no config step for it

@@ -65,6 +65,24 @@
         "reason": "The live Raycast extension's Pair command links here (raycast/extensions, extensions/tablepro/src/pair.tsx:187)."
     },
     {
+        "from": "/changelog",
+        "to": "https://docs.tablepro.app/changelog",
+        "status": 301,
+        "reason": "A path people type for a developer tool; the changelog lives on the documentation site (sitemap §C.6)."
+    },
+    {
+        "from": "/releases",
+        "to": "https://docs.tablepro.app/changelog",
+        "status": 301,
+        "reason": "Typed like /changelog; every release's notes are in the documentation changelog (sitemap §C.6)."
+    },
+    {
+        "from": "/support",
+        "to": "/faq",
+        "status": 301,
+        "reason": "A path people type; the FAQ ends with the ways to reach support (sitemap §C.6)."
+    },
+    {
         "from": "/sitemap-index.xml",
         "to": "/sitemap.xml",
         "status": 301,

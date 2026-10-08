@@ -92,14 +92,17 @@ it('retires exactly the URLs the disposition table retires', function (): void {
         '/blog/mcp-database-claude' => [301, '/features/ai-mcp#mcp'],
         '/blog/mongodb-native-vs-compass' => [301, '/mongodb-client#compass'],
         '/blog/open-source-db-clients-2026' => [301, '/compare#open-source'],
+        '/changelog' => [301, 'https://docs.tablepro.app/changelog'],
         '/cockroachdb-client' => [301, '/postgresql-client#cockroachdb'],
         '/compare/azimutt' => [410, null],
         '/docs' => [301, 'https://docs.tablepro.app/'],
         '/docs/raycast' => [301, 'https://docs.tablepro.app/external-api/raycast'],
         '/mariadb-client' => [301, '/mysql-client#mariadb'],
         '/pglite-client' => [301, '/postgresql-client#pglite'],
+        '/releases' => [301, 'https://docs.tablepro.app/changelog'],
         '/scylladb-client' => [301, '/cassandra-client#scylladb'],
         '/sitemap-index.xml' => [301, '/sitemap.xml'],
+        '/support' => [301, '/faq'],
     ];
 
     $map = [];
