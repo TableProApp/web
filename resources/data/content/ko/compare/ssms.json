@@ -1,0 +1,210 @@
+{
+    "seo": {
+        "title": "Mac용 SSMS 대안: VS Code와 MSSQL 또는 TablePro",
+        "description": "SQL Server Management Studio는 Windows에서만 실행합니다. Mac에서는 Microsoft가 VS Code와 MSSQL을 권하며 TablePro도 SQL Server용 선택지입니다."
+    },
+    "og": {
+        "kicker": "비교",
+        "title": "Mac용 SSMS 대안"
+    },
+    "header": {
+        "title": "Mac용 SQL Server Management Studio 대안",
+        "lead": "SQL Server Management Studio는 SQL Server와 Azure SQL용 Microsoft 무료 도구이며 Windows에서만 실행합니다. Microsoft는 {cells.microsoftOnMac.date}에 Azure Data Studio를 종료하고 사용자에게 macOS에서도 실행되는 Visual Studio Code와 MSSQL 확장을 권합니다. TablePro는 SQL Server와 다른 엔진에 연결하는 네이티브 Mac 클라이언트입니다."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Mac에서 작업하며 T-SQL 스크립트를 GO 줄마다 배치로 실행하는 네이티브 SQL Server 앱을 원합니다.",
+            "SQL Server 로그인, Kerberos, Microsoft Entra ID로 로그인합니다.",
+            "PostgreSQL, MySQL, SQLite, Redis도 사용하며 하나의 클라이언트로 모두 다루고 싶습니다.",
+            "원하는 AI 제공업체로 Mac 앱에서 무료 AI 도우미와 MCP 서버를 쓰고 싶습니다.",
+            "SQL Server에 연결하는 무료 iPhone·iPad 앱을 원합니다."
+        ],
+        "competitor": [
+            "SQL Server 에이전트 작업, Always On 가용성 그룹, Always Encrypted를 관리합니다.",
+            "실시간 쿼리 통계, 튜닝 어드바이저, 대시보드로 성능을 조정합니다.",
+            "로그인, 사용자, 역할을 관리하거나 데이터베이스 다이어그램에서 테이블을 설계합니다.",
+            "실행할 Windows 컴퓨터가 있습니다."
+        ],
+        "competitorTitle": "Windows에서 SQL Server Management Studio를 계속 쓰는 것이 맞는 경우"
+    },
+    "glance": {
+        "intro": "SQL Server Management Studio에는 Mac 버전이 없습니다. Mac에서 Microsoft의 선택지는 Visual Studio Code와 MSSQL 확장입니다. Microsoft는 {cells.microsoftOnMac.date}에 Azure Data Studio를 종료하고 사용자를 그쪽으로 안내합니다."
+    },
+    "rows": {
+        "sqlAgent": {
+            "label": "SQL Server 에이전트",
+            "tablepro": "없음"
+        },
+        "availabilityGroups": {
+            "label": "Always On 가용성 그룹",
+            "tablepro": "없음"
+        },
+        "securityManagement": {
+            "label": "로그인, 사용자, 역할",
+            "tablepro": "SQL Server에는 없음. Users & Roles는 MySQL, MariaDB, PostgreSQL용"
+        },
+        "queryStatistics": {
+            "label": "성능 도구",
+            "tablepro": "SQL Server용 실행 계획 보기와 튜닝 어드바이저는 없음"
+        },
+        "diagram": {
+            "label": "데이터베이스 다이어그램과 테이블 설계",
+            "tablepro": "Structure 탭에서 테이블을 편집하며 ER 다이어그램은 읽기 전용 그림"
+        },
+        "microsoftOnMac": {
+            "label": "Mac용 Microsoft 도구",
+            "tablepro": "TablePro는 Microsoft 제품이 아닌 독립 프로젝트의 네이티브 Mac 앱"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "SQL Server Management Studio는 SQL Server, Azure SQL Database, Azure SQL Managed Instance, Fabric의 SQL 데이터베이스를 위한 Microsoft 공식 도구이며 무료입니다.",
+                "cite": ["cells.databases", "prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Microsoft는 이 도구를 SQL Server 에이전트 작업과 일반 관리의 공식 지원 도구로 소개합니다.",
+                "cite": ["cells.sqlAgent"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Always On 가용성 그룹을 구성·모니터링·문제 해결하고 로그인, 사용자, 역할, Always Encrypted를 관리합니다.",
+                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "실시간 쿼리 통계, 클라이언트 통계, 튜닝 어드바이저, 대시보드가 성능 작업을 돕습니다.",
+                "cite": ["cells.queryStatistics"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Visual Studio Installer로 추가하는 GitHub Copilot이 T-SQL 작성, 수정, 최적화를 돕습니다.",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro는 Mac에서 네이티브로 실행하며 Apple silicon과 Intel용 별도 빌드가 있습니다. SQL Server Management Studio는 Windows에서만 실행합니다.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>T-SQL 스크립트</link>는 GO 줄마다 나눠 배치 하나씩 실행하며 PRINT 출력을 보여 주고 결과 집합마다 탭을 따로 엽니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/sql-server-client"
+            },
+            {
+                "text": "SQL Server 로그인, Kerberos, <link>Microsoft Entra ID</link>로 로그인하며 토큰은 로그인 키체인에 저장합니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/connections#cloud-auth"
+            },
+            {
+                "text": "클라이언트 하나로 SQL Server와 PostgreSQL, MySQL, SQLite, Redis 등 다른 엔진을 지원합니다. <link>지원 데이터베이스</link>를 보세요.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>AI 도우미·MCP 서버</link>는 Mac 앱에서 무료이고 AI 제공업체를 고를 수 있습니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "무료 <link>iPhone·iPad 앱</link>은 SQL Server 로그인으로 SQL Server에 연결합니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "SQL Server 에이전트, Always On 관리, SQL Server용 실행 계획 보기가 없습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Users & Roles는 SQL Server를 지원하지 않으며 튜닝 어드바이저도 없습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "명명된 인스턴스와 NTLM은 지원하지 않습니다. 인스턴스의 TCP 포트에 연결하고 SQL Server 로그인, Kerberos, Microsoft Entra ID로 로그인하세요.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "iPhone·iPad에서는 TLS를 필수로 할 수 있지만 서버 인증서는 검증하지 않습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "일부 기능은 유료입니다. Starter는 {starterExamples} 등을 추가하며 SQL Server Management Studio는 무료입니다.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro에는 SQL Server Management Studio 가져오기가 없습니다. 서버별로 연결을 추가해 폼을 채우거나 sqlserver:// URL을 <ui>파일 > 가져오기 > URL에서 가져오기…</ui>(File > Import > Import from URL…)에 붙여 넣으세요.",
+        "steps": [],
+        "after": [
+            "폼에서 <ui>인증</ui>(Authentication)을 고르세요. SQL Server 로그인, Kerberos를 통한 Windows 인증, Microsoft Entra ID 중에서 선택합니다.",
+            "Azure SQL Database는 SSL을 Required 이상으로 설정하고 포함된 사용자는 Database를 입력합니다.",
+            "SQL Server Management Studio에서 저장한 .sql 파일은 연결로 가져올 수 있으며 GO 줄마다 배치 하나씩 실행합니다."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "mac",
+            "question": "SQL Server Management Studio는 Mac에서 실행되나요?",
+            "answer": "아니요. Microsoft FAQ에 따르면 Windows 전용입니다. Mac에서는 Microsoft가 Visual Studio Code와 MSSQL 확장을 권합니다.",
+            "href": null
+        },
+        {
+            "id": "azure-data-studio",
+            "question": "Azure Data Studio는 어떻게 됐나요?",
+            "answer": "Microsoft가 {cells.microsoftOnMac.date}에 종료했습니다. 업데이트와 보안 수정이 더는 없으며 Microsoft는 Visual Studio Code와 MSSQL 확장으로 옮기라고 권합니다. 기존 쿼리, 스크립트, 데이터베이스 프로젝트는 변환 없이 열립니다.",
+            "href": null
+        },
+        {
+            "id": "vs-code",
+            "question": "Visual Studio Code와 MSSQL, TablePro 중 무엇을 써야 하나요?",
+            "answer": "코드 편집기 안에서 Microsoft 공식 도구를 원하면 Visual Studio Code와 MSSQL 확장입니다. SQL Server와 다른 엔진용 네이티브 Mac 앱과 무료 iPhone·iPad 앱을 원하면 TablePro입니다. <link>TablePro의 SQL Server 지원 읽기</link>.",
+            "href": "/sql-server-client"
+        }
+    ],
+    "notes": {
+        "ssms-databases": "SQL Server, Azure SQL Database, Azure SQL Managed Instance, Azure Synapse Analytics, Microsoft Fabric의 SQL 데이터베이스",
+        "ssms-github-copilot-component": "GitHub Copilot이 T-SQL 작성, 수정, 최적화를 돕습니다. Visual Studio Installer로 추가하는 별도 구성 요소입니다.",
+        "ssms-sql-server-agent": "Microsoft는 SQL Server 에이전트와 일반 관리의 공식 지원 도구라고 설명합니다",
+        "ssms-always-on": "가용성 그룹 구성, 모니터링, 문제 해결",
+        "ssms-security-management": "로그인, 사용자, 역할과 Always Encrypted",
+        "ssms-query-statistics": "실시간 쿼리 통계, 클라이언트 통계, 튜닝 어드바이저, 대시보드",
+        "ssms-database-diagrams": "데이터베이스 다이어그램과 테이블 디자이너",
+        "ssms-microsoft-on-mac": "Microsoft는 {date}에 Azure Data Studio를 종료해 업데이트와 보안 수정을 중단했습니다. 사용자에게는 Windows, macOS, Linux에서 실행되고 기존 쿼리, 스크립트, 데이터베이스 프로젝트를 변환 없이 여는 Visual Studio Code와 MSSQL 확장을 권합니다."
+    }
+}

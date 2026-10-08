@@ -1,0 +1,198 @@
+{
+    "seo": {
+        "title": "TablePro vs DbGate：Mac と iPhone か、デスクトップと Web か",
+        "description": "DbGate は Windows、macOS、Linux と Web 向けのオープンソースクライアントで、有料の Premium 版があります。TablePro はオープンソースで Mac と iPhone にネイティブ対応。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs DbGate"
+    },
+    "header": {
+        "title": "TablePro vs DbGate",
+        "lead": "DbGate は {technology} で作られた、SQL と NoSQL データベース向けのオープンソースクライアントです。Windows、macOS、Linux と Web アプリとして動き、無料の Community 版と有料の Premium 版があります。TablePro はネイティブの Mac アプリと別の iPhone・iPad アプリを持つオープンソースクライアントで、Mac では任意の有料機能を追加できます。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "有料版なしで AI アシスタントを使いたい。Mac アプリで無料で AI プロバイダーを選べますが、DbGate のデータベースチャットは {cells.ai.edition} に含まれます。",
+            "AWS IAM や Microsoft Entra ID でデータベースにサインインし、それを無料で使いたい。",
+            "各エンジン自体のダンプツールによるバックアップを、有料版なしで使いたい。",
+            "Swift で書かれたネイティブ Mac アプリで、パスワードを macOS キーチェーンに保存したい。",
+            "iPhone・iPad アプリも欲しい。"
+        ],
+        "competitor": [
+            "Windows や Linux でも作業する、またはチームがブラウザーで開く Web アプリが欲しい。",
+            "TablePro が対応しない Firebird、Azure Cosmos DB、Firestore に接続する。",
+            "{cells.queryDesigner.edition} 版から使えるビジュアルクエリデザイナーが欲しい。",
+            "DbGate Cloud で、サインインしたどのデバイスでも接続と SQL ファイルを使いたい。"
+        ]
+    },
+    "glance": {
+        "intro": "DbGate には無料の Community 版と、ユーザー単位で課金される Premium 版と Team Premium 版があるため、いくつかの行には必要なエディションを記載しています。"
+    },
+    "rows": {
+        "diagram": {
+            "label": "ER 図",
+            "tablepro": "無料の読み取り専用 ER 図。PNG または SQL に書き出せる"
+        },
+        "queryDesigner": {
+            "label": "ビジュアルクエリデザイナー",
+            "tablepro": "なし"
+        },
+        "modelCompare": {
+            "label": "データベースモデルの比較",
+            "tablepro": "Compare & Sync が二つのデータベースの構造またはデータを比較し、同期スクリプトを作成。Starter に含まれる"
+        },
+        "backup": {
+            "label": "バックアップと復元",
+            "tablepro": "Mac アプリで無料：ダンプツールのあるエンジンでは、そのツールで Backup Dump と Restore Dump"
+        },
+        "cloudAuth": {
+            "label": "クラウドアカウントでのサインイン",
+            "tablepro": "無料：Amazon RDS と Aurora の AWS IAM、SQL Server の Microsoft Entra ID"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DbGate は Windows、macOS、Linux で動き、サーバーに配置する Web アプリとしても使えます。",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Firebird など TablePro が対応しないエンジンに接続し、有料版では Azure Cosmos DB と Firestore も追加します。",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Community 版は {licence} の無料オープンソースで、ER 図はすべてのエディションにあります。",
+                "cite": ["licence", "cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium はビジュアルクエリデザイナーと、データベースモデルを比較・デプロイするツールを追加します。",
+                "cite": ["cells.queryDesigner", "cells.modelCompare"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "DbGate Cloud はサインインしたどのデバイスでも接続と SQL ファイルを使えるようにし、Community では接続を {cells.sync.value} 件まで保存できます。",
+                "cite": ["cells.sync"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro は Swift で書かれた Mac アプリで、ネイティブのデータベースドライバーを使います。DbGate は {technology} で作られています。どちらも Apple silicon と Intel Mac 用のビルドがあります。",
+                "cite": ["technology", "mac"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI アシスタント</link>は Mac アプリで無料で、クラウドでも Mac 上でも、選んだ AI プロバイダーを使えます。DbGate のデータベースチャットは有料版に含まれ、DbGate のゲートウェイ経由で OpenAI を使います。",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>AWS IAM と Microsoft Entra ID でのサインイン</link>は TablePro では無料です。DbGate はこれらを有料版に含めています。",
+                "cite": ["cells.cloudAuth"],
+                "feature": null,
+                "href": "/features/connections#cloud-auth"
+            },
+            {
+                "text": "各エンジン自体のダンプツールによる<link>バックアップ</link>は TablePro では無料です。DbGate のネイティブなバックアップと復元は有料版に含まれます。",
+                "cite": ["cells.backup"],
+                "feature": null,
+                "href": "/features/import-export#backup"
+            },
+            {
+                "text": "<link>iCloud Sync</link> は Mac と iPhone・iPad の接続を同期します。Mac では Starter に含まれ、iPhone・iPad アプリでは無料です。",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "無料の <link>iPhone・iPad アプリ</link>があり、アプリ内購入はありません。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Windows と Linux 用の TablePro アプリはなく、Web 版もありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Firebird、Azure Cosmos DB、Firestore は対応しません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "ビジュアルクエリデザイナーはなく、ER 図は読み取り専用です。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "一部の機能は有料です。Starter は {starterExamples} などを追加します。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro に DbGate のインポーターはありません。接続ごとに手動で追加し、フォームを入力するか postgresql://、mysql:// や mongodb:// で始まる URL を <ui>File > Import > Import from URL…</ui> に貼り付けます。",
+        "steps": [],
+        "after": [
+            "接続の <ui>Network</ui> タブで SSH トンネルを設定します。Mac は踏み台にも対応します。",
+            "プロジェクトが .env ファイルにデータベース設定を保存していれば、<ui>File > Import > Open Project Folder…</ui> が読み取り、入力済みのフォームを開きます。",
+            "パスワードは macOS キーチェーンに保存し、クエリ履歴は TablePro で新しく始まります。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "free-editions",
+            "question": "それぞれ何が無料ですか？",
+            "answer": "DbGate Community は無料のオープンソースで、有料版はデータベースチャット、クエリデザイナー、ネイティブバックアップなどを追加します。TablePro はすべての対応エンジン、AI アシスタント、MCP サーバーを無料で使え、Starter や Team が {starterExamples} などの機能を追加します。<link>料金を見る</link>。",
+            "href": "/pricing"
+        },
+        {
+            "id": "web",
+            "question": "TablePro に Web 版はありますか？",
+            "answer": "ありません。TablePro は Mac、iPhone、iPad で動きます。チームがブラウザーで使うデータベースクライアントが必要なら、DbGate は Web アプリとしても動きます。",
+            "href": null
+        },
+        {
+            "id": "mongodb-redis",
+            "question": "どちらも MongoDB と Redis に対応しますか？",
+            "answer": "はい、どちらも無料で対応します。<link>対応データベースを見る</link>。",
+            "href": "/databases"
+        }
+    ],
+    "notes": {
+        "dbgate-databases": "Community は MySQL、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis、Cassandra、ClickHouse、DuckDB などに対応。Premium は Amazon Redshift、DynamoDB、Azure Cosmos DB、Firestore、libSQL を追加。サイトには Firebird も記載されています。",
+        "dbgate-ai": "Premium と Team Premium のデータベースチャット、SQL AI アシスタント、エラーの説明。DbGate のゲートウェイ経由で OpenAI を使用",
+        "dbgate-cloud": "DbGate Cloud は接続と SQL ファイルをオンラインに保存します。Community は接続を {value} 件まで保存でき、Premium は上限をなくし、共有フォルダーを追加します。",
+        "dbgate-er-diagrams": "すべてのエディションで利用可能。詳細設定は Premium。",
+        "dbgate-paid-editions": "Premium と Team Premium に含まれる。Community にはなし",
+        "dbgate-backup": "Premium と Team Premium でネイティブのバックアップと復元。Community は個々のテーブルをバックアップ・復元。",
+        "dbgate-cloud-auth": "Premium と Team Premium で AWS IAM、Microsoft Entra ID、Azure マネージド ID"
+    }
+}

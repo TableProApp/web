@@ -1,0 +1,198 @@
+{
+    "seo": {
+        "title": "TablePro vs DbGate：Mac 與 iPhone，或桌面與 Web",
+        "description": "DbGate 是適用於 Windows、macOS、Linux 和 Web 的開放原始碼用戶端，另有付費 Premium 版。TablePro 開放原始碼，原生支援 Mac 與 iPhone。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs DbGate"
+    },
+    "header": {
+        "title": "TablePro vs DbGate",
+        "lead": "DbGate 是適用於 SQL 和 NoSQL 資料庫的開放原始碼用戶端，以 {technology} 打造，可在 Windows、macOS、Linux 上執行，也可作為 Web 應用程式使用，提供免費 Community 版和付費 Premium 版。TablePro 是開放原始碼用戶端，提供原生 Mac App 和獨立的 iPhone、iPad App，並在 Mac 上提供選用付費功能。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "您希望不需付費版就能使用 AI 助手。它在 Mac App 中免費，可自選 AI 服務商，而 DbGate 的資料庫聊天屬於 {cells.ai.edition}。",
+            "您以 AWS IAM 或 Microsoft Entra ID 登入資料庫，並希望免費使用。",
+            "您希望不需付費版就能用各引擎自帶的傾印工具備份。",
+            "您希望使用以 Swift 編寫的原生 Mac App，密碼儲存在 macOS 鑰匙圈中。",
+            "您也希望有 iPhone 與 iPad App。"
+        ],
+        "competitor": [
+            "您也在 Windows 或 Linux 上工作，或希望團隊透過瀏覽器使用 Web 應用程式。",
+            "您連線 TablePro 不支援的 Firebird、Azure Cosmos DB 或 Firestore。",
+            "您需要視覺化查詢設計工具，自 {cells.queryDesigner.edition} 版起提供。",
+            "您希望 DbGate Cloud 儲存連線和 SQL 檔案，在您登入的任何裝置上使用。"
+        ]
+    },
+    "glance": {
+        "intro": "DbGate 提供免費 Community 版，以及依使用者計費的 Premium 和 Team Premium 版，因此表中部分列會說明功能所需版本。"
+    },
+    "rows": {
+        "diagram": {
+            "label": "ER 圖",
+            "tablepro": "免費的唯讀 ER 圖，可匯出為 PNG 或 SQL"
+        },
+        "queryDesigner": {
+            "label": "視覺化查詢設計工具",
+            "tablepro": "不提供"
+        },
+        "modelCompare": {
+            "label": "比較資料庫模型",
+            "tablepro": "Compare & Sync 比較兩個資料庫的結構或資料並產生同步指令碼。屬於 Starter"
+        },
+        "backup": {
+            "label": "備份與還原",
+            "tablepro": "Mac App 中免費：引擎有自帶傾印工具時，可使用 Backup Dump 與 Restore Dump"
+        },
+        "cloudAuth": {
+            "label": "雲端帳號登入",
+            "tablepro": "免費：Amazon RDS 與 Aurora 的 AWS IAM，以及 SQL Server 的 Microsoft Entra ID"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DbGate 可在 Windows、macOS 與 Linux 上執行，也可作為 Web 應用程式部署在伺服器上。",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "可連線 TablePro 不支援的 Firebird 等引擎，付費版還加入 Azure Cosmos DB 和 Firestore。",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Community 版依 {licence} 免費開放原始碼，所有版本都有 ER 圖。",
+                "cite": ["licence", "cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium 版加入視覺化查詢設計工具，以及比較和部署資料庫模型的工具。",
+                "cite": ["cells.queryDesigner", "cells.modelCompare"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "DbGate Cloud 讓連線和 SQL 檔案在您登入的任何裝置上都可使用，Community 版最多儲存 {cells.sync.value} 個連線。",
+                "cite": ["cells.sync"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 是以 Swift 編寫的 Mac App，使用原生資料庫驅動程式。DbGate 以 {technology} 打造。兩者都提供 Apple silicon 與 Intel Mac 版本。",
+                "cite": ["technology", "mac"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI 助手</link>在 Mac App 中免費，可自選 AI 服務商，使用雲端或 Mac 本機模型。DbGate 的資料庫聊天屬於付費版，經由 DbGate 的閘道連到 OpenAI。",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>AWS IAM 與 Microsoft Entra ID 登入</link>在 TablePro 中免費。DbGate 將其列在付費版中。",
+                "cite": ["cells.cloudAuth"],
+                "feature": null,
+                "href": "/features/connections#cloud-auth"
+            },
+            {
+                "text": "在 TablePro 中，透過各引擎自帶傾印工具進行的<link>備份</link>免費。DbGate 的原生備份與還原屬於付費版。",
+                "cite": ["cells.backup"],
+                "feature": null,
+                "href": "/features/import-export#backup"
+            },
+            {
+                "text": "<link>iCloud Sync</link> 讓多台 Mac 與 iPhone 或 iPad 的連線保持一致。在 Mac 上包含於 Starter，在 iPhone 與 iPad App 中免費。",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "提供免費的 <link>iPhone 與 iPad App</link>，無 App 內購買。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 沒有 Windows 或 Linux App，也沒有 Web 版本。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "不支援 Firebird、Azure Cosmos DB 和 Firestore。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "沒有視覺化查詢設計工具，ER 圖為唯讀。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "部分功能付費。Starter 加入 {starterExamples} 等功能。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 沒有 DbGate 匯入工具。請手動新增各個連線：填寫連線表單，或將以 postgresql://、mysql:// 或 mongodb:// 開頭的 URL 貼上至<ui>檔案 > 匯入 > 從 URL 匯入…</ui>（File > Import > Import from URL…）。",
+        "steps": [],
+        "after": [
+            "在連線的<ui>網路</ui>（Network）分頁設定 SSH 通道，Mac 也支援跳板主機。",
+            "專案在 .env 檔案中儲存資料庫設定時，<ui>檔案 > 匯入 > 開啟專案資料夾…</ui>（File > Import > Open Project Folder…）會讀取設定並開啟已填好的連線表單。",
+            "密碼儲存在 macOS 鑰匙圈中，TablePro 的查詢記錄從頭開始。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "free-editions",
+            "question": "兩者各有哪些免費內容？",
+            "answer": "DbGate Community 免費且開放原始碼，付費版加入資料庫聊天、查詢設計工具和原生備份等功能。TablePro 可免費使用所有支援的引擎、AI 助手和 MCP 伺服器，Starter 或 Team 方案加入 {starterExamples} 等功能。<link>查看價格</link>。",
+            "href": "/pricing"
+        },
+        {
+            "id": "web",
+            "question": "TablePro 有 Web 版本嗎？",
+            "answer": "沒有。TablePro 在 Mac、iPhone 與 iPad 上執行。如果團隊需要在瀏覽器中使用資料庫用戶端，DbGate 也可作為 Web 應用程式執行。",
+            "href": null
+        },
+        {
+            "id": "mongodb-redis",
+            "question": "兩者都支援 MongoDB 和 Redis 嗎？",
+            "answer": "支援，而且都免費提供。<link>查看支援的資料庫</link>。",
+            "href": "/databases"
+        }
+    ],
+    "notes": {
+        "dbgate-databases": "Community 支援 MySQL、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis、Cassandra、ClickHouse、DuckDB 等。Premium 加入 Amazon Redshift、DynamoDB、Azure Cosmos DB、Firestore 和 libSQL。其網站也列出 Firebird。",
+        "dbgate-ai": "資料庫聊天、SQL AI 助手和錯誤說明，屬於 Premium 和 Team Premium，經由 DbGate 的閘道連到 OpenAI",
+        "dbgate-cloud": "DbGate Cloud 在線上儲存連線和 SQL 檔案。Community 最多儲存 {value} 個連線，Premium 取消限制並加入共用資料夾。",
+        "dbgate-er-diagrams": "所有版本均提供，進階設定屬於 Premium。",
+        "dbgate-paid-editions": "Premium 和 Team Premium 提供，Community 不提供",
+        "dbgate-backup": "原生備份與還原屬於 Premium 和 Team Premium。Community 可備份與還原單一資料表。",
+        "dbgate-cloud-auth": "AWS IAM、Microsoft Entra ID 和 Azure 受控識別，屬於 Premium 和 Team Premium"
+    }
+}

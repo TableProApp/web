@@ -1,0 +1,196 @@
+{
+    "seo": {
+        "title": "TablePro vs MongoDB Compass: satu database atau banyak",
+        "description": "MongoDB Compass adalah GUI gratis dari MongoDB, dengan tahap agregasi dan analisis skema. TablePro mendukung MongoDB bersama SQL dan Redis di Mac."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs MongoDB Compass"
+    },
+    "header": {
+        "title": "TablePro vs MongoDB Compass",
+        "lead": "MongoDB Compass adalah GUI gratis resmi dari MongoDB untuk menjelajahi data, membangun pipeline agregasi, dan mempelajari skema sebuah koleksi. TablePro adalah klien sumber terbuka yang terhubung ke MongoDB bersama database SQL, Redis, dan mesin lain, dengan fitur berbayar opsional pada Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "MongoDB adalah salah satu dari beberapa database yang Anda gunakan, bersama PostgreSQL, MySQL, SQL Server, atau Redis, dan Anda menginginkan satu klien untuk semuanya.",
+            "Anda menyukai shell bergaya mongosh, dengan variabel, perulangan, dan pelengkapan otomatis untuk koleksi, jalur field, dan operator.",
+            "Anda ingin mengganti nama atau menghapus field di seluruh koleksi, dengan setiap pernyataan ditampilkan sebelum dijalankan.",
+            "Anda menginginkan asisten AI dengan penyedia pilihan Anda, di cloud atau di Mac Anda, serta server MCP untuk klien AI eksternal."
+        ],
+        "competitor": [
+            "MongoDB adalah satu-satunya database Anda, dan Anda menginginkan alat gratis resmi dari MongoDB.",
+            "Anda membangun pipeline agregasi tahap demi tahap dan menginginkan pratinjau setelah setiap tahap.",
+            "Anda mempelajari skema sebuah koleksi, atau memodelkan koleksi beserta relasinya dalam diagram.",
+            "Anda menginginkan explain plan visual dan metrik server langsung untuk MongoDB.",
+            "Anda juga bekerja di Windows atau Linux."
+        ]
+    },
+    "glance": {
+        "intro": "Panduan instalasi Compass mencantumkan MongoDB {cells.databases.version} atau yang lebih baru. Kodenya diterbitkan dengan {licence}."
+    },
+    "rows": {
+        "pipelineBuilder": {
+            "label": "Pipeline agregasi",
+            "tablepro": "Ditulis sebagai aggregate() di shell, dengan pelengkapan otomatis. Tidak ada editor tahap demi tahap"
+        },
+        "schemaAnalysis": {
+            "label": "Analisis skema",
+            "tablepro": "Tidak tersedia"
+        },
+        "dataModeling": {
+            "label": "Pemodelan data",
+            "tablepro": "Tidak ada alat pemodelan. Diagram ER adalah gambar hanya baca yang dibuat dari foreign key"
+        },
+        "explainPlan": {
+            "label": "Explain plan visual",
+            "tablepro": "Tidak untuk MongoDB. Rangkaikan .explain() di shell, dan rencananya kembali sebagai dokumen"
+        },
+        "serverStats": {
+            "label": "Metrik server langsung",
+            "tablepro": "Tidak untuk MongoDB. Server Dashboard mencakup mesin seperti PostgreSQL, MySQL, dan SQL Server"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Compass adalah GUI resmi dari MongoDB, dan gratis.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Pipeline agregasi dibangun tahap demi tahap, dengan pratinjau data setelah setiap tahap.",
+                "cite": ["cells.pipelineBuilder"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Compass mengambil sampel dokumen sebuah koleksi untuk menampilkan tipe field, rentang tanggal, dan nilai yang sering muncul, serta menggambar diagram entitas-relasi untuk koleksi dalam sebuah database.",
+                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Explain plan ditampilkan secara visual, dan metrik server langsung sudah tersedia.",
+                "cite": ["cells.explainPlan", "cells.serverStats"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Compass berjalan di Windows, macOS, dan Linux.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Satu klien mencakup MongoDB bersama PostgreSQL, MySQL, SQL Server, Redis, dan mesin lain. Lihat <link>database yang didukung</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "Tab kueri adalah <link>shell JavaScript</link> yang menerima sintaks mongosh, dan variabel yang Anda definisikan tetap tersedia di setiap tab pada koneksi tersebut.",
+                "cite": [],
+                "feature": null,
+                "href": "/mongodb-client"
+            },
+            {
+                "text": "Tab Structure mengganti nama atau menghapus field di seluruh koleksi, dengan setiap perubahan ditampilkan lebih dulu di Preview SQL.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Asisten AI</link> bekerja dengan penyedia AI pilihan Anda, di cloud atau di Mac Anda, dan server MCP memungkinkan klien AI eksternal menggunakan koneksi tersimpan Anda. Keduanya gratis. Fitur AI Compass menggunakan Azure OpenAI.",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Setiap koneksi memiliki tingkat <link>Safe Mode</link>. Pada MongoDB, setiap pernyataan dihitung sebagai penulisan, jadi tingkat yang lebih ketat meminta konfirmasi atau memblokir setiap pernyataan.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tidak ada editor agregasi tahap demi tahap: Anda menulis aggregate() di shell.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Tidak ada analisis skema, diagram rencana, atau tampilan metrik server untuk MongoDB.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Transaksi, GridFS, dan change stream tidak didukung.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Koneksi MongoDB tidak dapat dibuka di aplikasi iPhone dan iPad.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro tidak memiliki pengimpor untuk Compass. Tempel connection string yang Anda gunakan di Compass, yang diawali mongodb:// atau mongodb+srv://, pada <ui>File > Import > Import from URL…</ui>",
+        "steps": [],
+        "after": [
+            "Host yang berakhiran .mongodb.net otomatis mengaktifkan SRV dan TLS, sesuai syarat MongoDB Atlas.",
+            "Isi <ui>Auth Database</ui> jika pengguna Anda didefinisikan di admin tetapi Anda menjelajahi database lain.",
+            "Kata sandi dimasukkan ke Keychain macOS, dan riwayat kueri dimulai dari awal di TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "aggregation",
+            "question": "Apakah saya bisa membangun pipeline agregasi di TablePro?",
+            "answer": "Bisa, dengan menuliskannya: aggregate() berjalan di shell, dengan pelengkapan otomatis untuk koleksi, jalur field, dan operator. Tidak ada editor tahap demi tahap dengan pratinjau setelah setiap tahap, dan di situlah Compass lebih unggul.",
+            "href": null
+        },
+        {
+            "id": "ai",
+            "question": "AI apa yang digunakan masing-masing?",
+            "answer": "Kueri bahasa alami dan asisten Compass menggunakan Azure OpenAI, dan Anda dapat mematikan fitur AI di pengaturannya. Asisten AI TablePro menggunakan penyedia pilihan Anda, termasuk model di Mac Anda, dan gratis dalam aplikasi Mac. <link>Baca tentang AI di TablePro</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "free",
+            "question": "Apakah TablePro gratis untuk MongoDB?",
+            "answer": "Ya. MongoDB dan mesin lain yang didukung, asisten AI, serta server MCP gratis dalam aplikasi Mac. Paket berbayar menambah fitur opsional seperti {starterExamples}. <link>Lihat harga</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "compass-databases": "MongoDB {version} atau yang lebih baru, menurut panduan instalasinya",
+        "compass-natural-language": "Kueri bahasa alami dan asisten cerdas, melalui Azure OpenAI. Fitur AI dapat dimatikan.",
+        "compass-aggregation-stages": "Dibangun tahap demi tahap, dengan pratinjau data setelah setiap tahap",
+        "compass-schema-sampling": "Mengambil sampel dokumen untuk menampilkan tipe field, rentang tanggal, dan nilai yang sering muncul",
+        "compass-data-modeling": "Diagram entitas-relasi untuk koleksi dalam sebuah database, dengan relasi yang disimpulkan dan anotasi"
+    }
+}

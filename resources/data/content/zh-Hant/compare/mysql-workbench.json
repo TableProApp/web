@@ -1,0 +1,211 @@
+{
+    "seo": {
+        "title": "TablePro vs MySQL Workbench：僅限 MySQL 或支援多種引擎",
+        "description": "MySQL Workbench 是 Oracle 免費的 MySQL 工具，現已改以 MySQL Shell 為基礎重寫。TablePro 在 Mac、iPhone 與 iPad 上支援 MySQL 及其他引擎。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs MySQL Workbench"
+    },
+    "header": {
+        "title": "TablePro vs MySQL Workbench",
+        "lead": "MySQL Workbench 是 Oracle 推出的免費開放原始碼 MySQL 工具。{status.version} 版以 MySQL Shell 為基礎重寫，Oracle 已不再維護 Workbench 8.0。TablePro 是支援 MySQL、MariaDB 及其他引擎的開放原始碼用戶端，提供獨立的 iPhone 與 iPad App，並在 Mac 上提供選用付費功能。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "您也使用 MariaDB、PostgreSQL、SQL Server、SQLite 或 Redis，希望用一個用戶端處理這些資料庫。",
+            "您仍在執行 MySQL 8.0 伺服器。TablePro 可以連線，而新版 Workbench 支援 MySQL {cells.databases.version} 及更新版本。",
+            "您的 Mac 使用 Intel 處理器。TablePro 分別提供 Intel 與 Apple silicon 版本。",
+            "您希望在 Mac App 中免費使用 AI 助手和 MCP 伺服器，並自選 AI 服務商。",
+            "您希望有免費的 iPhone 與 iPad App 連線 MySQL 和 MariaDB。"
+        ],
+        "competitor": [
+            "您希望使用 Oracle 官方的 MySQL 工具，免費且開放原始碼。",
+            "您喜歡把查詢、結果和筆記放在一起的筆記本，除了 SQL 還能執行 JavaScript 和 TypeScript。",
+            "您使用 MySQL Enterprise Backup，希望在桌面 App 中排程和還原備份。",
+            "您正在移轉至 OCI 上的 MySQL HeatWave，需要引導式移轉。",
+            "您也在 Windows 或 Linux 上工作，希望各平台使用同一個工具。"
+        ]
+    },
+    "glance": {
+        "intro": "MySQL Workbench {status.version} 是以 MySQL Shell 為基礎重寫的新版本，Oracle 表示 Workbench 8.0 的功能尚未全部納入。{cells.workbench8.version} 是 Workbench 8.0 的最後一個版本。"
+    },
+    "rows": {
+        "notebooks": {
+            "label": "SQL 筆記本",
+            "tablepro": "不提供。SQL 在編輯器分頁中執行，並有查詢記錄"
+        },
+        "administration": {
+            "label": "伺服器管理",
+            "tablepro": "Mac App 中免費：權限細至欄位的 Users & Roles，以及可取消查詢或結束工作階段的 Server Dashboard"
+        },
+        "enterpriseBackup": {
+            "label": "備份",
+            "tablepro": "免費：Backup Dump 與 Restore Dump 執行您自行安裝的 mysqldump 和 mysql"
+        },
+        "migration": {
+            "label": "移轉至 MySQL HeatWave",
+            "tablepro": "不提供"
+        },
+        "workbench8": {
+            "label": "上一代",
+            "tablepro": "只有一條版本線，透過 App 內更新或 Homebrew 更新"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "MySQL Workbench 是 Oracle 官方的 MySQL 工具，依 GPL 免費開放原始碼。",
+                "cite": ["licence", "prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "SQL 筆記本把查詢、結果和筆記放在同一份文件中，除了 SQL 還能執行 JavaScript 和 TypeScript。",
+                "cite": ["cells.notebooks"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "搭配 MySQL Enterprise Backup，可建立、排程和還原完整備份及增量備份。",
+                "cite": ["cells.enterpriseBackup"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "HeatWave Migration Assistant 會引導您移轉至 OCI 上的 MySQL HeatWave。",
+                "cite": ["cells.migration"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "可在 Windows、macOS 與 Linux 上執行。",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "一個用戶端支援 MySQL、MariaDB 以及 PostgreSQL、SQL Server、SQLite、Redis 等其他引擎。查看<link>支援的資料庫</link>。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "TablePro 也能連線 MySQL 8.0 伺服器。Oracle 在新版 Workbench 中支援 MySQL {cells.databases.version} 及更新版本，並表示較舊的版本可能可用。",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro 在 Intel 與 Apple silicon Mac 上都能執行，各有獨立版本。新版 Workbench 的 Mac 下載僅適用於 Apple silicon。",
+                "cite": ["mac"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Backup Dump</link> 執行 mysqldump，Restore Dump 執行 mysql，備份不需要 MySQL Enterprise Backup。兩者均免費。",
+                "cite": ["cells.enterpriseBackup"],
+                "feature": null,
+                "href": "/features/import-export#backup"
+            },
+            {
+                "text": "<link>AI 助手和 MCP 伺服器</link>在 Mac App 中免費，可自選 AI 服務商。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "免費的 <link>iPhone 與 iPad App</link> 可連線 MySQL 和 MariaDB，無 App 內購買。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 沒有 Windows 或 Linux App。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "沒有筆記本，MySQL 連線只執行 SQL，不執行 JavaScript 或 TypeScript。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro 沒有 MySQL Enterprise Backup 整合，也沒有 MySQL HeatWave 移轉助手。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro 僅透過 TCP 連線 MySQL，不透過本機 socket 檔案。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "部分功能付費。Starter 加入 {starterExamples} 等功能，而 MySQL Workbench 免費。",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 沒有 MySQL Workbench 匯入工具。請手動新增各個連線：填寫連線表單，或將以 mysql:// 開頭的 URL 貼上至<ui>檔案 > 匯入 > 從 URL 匯入…</ui>（File > Import > Import from URL…）。",
+        "steps": [],
+        "after": [
+            "在連線的<ui>網路</ui>（Network）分頁設定 SSH 通道，需要時可加入跳板主機。",
+            "專案在 .env 或 wp-config.php 等檔案中儲存資料庫設定時，<ui>檔案 > 匯入 > 開啟專案資料夾…</ui>（File > Import > Open Project Folder…）會讀取設定並開啟已填好的連線表單。",
+            "密碼儲存在 macOS 鑰匙圈中，TablePro 的查詢記錄從頭開始。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "workbench-8",
+            "question": "MySQL Workbench 8.0 還有維護嗎？",
+            "answer": "已不再維護。Oracle 表示 Workbench 8.0 已終止支援，不會再有新版本，{cells.workbench8.version} 是最後一個版本。Oracle 請使用者移轉至 MySQL Workbench {status.version}，這是一次重寫，尚未包含 Workbench 8.0 的所有功能。",
+            "href": null
+        },
+        {
+            "id": "mysql-8",
+            "question": "TablePro 支援 MySQL 8.0 和 MariaDB 嗎？",
+            "answer": "支援。TablePro 透過同一個驅動程式連線 MySQL 8.0、更新的版本和 MariaDB。Oracle 在新版 Workbench 中支援 MySQL {cells.databases.version} 及更新版本，並表示較舊的版本可能可用。<link>了解 TablePro 中的 MySQL</link>。",
+            "href": "/mysql-client"
+        },
+        {
+            "id": "intel",
+            "question": "MySQL Workbench 能在 Intel Mac 上執行嗎？",
+            "answer": "{status.version} 版的 Mac 下載僅適用於 Apple silicon。TablePro 為 Intel Mac 提供獨立版本。<link>下載 TablePro</link>。",
+            "href": "/download"
+        },
+        {
+            "id": "free",
+            "question": "TablePro 像 MySQL Workbench 一樣免費嗎？",
+            "answer": "可免費使用。MySQL、MariaDB 及其他支援的引擎、AI 助手和 MCP 伺服器均免費，程式碼依 AGPLv3 開放原始碼。Starter 或 Team 方案為 Mac App 加入 {starterExamples} 等選用功能。<link>查看價格</link>。",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "mysql-workbench-built-on-shell": "以 MySQL Shell 為基礎",
+        "mysql-workbench-databases": "MySQL {version} LTS 及更新版本。較舊的版本可能可以連線，但不在官方支援範圍內。",
+        "mysql-workbench-notebooks": "SQL Notebooks 把查詢、結果和筆記放在一起，也能執行 JavaScript 和 TypeScript",
+        "mysql-workbench-administration": "伺服器狀態、使用者和授權，以及用戶端連線及其持有或等待的鎖定",
+        "mysql-workbench-enterprise-backup": "適用於 MySQL Enterprise Backup 客戶：完整備份和增量備份、排程與還原",
+        "mysql-workbench-heatwave-migration": "HeatWave Migration Assistant，用於移轉至 OCI 上的 MySQL HeatWave",
+        "mysql-workbench-8-end-of-life": "{version} 版於 {date} 發行，是最後一個版本。Oracle 不再維護 Workbench 8.0，並表示其功能尚未全部納入新版本。"
+    }
+}

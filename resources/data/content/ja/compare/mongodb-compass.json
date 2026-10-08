@@ -1,0 +1,196 @@
+{
+    "seo": {
+        "title": "TablePro vs MongoDB Compass：MongoDB 専用か、多種対応か",
+        "description": "MongoDB Compass は MongoDB の無料 GUI で、ステージごとの集計とスキーマ分析を備えます。TablePro は Mac で SQL データベースや Redis と並べて MongoDB に対応します。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs MongoDB Compass"
+    },
+    "header": {
+        "title": "TablePro vs MongoDB Compass",
+        "lead": "MongoDB Compass は MongoDB 公式の無料 GUI で、データの探索、集計パイプラインの作成、コレクションのスキーマの把握に使います。TablePro は SQL データベース、Redis などのエンジンと並べて MongoDB に接続するオープンソースクライアントで、Mac では任意の有料機能を追加できます。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "MongoDB は PostgreSQL、MySQL、SQL Server や Redis と並ぶ使用データベースの一つで、一つのクライアントで扱いたい。",
+            "変数、ループ、コレクション・フィールドパス・演算子の補完がある mongosh 風のシェルが好み。",
+            "コレクション全体でフィールドの名前変更や削除を行い、実行前にすべてのステートメントを確認したい。",
+            "クラウドでも Mac 上でも選んだプロバイダーで使える AI アシスタントと、外部の AI クライアント向けの MCP サーバーが欲しい。"
+        ],
+        "competitor": [
+            "MongoDB だけを使い、MongoDB 公式の無料ツールが欲しい。",
+            "集計パイプラインをステージごとに組み立て、各ステージの後にプレビューを見たい。",
+            "コレクションのスキーマを調べたり、コレクションとその関係を図でモデリングしたりする。",
+            "MongoDB の視覚的な実行プランとリアルタイムのサーバー指標が欲しい。",
+            "Windows や Linux でも作業する。"
+        ]
+    },
+    "glance": {
+        "intro": "Compass のインストールガイドには MongoDB {cells.databases.version} 以降と記載されています。コードは {licence} で公開されています。"
+    },
+    "rows": {
+        "pipelineBuilder": {
+            "label": "集計パイプライン",
+            "tablepro": "シェルで aggregate() を書き、補完が使える。ステージごとのエディターはなし"
+        },
+        "schemaAnalysis": {
+            "label": "スキーマ分析",
+            "tablepro": "なし"
+        },
+        "dataModeling": {
+            "label": "データモデリング",
+            "tablepro": "モデリングツールはなし。ER 図は外部キーから描く読み取り専用の図"
+        },
+        "explainPlan": {
+            "label": "視覚的な実行プラン",
+            "tablepro": "MongoDB ではなし。シェルで .explain() をつなげると、プランがドキュメントで返る"
+        },
+        "serverStats": {
+            "label": "リアルタイムのサーバー指標",
+            "tablepro": "MongoDB ではなし。Server Dashboard は PostgreSQL、MySQL、SQL Server などのエンジンが対象"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Compass は MongoDB 公式の GUI で、無料です。",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "集計パイプラインをステージごとに組み立て、各ステージの後にデータをプレビューできます。",
+                "cite": ["cells.pipelineBuilder"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "コレクションのドキュメントをサンプリングしてフィールドの型、日付の範囲、頻出値を示し、データベースのコレクションの ER 図を描きます。",
+                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "実行プランを視覚的に表示し、リアルタイムのサーバー指標も備えます。",
+                "cite": ["cells.explainPlan", "cells.serverStats"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Windows、macOS、Linux で動作します。",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "一つのクライアントで MongoDB と、PostgreSQL、MySQL、SQL Server、Redis などのエンジンに対応します。<link>対応データベース</link>をご覧ください。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "クエリタブは mongosh の構文を受け付ける <link>JavaScript シェル</link>で、定義した変数はその接続のすべてのタブで使えます。",
+                "cite": [],
+                "feature": null,
+                "href": "/mongodb-client"
+            },
+            {
+                "text": "Structure タブでコレクション全体のフィールドの名前変更や削除ができ、各変更は Preview SQL で先に確認できます。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI アシスタント</link>はクラウドでも Mac 上でも選んだ AI プロバイダーで動き、MCP サーバーを通じて外部の AI クライアントが保存済みの接続を使えます。どちらも無料です。Compass の AI 機能は Azure OpenAI を使います。",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "各接続に <link>Safe Mode</link> レベルがあります。MongoDB ではすべてのステートメントが書き込みとして扱われるため、厳しいレベルでは一つずつ確認または拒否します。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "ステージごとの集計エディターはなく、aggregate() はシェルで書きます。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "MongoDB のスキーマ分析、プラン図、サーバー指標の画面はありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "トランザクション、GridFS、チェンジストリームには対応しません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "MongoDB 接続は iPhone・iPad アプリでは開けません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Windows と Linux 用の TablePro アプリはありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro に Compass のインポーターはありません。Compass で使っている mongodb:// または mongodb+srv:// で始まる接続文字列を <ui>File > Import > Import from URL…</ui> に貼り付けます。",
+        "steps": [],
+        "after": [
+            ".mongodb.net で終わるホストでは、MongoDB Atlas が必要とする SRV と TLS が自動で有効になります。",
+            "ユーザーが admin に定義され、別のデータベースを閲覧する場合は <ui>Auth Database</ui> を設定します。",
+            "パスワードは macOS キーチェーンに保存し、クエリ履歴は TablePro で新しく始まります。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "aggregation",
+            "question": "TablePro で集計パイプラインを作れますか？",
+            "answer": "はい、コードで書きます。aggregate() はシェルで実行でき、コレクション、フィールドパス、演算子の補完が使えます。各ステージの後にプレビューするステージごとのエディターはなく、この点は Compass が優れています。",
+            "href": null
+        },
+        {
+            "id": "ai",
+            "question": "それぞれどの AI を使いますか？",
+            "answer": "Compass の自然言語クエリとアシスタントは Azure OpenAI を使い、設定で AI 機能をオフにできます。TablePro の AI アシスタントは Mac 上のモデルを含め選んだプロバイダーを使い、Mac アプリで無料です。<link>TablePro の AI について</link>。",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "free",
+            "question": "MongoDB で TablePro は無料ですか？",
+            "answer": "はい。MongoDB と他の対応エンジン、AI アシスタントと MCP サーバーは Mac アプリで無料です。有料プランは {starterExamples} など任意の機能を追加します。<link>料金を見る</link>。",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "compass-databases": "インストールガイドの記載では MongoDB {version} 以降",
+        "compass-natural-language": "Azure OpenAI による自然言語クエリとインテリジェントアシスタント。AI 機能はオフにできます。",
+        "compass-aggregation-stages": "ステージごとに組み立て、各ステージの後にデータをプレビュー",
+        "compass-schema-sampling": "ドキュメントをサンプリングし、フィールドの型、日付の範囲、頻出値を表示",
+        "compass-data-modeling": "データベースのコレクションの ER 図。関係を推定し、注釈を付けられる"
+    }
+}

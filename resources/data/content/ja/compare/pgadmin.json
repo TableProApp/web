@@ -1,0 +1,205 @@
+{
+    "seo": {
+        "title": "TablePro vs pgAdmin：PostgreSQL 管理ツールかクライアントか",
+        "description": "pgAdmin は PostgreSQL 用の無料オープンソース管理ツールで、デスクトップでも Web サーバーでも動きます。TablePro は PostgreSQL と他のエンジンに対応します。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs pgAdmin"
+    },
+    "header": {
+        "title": "TablePro vs pgAdmin",
+        "lead": "pgAdmin 4 は PostgreSQL 用の無料オープンソースの管理・開発ツールです。Windows、macOS、Linux のデスクトップアプリとして、または複数人で共有する Web サーバー上で動きます。TablePro は PostgreSQL と他のエンジンに対応するオープンソースクライアントで、別の iPhone・iPad アプリと Mac の任意の有料機能があります。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "PostgreSQL だけでなく MySQL、SQL Server、SQLite、Redis や MongoDB も使う。",
+            "Swift で書かれたネイティブ Mac アプリで、パスワードを macOS キーチェーンに保存したい。",
+            "本番用の Read-Only や、書き込み前の Touch ID など、接続ごとに Safe Mode レベルを設定したい。",
+            "Claude Code や Cursor などの AI クライアントが保存済みの接続を使えるよう、MCP サーバーが欲しい。",
+            "PostgreSQL に接続する無料の iPhone・iPad アプリが欲しい。"
+        ],
+        "competitor": [
+            "PostgreSQL だけを使い、作業の大半が管理である。",
+            "PL/pgSQL 関数をデバッグする、または pgAgent でジョブをスケジュールする。",
+            "psql、pg_dump、pg_restore が同梱され、ほかに何もインストールしたくない。",
+            "Web サーバーに一度インストールし、チームがブラウザーで開けるようにしたい。",
+            "Windows や Linux でも作業する。"
+        ]
+    },
+    "glance": {
+        "intro": "pgAdmin は各リリースの時点でサポート期間中の PostgreSQL バージョンに対応します。どちらのツールにも、設定したプロバイダーで動く AI アシスタントがあります。"
+    },
+    "rows": {
+        "debugger": {
+            "label": "手続き型言語デバッガー",
+            "tablepro": "なし"
+        },
+        "schemaDiff": {
+            "label": "スキーマ差分",
+            "tablepro": "Compare & Sync が二つのデータベースの構造またはデータを比較し、同期スクリプトを作成。Starter に含まれる"
+        },
+        "diagram": {
+            "label": "ER 図",
+            "tablepro": "無料の読み取り専用 ER 図。PNG または SQL に書き出せる"
+        },
+        "backupRestore": {
+            "label": "バックアップと復元",
+            "tablepro": "無料：Backup Dump と Restore Dump が、別途インストールした pg_dump と pg_restore を実行"
+        },
+        "jobScheduler": {
+            "label": "ジョブのスケジュール",
+            "tablepro": "なし"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "pgAdmin は PostgreSQL 向けに作られ、EDB Postgres Advanced Server にも対応します。",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "デバッガーで PL/pgSQL 関数をステップ実行でき、スキーマ差分ツールで二つのスキーマを比較できます。どちらも無料です。",
+                "cite": ["cells.debugger", "cells.schemaDiff"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "ERD ツールでスキーマを設計し、文書化できます。",
+                "cite": ["cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "psql、pg_dump、pg_dumpall、pg_restore が同梱され、バックアップと復元にほかのインストールは不要です。",
+                "cite": ["cells.backupRestore"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Windows、macOS、Linux で動作し、複数ユーザー向けに Web サーバーでも動きます。pgAgent は SQL、シェル、バッチのジョブをスケジュールします。",
+                "cite": ["platforms", "cells.jobScheduler"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "一つのクライアントで PostgreSQL と、MySQL、SQL Server から Redis、MongoDB、DuckDB までのエンジンに対応します。<link>対応データベース</link>をご覧ください。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "TablePro は Swift で書かれた Mac アプリで、ネイティブのデータベースドライバーを使います。pgAdmin は Python の Web アプリケーションで、{technology} のデスクトップランタイムか Web サーバーで動きます。",
+                "cite": ["technology"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "EXPLAIN はプランを図、ツリー、生のテキストで表示し、<link>EXPLAIN Compare</link> は新しいプランを基準と比較します。どちらも無料です。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "各接続に Silent から Read-Only までの <link>Safe Mode</link> レベルがあり、厳しいレベルでは Touch ID を求めます。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "<link>MCP サーバー</link>を通じて、Claude Code や Cursor などの AI クライアントがパスワードを見ずに保存済みの接続を使えます。Mac アプリで無料です。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "無料の <link>iPhone・iPad アプリ</link>は PostgreSQL に接続し、アプリ内購入はありません。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Windows と Linux 用の TablePro アプリはなく、サーバーにインストールする Web 版もありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "手続き型言語のデバッガーとジョブスケジューラーはありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "ER 図は読み取り専用です。テーブルは図を描いてではなく Structure タブで変更します。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "バックアップには Mac に pg_dump と pg_restore が必要で、Homebrew でインストールします。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Compare & Sync</link> は Starter に含まれますが、pgAdmin のスキーマ差分は無料です。",
+                "cite": ["cells.schemaDiff"],
+                "feature": "compare-sync",
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro に pgAdmin のインポーターはありません。各サーバーを接続として追加し、フォームを入力するか postgresql:// で始まる URL を <ui>File > Import > Import from URL…</ui> に貼り付けます。",
+        "steps": [],
+        "after": [
+            "プロジェクトが .env ファイルや Prisma スキーマにデータベース URL を保存していれば、<ui>File > Import > Open Project Folder…</ui> が読み、入力済みフォームを開きます。",
+            "パスワードは macOS キーチェーンに保存します。PostgreSQL 接続は ~/.pgpass も読みます。",
+            "クエリ履歴は TablePro で新しく始まります。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "ai",
+            "question": "どちらにも AI アシスタントがありますか？",
+            "answer": "はい。pgAdmin の Query Tool は自然言語から SQL を書き、AI Reports はセキュリティ、パフォーマンス、設計を診断します。プロバイダーは Anthropic、OpenAI、または Ollama や Docker Model Runner によるローカルモデルです。TablePro の AI アシスタントも Mac アプリで無料でプロバイダーを選べ、さらに外部の AI クライアント向けに MCP サーバーがあります。<link>TablePro の AI について</link>。",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "web",
+            "question": "pgAdmin サーバーのように、チームで TablePro を共有できますか？",
+            "answer": "ブラウザーでは共有できません。TablePro は各 Mac で動作します。接続は接続ファイルで共有するか、Team プランの Team Catalog と Team Library で共有します。<link>共有について</link>。",
+            "href": "/features/sync-and-teams"
+        },
+        {
+            "id": "free",
+            "question": "TablePro も pgAdmin のように無料ですか？",
+            "answer": "無料で使えます。PostgreSQL と他の対応エンジン、AI アシスタントと MCP サーバーは無料で、コードは AGPLv3 のオープンソースです。pgAdmin と違い TablePro には有料プランもあり、Starter と Team が Mac アプリに {starterExamples} など任意の機能を追加します。<link>料金を見る</link>。",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "pgadmin-web-application": "Python の Web アプリケーション。デスクトップランタイムか Web サーバーで動作",
+        "pgadmin-databases": "PostgreSQL と EDB Postgres Advanced Server。各 pgAdmin リリースの時点でサポート期間中のバージョン",
+        "pgadmin-ai": "Query Tool の AI Assistant と、セキュリティ、パフォーマンス、設計の AI Reports。プロバイダーは Anthropic、OpenAI、Ollama、Docker Model Runner",
+        "pgadmin-debugger": "PL/pgSQL と EDB SPL に対応",
+        "pgadmin-erd-design": "スキーマを設計・文書化する ERD ツール",
+        "pgadmin-bundled-utilities": "バックアップ、復元、VACUUM、ANALYZE。psql、pg_dump、pg_dumpall、pg_restore を同梱",
+        "pgadmin-pgagent": "サーバーにインストールする pgAgent が、SQL、シェル、バッチのジョブをスケジュール"
+    }
+}

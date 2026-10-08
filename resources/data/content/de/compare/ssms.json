@@ -1,0 +1,210 @@
+{
+    "seo": {
+        "title": "SSMS für Mac: VS Code mit MSSQL oder TablePro",
+        "description": "SQL Server Management Studio läuft nur unter Windows. Auf dem Mac verweist Microsoft auf VS Code mit MSSQL, und TablePro ist eine weitere Option."
+    },
+    "og": {
+        "kicker": "Vergleichen",
+        "title": "SSMS-Alternativen für Mac"
+    },
+    "header": {
+        "title": "Alternativen zu SQL Server Management Studio für Mac",
+        "lead": "SQL Server Management Studio ist Microsofts kostenloses Tool für SQL Server und Azure SQL und läuft nur unter Windows. Microsoft hat Azure Data Studio am {cells.microsoftOnMac.date} eingestellt und verweist seine Nutzer auf Visual Studio Code mit der MSSQL-Erweiterung, die auch unter macOS läuft. TablePro ist ein nativer Mac-Client, der sich mit SQL Server und weiteren Engines verbindet."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Du arbeitest auf einem Mac und möchtest eine native App für SQL Server, in der ein T-SQL-Skript Batch für Batch an jeder GO-Zeile läuft.",
+            "Du meldest dich mit einem SQL-Server-Login, Kerberos oder Microsoft Entra ID an.",
+            "Du arbeitest auch mit PostgreSQL, MySQL, SQLite oder Redis und möchtest einen Client für alle.",
+            "Du möchtest einen KI-Assistenten und einen MCP-Server, kostenlos in der Mac-App und mit einem KI-Anbieter deiner Wahl.",
+            "Du möchtest eine kostenlose iPhone- und iPad-App, die sich mit SQL Server verbindet."
+        ],
+        "competitor": [
+            "Du verwaltest Jobs für SQL Server-Agent, Always-On-Verfügbarkeitsgruppen oder Always Encrypted.",
+            "Du optimierst die Leistung mit Live-Abfragestatistiken, Optimierungsratgebern und Dashboards.",
+            "Du verwaltest Logins, Datenbankbenutzer und Rollen oder entwirfst Tabellen in Datenbankdiagrammen.",
+            "Du hast einen Windows-Computer, auf dem es laufen kann."
+        ],
+        "competitorTitle": "Behalte SQL Server Management Studio unter Windows, wenn"
+    },
+    "glance": {
+        "intro": "SQL Server Management Studio hat keine Mac-Version. Microsofts eigene Option auf dem Mac ist Visual Studio Code mit der MSSQL-Erweiterung: Microsoft hat Azure Data Studio am {cells.microsoftOnMac.date} eingestellt und verweist seine Nutzer dorthin."
+    },
+    "rows": {
+        "sqlAgent": {
+            "label": "SQL Server-Agent",
+            "tablepro": "Nicht verfügbar"
+        },
+        "availabilityGroups": {
+            "label": "Always-On-Verfügbarkeitsgruppen",
+            "tablepro": "Nicht verfügbar"
+        },
+        "securityManagement": {
+            "label": "Logins, Datenbankbenutzer und Rollen",
+            "tablepro": "Nicht für SQL Server. Users & Roles deckt MySQL, MariaDB und PostgreSQL ab"
+        },
+        "queryStatistics": {
+            "label": "Leistungswerkzeuge",
+            "tablepro": "Keine Ansicht für Ausführungspläne und keine Optimierungsratgeber für SQL Server"
+        },
+        "diagram": {
+            "label": "Datenbankdiagramme und Tabellenentwurf",
+            "tablepro": "Der Tab Structure bearbeitet Tabellen, und das ER-Diagramm ist ein schreibgeschütztes Bild"
+        },
+        "microsoftOnMac": {
+            "label": "Microsofts Tool auf dem Mac",
+            "tablepro": "TablePro ist eine native Mac-App eines unabhängigen Projekts, nicht von Microsoft"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "SQL Server Management Studio ist Microsofts eigenes Tool für SQL Server, Azure SQL Database, Azure SQL Managed Instance und SQL-Datenbanken in Fabric, und es ist kostenlos.",
+                "cite": ["cells.databases", "prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Microsoft nennt es den unterstützten Ort für Jobs von SQL Server-Agent und die allgemeine Verwaltung.",
+                "cite": ["cells.sqlAgent"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Es konfiguriert, überwacht und behebt Fehler in Always-On-Verfügbarkeitsgruppen und verwaltet Logins, Benutzer, Rollen und Always Encrypted.",
+                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Live-Abfragestatistiken, Clientstatistiken, Optimierungsratgeber und Dashboards helfen bei der Leistungsarbeit.",
+                "cite": ["cells.queryStatistics"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "GitHub Copilot, über den Visual Studio Installer hinzugefügt, schreibt, korrigiert und optimiert T-SQL.",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro läuft nativ auf dem Mac, mit getrennten Builds für Apple silicon und Intel. SQL Server Management Studio läuft nur unter Windows.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>T-SQL-Skripte</link> laufen Batch für Batch, getrennt an jeder GO-Zeile, mit PRINT-Ausgabe und jedem Ergebnis in einem eigenen Tab.",
+                "cite": [],
+                "feature": null,
+                "href": "/sql-server-client"
+            },
+            {
+                "text": "Melde dich mit einem SQL-Server-Login, Kerberos oder <link>Microsoft Entra ID</link> an, mit Tokens in deinem Anmeldeschlüsselbund.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/connections#cloud-auth"
+            },
+            {
+                "text": "Ein Client deckt SQL Server neben PostgreSQL, MySQL, SQLite, Redis und weiteren Engines ab. Sieh dir die <link>unterstützten Datenbanken</link> an.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "Der <link>KI-Assistent und der MCP-Server</link> sind in der Mac-App kostenlos, mit einem KI-Anbieter deiner Wahl.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Eine kostenlose <link>iPhone- und iPad-App</link> verbindet sich mit SQL Server über einen SQL-Server-Login.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Es gibt keinen SQL Server-Agent, keine Always-On-Verwaltung und keine Ansicht für Ausführungspläne unter SQL Server.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Users & Roles ist für SQL Server nicht verfügbar, und es gibt keine Optimierungsratgeber.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Benannte Instanzen und NTLM werden nicht unterstützt: Verbinde dich mit dem TCP-Port der Instanz und melde dich mit einem SQL-Server-Login, Kerberos oder Microsoft Entra ID an.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Auf iPhone und iPad lässt sich TLS erzwingen, das Serverzertifikat wird jedoch nicht geprüft.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Einige Funktionen sind kostenpflichtig. Starter ergänzt Funktionen wie {starterExamples}, während SQL Server Management Studio kostenlos ist.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro hat keinen Importer für SQL Server Management Studio. Füge jeden Server als TablePro-Verbindung hinzu: Fülle das Verbindungsformular aus oder füge eine mit sqlserver:// beginnende URL unter <ui>File > Import > Import from URL…</ui> ein.",
+        "steps": [],
+        "after": [
+            "Wähle im Formular <ui>Authentication</ui>: einen SQL-Server-Login, Windows-Authentifizierung über Kerberos oder Microsoft Entra ID.",
+            "Setze SSL für Azure SQL Database auf Required oder strenger und fülle Database für einen eigenständigen Benutzer aus.",
+            "Eine aus SQL Server Management Studio gespeicherte .sql-Datei lässt sich in eine Verbindung importieren, und ihre GO-Zeilen laufen Batch für Batch."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "mac",
+            "question": "Läuft SQL Server Management Studio auf einem Mac?",
+            "answer": "Nein. Laut Microsofts FAQ ist es nur für Windows verfügbar. Auf dem Mac verweist Microsoft auf Visual Studio Code mit der MSSQL-Erweiterung.",
+            "href": null
+        },
+        {
+            "id": "azure-data-studio",
+            "question": "Was ist aus Azure Data Studio geworden?",
+            "answer": "Microsoft hat es am {cells.microsoftOnMac.date} eingestellt. Es erhält keine Updates oder Sicherheitskorrekturen mehr, und Microsoft bittet seine Nutzer, zu Visual Studio Code mit der MSSQL-Erweiterung zu wechseln, die ihre Abfragen, Skripte und Datenbankprojekte ohne Konvertierung öffnet.",
+            "href": null
+        },
+        {
+            "id": "vs-code",
+            "question": "Soll ich Visual Studio Code mit MSSQL oder TablePro nutzen?",
+            "answer": "Visual Studio Code mit der MSSQL-Erweiterung, wenn du Microsofts eigene Werkzeuge in einem Code-Editor möchtest. TablePro, wenn du eine native Mac-App für SQL Server und weitere Engines möchtest, mit einer kostenlosen iPhone- und iPad-App. <link>Mehr zu SQL Server in TablePro</link>.",
+            "href": "/sql-server-client"
+        }
+    ],
+    "notes": {
+        "ssms-databases": "SQL Server, Azure SQL Database, Azure SQL Managed Instance, Azure Synapse Analytics und SQL-Datenbanken in Microsoft Fabric",
+        "ssms-github-copilot-component": "GitHub Copilot schreibt, korrigiert und optimiert T-SQL. Es ist eine separate Komponente, die du mit dem Visual Studio Installer hinzufügst.",
+        "ssms-sql-server-agent": "Microsoft nennt es den unterstützten Ort für SQL Server-Agent und die allgemeine Verwaltung",
+        "ssms-always-on": "Konfiguriert, überwacht und behebt Fehler in Verfügbarkeitsgruppen",
+        "ssms-security-management": "Logins, Datenbankbenutzer und Rollen sowie Always Encrypted",
+        "ssms-query-statistics": "Live-Abfragestatistiken, Clientstatistiken, Optimierungsratgeber und Dashboards",
+        "ssms-database-diagrams": "Datenbankdiagramme und Tabellen-Designer",
+        "ssms-microsoft-on-mac": "Microsoft hat Azure Data Studio am {date} eingestellt, ohne weitere Updates oder Sicherheitskorrekturen. Es verweist seine Nutzer auf Visual Studio Code mit der MSSQL-Erweiterung, die unter Windows, macOS und Linux läuft und ihre Abfragen, Skripte und Datenbankprojekte ohne Konvertierung öffnet."
+    }
+}

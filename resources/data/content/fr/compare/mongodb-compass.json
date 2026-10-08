@@ -1,0 +1,196 @@
+{
+    "seo": {
+        "title": "TablePro face à MongoDB Compass : une base ou plusieurs",
+        "description": "MongoDB Compass est la GUI gratuite de MongoDB, avec agrégation par étapes et analyse de schéma. TablePro couvre MongoDB avec SQL et Redis sur Mac."
+    },
+    "og": {
+        "kicker": "Comparer",
+        "title": "TablePro face à MongoDB Compass"
+    },
+    "header": {
+        "title": "TablePro face à MongoDB Compass",
+        "lead": "MongoDB Compass est la GUI gratuite de MongoDB, pour explorer les données, construire des pipelines d’agrégation et étudier le schéma d’une collection. TablePro est un client open source qui se connecte à MongoDB aux côtés des bases SQL, de Redis et d’autres moteurs, avec des fonctions payantes facultatives sur Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "MongoDB est une base parmi d’autres, à côté de PostgreSQL, MySQL, SQL Server ou Redis, et vous voulez un seul client pour toutes.",
+            "Vous aimez un shell à la mongosh, avec variables, boucles et complétion des collections, chemins de champs et opérateurs.",
+            "Vous voulez renommer ou supprimer un champ dans toute une collection, avec chaque instruction affichée avant son exécution.",
+            "Vous voulez un assistant IA avec le fournisseur de votre choix, dans le cloud ou sur votre Mac, et un serveur MCP pour les clients IA externes."
+        ],
+        "competitor": [
+            "MongoDB est votre seule base, et vous voulez l’outil gratuit de MongoDB.",
+            "Vous construisez vos pipelines d’agrégation étape par étape et voulez un aperçu après chaque étape.",
+            "Vous étudiez le schéma d’une collection, ou modélisez des collections et leurs relations dans un diagramme.",
+            "Vous voulez un plan d’exécution visuel et des métriques serveur en direct pour MongoDB.",
+            "Vous travaillez aussi sous Windows ou Linux."
+        ]
+    },
+    "glance": {
+        "intro": "Le guide d’installation de Compass indique MongoDB {cells.databases.version} ou version ultérieure. Son code est publié sous {licence}."
+    },
+    "rows": {
+        "pipelineBuilder": {
+            "label": "Pipelines d’agrégation",
+            "tablepro": "Écrits avec aggregate() dans le shell, avec complétion. Pas d’éditeur étape par étape"
+        },
+        "schemaAnalysis": {
+            "label": "Analyse de schéma",
+            "tablepro": "Non disponible"
+        },
+        "dataModeling": {
+            "label": "Modélisation des données",
+            "tablepro": "Pas d’outil de modélisation. Le diagramme ER est une image en lecture seule tirée des clés étrangères"
+        },
+        "explainPlan": {
+            "label": "Plan d’exécution visuel",
+            "tablepro": "Pas pour MongoDB. Chaînez .explain() dans le shell, et le plan revient sous forme de document"
+        },
+        "serverStats": {
+            "label": "Métriques serveur en direct",
+            "tablepro": "Pas pour MongoDB. Le Server Dashboard couvre des moteurs comme PostgreSQL, MySQL et SQL Server"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Compass est la GUI de MongoDB, et elle est gratuite.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Les pipelines d’agrégation se construisent étape par étape, avec un aperçu des données après chaque étape.",
+                "cite": ["cells.pipelineBuilder"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Il échantillonne les documents d’une collection pour montrer les types de champs, les plages de dates et les valeurs fréquentes, et dessine un diagramme entité-relation des collections d’une base.",
+                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Les plans d’exécution sont visuels, et les métriques serveur en direct sont intégrées.",
+                "cite": ["cells.explainPlan", "cells.serverStats"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Il fonctionne sous Windows, macOS et Linux.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Un seul client couvre MongoDB aux côtés de PostgreSQL, MySQL, SQL Server, Redis et d’autres moteurs. Consultez les <link>bases de données prises en charge</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "L’onglet de requête est un <link>shell JavaScript</link> qui accepte la syntaxe mongosh, et une variable définie reste disponible dans chaque onglet de la connexion.",
+                "cite": [],
+                "feature": null,
+                "href": "/mongodb-client"
+            },
+            {
+                "text": "L’onglet Structure renomme ou supprime un champ dans toute une collection, chaque modification apparaissant d’abord dans Preview SQL.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "L’<link>assistant IA</link> fonctionne avec le fournisseur d’IA de votre choix, dans le cloud ou sur votre Mac, et le serveur MCP permet aux clients IA externes d’utiliser vos connexions enregistrées. Les deux sont gratuits. Les fonctions IA de Compass utilisent Azure OpenAI.",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Chaque connexion a un niveau de <link>Safe Mode</link>. Sur MongoDB, chaque instruction compte comme une écriture : les niveaux les plus stricts confirment ou bloquent chacune.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Il n’y a pas d’éditeur d’agrégation étape par étape : vous écrivez aggregate() dans le shell.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Il n’y a ni analyse de schéma, ni diagramme de plan, ni vue des métriques serveur pour MongoDB.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Les transactions, GridFS et les change streams ne sont pas pris en charge.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Les connexions MongoDB ne s’ouvrent pas dans l’app iPhone et iPad.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Il n’existe pas d’app TablePro pour Windows ou Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro n’a pas d’importateur pour Compass. Collez la chaîne de connexion que vous utilisez dans Compass, commençant par mongodb:// ou mongodb+srv://, dans <ui>Fichier > Importer > Importer depuis une URL…</ui> (File > Import > Import from URL…)",
+        "steps": [],
+        "after": [
+            "Un hôte se terminant par .mongodb.net active SRV et TLS pour vous, comme l’exige MongoDB Atlas.",
+            "Renseignez <ui>Auth Database</ui> quand votre utilisateur est défini dans admin mais que vous parcourez une autre base.",
+            "Les mots de passe vont dans le trousseau macOS, et l’historique des requêtes repart de zéro dans TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "aggregation",
+            "question": "Puis-je construire des pipelines d’agrégation dans TablePro ?",
+            "answer": "Oui, en les écrivant : aggregate() s’exécute dans le shell, avec complétion des collections, chemins de champs et opérateurs. Il n’y a pas d’éditeur étape par étape avec aperçu après chaque étape, et c’est là que Compass est plus fort.",
+            "href": null
+        },
+        {
+            "id": "ai",
+            "question": "Quelle IA chacun utilise-t-il ?",
+            "answer": "Les requêtes en langage naturel et l’assistant de Compass utilisent Azure OpenAI, et vous pouvez désactiver les fonctions IA dans ses réglages. L’assistant IA de TablePro utilise le fournisseur de votre choix, y compris un modèle sur votre Mac, et il est gratuit dans l’app Mac. <link>Découvrez l’IA dans TablePro</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "free",
+            "question": "TablePro est-il gratuit pour MongoDB ?",
+            "answer": "Oui. MongoDB et les autres moteurs pris en charge, l’assistant IA et le serveur MCP sont gratuits dans l’app Mac. Les offres payantes ajoutent des fonctions facultatives comme {starterExamples}. <link>Voir les tarifs</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "compass-databases": "MongoDB {version} ou version ultérieure, selon son guide d’installation",
+        "compass-natural-language": "Requêtes en langage naturel et assistant intelligent, via Azure OpenAI. Les fonctions IA peuvent être désactivées.",
+        "compass-aggregation-stages": "Construits étape par étape, avec un aperçu des données après chaque étape",
+        "compass-schema-sampling": "Échantillonne les documents pour montrer les types de champs, les plages de dates et les valeurs fréquentes",
+        "compass-data-modeling": "Un diagramme entité-relation des collections d’une base, avec relations déduites et annotations"
+    }
+}
