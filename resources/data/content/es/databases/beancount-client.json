@@ -25,9 +25,9 @@
             "title": "Abre un libro",
             "paragraphs": [
                 "TablePro ejecuta <code>rledger</code> o Python Beancount para leer el libro. Si tienes que elegir, instala rledger: tiene prioridad cuando ambos están presentes, BQL solo se ejecuta mediante él y es el único que rellena la tabla <code>diagnostics</code> con los resultados de validación.",
-                "Elige el archivo con <ui>Examinar…</ui> en el formulario de conexión. La ruta del libro define toda la conexión, sin host, puerto, contraseña ni base de datos. Un archivo <code>.beancount</code> también se abre desde Finder, y se pueden importar URL <code>beancount:///path/to/main.beancount</code>.",
+                "Elige el archivo con <ui>Browse…</ui> en el formulario de conexión. La ruta del libro define toda la conexión, sin host, puerto, contraseña ni base de datos. Un archivo <code>.beancount</code> también se abre desde Finder, y se pueden importar URL <code>beancount:///path/to/main.beancount</code>.",
                 "Una app abierta desde Finder no hereda el <code>PATH</code> de tu shell. Si el backend funciona en Terminal pero no aquí, indica su ubicación con <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> o <code>TABLEPRO_BEANCOUNT_PYTHON</code> y vuelve a iniciar la app.",
-                "El backend de Python ejecuta los plugins incluidos con Beancount y omite cualquier otra directiva <code>plugin</code>, que es código de terceros, hasta que actives <ui>Ejecutar plugins del libro</ui> para esa conexión. Los plugins omitidos aparecen en <code>diagnostics</code>."
+                "El backend de Python ejecuta los plugins incluidos con Beancount y omite cualquier otra directiva <code>plugin</code>, que es código de terceros, hasta que actives <ui>Run Ledger Plugins</ui> para esa conexión. Los plugins omitidos aparecen en <code>diagnostics</code>."
             ]
         },
         {

@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "提供主機、HTTP 連接埠、使用者，可選資料庫。切換資料庫原地完成，已開啟分頁保持原資料庫。<ui>View > Sidebar as Tree</ui> 將伺服器資料庫顯示為可展開的樹狀圖。",
+                "提供主機、HTTP 連接埠、使用者，可選資料庫。切換資料庫原地完成，已開啟分頁保持原資料庫。<ui>檢視 > 側邊欄顯示為樹狀</ui>（View > Sidebar as Tree）將伺服器資料庫顯示為可展開的樹狀圖。",
                 "選擇任意 SSL 模式切換為 HTTPS。443 或 ClickHouse Cloud 的 8443 連接埠會啟用 Verify Identity，使用 CA 檔案或系統信任存放區驗證憑證。Verify CA 需要 CA 檔案，用戶端憑證和金鑰可存取要求雙向 TLS 的伺服器。",
                 "未使用 TLS 時，請透過 <network>SSH 通道</network>存取遠端伺服器，避免在網路上傳輸明文 HTTP。"
             ]
@@ -56,7 +56,7 @@
             "id": "operate",
             "title": "監控",
             "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> 顯示使用中查詢、合併、資料部件 mutation 和磁碟使用，列出其他工作階段並各提供 <ui>Terminate Session</ui>。慢查詢從 <code>system.query_log</code> 讀取最近完成且耗時超過一秒的查詢。"
+                "<dashboard>Server Dashboard</dashboard> 顯示使用中查詢、合併、資料部件 mutation 和磁碟使用，列出其他工作階段並各提供<ui>終止工作階段</ui>（Terminate Session）。慢查詢從 <code>system.query_log</code> 讀取最近完成且耗時超過一秒的查詢。"
             ]
         },
         {

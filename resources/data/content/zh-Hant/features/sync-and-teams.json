@@ -18,7 +18,7 @@
             "title": "iCloud 同步",
             "paragraphs": [
                 "iCloud Sync 在登入同一 iCloud 帳號的所有 Mac、iPhone 與 iPad 上保持連線資源庫一致。紀錄存入該帳號的私有資料庫；各裝置預設關閉同步，需自行開啟。iPhone 與 iPad 上免費，Mac 需要包含此功能的方案。",
-                "密碼僅在同時啟用 Mac 的 Sync Categories 下的 <ui>Passwords</ui>，或 iPhone、iPad 上的 <ui>Sync Passwords</ui> 時，透過 iCloud 鑰匙圈同步；Mac 也會同步 TablePro 在鑰匙圈中儲存的其他秘密，例如 AI 供應商金鑰和授權金鑰。將連線標為 Local only，可讓連線及其喜好項目和已儲存查詢僅保留在一台 Mac 上。"
+                "密碼僅在同時啟用 Mac 的 Sync Categories 下的<ui>密碼</ui>（Passwords），或 iPhone、iPad 上的<ui>同步密碼</ui>（Sync Passwords）時，透過 iCloud 鑰匙圈同步；Mac 也會同步 TablePro 在鑰匙圈中儲存的其他秘密，例如 AI 供應商金鑰和授權金鑰。將連線標為 Local only，可讓連線及其喜好項目和已儲存查詢僅保留在一台 Mac 上。"
             ],
             "points": [
                 "Mac 可選擇同步內容：連線、群組和標籤、設定、SSH 設定檔、資料表和資料庫喜好項目、包含 SQL 的已儲存查詢，以及資料表檔案夾。",
@@ -87,7 +87,7 @@
                     "id": "team-catalog",
                     "title": "團隊目錄",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Catalog…</ui> 將所選連線以不含密碼的 <code>.tablepro</code> 檔案寫入共用檔案夾。團隊成員將該檔案夾新增為 Linked Folder，因此目錄透過現有共用雲端硬碟或儲存庫分發，不經過 TablePro。"
+                        "<ui>分享 > 發佈到團隊目錄…</ui>（Share > Publish to Team Catalog…）將所選連線以不含密碼的 <code>.tablepro</code> 檔案寫入共用檔案夾。團隊成員將該檔案夾新增為 Linked Folder，因此目錄透過現有共用雲端硬碟或儲存庫分發，不經過 TablePro。"
                     ],
                     "paid": [
                         "team-catalog"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "團隊資源庫",
                     "paragraphs": [
-                        "連線上的 <ui>Share > Publish to Team Library…</ui> 和 Favorites 側欄的 <ui>Publish Saved Queries to Team…</ui> 將連線及已儲存查詢上傳至 TablePro 伺服器，授權下的每台 Mac 會下載；查詢在 Favorites 側欄中顯示發佈者姓名。上傳連線設定和查詢 SQL 文字，從不上傳密碼。成員的 Mac 會忽略接收到的啟動指令和通道指令，因此不會自行執行任何指令。再次發佈會取代先前發佈的內容。"
+                        "連線上的<ui>分享 > 發佈到團隊庫…</ui>（Share > Publish to Team Library…）和 Favorites 側欄的<ui>將已儲存的查詢發佈到團隊…</ui>（Publish Saved Queries to Team…）將連線及已儲存查詢上傳至 TablePro 伺服器，授權下的每台 Mac 會下載；查詢在 Favorites 側欄中顯示發佈者姓名。上傳連線設定和查詢 SQL 文字，從不上傳密碼。成員的 Mac 會忽略接收到的啟動指令和通道指令，因此不會自行執行任何指令。再次發佈會取代先前發佈的內容。"
                     ],
                     "paid": [
                         "team-library"
@@ -116,7 +116,7 @@
             "id": "seats",
             "title": "席次、邀請與帳號",
             "paragraphs": [
-                "Team 授權依席次計價，一個席次代表一台已啟用 Mac，而非一個人。透過網頁帳號邀請成員，每人會透過郵件收到單次使用代碼，在 Mac 的 <ui>Settings > License</ui> 中輸入；邀請需要空閒席次。App 顯示團隊成員，席次和邀請則在網頁管理。",
+                "Team 授權依席次計價，一個席次代表一台已啟用 Mac，而非一個人。透過網頁帳號邀請成員，每人會透過郵件收到單次使用代碼，在 Mac 的<ui>設定 > 授權</ui>（Settings > License）中輸入；邀請需要空閒席次。App 顯示團隊成員，席次和邀請則在網頁管理。",
                 "有效月付或年付訂閱可自行調整席次數，一次性購買需聯絡支援。移除成員會立即釋出席次，並刪除其發佈至 Team Library 的內容；該成員的 Mac 在下次授權檢查時失去付費功能，最長 {licenseCheckDays} 天。帳號頁供授權購買者使用。"
             ],
             "links": [

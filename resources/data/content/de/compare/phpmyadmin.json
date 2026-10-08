@@ -170,10 +170,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro hat keinen Importer für phpMyAdmin. Nutze die MySQL- oder SSH-Zugangsdaten deines Hosters: Fülle das Verbindungsformular aus oder füge eine mit mysql:// beginnende URL unter <ui>Datei > Importieren > Aus URL importieren…</ui> ein.",
+        "intro": "TablePro hat keinen Importer für phpMyAdmin. Nutze die MySQL- oder SSH-Zugangsdaten deines Hosters: Fülle das Verbindungsformular aus oder füge eine mit mysql:// beginnende URL unter <ui>File > Import > Import from URL…</ui> ein.",
         "steps": [],
         "after": [
-            "Wenn der Website-Code auf deinem Mac liegt, liest <ui>Datei > Importieren > Projektordner öffnen…</ui> die Datenbankeinstellungen aus Dateien wie wp-config.php oder .env und öffnet das ausgefüllte Verbindungsformular.",
+            "Wenn der Website-Code auf deinem Mac liegt, liest <ui>File > Import > Open Project Folder…</ui> die Datenbankeinstellungen aus Dateien wie wp-config.php oder .env und öffnet das ausgefüllte Verbindungsformular.",
             "Lege bei einer Produktionsdatenbank vor Beginn die Sicherheitsstufe der Verbindung fest.",
             "Aus phpMyAdmin exportierte SQL-Dateien lassen sich in jede MySQL- oder MariaDB-Verbindung importieren, mit oder ohne gzip-Komprimierung."
         ],

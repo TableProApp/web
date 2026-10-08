@@ -16,7 +16,7 @@
         "homebrew": {
             "title": "Homebrew",
             "body": "Homebrew 會安裝適合 Mac 晶片的建置版本。之後 App 會自行保持更新。",
-            "trails": "Homebrew 的版本獨立更新，可能落後於新版本。若安裝了舊版本，請選擇 <ui>TablePro > Check for Updates…</ui> 取得目前版本。"
+            "trails": "Homebrew 的版本獨立更新，可能落後於新版本。若安裝了舊版本，請選擇 <ui>TablePro > 檢查更新…</ui>（TablePro > Check for Updates…）取得目前版本。"
         },
         "releases": "GitHub Releases 上的所有建置版本",
         "source": "從原始碼建置（AGPLv3）"
@@ -30,8 +30,8 @@
         "steps": [
             "從「下載項目」檔案夾開啟已下載的 .dmg 檔案。",
             "將 TablePro 拖到「應用程式」檔案夾。",
-            "從「應用程式」開啟 TablePro。由於 App 來自網際網路，macOS 會在首次啟動時要求確認。請選擇 <ui>Open</ui>。",
-            "加入連線，或選擇 <ui>Help > Open Sample Database</ui> 先體驗看看。它會開啟 Chinook，這是隨 App 提供的小型 SQLite 資料庫。"
+            "從「應用程式」開啟 TablePro。由於 App 來自網際網路，macOS 會在首次啟動時要求確認。請選擇<ui>開啟</ui>（Open）。",
+            "加入連線，或選擇<ui>輔助說明 > 開啟範例資料庫</ui>（Help > Open Sample Database）先體驗看看。它會開啟 Chinook，這是隨 App 提供的小型 SQLite 資料庫。"
         ],
         "signing": "兩個建置版本均使用 Developer ID 簽署並經 Apple 公證，開啟 TablePro 無需更改任何安全性設定。",
         "drivers": "常用資料庫的驅動程式隨 App 提供。其餘驅動程式會在首次選擇對應資料庫時下載，需要網際網路連線，並獨立於 App 更新。",
@@ -45,8 +45,8 @@
         "title": "更新",
         "paragraphs": [
             "TablePro 每天檢查一次更新。新版本會在背景下載，並在您下次結束 App 時安裝。",
-            "大多數版本會在約一天半內分階段推送至 Mac。若希望更早取得，請選擇 <ui>TablePro > Check for Updates…</ui>。",
-            "可在 <ui>Settings > General</ui> 中關閉自動檢查或自動安裝。更新檢查會存取發佈版本的 GitHub，所有更新均已簽署，並在安裝前進行驗證。"
+            "大多數版本會在約一天半內分階段推送至 Mac。若希望更早取得，請選擇 <ui>TablePro > 檢查更新…</ui>（TablePro > Check for Updates…）。",
+            "可在<ui>設定 > 一般</ui>（Settings > General）中關閉自動檢查或自動安裝。更新檢查會存取發佈版本的 GitHub，所有更新均已簽署，並在安裝前進行驗證。"
         ]
     },
     "otherPlatforms": {

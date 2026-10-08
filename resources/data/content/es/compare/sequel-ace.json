@@ -156,10 +156,10 @@
     "switching": {
         "intro": "TablePro lee los favoritos guardados por Sequel Ace y las contraseñas que conserva en el llavero de macOS. Sequel Ace no necesita estar abierto y sus archivos no se modifican.",
         "steps": [
-            "En TablePro, elige <ui>Archivo > Importar > Importar desde otra app…</ui>",
-            "Selecciona Sequel Ace. Activa <ui>Incluir contraseñas</ui> para leer las contraseñas guardadas de bases de datos y SSH desde el llavero de macOS.",
-            "macOS solicita tu contraseña de inicio de sesión una vez por cada contraseña guardada. Elige <ui>Permitir siempre</ui> en cada aviso. Si cancelas uno, se omiten las contraseñas restantes.",
-            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Importar</ui>. Se trasladan los grupos, los colores de las conexiones, los túneles SSH y la configuración SSL.",
+            "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
+            "Selecciona Sequel Ace. Activa <ui>Include passwords</ui> para leer las contraseñas guardadas de bases de datos y SSH desde el llavero de macOS.",
+            "macOS solicita tu contraseña de inicio de sesión una vez por cada contraseña guardada. Elige <ui>Always Allow</ui> en cada aviso. Si cancelas uno, se omiten las contraseñas restantes.",
+            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Import</ui>. Se trasladan los grupos, los colores de las conexiones, los túneles SSH y la configuración SSL.",
             "Antes de eliminar Sequel Ace, abre una conexión que tuviera contraseña para comprobar que se ha trasladado."
         ],
         "after": [

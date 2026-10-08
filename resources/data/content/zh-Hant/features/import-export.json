@@ -43,7 +43,7 @@
             "title": "匯出資料表與結果",
             "paragraphs": [
                 "<kbd>⌘⇧E</kbd> 將勾選的資料表和檢視表匯出為 {exportFormats}。每項在寫入時從資料庫串流讀取，不受資料格線列數上限影響；SQL 引擎允許各資料表獨立設定 WHERE 子句、列數限制和所選欄位。SQL 匯出可包含結構、使用 gzip 壓縮及分割檔案，Excel 為每個資料表建立單獨工作表。MongoDB 集合也可匯出為 mongosh 指令碼，MongoDB 和 Redis 不提供 SQL 匯出。",
-                "<ui>Export Results</ui> 寫入查詢結果；被列數上限截斷的結果會重新執行並完整串流匯出。{exportPluginFormats} 匯出由 <ui>Settings > Plugins</ui> 中安裝的免費外掛程式提供，每個資料表寫入一個檔案。"
+                "<ui>匯出結果</ui>（Export Results）寫入查詢結果；被列數上限截斷的結果會重新執行並完整串流匯出。{exportPluginFormats} 匯出由<ui>設定 > 外掛</ui>（Settings > Plugins）中安裝的免費外掛程式提供，每個資料表寫入一個檔案。"
             ],
             "asset": "mac-export-dialog"
         },

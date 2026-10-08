@@ -18,7 +18,7 @@
             "title": "Nutze deinen gewählten Anbieter",
             "paragraphs": [
                 "Der Assistent unterstützt {aiProviders}. Je nach Anbieter fügst du einen API-Schlüssel ein, meldest dich mit einem bestehenden Konto an oder führst ein Modell auf deinem Mac aus. TablePro betreibt keinen eigenen KI-Dienst: Anfragen gehen direkt an den Anbieter, und vorher wird nichts gesendet.",
-                "Jede Nachricht enthält die Tabellenstruktur der Verbindung bis zu deinem Limit und die Abfrage im Editor. Ergebniszeilen werden nur bei Aktivierung unter <ui>Einstellungen > KI</ui> gesendet. Jede Verbindung hat eine KI-Richtlinie; „Nie“ hält Assistent und MCP-Clients fern."
+                "Jede Nachricht enthält die Tabellenstruktur der Verbindung bis zu deinem Limit und die Abfrage im Editor. Ergebniszeilen werden nur bei Aktivierung unter <ui>Settings > AI</ui> gesendet. Jede Verbindung hat eine KI-Richtlinie; „Nie“ hält Assistent und MCP-Clients fern."
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,7 +26,7 @@
             "id": "in-the-editor",
             "title": "Prüfen, erklären, optimieren und korrigieren",
             "paragraphs": [
-                "Setze den Cursor in eine Anweisung und wähle „Mit KI prüfen“ (<kbd>⌥⇧⌘L</kbd>) für Korrektheit, Kosten und Sicherheit, „Erklären“ (<kbd>⌘L</kbd>) für die Schritte oder „Optimieren“ (<kbd>⌥⌘L</kbd>) für Überarbeitung oder Index. Bei Fehlern steht „Mit KI korrigieren“ im Fehlerbanner. Die Anfrage enthält die Struktur genannter Tabellen; die Anweisung wird nicht ausgeführt. <ui>Im Editor anwenden</ui> ersetzt sie erst nach Bestätigung.",
+                "Setze den Cursor in eine Anweisung und wähle „Mit KI prüfen“ (<kbd>⌥⇧⌘L</kbd>) für Korrektheit, Kosten und Sicherheit, „Erklären“ (<kbd>⌘L</kbd>) für die Schritte oder „Optimieren“ (<kbd>⌥⌘L</kbd>) für Überarbeitung oder Index. Bei Fehlern steht „Mit KI korrigieren“ im Fehlerbanner. Die Anfrage enthält die Struktur genannter Tabellen; die Anweisung wird nicht ausgeführt. <ui>Apply to Editor</ui> ersetzt sie erst nach Bestätigung.",
                 "Inline-Vorschläge zeigen blassen Text beim Tippen und sind standardmäßig aus. KI-Regeln heften Textnotizen an eine Verbindung, etwa nie auszuwählende Spalten, und senden sie mit jeder Nachricht."
             ]
         },
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Einen Client verbinden",
                     "paragraphs": [
-                        "<ui>Einstellungen > Integrationen</ui> bietet Schritte und einen kopierbaren Ausschnitt für {mcpSetupClients}. Die enthaltene <code>tablepro-mcp</code>-Bridge funktioniert auch mit {mcpBridgeClients}: Sie startet TablePro bei Bedarf und findet den Server, ohne Port oder Token in der Client-Konfiguration. Die offizielle Raycast-Erweiterung koppelt sich stattdessen mit der App; du bestätigst am Mac.",
+                        "<ui>Settings > Integrations</ui> bietet Schritte und einen kopierbaren Ausschnitt für {mcpSetupClients}. Die enthaltene <code>tablepro-mcp</code>-Bridge funktioniert auch mit {mcpBridgeClients}: Sie startet TablePro bei Bedarf und findet den Server, ohne Port oder Token in der Client-Konfiguration. Die offizielle Raycast-Erweiterung koppelt sich stattdessen mit der App; du bestätigst am Mac.",
                         "Eine typische Anfrage: Benutzer mit gleicher E-Mail-Adresse finden. Der Client ruft <code>list_tables</code> und <code>describe_table</code> auf, erkennt die Spalte <code>email_address</code> und führt ein SELECT über die gespeicherte Verbindung aus, ohne dass du das Schema in den Chat kopierst."
                     ]
                 },

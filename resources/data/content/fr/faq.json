@@ -135,7 +135,7 @@
                     "question": "Où mes mots de passe sont-ils stockés ?",
                     "answer": [
                         "Sur Mac, dans le Trousseau macOS. Une connexion peut aussi lire son mot de passe lors de la connexion depuis un fichier, une variable d’environnement, une commande shell, 1Password, HashiCorp Vault ou AWS Secrets Manager. Sur iPhone et iPad, ils sont dans le Trousseau de l’appareil.",
-                        "Avec iCloud Sync activé, les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> dans Catégories de synchronisation sur Mac, ou <ui>Synchroniser les mots de passe</ui> sur iPhone et iPad, via le Trousseau iCloud."
+                        "Avec iCloud Sync activé, les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) dans Catégories de synchronisation sur Mac, ou <ui>Sync Passwords</ui> sur iPhone et iPad, via le Trousseau iCloud."
                     ]
                 },
                 {
@@ -227,7 +227,7 @@
                     "id": "what-is-sent",
                     "question": "Que transmettent les applications à TablePro ?",
                     "answer": [
-                        "Sans licence activée, la seule demande envoyée à TablePro par l’application Mac est un rapport quotidien d’utilisation, activé par défaut et désactivable dans <ui>Réglages > Général > Confidentialité</ui>. Il contient un identifiant de machine haché et des données comme version, langue et types de bases utilisées, jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes.",
+                        "Sans licence activée, la seule demande envoyée à TablePro par l’application Mac est un rapport quotidien d’utilisation, activé par défaut et désactivable dans <ui>Réglages > Général > Confidentialité</ui> (Settings > General > Privacy). Il contient un identifiant de machine haché et des données comme version, langue et types de bases utilisées, jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes.",
                         "Avec une licence, l’application Mac la vérifie aussi tous les {revalidateDays} jours, en envoyant clé, même identifiant de machine, nom du Mac et versions de l’application et de macOS. Sur iPhone et iPad, rien n’est envoyé à TablePro sauf si vous activez Partager les données d’utilisation. La <privacy>politique de confidentialité</privacy> détaille tout, y compris le stockage sur notre serveur."
                     ]
                 },
@@ -249,7 +249,7 @@
                     "id": "icloud-data",
                     "question": "Que stocke iCloud Sync et où ?",
                     "answer": [
-                        "iCloud Sync est désactivé jusqu’à votre activation. Les connexions et, sur Mac, les autres catégories choisies vont dans une base privée de votre compte iCloud, que TablePro ne peut pas lire. Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> dans Catégories de synchronisation sur Mac ou <ui>Synchroniser les mots de passe</ui> sur iPhone et iPad.",
+                        "iCloud Sync est désactivé jusqu’à votre activation. Les connexions et, sur Mac, les autres catégories choisies vont dans une base privée de votre compte iCloud, que TablePro ne peut pas lire. Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) dans Catégories de synchronisation sur Mac ou <ui>Sync Passwords</ui> sur iPhone et iPad.",
                         "Sur Mac, iCloud Sync fait partie d’une licence Starter ou Team. Sur iPhone et iPad, il est gratuit."
                     ]
                 }
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "Comment ajouter ou retirer des membres de l’équipe ?",
                     "answer": [
-                        "Dans <account>votre compte</account>, invitez une personne par e-mail. Elle reçoit un code à saisir dans TablePro sur son Mac, sous <ui>Réglages > Licence</ui>, et son Mac occupe un poste. Retirer un membre libère son poste, déconnecte ses Mac et supprime ses publications dans la bibliothèque d’équipe."
+                        "Dans <account>votre compte</account>, invitez une personne par e-mail. Elle reçoit un code à saisir dans TablePro sur son Mac, sous <ui>Réglages > Licence</ui> (Settings > License), et son Mac occupe un poste. Retirer un membre libère son poste, déconnecte ses Mac et supprime ses publications dans la bibliothèque d’équipe."
                     ]
                 },
                 {

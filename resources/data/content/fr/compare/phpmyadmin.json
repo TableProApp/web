@@ -170,10 +170,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro n’a pas d’importateur pour phpMyAdmin. Utilisez les informations MySQL ou SSH fournies par votre hébergeur : remplissez le formulaire de connexion ou collez une URL commençant par mysql:// dans <ui>Fichier > Importer > Importer depuis une URL…</ui>",
+        "intro": "TablePro n’a pas d’importateur pour phpMyAdmin. Utilisez les informations MySQL ou SSH fournies par votre hébergeur : remplissez le formulaire de connexion ou collez une URL commençant par mysql:// dans <ui>Fichier > Importer > Importer depuis une URL…</ui> (File > Import > Import from URL…)",
         "steps": [],
         "after": [
-            "Si le code du site est sur votre Mac, <ui>Fichier > Importer > Ouvrir un dossier de projet…</ui> lit les paramètres de base dans des fichiers comme wp-config.php ou .env et ouvre le formulaire de connexion prérempli.",
+            "Si le code du site est sur votre Mac, <ui>Fichier > Importer > Ouvrir le dossier du projet…</ui> (File > Import > Open Project Folder…) lit les paramètres de base dans des fichiers comme wp-config.php ou .env et ouvre le formulaire de connexion prérempli.",
             "Pour une base de production, réglez le niveau de mode sécurisé de la connexion avant de commencer.",
             "Les fichiers SQL exportés depuis phpMyAdmin s’importent dans toute connexion MySQL ou MariaDB, compressés avec gzip ou non."
         ],

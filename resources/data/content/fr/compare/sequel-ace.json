@@ -156,10 +156,10 @@
     "switching": {
         "intro": "TablePro lit les favoris enregistrés par Sequel Ace et les mots de passe conservés dans le trousseau macOS. Sequel Ace n’a pas besoin d’être ouvert et ses fichiers ne sont pas modifiés.",
         "steps": [
-            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui>",
-            "Sélectionnez Sequel Ace. Activez <ui>Inclure les mots de passe</ui> pour lire les mots de passe de bases de données et SSH enregistrés dans le trousseau macOS.",
-            "macOS demande votre mot de passe de session une fois pour chaque mot de passe enregistré. Choisissez <ui>Toujours autoriser</ui> à chaque invite. Annuler une invite ignore les mots de passe restants.",
-            "Vérifiez la liste, choisissez le traitement des doublons et cliquez sur <ui>Importer</ui>. Les groupes, couleurs de connexion, tunnels SSH et paramètres SSL sont transférés.",
+            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui> (File > Import > Import from Other App…)",
+            "Sélectionnez Sequel Ace. Activez <ui>Inclure les mots de passe</ui> (Include passwords) pour lire les mots de passe de bases de données et SSH enregistrés dans le trousseau macOS.",
+            "macOS demande votre mot de passe de session une fois pour chaque mot de passe enregistré. Choisissez <ui>Toujours autoriser</ui> (Always Allow) à chaque invite. Annuler une invite ignore les mots de passe restants.",
+            "Vérifiez la liste, choisissez le traitement des doublons et cliquez sur <ui>Importer</ui> (Import). Les groupes, couleurs de connexion, tunnels SSH et paramètres SSL sont transférés.",
             "Avant de supprimer Sequel Ace, ouvrez une connexion qui avait un mot de passe pour vérifier son transfert."
         ],
         "after": [

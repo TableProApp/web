@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "Modifiez la structure, lisez d’abord le DDL",
             "paragraphs": [
-                "Structure modifie colonnes, index, clés étrangères et contraintes CHECK dans une grille. Les changements attendent la sauvegarde ; <ui>Aperçu SQL</ui> (<kbd>⌘⇧P</kbd>) affiche ALTER TABLE avant exécution. Suppression, changement de type, ajout de NOT NULL ou modification de clé primaire demandent confirmation, même au niveau {macSafeModeDefault}.",
+                "Structure modifie colonnes, index, clés étrangères et contraintes CHECK dans une grille. Les changements attendent la sauvegarde ; <ui>Aperçu SQL</ui> (Preview SQL, <kbd>⌘⇧P</kbd>) affiche ALTER TABLE avant exécution. Suppression, changement de type, ajout de NOT NULL ou modification de clé primaire demandent confirmation, même au niveau {macSafeModeDefault}.",
                 "Les index acceptent des expressions comme <code>lower(email)</code>. Nouvelle table crée de la même manière avec aperçu SQL en direct. Sur SQLite, libSQL, Turso et Cloudflare D1, sans modification directe de clé étrangère, TablePro génère une reconstruction à vérifier. Après confirmation, il l’exécute sur SQLite et libSQL local ; sur Turso, libSQL distant et D1, l’exécution vous revient."
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "Voyez les relations entre tables",
             "paragraphs": [
-                "<ui>Afficher le diagramme ER</ui> dessine tables et clés étrangères du schéma, avec cardinalité en patte d’oie calculée depuis les clés primaires et uniques. Les tables de jonction comme <code>product_tags</code> deviennent une ligne plusieurs-à-plusieurs. Exportez en PNG, copiez en image ou exportez en SQL : CREATE TABLE avec clés étrangères.",
+                "<ui>Afficher le diagramme entité-relation</ui> (View ER Diagram) dessine tables et clés étrangères du schéma, avec cardinalité en patte d’oie calculée depuis les clés primaires et uniques. Les tables de jonction comme <code>product_tags</code> deviennent une ligne plusieurs-à-plusieurs. Exportez en PNG, copiez en image ou exportez en SQL : CREATE TABLE avec clés étrangères.",
                 "Le diagramme est un instantané à lire et partager. Les tables se modifient dans Structure, pas sur le canevas."
             ],
             "asset": "mac-er-diagram"
@@ -52,7 +52,7 @@
                     "id": "table-folders",
                     "title": "Dossiers pour tables et vues",
                     "paragraphs": [
-                        "Regroupez tables et vues par glisser-déposer ou <ui>Déplacer vers</ui>, dans la liste ou l’arbre de la barre latérale. Le filtre cherche dans les dossiers. Un dossier n’existe que dans TablePro et ne change rien au serveur ; avec iCloud Sync, il suit sur vos autres Mac."
+                        "Regroupez tables et vues par glisser-déposer ou <ui>Déplacer vers</ui> (Move to), dans la liste ou l’arbre de la barre latérale. Le filtre cherche dans les dossiers. Un dossier n’existe que dans TablePro et ne change rien au serveur ; avec iCloud Sync, il suit sur vos autres Mac."
                     ],
                     "since": "0.77.0"
                 }

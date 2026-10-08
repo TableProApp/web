@@ -17,9 +17,9 @@
             "id": "organize",
             "title": "Mantén una biblioteca de conexiones",
             "paragraphs": [
-                "Cada conexión se edita en un único formulario con pestañas General, Red, Opciones y Apariencia. Importa una URL de conexión, incluidas las URL <code>jdbc:</code> y las URL <code>+ssh</code> que incorporan un salto SSH, y el formulario se rellena automáticamente; si ya hay una en el portapapeles, el formulario ofrece <ui>Usar URL del portapapeles</ui>.",
-                "Asigna un color a cada conexión, tantas etiquetas como quieras y un lugar en grupos anidados, y marca como favoritas las que más uses. Los entornos son etiquetas: local, desarrollo, producción y pruebas vienen incluidos, y puedes añadir los tuyos. Una biblioteca vacía ofrece <ui>Abrir base de datos de ejemplo</ui>, una copia SQLite de Chinook incluida en la app.",
-                "Abre varias conexiones en una ventana. La barra de conexiones del borde izquierdo permite alternar entre ellas, y cada una vuelve a la última pestaña que usaste. <ui>Abrir en una ventana nueva</ui> permite colocar una junto a otra."
+                "Cada conexión se edita en un único formulario con pestañas General, Red, Opciones y Apariencia. Importa una URL de conexión, incluidas las URL <code>jdbc:</code> y las URL <code>+ssh</code> que incorporan un salto SSH, y el formulario se rellena automáticamente; si ya hay una en el portapapeles, el formulario ofrece <ui>Use clipboard URL</ui>.",
+                "Asigna un color a cada conexión, tantas etiquetas como quieras y un lugar en grupos anidados, y marca como favoritas las que más uses. Los entornos son etiquetas: local, desarrollo, producción y pruebas vienen incluidos, y puedes añadir los tuyos. Una biblioteca vacía ofrece <ui>Open Sample Database</ui>, una copia SQLite de Chinook incluida en la app.",
+                "Abre varias conexiones en una ventana. La barra de conexiones del borde izquierdo permite alternar entre ellas, y cada una vuelve a la última pestaña que usaste. <ui>Open in New Window</ui> permite colocar una junto a otra."
             ],
             "asset": "mac-connection-library"
         },
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Desde otro cliente de bases de datos",
                     "paragraphs": [
-                        "<ui>Importar desde otra app</ui> lee las conexiones guardadas en {connectionImportApps}, incluida la edición de TablePlus para Setapp, e importa sus contraseñas cuando la app las ha almacenado, incluidas las contraseñas cifradas de DBeaver y Navicat. Las conexiones de Navicat se importan desde un archivo de exportación <code>.ncx</code>."
+                        "<ui>Import from Other App</ui> lee las conexiones guardadas en {connectionImportApps}, incluida la edición de TablePlus para Setapp, e importa sus contraseñas cuando la app las ha almacenado, incluidas las contraseñas cifradas de DBeaver y Navicat. Las conexiones de Navicat se importan desde un archivo de exportación <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "Desde los archivos de configuración de un proyecto",
                     "paragraphs": [
-                        "<ui>Abrir carpeta de proyecto</ui> busca ajustes de bases de datos en <code>.env</code>, <code>wp-config.php</code>, un esquema Prisma, <code>config/database.yml</code> de Rails, <code>docker-compose.yml</code>, <code>application.properties</code> o <code>application.yml</code> de Spring y <code>appsettings.json</code>. Enumera cada conjunto encontrado junto al archivo de origen; el que elijas rellena el formulario de conexión y las contraseñas van directamente al Llavero. Si <code>prod</code>, <code>production</code> o <code>live</code> aparece como palabra completa en la ruta del archivo, el host o el nombre de la base de datos, la conexión empieza con el nivel Alerta del Modo seguro."
+                        "<ui>Open Project Folder</ui> busca ajustes de bases de datos en <code>.env</code>, <code>wp-config.php</code>, un esquema Prisma, <code>config/database.yml</code> de Rails, <code>docker-compose.yml</code>, <code>application.properties</code> o <code>application.yml</code> de Spring y <code>appsettings.json</code>. Enumera cada conjunto encontrado junto al archivo de origen; el que elijas rellena el formulario de conexión y las contraseñas van directamente al Llavero. Si <code>prod</code>, <code>production</code> o <code>live</code> aparece como palabra completa en la ruta del archivo, el host o el nombre de la base de datos, la conexión empieza con el nivel Alerta del Modo seguro."
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -56,7 +56,7 @@
                     "id": "aws",
                     "title": "Desde tu cuenta de AWS",
                     "paragraphs": [
-                        "<ui>Importar desde AWS</ui> muestra las instancias RDS y los clústeres Aurora que un perfil de AWS puede ver en las regiones que selecciones, y añade los que elijas. El perfil necesita <code>rds:DescribeDBInstances</code> y <code>rds:DescribeDBClusters</code>."
+                        "<ui>Import from AWS</ui> muestra las instancias RDS y los clústeres Aurora que un perfil de AWS puede ver en las regiones que selecciones, y añade los que elijas. El perfil necesita <code>rds:DescribeDBInstances</code> y <code>rds:DescribeDBClusters</code>."
                     ]
                 }
             ]

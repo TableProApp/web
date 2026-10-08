@@ -18,7 +18,7 @@
             "title": "원하는 제공업체 사용",
             "paragraphs": [
                 "어시스턴트는 {aiProviders} 제공업체를 지원합니다. 제공업체에 따라 API 키를 붙여넣거나 기존 계정으로 로그인하거나 Mac에서 모델을 실행합니다. TablePro는 자체 AI 서비스를 운영하지 않습니다. 요청은 제공업체로 직접 전달되며 추가하기 전에는 아무것도 전송되지 않습니다.",
-                "각 메시지에는 설정한 한도 내의 연결 테이블 구조와 편집기의 쿼리가 포함됩니다. 결과 행은 <ui>Settings > AI</ui>에서 켠 경우에만 전송됩니다. 각 연결에는 AI 정책도 있으며 Never는 어시스턴트와 MCP 클라이언트 모두의 접근을 막습니다."
+                "각 메시지에는 설정한 한도 내의 연결 테이블 구조와 편집기의 쿼리가 포함됩니다. 결과 행은 <ui>설정 > AI</ui>(Settings > AI)에서 켠 경우에만 전송됩니다. 각 연결에는 AI 정책도 있으며 Never는 어시스턴트와 MCP 클라이언트 모두의 접근을 막습니다."
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,7 +26,7 @@
             "id": "in-the-editor",
             "title": "검토, 설명, 최적화 및 수정",
             "paragraphs": [
-                "구문에 커서를 놓고 Review with AI(<kbd>⌥⇧⌘L</kbd>)로 정확성, 비용 및 안전성을 검토하거나 Explain(<kbd>⌘L</kbd>)으로 단계별 동작을 설명받거나 Optimize(<kbd>⌥⌘L</kbd>)로 재작성 또는 인덱스를 제안받습니다. 쿼리가 실패하면 오류 배너에 Fix with AI가 나타납니다. 요청에는 구문이 참조하는 테이블 구조가 포함되며 구문 자체는 실행되지 않습니다. <ui>Apply to Editor</ui>는 확인한 뒤에만 구문을 대체합니다.",
+                "구문에 커서를 놓고 Review with AI(<kbd>⌥⇧⌘L</kbd>)로 정확성, 비용 및 안전성을 검토하거나 Explain(<kbd>⌘L</kbd>)으로 단계별 동작을 설명받거나 Optimize(<kbd>⌥⌘L</kbd>)로 재작성 또는 인덱스를 제안받습니다. 쿼리가 실패하면 오류 배너에 Fix with AI가 나타납니다. 요청에는 구문이 참조하는 테이블 구조가 포함되며 구문 자체는 실행되지 않습니다. <ui>편집기에 적용</ui>(Apply to Editor)은 확인한 뒤에만 구문을 대체합니다.",
                 "인라인 제안은 입력 중 흐릿한 텍스트로 표시되며 기본적으로 꺼져 있습니다. AI Rules는 절대로 선택하면 안 되는 열 같은 일반 텍스트 메모를 연결에 지정하고 모든 메시지에 포함합니다."
             ]
         },
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "클라이언트 연결",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui>에는 {mcpSetupClients} 설정 단계와 복사할 코드 조각이 있습니다. 번들 <code>tablepro-mcp</code> 브리지는 {mcpBridgeClients}도 지원하며 필요하면 TablePro를 시작하고 서버를 찾으므로 클라이언트 설정에 포트나 토큰을 넣지 않습니다. 공식 Raycast 확장은 앱과 페어링하며 Mac에서 이를 승인합니다.",
+                        "<ui>설정 > 통합</ui>(Settings > Integrations)에는 {mcpSetupClients} 설정 단계와 복사할 코드 조각이 있습니다. 번들 <code>tablepro-mcp</code> 브리지는 {mcpBridgeClients}도 지원하며 필요하면 TablePro를 시작하고 서버를 찾으므로 클라이언트 설정에 포트나 토큰을 넣지 않습니다. 공식 Raycast 확장은 앱과 페어링하며 Mac에서 이를 승인합니다.",
                         "예를 들어 클라이언트에 같은 이메일 주소를 쓰는 사용자를 찾아달라고 할 수 있습니다. 클라이언트는 <code>list_tables</code>와 <code>describe_table</code>을 호출해 열 이름이 <code>email_address</code>임을 확인하고 저장된 연결로 SELECT 하나를 실행합니다. 채팅에 스키마를 붙여넣을 필요가 없습니다."
                     ]
                 },

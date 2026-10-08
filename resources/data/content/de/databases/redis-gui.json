@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Wähle einen <ui>Verbindungsmodus</ui>. Standalone nimmt Host und Port. Sentinel nimmt einen oder mehrere Sentinel-Knoten und den Primary-Gruppennamen, folgt dem Quorum zum Primary und wechselt nach Failover mit ihm. Cluster nimmt ein erreichbares Mitglied als Seed, liest die Shard-Map und sendet jeden Befehl an den Shard seines Schlüssels.",
+                "Wähle einen <ui>Connection Mode</ui>. Standalone nimmt Host und Port. Sentinel nimmt einen oder mehrere Sentinel-Knoten und den Primary-Gruppennamen, folgt dem Quorum zum Primary und wechselt nach Failover mit ihm. Cluster nimmt ein erreichbares Mitglied als Seed, liest die Shard-Map und sendet jeden Befehl an den Shard seines Schlüssels.",
                 "Melde dich mit Passwort an oder fülle Benutzername für einen Redis-6-ACL-Benutzer aus. Wähle bei Amazon ElastiCache einen <cloudAuth>AWS-IAM</cloudAuth>-Modus; ein kurzlebiger Token wird zum Passwort. ElastiCache-IAM benötigt TLS.",
                 "Neue Verbindungen starten ohne TLS. Upstash, Redis Cloud und ähnliche Dienste verlangen es; eine eingefügte <code>rediss://</code>-URL aktiviert es. Es gibt keinen Klartext-Fallback, daher wirkt Bevorzugt wie Erforderlich. Valkey verbindet wie Redis.",
                 "Die Seitenleiste listet nummerierte Datenbanken ab <code>db0</code>; ein Klick durchsucht sie direkt."
@@ -75,7 +75,7 @@
         {
             "id": "acl-scan",
             "question": "Warum ist der Schlüsselbaum für meinen ACL-Benutzer leer?",
-            "answer": "Der Baum liest Namen mit <code>SCAN</code> und Typen mit <code>TYPE</code>. Gewähre beides, etwa <code>ACL SETUSER app +scan +type</code>, klicke <ui>Schlüssel</ui> rechts an und wähle <ui>Aktualisieren</ui>."
+            "answer": "Der Baum liest Namen mit <code>SCAN</code> und Typen mit <code>TYPE</code>. Gewähre beides, etwa <code>ACL SETUSER app +scan +type</code>, klicke <ui>Keys</ui> rechts an und wähle <ui>Refresh</ui>."
         },
         {
             "id": "select",

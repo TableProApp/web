@@ -135,7 +135,7 @@
                     "question": "¿Dónde se guardan mis contraseñas?",
                     "answer": [
                         "En el Mac, en el Llavero de macOS. Una conexión también puede leer su contraseña al conectar: desde un archivo, una variable de entorno, un comando de shell, 1Password, HashiCorp Vault o AWS Secrets Manager. En iPhone y iPad, se guardan en el Llavero del dispositivo.",
-                        "Con iCloud Sync activado, las contraseñas solo se sincronizan si también activas <ui>Contraseñas</ui> en Categorías de sincronización en el Mac, o <ui>Sincronizar contraseñas</ui> en iPhone y iPad, que usa el Llavero de iCloud."
+                        "Con iCloud Sync activado, las contraseñas solo se sincronizan si también activas <ui>Passwords</ui> en Categorías de sincronización en el Mac, o <ui>Sync Passwords</ui> en iPhone y iPad, que usa el Llavero de iCloud."
                     ]
                 },
                 {
@@ -227,7 +227,7 @@
                     "id": "what-is-sent",
                     "question": "¿Qué envían las apps a TablePro?",
                     "answer": [
-                        "Sin una licencia activada, la única solicitud de la app para Mac a TablePro es un informe diario de uso, activado por defecto y configurable en <ui>Ajustes > General > Privacidad</ui>. Incluye un identificador de máquina con hash y datos de la app, como versión, idioma y tipos de bases de datos a los que conectas, y nunca nombres de host, nombres de usuario, contraseñas, consultas ni filas.",
+                        "Sin una licencia activada, la única solicitud de la app para Mac a TablePro es un informe diario de uso, activado por defecto y configurable en <ui>Settings > General > Privacy</ui>. Incluye un identificador de máquina con hash y datos de la app, como versión, idioma y tipos de bases de datos a los que conectas, y nunca nombres de host, nombres de usuario, contraseñas, consultas ni filas.",
                         "Con una licencia, la app para Mac también la comprueba cada {revalidateDays} días, enviando la clave, el mismo identificador de máquina, el nombre de tu Mac y las versiones de la app y de macOS. En iPhone y iPad no se envía nada a TablePro salvo que actives Compartir datos de uso. La <privacy>política de privacidad</privacy> incluye la lista completa, también de lo que almacena nuestro servidor."
                     ]
                 },
@@ -249,7 +249,7 @@
                     "id": "icloud-data",
                     "question": "¿Qué almacena iCloud Sync y dónde?",
                     "answer": [
-                        "iCloud Sync está desactivado hasta que lo actives. Las conexiones sincronizadas y, en el Mac, las otras categorías que elijas van a una base de datos privada en tu propia cuenta iCloud, que TablePro no puede leer. Las contraseñas solo se sincronizan si también activas <ui>Contraseñas</ui> en Categorías de sincronización en el Mac, o <ui>Sincronizar contraseñas</ui> en iPhone y iPad.",
+                        "iCloud Sync está desactivado hasta que lo actives. Las conexiones sincronizadas y, en el Mac, las otras categorías que elijas van a una base de datos privada en tu propia cuenta iCloud, que TablePro no puede leer. Las contraseñas solo se sincronizan si también activas <ui>Passwords</ui> en Categorías de sincronización en el Mac, o <ui>Sync Passwords</ui> en iPhone y iPad.",
                         "En el Mac, iCloud Sync forma parte de una licencia Starter o Team. En iPhone y iPad es gratis."
                     ]
                 }
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "¿Cómo añado o elimino miembros del equipo?",
                     "answer": [
-                        "En <account>tu cuenta</account>, invita a alguien por correo. Recibe un código para introducir en TablePro en su Mac, en <ui>Ajustes > Licencia</ui>, y su Mac ocupa un puesto. Eliminar un miembro libera su puesto, cierra la sesión de sus Mac y elimina lo que publicó en la biblioteca de equipo."
+                        "En <account>tu cuenta</account>, invita a alguien por correo. Recibe un código para introducir en TablePro en su Mac, en <ui>Settings > License</ui>, y su Mac ocupa un puesto. Eliminar un miembro libera su puesto, cierra la sesión de sus Mac y elimina lo que publicó en la biblioteca de equipo."
                     ]
                 },
                 {

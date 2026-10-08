@@ -149,10 +149,10 @@
     "switching": {
         "intro": "TablePro liest DataGrips globale Datenquellen und die deiner zuletzt verwendeten Projekte. DataGrip muss nicht geöffnet sein, und seine Dateien werden nicht verändert.",
         "steps": [
-            "Wähle in TablePro <ui>Ablage > Importieren > Aus anderer App importieren…</ui>",
-            "Wähle DataGrip. Aktiviere <ui>Passwörter einschließen</ui>, um die von DataGrip im macOS-Schlüsselbund gespeicherten Passwörter zu lesen, einschließlich SSH-Passwörtern und Schlüssel-Passphrasen.",
-            "macOS fragt für jedes gespeicherte Passwort einmal nach deinem Anmeldepasswort. Wähle bei jeder Abfrage <ui>Immer erlauben</ui>.",
-            "Prüfe die Liste, lege den Umgang mit Duplikaten fest und klicke auf <ui>Importieren</ui>. Gruppen, SSH-Tunnel und SSL-Einstellungen werden übernommen. Verbindungen zu nicht unterstützten Engines sind in der Liste nicht ausgewählt.",
+            "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
+            "Wähle DataGrip. Aktiviere <ui>Include passwords</ui>, um die von DataGrip im macOS-Schlüsselbund gespeicherten Passwörter zu lesen, einschließlich SSH-Passwörtern und Schlüssel-Passphrasen.",
+            "macOS fragt für jedes gespeicherte Passwort einmal nach deinem Anmeldepasswort. Wähle bei jeder Abfrage <ui>Always Allow</ui>.",
+            "Prüfe die Liste, lege den Umgang mit Duplikaten fest und klicke auf <ui>Import</ui>. Gruppen, SSH-Tunnel und SSL-Einstellungen werden übernommen. Verbindungen zu nicht unterstützten Engines sind in der Liste nicht ausgewählt.",
             "Öffne vor dem Entfernen von DataGrip eine Verbindung mit Passwort, um dessen Übernahme zu prüfen."
         ],
         "after": [
@@ -183,7 +183,7 @@
         {
             "id": "jdbc-url",
             "question": "Kann ich eine JDBC-URL aus DataGrip einfügen?",
-            "answer": "Ja, für von TablePro unterstützte Engines. <ui>Datei > Importieren > Aus URL importieren…</ui> liest jdbc:-URLs sowie postgres://- und mysql://-URLs. Nutze den oben beschriebenen Importer, um alle Datenquellen auf einmal zu übernehmen.",
+            "answer": "Ja, für von TablePro unterstützte Engines. <ui>File > Import > Import from URL…</ui> liest jdbc:-URLs sowie postgres://- und mysql://-URLs. Nutze den oben beschriebenen Importer, um alle Datenquellen auf einmal zu übernehmen.",
             "href": null
         }
     ],

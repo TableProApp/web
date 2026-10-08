@@ -149,10 +149,10 @@
     "switching": {
         "intro": "TablePro lit les sources de données globales de DataGrip et celles de vos projets récents. DataGrip n’a pas besoin d’être ouvert et ses fichiers ne sont pas modifiés.",
         "steps": [
-            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui>",
-            "Sélectionnez DataGrip. Activez <ui>Inclure les mots de passe</ui> pour lire les mots de passe enregistrés par DataGrip dans le trousseau macOS, y compris les mots de passe SSH et les phrases secrètes des clés.",
-            "macOS demande votre mot de passe de session une fois pour chaque mot de passe enregistré. Choisissez <ui>Toujours autoriser</ui> à chaque invite.",
-            "Vérifiez la liste, choisissez le traitement des doublons et cliquez sur <ui>Importer</ui>. Les groupes, tunnels SSH et paramètres SSL sont transférés. Une connexion à un moteur non pris en charge arrive décochée.",
+            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui> (File > Import > Import from Other App…)",
+            "Sélectionnez DataGrip. Activez <ui>Inclure les mots de passe</ui> (Include passwords) pour lire les mots de passe enregistrés par DataGrip dans le trousseau macOS, y compris les mots de passe SSH et les phrases secrètes des clés.",
+            "macOS demande votre mot de passe de session une fois pour chaque mot de passe enregistré. Choisissez <ui>Toujours autoriser</ui> (Always Allow) à chaque invite.",
+            "Vérifiez la liste, choisissez le traitement des doublons et cliquez sur <ui>Importer</ui> (Import). Les groupes, tunnels SSH et paramètres SSL sont transférés. Une connexion à un moteur non pris en charge arrive décochée.",
             "Avant de supprimer DataGrip, ouvrez une connexion qui avait un mot de passe pour vérifier son transfert."
         ],
         "after": [
@@ -183,7 +183,7 @@
         {
             "id": "jdbc-url",
             "question": "Puis-je coller une URL JDBC depuis DataGrip ?",
-            "answer": "Oui, pour les moteurs pris en charge par TablePro. <ui>Fichier > Importer > Importer depuis une URL…</ui> lit les URL jdbc: ainsi que postgres:// et mysql://. Pour transférer toutes les sources de données à la fois, utilisez l’importateur décrit plus haut.",
+            "answer": "Oui, pour les moteurs pris en charge par TablePro. <ui>Fichier > Importer > Importer depuis une URL…</ui> (File > Import > Import from URL…) lit les URL jdbc: ainsi que postgres:// et mysql://. Pour transférer toutes les sources de données à la fois, utilisez l’importateur décrit plus haut.",
             "href": null
         }
     ],

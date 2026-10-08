@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Connectez-vous et authentifiez-vous",
             "paragraphs": [
-                "SurrealDB ne déduit pas le niveau utilisateur des identifiants ; le <ui>Niveau d’authentification</ui> le nomme et le formulaire demande le reste. Root prend utilisateur et mot de passe, Namespace ajoute l’espace de noms, Database la base aussi. Record Access prend namespace, base, méthode de <code>DEFINE ACCESS</code> et champs de connexion. Token accepte un JWT existant, y compris SurrealDB Cloud.",
+                "SurrealDB ne déduit pas le niveau utilisateur des identifiants ; le <ui>Niveau d’authentification</ui> (Auth Level) le nomme et le formulaire demande le reste. Root prend utilisateur et mot de passe, Namespace ajoute l’espace de noms, Database la base aussi. Record Access prend namespace, base, méthode de <code>DEFINE ACCESS</code> et champs de connexion. Token accepte un JWT existant, y compris SurrealDB Cloud.",
                 "Le pilote parle CBOR sur HTTP RPC, conservant types de liens, dates, durées, décimaux et UUID. Un lien <code>surrealdb://</code> ouvre le formulaire rempli ; un serveur distant est accessible par <network>tunnel SSH</network>.",
                 "SSL commence Désactivé, en HTTP clair ; les autres modes utilisent HTTPS. Vérifier l’AC et Vérifier l’identité utilisent le magasin système ; un fichier d’AC dans SSL/TLS est ignoré, installez donc une AC privée dans macOS d’abord."
             ]

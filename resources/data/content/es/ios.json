@@ -35,7 +35,7 @@
         "paragraphs": [
             "Escribe SQL con resaltado de sintaxis, ejecútalo y detenlo mientras se ejecuta. Parte de una plantilla SELECT y copia o comparte los resultados como JSON, CSV o sentencias SQL INSERT, mediante el portapapeles o la hoja para compartir.",
             "La app conserva hasta {results} filas de un resultado; añade LIMIT para ver otra parte de uno grande. El historial guarda las últimas {history} consultas en este dispositivo, de todas las conexiones, y no se sincroniza.",
-            "Mientras se ejecuta una consulta, una Actividad en directo muestra su progreso en la pantalla de bloqueo y en la Dynamic Island: el tiempo transcurrido y las filas recibidas. La pantalla de bloqueo y la Dynamic Island expandida también muestran el SQL, salvo que actives <ui>Ajustes > Actividades en directo > Ocultar consulta</ui>."
+            "Mientras se ejecuta una consulta, una Actividad en directo muestra su progreso en la pantalla de bloqueo y en la Dynamic Island: el tiempo transcurrido y las filas recibidas. La pantalla de bloqueo y la Dynamic Island expandida también muestran el SQL, salvo que actives <ui>Settings > Live Activities > Hide Query</ui>."
         ]
     },
     "security": {
@@ -51,7 +51,7 @@
         "paragraphs": [
             "Cada conexión tiene un nivel de modo seguro: {levels}. Confirmar escrituras pregunta antes de ejecutar una sentencia que cambie datos. Solo lectura la rechaza antes de que llegue al servidor. Toda sentencia que la app no pueda identificar como lectura cuenta como escritura.",
             "Configura el nivel de una conexión en su sección Organización y el nivel inicial de las conexiones nuevas en Ajustes. Los Atajos que añaden filas respetan el mismo nivel.",
-            "En <ui>Ajustes > Seguridad</ui>, bloquea la app con Face ID o Touch ID y tu código como alternativa. Una vez activado, la app pide autenticación cada vez que se inicia y tras el tiempo de bloqueo automático que elijas."
+            "En <ui>Settings > Security</ui>, bloquea la app con Face ID o Touch ID y tu código como alternativa. Una vez activado, la app pide autenticación cada vez que se inicia y tras el tiempo de bloqueo automático que elijas."
         ]
     },
     "ipad": {
@@ -97,7 +97,7 @@
     "privacy": {
         "title": "Privacidad",
         "paragraphs": [
-            "No se envía nada a TablePro salvo que actives Compartir datos de uso durante la configuración o después en <ui>Ajustes > Privacidad</ui>. Si lo haces, la app envía un informe diario con un identificador de dispositivo con hash, las versiones de la app y de iOS, la arquitectura del procesador, el idioma, los tipos de bases de datos usados, el número de conexiones y algunas fechas de primer uso. Nunca nombres de host, nombres de usuario, contraseñas, consultas ni filas.",
+            "No se envía nada a TablePro salvo que actives Compartir datos de uso durante la configuración o después en <ui>Settings > Privacy</ui>. Si lo haces, la app envía un informe diario con un identificador de dispositivo con hash, las versiones de la app y de iOS, la arquitectura del procesador, el idioma, los tipos de bases de datos usados, el número de conexiones y algunas fechas de primer uso. Nunca nombres de host, nombres de usuario, contraseñas, consultas ni filas.",
             "La app no realiza comprobaciones de licencia, comprobaciones de actualización ni solicitudes de plugins. Tus consultas van a tus propios servidores, iCloud Sync a tu propia cuenta iCloud y el inicio de sesión Entra a Microsoft. La <privacyIos>política de privacidad</privacyIos> tiene los detalles."
         ]
     },

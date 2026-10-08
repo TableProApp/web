@@ -29,8 +29,8 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host, Listener-Port und Service Name ein oder wechsle <ui>Verbindungstyp</ui> für eine Instanz ohne Dienst auf SID. Melde dich mit Benutzername und Passwort als Normal oder mit SYSDBA- oder SYSOPER-Rolle an.",
-                "Native Network Encryption braucht keine Einrichtung: Fordert der Server sie an, wird AES mit SHA-2-Prüfsumme angeboten. <ui>Netzwerkverschlüsselung</ui> ändert das Angebot von TablePro. Wähle für TLS Erforderlich für TCPS oder CA prüfen beziehungsweise Identität prüfen mit CA-Zertifikat. Neue Verbindungen haben SSL aus; Bevorzugt bleibt bei Klartext-TCP.",
+                "Gib Host, Listener-Port und Service Name ein oder wechsle <ui>Connection Type</ui> für eine Instanz ohne Dienst auf SID. Melde dich mit Benutzername und Passwort als Normal oder mit SYSDBA- oder SYSOPER-Rolle an.",
+                "Native Network Encryption braucht keine Einrichtung: Fordert der Server sie an, wird AES mit SHA-2-Prüfsumme angeboten. <ui>Network Encryption</ui> ändert das Angebot von TablePro. Wähle für TLS Erforderlich für TCPS oder CA prüfen beziehungsweise Identität prüfen mit CA-Zertifikat. Neue Verbindungen haben SSL aus; Bevorzugt bleibt bei Klartext-TCP.",
                 "Kopiere bei Oracle Autonomous Database Host, Port und Dienstnamen aus der TLS-Verbindungszeichenfolge, nicht der mTLS-Zeichenfolge, und setze SSL auf Erforderlich oder CA prüfen. Wallet-Dateien werden nie gelesen, daher muss die Datenbank TLS ohne gegenseitiges TLS akzeptieren.",
                 "Ein RAC-SCAN-Listener, Shared Server oder Load Balancer vor der Datenbank braucht keine Konfiguration; ein <network>SSH-Tunnel</network> erreicht einen Listener im privaten Netzwerk."
             ]

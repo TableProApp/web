@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Elige <ui>Modo de conexión</ui>. Standalone requiere host y puerto. Sentinel acepta uno o varios nodos y nombre de grupo primario, sigue el quorum al primario y lo acompaña tras una conmutación. Cluster usa un miembro accesible como semilla, lee el mapa de shards y envía cada comando al shard dueño de su clave.",
+                "Elige <ui>Connection Mode</ui>. Standalone requiere host y puerto. Sentinel acepta uno o varios nodos y nombre de grupo primario, sigue el quorum al primario y lo acompaña tras una conmutación. Cluster usa un miembro accesible como semilla, lee el mapa de shards y envía cada comando al shard dueño de su clave.",
                 "Autentícate con contraseña o completa Usuario para usar un usuario ACL de Redis 6. En Amazon ElastiCache elige un modo <cloudAuth>AWS IAM</cloudAuth>: un token breve se convierte en contraseña; IAM de ElastiCache requiere TLS.",
                 "Las conexiones nuevas empiezan sin TLS. Upstash, Redis Cloud y similares lo requieren; pegar una URL <code>rediss://</code> lo activa. No hay alternativa sin cifrar, así que Preferido actúa como Obligatorio. Valkey conecta igual que Redis.",
                 "La barra lateral enumera bases numeradas desde <code>db0</code>; pulsar una la explora directamente."
@@ -75,7 +75,7 @@
         {
             "id": "acl-scan",
             "question": "¿Por qué el árbol de claves está vacío para mi usuario ACL?",
-            "answer": "El árbol lee nombres con <code>SCAN</code> y tipos con <code>TYPE</code>. Concede ambos, por ejemplo <code>ACL SETUSER app +scan +type</code>; haz clic derecho en <ui>Claves</ui> y elige <ui>Actualizar</ui>."
+            "answer": "El árbol lee nombres con <code>SCAN</code> y tipos con <code>TYPE</code>. Concede ambos, por ejemplo <code>ACL SETUSER app +scan +type</code>; haz clic derecho en <ui>Keys</ui> y elige <ui>Refresh</ui>."
         },
         {
             "id": "select",

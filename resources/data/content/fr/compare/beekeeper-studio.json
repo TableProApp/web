@@ -168,9 +168,9 @@
     "switching": {
         "intro": "TablePro lit les connexions enregistrées par Beekeeper Studio sur votre Mac dans son espace de travail local. Beekeeper Studio n’a pas besoin d’être ouvert et ses fichiers ne sont pas modifiés.",
         "steps": [
-            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui>",
-            "Sélectionnez Beekeeper Studio et activez <ui>Inclure les mots de passe</ui>. TablePro déchiffre les mots de passe enregistrés, y compris les mots de passe SSH et les phrases secrètes des clés : rien n’est à autoriser dans le trousseau.",
-            "Vérifiez la liste, choisissez le traitement des doublons et cliquez sur <ui>Importer</ui>. Les dossiers deviennent des groupes, les couleurs de connexion et paramètres SSL sont transférés, et un hôte bastion SSH devient un hôte de rebond. Une connexion à un moteur non pris en charge arrive décochée.",
+            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui> (File > Import > Import from Other App…)",
+            "Sélectionnez Beekeeper Studio et activez <ui>Inclure les mots de passe</ui> (Include passwords). TablePro déchiffre les mots de passe enregistrés, y compris les mots de passe SSH et les phrases secrètes des clés : rien n’est à autoriser dans le trousseau.",
+            "Vérifiez la liste, choisissez le traitement des doublons et cliquez sur <ui>Importer</ui> (Import). Les dossiers deviennent des groupes, les couleurs de connexion et paramètres SSL sont transférés, et un hôte bastion SSH devient un hôte de rebond. Une connexion à un moteur non pris en charge arrive décochée.",
             "Avant de supprimer Beekeeper Studio, ouvrez une connexion qui avait un mot de passe pour vérifier son transfert."
         ],
         "after": [
@@ -195,7 +195,7 @@
         {
             "id": "vim",
             "question": "J’utilise le mode Vim dans Beekeeper Studio. TablePro en propose-t-il un ?",
-            "answer": "Oui, et il est gratuit. Activez <ui>Réglages > Éditeur > Mode Vim</ui> pour les déplacements, registres et macros ; :w exécute la requête.",
+            "answer": "Oui, et il est gratuit. Activez <ui>Réglages > Éditeur > Mode Vim</ui> (Settings > Editor > Vim mode) pour les déplacements, registres et macros ; :w exécute la requête.",
             "href": null
         }
     ],

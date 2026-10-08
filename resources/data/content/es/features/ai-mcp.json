@@ -18,7 +18,7 @@
             "title": "Usa el proveedor que elijas",
             "paragraphs": [
                 "El asistente usa estos proveedores: {aiProviders}. Según el proveedor, pegas una clave API, accedes con una cuenta existente o ejecutas un modelo en tu Mac. TablePro no ofrece servicio de IA propio: las solicitudes van directamente al proveedor y nada se envía hasta añadirlo.",
-                "Cada mensaje incluye la estructura de las tablas de la conexión hasta el límite elegido y la consulta del editor. Las filas de resultados solo se envían si lo activas en <ui>Ajustes > IA</ui>. Cada conexión tiene política IA; Nunca mantiene alejados al asistente y a los clientes MCP."
+                "Cada mensaje incluye la estructura de las tablas de la conexión hasta el límite elegido y la consulta del editor. Las filas de resultados solo se envían si lo activas en <ui>Settings > AI</ui>. Cada conexión tiene política IA; Nunca mantiene alejados al asistente y a los clientes MCP."
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,7 +26,7 @@
             "id": "in-the-editor",
             "title": "Revisa, explica, optimiza y corrige",
             "paragraphs": [
-                "Coloca el cursor en una sentencia y elige Revisar con IA (<kbd>⌥⇧⌘L</kbd>) para corrección, coste y seguridad; Explicar (<kbd>⌘L</kbd>) para sus pasos, u Optimizar (<kbd>⌥⌘L</kbd>) para reescritura o índice. Si falla, Corregir con IA aparece en el aviso de error. La solicitud incluye las estructuras de las tablas nombradas y no ejecuta la sentencia. <ui>Aplicar al editor</ui> solo la reemplaza tras confirmar.",
+                "Coloca el cursor en una sentencia y elige Revisar con IA (<kbd>⌥⇧⌘L</kbd>) para corrección, coste y seguridad; Explicar (<kbd>⌘L</kbd>) para sus pasos, u Optimizar (<kbd>⌥⌘L</kbd>) para reescritura o índice. Si falla, Corregir con IA aparece en el aviso de error. La solicitud incluye las estructuras de las tablas nombradas y no ejecuta la sentencia. <ui>Apply to Editor</ui> solo la reemplaza tras confirmar.",
                 "Las sugerencias en línea muestran texto tenue al escribir y están desactivadas por defecto. Reglas IA fija notas de texto por conexión, como qué columna nunca seleccionar, y las envía con todos los mensajes."
             ]
         },
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Conecta un cliente",
                     "paragraphs": [
-                        "<ui>Ajustes > Integraciones</ui> ofrece pasos y un fragmento para {mcpSetupClients}. El puente <code>tablepro-mcp</code> incluido también funciona con {mcpBridgeClients}: inicia TablePro cuando hace falta y encuentra el servidor, sin puerto ni token en la configuración del cliente. La extensión oficial Raycast se empareja con la app y apruebas el emparejamiento en el Mac.",
+                        "<ui>Settings > Integrations</ui> ofrece pasos y un fragmento para {mcpSetupClients}. El puente <code>tablepro-mcp</code> incluido también funciona con {mcpBridgeClients}: inicia TablePro cuando hace falta y encuentra el servidor, sin puerto ni token en la configuración del cliente. La extensión oficial Raycast se empareja con la app y apruebas el emparejamiento en el Mac.",
                         "Ejemplo: pide usuarios que comparten correo. El cliente puede llamar <code>list_tables</code> y <code>describe_table</code>, descubrir la columna <code>email_address</code> y ejecutar SELECT mediante la conexión guardada sin pegar el esquema en el chat."
                     ]
                 },

@@ -42,7 +42,7 @@
             "id": "edit",
             "title": "Modifica datos y guarda una vez",
             "paragraphs": [
-                "Las ediciones de celdas, filas nuevas y eliminaciones esperan marcadas en la pestaña hasta pulsar <kbd>⌘S</kbd>; no se envía nada antes. <ui>Vista previa SQL</ui> (<kbd>⌘⇧P</kbd>) enumera las sentencias con valores incluidos. Al guardar se envían con parámetros vinculados, en una transacción si el motor lo permite, y se comprueba que cada sentencia cambie el número esperado de filas; si no, se revierte el guardado."
+                "Las ediciones de celdas, filas nuevas y eliminaciones esperan marcadas en la pestaña hasta pulsar <kbd>⌘S</kbd>; no se envía nada antes. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) enumera las sentencias con valores incluidos. Al guardar se envían con parámetros vinculados, en una transacción si el motor lo permite, y se comprueba que cada sentencia cambie el número esperado de filas; si no, se revierte el guardado."
             ],
             "points": [
                 "Editores según tipo de columna: selector de fecha y hora, listas ENUM y SET, arrays, JSON, editor hexadecimal para binarios y visor de imágenes.",
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind conserva los valores sustituidos al guardar para que <ui>Restaurar valores anteriores</ui> los recupere. Primero muestra lo que ocurrirá con cada fila, incluidas las cambiadas después del guardado, y restaura mediante modo seguro en una transacción si el motor lo permite. Una restauración también puede restaurarse.",
-                "Los valores guardados permanecen en este Mac durante {rewindDays} días, cifrados con una clave del Llavero, y nunca se sincronizan. Al terminar un plan, TablePro deja de registrar guardados y <ui>Restaurar valores anteriores</ui> muestra un aviso."
+                "Data Rewind conserva los valores sustituidos al guardar para que <ui>Restore Previous Values</ui> los recupere. Primero muestra lo que ocurrirá con cada fila, incluidas las cambiadas después del guardado, y restaura mediante modo seguro en una transacción si el motor lo permite. Una restauración también puede restaurarse.",
+                "Los valores guardados permanecen en este Mac durante {rewindDays} días, cifrados con una clave del Llavero, y nunca se sincronizan. Al terminar un plan, TablePro deja de registrar guardados y <ui>Restore Previous Values</ui> muestra un aviso."
             ],
             "paid": [
                 "data-rewind"

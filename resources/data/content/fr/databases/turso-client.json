@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Connectez-vous à Turso",
             "paragraphs": [
-                "Choisissez Turso comme type et laissez <ui>Mode de connexion</ui> sur <ui>Distant (Turso)</ui>. Collez l’URL HTTPS de la base terminant par <code>.turso.io</code> et un jeton dans <ui>Jeton API</ui>, conservé dans le Trousseau macOS. Le tableau Turso montre les deux, ainsi que <code>turso db show my-db --url</code> et <code>turso db tokens create my-db</code>.",
+                "Choisissez Turso comme type et laissez <ui>Mode de connexion</ui> (Connection Mode) sur <ui>Distant (Turso)</ui> (Remote (Turso)). Collez l’URL HTTPS de la base terminant par <code>.turso.io</code> et un jeton dans <ui>Jeton API</ui> (API Token), conservé dans le Trousseau macOS. Le tableau Turso montre les deux, ainsi que <code>turso db show my-db --url</code> et <code>turso db tokens create my-db</code>.",
                 "Une URL <code>libsql://</code> est réécrite en HTTPS et son import crée une connexion distante. Il n’y a ni hôte, port ni base à saisir, car l’URL nomme une base. La connexion est chiffrée si elle utilise HTTPS plutôt que HTTP clair ; il n’y a pas de tunnel SSH."
             ]
         },
@@ -63,7 +63,7 @@
             "title": "libSQL",
             "paragraphs": [
                 "Choisissez libSQL pour votre serveur sqld ou un fichier local. En Distant, il atteint tout sqld offrant Hrana v2 pipeline, même local avec port 8080 par défaut. Laissez le jeton vide sans <code>--auth-jwt-key-file</code>, ou fournissez un JWT correspondant à la clé serveur.",
-                "<ui>Fichier local</ui> ouvre libSQL avec le moteur SQLite du pilote ; un chemin inexistant est créé, dossiers compris. Le fichier local exécute les transactions, charge les extensions de la liste Extensions et reconstruit pour réordonner les colonnes ou clés étrangères après confirmation.",
+                "<ui>Fichier local</ui> (Local File) ouvre libSQL avec le moteur SQLite du pilote ; un chemin inexistant est créé, dossiers compris. Le fichier local exécute les transactions, charge les extensions de la liste Extensions et reconstruit pour réordonner les colonnes ou clés étrangères après confirmation.",
                 "Les instructions propres à libSQL comme <code>ALTER TABLE … ALTER COLUMN</code> échouent localement, car SQLite les reçoit. Les fichiers libSQL chiffrés ne s’ouvrent pas. N’ouvrez jamais un fichier qu’une app synchronise comme réplique embarquée Turso : deux programmes simultanés peuvent le corrompre.",
                 "<backup>Dump de sauvegarde et Restaurer un dump</backup> exécutent {dumpTool} sur un fichier libSQL local."
             ]

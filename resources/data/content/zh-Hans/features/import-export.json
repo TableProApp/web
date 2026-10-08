@@ -43,7 +43,7 @@
             "title": "导出表和结果",
             "paragraphs": [
                 "<kbd>⌘⇧E</kbd> 将勾选的表和视图导出为 {exportFormats}。每项在写入时从数据库流式读取，不受数据网格行数上限影响；SQL 引擎允许每表独立设置 WHERE 子句、行数限制和所选列。SQL 导出可包含结构、使用 gzip 压缩及分卷，Excel 为每表创建单独工作表。MongoDB 集合还可导出为 mongosh 脚本，MongoDB 和 Redis 不提供 SQL 导出。",
-                "<ui>Export Results</ui> 写入查询结果；被行数上限截断的结果会重新运行并完整流式导出。{exportPluginFormats} 导出由 <ui>Settings > Plugins</ui> 中安装的免费插件提供，每表写入一个文件。"
+                "<ui>导出结果</ui>（Export Results）写入查询结果；被行数上限截断的结果会重新运行并完整流式导出。{exportPluginFormats} 导出由<ui>设置 > 插件</ui>（Settings > Plugins）中安装的免费插件提供，每表写入一个文件。"
             ],
             "asset": "mac-export-dialog"
         },

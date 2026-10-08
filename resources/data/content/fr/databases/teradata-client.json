@@ -28,9 +28,9 @@
             "id": "connect",
             "title": "Connectez-vous et authentifiez-vous",
             "paragraphs": [
-                "Saisissez hôte, utilisateur et mot de passe. Tout système Vantage acceptant TD2 fonctionne, sans vérification de version. <ui>Mécanisme de connexion</ui> dans Options accepte <code>TD2</code> ou <code>TDNEGO</code> ; <ui>Base de données</ui> n’est nécessaire que pour un défaut différent de celui du compte.",
+                "Saisissez hôte, utilisateur et mot de passe. Tout système Vantage acceptant TD2 fonctionne, sans vérification de version. <ui>Logon Mechanism</ui> dans Options accepte <code>TD2</code> ou <code>TDNEGO</code> ; <ui>Base de données</ui> (Database) n’est nécessaire que pour un défaut différent de celui du compte.",
                 "Le port par défaut transporte une session en clair. Tout mode SSL la déplace au point WebSocket de la passerelle sur le port 443, non modifiable. Vérifier l’AC exige un certificat d’AC ; Vérifier l’identité contrôle chaîne et nom d’hôte avec ce certificat ou, sans lui, le magasin de confiance système.",
-                "Laissez <ui>Mode de transaction</ui> sur <code>DEFAULT</code> sauf si un script nécessite les règles de commit ANSI ou TERA et la sensibilité à la casse de session. Utilisez un <network>tunnel SSH</network> derrière un bastion. <ui>Importer depuis une URL…</ui> accepte les URL <code>teradata://</code>, que macOS n’ouvre pas comme liens."
+                "Laissez <ui>Transaction Mode</ui> sur <code>DEFAULT</code> sauf si un script nécessite les règles de commit ANSI ou TERA et la sensibilité à la casse de session. Utilisez un <network>tunnel SSH</network> derrière un bastion. <ui>Importer depuis une URL…</ui> (Import from URL…) accepte les URL <code>teradata://</code>, que macOS n’ouvre pas comme liens."
             ]
         },
         {

@@ -28,9 +28,9 @@
             "id": "connect",
             "title": "연결 및 로그온",
             "paragraphs": [
-                "호스트, 사용자 이름과 비밀번호를 입력합니다. TD2 로그온을 받는 Vantage는 모두 작동하며 버전은 검사하지 않습니다. Options의 <ui>Logon Mechanism</ui>은 <code>TD2</code>나 <code>TDNEGO</code>를 받고 <ui>Database</ui>는 계정 기본값과 다를 때만 필요합니다.",
+                "호스트, 사용자 이름과 비밀번호를 입력합니다. TD2 로그온을 받는 Vantage는 모두 작동하며 버전은 검사하지 않습니다. Options의 <ui>Logon Mechanism</ui>은 <code>TD2</code>나 <code>TDNEGO</code>를 받고 <ui>데이터베이스</ui>(Database)는 계정 기본값과 다를 때만 필요합니다.",
                 "기본 포트는 평문 세션입니다. SSL 모드는 변경 불가능한 443 포트의 게이트웨이 WebSocket으로 이동합니다. Verify CA는 CA 인증서가 필요하며 Verify Identity는 해당 인증서나 없으면 시스템 신뢰 저장소로 체인·호스트 이름을 검사합니다.",
-                "스크립트에 ANSI·TERA 커밋 규칙과 세션 대소문자 구분이 필요하지 않으면 <ui>Transaction Mode</ui>를 <code>DEFAULT</code>로 두세요. 배스천 뒤는 <network>SSH 터널</network>로 연결합니다. <ui>Import from URL…</ui>는 <code>teradata://</code>를 받지만 macOS는 링크로 열지 않습니다."
+                "스크립트에 ANSI·TERA 커밋 규칙과 세션 대소문자 구분이 필요하지 않으면 <ui>Transaction Mode</ui>를 <code>DEFAULT</code>로 두세요. 배스천 뒤는 <network>SSH 터널</network>로 연결합니다. <ui>URL에서 가져오기…</ui>(Import from URL…)는 <code>teradata://</code>를 받지만 macOS는 링크로 열지 않습니다."
             ]
         },
         {

@@ -25,9 +25,9 @@
             "title": "원장 열기",
             "paragraphs": [
                 "TablePro는 <code>rledger</code>나 Python Beancount를 실행해 원장을 읽습니다. 선택한다면 rledger를 설치하세요. 둘 다 있으면 우선 사용하며 BQL 실행과 검증 결과를 <code>diagnostics</code> 테이블에 채우는 기능은 rledger만 제공합니다.",
-                "연결 양식의 <ui>Browse…</ui>로 파일을 선택합니다. 원장 경로가 연결의 전부이며 호스트, 포트, 비밀번호나 데이터베이스는 없습니다. <code>.beancount</code>는 Finder에서도 열리고 <code>beancount:///path/to/main.beancount</code> URL을 가져올 수 있습니다.",
+                "연결 양식의 <ui>찾아보기…</ui>(Browse…)로 파일을 선택합니다. 원장 경로가 연결의 전부이며 호스트, 포트, 비밀번호나 데이터베이스는 없습니다. <code>.beancount</code>는 Finder에서도 열리고 <code>beancount:///path/to/main.beancount</code> URL을 가져올 수 있습니다.",
                 "Finder에서 연 앱은 셸의 <code>PATH</code>를 상속하지 않습니다. Terminal에서만 백엔드가 작동한다면 <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> 또는 <code>TABLEPRO_BEANCOUNT_PYTHON</code>으로 지정하고 다시 실행하세요.",
-                "Python 백엔드는 Beancount에 포함된 플러그인을 실행하고 외부 코드인 다른 <code>plugin</code> 지시문은 연결에서 <ui>Run Ledger Plugins</ui>를 켜기 전까지 건너뜁니다. 건너뛴 플러그인은 <code>diagnostics</code>에 나열됩니다."
+                "Python 백엔드는 Beancount에 포함된 플러그인을 실행하고 외부 코드인 다른 <code>plugin</code> 지시문은 연결에서 <ui>원장 플러그인 실행</ui>(Run Ledger Plugins)을 켜기 전까지 건너뜁니다. 건너뛴 플러그인은 <code>diagnostics</code>에 나열됩니다."
             ]
         },
         {

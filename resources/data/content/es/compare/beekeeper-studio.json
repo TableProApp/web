@@ -168,9 +168,9 @@
     "switching": {
         "intro": "TablePro lee las conexiones que Beekeeper Studio guarda en tu Mac en su espacio de trabajo local. Beekeeper Studio no necesita estar abierto y sus archivos no se modifican.",
         "steps": [
-            "En TablePro, elige <ui>Archivo > Importar > Importar desde otra app…</ui>",
-            "Selecciona Beekeeper Studio y activa <ui>Incluir contraseñas</ui>. TablePro descifra las contraseñas guardadas por Beekeeper Studio, incluidas las contraseñas SSH y las frases de contraseña de las claves, así que no hay nada que autorizar en el llavero.",
-            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Importar</ui>. Las carpetas se convierten en grupos, se trasladan los colores de las conexiones y la configuración SSL, y un host bastión SSH se convierte en host de salto. Las conexiones a motores que TablePro no admite llegan sin marcar.",
+            "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
+            "Selecciona Beekeeper Studio y activa <ui>Include passwords</ui>. TablePro descifra las contraseñas guardadas por Beekeeper Studio, incluidas las contraseñas SSH y las frases de contraseña de las claves, así que no hay nada que autorizar en el llavero.",
+            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Import</ui>. Las carpetas se convierten en grupos, se trasladan los colores de las conexiones y la configuración SSL, y un host bastión SSH se convierte en host de salto. Las conexiones a motores que TablePro no admite llegan sin marcar.",
             "Antes de eliminar Beekeeper Studio, abre una conexión que tuviera contraseña para comprobar que se ha trasladado."
         ],
         "after": [
@@ -195,7 +195,7 @@
         {
             "id": "vim",
             "question": "Uso el modo Vim en Beekeeper Studio. ¿TablePro tiene uno?",
-            "answer": "Sí, y es gratuito. Activa <ui>Ajustes > Editor > Modo Vim</ui> para usar movimientos, registros y macros; :w ejecuta la consulta.",
+            "answer": "Sí, y es gratuito. Activa <ui>Settings > Editor > Vim mode</ui> para usar movimientos, registros y macros; :w ejecuta la consulta.",
             "href": null
         }
     ],

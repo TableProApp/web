@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "Struktur ändern, DDL zuerst lesen",
             "paragraphs": [
-                "Der Tab „Struktur“ bearbeitet Spalten, Indizes, Fremdschlüssel und CHECK-Bedingungen in einer Tabelle. Änderungen warten bis zum Speichern; <ui>SQL-Vorschau</ui> (<kbd>⌘⇧P</kbd>) zeigt vorher die ALTER-TABLE-Anweisungen. Entfernen, Typänderung, NOT NULL und Primärschlüsseländerung fragen vorher, selbst bei {macSafeModeDefault} als Sicherheitsstufe.",
+                "Der Tab „Struktur“ bearbeitet Spalten, Indizes, Fremdschlüssel und CHECK-Bedingungen in einer Tabelle. Änderungen warten bis zum Speichern; <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) zeigt vorher die ALTER-TABLE-Anweisungen. Entfernen, Typänderung, NOT NULL und Primärschlüsseländerung fragen vorher, selbst bei {macSafeModeDefault} als Sicherheitsstufe.",
                 "Indizes können Ausdrücke wie <code>lower(email)</code> verwenden. „Neue Tabelle“ erstellt Tabellen ebenso mit laufender SQL-Vorschau. Auf SQLite, libSQL, Turso und Cloudflare D1, die Fremdschlüssel nicht direkt ändern können, erstellt TablePro einen Tabellenneuaufbau zur Prüfung. Nach Bestätigung führt es ihn auf SQLite und lokalen libSQL-Dateien aus; auf Turso, Remote-libSQL und D1 bleibt die Ausführung dir überlassen."
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "Sieh die Beziehungen zwischen Tabellen",
             "paragraphs": [
-                "<ui>ER-Diagramm anzeigen</ui> zeichnet Tabellen und Fremdschlüssel des Schemas mit aus Primär- und eindeutigen Schlüsseln berechneter Krähenfuß-Kardinalität. Verbindungstabellen wie <code>product_tags</code> werden zu einer Viele-zu-viele-Linie zusammengefasst. Exportiere als PNG, kopiere als Bild oder exportiere SQL: CREATE-TABLE-Anweisungen mit Fremdschlüsseln.",
+                "<ui>View ER Diagram</ui> zeichnet Tabellen und Fremdschlüssel des Schemas mit aus Primär- und eindeutigen Schlüsseln berechneter Krähenfuß-Kardinalität. Verbindungstabellen wie <code>product_tags</code> werden zu einer Viele-zu-viele-Linie zusammengefasst. Exportiere als PNG, kopiere als Bild oder exportiere SQL: CREATE-TABLE-Anweisungen mit Fremdschlüsseln.",
                 "Das Diagramm ist eine Momentaufnahme zum Lesen und Teilen. Tabellen werden im Struktur-Tab geändert, nicht auf der Zeichenfläche."
             ],
             "asset": "mac-er-diagram"
@@ -52,7 +52,7 @@
                     "id": "table-folders",
                     "title": "Ordner für Tabellen und Views",
                     "paragraphs": [
-                        "Gruppiere Tabellen und Views per Ziehen oder <ui>Verschieben nach</ui> in der Listen- oder Baumansicht der Seitenleiste. Der Filter sucht in Ordnern. Ein Ordner existiert nur in TablePro und ändert nichts auf dem Server; mit iCloud Sync folgt er dir auf andere Macs."
+                        "Gruppiere Tabellen und Views per Ziehen oder <ui>Move to</ui> in der Listen- oder Baumansicht der Seitenleiste. Der Filter sucht in Ordnern. Ein Ordner existiert nur in TablePro und ändert nichts auf dem Server; mit iCloud Sync folgt er dir auf andere Macs."
                     ],
                     "since": "0.77.0"
                 }

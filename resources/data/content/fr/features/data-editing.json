@@ -42,7 +42,7 @@
             "id": "edit",
             "title": "Modifiez les données, puis sauvegardez une fois",
             "paragraphs": [
-                "Modifications de cellules, nouvelles lignes et suppressions attendent, marquées dans l’onglet, jusqu’à <kbd>⌘S</kbd> ; rien n’est envoyé avant. <ui>Aperçu SQL</ui> (<kbd>⌘⇧P</kbd>) liste les instructions avec valeurs renseignées. La sauvegarde les envoie avec paramètres liés, en une transaction si possible, et vérifie le nombre de lignes attendu ; sinon, elle est annulée."
+                "Modifications de cellules, nouvelles lignes et suppressions attendent, marquées dans l’onglet, jusqu’à <kbd>⌘S</kbd> ; rien n’est envoyé avant. <ui>Aperçu SQL</ui> (Preview SQL, <kbd>⌘⇧P</kbd>) liste les instructions avec valeurs renseignées. La sauvegarde les envoie avec paramètres liés, en une transaction si possible, et vérifie le nombre de lignes attendu ; sinon, elle est annulée."
             ],
             "points": [
                 "Éditeurs adaptés au type de colonne : date et heure, listes ENUM et SET, tableaux, JSON, éditeur hexadécimal pour valeurs binaires et visualiseur d’images.",
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind conserve les valeurs remplacées pour que <ui>Restaurer les valeurs précédentes</ui> les rétablisse. Une feuille de contrôle montre d’abord les effets sur chaque ligne, même modifiée après sauvegarde ; la restauration passe par le mode sécurisé, en une transaction si possible. Une restauration peut elle-même être restaurée.",
-                "Les valeurs restent sur ce Mac pendant {rewindDays} jours, chiffrées avec une clé du Trousseau, et ne se synchronisent jamais. À la fin d’une offre, TablePro cesse d’enregistrer les sauvegardes et <ui>Restaurer les valeurs précédentes</ui> affiche une alerte."
+                "Data Rewind conserve les valeurs remplacées pour que <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values) les rétablisse. Une feuille de contrôle montre d’abord les effets sur chaque ligne, même modifiée après sauvegarde ; la restauration passe par le mode sécurisé, en une transaction si possible. Une restauration peut elle-même être restaurée.",
+                "Les valeurs restent sur ce Mac pendant {rewindDays} jours, chiffrées avec une clé du Trousseau, et ne se synchronisent jamais. À la fin d’une offre, TablePro cesse d’enregistrer les sauvegardes et <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values) affiche une alerte."
             ],
             "paid": [
                 "data-rewind"

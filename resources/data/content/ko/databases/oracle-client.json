@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "호스트, 리스너 포트와 Service Name을 입력하고 서비스 없는 인스턴스는 <ui>Connection Type</ui>을 SID로 바꿉니다. 사용자 이름·비밀번호로 Normal 또는 SYSDBA·SYSOPER 역할로 로그인합니다.",
+                "호스트, 리스너 포트와 Service Name을 입력하고 서비스 없는 인스턴스는 <ui>연결 유형</ui>(Connection Type)을 SID로 바꿉니다. 사용자 이름·비밀번호로 Normal 또는 SYSDBA·SYSOPER 역할로 로그인합니다.",
                 "Native Network Encryption은 설정 없이 서버가 요청하면 SHA-2 체크섬의 AES를 제공하며 <ui>Network Encryption</ui>으로 제공 방식을 바꿉니다. TLS는 TCPS용 Required 또는 CA 인증서의 Verify CA·Verify Identity를 고릅니다. 새 연결은 SSL이 꺼져 있고 Preferred는 평문 TCP를 유지합니다.",
                 "Oracle Autonomous Database는 mTLS 대신 TLS 연결 문자열의 호스트·포트·서비스 이름을 복사하고 SSL을 Required·Verify CA로 설정합니다. 지갑 파일은 읽지 않으므로 데이터베이스가 상호 TLS 없는 TLS를 허용해야 합니다.",
                 "RAC SCAN 리스너, 공유 서버나 데이터베이스 앞 로드 밸런서는 설정이 필요 없고 사설 네트워크 리스너에는 <network>SSH 터널</network>로 접근합니다."

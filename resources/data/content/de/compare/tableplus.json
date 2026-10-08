@@ -145,10 +145,10 @@
     "switching": {
         "intro": "TablePro liest TablePlus-Verbindungen am Speicherort, auch aus der Setapp-Ausgabe. TablePlus muss nicht offen sein, seine Dateien bleiben unverändert.",
         "steps": [
-            "Wähle in TablePro <ui>Ablage > Importieren > Aus anderer App importieren…</ui>",
-            "Wähle TablePlus und aktiviere <ui>Passwörter einschließen</ui>, um gespeicherte Passwörter aus dem macOS-Schlüsselbund zu lesen.",
-            "macOS fragt einmal pro gespeichertem Passwort nach deinem Anmeldepasswort. Wähle jedes Mal <ui>Immer erlauben</ui>.",
-            "Prüfe die Liste, wähle das Verhalten bei Duplikaten und klicke <ui>Importieren</ui>. Gruppen, SSH-Tunnel und Farben werden übernommen. Verbindungen zu nicht unterstützten Engines sind abgewählt.",
+            "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
+            "Wähle TablePlus und aktiviere <ui>Include passwords</ui>, um gespeicherte Passwörter aus dem macOS-Schlüsselbund zu lesen.",
+            "macOS fragt einmal pro gespeichertem Passwort nach deinem Anmeldepasswort. Wähle jedes Mal <ui>Always Allow</ui>.",
+            "Prüfe die Liste, wähle das Verhalten bei Duplikaten und klicke <ui>Import</ui>. Gruppen, SSH-Tunnel und Farben werden übernommen. Verbindungen zu nicht unterstützten Engines sind abgewählt.",
             "Öffne vor dem Entfernen von TablePlus eine Verbindung mit Passwort, um dessen Übernahme zu prüfen."
         ],
         "after": [

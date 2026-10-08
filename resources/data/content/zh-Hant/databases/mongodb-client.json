@@ -53,7 +53,7 @@
             "paragraphs": [
                 "<structure>Structure 分頁</structure>依索引鍵順序列出各索引欄位及 hashed、text、2dsphere、wildcard 等種類。Show DDL 產生重建它們的 <code>createIndex</code> 呼叫，含伺服器報告的所有選項。",
                 "在同一分頁重新命名或移除整個集合的欄位。每次修改為一個 <code>updateMany</code>，在 Preview SQL 顯示，<code>$jsonSchema</code> 驗證器宣告的欄位也同步修改。索引、搜尋索引或檢視表仍使用該名稱時，任何寫入前即拒絕儲存。",
-                "<ui>New Table</ui> 建立集合，將欄位轉為 <code>$jsonSchema</code> 驗證器，再建立所列索引。檢視表和時間序列集合顯示在側欄，檢視表以唯讀開啟。"
+                "<ui>新增資料表</ui>（New Table）建立集合，將欄位轉為 <code>$jsonSchema</code> 驗證器，再建立所列索引。檢視表和時間序列集合顯示在側欄，檢視表以唯讀開啟。"
             ]
         },
         {

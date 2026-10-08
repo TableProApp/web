@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Introduce el host y el puerto REST del clúster y elige un <ui>Método de autenticación</ui>. Usuario y contraseña envía HTTP Basic. Clave API envía el campo en una cabecera <code>Authorization: ApiKey</code>; pega el valor <code>encoded</code> que devuelve la solicitud de creación de clave API. La opción Ninguna sirve para un clúster de desarrollo con la seguridad desactivada. Cada conexión accede a un clúster, por lo que no hay campo Base de datos.",
+                "Introduce el host y el puerto REST del clúster y elige un <ui>Auth Method</ui>. Usuario y contraseña envía HTTP Basic. Clave API envía el campo en una cabecera <code>Authorization: ApiKey</code>; pega el valor <code>encoded</code> que devuelve la solicitud de creación de clave API. La opción Ninguna sirve para un clúster de desarrollo con la seguridad desactivada. Cada conexión accede a un clúster, por lo que no hay campo Base de datos.",
                 "Las conexiones nuevas empiezan con SSL Desactivado, es decir, HTTP sin cifrar. Los demás modos usan HTTPS: Preferido y Obligatorio (omitir verificación) aceptan certificados autofirmados; Verificar CA y Verificar identidad los comprueban. Elasticsearch 8.x activa seguridad y TLS por defecto, así que un clúster 8.x suele necesitar HTTPS y credenciales."
             ]
         },

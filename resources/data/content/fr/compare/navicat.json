@@ -155,10 +155,10 @@
     "switching": {
         "intro": "TablePro importe les connexions Navicat depuis un fichier exporté dans Navicat : la migration commence donc là. Les paramètres propres à Navicat ne sont ni lus ni modifiés.",
         "steps": [
-            "Dans Navicat, choisissez <ui>Fichier > Exporter les connexions…</ui>, sélectionnez les connexions, activez <ui>Exporter le mot de passe</ui> et enregistrez le fichier .ncx.",
-            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui>",
-            "Sélectionnez Navicat, activez <ui>Inclure les mots de passe</ui>, cliquez sur <ui>Continuer</ui> et choisissez le fichier .ncx. TablePro déchiffre les mots de passe enregistrés : rien n’est à autoriser dans le trousseau.",
-            "Vérifiez la liste, choisissez le traitement des doublons et cliquez sur <ui>Importer</ui>. Les paramètres de tunnel SSH et SSL sont transférés. Une connexion à une base non prise en charge arrive décochée.",
+            "Dans Navicat, choisissez <ui>File > Export Connections…</ui>, sélectionnez les connexions, activez <ui>Export Password</ui> et enregistrez le fichier .ncx.",
+            "Dans TablePro, choisissez <ui>Fichier > Importer > Importer depuis une autre app…</ui> (File > Import > Import from Other App…)",
+            "Sélectionnez Navicat, activez <ui>Inclure les mots de passe</ui> (Include passwords), cliquez sur <ui>Continuer</ui> (Continue) et choisissez le fichier .ncx. TablePro déchiffre les mots de passe enregistrés : rien n’est à autoriser dans le trousseau.",
+            "Vérifiez la liste, choisissez le traitement des doublons et cliquez sur <ui>Importer</ui> (Import). Les paramètres de tunnel SSH et SSL sont transférés. Une connexion à une base non prise en charge arrive décochée.",
             "Avant de supprimer Navicat, ouvrez une connexion qui avait un mot de passe pour vérifier son transfert."
         ],
         "after": [

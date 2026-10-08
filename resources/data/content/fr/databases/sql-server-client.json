@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Indiquez hôte et port TCP puis choisissez <ui>Authentification</ui> ; le formulaire s’adapte : login SQL Server et mot de passe, Windows via Kerberos ou Microsoft Entra ID. Renseignez Base pour un login lié à une seule base, comme un utilisateur contenu Azure SQL.",
+                "Indiquez hôte et port TCP puis choisissez <ui>Authentification</ui> (Authentication) ; le formulaire s’adapte : login SQL Server et mot de passe, Windows via Kerberos ou Microsoft Entra ID. Renseignez Base pour un login lié à une seule base, comme un utilisateur contenu Azure SQL.",
                 "Kerberos utilise le ticket du cache d’identifiants ou en demande un avec principal et mot de passe saisis. Connectez par nom d’hôte plutôt qu’IP, car le ticket est émis pour le SPN enregistré. TablePro ne lance jamais <code>kinit</code> ni ne modifie <code>/etc/krb5.conf</code>.",
                 "<cloudAuth>Microsoft Entra ID</cloudAuth> utilise le flux de code d’appareil, respectant MFA et Accès conditionnel. Enregistrez une app Azure et saisissez son ID client ; les jetons restent dans votre trousseau de connexion, marqués propres à l’appareil, et s’actualisent en arrière-plan.",
                 "Les nouvelles connexions utilisent Préféré, qui sur SQL Server chiffre seulement le login. Choisissez Requis ou plus strict pour toute la session ; Vérifier l’AC et l’identité utilisent les racines macOS. TablePro peut aussi lancer Cloud SQL Auth Proxy pour Google Cloud SQL ; les <network>tunnels SSH</network> atteignent les réseaux privés."
@@ -57,7 +57,7 @@
             "id": "operate",
             "title": "Surveillez et sauvegardez",
             "paragraphs": [
-                "Le <dashboard>Tableau de bord serveur</dashboard> montre sessions utilisateur, durée de fonctionnement et taille, liste les autres sessions et requêtes dépassant une seconde et termine par <ui>Terminer la session</ui>. SQL Server n’a pas Annuler la requête.",
+                "Le <dashboard>Tableau de bord serveur</dashboard> montre sessions utilisateur, durée de fonctionnement et taille, liste les autres sessions et requêtes dépassant une seconde et termine par <ui>Mettre fin à la session</ui> (Terminate Session). SQL Server n’a pas Annuler la requête.",
                 "Le <backup>Dump de sauvegarde</backup> écrit <code>.bacpac</code> avec {dumpTool}, téléchargé de Microsoft ; Restaurer un dump le charge dans une base vide. SqlPackage prend le mot de passe seulement en ligne de commande, lisible par d’autres processus Mac ; TablePro demande donc avant. Windows ou Entra évitent de le passer."
             ]
         },

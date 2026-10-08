@@ -35,7 +35,7 @@
         "paragraphs": [
             "Rédigez du SQL avec coloration syntaxique, exécutez-le et arrêtez-le en cours d’exécution. Partez d’un modèle SELECT, puis copiez ou partagez les résultats en JSON, CSV ou instructions SQL INSERT via le presse-papiers ou la feuille de partage.",
             "L’application conserve jusqu’à {results} lignes d’un résultat ; ajoutez LIMIT pour voir une autre partie d’un grand résultat. L’historique garde les {history} dernières requêtes sur cet appareil, toutes connexions confondues, et ne se synchronise pas.",
-            "Pendant une requête, une Activité en direct affiche sa progression sur l’écran verrouillé et dans la Dynamic Island : temps écoulé et lignes reçues. L’écran verrouillé et la Dynamic Island développée montrent aussi le SQL, sauf si vous activez <ui>Réglages > Activités en direct > Masquer la requête</ui>."
+            "Pendant une requête, une Activité en direct affiche sa progression sur l’écran verrouillé et dans la Dynamic Island : temps écoulé et lignes reçues. L’écran verrouillé et la Dynamic Island développée montrent aussi le SQL, sauf si vous activez <ui>Settings > Live Activities > Hide Query</ui>."
         ]
     },
     "security": {
@@ -51,7 +51,7 @@
         "paragraphs": [
             "Chaque connexion a un niveau de mode sécurisé : {levels}. Confirmer les écritures demande confirmation avant une instruction modifiant des données. Lecture seule la refuse avant qu’elle atteigne le serveur. Une instruction que l’application ne peut identifier comme lecture compte comme écriture.",
             "Définissez le niveau d’une connexion dans sa section Organisation et le niveau initial des nouvelles connexions dans Réglages. Les Raccourcis ajoutant des lignes respectent le même niveau.",
-            "Dans <ui>Réglages > Sécurité</ui>, verrouillez l’application avec Face ID ou Touch ID, avec votre code en solution de secours. Une fois activé, l’application demande l’authentification à chaque démarrage et après le délai de verrouillage automatique choisi."
+            "Dans <ui>Settings > Security</ui>, verrouillez l’application avec Face ID ou Touch ID, avec votre code en solution de secours. Une fois activé, l’application demande l’authentification à chaque démarrage et après le délai de verrouillage automatique choisi."
         ]
     },
     "ipad": {
@@ -97,7 +97,7 @@
     "privacy": {
         "title": "Confidentialité",
         "paragraphs": [
-            "Rien n’est envoyé à TablePro sauf si vous activez Partager les données d’utilisation pendant la configuration ou plus tard dans <ui>Réglages > Confidentialité</ui>. L’application envoie alors un rapport quotidien avec identifiant d’appareil haché, versions de l’application et d’iOS, architecture du processeur, langue, types de bases utilisés, nombre de connexions et quelques dates de première utilisation. Jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes.",
+            "Rien n’est envoyé à TablePro sauf si vous activez Partager les données d’utilisation pendant la configuration ou plus tard dans <ui>Settings > Privacy</ui>. L’application envoie alors un rapport quotidien avec identifiant d’appareil haché, versions de l’application et d’iOS, architecture du processeur, langue, types de bases utilisés, nombre de connexions et quelques dates de première utilisation. Jamais de noms d’hôtes, noms d’utilisateurs, mots de passe, requêtes ou lignes.",
             "L’application n’effectue aucune vérification de licence, de mise à jour ou demande de plugin. Vos requêtes vont à vos serveurs, iCloud Sync à votre compte iCloud et l’authentification Entra à Microsoft. La <privacyIos>politique de confidentialité</privacyIos> fournit les détails."
         ]
     },

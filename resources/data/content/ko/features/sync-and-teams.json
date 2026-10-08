@@ -18,7 +18,7 @@
             "title": "iCloud 동기화",
             "paragraphs": [
                 "iCloud Sync는 같은 iCloud 계정으로 로그인한 모든 Mac, iPhone과 iPad의 라이브러리를 일치시킵니다. 레코드는 해당 계정의 비공개 데이터베이스에 저장되며 각 기기에서 켜기 전까지 동기화는 꺼져 있습니다. iPhone과 iPad에서는 무료이고 Mac에는 이 기능이 포함된 플랜이 필요합니다.",
-                "비밀번호는 Mac의 Sync Categories에서 <ui>Passwords</ui> 또는 iPhone과 iPad의 <ui>Sync Passwords</ui>도 켠 경우에만 iCloud 키체인으로 동기화됩니다. Mac에서는 AI 제공업체 키나 라이선스 키 등 TablePro가 키체인에 보관하는 다른 비밀값도 전달합니다. 연결을 Local only로 지정하면 즐겨찾기와 저장된 쿼리를 포함해 한 Mac에만 유지됩니다."
+                "비밀번호는 Mac의 Sync Categories에서 <ui>암호</ui>(Passwords) 또는 iPhone과 iPad의 <ui>암호 동기화</ui>(Sync Passwords)도 켠 경우에만 iCloud 키체인으로 동기화됩니다. Mac에서는 AI 제공업체 키나 라이선스 키 등 TablePro가 키체인에 보관하는 다른 비밀값도 전달합니다. 연결을 Local only로 지정하면 즐겨찾기와 저장된 쿼리를 포함해 한 Mac에만 유지됩니다."
             ],
             "points": [
                 "Mac에서는 연결, 그룹과 태그, 설정, SSH 프로필, 테이블·데이터베이스 즐겨찾기, SQL이 포함된 저장된 쿼리 및 테이블 폴더 중 동기화할 항목을 선택합니다.",
@@ -87,7 +87,7 @@
                     "id": "team-catalog",
                     "title": "팀 카탈로그",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Catalog…</ui>는 선택한 연결을 비밀번호 없이 <code>.tablepro</code> 파일로 공유 폴더에 기록합니다. 팀원은 그 폴더를 Linked Folder로 추가하므로 카탈로그는 TablePro가 아닌 기존 공유 드라이브나 저장소를 통해 전달됩니다."
+                        "<ui>공유 > 팀 카탈로그에 게시…</ui>(Share > Publish to Team Catalog…)는 선택한 연결을 비밀번호 없이 <code>.tablepro</code> 파일로 공유 폴더에 기록합니다. 팀원은 그 폴더를 Linked Folder로 추가하므로 카탈로그는 TablePro가 아닌 기존 공유 드라이브나 저장소를 통해 전달됩니다."
                     ],
                     "paid": [
                         "team-catalog"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "팀 라이브러리",
                     "paragraphs": [
-                        "연결의 <ui>Share > Publish to Team Library…</ui>와 Favorites 사이드바의 <ui>Publish Saved Queries to Team…</ui>는 연결과 저장된 쿼리를 TablePro 서버에 업로드하고 같은 라이선스의 모든 Mac이 다운로드합니다. 쿼리는 게시자 이름과 함께 Favorites 사이드바에 표시됩니다. 연결 설정과 쿼리 SQL 텍스트만 업로드하며 비밀번호는 전송하지 않습니다. 팀원의 Mac은 받은 시작 명령과 터널 명령을 무시하므로 자동 실행되지 않습니다. 다시 게시하면 이전에 게시한 내용이 교체됩니다."
+                        "연결의 <ui>공유 > 팀 라이브러리에 게시…</ui>(Share > Publish to Team Library…)와 Favorites 사이드바의 <ui>저장된 쿼리를 팀에 게시…</ui>(Publish Saved Queries to Team…)는 연결과 저장된 쿼리를 TablePro 서버에 업로드하고 같은 라이선스의 모든 Mac이 다운로드합니다. 쿼리는 게시자 이름과 함께 Favorites 사이드바에 표시됩니다. 연결 설정과 쿼리 SQL 텍스트만 업로드하며 비밀번호는 전송하지 않습니다. 팀원의 Mac은 받은 시작 명령과 터널 명령을 무시하므로 자동 실행되지 않습니다. 다시 게시하면 이전에 게시한 내용이 교체됩니다."
                     ],
                     "paid": [
                         "team-library"
@@ -116,7 +116,7 @@
             "id": "seats",
             "title": "좌석, 초대 및 계정",
             "paragraphs": [
-                "Team 라이선스는 좌석당 요금이며 한 좌석은 사람이 아니라 활성화된 Mac 한 대입니다. 웹 계정에서 팀원을 초대하면 각자 이메일로 일회용 코드를 받아 Mac의 <ui>Settings > License</ui>에 입력합니다. 초대에는 빈 좌석이 필요합니다. 앱은 팀원을 보여 주지만 좌석과 초대는 웹에서 관리합니다.",
+                "Team 라이선스는 좌석당 요금이며 한 좌석은 사람이 아니라 활성화된 Mac 한 대입니다. 웹 계정에서 팀원을 초대하면 각자 이메일로 일회용 코드를 받아 Mac의 <ui>설정 > 라이선스</ui>(Settings > License)에 입력합니다. 초대에는 빈 좌석이 필요합니다. 앱은 팀원을 보여 주지만 좌석과 초대는 웹에서 관리합니다.",
                 "활성 월간·연간 구독에서는 직접 좌석 수를 변경할 수 있으며 일회성 구매는 지원팀에 문의해야 합니다. 누군가를 제거하면 좌석이 즉시 비워지고 그 사람이 Team Library에 게시한 내용도 삭제됩니다. 해당 Mac은 다음 라이선스 확인 시, 최대 {licenseCheckDays}일 이내에 유료 기능을 잃습니다. 계정 페이지는 라이선스 구매자를 위한 페이지입니다."
             ],
             "links": [

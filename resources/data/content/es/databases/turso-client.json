@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Conecta a Turso",
             "paragraphs": [
-                "Elige Turso en los tipos de conexión y deja <ui>Modo de conexión</ui> en <ui>Remoto (Turso)</ui>. Pega la URL HTTPS de la base terminada en <code>.turso.io</code> y un token en <ui>Token API</ui>, guardado en el Llavero de macOS. El panel Turso muestra ambos, igual que <code>turso db show my-db --url</code> y <code>turso db tokens create my-db</code>.",
+                "Elige Turso en los tipos de conexión y deja <ui>Connection Mode</ui> en <ui>Remote (Turso)</ui>. Pega la URL HTTPS de la base terminada en <code>.turso.io</code> y un token en <ui>API Token</ui>, guardado en el Llavero de macOS. El panel Turso muestra ambos, igual que <code>turso db show my-db --url</code> y <code>turso db tokens create my-db</code>.",
                 "Una URL <code>libsql://</code> se reescribe como HTTPS e importarla crea una conexión remota. No hay campos de host, puerto o base porque la URL identifica una base. La conexión está cifrada si usa HTTPS en lugar de HTTP sin cifrar; no hay túnel SSH."
             ]
         },
@@ -63,7 +63,7 @@
             "title": "libSQL",
             "paragraphs": [
                 "Elige libSQL para un servidor sqld propio o un archivo local. En Remoto accede a cualquier sqld con endpoint Hrana v2 pipeline, incluido uno local, que usa 8080 por defecto. Deja el token vacío si se inició sin <code>--auth-jwt-key-file</code>, o proporciona un JWT acorde a la clave del servidor.",
-                "<ui>Archivo local</ui> abre libSQL con el motor SQLite del controlador; una ruta inexistente se crea, incluidas carpetas. Un archivo local ejecuta transacciones, carga extensiones de la lista Extensiones y reconstruye por reordenación de columnas o claves foráneas tras confirmar.",
+                "<ui>Local File</ui> abre libSQL con el motor SQLite del controlador; una ruta inexistente se crea, incluidas carpetas. Un archivo local ejecuta transacciones, carga extensiones de la lista Extensiones y reconstruye por reordenación de columnas o claves foráneas tras confirmar.",
                 "Las sentencias exclusivas de libSQL, como <code>ALTER TABLE … ALTER COLUMN</code>, fallan en un archivo local porque las recibe SQLite. Los archivos libSQL cifrados no se abren. Nunca abras un archivo que otra app esté sincronizando como réplica embebida Turso: el acceso simultáneo puede corromperlo.",
                 "<backup>Volcado de copia de seguridad y Restaurar volcado</backup> ejecutan {dumpTool} en un archivo libSQL local."
             ]

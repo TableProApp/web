@@ -170,10 +170,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 無 phpMyAdmin 匯入工具。用主機商提供的 MySQL、SSH 資訊填寫表單，或將 mysql:// URL 貼上至 <ui>File > Import > Import from URL…</ui>。",
+        "intro": "TablePro 無 phpMyAdmin 匯入工具。用主機商提供的 MySQL、SSH 資訊填寫表單，或將 mysql:// URL 貼上至<ui>檔案 > 匯入 > 從 URL 匯入…</ui>（File > Import > Import from URL…）。",
         "steps": [],
         "after": [
-            "網站程式碼在 Mac 時，<ui>File > Import > Open Project Folder…</ui> 從 wp-config.php、.env 等檔案讀取資料庫設定，開啟填好的表單。",
+            "網站程式碼在 Mac 時，<ui>檔案 > 匯入 > 開啟專案資料夾…</ui>（File > Import > Open Project Folder…）從 wp-config.php、.env 等檔案讀取資料庫設定，開啟填好的表單。",
             "正式環境資料庫請開始前設定連線安全模式層級。",
             "phpMyAdmin 匯出的 SQL 檔案無論 gzip 與否，均可匯入任意 MySQL、MariaDB 連線。"
         ],

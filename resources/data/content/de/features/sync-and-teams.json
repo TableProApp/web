@@ -18,7 +18,7 @@
             "title": "iCloud-Synchronisierung",
             "paragraphs": [
                 "Die iCloud-Synchronisierung hält deine Bibliothek auf jedem Mac, iPhone und iPad mit deinem iCloud-Konto identisch. Die Datensätze gehen in eine private Datenbank dieses Kontos, und die Synchronisierung bleibt aus, bis du sie auf jedem Gerät aktivierst. Auf iPhone und iPad ist sie kostenlos; der Mac braucht einen Tarif, der sie enthält.",
-                "Passwörter werden nur synchronisiert, wenn du zusätzlich <ui>Passwörter</ui> unter Synchronisierungskategorien auf dem Mac oder <ui>Passwörter synchronisieren</ui> auf iPhone und iPad aktivierst. Das läuft über den iCloud-Schlüsselbund; auf dem Mac überträgt es auch andere Geheimnisse, die TablePro im Schlüsselbund speichert, etwa KI-Anbieterschlüssel und den Lizenzschlüssel. Markiere eine Verbindung als Nur lokal, um sie samt Favoriten und gespeicherten Abfragen auf einem Mac zu behalten."
+                "Passwörter werden nur synchronisiert, wenn du zusätzlich <ui>Passwords</ui> unter Synchronisierungskategorien auf dem Mac oder <ui>Sync Passwords</ui> auf iPhone und iPad aktivierst. Das läuft über den iCloud-Schlüsselbund; auf dem Mac überträgt es auch andere Geheimnisse, die TablePro im Schlüsselbund speichert, etwa KI-Anbieterschlüssel und den Lizenzschlüssel. Markiere eine Verbindung als Nur lokal, um sie samt Favoriten und gespeicherten Abfragen auf einem Mac zu behalten."
             ],
             "points": [
                 "Auf dem Mac wählst du, was synchronisiert wird: Verbindungen, Gruppen und Tags, Einstellungen, SSH-Profile, Tabellen- und Datenbankfavoriten, gespeicherte Abfragen mit ihrem SQL und Tabellenordner.",
@@ -87,7 +87,7 @@
                     "id": "team-catalog",
                     "title": "Team-Katalog",
                     "paragraphs": [
-                        "<ui>Teilen > Im Team-Katalog veröffentlichen…</ui> schreibt deine ausgewählten Verbindungen ohne Passwörter als <code>.tablepro</code>-Dateien in einen freigegebenen Ordner. Teammitglieder fügen ihn als Verknüpften Ordner hinzu. So wird der Katalog über ein vorhandenes freigegebenes Laufwerk oder Repository verteilt, nicht über TablePro."
+                        "<ui>Share > Publish to Team Catalog…</ui> schreibt deine ausgewählten Verbindungen ohne Passwörter als <code>.tablepro</code>-Dateien in einen freigegebenen Ordner. Teammitglieder fügen ihn als Verknüpften Ordner hinzu. So wird der Katalog über ein vorhandenes freigegebenes Laufwerk oder Repository verteilt, nicht über TablePro."
                     ],
                     "paid": [
                         "team-catalog"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team-Bibliothek",
                     "paragraphs": [
-                        "<ui>Teilen > In Team-Bibliothek veröffentlichen…</ui> bei einer Verbindung und <ui>Gespeicherte Abfragen im Team veröffentlichen…</ui> in der Favoriten-Seitenleiste laden Verbindungen und gespeicherte Abfragen auf den Server von TablePro hoch; jeder Mac der Lizenz lädt sie herunter. Die Abfragen erscheinen mit dem Namen des Veröffentlichenden in der Favoriten-Seitenleiste. Hochgeladen werden Verbindungseinstellungen und SQL-Text, nie Passwörter. Der Mac eines Teammitglieds ignoriert empfangene Start- und Tunnelbefehle, damit dort nichts von selbst ausgeführt wird. Erneutes Veröffentlichen ersetzt deine vorherige Veröffentlichung."
+                        "<ui>Share > Publish to Team Library…</ui> bei einer Verbindung und <ui>Publish Saved Queries to Team…</ui> in der Favoriten-Seitenleiste laden Verbindungen und gespeicherte Abfragen auf den Server von TablePro hoch; jeder Mac der Lizenz lädt sie herunter. Die Abfragen erscheinen mit dem Namen des Veröffentlichenden in der Favoriten-Seitenleiste. Hochgeladen werden Verbindungseinstellungen und SQL-Text, nie Passwörter. Der Mac eines Teammitglieds ignoriert empfangene Start- und Tunnelbefehle, damit dort nichts von selbst ausgeführt wird. Erneutes Veröffentlichen ersetzt deine vorherige Veröffentlichung."
                     ],
                     "paid": [
                         "team-library"
@@ -116,7 +116,7 @@
             "id": "seats",
             "title": "Plätze, Einladungen und dein Konto",
             "paragraphs": [
-                "Eine Team-Lizenz wird pro Platz berechnet, und ein Platz entspricht einem aktivierten Mac, nicht einer Person. Du lädst Teammitglieder über dein Konto im Web ein; jedes erhält per E-Mail einen einmal verwendbaren Code für <ui>Einstellungen > Lizenz</ui> auf seinem Mac. Eine Einladung erfordert einen freien Platz. Die App zeigt die Teammitglieder an; Plätze und Einladungen verwaltest du im Web.",
+                "Eine Team-Lizenz wird pro Platz berechnet, und ein Platz entspricht einem aktivierten Mac, nicht einer Person. Du lädst Teammitglieder über dein Konto im Web ein; jedes erhält per E-Mail einen einmal verwendbaren Code für <ui>Settings > License</ui> auf seinem Mac. Eine Einladung erfordert einen freien Platz. Die App zeigt die Teammitglieder an; Plätze und Einladungen verwaltest du im Web.",
                 "Bei einem aktiven Monats- oder Jahresabo änderst du die Zahl der Plätze selbst; bei einem Einmalkauf kontaktierst du den Support. Wenn du jemanden entfernst, wird dessen Platz sofort frei und seine Veröffentlichungen in der Team-Bibliothek werden gelöscht. Seine Macs verlieren die kostenpflichtigen Funktionen bei der nächsten Lizenzprüfung, innerhalb von {licenseCheckDays} Tagen. Die Kontoseite ist für die Person, die die Lizenz gekauft hat."
             ],
             "links": [

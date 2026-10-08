@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host und HTTP-Port, einen Benutzer und auf Wunsch eine Datenbank an. Der Datenbankwechsel erfolgt direkt; ein offener Tab bleibt bei seiner ursprünglichen Datenbank. <ui>Ansicht > Seitenleiste als Baum</ui> zeigt die Serverdatenbanken als direkt aufklappbaren Baum.",
+                "Gib Host und HTTP-Port, einen Benutzer und auf Wunsch eine Datenbank an. Der Datenbankwechsel erfolgt direkt; ein offener Tab bleibt bei seiner ursprünglichen Datenbank. <ui>View > Sidebar as Tree</ui> zeigt die Serverdatenbanken als direkt aufklappbaren Baum.",
                 "Wähle einen beliebigen SSL-Modus, um auf HTTPS umzuschalten. Port 443 oder 8443, der von ClickHouse Cloud verwendete Port, aktiviert Identität prüfen. Dabei wird das Zertifikat gegen deine CA-Datei oder den System-Vertrauensspeicher geprüft. CA prüfen braucht eine CA-Datei; Client-Zertifikat und Schlüssel ermöglichen den Zugang zu Servern mit gegenseitigem TLS.",
                 "Erreiche einen entfernten Server ohne TLS über einen <network>SSH-Tunnel</network>, statt unverschlüsseltes HTTP über das Netzwerk zu senden."
             ]
@@ -56,7 +56,7 @@
             "id": "operate",
             "title": "Überwachen",
             "paragraphs": [
-                "Das <dashboard>Server-Dashboard</dashboard> zeigt aktive Abfragen, aktive Merges, Part-Mutationen und Datenträgernutzung, listet andere Sitzungen jeweils mit <ui>Sitzung beenden</ui> auf und liest langsame Abfragen aus <code>system.query_log</code>: die zuletzt abgeschlossenen Abfragen, die länger als eine Sekunde dauerten."
+                "Das <dashboard>Server-Dashboard</dashboard> zeigt aktive Abfragen, aktive Merges, Part-Mutationen und Datenträgernutzung, listet andere Sitzungen jeweils mit <ui>Terminate Session</ui> auf und liest langsame Abfragen aus <code>system.query_log</code>: die zuletzt abgeschlossenen Abfragen, die länger als eine Sekunde dauerten."
             ]
         },
         {

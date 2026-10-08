@@ -145,10 +145,10 @@
     "switching": {
         "intro": "TablePro 從 TablePlus 儲存連線的位置讀取連線，包括 Setapp 版。TablePlus 無須開啟，檔案也不會修改。",
         "steps": [
-            "在 TablePro 中選擇 <ui>File > Import > Import from Other App…</ui>。",
-            "選擇 TablePlus，開啟 <ui>Include passwords</ui> 以讀取 macOS 鑰匙圈中儲存的密碼。",
-            "macOS 會為每個已儲存密碼要求一次登入密碼。每次提示都選擇 <ui>Always Allow</ui>。",
-            "檢查清單，決定如何處理重複項目，然後按一下 <ui>Import</ui>。群組、SSH 通道和連線顏色一併移轉。TablePro 不支援的引擎連線預設不勾選。",
+            "在 TablePro 中選擇<ui>檔案 > 匯入 > 從其他 App 匯入…</ui>（File > Import > Import from Other App…）。",
+            "選擇 TablePlus，開啟<ui>包含密碼</ui>（Include passwords）以讀取 macOS 鑰匙圈中儲存的密碼。",
+            "macOS 會為每個已儲存密碼要求一次登入密碼。每次提示都選擇<ui>永遠允許</ui>（Always Allow）。",
+            "檢查清單，決定如何處理重複項目，然後按一下<ui>匯入</ui>（Import）。群組、SSH 通道和連線顏色一併移轉。TablePro 不支援的引擎連線預設不勾選。",
             "刪除 TablePlus 前，開啟一個原本有密碼的連線，確認密碼已成功移轉。"
         ],
         "after": [

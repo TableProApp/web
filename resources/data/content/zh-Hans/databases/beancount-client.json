@@ -25,9 +25,9 @@
             "title": "打开账本",
             "paragraphs": [
                 "TablePro 运行 <code>rledger</code> 或 Python Beancount 读取账本。需要选择时请安装 rledger：两者并存时优先使用它，只有它能运行 BQL，并将验证输出填入 <code>diagnostics</code> 表。",
-                "在连接表单用 <ui>Browse…</ui> 选择文件。账本路径就是整个连接，无主机、端口、密码或数据库。<code>.beancount</code> 也可从 Finder 打开，并支持导入 <code>beancount:///path/to/main.beancount</code> URL。",
+                "在连接表单用<ui>浏览…</ui>（Browse…）选择文件。账本路径就是整个连接，无主机、端口、密码或数据库。<code>.beancount</code> 也可从 Finder 打开，并支持导入 <code>beancount:///path/to/main.beancount</code> URL。",
                 "从 Finder 打开的应用不继承 shell 的 <code>PATH</code>。若后端在 Terminal 可运行但在此不可用，请用 <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> 或 <code>TABLEPRO_BEANCOUNT_PYTHON</code> 指定并重启。",
-                "Python 后端运行 Beancount 附带插件，其他 <code>plugin</code> 指令属于第三方代码，在连接中启用 <ui>Run Ledger Plugins</ui> 前会跳过。跳过的插件列在 <code>diagnostics</code>。"
+                "Python 后端运行 Beancount 附带插件，其他 <code>plugin</code> 指令属于第三方代码，在连接中启用<ui>运行账本插件</ui>（Run Ledger Plugins）前会跳过。跳过的插件列在 <code>diagnostics</code>。"
             ]
         },
         {

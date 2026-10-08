@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Wähle eine <ui>Authentifizierungsmethode</ui> und eine <ui>AWS-Region</ui>; die Seitenleiste zeigt deren Tabellen. Möglich sind ein Zugriffsschlüssel mit optionalem Sitzungstoken, ein Profil aus <code>~/.aws/config</code> und <code>~/.aws/credentials</code>, das wie von der AWS-CLI gelesen wird, oder ein <cloudAuth>AWS-IAM-Identity-Center</cloudAuth>-Profil, das nach Ablauf seiner Sitzung die Anmeldung öffnet.",
+                "Wähle eine <ui>Auth Method</ui> und eine <ui>AWS Region</ui>; die Seitenleiste zeigt deren Tabellen. Möglich sind ein Zugriffsschlüssel mit optionalem Sitzungstoken, ein Profil aus <code>~/.aws/config</code> und <code>~/.aws/credentials</code>, das wie von der AWS-CLI gelesen wird, oder ein <cloudAuth>AWS-IAM-Identity-Center</cloudAuth>-Profil, das nach Ablauf seiner Sitzung die Anmeldung öffnet.",
                 "Profile lösen <code>credential_process</code>-Hilfsprogramme und <code>role_arn</code>-Ketten auf. Abgelaufene temporäre Zugangsdaten werden erneut abgerufen und die Anfrage einmal wiederholt. Jede Anfrage läuft über HTTPS, signiert mit Signature Version 4; es gibt daher keine SSL-Einstellung und keinen SSH-Tunnel. Eine Region in einer anderen AWS-Partition wie China oder European Sovereign Cloud erreicht ihren eigenen Endpunkt ohne benutzerdefinierten Endpunkt.",
-                "Für DynamoDB Local führe <code>docker run -p 8000:8000 amazon/dynamodb-local</code> aus und wähle <ui>DynamoDB Local (ohne Zugangsdaten)</ui>. Lasse <ui>Benutzerdefinierter Endpunkt</ui> für Port 8000 leer. Ein benutzerdefinierter Endpunkt darf unverschlüsseltes HTTP nur auf diesem Mac verwenden. Die Anleitung listet <permissions>die IAM-Aktionen für jede Aufgabe</permissions> auf."
+                "Für DynamoDB Local führe <code>docker run -p 8000:8000 amazon/dynamodb-local</code> aus und wähle <ui>DynamoDB Local (no credentials)</ui>. Lasse <ui>Custom Endpoint</ui> für Port 8000 leer. Ein benutzerdefinierter Endpunkt darf unverschlüsseltes HTTP nur auf diesem Mac verwenden. Die Anleitung listet <permissions>die IAM-Aktionen für jede Aufgabe</permissions> auf."
             ]
         },
         {
@@ -37,9 +37,9 @@
             "paragraphs": [
                 "Öffnen, Filtern und Blättern einer Tabelle laufen durch denselben Planer. Lege den Partitionsschlüssel mit = fest, und er führt Query auf einer Partition aus. Filter, die zu den Schlüsseln eines Index passen, führen Query auf diesem Index aus; alles andere führt Scan aus, liest die gesamte Tabelle und wird für jedes gelesene Element berechnet. Die Statusleiste nennt die gewählte Leseart, zurückgegebene Elemente, zum Finden gelesene Elemente und verbrauchte Lesekapazitätseinheiten.",
                 "Ein <filters>Filter</filters> auf dem Sortierschlüssel gehört zur Schlüsselbedingung, wenn er =, <, <=, >, >=, BETWEEN oder STARTS WITH nutzt. Andere Filter werden zu einer FilterExpression, die DynamoDB nach dem Lesen anwendet: Sie reduzieren Zeilen, nicht die Rechnung. Filtere verschachtelte Attribute über Pfade wie <code>address.city</code> oder <code>items[0].sku</code>.",
-                "Ein Klick auf den Sortierschlüsselkopf bei Query einer Partition lässt DynamoDB die Elemente in dieser Reihenfolge liefern. Jede andere Sortierung erfolgt im Raster, wenn die Leseoperation alle passenden Elemente enthält; die Statusleiste zeigt an, wenn das nicht der Fall ist. Die nächste Seite setzt am Ende der vorherigen fort. Die Gesamtzahl unter dem Raster stammt von DynamoDB; <ui>Exakt zählen</ui> liest jedes Element, das zu deinen Filtern passt, und wird vollständig berechnet.",
+                "Ein Klick auf den Sortierschlüsselkopf bei Query einer Partition lässt DynamoDB die Elemente in dieser Reihenfolge liefern. Jede andere Sortierung erfolgt im Raster, wenn die Leseoperation alle passenden Elemente enthält; die Statusleiste zeigt an, wenn das nicht der Fall ist. Die nächste Seite setzt am Ende der vorherigen fort. Die Gesamtzahl unter dem Raster stammt von DynamoDB; <ui>Count Exactly</ui> liest jedes Element, das zu deinen Filtern passt, und wird vollständig berechnet.",
                 "Eine Tabelle deklariert nur ihre Schlüssel; Spalten stammen daher aus den Elementen: Schlüsselattribute, Attribute aus einer Stichprobe der ersten Elemente und jene auf der sichtbaren Seite. Maps, Listen und Mengen erscheinen als JSON und öffnen im JSON-Editor; Zahlen behalten jede Ziffer.",
-                "Jede geänderte Zeile wird als eine PartiQL-Anweisung gespeichert, und <editing>jeder Wert behält seinen Typ</editing>: Number bleibt Number, ein String wie <code>02134</code> bleibt String, und ein als JSON bearbeitetes String Set wird wieder als String Set geschrieben. Eine Änderung prüft jedes betroffene Attribut gegen den geladenen Rasterwert und schlägt fehl, statt fremde Änderungen zu überschreiben. <ui>Auf NULL setzen</ui> entfernt das Attribut.",
+                "Jede geänderte Zeile wird als eine PartiQL-Anweisung gespeichert, und <editing>jeder Wert behält seinen Typ</editing>: Number bleibt Number, ein String wie <code>02134</code> bleibt String, und ein als JSON bearbeitetes String Set wird wieder als String Set geschrieben. Eine Änderung prüft jedes betroffene Attribut gegen den geladenen Rasterwert und schlägt fehl, statt fremde Änderungen zu überschreiben. <ui>Set NULL</ui> entfernt das Attribut.",
                 "Der Editor nimmt PartiQL mit doppelten Anführungszeichen für Namen und einfachen für Strings oder einen DynamoDB-Aktionsnamen mit anschließendem Anfrage-JSON entgegen, etwa <code>Query</code>, <code>BatchWriteItem</code> oder <code>TransactWriteItems</code>. Andere Aktionsnamen werden abgelehnt. Elemente erscheinen im Raster, andere Antworten als JSON. Gedrosselte Anfragen werden mit Backoff wiederholt; <code>⌘.</code> stoppt eine laufende Anweisung."
             ]
         },
@@ -47,7 +47,7 @@
             "id": "schema",
             "title": "Tabellen und Indizes",
             "paragraphs": [
-                "<ui>Neue Tabelle…</ui> öffnet ein Formular für Partitions- und Sortierschlüssel, On-Demand- oder bereitgestellte Kapazität, Tabellenklasse, Löschschutz und sekundäre Indizes. <ui>Vorschau</ui> zeigt die <code>CreateTable</code>-Anfrage vor dem Senden. Ein lokaler sekundärer Index kann nur dort beim Erstellen definiert werden.",
+                "<ui>New Table…</ui> öffnet ein Formular für Partitions- und Sortierschlüssel, On-Demand- oder bereitgestellte Kapazität, Tabellenklasse, Löschschutz und sekundäre Indizes. <ui>Preview</ui> zeigt die <code>CreateTable</code>-Anfrage vor dem Senden. Ein lokaler sekundärer Index kann nur dort beim Erstellen definiert werden.",
                 "Im Struktur-Tab fügst du einen globalen sekundären Index hinzu oder entfernst ihn, eine Änderung pro Speichern, da DynamoDB eine Indexänderung pro <code>UpdateTable</code>-Anfrage akzeptiert. Attribute werden dort nicht bearbeitet: Schreibe eines in ein Element, und es erscheint als Spalte. Der DDL-Tab zeigt die <code>CreateTable</code>-Anfrage zum Neuerstellen samt Time-to-Live- und Point-in-Time-Recovery-Einstellungen."
             ]
         },
@@ -55,7 +55,7 @@
             "id": "operate",
             "title": "Tabelleneinstellungen",
             "paragraphs": [
-                "Klicke eine Tabelle rechts an und wähle <ui>Wartung</ui> für Point-in-Time-Recovery, Löschschutz, Stream, Tabellenklasse, Wechsel zu On-Demand-Kapazität und Abschalten von Time to Live. Das Löschen sendet <code>DeleteTable</code> und schlägt bei aktivem Löschschutz fehl."
+                "Klicke eine Tabelle rechts an und wähle <ui>Maintenance</ui> für Point-in-Time-Recovery, Löschschutz, Stream, Tabellenklasse, Wechsel zu On-Demand-Kapazität und Abschalten von Time to Live. Das Löschen sendet <code>DeleteTable</code> und schlägt bei aktivem Löschschutz fehl."
             ]
         },
         {
@@ -77,7 +77,7 @@
         {
             "id": "change-key",
             "question": "Wie ändere ich den Schlüssel eines Elements?",
-            "answer": "Ein Schlüsselattribut lässt sich nicht direkt bearbeiten. Nutze <ui>Zeile duplizieren</ui>, das alle Attribute außer den Schlüsseln kopiert, gib der Kopie den neuen Schlüssel, speichere und lösche das Original."
+            "answer": "Ein Schlüsselattribut lässt sich nicht direkt bearbeiten. Nutze <ui>Duplicate Row</ui>, das alle Attribute außer den Schlüsseln kopiert, gib der Kopie den neuen Schlüssel, speichere und lösche das Original."
         },
         {
             "id": "transactions",

@@ -155,10 +155,10 @@
     "switching": {
         "intro": "TablePro importa conexiones de Navicat desde un archivo exportado en Navicat, así que el traslado empieza allí. La configuración propia de Navicat no se lee ni se modifica.",
         "steps": [
-            "En Navicat, elige <ui>Archivo > Exportar conexiones…</ui>, selecciona las conexiones, activa <ui>Exportar contraseña</ui> y guarda el archivo .ncx.",
-            "En TablePro, elige <ui>Archivo > Importar > Importar desde otra app…</ui>",
-            "Selecciona Navicat, activa <ui>Incluir contraseñas</ui>, haz clic en <ui>Continuar</ui> y elige el archivo .ncx. TablePro descifra las contraseñas guardadas, así que no hay nada que autorizar en el llavero.",
-            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Importar</ui>. Se trasladan la configuración de túneles SSH y SSL. Las conexiones a bases de datos que TablePro no admite llegan sin marcar.",
+            "En Navicat, elige <ui>File > Export Connections…</ui>, selecciona las conexiones, activa <ui>Export Password</ui> y guarda el archivo .ncx.",
+            "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
+            "Selecciona Navicat, activa <ui>Include passwords</ui>, haz clic en <ui>Continue</ui> y elige el archivo .ncx. TablePro descifra las contraseñas guardadas, así que no hay nada que autorizar en el llavero.",
+            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Import</ui>. Se trasladan la configuración de túneles SSH y SSL. Las conexiones a bases de datos que TablePro no admite llegan sin marcar.",
             "Antes de eliminar Navicat, abre una conexión que tuviera contraseña para comprobar que se ha trasladado."
         ],
         "after": [

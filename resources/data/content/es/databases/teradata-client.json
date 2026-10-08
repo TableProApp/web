@@ -28,9 +28,9 @@
             "id": "connect",
             "title": "Conecta e inicia sesión",
             "paragraphs": [
-                "Introduce host, usuario y contraseña. Funciona cualquier sistema Vantage que acepte TD2; no se comprueba versión. <ui>Mecanismo de acceso</ui> en Opciones acepta <code>TD2</code> o <code>TDNEGO</code>; <ui>Base de datos</ui> solo es necesaria si el valor predeterminado difiere del de tu cuenta.",
+                "Introduce host, usuario y contraseña. Funciona cualquier sistema Vantage que acepte TD2; no se comprueba versión. <ui>Logon Mechanism</ui> en Opciones acepta <code>TD2</code> o <code>TDNEGO</code>; <ui>Database</ui> solo es necesaria si el valor predeterminado difiere del de tu cuenta.",
                 "El puerto predeterminado lleva una sesión sin cifrar. Cualquier modo SSL la mueve al endpoint WebSocket del gateway en 443, que no se puede cambiar. Verificar CA necesita un certificado CA; Verificar identidad comprueba cadena y host con él o, sin él, con el almacén de confianza del sistema.",
-                "Deja <ui>Modo de transacción</ui> en <code>DEFAULT</code> salvo que el script requiera reglas ANSI o TERA de commit y sensibilidad a mayúsculas de sesión. Usa un <network>túnel SSH</network> para un sistema detrás de un bastión. <ui>Importar desde URL…</ui> acepta URL <code>teradata://</code>, que macOS no abre como enlaces."
+                "Deja <ui>Transaction Mode</ui> en <code>DEFAULT</code> salvo que el script requiera reglas ANSI o TERA de commit y sensibilidad a mayúsculas de sesión. Usa un <network>túnel SSH</network> para un sistema detrás de un bastión. <ui>Import from URL…</ui> acepta URL <code>teradata://</code>, que macOS no abre como enlaces."
             ]
         },
         {

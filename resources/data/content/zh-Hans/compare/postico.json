@@ -143,10 +143,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 无 Postico 导入器。将各服务器添加为连接，填表单或将 postgresql:// URL 粘贴到 <ui>File > Import > Import from URL…</ui>。",
+        "intro": "TablePro 无 Postico 导入器。将各服务器添加为连接，填表单或将 postgresql:// URL 粘贴到<ui>文件 > 导入 > 从 URL 导入…</ui>（File > Import > Import from URL…）。",
         "steps": [],
         "after": [
-            "项目在 .env 文件或 Prisma schema 保存数据库 URL 时，<ui>File > Import > Open Project Folder…</ui> 读取并打开填好的连接表单。",
+            "项目在 .env 文件或 Prisma schema 保存数据库 URL 时，<ui>文件 > 导入 > 打开项目文件夹…</ui>（File > Import > Open Project Folder…）读取并打开填好的连接表单。",
             "密码保存至 macOS 钥匙串，PostgreSQL 连接也读取 ~/.pgpass。",
             "TablePro 查询历史从头开始。"
         ],

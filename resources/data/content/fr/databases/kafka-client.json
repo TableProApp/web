@@ -23,9 +23,9 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Saisissez l’hôte et le port d’un broker ; le reste du cluster est découvert à partir de lui. <ui>Serveurs bootstrap supplémentaires</ui> liste les brokers à essayer si le premier ne répond pas. Une connexion correspond à un cluster ; il n’y a donc pas de champ Base de données et la barre latérale affiche directement ses topics.",
-                "Le <ui>Protocole de sécurité</ui> est PLAINTEXT, SSL, SASL_PLAINTEXT ou SASL_SSL ; le <ui>Mécanisme SASL</ui> est PLAIN, SCRAM-SHA-256 ou SCRAM-SHA-512. PLAIN convient à Confluent Cloud, SCRAM à Amazon MSK et aux brokers autohébergés. Avec SSL ou SASL_SSL sans mode SSL choisi, la chaîne de certificats et le nom d’hôte sont vérifiés. Une AC privée va dans <ui>Certificat d’AC</ui> ; certificat client et clé ajoutent TLS mutuel.",
-                "Avec un <network>tunnel SSH</network>, la connexion reste sur le broker bootstrap et ne lit donc que les partitions dont il est leader. <ui>Importer depuis une URL…</ui> accepte les URL <code>kafka://</code>, que macOS n’ouvre pas comme liens."
+                "Saisissez l’hôte et le port d’un broker ; le reste du cluster est découvert à partir de lui. <ui>Serveurs bootstrap supplémentaires</ui> (Additional Bootstrap Servers) liste les brokers à essayer si le premier ne répond pas. Une connexion correspond à un cluster ; il n’y a donc pas de champ Base de données et la barre latérale affiche directement ses topics.",
+                "Le <ui>Protocole de sécurité</ui> (Security Protocol) est PLAINTEXT, SSL, SASL_PLAINTEXT ou SASL_SSL ; le <ui>Mécanisme SASL</ui> (SASL Mechanism) est PLAIN, SCRAM-SHA-256 ou SCRAM-SHA-512. PLAIN convient à Confluent Cloud, SCRAM à Amazon MSK et aux brokers autohébergés. Avec SSL ou SASL_SSL sans mode SSL choisi, la chaîne de certificats et le nom d’hôte sont vérifiés. Une AC privée va dans <ui>Certificat d’autorité (CA)</ui> (CA Certificate) ; certificat client et clé ajoutent TLS mutuel.",
+                "Avec un <network>tunnel SSH</network>, la connexion reste sur le broker bootstrap et ne lit donc que les partitions dont il est leader. <ui>Importer depuis une URL…</ui> (Import from URL…) accepte les URL <code>kafka://</code>, que macOS n’ouvre pas comme liens."
             ]
         },
         {
@@ -60,7 +60,7 @@
         {
             "id": "advertised-addresses",
             "question": "Pourquoi les topics chargent-ils mais les messages expirent ?",
-            "answer": "Le cluster annonce des adresses inaccessibles depuis ce Mac, comme un nom de conteneur ou une IP privée. Corrigez <code>advertised.listeners</code> ou définissez <ui>Adresses des brokers</ui> pour n’utiliser que l’adresse bootstrap."
+            "answer": "Le cluster annonce des adresses inaccessibles depuis ce Mac, comme un nom de conteneur ou une IP privée. Corrigez <code>advertised.listeners</code> ou définissez <ui>Adresses des brokers</ui> (Broker Addresses) pour n’utiliser que l’adresse bootstrap."
         },
         {
             "id": "msk-iam",

@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "클러스터 호스트·REST 포트를 입력하고 <ui>Auth Method</ui>를 고르세요. Username & Password는 HTTP Basic, API Key는 <code>Authorization: ApiKey</code> 헤더로 보내니 API 키 생성 요청이 반환한 <code>encoded</code> 값을 붙여 넣으세요. None은 보안을 끈 개발 클러스터용입니다. 한 클러스터에 연결하므로 Database 필드는 없습니다.",
+                "클러스터 호스트·REST 포트를 입력하고 <ui>인증 방식</ui>(Auth Method)을 고르세요. Username & Password는 HTTP Basic, API Key는 <code>Authorization: ApiKey</code> 헤더로 보내니 API 키 생성 요청이 반환한 <code>encoded</code> 값을 붙여 넣으세요. None은 보안을 끈 개발 클러스터용입니다. 한 클러스터에 연결하므로 Database 필드는 없습니다.",
                 "새 연결의 SSL Disabled는 평문 HTTP입니다. 나머지는 HTTPS로 Preferred·Required (skip verify)는 자체 서명 인증서를 허용하고 Verify CA·Verify Identity는 검사합니다. Elasticsearch 8.x는 기본적으로 보안·TLS를 켜므로 보통 HTTPS와 자격 증명이 필요합니다."
             ]
         },

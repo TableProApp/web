@@ -139,9 +139,9 @@
     "switching": {
         "intro": "TablePro liest Verbindungen aus deinem DBeaver-Workspace, Community oder bezahlt. DBeaver muss nicht offen sein; Dateien bleiben unverändert.",
         "steps": [
-            "Wähle in TablePro <ui>Ablage > Importieren > Aus anderer App importieren…</ui>",
-            "Wähle DBeaver und aktiviere <ui>Passwörter einschließen</ui>. TablePro entschlüsselt gespeicherte Passwörter; im Schlüsselbund ist nichts zu genehmigen.",
-            "Prüfe Liste und Duplikate und klicke <ui>Importieren</ui>. Ordner werden Gruppen, SSH-Einstellungen werden übernommen. Nicht unterstützte Datenbanken sind abgewählt.",
+            "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
+            "Wähle DBeaver und aktiviere <ui>Include passwords</ui>. TablePro entschlüsselt gespeicherte Passwörter; im Schlüsselbund ist nichts zu genehmigen.",
+            "Prüfe Liste und Duplikate und klicke <ui>Import</ui>. Ordner werden Gruppen, SSH-Einstellungen werden übernommen. Nicht unterstützte Datenbanken sind abgewählt.",
             "Öffne vor dem Entfernen von DBeaver eine Verbindung mit Passwort zum Prüfen der Übernahme."
         ],
         "after": [

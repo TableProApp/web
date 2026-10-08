@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Choisissez une <ui>Méthode d’authentification</ui> et une <ui>Région AWS</ui> ; la barre latérale liste ses tables. Les méthodes sont une clé d’accès avec jeton de session facultatif, un profil de <code>~/.aws/config</code> et <code>~/.aws/credentials</code> lu comme par la CLI AWS, ou un profil <cloudAuth>AWS IAM Identity Center</cloudAuth> qui ouvre l’invite de connexion lorsque sa session expire.",
+                "Choisissez une <ui>Méthode d’authentification</ui> (Auth Method) et une <ui>Région AWS</ui> (AWS Region) ; la barre latérale liste ses tables. Les méthodes sont une clé d’accès avec jeton de session facultatif, un profil de <code>~/.aws/config</code> et <code>~/.aws/credentials</code> lu comme par la CLI AWS, ou un profil <cloudAuth>AWS IAM Identity Center</cloudAuth> qui ouvre l’invite de connexion lorsque sa session expire.",
                 "Les profils résolvent les auxiliaires <code>credential_process</code> et les chaînes <code>role_arn</code> ; les identifiants temporaires expirés sont récupérés à nouveau et la requête réessayée une fois. Chaque requête passe par HTTPS, signée avec Signature Version 4 ; il n’y a donc ni réglage SSL ni tunnel SSH. Une région d’une autre partition AWS, comme la Chine ou European Sovereign Cloud, utilise son propre point de terminaison sans configuration personnalisée.",
-                "Pour DynamoDB Local, exécutez <code>docker run -p 8000:8000 amazon/dynamodb-local</code> et choisissez <ui>DynamoDB Local (sans identifiants)</ui> ; laissez <ui>Point de terminaison personnalisé</ui> vide pour le port 8000. Un point personnalisé ne peut utiliser HTTP en clair que sur ce Mac. Le guide liste <permissions>les actions IAM nécessaires à chaque tâche</permissions>."
+                "Pour DynamoDB Local, exécutez <code>docker run -p 8000:8000 amazon/dynamodb-local</code> et choisissez <ui>DynamoDB Local (sans identifiants)</ui> (DynamoDB Local (no credentials)) ; laissez <ui>Point de terminaison personnalisé</ui> (Custom Endpoint) vide pour le port 8000. Un point personnalisé ne peut utiliser HTTP en clair que sur ce Mac. Le guide liste <permissions>les actions IAM nécessaires à chaque tâche</permissions>."
             ]
         },
         {
@@ -37,9 +37,9 @@
             "paragraphs": [
                 "L’ouverture, le filtrage et la pagination d’une table passent par un même planificateur. Fixez la clé de partition avec = pour une Query sur une partition ; les filtres correspondant aux clés d’un index lancent Query sur cet index ; tout le reste lance Scan, qui lit toute la table et facture chaque élément lu. La barre d’état indique la lecture choisie, les éléments retournés, ceux lus par DynamoDB pour les trouver et les unités de capacité consommées.",
                 "Un <filters>filtre</filters> sur la clé de tri rejoint la condition de clé s’il utilise =, <, <=, >, >=, BETWEEN ou STARTS WITH. Les autres deviennent une FilterExpression appliquée par DynamoDB après lecture : ils réduisent les lignes, pas la facture. Filtrez un attribut imbriqué avec un chemin comme <code>address.city</code> ou <code>items[0].sku</code>.",
-                "Cliquer sur l’en-tête de la clé de tri lors d’une Query d’une partition fait retourner les éléments dans cet ordre par DynamoDB. Les autres tris se font dans la grille si la lecture contient tous les éléments correspondants ; la barre d’état indique sinon le contraire. La page suivante reprend où la précédente s’arrête. Le total sous la grille est le comptage de DynamoDB ; <ui>Compter exactement</ui> lit tous les éléments correspondant aux filtres, et cette lecture est intégralement facturée.",
+                "Cliquer sur l’en-tête de la clé de tri lors d’une Query d’une partition fait retourner les éléments dans cet ordre par DynamoDB. Les autres tris se font dans la grille si la lecture contient tous les éléments correspondants ; la barre d’état indique sinon le contraire. La page suivante reprend où la précédente s’arrête. Le total sous la grille est le comptage de DynamoDB ; <ui>Compter exactement</ui> (Count Exactly) lit tous les éléments correspondant aux filtres, et cette lecture est intégralement facturée.",
                 "Une table ne déclare que ses clés ; les colonnes viennent donc des éléments : attributs de clé, attributs d’un échantillon des premiers éléments et ceux de la page visible. Maps, listes et ensembles s’affichent en JSON et s’ouvrent dans l’éditeur JSON ; les nombres conservent tous leurs chiffres.",
-                "Chaque ligne modifiée s’enregistre comme une instruction PartiQL et <editing>chaque valeur conserve son type</editing> : Number reste Number, un String tel que <code>02134</code> reste String et un String Set modifié en JSON revient comme String Set. Une mise à jour compare chaque attribut modifié à la valeur chargée dans la grille : elle échoue plutôt que d’écraser une modification d’autrui. <ui>Définir NULL</ui> retire l’attribut.",
+                "Chaque ligne modifiée s’enregistre comme une instruction PartiQL et <editing>chaque valeur conserve son type</editing> : Number reste Number, un String tel que <code>02134</code> reste String et un String Set modifié en JSON revient comme String Set. Une mise à jour compare chaque attribut modifié à la valeur chargée dans la grille : elle échoue plutôt que d’écraser une modification d’autrui. <ui>Définir sur NULL</ui> (Set NULL) retire l’attribut.",
                 "L’éditeur accepte PartiQL, avec guillemets doubles pour les noms et simples pour les chaînes, ou un nom d’action DynamoDB suivi du JSON de requête, comme <code>Query</code>, <code>BatchWriteItem</code> ou <code>TransactWriteItems</code>. Tout autre nom d’action est refusé. Les éléments reviennent dans la grille et les autres réponses en JSON. Les requêtes limitées sont réessayées avec attente progressive et <code>⌘.</code> arrête une instruction en cours."
             ]
         },
@@ -47,7 +47,7 @@
             "id": "schema",
             "title": "Tables et index",
             "paragraphs": [
-                "<ui>Nouvelle table…</ui> ouvre un formulaire pour les clés de partition et de tri, la capacité à la demande ou provisionnée, la classe de table, la protection contre suppression et les index secondaires ; <ui>Aperçu</ui> montre la requête <code>CreateTable</code> avant envoi. Un index secondaire local ne peut être défini qu’ici, lors de la création.",
+                "<ui>Nouvelle table…</ui> (New Table…) ouvre un formulaire pour les clés de partition et de tri, la capacité à la demande ou provisionnée, la classe de table, la protection contre suppression et les index secondaires ; <ui>Aperçu</ui> (Preview) montre la requête <code>CreateTable</code> avant envoi. Un index secondaire local ne peut être défini qu’ici, lors de la création.",
                 "Dans Structure, vous ajoutez ou supprimez un index secondaire global, une modification par enregistrement, car DynamoDB en accepte une par requête <code>UpdateTable</code>. Les attributs ne s’y modifient pas : écrivez-en un dans un élément pour qu’il apparaisse comme colonne. DDL affiche la requête <code>CreateTable</code> recréant la table, avec ses paramètres Time to Live et de restauration à un instant donné."
             ]
         },
@@ -77,7 +77,7 @@
         {
             "id": "change-key",
             "question": "Comment changer la clé d’un élément ?",
-            "answer": "Un attribut de clé ne se modifie pas sur place. Utilisez <ui>Dupliquer la ligne</ui>, qui copie tous les attributs sauf les clés, donnez sa nouvelle clé à la copie, enregistrez, puis supprimez l’original."
+            "answer": "Un attribut de clé ne se modifie pas sur place. Utilisez <ui>Dupliquer la ligne</ui> (Duplicate Row), qui copie tous les attributs sauf les clés, donnez sa nouvelle clé à la copie, enregistrez, puis supprimez l’original."
         },
         {
             "id": "transactions",

@@ -35,7 +35,7 @@
         "paragraphs": [
             "撰寫含語法醒目提示的 SQL、執行查詢並在執行時停止。可從 SELECT 範本開始，將結果以 JSON、CSV 或 SQL INSERT 陳述式透過剪貼簿或分享面板複製、分享。",
             "App 最多保留 {results} 列結果；加入 LIMIT 可查看大型結果的其他部分。歷史紀錄跨連線保存此裝置最近 {history} 個查詢，不會同步。",
-            "查詢執行時，即時動態會在鎖定畫面和動態島上顯示進度：耗時及已接收列數。除非開啟 <ui>Settings > Live Activities > Hide Query</ui>，鎖定畫面和展開的動態島也會顯示 SQL。"
+            "查詢執行時，即時動態會在鎖定畫面和動態島上顯示進度：耗時及已接收列數。除非開啟<ui>設定 > 即時動態 > 隱藏查詢</ui>（Settings > Live Activities > Hide Query），鎖定畫面和展開的動態島也會顯示 SQL。"
         ]
     },
     "security": {
@@ -51,7 +51,7 @@
         "paragraphs": [
             "每個連線都有安全模式等級：{levels}。Confirm Writes 會在執行修改資料的陳述式前詢問；Read-Only 在陳述式傳送至伺服器前拒絕。App 無法判定為讀取的陳述式均視為寫入。",
             "在連線的 Organization 區域設定等級，在 Settings 中設定新連線的預設等級。新增列的捷徑也遵循相同等級。",
-            "在 <ui>Settings > Security</ui> 中使用 Face ID 或 Touch ID 鎖定 App，密碼可作為備用驗證方式。開啟後，每次啟動及經過所選 Auto-Lock 時長後都會要求驗證。"
+            "在<ui>設定 > 安全性</ui>（Settings > Security）中使用 Face ID 或 Touch ID 鎖定 App，密碼可作為備用驗證方式。開啟後，每次啟動及經過所選 Auto-Lock 時長後都會要求驗證。"
         ]
     },
     "ipad": {
@@ -97,7 +97,7 @@
     "privacy": {
         "title": "隱私權",
         "paragraphs": [
-            "除非在設定時或之後的 <ui>Settings > Privacy</ui> 中開啟 Share Usage Data，否則不會向 TablePro 傳送資訊。開啟後，每天傳送一次報告，含雜湊後的裝置 ID、App 和 iOS 版本、處理器架構、語言、所用資料庫類型、連線數量及若干首次使用日期。從不包含主機名稱、使用者名稱、密碼、查詢或列資料。",
+            "除非在設定時或之後的<ui>設定 > 隱私權</ui>（Settings > Privacy）中開啟 Share Usage Data，否則不會向 TablePro 傳送資訊。開啟後，每天傳送一次報告，含雜湊後的裝置 ID、App 和 iOS 版本、處理器架構、語言、所用資料庫類型、連線數量及若干首次使用日期。從不包含主機名稱、使用者名稱、密碼、查詢或列資料。",
             "App 不進行授權驗證、更新檢查或外掛程式請求。查詢發往您自己的伺服器，iCloud 同步發往您自己的 iCloud 帳戶，Entra 登入發往 Microsoft。詳情見<privacyIos>隱私權政策</privacyIos>。"
         ]
     },

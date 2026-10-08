@@ -135,7 +135,7 @@
                     "question": "비밀번호는 어디에 저장되나요?",
                     "answer": [
                         "Mac에서는 macOS 키체인에 저장합니다. 연결할 때 파일, 환경 변수, 셸 명령, 1Password, HashiCorp Vault 또는 AWS Secrets Manager에서 비밀번호를 읽도록 설정할 수도 있습니다. iPhone 및 iPad에서는 기기의 키체인에 보관합니다.",
-                        "iCloud 동기화를 켜도 Mac의 Sync Categories에서 <ui>Passwords</ui> 또는 iPhone·iPad의 <ui>Sync Passwords</ui>를 추가로 켜야 iCloud 키체인으로 비밀번호가 동기화됩니다."
+                        "iCloud 동기화를 켜도 Mac의 Sync Categories에서 <ui>암호</ui>(Passwords) 또는 iPhone·iPad의 <ui>암호 동기화</ui>(Sync Passwords)를 추가로 켜야 iCloud 키체인으로 비밀번호가 동기화됩니다."
                     ]
                 },
                 {
@@ -227,7 +227,7 @@
                     "id": "what-is-sent",
                     "question": "앱은 TablePro에 무엇을 전송하나요?",
                     "answer": [
-                        "라이선스를 활성화하지 않으면 Mac 앱이 TablePro에 보내는 요청은 하루 한 번의 사용 보고서뿐입니다. 기본적으로 켜져 있으며 <ui>Settings > General > Privacy</ui>에서 변경할 수 있습니다. 해시된 기기 ID와 앱 버전, 언어, 연결하는 데이터베이스 유형 등을 포함하며 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 포함하지 않습니다.",
+                        "라이선스를 활성화하지 않으면 Mac 앱이 TablePro에 보내는 요청은 하루 한 번의 사용 보고서뿐입니다. 기본적으로 켜져 있으며 <ui>설정 > 일반 > 개인정보 보호</ui>(Settings > General > Privacy)에서 변경할 수 있습니다. 해시된 기기 ID와 앱 버전, 언어, 연결하는 데이터베이스 유형 등을 포함하며 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 포함하지 않습니다.",
                         "라이선스가 있으면 Mac 앱은 {revalidateDays}일마다 키, 같은 기기 ID, Mac 이름 및 앱·macOS 버전을 보내 확인합니다. iPhone 및 iPad는 Share Usage Data를 켜지 않으면 TablePro에 아무것도 보내지 않습니다. 서버에 저장되는 내용까지 포함한 전체 목록은 <privacy>개인정보 처리방침</privacy>에 있습니다."
                     ]
                 },
@@ -249,7 +249,7 @@
                     "id": "icloud-data",
                     "question": "iCloud 동기화는 무엇을 어디에 저장하나요?",
                     "answer": [
-                        "iCloud 동기화는 사용자가 켤 때까지 꺼져 있습니다. 동기화된 연결과 Mac에서 선택한 다른 범주는 본인의 iCloud 계정 내 비공개 데이터베이스로 전송되며 TablePro는 읽을 수 없습니다. 비밀번호는 Mac의 Sync Categories에서 <ui>Passwords</ui> 또는 iPhone·iPad의 <ui>Sync Passwords</ui>를 추가로 켜야 동기화됩니다.",
+                        "iCloud 동기화는 사용자가 켤 때까지 꺼져 있습니다. 동기화된 연결과 Mac에서 선택한 다른 범주는 본인의 iCloud 계정 내 비공개 데이터베이스로 전송되며 TablePro는 읽을 수 없습니다. 비밀번호는 Mac의 Sync Categories에서 <ui>암호</ui>(Passwords) 또는 iPhone·iPad의 <ui>암호 동기화</ui>(Sync Passwords)를 추가로 켜야 동기화됩니다.",
                         "Mac의 iCloud 동기화는 Starter 또는 Team 라이선스에 포함됩니다. iPhone 및 iPad에서는 무료입니다."
                     ]
                 }
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "팀원을 어떻게 추가하거나 제거하나요?",
                     "answer": [
-                        "<account>계정</account>에서 이메일로 초대하세요. 상대방은 받은 코드를 Mac의 TablePro에서 <ui>Settings > License</ui>에 입력하고 Mac은 한 좌석을 사용합니다. 구성원을 제거하면 좌석이 확보되고 해당 Mac은 로그아웃되며 Team Library에 게시한 내용이 삭제됩니다."
+                        "<account>계정</account>에서 이메일로 초대하세요. 상대방은 받은 코드를 Mac의 TablePro에서 <ui>설정 > 라이선스</ui>(Settings > License)에 입력하고 Mac은 한 좌석을 사용합니다. 구성원을 제거하면 좌석이 확보되고 해당 Mac은 로그아웃되며 Team Library에 게시한 내용이 삭제됩니다."
                     ]
                 },
                 {

@@ -17,9 +17,9 @@
             "id": "organize",
             "title": "Eine Bibliothek deiner Verbindungen",
             "paragraphs": [
-                "Jede Verbindung wird in einem Formular mit den Tabs Allgemein, Netzwerk, Optionen und Erscheinungsbild bearbeitet. Importiere eine Verbindungs-URL, einschließlich <code>jdbc:</code>-URLs und <code>+ssh</code>-URLs mit SSH-Zwischenstation, und das Formular wird automatisch ausgefüllt. Liegt bereits eine URL in der Zwischenablage, bietet es <ui>URL aus Zwischenablage verwenden</ui> an.",
-                "Gib einer Verbindung eine Farbe, beliebig viele Tags und einen Platz in verschachtelten Gruppen und markiere häufig genutzte Verbindungen als Favoriten. Umgebungen sind Tags: Lokal, Entwicklung, Produktion und Test sind bereits vorhanden; eigene kannst du hinzufügen. Eine leere Bibliothek bietet <ui>Beispieldatenbank öffnen</ui> an, eine mitgelieferte SQLite-Kopie von Chinook.",
-                "Öffne mehrere Verbindungen in einem Fenster. Über die Verbindungsleiste am linken Rand wechselst du zwischen ihnen; jede Verbindung kehrt zum zuletzt verwendeten Tab zurück. Mit <ui>In neuem Fenster öffnen</ui> kannst du Verbindungen nebeneinander anzeigen."
+                "Jede Verbindung wird in einem Formular mit den Tabs Allgemein, Netzwerk, Optionen und Erscheinungsbild bearbeitet. Importiere eine Verbindungs-URL, einschließlich <code>jdbc:</code>-URLs und <code>+ssh</code>-URLs mit SSH-Zwischenstation, und das Formular wird automatisch ausgefüllt. Liegt bereits eine URL in der Zwischenablage, bietet es <ui>Use clipboard URL</ui> an.",
+                "Gib einer Verbindung eine Farbe, beliebig viele Tags und einen Platz in verschachtelten Gruppen und markiere häufig genutzte Verbindungen als Favoriten. Umgebungen sind Tags: Lokal, Entwicklung, Produktion und Test sind bereits vorhanden; eigene kannst du hinzufügen. Eine leere Bibliothek bietet <ui>Open Sample Database</ui> an, eine mitgelieferte SQLite-Kopie von Chinook.",
+                "Öffne mehrere Verbindungen in einem Fenster. Über die Verbindungsleiste am linken Rand wechselst du zwischen ihnen; jede Verbindung kehrt zum zuletzt verwendeten Tab zurück. Mit <ui>Open in New Window</ui> kannst du Verbindungen nebeneinander anzeigen."
             ],
             "asset": "mac-connection-library"
         },
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Aus einem anderen Datenbankclient",
                     "paragraphs": [
-                        "<ui>Aus anderer App importieren</ui> liest die in {connectionImportApps} gespeicherten Verbindungen, einschließlich der Setapp-Ausgabe von TablePlus, und übernimmt dort gespeicherte Passwörter, auch die verschlüsselten Passwörter von DBeaver und Navicat. Navicat-Verbindungen werden aus einer <code>.ncx</code>-Exportdatei gelesen."
+                        "<ui>Import from Other App</ui> liest die in {connectionImportApps} gespeicherten Verbindungen, einschließlich der Setapp-Ausgabe von TablePlus, und übernimmt dort gespeicherte Passwörter, auch die verschlüsselten Passwörter von DBeaver und Navicat. Navicat-Verbindungen werden aus einer <code>.ncx</code>-Exportdatei gelesen."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "Aus den Konfigurationsdateien eines Projekts",
                     "paragraphs": [
-                        "<ui>Projektordner öffnen</ui> sucht nach Datenbankeinstellungen in <code>.env</code>, <code>wp-config.php</code>, einem Prisma-Schema, Rails’ <code>config/database.yml</code>, <code>docker-compose.yml</code>, Springs <code>application.properties</code> oder <code>application.yml</code> sowie <code>appsettings.json</code>. Jeder gefundene Satz wird mit seiner Quelldatei aufgelistet; deine Auswahl füllt das Verbindungsformular aus, und Passwörter landen direkt im Schlüsselbund. Steht <code>prod</code>, <code>production</code> oder <code>live</code> als ganzes Wort im Dateipfad, Host oder Datenbanknamen, beginnt die Verbindung auf der Stufe Warnung des sicheren Modus."
+                        "<ui>Open Project Folder</ui> sucht nach Datenbankeinstellungen in <code>.env</code>, <code>wp-config.php</code>, einem Prisma-Schema, Rails’ <code>config/database.yml</code>, <code>docker-compose.yml</code>, Springs <code>application.properties</code> oder <code>application.yml</code> sowie <code>appsettings.json</code>. Jeder gefundene Satz wird mit seiner Quelldatei aufgelistet; deine Auswahl füllt das Verbindungsformular aus, und Passwörter landen direkt im Schlüsselbund. Steht <code>prod</code>, <code>production</code> oder <code>live</code> als ganzes Wort im Dateipfad, Host oder Datenbanknamen, beginnt die Verbindung auf der Stufe Warnung des sicheren Modus."
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -56,7 +56,7 @@
                     "id": "aws",
                     "title": "Aus deinem AWS-Konto",
                     "paragraphs": [
-                        "<ui>Aus AWS importieren</ui> listet die RDS-Instanzen und Aurora-Cluster auf, die ein AWS-Profil in den gewählten Regionen sehen kann, und fügt deine Auswahl hinzu. Das Profil benötigt <code>rds:DescribeDBInstances</code> und <code>rds:DescribeDBClusters</code>."
+                        "<ui>Import from AWS</ui> listet die RDS-Instanzen und Aurora-Cluster auf, die ein AWS-Profil in den gewählten Regionen sehen kann, und fügt deine Auswahl hinzu. Das Profil benötigt <code>rds:DescribeDBInstances</code> und <code>rds:DescribeDBClusters</code>."
                     ]
                 }
             ]

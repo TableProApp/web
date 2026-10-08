@@ -17,9 +17,9 @@
             "id": "organize",
             "title": "Conservez une bibliothèque de connexions",
             "paragraphs": [
-                "Chaque connexion se modifie dans un formulaire unique avec les onglets Général, Réseau, Options et Apparence. Importez une URL de connexion, y compris une URL <code>jdbc:</code> ou <code>+ssh</code> contenant un rebond SSH, et le formulaire se remplit automatiquement ; si une URL est déjà dans le presse-papiers, le formulaire propose <ui>Utiliser l’URL du presse-papiers</ui>.",
-                "Attribuez à chaque connexion une couleur, autant d’étiquettes que vous le souhaitez et une place dans des groupes imbriqués, puis marquez vos connexions fréquentes comme favorites. Les environnements sont des étiquettes : local, développement, production et test sont prédéfinis, et vous pouvez ajouter les vôtres. Une bibliothèque vide propose <ui>Ouvrir une base de données d’exemple</ui>, une copie SQLite de Chinook intégrée à l’app.",
-                "Ouvrez plusieurs connexions dans une fenêtre. La barre de connexions sur le bord gauche permet de passer de l’une à l’autre, et chaque connexion retrouve le dernier onglet utilisé. <ui>Ouvrir dans une nouvelle fenêtre</ui> permet de les afficher côte à côte."
+                "Chaque connexion se modifie dans un formulaire unique avec les onglets Général, Réseau, Options et Apparence. Importez une URL de connexion, y compris une URL <code>jdbc:</code> ou <code>+ssh</code> contenant un rebond SSH, et le formulaire se remplit automatiquement ; si une URL est déjà dans le presse-papiers, le formulaire propose <ui>Utiliser l’URL du presse-papiers</ui> (Use clipboard URL).",
+                "Attribuez à chaque connexion une couleur, autant d’étiquettes que vous le souhaitez et une place dans des groupes imbriqués, puis marquez vos connexions fréquentes comme favorites. Les environnements sont des étiquettes : local, développement, production et test sont prédéfinis, et vous pouvez ajouter les vôtres. Une bibliothèque vide propose <ui>Ouvrir la base de données d’exemple</ui> (Open Sample Database), une copie SQLite de Chinook intégrée à l’app.",
+                "Ouvrez plusieurs connexions dans une fenêtre. La barre de connexions sur le bord gauche permet de passer de l’une à l’autre, et chaque connexion retrouve le dernier onglet utilisé. <ui>Ouvrir dans une nouvelle fenêtre</ui> (Open in New Window) permet de les afficher côte à côte."
             ],
             "asset": "mac-connection-library"
         },
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Depuis un autre client de bases de données",
                     "paragraphs": [
-                        "<ui>Importer depuis une autre app</ui> lit les connexions enregistrées dans {connectionImportApps}, y compris l’édition Setapp de TablePlus, et récupère les mots de passe lorsque l’app les a stockés, y compris les mots de passe chiffrés de DBeaver et Navicat. Les connexions Navicat proviennent d’un fichier d’export <code>.ncx</code>."
+                        "<ui>Importer depuis une autre app</ui> (Import from Other App) lit les connexions enregistrées dans {connectionImportApps}, y compris l’édition Setapp de TablePlus, et récupère les mots de passe lorsque l’app les a stockés, y compris les mots de passe chiffrés de DBeaver et Navicat. Les connexions Navicat proviennent d’un fichier d’export <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "Depuis les fichiers de configuration d’un projet",
                     "paragraphs": [
-                        "<ui>Ouvrir un dossier de projet</ui> recherche les paramètres de base de données dans <code>.env</code>, <code>wp-config.php</code>, un schéma Prisma, le fichier Rails <code>config/database.yml</code>, <code>docker-compose.yml</code>, les fichiers Spring <code>application.properties</code> ou <code>application.yml</code> et <code>appsettings.json</code>. Chaque configuration trouvée est affichée avec son fichier d’origine ; celle que vous choisissez remplit le formulaire de connexion et les mots de passe vont directement dans le Trousseau. Si <code>prod</code>, <code>production</code> ou <code>live</code> apparaît comme mot entier dans le chemin du fichier, l’hôte ou le nom de la base, cette connexion commence au niveau Alerte du Mode sécurisé."
+                        "<ui>Ouvrir le dossier du projet</ui> (Open Project Folder) recherche les paramètres de base de données dans <code>.env</code>, <code>wp-config.php</code>, un schéma Prisma, le fichier Rails <code>config/database.yml</code>, <code>docker-compose.yml</code>, les fichiers Spring <code>application.properties</code> ou <code>application.yml</code> et <code>appsettings.json</code>. Chaque configuration trouvée est affichée avec son fichier d’origine ; celle que vous choisissez remplit le formulaire de connexion et les mots de passe vont directement dans le Trousseau. Si <code>prod</code>, <code>production</code> ou <code>live</code> apparaît comme mot entier dans le chemin du fichier, l’hôte ou le nom de la base, cette connexion commence au niveau Alerte du Mode sécurisé."
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -56,7 +56,7 @@
                     "id": "aws",
                     "title": "Depuis votre compte AWS",
                     "paragraphs": [
-                        "<ui>Importer depuis AWS</ui> répertorie les instances RDS et les clusters Aurora visibles par un profil AWS dans les régions sélectionnées, puis ajoute ceux que vous choisissez. Le profil doit disposer de <code>rds:DescribeDBInstances</code> et <code>rds:DescribeDBClusters</code>."
+                        "<ui>Importer depuis AWS</ui> (Import from AWS) répertorie les instances RDS et les clusters Aurora visibles par un profil AWS dans les régions sélectionnées, puis ajoute ceux que vous choisissez. Le profil doit disposer de <code>rds:DescribeDBInstances</code> et <code>rds:DescribeDBClusters</code>."
                     ]
                 }
             ]

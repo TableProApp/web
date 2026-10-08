@@ -28,16 +28,16 @@
             "title": "连接和登录",
             "paragraphs": [
                 "填写账户标识符，例如 <code>myorg-myaccount</code> 或旧式 <code>xy12345.us-east-1</code>，即 <code>.snowflakecomputing.com</code> 前的部分。所有请求经 HTTPS 发送至账户端点，因此无主机、SSL 区域或 SSH 面板。",
-                "选择 <ui>Auth Method</ui> 后仅显示所需字段。密钥对使用 PKCS#8 私钥为每次连接签名，因此 Mac 时钟必须准确。浏览器 SSO 前往身份提供商，OAuth 令牌按粘贴内容使用且从不刷新。账户强制 MFA 时，密码需配合 <ui>MFA Passcode (TOTP)</ui> 中的当前验证码。",
+                "选择<ui>认证方式</ui>（Auth Method）后仅显示所需字段。密钥对使用 PKCS#8 私钥为每次连接签名，因此 Mac 时钟必须准确。浏览器 SSO 前往身份提供商，OAuth 令牌按粘贴内容使用且从不刷新。账户强制 MFA 时，密码需配合 <ui>MFA 验证码（TOTP）</ui>（MFA Passcode (TOTP)）中的当前验证码。",
                 "账户开启 <code>ALLOW_CLIENT_MFA_CACHING</code> 时，一次新验证码即可：Snowflake 返回 MFA 令牌，TablePro 保存在<credentials>钥匙串</credentials>。启用 <code>ALLOW_ID_TOKEN</code> 时，浏览器 SSO 保存登录令牌，后续连接跳过浏览器直到 Snowflake 拒绝。",
-                "Snowflake 无 URL scheme。可在 <ui>CLI Connection Name</ui> 指定配置节，连接时从 <code>~/.snowflake/connections.toml</code> 读取所有留空字段。"
+                "Snowflake 无 URL scheme。可在 <ui>CLI连接名称</ui>（CLI Connection Name）指定配置节，连接时从 <code>~/.snowflake/connections.toml</code> 读取所有留空字段。"
             ]
         },
         {
             "id": "work",
             "title": "仓库、角色和查询",
             "paragraphs": [
-                "<ui>Database > Session Context</ui> 用 <code>USE WAREHOUSE</code>、<code>USE ROLE</code> 无需重连切换仓库或角色。一个 TablePro 连接对应一个 Snowflake 会话，空闲时仍保持。绑定第二个数据库的标签页在同一会话中先执行 <code>USE DATABASE</code>。",
+                "<ui>数据库 > Session Context</ui>（Database > Session Context）用 <code>USE WAREHOUSE</code>、<code>USE ROLE</code> 无需重连切换仓库或角色。一个 TablePro 连接对应一个 Snowflake 会话，空闲时仍保持。绑定第二个数据库的标签页在同一会话中先执行 <code>USE DATABASE</code>。",
                 "侧栏按数据库和 schema 分组对象。对象列表来自不需仓库的 <code>SHOW</code> 命令，列详情来自需要仓库的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 返回 Snowflake 原始文本计划。",
                 "<editing>网格编辑</editing>在服务器绑定值，VARIANT、OBJECT、ARRAY 单元格通过 <code>PARSE_JSON</code> 发送。编辑按声明主键定位，无主键则按所有列。Snowflake 从不强制键约束，重复键意味着编辑或删除影响所有匹配行，请先检查重复。"
             ]
@@ -55,7 +55,7 @@
             "title": "移动数据",
             "paragraphs": [
                 "通过连接<importData>导入</importData> {importFormats}，将表或结果以 {exportFormats} 导出到 Mac。",
-                "要不经 Mac 卸载表，选择 <ui>File > Server-Side Export…</ui>，指定 stage，可带或不带 <code>@</code>。<backup>Server-Side Export</backup> 以自有权限运行 <code>COPY INTO</code>，写入 gzip 压缩 CSV、Parquet 或 JSON；面板等待完成，不写入 Mac。"
+                "要不经 Mac 卸载表，选择<ui>文件 > Server-Side Export…</ui>（File > Server-Side Export…），指定 stage，可带或不带 <code>@</code>。<backup>Server-Side Export</backup> 以自有权限运行 <code>COPY INTO</code>，写入 gzip 压缩 CSV、Parquet 或 JSON；面板等待完成，不写入 Mac。"
             ]
         }
     ],
@@ -65,7 +65,7 @@
         {
             "id": "no-columns",
             "question": "为什么侧栏显示表但不显示列？",
-            "answer": "列详情来自需要运行中仓库的 <code>INFORMATION_SCHEMA</code>。请在连接或 Session Context 设置 <ui>Warehouse</ui>。数据库对象完全不显示时，需要向连接角色授予 <code>USAGE</code>。"
+            "answer": "列详情来自需要运行中仓库的 <code>INFORMATION_SCHEMA</code>。请在连接或 Session Context 设置<ui>仓库</ui>（Warehouse）。数据库对象完全不显示时，需要向连接角色授予 <code>USAGE</code>。"
         },
         {
             "id": "timestamp-ltz",

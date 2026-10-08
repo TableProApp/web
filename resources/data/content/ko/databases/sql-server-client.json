@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "호스트와 TCP 포트를 입력한 뒤 <ui>Authentication</ui>을 선택하면 양식이 SQL Server 로그인·비밀번호, Kerberos를 통한 Windows 인증 또는 Microsoft Entra ID에 맞춰 바뀝니다. Azure SQL contained user처럼 한 데이터베이스에 속한 로그인은 Database도 입력하세요.",
+                "호스트와 TCP 포트를 입력한 뒤 <ui>인증</ui>(Authentication)을 선택하면 양식이 SQL Server 로그인·비밀번호, Kerberos를 통한 Windows 인증 또는 Microsoft Entra ID에 맞춰 바뀝니다. Azure SQL contained user처럼 한 데이터베이스에 속한 로그인은 Database도 입력하세요.",
                 "Kerberos는 자격 증명 캐시의 기존 티켓을 쓰거나 입력한 보안 주체와 비밀번호로 요청합니다. 티켓은 서버의 등록된 SPN에 발급되므로 IP 대신 호스트 이름으로 연결하세요. TablePro는 <code>kinit</code>을 실행하거나 <code>/etc/krb5.conf</code>를 수정하지 않습니다.",
                 "<cloudAuth>Microsoft Entra ID</cloudAuth>는 다단계 인증과 Conditional Access를 따르는 장치 코드 흐름으로 로그인합니다. Azure에 앱을 등록하고 클라이언트 ID를 입력합니다. 토큰은 기기 전용으로 로그인 키체인에 저장되고 백그라운드에서 갱신됩니다.",
                 "새 연결은 Preferred로 시작하며 SQL Server에서는 로그인만 암호화합니다. 전체 세션을 암호화하려면 Required 이상을 선택하세요. Verify CA와 Verify Identity는 macOS 시스템 루트로 인증서를 검사합니다. Google Cloud SQL의 Cloud SQL Auth Proxy도 실행할 수 있으며 사설 네트워크 서버는 <network>SSH 터널</network>로 연결합니다."
@@ -57,7 +57,7 @@
             "id": "operate",
             "title": "모니터링 및 백업",
             "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard>는 사용자 세션, 가동 시간과 데이터베이스 크기를 보여 주며 다른 모든 세션과 1초 넘게 실행 중인 쿼리를 나열합니다. <ui>Terminate Session</ui>으로 세션을 종료하며 SQL Server에는 Cancel Query가 없습니다.",
+                "<dashboard>Server Dashboard</dashboard>는 사용자 세션, 가동 시간과 데이터베이스 크기를 보여 주며 다른 모든 세션과 1초 넘게 실행 중인 쿼리를 나열합니다. <ui>세션 종료</ui>(Terminate Session)로 세션을 종료하며 SQL Server에는 Cancel Query가 없습니다.",
                 "<backup>Backup Dump</backup>는 Microsoft에서 다운로드한 {dumpTool}로 <code>.bacpac</code>을 작성하며 Restore Dump는 빈 데이터베이스에 불러옵니다. SqlPackage는 명령줄로만 비밀번호를 받아 Mac의 다른 프로세스가 읽을 수 있으므로 TablePro가 시작 전에 확인합니다. Windows나 Entra 인증은 비밀번호 전달을 피할 수 있습니다."
             ]
         },

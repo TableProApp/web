@@ -168,9 +168,9 @@
     "switching": {
         "intro": "TablePro 读取 Beekeeper Studio 在 Mac 本地工作区保存的连接。Beekeeper Studio 无需打开，文件也不会修改。",
         "steps": [
-            "在 TablePro 中选择 <ui>File > Import > Import from Other App…</ui>。",
-            "选择 Beekeeper Studio 并开启 <ui>Include passwords</ui>。TablePro 会解密 Beekeeper Studio 保存的密码，包括 SSH 密码和密钥口令，因此无需在钥匙串中批准。",
-            "检查列表，决定如何处理重复项，然后点击 <ui>Import</ui>。文件夹转为分组，连接颜色和 SSL 设置一并迁移，SSH 堡垒主机转为跳板主机。TablePro 不支持的引擎连接默认不勾选。",
+            "在 TablePro 中选择<ui>文件 > 导入 > 从其他应用导入…</ui>（File > Import > Import from Other App…）。",
+            "选择 Beekeeper Studio 并开启<ui>包含密码</ui>（Include passwords）。TablePro 会解密 Beekeeper Studio 保存的密码，包括 SSH 密码和密钥口令，因此无需在钥匙串中批准。",
+            "检查列表，决定如何处理重复项，然后点击<ui>导入</ui>（Import）。文件夹转为分组，连接颜色和 SSL 设置一并迁移，SSH 堡垒主机转为跳板主机。TablePro 不支持的引擎连接默认不勾选。",
             "删除 Beekeeper Studio 前，打开一个原本有密码的连接，确认密码已成功迁移。"
         ],
         "after": [
@@ -195,7 +195,7 @@
         {
             "id": "vim",
             "question": "我在 Beekeeper Studio 使用 Vim 模式，TablePro 也有吗？",
-            "answer": "有，而且免费。开启 <ui>Settings > Editor > Vim mode</ui> 即可使用移动、寄存器和宏，:w 用于执行查询。",
+            "answer": "有，而且免费。开启<ui>设置 > 编辑器 > Vim 模式</ui>（Settings > Editor > Vim mode）即可使用移动、寄存器和宏，:w 用于执行查询。",
             "href": null
         }
     ],

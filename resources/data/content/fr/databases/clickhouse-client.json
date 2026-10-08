@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Indiquez l’hôte et le port HTTP, un utilisateur et, si vous le souhaitez, une base de données. Le changement de base s’effectue sur place et un onglet ouvert conserve sa base initiale. <ui>Présentation > Barre latérale en arborescence</ui> affiche les bases du serveur dans une arborescence à développer sur place.",
+                "Indiquez l’hôte et le port HTTP, un utilisateur et, si vous le souhaitez, une base de données. Le changement de base s’effectue sur place et un onglet ouvert conserve sa base initiale. <ui>Présentation > Barre latérale en arborescence</ui> (View > Sidebar as Tree) affiche les bases du serveur dans une arborescence à développer sur place.",
                 "Choisissez un mode SSL pour passer à HTTPS. Un port 443 ou 8443, ce dernier utilisé par ClickHouse Cloud, active Vérifier l’identité, qui contrôle le certificat avec votre fichier d’AC ou le magasin de confiance du système. Vérifier l’AC nécessite un fichier d’AC ; un certificat client et sa clé permettent d’accéder aux serveurs exigeant TLS mutuel.",
                 "Sans TLS, accédez à un serveur distant via un <network>tunnel SSH</network> plutôt que d’envoyer du HTTP en clair sur le réseau."
             ]
@@ -56,7 +56,7 @@
             "id": "operate",
             "title": "Surveiller",
             "paragraphs": [
-                "Le <dashboard>Tableau de bord serveur</dashboard> affiche les requêtes et fusions actives, les mutations de parts et l’utilisation disque, liste les autres sessions avec <ui>Terminer la session</ui> et lit les requêtes lentes dans <code>system.query_log</code> : les dernières requêtes terminées ayant duré plus d’une seconde."
+                "Le <dashboard>Tableau de bord serveur</dashboard> affiche les requêtes et fusions actives, les mutations de parts et l’utilisation disque, liste les autres sessions avec <ui>Mettre fin à la session</ui> (Terminate Session) et lit les requêtes lentes dans <code>system.query_log</code> : les dernières requêtes terminées ayant duré plus d’une seconde."
             ]
         },
         {

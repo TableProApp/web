@@ -17,9 +17,9 @@
             "id": "organize",
             "title": "管理連線資源庫",
             "paragraphs": [
-                "每個連線都在一個包含 General、Network、Options 與 Appearance 分頁的表單中編輯。匯入連線 URL 後，表單會自動填入，包括 <code>jdbc:</code> URL 與包含 SSH 中繼資訊的 <code>+ssh</code> URL；如果剪貼簿中已有 URL，表單會提供 <ui>Use clipboard URL</ui>。",
-                "為連線設定顏色、任意數量的標籤與巢狀群組，並將常用連線加星號設為喜好項目。環境以標籤表示，內建 local、development、production 與 testing，也可以新增自訂標籤。空連線資源庫會提供 <ui>Open Sample Database</ui>，開啟隨 App 附帶的 Chinook SQLite 副本。",
-                "在同一視窗開啟多個連線，透過左側的連線列切換；每個連線都會回到上次使用的分頁。<ui>Open in New Window</ui> 可讓兩個連線並排顯示。"
+                "每個連線都在一個包含 General、Network、Options 與 Appearance 分頁的表單中編輯。匯入連線 URL 後，表單會自動填入，包括 <code>jdbc:</code> URL 與包含 SSH 中繼資訊的 <code>+ssh</code> URL；如果剪貼簿中已有 URL，表單會提供<ui>使用剪貼簿中的 URL</ui>（Use clipboard URL）。",
+                "為連線設定顏色、任意數量的標籤與巢狀群組，並將常用連線加星號設為喜好項目。環境以標籤表示，內建 local、development、production 與 testing，也可以新增自訂標籤。空連線資源庫會提供<ui>開啟範例資料庫</ui>（Open Sample Database），開啟隨 App 附帶的 Chinook SQLite 副本。",
+                "在同一視窗開啟多個連線，透過左側的連線列切換；每個連線都會回到上次使用的分頁。<ui>在新視窗中開啟</ui>（Open in New Window）可讓兩個連線並排顯示。"
             ],
             "asset": "mac-connection-library"
         },
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "從其他資料庫用戶端匯入",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> 讀取 {connectionImportApps} 中儲存的連線，包括 TablePlus 的 Setapp 版，並從這些 App 的儲存位置匯入密碼，也支援 DBeaver 與 Navicat 儲存的加密密碼。Navicat 連線從 <code>.ncx</code> 匯出檔讀取。"
+                        "<ui>從其他 App 匯入</ui>（Import from Other App）讀取 {connectionImportApps} 中儲存的連線，包括 TablePlus 的 Setapp 版，並從這些 App 的儲存位置匯入密碼，也支援 DBeaver 與 Navicat 儲存的加密密碼。Navicat 連線從 <code>.ncx</code> 匯出檔讀取。"
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "從專案設定檔匯入",
                     "paragraphs": [
-                        "<ui>Open Project Folder</ui> 在專案中掃描資料庫設定，支援 <code>.env</code>、<code>wp-config.php</code>、Prisma schema、Rails 的 <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring 的 <code>application.properties</code> 或 <code>application.yml</code>，以及 <code>appsettings.json</code>。它會列出每組設定及其來源檔案，選取後填入連線表單；密碼直接存入鑰匙圈。如果檔案路徑、主機或資料庫名稱中出現獨立單字 <code>prod</code>、<code>production</code> 或 <code>live</code>，該連線的安全模式預設為 Alert 等級。"
+                        "<ui>開啟專案資料夾</ui>（Open Project Folder）在專案中掃描資料庫設定，支援 <code>.env</code>、<code>wp-config.php</code>、Prisma schema、Rails 的 <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring 的 <code>application.properties</code> 或 <code>application.yml</code>，以及 <code>appsettings.json</code>。它會列出每組設定及其來源檔案，選取後填入連線表單；密碼直接存入鑰匙圈。如果檔案路徑、主機或資料庫名稱中出現獨立單字 <code>prod</code>、<code>production</code> 或 <code>live</code>，該連線的安全模式預設為 Alert 等級。"
                     ],
                     "asset": "mac-open-project-folder"
                 },

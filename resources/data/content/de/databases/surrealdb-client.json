@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Verbinden und anmelden",
             "paragraphs": [
-                "SurrealDB kann aus Zugangsdaten nicht die Benutzerebene erkennen, daher benennt <ui>Authentifizierungsebene</ui> sie und das Formular fragt den Rest ab. Root nimmt Benutzer und Passwort, Namespace ergänzt den Namensraum, Database auch die Datenbank. Record Access nimmt Namespace, Datenbank, Zugriffsmethode aus <code>DEFINE ACCESS</code> und Anmeldefelder. Token nimmt einen vorhandenen JWT, auch für SurrealDB Cloud.",
+                "SurrealDB kann aus Zugangsdaten nicht die Benutzerebene erkennen, daher benennt <ui>Auth Level</ui> sie und das Formular fragt den Rest ab. Root nimmt Benutzer und Passwort, Namespace ergänzt den Namensraum, Database auch die Datenbank. Record Access nimmt Namespace, Datenbank, Zugriffsmethode aus <code>DEFINE ACCESS</code> und Anmeldefelder. Token nimmt einen vorhandenen JWT, auch für SurrealDB Cloud.",
                 "Der Treiber spricht CBOR über HTTP RPC, damit Record-Links, Zeitpunkte, Dauern, Dezimalzahlen und UUIDs ihre Typen behalten. Ein <code>surrealdb://</code>-Link öffnet das ausgefüllte Formular; ein Remote-Server lässt sich per <network>SSH-Tunnel</network> erreichen.",
                 "SSL beginnt deaktiviert mit Klartext-HTTP; alle anderen Modi nutzen HTTPS. CA prüfen und Identität prüfen prüfen gegen den System-Vertrauensspeicher. Eine CA-Datei im SSL/TLS-Bereich wird ignoriert; installiere daher private CAs zuerst in macOS."
             ]

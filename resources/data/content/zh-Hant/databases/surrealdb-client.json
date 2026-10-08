@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "連線與登入",
             "paragraphs": [
-                "SurrealDB 無法從認證資訊判斷使用者定義在哪一級，所以由 <ui>Auth Level</ui> 指定，表單再要求其餘資訊。Root 使用使用者名稱和密碼，Namespace 增加命名空間，Database 再增加資料庫。Record Access 需要命名空間、資料庫、<code>DEFINE ACCESS</code> 定義的存取方式及登入欄位。Token 接受已持有的 JWT，包括 SurrealDB Cloud 的權杖。",
+                "SurrealDB 無法從認證資訊判斷使用者定義在哪一級，所以由<ui>驗證層級</ui>（Auth Level）指定，表單再要求其餘資訊。Root 使用使用者名稱和密碼，Namespace 增加命名空間，Database 再增加資料庫。Record Access 需要命名空間、資料庫、<code>DEFINE ACCESS</code> 定義的存取方式及登入欄位。Token 接受已持有的 JWT，包括 SurrealDB Cloud 的權杖。",
                 "驅動程式透過 HTTP RPC 端點傳輸 CBOR，記錄連結、日期時間、期間、小數和 UUID 保留型別。<code>surrealdb://</code> 連結開啟已填好的連線表單，遠端伺服器可經 <network>SSH 通道</network>存取。",
                 "SSL 預設 Disabled，即明文 HTTP，其他模式均使用 HTTPS。Verify CA、Verify Identity 對照系統信任存放區驗證憑證，忽略 SSL/TLS 面板的 CA 檔案，因此請先在 macOS 安裝私有 CA。"
             ]

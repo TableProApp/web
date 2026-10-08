@@ -25,9 +25,9 @@
             "title": "Ouvrez un livre",
             "paragraphs": [
                 "TablePro exécute <code>rledger</code> ou Python Beancount pour lire le livre. Si vous devez choisir, installez rledger : il est prioritaire lorsque les deux sont présents, BQL ne fonctionne que par son intermédiaire et lui seul remplit la table <code>diagnostics</code> avec les résultats de validation.",
-                "Choisissez le fichier avec <ui>Parcourir…</ui> dans le formulaire de connexion. Le chemin du livre définit toute la connexion, sans hôte, port, mot de passe ni base de données. Un fichier <code>.beancount</code> s’ouvre aussi depuis le Finder et les URL <code>beancount:///path/to/main.beancount</code> peuvent être importées.",
+                "Choisissez le fichier avec <ui>Parcourir…</ui> (Browse…) dans le formulaire de connexion. Le chemin du livre définit toute la connexion, sans hôte, port, mot de passe ni base de données. Un fichier <code>.beancount</code> s’ouvre aussi depuis le Finder et les URL <code>beancount:///path/to/main.beancount</code> peuvent être importées.",
                 "Une app ouverte depuis le Finder n’hérite pas du <code>PATH</code> de votre shell. Si le moteur fonctionne dans Terminal mais pas ici, indiquez-le avec <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> ou <code>TABLEPRO_BEANCOUNT_PYTHON</code>, puis relancez l’app.",
-                "Le moteur Python exécute les plugins fournis avec Beancount et ignore toute autre directive <code>plugin</code>, qui représente du code tiers, jusqu’à ce que vous activiez <ui>Exécuter les plugins du livre</ui> pour cette connexion. Les plugins ignorés figurent dans <code>diagnostics</code>."
+                "Le moteur Python exécute les plugins fournis avec Beancount et ignore toute autre directive <code>plugin</code>, qui représente du code tiers, jusqu’à ce que vous activiez <ui>Exécuter les plugins Ledger</ui> (Run Ledger Plugins) pour cette connexion. Les plugins ignorés figurent dans <code>diagnostics</code>."
             ]
         },
         {

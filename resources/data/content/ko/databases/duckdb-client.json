@@ -32,8 +32,8 @@
             "paragraphs": [
                 "<code>.duckdb</code>나 <code>.ddb</code> 파일을 선택하거나 아직 없는 경로를 입력해 만듭니다. <code>:memory:</code>를 입력하면 세션 동안만 유지되는 데이터베이스가 됩니다. DuckDB는 첫 바이트에 파일을 표시하므로 파일 이름과 관계없이 DuckDB로 열립니다.",
                 "<code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code> 또는 <code>.ndjson</code> 파일을 선택하면 메모리 데이터베이스의 읽기 전용 뷰로 열립니다. 하나는 <code>file</code>, 다른 하나는 파일 이름으로 지정됩니다. 디스크 파일은 바이트 단위까지 그대로 유지됩니다. 내용을 바꾸려면 <code>.duckdb</code> 데이터베이스에 파일로부터 테이블을 만드세요.",
-                "Finder에서 <code>.duckdb</code> 파일을 더블 클릭하면 여기서 열립니다. Parquet 파일의 다음으로 열기에 TablePro가 표시되며 <ui>File > Open File</ui>로 선택한 Parquet는 <dataFiles>Data Files 창</dataFiles>이 아니라 DuckDB 연결로 열립니다.",
-                "<ui>Remote (Quack, experimental)</ui>은 <code>quack_serve</code>로 시작한 DuckDB 서버에 연결해 <code>remotedb</code> 같은 별칭으로 연결하며 그 별칭을 통해 테이블 이름으로 접근합니다. 첫 원격 연결은 DuckDB에서 <code>quack</code> 확장을 다운로드합니다."
+                "Finder에서 <code>.duckdb</code> 파일을 더블 클릭하면 여기서 열립니다. Parquet 파일의 다음으로 열기에 TablePro가 표시되며 <ui>파일 > 파일 열기</ui>(File > Open File)로 선택한 Parquet는 <dataFiles>Data Files 창</dataFiles>이 아니라 DuckDB 연결로 열립니다.",
+                "<ui>원격(Quack, 실험적)</ui>(Remote (Quack, experimental))은 <code>quack_serve</code>로 시작한 DuckDB 서버에 연결해 <code>remotedb</code> 같은 별칭으로 연결하며 그 별칭을 통해 테이블 이름으로 접근합니다. 첫 원격 연결은 DuckDB에서 <code>quack</code> 확장을 다운로드합니다."
             ]
         },
         {
@@ -55,7 +55,7 @@
             "id": "operate",
             "title": "파일 공유 및 백업",
             "paragraphs": [
-                "TablePro가 파일을 잡고 있으면 <code>duckdb</code> CLI, 노트북이나 dbt 실행이 열 수 없습니다. <ui>Release the File Lock After</ui>로 몇 분간 유휴 상태 후 파일을 반환하고 다음 쿼리에서 다시 잡거나 <ui>Open the File Read-Only</ui>로 여러 읽기 프로세스가 공유하게 합니다. <ui>Database > Release File Lock</ui>는 탭을 유지하며 즉시 반환합니다. 열린 트랜잭션, 임시 테이블, 연결된 데이터베이스 또는 변경 설정을 세션이 보유하면 이유를 표시하며 해제를 거부합니다.",
+                "TablePro가 파일을 잡고 있으면 <code>duckdb</code> CLI, 노트북이나 dbt 실행이 열 수 없습니다. <ui>Release the File Lock After</ui>로 몇 분간 유휴 상태 후 파일을 반환하고 다음 쿼리에서 다시 잡거나 <ui>Open the File Read-Only</ui>로 여러 읽기 프로세스가 공유하게 합니다. <ui>데이터베이스 > Release File Lock</ui>(Database > Release File Lock)은 탭을 유지하며 즉시 반환합니다. 열린 트랜잭션, 임시 테이블, 연결된 데이터베이스 또는 변경 설정을 세션이 보유하면 이유를 표시하며 해제를 거부합니다.",
                 "<dashboard>Server Dashboard</dashboard>는 데이터베이스 크기, 블록 크기, 총 블록 수, 메모리 제한과 스레드를 보여 줍니다.",
                 "<backup>Backup Dump</backup>는 {dumpTool}이 열린 연결로 기록하므로 설치가 필요 없습니다. 나중에 TablePro에서 복원할 <code>.duckdb</code> 파일이나 <code>schema.sql</code>, <code>load.sql</code>과 테이블별 Parquet 파일 폴더를 선택하며 pandas, Spark와 BigQuery가 직접 읽습니다. Restore Dump는 이름이 이미 사용 중인 첫 객체에서 중단합니다."
             ]

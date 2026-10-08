@@ -27,7 +27,7 @@
             "id": "connect",
             "title": "API 토큰으로 연결",
             "paragraphs": [
-                "D1 연결은 데이터베이스 이름이나 UUID, Cloudflare 계정 ID와 API 토큰 세 값이 필요합니다. 토큰은 <ui>API Token</ui> 필드에 넣고 <credentials>macOS 키체인</credentials>에 보관합니다. 모든 요청이 HTTPS로 Cloudflare API에 전달되므로 호스트, 포트, SSL 설정이나 SSH 터널은 없습니다.",
+                "D1 연결은 데이터베이스 이름이나 UUID, Cloudflare 계정 ID와 API 토큰 세 값이 필요합니다. 토큰은 <ui>API 토큰</ui>(API Token) 필드에 넣고 <credentials>macOS 키체인</credentials>에 보관합니다. 모든 요청이 HTTPS로 Cloudflare API에 전달되므로 호스트, 포트, SSL 설정이나 SSH 터널은 없습니다.",
                 "Custom token 템플릿에서 <ui>Account > D1 > Edit</ui> 권한으로 토큰을 만들고 한 번만 표시되므로 그때 복사하세요. 이 토큰은 연결한 하나뿐 아니라 계정의 모든 D1 데이터베이스에 접근합니다.",
                 "<code>d1://account-id/database-name</code> URL을 가져오면 계정과 데이터베이스가 채워집니다. 토큰은 URL에 포함되지 않으므로 나중에 붙여넣으세요."
             ]

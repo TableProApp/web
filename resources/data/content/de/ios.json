@@ -35,7 +35,7 @@
         "paragraphs": [
             "Schreibe SQL mit Syntaxhervorhebung, führe es aus und stoppe die laufende Abfrage. Beginne mit einer SELECT-Vorlage und kopiere oder teile Ergebnisse als JSON, CSV oder SQL-INSERT-Anweisungen über die Zwischenablage oder das Teilen-Menü.",
             "Die App behält bis zu {results} Ergebniszeilen; nutze LIMIT, um einen anderen Teil eines großen Ergebnisses zu sehen. Der Verlauf speichert deine letzten {history} Abfragen verbindungsübergreifend auf diesem Gerät und wird nicht synchronisiert.",
-            "Während einer Abfrage zeigt eine Live-Aktivität auf dem Sperrbildschirm und in der Dynamic Island den Fortschritt: verstrichene Zeit und empfangene Zeilen. Sperrbildschirm und erweiterte Dynamic Island zeigen auch das SQL, sofern du nicht <ui>Einstellungen > Live-Aktivitäten > Abfrage verbergen</ui> aktivierst."
+            "Während einer Abfrage zeigt eine Live-Aktivität auf dem Sperrbildschirm und in der Dynamic Island den Fortschritt: verstrichene Zeit und empfangene Zeilen. Sperrbildschirm und erweiterte Dynamic Island zeigen auch das SQL, sofern du nicht <ui>Settings > Live Activities > Hide Query</ui> aktivierst."
         ]
     },
     "security": {
@@ -51,7 +51,7 @@
         "paragraphs": [
             "Jede Verbindung hat eine Stufe des sicheren Modus: {levels}. „Schreibvorgänge bestätigen“ fragt vor Anweisungen, die Daten ändern. „Schreibgeschützt“ verweigert sie, bevor sie den Server erreichen. Eine Anweisung, die die App nicht als Lesevorgang erkennt, gilt als Schreibvorgang.",
             "Stelle die Stufe einer Verbindung im Abschnitt „Organisation“ und die Anfangsstufe neuer Verbindungen in den Einstellungen ein. Kurzbefehle zum Hinzufügen von Zeilen beachten dieselbe Stufe.",
-            "Sperre die App unter <ui>Einstellungen > Sicherheit</ui> mit Face ID oder Touch ID; dein Gerätecode dient als Alternative. Sobald dies aktiv ist, fragt die App bei jedem Start und nach der gewählten Zeit für die automatische Sperre erneut."
+            "Sperre die App unter <ui>Settings > Security</ui> mit Face ID oder Touch ID; dein Gerätecode dient als Alternative. Sobald dies aktiv ist, fragt die App bei jedem Start und nach der gewählten Zeit für die automatische Sperre erneut."
         ]
     },
     "ipad": {
@@ -97,7 +97,7 @@
     "privacy": {
         "title": "Datenschutz",
         "paragraphs": [
-            "Nichts geht an TablePro, solange du „Nutzungsdaten teilen“ nicht bei der Einrichtung oder später unter <ui>Einstellungen > Datenschutz</ui> aktivierst. Dann sendet die App täglich einen Bericht mit gehashter Geräte-ID, App- und iOS-Version, Prozessorarchitektur, Sprache, verwendeten Datenbanktypen, Verbindungsanzahl und einigen Daten zur ersten Nutzung. Niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen.",
+            "Nichts geht an TablePro, solange du „Nutzungsdaten teilen“ nicht bei der Einrichtung oder später unter <ui>Settings > Privacy</ui> aktivierst. Dann sendet die App täglich einen Bericht mit gehashter Geräte-ID, App- und iOS-Version, Prozessorarchitektur, Sprache, verwendeten Datenbanktypen, Verbindungsanzahl und einigen Daten zur ersten Nutzung. Niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen.",
             "Die App führt keine Lizenz- oder Update-Prüfungen und keine Plugin-Anfragen aus. Deine Abfragen gehen an deine Server, iCloud Sync an dein iCloud-Konto und die Entra-Anmeldung an Microsoft. Details stehen in der <privacyIos>Datenschutzerklärung</privacyIos>."
         ]
     },

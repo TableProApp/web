@@ -42,7 +42,7 @@
             "id": "edit",
             "title": "Daten ändern, einmal speichern",
             "paragraphs": [
-                "Zellenänderungen, neue Zeilen und Löschungen warten markiert im Tab bis <kbd>⌘S</kbd>; vorher wird nichts gesendet. <ui>SQL-Vorschau</ui> (<kbd>⌘⇧P</kbd>) zeigt Anweisungen mit eingesetzten Werten. Beim Speichern werden sie mit gebundenen Parametern gesendet, soweit möglich in einer Transaktion. Die erwartete Zeilenzahl jeder Änderung wird geprüft; bei Abweichung wird das Speichern zurückgerollt."
+                "Zellenänderungen, neue Zeilen und Löschungen warten markiert im Tab bis <kbd>⌘S</kbd>; vorher wird nichts gesendet. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) zeigt Anweisungen mit eingesetzten Werten. Beim Speichern werden sie mit gebundenen Parametern gesendet, soweit möglich in einer Transaktion. Die erwartete Zeilenzahl jeder Änderung wird geprüft; bei Abweichung wird das Speichern zurückgerollt."
             ],
             "points": [
                 "Zelleneditoren passend zum Spaltentyp: Datums- und Zeitauswahl, ENUM- und SET-Listen, Arrays, JSON, Hex-Editor für Binärwerte und Bildbetrachter.",
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind behält beim Speichern ersetzte Werte, damit <ui>Vorherige Werte wiederherstellen</ui> sie zurücksetzt. Ein Prüfblatt zeigt zuerst die Folgen für jede Zeile, auch für danach geänderte Zeilen. Die Wiederherstellung läuft durch den sicheren Modus, soweit möglich in einer Transaktion. Eine Wiederherstellung lässt sich ihrerseits wiederherstellen.",
-                "Die Werte bleiben {rewindDays} Tage auf diesem Mac, mit einem Schlüssel aus dem Schlüsselbund verschlüsselt, und werden nie synchronisiert. Nach Tarifende zeichnet TablePro keine Speichervorgänge mehr auf; <ui>Vorherige Werte wiederherstellen</ui> zeigt stattdessen einen Hinweis."
+                "Data Rewind behält beim Speichern ersetzte Werte, damit <ui>Restore Previous Values</ui> sie zurücksetzt. Ein Prüfblatt zeigt zuerst die Folgen für jede Zeile, auch für danach geänderte Zeilen. Die Wiederherstellung läuft durch den sicheren Modus, soweit möglich in einer Transaktion. Eine Wiederherstellung lässt sich ihrerseits wiederherstellen.",
+                "Die Werte bleiben {rewindDays} Tage auf diesem Mac, mit einem Schlüssel aus dem Schlüsselbund verschlüsselt, und werden nie synchronisiert. Nach Tarifende zeichnet TablePro keine Speichervorgänge mehr auf; <ui>Restore Previous Values</ui> zeigt stattdessen einen Hinweis."
             ],
             "paid": [
                 "data-rewind"

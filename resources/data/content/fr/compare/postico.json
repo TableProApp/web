@@ -143,10 +143,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro n’a pas d’importateur pour Postico. Ajoutez chaque serveur comme connexion TablePro : remplissez le formulaire de connexion ou collez une URL commençant par postgresql:// dans <ui>Fichier > Importer > Importer depuis une URL…</ui>",
+        "intro": "TablePro n’a pas d’importateur pour Postico. Ajoutez chaque serveur comme connexion TablePro : remplissez le formulaire de connexion ou collez une URL commençant par postgresql:// dans <ui>Fichier > Importer > Importer depuis une URL…</ui> (File > Import > Import from URL…)",
         "steps": [],
         "after": [
-            "Si un projet conserve l’URL de sa base dans un fichier .env ou un schéma Prisma, <ui>Fichier > Importer > Ouvrir un dossier de projet…</ui> la lit et ouvre le formulaire de connexion prérempli.",
+            "Si un projet conserve l’URL de sa base dans un fichier .env ou un schéma Prisma, <ui>Fichier > Importer > Ouvrir le dossier du projet…</ui> (File > Import > Open Project Folder…) la lit et ouvre le formulaire de connexion prérempli.",
             "Les mots de passe sont conservés dans le trousseau macOS. TablePro lit aussi ~/.pgpass pour les connexions PostgreSQL.",
             "L’historique repart de zéro dans TablePro."
         ],

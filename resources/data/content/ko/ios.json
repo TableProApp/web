@@ -35,7 +35,7 @@
         "paragraphs": [
             "구문 강조가 있는 SQL을 작성하고 실행하며 실행 중에 중지할 수 있습니다. SELECT 템플릿으로 시작하고 결과를 JSON, CSV 또는 SQL INSERT 문으로 클립보드나 공유 시트를 통해 복사하거나 공유하세요.",
             "앱은 결과를 최대 {results}행 보관합니다. 큰 결과의 다른 부분을 보려면 LIMIT를 추가하세요. 기록은 연결에 관계없이 이 기기의 최근 {history}개 쿼리를 보관하며 동기화되지 않습니다.",
-            "쿼리가 실행되면 실시간 현황이 잠금 화면과 Dynamic Island에 경과 시간과 받은 행 수를 표시합니다. <ui>Settings > Live Activities > Hide Query</ui>를 켜지 않으면 잠금 화면과 확장된 Dynamic Island에 SQL도 표시됩니다."
+            "쿼리가 실행되면 실시간 현황이 잠금 화면과 Dynamic Island에 경과 시간과 받은 행 수를 표시합니다. <ui>설정 > 실시간 현황 > 쿼리 가리기</ui>(Settings > Live Activities > Hide Query)를 켜지 않으면 잠금 화면과 확장된 Dynamic Island에 SQL도 표시됩니다."
         ]
     },
     "security": {
@@ -51,7 +51,7 @@
         "paragraphs": [
             "각 연결의 안전 모드 수준은 {levels}입니다. Confirm Writes는 데이터를 변경하는 실행문을 실행하기 전에 확인하며 Read-Only는 서버에 도달하기 전에 거부합니다. 읽기라고 식별할 수 없는 실행문은 쓰기로 처리합니다.",
             "연결의 Organization 섹션에서 수준을 설정하고 새 연결의 기본 수준은 Settings에서 설정합니다. 행을 추가하는 단축어도 같은 수준을 따릅니다.",
-            "<ui>Settings > Security</ui>에서 Face ID 또는 Touch ID로 앱을 잠그고 대체 수단으로 기기 암호를 사용할 수 있습니다. 켜면 앱을 시작할 때마다 인증을 요청하고 선택한 Auto-Lock 시간이 지나면 다시 요청합니다."
+            "<ui>설정 > 보안</ui>(Settings > Security)에서 Face ID 또는 Touch ID로 앱을 잠그고 대체 수단으로 기기 암호를 사용할 수 있습니다. 켜면 앱을 시작할 때마다 인증을 요청하고 선택한 Auto-Lock 시간이 지나면 다시 요청합니다."
         ]
     },
     "ipad": {
@@ -97,7 +97,7 @@
     "privacy": {
         "title": "개인정보 보호",
         "paragraphs": [
-            "설정 과정 또는 이후 <ui>Settings > Privacy</ui>에서 Share Usage Data를 켜지 않으면 TablePro에 아무것도 보내지 않습니다. 켜면 해시된 기기 ID, 앱과 iOS 버전, 프로세서 아키텍처, 언어, 사용하는 데이터베이스 유형, 연결 수 및 몇 가지 최초 사용 날짜를 하루 한 번 보고합니다. 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 보내지 않습니다.",
+            "설정 과정 또는 이후 <ui>설정 > 개인정보 보호</ui>(Settings > Privacy)에서 Share Usage Data를 켜지 않으면 TablePro에 아무것도 보내지 않습니다. 켜면 해시된 기기 ID, 앱과 iOS 버전, 프로세서 아키텍처, 언어, 사용하는 데이터베이스 유형, 연결 수 및 몇 가지 최초 사용 날짜를 하루 한 번 보고합니다. 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 보내지 않습니다.",
             "라이선스 확인, 업데이트 확인 및 플러그인 요청은 없습니다. 쿼리는 본인의 서버로, iCloud 동기화는 본인의 iCloud 계정으로, Entra 로그인은 Microsoft로 전송됩니다. <privacyIos>개인정보 처리방침</privacyIos>에 자세한 내용이 있습니다."
         ]
     },

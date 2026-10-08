@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Connectez-vous avec un jeton API",
             "paragraphs": [
-                "Une connexion D1 prend trois valeurs : le nom ou l’UUID de la base, votre ID de compte Cloudflare et un jeton API. Le jeton va dans le champ <ui>Jeton API</ui> et reste dans le <credentials>Trousseau macOS</credentials>. Il n’y a ni hôte, ni port, ni réglage SSL, ni tunnel SSH, car chaque requête va à l’API Cloudflare via HTTPS.",
-                "Créez le jeton depuis le modèle de jeton personnalisé avec l’autorisation <ui>Compte > D1 > Modifier</ui>, puis copiez-le lorsque Cloudflare l’affiche, car il n’apparaît qu’une fois. Ce jeton donne accès à toutes les bases D1 du compte, pas seulement à celle que vous connectez.",
+                "Une connexion D1 prend trois valeurs : le nom ou l’UUID de la base, votre ID de compte Cloudflare et un jeton API. Le jeton va dans le champ <ui>Jeton API</ui> (API Token) et reste dans le <credentials>Trousseau macOS</credentials>. Il n’y a ni hôte, ni port, ni réglage SSL, ni tunnel SSH, car chaque requête va à l’API Cloudflare via HTTPS.",
+                "Créez le jeton depuis le modèle de jeton personnalisé avec l’autorisation <ui>Account > D1 > Edit</ui>, puis copiez-le lorsque Cloudflare l’affiche, car il n’apparaît qu’une fois. Ce jeton donne accès à toutes les bases D1 du compte, pas seulement à celle que vous connectez.",
                 "L’import d’une URL <code>d1://account-id/database-name</code> remplit le compte et la base ; le jeton n’est jamais transmis dans l’URL, collez-le donc ensuite."
             ]
         },

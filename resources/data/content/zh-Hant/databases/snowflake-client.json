@@ -28,16 +28,16 @@
             "title": "連線與登入",
             "paragraphs": [
                 "填寫帳號識別碼，例如 <code>myorg-myaccount</code> 或舊式 <code>xy12345.us-east-1</code>，即 <code>.snowflakecomputing.com</code> 前的部分。所有請求經 HTTPS 傳送至帳號端點，因此無主機、SSL 區域或 SSH 面板。",
-                "選擇 <ui>Auth Method</ui> 後僅顯示所需欄位。金鑰對使用 PKCS#8 私密金鑰為每次連線簽章，因此 Mac 時鐘必須準確。瀏覽器 SSO 前往身分供應商，OAuth 權杖依貼上內容使用且從不重新整理。帳號強制 MFA 時，密碼需配合 <ui>MFA Passcode (TOTP)</ui> 中的目前驗證碼。",
+                "選擇<ui>驗證方式</ui>（Auth Method）後僅顯示所需欄位。金鑰對使用 PKCS#8 私密金鑰為每次連線簽章，因此 Mac 時鐘必須準確。瀏覽器 SSO 前往身分供應商，OAuth 權杖依貼上內容使用且從不重新整理。帳號強制 MFA 時，密碼需配合 <ui>MFA 驗證碼（TOTP）</ui>（MFA Passcode (TOTP)）中的目前驗證碼。",
                 "帳號開啟 <code>ALLOW_CLIENT_MFA_CACHING</code> 時，一次新驗證碼即可：Snowflake 傳回 MFA 權杖，TablePro 儲存在<credentials>鑰匙圈</credentials>。啟用 <code>ALLOW_ID_TOKEN</code> 時，瀏覽器 SSO 儲存登入權杖，後續連線跳過瀏覽器直到 Snowflake 拒絕。",
-                "Snowflake 無 URL scheme。可在 <ui>CLI Connection Name</ui> 指定設定區段，連線時從 <code>~/.snowflake/connections.toml</code> 讀取所有留空欄位。"
+                "Snowflake 無 URL scheme。可在 <ui>CLI 連線名稱</ui>（CLI Connection Name）指定設定區段，連線時從 <code>~/.snowflake/connections.toml</code> 讀取所有留空欄位。"
             ]
         },
         {
             "id": "work",
             "title": "倉儲、角色與查詢",
             "paragraphs": [
-                "<ui>Database > Session Context</ui> 用 <code>USE WAREHOUSE</code>、<code>USE ROLE</code> 無須重新連線切換倉儲或角色。一個 TablePro 連線對應一個 Snowflake 工作階段，閒置時仍保持。繫結第二個資料庫的分頁在同一工作階段中先執行 <code>USE DATABASE</code>。",
+                "<ui>資料庫 > Session Context</ui>（Database > Session Context）用 <code>USE WAREHOUSE</code>、<code>USE ROLE</code> 無須重新連線切換倉儲或角色。一個 TablePro 連線對應一個 Snowflake 工作階段，閒置時仍保持。繫結第二個資料庫的分頁在同一工作階段中先執行 <code>USE DATABASE</code>。",
                 "側欄依資料庫和 schema 分組物件。物件清單來自不需倉儲的 <code>SHOW</code> 指令，欄位詳情來自需要倉儲的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 傳回 Snowflake 原始文字計畫。",
                 "<editing>格線編輯</editing>在伺服器繫結值，VARIANT、OBJECT、ARRAY 儲存格透過 <code>PARSE_JSON</code> 傳送。編輯依宣告主索引鍵定位，無主索引鍵則依所有欄位。Snowflake 從不強制索引鍵條件約束，重複鍵意味著編輯或刪除影響所有符合列，請先檢查重複。"
             ]
@@ -55,7 +55,7 @@
             "title": "移動資料",
             "paragraphs": [
                 "透過連線<importData>匯入</importData> {importFormats}，將資料表或結果以 {exportFormats} 匯出至 Mac。",
-                "要不經 Mac 卸載資料表，選擇 <ui>File > Server-Side Export…</ui>，指定 stage，可含或不含 <code>@</code>。<backup>Server-Side Export</backup> 以自有權限執行 <code>COPY INTO</code>，寫入 gzip 壓縮 CSV、Parquet 或 JSON；面板等待完成，不寫入 Mac。"
+                "要不經 Mac 卸載資料表，選擇<ui>檔案 > Server-Side Export…</ui>（File > Server-Side Export…），指定 stage，可含或不含 <code>@</code>。<backup>Server-Side Export</backup> 以自有權限執行 <code>COPY INTO</code>，寫入 gzip 壓縮 CSV、Parquet 或 JSON；面板等待完成，不寫入 Mac。"
             ]
         }
     ],
@@ -65,7 +65,7 @@
         {
             "id": "no-columns",
             "question": "為什麼側欄顯示資料表但不顯示欄位？",
-            "answer": "欄位詳情來自需要執行中倉儲的 <code>INFORMATION_SCHEMA</code>。請在連線或 Session Context 設定 <ui>Warehouse</ui>。資料庫物件完全不顯示時，需要向連線角色授予 <code>USAGE</code>。"
+            "answer": "欄位詳情來自需要執行中倉儲的 <code>INFORMATION_SCHEMA</code>。請在連線或 Session Context 設定<ui>倉儲</ui>（Warehouse）。資料庫物件完全不顯示時，需要向連線角色授予 <code>USAGE</code>。"
         },
         {
             "id": "timestamp-ltz",

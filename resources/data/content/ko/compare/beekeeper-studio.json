@@ -168,9 +168,9 @@
     "switching": {
         "intro": "TablePro는 Beekeeper Studio가 Mac의 로컬 워크스페이스에 저장한 연결을 읽습니다. Beekeeper Studio를 열어 둘 필요가 없으며 파일도 변경하지 않습니다.",
         "steps": [
-            "TablePro에서 <ui>File > Import > Import from Other App…</ui>를 선택합니다.",
-            "Beekeeper Studio를 선택하고 <ui>Include passwords</ui>를 켭니다. TablePro가 SSH 암호와 키 암호 문구를 포함해 Beekeeper Studio에 저장된 암호를 복호화하므로 키체인에서 승인할 것은 없습니다.",
-            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>Import</ui>를 클릭합니다. 폴더는 그룹이 되고 연결 색상과 SSL 설정이 이전되며 SSH 배스천 호스트는 점프 호스트가 됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
+            "TablePro에서 <ui>파일 > 가져오기 > 다른 앱에서 가져오기…</ui>(File > Import > Import from Other App…)를 선택합니다.",
+            "Beekeeper Studio를 선택하고 <ui>암호 포함</ui>(Include passwords)을 켭니다. TablePro가 SSH 암호와 키 암호 문구를 포함해 Beekeeper Studio에 저장된 암호를 복호화하므로 키체인에서 승인할 것은 없습니다.",
+            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>가져오기</ui>(Import)를 클릭합니다. 폴더는 그룹이 되고 연결 색상과 SSL 설정이 이전되며 SSH 배스천 호스트는 점프 호스트가 됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
             "Beekeeper Studio를 삭제하기 전에 암호가 있던 연결을 열어 암호가 이전되었는지 확인합니다."
         ],
         "after": [
@@ -195,7 +195,7 @@
         {
             "id": "vim",
             "question": "Beekeeper Studio에서 Vim 모드를 씁니다. TablePro에도 있나요?",
-            "answer": "네, 무료입니다. <ui>Settings > Editor > Vim mode</ui>를 켜면 이동 명령, 레지스터, 매크로를 사용할 수 있으며 :w는 쿼리를 실행합니다.",
+            "answer": "네, 무료입니다. <ui>설정 > 편집기 > Vim 모드</ui>(Settings > Editor > Vim mode)를 켜면 이동 명령, 레지스터, 매크로를 사용할 수 있으며 :w는 쿼리를 실행합니다.",
             "href": null
         }
     ],

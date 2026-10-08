@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "Conecta e inicia sesión",
             "paragraphs": [
-                "SurrealDB no puede inferir el nivel del usuario de sus credenciales, así que <ui>Nivel de autenticación</ui> lo indica y el formulario pide lo demás. Root acepta usuario y contraseña; Namespace añade el espacio de nombres; Database, también la base. Record Access requiere namespace, base, método de <code>DEFINE ACCESS</code> y campos de acceso. Token acepta un JWT que ya tengas, incluido uno de SurrealDB Cloud.",
+                "SurrealDB no puede inferir el nivel del usuario de sus credenciales, así que <ui>Auth Level</ui> lo indica y el formulario pide lo demás. Root acepta usuario y contraseña; Namespace añade el espacio de nombres; Database, también la base. Record Access requiere namespace, base, método de <code>DEFINE ACCESS</code> y campos de acceso. Token acepta un JWT que ya tengas, incluido uno de SurrealDB Cloud.",
                 "El controlador usa CBOR por HTTP RPC, manteniendo los tipos de enlaces, fechas, duraciones, decimales y UUID. Un enlace <code>surrealdb://</code> abre el formulario rellenado; un servidor remoto se alcanza con <network>túnel SSH</network>.",
                 "SSL empieza Desactivado, HTTP sin cifrar; los demás modos usan HTTPS. Verificar CA y Verificar identidad usan el almacén de confianza del sistema; un archivo CA en SSL/TLS se ignora, así que instala antes una CA privada en macOS."
             ]

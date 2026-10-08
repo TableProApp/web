@@ -168,9 +168,9 @@
     "switching": {
         "intro": "TablePro liest die von Beekeeper Studio auf deinem Mac im lokalen Arbeitsbereich gespeicherten Verbindungen. Beekeeper Studio muss nicht geöffnet sein, und seine Dateien werden nicht verändert.",
         "steps": [
-            "Wähle in TablePro <ui>Ablage > Importieren > Aus anderer App importieren…</ui>",
-            "Wähle Beekeeper Studio und aktiviere <ui>Passwörter einschließen</ui>. TablePro entschlüsselt die gespeicherten Passwörter einschließlich SSH-Passwörtern und Schlüssel-Passphrasen. Eine Freigabe im Schlüsselbund ist daher nicht nötig.",
-            "Prüfe die Liste, lege den Umgang mit Duplikaten fest und klicke auf <ui>Importieren</ui>. Ordner werden zu Gruppen, Verbindungsfarben und SSL-Einstellungen werden übernommen, und ein SSH-Bastion-Host wird zum Jump-Host. Verbindungen zu nicht unterstützten Engines sind in der Liste nicht ausgewählt.",
+            "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
+            "Wähle Beekeeper Studio und aktiviere <ui>Include passwords</ui>. TablePro entschlüsselt die gespeicherten Passwörter einschließlich SSH-Passwörtern und Schlüssel-Passphrasen. Eine Freigabe im Schlüsselbund ist daher nicht nötig.",
+            "Prüfe die Liste, lege den Umgang mit Duplikaten fest und klicke auf <ui>Import</ui>. Ordner werden zu Gruppen, Verbindungsfarben und SSL-Einstellungen werden übernommen, und ein SSH-Bastion-Host wird zum Jump-Host. Verbindungen zu nicht unterstützten Engines sind in der Liste nicht ausgewählt.",
             "Öffne vor dem Entfernen von Beekeeper Studio eine Verbindung mit Passwort, um dessen Übernahme zu prüfen."
         ],
         "after": [
@@ -195,7 +195,7 @@
         {
             "id": "vim",
             "question": "Ich nutze den Vim-Modus in Beekeeper Studio. Hat TablePro auch einen?",
-            "answer": "Ja, kostenlos. Aktiviere <ui>Einstellungen > Editor > Vim-Modus</ui> für Bewegungsbefehle, Register und Makros; :w führt die Abfrage aus.",
+            "answer": "Ja, kostenlos. Aktiviere <ui>Settings > Editor > Vim mode</ui> für Bewegungsbefehle, Register und Makros; :w führt die Abfrage aus.",
             "href": null
         }
     ],

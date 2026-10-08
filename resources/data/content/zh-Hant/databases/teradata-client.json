@@ -28,9 +28,9 @@
             "id": "connect",
             "title": "連線與登入",
             "paragraphs": [
-                "填寫主機、使用者名稱和密碼。任何接受 TD2 登入的 Vantage 均可，不檢查版本。Options 的 <ui>Logon Mechanism</ui> 接受 <code>TD2</code> 或 <code>TDNEGO</code>；僅需不同於帳號預設資料庫時填寫 <ui>Database</ui>。",
+                "填寫主機、使用者名稱和密碼。任何接受 TD2 登入的 Vantage 均可，不檢查版本。Options 的 <ui>Logon Mechanism</ui> 接受 <code>TD2</code> 或 <code>TDNEGO</code>；僅需不同於帳號預設資料庫時填寫<ui>資料庫</ui>（Database）。",
                 "預設連接埠使用明文工作階段。任意 SSL 模式將工作階段移至閘道 WebSocket 端點的 443 連接埠，不可變更。Verify CA 需 CA 憑證，Verify Identity 用該憑證驗證鏈和主機名稱，未提供時使用系統信任存放區。",
-                "除非指令碼需要 ANSI 或 TERA 提交規則及工作階段大小寫區分，<ui>Transaction Mode</ui> 保持 <code>DEFAULT</code>。堡壘主機後的系統透過 <network>SSH 通道</network>存取。<ui>Import from URL…</ui> 接受 <code>teradata://</code>，macOS 不會將其作為連結開啟。"
+                "除非指令碼需要 ANSI 或 TERA 提交規則及工作階段大小寫區分，<ui>Transaction Mode</ui> 保持 <code>DEFAULT</code>。堡壘主機後的系統透過 <network>SSH 通道</network>存取。<ui>從 URL 匯入…</ui>（Import from URL…）接受 <code>teradata://</code>，macOS 不會將其作為連結開啟。"
             ]
         },
         {

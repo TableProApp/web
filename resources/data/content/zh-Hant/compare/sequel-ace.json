@@ -156,10 +156,10 @@
     "switching": {
         "intro": "TablePro 讀取 Sequel Ace 儲存的收藏及其 macOS 鑰匙圈密碼。Sequel Ace 無須開啟，檔案不被修改。",
         "steps": [
-            "TablePro 選擇 <ui>File > Import > Import from Other App…</ui>。",
-            "選 Sequel Ace，開啟 <ui>Include passwords</ui> 讀取 macOS 鑰匙圈的資料庫和 SSH 密碼。",
-            "macOS 為每個已存密碼詢問一次登入密碼，每次選 <ui>Always Allow</ui>。取消一次提示會略過剩餘密碼。",
-            "檢查清單，決定重複項處理方式，點 <ui>Import</ui>。群組、連線顏色、SSH 通道和 SSL 設定一起遷移。",
+            "TablePro 選擇<ui>檔案 > 匯入 > 從其他 App 匯入…</ui>（File > Import > Import from Other App…）。",
+            "選 Sequel Ace，開啟<ui>包含密碼</ui>（Include passwords）讀取 macOS 鑰匙圈的資料庫和 SSH 密碼。",
+            "macOS 為每個已存密碼詢問一次登入密碼，每次選<ui>永遠允許</ui>（Always Allow）。取消一次提示會略過剩餘密碼。",
+            "檢查清單，決定重複項處理方式，點<ui>匯入</ui>（Import）。群組、連線顏色、SSH 通道和 SSL 設定一起遷移。",
             "移除 Sequel Ace 前，開啟原有密碼的連線檢查遷移。"
         ],
         "after": [

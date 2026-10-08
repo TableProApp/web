@@ -139,9 +139,9 @@
     "switching": {
         "intro": "TablePro 讀取 DBeaver 工作區中的連線，支援 Community 及所有付費版。DBeaver 無須開啟，檔案也不會修改。",
         "steps": [
-            "在 TablePro 中選擇 <ui>File > Import > Import from Other App…</ui>。",
-            "選擇 DBeaver 並開啟 <ui>Include passwords</ui>。TablePro 會解密 DBeaver 儲存的密碼，因此無須在鑰匙圈中核准。",
-            "檢查清單，決定如何處理重複項目，然後按一下 <ui>Import</ui>。資料夾轉為群組，SSH 通道設定一併移轉。TablePro 不支援的資料庫連線預設不勾選。",
+            "在 TablePro 中選擇<ui>檔案 > 匯入 > 從其他 App 匯入…</ui>（File > Import > Import from Other App…）。",
+            "選擇 DBeaver 並開啟<ui>包含密碼</ui>（Include passwords）。TablePro 會解密 DBeaver 儲存的密碼，因此無須在鑰匙圈中核准。",
+            "檢查清單，決定如何處理重複項目，然後按一下<ui>匯入</ui>（Import）。資料夾轉為群組，SSH 通道設定一併移轉。TablePro 不支援的資料庫連線預設不勾選。",
             "刪除 DBeaver 前，開啟一個原本有密碼的連線，確認密碼已成功移轉。"
         ],
         "after": [

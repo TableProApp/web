@@ -28,9 +28,9 @@
             "id": "connect",
             "title": "Verbinden und anmelden",
             "paragraphs": [
-                "Gib Host, Benutzername und Passwort ein. Jedes Vantage-System mit TD2-Anmeldung funktioniert, ohne Versionsprüfung. <ui>Anmeldemechanismus</ui> unter Optionen nimmt <code>TD2</code> oder <code>TDNEGO</code>; <ui>Datenbank</ui> ist nur für einen anderen Standard als den deines Kontos nötig.",
+                "Gib Host, Benutzername und Passwort ein. Jedes Vantage-System mit TD2-Anmeldung funktioniert, ohne Versionsprüfung. <ui>Logon Mechanism</ui> unter Optionen nimmt <code>TD2</code> oder <code>TDNEGO</code>; <ui>Database</ui> ist nur für einen anderen Standard als den deines Kontos nötig.",
                 "Der Standardport trägt eine Klartextsitzung. Jeder SSL-Modus verschiebt sie auf den WebSocket-Endpunkt des Gateways auf dem unveränderbaren Port 443. CA prüfen braucht ein CA-Zertifikat; Identität prüfen prüft Kette und Hostnamen dagegen oder ohne Zertifikat gegen den System-Vertrauensspeicher.",
-                "Lasse <ui>Transaktionsmodus</ui> auf <code>DEFAULT</code>, sofern ein Skript keine ANSI- oder TERA-Commit-Regeln und Groß-/Kleinschreibung in der Sitzung braucht. Erreiche ein System hinter einem Bastion-Host per <network>SSH-Tunnel</network>. <ui>Aus URL importieren…</ui> nimmt <code>teradata://</code>-URLs an, die macOS nicht als Links öffnet."
+                "Lasse <ui>Transaction Mode</ui> auf <code>DEFAULT</code>, sofern ein Skript keine ANSI- oder TERA-Commit-Regeln und Groß-/Kleinschreibung in der Sitzung braucht. Erreiche ein System hinter einem Bastion-Host per <network>SSH-Tunnel</network>. <ui>Import from URL…</ui> nimmt <code>teradata://</code>-URLs an, die macOS nicht als Links öffnet."
             ]
         },
         {

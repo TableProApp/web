@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "Gespeicherte Zuordnungen und Kodierungen",
                     "paragraphs": [
-                        "TablePro merkt sich die Zuordnung je Tabelle für CSV-, JSON- und Excel-Importe. <ui>Nach Namen zuordnen</ui> oder <ui>Nach Position zuordnen</ui> ordnet alle Felder mit einem Klick zu; nach Position funktioniert bei CSV und Excel mit Reihenfolge aus der Datei. CSV- und SQL-Importe lesen UTF-16 sowie japanische, chinesische und koreanische Kodierungen wie Shift JIS, GB 18030, Big5 und EUC-KR."
+                        "TablePro merkt sich die Zuordnung je Tabelle für CSV-, JSON- und Excel-Importe. <ui>Match by Name</ui> oder <ui>Match by Position</ui> ordnet alle Felder mit einem Klick zu; nach Position funktioniert bei CSV und Excel mit Reihenfolge aus der Datei. CSV- und SQL-Importe lesen UTF-16 sowie japanische, chinesische und koreanische Kodierungen wie Shift JIS, GB 18030, Big5 und EUC-KR."
                     ],
                     "since": "0.77.0"
                 }
@@ -43,7 +43,7 @@
             "title": "Tabellen und Ergebnisse exportieren",
             "paragraphs": [
                 "<kbd>⌘⇧E</kbd> exportiert markierte Tabellen und Views nach {exportFormats}. Jede wird während des Schreibens aus der Datenbank gestreamt, ohne Zeilenlimit der Datentabelle. Auf SQL-Systemen erhält jede eigene WHERE-Klausel, Zeilenlimit und Spaltenauswahl. SQL-Exporte können Struktur enthalten, gzip-komprimiert und aufgeteilt werden; Excel nutzt ein Blatt je Tabelle. MongoDB-Sammlungen exportieren auch als mongosh-Skript; SQL-Export fehlt für MongoDB und Redis.",
-                "<ui>Ergebnisse exportieren</ui> schreibt die Abfrageergebnisse. Wurde ein Ergebnis vom Zeilenlimit gekürzt, läuft die Abfrage erneut und streamt vollständig. {exportPluginFormats}-Export kommt aus einem kostenlosen Plugin unter <ui>Einstellungen > Plugins</ui> und schreibt eine Datei je Tabelle."
+                "<ui>Export Results</ui> schreibt die Abfrageergebnisse. Wurde ein Ergebnis vom Zeilenlimit gekürzt, läuft die Abfrage erneut und streamt vollständig. {exportPluginFormats}-Export kommt aus einem kostenlosen Plugin unter <ui>Settings > Plugins</ui> und schreibt eine Datei je Tabelle."
             ],
             "asset": "mac-export-dialog"
         },
@@ -65,7 +65,7 @@
                     "id": "statistics",
                     "title": "Spaltenstatistik, dann exportieren oder importieren",
                     "paragraphs": [
-                        "Spaltenstatistiken zeigen leere und unterschiedliche Werte, Wertebereich und häufigste Werte; ein Klick filtert danach. Ist die Datei fertig, exportiere sie in ein anderes Format oder sende sie mit <ui>In Tabelle importieren</ui> an eine Tabelle einer offenen Verbindung."
+                        "Spaltenstatistiken zeigen leere und unterschiedliche Werte, Wertebereich und häufigste Werte; ein Klick filtert danach. Ist die Datei fertig, exportiere sie in ein anderes Format oder sende sie mit <ui>Import into Table</ui> an eine Tabelle einer offenen Verbindung."
                     ],
                     "asset": "mac-data-files-statistics"
                 }

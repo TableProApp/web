@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "修改结构前先查看 DDL",
             "paragraphs": [
-                "Structure 标签页可在网格中编辑表的列、索引、外键和 CHECK 约束。修改暂存至保存时才执行，<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）在执行前显示 ALTER TABLE 语句。删除项目、修改类型、添加 NOT NULL 或修改主键的操作会先征求确认，即使连接的安全模式级别为 {macSafeModeDefault}。",
+                "Structure 标签页可在网格中编辑表的列、索引、外键和 CHECK 约束。修改暂存至保存时才执行，<ui>预览 SQL</ui>（Preview SQL，<kbd>⌘⇧P</kbd>）在执行前显示 ALTER TABLE 语句。删除项目、修改类型、添加 NOT NULL 或修改主键的操作会先征求确认，即使连接的安全模式级别为 {macSafeModeDefault}。",
                 "索引可使用 <code>lower(email)</code> 等表达式键。New Table 以相同方式创建表，并提供实时 SQL 预览。对于不能直接修改外键的 SQLite、libSQL、Turso 和 Cloudflare D1，TablePro 生成表重建脚本供审查；SQLite 和本地 libSQL 文件在确认后执行，Turso、远程 libSQL 和 D1 则需自行运行。"
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "了解表间关系",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> 绘制当前结构的表和外键，根据主键和唯一键计算乌鸦脚表示法中的关系基数。<code>product_tags</code> 等关联表会折叠为一条多对多连线。可将图导出为 PNG、复制为图片，或导出为包含外键的 CREATE TABLE SQL 语句。",
+                "<ui>查看 ER 图</ui>（View ER Diagram）绘制当前结构的表和外键，根据主键和唯一键计算乌鸦脚表示法中的关系基数。<code>product_tags</code> 等关联表会折叠为一条多对多连线。可将图导出为 PNG、复制为图片，或导出为包含外键的 CREATE TABLE SQL 语句。",
                 "图表是用于查看和分享的快照。表需在 Structure 标签页修改，不能在画布上修改。"
             ],
             "asset": "mac-er-diagram"
@@ -52,7 +52,7 @@
                     "id": "table-folders",
                     "title": "表和视图的文件夹",
                     "paragraphs": [
-                        "在侧栏列表或树形布局中，拖动表和视图或使用 <ui>Move to</ui> 将其归入文件夹。筛选框也会搜索文件夹内部。文件夹仅存在于 TablePro 中，不改变服务器；启用 iCloud Sync 后会同步到其他 Mac。"
+                        "在侧栏列表或树形布局中，拖动表和视图或使用<ui>移动到</ui>（Move to）将其归入文件夹。筛选框也会搜索文件夹内部。文件夹仅存在于 TablePro 中，不改变服务器；启用 iCloud Sync 后会同步到其他 Mac。"
                     ],
                     "since": "0.77.0"
                 }

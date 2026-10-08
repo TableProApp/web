@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "Modifica la estructura; lee primero el DDL",
             "paragraphs": [
-                "Estructura edita columnas, índices, claves foráneas y restricciones CHECK en una cuadrícula. Los cambios esperan al guardado y <ui>Vista previa SQL</ui> (<kbd>⌘⇧P</kbd>) muestra ALTER TABLE antes de ejecutar nada. Eliminar elementos, cambiar tipos, añadir NOT NULL o modificar la clave primaria pide confirmación incluso con modo seguro {macSafeModeDefault}.",
+                "Estructura edita columnas, índices, claves foráneas y restricciones CHECK en una cuadrícula. Los cambios esperan al guardado y <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) muestra ALTER TABLE antes de ejecutar nada. Eliminar elementos, cambiar tipos, añadir NOT NULL o modificar la clave primaria pide confirmación incluso con modo seguro {macSafeModeDefault}.",
                 "Los índices pueden usar expresiones como <code>lower(email)</code>. Nueva tabla crea tablas del mismo modo, con vista previa SQL en directo. En SQLite, libSQL, Turso y Cloudflare D1, que no pueden modificar claves foráneas directamente, TablePro escribe una reconstrucción para revisar. La ejecuta al confirmar en SQLite y archivos libSQL locales, y la deja a tu cargo en Turso, libSQL remoto y D1."
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "Comprende las relaciones entre tablas",
             "paragraphs": [
-                "<ui>Ver diagrama ER</ui> dibuja tablas y claves foráneas del esquema, con cardinalidad pata de gallo calculada según claves primarias y únicas. Tablas de unión como <code>product_tags</code> se reducen a una línea muchos-a-muchos. Exporta como PNG, copia como imagen o exporta SQL: sentencias CREATE TABLE con claves foráneas.",
+                "<ui>View ER Diagram</ui> dibuja tablas y claves foráneas del esquema, con cardinalidad pata de gallo calculada según claves primarias y únicas. Tablas de unión como <code>product_tags</code> se reducen a una línea muchos-a-muchos. Exporta como PNG, copia como imagen o exporta SQL: sentencias CREATE TABLE con claves foráneas.",
                 "El diagrama es una instantánea para leer y compartir. Las tablas se modifican en Estructura, no en el lienzo."
             ],
             "asset": "mac-er-diagram"
@@ -52,7 +52,7 @@
                     "id": "table-folders",
                     "title": "Carpetas para tablas y vistas",
                     "paragraphs": [
-                        "Agrupa tablas y vistas arrastrándolas o mediante <ui>Mover a</ui>, en la vista de lista o árbol de la barra lateral. El filtro busca dentro de carpetas. Una carpeta solo existe en TablePro y no cambia el servidor; con iCloud Sync, te sigue a otros Mac."
+                        "Agrupa tablas y vistas arrastrándolas o mediante <ui>Move to</ui>, en la vista de lista o árbol de la barra lateral. El filtro busca dentro de carpetas. Una carpeta solo existe en TablePro y no cambia el servidor; con iCloud Sync, te sigue a otros Mac."
                     ],
                     "since": "0.77.0"
                 }

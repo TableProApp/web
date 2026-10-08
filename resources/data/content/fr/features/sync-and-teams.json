@@ -18,7 +18,7 @@
             "title": "Synchronisation iCloud",
             "paragraphs": [
                 "La synchronisation iCloud conserve la même bibliothèque sur chaque Mac, iPhone et iPad connecté à votre compte iCloud. Les données vont dans une base privée de ce compte et la synchronisation reste désactivée jusqu’à ce que vous l’activiez sur chaque appareil. Elle est gratuite sur iPhone et iPad ; sur Mac, elle nécessite un forfait qui l’inclut.",
-                "Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> dans Catégories de synchronisation sur Mac, ou <ui>Synchroniser les mots de passe</ui> sur iPhone et iPad, via le Trousseau iCloud. Sur Mac, cela transmet aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs d’IA et la clé de licence. Marquez une connexion comme Locale uniquement pour la conserver, avec ses favoris et requêtes enregistrées, sur un seul Mac."
+                "Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) dans Catégories de synchronisation sur Mac, ou <ui>Sync Passwords</ui> sur iPhone et iPad, via le Trousseau iCloud. Sur Mac, cela transmet aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs d’IA et la clé de licence. Marquez une connexion comme Locale uniquement pour la conserver, avec ses favoris et requêtes enregistrées, sur un seul Mac."
             ],
             "points": [
                 "Sur Mac, vous choisissez ce qui se synchronise : connexions, groupes et étiquettes, réglages, profils SSH, favoris de tables et de bases, requêtes enregistrées avec leur SQL et dossiers de tables.",
@@ -87,7 +87,7 @@
                     "id": "team-catalog",
                     "title": "Catalogue d’équipe",
                     "paragraphs": [
-                        "<ui>Partager > Publier dans le catalogue d’équipe…</ui> écrit les connexions choisies, sans mots de passe, sous forme de fichiers <code>.tablepro</code> dans un dossier partagé. Vos collègues ajoutent ce dossier comme Dossier lié ; le catalogue circule donc via un disque partagé ou un dépôt existant, sans passer par TablePro."
+                        "<ui>Partager > Publier dans le catalogue d’équipe…</ui> (Share > Publish to Team Catalog…) écrit les connexions choisies, sans mots de passe, sous forme de fichiers <code>.tablepro</code> dans un dossier partagé. Vos collègues ajoutent ce dossier comme Dossier lié ; le catalogue circule donc via un disque partagé ou un dépôt existant, sans passer par TablePro."
                     ],
                     "paid": [
                         "team-catalog"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Bibliothèque d’équipe",
                     "paragraphs": [
-                        "<ui>Partager > Publier dans la bibliothèque d’équipe…</ui> sur une connexion et <ui>Publier les requêtes enregistrées pour l’équipe…</ui> dans la barre latérale Favoris envoient les connexions et requêtes enregistrées au serveur de TablePro, puis chaque Mac de la licence les télécharge. Les requêtes apparaissent dans Favoris avec le nom de leur auteur. Les paramètres de connexion et le texte SQL des requêtes sont envoyés, jamais les mots de passe ; le Mac d’un collègue ignore les commandes de démarrage et de tunnel reçues, afin que rien ne s’y exécute spontanément. Une nouvelle publication remplace votre publication précédente."
+                        "<ui>Partager > Publier dans la bibliothèque d’équipe…</ui> (Share > Publish to Team Library…) sur une connexion et <ui>Publier les requêtes enregistrées pour l’équipe…</ui> (Publish Saved Queries to Team…) dans la barre latérale Favoris envoient les connexions et requêtes enregistrées au serveur de TablePro, puis chaque Mac de la licence les télécharge. Les requêtes apparaissent dans Favoris avec le nom de leur auteur. Les paramètres de connexion et le texte SQL des requêtes sont envoyés, jamais les mots de passe ; le Mac d’un collègue ignore les commandes de démarrage et de tunnel reçues, afin que rien ne s’y exécute spontanément. Une nouvelle publication remplace votre publication précédente."
                     ],
                     "paid": [
                         "team-library"
@@ -116,7 +116,7 @@
             "id": "seats",
             "title": "Postes, invitations et votre compte",
             "paragraphs": [
-                "Une licence Équipe est facturée par poste, et un poste correspond à un Mac activé, pas à une personne. Vous invitez vos collègues depuis votre compte sur le Web ; chacun reçoit par e-mail un code à usage unique à saisir dans <ui>Réglages > Licence</ui> sur son Mac, et une invitation nécessite un poste libre. L’app affiche les membres de l’équipe, mais les postes et invitations se gèrent sur le Web.",
+                "Une licence Équipe est facturée par poste, et un poste correspond à un Mac activé, pas à une personne. Vous invitez vos collègues depuis votre compte sur le Web ; chacun reçoit par e-mail un code à usage unique à saisir dans <ui>Réglages > Licence</ui> (Settings > License) sur son Mac, et une invitation nécessite un poste libre. L’app affiche les membres de l’équipe, mais les postes et invitations se gèrent sur le Web.",
                 "Avec un abonnement mensuel ou annuel actif, vous modifiez vous-même le nombre de postes ; pour un achat unique, contactez l’assistance. Retirer quelqu’un libère immédiatement son poste et supprime ses publications dans la Bibliothèque d’équipe ; ses Mac perdent les fonctions payantes lors du prochain contrôle de licence, sous {licenseCheckDays} jours. La page du compte est destinée à la personne qui a acheté la licence."
             ],
             "links": [

@@ -30,7 +30,7 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Indica un host o varios pares <code>host:port</code> para un replica set; el primario se encuentra automáticamente. También puedes pegar una URL <code>mongodb://</code> o <code>mongodb+srv://</code>. Autentícate con SCRAM-SHA-1, SCRAM-SHA-256, X.509 o AWS IAM y configura <ui>Base de autenticación</ui> si tu usuario está definido en <code>admin</code> pero exploras otra base.",
+                "Indica un host o varios pares <code>host:port</code> para un replica set; el primario se encuentra automáticamente. También puedes pegar una URL <code>mongodb://</code> o <code>mongodb+srv://</code>. Autentícate con SCRAM-SHA-1, SCRAM-SHA-256, X.509 o AWS IAM y configura <ui>Auth Database</ui> si tu usuario está definido en <code>admin</code> pero exploras otra base.",
                 "Un host terminado en <code>.mongodb.net</code> activa SRV y TLS automáticamente, como exige MongoDB Atlas. Añade primero tu IP a la lista de acceso del clúster: el tráfico desde una dirección no incluida agota el tiempo en lugar de fallar de inmediato.",
                 "Las conexiones nuevas empiezan sin TLS; el controlador no ofrece alternativa, así que Preferido se comporta como Obligatorio. Read Preference y Write Concern se configuran por conexión; el write concern se envía con cada inserción, actualización y eliminación desde el shell o al guardar la cuadrícula.",
                 "Con un <network>túnel SSH</network> solo se usa el primer host de la lista, por lo que se desactivan el descubrimiento del replica set y la conmutación por error durante esa sesión."
@@ -42,7 +42,7 @@
             "paragraphs": [
                 "La pestaña Consulta es un shell JavaScript que acepta sintaxis mongosh: claves sin comillas, expresiones regulares literales, <code>ISODate()</code>, variables, bucles y <code>forEach</code>. Se ejecuta dentro de TablePro, sin instalar nada más; una variable definida sigue disponible en todas las pestañas de la conexión hasta desconectar. El autocompletado ofrece colecciones, métodos, rutas de campos anidados y los operadores <code>$</code> válidos en el cursor.",
                 "Una colección se abre como cuadrícula, con campos de primer nivel como columnas y objetos anidados como Extended JSON. Una celda editada conserva el tipo del campo: una fecha sigue siendo fecha y un ObjectId sigue siendo ObjectId; editar dentro de un objeto anidado solo escribe la ruta modificada, como <code>address.city</code>.",
-                "<editing>Insertar documento y Editar documento</editing> aceptan un documento completo como Extended JSON. Editar documento vuelve a leerlo del servidor; si alguien lo cambió o eliminó tras abrir el cuadro, no se guarda nada y el cuadro lo indica. <ui>Eliminar campo</ui> en una celda envía <code>$unset</code>.",
+                "<editing>Insertar documento y Editar documento</editing> aceptan un documento completo como Extended JSON. Editar documento vuelve a leerlo del servidor; si alguien lo cambió o eliminó tras abrir el cuadro, no se guarda nada y el cuadro lo indica. <ui>Remove Field</ui> en una celda envía <code>$unset</code>.",
                 "La <filters>barra de filtros</filters> alcanza objetos anidados y arrays de objetos; <code>customer.country</code> e <code>items.sku</code> filtran directamente. Un campo GeoJSON se abre en la <map>vista Mapa</map>.",
                 "<safeMode>Modo seguro</safeMode> trata todas las sentencias de MongoDB como escrituras porque el controlador no puede abrir una sesión de solo lectura. Los niveles Alerta y Modo seguro confirman cada una; Solo lectura las bloquea todas."
             ]
@@ -53,7 +53,7 @@
             "paragraphs": [
                 "La <structure>pestaña Estructura</structure> enumera cada índice con sus campos en orden de clave y tipo, como hashed, text, 2dsphere o wildcard. Mostrar DDL escribe las llamadas <code>createIndex</code> que los reconstruyen, con todas las opciones informadas por el servidor.",
                 "Renombra o elimina un campo en toda la colección desde la misma pestaña. Cada cambio es un <code>updateMany</code>, mostrado en Vista previa SQL; también cambia ahí un campo declarado por el validador <code>$jsonSchema</code>. El guardado se rechaza antes de escribir si un índice, índice de búsqueda o vista aún usa el nombre.",
-                "<ui>Nueva tabla</ui> crea una colección cuyos campos se convierten en un validador <code>$jsonSchema</code> y luego crea los índices indicados. Las vistas y colecciones de series temporales aparecen en la barra lateral; las vistas se abren en solo lectura."
+                "<ui>New Table</ui> crea una colección cuyos campos se convierten en un validador <code>$jsonSchema</code> y luego crea los índices indicados. Las vistas y colecciones de series temporales aparecen en la barra lateral; las vistas se abren en solo lectura."
             ]
         },
         {

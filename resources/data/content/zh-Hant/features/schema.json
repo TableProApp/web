@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "修改結構前先查看 DDL",
             "paragraphs": [
-                "Structure 分頁可在格線中編輯資料表的欄位、索引、外部索引鍵與 CHECK 條件約束。修改暫存至儲存時才執行，<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）在執行前顯示 ALTER TABLE 陳述式。刪除項目、修改型別、新增 NOT NULL 或修改主索引鍵的操作會先徵求確認，即使連線的安全模式等級為 {macSafeModeDefault}。",
+                "Structure 分頁可在格線中編輯資料表的欄位、索引、外部索引鍵與 CHECK 條件約束。修改暫存至儲存時才執行，<ui>預覽 SQL</ui>（Preview SQL，<kbd>⌘⇧P</kbd>）在執行前顯示 ALTER TABLE 陳述式。刪除項目、修改型別、新增 NOT NULL 或修改主索引鍵的操作會先徵求確認，即使連線的安全模式等級為 {macSafeModeDefault}。",
                 "索引可使用 <code>lower(email)</code> 等運算式索引鍵。New Table 以相同方式建立資料表，並提供即時 SQL 預覽。對於不能直接修改外部索引鍵的 SQLite、libSQL、Turso 與 Cloudflare D1，TablePro 產生資料表重建指令碼供檢閱；SQLite 和本機 libSQL 檔案在確認後執行，Turso、遠端 libSQL 和 D1 則需自行執行。"
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "了解資料表間關係",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> 繪製目前結構的資料表與外部索引鍵，根據主索引鍵和唯一索引鍵計算烏鴉腳表示法中的關係基數。<code>product_tags</code> 等關聯資料表會摺疊為一條多對多連線。可將圖匯出為 PNG、複製為圖片，或匯出為包含外部索引鍵的 CREATE TABLE SQL 陳述式。",
+                "<ui>檢視 ER 圖</ui>（View ER Diagram）繪製目前結構的資料表與外部索引鍵，根據主索引鍵和唯一索引鍵計算烏鴉腳表示法中的關係基數。<code>product_tags</code> 等關聯資料表會摺疊為一條多對多連線。可將圖匯出為 PNG、複製為圖片，或匯出為包含外部索引鍵的 CREATE TABLE SQL 陳述式。",
                 "圖表是用於查看和分享的快照。資料表需在 Structure 分頁修改，不能在畫布上修改。"
             ],
             "asset": "mac-er-diagram"
@@ -52,7 +52,7 @@
                     "id": "table-folders",
                     "title": "資料表與檢視表的檔案夾",
                     "paragraphs": [
-                        "在側欄清單或樹狀配置中，拖移資料表和檢視表或使用 <ui>Move to</ui> 將其歸入檔案夾。篩選欄也會搜尋檔案夾內部。檔案夾僅存在於 TablePro 中，不改變伺服器；啟用 iCloud Sync 後會同步到其他 Mac。"
+                        "在側欄清單或樹狀配置中，拖移資料表和檢視表或使用<ui>移動至</ui>（Move to）將其歸入檔案夾。篩選欄也會搜尋檔案夾內部。檔案夾僅存在於 TablePro 中，不改變伺服器；啟用 iCloud Sync 後會同步到其他 Mac。"
                     ],
                     "since": "0.77.0"
                 }

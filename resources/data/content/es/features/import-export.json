@@ -32,7 +32,7 @@
                     "id": "mappings",
                     "title": "Correspondencias guardadas y codificaciones",
                     "paragraphs": [
-                        "TablePro recuerda la correspondencia elegida por tabla para importar CSV, JSON y Excel; <ui>Emparejar por nombre</ui> o <ui>Emparejar por posición</ui> asigna todos los campos con un clic. Por posición funciona con CSV y Excel, cuyo orden procede del archivo. CSV y SQL leen UTF-16 y codificaciones japonesas, chinas y coreanas como Shift JIS, GB 18030, Big5 y EUC-KR."
+                        "TablePro recuerda la correspondencia elegida por tabla para importar CSV, JSON y Excel; <ui>Match by Name</ui> o <ui>Match by Position</ui> asigna todos los campos con un clic. Por posición funciona con CSV y Excel, cuyo orden procede del archivo. CSV y SQL leen UTF-16 y codificaciones japonesas, chinas y coreanas como Shift JIS, GB 18030, Big5 y EUC-KR."
                     ],
                     "since": "0.77.0"
                 }
@@ -43,7 +43,7 @@
             "title": "Exporta tablas y resultados",
             "paragraphs": [
                 "<kbd>⌘⇧E</kbd> exporta tablas y vistas marcadas a {exportFormats}. Cada una se transmite desde la base mientras se escribe, sin límite de filas de la cuadrícula; en motores SQL, cada tabla admite WHERE, límite de filas y columnas elegidas. SQL puede incluir estructura, comprimir con gzip y dividir en partes; Excel usa una hoja por tabla. Las colecciones MongoDB también se exportan como script mongosh; SQL no está disponible para MongoDB ni Redis.",
-                "<ui>Exportar resultados</ui> escribe lo devuelto por una consulta; si el límite recortó el resultado, se ejecuta otra vez y se transmite completo. La exportación {exportPluginFormats} procede de un plugin gratuito instalado en <ui>Ajustes > Plugins</ui> y escribe un archivo por tabla."
+                "<ui>Export Results</ui> escribe lo devuelto por una consulta; si el límite recortó el resultado, se ejecuta otra vez y se transmite completo. La exportación {exportPluginFormats} procede de un plugin gratuito instalado en <ui>Settings > Plugins</ui> y escribe un archivo por tabla."
             ],
             "asset": "mac-export-dialog"
         },
@@ -65,7 +65,7 @@
                     "id": "statistics",
                     "title": "Estadísticas de columnas y luego exportar o importar",
                     "paragraphs": [
-                        "Las estadísticas muestran valores vacíos y distintos, rango y valores más comunes; haz clic en uno para filtrar el archivo. Cuando esté listo, exporta a otro formato o envíalo a una tabla de una conexión abierta con <ui>Importar a tabla</ui>."
+                        "Las estadísticas muestran valores vacíos y distintos, rango y valores más comunes; haz clic en uno para filtrar el archivo. Cuando esté listo, exporta a otro formato o envíalo a una tabla de una conexión abierta con <ui>Import into Table</ui>."
                     ],
                     "asset": "mac-data-files-statistics"
                 }

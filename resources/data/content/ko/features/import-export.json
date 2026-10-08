@@ -43,7 +43,7 @@
             "title": "테이블과 결과 내보내기",
             "paragraphs": [
                 "<kbd>⌘⇧E</kbd>은 선택한 테이블과 뷰를 {exportFormats} 형식으로 내보냅니다. 데이터베이스에서 스트리밍하며 기록하므로 데이터 그리드의 행 제한은 적용되지 않습니다. SQL 엔진에서는 테이블별 WHERE 절, 행 제한과 열 선택이 가능합니다. SQL 내보내기는 구조 포함, gzip 압축 및 파일 분할을 지원하고 Excel은 테이블마다 별도 시트를 만듭니다. MongoDB 컬렉션은 mongosh 스크립트로도 내보내며 MongoDB와 Redis에는 SQL 내보내기를 제공하지 않습니다.",
-                "<ui>Export Results</ui>는 쿼리 결과를 기록합니다. 행 제한으로 잘린 결과는 다시 실행해 전체를 스트리밍합니다. {exportPluginFormats} 내보내기는 <ui>Settings > Plugins</ui>에서 설치하는 무료 플러그인으로 제공되며 테이블당 파일 하나를 작성합니다."
+                "<ui>결과 내보내기</ui>(Export Results)는 쿼리 결과를 기록합니다. 행 제한으로 잘린 결과는 다시 실행해 전체를 스트리밍합니다. {exportPluginFormats} 내보내기는 <ui>설정 > 플러그인</ui>(Settings > Plugins)에서 설치하는 무료 플러그인으로 제공되며 테이블당 파일 하나를 작성합니다."
             ],
             "asset": "mac-export-dialog"
         },

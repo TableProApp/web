@@ -18,7 +18,7 @@
             "title": "Sincronización con iCloud",
             "paragraphs": [
                 "Sincronización con iCloud mantiene la misma biblioteca en todos los Macs, iPhone y iPad conectados a tu cuenta de iCloud. Los registros se guardan en una base de datos privada de esa cuenta; la sincronización permanece desactivada hasta que la actives en cada dispositivo. Es gratuita en iPhone y iPad; en Mac necesitas un plan que la incluya.",
-                "Las contraseñas solo se sincronizan si también activas <ui>Contraseñas</ui> en Categorías de sincronización en Mac, o <ui>Sincronizar contraseñas</ui> en iPhone y iPad, mediante el Llavero de iCloud. En Mac también se sincronizan otros secretos que TablePro guarda en el Llavero, como las claves de proveedores de IA y la clave de licencia. Marca una conexión como Solo local para mantenerla, junto con sus favoritos y consultas guardadas, en un único Mac."
+                "Las contraseñas solo se sincronizan si también activas <ui>Passwords</ui> en Categorías de sincronización en Mac, o <ui>Sync Passwords</ui> en iPhone y iPad, mediante el Llavero de iCloud. En Mac también se sincronizan otros secretos que TablePro guarda en el Llavero, como las claves de proveedores de IA y la clave de licencia. Marca una conexión como Solo local para mantenerla, junto con sus favoritos y consultas guardadas, en un único Mac."
             ],
             "points": [
                 "En Mac eliges qué sincronizar: conexiones, grupos y etiquetas, ajustes, perfiles SSH, favoritos de tablas y bases de datos, consultas guardadas con su SQL y carpetas de tablas.",
@@ -87,7 +87,7 @@
                     "id": "team-catalog",
                     "title": "Catálogo de equipo",
                     "paragraphs": [
-                        "<ui>Compartir > Publicar en el catálogo de equipo…</ui> escribe las conexiones que elijas, sin contraseñas, como archivos <code>.tablepro</code> en una carpeta compartida. Tus compañeros añaden esa carpeta como Carpeta vinculada, de modo que el catálogo se distribuye mediante una unidad compartida o un repositorio que ya tenéis, sin pasar por TablePro."
+                        "<ui>Share > Publish to Team Catalog…</ui> escribe las conexiones que elijas, sin contraseñas, como archivos <code>.tablepro</code> en una carpeta compartida. Tus compañeros añaden esa carpeta como Carpeta vinculada, de modo que el catálogo se distribuye mediante una unidad compartida o un repositorio que ya tenéis, sin pasar por TablePro."
                     ],
                     "paid": [
                         "team-catalog"
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Biblioteca de equipo",
                     "paragraphs": [
-                        "<ui>Compartir > Publicar en la biblioteca de equipo…</ui> en una conexión y <ui>Publicar consultas guardadas en el equipo…</ui> en la barra lateral Favoritos suben conexiones y consultas guardadas al servidor de TablePro, y todos los Macs de la licencia las descargan; las consultas aparecen en Favoritos con el nombre de quien las publicó. Se suben los ajustes de conexión y el texto SQL de las consultas, nunca las contraseñas; el Mac del compañero ignora los comandos de inicio y de túnel recibidos, así que nada se ejecuta por sí solo. Volver a publicar sustituye lo publicado anteriormente."
+                        "<ui>Share > Publish to Team Library…</ui> en una conexión y <ui>Publish Saved Queries to Team…</ui> en la barra lateral Favoritos suben conexiones y consultas guardadas al servidor de TablePro, y todos los Macs de la licencia las descargan; las consultas aparecen en Favoritos con el nombre de quien las publicó. Se suben los ajustes de conexión y el texto SQL de las consultas, nunca las contraseñas; el Mac del compañero ignora los comandos de inicio y de túnel recibidos, así que nada se ejecuta por sí solo. Volver a publicar sustituye lo publicado anteriormente."
                     ],
                     "paid": [
                         "team-library"
@@ -116,7 +116,7 @@
             "id": "seats",
             "title": "Puestos, invitaciones y tu cuenta",
             "paragraphs": [
-                "Una licencia de Equipo se cobra por puesto, y cada puesto corresponde a un Mac activado, no a una persona. Invitas a tus compañeros desde tu cuenta en la web; cada uno recibe por correo un código de un solo uso que introduce en <ui>Ajustes > Licencia</ui> en su Mac, y cada invitación requiere un puesto libre. La app muestra los miembros del equipo, pero los puestos y las invitaciones se gestionan en la web.",
+                "Una licencia de Equipo se cobra por puesto, y cada puesto corresponde a un Mac activado, no a una persona. Invitas a tus compañeros desde tu cuenta en la web; cada uno recibe por correo un código de un solo uso que introduce en <ui>Settings > License</ui> en su Mac, y cada invitación requiere un puesto libre. La app muestra los miembros del equipo, pero los puestos y las invitaciones se gestionan en la web.",
                 "En una suscripción mensual o anual activa puedes cambiar tú mismo el número de puestos; para una compra de pago único, contacta con soporte. Al eliminar a alguien, su puesto queda libre de inmediato y se borra lo que publicó en la Biblioteca de equipo; sus Macs pierden las funciones de pago en la siguiente comprobación de licencia, en un máximo de {licenseCheckDays} días. La página de cuenta corresponde a la persona que compró la licencia."
             ],
             "links": [

@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Mit einem API-Token verbinden",
             "paragraphs": [
-                "Eine D1-Verbindung braucht drei Werte: Name oder UUID der Datenbank, deine Cloudflare-Konto-ID und einen API-Token. Der Token kommt in das Feld <ui>API-Token</ui> und wird im <credentials>macOS-Schlüsselbund</credentials> gespeichert. Es gibt keinen Host, Port, keine SSL-Einstellung und keinen SSH-Tunnel, da jede Anfrage über HTTPS an die Cloudflare-API geht.",
-                "Erstelle den Token aus der Vorlage für benutzerdefinierte Tokens mit der Berechtigung <ui>Konto > D1 > Bearbeiten</ui> und kopiere ihn, sobald Cloudflare ihn zeigt, denn er wird nur einmal angezeigt. Der Token erreicht jede D1-Datenbank des Kontos, nicht nur die, mit der du dich verbindest.",
+                "Eine D1-Verbindung braucht drei Werte: Name oder UUID der Datenbank, deine Cloudflare-Konto-ID und einen API-Token. Der Token kommt in das Feld <ui>API Token</ui> und wird im <credentials>macOS-Schlüsselbund</credentials> gespeichert. Es gibt keinen Host, Port, keine SSL-Einstellung und keinen SSH-Tunnel, da jede Anfrage über HTTPS an die Cloudflare-API geht.",
+                "Erstelle den Token aus der Vorlage für benutzerdefinierte Tokens mit der Berechtigung <ui>Account > D1 > Edit</ui> und kopiere ihn, sobald Cloudflare ihn zeigt, denn er wird nur einmal angezeigt. Der Token erreicht jede D1-Datenbank des Kontos, nicht nur die, mit der du dich verbindest.",
                 "Beim Import einer <code>d1://account-id/database-name</code>-URL werden Konto und Datenbank ausgefüllt; der Token reist nie in der URL mit, daher fügst du ihn anschließend ein."
             ]
         },

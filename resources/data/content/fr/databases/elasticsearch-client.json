@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Saisissez l’hôte et le port REST du cluster, puis choisissez une <ui>Méthode d’authentification</ui>. Nom d’utilisateur et mot de passe envoie HTTP Basic. Clé API envoie le champ dans l’en-tête <code>Authorization: ApiKey</code> ; collez donc la valeur <code>encoded</code> retournée par la création d’une clé API. L’option Aucune convient à un cluster de développement sans sécurité. Une connexion donne accès à un cluster ; le formulaire n’a donc pas de champ Base de données.",
+                "Saisissez l’hôte et le port REST du cluster, puis choisissez une <ui>Méthode d’authentification</ui> (Auth Method). Nom d’utilisateur et mot de passe envoie HTTP Basic. Clé API envoie le champ dans l’en-tête <code>Authorization: ApiKey</code> ; collez donc la valeur <code>encoded</code> retournée par la création d’une clé API. L’option Aucune convient à un cluster de développement sans sécurité. Une connexion donne accès à un cluster ; le formulaire n’a donc pas de champ Base de données.",
                 "Les nouvelles connexions démarrent avec SSL Désactivé, soit HTTP en clair. Tous les autres modes utilisent HTTPS : Préféré et Requis (ignorer la vérification) acceptent un certificat autosigné, tandis que Vérifier l’AC et Vérifier l’identité le contrôlent. Elasticsearch 8.x active sécurité et TLS par défaut ; un cluster 8.x nécessite donc généralement HTTPS et des identifiants."
             ]
         },

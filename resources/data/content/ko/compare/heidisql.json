@@ -128,10 +128,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro에는 HeidiSQL 가져오기가 없습니다. 각 세션을 TablePro 연결로 추가해 폼을 채우거나 mysql://, postgresql://·sqlserver:// URL을 <ui>File > Import > Import from URL…</ui>에 붙여 넣으세요.",
+        "intro": "TablePro에는 HeidiSQL 가져오기가 없습니다. 각 세션을 TablePro 연결로 추가해 폼을 채우거나 mysql://, postgresql://·sqlserver:// URL을 <ui>파일 > 가져오기 > URL에서 가져오기…</ui>(File > Import > Import from URL…)에 붙여 넣으세요.",
         "steps": [],
         "after": [
-            "연결의 <ui>Network</ui> 탭에서 SSH 터널을 설정합니다. Mac은 점프 호스트도 지원합니다.",
+            "연결의 <ui>네트워크</ui>(Network) 탭에서 SSH 터널을 설정합니다. Mac은 점프 호스트도 지원합니다.",
             "비밀번호는 macOS 키체인에 저장합니다.",
             "쿼리 기록은 TablePro에서 새로 시작합니다."
         ],

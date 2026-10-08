@@ -135,7 +135,7 @@
                     "question": "密碼存在哪裡？",
                     "answer": [
                         "Mac 上保存在 macOS 鑰匙圈中，也可在連線時從檔案、環境變數、Shell 指令、1Password、HashiCorp Vault 或 AWS Secrets Manager 讀取。iPhone 與 iPad 上保存在裝置鑰匙圈中。",
-                        "開啟 iCloud 同步後，還必須開啟 Mac 上 Sync Categories 中的 <ui>Passwords</ui>，或 iPhone 與 iPad 上的 <ui>Sync Passwords</ui>，才會透過 iCloud 鑰匙圈同步密碼。"
+                        "開啟 iCloud 同步後，還必須開啟 Mac 上 Sync Categories 中的<ui>密碼</ui>（Passwords），或 iPhone 與 iPad 上的<ui>同步密碼</ui>（Sync Passwords），才會透過 iCloud 鑰匙圈同步密碼。"
                     ]
                 },
                 {
@@ -227,7 +227,7 @@
                     "id": "what-is-sent",
                     "question": "App 會向 TablePro 傳送什麼？",
                     "answer": [
-                        "未啟用授權時，Mac App 向 TablePro 發出的唯一請求是每日使用報告，預設開啟，可在 <ui>Settings > General > Privacy</ui> 中關閉。它包含經過雜湊處理的機器 ID、App 版本、語言和所連線資料庫類型等資訊，從不包含主機名稱、使用者名稱、密碼、查詢或列資料。",
+                        "未啟用授權時，Mac App 向 TablePro 發出的唯一請求是每日使用報告，預設開啟，可在<ui>設定 > 一般 > 隱私</ui>（Settings > General > Privacy）中關閉。它包含經過雜湊處理的機器 ID、App 版本、語言和所連線資料庫類型等資訊，從不包含主機名稱、使用者名稱、密碼、查詢或列資料。",
                         "啟用授權後，Mac App 還會每隔 {revalidateDays} 天驗證，傳送金鑰、相同機器 ID、Mac 名稱及 App 和 macOS 版本。iPhone 與 iPad 除非開啟 Share Usage Data，否則不向 TablePro 傳送資訊。<privacy>隱私權政策</privacy>提供完整清單，包括伺服器儲存的內容。"
                     ]
                 },
@@ -249,7 +249,7 @@
                     "id": "icloud-data",
                     "question": "iCloud 同步儲存什麼，存在哪裡？",
                     "answer": [
-                        "iCloud 同步預設關閉。同步的連線和 Mac 上選擇的其他類別存入您自己 iCloud 帳戶的私有資料庫，TablePro 無法讀取。只有同時開啟 Mac 上 Sync Categories 中的 <ui>Passwords</ui>，或 iPhone 與 iPad 上的 <ui>Sync Passwords</ui> 才會同步密碼。",
+                        "iCloud 同步預設關閉。同步的連線和 Mac 上選擇的其他類別存入您自己 iCloud 帳戶的私有資料庫，TablePro 無法讀取。只有同時開啟 Mac 上 Sync Categories 中的<ui>密碼</ui>（Passwords），或 iPhone 與 iPad 上的<ui>同步密碼</ui>（Sync Passwords）才會同步密碼。",
                         "Mac 上的 iCloud 同步屬於 Starter 或 Team 授權功能，iPhone 與 iPad 上免費。"
                     ]
                 }
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "如何新增或移除團隊成員？",
                     "answer": [
-                        "在<account>您的帳戶</account>中透過電子郵件邀請。成員收到代碼後，在 Mac 上的 TablePro 中進入 <ui>Settings > License</ui> 輸入，其 Mac 占用一個席位。移除成員會釋出席位、讓其 Mac 登出，並刪除其發佈至 Team Library 的內容。"
+                        "在<account>您的帳戶</account>中透過電子郵件邀請。成員收到代碼後，在 Mac 上的 TablePro 中進入<ui>設定 > 授權</ui>（Settings > License）輸入，其 Mac 占用一個席位。移除成員會釋出席位、讓其 Mac 登出，並刪除其發佈至 Team Library 的內容。"
                     ]
                 },
                 {

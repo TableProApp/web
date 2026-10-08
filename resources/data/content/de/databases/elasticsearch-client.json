@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host und REST-Port des Clusters ein und wähle eine <ui>Authentifizierungsmethode</ui>. Benutzername und Passwort sendet HTTP Basic. API-Schlüssel sendet das Feld im Header <code>Authorization: ApiKey</code>; füge daher den <code>encoded</code>-Wert aus der Antwort auf die API-Schlüsselerstellung ein. Die Option Keine eignet sich für einen Entwicklungscluster ohne Sicherheit. Eine Verbindung erreicht einen Cluster, daher hat das Formular kein Datenbankfeld.",
+                "Gib Host und REST-Port des Clusters ein und wähle eine <ui>Auth Method</ui>. Benutzername und Passwort sendet HTTP Basic. API-Schlüssel sendet das Feld im Header <code>Authorization: ApiKey</code>; füge daher den <code>encoded</code>-Wert aus der Antwort auf die API-Schlüsselerstellung ein. Die Option Keine eignet sich für einen Entwicklungscluster ohne Sicherheit. Eine Verbindung erreicht einen Cluster, daher hat das Formular kein Datenbankfeld.",
                 "Neue Verbindungen beginnen mit SSL Deaktiviert, also Klartext-HTTP. Jeder andere Modus nutzt HTTPS: Bevorzugt und Erforderlich (Prüfung überspringen) akzeptieren selbstsignierte Zertifikate; CA prüfen und Identität prüfen überprüfen sie. Elasticsearch 8.x aktiviert Sicherheit und TLS standardmäßig, daher benötigt ein 8.x-Cluster meist HTTPS und Zugangsdaten."
             ]
         },

@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "选择 <ui>Auth Method</ui>、<ui>AWS Region</ui>，侧栏列出该区域的表。方式为带可选会话令牌的访问密钥、按 AWS CLI 方式读取 <code>~/.aws/config</code> 和 <code>~/.aws/credentials</code> 的配置，或会话过期时打开登录提示的 <cloudAuth>AWS IAM Identity Center</cloudAuth> 配置。",
+                "选择<ui>认证方式</ui>（Auth Method）、<ui>AWS 区域</ui>（AWS Region），侧栏列出该区域的表。方式为带可选会话令牌的访问密钥、按 AWS CLI 方式读取 <code>~/.aws/config</code> 和 <code>~/.aws/credentials</code> 的配置，或会话过期时打开登录提示的 <cloudAuth>AWS IAM Identity Center</cloudAuth> 配置。",
                 "配置解析 <code>credential_process</code> 辅助程序和 <code>role_arn</code> 链，过期临时凭据重新获取并重试请求一次。所有请求经 HTTPS、Signature Version 4 签名，无 SSL 设置或 SSH 隧道。中国、European Sovereign Cloud 等其他 AWS 分区的区域自动访问自身端点，无需自定义。",
-                "DynamoDB Local 运行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>，选 <ui>DynamoDB Local (no credentials)</ui>；8000 端口留空 <ui>Custom Endpoint</ui>。自定义端点仅在此 Mac 可用明文 HTTP。设置指南列出<permissions>各任务需要的 IAM 操作</permissions>。"
+                "DynamoDB Local 运行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>，选 <ui>DynamoDB Local (no credentials)</ui>；8000 端口留空<ui>自定义端点</ui>（Custom Endpoint）。自定义端点仅在此 Mac 可用明文 HTTP。设置指南列出<permissions>各任务需要的 IAM 操作</permissions>。"
             ]
         },
         {
@@ -37,9 +37,9 @@
             "paragraphs": [
                 "打开、筛选和分页都经过同一规划器。用 = 固定分区键则对单分区 Query；符合索引键的筛选对该索引 Query；其余 Scan 读取全表，并对每个读取项目计费。状态栏显示所选读取方式、返回数、DynamoDB 为找到它们读取的数及消耗读取容量单位。",
                 "排序键的<filters>筛选</filters>为 =、<、<=、>、>=、BETWEEN、STARTS WITH 时加入键条件。其余变为 DynamoDB 读取后应用的 FilterExpression，减少行但不减少账单。嵌套属性用 <code>address.city</code>、<code>items[0].sku</code> 等路径筛选。",
-                "单分区 Query 点击排序键头让 DynamoDB 按该顺序返回。其他排序在读取包含所有匹配项目时由网格完成，否则状态栏注明。下一页从上页结束处继续。网格下总数是 DynamoDB 自身项目数；<ui>Count Exactly</ui> 读取所有符合筛选的项目，该读取全额计费。",
+                "单分区 Query 点击排序键头让 DynamoDB 按该顺序返回。其他排序在读取包含所有匹配项目时由网格完成，否则状态栏注明。下一页从上页结束处继续。网格下总数是 DynamoDB 自身项目数；<ui>精确计数</ui>（Count Exactly）读取所有符合筛选的项目，该读取全额计费。",
                 "表仅声明键，列来自项目：键属性、首批项目样本中的属性及当前页属性。map、list、set 显示 JSON 并在 JSON 编辑器打开，数字保留所有位。",
-                "各修改行保存为一个 PartiQL 语句，<editing>所有值保留类型</editing>：Number 仍为 Number，<code>02134</code> 等 String 仍为 String，JSON 编辑的 String Set 仍为 String Set。更新逐个检查改动属性是否等于网格加载值，宁可失败也不覆盖他人改动。<ui>Set NULL</ui> 移除属性。",
+                "各修改行保存为一个 PartiQL 语句，<editing>所有值保留类型</editing>：Number 仍为 Number，<code>02134</code> 等 String 仍为 String，JSON 编辑的 String Set 仍为 String Set。更新逐个检查改动属性是否等于网格加载值，宁可失败也不覆盖他人改动。<ui>设为 NULL</ui>（Set NULL）移除属性。",
                 "编辑器接受名称双引号、字符串单引号的 PartiQL，或 DynamoDB 操作名后跟请求 JSON，如 <code>Query</code>、<code>BatchWriteItem</code>、<code>TransactWriteItems</code>。其他操作名拒绝。项目返回网格，其他响应显示 JSON。限流请求退避重试，<code>⌘.</code> 停止运行语句。"
             ]
         },
@@ -47,7 +47,7 @@
             "id": "schema",
             "title": "表和索引",
             "paragraphs": [
-                "<ui>New Table…</ui> 打开分区键、排序键、按需或预置容量、表类别、删除保护和二级索引表单，<ui>Preview</ui> 在发送前显示 <code>CreateTable</code> 请求。本地二级索引仅可在此创建表时定义。",
+                "<ui>新建表…</ui>（New Table…）打开分区键、排序键、按需或预置容量、表类别、删除保护和二级索引表单，<ui>预览</ui>（Preview）在发送前显示 <code>CreateTable</code> 请求。本地二级索引仅可在此创建表时定义。",
                 "Structure 标签页添加删除全局二级索引，每次保存一个修改，因为 DynamoDB 每个 <code>UpdateTable</code> 仅接受一个索引改动。这里不编辑属性：写入项目即可成为列。DDL 标签页显示重建表的 <code>CreateTable</code> 请求，含 Time to Live 和时间点恢复设置。"
             ]
         },
@@ -55,7 +55,7 @@
             "id": "operate",
             "title": "表设置",
             "paragraphs": [
-                "右击表选 <ui>Maintenance</ui>，设置时间点恢复、删除保护、流、表类别、切换按需容量或关闭 Time to Live。删除表发送 <code>DeleteTable</code>，删除保护开启时失败。"
+                "右击表选<ui>维护</ui>（Maintenance），设置时间点恢复、删除保护、流、表类别、切换按需容量或关闭 Time to Live。删除表发送 <code>DeleteTable</code>，删除保护开启时失败。"
             ]
         },
         {
@@ -77,7 +77,7 @@
         {
             "id": "change-key",
             "question": "如何修改项目的键？",
-            "answer": "键属性不可原地编辑。用 <ui>Duplicate Row</ui> 复制键以外的所有属性，给副本新键，保存后删除原项。"
+            "answer": "键属性不可原地编辑。用<ui>复制行</ui>（Duplicate Row）复制键以外的所有属性，给副本新键，保存后删除原项。"
         },
         {
             "id": "transactions",

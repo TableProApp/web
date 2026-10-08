@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host und TCP-Port an und wähle <ui>Authentifizierung</ui>; das Formular passt sich an: SQL-Server-Login und Passwort, Windows-Authentifizierung über Kerberos oder Microsoft Entra ID. Fülle Datenbank für einen datenbankgebundenen Login wie einen Azure-SQL-Contained-User aus.",
+                "Gib Host und TCP-Port an und wähle <ui>Authentication</ui>; das Formular passt sich an: SQL-Server-Login und Passwort, Windows-Authentifizierung über Kerberos oder Microsoft Entra ID. Fülle Datenbank für einen datenbankgebundenen Login wie einen Azure-SQL-Contained-User aus.",
                 "Kerberos nutzt das Ticket im Zugangsdaten-Cache oder fordert eines mit eingegebenem Prinzipal und Passwort an. Verbinde per Hostname statt IP, weil das Ticket für den registrierten SPN des Servers gilt. TablePro führt nie <code>kinit</code> aus und bearbeitet nie <code>/etc/krb5.conf</code>.",
                 "<cloudAuth>Microsoft Entra ID</cloudAuth> meldet per Gerätecodefluss an, der MFA und Conditional Access respektiert. Registriere eine App in Azure und gib ihre Client-ID ein; Tokens bleiben im Anmeldeschlüsselbund als nur auf diesem Gerät nutzbar und werden im Hintergrund erneuert.",
                 "Neue Verbindungen beginnen mit Bevorzugt, das bei SQL Server nur die Anmeldung verschlüsselt. Wähle Erforderlich oder strenger für die ganze Sitzung; CA prüfen und Identität prüfen nutzen macOS-Systemwurzeln. TablePro kann auch den Cloud SQL Auth Proxy für Google Cloud SQL ausführen; <network>SSH-Tunnel</network> erreichen private Netzwerke."
@@ -57,7 +57,7 @@
             "id": "operate",
             "title": "Überwachen und sichern",
             "paragraphs": [
-                "Das <dashboard>Server-Dashboard</dashboard> zeigt Benutzersitzungen, Laufzeit und Datenbankgröße, listet andere Sitzungen und länger als eine Sekunde laufende Abfragen und beendet mit <ui>Sitzung beenden</ui>. SQL Server hat kein Abfrage abbrechen.",
+                "Das <dashboard>Server-Dashboard</dashboard> zeigt Benutzersitzungen, Laufzeit und Datenbankgröße, listet andere Sitzungen und länger als eine Sekunde laufende Abfragen und beendet mit <ui>Terminate Session</ui>. SQL Server hat kein Abfrage abbrechen.",
                 "<backup>Backup-Dump</backup> schreibt <code>.bacpac</code> mit {dumpTool}, das du von Microsoft lädst; Dump wiederherstellen lädt es in eine leere Datenbank. SqlPackage nimmt Passwörter nur in der Kommandozeile, wo andere Mac-Prozesse sie lesen können; daher fragt TablePro vorher. Windows- oder Entra-Anmeldung vermeidet das."
             ]
         },

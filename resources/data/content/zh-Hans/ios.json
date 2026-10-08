@@ -35,7 +35,7 @@
         "paragraphs": [
             "编写带语法高亮的 SQL、运行查询并在运行时停止。可从 SELECT 模板开始，将结果以 JSON、CSV 或 SQL INSERT 语句形式通过剪贴板或共享菜单复制、分享。",
             "应用最多保留 {results} 行结果；添加 LIMIT 可查看大型结果的其他部分。历史记录跨连接保存此设备最近 {history} 条查询，不会同步。",
-            "查询运行时，实时活动会在锁屏和灵动岛上显示进度：耗时及已接收行数。除非开启 <ui>Settings > Live Activities > Hide Query</ui>，锁屏和展开的灵动岛也会显示 SQL。"
+            "查询运行时，实时活动会在锁屏和灵动岛上显示进度：耗时及已接收行数。除非开启<ui>设置 > 实时活动 > 隐藏查询</ui>（Settings > Live Activities > Hide Query），锁屏和展开的灵动岛也会显示 SQL。"
         ]
     },
     "security": {
@@ -51,7 +51,7 @@
         "paragraphs": [
             "每个连接都有安全模式级别：{levels}。Confirm Writes 会在执行修改数据的语句前询问；Read-Only 在语句发送至服务器前拒绝。应用无法判定为读取的语句均视为写入。",
             "在连接的 Organization 区域设置级别，在 Settings 中设置新连接的默认级别。添加行的快捷指令也遵循相同级别。",
-            "在 <ui>Settings > Security</ui> 中使用 Face ID 或 Touch ID 锁定应用，密码可作为备用验证方式。开启后，每次启动及经过所选 Auto-Lock 时长后都会要求验证。"
+            "在<ui>设置 > 安全</ui>（Settings > Security）中使用 Face ID 或 Touch ID 锁定应用，密码可作为备用验证方式。开启后，每次启动及经过所选 Auto-Lock 时长后都会要求验证。"
         ]
     },
     "ipad": {
@@ -97,7 +97,7 @@
     "privacy": {
         "title": "隐私",
         "paragraphs": [
-            "除非在设置时或之后的 <ui>Settings > Privacy</ui> 中开启 Share Usage Data，否则不会向 TablePro 发送信息。开启后，每天发送一次报告，含哈希后的设备 ID、应用和 iOS 版本、处理器架构、语言、所用数据库类型、连接数量及若干首次使用日期。从不包含主机名、用户名、密码、查询或行数据。",
+            "除非在设置时或之后的<ui>设置 > 隐私</ui>（Settings > Privacy）中开启 Share Usage Data，否则不会向 TablePro 发送信息。开启后，每天发送一次报告，含哈希后的设备 ID、应用和 iOS 版本、处理器架构、语言、所用数据库类型、连接数量及若干首次使用日期。从不包含主机名、用户名、密码、查询或行数据。",
             "应用不进行许可证验证、更新检查或插件请求。查询发往您自己的服务器，iCloud 同步发往您自己的 iCloud 账户，Entra 登录发往 Microsoft。详情见<privacyIos>隐私政策</privacyIos>。"
         ]
     },

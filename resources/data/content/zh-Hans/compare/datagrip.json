@@ -149,10 +149,10 @@
     "switching": {
         "intro": "TablePro 读取 DataGrip 的全局数据源及最近项目的数据源。DataGrip 无需打开，文件也不会修改。",
         "steps": [
-            "在 TablePro 中选择 <ui>File > Import > Import from Other App…</ui>。",
-            "选择 DataGrip，开启 <ui>Include passwords</ui>，读取 DataGrip 保存在 macOS 钥匙串中的密码，包括 SSH 密码和密钥口令。",
-            "macOS 会为每个已保存密码请求一次登录密码。每次提示都选择 <ui>Always Allow</ui>。",
-            "检查列表，决定如何处理重复项，然后点击 <ui>Import</ui>。分组、SSH 隧道和 SSL 设置会一并迁移。TablePro 不支持的引擎连接默认不勾选。",
+            "在 TablePro 中选择<ui>文件 > 导入 > 从其他应用导入…</ui>（File > Import > Import from Other App…）。",
+            "选择 DataGrip，开启<ui>包含密码</ui>（Include passwords），读取 DataGrip 保存在 macOS 钥匙串中的密码，包括 SSH 密码和密钥口令。",
+            "macOS 会为每个已保存密码请求一次登录密码。每次提示都选择<ui>始终允许</ui>（Always Allow）。",
+            "检查列表，决定如何处理重复项，然后点击<ui>导入</ui>（Import）。分组、SSH 隧道和 SSL 设置会一并迁移。TablePro 不支持的引擎连接默认不勾选。",
             "删除 DataGrip 前，打开一个原本有密码的连接，确认密码已成功迁移。"
         ],
         "after": [
@@ -183,7 +183,7 @@
         {
             "id": "jdbc-url",
             "question": "可以粘贴 DataGrip 的 JDBC URL 吗？",
-            "answer": "可以，前提是 TablePro 支持该引擎。<ui>File > Import > Import from URL…</ui> 除 postgres:// 和 mysql:// 外，也读取 jdbc: URL。若要一次迁移所有数据源，请使用上文介绍的导入器。",
+            "answer": "可以，前提是 TablePro 支持该引擎。<ui>文件 > 导入 > 从 URL 导入…</ui>（File > Import > Import from URL…）除 postgres:// 和 mysql:// 外，也读取 jdbc: URL。若要一次迁移所有数据源，请使用上文介绍的导入器。",
             "href": null
         }
     ],

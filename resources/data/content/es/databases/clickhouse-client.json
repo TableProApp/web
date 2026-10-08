@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Indica el host y el puerto HTTP, un usuario y, si quieres, una base de datos. El cambio de base se hace sin reconectar; cada pestaña abierta conserva la base inicial. <ui>Ver > Barra lateral como árbol</ui> muestra las bases del servidor en un árbol que puedes desplegar directamente.",
+                "Indica el host y el puerto HTTP, un usuario y, si quieres, una base de datos. El cambio de base se hace sin reconectar; cada pestaña abierta conserva la base inicial. <ui>View > Sidebar as Tree</ui> muestra las bases del servidor en un árbol que puedes desplegar directamente.",
                 "Elige cualquier modo SSL para pasar a HTTPS. Los puertos 443 o 8443, este último usado por ClickHouse Cloud, activan Verificar identidad, que comprueba el certificado con tu archivo de CA o el almacén de confianza del sistema. Verificar CA necesita un archivo de CA; un certificado de cliente y su clave permiten acceder a servidores que requieren TLS mutuo.",
                 "Sin TLS, accede a un servidor remoto mediante un <network>túnel SSH</network> en lugar de enviar HTTP sin cifrar por la red."
             ]
@@ -56,7 +56,7 @@
             "id": "operate",
             "title": "Supervisar",
             "paragraphs": [
-                "El <dashboard>Panel del servidor</dashboard> muestra consultas y fusiones activas, mutaciones de partes y uso de disco; enumera las demás sesiones con <ui>Terminar sesión</ui> en cada una y lee las consultas lentas de <code>system.query_log</code>: las consultas finalizadas más recientes que tardaron más de un segundo."
+                "El <dashboard>Panel del servidor</dashboard> muestra consultas y fusiones activas, mutaciones de partes y uso de disco; enumera las demás sesiones con <ui>Terminate Session</ui> en cada una y lee las consultas lentas de <code>system.query_log</code>: las consultas finalizadas más recientes que tardaron más de un segundo."
             ]
         },
         {

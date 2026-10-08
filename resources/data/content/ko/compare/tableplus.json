@@ -145,10 +145,10 @@
     "switching": {
         "intro": "TablePro는 TablePlus가 저장하는 위치에서 연결을 읽으며 Setapp 에디션의 연결도 포함합니다. TablePlus를 열어 둘 필요가 없으며 파일도 변경하지 않습니다.",
         "steps": [
-            "TablePro에서 <ui>File > Import > Import from Other App…</ui>를 선택합니다.",
-            "TablePlus를 선택합니다. <ui>Include passwords</ui>를 켜서 macOS 키체인에 저장된 암호를 읽습니다.",
-            "macOS는 저장된 암호마다 한 번씩 로그인 암호를 요청합니다. 각 메시지에서 <ui>Always Allow</ui>를 선택합니다.",
-            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>Import</ui>를 클릭합니다. 그룹, SSH 터널, 연결 색상이 함께 이전됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
+            "TablePro에서 <ui>파일 > 가져오기 > 다른 앱에서 가져오기…</ui>(File > Import > Import from Other App…)를 선택합니다.",
+            "TablePlus를 선택합니다. <ui>암호 포함</ui>(Include passwords)을 켜서 macOS 키체인에 저장된 암호를 읽습니다.",
+            "macOS는 저장된 암호마다 한 번씩 로그인 암호를 요청합니다. 각 메시지에서 <ui>항상 허용</ui>(Always Allow)을 선택합니다.",
+            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>가져오기</ui>(Import)를 클릭합니다. 그룹, SSH 터널, 연결 색상이 함께 이전됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
             "TablePlus를 삭제하기 전에 암호가 있던 연결을 열어 암호가 이전되었는지 확인합니다."
         ],
         "after": [

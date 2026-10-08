@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "<ui>Connection Mode</ui>를 고르세요. Standalone은 호스트·포트를 받습니다. Sentinel은 노드 하나 이상과 프라이머리 그룹 이름을 받아 쿼럼을 따라 프라이머리를 찾고 장애 조치 후에도 따라갑니다. Cluster는 접근 가능한 멤버를 시드로 샤드 맵을 읽고 명령을 키 소유 샤드에 보냅니다.",
+                "<ui>연결 모드</ui>(Connection Mode)를 고르세요. Standalone은 호스트·포트를 받습니다. Sentinel은 노드 하나 이상과 프라이머리 그룹 이름을 받아 쿼럼을 따라 프라이머리를 찾고 장애 조치 후에도 따라갑니다. Cluster는 접근 가능한 멤버를 시드로 샤드 맵을 읽고 명령을 키 소유 샤드에 보냅니다.",
                 "비밀번호로 로그인하거나 Username을 넣어 Redis 6 ACL 사용자로 로그인합니다. Amazon ElastiCache는 <cloudAuth>AWS IAM</cloudAuth> 방식을 고르면 단기 토큰이 비밀번호가 됩니다. ElastiCache IAM은 TLS가 필요합니다.",
                 "새 연결은 TLS가 꺼져 있습니다. Upstash·Redis Cloud 등은 TLS가 필요하며 <code>rediss://</code> URL을 붙이면 켜집니다. 평문 대체 연결이 없어 Preferred는 Required처럼 작동합니다. Valkey 서버도 Redis와 같은 방식으로 연결합니다.",
                 "사이드바는 <code>db0</code>부터 번호 있는 데이터베이스를 나열하고 클릭하면 바로 탐색합니다."
@@ -75,7 +75,7 @@
         {
             "id": "acl-scan",
             "question": "ACL 사용자의 키 트리가 비어 있는 이유는 무엇인가요?",
-            "answer": "키 트리는 <code>SCAN</code>으로 키 이름, <code>TYPE</code>으로 유형을 읽습니다. <code>ACL SETUSER app +scan +type</code> 등으로 둘 다 허용하고 사이드바의 <ui>Keys</ui>를 우클릭해 <ui>Refresh</ui>를 고르세요."
+            "answer": "키 트리는 <code>SCAN</code>으로 키 이름, <code>TYPE</code>으로 유형을 읽습니다. <code>ACL SETUSER app +scan +type</code> 등으로 둘 다 허용하고 사이드바의 <ui>키</ui>(Keys)를 우클릭해 <ui>새로 고침</ui>(Refresh)을 고르세요."
         },
         {
             "id": "select",

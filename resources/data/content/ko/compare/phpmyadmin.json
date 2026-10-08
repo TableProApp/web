@@ -170,10 +170,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro에는 phpMyAdmin 가져오기가 없습니다. 호스트의 MySQL·SSH 정보를 폼에 넣거나 mysql:// URL을 <ui>File > Import > Import from URL…</ui>에 붙여 넣으세요.",
+        "intro": "TablePro에는 phpMyAdmin 가져오기가 없습니다. 호스트의 MySQL·SSH 정보를 폼에 넣거나 mysql:// URL을 <ui>파일 > 가져오기 > URL에서 가져오기…</ui>(File > Import > Import from URL…)에 붙여 넣으세요.",
         "steps": [],
         "after": [
-            "사이트 코드가 Mac에 있으면 <ui>File > Import > Open Project Folder…</ui>가 wp-config.php·.env 같은 파일의 데이터베이스 설정을 읽어 채워진 폼을 엽니다.",
+            "사이트 코드가 Mac에 있으면 <ui>파일 > 가져오기 > 프로젝트 폴더 열기…</ui>(File > Import > Open Project Folder…)가 wp-config.php·.env 같은 파일의 데이터베이스 설정을 읽어 채워진 폼을 엽니다.",
             "운영 데이터베이스는 시작 전 연결 안전 모드를 설정하세요.",
             "phpMyAdmin SQL 내보내기 파일은 gzip 여부와 관계없이 MySQL·MariaDB 연결에 가져옵니다."
         ],

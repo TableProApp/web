@@ -29,8 +29,8 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Saisissez hôte, port du listener et Service Name, ou passez le <ui>Type de connexion</ui> à SID pour une instance sans service. Authentifiez-vous par utilisateur et mot de passe, en Normal ou avec le rôle SYSDBA ou SYSOPER.",
-                "Native Network Encryption ne nécessite aucun réglage : si le serveur la demande, AES avec somme SHA-2 est proposé ; <ui>Chiffrement réseau</ui> change ce que TablePro offre. Pour TLS, choisissez Requis pour TCPS, ou Vérifier l’AC ou Vérifier l’identité avec un certificat d’AC. Les nouvelles connexions ont SSL désactivé ; Préféré reste en TCP en clair.",
+                "Saisissez hôte, port du listener et Service Name, ou passez le <ui>Type de connexion</ui> (Connection Type) à SID pour une instance sans service. Authentifiez-vous par utilisateur et mot de passe, en Normal ou avec le rôle SYSDBA ou SYSOPER.",
+                "Native Network Encryption ne nécessite aucun réglage : si le serveur la demande, AES avec somme SHA-2 est proposé ; <ui>Network Encryption</ui> change ce que TablePro offre. Pour TLS, choisissez Requis pour TCPS, ou Vérifier l’AC ou Vérifier l’identité avec un certificat d’AC. Les nouvelles connexions ont SSL désactivé ; Préféré reste en TCP en clair.",
                 "Sur Oracle Autonomous Database, copiez hôte, port et nom de service depuis la chaîne TLS, pas mTLS, et définissez SSL sur Requis ou Vérifier l’AC. Les fichiers wallet ne sont jamais lus ; la base doit donc accepter TLS sans TLS mutuel.",
                 "Un listener RAC SCAN, serveur partagé ou répartiteur devant la base ne nécessite aucune configuration ; un <network>tunnel SSH</network> atteint un listener en réseau privé."
             ]

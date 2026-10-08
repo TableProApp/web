@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "連線與登入",
             "paragraphs": [
-                "填寫 coordinator 主機、連接埠及執行查詢的 <ui>Username</ui>。<ui>Catalog</ui>、<ui>Schema</ui> 為可選起點，Catalog 留空可瀏覽全部。Options 中的 IANA <ui>Time Zone</ui> 設定工作階段時區。",
+                "填寫 coordinator 主機、連接埠及執行查詢的<ui>使用者名稱</ui>（Username）。<ui>Catalog</ui>、<ui>綱要</ui>（Schema）為可選起點，Catalog 留空可瀏覽全部。Options 中的 IANA <ui>時區</ui>（Time Zone）設定工作階段時區。",
                 "密碼以 HTTP Basic 傳送，用於 LDAP 或密碼檔案驗證；JWT 存取權杖以 bearer 認證資訊傳送。兩者僅透過 TLS，SSL Disabled 下含此認證資訊的連線在傳送前即拒絕。SSL 面板的用戶端憑證和金鑰新增雙向 TLS。",
-                "SSL 預設為 Disabled，即明文 HTTP；其他模式強制 TLS，不退回明文，443 連接埠啟用 Verify Identity。不跟隨 coordinator 前代理的重新導向，錯誤指出目標位址。堡壘主機後的 coordinator 可透過 <network>SSH 通道</network>存取，並用 <ui>Import from URL…</ui> 匯入 <code>trino://</code> URL。"
+                "SSL 預設為 Disabled，即明文 HTTP；其他模式強制 TLS，不退回明文，443 連接埠啟用 Verify Identity。不跟隨 coordinator 前代理的重新導向，錯誤指出目標位址。堡壘主機後的 coordinator 可透過 <network>SSH 通道</network>存取，並用<ui>從 URL 匯入…</ui>（Import from URL…）匯入 <code>trino://</code> URL。"
             ]
         },
         {
@@ -38,7 +38,7 @@
                 "連線在某個 catalog、schema 開啟，查詢仍可完整指定 <code>catalog.schema.table</code>，例如聯結 Hive 和 PostgreSQL 資料表。側欄將各 catalog 展開為 schema 和資料表，具體化檢視表與資料表、檢視表並列，列數來自 <code>SHOW STATS</code>。",
                 "<code>bigint</code>、<code>decimal</code> 以精確文字而非浮點數讀取。<code>varbinary</code> 顯示為十六進位，<code>array</code>、<code>map</code>、<code>row</code> 為 JSON，時間戳記保留伺服器傳回值。",
                 "<explain>Explain</explain> 提供 Logical、Distributed、IO、Validate、Analyze。Validate 不執行而驗證，Analyze 執行並報告實際耗時，所有計畫均為原始文字。",
-                "<code>SET SESSION</code> 在連線剩餘期間保持。<ui>Query > Cancel Query</ui> 通知 coordinator 終止執行中的查詢，這是停止查詢的方法，因為連線查詢逾時不傳至 Trino。",
+                "<code>SET SESSION</code> 在連線剩餘期間保持。<ui>查詢 > 取消查詢</ui>（Query > Cancel Query）通知 coordinator 終止執行中的查詢，這是停止查詢的方法，因為連線查詢逾時不傳至 Trino。",
                 "<editing>儲存格編輯</editing>轉換為 INSERT、UPDATE、DELETE，每個值含 Trino 型別。Trino 不報告主索引鍵，因此依讀取時整列所有欄位比對，沒有交易可復原。編輯兩個相同列中的一個會同時修改兩個，請先檢查重複。"
             ]
         },
