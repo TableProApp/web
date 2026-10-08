@@ -9,14 +9,14 @@
     },
     "header": {
         "title": "TablePro vs. Sequel Ace",
-        "lead": "Sequel Ace e TablePro são clientes de banco de dados gratuitos, de código aberto, com apps nativos para Mac, e ambos têm manutenção ativa. Sequel Ace dá continuidade ao Sequel Pro e funciona apenas com MySQL e MariaDB. TablePro conecta a MySQL, MariaDB e outros mecanismos, tem um app para iPhone e iPad e adiciona recursos pagos opcionais no Mac."
+        "lead": "Sequel Ace e TablePro são clientes de banco de dados gratuitos, de código aberto, com apps nativos para Mac, e ambos têm manutenção ativa. Sequel Ace dá continuidade ao Sequel Pro e funciona apenas com MySQL e MariaDB. TablePro se conecta a MySQL, MariaDB e outros mecanismos, tem um app para iPhone e iPad e adiciona recursos pagos opcionais no Mac."
     },
     "shortAnswer": {
         "tablepro": [
             "Você também trabalha com PostgreSQL, SQL Server, Redis, MongoDB ou outros mecanismos e quer um cliente para todos eles.",
             "Você quer um assistente de IA dentro do app, gratuito, com o provedor de IA que escolher.",
             "Você quer EXPLAIN como diagrama, um diagrama ER somente leitura e modo Vim no editor.",
-            "Você quer um app gratuito para iPhone e iPad que conecta a MySQL e MariaDB."
+            "Você quer um app gratuito para iPhone e iPad que se conecta a MySQL e MariaDB."
         ],
         "competitor": [
             "Você usa apenas MySQL e MariaDB e quer um cliente feito exclusivamente para eles.",
@@ -89,7 +89,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Além de MySQL e MariaDB, TablePro conecta a PostgreSQL, SQL Server, SQLite, Redis, MongoDB e outros mecanismos. Veja os <link>bancos suportados</link>.",
+                "text": "Além de MySQL e MariaDB, TablePro se conecta a PostgreSQL, SQL Server, SQLite, Redis, MongoDB e outros mecanismos. Veja os <link>bancos suportados</link>.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -115,7 +115,7 @@
                 "href": null
             },
             {
-                "text": "Um <link>app gratuito para iPhone e iPad</link> conecta a MySQL e MariaDB, sem compras dentro do app.",
+                "text": "Um <link>app gratuito para iPhone e iPad</link> se conecta a MySQL e MariaDB, sem compras dentro do app.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
@@ -126,7 +126,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro conecta a MySQL e MariaDB apenas por TCP, não por um arquivo de socket local.",
+                "text": "TablePro se conecta a MySQL e MariaDB apenas por TCP, não por um arquivo de socket local.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -154,10 +154,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro lê os favoritos salvos pelo Sequel Ace e as senhas guardadas no Chaves do macOS. Sequel Ace não precisa estar aberto, e seus arquivos não são alterados.",
+        "intro": "TablePro lê os favoritos salvos pelo Sequel Ace e as senhas guardadas nas Chaves do macOS. Sequel Ace não precisa estar aberto, e seus arquivos não são alterados.",
         "steps": [
             "No TablePro, escolha <ui>File > Import > Import from Other App…</ui>",
-            "Selecione Sequel Ace. Ative <ui>Include passwords</ui> para ler as senhas salvas de bancos e SSH no Chaves do macOS.",
+            "Selecione Sequel Ace. Ative <ui>Include passwords</ui> para ler as senhas salvas de bancos e SSH nas Chaves do macOS.",
             "O macOS pede sua senha de login uma vez para cada senha salva. Escolha <ui>Always Allow</ui> em cada solicitação. Cancelar uma solicitação ignora as senhas restantes.",
             "Revise a lista, decida o que fazer com duplicatas e clique em <ui>Import</ui>. Grupos, cores de conexão, túneis SSH e configurações SSL são transferidos.",
             "Antes de remover Sequel Ace, abra uma conexão que tinha senha para verificar se ela foi transferida."
@@ -174,7 +174,7 @@
         {
             "id": "keep-sequel-ace",
             "question": "Posso continuar usando Sequel Ace depois de importar?",
-            "answer": "Sim. A importação apenas lê o arquivo de favoritos do Sequel Ace e seus itens no Chaves, então ambos os apps continuam funcionando com suas próprias cópias.",
+            "answer": "Sim. A importação apenas lê o arquivo de favoritos do Sequel Ace e seus itens nas Chaves, então ambos os apps continuam funcionando com suas próprias cópias.",
             "href": null
         },
         {
@@ -186,7 +186,7 @@
         {
             "id": "free",
             "question": "TablePro é gratuito como Sequel Ace?",
-            "answer": "TablePro é gratuito para usar e de código aberto sob a AGPLv3, incluindo MySQL, MariaDB, assistente de IA e servidor MCP. Um plano Starter ou Team adiciona recursos opcionais ao app Mac, como {starterExamples}. Sequel Ace não tem planos pagos. <link>Veja os preços</link>.",
+            "answer": "TablePro é de uso gratuito e de código aberto sob a AGPLv3, incluindo MySQL, MariaDB, assistente de IA e servidor MCP. Um plano Starter ou Team adiciona recursos opcionais ao app Mac, como {starterExamples}. Sequel Ace não tem planos pagos. <link>Veja os preços</link>.",
             "href": "/pricing"
         },
         {

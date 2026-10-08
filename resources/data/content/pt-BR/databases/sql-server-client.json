@@ -31,7 +31,7 @@
             "paragraphs": [
                 "Informe o host e a porta TCP, depois escolha <ui>Authentication</ui>, e o formulário se adapta: login e senha SQL Server, Windows Authentication por Kerberos ou Microsoft Entra ID. Preencha Database para um login vinculado a um banco, como um usuário contido do Azure SQL.",
                 "Kerberos usa o ticket já presente no cache de credenciais ou solicita um com o principal e a senha informados. Conecte pelo nome do host em vez do IP, pois o ticket é emitido para o SPN registrado do servidor. TablePro nunca executa <code>kinit</code> nem edita <code>/etc/krb5.conf</code>.",
-                "<cloudAuth>Microsoft Entra ID</cloudAuth> entra pelo fluxo de código de dispositivo, que respeita autenticação multifator e Conditional Access. Você registra um aplicativo no Azure e informa seu ID de cliente; os tokens ficam no Chaves de login, marcados como exclusivos do dispositivo, e são renovados em segundo plano.",
+                "<cloudAuth>Microsoft Entra ID</cloudAuth> entra pelo fluxo de código de dispositivo, que respeita autenticação multifator e Conditional Access. Você registra um aplicativo no Azure e informa seu ID de cliente; os tokens ficam nas Chaves de login, marcados como exclusivos do dispositivo, e são renovados em segundo plano.",
                 "Novas conexões começam em Preferred, que no SQL Server criptografa apenas o login. Escolha Required ou um modo mais rigoroso para criptografar a sessão inteira; Verify CA e Verify Identity verificam o certificado com as raízes do sistema macOS. TablePro também pode executar Cloud SQL Auth Proxy para Google Cloud SQL, e <network>túneis SSH</network> acessam servidores em redes privadas."
             ]
         },

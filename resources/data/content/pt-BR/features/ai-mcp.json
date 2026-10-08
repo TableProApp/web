@@ -34,8 +34,8 @@
             "id": "agent-mode",
             "title": "Modos de chat e Agent mode",
             "paragraphs": [
-                "O chat tem três modos. Ask, o padrão, consulta o esquema e não executa nada. Edit também pode executar consultas, e Agent também pode executar DROP, TRUNCATE e outras instruções destrutivas. Em {macSafeModeDefault}, o nível de Safe Mode inicial das novas conexões, gravações em Edit e Agent executam sem perguntar; de Alert a Safe Mode (Full), cada uma aguarda Run, e Read-Only as recusa. Instruções destrutivas sempre aguardam um clique e nunca podem ser aprovadas antecipadamente.",
-                "O Agent mode (<kbd>⌥⇧⌘A</kbd>) dedica a janela inteira a uma sessão: as sessões desta conexão, a conversa e o SQL proposto e executado. Enquanto está ativo, a conexão fica em Alert ou mais rigoroso, portanto nenhuma gravação executa até você clicar em Run. Isso é um lembrete, não um bloqueio: basta um atalho para desligá-lo. As sessões ficam neste Mac."
+                "O chat tem três modos. Ask, o padrão, consulta o esquema e não executa nada. Edit também pode executar consultas, e Agent também pode executar DROP, TRUNCATE e outras instruções destrutivas. Em {macSafeModeDefault}, o nível de Safe Mode inicial das novas conexões, gravações em Edit e Agent são executadas sem perguntar; de Alert a Safe Mode (Full), cada uma aguarda Run, e Read-Only as recusa. Instruções destrutivas sempre aguardam um clique e nunca podem ser aprovadas antecipadamente.",
+                "O Agent mode (<kbd>⌥⇧⌘A</kbd>) dedica a janela inteira a uma sessão: as sessões desta conexão, a conversa e o SQL proposto e executado. Enquanto está ativo, a conexão fica em Alert ou mais rigoroso, portanto nenhuma gravação é executada até você clicar em Run. Isso é um lembrete, não um bloqueio: basta um atalho para desligá-lo. As sessões ficam neste Mac."
             ],
             "asset": "mac-agent-mode",
             "links": [
@@ -89,7 +89,7 @@
             "id": "automation",
             "title": "Automação fora do chat",
             "paragraphs": [
-                "AppleScript pode conectar, executar consultas e abrir tabelas, respeitando o nível de External Clients e o Safe Mode da conexão. Links <code>tablepro://</code> abrem uma conexão, tabela ou aba de consulta; uma consulta em um link é preenchida após sua confirmação e nunca executa sozinha. URLs de banco como <code>postgresql://</code> abrem como conexões.",
+                "AppleScript pode conectar, executar consultas e abrir tabelas, respeitando o nível de External Clients e o Safe Mode da conexão. Links <code>tablepro://</code> abrem uma conexão, tabela ou aba de consulta; uma consulta em um link é preenchida após sua confirmação e nunca é executada sozinha. URLs de banco como <code>postgresql://</code> abrem como conexões.",
                 "O comando de shell <code>tablepro</code> abre essas URLs e arquivos no app; não executa consultas pelo terminal. A extensão oficial Raycast pesquisa conexões, tabelas e histórico de consultas e executa consultas pelo app pareado."
             ]
         },
@@ -98,7 +98,7 @@
             "title": "Para onde seus dados vão",
             "paragraphs": [
                 "Prompts, o contexto de esquema e tudo que você anexa vão ao provedor escolhido, sob os termos da sua própria conta com ele. Com Ollama, llama.cpp, MLX ou um servidor compatível com OpenAI operado por você, ficam na sua máquina. TablePro não recebe nada disso, e o relatório diário de uso do app para Mac não contém informações sobre IA nem MCP.",
-                "Ao adicionar GitHub Copilot, a opção de enviar telemetria ao GitHub vem ativada; desative-a onde você configura Copilot."
+                "Ao adicionar o GitHub Copilot, a opção de enviar telemetria ao GitHub vem ativada; desative-a onde você configura o Copilot."
             ],
             "links": [
                 {

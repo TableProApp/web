@@ -143,7 +143,7 @@
                 "href": "/features/querying#history"
             },
             {
-                "text": "TablePro conecta apenas aos mecanismos para os quais tem drivers, sem conexão JDBC genérica. Confira primeiro os <link>bancos suportados</link>.",
+                "text": "TablePro se conecta apenas aos mecanismos para os quais tem drivers, sem conexão JDBC genérica. Confira primeiro os <link>bancos suportados</link>.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -154,7 +154,7 @@
         "intro": "TablePro lê as fontes de dados globais do DataGrip e as dos seus projetos recentes. DataGrip não precisa estar aberto, e seus arquivos não são alterados.",
         "steps": [
             "No TablePro, escolha <ui>File > Import > Import from Other App…</ui>",
-            "Selecione DataGrip. Ative <ui>Include passwords</ui> para ler as senhas que DataGrip salvou no Chaves do macOS, incluindo senhas SSH e frases secretas de chaves.",
+            "Selecione DataGrip. Ative <ui>Include passwords</ui> para ler as senhas que DataGrip salvou nas Chaves do macOS, incluindo senhas SSH e frases secretas de chaves.",
             "O macOS pede sua senha de login uma vez para cada senha salva. Escolha <ui>Always Allow</ui> em cada solicitação.",
             "Revise a lista, decida o que fazer com duplicatas e clique em <ui>Import</ui>. Grupos, túneis SSH e configurações SSL são transferidos. Uma conexão a um mecanismo não suportado pelo TablePro chega desmarcada.",
             "Antes de remover DataGrip, abra uma conexão que tinha senha para verificar se ela foi transferida."

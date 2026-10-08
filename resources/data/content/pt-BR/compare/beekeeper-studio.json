@@ -144,7 +144,7 @@
                 "href": null
             },
             {
-                "text": "TablePro conecta apenas aos mecanismos para os quais tem drivers. Confira os <link>bancos suportados</link> antes de migrar.",
+                "text": "TablePro se conecta apenas aos mecanismos para os quais tem drivers. Confira os <link>bancos suportados</link> antes de migrar.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -169,7 +169,7 @@
         "intro": "TablePro lê as conexões que Beekeeper Studio salva no seu Mac, no workspace local. Beekeeper Studio não precisa estar aberto, e seus arquivos não são alterados.",
         "steps": [
             "No TablePro, escolha <ui>File > Import > Import from Other App…</ui>",
-            "Selecione Beekeeper Studio e ative <ui>Include passwords</ui>. TablePro descriptografa as senhas salvas pelo Beekeeper Studio, incluindo senhas SSH e frases secretas de chaves, então não há nada a aprovar no Chaves.",
+            "Selecione Beekeeper Studio e ative <ui>Include passwords</ui>. TablePro descriptografa as senhas salvas pelo Beekeeper Studio, incluindo senhas SSH e frases secretas de chaves, então não há nada a aprovar nas Chaves.",
             "Revise a lista, decida o que fazer com duplicatas e clique em <ui>Import</ui>. Pastas viram grupos, cores das conexões e configurações SSL são transferidas, e um host bastion SSH vira um jump host. Uma conexão a um mecanismo não suportado pelo TablePro chega desmarcada.",
             "Antes de remover Beekeeper Studio, abra uma conexão que tinha senha para verificar se ela foi transferida."
         ],

@@ -27,7 +27,7 @@
             "title": "Entre no Google Cloud",
             "paragraphs": [
                 "Escolha um <ui>Auth Method</ui> e informe o <ui>Project ID</ui>: o ID, não o nome nem o número do projeto. <ui>Application Default Credentials</ui> lê o arquivo criado por <code>gcloud auth application-default login</code>, sendo o caminho mais direto quando gcloud já está configurado. <ui>Service Account Key</ui> aceita um arquivo de chave .json ou o JSON colado.",
-                "Google Account (OAuth) entra pelo navegador com um cliente OAuth para desktop que você cria no Google Cloud Console. O token de renovação fica no Chaves, um por cliente OAuth, portanto as próximas conexões não abrem o navegador. Um cliente OAuth entra em uma conta Google, então uma segunda conta exige outro cliente ou seu próprio token de renovação.",
+                "Google Account (OAuth) entra pelo navegador com um cliente OAuth para desktop que você cria no Google Cloud Console. O token de renovação fica nas Chaves, um por cliente OAuth, portanto as próximas conexões não abrem o navegador. Um cliente OAuth entra em uma conta Google, então uma segunda conta exige outro cliente ou seu próprio token de renovação.",
                 "Tudo passa pela API REST do BigQuery, portanto não há host, porta, URL de conexão ou túnel SSH. <ui>Location</ui> define o local de processamento enviado com cada job. Saiba mais sobre <cloudAuth>autenticação na nuvem</cloudAuth>."
             ]
         },

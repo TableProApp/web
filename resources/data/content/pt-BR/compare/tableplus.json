@@ -13,7 +13,7 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "Você quer um cliente de código aberto. TablePro é aberto sob a AGPLv3, incluindo o código dos recursos pagos.",
+            "Você quer um cliente de código aberto. TablePro é de código aberto sob a AGPLv3, incluindo o código dos recursos pagos.",
             "Você quer um app gratuito para iPhone e iPad, sem compras no app.",
             "Você prefere pagar apenas pelos recursos de que precisa. O app gratuito não limita abas ou janelas, e os planos pagos adicionam recursos como {starterExamples}."
         ],
@@ -33,7 +33,7 @@
         },
         "excelExport": {
             "label": "Exportação para Excel",
-            "tablepro": "Gratuita, assim como CSV, JSON, SQL e outros formatos"
+            "tablepro": "Gratuita, junto com CSV, JSON, SQL e outros formatos"
         },
         "safeMode": {
             "label": "Safe Mode",
@@ -94,7 +94,7 @@
                 "href": null
             },
             {
-                "text": "O app gratuito conecta a todos os mecanismos suportados e inclui assistente de IA, servidor MCP e Safe Mode, sem limites de abas ou janelas. <link>Planos pagos</link> adicionam recursos como {starterExamples}.",
+                "text": "O app gratuito se conecta a todos os mecanismos suportados e inclui assistente de IA, servidor MCP e Safe Mode, sem limites de abas ou janelas. <link>Planos pagos</link> adicionam recursos como {starterExamples}.",
                 "cite": [],
                 "feature": null,
                 "href": "/pricing"
@@ -133,13 +133,13 @@
                 "href": null
             },
             {
-                "text": "Como TablePlus, TablePro tem um <link>app separado para iPhone e iPad</link> que faz menos que o app Mac: não tem assistente de IA, servidor MCP ou autocompletar.",
+                "text": "Como TablePlus, TablePro tem um <link>app separado para iPhone e iPad</link> que faz menos que o app para Mac: não tem assistente de IA, servidor MCP nem preenchimento automático.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
             },
             {
-                "text": "TablePro não é um projetista de esquemas: seu diagrama ER é um snapshot somente leitura do esquema atual.",
+                "text": "TablePro não é uma ferramenta de modelagem de esquemas: seu diagrama ER é um snapshot somente leitura do esquema atual.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -156,8 +156,8 @@
         "intro": "TablePro lê as conexões onde TablePlus as armazena, incluindo as da edição Setapp de TablePlus. TablePlus não precisa estar aberto, e seus arquivos não são alterados.",
         "steps": [
             "No TablePro, escolha <ui>File > Import > Import from Other App…</ui>",
-            "Selecione TablePlus. Ative <ui>Include passwords</ui> para ler senhas salvas no Chaves do macOS.",
-            "macOS pede sua senha de login uma vez por senha salva. Escolha <ui>Always Allow</ui> em cada solicitação.",
+            "Selecione TablePlus. Ative <ui>Include passwords</ui> para ler senhas salvas nas Chaves do macOS.",
+            "O macOS pede sua senha de login uma vez por senha salva. Escolha <ui>Always Allow</ui> em cada solicitação.",
             "Revise a lista, decida o que acontece com duplicatas e clique em <ui>Import</ui>. Grupos, túneis SSH e cores das conexões são transferidos. Uma conexão a um mecanismo não suportado pelo TablePro chega desmarcada.",
             "Antes de remover TablePlus, abra uma conexão que tinha senha para conferir se ela foi transferida."
         ],
@@ -183,7 +183,7 @@
         {
             "id": "license",
             "question": "Preciso de uma licença para usar TablePro?",
-            "answer": "Não. TablePro é gratuito para usar, incluindo todos os mecanismos suportados, assistente de IA, servidor MCP e Safe Mode. Starter ou Team adiciona recursos opcionais ao app Mac, como {starterExamples}. <link>Ver preços</link>.",
+            "answer": "Não. TablePro é de uso gratuito, incluindo todos os mecanismos suportados, assistente de IA, servidor MCP e Safe Mode. Um plano Starter ou Team adiciona recursos opcionais ao app para Mac, como {starterExamples}. <link>Ver preços</link>.",
             "href": "/pricing"
         },
         {

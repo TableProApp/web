@@ -32,7 +32,7 @@
             "title": "Conecte-se",
             "paragraphs": [
                 "Use o endpoint do cluster como host ou o endpoint do workgroup no Redshift Serverless; ambos escutam na mesma porta. Um banco é obrigatório, e cada cluster é criado com um chamado <code>dev</code>. Importar uma URL <code>redshift://</code> preenche o formulário.",
-                "Novas conexões definem SSL como Preferred, e não há verificação de versão, portanto qualquer cluster ainda operado pela AWS se conecta. A senha é armazenada no Chaves ou lida de <code>~/.pgpass</code>, duas das <credentials>opções de credenciais</credentials> disponíveis. Um cluster sem acesso público é acessado por um <network>túnel SSH</network> para um bastion host na sua VPC."
+                "Novas conexões definem SSL como Preferred, e não há verificação de versão, portanto qualquer cluster ainda operado pela AWS se conecta. A senha é armazenada nas Chaves ou lida de <code>~/.pgpass</code>, duas das <credentials>opções de credenciais</credentials> disponíveis. Um cluster sem acesso público é acessado por um <network>túnel SSH</network> para um bastion host na sua VPC."
             ]
         },
         {

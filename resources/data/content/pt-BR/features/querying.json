@@ -18,7 +18,7 @@
             "title": "Um editor que conhece seu esquema",
             "paragraphs": [
                 "O preenchimento automático lê o esquema da conexão enquanto você digita: tabelas após FROM e JOIN, as colunas de um alias e as colunas de uma CTE ou subconsulta definida antes na instrução. O destaque usa tree-sitter, e <kbd>⌘⇧L</kbd> formata a instrução no cursor sem remover seus comentários.",
-                "<kbd>⌘⏎</kbd> executa a instrução no cursor ou a seleção, <kbd>⌘⇧⏎</kbd> executa todas, <kbd>⌘⌥⏎</kbd> executa sem o limite de linhas e <kbd>⌘.</kbd> cancela. Um lote de instruções comuns roda em uma transação e é revertido se uma falhar. As exceções são scripts que gerenciam sua própria transação, scripts SQL Server e instruções que não podem estar em transações, como VACUUM. DDL no MySQL, MariaDB e Oracle confirma por conta própria."
+                "<kbd>⌘⏎</kbd> executa a instrução no cursor ou a seleção, <kbd>⌘⇧⏎</kbd> executa todas, <kbd>⌘⌥⏎</kbd> executa sem o limite de linhas e <kbd>⌘.</kbd> cancela. Um lote de instruções comuns roda em uma transação e é revertido se uma falhar. As exceções são scripts que gerenciam sua própria transação, scripts SQL Server e instruções que não podem estar em transações, como VACUUM. DDL no MySQL, MariaDB e Oracle faz commit por conta própria."
             ],
             "points": [
                 "Marcadores de instrução na margem, cada um com seu botão de execução.",
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "No iPhone e iPad",
             "paragraphs": [
-                "O app para iPhone e iPad tem uma aba Consulta com destaque SQL, Run e Stop (<kbd>⌘↩</kbd> com teclado) e um histórico das últimas {historyEntriesIos} consultas executadas nesse dispositivo. Você pode copiar ou compartilhar um resultado como JSON, CSV ou instruções SQL INSERT.",
+                "O app para iPhone e iPad tem uma aba Query com destaque SQL, Run e Stop (<kbd>⌘↩</kbd> com teclado) e um histórico das últimas {historyEntriesIos} consultas executadas nesse dispositivo. Você pode copiar ou compartilhar um resultado como JSON, CSV ou instruções SQL INSERT.",
                 "Não tem preenchimento automático, formatação, parâmetros, EXPLAIN nem consultas salvas e mantém no máximo {resultBufferIos} linhas de um resultado; adicione LIMIT para ver o trecho necessário."
             ],
             "links": [

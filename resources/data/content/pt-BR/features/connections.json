@@ -17,7 +17,7 @@
             "id": "organize",
             "title": "Mantenha uma biblioteca de conexões",
             "paragraphs": [
-                "Cada conexão é editada em um formulário com abas General, Network, Options e Appearance. Importe uma URL de conexão, incluindo URLs <code>jdbc:</code> e <code>+ssh</code> que incluem um salto SSH, e o formulário se preenche; quando já há uma na área de transferência, oferece <ui>Use clipboard URL</ui>.",
+                "Cada conexão é editada em um formulário com abas General, Network, Options e Appearance. Importe uma URL de conexão, incluindo URLs <code>jdbc:</code> e <code>+ssh</code> que incluem um salto SSH, e o formulário é preenchido automaticamente; quando já há uma na área de transferência, ele oferece <ui>Use clipboard URL</ui>.",
                 "Atribua uma cor, quantas etiquetas quiser e um lugar em grupos aninhados a uma conexão e marque as mais usadas como favoritas. Ambientes são etiquetas: local, desenvolvimento, produção e teste vêm integrados, e você pode adicionar os seus. Uma biblioteca vazia oferece <ui>Open Sample Database</ui>, uma cópia SQLite de Chinook incluída no app.",
                 "Abra várias conexões em uma janela. A faixa de conexões à esquerda alterna entre elas, e cada conexão retorna à última aba usada nela. <ui>Open in New Window</ui> coloca uma ao lado da outra."
             ],
@@ -146,7 +146,7 @@
             "id": "policies",
             "title": "Regras de cada conexão",
             "paragraphs": [
-                "O nível de Safe Mode de uma conexão define se uma instrução executa como escrita, pede confirmação, pede Touch ID ou senha ou é recusada. O nível de External Clients, Blocked, Read Only ou Read & Write, define o que clientes MCP e AppleScript podem fazer e permanece neste Mac. A política de IA define se o assistente pode usá-la sem perguntar, só após perguntar ou nunca; Never também bloqueia clientes MCP.",
+                "O nível de Safe Mode de uma conexão define se uma instrução é executada como foi escrita, pede confirmação, pede Touch ID ou senha ou é recusada. O nível de External Clients, Blocked, Read Only ou Read & Write, define o que clientes MCP e AppleScript podem fazer e permanece neste Mac. A política de IA define se o assistente pode usá-la sem perguntar, só após perguntar ou nunca; Never também bloqueia clientes MCP.",
                 "Uma organização pode impor um nível mínimo de Safe Mode para todas as conexões e controlar atualizações por um perfil de configuração."
             ],
             "links": [
@@ -174,7 +174,7 @@
             "id": "iphone",
             "title": "No iPhone e iPad",
             "paragraphs": [
-                "O app para iPhone e iPad tem seu próprio formulário de conexão para {iosPicker}, com grupos, uma etiqueta por conexão e favoritos. Túneis SSH autenticam com senha ou chave privada, de arquivo ou colada, e verificam a chave do host; agentes SSH e hosts intermediários não são compatíveis no iPhone e iPad. TLS pode verificar o certificado do servidor, exceto no SQL Server, onde criptografa sem verificar. Certificados ficam no dispositivo e nunca são sincronizados.",
+                "O app para iPhone e iPad tem seu próprio formulário de conexão para {iosPicker}, com grupos, uma etiqueta por conexão e favoritos. Túneis SSH autenticam com senha ou chave privada, de arquivo ou colada, e verificam a chave do host; agentes SSH e hosts intermediários não são suportados no iPhone e iPad. TLS pode verificar o certificado do servidor, exceto no SQL Server, onde criptografa sem verificar. Certificados ficam no dispositivo e nunca são sincronizados.",
                 "Senhas e chaves coladas são guardadas nas Chaves. Conexões SQL Server sincronizadas de um Mac podem autenticar com Microsoft Entra ID. Importação de outros apps, AWS IAM, Kerberos e autenticação Google, proxies e comandos de túnel, fontes de senha e tempos limite estão apenas no app para Mac."
             ],
             "links": [
@@ -255,7 +255,7 @@
     "limits": [
         "Fontes de senha, proxies e comandos de túnel da aba Network ficam no Mac onde foram configurados: nunca são sincronizados, portanto uma conexão sincronizada exige configurá-los novamente em cada Mac.",
         "TablePro lê o ambiente com que foi iniciado. Aberto pelo Dock ou Finder, não vê as variáveis definidas pelo perfil do shell, o que afeta tanto a fonte de senha por variável de ambiente quanto Environment Variables.",
-        "Quando um plano termina, <code>$DB_HOST</code> e outras referências deixam de ser preenchidas e chegam ao servidor como escritas, sem aviso.",
+        "Quando um plano termina, <code>$DB_HOST</code> e outras referências deixam de ser preenchidas e chegam ao servidor como foram escritas, sem aviso.",
         "Open Project Folder é uma importação única: nada é monitorado, e importar as mesmas configurações duas vezes cria duas conexões.",
         "A autenticação AWS IAM abrange {awsIam}, não Amazon Redshift. Um perfil de configuração pode impor um nível mínimo de Safe Mode e configurações de atualização, nada além disso."
     ],

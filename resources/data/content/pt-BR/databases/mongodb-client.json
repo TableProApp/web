@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "MongoDB para {devices}",
-        "description": "Consulte MongoDB em um shell JavaScript no estilo mongosh, edite Extended JSON, renomeie campos em coleções e conecte ao Atlas por SRV."
+        "description": "Consulte MongoDB em um shell JavaScript no estilo mongosh, edite Extended JSON, renomeie campos em coleções e conecte-se ao Atlas por SRV."
     },
     "og": {
         "kicker": "Bancos de dados",
@@ -43,7 +43,7 @@
                 "A aba de consultas é um shell JavaScript que aceita sintaxe mongosh: chaves sem aspas, expressões regulares literais, <code>ISODate()</code>, variáveis, loops e <code>forEach</code>. Ele funciona dentro do TablePro, sem instalar nada mais, e uma variável definida continua disponível em todas as abas da conexão até desconectar. O autocompletar oferece coleções, métodos, caminhos de campos aninhados e operadores <code>$</code> válidos na posição do cursor.",
                 "Uma coleção abre como grade, com campos de nível superior como colunas e objetos aninhados como Extended JSON. Uma célula editada mantém o tipo do campo, portanto uma data permanece data e um ObjectId permanece ObjectId, e uma edição em um objeto aninhado grava apenas o caminho alterado, como <code>address.city</code>.",
                 "<editing>Insert Document e Edit Document</editing> aceitam um documento completo como Extended JSON. Edit Document o lê novamente do servidor e, se alguém o alterou ou excluiu depois que a tela abriu, nada é salvo, e a tela informa isso. <ui>Remove Field</ui> em uma célula envia <code>$unset</code>.",
-                "A <filters>barra de filtros</filters> acessa objetos aninhados e arrays de objetos, portanto <code>customer.country</code> e <code>items.sku</code> filtram diretamente. Um campo com GeoJSON abre na <map>visualização Map</map>.",
+                "A <filters>barra de filtros</filters> acessa objetos aninhados e arrays de objetos, portanto <code>customer.country</code> e <code>items.sku</code> filtram diretamente. Um campo com GeoJSON abre na <map>visualização Mapa</map>.",
                 "<safeMode>Safe Mode</safeMode> trata todas as instruções de uma conexão MongoDB como gravação, pois o driver não pode abrir uma sessão somente leitura. Os níveis Alert e Safe Mode confirmam cada uma, e Read-Only bloqueia todas."
             ]
         },
@@ -92,7 +92,7 @@
         {
             "id": "mongosh",
             "question": "A aba de consultas é mongosh?",
-            "answer": "Não. É um shell que aceita sintaxe mongosh e funciona dentro do TablePro com JavaScriptCore. A maioria do código mongosh executa sem alterações. Uma diferença: um número inteiro fora do intervalo de 32 bits é armazenado como inteiro de 64 bits, enquanto mongosh armazena um double; use <code>Double()</code> para obter o mesmo comportamento."
+            "answer": "Não. É um shell que aceita sintaxe mongosh e funciona dentro do TablePro com JavaScriptCore. A maior parte do código mongosh funciona sem alterações. Uma diferença: um número inteiro fora do intervalo de 32 bits é armazenado como inteiro de 64 bits, enquanto mongosh armazena um double; use <code>Double()</code> para obter o mesmo comportamento."
         },
         {
             "id": "query-plan",

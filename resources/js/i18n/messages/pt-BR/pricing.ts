@@ -44,7 +44,7 @@ export default {
         },
         "team": {
             "name": "Team",
-            "description": "Além dos recursos Starter, adiciona conexões e consultas compartilhadas com sua equipe.",
+            "description": "Além dos recursos do Starter, adiciona conexões e consultas compartilhadas com sua equipe.",
             "activation": "Cada vaga corresponde a um Mac ativado.",
             "includesTitle": "Tudo do Starter, mais",
             "cta": "Comprar Team"
@@ -102,7 +102,7 @@ export default {
     "comparePlans": "Comparar planos",
     "section": {
         "title": "Preços",
-        "lead": "TablePro é de código aberto e gratuito para usar. Os planos pagos adicionam recursos opcionais ao app para Mac."
+        "lead": "TablePro é de código aberto e de uso gratuito. Os planos pagos adicionam recursos opcionais ao app para Mac."
     },
     "matrix": {
         "caption": "O que cada plano inclui no app para Mac",
@@ -116,7 +116,7 @@ export default {
         "macsTeam": "Um por vaga",
         "everythingElse": "Todo o restante do app",
         "everythingElseDetail": "Todos os mecanismos compatíveis, o editor SQL, o assistente de IA, o servidor MCP e o Safe Mode",
-        "iphoneNote": "O app para iPhone e iPad não tem recursos pagos. O iCloud Sync é gratuito nesses dispositivos; para sincronizar com um Mac, ele precisa de Starter ou Team."
+        "iphoneNote": "O app para iPhone e iPad não tem recursos pagos. O iCloud Sync é gratuito nesses dispositivos; para sincronizar com um Mac, o Mac precisa de Starter ou Team."
     },
     "discount": {
         "atCheckout": "Tem um código de desconto? Digite-o no checkout.",
