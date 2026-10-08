@@ -29,7 +29,7 @@
     "rows": {
         "diagram": {
             "label": "Sơ đồ schema",
-            "tablepro": "Sơ đồ ER chỉ đọc, export ra PNG hoặc SQL"
+            "tablepro": "ER diagram chỉ đọc, export ra PNG hoặc SQL"
         },
         "excelExport": {
             "label": "Export ra Excel",
@@ -124,7 +124,7 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro không phải công cụ thiết kế schema: sơ đồ ER chỉ là bản chụp chỉ đọc của schema hiện tại.",
+                "text": "TablePro không phải công cụ thiết kế schema: ER diagram chỉ là bản chụp chỉ đọc của schema hiện tại.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -138,7 +138,7 @@
         ]
     },
     "switching": {
-        "intro": "TablePro đọc connection ngay tại nơi TablePlus lưu chúng, kể cả bản Setapp của TablePlus. TablePlus không cần đang mở, và các file của TablePlus không bị thay đổi.",
+        "intro": "TablePro đọc connection ngay tại nơi TablePlus lưu chúng, kể cả connection trong bản Setapp của TablePlus. TablePlus không cần đang mở, và các file của TablePlus không bị thay đổi.",
         "steps": [
             "Trong TablePro, chọn <ui>Tệp > Nhập > Nhập từ ứng dụng khác…</ui> (File > Import > Import from Other App…).",
             "Chọn TablePlus. Bật <ui>Bao gồm mật khẩu</ui> (Include passwords) để đọc mật khẩu đã lưu trong Keychain của macOS.",

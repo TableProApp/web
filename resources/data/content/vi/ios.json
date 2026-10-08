@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro cho iPhone và iPad",
-        "description": "Database client miễn phí cho iPhone và iPad. Kết nối MySQL, PostgreSQL, SQL Server, Oracle và nhiều engine khác qua SSH hoặc TLS, xem, sửa và query table."
+        "description": "Database client miễn phí cho iPhone và iPad. Kết nối MySQL, PostgreSQL, SQL Server, Oracle và engine khác qua SSH hoặc TLS, rồi xem, sửa table và chạy query."
     },
     "og": {
         "kicker": "iPhone và iPad",
@@ -17,8 +17,8 @@
         "title": "Cơ sở dữ liệu",
         "lead": "Trên iPhone và iPad, bạn tạo được connection tới các cơ sở dữ liệu dưới đây. Driver cho các cơ sở dữ liệu này có sẵn trong ứng dụng, nên không phải tải thêm gì.",
         "syncedOnly": "Connection {engines} mở được khi chúng đến từ máy Mac của bạn, qua iCloud Sync hoặc một file .tablepro. Bạn không tạo được connection loại này trong ứng dụng.",
-        "others": "Connection tới các cơ sở dữ liệu khác cũng được đồng bộ từ Mac và hiện trong danh sách, nhưng ứng dụng này không có driver cho chúng, nên chúng không mở được ở đây. <databases>Trang Cơ sở dữ liệu</databases> liệt kê mọi engine mà ứng dụng Mac hỗ trợ.",
-        "files": "SQLite: khi bạn chọn một file cơ sở dữ liệu, ứng dụng sao chép file vào bộ nhớ riêng của nó, nên các thay đổi của bạn áp dụng lên bản sao. Bạn cũng có thể tạo cơ sở dữ liệu mới. DuckDB mở file ngay tại chỗ, hoặc chạy trong bộ nhớ.",
+        "others": "Connection tới các cơ sở dữ liệu khác cũng được đồng bộ từ Mac và hiện trong danh sách, nhưng ứng dụng này không có driver tương ứng, nên các connection đó không mở được ở đây. <databases>Trang Cơ sở dữ liệu</databases> liệt kê mọi engine mà ứng dụng Mac hỗ trợ.",
+        "files": "SQLite: khi bạn chọn một file cơ sở dữ liệu, ứng dụng sao chép file vào vùng lưu trữ riêng của mình, nên các thay đổi của bạn áp dụng lên bản sao. Bạn cũng có thể tạo cơ sở dữ liệu mới. DuckDB mở file ngay tại chỗ, hoặc chạy trong bộ nhớ.",
         "redis": "Redis: chạy lệnh trong tab Truy vấn (Query). Duyệt các key của Redis không có trong ứng dụng cho iPhone và iPad.",
         "sample": "Muốn xem thử trước, bạn có thể mở Chinook, cơ sở dữ liệu mẫu đi kèm ứng dụng."
     },
@@ -26,14 +26,14 @@
         "title": "Xem và sửa table",
         "paragraphs": [
             "Mỗi connection mở ra danh sách table của nó, còn query editor, lịch sử và thông tin của connection nằm ở các tab riêng.",
-            "Các dòng hiện dưới dạng thẻ, với khóa chính hoặc cột đầu tiên làm tiêu đề và các cột tiếp theo bên dưới. Bạn có thể sắp xếp theo bất kỳ cột nào, tìm trên mọi cột trừ cột nhị phân, và chồng nhiều bộ lọc với AND hoặc OR. Chọn số dòng mỗi trang và chuyển tới trang bất kỳ. Chạm vào một giá trị khóa ngoại để xem trước dòng mà nó trỏ tới. Phần Structure liệt kê cột, index và khóa ngoại của table.",
+            "Các dòng hiện dưới dạng thẻ, với khóa chính hoặc cột đầu tiên làm tiêu đề và các cột tiếp theo bên dưới. Bạn có thể sắp xếp theo bất kỳ cột nào, tìm trên mọi cột trừ cột nhị phân, và kết hợp nhiều bộ lọc bằng AND hoặc OR. Chọn số dòng mỗi trang và chuyển tới trang bất kỳ. Chạm vào một giá trị khóa ngoại để xem trước dòng mà nó trỏ tới. Phần Structure liệt kê cột, index và khóa ngoại của table.",
             "Mở một dòng để sửa: thay đổi giá trị, đặt NULL, và xác nhận trước khi lưu. Bạn cũng có thể thêm và xóa dòng, truncate hoặc drop một table. Sửa và xóa dòng cần table có khóa chính, và không có gì thay đổi được trên một connection Read-Only."
         ]
     },
     "query": {
         "title": "Chạy query",
         "paragraphs": [
-            "Viết SQL với tô sáng cú pháp, chạy query và dừng nó khi đang chạy. Bắt đầu từ một mẫu SELECT, rồi sao chép hoặc chia sẻ kết quả dưới dạng JSON, CSV hoặc câu lệnh SQL INSERT, qua bộ nhớ tạm hoặc bảng chia sẻ.",
+            "Viết SQL với tô sáng cú pháp, chạy query và dừng nó khi đang chạy. Bắt đầu từ một mẫu SELECT, rồi sao chép hoặc chia sẻ kết quả dưới dạng JSON, CSV hoặc câu lệnh SQL INSERT, qua clipboard hoặc bảng chia sẻ.",
             "Ứng dụng giữ tối đa {results} dòng của một kết quả; hãy thêm LIMIT để xem một phần khác của kết quả lớn. Lịch sử lưu {history} query gần nhất trên thiết bị này, cho mọi connection, và không được đồng bộ.",
             "Khi một query đang chạy, Hoạt động trực tiếp hiển thị tiến độ trên Màn hình khóa và trong Dynamic Island: thời gian đã chạy và số dòng đã nhận. Màn hình khóa và Dynamic Island khi mở rộng cũng hiện câu SQL, trừ khi bạn bật <ui>Cài đặt > Hoạt động trực tiếp > Ẩn truy vấn</ui> (Settings > Live Activities > Hide Query)."
         ]
@@ -83,7 +83,7 @@
         "items": [
             "Trợ lý AI và MCP server",
             "Query đã lưu, autocomplete, định dạng query và EXPLAIN",
-            "Thay đổi schema ngoài truncate hoặc drop một table, và sơ đồ ER",
+            "Thay đổi schema ngoài truncate hoặc drop một table, và ER diagram",
             "Compare & Sync, Query Insights, Result Charts và Data Rewind",
             "Export file ở các định dạng như XLSX, và import file vào table (Phím tắt có thể thêm dòng)",
             "Bảng điều khiển máy chủ, quản lý user và role, và sao lưu",
@@ -105,7 +105,7 @@
     "privacy": {
         "title": "Quyền riêng tư",
         "paragraphs": [
-            "Không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data), khi thiết lập ứng dụng hoặc sau đó trong <ui>Cài đặt > Quyền riêng tư</ui> (Settings > Privacy). Nếu bạn bật, ứng dụng gửi mỗi ngày một báo cáo gồm mã thiết bị đã băm, phiên bản ứng dụng và iOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng, các loại cơ sở dữ liệu bạn dùng, số lượng connection và vài ngày dùng lần đầu. Không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng.",
+            "Không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data), khi thiết lập ứng dụng hoặc sau đó trong <ui>Cài đặt > Quyền riêng tư</ui> (Settings > Privacy). Nếu bạn bật, ứng dụng gửi mỗi ngày một báo cáo gồm mã thiết bị đã băm, phiên bản ứng dụng và iOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng, các loại cơ sở dữ liệu bạn dùng, số lượng connection và một vài mốc ngày dùng lần đầu. Không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng.",
             "Ứng dụng không kiểm tra license, không kiểm tra cập nhật và không gửi yêu cầu nào về plugin. Query của bạn đi tới máy chủ của chính bạn, iCloud Sync tới tài khoản iCloud của chính bạn, và việc đăng nhập Entra tới Microsoft. Xem chi tiết trong <privacyIos>chính sách quyền riêng tư</privacyIos>."
         ]
     },

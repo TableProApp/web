@@ -47,14 +47,14 @@
             "no-pubsub": "Không có màn hình pub/sub. PUBLISH chạy như một lệnh, và không có gì subscribe.",
             "key-tree-cap": "Cây key trong sidebar nạp tối đa {value} key.",
             "filter-match-cap": "Bộ lọc key dừng sau {value} kết quả khớp.",
-            "cluster-db0-only": "Connection Cluster dùng database 0, trừ cluster Valkey được cấu hình nhiều database.",
+            "cluster-db0-only": "Connection Cluster dùng cơ sở dữ liệu 0, trừ cluster Valkey được cấu hình nhiều cơ sở dữ liệu.",
             "ios-query-tab-only": "Trên iPhone và iPad, key không mở được trong màn hình xem table. Hãy chạy lệnh trong tab Truy vấn (Query)."
         }
     },
     "mariadb": {
         "tagline": "Driver MySQL kèm sequence, cột virtual và persistent, cột JSON của MariaDB.",
         "limits": {
-            "no-cloud-sql-proxy": "MariaDB không có Cloud SQL Auth Proxy. Hãy tới server nội bộ qua SSH tunnel.",
+            "no-cloud-sql-proxy": "MariaDB không có Cloud SQL Auth Proxy. Hãy kết nối tới server nội bộ qua SSH tunnel.",
             "roles-listed-as-users": "Users & Roles liệt kê role của MariaDB như user. Hãy tạo và cấp role bằng SQL trong editor."
         }
     },
@@ -119,7 +119,7 @@
         "tagline": "ClickHouse qua HTTP hoặc HTTPS, có các biến thể EXPLAIN, mutation và tab Parts.",
         "limits": {
             "http-only": "Connection dùng giao diện HTTP của ClickHouse. Không dùng giao thức native (TCP).",
-            "tls-off-by-default": "TLS tắt theo mặc định. Hãy chọn một SSL mode trong form connection để dùng HTTPS.",
+            "tls-off-by-default": "TLS tắt theo mặc định. Hãy chọn một chế độ SSL trong form connection để dùng HTTPS.",
             "no-foreign-keys-or-transactions": "Không có khóa ngoại và không có transaction.",
             "set-does-not-persist": "Câu lệnh SET không được giữ sang query tiếp theo."
         }
@@ -265,7 +265,7 @@
     "dameng": {
         "tagline": "Dameng DM8 qua giao thức native của nó, có execution plan và SSH tunnel.",
         "limits": {
-            "no-tls": "Không hỗ trợ TLS. Hãy tới server nằm ngoài mạng nội bộ qua SSH tunnel."
+            "no-tls": "Không hỗ trợ TLS. Hãy kết nối tới server nằm ngoài mạng nội bộ qua SSH tunnel."
         }
     },
     "sap-hana": {

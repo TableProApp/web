@@ -14,8 +14,8 @@
     "shortAnswer": {
         "tablepro": [
             "Bạn còn làm việc với MySQL, SQL Server, SQLite, Redis hay MongoDB, không chỉ PostgreSQL.",
-            "Bạn còn phải quản trị cả server. Users & Roles, Server Dashboard có thể terminate session, VACUUM và sao lưu bằng pg_dump đều miễn phí trong ứng dụng Mac.",
-            "Bạn thường tối ưu query. EXPLAIN hiện execution plan dưới dạng sơ đồ, còn EXPLAIN Compare so plan mới với một plan gốc.",
+            "Bạn còn phải quản trị cả server. Users & Roles, Server Dashboard có thể kết thúc session, VACUUM và sao lưu bằng pg_dump đều miễn phí trong ứng dụng Mac.",
+            "Bạn thường tối ưu query. EXPLAIN hiện execution plan dưới dạng sơ đồ, còn EXPLAIN Compare so sánh plan mới với một baseline.",
             "Bạn muốn một ứng dụng miễn phí cho iPhone và iPad, kết nối được tới PostgreSQL.",
             "Bạn muốn dùng trợ lý AI và MCP server mà không phải trả phí."
         ],
@@ -83,7 +83,7 @@
                 "href": "/features/schema#administer"
             },
             {
-                "text": "<link>EXPLAIN</link> hiện execution plan dưới dạng sơ đồ, cây hoặc văn bản thô, còn EXPLAIN Compare so plan mới với một plan gốc. Cả hai đều miễn phí.",
+                "text": "<link>EXPLAIN</link> hiện execution plan dưới dạng sơ đồ, cây hoặc văn bản thô, còn EXPLAIN Compare so sánh plan mới với một baseline. Cả hai đều miễn phí.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/querying#performance"
@@ -157,7 +157,7 @@
         {
             "id": "admin",
             "question": "Tôi có quản lý role và session trong TablePro được không?",
-            "answer": "Được, trong ứng dụng Mac và miễn phí. Users & Roles cấp và thu hồi quyền, hiện câu lệnh SQL trước khi chạy, còn Server Dashboard liệt kê các session và có thể terminate một session. <link>Tìm hiểu các công cụ quản trị server</link>.",
+            "answer": "Được, trong ứng dụng Mac và miễn phí. Users & Roles cấp và thu hồi quyền, hiện câu lệnh SQL trước khi chạy, còn Server Dashboard liệt kê các session và có thể kết thúc một session. <link>Tìm hiểu các công cụ quản trị server</link>.",
             "href": "/features/schema#administer"
         },
         {

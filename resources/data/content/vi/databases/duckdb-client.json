@@ -46,7 +46,7 @@
         },
         {
             "id": "schema",
-            "title": "Cấu trúc",
+            "title": "Structure",
             "paragraphs": [
                 "<structure>Tab Structure</structure> sửa table và hiển thị DDL trước khi chạy. Ở đây mỗi cơ sở dữ liệu là một file, nên ứng dụng không tạo hay xóa cơ sở dữ liệu; <code>ATTACH</code> là cách để mở thêm file thứ hai."
             ]
@@ -55,7 +55,7 @@
             "id": "operate",
             "title": "Chia sẻ file và sao lưu",
             "paragraphs": [
-                "Khi TablePro đang giữ một file, CLI <code>duckdb</code>, một notebook hay một lần chạy dbt đều không mở được file đó. Hãy đặt <ui>Release the File Lock After</ui> để trả file lại sau một số phút không hoạt động và lấy lại ở query tiếp theo, hoặc bật <ui>Open the File Read-Only</ui> để nhiều tiến trình cùng đọc. <ui>Release File Lock</ui> trong menu Cơ sở dữ liệu (Database) trả file ngay lập tức mà vẫn giữ các tab của bạn. Việc trả file bị từ chối, kèm lý do, khi session còn một transaction đang mở, một temporary table, một cơ sở dữ liệu đã attach hoặc một setting đã đổi.",
+                "Khi TablePro đang giữ một file, CLI <code>duckdb</code>, một notebook hay một lần chạy dbt đều không mở được file đó. Hãy đặt <ui>Release the File Lock After</ui> để trả file lại sau một số phút không hoạt động và lấy lại ở query tiếp theo, hoặc bật <ui>Open the File Read-Only</ui> để nhiều tiến trình cùng đọc. <ui>Cơ sở dữ liệu > Release File Lock</ui> (Database > Release File Lock) trả file ngay lập tức mà vẫn giữ các tab của bạn. Việc trả file bị từ chối, kèm lý do, khi session còn một transaction đang mở, một temporary table, một cơ sở dữ liệu đã attach hoặc một setting đã đổi.",
                 "<dashboard>Server Dashboard</dashboard> hiển thị dung lượng cơ sở dữ liệu, kích thước block, tổng số block, giới hạn bộ nhớ và số thread.",
                 "<backup>Backup Dump</backup> không cần cài gì, vì {dumpTool} tự ghi bản sao lưu qua connection đang mở. Hãy chọn một file <code>.duckdb</code> nếu sau này muốn khôi phục vào TablePro, hoặc một thư mục gồm <code>schema.sql</code>, <code>load.sql</code> và mỗi table một file Parquet, mà pandas, Spark và BigQuery đọc trực tiếp được. Restore Dump dừng ở đối tượng đầu tiên có tên đã tồn tại."
             ]

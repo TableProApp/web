@@ -69,7 +69,7 @@
     "safety": {
         "title": "Lớp bảo vệ khi làm việc với production",
         "body": [
-            "Trên Mac, bạn gắn tag và màu cho connection theo môi trường, rồi đặt cho mỗi connection một mức Safe Mode. Silent chạy câu lệnh đúng như bạn viết, Alert hỏi lại trước khi ghi, các mức mang tên Safe Mode còn yêu cầu Touch ID hoặc mật khẩu, còn Read‑Only từ chối câu lệnh ghi. DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi bạn, ở mọi mức. Trên iPhone và iPad, Confirm Writes hỏi trước mọi thao tác ghi, còn Read‑Only từ chối chúng.",
+            "Trên Mac, bạn gắn tag và màu cho connection theo môi trường, rồi đặt cho mỗi connection một mức Safe Mode. Silent chạy câu lệnh đúng như bạn viết, Alert hỏi lại trước khi ghi, các mức mang tên Safe Mode còn yêu cầu Touch ID hoặc mật khẩu, còn Read-Only từ chối câu lệnh ghi. DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi bạn, ở mọi mức. Trên iPhone và iPad, Confirm Writes hỏi trước mọi thao tác ghi, còn Read-Only từ chối luôn.",
             "Ở Agent mode, trợ lý AI có thể chạy câu lệnh. Khi một connection đang mở ở Agent mode, connection đó chạy ở mức Alert hoặc nghiêm ngặt hơn. Data Rewind có thể khôi phục các giá trị mà một lần lưu gần đây đã ghi đè. Đây không phải là bản sao lưu."
         ],
         "levels": "Các mức Safe Mode",
@@ -79,7 +79,7 @@
         "title": "Trợ lý AI và MCP server",
         "body": [
             "Trên Mac, trợ lý AI (tùy chọn) giải thích, tối ưu và sửa lỗi query, đồng thời trả lời câu hỏi về schema của bạn. Bạn tự chọn nhà cung cấp AI: dùng API key, đăng nhập bằng tài khoản bạn đang có, hoặc chạy model ngay trên máy Mac. TablePro không vận hành dịch vụ AI nào, và không có gì được gửi đi cho tới khi bạn thêm nhà cung cấp.",
-            "Chat mặc định ở chế độ Ask, chỉ đọc dữ liệu. Ở chế độ Edit và Agent, trợ lý có thể chạy câu lệnh. Từ mức Alert tới Safe Mode (Full), mỗi câu lệnh ghi chờ bạn duyệt, Read-Only từ chối chúng, còn DROP hay TRUNCATE luôn cần bạn bấm xác nhận.",
+            "Chat mặc định ở chế độ Ask, chỉ đọc dữ liệu. Ở chế độ Edit và Agent, trợ lý có thể chạy câu lệnh. Từ mức Alert tới Safe Mode (Full), mỗi câu lệnh ghi chờ bạn duyệt, Read-Only từ chối các câu lệnh này, còn DROP hay TRUNCATE luôn cần bạn bấm xác nhận.",
             "MCP (Model Context Protocol) server tích hợp sẵn cho phép các AI client như {mcpClients} dùng connection đã lưu mà không thấy mật khẩu. Server chỉ lắng nghe trên {mcpHost}, và mỗi connection tự quyết định ứng dụng bên ngoài được làm gì: Blocked, Read Only (mặc định) hoặc Read & Write.",
             "Tất cả đều miễn phí."
         ],

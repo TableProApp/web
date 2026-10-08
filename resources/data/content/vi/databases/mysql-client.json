@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Client MySQL và MariaDB cho {devices}",
-        "description": "Kết nối MySQL và MariaDB qua SSH, SSL/TLS hoặc AWS IAM, và TiDB, OceanBase, Databend trên cùng driver. Sơ đồ EXPLAIN, Users & Roles và sao lưu bằng mysqldump."
+        "description": "Kết nối MySQL và MariaDB qua SSH, SSL/TLS hoặc AWS IAM, và TiDB, OceanBase, Databend trên cùng driver. Sơ đồ EXPLAIN và sao lưu bằng mysqldump."
     },
     "og": {
         "kicker": "Cơ sở dữ liệu",
@@ -133,7 +133,7 @@
         "items": [
             {
                 "product": "sequel-ace",
-                "text": "Sequel Ace tiếp nối Sequel Pro, là một ứng dụng Mac chỉ dành cho MySQL và MariaDB. Nó có MCP server, tắt theo mặc định và chỉ đọc trừ khi bạn đổi thiết lập, và không có AI chat. Sequel Ace phù hợp nếu bạn chỉ dùng MySQL và MariaDB."
+                "text": "Sequel Ace tiếp nối Sequel Pro, là một ứng dụng Mac dành cho MySQL và MariaDB. Sequel Ace có MCP server, tắt theo mặc định và chỉ đọc trừ khi bạn đổi thiết lập, và không có AI chat. Sequel Ace phù hợp nếu bạn chỉ dùng MySQL và MariaDB."
             },
             {
                 "product": "phpmyadmin",
@@ -150,7 +150,7 @@
         {
             "id": "socket",
             "question": "TablePro có kết nối được qua socket MySQL cục bộ không?",
-            "answer": "Không. Connection dùng TCP, nên server cần bật networking. Để tới một socket trên server từ xa, hãy chuyển tiếp nó qua SSH tunnel."
+            "answer": "Không. Connection dùng TCP, nên server cần bật networking. Để truy cập một socket trên server từ xa, hãy chuyển tiếp nó qua SSH tunnel."
         },
         {
             "id": "mysqldump",

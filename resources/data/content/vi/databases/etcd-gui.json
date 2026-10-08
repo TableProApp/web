@@ -26,8 +26,8 @@
             "paragraphs": [
                 "Nhập host và client port. etcd không có khái niệm cơ sở dữ liệu nên form không có ô Cơ sở dữ liệu (Database). Hãy trỏ vào client port: peer port không phục vụ JSON gateway, nên connection trỏ vào đó sẽ không bao giờ mở được. Form chỉ nhận một endpoint và không tự chuyển sang member khác, vì vậy hãy chọn một member đang chạy.",
                 "Với cluster không bật xác thực, hãy để trống <ui>Tên người dùng (Username)</ui> và <ui>Mật khẩu (Password)</ui>. User không có role <code>root</code> vẫn kết nối và duyệt được những key mà role của nó cho phép, còn <code>endpoint status</code> và các lệnh <code>user</code>, <code>role</code> sẽ báo permission denied.",
-                "TLS được đặt ở <ui>Chế độ TLS (TLS Mode)</ui> trong phần Nâng cao (Advanced), không phải ở mục SSL, và mặc định là Đã tắt (Disabled). Chế độ Bắt buộc, bỏ qua xác minh (Required, skip verify) mã hóa mà không kiểm tra chứng chỉ, Xác minh CA (Verify CA) kiểm tra chứng chỉ theo file CA bạn chỉ định, còn Xác minh danh tính (Verify Identity) kiểm tra thêm hostname. Thêm chứng chỉ và khóa của client để dùng mutual TLS.",
-                "Cluster nằm sau bastion thì đi qua <network>SSH tunnel</network>. URL <code>etcd://</code> và <code>etcds://</code> đều import được, và không scheme nào tự bật TLS."
+                "TLS được đặt ở <ui>Chế độ TLS (TLS Mode)</ui> trong phần Nâng cao (Advanced), không phải ở mục SSL, và mặc định là Đã tắt (Disabled). Chế độ Bắt buộc, bỏ qua xác minh (Required, skip verify) mã hóa mà không kiểm tra chứng chỉ, Xác minh CA (Verify CA) kiểm tra chứng chỉ theo file CA bạn chỉ định, còn Xác minh danh tính (Verify Identity) kiểm tra thêm hostname. Thêm chứng chỉ và key của client để dùng mutual TLS.",
+                "Với cluster nằm sau bastion, hãy kết nối qua <network>SSH tunnel</network>. URL <code>etcd://</code> và <code>etcds://</code> đều import được, và không scheme nào tự bật TLS."
             ]
         },
         {
