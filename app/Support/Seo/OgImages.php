@@ -2,7 +2,9 @@
 
 namespace App\Support\Seo;
 
+use App\Services\Blog\BlogService;
 use App\Support\Assets\AssetManifest;
+use App\Support\Content\ContentRepository;
 use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
 use Illuminate\Support\Facades\File;
@@ -20,6 +22,9 @@ use Illuminate\Support\Facades\File;
  * in `og-site-{locale}.png` is all it takes: `AssetManifest::ogCard()` answers
  * only once the entry is supplied and that locale's file exists, so a locale
  * whose file is missing keeps its generated card.
+ *
+ * `alt` says what the card shows: the title `og:generate` printed on it, or
+ * the bespoke card's own `alt` from the manifest.
  *
  * The paths are the ones `og:generate` writes, and both sides call the same
  * two methods for them:
@@ -48,12 +53,12 @@ final class OgImages
     ) {}
 
     /**
-     * @return array{url: string, width: int, height: int, type: string}|null
+     * @return array{url: string, width: int, height: int, type: string, alt: string|null}|null
      */
     public function for(PageEntry $entry, string $locale): ?array
     {
         if ($entry->ogSlug !== null && $entry->ogFamily !== 'site') {
-            $own = $this->describe(self::cardPath($entry->ogFamily, $entry->ogSlug, $locale));
+            $own = $this->describe(self::cardPath($entry->ogFamily, $entry->ogSlug, $locale), $this->cardTitle($entry, $locale));
 
             if ($own !== null) {
                 return $own;
@@ -67,21 +72,23 @@ final class OgImages
      * The generic card for a locale: the supplied bespoke card, else the
      * generated one, else null.
      *
-     * @return array{url: string, width: int, height: int, type: string}|null
+     * @return array{url: string, width: int, height: int, type: string, alt: string|null}|null
      */
     public function fallback(string $locale): ?array
     {
-        $bespoke = ($this->assets ?? app(AssetManifest::class))->ogCard($this->siteCard, $locale);
+        $manifest = $this->assets ?? app(AssetManifest::class);
+        $bespoke = $manifest->ogCard($this->siteCard, $locale);
 
         if ($bespoke !== null) {
-            $described = $this->describe($bespoke);
+            $alt = $manifest->entry($this->siteCard)['alt'][$locale] ?? null;
+            $described = $this->describe($bespoke, is_string($alt) ? $alt : null);
 
             if ($described !== null) {
                 return $described;
             }
         }
 
-        return $this->describe(self::fallbackPath($locale));
+        return $this->describe(self::fallbackPath($locale), $this->contentTitle('home', $locale));
     }
 
     /**
@@ -106,9 +113,32 @@ final class OgImages
     }
 
     /**
-     * @return array{url: string, width: int, height: int, type: string}|null
+     * The title on a page's own card: the post's, or the `og` title of the
+     * page's content file.
      */
-    private function describe(string $path): ?array
+    private function cardTitle(PageEntry $entry, string $locale): ?string
+    {
+        if ($entry->ogFamily === 'blog') {
+            return app(BlogService::class)->find((string) $entry->ogSlug, $locale)?->title;
+        }
+
+        $name = ContentCollection::contentName($entry);
+
+        return $name === null ? null : $this->contentTitle($name, $locale);
+    }
+
+    private function contentTitle(string $name, string $locale): ?string
+    {
+        $content = app(ContentRepository::class);
+        $title = $content->has($name, $locale) ? ($content->page($name, $locale)['og']['title'] ?? null) : null;
+
+        return is_string($title) && trim($title) !== '' ? trim($title) : null;
+    }
+
+    /**
+     * @return array{url: string, width: int, height: int, type: string, alt: string|null}|null
+     */
+    private function describe(string $path, ?string $alt): ?array
     {
         $file = public_path(ltrim($path, '/'));
 
@@ -123,6 +153,7 @@ final class OgImages
             'width' => is_array($size) ? $size[0] : 1200,
             'height' => is_array($size) ? $size[1] : 630,
             'type' => is_array($size) && isset($size['mime']) ? $size['mime'] : 'image/png',
+            'alt' => $alt,
         ];
     }
 }

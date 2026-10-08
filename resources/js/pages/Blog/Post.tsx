@@ -113,6 +113,7 @@ export default function BlogPost({ post, correction, related }: Props) {
                 description={post.description}
                 ogType="article"
                 jsonLd={jsonLd}
+                publishedTime={post.date}
             />
 
             <PageHeader
