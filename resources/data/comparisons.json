@@ -13,7 +13,7 @@
             },
             "platforms": ["mac", "windows", "linux", "ios"],
             "platformsSource": "s1",
-            "mac": null,
+            "mac": { "minVersion": "12", "architectures": [], "source": "s10" },
             "technology": null,
             "licence": { "name": null, "openSource": false, "edition": null, "source": "s9" },
             "prices": [
@@ -158,6 +158,12 @@
                     "id": "s9",
                     "url": "https://tableplus.com/blog/2018/01/license-agreement.html",
                     "title": "TablePlus license agreement",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s10",
+                    "url": "https://formulae.brew.sh/cask/tableplus",
+                    "title": "Homebrew cask tableplus",
                     "retrievedAt": "2026-10-08"
                 }
             ]

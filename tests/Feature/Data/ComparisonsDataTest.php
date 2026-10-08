@@ -353,6 +353,9 @@ it('pins the facts the pages lean on', function (): void {
     expect($products['navicat']['cells']['ai'])->toMatchArray(['note' => 'navicat-ai-editions', 'source' => ['s3', 's8']]);
     expect($products['dbeaver']['cells']['mcp'])->toMatchArray(['state' => 'qualified', 'version' => '26.3', 'note' => 'dbeaver-mcp-server']);
     expect($products['tableplus']['cells']['sync'])->toMatchArray(['state' => 'qualified', 'note' => 'tableplus-sync-folder']);
+    // The vendor's site still says 10.13; the current build and its Homebrew cask need 12.
+    expect($products['tableplus']['mac'])->toMatchArray(['minVersion' => '12', 'source' => 's10']);
+    expect($products['tableplus']['cells']['ios'])->toMatchArray(['value' => 15, 'source' => 's5']);
     expect($products['mongodb-compass']['licence'])->toMatchArray(['name' => 'SSPL-1.0', 'openSource' => false]);
     expect($products['redis-insight']['licence'])->toMatchArray(['name' => 'SSPL-1.0', 'openSource' => false]);
     expect($products['mongodb-compass']['platforms'])->toBe(['mac', 'windows', 'linux']);
