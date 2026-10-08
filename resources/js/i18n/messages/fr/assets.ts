@@ -9,5 +9,5 @@ export default {
         "diagram": "Emplacement de diagramme",
         "illustration": "Emplacement d’illustration"
     },
-    "accessibleName": "{type}: {description}"
+    "accessibleName": "{type} : {description}"
 } satisfies Messages['assets'];

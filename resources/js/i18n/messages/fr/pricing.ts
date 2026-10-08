@@ -46,7 +46,7 @@ export default {
             "name": "Team",
             "description": "Ajoute à Starter des connexions et des requêtes partagées avec votre équipe.",
             "activation": "Chaque poste correspond à un Mac activé.",
-            "includesTitle": "Tout Starter, plus",
+            "includesTitle": "Tout ce que contient Starter, plus",
             "cta": "Acheter Team"
         }
     },
@@ -107,7 +107,7 @@ export default {
     "matrix": {
         "caption": "Ce que chaque offre comprend dans l’application Mac",
         "feature": "Fonctionnalité",
-        "macs": "Macs",
+        "macs": "Mac",
         "macsFree": "Sans licence",
         "macsStarter": {
             "one": "{count}",
@@ -129,7 +129,7 @@ export default {
         "invalid": "Ce code de réduction est invalide ou a expiré."
     },
     "checkout": {
-        "failed": "Impossible de démarrer le règlement. Réessayez."
+        "failed": "Impossible d’ouvrir la page de paiement. Réessayez."
     },
     "offers": {
         "name": "{plan}, {cycle}",

@@ -30,11 +30,11 @@
             },
             {
                 "slug": "import-export",
-                "summary": "Importez des fichiers {importFormats}, exportez tables et résultats, ouvrez des fichiers sans connexion et sauvegardez les moteurs compatibles avec leurs outils de dump."
+                "summary": "Importez des fichiers {importFormats}, exportez tables et résultats, ouvrez des fichiers de données sans connexion et sauvegardez les moteurs compatibles avec leurs outils de dump."
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Assistant IA facultatif utilisant le fournisseur choisi et serveur MCP (Model Context Protocol) local permettant à des clients comme Claude Code et Cursor d’utiliser vos connexions enregistrées."
+                "summary": "Un assistant IA facultatif qui utilise le fournisseur de votre choix, et un serveur MCP (Model Context Protocol) local qui permet à des clients comme Claude Code et Cursor d’utiliser vos connexions enregistrées."
             },
             {
                 "slug": "connections",
@@ -48,12 +48,12 @@
     },
     "ios": {
         "title": "iPhone et iPad",
-        "body": "TablePro pour iPhone et iPad est une application distincte, gratuite sans achats intégrés. Elle se connecte via SSH ou TLS, parcourt et modifie les lignes et exécute des requêtes, avec Raccourcis, widget d’écran d’accueil et Activités en direct. Elle n’a ni assistant IA, ni modification de schéma, ni Data Rewind ou Compare & Sync.",
+        "body": "TablePro pour iPhone et iPad est une application distincte, gratuite et sans achats intégrés. Elle se connecte via SSH ou TLS, parcourt et modifie les lignes et exécute des requêtes, avec Raccourcis, un widget d’écran d’accueil et les Activités en direct pour les requêtes en cours. Elle n’a ni assistant IA, ni modification de schéma, ni Data Rewind, ni Compare & Sync.",
         "link": "TablePro pour iPhone et iPad"
     },
     "paid": {
         "title": "Gratuit et payant",
-        "lead": "L’application Mac est gratuite, sans période d’essai. Starter ou Team ajoute les fonctionnalités ci-dessous sur Mac et Team comprend tout Starter. La connexion aux moteurs compatibles, l’assistant IA, le serveur MCP et Safe Mode ne nécessitent aucune licence ; l’application iPhone et iPad est gratuite, sans achats intégrés.",
+        "lead": "L’application Mac s’utilise gratuitement, sans période d’essai. Une offre Starter ou Team ajoute les fonctionnalités ci-dessous à l’application Mac, et Team comprend tout ce que contient Starter. La connexion à n’importe quel moteur pris en charge, l’assistant IA, le serveur MCP et Safe Mode ne nécessitent aucune licence ; l’application iPhone et iPad est gratuite, sans achats intégrés.",
         "caption": "Fonctionnalités payantes sur Mac, offre requise et page qui les décrit",
         "columns": {
             "feature": "Feature",
@@ -82,7 +82,7 @@
         "header": {
             "paid": "Fonctionnalités payantes sur cette page : {features}. Tout le reste est gratuit.",
             "paidItem": "{name} ({tier})",
-            "allFree": "Tout sur cette page est gratuit.",
+            "allFree": "Tout ce qui figure sur cette page est gratuit.",
             "docs": "Lire la documentation"
         },
         "sections": {
@@ -92,15 +92,15 @@
             "related": "À voir aussi"
         },
         "availability": {
-            "caption": "Chaque capacité de cette page, l’offre requise sur Mac et ce qui existe sur iPhone et iPad",
-            "capability": "Capacité",
+            "caption": "Chaque fonctionnalité de cette page, l’offre requise sur Mac et ce qui en existe sur iPhone et iPad",
+            "capability": "Fonctionnalité",
             "free": "Gratuit",
             "notAvailable": "Non disponible",
             "plan": "Offre {tier}"
         },
         "download": {
             "title": "Obtenez TablePro",
-            "body": "TablePro est open source et gratuit. Les offres payantes ajoutent des fonctionnalités facultatives sur Mac.",
+            "body": "TablePro est open source et s’utilise gratuitement. Les offres payantes ajoutent des fonctionnalités facultatives à l’application Mac.",
             "pricing": "Voir les tarifs"
         }
     }
