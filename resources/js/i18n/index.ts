@@ -6,24 +6,15 @@
  * for different languages concurrently, so a global would leak one reader's
  * language into another's page.
  *
- * The locales' UI catalogs ship in the bundle. They are small; page copy
- * arrives per request as the `content` prop instead.
+ * English ships in the entry bundle. Every other language's UI catalog is its
+ * own chunk, loaded by the page resolver before SSR or hydration renders, and
+ * kept in a cache keyed by locale. Page copy arrives per request as the
+ * `content` prop instead.
  */
 import { createElement, Fragment, type ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
 import localeTable from '@data/locales.json';
 import en from './messages/en/index.ts';
-import vi from './messages/vi/index.ts';
-import es from './messages/es/index.ts';
-import de from './messages/de/index.ts';
-import fr from './messages/fr/index.ts';
-import ja from './messages/ja/index.ts';
-import pt_BR from './messages/pt-BR/index.ts';
-import zh_Hans from './messages/zh-Hans/index.ts';
-import ko from './messages/ko/index.ts';
-import zh_Hant from './messages/zh-Hant/index.ts';
-import it from './messages/it/index.ts';
-import id from './messages/id/index.ts';
 import { interpolate, plural as pluralize, splitTags, type Values } from './core.ts';
 import * as format from './format.ts';
 import { localePath as toLocalePath, resolveLink, type ResolvedLink } from './paths.ts';
@@ -38,14 +29,35 @@ export const LOCALES: LocaleTable = localeTable;
 
 export const DEFAULT_LOCALE = localeTable.default as Locale;
 
-const catalogs: Record<Locale, Messages> = { en, vi, es, de, fr, ja, 'pt-BR': pt_BR, 'zh-Hans': zh_Hans, ko, 'zh-Hant': zh_Hant, it, id };
+const loaders = import.meta.glob<Messages>(['./messages/*/index.ts', '!./messages/en/index.ts'], { import: 'default' });
+
+const catalogs: Partial<Record<Locale, Messages>> = { en };
+
+/** The language switcher names a missing page in the language it would have been in, so these few words ship for every locale. */
+const controls = import.meta.glob<Messages['controls']>('./messages/*/controls.ts', { eager: true, import: 'default' });
 
 export function isLocale(value: unknown): value is Locale {
-    return typeof value === 'string' && Object.hasOwn(catalogs, value);
+    return typeof value === 'string' && Object.hasOwn(localeTable.supported, value);
 }
 
+/** Loads a locale's catalog. The page resolver awaits it, so a render never finds it missing. */
+export async function loadMessages(locale: Locale): Promise<void> {
+    catalogs[locale] ??= await loaders[`./messages/${locale}/index.ts`]();
+}
+
+/** The catalog of the page's own locale, or of English. Any other locale is not loaded, and this throws. */
 export function messagesFor(locale: Locale): Messages {
-    return catalogs[locale];
+    const messages = catalogs[locale];
+
+    if (messages === undefined) {
+        throw new Error(`The ${locale} catalog is not loaded.`);
+    }
+
+    return messages;
+}
+
+export function languageCopy(locale: Locale): Messages['controls']['language'] {
+    return controls[`./messages/${locale}/controls.ts`].language;
 }
 
 /** `localePath('/download', 'vi')` → `/vi/download`; `/account` stays `/account`. See ./paths.ts. */
@@ -74,7 +86,7 @@ export function useI18n() {
 
     return {
         locale,
-        m: catalogs[locale],
+        m: messagesFor(locale),
         fmt: interpolate,
         plural: (node: PluralNode, count: number, values?: Values): string =>
             pluralize(node, count, LOCALES.supported[locale].intl, values),
