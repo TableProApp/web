@@ -188,7 +188,6 @@ it('leaves nothing of Plausible behind', function (): void {
         Assert::assertFalse(stripos(consentSource($file), 'plausible'), "{$file} still mentions Plausible");
     }
 
-    // `analytics.ts` is held to calls rather than words: its docblock names Plausible to say where the event names came from.
     expect(consentSource('resources/js/lib/analytics.ts'))->not->toMatch('/plausible\s*\(|\.plausible\b/');
 
     foreach (privacySources() as $file => $text) {
