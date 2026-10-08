@@ -160,6 +160,8 @@ fake GitHub with `Http::fake()`. Tests that assert on rendered markup go behind
 ## Frontend
 
 - Pages resolve by convention from `resources/js/pages`. `resolve-page.ts` loads
-  the selected language's asset catalog before client or SSR rendering.
+  the selected language's UI catalog and asset catalog before client or SSR
+  rendering. Only English is in the entry bundle, so `messagesFor()` answers
+  for English and the page's own language, and throws for any other.
 - SSR is enabled; `npm run build` builds both bundles.
 - `@/` maps to `resources/js`; `@data/` maps to `resources/data`.

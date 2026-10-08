@@ -228,7 +228,16 @@ it('sets no cookie and never varies on language', function (): void {
 
 it('serves no locale outside the allowlist', function (string $path): void {
     $this->get($path)->assertNotFound();
-})->with(['/en', '/en/download', '/xx', '/xx/download', '/vi/vi', '/vi/vi/download', '/VI', '/Vi/download']);
+})->with(['/xx', '/xx/download', '/vi/vi', '/vi/vi/download', '/vi/en', '/vi/en/download']);
+
+it('redirects a supported locale written another way, and never serves a page there', function (string $path, string $canonical): void {
+    $this->get($path)->assertStatus(301)->assertHeader('Location', 'https://localhost' . $canonical);
+})->with([
+    ['/en', '/'],
+    ['/en/download', '/download'],
+    ['/VI', '/vi'],
+    ['/Vi/download', '/vi/download'],
+]);
 
 it('mounts every localized route once per locale, under the same name', function (): void {
     $routes = collect(app('router')->getRoutes()->getRoutes());

@@ -10,6 +10,8 @@ export interface SEOHeadProps {
     /** False for a title that already leads with the brand, such as the homepage's. */
     titleTemplate?: boolean;
     twitterCard?: 'summary' | 'summary_large_image';
+    /** An article's publication date, ISO 8601. */
+    publishedTime?: string;
 }
 
 const SITE_NAME = 'TablePro';
@@ -38,6 +40,7 @@ export default function SEOHead({
     jsonLd,
     titleTemplate = true,
     twitterCard = 'summary_large_image',
+    publishedTime,
 }: SEOHeadProps) {
     // `feed` is a page prop of the blog pages only (`BlogController`).
     const { seo, feed } = usePage<{ feed?: { url: string; title: string } }>().props;
@@ -81,6 +84,9 @@ export default function SEOHead({
             {feed && <link head-key="feed" rel="alternate" type="application/atom+xml" title={feed.title} href={feed.url} />}
 
             <meta head-key="og:type" property="og:type" content={ogType} />
+            {publishedTime && (
+                <meta head-key="article:published_time" property="article:published_time" content={publishedTime} />
+            )}
             {seo.canonical && <meta head-key="og:url" property="og:url" content={seo.canonical} />}
             <meta head-key="og:title" property="og:title" content={fullTitle} />
             <meta head-key="og:description" property="og:description" content={description} />
@@ -102,6 +108,7 @@ export default function SEOHead({
                 <meta head-key="og:image:height" property="og:image:height" content={String(seo.ogImage.height)} />
             )}
             {seo.ogImage && <meta head-key="og:image:type" property="og:image:type" content={seo.ogImage.type} />}
+            {seo.ogImage?.alt && <meta head-key="og:image:alt" property="og:image:alt" content={seo.ogImage.alt} />}
 
             <meta head-key="twitter:card" name="twitter:card" content={twitterCard} />
             {/* Without this the card carries no attribution on any share. */}
@@ -109,6 +116,9 @@ export default function SEOHead({
             <meta head-key="twitter:title" name="twitter:title" content={fullTitle} />
             <meta head-key="twitter:description" name="twitter:description" content={description} />
             {seo.ogImage && <meta head-key="twitter:image" name="twitter:image" content={seo.ogImage.url} />}
+            {seo.ogImage?.alt && (
+                <meta head-key="twitter:image:alt" name="twitter:image:alt" content={seo.ogImage.alt} />
+            )}
 
             {jsonLdContent && (
                 <script

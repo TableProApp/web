@@ -102,6 +102,11 @@ function landingSeoJsonLdNodes(Dom\HTMLDocument $document): array
     return $nodes;
 }
 
+it('keeps the health check out of search results, and marks no page that way', function (): void {
+    $this->get('/up')->assertOk()->assertHeader('X-Robots-Tag', 'noindex');
+    $this->get('/pricing')->assertOk()->assertHeaderMissing('X-Robots-Tag');
+});
+
 it('rejects unknown slugs in every family and language', function (string $path): void {
     getOnWebDomainSeo($path)->assertNotFound();
 })->with([
@@ -194,6 +199,12 @@ it('renders the registry head on every page family, in each language', function 
     expect(landingSeoValues($document, 'meta[property="og:image:width"]', 'content'))->toBe([(string) $size[0]]);
     expect(landingSeoValues($document, 'meta[property="og:image:height"]', 'content'))->toBe([(string) $size[1]]);
 
+    $alt = (string) app(OgImages::class)->for($entry, $locale)['alt'];
+
+    expect($alt)->not->toBe('', "{$path} does not say what its card shows");
+    expect(landingSeoValues($document, 'meta[property="og:image:alt"]', 'content'))->toBe([$alt]);
+    expect(landingSeoValues($document, 'meta[name="twitter:image:alt"]', 'content'))->toBe([$alt]);
+
     /*
      * Structured data in the page's language, describing visible content
      * only: no ratings, no reviews, no FAQPage or HowTo anywhere.
@@ -274,6 +285,14 @@ it('marks an error page noindex, follow and points it at nothing', function (str
     'an English-only post asked for in Vietnamese' => ['/vi/blog/tablepro-0-77', 404, 'vi'],
     'a removed comparison' => ['/compare/azimutt', 410, 'en'],
 ]);
+
+it('dates a post in its Open Graph tags, and no other page', function (): void {
+    $published = fn(string $path): array => landingSeoValues(landingSeoDocument($path), 'meta[property="article:published_time"]', 'content');
+
+    expect($published('/blog/tablepro-0-77'))->toBe(['2026-10-02'])
+        ->and($published('/blog'))->toBe([])
+        ->and($published('/pricing'))->toBe([]);
+});
 
 it('publishes one application entity and no FAQPage on the homepage', function (string $path): void {
     $html = ssrHtml($path);

@@ -55,7 +55,7 @@ for (const [locale, expected] of Object.entries(cases) as [keyof typeof cases, (
 
         for (const image of images) {
             assert.match(image, new RegExp(`alt="${expected.visible}"`));
-            assert.match(image, /width="119.66407" height="40" loading="lazy" decoding="async"/);
+            assert.match(image, /width="120" height="40" loading="lazy" decoding="async"/);
         }
     });
 
@@ -69,6 +69,19 @@ for (const [locale, expected] of Object.entries(cases) as [keyof typeof cases, (
             assert.match(file, new RegExp(`<title>${expected.title}${colour}_[^<]*</title>`), `${artwork[theme]} is not Apple's ${colour} badge for ${locale}`);
             assert.match(file, /viewBox="0 0 119.66407 40"/);
             assert.doesNotMatch(file, /<text\b|<script\b/);
+        }
+    });
+}
+
+for (const locale of Object.keys(APP_STORE_BADGE_ARTWORK) as (keyof typeof APP_STORE_BADGE_ARTWORK)[]) {
+    test(`${locale}: the image widths are whole numbers, as HTML requires`, () => {
+        const html = renderToStaticMarkup(renderAppStoreBadge({ href: HREF, locale, label: 'x' }));
+        const widths = [...html.matchAll(/ width="([^"]+)"/g)].map((match) => match[1]);
+
+        assert.equal(widths.length, 2);
+
+        for (const [index, theme] of (['light', 'dark'] as const).entries()) {
+            assert.equal(widths[index], String(Math.round(APP_STORE_BADGE_ARTWORK[locale].width[theme])));
         }
     });
 }

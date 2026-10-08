@@ -107,3 +107,13 @@ it('points at logo files that exist, with their real intrinsic size', function (
         expect(sponsorLogoSize(public_path($logo['light'])))->toBe([$logo['width'], $logo['height']], "{$sponsor['name']}'s width and height must match the file");
     }
 });
+
+it('keeps a raster logo close to the size the wall shows it at', function (): void {
+    preg_match('/const LOGO_HEIGHT = (\d+);/', File::get(resource_path('js/components/home/sponsors-section.tsx')), $shown);
+
+    foreach (sponsorsJson()['sponsors'] as $sponsor) {
+        if (! str_ends_with($sponsor['logo']['light'], '.svg')) {
+            expect($sponsor['logo']['height'])->toBeLessThanOrEqual(4 * (int) $shown[1], "{$sponsor['name']}'s logo is far larger than it is shown");
+        }
+    }
+});

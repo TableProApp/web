@@ -125,6 +125,7 @@ export default function BlogPost({ post, archived, correction, pages, notes, rel
                 description={post.description}
                 ogType="article"
                 jsonLd={jsonLd}
+                publishedTime={post.date}
             />
 
             <PageHeader

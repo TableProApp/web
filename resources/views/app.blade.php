@@ -218,10 +218,14 @@
         Inertia for the page, a round trip later, and hydration waits for it.
         A component with no file (none today: SeoSmokeTest renders every page)
         is left to the runtime rather than failing the manifest lookup.
+
+        The same goes for the page's UI catalog. English is inside app.tsx;
+        every other language is a chunk of its own (resources/js/i18n/index.ts).
     --}}
     @php($pageEntry = 'resources/js/pages/' . ($page['component'] ?? '') . '.tsx')
+    @php($catalogEntry = app()->getLocale() === \App\Support\Localization\Locales::default() ? '' : 'resources/js/i18n/messages/' . app()->getLocale() . '/index.ts')
     @viteReactRefresh
-    @vite(array_values(array_filter(['resources/css/app.css', 'resources/js/app.tsx', is_file(base_path($pageEntry)) ? $pageEntry : null])))
+    @vite(array_values(array_filter(['resources/css/app.css', 'resources/js/app.tsx', is_file(base_path($pageEntry)) ? $pageEntry : null, is_file(base_path($catalogEntry)) ? $catalogEntry : null])))
 </head>
 <body class="bg-background text-foreground antialiased">
     @inertia

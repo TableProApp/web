@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
         commands: __DIR__ . '/../routes/console.php',
-        health: '/up',
+        health: \App\Http\Middleware\KeepHealthCheckOutOfSearch::PATH,
     )
     ->withMiddleware(function (Middleware $middleware): void {
         /*
@@ -87,6 +87,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'locale' => SetLocale::class,
             'page' => EnsurePageRenders::class,
         ]);
+
+        // Global, because the health route belongs to no group.
+        $middleware->append(\App\Http\Middleware\KeepHealthCheckOutOfSearch::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         /*

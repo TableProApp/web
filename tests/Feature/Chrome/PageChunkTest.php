@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use PHPUnit\Framework\Assert;
@@ -36,8 +37,57 @@ it('names the page component as a @vite entry, only when its file exists', funct
     $blade = (string) file_get_contents(resource_path('views/app.blade.php'));
 
     expect($blade)->toContain("@php(\$pageEntry = 'resources/js/pages/' . (\$page['component'] ?? '') . '.tsx')")
-        ->toContain("@vite(array_values(array_filter(['resources/css/app.css', 'resources/js/app.tsx', is_file(base_path(\$pageEntry)) ? \$pageEntry : null])))");
+        ->toContain("@vite(array_values(array_filter(['resources/css/app.css', 'resources/js/app.tsx', is_file(base_path(\$pageEntry)) ? \$pageEntry : null, is_file(base_path(\$catalogEntry)) ? \$catalogEntry : null])))");
 });
+
+/*
+ * The entry chunk carried the UI catalog of every language, twelve copies of
+ * the same strings for a reader who needs one. English stays in the entry;
+ * each other language is a chunk the page resolver awaits, and the root
+ * template names it as a `@vite` entry so it arrives with the document.
+ */
+it('imports only the default language\'s UI catalog statically, and awaits the page\'s own', function (): void {
+    $index = (string) file_get_contents(resource_path('js/i18n/index.ts'));
+
+    preg_match_all("#^import \\w+ from './messages/([^/]+)/index\\.ts';#m", $index, $static);
+
+    expect($static[1])->toBe([Locales::default()])
+        ->and($index)->toContain("import.meta.glob<Messages>(['./messages/*/index.ts', '!./messages/" . Locales::default() . "/index.ts']")
+        ->and((string) file_get_contents(resource_path('js/resolve-page.ts')))->toContain('loadMessages(locale)');
+});
+
+it('keeps every other language\'s catalog out of the entry chunk', function (): void {
+    $manifest = clientManifest();
+    $entry = $manifest['resources/js/app.tsx'];
+
+    foreach (array_diff(Locales::codes(), [Locales::default()]) as $locale) {
+        $catalog = "resources/js/i18n/messages/{$locale}/index.ts";
+
+        Assert::assertArrayHasKey($catalog, $manifest, "{$catalog} has no entry in public/build/manifest.json");
+        Assert::assertTrue($manifest[$catalog]['isDynamicEntry'] ?? false, "{$catalog} is not a chunk of its own");
+        Assert::assertContains($catalog, $entry['dynamicImports'] ?? [], "app.tsx does not load {$catalog} on demand");
+        Assert::assertNotContains($catalog, $entry['imports'] ?? [], "app.tsx imports {$catalog} statically");
+    }
+});
+
+it('sends a translated page its own language\'s catalog with the document, and no other', function (string $path, string $locale): void {
+    $manifest = clientManifest();
+
+    $this->withVite();
+
+    $html = (string) $this->get($path)->assertOk()->getContent();
+
+    foreach (array_diff(Locales::codes(), [Locales::default()]) as $code) {
+        $script = '<script type="module" src="' . asset('build/' . $manifest["resources/js/i18n/messages/{$code}/index.ts"]['file']) . '"';
+
+        expect(str_contains($html, $script))->toBe($code === $locale, "{$path} and the {$code} catalog");
+    }
+})->with([
+    ['/pricing', 'en'],
+    ['/vi/download', 'vi'],
+    ['/pt-BR/pricing', 'pt-BR'],
+    ['/zh-Hans', 'zh-Hans'],
+]);
 
 it('renders the error page from a file that exists', function (): void {
     $this->get('/no-such-page')->assertNotFound();

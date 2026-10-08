@@ -135,6 +135,22 @@ test('a recurring price names its period, a one-time price does not', () => {
     });
 });
 
+test('a per-seat price says how many seats one purchase holds, as the page does', () => {
+    const offers = mac.offers as Record<string, unknown>[];
+    const { min, max } = pricing.tiers.team.seats!;
+    const perSeat = offers.filter((offer) => (offer.priceSpecification as Record<string, unknown> | undefined)?.unitText === 'seat');
+
+    assert.equal(perSeat.length, Object.keys(pricing.tiers.team.prices ?? {}).length);
+
+    for (const offer of perSeat) {
+        assert.deepEqual(offer.eligibleQuantity, { '@type': 'QuantitativeValue', minValue: min, maxValue: max, unitText: 'seat' });
+    }
+
+    for (const offer of offers.filter((offer) => !perSeat.includes(offer))) {
+        assert.equal('eligibleQuantity' in offer, false);
+    }
+});
+
 test('the iPhone app is free, with one zero-price offer and no rating', () => {
     assert.equal(ios['@type'], 'MobileApplication');
     assert.equal(ios.isAccessibleForFree, true);

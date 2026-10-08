@@ -16,7 +16,8 @@ export interface SeoProp {
     xDefault: string | null;
     ogLocale: string;
     ogLocaleAlternates: string[];
-    ogImage: { url: string; width: number; height: number; type: string } | null;
+    /** `alt` says what the card shows, in the page's language. */
+    ogImage: { url: string; width: number; height: number; type: string; alt: string | null } | null;
 }
 
 /** One option of the language switcher. */

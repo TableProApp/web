@@ -59,3 +59,7 @@ it('keeps the logo the structured data and the error pages name', function (): v
     // Google's minimum for an organization logo is 112px square.
     expectSmallIcon('/logo.png', 256);
 });
+
+it('keeps the mark in the header and footer of every page small', function (): void {
+    expect(filesize(public_path('images/logo.png')))->toBeLessThanOrEqual(12 * 1024);
+});
