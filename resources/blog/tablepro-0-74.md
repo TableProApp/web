@@ -1,7 +1,7 @@
 ---
 slug: tablepro-0-74
 title: "TablePro 0.74: Draw a Geometry Column on a Map"
-description: A result holding geometry gets a Map segment, drawn on Apple's own tiles with nothing leaving your Mac. Plus highlight rules, marks for invisible characters, three new databases, and the end of commands running on the wrong database.
+description: A result holding geometry gets a Map segment, drawn on Apple's map tiles while your rows stay on the Mac. Plus highlight rules, marks for invisible characters, three new databases, and the end of commands running on the wrong database.
 date: 2026-09-13
 release: "TablePro 0.74"
 author: TablePro Team
