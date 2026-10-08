@@ -108,6 +108,16 @@ it('draws shortcut glyphs in a face that has them, as an inline box', function (
         ->not->toContain('inline-flex');
 });
 
+it('draws the phone breadcrumb link as a block of its own', function (): void {
+    /*
+     * Below 640px the trail is one link on its own line. As inline content of
+     * the nav it read as a link inside the hidden trail's text, which a
+     * contrast check then compared it with: 2.28:1 in the dark theme.
+     */
+    expect(layoutSource('js/components/ui/breadcrumbs.tsx'))->toContain('className="flex min-h-8 w-fit items-center gap-1.5')
+        ->not->toContain('className="inline-flex min-h-8');
+});
+
 it('marks the current section in the mobile menu', function (): void {
     $nav = layoutSource('js/components/site/mobile-nav.tsx');
 
