@@ -73,6 +73,55 @@ dataset('chrome locales', [
     'Vietnamese' => ['/vi/download', 'vi', '/vi'],
 ]);
 
+/** One catalog's strings by key, parsed from its TypeScript source: `key: '…'` in English and Vietnamese, `"key": "…"` elsewhere. @return array<string, string> */
+function chromeCatalog(string $locale, string $namespace): array
+{
+    $source = (string) file_get_contents(dirname(__DIR__, 3) . "/resources/js/i18n/messages/{$locale}/{$namespace}.ts");
+
+    preg_match_all('/^\s+"?(\w+)"?: ([\'"])((?:(?!\2)[^\\\\]|\\\\.)*)\2,?$/m', $source, $matches, PREG_SET_ORDER);
+
+    $strings = [];
+
+    foreach ($matches as $match) {
+        $strings[$match[1]] = stripslashes($match[3]);
+    }
+
+    return $strings;
+}
+
+/** Every locale with its URL prefix and endonym, read from disk: a dataset is built before the application boots. @return array<string, array{string, string, string}> */
+function chromeLocales(): array
+{
+    $rows = [];
+
+    foreach (json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported'] as $code => $locale) {
+        $rows[$code] = [$code, $locale['prefix'] === null ? '' : "/{$locale['prefix']}", $locale['native']];
+    }
+
+    return $rows;
+}
+
+/**
+ * The header's desktop row with every label on one line, measured in Chromium
+ * at 14px Inter: its width in px, and the display columns of its eight labels
+ * at the time (a CJK character is two). The row has 960px at 1024 and 1088px
+ * at 1152.
+ */
+const HEADER_ROW_MEASURED = [
+    'en' => [893, 54],
+    'vi' => [944, 67],
+    'es' => [1008, 69],
+    'de' => [980, 64],
+    'fr' => [1065, 79],
+    'ja' => [943, 66],
+    'pt-BR' => [1040, 74],
+    'zh-Hans' => [754, 38],
+    'ko' => [773, 48],
+    'zh-Hant' => [797, 44],
+    'it' => [965, 66],
+    'id' => [930, 58],
+];
+
 it('frames the page with a skip link, one header, one main and one footer', function (string $path, string $locale): void {
     $html = ssrHtml($path);
 
@@ -118,6 +167,98 @@ it('links the header to the sections in the reader\'s language', function (strin
     }
 
     Assert::assertNotNull(chromeLink($header, "{$prefix}/ios", $vi ? 'iPhone và iPad' : 'iPhone & iPad'), 'The platform page is missing from the Features menu');
+})->with('chrome locales');
+
+it('shows the desktop row only where it fits, in every language', function (string $code, string $prefix, string $native): void {
+    /*
+     * At 1024px the row wrapped to three lines in Spanish and French, pushed
+     * the French Download button 8px off the page, and wrapped the language
+     * button in Portuguese. A language whose row is wider than 960px keeps
+     * the menu button to 1152px instead.
+     */
+    [$width, $columns] = HEADER_ROW_MEASURED[$code];
+    $wide = $width > 960;
+
+    expect($width)->toBeLessThanOrEqual($wide ? 1088 : 960);
+
+    /*
+     * No browser runs here, so the widths above are only as good as the
+     * labels they were measured for. A longer label means measuring again.
+     */
+    $nav = chromeCatalog($code, 'nav');
+    $labels = [$nav['features'], $nav['databases'], $nav['pricing'], $nav['docs'], $nav['blog'], $native, $nav['account'], $nav['download']];
+
+    Assert::assertLessThanOrEqual($columns, array_sum(array_map(mb_strwidth(...), $labels)), "{$code}: a header label grew. Measure the row again and update HEADER_ROW_MEASURED.");
+
+    $from = $wide ? 'min-[72rem]' : 'lg';
+    $header = chromeRegion(ssrHtml("{$prefix}/download"), 'header');
+
+    expect($header)->toMatch('/<nav aria-label="[^"]+" class="hidden ' . preg_quote($from, '/') . ':block">/')
+        ->toContain("class=\"hidden items-center gap-2 {$from}:flex\"")
+        ->toMatch('/<button type="button" aria-expanded="false" aria-controls="site-menu" class="[^"]* ' . preg_quote($from, '/') . ':hidden">/');
+})->with(chromeLocales(...));
+
+it('closes the open menu at the width its language shows the desktop row', function (): void {
+    $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
+    $wide = array_keys(array_filter(HEADER_ROW_MEASURED, fn(array $row): bool => $row[0] > 960));
+
+    sort($wide);
+
+    expect($read('site-links.ts'))->toContain("export const WIDE_HEADER_LOCALES: readonly string[] = ['" . implode("', '", $wide) . "'];")
+        ->toContain("desktop: '(min-width: 64rem)'")
+        ->toContain("desktop: '(min-width: 72rem)'");
+    expect($read('site-header.tsx'))->toContain('desktop={layout.desktop}');
+    expect($read('mobile-nav.tsx'))->toContain('window.matchMedia(desktop)')->not->toContain('64rem');
+});
+
+it('gives the small controls of the header and the banner a finger-sized target', function (): void {
+    $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
+
+    /*
+     * Measured by hit-testing at 390px: the header Download was 92 by 32 and
+     * the banner's dismiss 32 by 32. Each keeps its drawing and gains an
+     * invisible box around it: 44px for Download, and for the banner's two
+     * controls 44px wide and as tall as its 40px band lets them be.
+     */
+    expect($read('site-header.tsx'))->toContain("buttonClasses('primary', 'sm', 'relative after:absolute after:inset-x-0 after:-inset-y-[7px]')");
+    expect($read('support-banner.tsx'))->toContain('after:absolute after:-inset-x-1 after:-inset-y-3')
+        ->toContain('after:absolute after:-inset-1.5');
+});
+
+it('puts the download actions above a closed language list in the menu', function (string $path, string $locale, string $prefix): void {
+    /*
+     * Twelve language rows used to sit between the links and the two download
+     * actions, which put "Download for Mac" 1,273px down a 844px screen. The
+     * languages are one row that opens, and the actions come before it.
+     */
+    $header = chromeRegion(ssrHtml($path), 'header');
+    $menu = substr($header, (int) strpos($header, '<dialog'));
+
+    $account = strpos($menu, "href=\"/account?locale={$locale}\"");
+    $download = strpos($menu, '>' . chromeCatalog($locale, 'download')['macCta'] . '</a>');
+    $badge = strpos($menu, 'href="https://apps.apple.com/');
+    $languages = strpos($menu, '<details');
+
+    foreach (['Account' => $account, 'Download for Mac' => $download, 'the App Store badge' => $badge, 'the language list' => $languages] as $name => $position) {
+        Assert::assertNotFalse($position, "The menu has no {$name}");
+    }
+
+    Assert::assertLessThan($download, $account, 'The download actions follow the links');
+    Assert::assertLessThan($badge, $download, 'Mac comes first in the markup on every device');
+    Assert::assertLessThan($languages, $badge, 'The language list comes after the download actions');
+
+    // A native disclosure, closed on load, named with the current language.
+    expect($menu)->toMatch('/<details class="group"><summary aria-label="' . ($locale === 'vi' ? 'Ngôn ngữ: Tiếng Việt' : 'Language: English') . '"/u')
+        ->not->toMatch('/<details[^>]*\sopen[\s=>]/');
+
+    $list = substr($menu, $languages, (int) strpos($menu, '</details>', $languages) - $languages);
+
+    foreach (Locales::all() as $code => $definition) {
+        $link = chromeLink($list, ($definition['prefix'] === null ? '' : "/{$definition['prefix']}") . '/download', $definition['native']);
+
+        Assert::assertNotNull($link, "The menu's language list has no {$definition['native']} link");
+        Assert::assertSame($code === $locale ? 'true' : null, $link['attrs']['aria-current'] ?? null);
+    }
 })->with('chrome locales');
 
 it('sends Docs to the English documentation, and says so in Vietnamese', function (string $path, string $locale): void {

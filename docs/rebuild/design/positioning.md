@@ -513,10 +513,10 @@ menu and the footer's Product group, and it renders from `platforms.json`:
 - The open menu lists, in order:
   - Features (the same items), Databases, Pricing, the platform link, Docs ↗, Blog, FAQ / Câu hỏi thường gặp and
     Account;
-  - the language links, then the theme control;
-  - last, **Download for Mac** / **Tải về cho Mac** (→ `/download`) and the App Store badge, with
+  - **Download for Mac** / **Tải về cho Mac** (→ `/download`) and the App Store badge, with
     `download_click{location:'mobile-nav', platform}`. Both come from the availability-layer CTA keys in §4, not from
-    `nav.*`.
+    `nav.*`;
+  - last, the language (one row that opens the list), then the theme control.
 
 ### 10.2 Footer
 

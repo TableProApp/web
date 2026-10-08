@@ -13,7 +13,9 @@ interface LanguageSwitcherProps {
      *   choices.
      * - `footer`: the same choices in the shared FooterMenu, which opens upward
      *   and works without JavaScript.
-     * - `stack`: the choices one per row (mobile menu).
+     * - `stack`: one row naming the current language that opens the choices,
+     *   one per row, in place (mobile menu). A `<details>`, so it needs no
+     *   JavaScript.
      */
     variant: 'menu' | 'footer' | 'stack';
     className?: string;
@@ -84,15 +86,22 @@ function FallbackNote({ item, className }: { item: SwitcherItem; className?: str
 }
 
 function LanguageStack({ items, className }: { items: SwitcherItem[]; className?: string }) {
-    const { m } = useI18n();
-    const labelId = useId();
+    const { m, fmt } = useI18n();
+    const current = items.find((item) => item.current) ?? items[0];
 
     return (
-        <nav aria-labelledby={labelId} className={cn('grid gap-1', className)}>
-            <span id={labelId} className="type-small font-medium text-muted-foreground">
+        <details className={cn('group', className)}>
+            <summary
+                aria-label={fmt(m.controls.language.current, { language: current.native })}
+                className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 rounded-control text-lg leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) select-none hover:text-accent-text [&::-webkit-details-marker]:hidden"
+            >
                 {m.controls.language.label}
-            </span>
-            <ul className="grid">
+                <span className="flex items-center gap-2 text-base font-normal text-muted-foreground">
+                    <span lang={current.locale}>{current.native}</span>
+                    <ChevronDown className="size-5 shrink-0 transition-transform duration-(--dur-state) group-open:rotate-180" aria-hidden="true" />
+                </span>
+            </summary>
+            <ul className="mb-2 grid border-l border-rule pl-4">
                 {items.map((item) => (
                     <li key={item.locale}>
                         <a
@@ -101,19 +110,16 @@ function LanguageStack({ items, className }: { items: SwitcherItem[]; className?
                             lang={item.locale}
                             aria-current={item.current ? 'true' : undefined}
                             onClick={keepFragment(item)}
-                            className={cn(
-                                'flex min-h-12 items-center gap-3 rounded-[2px] text-lg leading-[1.3] font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback)',
-                                item.current ? 'text-foreground' : 'text-muted-foreground underline decoration-muted-foreground underline-offset-3 hover:text-foreground',
-                            )}
+                            className="flex min-h-11 items-center gap-3 rounded-control text-base leading-[1.3] text-foreground hover:text-accent-text aria-[current=true]:font-semibold"
                         >
                             {item.native}
                             {item.current && <Check className="size-4 text-accent-text" aria-hidden="true" />}
                         </a>
-                        <FallbackNote item={item} className="-mt-2 mb-2" />
+                        <FallbackNote item={item} className="-mt-1.5 mb-2" />
                     </li>
                 ))}
             </ul>
-        </nav>
+        </details>
     );
 }
 

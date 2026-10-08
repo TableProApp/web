@@ -833,7 +833,8 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - ≥ 1024 (items and order from sitemap §B.1):
   - Nav: **Features ▾** · Databases · Pricing · Docs ↗ · Blog. Features is a `<button aria-expanded>` that opens a disclosure panel (`--raised`, `--shadow-overlay`, 12px radius) listing All features, the seven feature pages (Querying, Data editing, Schema, Import & export, AI & MCP, Connections, Sync & teams) and iPhone & iPad. Escape closes it and returns focus. With a mouse it also opens on hover, 80ms after the pointer rests on the button, and closes 150ms after it leaves the button and the panel; a click on a panel that hover opened pins it open. Touch and pen keep the click (decided 2026-10-06).
   - Right: LanguageSwitcher, ThemeControl, Account (`quiet`, a plain `<a>` to `/account?locale={locale}`), **Download** (`primary` `sm`, to `/download`).
-- < 1024: logo, Download (`primary` `sm`), Menu button (44 × 44, `aria-expanded`, `aria-controls`).
+- < 1024: logo, Download (`primary` `sm`, in a 44px target), Menu button (44 × 44, `aria-expanded`, `aria-controls`).
+- The desktop row needs more than the 960px a 1024px window gives it in French (1065px), Portuguese (1040), Spanish (1008), German (980) and Italian (965), so those languages switch at 1152px instead (`headerLayout`, `site-links.ts`). `SiteChromeTest` holds the measured widths and fails when a header label grows.
 - Internal hrefs go through `LocaleLink`, which is why this component never moves to the license repo (§9).
 - `scroll-padding-top: 80px`, so anchors and focused elements clear the header (WCAG 2.4.11). The banner scrolls away, so it adds nothing.
 
@@ -841,8 +842,8 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 - A `<dialog>` sheet filling the viewport below the header, on `--raised`.
 - Links at 18/500 with 48px rows: Features (expands in place to the same links as the desktop panel), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, then Account.
-- Then a Language list and a Theme segmented control.
-- At the bottom: a full-width `primary` `lg` "Download for Mac" (→ `/download`) and the App Store badge, each with its AvailabilityLine.
+- Then a full-width `primary` `lg` "Download for Mac" (→ `/download`) and the App Store badge, each with its AvailabilityLine. On an iPhone or iPad the badge is drawn first.
+- At the bottom: Language, one row showing the current language that opens the list (a `<details>`), and a Theme segmented control.
 - Focus is trapped (native modal); Escape closes and focus returns to the toggle.
 - "iPhone & iPad" is the one label for that link; the old menu used two.
 

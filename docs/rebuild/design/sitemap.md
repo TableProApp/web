@@ -287,7 +287,9 @@ Not slots, because they are identity assets: the logo, favicon, database vendor 
 
 Collapsed bar: logo · [Download] (compact) · menu button (36×36 minimum target, `aria-expanded`, `aria-controls`).
 
-The open panel lists, in order: Features (expands to the same 9 links), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, Account. Then **Language** as two plain links, then **Theme** as a 3-option segmented control. Last come "Download for Mac" (→ /download) and the App Store badge, firing `download_click{location:'mobile-nav'}` with platform `mac` and `ios`.
+The open panel lists, in order: Features (expands to the same 9 links), Databases, Pricing, iPhone & iPad, Docs ↗, Blog, FAQ, Account. Then "Download for Mac" (→ /download) and the App Store badge, firing `download_click{location:'mobile-nav'}` with platform `mac` and `ios`; on an iPhone or iPad the badge is drawn first. Last come **Language**, one row that opens the list of languages (a `<details>`; twelve rows pushed the download actions 1,273px down an 844px screen), and **Theme** as a 3-option segmented control.
+
+In French, Portuguese, Spanish, German and Italian the desktop row is wider than a 1024px window, so those languages keep this bar and menu to 1152px (design-system §5.3.17).
 
 ### B.3 Footer (every public page)
 
