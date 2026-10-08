@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Bảng giá",
+        "title": "Bảng giá: gói Miễn phí, Starter và Team",
         "description": "Tải về và dùng TablePro miễn phí. Gói Starter và Team bổ sung tính năng cho ứng dụng Mac, trả theo tháng, theo năm hoặc một lần. Giá tính bằng USD."
     },
     "og": {
@@ -23,7 +23,7 @@
         "items": {
             "macs": {
                 "term": "Máy Mac",
-                "body": "Một license Starter kích hoạt được trên tối đa {activations} máy Mac. Với gói Team, mỗi seat là một máy Mac được kích hoạt, tính cả máy của người mua. Ứng dụng cho iPhone và iPad không bao giờ dùng license hay seat."
+                "body": "Một license Starter dành cho một người, trên tối đa {activations} máy Mac. Với gói Team, mỗi seat là một máy Mac được kích hoạt, tính cả máy của người mua, nên một người làm việc trên hai máy Mac cần hai seat. Ứng dụng cho iPhone và iPad không bao giờ dùng license hay seat."
             },
             "activate": {
                 "term": "Kích hoạt",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Thanh toán",
-        "merchant": "{merchant} là merchant of record của TablePro: {merchant} bán gói cho bạn, nhận thanh toán, tính thuế bán hàng hoặc VAT (nếu có) theo địa chỉ thanh toán, rồi gửi biên nhận và hóa đơn qua email. Giá niêm yết bằng USD.",
+        "merchant": "{merchant} là merchant of record của TablePro: {merchant} bán gói cho bạn, nhận thanh toán, tính thuế bán hàng hoặc VAT (nếu có) theo địa chỉ thanh toán, rồi gửi biên nhận và hóa đơn qua email.",
         "renewal": "Gói theo tháng và theo năm tự động gia hạn cho tới khi bạn hủy, trong <account>tài khoản của bạn</account> hoặc trong cổng khách hàng của {merchant}. Sau khi hủy, gói vẫn hoạt động tới hết kỳ bạn đã trả tiền, và bạn có thể bật lại gia hạn trước khi kỳ đó kết thúc. Nếu lần thanh toán gia hạn không thành công, {merchant} gửi email kèm liên kết để bạn cập nhật thẻ, rồi thử thu tiền lại trong khoảng ba tuần.",
         "portal": "Với các giao dịch qua {merchant}, hóa đơn, biên nhận, phương thức thanh toán và việc hủy gói nằm trong <portal>cổng khách hàng của {merchant}</portal>, nơi bạn đăng nhập bằng địa chỉ email đã dùng khi thanh toán. Mục <account>Thanh toán và hóa đơn</account> trong tài khoản của bạn cũng mở cổng này."
     },
@@ -60,7 +60,7 @@
     },
     "team": {
         "title": "Gói Team",
-        "seats": "Gói Team tính phí theo seat, từ {min} đến {max} seat. Mỗi seat là một máy Mac được kích hoạt, tính cả máy của người mua, nên một người làm việc trên hai máy Mac cần hai seat.",
+        "seats": "Gói Team tính phí theo seat, từ {min} đến {max} seat.",
         "invites": "Người mua gói quản lý nhóm trong tài khoản của mình. Họ mời thành viên nhóm qua email, và mỗi lời mời là một mã chỉ dùng được một lần, hết hạn sau một tuần và cần còn seat trống.",
         "changes": "Với gói Team theo tháng hoặc theo năm, bạn đổi số seat trong tài khoản, và phần chênh lệch sẽ có trên hóa đơn kỳ tới. Muốn thêm seat cho gói Team mua một lần, hãy gửi email tới <email>{email}</email>.",
         "account": "Quản lý nhóm trong tài khoản"
@@ -75,21 +75,13 @@
         "title": "Câu hỏi về các gói",
         "more": "Thêm câu hỏi về gói và license",
         "items": {
-            "free": {
-                "question": "TablePro có miễn phí không?",
-                "answer": "Có. Bạn có thể tải về và dùng ứng dụng cho Mac miễn phí, không phải bản dùng thử và không giới hạn thời gian. Gói Starter hoặc Team bổ sung một số tính năng tùy chọn cho ứng dụng Mac. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng."
+            "payment-methods": {
+                "question": "Bạn có thể thanh toán bằng những phương thức nào?",
+                "answer": "Trang thanh toán của {merchant} chấp nhận thẻ tín dụng và thẻ ghi nợ."
             },
-            "ios-license": {
-                "question": "Ứng dụng cho iPhone và iPad có cần license không?",
-                "answer": "Không. Ứng dụng này không có tính năng trả phí và không bao giờ yêu cầu license. Trên iPhone và iPad, iCloud Sync miễn phí; muốn đồng bộ với máy Mac thì máy Mac cần gói Starter hoặc Team."
-            },
-            "seats": {
-                "question": "Một seat của gói Team có phải là một người không?",
-                "answer": "Không. Một seat là một máy Mac được kích hoạt. Người làm việc trên hai máy Mac cần hai seat."
-            },
-            "offline": {
-                "question": "Các tính năng trả phí có cần kết nối internet không?",
-                "answer": "Chỉ thỉnh thoảng. License được xác nhận với máy chủ của TablePro mỗi {revalidateDays} ngày, và các tính năng trả phí vẫn hoạt động trong {graceDays} ngày khi không có kết nối."
+            "company-invoice": {
+                "question": "Có lấy được hóa đơn cho công ty không?",
+                "answer": "Có. Trong <portal>cổng khách hàng của {merchant}</portal>, bạn có thể thêm tên công ty, mã số thuế và địa chỉ thanh toán vào hóa đơn rồi tải về."
             },
             "lost-key": {
                 "question": "Tìm license key ở đâu?",

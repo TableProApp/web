@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Combien de Mac une licence couvre-t-elle ?",
                     "answer": [
-                        "Une licence Starter fonctionne sur {starterActivations} Mac. Une licence Team dispose de {teamMinSeats} à {teamMaxSeats} postes, chacun correspondant à un Mac activé. Un iPhone ou iPad n’en utilise jamais : cette application n’a pas de licence.",
+                        "Une licence Starter est destinée à une personne, sur un maximum de {starterActivations} Mac. Une licence Team dispose de {teamMinSeats} à {teamMaxSeats} postes, chacun correspondant à un Mac activé. Un iPhone ou iPad n’en utilise jamais : cette application n’a pas de licence.",
                         "Pour déplacer une licence vers un autre Mac, retirez l’ancien dans <account>votre compte</account>."
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "Qui gère le paiement ?",
                     "answer": [
                         "{merchant} est notre merchant of record : vous achetez la licence auprès de {merchant}, qui encaisse le paiement, calcule la taxe sur les ventes ou la TVA au règlement et envoie le reçu par e-mail. Factures, moyen de paiement et abonnement figurent dans le <portal>portail client de {merchant}</portal>, accessible avec l’adresse e-mail de l’achat."
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "Quels moyens de paiement puis-je utiliser ?",
+                    "answer": [
+                        "La page de paiement de {merchant} accepte les cartes de crédit et de débit."
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "Puis-je obtenir une facture pour mon entreprise ?",
+                    "answer": [
+                        "Oui. Dans le <portal>portail client de {merchant}</portal>, vous pouvez ajouter à une facture un nom d’entreprise, un numéro de TVA et une adresse de facturation, puis la télécharger."
                     ]
                 },
                 {

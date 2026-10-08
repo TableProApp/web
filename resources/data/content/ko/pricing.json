@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "요금",
+        "title": "요금: 무료, Starter, Team 플랜",
         "description": "TablePro는 무료로 다운로드하고 사용할 수 있습니다. Starter 및 Team 플랜은 Mac 앱에 선택 기능을 추가하며 월간, 연간 또는 일회성 결제를 제공합니다. 가격은 미국 달러 기준입니다."
     },
     "og": {
@@ -23,11 +23,11 @@
         "items": {
             "macs": {
                 "term": "Mac 수",
-                "body": "Starter 라이선스는 최대 {activations}대의 Mac에서 활성화할 수 있습니다. Team은 구매자 본인의 Mac을 포함해 좌석 하나당 활성화된 Mac 한 대입니다. iPhone 및 iPad 앱은 라이선스나 좌석을 사용하지 않습니다."
+                "body": "Starter 라이선스는 한 사람이 최대 {activations}대의 Mac에서 활성화할 수 있습니다. Team은 구매자 본인의 Mac을 포함해 좌석 하나당 활성화된 Mac 한 대이므로, Mac 두 대에서 작업하는 사람은 두 좌석을 사용합니다. iPhone 및 iPad 앱은 라이선스나 좌석을 사용하지 않습니다."
             },
             "activate": {
                 "term": "활성화",
-                "body": "Mac의 TablePro에서 <ui>설정 > 라이선스</ui>(Settings > License)에 라이선스 키를 입력하세요. 다른 Mac에서 사용하려면 <account>계정</account>의 Machines 페이지에서 이전 Mac을 제거하세요."
+                "body": "Mac의 TablePro에서 <ui>설정 > 라이선스</ui>(Settings > License)에 라이선스 키를 입력하세요. 다른 Mac에서 사용하려면 <account>계정</account>의 Mac 페이지에서 이전 Mac을 제거하세요."
             },
             "checks": {
                 "term": "검증",
@@ -50,9 +50,9 @@
     },
     "billing": {
         "title": "결제",
-        "merchant": "{merchant}는 TablePro의 merchant of record입니다. 플랜 판매 및 결제를 처리하고 청구 주소를 바탕으로 판매세 또는 VAT를 계산하며 영수증과 청구서를 이메일로 보냅니다. 가격은 미국 달러로 표시됩니다.",
+        "merchant": "{merchant}는 TablePro의 merchant of record입니다. 플랜 판매 및 결제를 처리하고 청구 주소를 바탕으로 판매세 또는 VAT를 계산하며 영수증과 청구서를 이메일로 보냅니다.",
         "renewal": "월간 및 연간 플랜은 <account>계정</account> 또는 {merchant} 고객 포털에서 취소할 때까지 자동 갱신됩니다. 취소 후에도 결제한 기간이 끝날 때까지 플랜이 작동하며, 그전에 다시 시작할 수 있습니다. 갱신 결제가 실패하면 {merchant}가 카드 정보를 업데이트하는 링크를 이메일로 보내고 약 3주 동안 결제를 재시도합니다.",
-        "portal": "{merchant}를 통해 구매했다면 청구서, 영수증, 결제 수단 및 취소는 <portal>{merchant} 고객 포털</portal>에서 관리하며, 결제 시 사용한 이메일 주소로 로그인합니다. 계정의 <account>Billing & invoices</account>에서도 포털을 열 수 있습니다."
+        "portal": "{merchant}를 통해 구매했다면 청구서, 영수증, 결제 수단 및 취소는 <portal>{merchant} 고객 포털</portal>에서 관리하며, 결제 시 사용한 이메일 주소로 로그인합니다. 계정의 <account>결제 및 청구서</account>에서도 포털을 열 수 있습니다."
     },
     "refunds": {
         "title": "환불",
@@ -60,7 +60,7 @@
     },
     "team": {
         "title": "Team 플랜",
-        "seats": "Team 플랜은 좌석당 요금이며 {min}~{max}좌석을 제공합니다. 구매자 본인의 Mac을 포함해 좌석 하나는 활성화된 Mac 한 대이므로 Mac 두 대에서 작업하는 사람은 두 좌석을 사용합니다.",
+        "seats": "Team 플랜은 좌석당 요금이며 {min}~{max}좌석을 제공합니다.",
         "invites": "플랜을 구매한 사람이 계정에서 팀을 관리합니다. 이메일로 팀원을 초대하며 각 초대 코드는 한 번만 사용할 수 있고 일주일 후 만료되며 빈 좌석이 필요합니다.",
         "changes": "월간 또는 연간 Team 플랜은 계정에서 좌석 수를 변경할 수 있으며 차액은 다음 청구서에 반영됩니다. 일회성 Team 구매에 좌석을 추가하려면 <email>{email}</email>로 이메일을 보내세요.",
         "account": "계정에서 팀 관리"
@@ -75,21 +75,13 @@
         "title": "플랜 관련 질문",
         "more": "플랜 및 라이선스에 관한 더 많은 질문",
         "items": {
-            "free": {
-                "question": "TablePro는 무료인가요?",
-                "answer": "네. Mac 앱은 무료로 다운로드하고 사용할 수 있으며 체험 기간이나 시간 제한이 없습니다. Starter 또는 Team 플랜은 Mac 앱에 선택 기능을 추가합니다. iPhone 및 iPad 앱은 무료이며 앱 내 구입이 없습니다."
+            "payment-methods": {
+                "question": "어떤 결제 수단을 사용할 수 있나요?",
+                "answer": "{merchant} 결제 화면에서는 신용카드와 체크카드를 사용할 수 있습니다."
             },
-            "ios-license": {
-                "question": "iPhone 및 iPad 앱에 라이선스가 필요한가요?",
-                "answer": "아니요. 유료 기능이 없으며 라이선스를 요청하지 않습니다. iPhone 및 iPad의 iCloud Sync는 무료입니다. Mac과 동기화하려면 Mac에 Starter 또는 Team이 필요합니다."
-            },
-            "seats": {
-                "question": "Team 좌석 하나는 한 사람인가요?",
-                "answer": "아니요. 좌석 하나는 활성화된 Mac 한 대입니다. Mac 두 대에서 작업하는 사람은 두 좌석을 사용합니다."
-            },
-            "offline": {
-                "question": "유료 기능에 인터넷 연결이 필요한가요?",
-                "answer": "가끔 필요합니다. {revalidateDays}일마다 TablePro 서버에서 라이선스를 확인하며 연결 없이도 유료 기능은 {graceDays}일 동안 계속 작동합니다."
+            "company-invoice": {
+                "question": "회사 명의로 청구서를 받을 수 있나요?",
+                "answer": "네. <portal>{merchant} 고객 포털</portal>에서 청구서에 회사명, VAT 번호, 청구 주소를 추가한 뒤 다운로드할 수 있습니다."
             },
             "lost-key": {
                 "question": "라이선스 키는 어디에서 찾나요?",

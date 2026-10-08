@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "Ajoute les fonctionnalités Starter à l’application Mac.",
+            "description": "Ajoute à l’application Mac des fonctionnalités comme {examples}.",
             "activation": {
-                "one": "Une licence pour {count} Mac.",
-                "other": "Une licence pour jusqu’à {count} Mac."
+                "one": "Une licence pour une personne, sur {count} Mac.",
+                "other": "Une licence pour une personne, sur un maximum de {count} Mac."
             },
             "includesTitle": "Tout ce qui est gratuit, plus",
             "cta": "Acheter Starter"
@@ -66,6 +66,10 @@ export default {
         "label": "Postes",
         "noun": "postes",
         "bounds": "Minimum {min} postes, maximum {max}.",
+        "clamped": {
+            "min": "Nombre ajusté au minimum de {min} postes.",
+            "max": "Nombre ajusté au maximum de {max} postes."
+        },
         "total": {
             "monthly": {
                 "one": "{count} poste : {total} par mois",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "Toutes les fonctionnalités payantes",
+    "refund": {
+        "one": "Toutes les offres payantes peuvent être remboursées dans un délai de {count} jour suivant l’achat. Voir la <link>politique de remboursement</link>.",
+        "other": "Toutes les offres payantes peuvent être remboursées dans les {count} jours suivant l’achat. Voir la <link>politique de remboursement</link>."
+    },
     "finePrint": "Prix en dollars américains. {merchant} est le merchant of record : il encaisse le paiement et calcule la taxe sur les ventes ou la TVA lors du règlement.",
     "finePrintCurrency": "Prix en dollars américains.",
     "comparePlans": "Comparer les offres",

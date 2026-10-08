@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "Mac アプリに Starter の機能を追加します。",
+            "description": "Mac アプリに {examples} などの機能を追加します。",
             "activation": {
-                "one": "1 ライセンスで Mac {count} 台。",
-                "other": "1 ライセンスで Mac 最大 {count} 台。"
+                "one": "1 ライセンスは 1 人用で、Mac {count} 台で使えます。",
+                "other": "1 ライセンスは 1 人用で、最大 {count} 台の Mac で使えます。"
             },
             "includesTitle": "無料プランの全機能に加えて",
             "cta": "Starter を購入"
@@ -66,6 +66,10 @@ export default {
         "label": "シート数",
         "noun": "シート数",
         "bounds": "最小 {min} シート、最大 {max} シート。",
+        "clamped": {
+            "min": "最小の {min} シートに変更しました。",
+            "max": "最大の {max} シートに変更しました。"
+        },
         "total": {
             "monthly": {
                 "one": "{count} シート：月額 {total}",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "すべての有料機能",
+    "refund": {
+        "one": "すべての有料プランは、購入から {count} 日以内であれば返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。",
+        "other": "すべての有料プランは、購入から {count} 日以内であれば返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。"
+    },
     "finePrint": "価格は米ドルです。{merchant} が merchant of record として支払いを受け取り、チェックアウト時に売上税や VAT を計算します。",
     "finePrintCurrency": "価格は米ドルです。",
     "comparePlans": "プランを比較",

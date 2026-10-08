@@ -64,6 +64,18 @@ function pricingVisibleText(string $path): string
     return (string) Normalizer::normalize($text, Normalizer::FORM_C);
 }
 
+/**
+ * The plan cards' prices in document order. `hidden` marks a cycle that is not the chosen one.
+ *
+ * @return list<array{price: string, hidden: bool}>
+ */
+function pricingPricePoints(string $html): array
+{
+    preg_match_all('#<p(?<hidden> hidden="")? class="[^"]*"><span class="type-h1[^"]*">(?<price>[^<]+)</span>#u', $html, $found, PREG_SET_ORDER);
+
+    return array_map(fn(array $match): array => ['price' => $match['price'], 'hidden' => $match['hidden'] !== ''], $found);
+}
+
 it('renders in both languages with the copy, each paid feature\'s lines and the checkout provider', function (string $path, string $locale): void {
     config(['payment.provider' => 'polar']);
 
@@ -199,6 +211,127 @@ it('server-renders the plans, the table and every section, with prices written f
     'English' => ['/pricing', 'en', ['$0', '$24', '$10', '5 seats: $50 per year']],
     'Vietnamese' => ['/vi/pricing', 'vi', ['0 US$', '24 US$', '10 US$', '5 seat: 50 US$ mỗi năm']],
 ]);
+
+it('carries every cycle\'s price in the server HTML and hides all but the yearly one', function (string $path, string $pattern, string $decimal): void {
+    config(['payment.provider' => 'polar']);
+
+    $pricing = pricingPageJson('pricing.json');
+    $write = fn(int|float $amount): string => sprintf($pattern, str_replace('.', $decimal, is_int($amount) ? (string) $amount : number_format($amount, 2, '.', '')));
+    $expected = [['price' => $write($pricing['tiers']['free']['price']), 'hidden' => false]];
+
+    foreach (['starter', 'team'] as $tier) {
+        foreach ($pricing['cycles'] as $cycle) {
+            $expected[] = ['price' => $write($pricing['tiers'][$tier]['prices'][$cycle]), 'hidden' => $cycle !== 'yearly'];
+        }
+    }
+
+    // The same prices, in the same order, as the offers in the structured data.
+    expect(pricingPricePoints(html_entity_decode(ssrHtml($path), ENT_QUOTES | ENT_HTML5)))->toBe($expected);
+})->with([
+    'English' => ['/pricing', '$%s', '.'],
+    'Vietnamese' => ['/vi/pricing', '%s US$', ','],
+]);
+
+it('states the refund window under the buy buttons, with the policy linked', function (string $path, string $sentence, string $href): void {
+    $html = html_entity_decode(ssrHtml($path), ENT_QUOTES | ENT_HTML5);
+    $start = (int) strpos($html, 'id="plans"');
+    $plans = substr($html, $start, (int) strpos($html, 'id="features"') - $start);
+
+    expect($plans)
+        ->toContain(str_replace('{days}', (string) pricingPageJson('pricing.json')['refund']['days'], $sentence))
+        ->toContain('href="' . $href . '"');
+})->with([
+    'English' => ['/pricing', 'Every paid plan can be refunded within {days} days of purchase.', '/refund-policy'],
+    'Vietnamese' => ['/vi/pricing', 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua.', '/vi/refund-policy'],
+]);
+
+it('states each licensing fact once in the body, and repeats none in the short FAQ', function (): void {
+    $html = html_entity_decode(ssrHtml('/pricing'), ENT_QUOTES | ENT_HTML5);
+    $main = strip_tags(substr($html, (int) strpos($html, '<main'), (int) strrpos($html, '</main>') - (int) strpos($html, '<main')));
+
+    foreach (['no trial period or time limit', 'the Mac needs Starter or Team', 'US dollars', 'paid features keep working for'] as $fact) {
+        expect(substr_count($main, $fact))->toBe(1, $fact);
+    }
+
+    // The Team card, then "How licenses work" for the seat and the plan table for support.
+    foreach (['seat is one activated Mac', 'answered first, within one business day'] as $fact) {
+        expect(substr_count($main, $fact))->toBe(2, $fact);
+    }
+});
+
+it('says who a Starter license is for wherever it says how many Macs', function (string $locale, string $person): void {
+    // The rule is the terms' own: "Using a license".
+    expect(File::get(resource_path("data/legal/{$locale}/terms.md")))->toContain($person);
+
+    preg_match('/starter"?:\s*\{.*?activation"?:\s*\{(.*?)\n\s*\}/s', pricingVisibleText(resource_path("js/i18n/messages/{$locale}/pricing.ts")), $card);
+    preg_match_all('/:\s*(["\'])(.+?)\1,?\s*$/m', $card[1] ?? '', $forms);
+
+    expect($forms[2])->not->toBeEmpty();
+
+    foreach ($forms[2] as $form) {
+        expect($form)->toContain($person);
+    }
+
+    $licensing = collect(pricingPageJson("content/{$locale}/faq.json")['groups'])->firstWhere('id', 'licensing')['items'];
+
+    expect(pricingPageJson("content/{$locale}/pricing.json")['license']['items']['macs']['body'])->toContain($person);
+    expect(collect($licensing)->firstWhere('id', 'how-many-macs')['answer'][0])->toContain($person);
+})->with([
+    ['en', 'one person'],
+    ['vi', 'một người'],
+    ['es', 'una persona'],
+    ['de', 'eine Person'],
+    ['fr', 'une personne'],
+    ['ja', '1 人用'],
+    ['pt-BR', 'uma pessoa'],
+    ['zh-Hans', '供一人使用'],
+    ['zh-Hant', '供一人使用'],
+    ['ko', '한 사람'],
+    ['it', 'una persona'],
+    ['id', 'satu orang'],
+]);
+
+it('names the plans and the account\'s pages as checkout and the account app do', function (string $locale, string $macsPage, string $billing): void {
+    $content = pricingPageJson("content/{$locale}/pricing.json");
+
+    // Plan names stay English everywhere, as on the buy buttons.
+    expect($content['seo']['title'])->not->toBe($content['header']['title'])->toContain('Starter')->toContain('Team');
+    expect($content['seo']['description'])->toContain('Starter')->toContain('Team');
+
+    expect($content['license']['items']['activate']['body'])->toContain($macsPage);
+    expect($content['billing']['portal'])->toContain("<account>{$billing}</account>");
+})->with([
+    ['en', 'the Macs page', 'Billing & invoices'],
+    ['vi', 'trang Máy Mac', 'Thanh toán và hóa đơn'],
+    ['es', 'la página Macs', 'Facturación y facturas'],
+    ['de', '„Macs“', 'Abrechnung und Rechnungen'],
+    ['fr', 'la page Macs', 'Facturation et factures'],
+    ['ja', 'Mac ページ', '請求と請求書'],
+    ['pt-BR', 'página Macs', 'Cobrança e faturas'],
+    ['zh-Hans', 'Macs 页面', '账单与发票'],
+    ['zh-Hant', 'Macs 頁面', '帳單與發票'],
+    ['ko', 'Mac 페이지', '결제 및 청구서'],
+    ['it', 'pagina Mac del', 'Fatturazione e fatture'],
+    ['id', 'halaman Mac', 'Penagihan dan faktur'],
+]);
+
+it('asks in its short FAQ only what the full FAQ answers, in the same words', function (): void {
+    foreach (Locales::codes() as $locale) {
+        $full = collect(pricingPageJson("content/{$locale}/faq.json")['groups'])->firstWhere('id', 'licensing')['items'];
+        $full = collect($full)->keyBy('id');
+
+        foreach (pricingPageJson("content/{$locale}/pricing.json")['faq']['items'] as $id => $item) {
+            // The lost key has its own wording here, and `/faq#lost-license-key` there.
+            if ($id === 'lost-key') {
+                continue;
+            }
+
+            Assert::assertTrue($full->has($id), "content/{$locale}/faq.json has no licensing answer \"{$id}\"");
+            Assert::assertSame($full[$id]['question'], $item['question'], "{$locale}: {$id}");
+            Assert::assertSame($full[$id]['answer'], [$item['answer']], "{$locale}: {$id}");
+        }
+    }
+});
 
 /*
  * Moved from the retired Landing/LandingStructureTest (architecture §1.17):

@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Wie viele Macs deckt eine Lizenz ab?",
                     "answer": [
-                        "Eine Starter-Lizenz funktioniert auf {starterActivations} Macs. Eine Team-Lizenz hat zwischen {teamMinSeats} und {teamMaxSeats} Arbeitsplätze; jeder entspricht einem aktivierten Mac. Ein iPhone oder iPad verbraucht keinen: Diese App hat keine Lizenz.",
+                        "Eine Starter-Lizenz gilt für eine Person auf bis zu {starterActivations} Macs. Eine Team-Lizenz hat zwischen {teamMinSeats} und {teamMaxSeats} Arbeitsplätze; jeder entspricht einem aktivierten Mac. Ein iPhone oder iPad verbraucht keinen: Diese App hat keine Lizenz.",
                         "Um eine Lizenz auf einen anderen Mac zu übertragen, entferne den bisherigen in <account>deinem Konto</account>."
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "Wer wickelt die Zahlung ab?",
                     "answer": [
                         "{merchant} ist unser Merchant of Record: Du kaufst die Lizenz bei {merchant}, der die Zahlung entgegennimmt, beim Kauf Verkaufs- oder Mehrwertsteuer berechnet und deinen Beleg per E-Mail sendet. Rechnungen, Zahlungsmethode und Abonnement findest du im <portal>Kundenportal von {merchant}</portal>, mit Anmeldung über die beim Kauf verwendete E-Mail-Adresse."
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "Welche Zahlungsmethoden kann ich nutzen?",
+                    "answer": [
+                        "Der Bezahlvorgang von {merchant} akzeptiert Kredit- und Debitkarten."
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "Bekomme ich eine Rechnung für mein Unternehmen?",
+                    "answer": [
+                        "Ja. Im <portal>Kundenportal von {merchant}</portal> kannst du einer Rechnung einen Firmennamen, eine USt-IdNr. und eine Rechnungsadresse hinzufügen und sie dann herunterladen."
                     ]
                 },
                 {

@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "Ergänzt die Mac-App um die Starter-Funktionen.",
+            "description": "Ergänzt die Mac-App um Funktionen wie {examples}.",
             "activation": {
-                "one": "Eine Lizenz für {count} Mac.",
-                "other": "Eine Lizenz für bis zu {count} Macs."
+                "one": "Eine Lizenz für eine Person auf {count} Mac.",
+                "other": "Eine Lizenz für eine Person auf bis zu {count} Macs."
             },
             "includesTitle": "Alles aus Kostenlos, plus",
             "cta": "Starter kaufen"
@@ -66,6 +66,10 @@ export default {
         "label": "Arbeitsplätze",
         "noun": "Arbeitsplätze",
         "bounds": "Mindestens {min} Arbeitsplätze, höchstens {max}.",
+        "clamped": {
+            "min": "Auf das Minimum von {min} Arbeitsplätzen geändert.",
+            "max": "Auf das Maximum von {max} Arbeitsplätzen geändert."
+        },
         "total": {
             "monthly": {
                 "one": "{count} Arbeitsplatz: {total} pro Monat",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "Alle Bezahlfunktionen",
+    "refund": {
+        "one": "Jeder bezahlte Tarif kann innerhalb von {count} Tag nach dem Kauf erstattet werden. Details in der <link>Erstattungsrichtlinie</link>.",
+        "other": "Jeder bezahlte Tarif kann innerhalb von {count} Tagen nach dem Kauf erstattet werden. Details in der <link>Erstattungsrichtlinie</link>."
+    },
     "finePrint": "Preise in US-Dollar. {merchant} ist der Merchant of Record: Er nimmt die Zahlung entgegen und berechnet beim Kauf die anfallende Verkaufs- oder Mehrwertsteuer.",
     "finePrintCurrency": "Preise in US-Dollar.",
     "comparePlans": "Tarife vergleichen",

@@ -52,10 +52,11 @@ export default {
         },
         starter: {
             name: 'Starter',
-            description: 'Adds the Starter features to the Mac app.',
+            // `{examples}`: the highlighted Starter features from paid-features.json, joined for the language.
+            description: 'Adds features such as {examples} to the Mac app.',
             activation: {
-                one: 'One license for {count} Mac.',
-                other: 'One license for up to {count} Macs.',
+                one: 'One license for one person, on {count} Mac.',
+                other: 'One license for one person, on up to {count} Macs.',
             },
             includesTitle: 'Everything in Free, plus',
             cta: 'Get Starter',
@@ -87,6 +88,11 @@ export default {
         /** Fills `controls.stepper.decrease` / `increase`: "Decrease seats". */
         noun: 'seats',
         bounds: 'Minimum {min} seats, maximum {max}.',
+        // Replaces `bounds` after a typed count was out of range.
+        clamped: {
+            min: 'Changed to the minimum, {min} seats.',
+            max: 'Changed to the maximum, {max} seats.',
+        },
         total: {
             monthly: { one: '{count} seat: {total} per month', other: '{count} seats: {total} per month' },
             yearly: { one: '{count} seat: {total} per year', other: '{count} seats: {total} per year' },
@@ -102,6 +108,10 @@ export default {
     },
     /** A link to the plan table, after a card's highlighted features. */
     allFeatures: 'Every paid feature',
+    refund: {
+        one: 'Every paid plan can be refunded within {count} day of purchase. See the <link>refund policy</link>.',
+        other: 'Every paid plan can be refunded within {count} days of purchase. See the <link>refund policy</link>.',
+    },
     /** The line under the cards. `{merchant}` is pricing.json's merchant of record. */
     finePrint: 'Prices in US dollars. {merchant} is the merchant of record: it takes the payment and calculates any sales tax or VAT at checkout.',
     /** The line under the cards when checkout is another provider's, so no merchant is named. */

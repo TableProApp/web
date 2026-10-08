@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Berapa Mac yang dicakup lisensi?",
                     "answer": [
-                        "Lisensi Starter bekerja pada {starterActivations} Mac. Lisensi Team memiliki antara {teamMinSeats} dan {teamMaxSeats} seat, dan setiap seat adalah satu Mac yang diaktifkan. iPhone atau iPad tidak pernah memakai seat: aplikasi tersebut tidak berlisensi.",
+                        "Lisensi Starter untuk satu orang, pada hingga {starterActivations} Mac. Lisensi Team memiliki antara {teamMinSeats} dan {teamMaxSeats} seat, dan setiap seat adalah satu Mac yang diaktifkan. iPhone atau iPad tidak pernah memakai seat: aplikasi tersebut tidak berlisensi.",
                         "Untuk memindahkan lisensi ke Mac lain, hapus Mac lama dalam <account>akun Anda</account>."
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "Siapa yang menangani pembayaran?",
                     "answer": [
                         "{merchant} adalah merchant of record kami: Anda membeli lisensi dari {merchant}, yang menerima pembayaran, menghitung pajak penjualan atau PPN saat checkout, serta mengirim tanda terima lewat email. Faktur, metode pembayaran, dan langganan ada di <portal>portal pelanggan {merchant}</portal>, tempat Anda masuk dengan email pembelian."
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "Metode pembayaran apa yang bisa saya gunakan?",
+                    "answer": [
+                        "Checkout {merchant} menerima kartu kredit dan kartu debit."
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "Bisakah saya mendapat faktur untuk perusahaan saya?",
+                    "answer": [
+                        "Ya. Di <portal>portal pelanggan {merchant}</portal>, Anda dapat menambahkan nama perusahaan, nomor PPN, dan alamat penagihan ke faktur, lalu mengunduhnya."
                     ]
                 },
                 {

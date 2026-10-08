@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "¿Cuántos Mac cubre una licencia?",
                     "answer": [
-                        "Una licencia Starter funciona en {starterActivations} Mac. Una licencia Team tiene entre {teamMinSeats} y {teamMaxSeats} puestos, y cada uno corresponde a un Mac activado. Un iPhone o iPad nunca usa un puesto: esa app no tiene licencia.",
+                        "Una licencia Starter es para una persona, en hasta {starterActivations} Mac. Una licencia Team tiene entre {teamMinSeats} y {teamMaxSeats} puestos, y cada uno corresponde a un Mac activado. Un iPhone o iPad nunca usa un puesto: esa app no tiene licencia.",
                         "Para mover una licencia a otro Mac, elimina el anterior en <account>tu cuenta</account>."
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "¿Quién gestiona el pago?",
                     "answer": [
                         "{merchant} es nuestro merchant of record: compras la licencia a {merchant}, que recibe el pago, calcula los impuestos sobre ventas o el IVA al finalizar la compra y te envía el recibo por correo. Tus facturas, método de pago y suscripción están en el <portal>portal de clientes de {merchant}</portal>, al que accedes con el correo usado para la compra."
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "¿Qué métodos de pago puedo usar?",
+                    "answer": [
+                        "El proceso de pago de {merchant} acepta tarjetas de crédito y de débito."
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "¿Puedo obtener una factura para mi empresa?",
+                    "answer": [
+                        "Sí. En el <portal>portal de clientes de {merchant}</portal> puedes añadir a una factura el nombre de la empresa, un número de IVA y una dirección de facturación, y después descargarla."
                     ]
                 },
                 {

@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "Mac 앱에 Starter 기능을 추가합니다.",
+            "description": "Mac 앱에 {examples} 같은 기능을 추가합니다.",
             "activation": {
-                "one": "라이선스 하나로 Mac {count}대.",
-                "other": "라이선스 하나로 Mac 최대 {count}대."
+                "one": "한 사람용 라이선스 하나로 Mac {count}대.",
+                "other": "한 사람용 라이선스 하나로 Mac 최대 {count}대."
             },
             "includesTitle": "무료 플랜의 모든 기능과 추가 기능",
             "cta": "Starter 구매"
@@ -66,6 +66,10 @@ export default {
         "label": "좌석 수",
         "noun": "좌석 수",
         "bounds": "최소 {min}좌석, 최대 {max}좌석.",
+        "clamped": {
+            "min": "최소인 {min}좌석으로 변경했습니다.",
+            "max": "최대인 {max}좌석으로 변경했습니다."
+        },
         "total": {
             "monthly": {
                 "one": "{count}좌석: 월 {total}",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "모든 유료 기능",
+    "refund": {
+        "one": "모든 유료 플랜은 구매 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요.",
+        "other": "모든 유료 플랜은 구매 후 {count}일 이내에 환불받을 수 있습니다. 자세한 내용은 <link>환불 정책</link>을 확인하세요."
+    },
     "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 받고 결제 시 판매세 또는 VAT를 계산합니다.",
     "finePrintCurrency": "가격은 미국 달러 기준입니다.",
     "comparePlans": "플랜 비교",

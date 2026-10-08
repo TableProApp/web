@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "定价",
+        "title": "定价：免费版、Starter 和 Team 方案",
         "description": "TablePro 可免费下载使用。Starter 和 Team 方案为 Mac 应用增加可选功能，按月、按年或一次性付费。价格以美元计。"
     },
     "og": {
@@ -23,11 +23,11 @@
         "items": {
             "macs": {
                 "term": "Mac 台数",
-                "body": "Starter 许可证最多可在 {activations} 台 Mac 上激活。Team 每个席位对应一台已激活的 Mac，也包括购买者自己的 Mac。iPhone 和 iPad 应用从不占用许可证或席位。"
+                "body": "Starter 许可证供一人使用，最多可在 {activations} 台 Mac 上激活。Team 每个席位对应一台已激活的 Mac，也包括购买者自己的 Mac，因此使用两台 Mac 工作的人需要两个席位。iPhone 和 iPad 应用从不占用许可证或席位。"
             },
             "activate": {
                 "term": "激活",
-                "body": "在 Mac 上的 TablePro 中，进入<ui>设置 > 许可证</ui>（Settings > License）输入许可证密钥。若要在另一台 Mac 使用，请在<account>您的账户</account>的 Machines 页面移除旧设备。"
+                "body": "在 Mac 上的 TablePro 中，进入<ui>设置 > 许可证</ui>（Settings > License）输入许可证密钥。若要在另一台 Mac 使用，请在<account>您的账户</account>的 Macs 页面移除旧设备。"
             },
             "checks": {
                 "term": "验证",
@@ -50,9 +50,9 @@
     },
     "billing": {
         "title": "账单",
-        "merchant": "{merchant} 是 TablePro 的 merchant of record，负责向您销售方案、收款、根据账单地址计算销售税或增值税，并通过邮件发送收据和发票。价格以美元列示。",
+        "merchant": "{merchant} 是 TablePro 的 merchant of record，负责向您销售方案、收款、根据账单地址计算销售税或增值税，并通过邮件发送收据和发票。",
         "renewal": "月付和年付方案会自动续订，直到您在<account>您的账户</account>或 {merchant} 客户门户中取消。取消后，方案可继续使用至已付费期间结束，您也可在此之前恢复订阅。如果续费失败，{merchant} 会通过邮件发送更新银行卡的链接，并在约三周内重试扣款。",
-        "portal": "通过 {merchant} 购买的订单，其发票、收据、付款方式和取消订阅均可在 <portal>{merchant} 客户门户</portal>中管理，使用结账时的邮箱地址登录即可。您账户中的 <account>Billing & invoices</account> 也可打开该门户。"
+        "portal": "通过 {merchant} 购买的订单，其发票、收据、付款方式和取消订阅均可在 <portal>{merchant} 客户门户</portal>中管理，使用结账时的邮箱地址登录即可。您账户中的 <account>账单与发票</account> 也可打开该门户。"
     },
     "refunds": {
         "title": "退款",
@@ -60,7 +60,7 @@
     },
     "team": {
         "title": "Team 方案",
-        "seats": "Team 方案按席位定价，可选 {min} 至 {max} 个席位。每个席位对应一台已激活的 Mac，包含购买者自己的 Mac；因此使用两台 Mac 工作的人需要两个席位。",
+        "seats": "Team 方案按席位定价，可选 {min} 至 {max} 个席位。",
         "invites": "方案购买者在自己的账户中管理团队。他们通过邮件邀请成员，每个邀请都包含一次性代码，一周后过期，并需要一个空闲席位。",
         "changes": "月付或年付 Team 方案可在账户中更改席位数，差额会反映在下一张账单中。若要为一次性购买的 Team 方案增加席位，请发送邮件至 <email>{email}</email>。",
         "account": "在账户中管理团队"
@@ -75,21 +75,13 @@
         "title": "方案常见问题",
         "more": "更多方案和许可证问题",
         "items": {
-            "free": {
-                "question": "TablePro 免费吗？",
-                "answer": "是的。Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 方案为 Mac 应用增加可选功能。iPhone 和 iPad 应用免费，且无应用内购买。"
+            "payment-methods": {
+                "question": "可以使用哪些付款方式？",
+                "answer": "{merchant} 的结账页面支持信用卡和借记卡。"
             },
-            "ios-license": {
-                "question": "iPhone 和 iPad 应用需要许可证吗？",
-                "answer": "不需要。它没有付费功能，也从不要求许可证。iPhone 和 iPad 上的 iCloud Sync 免费；若要与 Mac 同步，Mac 需要 Starter 或 Team。"
-            },
-            "seats": {
-                "question": "Team 的一个席位对应一个人吗？",
-                "answer": "不是。一个席位对应一台已激活的 Mac。使用两台 Mac 工作的人需要两个席位。"
-            },
-            "offline": {
-                "question": "付费功能需要互联网连接吗？",
-                "answer": "只需不定期连接。许可证每隔 {revalidateDays} 天向 TablePro 服务器确认一次，没有连接时付费功能仍可使用 {graceDays} 天。"
+            "company-invoice": {
+                "question": "可以开具公司抬头的发票吗？",
+                "answer": "可以。在 <portal>{merchant} 客户门户</portal>中，您可以为发票添加公司名称、增值税号和账单地址，然后下载。"
             },
             "lost-key": {
                 "question": "在哪里找到许可证密钥？",

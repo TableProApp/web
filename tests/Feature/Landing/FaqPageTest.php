@@ -162,7 +162,7 @@ it('types no price, count or retired claim into an answer', function (string $lo
     foreach ([
         'macOS 14', 'Sonoma', 'Thirteen', 'Sixteen', 'free forever', 'no feature gating', 'Universal', 'coming soon',
         'not to using it', 'nothing leaves', 'no account', 'anonymous', 'LemonSqueezy', 'Lemon Squeezy', 'SePay',
-        'bank transfer', 'PPP', 'VND', 'unlock', 'one person', 'full time', 'Mac App Store', 'Setapp', 'TestFlight',
+        'bank transfer', 'PPP', 'VND', 'unlock', 'by one person', 'full time', 'Mac App Store', 'Setapp', 'TestFlight',
         'mở khóa', 'chuyển khoản', 'ẩn danh', 'không cần tài khoản', 'sắp ra mắt',
     ] as $needle) {
         Assert::assertStringNotContainsStringIgnoringCase($needle, $text, "content/{$locale}/faq.json says \"{$needle}\"");
