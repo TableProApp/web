@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CacheHtmlAtEdge;
+use App\Services\Blog\AtomFeed;
 use App\Services\Blog\BlogService;
 use App\Services\Blog\Post;
 use App\Services\Blog\PostRelease;
 use App\Services\Blog\PostTopics;
 use App\Support\Content\ContentRepository;
+use App\Support\Localization\Locales;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\PageRegistry;
 use Carbon\CarbonImmutable;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Inertia\Inertia;
@@ -48,6 +52,7 @@ class BlogController extends Controller
         $locale = App::getLocale();
 
         return Inertia::render('Blog/Index', [
+            'feed' => $this->feedLink(),
             'content' => Arr::except($content->page('blog', $locale), ['corrections']),
             'posts' => array_map(
                 static fn(Post $post): array => $post->summary($locale),
@@ -68,6 +73,7 @@ class BlogController extends Controller
         $copy = $content->has('blog', $locale) ? $content->page('blog', $locale) : [];
 
         return Inertia::render('Blog/Post', [
+            'feed' => $this->feedLink(),
             'post' => [
                 ...$post->summary($locale),
                 'release' => $post->release,
@@ -84,6 +90,40 @@ class BlogController extends Controller
                 $this->related($post),
             ),
         ]);
+    }
+
+    /**
+     * The default language's posts as Atom, cached at the edge like a page.
+     */
+    public function feed(ContentRepository $content, AtomFeed $feed): HttpResponse
+    {
+        $locale = Locales::default();
+        $posts = $this->published($this->blog->all($locale));
+
+        abort_if($posts === [], 404);
+
+        $subtitle = $content->has('blog', $locale) ? ($content->page('blog', $locale)['seo']['description'] ?? null) : null;
+
+        return response(
+            $feed->render($this->feedTitle(), $subtitle, trans('og.author', [], $locale), $posts),
+            200,
+            ['Content-Type' => AtomFeed::TYPE . '; charset=utf-8', 'Cache-Control' => CacheHtmlAtEdge::CACHE_CONTROL],
+        );
+    }
+
+    /**
+     * What a blog page's head advertises the feed with.
+     *
+     * @return array{url: string, title: string}
+     */
+    private function feedLink(): array
+    {
+        return ['url' => AtomFeed::url(), 'title' => $this->feedTitle()];
+    }
+
+    private function feedTitle(): string
+    {
+        return config('app.name') . ' ' . trans('og.family.blog', [], Locales::default());
     }
 
     /**

@@ -39,7 +39,8 @@ export default function SEOHead({
     titleTemplate = true,
     twitterCard = 'summary_large_image',
 }: SEOHeadProps) {
-    const { seo } = usePage().props;
+    // `feed` is a page prop of the blog pages only (`BlogController`).
+    const { seo, feed } = usePage<{ feed?: { url: string; title: string } }>().props;
     const { m, fmt } = useI18n();
 
     const fullTitle = titleTemplate ? fmt(m.seo.titleTemplate, { title }) : title;
@@ -76,6 +77,8 @@ export default function SEOHead({
                     href={seo.xDefault}
                 />
             )}
+
+            {feed && <link head-key="feed" rel="alternate" type="application/atom+xml" title={feed.title} href={feed.url} />}
 
             <meta head-key="og:type" property="og:type" content={ogType} />
             {seo.canonical && <meta head-key="og:url" property="og:url" content={seo.canonical} />}

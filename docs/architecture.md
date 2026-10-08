@@ -14,6 +14,7 @@ database and no credentials: every page is built from markdown in
 /compare   /compare/{slug}
 /privacy  /terms  /refund-policy
 /blog  /blog/{slug}        markdown in resources/blog
+/blog/feed.xml             the English posts as Atom, linked from the head of blog pages
 /vi/…                      every page above, in Vietnamese, where it exists
 /robots.txt  /sitemap.xml
 /.well-known/security.txt  RFC 9116; `SecurityTxtController::EXPIRES` is moved by hand
