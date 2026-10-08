@@ -393,6 +393,18 @@ it('ends the footer on a language menu that opens without JavaScript, one link p
     expect($footer)->not->toContain($locale === 'vi' ? 'Ngôn ngữ:</span>' : 'Language:</span>');
 })->with('chrome locales');
 
+it('gives the footer bar\'s controls a 44px target on a touch screen', function (): void {
+    $bar = (string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx'));
+
+    preg_match('#export const FOOTER_MENU_ITEM =\s*\'([^\']+)\'#', $bar, $item);
+    preg_match('#<summary[^>]*className="([^"]+)"#s', $bar, $summary);
+
+    expect(explode(' ', $item[1] ?? ''))->toContain('min-h-10')->toContain('pointer-coarse:min-h-11');
+    expect(explode(' ', $summary[1] ?? ''))->toContain('sm:min-h-9')->toContain('pointer-coarse:min-h-11');
+    expect((string) file_get_contents(resource_path('js/components/shared/theme-control.tsx')))
+        ->toContain("iconsOnly ? 'size-9 justify-center sm:size-8 pointer-coarse:size-11'");
+});
+
 it('draws the footer as cells that close on the bar shared with the account app', function (): void {
     $footer = (string) file_get_contents(resource_path('js/components/site/site-footer.tsx'));
 

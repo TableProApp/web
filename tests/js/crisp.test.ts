@@ -27,6 +27,7 @@ interface FakeScript {
 
 interface FakeBar {
     right: number;
+    bottom: number;
 }
 
 interface CrispGlobals {
@@ -42,11 +43,11 @@ interface Browser {
     load: () => void;
     /** Runs the pending idle callback. */
     idle: () => void;
-    /** Opens the consent bar with its right edge at `right`, or closes it with null, and tells the observers. */
+    /** Opens the consent bar with its right and bottom edges at `right` and `bottom`, or closes it with null, and tells the observers. */
     setBar: (bar: FakeBar | null) => void;
 }
 
-function installBrowser({ readyState = 'loading', width = 390 } = {}): Browser {
+function installBrowser({ readyState = 'loading', width = 390, height = 844 } = {}): Browser {
     const scripts: FakeScript[] = [];
     const listeners: Record<string, Array<() => void>> = {};
     const observers: Array<() => void> = [];
@@ -55,6 +56,7 @@ function installBrowser({ readyState = 'loading', width = 390 } = {}): Browser {
 
     const win = {
         innerWidth: width,
+        innerHeight: height,
         requestIdleCallback: (callback: () => void) => {
             idleCallback = callback;
 
@@ -80,13 +82,14 @@ function installBrowser({ readyState = 'loading', width = 390 } = {}): Browser {
         document: {
             readyState,
             body: {},
+            documentElement: {},
             head: { appendChild: (node: FakeScript) => scripts.push(node) },
             createElement: () => ({ src: '', async: false }),
             querySelector: (selector: string) => {
                 if (selector === CONSENT_BAR_SELECTOR) {
                     const current = bar;
 
-                    return current === null ? null : { getBoundingClientRect: () => ({ right: current.right }) };
+                    return current === null ? null : { getBoundingClientRect: () => ({ right: current.right, bottom: current.bottom }) };
                 }
 
                 return scripts.find((s) => selector === `script[src="${s.src}"]`) ?? null;
@@ -209,9 +212,9 @@ test('a chat button opens the chat, loading it first if it has not arrived', () 
 
 test('the launcher hides while a full-width consent bar covers its corner, and comes back when it closes', () => {
     const width = 390;
-    const browser = installBrowser({ readyState: 'complete', width });
+    const browser = installBrowser({ readyState: 'complete', width, height: 844 });
 
-    browser.setBar({ right: width - 16 });
+    browser.setBar({ right: width - 16, bottom: 844 - 16 });
     loadChatWhenIdle('website-id', 'en');
     browser.idle();
 
@@ -230,11 +233,22 @@ test('a consent bar clear of the corner leaves the launcher alone', () => {
     const browser = installBrowser({ readyState: 'complete', width });
     const barRight = 16 + 416;
 
-    browser.setBar({ right: barRight });
+    browser.setBar({ right: barRight, bottom: 844 - 16 });
     loadChatWhenIdle('website-id', 'en');
     browser.idle();
 
     assert.ok(barRight < width - LAUNCHER_REACH);
+    assert.deepEqual(commands(browser), []);
+});
+
+test('a full-width consent bar at the top of the page leaves the launcher alone', () => {
+    const width = 390;
+    const browser = installBrowser({ readyState: 'complete', width, height: 844 });
+
+    browser.setBar({ right: width, bottom: 116 });
+    loadChatWhenIdle('website-id', 'en');
+    browser.idle();
+
     assert.deepEqual(commands(browser), []);
 });
 
@@ -243,7 +257,7 @@ test('a chat the reader opened is never hidden by the consent bar', () => {
     const browser = installBrowser({ readyState: 'complete', width });
 
     openChat('website-id', 'en');
-    browser.setBar({ right: width - 16 });
+    browser.setBar({ right: width - 16, bottom: 844 - 16 });
 
     assert.deepEqual(commands(browser), [
         ['do', 'chat:show'],

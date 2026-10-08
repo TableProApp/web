@@ -16,8 +16,9 @@
  * no account details, on either application.
  *
  * The launcher never covers the consent bar. While the bar reaches the
- * bottom-right corner (on a phone it spans the width), the launcher is hidden,
- * and it comes back when the bar closes or the window widens.
+ * bottom-right corner (on a phone, reopened from "Cookie settings"), the
+ * launcher is hidden, and it comes back when the bar closes or the window
+ * widens.
  *
  * Pure apart from the browser globals it touches at call time, and with no
  * imports, so `node --test` loads it directly.
@@ -53,6 +54,7 @@ interface CrispWindow {
     /** Set once a reader has opened the chat themselves; the guard then leaves the launcher alone. */
     TABLEPRO_CHAT_OPENED?: boolean;
     innerWidth: number;
+    innerHeight: number;
     requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
     addEventListener: (type: string, listener: () => void, options?: { once: boolean }) => void;
     removeEventListener: (type: string, listener: () => void) => void;
@@ -69,9 +71,10 @@ export function chatRequested(): boolean {
 
 /** Whether the consent bar is open and reaches the corner the launcher sits in. */
 export function consentBarCoversLauncher(): boolean {
-    const bar = document.querySelector(CONSENT_BAR_SELECTOR);
+    const rect = document.querySelector(CONSENT_BAR_SELECTOR)?.getBoundingClientRect();
+    const w = crispWindow();
 
-    return bar !== null && bar.getBoundingClientRect().right > crispWindow().innerWidth - LAUNCHER_REACH;
+    return rect !== undefined && rect.right > w.innerWidth - LAUNCHER_REACH && rect.bottom > w.innerHeight - LAUNCHER_REACH;
 }
 
 /**
@@ -101,7 +104,11 @@ function guardLauncher(w: CrispWindow): void {
         }
     };
 
-    new MutationObserver(update).observe(document.body, { childList: true, subtree: true });
+    const observer = new MutationObserver(update);
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    // The bar stays in the page; a class on <html> opens and closes it.
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     w.addEventListener('resize', update);
     update();
 }

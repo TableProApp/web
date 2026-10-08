@@ -206,7 +206,9 @@ it('asks on every page and lets the reader change their answer from any of them'
     $footer = consentSource('resources/js/components/site/site-footer.tsx');
 
     expect($layout)->toContain('<ConsentBar />')
-        ->toContain("import ConsentBar from '@/components/site/consent-bar';");
+        ->toContain("import ConsentBar from '@/components/site/consent-bar';")
+        // A flex column, so the bar's first ask on a phone can sit above the header.
+        ->toContain('<div className="relative flex min-h-dvh flex-col');
 
     // Last in the frame, so it is the last tab stop on the page.
     expect(strrpos($layout, '<ConsentBar />'))->toBeGreaterThan(strrpos($layout, '<SiteFooter />'));
@@ -216,6 +218,70 @@ it('asks on every page and lets the reader change their answer from any of them'
         ->toContain("path('/privacy#cookies')");
 
     expect($footer)->toMatch('/<button type="button" onClick=\{openConsentSettings\}[^>]*>\s*\{groups\.legal\.cookies\}\s*<\/button>/');
+});
+
+/**
+ * Runs the head's analytics script in node with `$stored` under the consent key
+ * and reports the classes it put on `<html>`. `$stored` false makes storage throw.
+ *
+ * @return list<string>
+ */
+function htmlClassesAfterHead(string $html, string|false|null $stored): array
+{
+    preg_match_all('#<script>(.*?)</script>#s', $html, $scripts);
+    $script = collect($scripts[1])->first(fn(string $body): bool => str_contains($body, 'googletagmanager.com'));
+
+    $storage = $stored === false
+        ? '{ getItem: () => { throw new Error("denied"); } }'
+        : '{ getItem: () => ' . json_encode($stored) . ' }';
+
+    $stub = 'globalThis.window = globalThis; const classes = [];'
+        . 'globalThis.localStorage = ' . $storage . ';'
+        . 'globalThis.document = { readyState: "complete", documentElement: { classList: { add: (name) => classes.push(name) } }, createElement: () => ({}), head: { appendChild: () => {} } };'
+        . 'globalThis.addEventListener = () => {}; globalThis.requestIdleCallback = () => {};';
+
+    $result = Process::input($stub . $script . ';process.stdout.write(JSON.stringify(classes));')->run(['node', '-']);
+
+    expect($result->successful())->toBeTrue($result->errorOutput());
+
+    return json_decode($result->output(), true, flags: JSON_THROW_ON_ERROR);
+}
+
+// The class shows the server-rendered bar before first paint, so it never pops in or pushes the page after hydration.
+it('opens the bar before first paint for a reader who has not answered', function (string|false|null $stored, bool $open): void {
+    config(['analytics.google.measurement_id' => 'G-TEST123']);
+
+    $classes = htmlClassesAfterHead($this->get('/download')->getContent(), $stored);
+
+    expect(in_array('consent-open', $classes, true))->toBe($open);
+})->with([
+    'no answer' => [null, true],
+    'an unknown value' => ['maybe', true],
+    'storage that throws' => [false, true],
+    'granted' => ['granted', false],
+    'denied' => ['denied', false],
+]);
+
+it('renders the bar on the server, hidden until the head script opens it', function (): void {
+    $html = ssrHtml('/download');
+
+    expect(preg_match('#<section data-consent-bar="true" aria-label="Analytics cookies" aria-live="polite" tabindex="-1" class="([^"]*)">#', $html, $bar))->toBe(1);
+
+    $classes = explode(' ', $bar[1]);
+
+    expect($classes)->toContain('hidden')
+        ->toContain('in-[.consent-open]:block')
+        // Below 640px the first ask sits above the header instead of over the page.
+        ->toContain('max-sm:order-first')
+        ->toContain('max-sm:static')
+        ->toContain('sticky');
+});
+
+// 44px on a touch screen; the desktop sizes stay.
+it('gives the consent buttons a 44px target on a touch screen', function (): void {
+    $bar = consentSource('resources/js/components/shared/consent-bar.tsx');
+
+    expect(substr_count($bar, '<Button variant="secondary" size="sm" className="pointer-coarse:min-h-11"'))->toBe(2);
 });
 
 it('names the cookie settings control in the reader\'s language', function (string $path, string $label): void {

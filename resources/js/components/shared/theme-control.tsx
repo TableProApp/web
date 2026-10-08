@@ -265,8 +265,9 @@ function ThemeMenu({ labels, className }: { labels: ThemeControlLabels; classNam
  * `html[data-theme-choice]`, so it is right before hydration too; `checked`
  * follows on mount.
  *
- * With `iconsOnly` each segment is a 36px square (32px from 640px) and its
- * word stays in the label for assistive tech and in a tooltip.
+ * With `iconsOnly` each segment is a 36px square (32px from 640px, 44px on a
+ * coarse pointer) and its word stays in the label for assistive tech and in a
+ * tooltip.
  */
 function ThemeSegmented({ labels, iconsOnly, className }: { labels: ThemeControlLabels; iconsOnly: boolean; className?: string }) {
     const [choice, choose] = useThemeChoice();
@@ -286,7 +287,7 @@ function ThemeSegmented({ labels, iconsOnly, className }: { labels: ThemeControl
                             title={iconsOnly ? labels[option] : undefined}
                             className={cn(
                                 'theme-segment inline-flex cursor-pointer items-center rounded-control border border-transparent text-sm leading-[1.3] font-medium text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus',
-                                iconsOnly ? 'size-9 justify-center sm:size-8' : 'min-h-9 gap-2 px-3',
+                                iconsOnly ? 'size-9 justify-center sm:size-8 pointer-coarse:size-11' : 'min-h-9 gap-2 px-3',
                             )}
                         >
                             <input

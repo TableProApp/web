@@ -161,6 +161,9 @@
             `resources/js/lib/consent.ts` and with the account portal, which
             lives on this same origin and so reads the same choice.
 
+            With no stored answer the script marks `<html>`, which shows the
+            server-rendered consent bar on the first paint.
+
             Google's script (about 180 KB) is requested only after the load
             event, once the browser is idle, or two seconds after the load where
             there is no idle callback (Safari), as the chat loader is. Until it
@@ -180,8 +183,12 @@
             try {
                 if (localStorage.getItem('tablepro:analytics-consent') === 'granted') {
                     gtag('consent', 'update', { analytics_storage: 'granted' });
+                } else if (localStorage.getItem('tablepro:analytics-consent') !== 'denied') {
+                    document.documentElement.classList.add('consent-open');
                 }
-            } catch (e) {}
+            } catch (e) {
+                document.documentElement.classList.add('consent-open');
+            }
             gtag('js', new Date());
             gtag('config', @json(config('analytics.google.measurement_id')));
 
