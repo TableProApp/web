@@ -40,7 +40,7 @@
             "id": "work",
             "title": "クエリと編集",
             "paragraphs": [
-                "どの接続でも、<code>SELECT * FROM 'data.csv'</code> や <code>read_parquet('events.parquet')</code> のように SQL からファイルを直接読めます。別の DuckDB ファイルを <code>ATTACH</code> すると二つ目のデータベースとしてサイドバーに表示し、<code>Cmd+K</code> で再接続せず切り替えられます。再接続後はアタッチを保持しません。",
+                "どの接続でも、<code>SELECT * FROM 'data.csv'</code> や <code>read_parquet('events.parquet')</code> のように SQL からファイルを直接読めます。別の DuckDB ファイルを <code>ATTACH</code> すると二つ目のデータベースとしてサイドバーに表示し、<code>⌘K</code> で再接続せず切り替えられます。再接続後はアタッチを保持しません。",
                 "<explain>EXPLAIN</explain> はプラン図で表示します。テーブルの行を編集すると <editing>Preview SQL</editing> が各文を先に表示し、データファイル上のビューは読み取り専用のままです。"
             ]
         },
@@ -72,7 +72,8 @@
             "title": "iPhone と iPad",
             "paragraphs": [
                 "iPhone と iPad では DuckDB がアプリに組み込まれています。ファイル App で選んだファイルはコピーではなく元の場所で開きます。作業用データベースには In-Memory を選べます。カードでテーブルを閲覧し、Query タブで SQL を実行します。Remote (Quack) 接続は Mac 専用です。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

@@ -18,6 +18,8 @@ export interface ReleaseAsset {
     url: string;
     /** From the GitHub API only; the appcast fallback has no sizes. */
     bytes: number | null;
+    // Lowercase hex, from the GitHub API's asset digest; null from the appcast.
+    sha256: string | null;
 }
 
 export interface ReleaseProp {

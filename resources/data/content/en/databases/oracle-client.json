@@ -42,7 +42,7 @@
                 "A PL/SQL block or a stored unit runs as one statement, however many semicolons it holds: put the cursor in it and run it. Scripts written for SQL*Plus or SQL Developer run unchanged, with a line holding only <code>/</code> ending the unit above it. A unit that does not compile fails with Oracle’s own errors, one per line with its position.",
                 "<code>DBMS_OUTPUT.PUT_LINE</code> lines show with the result of the statement that printed them, with no <code>SET SERVEROUTPUT ON</code> needed. In an anonymous block, <code>:name</code> is a <parameters>query parameter</parameters> you fill in from a panel.",
                 "Each statement commits when it succeeds. Start with <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> or <code>LOCK TABLE</code> to hold changes, and everything after it waits for your <code>COMMIT</code> or <code>ROLLBACK</code>, grid saves included.",
-                "Each user is a schema, and <code>Cmd+K</code> switches the active one without reconnecting. Row edits are staged with <editing>Preview SQL</editing>. A block that drops or truncates, even through <code>EXECUTE IMMEDIATE</code>, raises the <safeMode>dangerous query warning</safeMode> before it runs."
+                "Each user is a schema, and <code>⌘K</code> switches the active one without reconnecting. Row edits are staged with <editing>Preview SQL</editing>. A block that drops or truncates, even through <code>EXECUTE IMMEDIATE</code>, raises the <safeMode>dangerous query warning</safeMode> before it runs."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone and iPad",
             "paragraphs": [
                 "On iPhone and iPad, the Oracle driver is part of the app. The connection form takes a Service Name or SID, the SYSDBA and SYSOPER roles and the Network Encryption setting. You browse tables as cards, edit rows that have a primary key and run SQL in the Query tab; creating or altering tables stays on the Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

@@ -90,7 +90,7 @@
             "id": "iphone",
             "title": "Trên iPhone và iPad",
             "paragraphs": [
-                "Trong ứng dụng cho iPhone và iPad, các dòng hiển thị dạng thẻ, có thể sắp xếp, tìm kiếm và lọc với AND và OR, và chạm vào một khóa ngoại để xem nhanh dòng được tham chiếu. Bạn có thể sửa một dòng, đặt giá trị thành NULL hoặc DEFAULT, thêm dòng và vuốt để xóa; muốn sửa và xóa, table cần có khóa chính.",
+                "Trong ứng dụng cho iPhone và iPad, các dòng hiển thị dạng thẻ, có thể sắp xếp, tìm kiếm và lọc với AND và OR, và chạm vào một khóa ngoại để xem nhanh dòng được tham chiếu. Bạn có thể sửa một dòng, đặt giá trị thành NULL, thêm dòng và vuốt để xóa; muốn sửa và xóa, table cần có khóa chính. Trong dòng mới, mỗi cột ban đầu nhận DEFAULT và có thể đặt thành NULL hoặc chuỗi rỗng.",
                 "Safe Mode trên iPhone và iPad có các mức riêng: {iosSafeModeLevels}, với {iosSafeModeDefault} là mặc định cho connection mới. Thay đổi chờ lưu, Preview SQL, highlight rules và Data Rewind chỉ có trong ứng dụng Mac."
             ],
             "links": [

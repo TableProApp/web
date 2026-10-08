@@ -86,7 +86,8 @@
             "title": "iPhone 與 iPad",
             "paragraphs": [
                 "iPhone 與 iPad 上可從工具列切換資料庫和 schema，依卡片瀏覽資料表，編輯有主索引鍵的列，並在 Query 分頁執行 SQL。SSL 支援 Required 到 Verify Identity，SSH 通道使用密碼或金鑰，不支援跳板主機。"
-            ]
+            ],
+            "asset": "ios-connection-form"
         }
     ],
     "family": [
@@ -114,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin 是老牌 PostgreSQL 開放原始碼管理工具，提供偵錯工具、結構差異比較和備份還原。",
+                "text": "pgAdmin 是老牌 PostgreSQL 開放原始碼管理工具，提供偵錯工具、結構差異比較和備份還原。僅使用 PostgreSQL 且以管理工作為主時較合適。",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 是以瀏覽和編輯為中心的 PostgreSQL Mac App。其官方文件將備份還原、使用者管理和監控等管理功能列為未涵蓋內容。"
+                "text": "Postico 2 是以瀏覽和編輯為中心的 PostgreSQL Mac App。其官方文件將備份還原、使用者管理和監控等管理功能列為未涵蓋內容。僅使用 PostgreSQL、希望使用專注於它的 Mac App 時較合適。"
             }
         ],
         "notes": {
@@ -131,8 +132,8 @@
     "faq": [
         {
             "id": "hosted",
-            "question": "支援 Amazon RDS 等託管 PostgreSQL 嗎？",
-            "answer": "支援。託管伺服器與其他伺服器一樣使用主機和連接埠。RDS、Aurora 也可用 AWS IAM 登入，Google Cloud SQL 由 TablePro 執行 Cloud SQL Auth Proxy。"
+            "question": "支援 Amazon RDS、Neon、Supabase 等託管 PostgreSQL 嗎？",
+            "answer": "支援。託管伺服器與其他伺服器一樣使用主機和連接埠。Neon、Supabase 和 Heroku 使用服務提供的主機連線。它們要求 TLS，新連線會先嘗試 TLS。RDS、Aurora 也可用 AWS IAM 登入，Google Cloud SQL 由 TablePro 執行 Cloud SQL Auth Proxy。"
         },
         {
             "id": "column-order",

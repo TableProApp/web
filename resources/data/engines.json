@@ -308,7 +308,7 @@
             "readOnlyMode": false,
             "alwaysReadOnly": false
         },
-        "versionFloor": null,
+        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/redis.mdx:31" },
         "bundledVersion": null,
         "limits": [
             { "id": "string-values-only", "value": null, "evidence": "docs/databases/redis.mdx:113-115" },
@@ -412,7 +412,7 @@
             "explain": ["EXPLAIN", "EXPLAIN ANALYZE"],
             "explainView": "text",
             "dashboard": false,
-            "usersRoles": false,
+            "usersRoles": true,
             "awsIam": false,
             "awsSignIn": false,
             "cloudSqlProxy": false,
@@ -420,7 +420,7 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": null,
+        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/tidb.mdx:6" },
         "bundledVersion": null,
         "limits": [
             { "id": "no-triggers-or-routines", "value": null, "evidence": "docs/databases/tidb.mdx:41" },
@@ -469,7 +469,7 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": null,
+        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/oceanbase.mdx:6" },
         "bundledVersion": null,
         "limits": [
             { "id": "mysql-mode-only", "value": null, "evidence": "docs/databases/oceanbase.mdx:6,47" },
@@ -518,7 +518,7 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": null,
+        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/databend.mdx:26" },
         "bundledVersion": null,
         "limits": [
             { "id": "no-keys-or-indexes", "value": null, "evidence": "docs/databases/databend.mdx:44-51" },
@@ -568,7 +568,7 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": null,
+        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/redshift.mdx:16" },
         "bundledVersion": null,
         "limits": [
             {
@@ -625,7 +625,7 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": null,
+        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/cockroachdb.mdx:6" },
         "bundledVersion": null,
         "limits": [
             { "id": "structure-read-only", "value": null, "evidence": "docs/databases/cockroachdb.mdx:52" },
@@ -784,7 +784,7 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": null,
+        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/clickhouse.mdx:6" },
         "bundledVersion": null,
         "limits": [
             { "id": "http-only", "value": null, "evidence": "docs/databases/clickhouse.mdx:6" },
@@ -1365,7 +1365,7 @@
         "queryLanguage": "KafkaQL",
         "defaultPort": 9092,
         "connectionMode": "network",
-        "icon": null,
+        "icon": "/images/databases/kafka.svg",
         "monogram": "KA",
         "docsSlug": "kafka",
         "capabilities": {
@@ -1482,7 +1482,7 @@
             "readOnlyMode": true,
             "alwaysReadOnly": false
         },
-        "versionFloor": null,
+        "versionFloor": { "text": null, "enforced": false, "evidence": "docs/databases/teradata.mdx:17" },
         "bundledVersion": null,
         "limits": [
             { "id": "ldap-kerberos-jwt-refused", "value": null, "evidence": "docs/databases/teradata.mdx:67" },

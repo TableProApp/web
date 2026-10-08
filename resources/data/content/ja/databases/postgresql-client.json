@@ -86,7 +86,8 @@
             "title": "iPhone と iPad",
             "paragraphs": [
                 "iPhone と iPad ではツールバーからデータベースとスキーマを切り替え、カード表示でテーブルを閲覧し、主キーのある行を編集し、Query タブで SQL を実行できます。SSL は Required から Verify Identity、SSH トンネルはパスワードや鍵に対応します。踏み台ホストには対応しません。"
-            ]
+            ],
+            "asset": "ios-connection-form"
         }
     ],
     "family": [
@@ -114,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin は長年使われている PostgreSQL 用のオープンソース管理ツールで、デバッガー、スキーマ差分、バックアップと復元を備えます。",
+                "text": "pgAdmin は長年使われている PostgreSQL 用のオープンソース管理ツールで、デバッガー、スキーマ差分、バックアップと復元を備えます。PostgreSQL だけを使い、管理作業が中心の場合に適しています。",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 は閲覧と編集を中心にした PostgreSQL 用 Mac アプリです。公式ドキュメントでもバックアップと復元、ユーザー管理、監視などの管理機能は対象外としています。"
+                "text": "Postico 2 は閲覧と編集を中心にした PostgreSQL 用 Mac アプリです。公式ドキュメントでもバックアップと復元、ユーザー管理、監視などの管理機能は対象外としています。PostgreSQL だけを使い、専用の Mac アプリが欲しい場合に適しています。"
             }
         ],
         "notes": {
@@ -131,8 +132,8 @@
     "faq": [
         {
             "id": "hosted",
-            "question": "Amazon RDS などのホスト型 PostgreSQL に対応しますか？",
-            "answer": "はい。ホスト型のサーバーも通常と同じホストとポートで接続します。RDS と Aurora は AWS IAM でも認証でき、Google Cloud SQL は TablePro が Cloud SQL Auth Proxy を実行します。"
+            "question": "Amazon RDS、Neon、Supabase などのホスト型 PostgreSQL に対応しますか？",
+            "answer": "はい。ホスト型のサーバーも通常と同じホストとポートで接続します。Neon、Supabase、Heroku は、サービスが提示するホストで接続します。これらは TLS を必須とし、新規接続はまず TLS を試みます。RDS と Aurora は AWS IAM でも認証でき、Google Cloud SQL は TablePro が Cloud SQL Auth Proxy を実行します。"
         },
         {
             "id": "column-order",

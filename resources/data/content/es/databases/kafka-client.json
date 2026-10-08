@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Cliente Apache Kafka para {devices}",
-        "lead": "Lee un topic desde la posición que elijas, comprueba el retraso de cada grupo de consumidores y produce un mensaje de prueba con KafkaQL. Un topic es un registro: la cuadrícula lee mensajes y nunca los edita."
+        "lead": "Lee un topic desde la posición que elijas, comprueba el retraso de cada grupo de consumidores y produce un mensaje de prueba con KafkaQL, el lenguaje de comandos propio de TablePro. Un topic es un registro: la cuadrícula lee mensajes y nunca los edita."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "Transfiere datos",
             "paragraphs": [
-                "No hay importación; escribe mensajes en un topic con <code>PRODUCE INTO</code>. <export>Exporta</export> los mensajes leídos por una consulta como CSV, JSON o XLSX."
+                "No hay importación; escribe mensajes en un topic con <code>PRODUCE INTO</code>. <export>Exporta</export> los mensajes leídos por una consulta como {exportFormats}."
             ]
         }
     ],

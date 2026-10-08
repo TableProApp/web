@@ -104,7 +104,7 @@
             "id": "iphone",
             "title": "在 iPhone 和 iPad 上",
             "paragraphs": [
-                "iPhone 和 iPad 应用将行显示为卡片，支持排序、搜索及 AND、OR 筛选，点按外键可预览引用行。可编辑行，将值设为 NULL 或 DEFAULT，插入行并滑动删除；编辑和删除需要主键。",
+                "iPhone 和 iPad 应用将行显示为卡片，支持排序、搜索及 AND、OR 筛选，点按外键可预览引用行。可编辑行，将值设为 NULL，插入行并滑动删除；编辑和删除需要主键。在新行中，每个字段初始为 DEFAULT，也可设为 NULL 或空字符串。",
                 "移动端安全模式有自己的级别 {iosSafeModeLevels}，新连接默认为 {iosSafeModeDefault}。暂存编辑、Preview SQL、高亮规则和 Data Rewind 仅在 Mac 应用中提供。"
             ],
             "links": [

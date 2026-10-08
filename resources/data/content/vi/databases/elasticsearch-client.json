@@ -48,7 +48,7 @@
             "id": "move-data",
             "title": "Export",
             "paragraphs": [
-                "TablePro không có import cho Elasticsearch. <export>Export</export> đọc toàn bộ index bằng point-in-time và <code>search_after</code>, nên không bị giới hạn bởi result window, rồi ghi ra CSV, JSON hoặc XLSX."
+                "TablePro không có import cho Elasticsearch. <export>Export</export> đọc toàn bộ index bằng point-in-time và <code>search_after</code>, nên không bị giới hạn bởi result window, rồi ghi ra {exportFormats}."
             ]
         }
     ],

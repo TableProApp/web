@@ -2,7 +2,7 @@ import Card from '@/components/ui/card';
 import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
 import { useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
-import { connectWith, iosStatus, shownPort } from './format';
+import { connectWith, iosStatus, shownPort, versionFloorText } from './format';
 import type { DatabaseLabels, EngineDetail } from './types';
 
 interface FactsCardProps {
@@ -15,12 +15,13 @@ interface FactsCardProps {
  * The "At a glance" card beside an engine page's header (design-system §8.4).
  * Every row is data: the query language, where the driver comes from and what
  * shares it, how a connection reaches the engine, the default port, the
- * version floor with its marker, the embedded engine version and the iPhone
- * and iPad status. A row with nothing to say is left out.
+ * version floor, the embedded engine version and the iPhone and iPad status.
+ * A row with nothing to say is left out.
  *
  * The version floor says "enforced" only where the app refuses an older
- * server, and "documented" where the floor comes from the docs. The site
- * never says "tested": there is no test evidence for any engine version.
+ * server; a floor that comes from the docs is the bare version, and "no
+ * minimum" is shown only where the docs say so. The site never says "tested":
+ * there is no test evidence for any engine version.
  */
 export default function FactsCard({ engine, labels, className }: FactsCardProps) {
     const { m, fmt } = useI18n();
@@ -45,9 +46,7 @@ export default function FactsCard({ engine, labels, className }: FactsCardProps)
                     </DescriptionItem>
                 )}
                 {engine.versionFloor !== null && (
-                    <DescriptionItem term={facts.minimumVersion}>
-                        {fmt(engine.versionFloor.enforced ? facts.enforced : facts.documented, { version: engine.versionFloor.text })}
-                    </DescriptionItem>
+                    <DescriptionItem term={facts.minimumVersion}>{versionFloorText(engine.versionFloor, facts)}</DescriptionItem>
                 )}
                 {engine.bundledVersion !== null && (
                     <DescriptionItem term={facts.embedded}>

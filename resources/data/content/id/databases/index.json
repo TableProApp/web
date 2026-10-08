@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "Streaming",
-            "intro": "Log alih-alih tabel: baca dan tulis pesan menggunakan KafkaQL."
+            "intro": "Log alih-alih tabel: baca dan tulis pesan menggunakan KafkaQL, bahasa perintah milik TablePro sendiri."
         },
         "coordination": {
             "title": "Koordinasi",
@@ -108,7 +108,7 @@
             "defaultPort": "Port default",
             "minimumVersion": "Versi minimum",
             "enforced": "{version}, diwajibkan: server yang lebih lama ditolak",
-            "documented": "{version}, didokumentasikan",
+            "noMinimum": "Tidak ada",
             "embedded": "Mesin bawaan",
             "embeddedValue": "{name} {version}",
             "ios": "iPhone dan iPad"
@@ -134,7 +134,8 @@
         "availability": {
             "devices": "Berfungsi di {devices}",
             "bundled": "Driver disertakan dalam aplikasi Mac",
-            "registry": "Driver diunduh saat Anda pertama kali memilih {name}"
+            "registry": "Driver diunduh saat Anda pertama kali memilih {name}",
+            "free": "Gratis digunakan, dengan <pricing>paket berbayar opsional</pricing>"
         },
         "release": "Baru pada {version}",
         "docs": "Panduan pengaturan {name}",
@@ -180,7 +181,8 @@
         "download": {
             "title": "Unduh TablePro",
             "mac": "Aplikasi Mac gratis untuk diunduh dan digunakan. Paket Starter atau Team menambahkan fitur opsional.",
-            "ios": "Aplikasi iPhone dan iPad tersedia di App Store."
+            "ios": "Aplikasi iPhone dan iPad tersedia di App Store.",
+            "pricing": "Lihat harga"
         }
     }
 }

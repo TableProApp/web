@@ -40,7 +40,7 @@
             "id": "work",
             "title": "Query và chỉnh sửa",
             "paragraphs": [
-                "Connection nào cũng đọc được file ngay bằng SQL, như <code>SELECT * FROM 'data.csv'</code> hay <code>read_parquet('events.parquet')</code>. <code>ATTACH</code> thêm một file DuckDB khác và nó xuất hiện trong sidebar như cơ sở dữ liệu thứ hai, còn <code>Cmd+K</code> chuyển qua lại giữa chúng mà không cần kết nối lại. DuckDB không giữ file đã attach sau khi bạn kết nối lại.",
+                "Connection nào cũng đọc được file ngay bằng SQL, như <code>SELECT * FROM 'data.csv'</code> hay <code>read_parquet('events.parquet')</code>. <code>ATTACH</code> thêm một file DuckDB khác và nó xuất hiện trong sidebar như cơ sở dữ liệu thứ hai, còn <code>⌘K</code> chuyển qua lại giữa chúng mà không cần kết nối lại. DuckDB không giữ file đã attach sau khi bạn kết nối lại.",
                 "<explain>EXPLAIN</explain> được vẽ thành sơ đồ execution plan. Các dòng trong table được sửa với <editing>Preview SQL</editing> hiển thị trước từng câu lệnh, còn view đọc từ file dữ liệu vẫn chỉ đọc."
             ]
         },
@@ -72,7 +72,8 @@
             "title": "iPhone và iPad",
             "paragraphs": [
                 "Trên iPhone và iPad, DuckDB có sẵn trong ứng dụng. File bạn chọn trong ứng dụng Tệp được mở ngay tại chỗ chứ không bị sao chép, hoặc bạn chọn Cơ sở dữ liệu trong bộ nhớ (In-Memory Database) để có một cơ sở dữ liệu nháp. Bạn xem table dưới dạng thẻ và chạy SQL trong tab Truy vấn (Query). Kết nối Từ xa (Quack) chỉ có trên Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

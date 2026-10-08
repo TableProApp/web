@@ -42,7 +42,7 @@
                 "Un bloque PL/SQL o unidad almacenada se ejecuta como una sentencia, por muchos puntos y coma que tenga: coloca el cursor dentro y ejecútalo. Los scripts SQL*Plus o SQL Developer funcionan sin cambios; una línea con solo <code>/</code> termina la unidad anterior. Una unidad que no compile falla con los errores de Oracle, uno por línea y con posición.",
                 "Las líneas <code>DBMS_OUTPUT.PUT_LINE</code> aparecen con el resultado de la sentencia que las imprimió, sin <code>SET SERVEROUTPUT ON</code>. En un bloque anónimo, <code>:name</code> es un <parameters>parámetro de consulta</parameters> que rellenas en un panel.",
                 "Cada sentencia se confirma al completarse. Empieza con <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> o <code>LOCK TABLE</code> para retener cambios; todo lo posterior espera tu <code>COMMIT</code> o <code>ROLLBACK</code>, incluido guardar la cuadrícula.",
-                "Cada usuario es un esquema y <code>Cmd+K</code> cambia el activo sin reconectar. Las ediciones quedan pendientes con <editing>Vista previa SQL</editing>. Un bloque que elimina o vacía, incluso con <code>EXECUTE IMMEDIATE</code>, muestra el <safeMode>aviso de consulta peligrosa</safeMode> antes de ejecutarse."
+                "Cada usuario es un esquema y <code>⌘K</code> cambia el activo sin reconectar. Las ediciones quedan pendientes con <editing>Vista previa SQL</editing>. Un bloque que elimina o vacía, incluso con <code>EXECUTE IMMEDIATE</code>, muestra el <safeMode>aviso de consulta peligrosa</safeMode> antes de ejecutarse."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone y iPad",
             "paragraphs": [
                 "En iPhone y iPad, el controlador Oracle forma parte de la app. El formulario acepta Service Name o SID, roles SYSDBA y SYSOPER y Cifrado de red. Exploras tablas como tarjetas, editas filas con clave primaria y ejecutas SQL en Consulta; crear o modificar tablas sigue en Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

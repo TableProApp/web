@@ -42,7 +42,7 @@
                 "指令碼依僅含 <code>GO</code> 的行分隔，像 sqlcmd 一樣逐批次傳送伺服器；<code>GO 5</code> 將前一批次執行五次。每個結果集在獨立分頁開啟，<code>PRINT</code> 輸出和資訊訊息顯示在 Output 檢視。",
                 "若失敗需復原之前的批次，請在指令碼加入 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>；指令碼留下未結束交易時會在結尾提示。執行在首個失敗批次停止，錯誤指出編輯器中的行號。",
                 "每個工作階段以篩選索引、索引檢視表和計算欄位索引所需的 SET 選項開啟，例如啟用 <code>ANSI_NULLS</code> 和 <code>QUOTED_IDENTIFIER</code>。因此 <code>col = NULL</code> 不符合任何紀錄，請用 <code>IS NULL</code> 比較。",
-                "資料表在側欄 schema 下巢狀顯示，<code>Cmd+K</code> 無須重新連線即可切換資料庫。列編輯暫存並提供 <editing>Preview SQL</editing>，新列的 IDENTITY 欄位交給伺服器產生，<code>nvarchar(max)</code> 值完整讀取。"
+                "資料表在側欄 schema 下巢狀顯示，<code>⌘K</code> 無須重新連線即可切換資料庫。列編輯暫存並提供 <editing>Preview SQL</editing>，新列的 IDENTITY 欄位交給伺服器產生，<code>nvarchar(max)</code> 值完整讀取。"
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone 與 iPad",
             "paragraphs": [
                 "iPhone 與 iPad 上可透過 SQL Server 登入，依卡片瀏覽資料表、編輯有主索引鍵的列，並在 Query 分頁執行 T-SQL。不提供 Windows Authentication。Microsoft Entra ID 連線需透過 iCloud Sync 或匯出的連線檔案從 Mac 匯入，開啟時登入 Microsoft。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "為什麼指令碼報錯「Must declare the scalar variable」？",
-            "answer": "讀取變數的陳述式與其 <code>DECLARE</code> 在不同批次執行：兩者間有 <code>GO</code> 行，或 <code>Cmd+Enter</code> 僅執行了游標所在陳述式。請選取兩個陳述式或執行整份指令碼。"
+            "answer": "讀取變數的陳述式與其 <code>DECLARE</code> 在不同批次執行：兩者間有 <code>GO</code> 行，或 <code>⌘⏎</code> 僅執行了游標所在陳述式。請選取兩個陳述式或執行整份指令碼。"
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "連線、通道與登入",
+            "label": "AWS、Google 與 Microsoft 雲端登入",
             "href": "/features/connections#cloud-auth"
         },
         {

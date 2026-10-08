@@ -184,6 +184,7 @@
                 { "id": "groups-and-tags", "defaultOn": true, "sinceAppVersion": null },
                 { "id": "settings", "defaultOn": true, "sinceAppVersion": null },
                 { "id": "ssh-profiles", "defaultOn": true, "sinceAppVersion": null },
+                { "id": "credential-profiles", "defaultOn": true, "sinceAppVersion": "0.75.0" },
                 { "id": "table-favorites", "defaultOn": true, "sinceAppVersion": null },
                 { "id": "database-favorites", "defaultOn": true, "sinceAppVersion": null },
                 { "id": "saved-queries", "defaultOn": true, "sinceAppVersion": null },
@@ -191,7 +192,7 @@
                 { "id": "passwords", "defaultOn": false, "sinceAppVersion": null }
             ],
             "enabledByDefault": false,
-            "evidence": "TablePro/Models/Settings/SyncSettings.swift:12-94 @v0.77.0"
+            "evidence": "TablePro/Models/Settings/SyncSettings.swift:12-94 @v0.77.0; credential profiles: Packages/TableProCore/Sources/TableProSyncTransport/SyncSchemaRegistry.swift:5-9, TablePro/Core/Sync/SyncRecordMapper.swift:773-793 @v0.78.0"
         },
         "ios": {
             "categories": [

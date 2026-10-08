@@ -138,7 +138,8 @@ export interface EngineDetail extends EngineSummary {
     defaultPort: number | null;
     connectionMode: 'network' | 'file' | 'api';
     bundledVersion: string | null;
-    versionFloor: { text: string; enforced: boolean } | null;
+    // `text` is null where the docs say there is no minimum version.
+    versionFloor: { text: string | null; enforced: boolean } | null;
     capabilities: EngineCapabilities;
     /** File formats by name, from facts.json. */
     formats: { import: string[]; export: string[] };
@@ -178,6 +179,15 @@ export interface DatabaseLinks {
     /** The GitHub feature request form. */
     request: string | null;
     appStore: string | null;
+    // The app's repository.
+    source: string | null;
+}
+
+export interface ProductFacts {
+    // pricing.json prices the free tier at 0.
+    free: boolean;
+    // The SPDX id in facts.json.
+    licence: string | null;
 }
 
 export interface EnginePageProps {
@@ -190,6 +200,7 @@ export interface EnginePageProps {
     tools: CitedTool[];
     platforms: { mac: PlatformSummary | null; ios: PlatformSummary | null };
     links: DatabaseLinks;
+    product: ProductFacts;
 }
 
 export interface HubPageProps {

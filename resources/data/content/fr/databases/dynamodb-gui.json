@@ -62,7 +62,7 @@
             "id": "move-data",
             "title": "Transférez des données",
             "paragraphs": [
-                "Il n’y a pas d’import pour DynamoDB. Écrivez les éléments depuis l’éditeur avec <code>INSERT</code> en PartiQL ou une requête <code>BatchWriteItem</code>, qui renvoie les éléments non traités et signale ceux qu’elle n’a pu écrire. <export>Exportez</export> une table ou un résultat vers un fichier depuis le dialogue Exporter."
+                "Il n’y a pas d’import pour DynamoDB. Écrivez les éléments depuis l’éditeur avec <code>INSERT</code> en PartiQL ou une requête <code>BatchWriteItem</code>, qui renvoie les éléments non traités et signale ceux qu’elle n’a pu écrire. <export>Exportez</export> une table ou un résultat en {exportFormats} depuis le dialogue Exporter."
             ]
         }
     ],

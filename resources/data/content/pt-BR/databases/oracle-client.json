@@ -42,7 +42,7 @@
                 "Um bloco PL/SQL ou uma unidade armazenada executa como uma instrução, independentemente da quantidade de pontos e vírgulas: coloque o cursor nele e execute. Scripts de SQL*Plus ou SQL Developer funcionam sem alterações, com uma linha contendo apenas <code>/</code> encerrando a unidade acima. Uma unidade que não compila falha com os erros do próprio Oracle, um por linha, com sua posição.",
                 "As linhas de <code>DBMS_OUTPUT.PUT_LINE</code> aparecem junto ao resultado da instrução que as imprimiu, sem precisar de <code>SET SERVEROUTPUT ON</code>. Em um bloco anônimo, <code>:name</code> é um <parameters>parâmetro de consulta</parameters> preenchido em um painel.",
                 "Cada instrução é confirmada quando tem sucesso. Comece com <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> ou <code>LOCK TABLE</code> para manter alterações pendentes, e tudo depois aguarda seu <code>COMMIT</code> ou <code>ROLLBACK</code>, inclusive salvamentos na grade.",
-                "Cada usuário é um esquema, e <code>Cmd+K</code> alterna o esquema ativo sem reconectar. Edições de linhas ficam pendentes com <editing>Preview SQL</editing>. Um bloco que exclui ou trunca, mesmo por <code>EXECUTE IMMEDIATE</code>, aciona o <safeMode>aviso de consulta perigosa</safeMode> antes de executar."
+                "Cada usuário é um esquema, e <code>⌘K</code> alterna o esquema ativo sem reconectar. Edições de linhas ficam pendentes com <editing>Preview SQL</editing>. Um bloco que exclui ou trunca, mesmo por <code>EXECUTE IMMEDIATE</code>, aciona o <safeMode>aviso de consulta perigosa</safeMode> antes de executar."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone e iPad",
             "paragraphs": [
                 "No iPhone e iPad, o driver Oracle faz parte do app. O formulário aceita Service Name ou SID, as funções SYSDBA e SYSOPER e a configuração Network Encryption. Navegue por tabelas como cartões, edite linhas com chave primária e execute SQL na aba Query; criar ou alterar tabelas continua sendo feito no Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

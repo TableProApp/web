@@ -62,7 +62,7 @@
             "id": "move-data",
             "title": "Daten übertragen",
             "paragraphs": [
-                "Es gibt keinen DynamoDB-Import. Schreibe Elemente im Editor mit einem PartiQL-<code>INSERT</code> oder einer <code>BatchWriteItem</code>-Anfrage, die unverarbeitete Elemente erneut sendet und nicht geschriebene meldet. <export>Exportiere</export> eine Tabelle oder ein Ergebnis über den Exportdialog in eine Datei."
+                "Es gibt keinen DynamoDB-Import. Schreibe Elemente im Editor mit einem PartiQL-<code>INSERT</code> oder einer <code>BatchWriteItem</code>-Anfrage, die unverarbeitete Elemente erneut sendet und nicht geschriebene meldet. <export>Exportiere</export> eine Tabelle oder ein Ergebnis über den Exportdialog als {exportFormats}."
             ]
         }
     ],

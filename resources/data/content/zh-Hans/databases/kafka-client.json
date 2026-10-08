@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "适用于 {devices} 的 Apache Kafka 客户端",
-        "lead": "用 KafkaQL 从所选起点读取主题，查看每个消费者组的延迟，并生成测试消息。主题是日志，所以网格仅读取消息，从不编辑。"
+        "lead": "用 TablePro 自有的命令语言 KafkaQL 从所选起点读取主题，查看每个消费者组的延迟，并生成测试消息。主题是日志，所以网格仅读取消息，从不编辑。"
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "移动数据",
             "paragraphs": [
-                "不提供导入；用 <code>PRODUCE INTO</code> 向主题写消息。将查询读取的消息<export>导出</export>为 CSV、JSON 或 XLSX。"
+                "不提供导入；用 <code>PRODUCE INTO</code> 向主题写消息。将查询读取的消息<export>导出</export>为 {exportFormats}。"
             ]
         }
     ],

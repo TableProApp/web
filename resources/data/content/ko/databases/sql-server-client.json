@@ -42,7 +42,7 @@
                 "스크립트는 sqlcmd처럼 <code>GO</code>만 있는 각 줄에서 나뉘어 배치별로 서버에 전달되며 <code>GO 5</code>는 앞의 배치를 다섯 번 실행합니다. 결과 집합은 각각 별도 탭에 열리고 <code>PRINT</code> 출력과 정보 메시지는 Output 보기에 표시됩니다.",
                 "실패 시 이전 배치도 되돌려야 한다면 스크립트에 <code>BEGIN TRAN</code>과 <code>COMMIT</code>을 넣으세요. 트랜잭션을 열린 채로 남기면 종료 시 알림을 표시합니다. 처음 실패한 배치에서 중단하며 오류는 편집기의 해당 줄을 알려 줍니다.",
                 "모든 세션은 필터링된 인덱스, 인덱싱된 뷰와 계산 열 인덱스에 필요한 SET 옵션으로 열리며 <code>ANSI_NULLS</code>와 <code>QUOTED_IDENTIFIER</code>가 켜집니다. 따라서 <code>col = NULL</code>은 어떤 행과도 일치하지 않으니 <code>IS NULL</code>로 비교하세요.",
-                "테이블은 사이드바의 스키마 아래에 표시되고 <code>Cmd+K</code>는 재연결 없이 데이터베이스를 바꿉니다. 행 편집은 <editing>Preview SQL</editing>로 임시 저장되며 새 행의 IDENTITY 열은 서버에 맡기고 <code>nvarchar(max)</code> 값은 전체가 전달됩니다."
+                "테이블은 사이드바의 스키마 아래에 표시되고 <code>⌘K</code>는 재연결 없이 데이터베이스를 바꿉니다. 행 편집은 <editing>Preview SQL</editing>로 임시 저장되며 새 행의 IDENTITY 열은 서버에 맡기고 <code>nvarchar(max)</code> 값은 전체가 전달됩니다."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone과 iPad",
             "paragraphs": [
                 "iPhone과 iPad에서는 SQL Server 로그인으로 인증하고 테이블을 카드로 탐색하며 기본 키가 있는 행을 편집하고 Query 탭에서 T-SQL을 실행합니다. Windows 인증은 제공하지 않습니다. Microsoft Entra ID 연결은 iCloud Sync나 내보낸 연결 파일로 Mac에서 가져와 열 때 Microsoft에 로그인합니다."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "왜 “Must declare the scalar variable” 오류가 나오나요?",
-            "answer": "변수를 읽는 구문이 <code>DECLARE</code>와 다른 배치에서 실행되었습니다. 사이에 <code>GO</code> 줄이 있거나 <code>Cmd+Enter</code>로 커서의 구문만 실행한 경우입니다. 두 구문을 모두 선택하거나 전체 스크립트를 실행하세요."
+            "answer": "변수를 읽는 구문이 <code>DECLARE</code>와 다른 배치에서 실행되었습니다. 사이에 <code>GO</code> 줄이 있거나 <code>⌘⏎</code>으로 커서의 구문만 실행한 경우입니다. 두 구문을 모두 선택하거나 전체 스크립트를 실행하세요."
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "연결, 터널 및 로그인",
+            "label": "AWS·Google·Microsoft 클라우드 로그인",
             "href": "/features/connections#cloud-auth"
         },
         {

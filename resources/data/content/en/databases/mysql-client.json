@@ -84,7 +84,8 @@
             "title": "iPhone and iPad",
             "paragraphs": [
                 "On iPhone and iPad, you browse tables as cards, filter and sort them, edit rows that have a primary key and run SQL in the Query tab. Connections offer SSL from Required to Verify Identity, and SSH tunnels with a password or a key. SSH jump hosts are not supported there."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "Point the connection at a TiDB server’s SQL port, never at PD or TiKV. TiDB Cloud uses the same port; set SSL Mode to Required there.",
                 "Stop sends <code>KILL TIDB QUERY</code> for your own session. Behind TiProxy or a load balancer, that needs Global Kill, which TiDB turns on by default since version 6.1.",
-                "EXPLAIN and EXPLAIN ANALYZE show TiDB’s plan as text. CHECK constraints appear in the Structure tab on TiDB 7.2 and later when the cluster enables them, foreign keys can be created, and table maintenance offers ANALYZE TABLE.",
+                "EXPLAIN and EXPLAIN ANALYZE show TiDB’s plan as text. CHECK constraints appear in the Structure tab on TiDB 7.2 and later when the cluster enables them, foreign keys can be created, and table maintenance offers ANALYZE TABLE. <administer>Users & Roles</administer> works on TiDB, without the connection limit field.",
                 "Choose TiDB as the connection type rather than MySQL, so the sidebar, the type picker and EXPLAIN follow TiDB."
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL is a long-standing open-source client from Windows that now also ships a macOS app."
+                "text": "HeidiSQL is a long-standing open-source client from Windows that now also ships a macOS app. It fits if you already use it on Windows and want the same client on your Mac."
             }
         ],
         "notes": {}

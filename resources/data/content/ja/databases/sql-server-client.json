@@ -42,7 +42,7 @@
                 "スクリプトは sqlcmd と同じく、<code>GO</code> だけがある行ごとに分割し、一つずつバッチとしてサーバーに送ります。<code>GO 5</code> は直前のバッチを五回実行します。結果セットはそれぞれ専用タブで開き、<code>PRINT</code> 出力と情報メッセージは Output ビューに表示します。",
                 "失敗時にそれ以前のバッチも戻す必要がある場合は、スクリプトに <code>BEGIN TRAN</code> と <code>COMMIT</code> を記述してください。トランザクションを開いたままのスクリプトは、終了時に通知します。最初に失敗したバッチで実行を停止し、エディタ内の行番号をエラーに表示します。",
                 "すべてのセッションは、フィルター付きインデックス、インデックス付きビューと計算カラムのインデックスに必要な SET オプションで開きます。例えば <code>ANSI_NULLS</code> と <code>QUOTED_IDENTIFIER</code> をオンにします。そのため <code>col = NULL</code> は何にも一致せず、<code>IS NULL</code> で比較してください。",
-                "サイドバーではスキーマ配下にテーブルを表示し、<code>Cmd+K</code> は再接続せずにデータベースを切り替えます。行の編集は <editing>Preview SQL</editing> とともに保留し、新規行の IDENTITY カラムはサーバーに任せます。<code>nvarchar(max)</code> の値は全体を受け取ります。"
+                "サイドバーではスキーマ配下にテーブルを表示し、<code>⌘K</code> は再接続せずにデータベースを切り替えます。行の編集は <editing>Preview SQL</editing> とともに保留し、新規行の IDENTITY カラムはサーバーに任せます。<code>nvarchar(max)</code> の値は全体を受け取ります。"
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone と iPad",
             "paragraphs": [
                 "iPhone と iPad では SQL Server ログインで認証し、カード表示でテーブルを閲覧し、主キーのある行を編集し、Query タブで T-SQL を実行できます。Windows 認証は使えません。Microsoft Entra ID を使う接続は iCloud Sync やエクスポートした接続ファイルで Mac から取り込み、開くときに Microsoft にサインインします。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "なぜ「Must declare the scalar variable」と表示されるのですか？",
-            "answer": "変数を読む文と <code>DECLARE</code> が別のバッチで実行されました。間に <code>GO</code> 行があるか、<code>Cmd+Enter</code> がカーソル位置の文だけを実行したためです。両方の文を選択するか、スクリプト全体を実行してください。"
+            "answer": "変数を読む文と <code>DECLARE</code> が別のバッチで実行されました。間に <code>GO</code> 行があるか、<code>⌘⏎</code> がカーソル位置の文だけを実行したためです。両方の文を選択するか、スクリプト全体を実行してください。"
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "接続、トンネルと認証",
+            "label": "AWS、Google と Microsoft のクラウド認証",
             "href": "/features/connections#cloud-auth"
         },
         {

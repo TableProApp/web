@@ -264,7 +264,8 @@ it('names what syncs on each platform and what never does', function (): void {
 
     expect(array_column($sync['ios']['categories'], 'id'))->toBe(['connections', 'groups-and-tags']);
     expect(collect($sync['mac']['categories'])->firstWhere('id', 'passwords')['defaultOn'])->toBeFalse();
-    expect(in_array('credential-profiles', array_column($sync['mac']['categories'], 'id'), true))->toBeFalse('Credential profile sync is contested (credential-profiles.mdx and SyncSettings.swift disagree at v0.77.0); do not claim it');
+    // The record type is in SyncSchemaRegistry's verifiedInProduction since v0.75.0, so the Mac writes it; the app's docs page still says "not yet".
+    expect(collect($sync['mac']['categories'])->firstWhere('id', 'credential-profiles'))->toBe(['id' => 'credential-profiles', 'defaultOn' => true, 'sinceAppVersion' => '0.75.0']);
 
     factsAssertUniqueList($sync['neverSynced'], 'sync.neverSynced');
     expect($sync['neverSynced'])->toContain('query-history')->toContain('data-rewind');

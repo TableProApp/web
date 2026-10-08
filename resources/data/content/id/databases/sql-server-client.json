@@ -42,7 +42,7 @@
                 "Skrip dikirim ke server satu batch per waktu, dipisahkan pada setiap baris yang hanya berisi <code>GO</code>, seperti sqlcmd, dan <code>GO 5</code> menjalankan batch sebelumnya lima kali. Setiap kumpulan hasil dibuka dalam tab sendiri, dan keluaran <code>PRINT</code> serta pesan informasi ditampilkan pada tampilan Output.",
                 "Masukkan <code>BEGIN TRAN</code> dan <code>COMMIT</code> dalam skrip jika kegagalan harus membatalkan batch sebelumnya; skrip yang meninggalkan transaksi terbuka berakhir dengan pemberitahuan. Proses berhenti pada batch pertama yang gagal, dan kesalahan menyebutkan barisnya di editor.",
                 "Setiap sesi dibuka dengan opsi SET yang diperlukan indeks berfilter, view berindeks, dan indeks pada kolom terhitung, seperti <code>ANSI_NULLS</code> dan <code>QUOTED_IDENTIFIER</code> aktif. Ini juga berarti <code>col = NULL</code> tidak cocok dengan apa pun: bandingkan dengan <code>IS NULL</code>.",
-                "Tabel berada di bawah skemanya di bilah samping, dan <code>Cmd+K</code> mengganti database pada koneksi yang sama tanpa menghubungkan ulang. Perubahan baris ditampung dengan <editing>Preview SQL</editing>, baris baru menyerahkan kolom IDENTITY kepada server, dan nilai <code>nvarchar(max)</code> diterima utuh."
+                "Tabel berada di bawah skemanya di bilah samping, dan <code>⌘K</code> mengganti database pada koneksi yang sama tanpa menghubungkan ulang. Perubahan baris ditampung dengan <editing>Preview SQL</editing>, baris baru menyerahkan kolom IDENTITY kepada server, dan nilai <code>nvarchar(max)</code> diterima utuh."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone dan iPad",
             "paragraphs": [
                 "Di iPhone dan iPad, masuk dengan login SQL Server, telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan T-SQL pada tab Query. Windows Authentication tidak tersedia. Koneksi Microsoft Entra ID berasal dari Mac melalui iCloud Sync atau berkas koneksi ekspor, dan Anda masuk ke Microsoft saat membukanya."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],
@@ -108,7 +109,7 @@
         {
             "id": "declare",
             "question": "Mengapa skrip menyatakan “Must declare the scalar variable”?",
-            "answer": "Pernyataan yang membaca variabel berjalan pada batch berbeda dari <code>DECLARE</code>-nya: ada baris <code>GO</code> di antaranya, atau <code>Cmd+Enter</code> hanya menjalankan pernyataan pada kursor. Pilih kedua pernyataan atau jalankan seluruh skrip."
+            "answer": "Pernyataan yang membaca variabel berjalan pada batch berbeda dari <code>DECLARE</code>-nya: ada baris <code>GO</code> di antaranya, atau <code>⌘⏎</code> hanya menjalankan pernyataan pada kursor. Pilih kedua pernyataan atau jalankan seluruh skrip."
         },
         {
             "id": "freetds",
@@ -118,7 +119,7 @@
     ],
     "related": [
         {
-            "label": "Koneksi, tunnel, dan autentikasi",
+            "label": "Autentikasi cloud untuk AWS, Google, dan Microsoft",
             "href": "/features/connections#cloud-auth"
         },
         {

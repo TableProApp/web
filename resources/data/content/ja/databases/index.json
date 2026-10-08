@@ -43,7 +43,7 @@
         },
         "streaming": {
             "title": "ストリーミング",
-            "intro": "テーブルではなくログ。KafkaQL でメッセージを読み書きします。"
+            "intro": "テーブルではなくログ。TablePro 独自のコマンド言語 KafkaQL でメッセージを読み書きします。"
         },
         "coordination": {
             "title": "協調",
@@ -108,7 +108,7 @@
             "defaultPort": "既定のポート",
             "minimumVersion": "最低バージョン",
             "enforced": "{version}、強制：古いサーバーは拒否",
-            "documented": "{version}、文書に記載",
+            "noMinimum": "なし",
             "embedded": "組み込みエンジン",
             "embeddedValue": "{name} {version}",
             "ios": "iPhone と iPad"
@@ -134,7 +134,8 @@
         "availability": {
             "devices": "{devices} で使用可能",
             "bundled": "Mac アプリにドライバー同梱",
-            "registry": "初めて {name} を選ぶとドライバーをダウンロード"
+            "registry": "初めて {name} を選ぶとドライバーをダウンロード",
+            "free": "無料で使用可能（<pricing>有料プラン</pricing>は任意）"
         },
         "release": "{version} の新機能",
         "docs": "{name} セットアップガイド",
@@ -180,7 +181,8 @@
         "download": {
             "title": "TablePro を入手",
             "mac": "Mac アプリは無料でダウンロードして使えます。Starter や Team プランは任意の機能を追加します。",
-            "ios": "iPhone と iPad アプリは App Store で入手できます。"
+            "ios": "iPhone と iPad アプリは App Store で入手できます。",
+            "pricing": "料金を見る"
         }
     }
 }

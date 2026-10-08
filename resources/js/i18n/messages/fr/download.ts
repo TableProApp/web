@@ -28,6 +28,10 @@ export default {
         "summary": "Quel Mac ai-je ?",
         "body": "Ouvrez le menu Apple et choisissez « À propos de ce Mac ». Un Mac avec Apple silicon affiche une ligne « Puce », par exemple Apple M2. Un Mac Intel affiche une ligne « Processeur » mentionnant Intel."
     },
+    "checksum": {
+        "summary": "Vérifier votre téléchargement",
+        "body": "Exécutez <code>shasum -a 256</code> sur le fichier dans Terminal. Le résultat doit correspondre à la somme SHA-256 ci-dessous."
+    },
     "afterClick": {
         "title": "Installez ensuite l’application",
         "body": "Ouvrez {file} depuis votre dossier Téléchargements et faites glisser TablePro dans Applications.",

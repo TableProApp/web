@@ -40,7 +40,7 @@
             "id": "work",
             "title": "查詢與編輯",
             "paragraphs": [
-                "任何連線都可從 SQL 直接讀取檔案，例如 <code>SELECT * FROM 'data.csv'</code> 或 <code>read_parquet('events.parquet')</code>。<code>ATTACH</code> 其他 DuckDB 檔案會作為第二個資料庫加入側欄，<code>Cmd+K</code> 無須重新連線即可切換。重新連線後 DuckDB 不保留任何附加。",
+                "任何連線都可從 SQL 直接讀取檔案，例如 <code>SELECT * FROM 'data.csv'</code> 或 <code>read_parquet('events.parquet')</code>。<code>ATTACH</code> 其他 DuckDB 檔案會作為第二個資料庫加入側欄，<code>⌘K</code> 無須重新連線即可切換。重新連線後 DuckDB 不保留任何附加。",
                 "<explain>EXPLAIN</explain> 繪製為計畫圖。編輯資料表中的列時，<editing>Preview SQL</editing> 先顯示每個陳述式，資料檔案上的檢視表保持唯讀。"
             ]
         },
@@ -72,7 +72,8 @@
             "title": "iPhone 與 iPad",
             "paragraphs": [
                 "iPhone 與 iPad App 內建 DuckDB。在「檔案」App 選擇的檔案於原位置開啟，不建立副本；可選 In-Memory 建立暫用資料庫。依卡片瀏覽資料表，在 Query 分頁執行 SQL。Remote (Quack) 連線僅支援 Mac。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

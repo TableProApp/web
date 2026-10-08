@@ -42,7 +42,7 @@
                 "PL/SQL ブロックやストアドユニットはセミコロンの数によらず一つの文として実行するので、中にカーソルを置いて実行してください。SQL*Plus や SQL Developer のスクリプトはそのまま動作し、<code>/</code> だけの行は直前のユニットを終えます。コンパイル失敗は Oracle のエラーを一行ずつ位置付きで表示します。",
                 "<code>DBMS_OUTPUT.PUT_LINE</code> の各行は出力した文の結果と表示し、<code>SET SERVEROUTPUT ON</code> は不要です。無名ブロックの <code>:name</code> はパネルで入力する <parameters>クエリパラメーター</parameters> です。",
                 "各文は成功時にコミットします。変更を保持するには <code>SET TRANSACTION</code>、<code>SAVEPOINT</code> や <code>LOCK TABLE</code> で始めると、グリッド保存も含む以後のすべては <code>COMMIT</code> か <code>ROLLBACK</code> を待ちます。",
-                "各ユーザーがスキーマで、<code>Cmd+K</code> は再接続せずアクティブなものを切り替えます。行編集は <editing>Preview SQL</editing> で保留します。<code>EXECUTE IMMEDIATE</code> 経由でも削除や truncate を行うブロックは実行前に <safeMode>危険なクエリの警告</safeMode> を表示します。"
+                "各ユーザーがスキーマで、<code>⌘K</code> は再接続せずアクティブなものを切り替えます。行編集は <editing>Preview SQL</editing> で保留します。<code>EXECUTE IMMEDIATE</code> 経由でも削除や truncate を行うブロックは実行前に <safeMode>危険なクエリの警告</safeMode> を表示します。"
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone と iPad",
             "paragraphs": [
                 "iPhone と iPad では Oracle ドライバーをアプリに同梱します。接続フォームは Service Name または SID、SYSDBA と SYSOPER ロール、Network Encryption 設定を受け付けます。テーブルをカードで閲覧し、主キーのある行を編集して Query タブで SQL を実行できます。テーブルの作成・変更は Mac で行います。"
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

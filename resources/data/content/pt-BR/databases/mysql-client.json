@@ -84,7 +84,8 @@
             "title": "iPhone e iPad",
             "paragraphs": [
                 "No iPhone e iPad, navegue por tabelas como cartões, filtre e ordene, edite linhas com chave primária e execute SQL na aba Query. As conexões oferecem SSL de Required a Verify Identity e túneis SSH com senha ou chave. Hosts intermediários SSH não são suportados."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "Direcione a conexão à porta SQL do servidor TiDB, nunca a PD ou TiKV. TiDB Cloud usa a mesma porta; nele, defina SSL Mode como Required.",
                 "Stop envia <code>KILL TIDB QUERY</code> para sua própria sessão. Por trás de TiProxy ou de um balanceador de carga, isso exige Global Kill, ativado por padrão no TiDB desde a versão 6.1.",
-                "EXPLAIN e EXPLAIN ANALYZE mostram o plano TiDB como texto. Restrições CHECK aparecem na aba Structure no TiDB 7.2 ou posterior quando o cluster as ativa, chaves estrangeiras podem ser criadas, e a manutenção de tabelas oferece ANALYZE TABLE.",
+                "EXPLAIN e EXPLAIN ANALYZE mostram o plano TiDB como texto. Restrições CHECK aparecem na aba Structure no TiDB 7.2 ou posterior quando o cluster as ativa, chaves estrangeiras podem ser criadas, e a manutenção de tabelas oferece ANALYZE TABLE. <administer>Users & Roles</administer> funciona no TiDB, sem o campo de limite de conexões.",
                 "Escolha TiDB como tipo de conexão em vez de MySQL para que barra lateral, seletor de tipos e EXPLAIN sigam TiDB."
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL é um cliente de código aberto consolidado, originado no Windows, que agora também oferece um app macOS."
+                "text": "HeidiSQL é um cliente de código aberto consolidado, originado no Windows, que agora também oferece um app macOS. É adequado se você já o usa no Windows e quer o mesmo cliente no seu Mac."
             }
         ],
         "notes": {}

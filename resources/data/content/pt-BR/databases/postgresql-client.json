@@ -86,7 +86,8 @@
             "title": "iPhone e iPad",
             "paragraphs": [
                 "No iPhone e iPad, alterne bancos e esquemas pela barra de ferramentas, navegue por tabelas como cartões, edite linhas com chave primária e execute SQL na aba Query. SSL pode ser configurado de Required até Verify Identity, túneis SSH usam senha ou chave, e hosts intermediários não são suportados."
-            ]
+            ],
+            "asset": "ios-connection-form"
         }
     ],
     "family": [
@@ -114,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin é a ferramenta de administração de código aberto consolidada para PostgreSQL, com depurador, comparação de esquema e backup e restauração.",
+                "text": "pgAdmin é a ferramenta de administração de código aberto consolidada para PostgreSQL, com depurador, comparação de esquema e backup e restauração. É adequado se você usa apenas PostgreSQL e a administração é a maior parte do trabalho.",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 é um app para Mac de PostgreSQL voltado à navegação e edição. Sua própria documentação não inclui administração como backup e restauração, gerenciamento de usuários e monitoramento."
+                "text": "Postico 2 é um app para Mac de PostgreSQL voltado à navegação e edição. Sua própria documentação não inclui administração como backup e restauração, gerenciamento de usuários e monitoramento. É adequado se você usa apenas PostgreSQL e quer um app Mac especializado."
             }
         ],
         "notes": {
@@ -131,8 +132,8 @@
     "faq": [
         {
             "id": "hosted",
-            "question": "TablePro funciona com PostgreSQL hospedado, como Amazon RDS?",
-            "answer": "Sim. Um servidor hospedado tem host e porta como qualquer outro. No RDS e Aurora você também pode entrar com AWS IAM, e para Google Cloud SQL TablePro executa Cloud SQL Auth Proxy."
+            "question": "TablePro funciona com PostgreSQL hospedado, como Amazon RDS, Neon ou Supabase?",
+            "answer": "Sim. Um servidor hospedado tem host e porta como qualquer outro. Neon, Supabase e Heroku se conectam com o host que eles fornecem. Esses serviços exigem TLS, que uma nova conexão tenta primeiro. No RDS e Aurora você também pode entrar com AWS IAM, e para Google Cloud SQL TablePro executa Cloud SQL Auth Proxy."
         },
         {
             "id": "column-order",

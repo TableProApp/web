@@ -13,6 +13,8 @@
  *   formatted by the server for the page's locale.
  * - `otherPlatforms.joiner` joins the platform names in a negative sentence,
  *   so the last one takes "or": "not available for Linux or Windows".
+ * - `checksum` is the disclosure under the builds. It renders only when the
+ *   release data carries a SHA-256 for a build.
  * - Nothing here says a download has started. `afterClick` appears only after
  *   the reader clicked a build, and says what to do if nothing arrived.
  */
@@ -44,6 +46,10 @@ export default {
     whichMac: {
         summary: 'Which Mac do I have?',
         body: 'Open the Apple menu and choose About This Mac. A Mac with Apple silicon shows a Chip line, such as Apple M2. An Intel Mac shows a Processor line that names Intel.',
+    },
+    checksum: {
+        summary: 'Verify your download',
+        body: 'Run <code>shasum -a 256</code> on the file in Terminal. The result should match the SHA-256 checksum below.',
     },
     afterClick: {
         title: 'Next, install it',

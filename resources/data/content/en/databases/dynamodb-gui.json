@@ -62,7 +62,7 @@
             "id": "move-data",
             "title": "Move data",
             "paragraphs": [
-                "There is no import for DynamoDB. Write items from the editor with a PartiQL <code>INSERT</code> or a <code>BatchWriteItem</code> request, which resends unprocessed items and reports any it could not write. <export>Export</export> a table or a result to a file from the Export dialog."
+                "There is no import for DynamoDB. Write items from the editor with a PartiQL <code>INSERT</code> or a <code>BatchWriteItem</code> request, which resends unprocessed items and reports any it could not write. <export>Export</export> a table or a result as {exportFormats} from the Export dialog."
             ]
         }
     ],

@@ -66,8 +66,8 @@ export interface EngineCapabilities {
 }
 
 export interface VersionFloor {
-    /** As copy writes it: `9.1`, `10.x`, `2012`. */
-    text: string;
+    /** As copy writes it: `9.1`, `10.x`, `2012`. Null where the docs say there is no minimum. */
+    text: string | null;
     /** True only where the app refuses an older server. Otherwise the floor is documented. */
     enforced: boolean;
     evidence: string;

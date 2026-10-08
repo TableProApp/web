@@ -84,7 +84,8 @@
             "title": "iPhone und iPad",
             "paragraphs": [
                 "Auf iPhone und iPad durchsuchst du Tabellen als Karten, filterst und sortierst sie, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Abfrage-Tab aus. Verbindungen bieten SSL von Erforderlich bis Identität prüfen und SSH-Tunnel mit Passwort oder Schlüssel. SSH-Sprunghosts werden dort nicht unterstützt."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [
@@ -103,7 +104,7 @@
             "paragraphs": [
                 "Richte die Verbindung auf den SQL-Port des TiDB-Servers, nie auf PD oder TiKV. TiDB Cloud nutzt denselben Port; stelle dort den SSL-Modus auf Erforderlich.",
                 "Stoppen sendet <code>KILL TIDB QUERY</code> für deine Sitzung. Hinter TiProxy oder einem Load Balancer braucht das Global Kill, das TiDB seit Version 6.1 standardmäßig aktiviert.",
-                "EXPLAIN und EXPLAIN ANALYZE zeigen den TiDB-Plan als Text. CHECK-Bedingungen erscheinen ab TiDB 7.2 im Struktur-Tab, wenn der Cluster sie aktiviert; Fremdschlüssel können erstellt werden, und Wartung bietet ANALYZE TABLE.",
+                "EXPLAIN und EXPLAIN ANALYZE zeigen den TiDB-Plan als Text. CHECK-Bedingungen erscheinen ab TiDB 7.2 im Struktur-Tab, wenn der Cluster sie aktiviert; Fremdschlüssel können erstellt werden, und Wartung bietet ANALYZE TABLE. <administer>Users & Roles</administer> funktioniert auch mit TiDB, ohne das Feld für das Verbindungslimit.",
                 "Wähle TiDB statt MySQL als Verbindungstyp, damit Seitenleiste, Typauswahl und EXPLAIN TiDB folgen."
             ]
         },
@@ -140,7 +141,7 @@
             },
             {
                 "product": "heidisql",
-                "text": "HeidiSQL ist ein langjähriger Open-Source-Client aus Windows, der inzwischen auch eine macOS-App bietet."
+                "text": "HeidiSQL ist ein langjähriger Open-Source-Client aus Windows, der inzwischen auch eine macOS-App bietet. Es passt, wenn du es bereits unter Windows nutzt und denselben Client auf deinem Mac willst."
             }
         ],
         "notes": {}

@@ -7,14 +7,14 @@ import Container from '@/components/ui/container';
 import DatabaseMark from '@/components/ui/database-mark';
 import DotList from '@/components/ui/dot-list';
 import LocaleLink from '@/components/ui/locale-link';
-import TextLink from '@/components/ui/text-link';
-import { useI18n } from '@/i18n';
+import TextLink, { textLinkClasses } from '@/components/ui/text-link';
+import { Trans, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import FactsCard from './facts-card';
 import { deviceNamesFor, docsUrl, iosStatus } from './format';
 import RichText from './rich-text';
-import type { DatabaseLinks, DatabaseLabels, EngineDetail, EnginePageContent, PlatformSummary } from './types';
+import type { DatabaseLinks, DatabaseLabels, EngineDetail, EnginePageContent, PlatformSummary, ProductFacts } from './types';
 
 interface EngineHeaderProps {
     content: EnginePageContent;
@@ -22,6 +22,7 @@ interface EngineHeaderProps {
     engine: EngineDetail;
     platforms: { mac: PlatformSummary | null; ios: PlatformSummary | null };
     links: DatabaseLinks;
+    product: ProductFacts;
     /**
      * A detail-crop lead image, placed in the text column under the actions so
      * the facts card on the right sits beside it. A full-width window lead is
@@ -36,7 +37,8 @@ interface EngineHeaderProps {
  * Columns 1-8: the breadcrumb, the engine's mark and the H1, whose device list
  * comes from data, the lead, an availability line (devices, where the driver
  * comes from, and a version label while some channel still serves a Mac build
- * without the engine), then the actions: Download for Mac, the App Store badge
+ * without the engine), what TablePro costs and its licence, from pricing.json
+ * and facts.json, then the actions: Download for Mac, the App Store badge
  * only when the iPhone and iPad app offers the engine, and the setup guide.
  * Columns 9-12: the facts card. Below 1024px the card follows the actions.
  * A detail lead image sits in columns 1-8 under the actions, beside the facts
@@ -44,7 +46,7 @@ interface EngineHeaderProps {
  * empty right half beside the image. Columns are 32px apart (design-system
  * §4.2).
  */
-export default function EngineHeader({ content, labels, engine, platforms, links, lead }: EngineHeaderProps) {
+export default function EngineHeader({ content, labels, engine, platforms, links, product, lead }: EngineHeaderProps) {
     const { locale, m, fmt } = useI18n();
     const devices = joinList(deviceNamesFor(engine, platforms), m.common.list);
     const macDevices = joinList(platforms.mac?.deviceNames ?? [], m.common.list);
@@ -78,6 +80,32 @@ export default function EngineHeader({ content, labels, engine, platforms, links
                                             {fmt(labels.release, { version: engine.release })}
                                         </Badge>
                                     ),
+                                ]}
+                            />
+                        </p>
+                        <p className="type-small mt-1 text-muted-foreground">
+                            <DotList
+                                items={[
+                                    product.free && (
+                                        <Trans
+                                            text={labels.availability.free}
+                                            tags={{
+                                                pricing: (text) => (
+                                                    <LocaleLink href="/pricing" className={textLinkClasses('inline')}>
+                                                        {text}
+                                                    </LocaleLink>
+                                                ),
+                                            }}
+                                        />
+                                    ),
+                                    product.licence !== null &&
+                                        (links.source !== null ? (
+                                            <TextLink href={links.source} external>
+                                                {fmt(labels.otherTools.openSource, { licence: product.licence })}
+                                            </TextLink>
+                                        ) : (
+                                            fmt(labels.otherTools.openSource, { licence: product.licence })
+                                        )),
                                 ]}
                             />
                         </p>

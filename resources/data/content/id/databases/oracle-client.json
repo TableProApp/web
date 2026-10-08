@@ -42,7 +42,7 @@
                 "Blok PL/SQL atau unit tersimpan berjalan sebagai satu pernyataan, berapa pun jumlah titik komanya: letakkan kursor di dalamnya dan jalankan. Skrip SQL*Plus atau SQL Developer berjalan tanpa perubahan, dengan baris yang hanya berisi <code>/</code> mengakhiri unit di atasnya. Unit yang gagal dikompilasi mengembalikan kesalahan Oracle sendiri, satu per baris beserta posisinya.",
                 "Baris <code>DBMS_OUTPUT.PUT_LINE</code> ditampilkan bersama hasil pernyataan yang mencetaknya, tanpa memerlukan <code>SET SERVEROUTPUT ON</code>. Dalam blok anonim, <code>:name</code> adalah <parameters>parameter kueri</parameters> yang Anda isi dari panel.",
                 "Setiap pernyataan melakukan commit saat berhasil. Awali dengan <code>SET TRANSACTION</code>, <code>SAVEPOINT</code>, atau <code>LOCK TABLE</code> untuk menahan perubahan, dan semua setelahnya menunggu <code>COMMIT</code> atau <code>ROLLBACK</code>, termasuk penyimpanan grid.",
-                "Setiap pengguna adalah skema, dan <code>Cmd+K</code> mengganti skema aktif tanpa membuka ulang koneksi. Perubahan baris ditampung dengan <editing>Preview SQL</editing>. Blok yang menghapus atau melakukan truncate, bahkan melalui <code>EXECUTE IMMEDIATE</code>, memunculkan <safeMode>peringatan kueri berbahaya</safeMode> sebelum berjalan."
+                "Setiap pengguna adalah skema, dan <code>⌘K</code> mengganti skema aktif tanpa membuka ulang koneksi. Perubahan baris ditampung dengan <editing>Preview SQL</editing>. Blok yang menghapus atau melakukan truncate, bahkan melalui <code>EXECUTE IMMEDIATE</code>, memunculkan <safeMode>peringatan kueri berbahaya</safeMode> sebelum berjalan."
             ]
         },
         {
@@ -73,7 +73,8 @@
             "title": "iPhone dan iPad",
             "paragraphs": [
                 "Di iPhone dan iPad, driver Oracle disertakan dalam aplikasi. Formulir menerima Service Name atau SID, peran SYSDBA dan SYSOPER, serta pengaturan Network Encryption. Telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan SQL pada tab Query; pembuatan atau perubahan tabel tetap dilakukan di Mac."
-            ]
+            ],
+            "asset": "ios-table-browse"
         }
     ],
     "family": [],

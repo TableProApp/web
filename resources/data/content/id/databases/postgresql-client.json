@@ -86,7 +86,8 @@
             "title": "iPhone dan iPad",
             "paragraphs": [
                 "Di iPhone dan iPad, ganti database dan skema dari toolbar, telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan SQL di tab Query. SSL dapat diatur dari Required hingga Verify Identity, tunnel SSH masuk menggunakan kata sandi atau kunci, dan jump host tidak didukung."
-            ]
+            ],
+            "asset": "ios-connection-form"
         }
     ],
     "family": [
@@ -114,14 +115,14 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin adalah alat administrasi sumber terbuka yang telah lama digunakan untuk PostgreSQL, dengan debugger, perbandingan skema, serta pencadangan dan pemulihan.",
+                "text": "pgAdmin adalah alat administrasi sumber terbuka yang telah lama digunakan untuk PostgreSQL, dengan debugger, perbandingan skema, serta pencadangan dan pemulihan. Cocok jika Anda hanya menggunakan PostgreSQL dan administrasi adalah sebagian besar pekerjaan.",
                 "notes": [
                     "pgadmin-erd-design"
                 ]
             },
             {
                 "product": "postico",
-                "text": "Postico 2 adalah aplikasi Mac untuk PostgreSQL yang berfokus pada penelusuran dan pengeditan. Dokumentasinya tidak mencakup administrasi seperti pencadangan dan pemulihan, pengelolaan pengguna, serta pemantauan."
+                "text": "Postico 2 adalah aplikasi Mac untuk PostgreSQL yang berfokus pada penelusuran dan pengeditan. Dokumentasinya tidak mencakup administrasi seperti pencadangan dan pemulihan, pengelolaan pengguna, serta pemantauan. Cocok jika Anda hanya menggunakan PostgreSQL dan menginginkan aplikasi Mac yang terfokus."
             }
         ],
         "notes": {
@@ -131,8 +132,8 @@
     "faq": [
         {
             "id": "hosted",
-            "question": "Apakah TablePro mendukung PostgreSQL yang dihosting, seperti Amazon RDS?",
-            "answer": "Ya. Server yang dihosting memiliki host dan port seperti server lain. Pada RDS dan Aurora Anda juga dapat masuk dengan AWS IAM, dan untuk Google Cloud SQL TablePro menjalankan Cloud SQL Auth Proxy."
+            "question": "Apakah TablePro mendukung PostgreSQL yang dihosting, seperti Amazon RDS, Neon, atau Supabase?",
+            "answer": "Ya. Server yang dihosting memiliki host dan port seperti server lain. Neon, Supabase, dan Heroku terhubung menggunakan host yang mereka berikan kepada Anda. Layanan ini mewajibkan TLS, yang dicoba lebih dulu oleh koneksi baru. Pada RDS dan Aurora Anda juga dapat masuk dengan AWS IAM, dan untuk Google Cloud SQL TablePro menjalankan Cloud SQL Auth Proxy."
         },
         {
             "id": "column-order",

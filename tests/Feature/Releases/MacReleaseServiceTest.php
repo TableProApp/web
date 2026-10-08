@@ -75,6 +75,7 @@ it('reads the app release from releases/latest, with both DMGs and their sizes',
             'name' => 'TablePro-0.77.0-arm64.dmg',
             'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg',
             'bytes' => 22_943_352,
+            'sha256' => null,
         ])
         ->and($release->assets['x86_64']['name'])->toBe('TablePro-0.77.0-x86_64.dmg')
         ->and($release->assets['x86_64']['bytes'])->toBe(26_202_607)
@@ -83,6 +84,53 @@ it('reads the app release from releases/latest, with both DMGs and their sizes',
 
     Http::assertSentCount(1);
     Http::assertNotSent(fn(Request $request): bool => str_contains($request->url(), '/releases?') || str_ends_with($request->url(), '/releases'));
+});
+
+it('keeps each DMG’s SHA-256 when the releases API reports one, in the cache and in the last good copy', function (): void {
+    $arm64 = str_repeat('a1', 32);
+
+    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload(assets: [
+        githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352, digest: "sha256:{$arm64}"),
+        githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607),
+    ]))]);
+
+    $release = macRelease();
+
+    expect($release->assets['arm64']['sha256'])->toBe($arm64)
+        ->and($release->assets['x86_64']['sha256'])->toBeNull()
+        ->and($release->toProps('en')['assets']['arm64']['sha256'])->toBe($arm64)
+        ->and(releases()->lastGood()?->assets['arm64']['sha256'])->toBe($arm64);
+});
+
+it('states no checksum for a digest that is not a SHA-256', function (mixed $digest): void {
+    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayload(assets: [
+        [...githubAsset('TablePro-0.77.0-arm64.dmg', 22_943_352), 'digest' => $digest],
+        githubAsset('TablePro-0.77.0-x86_64.dmg', 26_202_607),
+    ]))]);
+
+    expect(macRelease())->source->toBe(MacRelease::SOURCE_GITHUB)
+        ->and(macRelease()->assets['arm64']['sha256'])->toBeNull();
+})->with([
+    'another algorithm' => ['sha512:' . str_repeat('ab', 64)],
+    'too short' => ['sha256:abc123'],
+    'not hex' => ['sha256:' . str_repeat('zz', 32)],
+    'no prefix' => [str_repeat('ab', 32)],
+    'not a string' => [42],
+]);
+
+it('reads a copy stored before checksums were kept', function (): void {
+    $asset = ['name' => 'TablePro-0.77.0-arm64.dmg', 'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg', 'bytes' => 1];
+
+    $release = MacRelease::fromArray([
+        'version' => '0.77.0',
+        'publishedAt' => '2026-10-02',
+        'assets' => ['arm64' => $asset, 'x86_64' => $asset],
+        'releaseUrl' => 'https://github.com/TableProApp/TablePro/releases/tag/v0.77.0',
+        'releasesUrl' => 'https://github.com/TableProApp/TablePro/releases',
+        'source' => MacRelease::SOURCE_GITHUB,
+    ]);
+
+    expect($release?->assets['arm64']['sha256'])->toBeNull();
 });
 
 it('formats the release date for the reader in PHP, in each locale', function (): void {
@@ -151,6 +199,7 @@ it('builds the DMG links from platforms.json when it falls back to the appcast',
             'name' => 'TablePro-0.77.0-arm64.dmg',
             'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg',
             'bytes' => null,
+            'sha256' => null,
         ])
         ->and($release->assets['x86_64']['url'])->toBe('https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-x86_64.dmg')
         ->and($release->releaseUrl)->toBe('https://github.com/TableProApp/TablePro/releases/tag/v0.77.0');
@@ -370,7 +419,7 @@ it('is unavailable when nothing ever answered: no version, and both buttons open
         ->and($release->isAvailable())->toBeFalse()
         ->and($release->version)->toBeNull()
         ->and($release->publishedAt)->toBeNull()
-        ->and($release->assets['arm64'])->toBe(['name' => null, 'url' => 'https://github.com/TableProApp/TablePro/releases/latest', 'bytes' => null])
+        ->and($release->assets['arm64'])->toBe(['name' => null, 'url' => 'https://github.com/TableProApp/TablePro/releases/latest', 'bytes' => null, 'sha256' => null])
         ->and($release->assets['x86_64']['url'])->toBe('https://github.com/TableProApp/TablePro/releases/latest')
         ->and($release->toProps('en')['publishedAtFormatted'])->toBeNull();
 });

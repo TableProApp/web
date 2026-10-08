@@ -48,7 +48,7 @@
             "id": "move-data",
             "title": "Export",
             "paragraphs": [
-                "There is no import. <export>Export</export> reads a whole index with a point-in-time and <code>search_after</code>, so it is not capped at the result window, and writes CSV, JSON or XLSX."
+                "There is no import. <export>Export</export> reads a whole index with a point-in-time and <code>search_after</code>, so it is not capped at the result window, and writes {exportFormats}."
             ]
         }
     ],

@@ -11,7 +11,7 @@
     "breadcrumb": "Apache Kafka",
     "header": {
         "title": "Klien Apache Kafka untuk {devices}",
-        "lead": "Baca topik dari posisi awal pilihan Anda, lihat seberapa jauh setiap grup consumer tertinggal, dan hasilkan pesan uji, semuanya menggunakan KafkaQL. Topik adalah log, sehingga grid membaca pesan dan tidak pernah mengeditnya."
+        "lead": "Baca topik dari posisi awal pilihan Anda, lihat seberapa jauh setiap grup consumer tertinggal, dan hasilkan pesan uji, semuanya menggunakan KafkaQL, bahasa perintah milik TablePro sendiri. Topik adalah log, sehingga grid membaca pesan dan tidak pernah mengeditnya."
     },
     "asset": "mac-db-kafka-consume",
     "links": {
@@ -50,7 +50,7 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "Impor tidak tersedia; masukkan pesan ke topik menggunakan <code>PRODUCE INTO</code>. <export>Ekspor</export> pesan yang dibaca kueri sebagai CSV, JSON, atau XLSX."
+                "Impor tidak tersedia; masukkan pesan ke topik menggunakan <code>PRODUCE INTO</code>. <export>Ekspor</export> pesan yang dibaca kueri sebagai {exportFormats}."
             ]
         }
     ],
