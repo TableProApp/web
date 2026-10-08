@@ -6,8 +6,8 @@ export default {
     },
     "post": {
         "archive": {
-            "named": "此文章发布于 {date}，介绍的是当时的 {release}。了解 TablePro 当前的功能，请查看<features>功能</features>和<changelog>更新日志</changelog>。",
-            "unnamed": "此文章发布于 {date}，介绍的是当时的 TablePro。了解 TablePro 当前的功能，请查看<features>功能</features>和<changelog>更新日志</changelog>。"
+            "named": "此文章发布于 {date}，介绍的是当时的 {release}。了解 TablePro 当前的功能，请查看<features>功能</features>和<changelog>更新日志</changelog>（英语）。",
+            "unnamed": "此文章发布于 {date}，介绍的是当时的 TablePro。了解 TablePro 当前的功能，请查看<features>功能</features>和<changelog>更新日志</changelog>（英语）。"
         },
         "brandedTitle": "{title} – TablePro 博客",
         "correction": "更正，{date}",

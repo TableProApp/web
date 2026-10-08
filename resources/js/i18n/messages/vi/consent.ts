@@ -11,7 +11,7 @@ import type { Messages } from '../../types.ts';
  */
 export default {
     label: 'Cookie phân tích',
-    body: 'Cho phép Google Analytics đặt cookie?',
+    body: 'Cho phép cookie Google Analytics để đo lượt truy cập?',
     privacy: 'Quyền riêng tư',
     allow: 'Cho phép',
     decline: 'Từ chối',

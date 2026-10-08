@@ -5,12 +5,12 @@ export default {
         "named": "{systems} {version} {releaseName} 以降",
         "unnamed": "{systems} {version} 以降"
     },
-    "requires": "{requirement} が必要です",
-    "systemsJoiner": "と",
+    "requires": "{requirement}が必要です",
+    "systemsJoiner": " と ",
     "architectures": {
         "arm64": "Apple silicon",
         "x86_64": "Intel",
-        "joiner": "または"
+        "joiner": " または "
     },
     "app": {
         "mac": "Mac アプリ",
@@ -22,8 +22,8 @@ export default {
     "free": "無料、アプリ内課金なし",
     "status": {
         "released": "利用可能",
-        "prototype": "プロトタイプのみです。インストールできるものはなく、リリース日も未定です。",
-        "none": "提供していません。リリース日も未定です。"
+        "prototype": "プロトタイプのみです。インストールできるものはなく、リリース日の予定もありません。",
+        "none": "提供していません。リリース日の予定もありません。"
     },
     "names": {
         "linux": "Linux",

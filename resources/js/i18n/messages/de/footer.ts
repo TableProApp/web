@@ -13,8 +13,8 @@ export default {
         },
         "resources": {
             "title": "Ressourcen",
-            "docs": "Dokumentation",
-            "changelog": "Änderungsprotokoll",
+            "docs": "Dokumentation (Englisch)",
+            "changelog": "Änderungsprotokoll (Englisch)",
             "blog": "Blog",
             "faq": "Häufige Fragen",
             "source": "Quellcode",
@@ -44,7 +44,7 @@ export default {
     },
     "newsletter": {
         "title": "Versionshinweise per E-Mail",
-        "body": "Gelegentliche E-Mails mit Versionshinweisen. Jede E-Mail enthält einen Abmeldelink.",
+        "body": "Gelegentliche E-Mails auf Englisch mit Versionshinweisen. Jede E-Mail enthält einen Abmeldelink.",
         "note": "Zuerst senden wir dir einen Bestätigungslink. <link>Datenschutzerklärung</link>"
     },
     "bottom": {

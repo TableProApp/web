@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "Todos os recursos pagos",
-    "finePrint": "Preços em dólares americanos. {merchant} é o vendedor responsável: recebe o pagamento e calcula os tributos sobre vendas ou IVA no checkout.",
+    "finePrint": "Preços em dólares americanos. {merchant} é o merchant of record: recebe o pagamento e calcula os tributos sobre vendas ou IVA no checkout.",
     "finePrintCurrency": "Preços em dólares americanos.",
     "comparePlans": "Comparar planos",
     "section": {

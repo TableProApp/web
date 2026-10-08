@@ -6,7 +6,7 @@ export default {
     "englishOnly": "（英語）",
     "list": {
         "separator": "、",
-        "last": "と"
+        "last": " と "
     },
     "shortList": {
         "separator": "、",

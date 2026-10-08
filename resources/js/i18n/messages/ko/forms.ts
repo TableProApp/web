@@ -3,7 +3,7 @@ import type { Messages } from '../../types.ts';
 export default {
     "email": {
         "label": "이메일 주소",
-        "placeholder": "you@example.com"
+        "placeholder": "name@example.com"
     },
     "subscribe": "구독",
     "invalidEmail": "올바른 이메일 주소를 입력하세요.",

@@ -54,7 +54,7 @@
                     "id": "explain",
                     "title": "EXPLAIN và EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> hiển thị execution plan của query dưới dạng sơ đồ, dạng cây kèm thanh chi phí, hoặc nguyên văn kết quả của engine. Chọn một lần chạy trước của cùng query làm mốc, Compare sẽ cho biết query có chậm đi không và plan có thay đổi không; chênh lệch dưới {explainNoise}% được coi là nhiễu. Cả hai đều miễn phí."
+                        "<kbd>⌥⌘E</kbd> hiển thị execution plan của query dưới dạng sơ đồ, dạng cây kèm thanh chi phí, hoặc nguyên văn kết quả của engine. Chọn một lần chạy trước của cùng query làm baseline, Compare sẽ cho biết query có chậm đi không và plan có thay đổi không; chênh lệch dưới {explainNoise}% được coi là nhiễu. Cả hai đều miễn phí."
                     ],
                     "engines": [
                         { "label": "Plan dạng sơ đồ và cây", "list": "explainDiagram" },
@@ -84,7 +84,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Vẽ kết quả thành biểu đồ cột, đường, vùng hoặc biểu đồ điểm (scatter), với trục thời gian cho cột ngày tháng và một series cho mỗi giá trị của cột bạn chọn. Một biểu đồ vẽ tối đa {chartPoints} điểm và {chartSeries} series từ {chartInspectedRows} dòng đầu tiên, và thanh công cụ sẽ báo khi biểu đồ không vẽ hết dữ liệu."
+                        "Vẽ kết quả thành biểu đồ cột, đường, vùng hoặc biểu đồ phân tán (scatter), với trục thời gian cho cột ngày tháng và một series cho mỗi giá trị của cột bạn chọn. Một biểu đồ vẽ tối đa {chartPoints} điểm và {chartSeries} series từ {chartInspectedRows} dòng đầu tiên, và thanh công cụ sẽ báo khi biểu đồ không vẽ hết dữ liệu."
                     ],
                     "paid": ["result-charts"],
                     "asset": "mac-result-chart"

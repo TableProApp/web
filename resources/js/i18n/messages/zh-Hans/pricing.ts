@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "所有付费功能",
-    "finePrint": "价格以美元计。{merchant} 为名义销售商，负责收款，并在结账时计算销售税或增值税。",
+    "finePrint": "价格以美元计。{merchant} 为 merchant of record，负责收款，并在结账时计算销售税或增值税。",
     "finePrintCurrency": "价格以美元计。",
     "comparePlans": "对比方案",
     "section": {

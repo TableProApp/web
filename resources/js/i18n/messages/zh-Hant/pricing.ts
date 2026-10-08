@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "所有付費功能",
-    "finePrint": "價格以美元計。{merchant} 為交易的登記銷售商，負責收款，並在結帳時計算銷售稅或加值稅。",
+    "finePrint": "價格以美元計。{merchant} 為 merchant of record，負責收款，並在結帳時計算銷售稅或加值稅。",
     "finePrintCurrency": "價格以美元計。",
     "comparePlans": "比較方案",
     "section": {

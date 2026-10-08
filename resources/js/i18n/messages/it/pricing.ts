@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "Tutte le funzionalità a pagamento",
-    "finePrint": "Prezzi in dollari statunitensi. {merchant} è il venditore responsabile: incassa il pagamento e calcola le eventuali imposte sulle vendite o l’IVA al checkout.",
+    "finePrint": "Prezzi in dollari statunitensi. {merchant} è il merchant of record: incassa il pagamento e calcola le eventuali imposte sulle vendite o l’IVA al checkout.",
     "finePrintCurrency": "Prezzi in dollari statunitensi.",
     "comparePlans": "Confronta i piani",
     "section": {

@@ -1,8 +1,8 @@
 {
     "seo": {
-        "title": "TablePro per {deviceList}",
+        "title": "TablePro: client database nativo per {deviceList}",
         "titleFallback": "TablePro: client database nativo per sviluppatori",
-        "description": "Client nativo e open source per PostgreSQL, MySQL, SQL Server, MongoDB, Redis e altri. Uso gratuito con funzioni a pagamento opzionali."
+        "description": "Client database nativo e open source per PostgreSQL, MySQL, SQL Server, MongoDB, Redis e altri. Uso gratuito con funzioni a pagamento opzionali."
     },
     "og": {
         "kicker": "",
@@ -14,7 +14,7 @@
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Altri modi per installare",
-        "business": "TablePro è open source e si può usare gratuitamente. I piani a pagamento aggiungono funzionalità opzionali alle {paidPlatformApps}. <pricing>Vedi i prezzi</pricing>"
+        "business": "TablePro è open source e si può usare gratuitamente. I piani a pagamento aggiungono funzionalità opzionali all’{paidPlatformApps}. <pricing>Vedi i prezzi</pricing>"
     },
     "databases": {
         "title": "Database relazionali, documentali, chiave-valore e analitici",
@@ -106,7 +106,7 @@
     },
     "switch": {
         "title": "Passi da un’altra app?",
-        "lead": "L’importazione da altre app e Apri cartella progetto sono disponibili solo nell’{macApp}.",
+        "lead": "L’importazione da altre app e Open Project Folder sono disponibili solo nell’{macApp}.",
         "import": "Importa le connessioni da {apps}, incluse le password salvate.",
         "importWithoutPasswords": "Le connessioni da {apps} vengono importate senza password.",
         "project": "Apri cartella progetto legge i file <code>.env</code> e <code>docker-compose.yml</code>, lo schema Prisma e altri file di configurazione di un progetto e compila nuove connessioni con ciò che trova.",

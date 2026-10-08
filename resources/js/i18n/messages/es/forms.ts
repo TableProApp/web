@@ -3,7 +3,7 @@ import type { Messages } from '../../types.ts';
 export default {
     "email": {
         "label": "Dirección de correo",
-        "placeholder": "you@example.com"
+        "placeholder": "tu@example.com"
     },
     "subscribe": "Suscribirse",
     "invalidEmail": "Introduce una dirección de correo válida.",

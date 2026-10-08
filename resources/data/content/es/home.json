@@ -1,8 +1,8 @@
 {
     "seo": {
-        "title": "TablePro: cliente nativo para {deviceList}",
-        "titleFallback": "TablePro: cliente de bases de datos nativo para desarrolladores",
-        "description": "Cliente nativo de código abierto para PostgreSQL, MySQL, SQL Server, MongoDB, Redis y más. Gratis, con funciones de pago opcionales."
+        "title": "TablePro: cliente de bases de datos para {deviceList}",
+        "titleFallback": "TablePro: cliente de bases de datos para desarrolladores",
+        "description": "Cliente de bases de datos nativo y de código abierto para PostgreSQL, MySQL, SQL Server, MongoDB, Redis y más. Gratis, con funciones de pago opcionales."
     },
     "og": {
         "kicker": "",
@@ -14,11 +14,11 @@
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Otras formas de instalar",
-        "business": "TablePro es de código abierto y se puede usar gratis. Los planes de pago añaden funciones opcionales a {paidPlatformApps}. <pricing>Ver precios</pricing>"
+        "business": "TablePro es de código abierto y se puede usar gratis. Los planes de pago añaden funciones opcionales a la {paidPlatformApps}. <pricing>Ver precios</pricing>"
     },
     "databases": {
         "title": "Bases de datos relacionales, documentales, clave-valor y analíticas",
-        "lead": "Algunos controladores vienen con {macApp}. Los demás se descargan la primera vez que eliges esa base de datos y se actualizan por separado.",
+        "lead": "Algunos controladores vienen con la {macApp}. Los demás se descargan la primera vez que eliges esa base de datos y se actualizan por separado.",
         "byType": "Bases de datos compatibles por tipo",
         "categories": {
             "relational": "Relacionales",
@@ -42,7 +42,7 @@
     },
     "workflows": {
         "title": "Trabaja con tus bases de datos",
-        "lead": "Los flujos de trabajo de esta sección están en {macApp}. Para {iosDevices}, TablePro tiene una app independiente con su propio alcance, descrito más abajo.",
+        "lead": "Los flujos de trabajo de esta sección están en la {macApp}. Para {iosDevices}, TablePro tiene una app independiente con su propio alcance, descrito más abajo.",
         "paid": "Requiere un plan {tier}: {features}.",
         "link": "Todas las funciones",
         "rows": [
@@ -106,7 +106,7 @@
     },
     "switch": {
         "title": "Si vienes de otra app",
-        "lead": "La importación desde otras apps y Abrir carpeta de proyecto solo están en {macApp}.",
+        "lead": "La importación desde otras apps y Open Project Folder solo están en la {macApp}.",
         "import": "Importa conexiones de {apps}, incluidas las contraseñas guardadas.",
         "importWithoutPasswords": "Las conexiones de {apps} se importan sin sus contraseñas.",
         "project": "Abrir carpeta de proyecto lee los archivos <code>.env</code>, <code>docker-compose.yml</code>, el esquema de Prisma y otros archivos de configuración de un proyecto, y crea conexiones con los datos que encuentra.",
@@ -114,7 +114,7 @@
     },
     "pricing": {
         "title": "Gratis, con planes de pago opcionales",
-        "lead": "{macApp} se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Un plan Starter o Team añade funciones opcionales como {starterExamples}. Team incluye todo lo de Starter y añade {teamExamples} para compartir conexiones y consultas con tu equipo. {iosApp} es gratis, sin compras dentro de la app."
+        "lead": "La {macApp} se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Un plan Starter o Team añade funciones opcionales como {starterExamples}. Team incluye todo lo de Starter y añade {teamExamples} para compartir conexiones y consultas con tu equipo. La {iosApp} es gratis, sin compras dentro de la app."
     },
     "openSource": {
         "title": "Código abierto y listo para descargar",

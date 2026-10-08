@@ -128,7 +128,7 @@
     },
     "price": {
       "free": "免费",
-      "labelled": "{label}: {price}",
+      "labelled": "{label}：{price}",
       "amount": {
         "once": "一次 {amount}",
         "month": "每月 {amount}",
@@ -136,19 +136,19 @@
         "none": "{amount}"
       },
       "per": {
-        "device": "每设备 {price}",
-        "user": "每用户 {price}",
-        "seat": "每席位 {price}",
-        "license": "每许可证 {price}",
+        "device": "{price}/设备",
+        "user": "{price}/用户",
+        "seat": "{price}/席位",
+        "license": "{price}/许可证",
         "none": "{price}"
       },
       "units": {
-        "one": "一台设备 {price}",
-        "other": "最多 {count} 台设备 {price}"
+        "one": "{price}，限 1 台设备",
+        "other": "{price}，最多 {count} 台设备"
       },
       "minUnits": {
-        "one": "至少一个席位，{price}",
-        "other": "至少 {count} 个席位，{price}"
+        "one": "{price}，至少 1 个席位",
+        "other": "{price}，至少 {count} 个席位"
       },
       "renewal": "续费",
       "ios": "iPhone、iPad 应用",

@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "모든 유료 기능",
-    "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 공식 판매자로서 결제를 받고 결제 시 판매세 또는 VAT를 계산합니다.",
+    "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 받고 결제 시 판매세 또는 VAT를 계산합니다.",
     "finePrintCurrency": "가격은 미국 달러 기준입니다.",
     "comparePlans": "플랜 비교",
     "section": {

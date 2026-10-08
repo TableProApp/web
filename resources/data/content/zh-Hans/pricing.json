@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "账单",
-        "merchant": "{merchant} 是 TablePro 的名义销售商，负责向您销售方案、收款、根据账单地址计算销售税或增值税，并通过邮件发送收据和发票。价格以美元列示。",
+        "merchant": "{merchant} 是 TablePro 的 merchant of record，负责向您销售方案、收款、根据账单地址计算销售税或增值税，并通过邮件发送收据和发票。价格以美元列示。",
         "renewal": "月付和年付方案会自动续订，直到您在<account>您的账户</account>或 {merchant} 客户门户中取消。取消后，方案可继续使用至已付费期间结束，您也可在此之前恢复订阅。如果续费失败，{merchant} 会通过邮件发送更新银行卡的链接，并在约三周内重试扣款。",
         "portal": "通过 {merchant} 购买的订单，其发票、收据、付款方式和取消订阅均可在 <portal>{merchant} 客户门户</portal>中管理，使用结账时的邮箱地址登录即可。您账户中的 <account>Billing & invoices</account> 也可打开该门户。"
     },

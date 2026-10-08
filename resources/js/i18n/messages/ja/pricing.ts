@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "すべての有料機能",
-    "finePrint": "価格は米ドルです。{merchant} が正式な販売者として支払いを受け取り、チェックアウト時に売上税や VAT を計算します。",
+    "finePrint": "価格は米ドルです。{merchant} が merchant of record として支払いを受け取り、チェックアウト時に売上税や VAT を計算します。",
     "finePrintCurrency": "価格は米ドルです。",
     "comparePlans": "プランを比較",
     "section": {

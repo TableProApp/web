@@ -1,8 +1,8 @@
 {
     "seo": {
-        "title": "TablePro : client natif pour {deviceList}",
-        "titleFallback": "TablePro : client de bases de données natif pour les développeurs",
-        "description": "Client natif open source pour PostgreSQL, MySQL, SQL Server, MongoDB, Redis et plus. Gratuit, avec fonctions payantes facultatives."
+        "title": "TablePro : client de bases de données {deviceList}",
+        "titleFallback": "TablePro : client de bases de données pour développeurs",
+        "description": "Client de bases de données natif et open source pour PostgreSQL, MySQL, SQL Server, MongoDB, Redis et plus. Gratuit, avec fonctions payantes facultatives."
     },
     "og": {
         "kicker": "",
@@ -14,11 +14,11 @@
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Autres méthodes d’installation",
-        "business": "TablePro est open source et gratuit à utiliser. Les offres payantes ajoutent des fonctionnalités facultatives à {paidPlatformApps}. <pricing>Voir les tarifs</pricing>"
+        "business": "TablePro est open source et s’utilise gratuitement. Les offres payantes ajoutent des fonctionnalités facultatives à l’{paidPlatformApps}. <pricing>Voir les tarifs</pricing>"
     },
     "databases": {
         "title": "Bases de données relationnelles, documentaires, clé-valeur et analytiques",
-        "lead": "Certains pilotes sont fournis avec {macApp}. Les autres se téléchargent la première fois que vous choisissez cette base et sont mis à jour séparément.",
+        "lead": "Certains pilotes sont fournis avec l’{macApp}. Les autres se téléchargent la première fois que vous choisissez cette base et sont mis à jour séparément.",
         "byType": "Bases de données prises en charge par type",
         "categories": {
             "relational": "Relationnelles",
@@ -42,7 +42,7 @@
     },
     "workflows": {
         "title": "Travaillez avec vos bases de données",
-        "lead": "Les outils de cette section sont disponibles dans {macApp}. Pour {iosDevices}, TablePro propose une application distincte dont les possibilités sont décrites plus bas.",
+        "lead": "Les outils de cette section sont disponibles dans l’{macApp}. Pour {iosDevices}, TablePro propose une application distincte dont les possibilités sont décrites plus bas.",
         "paid": "Nécessite une offre {tier} : {features}.",
         "link": "Toutes les fonctionnalités",
         "rows": [
@@ -106,7 +106,7 @@
     },
     "switch": {
         "title": "Vous venez d’une autre application",
-        "lead": "L’importation depuis d’autres applications et Ouvrir le dossier du projet sont uniquement disponibles dans {macApp}.",
+        "lead": "L’importation depuis d’autres applications et Open Project Folder sont uniquement disponibles dans l’{macApp}.",
         "import": "Importez les connexions depuis {apps}, mots de passe enregistrés compris.",
         "importWithoutPasswords": "Les connexions depuis {apps} sont importées sans leurs mots de passe.",
         "project": "Ouvrir le dossier du projet lit les fichiers <code>.env</code>, <code>docker-compose.yml</code>, le schéma Prisma et d’autres fichiers de configuration du projet, puis préremplit de nouvelles connexions avec les informations trouvées.",
@@ -114,7 +114,7 @@
     },
     "pricing": {
         "title": "Gratuit, avec des offres payantes facultatives",
-        "lead": "{macApp} est gratuit à télécharger et à utiliser, sans période d’essai ni limite de temps. Une offre Starter ou Team ajoute des fonctionnalités facultatives, comme {starterExamples}. Team comprend tout Starter et ajoute {teamExamples} pour partager des connexions et des requêtes avec votre équipe. {iosApp} est gratuit, sans achats intégrés."
+        "lead": "L’{macApp} se télécharge et s’utilise gratuitement, sans période d’essai ni limite de temps. Une offre Starter ou Team ajoute des fonctionnalités facultatives, comme {starterExamples}. Team comprend tout Starter et ajoute {teamExamples} pour partager des connexions et des requêtes avec votre équipe. L’{iosApp} est gratuite, sans achats intégrés."
     },
     "openSource": {
         "title": "Open source et prêt à télécharger",

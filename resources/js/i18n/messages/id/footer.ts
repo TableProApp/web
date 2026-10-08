@@ -13,8 +13,8 @@ export default {
         },
         "resources": {
             "title": "Sumber daya",
-            "docs": "Dokumentasi",
-            "changelog": "Catatan perubahan",
+            "docs": "Dokumentasi (bahasa Inggris)",
+            "changelog": "Catatan perubahan (bahasa Inggris)",
             "blog": "Blog",
             "faq": "Pertanyaan umum",
             "source": "Kode sumber",
@@ -44,7 +44,7 @@ export default {
     },
     "newsletter": {
         "title": "Catatan rilis lewat email",
-        "body": "Email sesekali berisi catatan rilis. Setiap email memiliki tautan berhenti berlangganan.",
+        "body": "Email sesekali dalam bahasa Inggris berisi catatan rilis. Setiap email memiliki tautan berhenti berlangganan.",
         "note": "Kami mengirim tautan konfirmasi lewat email terlebih dahulu. <link>Kebijakan privasi</link>"
     },
     "bottom": {

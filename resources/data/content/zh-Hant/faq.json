@@ -89,7 +89,7 @@
                     "id": "windows-linux",
                     "question": "有 Windows 或 Linux 版本嗎？",
                     "answer": [
-                        "沒有 Windows 版本。Linux 有原型，但暫無可安裝版本，發佈日期未定。"
+                        "沒有 Windows 版本。Linux 有原型，但沒有可安裝的版本，也沒有發佈日期。"
                     ]
                 },
                 {
@@ -193,7 +193,7 @@
                     "id": "payment",
                     "question": "誰處理付款？",
                     "answer": [
-                        "{merchant} 是我們的交易登記銷售商。您向 {merchant} 購買授權，由其收款、在結帳時計算銷售稅或加值稅並寄送收據郵件。發票、付款方式和訂閱可在 <portal>{merchant} 客戶入口網站</portal>中管理，使用購買時的電子郵件登入。"
+                        "{merchant} 是我們的 merchant of record。您向 {merchant} 購買授權，由其收款、在結帳時計算銷售稅或加值稅並寄送收據郵件。發票、付款方式和訂閱可在 <portal>{merchant} 客戶入口網站</portal>中管理，使用購買時的電子郵件登入。"
                     ]
                 },
                 {

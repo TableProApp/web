@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "Alle Bezahlfunktionen",
-    "finePrint": "Preise in US-Dollar. {merchant} ist der verantwortliche Verkäufer: Er nimmt die Zahlung entgegen und berechnet beim Kauf die anfallende Verkaufs- oder Mehrwertsteuer.",
+    "finePrint": "Preise in US-Dollar. {merchant} ist der Merchant of Record: Er nimmt die Zahlung entgegen und berechnet beim Kauf die anfallende Verkaufs- oder Mehrwertsteuer.",
     "finePrintCurrency": "Preise in US-Dollar.",
     "comparePlans": "Tarife vergleichen",
     "section": {

@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "Toutes les fonctionnalités payantes",
-    "finePrint": "Prix en dollars américains. {merchant} est le vendeur officiel : il encaisse le paiement et calcule la taxe sur les ventes ou la TVA lors du règlement.",
+    "finePrint": "Prix en dollars américains. {merchant} est le merchant of record : il encaisse le paiement et calcule la taxe sur les ventes ou la TVA lors du règlement.",
     "finePrintCurrency": "Prix en dollars américains.",
     "comparePlans": "Comparer les offres",
     "section": {

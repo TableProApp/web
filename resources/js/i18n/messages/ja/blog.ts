@@ -6,8 +6,8 @@ export default {
     },
     "post": {
         "archive": {
-            "named": "{date} 公開の記事で、当時の {release} について説明しています。現在の TablePro の機能は、<features>機能一覧</features>と<changelog>変更履歴</changelog>をご覧ください。",
-            "unnamed": "{date} 公開の記事で、当時の TablePro について説明しています。現在の TablePro の機能は、<features>機能一覧</features>と<changelog>変更履歴</changelog>をご覧ください。"
+            "named": "{date} 公開の記事で、当時の {release} について説明しています。現在の TablePro の機能は、<features>機能一覧</features>と<changelog>変更履歴</changelog>（英語）をご覧ください。",
+            "unnamed": "{date} 公開の記事で、当時の TablePro について説明しています。現在の TablePro の機能は、<features>機能一覧</features>と<changelog>変更履歴</changelog>（英語）をご覧ください。"
         },
         "brandedTitle": "{title} – TablePro ブログ",
         "correction": "訂正：{date}",

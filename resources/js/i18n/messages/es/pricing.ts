@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "Todas las funciones de pago",
-    "finePrint": "Precios en dólares estadounidenses. {merchant} es el comerciante registrado: recibe el pago y calcula los impuestos sobre ventas o el IVA al finalizar la compra.",
+    "finePrint": "Precios en dólares estadounidenses. {merchant} es el merchant of record: recibe el pago y calcula los impuestos sobre ventas o el IVA al finalizar la compra.",
     "finePrintCurrency": "Precios en dólares estadounidenses.",
     "comparePlans": "Comparar planes",
     "section": {
