@@ -76,6 +76,14 @@ export interface ComparisonSource {
     retrievedAt: string;
 }
 
+/** Every cited page is in English, and its title is quoted as the page gives it. */
+export const SOURCE_LANGUAGE = 'en';
+
+/** The `lang` of a source title on a page in `locale`: none where the page is in that language already. */
+export function sourceLang(locale: string): string | undefined {
+    return locale === SOURCE_LANGUAGE ? undefined : SOURCE_LANGUAGE;
+}
+
 export interface ComparisonProduct {
     id: string;
     name: string;
