@@ -7,7 +7,7 @@ import { useI18n, type Messages } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { FACTS } from '@/lib/data/facts';
 import { paidLines } from './availability';
-import FeatureRow from './feature-row';
+import FeatureRow, { WINDOW_ROW_SIZES } from './feature-row';
 import RichText from './rich-text';
 import type { HomeContent, HomeEngine } from './types';
 
@@ -16,12 +16,7 @@ interface RowLink {
     label: keyof Messages['nav']['featureLinks'];
 }
 
-/**
- * Where each workflow row leads, and the paid features it describes. A row
- * links every feature page its text covers, by the page's name in the
- * Features menu, so the row never says "Learn more". The paid feature ids are
- * paid-features.json's; their names and plans come from that file.
- */
+// A row links every feature page its text covers, by its name in the Features menu, so it never says "Learn more".
 const ROWS: Record<string, { links: readonly RowLink[]; paid: readonly string[]; layout: 'window' | 'detail' }> = {
     query: { links: [{ href: '/features/querying', label: 'querying' }], paid: ['query-insights', 'result-charts'], layout: 'window' },
     edit: {
@@ -42,19 +37,6 @@ interface WorkflowsSectionProps {
     engines: HomeEngine[];
 }
 
-/**
- * Section 4, `#features`: "What do I do with it day to day?" (sitemap §D;
- * positioning §7 P2, P3, P5 and P1's connection sentences).
- *
- * Five rows, each a heading, two or three sentences, the paid features it
- * mentions with their plan, one image slot and a link to each feature page
- * it covers. The heading scopes the section to the Mac app. Engine, format
- * and tool names come from engines.json and facts.json, so no row types a
- * list the data already holds, and none types a count.
- *
- * The rows are cells of one grid that closes on the next join
- * (design-system §4.7).
- */
 export default function WorkflowsSection({ content, engines }: WorkflowsSectionProps) {
     const { m } = useI18n();
     const shown = useShownSlot();
@@ -107,7 +89,7 @@ export default function WorkflowsSection({ content, engines }: WorkflowsSectionP
                             id={headingId}
                             title={row.title}
                             layout={config.layout}
-                            media={asset !== null ? <AssetSlot id={asset} /> : null}
+                            media={asset !== null ? <AssetSlot id={asset} sizes={config.layout === 'window' ? WINDOW_ROW_SIZES : undefined} /> : null}
                         >
                             <p className="type-body text-foreground">
                                 <RichText text={row.body} values={values} />
