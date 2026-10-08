@@ -32,6 +32,10 @@
         "vcs": {
             "label": "Gestion de versions",
             "tablepro": "Gratuit pour un dossier SQL lié : lettres d’état Git, historique des commits de chaque fichier avec comparaison côte à côte, Restaurer cette version et Annuler les modifications. Pas de staging, commits, push ni branches"
+        },
+        "usageStatistics": {
+            "label": "Statistiques d’utilisation",
+            "tablepro": "Un rapport d’utilisation quotidien, activé par défaut et désactivable dans Réglages"
         }
     },
     "stronger": {
@@ -188,8 +192,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "Pour l’apprentissage, les projets de loisir, la création de contenu et le travail open source sans bénéfice commercial, avec toutes les fonctions. L’activation passe par un JetBrains Account ; des statistiques d’utilisation sont collectées sans possibilité de désactivation.",
+        "datagrip-non-commercial": "Pour l’apprentissage, les projets de loisir, la création de contenu et le travail open source sans bénéfice commercial, avec toutes les fonctions. L’activation passe par un JetBrains Account.",
         "datagrip-databases": "Prise en charge complète avec inspections de code et corrections rapides pour ses moteurs principaux. D’autres, comme DuckDB, Firebird, Informix et Databricks, ont une prise en charge de base via leur pilote JDBC : coloration et navigation des objets, sans vérification d’erreurs.",
-        "datagrip-ai-quota": "JetBrains AI : formule gratuite avec un petit quota récurrent de crédits IA, offres IA payantes pour utiliser davantage le service JetBrains, ou votre clé de fournisseur ou un modèle local."
+        "datagrip-ai-quota": "JetBrains AI : formule gratuite avec un petit quota récurrent de crédits IA, offres IA payantes pour utiliser davantage le service JetBrains, ou votre clé de fournisseur ou un modèle local.",
+        "datagrip-usage-statistics": "Avec la licence gratuite pour usage non commercial, des statistiques d’utilisation sont collectées sans possibilité de désactivation"
     }
 }

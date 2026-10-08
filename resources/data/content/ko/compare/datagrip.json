@@ -32,6 +32,10 @@
         "vcs": {
             "label": "버전 관리",
             "tablepro": "연결된 SQL 폴더에서 무료: Git 상태 문자, 파일별 커밋 기록과 나란히 표시되는 diff, Restore This Version, Discard Changes. 스테이징, 커밋, 푸시, 브랜치 기능 없음"
+        },
+        "usageStatistics": {
+            "label": "사용 통계",
+            "tablepro": "기본적으로 켜져 있는 일일 사용 보고서. 설정에서 끌 수 있습니다"
         }
     },
     "stronger": {
@@ -188,8 +192,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "학습, 취미 프로젝트, 콘텐츠 제작, 상업적 이익이 없는 오픈 소스 작업에 모든 기능을 제공합니다. JetBrains Account로 활성화하며 해제할 수 없는 사용 통계가 수집됩니다.",
+        "datagrip-non-commercial": "학습, 취미 프로젝트, 콘텐츠 제작, 상업적 이익이 없는 오픈 소스 작업에 모든 기능을 제공합니다. JetBrains Account로 활성화합니다.",
         "datagrip-databases": "주요 엔진은 코드 검사와 빠른 수정을 포함한 완전 지원을 제공합니다. DuckDB, Firebird, Informix, Databricks 등은 JDBC 드라이버를 통한 기본 지원으로, 오류 검사는 없고 구문 강조와 객체 탐색을 제공합니다.",
-        "datagrip-ai-quota": "JetBrains AI: 소량의 AI 크레딧이 주기적으로 제공되는 무료 등급, JetBrains 자체 서비스를 더 많이 쓰기 위한 유료 AI 요금제, 또는 개인 제공자 키나 로컬 모델."
+        "datagrip-ai-quota": "JetBrains AI: 소량의 AI 크레딧이 주기적으로 제공되는 무료 등급, JetBrains 자체 서비스를 더 많이 쓰기 위한 유료 AI 요금제, 또는 개인 제공자 키나 로컬 모델.",
+        "datagrip-usage-statistics": "비상업용 무료 라이선스에서는 해제할 수 없는 사용 통계가 수집됩니다"
     }
 }

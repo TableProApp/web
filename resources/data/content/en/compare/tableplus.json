@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro vs TablePlus",
-        "lead": "TablePlus and TablePro are database clients that both describe themselves as native, with apps for the Mac, iPhone and iPad. TablePlus also runs on Windows and Linux. TablePro is open source, and its paid plans add optional features to the Mac app."
+        "lead": "TablePlus and TablePro are database clients that both describe themselves as native, with apps for the Mac, iPhone and iPad. TablePlus also runs on Windows and Linux. TablePro is open source, and its paid plans add optional features to the Mac app. Despite the similar names, they are separate products from unrelated makers."
     },
     "shortAnswer": {
         "tablepro": [
             "You want an open-source client. TablePro is open source under the AGPLv3, including the code of its paid features.",
-            "You want the AI assistant and the MCP server at no cost. Both are free in the Mac app, with the AI provider you choose.",
             "You want a free iPhone and iPad app with no in-app purchases.",
             "You would rather pay only for the features you need. The free app has no tab or window limits, and paid plans add features such as {starterExamples}."
         ],
@@ -90,8 +89,8 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> keeps connections in step between your Macs and your iPhone or iPad. It is part of Starter on the Mac, and free in the iPhone and iPad app.",
-                "cite": [],
+                "text": "<link>iCloud Sync</link> keeps connections in step between your Macs and your iPhone or iPad. It is part of Starter on the Mac, and free in the iPhone and iPad app. TablePlus syncs its connections through a cloud folder you choose, such as Dropbox or iCloud.",
+                "cite": ["cells.sync"],
                 "feature": "icloud-sync",
                 "href": null
             },
@@ -178,7 +177,8 @@
         "tableplus-one-year-updates": "Paid once, with a year of updates. The app keeps working after that.",
         "tableplus-databases": "Relational, document, key-value and analytical engines, among them PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica and Greenplum. Some engines are available on only some platforms.",
         "tableplus-ai": "A chat plugin that works with OpenAI, Anthropic, GitHub Copilot or a local model",
-        "tableplus-ios-purchase": "Free to download, with in-app purchases. An active TablePlus license also covers it on a set number of devices.",
+        "tableplus-ios-purchase": "Free to download, with in-app purchases. An active TablePlus license also covers it on a set number of devices. It needs iOS {value} or later.",
+        "tableplus-sync-folder": "Connections sync through a cloud folder you choose, such as Dropbox or iCloud",
         "tableplus-safe-mode-levels": "{value} levels, with Touch ID support"
     }
 }

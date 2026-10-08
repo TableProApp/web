@@ -40,6 +40,8 @@ export interface CellView {
     lines: CellLine[];
     /** Source ids in the product's `sources`, in citation order, without repeats. */
     sources: string[];
+    /** The first line already says yes or no, so the mark is not read out as well. */
+    worded?: boolean;
     /** An internal link under the lines (TablePro's cells only). */
     link?: { href: string; label: string };
 }
@@ -63,7 +65,8 @@ export interface TableProFacts {
     /** `iOS and iPadOS 18 or later`, or null while there is no iPhone and iPad app. */
     iosRequirement: string | null;
     macArchitectures: ('arm64' | 'x86_64')[];
-    starter: { monthly: number; yearly: number; lifetime: number };
+    /** `activations`: the Macs one Starter license covers. */
+    starter: { monthly: number; yearly: number; lifetime: number; activations: number };
     team: { monthly: number; yearly: number; lifetime: number; minSeats: number };
     /** The iPhone and iPad app is free and sells nothing. */
     iosFree: boolean;
@@ -187,6 +190,10 @@ function unique<T>(items: T[]): T[] {
     return [...new Set(items)];
 }
 
+function cellSources(cell: Pick<ComparisonCell, 'source'>): string[] {
+    return typeof cell.source === 'string' ? [cell.source] : cell.source;
+}
+
 /**
  * The source ids behind a list item's `cite` entries: `platforms`, `licence`,
  * `status`, `mac`, `technology`, `prices` or `cells.{key}`. An entry that
@@ -200,7 +207,7 @@ export function citedSources(product: ComparisonProduct, cite: readonly string[]
             const cell = product.cells[entry.slice('cells.'.length)];
 
             if (cell) {
-                ids.push(cell.source);
+                ids.push(...cellSources(cell));
             }
 
             continue;
@@ -274,7 +281,7 @@ export function cellView(product: ComparisonProduct, cell: ComparisonCell, conte
     return {
         mark: cell.state === 'qualified' ? 'none' : cell.state,
         lines,
-        sources: [cell.source],
+        sources: cellSources(cell),
     };
 }
 
@@ -481,13 +488,14 @@ function competitorLicence(product: ComparisonProduct, context: ModelContext): C
     const { name, openSource, edition } = product.licence;
 
     if (!openSource || name === null) {
-        return { mark: 'no', lines: [{ text: labels.licence.no }], sources: [product.licence.source] };
+        return { mark: 'no', lines: [{ text: labels.licence.no }], sources: [product.licence.source], worded: true };
     }
 
     return {
         mark: 'yes',
         lines: [{ text: interpolate(edition ? labels.licence.yesEdition : labels.licence.yes, { licence: name, edition: edition ?? '' }) }],
         sources: [product.licence.source],
+        worded: true,
     };
 }
 
@@ -518,10 +526,13 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
             const lines: CellLine[] = [
                 { text: t.priceFree },
                 {
-                    text: interpolate(t.starter, {
-                        monthly: money(facts.starter.monthly),
-                        yearly: money(facts.starter.yearly),
-                        lifetime: money(facts.starter.lifetime),
+                    // The same "for up to N devices" a competitor's license gets, so the two columns compare.
+                    text: context.plural(labels.price.units, facts.starter.activations, {
+                        price: interpolate(t.starter, {
+                            monthly: money(facts.starter.monthly),
+                            yearly: money(facts.starter.yearly),
+                            lifetime: money(facts.starter.lifetime),
+                        }),
                     }),
                 },
                 {
@@ -541,7 +552,7 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
             return { mark: 'none', lines, sources: [], link: { href: '/pricing', label: labels.cta.pricing } };
         }
         case 'licence':
-            return { mark: 'yes', lines: [{ text: interpolate(t.licence, { licence: facts.licence }) }], sources: [] };
+            return { mark: 'yes', lines: [{ text: interpolate(t.licence, { licence: facts.licence }) }], sources: [], worded: true };
         case 'databases':
             return {
                 mark: 'none',

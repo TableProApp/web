@@ -33,10 +33,6 @@
             "label": "Homebrew",
             "tablepro": "tablepro cask として Homebrew でインストール"
         },
-        "website": {
-            "label": "ウェブサイト",
-            "tablepro": "公開中、リリースノートとドキュメントあり"
-        },
         "rosetta": {
             "label": "Apple silicon",
             "tablepro": "Apple silicon 専用ビルドで Rosetta 不要"
@@ -168,7 +164,6 @@
     "notes": {
         "sequel-pro-databases": "MySQL と MariaDB",
         "sequel-pro-cask-removed": "Homebrew は開発終了として cask を無効にし Sequel Ace を案内、{date} に削除",
-        "sequel-pro-site-down": "確認時に sequelpro.com は読み込めず、リポジトリの未解決 issue もサイト停止を報告",
         "sequel-pro-rosetta": "Intel ビルド。Apple silicon は Rosetta が必要で、Apple は macOS 28 以降特定の古いゲームだけに残すとしています。",
         "sequel-pro-successor": "Sequel Pro の「続編」と名乗り、そのコードを基にする Sequel Ace"
     }

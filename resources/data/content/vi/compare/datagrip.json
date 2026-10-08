@@ -32,6 +32,10 @@
         "vcs": {
             "label": "Version control",
             "tablepro": "Miễn phí cho linked SQL folder: ký hiệu trạng thái Git, lịch sử commit của từng file với diff đặt cạnh nhau, Restore This Version và Discard Changes. Không có stage, commit, push hay branch"
+        },
+        "usageStatistics": {
+            "label": "Số liệu sử dụng",
+            "tablepro": "Một báo cáo sử dụng mỗi ngày, bật sẵn theo mặc định, bạn có thể tắt trong phần Cài đặt"
         }
     },
     "stronger": {
@@ -169,8 +173,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "Dành cho học tập, dự án cá nhân, sáng tạo nội dung và đóng góp mã nguồn mở không vì lợi ích thương mại, với đầy đủ tính năng. License được kích hoạt qua tài khoản JetBrains, và số liệu thống kê sử dụng luôn được thu thập, không có cách nào tắt.",
+        "datagrip-non-commercial": "Dành cho học tập, dự án cá nhân, sáng tạo nội dung và đóng góp mã nguồn mở không vì lợi ích thương mại, với đầy đủ tính năng. License được kích hoạt qua tài khoản JetBrains.",
         "datagrip-databases": "Hỗ trợ đầy đủ, có code inspection và quick-fix, cho các engine chính. Những engine khác, như DuckDB, Firebird, Informix và Databricks, được hỗ trợ cơ bản qua JDBC driver: có tô sáng cú pháp và duyệt object, nhưng không kiểm tra lỗi.",
-        "datagrip-ai-quota": "JetBrains AI: bản miễn phí có một hạn mức AI credit nhỏ, được cấp lại định kỳ; các gói AI trả phí để dùng nhiều hơn dịch vụ của JetBrains; hoặc API key của nhà cung cấp bạn chọn, hay một model chạy cục bộ."
+        "datagrip-ai-quota": "JetBrains AI: bản miễn phí có một hạn mức AI credit nhỏ, được cấp lại định kỳ; các gói AI trả phí để dùng nhiều hơn dịch vụ của JetBrains; hoặc API key của nhà cung cấp bạn chọn, hay một model chạy cục bộ.",
+        "datagrip-usage-statistics": "Với license miễn phí cho mục đích phi thương mại, số liệu thống kê sử dụng luôn được thu thập, không có cách nào tắt"
     }
 }

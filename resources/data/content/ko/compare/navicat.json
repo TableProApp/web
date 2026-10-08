@@ -35,6 +35,10 @@
         "dataModeling": {
             "label": "데이터 모델링",
             "tablepro": "모델링 도구 없음. PNG 또는 SQL로 내보낼 수 있는 읽기 전용 ER 다이어그램은 무료"
+        },
+        "singleEngine": {
+            "label": "단일 엔진 에디션",
+            "tablepro": "무료 앱 하나로 지원하는 모든 엔진에 연결"
         }
     },
     "stronger": {
@@ -108,7 +112,7 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro는 Navicat Premium에 나열된 엔진뿐 아니라 ClickHouse, DuckDB, Cassandra, Elasticsearch처럼 <link>나열되지 않은 다른 엔진</link>에도 연결합니다.",
+                "text": "두 제품 모두 MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, Snowflake에 연결합니다. TablePro는 ClickHouse, DuckDB, Cassandra, Elasticsearch처럼 <link>Navicat Premium에 나열되지 않은 엔진</link>에도 연결합니다. 반대로 Premium Enterprise에는 KingbaseES, openGauss처럼 TablePro 목록에 없는 엔진도 있습니다.",
                 "cite": [
                     "cells.databases"
                 ],
@@ -189,10 +193,12 @@
         }
     ],
     "notes": {
-        "navicat-lite-commercial-use": "상업용과 비상업용 모두 사용할 수 있는 핵심 기능의 무료 에디션",
-        "navicat-one-year-maintenance": "한 번 결제하면 업그레이드와 기술 지원을 포함한 1년 유지보수가 제공됩니다. 각 에디션은 월간·연간 구독으로도 판매됩니다.",
-        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, Snowflake 및 해당 클라우드 서비스",
+        "navicat-lite-commercial-use": "상업용과 비상업용 모두 사용할 수 있는 핵심 기능의 무료 에디션. 조직당 사용자 계정 {value}개까지",
+        "navicat-one-year-maintenance": "영구 라이선스는 한 번 결제하며, 업그레이드와 기술 지원을 포함한 1년 유지보수가 제공됩니다.",
+        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, Snowflake 및 해당 클라우드 서비스. Premium Enterprise에는 OceanBase, TiDB, KingbaseES, openGauss 등이 추가됩니다.",
+        "navicat-ai-editions": "Premium Standard와 Premium Enterprise에 포함, Premium Lite에는 없음",
         "navicat-ios-per-engine-apps": "Navicat for MySQL, Navicat for PostgreSQL처럼 엔진별로 별도 유료 앱이 있습니다. iPhone용 Navicat Premium 앱은 없습니다.",
-        "navicat-cloud": "Navicat Cloud 또는 자체 서버의 Navicat On-Prem Server가 연결 설정, 쿼리, 모델을 동기화하고 초대한 사람과 공유합니다."
+        "navicat-cloud": "Navicat Cloud 또는 자체 서버의 Navicat On-Prem Server가 연결 설정, 쿼리, 모델을 동기화하고 초대한 사람과 공유합니다.",
+        "navicat-single-engine": "Navicat for MySQL 같은 단일 엔진용 에디션은 Navicat Premium보다 낮은 가격에 따로 판매됩니다"
     }
 }

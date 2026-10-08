@@ -9,12 +9,11 @@
   },
   "header": {
     "title": "TablePro vs TablePlus",
-    "lead": "TablePlus と TablePro はどちらもネイティブと説明されているデータベースクライアントで、Mac、iPhone、iPad 用アプリを持ちます。TablePlus は Windows と Linux でも動作します。TablePro はオープンソースで、有料プランは Mac アプリに任意の機能を追加します。"
+    "lead": "TablePlus と TablePro はどちらもネイティブと説明されているデータベースクライアントで、Mac、iPhone、iPad 用アプリを持ちます。TablePlus は Windows と Linux でも動作します。TablePro はオープンソースで、有料プランは Mac アプリに任意の機能を追加します。名前は似ていますが、互いに関係のない開発元による別々の製品です。"
   },
   "shortAnswer": {
     "tablepro": [
       "オープンソースのクライアントを使いたい。TablePro は有料機能のコードも含め、AGPLv3 のオープンソースです。",
-      "AI アシスタントと MCP サーバーを無料で使いたい。Mac アプリではどちらも無料で、AI プロバイダーを選べる。",
       "アプリ内課金のない無料の iPhone・iPad アプリを使いたい。",
       "必要な機能にだけ支払いたい。無料アプリにタブやウィンドウの上限はなく、有料プランは {starterExamples} などの機能を追加する。"
     ],
@@ -100,8 +99,10 @@
         "href": null
       },
       {
-        "text": "<link>iCloud Sync</link> で Mac 間や iPhone・iPad と接続を同期します。Mac では Starter に含まれ、iPhone・iPad アプリでは無料です。",
-        "cite": [],
+        "text": "<link>iCloud Sync</link> で Mac 間や iPhone・iPad と接続を同期します。Mac では Starter に含まれ、iPhone・iPad アプリでは無料です。TablePlus は、Dropbox や iCloud など自分で選んだクラウドフォルダーを使って接続を同期します。",
+        "cite": [
+          "cells.sync"
+        ],
         "feature": "icloud-sync",
         "href": null
       },
@@ -188,7 +189,8 @@
     "tableplus-one-year-updates": "一度の支払いで 1 年間の更新付き。その後もアプリは使える",
     "tableplus-databases": "リレーショナル、ドキュメント、キー・バリュー、分析系のエンジンに対応。PostgreSQL、MySQL、SQL Server、SQLite、Redis、MongoDB、Oracle、Cassandra、Snowflake、Vertica、Greenplum など。一部のエンジンは特定のプラットフォームのみ対応。",
     "tableplus-ai": "OpenAI、Anthropic、GitHub Copilot、ローカルモデルに対応するチャットプラグイン",
-    "tableplus-ios-purchase": "ダウンロードは無料で、アプリ内課金あり。有効な TablePlus ライセンスでも、決められた台数のデバイスで使える。",
+    "tableplus-ios-purchase": "ダウンロードは無料で、アプリ内課金あり。有効な TablePlus ライセンスでも、決められた台数のデバイスで使える。iOS {value} 以降が必要。",
+    "tableplus-sync-folder": "Dropbox や iCloud など、自分で選んだクラウドフォルダーを使って接続を同期",
     "tableplus-safe-mode-levels": "{value} 段階で Touch ID に対応"
   }
 }

@@ -176,15 +176,15 @@ dataset('reviewed facts', [
         ['AI Shell của Beekeeper Studio cần một gói trả phí', 'AI Shell, chỉ có trong các gói trả phí'],
         ['AI Shell của Beekeeper Studio có trong mọi gói trả phí', 'AI Shell, có trong mọi gói trả phí'],
     ],
-    // The plan page lists the subscription prices (navicat-premium-plan, 2026-10-03); they are not only shown at checkout.
+    // The plan page lists the subscription prices (navicat-premium-plan); the price cell prints them from data, so the note no longer says so in words.
     'Navicat Premium is also sold as a subscription' => [
         'content/en/compare/navicat.json',
-        ['perpetual license or a monthly or yearly subscription', 'Each edition is also sold as a monthly or yearly subscription.'],
+        ['perpetual license or a monthly or yearly subscription', 'as a perpetual license with a year of maintenance or as a monthly or yearly subscription'],
         ['add features such as {starterExamples}, and can be paid monthly, yearly or once', 'priced only at checkout'],
     ],
     'Navicat Premium subscriptions (vi)' => [
         'content/vi/compare/navicat.json',
-        ['Mỗi bản cũng được bán theo gói thuê bao theo tháng hoặc theo năm.'],
+        ['license vĩnh viễn hoặc gói thuê bao theo tháng hay theo năm', 'license vĩnh viễn kèm một năm bảo trì hoặc gói thuê bao theo tháng hay theo năm'],
         ['với giá chỉ hiện khi thanh toán'],
     ],
     'TablePro is not defined as a Mac client' => [

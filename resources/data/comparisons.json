@@ -1,21 +1,21 @@
 {
-    "checkedAt": "2026-10-03",
+    "checkedAt": "2026-10-08",
     "rows": ["platforms", "price", "licence", "databases", "ai", "mcp", "ios", "sync", "import"],
     "products": [
         {
             "id": "tableplus",
             "name": "TablePlus",
             "slug": "tableplus",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
-                "lastRelease": { "version": "26.10.22", "date": "2026-09-16", "source": "s3" }
+                "lastRelease": { "version": "27.0.0", "date": "2026-10-08", "source": "s3" }
             },
             "platforms": ["mac", "windows", "linux", "ios"],
             "platformsSource": "s1",
             "mac": null,
             "technology": null,
-            "licence": { "name": null, "openSource": false, "edition": null, "source": "s2" },
+            "licence": { "name": null, "openSource": false, "edition": null, "source": "s9" },
             "prices": [
                 {
                     "edition": null,
@@ -95,52 +95,70 @@
                 }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "tableplus-databases", "source": "s1" },
+                "databases": {
+                    "state": "qualified",
+                    "note": "tableplus-databases",
+                    "engines": ["postgresql", "mysql", "sqlserver", "mongodb", "redis"],
+                    "source": ["s8", "s3"]
+                },
                 "ai": { "state": "yes", "note": "tableplus-ai", "source": "s4" },
                 "mcp": { "state": "yes", "version": "7.1.8", "date": "2026-06-10", "source": "s3" },
-                "ios": { "state": "yes", "note": "tableplus-ios-purchase", "source": "s5" },
+                "ios": { "state": "yes", "value": 15, "note": "tableplus-ios-purchase", "source": "s5" },
+                "sync": { "state": "qualified", "note": "tableplus-sync-folder", "source": "s3" },
                 "diagram": { "state": "yes", "version": "7.1.8", "date": "2026-06-10", "source": "s3" },
                 "excelExport": { "state": "yes", "version": "7.1.8", "date": "2026-06-10", "source": "s3" },
                 "safeMode": { "state": "qualified", "value": 5, "note": "tableplus-safe-mode-levels", "source": "s6" },
                 "setapp": { "state": "yes", "source": "s7" }
             },
             "sources": [
-                { "id": "s1", "url": "https://tableplus.com/", "title": "TablePlus", "retrievedAt": "2026-10-02" },
+                { "id": "s1", "url": "https://tableplus.com/", "title": "TablePlus", "retrievedAt": "2026-10-08" },
                 {
                     "id": "s2",
                     "url": "https://tableplus.com/pricing",
                     "title": "TablePlus pricing",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
                     "url": "https://tableplus.com/blog/2017/02/changelogs.html",
                     "title": "TablePlus changelog",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s4",
                     "url": "https://docs.tableplus.com/llm-plugin",
                     "title": "TablePlus LLM plugin",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s5",
                     "url": "https://apps.apple.com/us/app/tableplus-database-client/id1465448609",
                     "title": "TablePlus on the App Store",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s6",
-                    "url": "https://docs.tableplus.com/gui-tools/code-review-and-safemode/safe-mode.md",
+                    "url": "https://docs.tableplus.com/gui-tools/code-review-and-safemode/safe-mode",
                     "title": "TablePlus Safe Mode",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s7",
                     "url": "https://setapp.com/apps/tableplus",
                     "title": "TablePlus on Setapp",
                     "retrievedAt": "2026-10-02"
+                },
+                {
+                    "id": "s8",
+                    "url": "https://docs.tableplus.com/",
+                    "title": "TablePlus documentation",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s9",
+                    "url": "https://tableplus.com/blog/2018/01/license-agreement.html",
+                    "title": "TablePlus license agreement",
+                    "retrievedAt": "2026-10-08"
                 }
             ]
         },
@@ -148,10 +166,10 @@
             "id": "dbeaver",
             "name": "DBeaver",
             "slug": "dbeaver",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
-                "lastRelease": { "version": "26.2.1", "date": "2026-09-21", "source": "s4" }
+                "lastRelease": { "version": "26.2.2", "date": "2026-10-04", "source": "s4" }
             },
             "platforms": ["mac", "windows", "linux"],
             "platformsSource": "s1",
@@ -202,14 +220,19 @@
                 }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "dbeaver-databases", "source": "s2" },
+                "databases": {
+                    "state": "qualified",
+                    "note": "dbeaver-databases",
+                    "engines": ["postgresql", "mysql", "sqlserver", "mongodb", "redis"],
+                    "source": ["s2", "s7", "s9"]
+                },
                 "ai": {
                     "state": "qualified",
                     "edition": "Community",
                     "note": "dbeaver-ai-community-providers",
                     "source": "s5"
                 },
-                "mcp": { "state": "qualified", "note": "dbeaver-mcp-client", "source": "s6" },
+                "mcp": { "state": "qualified", "version": "26.3", "note": "dbeaver-mcp-server", "source": ["s6", "s1"] },
                 "sync": { "state": "qualified", "edition": "Enterprise", "note": "dbeaver-git-sync", "source": "s3" },
                 "diagram": { "state": "qualified", "note": "dbeaver-erd-edit-paid", "source": "s7" },
                 "queryBuilder": { "state": "qualified", "note": "dbeaver-query-builder-paid", "source": "s3" },
@@ -220,25 +243,25 @@
                     "id": "s1",
                     "url": "https://dbeaver.io/download/",
                     "title": "DBeaver Community download",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s2",
                     "url": "https://dbeaver.io/about/",
                     "title": "About DBeaver",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
                     "url": "https://dbeaver.com/edition/",
                     "title": "DBeaver editions",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s4",
                     "url": "https://github.com/dbeaver/dbeaver/releases",
                     "title": "DBeaver releases",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s5",
@@ -248,21 +271,27 @@
                 },
                 {
                     "id": "s6",
-                    "url": "https://dbeaver.com/docs/dbeaver/AI-Tools-and-MCP/",
-                    "title": "DBeaver AI tools and MCP",
-                    "retrievedAt": "2026-10-02"
+                    "url": "https://dbeaver.com/docs/dbeaver/Model-Context-Protocol-Server/",
+                    "title": "DBeaver MCP server",
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s7",
                     "url": "https://dbeaver.com/switch-to-dbeaver-pro/",
                     "title": "Switch to DBeaver PRO",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s8",
                     "url": "https://github.com/dbeaver/dbeaver",
                     "title": "DBeaver repository",
                     "retrievedAt": "2026-10-02"
+                },
+                {
+                    "id": "s9",
+                    "url": "https://dbeaver.com/databases/",
+                    "title": "DBeaver supported databases",
+                    "retrievedAt": "2026-10-08"
                 }
             ]
         },
@@ -270,7 +299,7 @@
             "id": "datagrip",
             "name": "DataGrip",
             "slug": "datagrip",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
                 "lastRelease": { "version": "2026.2.6", "date": "2026-09-29", "source": "s3" }
@@ -288,7 +317,7 @@
                     "per": null,
                     "period": null,
                     "audience": "non-commercial",
-                    "note": "datagrip-non-commercial-telemetry",
+                    "note": "datagrip-non-commercial",
                     "source": "s4"
                 },
                 {
@@ -350,17 +379,23 @@
                 }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "datagrip-databases", "source": "s7" },
+                "databases": {
+                    "state": "qualified",
+                    "note": "datagrip-databases",
+                    "engines": ["postgresql", "mysql", "sqlserver", "mongodb", "redis"],
+                    "source": ["s7", "s1"]
+                },
                 "ai": { "state": "qualified", "note": "datagrip-ai-quota", "source": "s8" },
                 "mcp": { "state": "yes", "version": "2025.2", "source": "s6" },
-                "vcs": { "state": "yes", "source": "s1" }
+                "vcs": { "state": "yes", "source": "s1" },
+                "usageStatistics": { "state": "qualified", "note": "datagrip-usage-statistics", "source": "s4" }
             },
             "sources": [
                 {
                     "id": "s1",
                     "url": "https://www.jetbrains.com/datagrip/",
                     "title": "DataGrip",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s2",
@@ -370,15 +405,15 @@
                 },
                 {
                     "id": "s3",
-                    "url": "https://data.services.jetbrains.com/products/releases?code=DG&latest=true&type=release",
-                    "title": "DataGrip releases",
-                    "retrievedAt": "2026-10-02"
+                    "url": "https://www.jetbrains.com/datagrip/download/",
+                    "title": "DataGrip download",
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s4",
                     "url": "https://blog.jetbrains.com/datagrip/2025/10/01/datagrip-is-now-free-for-non-commercial-use/",
                     "title": "DataGrip is now free for non-commercial use",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s5",
@@ -410,7 +445,7 @@
             "id": "navicat",
             "name": "Navicat Premium",
             "slug": "navicat",
-            "checkedAt": "2026-10-03",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
                 "lastRelease": { "version": "18.0.3", "date": "2026-09-29", "source": "s3" }
@@ -427,8 +462,25 @@
                     "currency": "USD",
                     "per": null,
                     "period": null,
+                    "value": 5,
                     "note": "navicat-lite-commercial-use",
                     "source": "s4"
+                },
+                {
+                    "edition": "Premium Standard",
+                    "amount": 74.99,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "month",
+                    "source": "s7"
+                },
+                {
+                    "edition": "Premium Standard",
+                    "amount": 749.99,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "year",
+                    "source": "s7"
                 },
                 {
                     "edition": "Premium Standard",
@@ -438,6 +490,22 @@
                     "period": "once",
                     "note": "navicat-one-year-maintenance",
                     "source": "s2"
+                },
+                {
+                    "edition": "Premium Enterprise",
+                    "amount": 99.99,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "month",
+                    "source": "s7"
+                },
+                {
+                    "edition": "Premium Enterprise",
+                    "amount": 999.99,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "year",
+                    "source": "s7"
                 },
                 {
                     "edition": "Premium Enterprise",
@@ -451,6 +519,24 @@
                 {
                     "edition": "Premium Non-Commercial",
                     "audience": "non-commercial",
+                    "amount": 49.99,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "month",
+                    "source": "s7"
+                },
+                {
+                    "edition": "Premium Non-Commercial",
+                    "audience": "non-commercial",
+                    "amount": 499.99,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "year",
+                    "source": "s7"
+                },
+                {
+                    "edition": "Premium Non-Commercial",
+                    "audience": "non-commercial",
                     "amount": 999,
                     "currency": "USD",
                     "per": "user",
@@ -460,37 +546,43 @@
                 }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "navicat-databases", "source": "s1" },
-                "ai": { "state": "yes", "version": "17.2.2", "date": "2025-03-13", "source": "s3" },
+                "databases": {
+                    "state": "qualified",
+                    "note": "navicat-databases",
+                    "engines": ["postgresql", "mysql", "sqlserver", "mongodb", "redis"],
+                    "source": ["s1", "s8"]
+                },
+                "ai": { "state": "yes", "version": "17.2.2", "date": "2025-03-13", "note": "navicat-ai-editions", "source": ["s3", "s8"] },
                 "ios": { "state": "qualified", "note": "navicat-ios-per-engine-apps", "source": "s5" },
                 "sync": { "state": "qualified", "note": "navicat-cloud", "source": "s6" },
                 "schemaSync": { "state": "yes", "source": "s1" },
-                "dataModeling": { "state": "qualified", "edition": "Premium Enterprise", "source": "s2" }
+                "dataModeling": { "state": "qualified", "edition": "Premium Enterprise", "source": "s2" },
+                "singleEngine": { "state": "qualified", "note": "navicat-single-engine", "source": "s9" }
             },
             "sources": [
                 {
                     "id": "s1",
                     "url": "https://www.navicat.com/en/products/navicat-premium",
                     "title": "Navicat Premium",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s2",
                     "url": "https://www.navicat.com/en/store/navicat-premium",
                     "title": "Navicat Premium store",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
                     "url": "https://www.navicat.com/en/products/navicat-premium-release-note",
                     "title": "Navicat Premium release notes",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s4",
                     "url": "https://www.navicat.com/en/products/navicat-premium-lite",
                     "title": "Navicat Premium Lite",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s5",
@@ -508,7 +600,19 @@
                     "id": "s7",
                     "url": "https://www.navicat.com/en/store/navicat-premium-plan",
                     "title": "Navicat Premium plans",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s8",
+                    "url": "https://www.navicat.com/en/products/navicat-premium-feature-matrix",
+                    "title": "Navicat Premium feature matrix",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s9",
+                    "url": "https://www.navicat.com/en/store/navicat-for-mysql",
+                    "title": "Navicat for MySQL store",
+                    "retrievedAt": "2026-10-08"
                 }
             ]
         },
@@ -516,10 +620,10 @@
             "id": "beekeeper-studio",
             "name": "Beekeeper Studio",
             "slug": "beekeeper-studio",
-            "checkedAt": "2026-10-03",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
-                "lastRelease": { "version": "6.1.5", "date": "2026-10-02", "source": "s2" }
+                "lastRelease": { "version": "6.1.6", "date": "2026-10-07", "source": "s2" }
             },
             "platforms": ["mac", "windows", "linux"],
             "platformsSource": "s1",
@@ -578,7 +682,12 @@
                 }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "beekeeper-databases", "source": "s1" },
+                "databases": {
+                    "state": "qualified",
+                    "note": "beekeeper-databases",
+                    "engines": ["postgresql", "mysql", "sqlserver", "mongodb", "redis"],
+                    "source": "s1"
+                },
                 "ai": { "state": "qualified", "note": "beekeeper-ai-shell", "source": "s7" },
                 "sync": {
                     "state": "qualified",
@@ -596,13 +705,13 @@
                     "id": "s1",
                     "url": "https://www.beekeeperstudio.io/pricing",
                     "title": "Beekeeper Studio pricing",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s2",
                     "url": "https://github.com/beekeeper-studio/beekeeper-studio/releases",
                     "title": "Beekeeper Studio releases",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
@@ -612,9 +721,9 @@
                 },
                 {
                     "id": "s4",
-                    "url": "https://formulae.brew.sh/api/cask/beekeeper-studio.json",
+                    "url": "https://formulae.brew.sh/cask/beekeeper-studio",
                     "title": "Homebrew cask beekeeper-studio",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s5",
@@ -640,10 +749,10 @@
             "id": "sequel-ace",
             "name": "Sequel Ace",
             "slug": "sequel-ace",
-            "checkedAt": "2026-10-03",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
-                "lastRelease": { "version": "6.0.1", "date": "2026-09-21", "source": "s2" }
+                "lastRelease": { "version": "6.0.2", "date": "2026-10-04", "source": "s2" }
             },
             "platforms": ["mac"],
             "platformsSource": "s1",
@@ -654,7 +763,7 @@
                 { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s1" }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "sequel-ace-databases", "source": "s4" },
+                "databases": { "state": "qualified", "note": "sequel-ace-databases", "engines": ["mysql"], "source": "s4" },
                 "ai": { "state": "no", "note": "sequel-ace-no-ai-chat", "source": "s2" },
                 "mcp": {
                     "state": "yes",
@@ -680,7 +789,7 @@
                     "id": "s2",
                     "url": "https://github.com/Sequel-Ace/Sequel-Ace/releases",
                     "title": "Sequel Ace releases",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
@@ -715,9 +824,8 @@
                 { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s1" }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "sequel-pro-databases", "source": "s1" },
+                "databases": { "state": "qualified", "note": "sequel-pro-databases", "engines": ["mysql"], "source": "s1" },
                 "homebrew": { "state": "no", "date": "2025-12-17", "note": "sequel-pro-cask-removed", "source": "s4" },
-                "website": { "state": "no", "note": "sequel-pro-site-down", "source": "s3" },
                 "rosetta": { "state": "qualified", "note": "sequel-pro-rosetta", "source": "s5" },
                 "successor": { "state": "qualified", "note": "sequel-pro-successor", "source": "s6" }
             },
@@ -764,7 +872,7 @@
             "id": "postico",
             "name": "Postico 2",
             "slug": "postico",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
                 "lastRelease": { "version": "2.3.4", "date": "2026-09-28", "source": "s3" }
@@ -773,7 +881,7 @@
             "platformsSource": "s1",
             "mac": { "minVersion": "14", "architectures": ["arm64", "x86_64"], "universal": true, "source": "s1" },
             "technology": null,
-            "licence": { "name": null, "openSource": false, "edition": null, "source": "s2" },
+            "licence": { "name": null, "openSource": false, "edition": null, "source": "s7" },
             "prices": [
                 {
                     "edition": null,
@@ -835,7 +943,7 @@
                 }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "postico-databases", "source": "s4" },
+                "databases": { "state": "qualified", "note": "postico-databases", "engines": ["postgresql"], "source": "s4" },
                 "sync": { "state": "yes", "note": "postico-sync-icloud-dropbox", "source": "s1" },
                 "administration": { "state": "no", "note": "postico-no-admin", "source": "s5" },
                 "macAppStore": { "state": "yes", "source": "s6" }
@@ -845,19 +953,19 @@
                     "id": "s1",
                     "url": "https://eggerapps.at/postico2/",
                     "title": "Postico 2",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s2",
                     "url": "https://eggerapps.at/postico2/buy.html",
                     "title": "Postico 2 pricing",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
                     "url": "https://releases.eggerapps.at/postico2/changelog",
                     "title": "Postico 2 changelog",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s4",
@@ -876,6 +984,12 @@
                     "url": "https://apps.apple.com/us/app/id6446933691",
                     "title": "Postico 2 on the Mac App Store",
                     "retrievedAt": "2026-10-02"
+                },
+                {
+                    "id": "s7",
+                    "url": "https://eggerapps.at/postico2/documentation/license.html",
+                    "title": "Postico 2 license terms",
+                    "retrievedAt": "2026-10-08"
                 }
             ]
         },
@@ -883,7 +997,7 @@
             "id": "heidisql",
             "name": "HeidiSQL",
             "slug": "heidisql",
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
                 "lastRelease": { "version": "12.21", "date": "2026-08-03", "source": "s2" }
@@ -897,7 +1011,12 @@
                 { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s2" }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "heidisql-databases", "source": "s1" },
+                "databases": {
+                    "state": "qualified",
+                    "note": "heidisql-databases",
+                    "engines": ["postgresql", "mysql", "sqlserver"],
+                    "source": "s1"
+                },
                 "macBuild": {
                     "state": "qualified",
                     "version": "12.15.1.1",
@@ -907,12 +1026,12 @@
                 }
             },
             "sources": [
-                { "id": "s1", "url": "https://www.heidisql.com/", "title": "HeidiSQL", "retrievedAt": "2026-10-02" },
+                { "id": "s1", "url": "https://www.heidisql.com/", "title": "HeidiSQL", "retrievedAt": "2026-10-08" },
                 {
                     "id": "s2",
                     "url": "https://www.heidisql.com/download.php",
                     "title": "HeidiSQL download",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
@@ -924,7 +1043,7 @@
                     "id": "s4",
                     "url": "https://github.com/HeidiSQL/HeidiSQL/releases",
                     "title": "HeidiSQL releases",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 }
             ]
         },
@@ -932,7 +1051,7 @@
             "id": "phpmyadmin",
             "name": "phpMyAdmin",
             "slug": "phpmyadmin",
-            "checkedAt": "2026-10-03",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
                 "lastRelease": { "version": "5.2.3", "date": "2025-10-08", "source": "s2" }
@@ -946,9 +1065,9 @@
                 { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s1" }
             ],
             "cells": {
-                "databases": { "state": "qualified", "note": "phpmyadmin-databases", "source": "s1" },
+                "databases": { "state": "qualified", "note": "phpmyadmin-databases", "engines": ["mysql"], "source": "s1" },
                 "cpanel": { "state": "yes", "source": "s4" },
-                "languages": { "state": "qualified", "value": 98, "source": "s1" },
+                "languages": { "state": "qualified", "value": 98, "note": "phpmyadmin-languages", "source": "s1" },
                 "designer": { "state": "yes", "note": "phpmyadmin-schema-visualization", "source": "s1" },
                 "queryByExample": { "state": "yes", "source": "s1" },
                 "nextMajor": { "state": "qualified", "version": "6.0", "note": "phpmyadmin-in-development", "source": "s2" },
@@ -959,13 +1078,13 @@
                     "id": "s1",
                     "url": "https://www.phpmyadmin.net/",
                     "title": "phpMyAdmin",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s2",
                     "url": "https://www.phpmyadmin.net/downloads/",
                     "title": "phpMyAdmin downloads",
-                    "retrievedAt": "2026-10-03"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
@@ -997,13 +1116,13 @@
             "id": "mongodb-compass",
             "name": "MongoDB Compass",
             "slug": null,
-            "checkedAt": "2026-10-02",
+            "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
-                "lastRelease": { "version": "1.51.0", "date": "2026-09-25", "source": "s3" }
+                "lastRelease": { "version": "1.52.0", "date": "2026-10-02", "source": "s3" }
             },
-            "platforms": [],
-            "platformsSource": null,
+            "platforms": ["mac", "windows", "linux"],
+            "platformsSource": "s4",
             "mac": null,
             "technology": { "name": "Electron", "note": null, "source": "s2" },
             "licence": { "name": "SSPL-1.0", "openSource": false, "edition": null, "source": "s2" },
@@ -1026,13 +1145,19 @@
                     "id": "s2",
                     "url": "https://github.com/mongodb-js/compass",
                     "title": "MongoDB Compass repository",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s3",
                     "url": "https://github.com/mongodb-js/compass/releases",
                     "title": "MongoDB Compass releases",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s4",
+                    "url": "https://www.mongodb.com/try/download/compass",
+                    "title": "MongoDB Compass download",
+                    "retrievedAt": "2026-10-08"
                 }
             ]
         },
@@ -1092,7 +1217,7 @@
             "platformsSource": "s2",
             "mac": { "minVersion": "14", "architectures": ["arm64", "x86_64"], "source": "s1" },
             "technology": { "name": "Electron", "note": null, "source": "s1" },
-            "licence": { "name": "PostgreSQL", "openSource": true, "edition": null, "source": "s2" },
+            "licence": { "name": "PostgreSQL License", "openSource": true, "edition": null, "source": "s2" },
             "prices": [
                 { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s2" }
             ],

@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro vs. TablePlus",
-        "lead": "TablePlus e TablePro são clientes de banco de dados que se apresentam como nativos, com apps para Mac, iPhone e iPad. TablePlus também funciona em Windows e Linux. TablePro é de código aberto, e seus planos pagos adicionam recursos opcionais ao app para Mac."
+        "lead": "TablePlus e TablePro são clientes de banco de dados que se apresentam como nativos, com apps para Mac, iPhone e iPad. TablePlus também funciona em Windows e Linux. TablePro é de código aberto, e seus planos pagos adicionam recursos opcionais ao app para Mac. Apesar dos nomes parecidos, são produtos separados, de criadores sem relação entre si."
     },
     "shortAnswer": {
         "tablepro": [
             "Você quer um cliente de código aberto. TablePro é aberto sob a AGPLv3, incluindo o código dos recursos pagos.",
-            "Você quer assistente de IA e servidor MCP sem custo. Ambos são gratuitos no app para Mac, com o provedor de IA escolhido por você.",
             "Você quer um app gratuito para iPhone e iPad, sem compras no app.",
             "Você prefere pagar apenas pelos recursos de que precisa. O app gratuito não limita abas ou janelas, e os planos pagos adicionam recursos como {starterExamples}."
         ],
@@ -100,8 +99,10 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> mantém conexões sincronizadas entre seus Macs e o iPhone ou iPad. Faz parte de Starter no Mac e é gratuito no app para iPhone e iPad.",
-                "cite": [],
+                "text": "<link>iCloud Sync</link> mantém conexões sincronizadas entre seus Macs e o iPhone ou iPad. Faz parte de Starter no Mac e é gratuito no app para iPhone e iPad. TablePlus sincroniza suas conexões por meio de uma pasta na nuvem que você escolhe, como Dropbox ou iCloud.",
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": "icloud-sync",
                 "href": null
             },
@@ -188,7 +189,8 @@
         "tableplus-one-year-updates": "Pagamento único, com um ano de atualizações. O app continua funcionando depois.",
         "tableplus-databases": "Mecanismos relacionais, de documentos, chave-valor e analíticos, entre eles PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica e Greenplum. Alguns só estão disponíveis em determinadas plataformas.",
         "tableplus-ai": "Um plugin de chat que funciona com OpenAI, Anthropic, GitHub Copilot ou um modelo local",
-        "tableplus-ios-purchase": "Gratuito para baixar, com compras no app. Uma licença TablePlus ativa também o cobre em uma quantidade definida de dispositivos.",
+        "tableplus-ios-purchase": "Gratuito para baixar, com compras no app. Uma licença TablePlus ativa também o cobre em uma quantidade definida de dispositivos. Requer iOS {value} ou posterior.",
+        "tableplus-sync-folder": "As conexões são sincronizadas por meio de uma pasta na nuvem que você escolhe, como Dropbox ou iCloud",
         "tableplus-safe-mode-levels": "{value} níveis, com suporte a Touch ID"
     }
 }

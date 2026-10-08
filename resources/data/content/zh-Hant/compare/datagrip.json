@@ -32,6 +32,10 @@
         "vcs": {
             "label": "版本控制",
             "tablepro": "連結 SQL 資料夾可免費顯示 Git 狀態字母、各檔案提交歷史與並排差異，以及 Restore This Version 和 Discard Changes。不支援暫存、提交、推送或分支"
+        },
+        "usageStatistics": {
+            "label": "使用統計",
+            "tablepro": "每日一份使用報告，預設開啟，可在設定中關閉"
         }
     },
     "stronger": {
@@ -188,8 +192,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "學習、興趣專案、內容創作和無商業收益的開源工作可使用全部功能。透過 JetBrains Account 啟用，並收集無法停用的使用統計。",
+        "datagrip-non-commercial": "學習、興趣專案、內容創作和無商業收益的開源工作可使用全部功能。透過 JetBrains Account 啟用。",
         "datagrip-databases": "主要引擎獲得完整支援，包括程式碼檢查和快速修復。DuckDB、Firebird、Informix 和 Databricks 等透過 JDBC 驅動程式獲得基本支援：醒目提示和物件瀏覽，不含錯誤檢查。",
-        "datagrip-ai-quota": "JetBrains AI：免費層級提供少量定期補充的 AI 點數，更高用量可購買其自營服務的付費 AI 方案，也可使用自己的服務商金鑰或本機模型。"
+        "datagrip-ai-quota": "JetBrains AI：免費層級提供少量定期補充的 AI 點數，更高用量可購買其自營服務的付費 AI 方案，也可使用自己的服務商金鑰或本機模型。",
+        "datagrip-usage-statistics": "使用非商業免費授權時，會收集無法停用的使用統計"
     }
 }

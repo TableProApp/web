@@ -32,6 +32,10 @@
         "vcs": {
             "label": "Controle de versão",
             "tablepro": "Gratuito para uma pasta SQL vinculada: letras de status do Git, histórico de commits de cada arquivo com diferenças lado a lado, Restore This Version e Discard Changes. Sem preparação, commits, pushes ou branches"
+        },
+        "usageStatistics": {
+            "label": "Estatísticas de uso",
+            "tablepro": "Um relatório de uso diário, ativado por padrão, que você pode desativar em Ajustes"
         }
     },
     "stronger": {
@@ -188,8 +192,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "Para aprendizado, projetos pessoais, criação de conteúdo e trabalho de código aberto sem benefício comercial, com todos os recursos. A ativação usa uma JetBrains Account, e estatísticas de uso são coletadas sem opção de recusa.",
+        "datagrip-non-commercial": "Para aprendizado, projetos pessoais, criação de conteúdo e trabalho de código aberto sem benefício comercial, com todos os recursos. A ativação usa uma JetBrains Account.",
         "datagrip-databases": "Suporte completo, com inspeções de código e correções rápidas, para os mecanismos principais. Outros, como DuckDB, Firebird, Informix e Databricks, têm suporte básico pelo driver JDBC: destaque de sintaxe e navegação de objetos, sem verificação de erros.",
-        "datagrip-ai-quota": "JetBrains AI: um nível gratuito com uma pequena cota recorrente de créditos de IA, planos pagos de IA para usar mais o serviço próprio da JetBrains ou sua chave de provedor ou modelo local."
+        "datagrip-ai-quota": "JetBrains AI: um nível gratuito com uma pequena cota recorrente de créditos de IA, planos pagos de IA para usar mais o serviço próprio da JetBrains ou sua chave de provedor ou modelo local.",
+        "datagrip-usage-statistics": "Com a licença gratuita para uso não comercial, estatísticas de uso são coletadas sem opção de recusa"
     }
 }

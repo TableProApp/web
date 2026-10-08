@@ -28,7 +28,7 @@ export function tableproFacts(productId: string | null, featuredEngines: string[
         macRequirement: requirementText(mac, m.platforms),
         iosRequirement: ios !== null ? requirementText(ios, m.platforms) : null,
         macArchitectures: mac.architectures.map((architecture) => architecture.id),
-        starter: PRICING.tiers.starter.prices,
+        starter: { ...PRICING.tiers.starter.prices, activations: PRICING.tiers.starter.activations },
         team: { ...PRICING.tiers.team.prices, minSeats: PRICING.tiers.team.seats.min },
         iosFree: ios !== null && ios.price.amount === 0 && !ios.price.inAppPurchases,
         licence: FACTS.openSource.license,

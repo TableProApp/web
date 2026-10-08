@@ -14,12 +14,12 @@ The template's labels ("At a glance", "Choose {name} if", price phrases, row nam
 
 ## What the page renders, in order
 
-1. Breadcrumbs, `header.title` (the H1), `header.lead`, "Facts checked {date} · Sources", Download and pricing links.
-2. `#short-answer`: two lists, "Choose TablePro if" (`shortAnswer.tablepro`) and "Choose {name} if" (`shortAnswer.competitor`).
+1. Breadcrumbs, `header.title` (the H1), `header.lead`, "Facts checked {date} · Sources", Download and pricing links, then a jump list to the sections below.
+2. `#short-answer`: the hub's `labels.shortAnswer.lead` ("Looking for an alternative to {name} on the Mac?"), then two lists, "Choose TablePro if" (`shortAnswer.tablepro`) and "Choose {name} if" (`shortAnswer.competitor`).
 3. `#at-a-glance`: `glance.intro` (or `""`), then the table. Standard rows come from data in `comparisons.json` → `rows` order: platforms, built with (when the product has `technology`), price, open source, databases, AI assistant, MCP server, iPhone and iPad, sync, moving to TablePro. **A standard row the product has no cell for is left out.** iPhone and iPad is the one derived row: no `ios` cell and no `ios` in the sourced `platforms` list renders "not supported" citing that list. Then "More about {name}": one row per product-specific cell, labelled by your `rows`. Below 640px the table folds both product columns under each row's label ("TablePro", then the other product), and the "moving to TablePro" row puts its words in TablePro's column with "Does not apply" in the other.
 4. `#stronger` "Where {name} is stronger", `#differs` "Where TablePro differs", `#limits` "What TablePro does not do".
 5. `#switching`: `switching.intro`, the numbered `steps`, the `after` notes, a docs link.
-6. `#faq`, then `#sources` (every source in the product's data, numbered, with its check date), then a closing Download band.
+6. `#faq`, then `#sources` (every source in the product's data, numbered, with its check date, and the trademark notice), then `#more` (the other comparisons, each by its H1) and a closing Download band.
 
 No benchmark, no rating, no `Review` or `FAQPage` markup, no competitor screenshot. Structured data is a `WebPage` about TablePro's Mac app plus the breadcrumb trail; the template adds it.
 
@@ -94,7 +94,8 @@ Write it, do not gloss it. Address the reader as "bạn". Keep developer terms i
 Every competitor fact on the page must be in the product's `comparisons.json` entry. If your page needs one that is missing:
 
 1. Find it on an official page (the product's site, docs, release notes, pricing page or store listing). Every source already in `comparisons.json` names that page and the date it was read (`retrievedAt`).
-2. Add a cell to **your product only**: `{ "state": "yes" | "no" | "qualified", "source": "sN" }`, plus `note`, `edition`, `version`, `date` or `value` as needed. Cite a source already in the product's `sources`, or add one (`https://`, `retrievedAt` today). Never a field named for size, memory or speed.
+2. Add a cell to **your product only**: `{ "state": "yes" | "no" | "qualified", "source": "sN" }`, plus `note`, `edition`, `version`, `date` or `value` as needed. Cite a source already in the product's `sources`, or add one (`https://`, `retrievedAt` today): a page a reader can open, never a JSON or Markdown feed. When no single page states the whole fact, `source` is a list (`["s3", "s8"]`) and the cell shows a marker for each. Never a field named for size, memory or speed.
+   The `databases` cell also has `engines`: the `engines.json` ids its sources name. A database page with an "Other tools" block links the comparison when its engine is listed.
 3. Add the cell's label to `rows` in both languages, and its note text to `notes`.
 4. Run the checks below.
 

@@ -33,10 +33,6 @@
             "label": "Homebrew",
             "tablepro": "通过 Homebrew 的 tablepro cask 安装"
         },
-        "website": {
-            "label": "网站",
-            "tablepro": "可访问，有发布说明和文档"
-        },
         "rosetta": {
             "label": "Apple silicon",
             "tablepro": "Apple silicon 独立构建，无需 Rosetta"
@@ -168,7 +164,6 @@
     "notes": {
         "sequel-pro-databases": "MySQL 和 MariaDB",
         "sequel-pro-cask-removed": "Homebrew 以停止开发为由禁用 cask，转而推荐 Sequel Ace，于 {date} 移除",
-        "sequel-pro-site-down": "检查时 sequelpro.com 无法加载，仓库未关闭的问题也报告网站宕机",
         "sequel-pro-rosetta": "Intel 构建，在 Apple silicon 需 Rosetta。Apple 表示 macOS 28 起仅保留给某些旧游戏。",
         "sequel-pro-successor": "Sequel Ace，自称 Sequel Pro 的“续篇”，基于其代码"
     }

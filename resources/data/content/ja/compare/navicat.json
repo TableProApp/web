@@ -35,6 +35,10 @@
         "dataModeling": {
             "label": "データモデリング",
             "tablepro": "モデリングツールなし。読み取り専用の ER 図を PNG または SQL に書き出せる。無料"
+        },
+        "singleEngine": {
+            "label": "単一エンジン版",
+            "tablepro": "無料アプリひとつで、対応するすべてのエンジンに接続"
         }
     },
     "stronger": {
@@ -108,7 +112,7 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro は Navicat Premium に記載されたエンジンに加え、ClickHouse、DuckDB、Cassandra、Elasticsearch など、<link>記載されていないエンジン</link>にも接続します。",
+                "text": "どちらも MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis、Snowflake に接続します。TablePro はさらに、ClickHouse、DuckDB、Cassandra、Elasticsearch など、<link>Navicat Premium に記載されていないエンジン</link>にも接続します。一方、Premium Enterprise には KingbaseES や openGauss など、TablePro の対応一覧にないエンジンもあります。",
                 "cite": [
                     "cells.databases"
                 ],
@@ -189,10 +193,12 @@
         }
     ],
     "notes": {
-        "navicat-lite-commercial-use": "基本機能を備え、商用・非商用の利用に対応する無料版",
-        "navicat-one-year-maintenance": "買い切りで 1 年間のメンテナンス付き。アップグレードと技術サポートを含みます。各版には月額・年額のサブスクリプションもあります。",
-        "navicat-databases": "MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis、Snowflake と、それぞれのクラウドサービス",
+        "navicat-lite-commercial-use": "基本機能を備え、商用・非商用の利用に対応する無料版。1 組織につき {value} ユーザーアカウントまで",
+        "navicat-one-year-maintenance": "永久ライセンスは買い切りで、1 年間のメンテナンス（アップグレードと技術サポート）が付きます。",
+        "navicat-databases": "MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis、Snowflake と、それぞれのクラウドサービス。Premium Enterprise では OceanBase、TiDB、KingbaseES、openGauss なども追加されます。",
+        "navicat-ai-editions": "Premium Standard と Premium Enterprise で利用可能。Premium Lite にはなし",
         "navicat-ios-per-engine-apps": "Navicat for MySQL や Navicat for PostgreSQL など、エンジンごとに別の有料アプリ。iPhone 用の Navicat Premium アプリはありません。",
-        "navicat-cloud": "Navicat Cloud、または自社サーバー上の Navicat On-Prem Server が、接続設定、クエリ、モデルを同期し、招待した相手と共有します。"
+        "navicat-cloud": "Navicat Cloud、または自社サーバー上の Navicat On-Prem Server が、接続設定、クエリ、モデルを同期し、招待した相手と共有します。",
+        "navicat-single-engine": "Navicat for MySQL など単一エンジン向けの版は、Navicat Premium より低い価格で別売り"
     }
 }
