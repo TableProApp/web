@@ -323,6 +323,37 @@ it('makes the terms agree with priority support, the AGPL and the merchant of re
     expect($terms)->not->toContain('paid us');
 });
 
+it('binds only the services, never the use of the apps, which the AGPLv3 alone licenses', function (): void {
+    $terms = legalSource('terms', 'en');
+    $intro = strtok(YamlFrontMatter::parse($terms)->body(), "\n");
+
+    // AGPLv3 section 9: running a copy needs no acceptance, and section 10 forbids adding conditions to it.
+    expect($intro)->toContain('you do not need to accept these terms to download, install or run them')
+        ->not->toContain('By downloading');
+
+    foreach (['acceptable-use', 'indemnification', 'termination', 'changes', 'governing-law'] as $id) {
+        expect(legalSection('terms', 'en', $id))->not->toBe('')->not->toContain('Application');
+    }
+
+    expect(legalSection('terms', 'en', 'responsibilities'))->not->toContain('sole responsibility')->not->toContain('backing up');
+    expect(legalSection('terms', 'en', 'definitions'))->not->toContain('usage reports');
+    expect(legalSection('terms', 'en', 'open-source'))->not->toContain('over the source code');
+
+    // The warranty and liability position for the apps is the AGPL's own.
+    expect(legalSection('terms', 'en', 'warranty'))->toContain('section 15 of the AGPLv3');
+    expect(legalSection('terms', 'en', 'liability'))->toContain('section 16 of the AGPLv3');
+});
+
+it('points every language at the AGPL for the apps, dated with the scope change', function (string $locale): void {
+    $intro = strtok(YamlFrontMatter::parse(legalSource('terms', $locale))->body(), "\n");
+
+    expect(YamlFrontMatter::parse(legalSource('terms', $locale))->matter('updatedAt'))->toBe('2026-10-08');
+    expect($intro)->toContain('AGPLv3');
+    expect(legalSection('terms', $locale, 'acceptable-use'))->not->toContain('AGPL');
+    expect(legalSection('terms', $locale, 'warranty'))->toContain('AGPLv3')->toMatch('/(?<!\d)15(?!\d)/');
+    expect(legalSection('terms', $locale, 'liability'))->toContain('AGPLv3')->toMatch('/(?<!\d)16(?!\d)/');
+})->with(legalLocales());
+
 it('keeps the refund window from pricing.json and tells a subscriber how to stop renewals', function (string $locale): void {
     $source = legalSource('refund-policy', $locale);
 
