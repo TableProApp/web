@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro vs. TablePlus",
-        "lead": "TablePlus und TablePro beschreiben sich als native Datenbankclients mit Apps für Mac, iPhone und iPad. TablePlus läuft auch unter Windows und Linux. TablePro ist Open Source; Bezahlpläne ergänzen optionale Mac-Funktionen."
+        "lead": "TablePlus und TablePro beschreiben sich als native Datenbankclients mit Apps für Mac, iPhone und iPad. TablePlus läuft auch unter Windows und Linux. TablePro ist Open Source; Bezahlpläne ergänzen optionale Mac-Funktionen. Trotz der ähnlichen Namen sind es eigenständige Produkte von Herstellern, die nichts miteinander zu tun haben."
     },
     "shortAnswer": {
         "tablepro": [
             "Du willst Open Source. TablePro steht unter AGPLv3, einschließlich des Codes der Bezahlfunktionen.",
-            "Du willst KI-Assistent und MCP-Server kostenlos. Beide sind in der Mac-App gratis, mit deinem KI-Anbieter.",
             "Du willst eine kostenlose iPhone- und iPad-App ohne In-App-Käufe.",
             "Du zahlst lieber nur für nötige Funktionen. Die kostenlose App begrenzt weder Tabs noch Fenster; Bezahlpläne ergänzen etwa {starterExamples}."
         ],
@@ -71,6 +70,15 @@
                 ],
                 "feature": null,
                 "href": null
+            },
+            {
+                "text": "Es läuft auf älteren Systemen: macOS {mac.minVersion} und iOS {cells.ios.value} genügen, während TablePro von beiden neuere Versionen braucht.",
+                "cite": [
+                    "mac",
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": null
             }
         ]
     },
@@ -100,8 +108,10 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> hält Verbindungen zwischen Macs und iPhone oder iPad synchron. Die Funktion gehört zu Starter auf Mac und ist auf iPhone und iPad kostenlos.",
-                "cite": [],
+                "text": "<link>iCloud Sync</link> hält Verbindungen zwischen Macs und iPhone oder iPad synchron. Auf dem Mac gehört es zu Starter, auf iPhone und iPad ist es kostenlos. TablePlus synchronisiert seine Verbindungen über einen Cloud-Ordner deiner Wahl, etwa Dropbox oder iCloud.",
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": "icloud-sync",
                 "href": null
             },
@@ -188,7 +198,8 @@
         "tableplus-one-year-updates": "Einmalkauf mit einem Jahr Updates. Die App funktioniert danach weiter.",
         "tableplus-databases": "Relationale, Dokumenten-, Schlüssel-Wert- und analytische Engines, darunter PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica und Greenplum. Manche nur auf bestimmten Plattformen.",
         "tableplus-ai": "Chat-Plugin mit OpenAI, Anthropic, GitHub Copilot oder lokalem Modell",
-        "tableplus-ios-purchase": "Kostenloser Download mit In-App-Käufen. Eine aktive TablePlus-Lizenz deckt eine festgelegte Gerätezahl ab.",
+        "tableplus-ios-purchase": "Kostenloser Download mit In-App-Käufen. Eine aktive TablePlus-Lizenz deckt eine festgelegte Gerätezahl ab. Erfordert iOS {value} oder neuer.",
+        "tableplus-sync-folder": "Verbindungen werden über einen Cloud-Ordner deiner Wahl synchronisiert, etwa Dropbox oder iCloud",
         "tableplus-safe-mode-levels": "{value} Stufen mit Touch ID"
     }
 }

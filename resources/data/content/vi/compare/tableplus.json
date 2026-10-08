@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro vs TablePlus",
-        "lead": "TablePlus và TablePro đều là database client tự giới thiệu là native, có ứng dụng cho Mac, iPhone và iPad. TablePlus còn chạy trên Windows và Linux. TablePro là phần mềm mã nguồn mở, các gói trả phí bổ sung một số tính năng tùy chọn cho ứng dụng Mac."
+        "lead": "TablePlus và TablePro đều là database client tự giới thiệu là native, có ứng dụng cho Mac, iPhone và iPad. TablePlus còn chạy trên Windows và Linux. TablePro là phần mềm mã nguồn mở, các gói trả phí bổ sung một số tính năng tùy chọn cho ứng dụng Mac. Dù tên gần giống nhau, đây là hai sản phẩm riêng biệt của hai nhà phát triển không liên quan đến nhau."
     },
     "shortAnswer": {
         "tablepro": [
             "Bạn muốn dùng một client mã nguồn mở. TablePro là mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí.",
-            "Bạn muốn dùng trợ lý AI và MCP server mà không phải trả phí. Cả hai đều miễn phí trong ứng dụng Mac, với nhà cung cấp AI do bạn chọn.",
             "Bạn muốn một ứng dụng miễn phí cho iPhone và iPad, không có mua hàng trong ứng dụng.",
             "Bạn chỉ muốn trả tiền cho đúng những tính năng mình cần. Bản miễn phí không giới hạn số tab hay số cửa sổ, còn các gói trả phí bổ sung những tính năng như {starterExamples}."
         ],
@@ -65,6 +64,12 @@
                 "cite": ["cells.setapp"],
                 "feature": null,
                 "href": null
+            },
+            {
+                "text": "TablePlus chạy được trên các hệ điều hành cũ hơn: chỉ cần macOS {mac.minVersion} và iOS {cells.ios.value}, trong khi TablePro yêu cầu phiên bản mới hơn của cả hai.",
+                "cite": ["mac", "cells.ios"],
+                "feature": null,
+                "href": null
             }
         ]
     },
@@ -90,8 +95,8 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> giữ connection đồng bộ giữa các máy Mac và iPhone hoặc iPad của bạn. Tính năng này thuộc gói Starter trên Mac và miễn phí trong ứng dụng cho iPhone và iPad.",
-                "cite": [],
+                "text": "<link>iCloud Sync</link> giữ connection đồng bộ giữa các máy Mac và iPhone hoặc iPad của bạn. Tính năng này thuộc gói Starter trên Mac và miễn phí trong ứng dụng cho iPhone và iPad. TablePlus đồng bộ connection qua một thư mục cloud do bạn chọn, chẳng hạn Dropbox hoặc iCloud.",
+                "cite": ["cells.sync"],
                 "feature": "icloud-sync",
                 "href": null
             },
@@ -178,7 +183,8 @@
         "tableplus-one-year-updates": "Trả một lần, kèm một năm cập nhật. Sau đó ứng dụng vẫn tiếp tục dùng được.",
         "tableplus-databases": "Các engine quan hệ, document, key-value và phân tích, trong đó có PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica và Greenplum. Một số engine chỉ có trên một số nền tảng.",
         "tableplus-ai": "Plugin chat dùng OpenAI, Anthropic, GitHub Copilot hoặc một model chạy trên máy",
-        "tableplus-ios-purchase": "Tải về miễn phí, có mua hàng trong ứng dụng. License TablePlus còn hiệu lực cũng dùng được cho ứng dụng này trên một số thiết bị nhất định.",
+        "tableplus-ios-purchase": "Tải về miễn phí, có mua hàng trong ứng dụng. License TablePlus còn hiệu lực cũng dùng được cho ứng dụng này trên một số thiết bị nhất định. Yêu cầu iOS {value} trở lên.",
+        "tableplus-sync-folder": "Đồng bộ connection qua một thư mục cloud do bạn chọn, chẳng hạn Dropbox hoặc iCloud",
         "tableplus-safe-mode-levels": "{value} mức, có hỗ trợ Touch ID"
     }
 }

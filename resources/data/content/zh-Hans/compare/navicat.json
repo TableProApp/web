@@ -35,6 +35,10 @@
         "dataModeling": {
             "label": "数据建模",
             "tablepro": "无建模工具。免费提供只读 ER 图，可导出为 PNG 或 SQL"
+        },
+        "singleEngine": {
+            "label": "单引擎版本",
+            "tablepro": "一个免费应用即可连接所有支持的引擎"
         }
     },
     "stronger": {
@@ -108,7 +112,7 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro 可连接 Navicat Premium 列出的引擎，也支持 ClickHouse、DuckDB、Cassandra 和 Elasticsearch 等<link>未列出的其他引擎</link>。",
+                "text": "两者都可连接 MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis 和 Snowflake。TablePro 还支持 ClickHouse、DuckDB、Cassandra 和 Elasticsearch 等<link>Navicat Premium 未列出的引擎</link>。反过来，Premium Enterprise 也列出了 KingbaseES、openGauss 等 TablePro 未列出的引擎。",
                 "cite": [
                     "cells.databases"
                 ],
@@ -189,10 +193,12 @@
         }
     ],
     "notes": {
-        "navicat-lite-commercial-use": "包含基础功能的免费版，可用于商业和非商业用途",
-        "navicat-one-year-maintenance": "一次付款，包含一年维护：升级和技术支持。每个版本也提供月付或年付订阅。",
-        "navicat-databases": "MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis 和 Snowflake，包括其云服务",
+        "navicat-lite-commercial-use": "包含基础功能的免费版，可用于商业和非商业用途，每个组织最多 {value} 个用户账户",
+        "navicat-one-year-maintenance": "永久许可证一次付款，包含一年维护：升级和技术支持。",
+        "navicat-databases": "MySQL、MariaDB、PostgreSQL、SQL Server、Oracle、SQLite、MongoDB、Redis 和 Snowflake，包括其云服务。Premium Enterprise 还增加 OceanBase、TiDB、KingbaseES 和 openGauss 等引擎。",
+        "navicat-ai-editions": "Premium Standard 和 Premium Enterprise 提供，Premium Lite 不提供",
         "navicat-ios-per-engine-apps": "按引擎分别提供付费应用，如 Navicat for MySQL 和 Navicat for PostgreSQL。没有 iPhone 版 Navicat Premium。",
-        "navicat-cloud": "Navicat Cloud，或自己服务器上的 Navicat On-Prem Server，同步连接设置、查询和模型，并与受邀人员共享"
+        "navicat-cloud": "Navicat Cloud，或自己服务器上的 Navicat On-Prem Server，同步连接设置、查询和模型，并与受邀人员共享",
+        "navicat-single-engine": "面向单一引擎的版本（如 Navicat for MySQL）单独销售，价格低于 Navicat Premium"
     }
 }

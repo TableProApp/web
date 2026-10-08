@@ -32,6 +32,10 @@
         "vcs": {
             "label": "Versionsverwaltung",
             "tablepro": "Kostenlos für einen verknüpften SQL-Ordner: Git-Statusbuchstaben, Commit-Verlauf jeder Datei mit nebeneinander angezeigten Änderungen, Restore This Version und Discard Changes. Kein Staging, Commit, Push oder Branching"
+        },
+        "usageStatistics": {
+            "label": "Nutzungsstatistiken",
+            "tablepro": "Ein täglicher Nutzungsbericht, standardmäßig aktiviert und in den Einstellungen abschaltbar"
         }
     },
     "stronger": {
@@ -188,8 +192,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "Für Lernen, Hobbyprojekte, Inhaltserstellung und Open-Source-Arbeit ohne kommerziellen Nutzen, mit allen Funktionen. Aktivierung über einen JetBrains Account; Nutzungsstatistiken werden ohne Abschaltmöglichkeit erfasst.",
+        "datagrip-non-commercial": "Für Lernen, Hobbyprojekte, Inhaltserstellung und Open-Source-Arbeit ohne kommerziellen Nutzen, mit allen Funktionen. Aktivierung über einen JetBrains Account.",
         "datagrip-databases": "Vollständige Unterstützung mit Codeprüfungen und Schnellkorrekturen für die Haupt-Engines. Andere wie DuckDB, Firebird, Informix und Databricks erhalten grundlegende Unterstützung über ihren JDBC-Treiber: Hervorhebung und Objektbrowser, ohne Fehlerprüfung.",
-        "datagrip-ai-quota": "JetBrains AI: kostenlose Stufe mit kleinem wiederkehrendem KI-Credit-Kontingent, kostenpflichtige KI-Tarife für mehr Nutzung von JetBrains’ eigenem Dienst oder eigener Anbieterschlüssel bzw. lokales Modell."
+        "datagrip-ai-quota": "JetBrains AI: kostenlose Stufe mit kleinem wiederkehrendem KI-Credit-Kontingent, kostenpflichtige KI-Tarife für mehr Nutzung von JetBrains’ eigenem Dienst oder eigener Anbieterschlüssel bzw. lokales Modell.",
+        "datagrip-usage-statistics": "Mit der kostenlosen Lizenz für nicht gewerbliche Nutzung werden Nutzungsstatistiken ohne Abschaltmöglichkeit erfasst"
     }
 }

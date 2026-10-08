@@ -35,6 +35,10 @@
         "dataModeling": {
             "label": "Data modeling",
             "tablepro": "Không có công cụ modeling. Sơ đồ ER chỉ đọc, export ra PNG hoặc SQL, miễn phí"
+        },
+        "singleEngine": {
+            "label": "Bản cho một engine",
+            "tablepro": "Một ứng dụng miễn phí kết nối được tới mọi engine được hỗ trợ"
         }
     },
     "stronger": {
@@ -94,7 +98,7 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro kết nối được tới các engine có trong danh sách của Navicat Premium, và cả <link>những engine không có trong danh sách đó</link>, như ClickHouse, DuckDB, Cassandra và Elasticsearch.",
+                "text": "Cả hai đều kết nối được tới MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis và Snowflake. TablePro còn kết nối được tới <link>những engine không có trong danh sách của Navicat Premium</link>, như ClickHouse, DuckDB, Cassandra và Elasticsearch. Ngược lại, bản Premium Enterprise có một số engine không nằm trong danh sách của TablePro, như KingbaseES và openGauss.",
                 "cite": ["cells.databases"],
                 "feature": null,
                 "href": "/databases"
@@ -173,10 +177,12 @@
         }
     ],
     "notes": {
-        "navicat-lite-commercial-use": "Bản miễn phí có các tính năng cốt lõi, dùng được cho cả mục đích thương mại lẫn phi thương mại",
-        "navicat-one-year-maintenance": "Trả một lần, kèm một năm bảo trì: nâng cấp phiên bản và hỗ trợ kỹ thuật. Mỗi bản cũng được bán theo gói thuê bao theo tháng hoặc theo năm.",
-        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis và Snowflake, kể cả các dịch vụ cloud của chúng",
+        "navicat-lite-commercial-use": "Bản miễn phí có các tính năng cốt lõi, dùng được cho cả mục đích thương mại lẫn phi thương mại, tối đa {value} tài khoản người dùng cho mỗi tổ chức",
+        "navicat-one-year-maintenance": "License vĩnh viễn trả một lần, kèm một năm bảo trì: nâng cấp phiên bản và hỗ trợ kỹ thuật.",
+        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis và Snowflake, kể cả các dịch vụ cloud của chúng. Bản Premium Enterprise có thêm các engine khác, như OceanBase, TiDB, KingbaseES và openGauss.",
+        "navicat-ai-editions": "Có trong bản Premium Standard và Premium Enterprise, không có trong bản Premium Lite",
         "navicat-ios-per-engine-apps": "Các ứng dụng trả phí riêng cho từng engine, như Navicat for MySQL và Navicat for PostgreSQL. Không có ứng dụng Navicat Premium cho iPhone.",
-        "navicat-cloud": "Navicat Cloud, hoặc Navicat On-Prem Server đặt trên máy chủ của bạn, đồng bộ thiết lập connection, query và model, đồng thời chia sẻ chúng với những người bạn mời"
+        "navicat-cloud": "Navicat Cloud, hoặc Navicat On-Prem Server đặt trên máy chủ của bạn, đồng bộ thiết lập connection, query và model, đồng thời chia sẻ chúng với những người bạn mời",
+        "navicat-single-engine": "Các bản dành cho một engine, như Navicat for MySQL, được bán riêng với giá thấp hơn Navicat Premium"
     }
 }

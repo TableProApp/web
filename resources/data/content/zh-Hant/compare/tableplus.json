@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro vs TablePlus",
-        "lead": "TablePlus 和 TablePro 都是自稱原生的資料庫用戶端，提供 Mac、iPhone 與 iPad 應用程式。TablePlus 也可在 Windows 與 Linux 上執行。TablePro 開源，付費方案為 Mac 應用程式新增選用功能。"
+        "lead": "TablePlus 和 TablePro 都是自稱原生的資料庫用戶端，提供 Mac、iPhone 與 iPad 應用程式。TablePlus 也可在 Windows 與 Linux 上執行。TablePro 開源，付費方案為 Mac 應用程式新增選用功能。兩者名稱相似，但出自互不相關的開發者，是各自獨立的產品。"
     },
     "shortAnswer": {
         "tablepro": [
             "您希望使用開源用戶端。TablePro 包括付費功能程式碼在內，均以 AGPLv3 開源。",
-            "您希望免費使用 AI 助手和 MCP 伺服器。兩者在 Mac 應用程式中均免費，可選擇 AI 服務商。",
             "您希望使用免費的 iPhone 與 iPad 應用程式，無 App 內購買。",
             "您希望只為所需功能付費。免費應用程式沒有分頁或視窗數量限制，付費方案新增 {starterExamples} 等功能。"
         ],
@@ -71,6 +70,15 @@
                 ],
                 "feature": null,
                 "href": null
+            },
+            {
+                "text": "它支援較舊的系統：macOS {mac.minVersion} 和 iOS {cells.ios.value} 即可執行，而 TablePro 需要兩者更新的版本。",
+                "cite": [
+                    "mac",
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": null
             }
         ]
     },
@@ -100,8 +108,10 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> 讓多台 Mac 與 iPhone 或 iPad 的連線保持一致。在 Mac 上包含於 Starter，在 iPhone 與 iPad 應用程式中免費。",
-                "cite": [],
+                "text": "<link>iCloud Sync</link> 讓多台 Mac 與 iPhone 或 iPad 的連線保持一致。在 Mac 上包含於 Starter，在 iPhone 與 iPad 應用程式中免費。TablePlus 透過你選擇的雲端資料夾（如 Dropbox 或 iCloud）同步連線。",
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": "icloud-sync",
                 "href": null
             },
@@ -188,7 +198,8 @@
         "tableplus-one-year-updates": "一次付款，包含一年更新，之後應用程式仍可使用。",
         "tableplus-databases": "關聯式、文件、鍵值和分析引擎，包括 PostgreSQL、MySQL、SQL Server、SQLite、Redis、MongoDB、Oracle、Cassandra、Snowflake、Vertica 和 Greenplum。部分引擎僅在部分平台可用。",
         "tableplus-ai": "支援 OpenAI、Anthropic、GitHub Copilot 或本機模型的聊天外掛",
-        "tableplus-ios-purchase": "免費下載，有 App 內購買。有效 TablePlus 授權也涵蓋指定數量的裝置。",
+        "tableplus-ios-purchase": "免費下載，有 App 內購買。有效 TablePlus 授權也涵蓋指定數量的裝置。需要 iOS {value} 或更新版本。",
+        "tableplus-sync-folder": "透過你選擇的雲端資料夾（如 Dropbox 或 iCloud）同步連線",
         "tableplus-safe-mode-levels": "{value} 個等級，支援 Touch ID"
     }
 }

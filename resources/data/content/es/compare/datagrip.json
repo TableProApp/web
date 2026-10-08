@@ -32,6 +32,10 @@
         "vcs": {
             "label": "Control de versiones",
             "tablepro": "Gratis para una carpeta SQL vinculada: letras de estado de Git, historial de commits de cada archivo con comparación en paralelo, Restore This Version y Discard Changes. Sin preparación, commits, envíos ni ramas"
+        },
+        "usageStatistics": {
+            "label": "Estadísticas de uso",
+            "tablepro": "Un informe de uso diario, activado por defecto, que puedes desactivar en Ajustes"
         }
     },
     "stronger": {
@@ -188,8 +192,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "Para aprendizaje, proyectos personales, creación de contenido y trabajo de código abierto sin beneficio comercial, con todas las funciones. Se activa mediante una JetBrains Account y recopila estadísticas de uso sin posibilidad de desactivarlas.",
+        "datagrip-non-commercial": "Para aprendizaje, proyectos personales, creación de contenido y trabajo de código abierto sin beneficio comercial, con todas las funciones. Se activa mediante una JetBrains Account.",
         "datagrip-databases": "Soporte completo con inspecciones de código y correcciones rápidas para sus motores principales. Otros, como DuckDB, Firebird, Informix y Databricks, tienen soporte básico mediante su controlador JDBC: resaltado y exploración de objetos, sin comprobación de errores.",
-        "datagrip-ai-quota": "JetBrains AI: nivel gratuito con una pequeña cuota recurrente de créditos de IA, planes de IA de pago para usar más el servicio propio de JetBrains o tu propia clave de proveedor o un modelo local."
+        "datagrip-ai-quota": "JetBrains AI: nivel gratuito con una pequeña cuota recurrente de créditos de IA, planes de IA de pago para usar más el servicio propio de JetBrains o tu propia clave de proveedor o un modelo local.",
+        "datagrip-usage-statistics": "Con la licencia gratuita para uso no comercial se recopilan estadísticas de uso sin posibilidad de desactivarlas"
     }
 }

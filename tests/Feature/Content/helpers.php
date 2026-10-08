@@ -516,7 +516,7 @@ function contentGuardIsSourcedNote(string $path, string $key, bool $dated): bool
         }
 
         foreach ([...array_values($product['cells'] ?? []), ...($product['prices'] ?? [])] as $cell) {
-            if (is_array($cell) && ($cell['note'] ?? null) === $match[1] && is_string($cell['source'] ?? null) && $cell['source'] !== '') {
+            if (is_array($cell) && ($cell['note'] ?? null) === $match[1] && array_filter((array) ($cell['source'] ?? [])) !== []) {
                 return true;
             }
         }

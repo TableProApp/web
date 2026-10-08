@@ -88,6 +88,7 @@ class DatabaseController extends Controller
             'family' => array_map(fn(array $member): array => $this->summary($member, true), $family),
             'copy' => $this->engineCopy($locale, [$engine['id'], ...array_column($family, 'id')]),
             'tools' => $this->citedTools($page, $locale),
+            'comparisons' => $this->moreComparisons($page, (string) $engine['id'], $locale),
             'platforms' => $this->platformSummaries(),
             'links' => $this->links(),
             'product' => $this->product(),
@@ -202,7 +203,7 @@ class DatabaseController extends Controller
      * render the same text.
      *
      * @param  array<string, mixed>  $page
-     * @return list<array{id: string, name: string, comparePath: string|null, state: string, version: string|null, released: string|null, platforms: list<string>, licence: array{name: string|null, openSource: bool}, free: bool, checked: string|null, sources: list<array{title: string, url: string}>}>
+     * @return list<array{id: string, name: string, comparePath: string|null, compareTitle: string|null, state: string, version: string|null, released: string|null, platforms: list<string>, licence: array{name: string|null, openSource: bool}, free: bool, checked: string|null, sources: list<array{title: string, url: string}>}>
      */
     private function citedTools(array $page, string $locale): array
     {
@@ -229,6 +230,7 @@ class DatabaseController extends Controller
                 'id' => (string) $product['id'],
                 'name' => (string) $product['name'],
                 'comparePath' => is_string($product['slug'] ?? null) ? '/compare/' . $product['slug'] : null,
+                'compareTitle' => is_string($product['slug'] ?? null) ? $this->compareTitle($product['slug'], $locale) : null,
                 'state' => (string) ($product['status']['state'] ?? 'active'),
                 'version' => is_array($release) && is_string($release['version'] ?? null) ? $release['version'] : null,
                 'released' => is_array($release) ? $this->date($release['date'] ?? null, $locale) : null,
@@ -247,6 +249,51 @@ class DatabaseController extends Controller
         }
 
         return $tools;
+    }
+
+    /**
+     * The comparisons with a client that connects to this engine and that the
+     * page's "Other tools" paragraphs do not already link, in data order. An
+     * engine is matched through the `engines` list of the product's sourced
+     * `databases` cell. Empty on a page with no "Other tools" block.
+     *
+     * @param  array<string, mixed>  $page
+     * @return list<array{path: string, title: string}>
+     */
+    private function moreComparisons(array $page, string $engineId, string $locale): array
+    {
+        $items = $page['otherTools']['items'] ?? null;
+
+        if (! is_array($items) || $items === []) {
+            return [];
+        }
+
+        $cited = array_column(array_filter($items, 'is_array'), 'product');
+        $comparisons = [];
+
+        foreach ($this->json('comparisons.json')['products'] ?? [] as $product) {
+            if (! is_array($product) || ! is_string($product['slug'] ?? null) || in_array($product['id'] ?? null, $cited, true)) {
+                continue;
+            }
+
+            $title = $this->compareTitle($product['slug'], $locale);
+
+            if ($title !== null && in_array($engineId, $product['cells']['databases']['engines'] ?? [], true)) {
+                $comparisons[] = ['path' => '/compare/' . $product['slug'], 'title' => $title];
+            }
+        }
+
+        return $comparisons;
+    }
+
+    /**
+     * A comparison page's H1 in this locale, or null where it has no copy.
+     */
+    private function compareTitle(string $slug, string $locale): ?string
+    {
+        $title = $this->content->entry('compare', $slug, $locale)['header']['title'] ?? null;
+
+        return is_string($title) && $title !== '' ? $title : null;
     }
 
     /**

@@ -35,6 +35,10 @@
         "dataModeling": {
             "label": "Modellazione dati",
             "tablepro": "Nessuno strumento di modellazione. Diagramma ER in sola lettura, esportabile come PNG o SQL, gratuito"
+        },
+        "singleEngine": {
+            "label": "Edizioni per un solo motore",
+            "tablepro": "Un’unica app gratuita si connette a tutti i motori supportati"
         }
     },
     "stronger": {
@@ -108,7 +112,7 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro si connette ai motori elencati da Navicat Premium e ad <link>altri non elencati</link>, come ClickHouse, DuckDB, Cassandra ed Elasticsearch.",
+                "text": "Entrambi si connettono a MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis e Snowflake. TablePro si connette anche a <link>motori che Navicat Premium non elenca</link>, come ClickHouse, DuckDB, Cassandra ed Elasticsearch. A sua volta, Premium Enterprise ne elenca alcuni che TablePro non elenca, come KingbaseES e openGauss.",
                 "cite": [
                     "cells.databases"
                 ],
@@ -189,10 +193,12 @@
         }
     ],
     "notes": {
-        "navicat-lite-commercial-use": "Un’edizione gratuita con le funzionalità essenziali, per uso commerciale e non commerciale",
-        "navicat-one-year-maintenance": "Pagamento una tantum, con un anno di manutenzione: aggiornamenti e assistenza tecnica. Ogni edizione è venduta anche come abbonamento mensile o annuale.",
-        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis e Snowflake, inclusi i relativi servizi cloud",
+        "navicat-lite-commercial-use": "Un’edizione gratuita con le funzionalità essenziali, per uso commerciale e non commerciale, con un massimo di {value} account utente per organizzazione",
+        "navicat-one-year-maintenance": "La licenza perpetua si paga una sola volta e include un anno di manutenzione: aggiornamenti e assistenza tecnica.",
+        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis e Snowflake, inclusi i relativi servizi cloud. Premium Enterprise ne aggiunge altri, come OceanBase, TiDB, KingbaseES e openGauss.",
+        "navicat-ai-editions": "In Premium Standard e Premium Enterprise, non in Premium Lite",
         "navicat-ios-per-engine-apps": "App a pagamento separate per singoli motori, come Navicat for MySQL e Navicat for PostgreSQL. Non esiste un’app Navicat Premium per iPhone.",
-        "navicat-cloud": "Navicat Cloud, o Navicat On-Prem Server sul tuo server, sincronizza impostazioni delle connessioni, query e modelli e li condivide con le persone che inviti"
+        "navicat-cloud": "Navicat Cloud, o Navicat On-Prem Server sul tuo server, sincronizza impostazioni delle connessioni, query e modelli e li condivide con le persone che inviti",
+        "navicat-single-engine": "Le edizioni per un solo motore, come Navicat for MySQL, sono vendute separatamente a un prezzo inferiore a Navicat Premium"
     }
 }

@@ -1,6 +1,8 @@
 import { usePage } from '@inertiajs/react';
 import type { ReactNode } from 'react';
 import { CellContent, FoldedCells, WIDE_COLUMN, WIDER_COLUMN } from '@/components/compare/comparison-table';
+import GetStarted from '@/components/compare/get-started';
+import JumpList from '@/components/compare/jump-list';
 import {
     currencyStyle,
     dateLabel,
@@ -19,7 +21,9 @@ import { SourceList } from '@/components/compare/sources';
 import { tableproFacts } from '@/components/compare/tablepro-facts';
 import type { CompareHubProps, HubProduct } from '@/components/compare/types';
 import SEOHead from '@/components/seo/seo-head';
+import { buttonClasses } from '@/components/ui/button';
 import DataTable, { TABLE_CELL, TABLE_HEAD_CELL, TABLE_ROW, TABLE_ROW_HEADER } from '@/components/ui/data-table';
+import { AppleGlyph } from '@/components/ui/glyph';
 import LocaleLink from '@/components/ui/locale-link';
 import PageHeader from '@/components/ui/page-header';
 import Section from '@/components/ui/section';
@@ -28,6 +32,7 @@ import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, useI18n } from '@/i18n';
 import { formatUsd, joinList, keepTogether } from '@/i18n/format';
 import LandingLayout from '@/layouts/landing-layout';
+import { trackDownload } from '@/lib/analytics';
 import { docsUrl, FACTS } from '@/lib/data/facts';
 import { absoluteUrl, collectionPageNode, graph } from '@/lib/structured-data';
 import { cn } from '@/lib/utils';
@@ -37,11 +42,11 @@ import { cn } from '@/lib/utils';
  * place, with a dated summary table.
  *
  * Sections and ids: `#by-situation`, `#at-a-glance`, `#open-source` (where
- * the retired open-source roundup post redirects), `#switching` and
- * `#method`. Every competitor fact is the product's `comparisons.json` entry
+ * the retired open-source roundup post redirects), `#switching`, `#method`,
+ * `#sources` and `#get-started`. Every competitor fact is the product's `comparisons.json` entry
  * with a numbered, dated source; TablePro's row comes from its own data.
  */
-export default function CompareIndex({ content, products, freeNotes, checkedAt, dates, tablepro }: CompareHubProps) {
+export default function CompareIndex({ content, products, freeNotes, titles, checkedAt, dates, tablepro }: CompareHubProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, plural, path } = useI18n();
     const labels = content.labels;
@@ -69,15 +74,17 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
     const pageContext = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
 
     const tokens = (product: HubProduct) => productTokens({ ...product, cells: {} }, dates);
+    // A link reads as the page it opens: its H1.
+    const pageTitle = (product: HubProduct) => titles[product.slug ?? ''] ?? fmt(labels.hub.compareLink, { name: product.name });
 
     const freeCell = (product: HubProduct): CellView => {
         const free = freeTier(product);
 
         if (free === null) {
-            return { mark: 'no', lines: [{ text: labels.hub.freeNo }], sources: [] };
+            return { mark: 'no', lines: [{ text: labels.hub.freeNo }], sources: [], worded: true };
         }
 
-        const qualifier = free.edition ?? (free.audience ? labels.price.audience[free.audience] : null);
+        const qualifier = free.edition ? fmt(labels.cell.edition, { edition: free.edition }) : free.audience ? labels.price.audience[free.audience] : null;
         const template = free.note ? (freeNotes[product.slug ?? ''] ?? null) : null;
         const note = template !== null ? fmt(template, { ...(free.value !== undefined ? { value: free.value } : {}), edition: free.edition ?? '' }) : null;
         const lines = [
@@ -85,7 +92,7 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
             ...(note !== null ? [{ text: note, muted: qualifier !== null }] : []),
         ];
 
-        return { mark: 'yes', lines: lines.length > 0 ? lines : [{ text: labels.hub.freeYes }], sources: [free.source] };
+        return { mark: 'yes', lines: lines.length > 0 ? lines : [{ text: labels.hub.freeYes }], sources: [free.source], worded: lines.length === 0 };
     };
 
     const paidCell = (product: HubProduct): CellView => {
@@ -135,7 +142,7 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
                   lines: [{ text: product.licence.edition ? `${product.licence.name} (${product.licence.edition})` : product.licence.name }],
                   sources: [product.licence.source],
               }
-            : { mark: 'no', lines: [{ text: labels.licence.no }], sources: [product.licence.source] },
+            : { mark: 'no', lines: [{ text: labels.licence.no }], sources: [product.licence.source], worded: true },
         freeCell(product),
         paidCell(product),
     ];
@@ -151,6 +158,15 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
             product.name
         );
 
+    const sections = [
+        { id: 'by-situation', label: content.bySituation.title },
+        { id: 'at-a-glance', label: content.atAGlance.title },
+        { id: 'open-source', label: content.openSource.title },
+        { id: 'switching', label: content.switching.title },
+        { id: 'method', label: content.method.title },
+        { id: 'sources', label: labels.sections.sources },
+    ];
+
     return (
         <LandingLayout>
             <SEOHead
@@ -164,15 +180,42 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
                         description: content.seo.description,
                         items: products
                             .filter((product) => product.slug !== null)
-                            .map((product) => ({ name: fmt(labels.hub.compareLink, { name: product.name }), path: path(`/compare/${product.slug}`) })),
+                            .map((product) => ({ name: pageTitle(product), path: path(`/compare/${product.slug}`) })),
                     }),
                 ])}
             />
 
-            <PageHeader title={content.header.title} lead={content.header.lead} meta={fmt(labels.factsChecked, { date: checked })} />
+            <PageHeader
+                title={content.header.title}
+                lead={content.header.lead}
+                meta={fmt(labels.factsChecked, { date: checked })}
+                actions={
+                    <>
+                        <LocaleLink href="/download" onClick={() => trackDownload('compare-hub', 'mac')} className={buttonClasses('primary', 'md')}>
+                            <AppleGlyph />
+                            {m.download.macCta}
+                        </LocaleLink>
+                        <LocaleLink href="/pricing" className={textLinkClasses('standalone')}>
+                            {labels.cta.pricing}
+                            <span aria-hidden="true">→</span>
+                        </LocaleLink>
+                    </>
+                }
+            >
+                <JumpList items={sections} />
+            </PageHeader>
 
             <Section id="by-situation" title={content.bySituation.title} lead={content.bySituation.lead} width="text">
                 <ul data-rule-list className="frame-rows-text border-t border-rule">
+                    <li className="border-b border-rule py-4">
+                        <p className="type-body text-foreground">{fmt(content.bySituation.tablepro, { apps: joinList(importers, m.common.list) })}</p>
+                        <p className="mt-2">
+                            <LocaleLink href="/download" onClick={() => trackDownload('compare-hub-situation', 'mac')} className={textLinkClasses('standalone')}>
+                                {m.download.macCta}
+                                <span aria-hidden="true">→</span>
+                            </LocaleLink>
+                        </p>
+                    </li>
                     {products
                         .filter((product) => product.slug !== null)
                         .map((product) => {
@@ -183,7 +226,7 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
                                     <p className="type-body text-foreground">{line !== undefined ? <RichText text={line} values={tokens(product)} /> : product.name}</p>
                                     <p className="mt-2">
                                         <LocaleLink href={`/compare/${product.slug}`} className={textLinkClasses('standalone')}>
-                                            {fmt(labels.hub.compareLink, { name: product.name })}
+                                            {pageTitle(product)}
                                             <span aria-hidden="true">→</span>
                                         </LocaleLink>
                                     </p>
@@ -211,7 +254,19 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
                     <tbody>
                         {[
                             { id: 'tablepro', name: m.common.brand as ReactNode, numbers: new Map<string, number>(), cells: tableproCells },
-                            ...products.map((product) => ({ id: product.id, name: productLink(product), numbers: numbersOf(product.id), cells: glanceCells(product) })),
+                            ...products.map((product) => ({
+                                id: product.id,
+                                name:
+                                    product.status.state === 'discontinued' ? (
+                                        <>
+                                            {productLink(product)} <StatusBadge status="neutral">{labels.status.discontinued}</StatusBadge>
+                                        </>
+                                    ) : (
+                                        productLink(product)
+                                    ),
+                                numbers: numbersOf(product.id),
+                                cells: glanceCells(product),
+                            })),
                         ].map((row) => {
                             const content = row.cells.map((view) => <CellContent view={view} productId={row.id} numbers={row.numbers} labels={labels} />);
 
@@ -335,7 +390,7 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
                 </div>
             </Section>
 
-            {/* Last, after both tables whose markers it numbers, as the captions say: "Sources are listed at the end of the page". */}
+            {/* After both tables whose markers it numbers, as the captions say: "Sources are listed at the end of the page". */}
             <Section id="sources" title={labels.sections.sources} width="text">
                 <div className="space-y-4">
                     {numbered
@@ -358,8 +413,11 @@ export default function CompareIndex({ content, products, freeNotes, checkedAt, 
                                 </div>
                             );
                         })}
+                    <p className="type-small text-muted-foreground">{labels.sources.trademarks}</p>
                 </div>
             </Section>
+
+            <GetStarted labels={labels} location="compare-hub-end" hubLink={false} />
         </LandingLayout>
     );
 }

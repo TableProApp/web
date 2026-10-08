@@ -33,4 +33,6 @@ export interface PricingPageProps {
     checkout: CheckoutProp;
     /** The featured engines' names, in data order, for the Mac app's structured-data description. */
     featuredEngines: string[];
+    /** Comparisons with clients that sell a paid plan, each with its page's H1. */
+    comparisons: { path: string; title: string }[];
 }

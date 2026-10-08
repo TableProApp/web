@@ -35,6 +35,10 @@
         "dataModeling": {
             "label": "Pemodelan data",
             "tablepro": "Tanpa alat pemodelan. Diagram ER hanya baca, dapat diekspor sebagai PNG atau SQL, gratis"
+        },
+        "singleEngine": {
+            "label": "Edisi untuk satu mesin",
+            "tablepro": "Satu aplikasi gratis terhubung ke semua mesin yang didukung"
         }
     },
     "stronger": {
@@ -108,7 +112,7 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro terhubung ke mesin yang dicantumkan Navicat Premium dan <link>mesin lain yang tidak dicantumkan</link>, seperti ClickHouse, DuckDB, Cassandra, dan Elasticsearch.",
+                "text": "Keduanya terhubung ke MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, dan Snowflake. TablePro juga terhubung ke <link>mesin yang tidak dicantumkan Navicat Premium</link>, seperti ClickHouse, DuckDB, Cassandra, dan Elasticsearch. Sebaliknya, Premium Enterprise mencantumkan beberapa mesin yang tidak dicantumkan TablePro, seperti KingbaseES dan openGauss.",
                 "cite": [
                     "cells.databases"
                 ],
@@ -189,10 +193,12 @@
         }
     ],
     "notes": {
-        "navicat-lite-commercial-use": "Edisi gratis dengan fitur inti, untuk penggunaan komersial dan nonkomersial",
-        "navicat-one-year-maintenance": "Dibayar sekali, dengan pemeliharaan satu tahun: peningkatan dan dukungan teknis. Setiap edisi juga dijual sebagai langganan bulanan atau tahunan.",
-        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, dan Snowflake, termasuk layanan cloud-nya",
+        "navicat-lite-commercial-use": "Edisi gratis dengan fitur inti, untuk penggunaan komersial dan nonkomersial, hingga {value} akun pengguna per organisasi",
+        "navicat-one-year-maintenance": "Lisensi permanen dibayar sekali dan mencakup pemeliharaan satu tahun: peningkatan dan dukungan teknis.",
+        "navicat-databases": "MySQL, MariaDB, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, dan Snowflake, termasuk layanan cloud-nya. Premium Enterprise menambahkan mesin lain, seperti OceanBase, TiDB, KingbaseES, dan openGauss.",
+        "navicat-ai-editions": "Tersedia di Premium Standard dan Premium Enterprise, tidak di Premium Lite",
         "navicat-ios-per-engine-apps": "Aplikasi berbayar terpisah untuk satu mesin, seperti Navicat for MySQL dan Navicat for PostgreSQL. Tidak ada aplikasi Navicat Premium untuk iPhone.",
-        "navicat-cloud": "Navicat Cloud, atau Navicat On-Prem Server di server Anda sendiri, menyinkronkan pengaturan koneksi, kueri, dan model serta membagikannya kepada orang yang Anda undang"
+        "navicat-cloud": "Navicat Cloud, atau Navicat On-Prem Server di server Anda sendiri, menyinkronkan pengaturan koneksi, kueri, dan model serta membagikannya kepada orang yang Anda undang",
+        "navicat-single-engine": "Edisi untuk satu mesin, seperti Navicat for MySQL, dijual terpisah dengan harga lebih rendah daripada Navicat Premium"
     }
 }

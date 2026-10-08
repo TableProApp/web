@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro vs TablePlus",
-        "lead": "TablePlus 和 TablePro 都是自称原生的数据库客户端，提供 Mac、iPhone 和 iPad 应用。TablePlus 也可在 Windows 和 Linux 上运行。TablePro 开源，付费方案为 Mac 应用添加可选功能。"
+        "lead": "TablePlus 和 TablePro 都是自称原生的数据库客户端，提供 Mac、iPhone 和 iPad 应用。TablePlus 也可在 Windows 和 Linux 上运行。TablePro 开源，付费方案为 Mac 应用添加可选功能。两者名称相似，但出自互不相关的开发者，是各自独立的产品。"
     },
     "shortAnswer": {
         "tablepro": [
             "您希望使用开源客户端。TablePro 包括付费功能代码在内，均以 AGPLv3 开源。",
-            "您希望免费使用 AI 助手和 MCP 服务器。两者在 Mac 应用中均免费，可选择 AI 服务商。",
             "您希望使用免费的 iPhone 和 iPad 应用，无应用内购买。",
             "您希望只为所需功能付费。免费应用没有标签页或窗口数量限制，付费方案添加 {starterExamples} 等功能。"
         ],
@@ -71,6 +70,15 @@
                 ],
                 "feature": null,
                 "href": null
+            },
+            {
+                "text": "它支持更旧的系统：macOS {mac.minVersion} 和 iOS {cells.ios.value} 即可运行，而 TablePro 需要两者更新的版本。",
+                "cite": [
+                    "mac",
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": null
             }
         ]
     },
@@ -100,8 +108,10 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> 让多台 Mac 与 iPhone 或 iPad 的连接保持一致。在 Mac 上包含于 Starter，在 iPhone 和 iPad 应用中免费。",
-                "cite": [],
+                "text": "<link>iCloud Sync</link> 让多台 Mac 与 iPhone 或 iPad 的连接保持一致。在 Mac 上包含于 Starter，在 iPhone 和 iPad 应用中免费。TablePlus 通过你选择的云端文件夹（如 Dropbox 或 iCloud）同步连接。",
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": "icloud-sync",
                 "href": null
             },
@@ -188,7 +198,8 @@
         "tableplus-one-year-updates": "一次付款，包含一年更新，之后应用仍可使用。",
         "tableplus-databases": "关系型、文档、键值和分析引擎，包括 PostgreSQL、MySQL、SQL Server、SQLite、Redis、MongoDB、Oracle、Cassandra、Snowflake、Vertica 和 Greenplum。部分引擎仅在部分平台可用。",
         "tableplus-ai": "支持 OpenAI、Anthropic、GitHub Copilot 或本地模型的聊天插件",
-        "tableplus-ios-purchase": "免费下载，有应用内购买。有效 TablePlus 许可证也覆盖指定数量的设备。",
+        "tableplus-ios-purchase": "免费下载，有应用内购买。有效 TablePlus 许可证也覆盖指定数量的设备。需要 iOS {value} 或更新版本。",
+        "tableplus-sync-folder": "通过你选择的云端文件夹（如 Dropbox 或 iCloud）同步连接",
         "tableplus-safe-mode-levels": "{value} 个级别，支持 Touch ID"
     }
 }

@@ -14,6 +14,7 @@
     "bySituation": {
         "title": "Elige según tu situación",
         "lead": "Una línea por cliente, con enlace a la comparación completa.",
+        "tablepro": "Elige TablePro si quieres un cliente de código abierto con una app nativa para Mac y otra independiente para iPhone y iPad. El asistente de IA y el servidor MCP son gratuitos en la app para Mac, y TablePro importa las conexiones guardadas de {apps}.",
         "items": {
             "tableplus": "Elige TablePlus si también trabajas en Windows o Linux, o conectas a Vertica o Greenplum.",
             "dbeaver": "Elige DBeaver si quieres un cliente gratuito para Windows, macOS y Linux que conecte a cualquier motor con controlador JDBC.",
@@ -62,6 +63,7 @@
         "sourcesLink": "Fuentes",
         "shortAnswer": {
             "title": "La respuesta breve",
+            "lead": "¿Buscas una alternativa a {name} en Mac? Aquí ves cuándo encaja cada cliente.",
             "tablepro": "Elige TablePro si",
             "competitor": "Elige {name} si"
         },
@@ -84,8 +86,8 @@
             "import": "Migración a TablePro"
         },
         "cell": {
-            "yes": "Compatible",
-            "no": "No compatible",
+            "yes": "Sí",
+            "no": "No",
             "partial": "Parcial",
             "edition": "En la edición {edition}",
             "since": "Since version {version}",
@@ -171,8 +173,8 @@
         "tablepro": {
             "technology": "Swift, con controladores nativos de bases de datos",
             "priceFree": "Gratis. Los planes de pago añaden funciones opcionales en Mac.",
-            "starter": "Starter: {monthly} al mes, {yearly} al año o {lifetime} una vez",
-            "team": "Team: {monthly} al mes, {yearly} al año o {lifetime} una vez, por puesto, mínimo {min} puestos",
+            "starter": "{monthly} al mes, {yearly} al año o {lifetime} una vez",
+            "team": "{monthly} al mes, {yearly} al año o {lifetime} una vez, por puesto, mínimo {min} puestos",
             "iosPrice": "La app para iPhone y iPad es gratuita, sin compras integradas.",
             "licence": "Sí: {licence}, incluido el código de las funciones de pago",
             "databases": "{engines} y más",
@@ -201,6 +203,7 @@
             "switching": "Cambiar desde {name}",
             "faq": "Preguntas",
             "sources": "Fuentes",
+            "more": "Más comparaciones",
             "cta": "Consigue TablePro"
         },
         "switching": {
@@ -210,7 +213,8 @@
             "intro": "Datos de {name} verificados el {date} con estas páginas. Precios de lista en dólares estadounidenses, antes de impuestos.",
             "retrieved": "verificado el {date}",
             "latest": "Última versión de {name} entonces: {version}, publicada el {date}.",
-            "tablepro": "La columna TablePro describe TablePro {macVersion} para Mac y {iosVersion} para iPhone y iPad."
+            "tablepro": "La columna TablePro describe TablePro {macVersion} para Mac y {iosVersion} para iPhone y iPad.",
+            "trademarks": "TablePro es un proyecto independiente de código abierto, sin afiliación con los creadores de los productos comparados aquí ni respaldo por su parte. Los nombres de producto son marcas de sus respectivos propietarios."
         },
         "cta": {
             "body": "TablePro se descarga gratis. Los planes de pago añaden funciones opcionales en Mac.",

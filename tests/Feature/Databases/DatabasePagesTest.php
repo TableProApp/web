@@ -470,6 +470,56 @@ it('dates the tools the PostgreSQL page cites from comparisons.json, in the page
     'Vietnamese' => ['/vi', '2 tháng 10 năm 2026'],
 ]);
 
+it('links the comparisons with clients for the page’s engine that its paragraphs do not already link', function (string $slug, string $engine): void {
+    $products = collect(json_decode((string) file_get_contents(resource_path('data/comparisons.json')), true)['products']);
+    $cited = array_column(json_decode((string) file_get_contents(resource_path("data/content/en/databases/{$slug}.json")), true)['otherTools']['items'], 'product');
+    $expected = $products
+        ->filter(fn(array $product): bool => $product['slug'] !== null
+            && ! in_array($product['id'], $cited, true)
+            && in_array($engine, $product['cells']['databases']['engines'] ?? [], true))
+        ->map(fn(array $product): array => [
+            'path' => '/compare/' . $product['slug'],
+            'title' => json_decode((string) file_get_contents(resource_path("data/content/en/compare/{$product['slug']}.json")), true)['header']['title'],
+        ])
+        ->values()
+        ->all();
+
+    expect(array_column($expected, 'path'))->toContain('/compare/tableplus', '/compare/dbeaver', '/compare/datagrip', '/compare/navicat', '/compare/beekeeper-studio');
+
+    get("/{$slug}")->assertInertia(fn(AssertableInertia $page) => $page->where('comparisons', $expected));
+})->with([
+    ['mysql-client', 'mysql'],
+    ['postgresql-client', 'postgresql'],
+    ['sql-server-client', 'sqlserver'],
+    ['mongodb-client', 'mongodb'],
+    ['redis-gui', 'redis'],
+]);
+
+it('keeps a single-engine client’s comparison off another engine’s page', function (): void {
+    get('/postgresql-client')->assertInertia(fn(AssertableInertia $page) => $page
+        ->where('comparisons', fn($comparisons): bool => collect($comparisons)->pluck('path')->intersect(['/compare/sequel-ace', '/compare/sequel-pro', '/compare/phpmyadmin', '/compare/postico'])->isEmpty())
+        ->where('tools.1.compareTitle', 'TablePro vs Postico'));
+
+    get('/sqlite-client')->assertInertia(fn(AssertableInertia $page) => $page->where('comparisons', []));
+});
+
+it('calls a tool with published code under a non-open licence source available, not closed source', function (): void {
+    requireSsr();
+
+    // The block's text, not the page's: the props beside it carry every label.
+    $otherTools = fn(string $path): string => HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR)->querySelector('#other-tools')->textContent;
+
+    foreach (['/mongodb-client' => 'mongodb-compass', '/redis-gui' => 'redis-insight'] as $path => $id) {
+        get($path)->assertInertia(fn(AssertableInertia $page) => $page->where('tools.0.id', $id)->where('tools.0.licence', ['name' => 'SSPL-1.0', 'openSource' => false]));
+
+        expect($otherTools($path))->toContain('Source available (SSPL-1.0)')->not->toContain('Closed source');
+    }
+
+    expect($otherTools('/mongodb-client'))->toContain('Platforms: Mac, Windows and Linux');
+    expect($otherTools('/postgresql-client'))->toContain('Open source (PostgreSQL License)');
+    expect($otherTools('/sql-server-client'))->toContain('Closed source');
+});
+
 it('renders every anchor a redirect or a link aims at, in both languages', function (): void {
     requireSsr();
 

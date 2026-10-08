@@ -41,6 +41,7 @@ class CompareController extends Controller
             'content' => $content->page('compare/index', $locale),
             'products' => array_map(fn(array $product): array => Arr::except($product, ['cells']), $products),
             'freeNotes' => $this->freeNotes($content, $products, $locale),
+            'titles' => $this->titles($content, $products, $locale),
             'checkedAt' => $checkedAt,
             'dates' => $this->dates([$products, $checkedAt, $tablepro], $locale),
             'tablepro' => $tablepro,
@@ -51,7 +52,8 @@ class CompareController extends Controller
     {
         $locale = App::getLocale();
         $data = $this->comparisons();
-        $product = collect($this->comparedProducts($data))->firstWhere('slug', $slug);
+        $products = $this->comparedProducts($data);
+        $product = collect($products)->firstWhere('slug', $slug);
 
         abort_if($product === null, 404);
 
@@ -63,6 +65,7 @@ class CompareController extends Controller
             'labels' => $content->page('compare/index', $locale)['labels'] ?? [],
             'product' => $product,
             'rows' => array_values(array_filter($data['rows'] ?? [], 'is_string')),
+            'others' => $this->others($content, $products, $slug, $locale),
             'dates' => $this->dates([$product, $tablepro], $locale),
             'tablepro' => $tablepro,
         ]);
@@ -118,6 +121,49 @@ class CompareController extends Controller
         }
 
         return $notes;
+    }
+
+    /**
+     * Each comparison's H1 in this locale, keyed by slug, so a link to a page
+     * reads as the page does ("Sequel Pro alternatives for Mac"). A product
+     * whose page has no copy in this locale is left out.
+     *
+     * @param  list<array<string, mixed>>  $products
+     * @return array<string, string>
+     */
+    private function titles(ContentRepository $content, array $products, string $locale): array
+    {
+        $titles = [];
+
+        foreach ($products as $product) {
+            $slug = (string) $product['slug'];
+            $title = $content->entry('compare', $slug, $locale)['header']['title'] ?? null;
+
+            if (is_string($title) && $title !== '') {
+                $titles[$slug] = $title;
+            }
+        }
+
+        return $titles;
+    }
+
+    /**
+     * The other comparisons, in data order, for the links that close a page.
+     *
+     * @param  list<array<string, mixed>>  $products
+     * @return list<array{slug: string, title: string}>
+     */
+    private function others(ContentRepository $content, array $products, string $current, string $locale): array
+    {
+        $others = [];
+
+        foreach ($this->titles($content, $products, $locale) as $slug => $title) {
+            if ($slug !== $current) {
+                $others[] = ['slug' => $slug, 'title' => $title];
+            }
+        }
+
+        return $others;
     }
 
     /**
