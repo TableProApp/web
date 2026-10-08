@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Importation, exportation et fichiers de données",
-        "lead": "Pour déplacer des données entre fichiers et bases : charger un tableur dans une table, transmettre un résultat en Excel, nettoyer un CSV ou créer un dump avant un changement risqué. Tout est sur Mac. L’application iPhone et iPad en couvre une partie.",
+        "lead": "Pour déplacer des données entre fichiers et bases : charger un tableur dans une table, transmettre un résultat en Excel, nettoyer un CSV ou créer un dump avant un changement risqué. Tout est sur Mac. L’application iPhone et iPad en couvre une partie.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -42,7 +42,7 @@
             "id": "export",
             "title": "Exportez tables et résultats",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> exporte tables et vues cochées vers {exportFormats}. Chacune est transmise depuis la base pendant l’écriture, sans limite de la grille. Sur SQL, chaque table accepte WHERE, limite et choix de colonnes. SQL peut inclure structure, compression gzip et découpage ; Excel utilise une feuille par table. MongoDB exporte aussi en script mongosh ; l’export SQL n’est proposé ni pour MongoDB ni Redis.",
+                "<kbd>⌘⇧E</kbd> exporte tables et vues cochées vers {exportFormats}. Chacune est transmise depuis la base pendant l’écriture, sans limite de la grille. Sur SQL, chaque table accepte WHERE, limite et choix de colonnes. SQL peut inclure structure, compression gzip et découpage ; Excel utilise une feuille par table. MongoDB exporte aussi en script mongosh ; l’export SQL n’est proposé ni pour MongoDB ni Redis.",
                 "<ui>Exporter les résultats</ui> (Export Results) écrit le résultat d’une requête ; si la limite l’a tronqué, elle est relancée pour une transmission complète. L’export {exportPluginFormats} vient d’un plugin gratuit installé dans <ui>Réglages > Plugins</ui> (Settings > Plugins) et écrit un fichier par table."
             ],
             "asset": "mac-export-dialog"
@@ -175,7 +175,7 @@
     ],
     "limits": [
         "Un export SQL inclut DROP TABLE IF EXISTS avant chaque table sauf désactivation ; vérifiez les options avant exécution sur une base dont les tables doivent rester.",
-        "Backup Dump utilise des outils à installer et seulement les moteurs listés. Ils reçoivent le mot de passe via environnement ou fichier temporaire. Exception : sqlpackage le reçoit en ligne de commande, lisible par d’autres processus du Mac ; TablePro demande confirmation avant démarrage.",
+        "Backup Dump utilise des outils à installer et seulement les moteurs listés. Ils reçoivent le mot de passe via environnement ou fichier temporaire. Exception : sqlpackage le reçoit en ligne de commande, lisible par d’autres processus du Mac ; TablePro demande confirmation avant démarrage.",
         "Restore Dump remplace les tables d’un dump MySQL ou MariaDB. Sur les autres moteurs, aucun objet existant n’est remplacé ; un <code>.bacpac</code> SQL Server nécessite une base vide.",
         "Ouvrir un fichier de base via SSH fonctionne uniquement avec SQLite.",
         "Les extensions DuckDB non intégrées, comme httpfs pour S3, Iceberg et Delta, se téléchargent depuis ses serveurs à la première requête les nécessitant.",

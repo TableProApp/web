@@ -104,7 +104,7 @@
             "paragraphs": [
                 "Pointez vers le port SQL du serveur TiDB, jamais PD ou TiKV. TiDB Cloud utilise le même port ; définissez-y SSL Mode sur Required.",
                 "Stop envoie <code>KILL TIDB QUERY</code> pour votre session. Derrière TiProxy ou un répartiteur de charge, cela nécessite Global Kill, activé par défaut dans TiDB depuis la version 6.1.",
-                "EXPLAIN et EXPLAIN ANALYZE montrent le plan TiDB en texte. Les contraintes CHECK apparaissent dans Structure à partir de TiDB 7.2 si le cluster les active ; les clés étrangères peuvent être créées et la maintenance propose ANALYZE TABLE. <administer>Utilisateurs et rôles (Users & Roles)</administer> fonctionne sur TiDB, sans le champ de limite de connexions.",
+                "EXPLAIN et EXPLAIN ANALYZE montrent le plan TiDB en texte. Les contraintes CHECK apparaissent dans Structure à partir de TiDB 7.2 si le cluster les active ; les clés étrangères peuvent être créées et la maintenance propose ANALYZE TABLE. <administer>Users & Roles (Users & Roles)</administer> fonctionne sur TiDB, sans le champ de limite de connexions.",
                 "Choisissez TiDB comme type plutôt que MySQL pour que barre latérale, sélecteur de types et EXPLAIN suivent TiDB."
             ]
         },

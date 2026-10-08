@@ -70,7 +70,7 @@
         "title": "生产数据库的安全防护",
         "body": [
             "在 Mac 上，可按环境为连接添加标签和颜色，并为每个连接设置 Safe Mode 级别。Silent 直接执行语句，Alert 在写入前询问，名为 Safe Mode 的级别还要求 Touch ID 或密码，Read-Only 则拒绝写入。在所有级别下，DROP、TRUNCATE 和不带 WHERE 的 DELETE 都会暂停并要求确认。在 iPhone 和 iPad 上，Confirm Writes 会在每次写入前询问，Read-Only 则拒绝写入。",
-            "在 Agent 模式下，AI 助手可执行语句。以 Agent mode 打开的连接会使用 Alert 或更严格的级别。Data Rewind 可恢复最近一次保存所替换的值，但它不是备份。"
+            "在 Agent mode 下，AI 助手可执行语句。以 Agent mode 打开的连接会使用 Alert 或更严格的级别。Data Rewind 可恢复最近一次保存所替换的值，但它不是备份。"
         ],
         "levels": "Safe Mode 级别",
         "link": "Safe Mode"

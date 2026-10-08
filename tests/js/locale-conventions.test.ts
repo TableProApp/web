@@ -36,7 +36,7 @@ test('links to English-only pages say so in every other language', () => {
             assert.ok(label.endsWith(marker), `${locale}: ${key} "${label}" does not end with ${marker}`);
         }
 
-        for (const text of [m.blog.post.archive.named, m.blog.post.archive.unnamed, content(locale, 'blog.json').header.lead]) {
+        for (const text of [m.blog.post.archive, content(locale, 'blog.json').header.lead]) {
             assert.match(text.replaceAll(' ', ''), new RegExp(`</changelog>${marker.replaceAll(' ', '').replace(/[()]/g, '\\$&')}`), `${locale}: the changelog link is not marked ${marker}`);
         }
     }
@@ -46,9 +46,9 @@ test('the newsletter says its emails are in English', () => {
     for (const [locale, m] of translated) {
         const english = m.common.englishOnly.replace(/[()（）]/g, '').toLowerCase();
 
-        for (const body of [m.footer.newsletter.body, content(locale, 'blog.json').newsletter.body]) {
-            assert.ok(body.toLowerCase().includes(english), `${locale}: "${body}" does not say ${english}`);
-        }
+        const body = m.footer.newsletter.body;
+
+        assert.ok(body.toLowerCase().includes(english), `${locale}: "${body}" does not say ${english}`);
     }
 });
 

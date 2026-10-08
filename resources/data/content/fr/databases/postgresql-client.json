@@ -132,7 +132,7 @@
     "faq": [
         {
             "id": "hosted",
-            "question": "TablePro fonctionne-t-il avec PostgreSQL hébergé, comme Amazon RDS, Neon ou Supabase ?",
+            "question": "TablePro fonctionne-t-il avec PostgreSQL hébergé, comme Amazon RDS, Neon ou Supabase ?",
             "answer": "Oui. Un serveur hébergé est un hôte et port comme tout autre. Neon, Supabase et Heroku se connectent avec l’hôte qu’ils vous fournissent. Ils exigent TLS, qu’une nouvelle connexion essaie en premier. RDS et Aurora permettent aussi AWS IAM ; pour Google Cloud SQL, TablePro lance Cloud SQL Auth Proxy."
         },
         {
