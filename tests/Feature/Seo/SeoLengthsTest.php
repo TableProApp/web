@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\File;
 use App\Support\Localization\Locales;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /**
  * Search titles and descriptions fit the lengths the design documents set: a
@@ -14,6 +15,8 @@ use App\Support\Localization\Locales;
  * the page applies it, and with `{devices}`, `{macDevices}` and `{deviceList}`
  * filled from platforms.json and engines.json the way the pages fill them.
  * Every content file with a `seo` block is covered, so a new page is too.
+ * So is every post, by its front matter: `seoTitle` where the title is too
+ * long or is another page's, and the description its index row also prints.
  */
 
 /**
@@ -99,12 +102,47 @@ function seoLengthsRenderedTitle(string $locale, string $path, array $copy): str
     return $branded ? $title : "{$title} – TablePro";
 }
 
+/**
+ * Every post as [locale, relative path, rendered `<title>`, description].
+ * Blog/Post.tsx renders `seoTitle` in place of the title, and adds the site
+ * template only to a title that does not name the brand.
+ *
+ * @return list<array{string, string, string, string}>
+ */
+function seoLengthsPosts(): array
+{
+    $posts = [];
+
+    foreach (Locales::codes() as $locale) {
+        $directory = resource_path('blog' . ($locale === Locales::default() ? '' : "/{$locale}"));
+
+        foreach (File::glob("{$directory}/*.md") ?: [] as $file) {
+            $matter = YamlFrontMatter::parseFile($file)->matter();
+            $title = (string) ($matter['seoTitle'] ?? $matter['title']);
+
+            $posts[] = [
+                $locale,
+                'blog/' . basename($file),
+                str_contains($title, 'TablePro') ? $title : "{$title} – TablePro",
+                (string) $matter['description'],
+            ];
+        }
+    }
+
+    return $posts;
+}
+
 it('renders every title in 60 characters or fewer', function (): void {
     foreach (seoLengthsPages() as [$locale, $path, $copy]) {
         $title = seoLengthsRenderedTitle($locale, $path, $copy);
 
         expect($title)->not->toMatch('/[{}]/', "content/{$locale}/{$path}: a token is left in the title");
         expect(mb_strlen($title))->toBeLessThanOrEqual(60, "content/{$locale}/{$path} renders a {$title} of " . mb_strlen($title) . ' characters');
+    }
+
+    foreach (seoLengthsPosts() as [$locale, $path, $title]) {
+        expect(mb_strlen($title))->toBeLessThanOrEqual(60, "{$path} ({$locale}) renders a {$title} of " . mb_strlen($title) . ' characters; give it a seoTitle');
+        expect(substr_count($title, 'TablePro'))->toBeLessThanOrEqual(1, "{$path} ({$locale}) names the brand twice in {$title}");
     }
 });
 
@@ -114,6 +152,12 @@ it('keeps every description within the search snippet budget', function (): void
         $length = mb_strlen((string) $copy['seo']['description']);
 
         expect($length)->toBeLessThanOrEqual($limit, "content/{$locale}/{$path} has a {$length}-character description");
+    }
+
+    foreach (seoLengthsPosts() as [$locale, $path, , $description]) {
+        $length = mb_strlen($description);
+
+        expect($length)->toBeLessThanOrEqual($locale === 'vi' ? 160 : 155, "{$path} ({$locale}) has a {$length}-character description");
     }
 });
 
@@ -125,6 +169,13 @@ it('gives no two pages of a locale the same title', function (): void {
         $key = "{$locale}:{$title}";
 
         expect($seen[$key] ?? null)->toBeNull("content/{$locale}/{$path} repeats the title of " . ($seen[$key] ?? ''));
+        $seen[$key] = $path;
+    }
+
+    foreach (seoLengthsPosts() as [$locale, $path, $title]) {
+        $key = "{$locale}:{$title}";
+
+        expect($seen[$key] ?? null)->toBeNull("{$path} ({$locale}) repeats the title of " . ($seen[$key] ?? ''));
         $seen[$key] = $path;
     }
 });

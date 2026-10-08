@@ -1,7 +1,8 @@
 ---
 slug: tablepro-0-67
 title: "TablePro 0.67: Charts, Code Folding, and Statement-Level Runs"
-description: Query results now draw as native charts. The SQL editor folds and runs one statement at a time. Cmd+F searches your results instead of toggling the filter panel. Plus Redis Cluster, nested MongoDB filters, and 144 fixes.
+seoTitle: "TablePro 0.67: Charts, Code Folding and Statement-Level Runs"
+description: Query results now draw as native charts. The SQL editor folds and runs one statement at a time. Cmd+F searches your results. Plus 144 fixes.
 date: 2026-08-21
 release: "TablePro 0.67"
 author: TablePro Team

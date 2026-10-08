@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { usePage } from '@inertiajs/react';
+import LatestPost from '@/components/blog/latest-post';
 import SEOHead from '@/components/seo/seo-head';
 import CellGrid from '@/components/ui/cell-grid';
 import Container from '@/components/ui/container';
@@ -101,7 +102,7 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
  * If no release source has ever answered, both buttons open GitHub's latest
  * release, no version is shown, and the Mac card says why.
  */
-export default function Download({ content, release, mac, ios, unreleased, links, featuredEngines }: DownloadPageProps) {
+export default function Download({ content, release, mac, ios, unreleased, links, featuredEngines, latestPost }: DownloadPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     const [device, setDevice] = useState<DeviceKind | null>(null);
@@ -260,6 +261,11 @@ export default function Download({ content, release, mac, ios, unreleased, links
             <Section id="older-versions" title={content.olderVersions.title} width="text">
                 <div className="space-y-4">
                     <p className="type-body text-foreground">{content.olderVersions.body}</p>
+                    {latestPost !== null && (
+                        <p className="type-body text-foreground">
+                            <LatestPost post={latestPost} />
+                        </p>
+                    )}
                     <ul className="flex flex-wrap gap-x-6 gap-y-2">
                         <li>
                             <TextLink href={release.releasesUrl} kind="standalone" external>

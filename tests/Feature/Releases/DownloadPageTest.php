@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
@@ -94,6 +95,53 @@ it('names the featured, published engines from engines.json for the structured d
     expect($expected)->not->toBeEmpty();
 
     get('/download')->assertInertia(fn(AssertableInertia $page) => $page->where('featuredEngines', $expected));
+});
+
+/**
+ * The newest post that announced a release, read from the posts themselves,
+ * so the next release post moves the link without an edit here.
+ *
+ * @return array<string, mixed>
+ */
+function downloadNewestReleasePost(): array
+{
+    return collect(glob(resource_path('blog/*.md')) ?: [])
+        ->map(fn(string $file): array => ['slug' => pathinfo($file, PATHINFO_FILENAME), ...YamlFrontMatter::parseFile($file)->matter()])
+        ->filter(fn(array $post): bool => is_string($post['release'] ?? null))
+        ->sortByDesc('date')
+        ->first();
+}
+
+it('hands the page the newest release post, an English post in every language', function (string $path): void {
+    fakeLiveRelease();
+
+    $newest = downloadNewestReleasePost();
+
+    get($path)
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('latestPost.slug', $newest['slug'])
+            ->where('latestPost.title', $newest['title'])
+            ->where('latestPost.locale', 'en')
+            ->where('latestPost.url', "/blog/{$newest['slug']}"));
+})->with(['/download', '/vi/download']);
+
+it('server-renders the newest release post as a link that keeps its language', function (): void {
+    fakeLiveRelease();
+
+    $newest = downloadNewestReleasePost();
+    $link = fn(string $path): ?Dom\Element => Dom\HTMLDocument::createFromString(ssrHtml($path), LIBXML_NOERROR)
+        ->querySelector('#older-versions a[href="/blog/' . $newest['slug'] . '"]');
+
+    expect($link('/download')?->textContent)->toBe($newest['title']);
+    expect($link('/download')->parentElement->textContent)->toContain('The latest is ' . $newest['title'] . '.');
+
+    // On a translated page the post is still English: marked, labelled, and at its own URL.
+    $vietnamese = $link('/vi/download');
+
+    expect($vietnamese?->getAttribute('hreflang'))->toBe('en');
+    expect($vietnamese->getAttribute('lang'))->toBe('en');
+    expect($vietnamese->parentElement->textContent)->toContain($newest['title'] . ' (tiếng Anh).');
 });
 
 it('renders in Vietnamese with Vietnamese copy and a Vietnamese date', function (): void {

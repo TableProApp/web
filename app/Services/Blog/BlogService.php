@@ -157,7 +157,6 @@ class BlogService
         }
 
         $document = YamlFrontMatter::parseFile($path);
-        $release = $document->matter('release');
 
         $this->bodies[$locale . '/' . $slug] = $document->body();
 
@@ -168,8 +167,15 @@ class BlogService
             description: (string) $document->matter('description'),
             date: $this->parseDate($document->matter('date')),
             tags: $this->normalizeTags($document->matter('tags')),
-            release: is_string($release) && trim($release) !== '' ? trim($release) : null,
+            release: $this->text($document->matter('release')),
+            author: $this->text($document->matter('author')),
+            seoTitle: $this->text($document->matter('seoTitle')),
         );
+    }
+
+    private function text(mixed $value): ?string
+    {
+        return is_string($value) && trim($value) !== '' ? trim($value) : null;
     }
 
     private function localeDirectory(string $locale): string

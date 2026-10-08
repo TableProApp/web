@@ -15,7 +15,6 @@ interface BlogIndexContent {
     seo: { title: string; description: string; indexable?: boolean };
     og: { kicker: string; title: string };
     header: { title: string; lead: string };
-    newsletter: { title: string; body: string };
 }
 
 interface Props {
@@ -86,7 +85,7 @@ export default function BlogIndex({ content, posts }: Props) {
                     )}
 
                     <div className="max-w-[44rem]">
-                        <NewsletterSignup title={content.newsletter.title} body={content.newsletter.body} className="mt-12" />
+                        <NewsletterSignup className="mt-12" />
                     </div>
                 </Container>
             </div>

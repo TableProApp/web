@@ -170,7 +170,7 @@ test('a supplied slot hides the id, the type label and the brief', () => {
 
         for (const locale of locales) {
             const markup = html(fixture, id, locale);
-            const visible = markup.replace(/(src|srcSet)="[^"]*"/gi, '');
+            const visible = markup.replace(/(src|srcSet|href)="[^"]*"/gi, '');
 
             assert.ok(!visible.includes(id), `${id} (${locale}) shows its id`);
             assert.ok(!markup.includes('data-asset-id'), `${id} (${locale}) keeps a data-asset-id`);
@@ -212,6 +212,53 @@ test('a per-locale vector picks the page locale and needs no srcset widths', () 
     assert.ok(!/ \d+w/.test(markup));
     assert.ok(markup.includes('alt="Một sơ đồ mẫu"'));
     assert.ok(markup.includes('max-w-[720px]'), 'a diagram stops at 720px so its labels never outsize the headings');
+});
+
+test('a detail with no phone crop links its widest file, so a phone can open it at full size', () => {
+    const detail = html(fixture, 'fixture-detail');
+
+    assert.match(detail, /<figure [^>]*><a href="\/images\/fixture\/fixture-detail-light-48\.webp" class="block cursor-zoom-in"><picture class="block">/);
+    assert.equal((detail.match(/<a\b/g) ?? []).length, 1);
+});
+
+test('a themed capture moves its theme classes to the link, so a hidden variant is no stop in the tab order', () => {
+    const themed: AssetManifestData = structuredClone(fixture);
+    themed.assets['fixture-hero'].kind = 'detail';
+    themed.assets['fixture-hero'].mobile = null;
+
+    const markup = html(themed, 'fixture-hero');
+
+    assert.match(markup, /<a href="\/images\/fixture\/fixture-hero-light-64\.webp" class="block dark:hidden cursor-zoom-in"><picture class="block">/);
+    assert.match(markup, /<a href="\/images\/fixture\/fixture-hero-dark-64\.webp" class="hidden dark:block cursor-zoom-in"><picture class="block">/);
+});
+
+test('a window, a phone, a diagram and a placeholder are not links, nor is a detail cut to read on a phone', () => {
+    for (const id of ['fixture-hero', 'fixture-phone', 'fixture-diagram', 'fixture-placeholder', 'fixture-figure']) {
+        assert.ok(!html(fixture, id).includes('<a'), `${id} is a link`);
+    }
+
+    const cropped: AssetManifestData = structuredClone(fixture);
+    cropped.assets['fixture-hero'].kind = 'detail';
+
+    assert.ok(!html(cropped, 'fixture-hero').includes('<a'));
+});
+
+test('every supplied post figure links a file that exists', () => {
+    let figures = 0;
+
+    for (const [id, entry] of Object.entries(real.assets)) {
+        if (entry.kind !== 'figure' || entry.status !== 'supplied') {
+            continue;
+        }
+
+        const link = /<a href="([^"]+)"/.exec(html(real, id))?.[1];
+
+        assert.ok(link, `${id} has no link`);
+        assert.ok(readFileSync(new URL(`../../public${link}`, import.meta.url)).length > 0, `${id} links ${link}, which is not in public/`);
+        figures++;
+    }
+
+    assert.ok(figures > 0);
 });
 
 test('caption={false} suppresses the manifest caption', () => {

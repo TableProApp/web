@@ -1,7 +1,7 @@
 ---
 slug: tablepro-0-69
 title: "TablePro 0.69: Undo a Save That Already Committed"
-description: Restore Previous Values takes back an edit, a delete or a paste after the transaction closed, and refuses when it cannot restore the row exactly. Plus check constraints, generated columns, SQLite over SSH, and 98 fixes.
+description: Restore Previous Values takes back an edit, a delete or a paste after the transaction closed, and refuses when it cannot restore the row exactly.
 date: 2026-08-27
 release: "TablePro 0.69"
 author: TablePro Team
