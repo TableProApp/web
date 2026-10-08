@@ -11,7 +11,7 @@
     "breadcrumb": "MongoDB",
     "header": {
         "title": "适用于 {devices} 的 MongoDB 客户端",
-        "lead": "按 mongosh 语法写查询，在网格分页浏览集合，以 Extended JSON 插入或编辑整个文档。重命名或移除整个集合的字段，每个语句均在执行前显示。"
+        "lead": "按 mongosh 语法写查询，在网格分页浏览集合，以 Extended JSON 插入或编辑整个文档。重命名或移除整个集合的字段，每条语句均在执行前显示。"
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -33,7 +33,7 @@
                 "列一个主机或副本集的多个 <code>host:port</code>，自动找到主节点。也可粘贴 <code>mongodb://</code>、<code>mongodb+srv://</code> URL。以 SCRAM-SHA-1、SCRAM-SHA-256、X.509 或 AWS IAM 登录；用户定义在 <code>admin</code> 但浏览其他数据库时设置 <ui>Auth Database</ui>。",
                 "以 <code>.mongodb.net</code> 结尾的主机自动开启 MongoDB Atlas 所需的 SRV 和 TLS。请先将 IP 加入集群访问列表：未列出地址的流量会超时，而非立即失败。",
                 "新连接 TLS 关闭，驱动无回退，所以 Preferred 等同 Required。Read Preference、Write Concern 按连接设置，写关注随 shell 或网格保存的每次插入、更新、删除发送。",
-                "通过 <network>SSH 隧道</network>仅用列表首个主机，该会话关闭副本集发现和故障转移。"
+                "通过 <network>SSH 隧道</network>连接时仅使用列表中的第一个主机，因此该会话不进行副本集发现和故障转移。"
             ]
         },
         {
@@ -53,7 +53,7 @@
             "paragraphs": [
                 "<structure>Structure 标签页</structure>按键顺序列出各索引字段及 hashed、text、2dsphere、wildcard 等类型。Show DDL 生成重建它们的 <code>createIndex</code> 调用，含服务器报告的所有选项。",
                 "在同一标签页重命名或移除整个集合的字段。每次修改为一个 <code>updateMany</code>，在 Preview SQL 显示，<code>$jsonSchema</code> 验证器声明的字段也同步修改。索引、搜索索引或视图仍使用该名称时，任何写入前即拒绝保存。",
-                "<ui>新建表</ui>（New Table）创建集合，将字段转为 <code>$jsonSchema</code> 验证器，再建立所列索引。视图和时间序列集合显示在侧栏，视图以只读打开。"
+                "<ui>新建表</ui>（New Table）创建集合，将字段转为 <code>$jsonSchema</code> 验证器，再建立所列索引。视图和时间序列集合显示在侧边栏，视图以只读打开。"
             ]
         },
         {

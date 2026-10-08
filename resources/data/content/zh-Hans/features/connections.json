@@ -70,7 +70,7 @@
                     "id": "ssh",
                     "title": "SSH 和 TLS",
                     "paragraphs": [
-                        "SSH 隧道支持密码、私钥、1Password 等 SSH 代理或键盘交互提示登录，可依次经过跳板机，也可遵循 <code>~/.ssh/config</code> 中的 <code>ProxyJump</code>。一次性验证码可以根据钥匙串中的密钥生成，或在每次连接时要求输入；未知主机密钥会在 TablePro 信任前显示指纹。将隧道保存为 SSH 配置文件即可复用。",
+                        "SSH 隧道支持密码、私钥、1Password 等 SSH agent 或键盘交互提示登录，可依次经过跳板机，也可遵循 <code>~/.ssh/config</code> 中的 <code>ProxyJump</code>。一次性验证码可以根据钥匙串中的密钥生成，或在每次连接时要求输入；未知主机密钥会在 TablePro 信任前显示指纹。将隧道保存为 SSH 配置文件即可复用。",
                         "TLS 支持 Disabled、Preferred、Required、Verify CA 和 Verify Identity 模式，可使用自己的 CA、客户端证书和密钥。Required 仅加密，不检查服务器证书；Verify 模式会验证证书。"
                     ],
                     "engines": [
@@ -174,7 +174,7 @@
             "id": "iphone",
             "title": "在 iPhone 和 iPad 上",
             "paragraphs": [
-                "iPhone 和 iPad 应用有专用于 {iosPicker} 的连接表单，支持分组、每个连接一个标签以及收藏。SSH 隧道使用密码或从文件读取、直接粘贴的私钥登录，并检查主机密钥；iPhone 和 iPad 不支持 SSH 代理和跳板机。TLS 可验证服务器证书，但 SQL Server 仅加密而不验证。证书保留在设备上，从不同步。",
+                "iPhone 和 iPad 应用有专用于 {iosPicker} 的连接表单，支持分组、每个连接一个标签以及收藏。SSH 隧道使用密码或从文件读取、直接粘贴的私钥登录，并检查主机密钥；iPhone 和 iPad 不支持 SSH agent 和跳板机。TLS 可验证服务器证书，但 SQL Server 仅加密而不验证。证书保留在设备上，从不同步。",
                 "密码和粘贴的密钥保存在钥匙串中。从 Mac 同步的 SQL Server 连接可通过 Microsoft Entra ID 登录。从其他应用导入、AWS IAM、Kerberos 和 Google 登录、代理与隧道命令、密码来源及超时设置仅在 Mac 应用中提供。"
             ],
             "links": [
@@ -204,7 +204,7 @@
             "ios": "yes"
         },
         {
-            "label": "SSH 代理、一次性验证码和跳板机",
+            "label": "SSH agent、一次性验证码和跳板机",
             "ios": "no"
         },
         {

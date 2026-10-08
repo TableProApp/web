@@ -14,7 +14,7 @@
   "bySituation": {
     "title": "按情况选择",
     "lead": "每款一句，链接完整对比。",
-    "tablepro": "想要一款开源客户端，既有原生 Mac 应用，又有独立的 iPhone 和 iPad 应用，选择 TablePro。AI 助手和 MCP 服务器在 Mac 应用中免费，还可从 {apps} 导入已存连接。",
+    "tablepro": "想要一款开源客户端，既有原生 Mac 应用，又有独立的 iPhone 和 iPad 应用，选择 TablePro。AI 助手和 MCP 服务器在 Mac 应用中免费，还可从 {apps} 导入已保存连接。",
     "items": {
       "tableplus": "也在 Windows、Linux 工作，或连接 Vertica、Greenplum，选择 TablePlus。",
       "dbeaver": "需要 Windows、macOS、Linux 免费客户端，连接任何有 JDBC 驱动的引擎，选择 DBeaver。",
@@ -25,12 +25,12 @@
       "sequel-pro": "还在用 Sequel Pro？最后版 {status.version} 发布于 {status.date}。Sequel Ace 延续开发，TablePro 可导入 Sequel Ace 连接。",
       "postico": "仅用 PostgreSQL，希望专注此工作的 Mac 应用和一次性许可证，选择 Postico。",
       "heidisql": "已在 Windows 使用 HeidiSQL，希望 Apple silicon Mac 使用相同免费客户端，选择 HeidiSQL。",
-      "phpmyadmin": "在浏览器管理 MySQL、MariaDB，例如 cPanel 提供的托管环境，选择 phpMyAdmin。"
+      "phpmyadmin": "在浏览器中管理 MySQL、MariaDB，例如使用通过 cPanel 提供 phpMyAdmin 的主机服务，选择 phpMyAdmin。"
     }
   },
   "atAGlance": {
     "title": "一览",
-    "lead": "所比客户端的平台、源代码和价格。价格为税前美元标价。",
+    "lead": "本页所比较的各客户端的平台、源代码和价格。价格为税前美元标价。",
     "caption": "客户端对比日期 {date}，来源列在页末。"
   },
   "openSource": {
@@ -40,7 +40,7 @@
   },
   "switching": {
     "title": "迁移到 TablePro",
-    "body": "TablePro 从 {apps} 导入已存连接及密码。Navicat 连接来自其导出文件。",
+    "body": "TablePro 从 {apps} 导入已保存连接及密码。Navicat 连接来自其导出文件。",
     "none": "无 {others} 导入器，请手动添加或粘贴连接 URL。",
     "link": "迁移连接",
     "docs": "文档中的迁移指南"
@@ -48,7 +48,7 @@
   "method": {
     "title": "这些页面如何编写",
     "paragraphs": [
-      "其他产品所有事实均来自官方：自身网站、文档、仓库、发布说明、商店页面，或分发它的包管理器和平台厂商。各页列出来源和检查日期。",
+      "有关其他产品的所有事实均来自官方来源：自身网站、文档、仓库、发布说明、商店页面，或分发它的包管理器和平台厂商。各页列出来源和检查日期。",
       "TablePro 一栏与网站其余部分使用相同数据，价格、平台和功能与价格及功能页一致。",
       "未找到可供他人复现的测量来引用，因此没有速度、内存或启动数据。",
       "价格和功能会变，若信息过时，请<issues>在 GitHub 提交问题</issues>。"
@@ -175,18 +175,18 @@
       "priceFree": "可免费使用，付费方案为 Mac 应用添加可选功能。",
       "starter": "每月 {monthly}、每年 {yearly} 或一次 {lifetime}",
       "team": "每席位每月 {monthly}、每年 {yearly} 或一次 {lifetime}，至少 {min} 个席位",
-      "iosPrice": "iPhone、iPad 应用免费，无内购。",
+      "iosPrice": "iPhone、iPad 应用免费，无应用内购买。",
       "licence": "是：{licence}，包括付费功能代码",
       "databases": "{engines} 等",
       "databasesLink": "支持的数据库",
       "ai": "Mac 应用免费，自选云端或本 Mac 的 AI 提供商",
       "mcp": "Mac 应用免费，仅在本 Mac 监听，各连接决定外部应用可做什么",
-      "ios": "独立免费应用，无内购",
+      "ios": "独立免费应用，无应用内购买",
       "sync": "iCloud Sync：Mac 属于 {tier}，iPhone、iPad 免费"
     },
     "import": {
-      "yes": "TablePro 导入 {name} 连接及已存密码。",
-      "yesFile": "TablePro 从 {name} 导出的 {format} 文件导入 {name} 连接及已存密码。",
+      "yes": "TablePro 导入 {name} 连接及已保存密码。",
+      "yesFile": "TablePro 从 {name} 导出的 {format} 文件导入 {name} 连接及已保存密码。",
       "noPasswords": "TablePro 导入 {name} 连接，密码不迁移。",
       "none": "TablePro 无 {name} 导入器。",
       "link": "如何迁移"

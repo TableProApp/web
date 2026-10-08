@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "输入一个代理的主机和端口，从它发现集群其余部分。<ui>额外的 Bootstrap 服务器</ui>（Additional Bootstrap Servers）列出首个代理无响应时尝试的代理。一个连接对应一个集群，无 Database 字段，侧栏直接显示主题。",
+                "输入一个代理的主机和端口，从它发现集群其余部分。<ui>额外的 Bootstrap 服务器</ui>（Additional Bootstrap Servers）列出首个代理无响应时尝试的代理。一个连接对应一个集群，无 Database 字段，侧边栏直接显示主题。",
                 "<ui>安全协议</ui>（Security Protocol）可选 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL 机制</ui>（SASL Mechanism）可选 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 适合 Confluent Cloud，SCRAM 适合 Amazon MSK 和自托管代理。SSL 或 SASL_SSL 未选择 SSL 模式时验证证书链和主机名。私有 CA 填入 <ui>CA 证书</ui>（CA Certificate），客户端证书和密钥提供双向 TLS。",
                 "通过 <network>SSH 隧道</network>时连接停留在引导代理，仅读取该代理领导的分区。<ui>从 URL 导入…</ui>（Import from URL…）接受 <code>kafka://</code> URL，macOS 不将其作为链接打开。"
             ]
@@ -43,7 +43,7 @@
             "id": "operate",
             "title": "主题",
             "paragraphs": [
-                "从侧栏或 <code>DROP TOPIC</code> 删除主题是唯一破坏性操作。集群随后移除日志，主题可能暂留列表。不提供 Truncate：Kafka 按保留策略或各分区偏移移除记录，两者均不清空主题。"
+                "从侧边栏或 <code>DROP TOPIC</code> 删除主题是唯一破坏性操作。集群随后移除日志，主题可能暂留列表。不提供 Truncate：Kafka 按保留策略或各分区偏移移除记录，两者均不清空主题。"
             ]
         },
         {

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "结构、对比和同步",
-        "lead": "用于修改数据库结构并保持两个数据库一致。查看 DDL 编辑表，了解表间关系，让预发布环境与开发环境一致，或将表复制到其他服务器或引擎。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
+        "lead": "用于修改数据库结构并保持两个数据库一致。对照 DDL 编辑表，了解表间关系，让预发布环境与开发环境一致，或将表复制到其他服务器或引擎。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -36,23 +36,23 @@
             "id": "er-diagram",
             "title": "了解表间关系",
             "paragraphs": [
-                "<ui>查看 ER 图</ui>（View ER Diagram）绘制当前结构的表和外键，根据主键和唯一键计算乌鸦脚表示法中的关系基数。<code>product_tags</code> 等关联表会折叠为一条多对多连线。可将图导出为 PNG、复制为图片，或导出为包含外键的 CREATE TABLE SQL 语句。",
-                "图表是用于查看和分享的快照。表需在 Structure 标签页修改，不能在画布上修改。"
+                "<ui>查看 ER 图</ui>（View ER Diagram）绘制当前 schema 的表和外键，根据主键和唯一键计算乌鸦脚表示法中的关系基数。<code>product_tags</code> 等关联表会折叠为一条多对多连线。可将图导出为 PNG、复制为图片，或导出为包含外键的 CREATE TABLE SQL 语句。",
+                "ER 图是用于查看和分享的快照。表需在 Structure 标签页修改，不能在画布上修改。"
             ],
             "asset": "mac-er-diagram"
         },
         {
             "id": "objects",
-            "title": "侧栏中的例程、触发器和文件夹",
+            "title": "侧边栏中的例程、触发器和文件夹",
             "paragraphs": [
-                "引擎支持时，侧栏在每个结构下列出存储过程、函数和触发器，并以只读标签页打开其源码，可复制或在编辑器中打开。Redshift、CockroachDB、PGlite 和 SAP HANA 不列出这些对象。PostgreSQL 分区显示在父表下。"
+                "引擎支持时，侧边栏在每个 schema 下列出存储过程、函数和触发器，并以只读标签页打开其源码，可复制或在编辑器中打开。Redshift、CockroachDB、PGlite 和 SAP HANA 不列出这些对象。PostgreSQL 分区显示在父表下。"
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "表和视图的文件夹",
                     "paragraphs": [
-                        "在侧栏列表或树形布局中，拖动表和视图或使用<ui>移动到</ui>（Move to）将其归入文件夹。筛选框也会搜索文件夹内部。文件夹仅存在于 TablePro 中，不改变服务器；启用 iCloud Sync 后会同步到其他 Mac。"
+                        "在侧边栏列表或树形布局中，拖动表和视图或使用<ui>移动到</ui>（Move to）将其归入文件夹。筛选框也会搜索文件夹内部。文件夹仅存在于 TablePro 中，不改变服务器；启用 iCloud Sync 后会同步到其他 Mac。"
                     ],
                     "since": "0.77.0"
                 }
@@ -63,7 +63,7 @@
             "title": "Compare & Sync",
             "paragraphs": [
                 "选择源和目标，可为两台服务器或同一服务器上的两个数据库。Compare & Sync 会列出所有存在差异的表，也可包含视图、例程和触发器。数据模式按键匹配行并标记每个不同值，支持每表筛选和行数限制，以便比较大表的一部分。",
-                "生成的脚本按外键顺序排列，并针对目标原生客户端编写。删除列、缩小类型或删除行等破坏数据的语句，会暂缓到本次运行明确允许后才执行。Read-Only 连接不能选为目标。保存对比后可一键重跑。"
+                "生成的脚本按外键顺序排列，并针对目标原生客户端编写。删除列、缩小类型或删除行等破坏数据的语句，会暂缓到本次运行明确允许后才执行。Read-Only 连接不能选为目标。保存对比后可一键重新运行。"
             ],
             "paid": [
                 "compare-sync"
@@ -83,7 +83,7 @@
             "id": "administer",
             "title": "用户、会话和维护",
             "paragraphs": [
-                "PostgreSQL 的 VACUUM、REINDEX 或 MySQL 的 OPTIMIZE、CHECK 等表维护操作会在执行前显示 SQL。引擎支持时，可在侧栏创建、删除和重命名数据库及结构。"
+                "PostgreSQL 的 VACUUM、REINDEX 或 MySQL 的 OPTIMIZE、CHECK 等表维护操作会在执行前显示 SQL。引擎支持时，可在侧边栏创建、删除和重命名数据库及 schema。"
             ],
             "blocks": [
                 {

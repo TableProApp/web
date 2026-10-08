@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "常见问题",
-        "description": "TablePro 问答：免费功能和许可证增值功能、支持的 Mac、iPhone 和数据库、应用发送的信息、团队及退款。"
+        "description": "TablePro 问答：免费功能和许可证增加的功能、支持的 Mac、iPhone 和数据库、应用发送的信息、团队及退款。"
     },
     "og": {
         "kicker": "常见问题",
@@ -39,7 +39,7 @@
                     "id": "native",
                     "question": "这里的“原生”是什么意思？",
                     "answer": [
-                        "每款 TablePro 应用都以 Swift 为对应平台编写。Mac 上使用 AppKit、SwiftUI、钥匙串和 Touch ID；iPhone 和 iPad 上使用 Face ID、小组件、快捷指令和实时活动。数据库驱动也为原生实现，不使用 JDBC。"
+                        "每款 TablePro 应用都针对各自的平台使用 Swift 编写。Mac 上使用 AppKit、SwiftUI、钥匙串和 Touch ID；iPhone 和 iPad 上使用 Face ID、小组件、快捷指令和实时活动。数据库驱动也为原生实现，不使用 JDBC。"
                     ]
                 },
                 {
@@ -74,7 +74,7 @@
                     "id": "mac-requirements",
                     "question": "哪些 Mac 可以运行 TablePro？",
                     "answer": [
-                        "Mac 版 TablePro 需要 {macRequirement}。Apple 芯片和 Intel 有独立构建版本，<download>下载页面</download>提供两者，Homebrew 会自动安装合适的版本。"
+                        "Mac 版 TablePro 需要 {macRequirement}。Apple silicon 和 Intel 有独立构建版本，<download>下载页面</download>提供两者，Homebrew 会自动安装合适的版本。"
                     ]
                 },
                 {
@@ -126,7 +126,7 @@
                     "id": "ssh-ssl",
                     "question": "可以通过 SSH 或 SSL 连接吗？",
                     "answer": [
-                        "可以。Mac 上的 SSH 隧道支持密码、密钥或 SSH 代理（包括 1Password）认证，并可经过跳板机。SSL/TLS 可验证服务器证书。连接也可经 Cloudflare Access、Cloud SQL Auth Proxy、SOCKS5 代理或 kubectl port-forward 等命令建立。<connections>连接页面</connections>介绍了各选项。",
+                        "可以。Mac 上的 SSH 隧道支持密码、密钥或 SSH agent（包括 1Password）认证，并可经过跳板机。SSL/TLS 可验证服务器证书。连接也可经 Cloudflare Access、Cloud SQL Auth Proxy、SOCKS5 代理或 kubectl port-forward 等命令建立。<connections>连接页面</connections>介绍了各选项。",
                         "iPhone 和 iPad 上的 SSH 隧道支持密码或私钥认证，不支持跳板机。"
                     ]
                 },

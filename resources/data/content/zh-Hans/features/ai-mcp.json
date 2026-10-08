@@ -27,7 +27,7 @@
             "title": "审查、解释、优化和修复",
             "paragraphs": [
                 "将光标放在语句中，选择 Review with AI（<kbd>⌥⇧⌘L</kbd>）审查正确性、成本和安全性，Explain（<kbd>⌘L</kbd>）逐步解释，或 Optimize（<kbd>⌥⌘L</kbd>）建议改写或索引。查询失败时，错误横幅提供 Fix with AI。请求包含语句所引用表的结构，语句本身不会执行。<ui>应用到编辑器</ui>（Apply to Editor）仅在确认后替换语句。",
-                "行内建议在输入时显示虚影文本，默认关闭。AI Rules 可为连接固定纯文本说明，例如哪些列绝不能选择，并随每条消息发送。"
+                "行内建议在输入时显示虚影文本，默认关闭。AI Rules 可为连接固定纯文本说明，例如哪些列绝不能查询，并随每条消息发送。"
             ]
         },
         {
@@ -158,7 +158,7 @@
     "limits": [
         "Cursor 无法调用 TablePro 工具，因此以 Cursor 为提供商时，Edit 和 Agent 不运行查询。本地模型仅在模型支持时调用工具。",
         "Claude Agent 使用 Claude Code 登录，并通过必须开启的 MCP 服务器访问结构。它依赖 Claude Code，可能因 Claude Code 更新而失效。",
-        "MCP 服务器仅监听 {mcpHost}。从其他机器访问需要自行转发端口，并承担由此暴露访问的责任。",
+        "MCP 服务器仅监听 {mcpHost}。从其他机器访问需要自行转发端口，并自行承担由此带来的暴露风险。",
         "Mac 应用没有快捷指令操作，可通过 AppleScript、链接或 MCP 服务器自动化。",
         "Agent 会话和外部 MCP 服务器仅保留在设置它们的 Mac 上，不同步。"
     ],

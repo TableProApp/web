@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "提供联系点和端口，集群配置认证器时再填用户名和密码。无键空间字段：连接后在侧栏选择，或放入 <code>cassandra://</code>、<code>cql://</code> URL 路径再导入。键空间原地切换，列表排除系统键空间，已打开标签页仍留在各自键空间。",
+                "提供联系点和端口，集群配置认证器时再填用户名和密码。无键空间字段：连接后在侧边栏选择，或放入 <code>cassandra://</code>、<code>cql://</code> URL 路径再导入。键空间原地切换，列表排除系统键空间，已打开标签页仍留在各自键空间。",
                 "新连接关闭 TLS。驱动没有机会性 TLS，因此 Preferred、Required 均加密但不验证证书。Verify CA、Verify Identity 必须有 CA 证书文件，绝不回退系统根证书。双向 TLS 添加客户端证书、密钥和密钥密码。私网集群通过 <network>SSH 隧道</network>访问。",
                 "Amazon Keyspaces 用 SigV4 而非密码登录。连接地域端点，例如 9142 端口的 <code>cassandra.us-east-1.amazonaws.com</code>，Authentication 设置为 <awsIam>AWS IAM 模式</awsIam>（访问密钥、配置或 AWS IAM Identity Center），留空用户名密码并开启 TLS，因为 Keyspaces 拒绝明文。"
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "浏览和运行 CQL",
             "paragraphs": [
-                "从侧栏打开表读取数据网格。列表、集合、映射和元组显示为集合，用户定义类型显示字段，<code>duration</code> 为 <code>1d2h30m</code>，向量为数字列表，blob 为十六进制。CQL 编辑器结果只读，请从侧栏打开的表修改行。",
+                "从侧边栏打开表读取数据网格。列表、集合、映射和元组显示为集合，用户定义类型显示字段，<code>duration</code> 为 <code>1d2h30m</code>，向量为数字列表，blob 为十六进制。CQL 编辑器结果只读，请从侧边栏打开的表修改行。",
                 "CQL 无 OFFSET，因此从首行向前分页：已显示页的 Next、Previous 各读一次，跳到远处需读取此前每页。行按令牌顺序返回，列头不重新排序，因为 CQL 仅能按单分区内聚簇列排序。打开表不计数；<ui>精确计数</ui>（Count Exactly）运行 <code>SELECT COUNT(*)</code> 读取所有分区。",
                 "<filters>筛选</filters>添加 <code>ALLOW FILTERING</code>，除非固定完整分区键，否则服务器读所有分区。包含、开头为、结尾为发送 LIKE，Cassandra 仅在有 SASI 或 SAI 索引的列接受。CQL 无法表达的不等于、is NULL 等运算符按名称拒绝；CQL 无 OR，条件仅以 AND 连接。",
                 "<editing>编辑值</editing>按列的 CQL 类型发送，无法解析的值停止整个保存。各行以完整主键用独立语句写入。<ui>添加行</ui>（Add Row）写 <code>INSERT … IF NOT EXISTS</code>，新行绝不覆盖已有相同键的行。键列不可原地修改，需删除再添加行。",
@@ -80,7 +80,7 @@
         {
             "id": "views-and-types",
             "question": "如何查看物化视图和用户定义类型？",
-            "answer": "侧栏不显示，请在 CQL 编辑器查询 <code>system_schema</code> 键空间，例如 <code>SELECT * FROM system_schema.views</code> 或 <code>system_schema.types</code>。"
+            "answer": "侧边栏不显示，请在 CQL 编辑器查询 <code>system_schema</code> 键空间，例如 <code>SELECT * FROM system_schema.views</code> 或 <code>system_schema.types</code>。"
         },
         {
             "id": "cassandra-2",

@@ -48,7 +48,7 @@
             "key-tree-cap": "侧边栏键树最多加载 {value} 个键。",
             "filter-match-cap": "键筛选在找到 {value} 个匹配项后停止。",
             "cluster-db0-only": "Cluster 连接使用数据库 0，配置了多个数据库的 Valkey 集群除外。",
-            "ios-query-tab-only": "iPhone 和 iPad 上无法在表浏览器打开键。请在 Query 选项卡运行命令。"
+            "ios-query-tab-only": "iPhone 和 iPad 上无法在表浏览器打开键。请在 Query 标签页运行命令。"
         }
     },
     "mariadb": {
@@ -87,14 +87,14 @@
         "tagline": "通过 PostgreSQL 驱动连接 Amazon Redshift，DDL 中包含 DISTKEY 和 SORTKEY。",
         "limits": {
             "no-aws-iam": "Redshift 不支持 AWS IAM 登录。请使用数据库用户登录。",
-            "structure-read-only": "Structure 选项卡只读。请在编辑器中运行 DDL。",
+            "structure-read-only": "Structure 标签页只读。请在编辑器中运行 DDL。",
             "ios-synced-only": "iPhone 和 iPad 上仅可打开从 Mac 同步或导入的 Redshift 连接。"
         }
     },
     "cockroachdb": {
         "tagline": "通过 PostgreSQL 线路协议连接 CockroachDB 和 CockroachDB Cloud。",
         "limits": {
-            "structure-read-only": "Structure 选项卡只读。请在编辑器中用 SQL 修改结构。",
+            "structure-read-only": "Structure 标签页只读。请在编辑器中用 SQL 修改结构。",
             "no-dump-or-maintenance": "没有 Backup Dump、Restore Dump 或表维护。请使用 CockroachDB 自带的 BACKUP 和 RESTORE 语句。"
         }
     },
@@ -116,7 +116,7 @@
         }
     },
     "clickhouse": {
-        "tagline": "通过 HTTP 或 HTTPS 连接 ClickHouse，支持各类 EXPLAIN、Mutation 和 Parts 选项卡。",
+        "tagline": "通过 HTTP 或 HTTPS 连接 ClickHouse，支持各类 EXPLAIN、Mutation 和 Parts 标签页。",
         "limits": {
             "http-only": "连接使用 ClickHouse 的 HTTP 接口，不使用原生 TCP 协议。",
             "tls-off-by-default": "TLS 默认关闭。请在连接表单中选择 SSL 模式以使用 HTTPS。",
@@ -155,7 +155,7 @@
     "bigquery": {
         "tagline": "GoogleSQL，支持 Max Bytes Billed 和查询执行前的 Dry Run 费用估算。",
         "limits": {
-            "structure-read-only": "Structure 选项卡只读。请在编辑器中运行 DDL。",
+            "structure-read-only": "Structure 标签页只读。请在编辑器中运行 DDL。",
             "no-transactions": "不支持事务。"
         }
     },
@@ -239,7 +239,7 @@
     "spanner": {
         "tagline": "连接时自动识别 GoogleSQL 或 PostgreSQL 方言，并支持 Spanner 模拟器。",
         "limits": {
-            "structure-read-only": "Structure 选项卡只读。请在编辑器中用 ALTER TABLE 修改表。"
+            "structure-read-only": "Structure 标签页只读。请在编辑器中用 ALTER TABLE 修改表。"
         }
     },
     "typesense": {
