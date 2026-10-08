@@ -409,6 +409,7 @@ Glyph metrics were read from the shipped font files with fontTools:
 At 1216px, 12 columns are 72px wide with 32px gaps. Common splits:
 
 - **5 / 7:** text 488px | media 696px. Used for a detail crop beside its text.
+- **4 / 8:** text 363px | media 790px inside cells. The homepage workflow rows from 1280px: a window at 0.65 of its capture, or a detail crop at its 696px width.
 - **6 / 6:** 592 | 592.
 - **4 / 4 / 4:** 384 each. Used for pricing cards.
 - **8 / 4:** 800 | 384. Used for a database page lead with its facts card.
@@ -503,7 +504,7 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 
 **Shared.** The account app draws the same frame: `frame.css`, `FrameRails` and `CellGrid` are byte-identical in both repositories (`docs/shared-files.md`), so the rails, joins and cells stay put when a reader crosses from a public page to `/account`.
 
-- the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (a detail row is two cells, 5 / 7), the safety row, the platform block, the plans and the closing actions
+- the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (from 1280px each sets its text in 4 columns beside its capture in 8, so one divider runs down the section; a detail row is two cells, 5 / 7 from 1024), the safety row, the platform block, the plans and the closing actions
 - `/pricing`: the plans (`PricingPlans` is the same component)
 - `/download`: the Mac and iPhone and iPad platforms
 - `/faq`: one row per topic, the topic beside its questions
@@ -821,7 +822,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - Accessible name: "Theme: Light" / "Giao diện: Sáng" (Dark / Tối; System / Theo hệ thống).
   - Opens a menu (`--raised`, `--shadow-overlay`, 12px radius) of three `menuitemradio` items with icon and label, `aria-checked` on the current one. Arrow keys move; Escape closes and returns focus to the button.
 - **`variant="segmented"` (mobile menu):** an inline `SegmentedControl` with the same three options, icon + label.
-- **`variant="icons"` (footer bar):** the same radios as icon-only segments, 32px square (36px below 640), each named for assistive tech and in a tooltip.
+- **`variant="icons"` (footer bar):** the same radios as icon-only segments, 32px square (36px below 640, 44px on a coarse pointer), each named for assistive tech and in a tooltip.
 - **SSR:** the markup is theme-independent; the icon and the selected style come from `html[data-theme-choice=…]`, and `aria-checked` is corrected on mount.
 - **Behaviour:** §2.8.
 
@@ -865,7 +866,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - Six cells in one row was measured and rejected: at 1280 it leaves 131px per group, and labels run to 196px (Indonesian) with unbreakable words of 150px (German).
 - Groups and links come from sitemap §B.3, with the labels in positioning §10.2 (for example "Supported databases", never "All databases"). Group titles are `h3` at 14/600; links are `small` `--muted-foreground` with `--foreground` on hover, 32px rows (44px on a touch screen, where the rows are the tap targets). A group cell keeps half its right padding and hyphenates a word that still cannot fit.
 - **FooterBar** closes it: one shared file, `components/shared/footer-bar.tsx`, byte-identical in the account app, whose footer ends on the same row.
-  - Left: the logo at 20px (decorative) and "© year TablePro. Source code under the AGPLv3."
+  - Left: the logo at 20px (decorative) and "© year TablePro, made by {maker} in {city}. Source code under the AGPLv3."
   - Right: the language menu (§5.3.15) and ThemeControl `icons` (§5.3.16). Below 640 they sit on a second row, language left and theme right.
   - Its rule runs rail to rail, on the cell grid's last line.
   - Where chat is configured, the controls keep `LAUNCHER_REACH` (100px) clear of the screen's right edge, so the chat launcher never covers them. From about 1416px the page's own margin is that wide and nothing moves.
@@ -878,12 +879,14 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 **ConsentBar:**
 
-- Fixed, bottom-left, 16px from the edges; max-width 416px at ≥ 640; full width minus 32px below that.
-- `--raised` + `--shadow-overlay`, 12px radius, 16px padding.
+- In the server's HTML, hidden; the head script adds `consent-open` to `<html>` when no answer is stored, so it shows on the first paint and nothing moves on hydration.
+- ≥ 640: sticky to the bottom-left, 16px from the edges, 416px wide, `--raised` + `--shadow-overlay`, 12px radius, 16px padding. At the end of the page it rests after the footer, so the last links scroll clear of it.
+- < 640, first ask: a full-width strip in the page above the banner and header, a 1px `--rule` under it, 10px vertical padding. It covers nothing, so the hero and the first plan stay clear. Opened from "Cookie settings", it floats as above, full width minus 32px.
 - Text: one `small` sentence + a "Privacy" link.
-- Buttons: **Allow** and **Decline**, both `secondary` `sm`, equal width, on one row.
-- **Target height:** ≤ 120px at 375 × 812 (≤ 15%, against 25.6% measured on the old site) and ≤ 96px at 1440.
-- While visible it sets `scroll-padding-bottom` to its own height, so it cannot cover focused elements.
+- Buttons: **Allow** and **Decline**, both `secondary` `sm`, equal width, on one row; 44px tall on a coarse pointer.
+- **Target height:** ≤ 120px at 375 × 812 and ≤ 96px at 1440.
+- While it floats it sets `scroll-padding-bottom` to its own height, so it cannot cover focused elements.
+- A polite live region: the question is announced once per page load. "Cookie settings" moves focus to it.
 - Last in DOM order. Storage key and head order unchanged.
 
 #### 5.3.18 Commerce and platform components
@@ -1405,8 +1408,8 @@ SiteFooter
 
 **FeatureRow** has two layouts:
 
-- **Window row:** H3, 2–3 sentences, the tier marker from `pricing.json` and the link in cols 1–6, then the 16:9 slot full width below.
-- **Detail row:** text in cols 1–5 and the 4:3 slot in cols 6–12.
+- **Window row:** H3, 2–3 sentences, the tier marker from `pricing.json` and the link at text width, then the 16:9 slot full width below. From 1280px the text takes cols 1–4 and the window cols 5–12, 790px wide, so its SQL and grid text render at about 8.5px and its smallest labels at about 7px. Measured on 2026-10-09: the homepage is 1,950px shorter at 1280 and wider. Below 1280 the window would drop under the 0.6 scale a phone crop may not go below, so the row stays stacked.
+- **Detail row:** text in cols 1–5 and the 4:3 slot in cols 6–12 from 1024px; from 1280px 4 / 8, with the crop at its 696px width, so its divider meets the window rows'.
 
 Its link is a standalone link whose text is the destination page's name in the Features menu (sitemap §B.1), for example "Querying →". Never "Learn more".
 

@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "使用 Preview SQL 與 Safe Mode 編輯資料表資料",
-        "description": "篩選和編輯列，儲存前檢閱 SQL，並為每個連線設定 Safe Mode。Data Rewind 可還原儲存時被取代的值。"
+        "description": "篩選和編輯列，儲存前檢閱 SQL，並為每個連線設定 Safe Mode 等級。Data Rewind 可還原儲存時被取代的值。"
     },
     "og": {
         "kicker": "資料編輯",
@@ -22,9 +22,9 @@
             "blocks": [
                 {
                     "id": "filters",
-                    "title": "篩選與標示規則",
+                    "title": "篩選與醒目提示規則",
                     "paragraphs": [
-                        "篩選列（<kbd>⌘⇧F</kbd>）使用從 =、BETWEEN 到 REGEX 的 {filterOperatorCount} 個運算子建立 WHERE 子句，也可接受原始 SQL 條件。可為資料表儲存篩選，並在以後載入而不立即執行。標示規則根據值為列或儲存格著色，類似試算表中的條件式格式，設定僅儲存在此 Mac 上。"
+                        "篩選列（<kbd>⌘⇧F</kbd>）使用從 =、BETWEEN 到 REGEX 的 {filterOperatorCount} 個運算子建立 WHERE 子句，也可接受原始 SQL 條件。可為資料表儲存篩選，並在以後載入而不立即執行。醒目提示規則根據值為列或儲存格著色，類似試算表中的條件式格式，設定僅儲存在此 Mac 上。"
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -56,7 +56,7 @@
             "id": "safe-mode",
             "title": "正式環境連線的 Safe Mode",
             "paragraphs": [
-                "每個連線都有 Safe Mode 等級：{macSafeModeLevels}。新連線預設為 {macSafeModeDefault}，直接執行陳述式。Alert 在寫入前詢問，Safe Mode 等級還要求 Touch ID 或 Mac 密碼，Full 等級在讀取前也詢問，Read-Only 拒絕寫入並關閉編輯。Safe Mode 免費。",
+                "每個連線都有 Safe Mode 等級：{macSafeModeLevels}。新連線預設為 {macSafeModeDefault}，直接執行陳述式。Alert 在寫入前詢問，名稱含 Safe Mode 的等級還要求 Touch ID 或 Mac 密碼，名稱含 Full 的等級在讀取前也詢問，Read-Only 拒絕寫入並關閉編輯。Safe Mode 免費。",
                 "所有等級下，DROP、TRUNCATE 和無 WHERE 的 DELETE 都會停止並先詢問。某些條件在生效期間會提高連線等級，例如唯讀引擎、將等級至少提高至 Alert 的 Agent mode，以及組織透過裝置管理（MDM）設定的最低等級。"
             ],
             "asset": "mac-safe-mode-touchid",
@@ -105,7 +105,7 @@
             "title": "在 iPhone 與 iPad 上",
             "paragraphs": [
                 "iPhone 與 iPad App 將列顯示為卡片，支援排序、搜尋及 AND、OR 篩選，點一下外部索引鍵可預覽參照列。可編輯列，將值設為 NULL，插入列並滑動刪除；編輯和刪除需要主索引鍵。在新列中，每個欄位初始為 DEFAULT，也可設為 NULL 或空字串。",
-                "行動版 Safe Mode 有自己的等級 {iosSafeModeLevels}，新連線預設為 {iosSafeModeDefault}。暫存編輯、Preview SQL、標示規則與 Data Rewind 僅在 Mac App 中提供。"
+                "行動版 Safe Mode 有自己的等級 {iosSafeModeLevels}，新連線預設為 {iosSafeModeDefault}。暫存編輯、Preview SQL、醒目提示規則與 Data Rewind 僅在 Mac App 中提供。"
             ],
             "links": [
                 {
@@ -125,7 +125,7 @@
             "ios": "yes"
         },
         {
-            "label": "已儲存篩選與標示規則",
+            "label": "已儲存篩選與醒目提示規則",
             "ios": "no"
         },
         {

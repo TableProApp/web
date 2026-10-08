@@ -21,7 +21,7 @@ use PHPUnit\Framework\Assert;
 /** @return array<string, array{string}> */
 function frameTemplates(): array
 {
-    $paths = ['/', '/vi', '/pricing', '/download', '/ios', '/faq', '/security', '/privacy', '/blog', '/blog/tablepro-0-77', '/features', '/features/querying', '/databases', '/postgresql-client', '/compare', '/compare/tableplus'];
+    $paths = ['/', '/vi', '/pricing', '/download', '/ios', '/faq', '/about', '/security', '/privacy', '/blog', '/blog/tablepro-0-77', '/features', '/features/querying', '/databases', '/postgresql-client', '/compare', '/compare/tableplus'];
 
     return array_combine($paths, array_map(fn(string $path): array => [$path], $paths));
 }
@@ -247,6 +247,7 @@ it('separates the pricing and download topics with joins, not with rules inside 
     'pricing' => ['/pricing', ['license', 'billing', 'refunds', 'team', 'open-source', 'faq']],
     'download' => ['/download', ['install', 'updates', 'older-versions']],
     'post' => ['/blog/tablepro-0-77', ['related']],
+    'blog' => ['/blog', ['guides', 'releases']],
 ]);
 
 it('sets each FAQ topic beside its questions, as two cells', function (): void {
@@ -261,11 +262,13 @@ it('sets each FAQ topic beside its questions, as two cells', function (): void {
     }
 });
 
-it('opens the blog index list on the frame\'s join', function (): void {
+it('runs each blog index list from rail to rail', function (): void {
     $xpath = frameXPath(ssrHtml('/blog'));
-    $list = $xpath->query('//main/*[2]//ol[@data-rule-list]')->item(0);
 
-    expect($list)->not->toBeNull();
-    expect(frameClasses($list))->toContain('frame-rows', 'border-t-0');
-    expect(frameClasses($xpath->query('//main/*[2]')->item(0)))->not->toContain('pt-8');
+    foreach (['guides', 'releases'] as $id) {
+        $list = $xpath->query("//main/section[@id=\"{$id}\"]//ol[@data-rule-list]")->item(0);
+
+        expect($list)->not->toBeNull("#{$id} has no ruled list");
+        expect(frameClasses($list))->toContain('frame-rows');
+    }
 });

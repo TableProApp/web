@@ -22,8 +22,8 @@ export default {
     free: 'Miễn phí, không có mua hàng trong ứng dụng',
     status: {
         released: 'Đã phát hành',
-        prototype: 'Mới chỉ có bản prototype: chưa có gì để cài đặt và chưa có ngày phát hành.',
-        none: 'Hiện không có bản cài đặt, cũng không có ngày phát hành dự kiến.',
+        prototype: 'Chỉ có bản prototype. Không có gì để cài đặt và không có ngày phát hành.',
+        none: 'Không có bản cài đặt, và không có ngày phát hành.',
     },
     names: {
         linux: 'Linux',

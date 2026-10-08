@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "DDL을 먼저 확인하고 구조 변경",
             "paragraphs": [
-                "Structure 탭에서 테이블의 열, 인덱스, 외래 키 및 CHECK 제약 조건을 그리드로 편집합니다. 변경은 저장할 때까지 대기하며 <ui>SQL 미리보기</ui>(Preview SQL, <kbd>⌘⇧P</kbd>)로 실행 전에 ALTER TABLE 문을 확인합니다. 항목 삭제, 유형 변경, NOT NULL 추가 또는 기본 키 변경은 연결의 Safe Mode가 {macSafeModeDefault}여도 먼저 확인을 요청합니다.",
+                "Structure 탭에서 테이블의 열, 인덱스, 외래 키 및 CHECK 제약 조건을 그리드로 편집합니다. 변경은 저장할 때까지 대기하며 <ui>SQL 미리보기</ui>(Preview SQL, <kbd>⌘⇧P</kbd>)로 실행 전에 ALTER TABLE 문을 확인합니다. 항목 삭제, 유형 변경, NOT NULL 추가 또는 기본 키 변경은 연결의 Safe Mode 수준이 {macSafeModeDefault}여도 먼저 확인을 요청합니다.",
                 "인덱스는 <code>lower(email)</code> 같은 표현식 키를 사용할 수 있습니다. New Table도 같은 방식으로 테이블을 만들며 SQL 미리 보기를 실시간으로 표시합니다. 외래 키를 직접 변경할 수 없는 SQLite, libSQL, Turso 및 Cloudflare D1에서는 TablePro가 검토할 테이블 재구성 스크립트를 작성합니다. SQLite와 로컬 libSQL 파일에서는 확인 후 실행하고 Turso, 원격 libSQL 및 D1에서는 사용자가 실행해야 합니다."
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "테이블 관계 확인",
             "paragraphs": [
-                "<ui>ER 다이어그램 보기</ui>(View ER Diagram)는 현재 스키마의 테이블과 외래 키를 그리며 기본 키와 고유 키로 까마귀발 표기법의 카디널리티를 계산합니다. <code>product_tags</code> 같은 연결 테이블은 하나의 다대다 선으로 표시합니다. 다이어그램을 PNG로 내보내거나 이미지로 복사하거나 외래 키가 포함된 CREATE TABLE 문을 SQL로 내보낼 수 있습니다.",
+                "<ui>ER 다이어그램 보기</ui>(View ER Diagram)는 현재 스키마의 테이블과 외래 키를 그리며 기본 키와 고유 키로 까마귀발 표기법의 카디널리티를 계산합니다. <code>product_tags</code> 같은 교차 테이블은 하나의 다대다 선으로 표시합니다. 다이어그램을 PNG로 내보내거나 이미지로 복사하거나 외래 키가 포함된 CREATE TABLE 문을 SQL로 내보낼 수 있습니다.",
                 "다이어그램은 확인하고 공유하기 위한 스냅샷입니다. 테이블 변경은 캔버스가 아니라 Structure 탭에서 합니다."
             ],
             "asset": "mac-er-diagram"

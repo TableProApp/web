@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "インポート、エクスポートとデータファイル",
-        "lead": "ファイルとデータベースの間でデータを移すための機能です。スプレッドシートをテーブルに読み込み、クエリ結果を Excel で渡し、CSV を使う前に整え、危険な変更の前にダンプを取得できます。ここで紹介するのは Mac アプリの機能です。iPhone と iPad アプリではその一部を使えます。",
+        "lead": "ファイルとデータベースの間でデータを移すための機能です。スプレッドシートをテーブルに読み込み、クエリ結果を Excel で渡し、CSV を使う前に整え、危険な変更の前にダンプを取得できます。ここで紹介するのは Mac アプリの機能です。iPhone・iPad アプリではその一部を使えます。",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -43,7 +43,7 @@
             "title": "テーブルと結果をエクスポート",
             "paragraphs": [
                 "<kbd>⌘⇧E</kbd> はチェックしたテーブルとビューを {exportFormats} にエクスポートします。書き込みながらデータベースからストリーミングするため、グリッドの行数制限は適用しません。SQL エンジンではテーブルごとに WHERE 句、行数制限、カラムの選択を指定できます。SQL エクスポートは構造の追加、gzip 圧縮と分割に対応し、Excel はテーブルごとに別のシートを使います。MongoDB コレクションは mongosh スクリプトにもエクスポートできます。MongoDB と Redis は SQL エクスポート非対応です。",
-                "<ui>Export Results</ui> はクエリの結果を書き込みます。行数上限で打ち切った結果は再実行して全件をストリーミングします。{exportPluginFormats} エクスポートは <ui>Settings > Plugins</ui> でインストールする無料プラグインが提供し、テーブルごとに一つのファイルを書き込みます。"
+                "<ui>Export Results</ui> はクエリが返した結果を書き出します。行数上限で打ち切った結果は再実行して全件をストリーミングします。{exportPluginFormats} エクスポートは <ui>Settings > Plugins</ui> でインストールする無料プラグインが提供し、テーブルごとに一つのファイルを書き出します。"
             ],
             "asset": "mac-export-dialog"
         },
@@ -121,7 +121,7 @@
             "id": "iphone",
             "title": "iPhone と iPad では",
             "paragraphs": [
-                "iPhone と iPad アプリは、読み込んだ行とクエリ結果を JSON、CSV や SQL INSERT 文としてコピーまたは共有します。コピーはそのデバイスのクリップボードに留まり、他のデバイスとは共有しません。",
+                "iPhone・iPad アプリは、読み込んだ行とクエリ結果を JSON、CSV や SQL INSERT 文としてコピーまたは共有します。コピーはそのデバイスのクリップボードに留まり、他のデバイスとは共有しません。",
                 "ショートカットの Add Row to Table と Add Rows to Table アクションは、JSON や CSV のテキストまたはファイルを受け取り、接続の Safe Mode に従って行を追加します。iPhone と iPad にはインポートシート、ファイルエクスポート、Data Files ウィンドウやバックアップはありません。"
             ],
             "links": [
@@ -221,7 +221,7 @@
             "href": "/duckdb-client"
         },
         {
-            "label": "iPhone と iPad 用 TablePro",
+            "label": "iPhone・iPad 版 TablePro",
             "href": "/ios"
         }
     ]

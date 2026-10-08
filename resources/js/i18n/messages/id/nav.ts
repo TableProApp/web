@@ -1,7 +1,7 @@
 import type { Messages } from '../../types.ts';
 
 export default {
-    "label": "Utama",
+    "label": "Navigasi utama",
     "features": "Fitur",
     "featureLinks": {
         "all": "Semua fitur",

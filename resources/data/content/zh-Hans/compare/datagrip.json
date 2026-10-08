@@ -4,7 +4,7 @@
         "description": "DataGrip 是 JetBrains IDE，仅非商业用途免费。TablePro 是开源原生客户端。比较价格、AI、MCP、Git 和连接导入。"
     },
     "og": {
-        "kicker": "比较",
+        "kicker": "对比",
         "title": "TablePro vs DataGrip"
     },
     "header": {
@@ -14,7 +14,7 @@
     "shortAnswer": {
         "tablepro": [
             "您希望客户端可免费用于有偿工作。TablePro 可免费用于任何工作，付费方案添加 {starterExamples} 等功能。",
-            "您希望 AI 助手直接向添加的服务商发送请求，中间没有 TablePro 自营 AI 服务或积分。Mac 应用中的 AI 助手和 MCP 服务器均免费。",
+            "您希望 AI 助手直接向添加的提供商发送请求，中间没有 TablePro 自营 AI 服务或积分。Mac 应用中的 AI 助手和 MCP 服务器均免费。",
             "您更希望使用 Swift 编写的 Mac 应用，而不是完整 IDE。",
             "您也希望有 iPhone 和 iPad 应用。"
         ],
@@ -96,7 +96,7 @@
                 "href": null
             },
             {
-                "text": "<link>AI 助手</link>在 Mac 应用中免费，可使用您选择的云端或本机服务商；TablePro 不运营 AI 服务，也不销售 AI 积分。DataGrip 使用 JetBrains AI，其自营服务有积分额度，也接受您自己的服务商密钥或本地模型。",
+                "text": "<link>AI 助手</link>在 Mac 应用中免费，可使用您选择的云端或本机提供商；TablePro 不运营 AI 服务，也不销售 AI 积分。DataGrip 使用 JetBrains AI，其自营服务有积分额度，也接受您自己的提供商密钥或本地模型。",
                 "cite": [
                     "cells.ai"
                 ],
@@ -175,7 +175,7 @@
         {
             "id": "ai-provider",
             "question": "TablePro AI 助手需要像 JetBrains AI 一样订阅方案吗？",
-            "answer": "不需要。TablePro 不运营自有 AI 服务。您添加服务商：API 密钥、已有账户或 Mac 上运行的模型。添加之前不会发送任何内容。<link>了解 AI 助手的工作方式</link>。",
+            "answer": "不需要。TablePro 不运营自有 AI 服务。您添加提供商：API 密钥、已有账户或 Mac 上运行的模型。添加之前不会发送任何内容。<link>了解 AI 助手的工作方式</link>。",
             "href": "/features/ai-mcp"
         },
         {
@@ -194,7 +194,7 @@
     "notes": {
         "datagrip-non-commercial": "学习、爱好项目、内容创作和无商业收益的开源工作可使用全部功能。通过 JetBrains Account 激活。",
         "datagrip-databases": "主要引擎获得完整支持，包括代码检查和快速修复。DuckDB、Firebird、Informix 和 Databricks 等通过 JDBC 驱动获得基础支持：高亮和对象浏览，不含错误检查。",
-        "datagrip-ai-quota": "JetBrains AI：免费档提供少量定期补充的 AI 积分，更高用量可购买其自营服务的付费 AI 方案，也可使用自己的服务商密钥或本地模型。",
+        "datagrip-ai-quota": "JetBrains AI：免费档提供少量定期补充的 AI 积分，更高用量可购买其自营服务的付费 AI 方案，也可使用自己的提供商密钥或本地模型。",
         "datagrip-usage-statistics": "使用非商业免费许可证时，会收集无法退出的使用统计"
     }
 }

@@ -48,7 +48,34 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    /* A word wider than its box breaks rather than crossing it: a German compound in a narrow column, a code token in Japanese text. */
+    overflow-wrap: break-word;
   }
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Japanese, Korean and Chinese
+ * ---------------------------------------------------------------------------
+ *
+ * international.css sets each language's fonts in `--font-sans`, but the
+ * preflight reads `--default-font-family`, the English stack. Without the
+ * rule below the browser picks a CJK face itself: on a Mac, Japanese kanji in
+ * a Chinese face and Traditional Chinese in the Simplified one.
+ *
+ * Korean breaks between words. Japanese keeps small kana and the long vowel
+ * mark off the start of a line.
+ */
+html {
+  font-family: var(--font-sans, var(--default-font-family));
+}
+
+:lang(ko) {
+  word-break: keep-all;
+}
+
+:lang(ja) {
+  line-break: strict;
 }
 
 /*

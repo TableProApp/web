@@ -9,12 +9,12 @@
   },
   "header": {
     "title": "TablePro와 다른 데이터베이스 클라이언트 비교",
-    "lead": "각 비교는 다른 클라이언트가 더 맞는 경우, TablePro의 차이와 하지 못하는 것을 설명합니다. 다른 제품 사실은 공식 출처에서 가져오며 확인 날짜를 표시합니다."
+    "lead": "각 비교는 다른 클라이언트가 더 맞는 경우, TablePro의 차이와 하지 못하는 것을 설명합니다. 다른 제품에 관한 사실은 공식 출처에서 가져오며 확인 날짜를 표시합니다."
   },
   "bySituation": {
     "title": "상황별 선택",
     "lead": "클라이언트별 한 줄 설명이 전체 비교로 연결됩니다.",
-    "tablepro": "네이티브 Mac 앱과 별도의 iPhone·iPad 앱이 있는 오픈 소스 클라이언트를 원하면 TablePro입니다. AI 도우미와 MCP 서버는 Mac 앱에서 무료이며, {apps}의 저장된 연결을 가져올 수 있습니다.",
+    "tablepro": "네이티브 Mac 앱과 별도의 iPhone·iPad 앱이 있는 오픈 소스 클라이언트를 원하면 TablePro입니다. AI 어시스턴트와 MCP 서버는 Mac 앱에서 무료이며, {apps}의 저장된 연결을 가져올 수 있습니다.",
     "items": {
       "tableplus": "Windows·Linux도 쓰거나 Vertica·Greenplum에 연결하면 TablePlus를 고르세요.",
       "dbeaver": "Windows·macOS·Linux에서 JDBC 드라이버가 있는 모든 엔진에 연결할 무료 클라이언트를 원하면 DBeaver입니다.",
@@ -22,10 +22,10 @@
       "navicat": "데이터 모델링·팀 작업용 Navicat Cloud가 필요하고 영구 라이선스가 예산에 맞으면 Navicat입니다.",
       "beekeeper-studio": "Windows·macOS·Linux에서 같은 방식으로 쓰는 오픈 소스 클라이언트를 원하면 Beekeeper Studio입니다.",
       "sequel-ace": "MySQL·MariaDB만 쓰며 Mac App Store의 무료 오픈 소스 Mac 앱을 원하면 Sequel Ace입니다.",
-      "sequel-pro": "아직 Sequel Pro를 쓰나요? 마지막 {status.version}은 {status.date} 출시입니다. Sequel Ace가 계승하며 TablePro는 그 연결을 가져옵니다.",
+      "sequel-pro": "아직 Sequel Pro를 쓰나요? 마지막 버전({status.version})은 {status.date}에 출시되었습니다. Sequel Ace가 이를 이어받았으며 TablePro는 Sequel Ace 연결을 가져옵니다.",
       "postico": "PostgreSQL만 사용하고, 해당 작업에 특화된 Mac 앱을 일회 구매 라이선스로 쓰고 싶다면 Postico를 선택하세요.",
       "heidisql": "Windows에서 HeidiSQL을 쓰고 Apple silicon Mac에서도 같은 무료 클라이언트를 원하면 HeidiSQL입니다.",
-      "phpmyadmin": "cPanel 제공 호스팅 등 웹 브라우저로 MySQL·MariaDB를 관리하면 phpMyAdmin입니다."
+      "phpmyadmin": "cPanel로 phpMyAdmin을 제공하는 호스팅처럼 웹 브라우저에서 MySQL·MariaDB를 관리한다면 phpMyAdmin입니다."
     }
   },
   "atAGlance": {
@@ -64,8 +64,8 @@
     "shortAnswer": {
       "title": "간단한 선택 기준",
       "lead": "Mac에서 {name}의 대안을 찾고 있나요? 각 클라이언트가 맞는 경우를 정리했습니다.",
-      "tablepro": "TablePro가 맞는 경우",
-      "competitor": "{name}가 맞는 경우"
+      "tablepro": "TablePro 선택이 맞는 경우",
+      "competitor": "{name} 선택이 맞는 경우"
     },
     "glance": {
       "title": "한눈에 비교",
@@ -79,7 +79,7 @@
       "price": "가격",
       "licence": "오픈 소스",
       "databases": "데이터베이스",
-      "ai": "AI 도우미",
+      "ai": "AI 어시스턴트",
       "mcp": "MCP 서버",
       "ios": "iPhone과 iPad",
       "sync": "동기화",
@@ -172,23 +172,23 @@
     },
     "tablepro": {
       "technology": "Swift·네이티브 데이터베이스 드라이버",
-      "priceFree": "무료 사용. 유료 플랜은 Mac 앱 선택 기능을 추가합니다.",
+      "priceFree": "무료로 사용할 수 있습니다. 유료 플랜은 Mac 앱에 선택 기능을 추가합니다.",
       "starter": "월 {monthly}, 연 {yearly} 또는 일회 {lifetime}",
       "team": "좌석당 월 {monthly}, 연 {yearly} 또는 일회 {lifetime}, 최소 {min}좌석",
-      "iosPrice": "iPhone·iPad 앱은 무료이며 인앱 구매가 없습니다.",
+      "iosPrice": "iPhone·iPad 앱은 무료이며 앱 내 구입이 없습니다.",
       "licence": "예: 유료 기능 코드까지 {licence}",
       "databases": "{engines} 등",
       "databasesLink": "지원 데이터베이스",
       "ai": "Mac 앱에서 무료, 클라우드·Mac의 원하는 AI 제공업체 사용",
       "mcp": "Mac 앱에서 무료. Mac에서만 수신하고 외부 앱 허용 작업은 연결별 결정",
-      "ios": "별도 무료 앱, 인앱 구매 없음",
+      "ios": "별도 무료 앱, 앱 내 구입 없음",
       "sync": "iCloud Sync: Mac은 {tier}에 포함, iPhone·iPad는 무료"
     },
     "import": {
       "yes": "{name} 연결·저장 비밀번호를 가져옵니다.",
       "yesFile": "{name}에서 내보낸 {format} 파일로 {name} 연결·저장 비밀번호를 가져옵니다.",
-      "noPasswords": "{name} 연결을 가져오며 비밀번호는 남습니다.",
-      "none": "{name} 가져오기는 없습니다.",
+      "noPasswords": "TablePro는 {name} 연결을 가져오지만 비밀번호는 가져오지 않습니다.",
+      "none": "TablePro에는 {name} 가져오기 기능이 없습니다.",
       "link": "이전 방법"
     },
     "tiers": {
@@ -197,7 +197,7 @@
     },
     "tierBadge": "{tier} 플랜",
     "sections": {
-      "stronger": "{name}가 더 강한 부분",
+      "stronger": "{name}의 강점",
       "differs": "TablePro의 차이",
       "limits": "TablePro가 하지 못하는 것",
       "switching": "{name}에서 이전",
@@ -210,15 +210,15 @@
       "docs": "문서의 이전 가이드"
     },
     "sources": {
-      "intro": "{name} 사실은 {date}에 이 페이지로 확인했습니다. 가격은 세전 미국 달러 정가입니다.",
+      "intro": "{name}에 관한 사실은 {date}에 아래 페이지에서 확인했습니다. 가격은 세전 미국 달러 정가입니다.",
       "retrieved": "{date} 확인",
       "latest": "해당 날짜 최신 {name}: {date} 출시한 {version}.",
-      "tablepro": "TablePro 열은 Mac용 {macVersion}·iPhone·iPad용 {iosVersion}을 설명합니다.",
+      "tablepro": "TablePro 열은 Mac용 TablePro {macVersion} 버전과 iPhone·iPad용 {iosVersion} 버전을 기준으로 합니다.",
       "trademarks": "TablePro는 독립적인 오픈 소스 프로젝트로, 여기서 비교하는 제품의 개발사와 제휴하지 않았으며 그들의 보증을 받지도 않았습니다. 제품 이름은 각 소유자의 상표입니다."
     },
     "cta": {
-      "body": "TablePro는 무료 다운로드입니다. 유료 플랜은 Mac 앱 선택 기능을 추가합니다.",
-      "pricing": "가격 보기",
+      "body": "TablePro는 무료로 다운로드할 수 있습니다. 유료 플랜은 Mac 앱에 선택 기능을 추가합니다.",
+      "pricing": "요금 보기",
       "hub": "모든 비교"
     },
     "status": {

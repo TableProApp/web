@@ -13,7 +13,7 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda menginginkan klien sumber terbuka. TablePro menggunakan AGPLv3, termasuk kode fitur berbayarnya.",
+            "Anda menginginkan klien sumber terbuka. TablePro bersumber terbuka dengan AGPLv3, termasuk kode fitur berbayarnya.",
             "Anda menginginkan aplikasi iPhone dan iPad gratis tanpa pembelian dalam aplikasi.",
             "Anda lebih suka membayar fitur yang diperlukan saja. Aplikasi gratis tidak membatasi tab atau jendela, dan paket berbayar menambah fitur seperti {starterExamples}."
         ],
@@ -24,7 +24,7 @@
         ]
     },
     "glance": {
-        "intro": "Kedua klien memiliki obrolan AI, server MCP, diagram skema, dan ekspor Excel. TablePlus menambahkan server MCP, diagram, dan ekspor Excel pada versi {cells.mcp.version}, dirilis {cells.mcp.date}."
+        "intro": "Kedua klien memiliki chat AI, server MCP, diagram skema, dan ekspor Excel. TablePlus menambahkan server MCP, diagram, dan ekspor Excel pada versi {cells.mcp.version}, dirilis {cells.mcp.date}."
     },
     "rows": {
         "diagram": {
@@ -37,7 +37,7 @@
         },
         "safeMode": {
             "label": "Safe Mode",
-            "tablepro": "Per koneksi, dari Silent hingga Read-Only, dengan Touch ID pada tingkat lebih ketat"
+            "tablepro": "Per koneksi, dari Silent hingga Read-Only, dengan Touch ID pada level yang lebih ketat"
         },
         "setapp": {
             "label": "Setapp",
@@ -56,7 +56,7 @@
                 "href": null
             },
             {
-                "text": "Aplikasi mencantumkan mesin yang tidak didukung TablePro, seperti Vertica dan Greenplum.",
+                "text": "TablePlus mencantumkan mesin yang tidak didukung TablePro, seperti Vertica dan Greenplum.",
                 "cite": [
                     "cells.databases"
                 ],
@@ -64,7 +64,7 @@
                 "href": null
             },
             {
-                "text": "Tersedia melalui Setapp jika itulah cara Anda memperoleh aplikasi Mac.",
+                "text": "TablePlus tersedia melalui Setapp, jika itulah cara Anda memperoleh aplikasi Mac.",
                 "cite": [
                     "cells.setapp"
                 ],
@@ -108,7 +108,7 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> menyelaraskan koneksi antara Mac dan iPhone atau iPad. Fitur merupakan bagian Starter pada Mac dan gratis dalam aplikasi iPhone serta iPad. TablePlus menyinkronkan koneksinya melalui folder cloud pilihan Anda, seperti Dropbox atau iCloud.",
+                "text": "<link>iCloud Sync</link> menyelaraskan koneksi antara Mac dan iPhone atau iPad. Fitur ini merupakan bagian dari Starter di Mac dan gratis dalam aplikasi iPhone dan iPad. TablePlus menyinkronkan koneksinya melalui folder cloud pilihan Anda, seperti Dropbox atau iCloud.",
                 "cite": [
                     "cells.sync"
                 ],
@@ -153,10 +153,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro membaca koneksi di lokasi penyimpanan TablePlus, termasuk edisi Setapp TablePlus. TablePlus tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "intro": "TablePro membaca koneksi di lokasi penyimpanan TablePlus, termasuk edisi Setapp TablePlus. TablePlus tidak perlu terbuka, dan file-nya tidak diubah.",
         "steps": [
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
-            "Pilih TablePlus. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi tersimpan dari Keychain macOS.",
+            "Pilih TablePlus. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi tersimpan dari Rantai Kunci macOS.",
             "macOS meminta kata sandi login sekali untuk setiap kata sandi tersimpan. Pilih <ui>Always Allow</ui> pada setiap permintaan.",
             "Tinjau daftar, tentukan tindakan terhadap duplikat, lalu klik <ui>Import</ui>. Grup, tunnel SSH, dan warna koneksi ikut dipindahkan. Koneksi ke mesin yang tidak didukung TablePro muncul tanpa centang.",
             "Sebelum menghapus TablePlus, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya dipindahkan."
@@ -171,7 +171,7 @@
         {
             "id": "keep-tableplus",
             "question": "Apakah saya dapat tetap menggunakan TablePlus setelah mengimpor?",
-            "answer": "Ya. Impor hanya membaca berkas koneksi TablePlus, sehingga kedua aplikasi tetap berfungsi dengan salinannya sendiri.",
+            "answer": "Ya. Impor hanya membaca file koneksi TablePlus, sehingga kedua aplikasi tetap berfungsi dengan salinannya sendiri.",
             "href": null
         },
         {
@@ -196,10 +196,10 @@
     "notes": {
         "tableplus-free-limits": "Tanpa batas waktu, tetapi maksimum {value} tab terbuka, {value} jendela, dan {value} filter lanjutan sekaligus",
         "tableplus-one-year-updates": "Sekali bayar dengan satu tahun pembaruan. Aplikasi tetap berfungsi setelahnya.",
-        "tableplus-databases": "Mesin relasional, dokumen, kunci-nilai, dan analitik, termasuk PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica, serta Greenplum. Beberapa mesin hanya tersedia pada platform tertentu.",
-        "tableplus-ai": "Plugin obrolan yang bekerja dengan OpenAI, Anthropic, GitHub Copilot, atau model lokal",
+        "tableplus-databases": "Mesin relasional, dokumen, key-value, dan analitik, termasuk PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica, serta Greenplum. Beberapa mesin hanya tersedia pada platform tertentu.",
+        "tableplus-ai": "Plugin chat yang bekerja dengan OpenAI, Anthropic, GitHub Copilot, atau model lokal",
         "tableplus-ios-purchase": "Gratis diunduh dengan pembelian dalam aplikasi. Lisensi TablePlus aktif juga mencakupnya pada sejumlah perangkat yang ditentukan. Memerlukan iOS {value} atau lebih baru.",
         "tableplus-sync-folder": "Koneksi disinkronkan melalui folder cloud pilihan Anda, seperti Dropbox atau iCloud",
-        "tableplus-safe-mode-levels": "{value} tingkat, dengan dukungan Touch ID"
+        "tableplus-safe-mode-levels": "{value} level, dengan dukungan Touch ID"
     }
 }

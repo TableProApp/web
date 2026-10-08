@@ -11,7 +11,7 @@
     "breadcrumb": "SQL Server",
     "header": {
         "title": "適用於 {devices} 的 SQL Server 用戶端",
-        "lead": "逐批次執行 T-SQL 指令碼，依 SQL Server Management Studio 的方式處理 GO 和 PRINT，並使用 SQL Server 登入、Kerberos 或 Microsoft Entra ID 工作帳號驗證。Windows、Linux、Docker 伺服器及 Azure SQL Database 均以相同方式連線。"
+        "lead": "逐批次執行 T-SQL 指令碼，依 SQL Server Management Studio 的方式處理 GO 和 PRINT，並使用 SQL Server 登入、Kerberos 或 Microsoft Entra ID 工作帳戶驗證。Windows、Linux、Docker 伺服器及 Azure SQL Database 均以相同方式連線。"
     },
     "asset": "mac-db-sqlserver-script",
     "links": {
@@ -42,14 +42,14 @@
                 "指令碼依僅含 <code>GO</code> 的行分隔，像 sqlcmd 一樣逐批次傳送伺服器；<code>GO 5</code> 將前一批次執行五次。每個結果集在獨立分頁開啟，<code>PRINT</code> 輸出和資訊訊息顯示在 Output 檢視。",
                 "若失敗需復原之前的批次，請在指令碼加入 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>；指令碼留下未結束交易時會在結尾提示。執行在首個失敗批次停止，錯誤指出編輯器中的行號。",
                 "每個工作階段以篩選索引、索引檢視表和計算欄位索引所需的 SET 選項開啟，例如啟用 <code>ANSI_NULLS</code> 和 <code>QUOTED_IDENTIFIER</code>。因此 <code>col = NULL</code> 不符合任何紀錄，請用 <code>IS NULL</code> 比較。",
-                "資料表在側欄 schema 下巢狀顯示，<code>⌘K</code> 無須重新連線即可切換資料庫。列編輯暫存並提供 <editing>Preview SQL</editing>，新列的 IDENTITY 欄位交給伺服器產生，<code>nvarchar(max)</code> 值完整讀取。"
+                "資料表在側邊欄 schema 下巢狀顯示，<code>⌘K</code> 無須重新連線即可切換資料庫。列編輯暫存並提供 <editing>Preview SQL</editing>，新列的 IDENTITY 欄位交給伺服器產生，<code>nvarchar(max)</code> 值完整讀取。"
             ]
         },
         {
             "id": "schema",
             "title": "結構",
             "paragraphs": [
-                "<structure>Structure 分頁</structure> 暫存欄位、索引、外部索引鍵和條件約束的修改，在執行前顯示 T-SQL。可從側欄刪除 schema，但 SQL Server 拒絕刪除仍含物件的 schema；建立請在編輯器使用 CREATE SCHEMA。",
+                "<structure>Structure 分頁</structure> 暫存欄位、索引、外部索引鍵和條件約束的修改，在執行前顯示 T-SQL。可從側邊欄刪除 schema，但 SQL Server 拒絕刪除仍含物件的 schema；建立請在編輯器使用 CREATE SCHEMA。",
                 "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 比較兩個 SQL Server schema 或資料，儲存每個陳述式後附 <code>GO</code> 行的指令碼，可直接用於 sqlcmd 或 SQL Server Management Studio。"
             ]
         },
@@ -72,7 +72,7 @@
             "id": "iphone",
             "title": "iPhone 與 iPad",
             "paragraphs": [
-                "iPhone 與 iPad 上可透過 SQL Server 登入，依卡片瀏覽資料表、編輯有主索引鍵的列，並在 Query 分頁執行 T-SQL。不提供 Windows Authentication。Microsoft Entra ID 連線需透過 iCloud Sync 或匯出的連線檔案從 Mac 匯入，開啟時登入 Microsoft。"
+                "iPhone 與 iPad 上可透過 SQL Server 登入，以卡片形式瀏覽資料表、編輯有主索引鍵的列，並在 Query 分頁執行 T-SQL。不提供 Windows Authentication。Microsoft Entra ID 連線需透過 iCloud Sync 或匯出的連線檔案從 Mac 匯入，開啟時登入 Microsoft。"
             ],
             "asset": "ios-table-browse"
         }

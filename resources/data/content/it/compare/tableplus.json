@@ -33,7 +33,7 @@
         },
         "excelExport": {
             "label": "Esportazione in Excel",
-            "tablepro": "Gratuita, come CSV, JSON, SQL e altri formati"
+            "tablepro": "Gratuita, insieme a CSV, JSON, SQL e altri formati"
         },
         "safeMode": {
             "label": "Safe Mode",
@@ -48,7 +48,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePlus funziona su Windows e Linux oltre al Mac, quindi un client può seguirti tra computer.",
+                "text": "TablePlus funziona su Windows e Linux oltre al Mac, quindi lo stesso client può seguirti da un computer all’altro.",
                 "cite": [
                     "platforms"
                 ],
@@ -86,7 +86,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro è open source con licenza AGPLv3, incluso il codice delle funzioni a pagamento. TablePlus ha codice chiuso.",
+                "text": "TablePro è open source con licenza AGPLv3, incluso il codice delle funzioni a pagamento. TablePlus è a codice chiuso.",
                 "cite": [
                     "licence"
                 ],
@@ -139,13 +139,13 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro non è un progettista di schemi: il diagramma ER è un’istantanea in sola lettura dello schema attuale.",
+                "text": "TablePro non è uno strumento per progettare schemi: il diagramma ER è un’istantanea in sola lettura dello schema attuale.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Una licenza TablePlus continua a funzionare dopo l’anno di aggiornamenti, come un acquisto TablePro a pagamento unico. Un piano mensile o annuale TablePro invece blocca le funzioni a pagamento alla scadenza, mentre il resto dell’app continua a funzionare.",
+                "text": "Una licenza TablePlus continua a funzionare dopo l’anno di aggiornamenti, come un acquisto TablePro una tantum. Un piano mensile o annuale TablePro invece blocca le funzioni a pagamento alla scadenza, mentre il resto dell’app continua a funzionare.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -156,7 +156,7 @@
         "intro": "TablePro legge le connessioni dove le conserva TablePlus, incluse quelle dell’edizione Setapp. TablePlus non deve essere aperto e i suoi file non vengono modificati.",
         "steps": [
             "In TablePro scegli <ui>File > Import > Import from Other App…</ui>",
-            "Seleziona TablePlus. Attiva <ui>Include passwords</ui> per leggere le password salvate nel portachiavi di macOS.",
+            "Seleziona TablePlus. Attiva <ui>Include passwords</ui> per leggere le password salvate nel Portachiavi di macOS.",
             "macOS chiede la password di login una volta per ogni password salvata. Scegli <ui>Always Allow</ui> a ogni richiesta.",
             "Verifica l’elenco, scegli cosa accade ai duplicati e fai clic su <ui>Import</ui>. Gruppi, tunnel SSH e colori delle connessioni vengono trasferiti. Una connessione a un motore non supportato da TablePro arriva deselezionata.",
             "Prima di rimuovere TablePlus, apri una connessione che aveva una password per verificare che sia stata trasferita."
@@ -176,14 +176,14 @@
         },
         {
             "id": "speed",
-            "question": "Come si confronta la velocità di TablePro con TablePlus?",
+            "question": "Com’è la velocità di TablePro rispetto a TablePlus?",
             "answer": "Questa pagina non fa affermazioni su velocità o memoria. Nessuna app pubblica misurazioni riproducibili da altri e il risultato dipende da Mac, database e rete.",
             "href": null
         },
         {
             "id": "license",
             "question": "Mi serve una licenza per usare TablePro?",
-            "answer": "No. TablePro è gratuito da usare, con ogni motore supportato, assistente IA, server MCP e Safe Mode. Starter o Team aggiunge funzioni opzionali all’app Mac, come {starterExamples}. <link>Vedi i prezzi</link>.",
+            "answer": "No. TablePro si usa gratuitamente, con ogni motore supportato, assistente IA, server MCP e Safe Mode. Un piano Starter o Team aggiunge funzioni opzionali all’app per Mac, come {starterExamples}. <link>Vedi i prezzi</link>.",
             "href": "/pricing"
         },
         {

@@ -18,12 +18,12 @@
             "title": "Un éditeur qui connaît votre schéma",
             "paragraphs": [
                 "L’autocomplétion lit le schéma pendant la saisie : tables après FROM et JOIN, colonnes d’un alias et colonnes d’une CTE ou sous-requête définie plus tôt. La coloration utilise tree-sitter ; <kbd>⌘⇧L</kbd> formate l’instruction au curseur sans supprimer vos commentaires.",
-                "<kbd>⌘⏎</kbd> exécute l’instruction au curseur ou la sélection, <kbd>⌘⇧⏎</kbd> les exécute toutes, <kbd>⌘⌥⏎</kbd> sans limite de lignes et <kbd>⌘.</kbd> annule. Un lot d’instructions ordinaires s’exécute dans une transaction et est annulé si l’une échoue. Exceptions : scripts gérant leur transaction, scripts SQL Server et instructions incompatibles avec les transactions, comme VACUUM. Le DDL sur MySQL, MariaDB et Oracle valide de lui-même."
+                "<kbd>⌘⏎</kbd> exécute l’instruction au curseur ou la sélection, <kbd>⌘⇧⏎</kbd> les exécute toutes, <kbd>⌘⌥⏎</kbd> sans limite de lignes et <kbd>⌘.</kbd> annule. Un lot d’instructions ordinaires s’exécute dans une transaction et est annulé si l’une échoue. Font exception les scripts qui gèrent eux-mêmes leur transaction, les scripts SQL Server et les instructions qu’aucune transaction ne peut contenir, comme VACUUM. Sur MySQL, MariaDB et Oracle, le DDL est validé (commit) implicitement."
             ],
             "points": [
                 "Repères d’instructions dans la marge, chacun avec son bouton d’exécution.",
                 "Recherche et remplacement avec expressions régulières.",
-                "Vim mode avec déplacements, registres et macros, où <code>:w</code> exécute la requête.",
+                "Mode Vim avec déplacements, registres et macros, où <code>:w</code> exécute la requête.",
                 "Les fichiers <code>.sql</code> s’ouvrent, se modifient et s’enregistrent comme onglets de requête."
             ],
             "asset": "mac-query-autocomplete"
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Écrivez <code>:customer_id</code> dans une requête ; TablePro demande sa valeur et son type avant exécution, puis lie la valeur nativement si le pilote le permet.",
                 "Chaque requête exécutée entre dans l’historique local (<kbd>⌘Y</kbd>), avec recherche plein texte et filtres par source, échecs et période. Il conserve par défaut {historyEntries} entrées pendant {historyDays} jours et ne se synchronise jamais.",
-                "Enregistrez une requête avec un mot-clé comme <code>dau</code>, puis saisissez-le pour la développer. Les requêtes enregistrées gardent un historique des versions. Un dossier SQL lié synchronise les fichiers <code>.sql</code> avec la barre latérale dans les deux sens, avec lettres d’état Git par fichier. C’est gratuit et distinct de Linked Folders, fonction Starter pour les fichiers de connexion partagés."
+                "Enregistrez une requête avec un mot-clé comme <code>dau</code>, puis saisissez ce mot-clé dans l’éditeur pour le développer. Les requêtes enregistrées gardent un historique des versions. Un dossier SQL lié synchronise les fichiers <code>.sql</code> avec la barre latérale dans les deux sens, avec une lettre d’état Git pour chaque fichier. C’est gratuit et distinct de Linked Folders, la fonctionnalité Starter pour les fichiers de connexion partagés."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,7 +42,7 @@
             "id": "open-quickly",
             "title": "Open Quickly et onglets",
             "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) trouve tables, vues et tables système dans toutes les connexions ouvertes, ainsi que requêtes enregistrées et récentes. Chaque onglet conserve SQL, tri, filtres et largeurs de colonnes, et revient après fermeture et réouverture de l’application ; <kbd>⌃Tab</kbd> passe entre les derniers utilisés."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) trouve les tables, les vues et les tables système de toutes les connexions ouvertes, ainsi que vos requêtes enregistrées et récentes. Chaque onglet conserve son SQL, son tri, ses filtres et ses largeurs de colonnes, et les onglets reviennent lorsque vous quittez puis rouvrez l’application ; <kbd>⌃Tab</kbd> passe d’un onglet récemment utilisé à l’autre."
             ]
         },
         {
@@ -54,7 +54,7 @@
                     "id": "explain",
                     "title": "EXPLAIN et EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> affiche le plan en diagramme, arbre avec barres de coût ou sortie brute du moteur. Choisissez une exécution antérieure comme référence ; Compare indique si la requête a ralenti et si le plan a changé. Une différence inférieure à {explainNoise} % est du bruit. Les deux sont gratuits."
+                        "<kbd>⌥⌘E</kbd> affiche le plan d’une requête sous forme de diagramme, d’arbre avec barres de coût ou de sortie brute du moteur. Choisissez une exécution antérieure de la même requête comme référence ; Compare indique si elle a ralenti et si le plan a changé. Une différence inférieure à {explainNoise} % est considérée comme du bruit. Les deux sont gratuits."
                     ],
                     "engines": [
                         {
@@ -66,7 +66,7 @@
                             "list": "explainText"
                         },
                         {
-                            "label": "Estimation de coût à blanc",
+                            "label": "Estimation du coût par exécution à blanc",
                             "list": "explainCost"
                         },
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights analyse l’historique de ce Mac et classe les requêtes les plus exécutées, les plus lentes, celles en échec et celles ralenties depuis la période précédente. Elles sont regroupées par forme : une instruction avec des valeurs différentes compte une fois. Les chiffres sont calculés sur votre Mac, jamais envoyés."
+                        "Query Insights analyse l’historique de ce Mac et classe les requêtes les plus exécutées, les plus lentes, celles qui échouent et celles qui ont ralenti par rapport à la période précédente. Elles sont regroupées par forme : une même instruction exécutée avec des valeurs différentes ne compte qu’une fois. Les chiffres sont calculés sur votre Mac et ne sont jamais envoyés."
                     ],
                     "paid": [
                         "query-insights"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Représentez un résultat en barres, courbes, aires ou nuage de points, avec axe temporel pour les dates et une série par valeur de colonne choisie. Un graphique trace jusqu’à {chartPoints} points et {chartSeries} séries depuis les {chartInspectedRows} premières lignes ; sa barre d’outils indique les limites atteintes."
+                        "Représentez un résultat en barres, courbes, aires ou nuage de points, avec un axe temporel pour les dates et une série pour chaque valeur d’une colonne de votre choix. Un graphique trace jusqu’à {chartPoints} points et {chartSeries} séries depuis les {chartInspectedRows} premières lignes ; sa barre d’outils signale quand il s’arrête avant la fin."
                     ],
                     "paid": [
                         "result-charts"
@@ -121,7 +121,7 @@
             "id": "other-languages",
             "title": "Moteurs qui ne parlent pas SQL",
             "paragraphs": [
-                "Sur une connexion sans SQL, l’éditeur accepte le langage du moteur et sa page explique les fonctions prises en charge. L’éditeur MongoDB est un shell JavaScript de type mongosh exécuté dans TablePro, pas mongosh lui-même."
+                "Sur une connexion sans SQL, l’éditeur accepte le langage propre à ce moteur, et la page de chaque moteur explique ce qui est pris en charge. L’éditeur MongoDB est un shell JavaScript de type mongosh exécuté dans TablePro, pas mongosh lui-même."
             ],
             "engines": [
                 {
@@ -134,8 +134,8 @@
             "id": "iphone",
             "title": "Sur iPhone et iPad",
             "paragraphs": [
-                "L’application iPhone et iPad a un onglet Requête avec coloration SQL, Run et Stop (<kbd>⌘↩</kbd> au clavier), et un historique des {historyEntriesIos} dernières requêtes de l’appareil. Vous pouvez copier ou partager les résultats en JSON, CSV ou instructions SQL INSERT.",
-                "Elle n’a ni autocomplétion, formatage, paramètres, EXPLAIN ou requêtes enregistrées, et garde au maximum {resultBufferIos} lignes par résultat ; ajoutez LIMIT pour voir la partie nécessaire."
+                "L’application iPhone et iPad a un onglet Query avec coloration SQL, Run et Stop (<kbd>⌘↩</kbd> au clavier), et un historique des {historyEntriesIos} dernières requêtes de l’appareil. Vous pouvez copier ou partager les résultats en JSON, CSV ou instructions SQL INSERT.",
+                "Elle n’a ni autocomplétion, ni formatage, ni paramètres, ni EXPLAIN, ni requêtes enregistrées, et conserve au maximum {resultBufferIos} lignes d’un résultat ; ajoutez un LIMIT pour voir la partie dont vous avez besoin."
             ],
             "links": [
                 {
@@ -192,9 +192,9 @@
         }
     ],
     "limits": [
-        "Une requête retourne au maximum {rowCap} lignes, sauf augmentation dans Réglages jusqu’à {rowCapMax} ou exécution avec <kbd>⌘⌥⏎</kbd>. Un LIMIT explicite a toujours priorité.",
-        "L’historique et Query Insights couvrent uniquement ce Mac ; les requêtes d’un autre Mac ou iPhone n’y figurent pas.",
-        "La commande shell <code>tablepro</code> ouvre connexions et fichiers dans l’application. Elle n’exécute pas de requêtes depuis le terminal."
+        "Une requête retourne au maximum {rowCap} lignes, sauf si vous relevez ce plafond dans les Réglages, jusqu’à {rowCapMax}, ou si vous l’exécutez avec <kbd>⌘⌥⏎</kbd>. Un LIMIT que vous écrivez vous-même l’emporte toujours.",
+        "L’historique et Query Insights couvrent uniquement ce Mac ; les requêtes exécutées sur un autre Mac ou sur un iPhone n’y figurent pas.",
+        "La commande shell <code>tablepro</code> ouvre des connexions et des fichiers dans l’application. Elle n’exécute pas de requêtes depuis le terminal."
     ],
     "docs": [
         {

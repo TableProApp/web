@@ -19,13 +19,13 @@
         "syncedOnly": "{engines} 连接可在通过 iCloud Sync 或 .tablepro 文件从 Mac 导入后打开，无法在此应用中创建。",
         "others": "其他数据库的连接也会从 Mac 同步并显示在列表中，但本应用没有相应驱动，无法打开。<databases>数据库页面</databases>列出了 Mac 应用支持的所有引擎。",
         "files": "SQLite：选择数据库文件后，应用会复制到自身存储中，编辑修改的是副本。也可创建新数据库。DuckDB 直接在原位置打开文件，或在内存中运行。",
-        "redis": "Redis：在 Query 选项卡运行命令。iPhone 和 iPad 应用不支持浏览 Redis 键。",
+        "redis": "Redis：在 Query 标签页运行命令。iPhone 和 iPad 应用不支持浏览 Redis 键。",
         "sample": "先体验看看，可打开随应用提供的 Chinook 示例数据库。"
     },
     "browse": {
         "title": "浏览和编辑表",
         "paragraphs": [
-            "打开连接后首先显示其表，查询编辑器、历史记录和连接详情各有独立选项卡。",
+            "打开连接后首先显示其表，查询编辑器、历史记录和连接详情各有独立标签页。",
             "行以卡片显示，主键或第一列作为标题，后续列在下方展示。可按任意列排序、搜索除二进制列外的所有列，并以 AND 或 OR 叠加筛选条件。可选择每页行数并跳转至任意页。点击外键值可预览对应行。Structure 视图列出表的列、索引和外键。",
             "打开行后可修改值、设置 NULL，并在保存前确认。还可插入和删除行，以及截断或删除表。编辑和删除行需要主键，Read-Only 连接不会修改任何内容。"
         ]
@@ -51,7 +51,7 @@
         "paragraphs": [
             "每个连接都有 Safe Mode 级别：{levels}。Confirm Writes 会在执行修改数据的语句前询问；Read-Only 在语句发送至服务器前拒绝。应用无法判定为读取的语句均视为写入。",
             "在连接的 Organization 区域设置级别，在 Settings 中设置新连接的默认级别。添加行的快捷指令也遵循相同级别。",
-            "在<ui>设置 > 安全</ui>（Settings > Security）中使用 Face ID 或 Touch ID 锁定应用，密码可作为备用验证方式。开启后，每次启动及经过所选 Auto-Lock 时长后都会要求验证。"
+            "在<ui>设置 > 安全</ui>（Settings > Security）中使用 Face ID 或 Touch ID 锁定应用，设备密码可作为备用验证方式。开启后，每次启动及经过所选 Auto-Lock 时长后都会要求验证。"
         ]
     },
     "ipad": {
@@ -88,7 +88,7 @@
             "导出 XLSX 等格式文件，以及将文件导入表（快捷指令可添加行）",
             "服务器仪表盘、用户和角色、备份",
             "其他数据库的驱动插件",
-            "SSH 跳板机、SSH 代理和 SQL Server 的 Windows 认证",
+            "SSH 跳板机、SSH agent 和 SQL Server 的 Windows 认证",
             "浏览 Redis 键"
         ],
         "mac": "<download>下载 Mac 版 TablePro</download>"

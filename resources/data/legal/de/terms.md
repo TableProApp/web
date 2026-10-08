@@ -11,7 +11,7 @@ Diese Bedingungen regeln deine Nutzung von TablePro: der Apps, der Website table
 - **„TablePro“, „wir“, „uns“ und „unser“** bezeichnen das TablePro-Projekt und seine Verantwortlichen.
 - **„Anwendung“** bezeichnet TablePro für Mac und TablePro für iPhone und iPad einschließlich ihrer Updates und Plugins.
 - **„Website“** bezeichnet tablepro.app, docs.tablepro.app und die weiteren Domains, die wir betreiben.
-- **„Dienste“** bezeichnet die Website, das Kontoportal und den Server, mit dem die Anwendung für Lizenzprüfungen, die Team-Bibliothek und Nutzungsberichte kommuniziert.
+- **„Dienste“** bezeichnet die Website, das Kontoportal und den Server, mit dem die Anwendung für Lizenzprüfungen, die Team Library und Nutzungsberichte kommuniziert.
 - **„Lizenz“** bezeichnet einen bezahlten Starter- oder Team-Tarif und **„Lizenzschlüssel“** die Zugangsdaten, die seine Funktionen in der Mac-App aktivieren.
 - **„Du“** bezeichnet die Person oder Organisation, die die Anwendung oder die Dienste nutzt.
 
@@ -25,7 +25,7 @@ Die Mac-App lässt sich ohne Registrierung kostenlos herunterladen und nutzen. E
 
 ## Eine Lizenz kaufen {#purchases}
 
-Lizenzen werden von {merchant} (Polar Software, Inc.), unserem verantwortlichen Verkäufer und Wiederverkäufer, verkauft. Du kaufst eine Lizenz von {merchant} nach den Käuferbedingungen von {merchant}; TablePro gewährt dir das Recht zur Nutzung nach diesen Bedingungen. {merchant} nimmt die Zahlung entgegen, berechnet und entrichtet anfallende Verkaufs- oder Mehrwertsteuer und sendet Belege und Rechnungen. Preise sind in US-Dollar angegeben und stehen auf der [Preisseite](/de/pricing).
+Lizenzen werden von {merchant} (Polar Software, Inc.), unserem Merchant of Record und Wiederverkäufer, verkauft. Du kaufst eine Lizenz von {merchant} nach den Käuferbedingungen von {merchant}; TablePro gewährt dir das Recht zur Nutzung nach diesen Bedingungen. {merchant} nimmt die Zahlung entgegen, berechnet und entrichtet anfallende Verkaufs- oder Mehrwertsteuer und sendet Belege und Rechnungen. Preise sind in US-Dollar angegeben und stehen auf der [Preisseite](/de/pricing).
 
 Monatliche und jährliche Tarife verlängern sich automatisch, bis du sie kündigst. Du kannst im Kontoportal oder im Kundenportal von {merchant} kündigen. Ein gekündigter Tarif wird nicht erneut berechnet und bleibt bis zum Ende des bezahlten Zeitraums aktiv. Ein einmaliger Kauf wird einmal bezahlt und hat kein Ablaufdatum.
 
@@ -93,7 +93,7 @@ Du verpflichtest dich, TablePro und seine Mitwirkenden von Ansprüchen, Forderun
 
 Wir veröffentlichen Updates, Fehlerbehebungen und neue Funktionen nach eigenem Ermessen. Abgesehen vom oben genannten bevorzugten Support sind wir nicht verpflichtet, eine Version der Anwendung zu warten, zu aktualisieren oder zu unterstützen. Ältere Versionen erhalten möglicherweise keine Sicherheitskorrekturen mehr.
 
-Einige Dienste wie Lizenzprüfungen und die Team-Bibliothek benötigen Netzwerkzugang. Wir garantieren keine ständige Verfügbarkeit und können sie nach angemessener Ankündigung einstellen. Die Bezahlfunktionen der Mac-App benötigen unseren Lizenzserver: Ist er nicht erreichbar, funktionieren sie noch {graceDays} Tage nach der letzten erfolgreichen Prüfung.
+Einige Dienste wie Lizenzprüfungen und die Team Library benötigen Netzwerkzugang. Wir garantieren keine ständige Verfügbarkeit und können sie nach angemessener Ankündigung einstellen. Die Bezahlfunktionen der Mac-App benötigen unseren Lizenzserver: Ist er nicht erreichbar, funktionieren sie noch {graceDays} Tage nach der letzten erfolgreichen Prüfung.
 
 ## Beendigung {#termination}
 

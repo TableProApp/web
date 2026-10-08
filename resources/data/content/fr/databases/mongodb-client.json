@@ -41,10 +41,10 @@
             "title": "Interrogez et modifiez des documents",
             "paragraphs": [
                 "L’onglet Requête est un shell JavaScript acceptant la syntaxe mongosh : clés sans guillemets, expressions régulières littérales, <code>ISODate()</code>, variables, boucles et <code>forEach</code>. Il tourne dans TablePro sans autre installation ; une variable définie reste disponible dans tous les onglets de la connexion jusqu’à déconnexion. La complétion propose collections, méthodes, chemins de champs imbriqués et opérateurs <code>$</code> valides au curseur.",
-                "Une collection s’ouvre en grille, avec les champs de premier niveau en colonnes et les objets imbriqués en Extended JSON. Une cellule modifiée conserve son type : une date reste une date et un ObjectId reste un ObjectId ; modifier un objet imbriqué n’écrit que le chemin changé, comme <code>address.city</code>.",
-                "<editing>Insert Document et Edit Document</editing> prennent un document entier en Extended JSON. Edit Document le relit sur le serveur ; si quelqu’un l’a changé ou supprimé après l’ouverture du dialogue, rien n’est enregistré et le dialogue le signale. <ui>Supprimer le champ</ui> (Remove Field) sur une cellule envoie <code>$unset</code>.",
-                "La <filters>barre de filtres</filters> atteint les objets imbriqués et tableaux d’objets : <code>customer.country</code> et <code>items.sku</code> filtrent directement. Un champ GeoJSON s’ouvre dans la <map>vue Carte</map>.",
-                "<safeMode>Safe Mode</safeMode> traite toute instruction MongoDB comme une écriture, car le pilote ne peut ouvrir de session en lecture seule. Les niveaux Alert et Safe Mode confirment chaque instruction ; Read-Only les bloque toutes."
+                "Une collection s’ouvre sous forme de grille, avec les champs de premier niveau en colonnes et les objets imbriqués en Extended JSON. Une cellule modifiée conserve le type de son champ : une date reste une date et un ObjectId reste un ObjectId ; une modification dans un objet imbriqué n’écrit que le chemin modifié, comme <code>address.city</code>.",
+                "<editing>Insert Document et Edit Document</editing> prennent un document entier en Extended JSON. Edit Document le relit sur le serveur ; si quelqu’un l’a modifié ou supprimé après l’ouverture de la feuille, rien n’est enregistré et la feuille le signale. <ui>Supprimer le champ</ui> (Remove Field) sur une cellule envoie <code>$unset</code>.",
+                "La <filters>barre de filtres</filters> descend dans les objets imbriqués et les tableaux d’objets : vous pouvez filtrer directement sur <code>customer.country</code> et <code>items.sku</code>. Un champ contenant du GeoJSON s’ouvre dans la <map>vue Carte</map>.",
+                "<safeMode>Safe Mode</safeMode> traite toute instruction MongoDB comme une écriture, car le pilote ne peut pas ouvrir de session en lecture seule. Les niveaux Alert et Safe Mode demandent confirmation pour chaque instruction ; Read-Only les bloque toutes."
             ]
         },
         {
@@ -52,23 +52,23 @@
             "title": "Collections, index et validateurs",
             "paragraphs": [
                 "L’<structure>onglet Structure</structure> liste chaque index avec ses champs dans l’ordre des clés et son type, comme hashed, text, 2dsphere ou wildcard. Show DDL écrit les appels <code>createIndex</code> qui les reconstruisent, avec chaque option rapportée par le serveur.",
-                "Renommez ou retirez un champ dans toute la collection depuis le même onglet. Chaque changement est un <code>updateMany</code> montré dans Preview SQL, et un champ déclaré par le validateur <code>$jsonSchema</code> y change aussi. L’enregistrement est refusé avant toute écriture si un index, index de recherche ou une vue utilise encore le nom.",
-                "<ui>Nouvelle table</ui> (New Table) crée une collection dont les champs deviennent un validateur <code>$jsonSchema</code>, puis construit les index indiqués. Vues et collections temporelles apparaissent dans la barre latérale ; les vues s’ouvrent en lecture seule."
+                "Renommez ou retirez un champ dans toute la collection depuis le même onglet. Chaque changement est un <code>updateMany</code> montré dans Preview SQL, et un champ déclaré par le validateur <code>$jsonSchema</code> y change aussi. L’enregistrement est refusé avant toute écriture si un index, un index de recherche ou une vue utilise encore ce nom.",
+                "<ui>Nouvelle table</ui> (New Table) crée une collection dont les champs deviennent un validateur <code>$jsonSchema</code>, puis construit les index indiqués. Les vues et les collections de séries temporelles apparaissent dans la barre latérale ; les vues s’ouvrent en lecture seule."
             ]
         },
         {
             "id": "operate",
             "title": "Sauvegardez",
             "paragraphs": [
-                "<backup>Backup Dump</backup> écrit chaque base cochée dans une archive gzip avec {dumpTool}, en utilisant hôtes, Auth Database, SRV et TLS de la connexion ; il peut se limiter à certaines collections. Restore Dump exécute mongorestore dans la base choisie et conserve l’existant. Installez d’abord MongoDB Database Tools sur votre Mac."
+                "<backup>Backup Dump</backup> écrit chaque base cochée dans une archive gzip avec {dumpTool}, en utilisant les hôtes, l’Auth Database et les paramètres SRV et TLS de la connexion ; un dump peut se limiter à certaines collections. Restore Dump exécute mongorestore dans la base choisie et conserve ce qui s’y trouve déjà. Installez d’abord les MongoDB Database Tools sur votre Mac."
             ]
         },
         {
             "id": "move-data",
             "title": "Transférez des données",
             "paragraphs": [
-                "<importData>Importez</importData> des fichiers {importFormats} dans une collection. <export>Exportez</export> collections ou résultats en {exportFormats}.",
-                "Un export MQL est un fichier <code>.js</code> d’appels <code>insertMany</code> exécutable dans mongosh, avec index et validateur de chaque collection si vous les cochez. Les valeurs de premier niveau gardent leur type, mais une valeur typée imbriquée dans un sous-document ou tableau, comme ObjectId dans un tableau, devient une chaîne : exportez ces collections en JSON ou sauvegardez avec mongodump."
+                "<importData>Importez</importData> des fichiers {importFormats} dans une collection. <export>Exportez</export> des collections ou des résultats en {exportFormats}.",
+                "Un export MQL est un fichier <code>.js</code> d’appels <code>insertMany</code> exécutable dans mongosh, avec les index et le validateur de chaque collection si vous les cochez. Les valeurs de premier niveau gardent leur type, mais une valeur typée imbriquée dans un sous-document ou un tableau, comme un ObjectId dans un tableau, est écrite sous forme de chaîne : exportez plutôt ces collections en JSON ou sauvegardez-les avec mongodump."
             ]
         }
     ],
@@ -78,7 +78,7 @@
             {
                 "product": "mongodb-compass",
                 "anchor": "compass",
-                "text": "MongoDB Compass est l’interface graphique officielle de MongoDB. Il construit des pipelines d’agrégation étape par étape avec aperçu après chacune, analyse le schéma d’une collection sur un échantillon et dessine les plans d’exécution. Choisissez-le pour concevoir visuellement des pipelines ou étudier une collection ; TablePro convient lorsque MongoDB est une de plusieurs bases dans la même app.",
+                "text": "MongoDB Compass est l’interface graphique officielle de MongoDB. Il construit des pipelines d’agrégation étape par étape avec aperçu après chacune, analyse le schéma d’une collection sur un échantillon et dessine les plans d’exécution. Choisissez-le pour concevoir visuellement des pipelines ou étudier une collection ; TablePro convient lorsque MongoDB n’est qu’une des bases avec lesquelles vous travaillez dans la même app.",
                 "notes": [
                     "compass-natural-language"
                 ]
@@ -97,7 +97,7 @@
         {
             "id": "query-plan",
             "question": "Comment voir un plan de requête ?",
-            "answer": "Chaînez <code>.explain(\"executionStats\")</code> au curseur dans Requête. Le plan revient comme document ; les connexions MongoDB n’ont pas de diagramme de plan."
+            "answer": "Chaînez <code>.explain(\"executionStats\")</code> au curseur dans l’onglet Requête. Le plan revient sous forme de document ; les connexions MongoDB n’ont pas de diagramme de plan."
         },
         {
             "id": "users",
@@ -119,7 +119,7 @@
             "href": "/features/import-export"
         },
         {
-            "label": "Comparez TablePro à d’autres clients de bases de données",
+            "label": "Comparer TablePro à d’autres clients de bases de données",
             "href": "/compare"
         }
     ]

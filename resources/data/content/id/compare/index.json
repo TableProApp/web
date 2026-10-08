@@ -19,8 +19,8 @@
             "tableplus": "Pilih TablePlus jika Anda juga bekerja di Windows atau Linux, atau terhubung ke Vertica maupun Greenplum.",
             "dbeaver": "Pilih DBeaver jika Anda menginginkan klien gratis untuk Windows, macOS, dan Linux yang terhubung ke mesin apa pun dengan driver JDBC.",
             "datagrip": "Pilih DataGrip jika Anda menginginkan IDE database JetBrains dengan kontrol versi bawaan, dan pekerjaan Anda nonkomersial atau Anda sudah membayar alat JetBrains.",
-            "navicat": "Pilih Navicat jika Anda memerlukan pemodelan data atau Navicat Cloud untuk bekerja bersama tim, dan lisensi perpetual sesuai anggaran.",
-            "beekeeper-studio": "Pilih Beekeeper Studio jika Anda menginginkan klien sumber terbuka yang bekerja sama di Windows, macOS, dan Linux.",
+            "navicat": "Pilih Navicat jika Anda memerlukan pemodelan data atau Navicat Cloud untuk bekerja bersama tim, dan lisensi permanen sesuai anggaran Anda.",
+            "beekeeper-studio": "Pilih Beekeeper Studio jika Anda menginginkan klien sumber terbuka yang bekerja dengan cara yang sama di Windows, macOS, dan Linux.",
             "sequel-ace": "Pilih Sequel Ace jika Anda hanya menggunakan MySQL dan MariaDB serta menginginkan aplikasi Mac gratis bersumber terbuka dari Mac App Store.",
             "sequel-pro": "Masih menggunakan Sequel Pro? Rilis terakhirnya, {status.version}, berasal dari {status.date}. Sequel Ace melanjutkannya, dan TablePro mengimpor koneksi Sequel Ace.",
             "postico": "Pilih Postico jika Anda hanya menggunakan PostgreSQL dan menginginkan aplikasi Mac khusus dengan lisensi sekali bayar.",
@@ -40,7 +40,7 @@
     },
     "switching": {
         "title": "Beralih ke TablePro",
-        "body": "TablePro mengimpor koneksi tersimpan dari {apps}, termasuk kata sandi tersimpan. Koneksi Navicat berasal dari berkas yang Anda ekspor di Navicat.",
+        "body": "TablePro mengimpor koneksi tersimpan dari {apps}, termasuk kata sandi tersimpan. Koneksi Navicat berasal dari file yang Anda ekspor di Navicat.",
         "none": "Tidak ada pengimpor untuk {others}. Tambahkan koneksi secara manual atau tempel URL koneksi.",
         "link": "Bawa koneksi Anda",
         "docs": "Panduan beralih dalam dokumentasi"
@@ -106,8 +106,8 @@
         "languages": {
             "en": "Inggris",
             "vi": "Vietnam",
-            "zh-Hans": "Mandarin sederhana",
-            "zh-Hant": "Mandarin tradisional",
+            "zh-Hans": "Mandarin Sederhana",
+            "zh-Hant": "Mandarin Tradisional",
             "ko": "Korea",
             "tr": "Turki",
             "fr": "Prancis"
@@ -174,19 +174,19 @@
             "technology": "Swift, dengan driver database native",
             "priceFree": "Gratis digunakan. Paket berbayar menambahkan fitur opsional ke aplikasi Mac.",
             "starter": "{monthly} per bulan, {yearly} per tahun, atau {lifetime} sekali bayar",
-            "team": "{monthly} per bulan, {yearly} per tahun, atau {lifetime} sekali bayar per seat, minimum {min} seat",
+            "team": "{monthly} per bulan, {yearly} per tahun, atau {lifetime} sekali bayar, per seat, minimum {min} seat",
             "iosPrice": "Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi.",
             "licence": "Ya: {licence}, termasuk kode fitur berbayar",
             "databases": "{engines} dan lainnya",
             "databasesLink": "Database yang didukung",
             "ai": "Gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, di cloud atau Mac",
-            "mcp": "Gratis dalam aplikasi Mac. Hanya mendengarkan pada Mac, dan setiap koneksi menentukan tindakan yang diizinkan untuk aplikasi luar",
+            "mcp": "Gratis dalam aplikasi Mac. Server hanya mendengarkan di Mac Anda, dan setiap koneksi menentukan tindakan yang diizinkan untuk aplikasi luar",
             "ios": "Aplikasi gratis terpisah, tanpa pembelian dalam aplikasi",
             "sync": "iCloud Sync: bagian dari {tier} di Mac, gratis di iPhone dan iPad"
         },
         "import": {
             "yes": "TablePro mengimpor koneksi {name}, termasuk kata sandi tersimpan.",
-            "yesFile": "TablePro mengimpor koneksi {name} dari berkas {format} yang Anda ekspor di {name}, termasuk kata sandi tersimpan.",
+            "yesFile": "TablePro mengimpor koneksi {name} dari file {format} yang Anda ekspor di {name}, termasuk kata sandi tersimpan.",
             "noPasswords": "TablePro mengimpor koneksi {name}. Kata sandinya tidak disertakan.",
             "none": "TablePro tidak memiliki pengimpor untuk {name}.",
             "link": "Cara beralih"
@@ -222,7 +222,7 @@
             "hub": "Semua perbandingan"
         },
         "status": {
-            "active": "Dipertahankan",
+            "active": "Dipelihara",
             "discontinued": "Dihentikan"
         },
         "hub": {

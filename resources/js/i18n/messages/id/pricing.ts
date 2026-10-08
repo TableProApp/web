@@ -36,15 +36,15 @@ export default {
             "name": "Starter",
             "description": "Menambahkan fitur seperti {examples} ke aplikasi Mac.",
             "activation": {
-                "one": "Satu lisensi untuk satu orang, pada {count} Mac.",
-                "other": "Satu lisensi untuk satu orang, pada hingga {count} Mac."
+                "one": "Satu lisensi untuk satu orang, di {count} Mac.",
+                "other": "Satu lisensi untuk satu orang, di maksimal {count} Mac."
             },
             "includesTitle": "Semua fitur Gratis, ditambah",
             "cta": "Beli Starter"
         },
         "team": {
             "name": "Team",
-            "description": "Menambahkan koneksi dan kueri bersama tim Anda, selain fitur Starter.",
+            "description": "Menambahkan koneksi dan kueri yang dibagikan dengan tim Anda, di samping fitur Starter.",
             "activation": "Setiap seat adalah satu Mac yang diaktifkan.",
             "includesTitle": "Semua fitur Starter, ditambah",
             "cta": "Beli Team"

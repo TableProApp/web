@@ -57,7 +57,7 @@
             "title": "Compare & Sync",
             "paragraphs": [
                 "Chọn nguồn và đích, có thể là hai server hoặc hai cơ sở dữ liệu trên cùng một server. Compare & Sync liệt kê mọi table có khác biệt, cùng view, routine và trigger nếu bạn chọn so sánh cả chúng. Ở chế độ dữ liệu, các dòng được ghép theo khóa và từng giá trị khác nhau được đánh dấu, với bộ lọc và giới hạn số dòng cho từng table, nên bạn có thể so sánh lần lượt từng đoạn của một table lớn.",
-                "Script được tạo ra sắp xếp theo thứ tự khóa ngoại và viết theo cú pháp mà client của engine đích đọc được. Những câu lệnh làm mất dữ liệu, như xóa cột, thu hẹp kiểu dữ liệu hay xóa dòng, bị giữ lại cho tới khi bạn cho phép trong lần chạy đó. Connection đặt Read-Only không thể được chọn làm đích. Lưu một phép so sánh để chạy lại chỉ bằng một cú nhấp."
+                "Script được tạo ra sắp xếp theo thứ tự khóa ngoại và viết theo cú pháp mà client của engine đích đọc được. Những câu lệnh làm mất dữ liệu, như xóa cột, thu hẹp kiểu dữ liệu hay xóa dòng, bị giữ lại cho tới khi bạn cho phép trong lần chạy đó. Không thể chọn connection đang đặt Read-Only làm đích. Lưu một phép so sánh để chạy lại chỉ bằng một cú nhấp."
             ],
             "paid": ["compare-sync"],
             "asset": "mac-compare-sync-structure"

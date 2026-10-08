@@ -72,7 +72,7 @@
             "id": "iphone",
             "title": "iPhone と iPad",
             "paragraphs": [
-                "iPhone と iPad では SQL Server ログインで認証し、カード表示でテーブルを閲覧し、主キーのある行を編集し、Query タブで T-SQL を実行できます。Windows 認証は使えません。Microsoft Entra ID を使う接続は iCloud Sync やエクスポートした接続ファイルで Mac から取り込み、開くときに Microsoft にサインインします。"
+                "iPhone と iPad では SQL Server ログインで認証し、カード表示でテーブルを閲覧し、主キーのある行を編集し、Query タブで T-SQL を実行できます。Windows 認証は使えません。Microsoft Entra ID を使う接続は iCloud Sync やエクスポートした接続ファイルで Mac から取り込み、開くときに Microsoft にログインします。"
             ],
             "asset": "ios-table-browse"
         }
@@ -131,7 +131,7 @@
             "href": "/features/import-export#backup"
         },
         {
-            "label": "iPhone と iPad 用 TablePro",
+            "label": "iPhone・iPad 版 TablePro",
             "href": "/ios#security"
         }
     ]

@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "MySQL e MariaDB para {devices}",
-        "description": "Conecte MySQL e MariaDB por SSH, SSL/TLS ou AWS IAM, e TiDB, OceanBase e Databend no mesmo driver. Diagramas EXPLAIN e backups mysqldump."
+        "description": "Conecte-se a MySQL e MariaDB por SSH, SSL/TLS ou AWS IAM, e a TiDB, OceanBase e Databend no mesmo driver. Diagramas EXPLAIN e backups mysqldump."
     },
     "og": {
         "kicker": "Bancos de dados",
@@ -35,9 +35,9 @@
             "paragraphs": [
                 "Informe host, porta e usuário ao TablePro ou cole uma URL <code>mysql://</code>. Contas MySQL 8 que usam <code>caching_sha2_password</code> se conectam na primeira tentativa. Deixe o banco vazio e escolha depois: alternar bancos acontece na mesma conexão.",
                 "Novas conexões começam com SSL em Preferred, que tenta TLS primeiro e só volta a texto simples após uma falha de handshake TLS. Escolha Verify CA ou Verify Identity com o certificado do seu provedor para uma verificação rigorosa.",
-                "Para um servidor em rede privada, conecte por um <network>túnel SSH, com hosts intermediários se necessário, proxy SOCKS5, túnel Cloudflare Access ou seu próprio comando de túnel</network>, como kubectl port-forward.",
+                "Para um servidor em uma rede privada, conecte-se por um <network>túnel SSH, com hosts intermediários se necessário, proxy SOCKS5, túnel Cloudflare Access ou seu próprio comando de túnel</network>, como kubectl port-forward.",
                 "No Amazon RDS e Aurora, entre com <cloudAuth>AWS IAM</cloudAuth>, que assina um token novo a cada conexão, e importe instâncias diretamente da conta AWS. Para Google Cloud SQL, TablePro baixa e executa Cloud SQL Auth Proxy por você.",
-                "Está vindo do Sequel Ace? <importApps>Import from Other App</importApps> lê os favoritos e, após sua confirmação, as senhas armazenadas no Chaves."
+                "Está vindo do Sequel Ace? <importApps>Import from Other App</importApps> lê os favoritos e, após sua confirmação, as senhas armazenadas nas Chaves."
             ]
         },
         {
@@ -64,7 +64,7 @@
             "title": "Administre",
             "paragraphs": [
                 "<administer>Users & Roles</administer> mostra os privilégios de cada conta até o nível de colunas individuais e prepara cada GRANT e REVOKE como SQL que você lê antes de executar.",
-                "O Server Dashboard lista sessões, métricas do servidor e consultas lentas, atualizado a cada poucos segundos. Cancela uma consulta com <code>KILL QUERY</code> ou encerra uma sessão com <code>KILL</code>. Uma conta sem o privilégio PROCESS vê apenas suas próprias sessões.",
+                "O Server Dashboard lista sessões, métricas do servidor e consultas lentas, atualizados a cada poucos segundos. Cancela uma consulta com <code>KILL QUERY</code> ou encerra uma sessão com <code>KILL</code>. Uma conta sem o privilégio PROCESS vê apenas suas próprias sessões.",
                 "A manutenção de tabelas executa OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE e REPAIR TABLE e mostra a instrução antes da execução.",
                 "<backup>Backup Dump</backup> executa {dumpTool}, e Restore Dump executa o cliente mysql, ambos pelo túnel SSH da conexão; primeiro instale as ferramentas cliente MySQL no Mac. Uma restauração substitui os objetos nomeados pelo dump.",
                 "Para devolver uma vaga de conexão ao servidor enquanto estiver ausente, configure a conexão para se liberar após alguns minutos de inatividade; a próxima consulta abre outra. TablePro mantém a conexão quando a sessão contém algo que seria perdido ao reconectar, como uma transação aberta ou tabela temporária."

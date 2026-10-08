@@ -30,7 +30,7 @@
             "paragraphs": [
                 "Nhập host, tên người dùng và mật khẩu. Mọi hệ thống Vantage chấp nhận đăng nhập TD2 đều dùng được, và phiên bản không bị kiểm tra. <ui>Logon Mechanism</ui> trong phần Tùy chọn (Options) nhận <code>TD2</code> hoặc <code>TDNEGO</code>, còn ô <ui>Cơ sở dữ liệu (Database)</ui> chỉ cần điền khi bạn muốn một cơ sở dữ liệu mặc định khác với của tài khoản.",
                 "Port mặc định mang một session thường, không mã hóa. Chọn bất kỳ chế độ SSL nào cũng sẽ chuyển session sang endpoint WebSocket của gateway ở port 443, và port này không đổi được. Xác minh CA (Verify CA) cần một chứng chỉ CA, còn Xác minh danh tính (Verify Identity) kiểm tra chuỗi chứng chỉ và hostname theo chứng chỉ đó, hoặc theo kho tin cậy của hệ thống nếu bạn không đặt.",
-                "Hãy để <ui>Transaction Mode</ui> ở <code>DEFAULT</code>, trừ khi script cần quy tắc commit và phân biệt hoa thường kiểu ANSI hoặc TERA cho session. Hệ thống nằm sau bastion thì đi qua <network>SSH tunnel</network>. <ui>Nhập từ URL… (Import from URL…)</ui> nhận URL <code>teradata://</code>, nhưng macOS không mở các URL này như liên kết."
+                "Hãy để <ui>Transaction Mode</ui> ở <code>DEFAULT</code>, trừ khi script cần quy tắc commit và phân biệt hoa thường kiểu ANSI hoặc TERA cho session. Với hệ thống nằm sau bastion, hãy kết nối qua <network>SSH tunnel</network>. <ui>Nhập từ URL… (Import from URL…)</ui> nhận URL <code>teradata://</code>, nhưng macOS không mở các URL này như liên kết."
             ]
         },
         {

@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "PostgreSQL untuk {devices}",
+        "title": "Klien PostgreSQL untuk {devices}",
         "description": "Hubungkan PostgreSQL via SSH, SSL/TLS, AWS IAM, atau ~/.pgpass, serta CockroachDB dan PGlite dengan driver yang sama. Diagram EXPLAIN dan backup pg_dump."
     },
     "og": {
@@ -36,7 +36,7 @@
             "paragraphs": [
                 "Masukkan host, port, pengguna, dan database ke TablePro, atau tempel URL <code>postgresql://</code> maupun <code>postgres://</code>. PostgreSQL memerlukan database untuk terhubung.",
                 "Koneksi baru menggunakan SSL Preferred, yaitu <code>sslmode=prefer</code> libpq. Pilih Verify CA atau Verify Identity untuk memeriksa sertifikat server.",
-                "Aktifkan Use ~/.pgpass untuk membaca kata sandi dari <code>~/.pgpass</code>. Formulir melaporkan hasilnya, termasuk berkas dengan izin yang akan membuat libpq mengabaikannya.",
+                "Aktifkan Use ~/.pgpass untuk membaca kata sandi dari <code>~/.pgpass</code>. Formulir melaporkan hasilnya, termasuk file dengan izin yang akan membuat libpq mengabaikannya.",
                 "Akses server pribadi melalui <network>tunnel SSH, dengan jump host jika diperlukan, proxy SOCKS5, tunnel Cloudflare Access, atau perintah tunnel</network> seperti kubectl port-forward. Pada Amazon RDS dan Aurora, masuk menggunakan <cloudAuth>AWS IAM</cloudAuth> sebagai peran dengan <code>rds_iam</code>. Untuk Google Cloud SQL, TablePro mengunduh dan menjalankan Cloud SQL Auth Proxy.",
                 "Setiap opsi koneksi yang diterima libpq, seperti <code>-c application_name=reporting</code>, dimasukkan ke Connection Options."
             ]
@@ -47,7 +47,7 @@
             "paragraphs": [
                 "Editor SQL melengkapi nama tabel dan kolom dari skema. <explain>EXPLAIN dan EXPLAIN ANALYZE</explain> menggunakan FORMAT JSON dan digambar sebagai diagram atau pohon rencana, dan EXPLAIN Compare menunjukkan apakah rencana menjadi lebih lambat setelah perubahan.",
                 "jsonb diformat, dan uuid, inet, timestamptz, interval, serta bytea ditampilkan sesuai jenisnya. Kolom array membuka editor daftar untuk menambah, menghapus, mengurutkan ulang, dan menetapkan elemen tertentu ke null, sedangkan kolom enum menyediakan labelnya.",
-                "Nilai geometry dan geography PostGIS dibaca sebagai EWKT dengan SRID-nya, dan hasil bergeometri dibuka pada <results>tampilan Map</results>. Ubin peta berasal dari Apple; baris data tetap di Mac.",
+                "Nilai geometry dan geography PostGIS dibaca sebagai EWKT dengan SRID-nya, dan hasil bergeometri dibuka pada <results>Tampilan Peta</results>. Ubin peta berasal dari Apple; baris data tetap di Mac.",
                 "Perubahan baris ditampung hingga Anda menyimpan, dengan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu, dan penyimpanan menggunakan parameter terikat. Baris materialized view hanya baca: refresh dari menunya, secara konkuren jika view memiliki indeks unik yang diwajibkan PostgreSQL."
             ],
             "asset": "mac-result-map"
@@ -77,7 +77,7 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Impor</importData> berkas {importFormats}; berkas data dimuat ke tabel yang Anda petakan per kolom, dan Anda memilih tindakan jika baris gagal. Ekspor tabel atau hasil sebagai {exportFormats}; ekspor SQL mempertahankan komentar tabel, view, dan materialized view.",
+                "<importData>Impor</importData> file {importFormats}; file data dimuat ke tabel yang Anda petakan per kolom, dan Anda memilih tindakan jika baris gagal. Ekspor tabel atau hasil sebagai {exportFormats}; ekspor SQL mempertahankan komentar tabel, view, dan materialized view.",
                 "<copy>Copy To</copy> mengirim tabel, datanya, atau keduanya ke koneksi PostgreSQL lain atau mesin berbeda, serta mencantumkan setiap jenis kolom yang harus didekatkan ke jenis tujuan."
             ]
         },
@@ -85,7 +85,7 @@
             "id": "iphone",
             "title": "iPhone dan iPad",
             "paragraphs": [
-                "Di iPhone dan iPad, ganti database dan skema dari toolbar, telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan SQL di tab Query. SSL dapat diatur dari Required hingga Verify Identity, tunnel SSH masuk menggunakan kata sandi atau kunci, dan jump host tidak didukung."
+                "Di iPhone dan iPad, ganti database dan skema dari toolbar, telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan SQL di tab Query. SSL dapat diatur dari Required hingga Verify Identity, tunnel SSH masuk menggunakan kata sandi atau key, dan jump host tidak didukung."
             ],
             "asset": "ios-connection-form"
         }
@@ -115,7 +115,7 @@
         "items": [
             {
                 "product": "pgadmin",
-                "text": "pgAdmin adalah alat administrasi sumber terbuka yang telah lama digunakan untuk PostgreSQL, dengan debugger, perbandingan skema, serta pencadangan dan pemulihan. Cocok jika Anda hanya menggunakan PostgreSQL dan administrasi adalah sebagian besar pekerjaan.",
+                "text": "pgAdmin adalah alat administrasi sumber terbuka yang telah lama digunakan untuk PostgreSQL, dengan debugger, perbandingan skema, serta pencadangan dan pemulihan. Cocok jika Anda hanya menggunakan PostgreSQL dan sebagian besar pekerjaan Anda adalah administrasi.",
                 "notes": [
                     "pgadmin-erd-design"
                 ]

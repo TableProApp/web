@@ -24,7 +24,7 @@
             "title": "Kết nối",
             "paragraphs": [
                 "Nhập host và port của một broker; phần còn lại của cluster được tìm ra từ broker đó, và <ui>Máy chủ bootstrap bổ sung (Additional Bootstrap Servers)</ui> liệt kê các broker để thử khi broker đầu tiên không trả lời. Mỗi connection là một cluster, nên không có ô Cơ sở dữ liệu (Database), và sidebar hiện thẳng các topic.",
-                "<ui>Giao thức bảo mật (Security Protocol)</ui> là PLAINTEXT, SSL, SASL_PLAINTEXT hoặc SASL_SSL, còn <ui>Cơ chế SASL (SASL Mechanism)</ui> là PLAIN, SCRAM-SHA-256 hoặc SCRAM-SHA-512. PLAIN hợp với Confluent Cloud; SCRAM hợp với Amazon MSK và broker tự host. Với SSL hoặc SASL_SSL mà chưa chọn chế độ SSL, chuỗi chứng chỉ và hostname sẽ được xác minh. CA riêng đặt ở <ui>Chứng chỉ CA (CA Certificate)</ui>, còn chứng chỉ và khóa của client thêm mutual TLS.",
+                "<ui>Giao thức bảo mật (Security Protocol)</ui> là PLAINTEXT, SSL, SASL_PLAINTEXT hoặc SASL_SSL, còn <ui>Cơ chế SASL (SASL Mechanism)</ui> là PLAIN, SCRAM-SHA-256 hoặc SCRAM-SHA-512. PLAIN hợp với Confluent Cloud; SCRAM hợp với Amazon MSK và broker tự host. Với SSL hoặc SASL_SSL mà chưa chọn chế độ SSL, chuỗi chứng chỉ và hostname sẽ được xác minh. CA riêng đặt ở <ui>Chứng chỉ CA (CA Certificate)</ui>, còn chứng chỉ và key của client cho phép dùng mutual TLS.",
                 "Khi đi qua <network>SSH tunnel</network>, connection chỉ làm việc với broker bootstrap, nên chỉ đọc được những partition mà broker đó làm leader. <ui>Nhập từ URL… (Import from URL…)</ui> nhận URL <code>kafka://</code>, nhưng macOS không mở các URL này như liên kết."
             ]
         },

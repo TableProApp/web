@@ -17,6 +17,7 @@ export default {
             "changelog": "Registro delle modifiche (inglese)",
             "blog": "Blog",
             "faq": "Domande frequenti",
+            "about": "Informazioni",
             "source": "Codice sorgente",
             "reportBug": "Segnala un bug"
         },
@@ -50,6 +51,6 @@ export default {
         "note": "Prima ti inviamo un link di conferma via email. <link>Informativa sulla privacy</link>"
     },
     "bottom": {
-        "copyright": "© {year} TablePro. Codice sorgente sotto licenza AGPLv3."
+        "copyright": "© {year} TablePro, creato da {maker} a {city}. Codice sorgente sotto licenza AGPLv3."
     }
 } satisfies Messages['footer'];

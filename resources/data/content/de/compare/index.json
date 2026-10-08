@@ -17,15 +17,15 @@
         "tablepro": "Wähle TablePro, wenn du einen Open-Source-Client mit einer nativen Mac-App und einer separaten App für iPhone und iPad willst. KI-Assistent und MCP-Server sind in der Mac-App kostenlos, und TablePro importiert gespeicherte Verbindungen aus {apps}.",
         "items": {
             "tableplus": "Wähle TablePlus, wenn du auch unter Windows oder Linux arbeitest oder Vertica oder Greenplum nutzt.",
-            "dbeaver": "Wähle DBeaver für einen kostenlosen Client auf Windows, macOS und Linux, der jede Engine mit JDBC-Treiber verbindet.",
+            "dbeaver": "Wähle DBeaver für einen kostenlosen Client auf Windows, macOS und Linux, der sich mit jedem System verbindet, für das es einen JDBC-Treiber gibt.",
             "datagrip": "Wähle DataGrip für eine JetBrains-Datenbank-IDE mit integrierter Versionsverwaltung, wenn du nichtkommerziell arbeitest oder bereits JetBrains-Tools bezahlst.",
             "navicat": "Wähle Navicat, wenn du Datenmodellierung oder Navicat Cloud für Teamarbeit brauchst und eine Dauerlizenz in dein Budget passt.",
             "beekeeper-studio": "Wähle Beekeeper Studio für einen Open-Source-Client, der unter Windows, macOS und Linux gleich funktioniert.",
             "sequel-ace": "Wähle Sequel Ace, wenn du nur MySQL und MariaDB nutzt und eine kostenlose Open-Source-Mac-App aus dem Mac App Store willst.",
             "sequel-pro": "Noch bei Sequel Pro? Seine letzte Version {status.version} stammt vom {status.date}. Sequel Ace führt es fort, und TablePro importiert Sequel-Ace-Verbindungen.",
             "postico": "Wähle Postico, wenn du nur PostgreSQL nutzt und eine spezialisierte Mac-App mit Einmalkauflizenz willst.",
-            "heidisql": "Wähle HeidiSQL, wenn du es bereits unter Windows nutzt und denselben kostenlosen Client auf einem Apple-silicon-Mac willst.",
-            "phpmyadmin": "Wähle phpMyAdmin, wenn du MySQL oder MariaDB im Browser verwaltest, etwa auf Hosting mit cPanel."
+            "heidisql": "Wähle HeidiSQL, wenn du es bereits unter Windows nutzt und denselben kostenlosen Client auf einem Mac mit Apple silicon willst.",
+            "phpmyadmin": "Wähle phpMyAdmin, wenn du MySQL oder MariaDB im Browser verwaltest, etwa bei einem Hoster, der es über cPanel bereitstellt."
         }
     },
     "atAGlance": {
@@ -35,13 +35,13 @@
     },
     "openSource": {
         "title": "Open-Source-Clients auf dem Mac",
-        "lead": "Diese Clients veröffentlichen Quellcode unter Open-Source-Lizenzen. Sequel Pro wird nicht mehr gepflegt; phpMyAdmin läuft auf einem Webserver und öffnet im Browser.",
+        "lead": "Diese Clients veröffentlichen Quellcode unter Open-Source-Lizenzen. Sequel Pro wird nicht mehr gepflegt; phpMyAdmin läuft auf einem Webserver, den du im Browser öffnest.",
         "caption": "Open-Source-Clients, geprüft am {date}."
     },
     "switching": {
         "title": "Zu TablePro wechseln",
         "body": "TablePro importiert gespeicherte Verbindungen aus {apps} samt Passwörtern. Navicat-Verbindungen stammen aus einer in Navicat exportierten Datei.",
-        "none": "Es gibt keinen Importer für {others}. Füge Verbindungen manuell hinzu oder füge eine Verbindungs-URL ein.",
+        "none": "Es gibt keinen Importer für {others}. Lege diese Verbindungen manuell an oder füge eine Verbindungs-URL ein.",
         "link": "Verbindungen übernehmen",
         "docs": "Wechselanleitung in der Dokumentation"
     },
@@ -172,22 +172,22 @@
         },
         "tablepro": {
             "technology": "Swift mit nativen Datenbanktreibern",
-            "priceFree": "Kostenlos nutzbar. Bezahlpläne ergänzen optionale Mac-Funktionen.",
+            "priceFree": "Kostenlos nutzbar. Bezahlte Tarife ergänzen die Mac-App um optionale Funktionen.",
             "starter": "{monthly} monatlich, {yearly} jährlich oder {lifetime} einmalig",
             "team": "{monthly} monatlich, {yearly} jährlich oder {lifetime} einmalig, pro Arbeitsplatz, mindestens {min} Arbeitsplätze",
             "iosPrice": "Die iPhone- und iPad-App ist kostenlos, ohne In-App-Käufe.",
             "licence": "Ja: {licence}, einschließlich des Codes der Bezahlfunktionen",
             "databases": "{engines} und weitere",
             "databasesLink": "Unterstützte Datenbanken",
-            "ai": "Kostenlos auf dem Mac, mit deinem KI-Anbieter in der Cloud oder auf deinem Mac",
-            "mcp": "Kostenlos auf dem Mac. Lauscht nur dort; jede Verbindung bestimmt, was externe Apps dürfen",
+            "ai": "Kostenlos in der Mac-App, mit dem KI-Anbieter deiner Wahl, in der Cloud oder auf deinem Mac",
+            "mcp": "Kostenlos in der Mac-App. Er lauscht nur auf deinem Mac, und jede Verbindung bestimmt, was externe Apps dürfen",
             "ios": "Separate kostenlose App ohne In-App-Käufe",
             "sync": "iCloud Sync: Teil von {tier} auf dem Mac, kostenlos auf iPhone und iPad"
         },
         "import": {
             "yes": "TablePro importiert {name}-Verbindungen samt gespeicherten Passwörtern.",
             "yesFile": "TablePro importiert {name}-Verbindungen samt Passwörtern aus einer in {name} exportierten {format}-Datei.",
-            "noPasswords": "TablePro importiert {name}-Verbindungen; deren Passwörter bleiben zurück.",
+            "noPasswords": "TablePro importiert {name}-Verbindungen; ihre Passwörter werden nicht übernommen.",
             "none": "TablePro hat keinen Importer für {name}.",
             "link": "So wechselst du"
         },
@@ -195,7 +195,7 @@
             "starter": "Starter",
             "team": "Team"
         },
-        "tierBadge": "Tarif {tier}",
+        "tierBadge": "{tier}-Tarif",
         "sections": {
             "stronger": "Wo {name} stärker ist",
             "differs": "Wie TablePro sich unterscheidet",
@@ -210,14 +210,14 @@
             "docs": "Wechselanleitung in der Dokumentation"
         },
         "sources": {
-            "intro": "Angaben zu {name} wurden am {date} anhand dieser Seiten geprüft. Listenpreise in US-Dollar vor Steuern.",
+            "intro": "Angaben zu {name} wurden am {date} anhand dieser Seiten geprüft. Preise sind Listenpreise in US-Dollar vor Steuern.",
             "retrieved": "geprüft am {date}",
             "latest": "Letzte {name}-Version an diesem Datum: {version}, veröffentlicht am {date}.",
             "tablepro": "Die TablePro-Spalte beschreibt TablePro {macVersion} für Mac und {iosVersion} für iPhone und iPad.",
             "trademarks": "TablePro ist ein unabhängiges Open-Source-Projekt. Es steht in keiner Verbindung zu den Herstellern der hier verglichenen Produkte und wird von ihnen nicht unterstützt. Produktnamen sind Marken ihrer jeweiligen Inhaber."
         },
         "cta": {
-            "body": "TablePro ist kostenlos herunterladbar. Bezahlpläne ergänzen optionale Mac-Funktionen.",
+            "body": "TablePro lässt sich kostenlos herunterladen. Bezahlte Tarife ergänzen die Mac-App um optionale Funktionen.",
             "pricing": "Preise ansehen",
             "hub": "Alle Vergleiche"
         },
@@ -230,7 +230,7 @@
             "platforms": "Plattformen",
             "openSource": "Open Source",
             "free": "Kostenlos nutzbar",
-            "paid": "Bezahlpläne",
+            "paid": "Bezahlte Tarife",
             "paidFrom": "Ab {price}",
             "noPaid": "Keine",
             "freeYes": "Ja",

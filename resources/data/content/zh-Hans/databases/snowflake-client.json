@@ -38,7 +38,7 @@
             "title": "仓库、角色和查询",
             "paragraphs": [
                 "<ui>数据库 > Session Context</ui>（Database > Session Context）用 <code>USE WAREHOUSE</code>、<code>USE ROLE</code> 无需重连切换仓库或角色。一个 TablePro 连接对应一个 Snowflake 会话，空闲时仍保持。绑定第二个数据库的标签页在同一会话中先执行 <code>USE DATABASE</code>。",
-                "侧栏按数据库和 schema 分组对象。对象列表来自不需仓库的 <code>SHOW</code> 命令，列详情来自需要仓库的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 返回 Snowflake 原始文本计划。",
+                "侧边栏按数据库和 schema 分组对象。对象列表来自不需仓库的 <code>SHOW</code> 命令，列详情来自需要仓库的 <code>INFORMATION_SCHEMA</code>。<explain>Explain</explain> 返回 Snowflake 原始文本计划。",
                 "<editing>网格编辑</editing>在服务器绑定值，VARIANT、OBJECT、ARRAY 单元格通过 <code>PARSE_JSON</code> 发送。编辑按声明主键定位，无主键则按所有列。Snowflake 从不强制键约束，重复键意味着编辑或删除影响所有匹配行，请先检查重复。"
             ]
         },
@@ -64,7 +64,7 @@
     "faq": [
         {
             "id": "no-columns",
-            "question": "为什么侧栏显示表但不显示列？",
+            "question": "为什么侧边栏显示表但不显示列？",
             "answer": "列详情来自需要运行中仓库的 <code>INFORMATION_SCHEMA</code>。请在连接或 Session Context 设置<ui>仓库</ui>（Warehouse）。数据库对象完全不显示时，需要向连接角色授予 <code>USAGE</code>。"
         },
         {

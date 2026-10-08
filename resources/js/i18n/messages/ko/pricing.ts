@@ -36,17 +36,17 @@ export default {
             "name": "Starter",
             "description": "Mac 앱에 {examples} 같은 기능을 추가합니다.",
             "activation": {
-                "one": "한 사람용 라이선스 하나로 Mac {count}대.",
-                "other": "한 사람용 라이선스 하나로 Mac 최대 {count}대."
+                "one": "라이선스 하나를 한 사람이 Mac {count}대에서 사용합니다.",
+                "other": "라이선스 하나를 한 사람이 최대 {count}대의 Mac에서 사용합니다."
             },
-            "includesTitle": "무료 플랜의 모든 기능과 추가 기능",
+            "includesTitle": "무료 플랜의 모든 기능에 더해",
             "cta": "Starter 구매"
         },
         "team": {
             "name": "Team",
             "description": "Starter 기능에 더해 팀과 연결 및 쿼리를 공유할 수 있습니다.",
             "activation": "좌석 하나당 Mac 한 대를 활성화합니다.",
-            "includesTitle": "Starter의 모든 기능과 추가 기능",
+            "includesTitle": "Starter의 모든 기능에 더해",
             "cta": "Team 구매"
         }
     },

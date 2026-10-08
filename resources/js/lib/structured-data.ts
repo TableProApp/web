@@ -12,8 +12,9 @@
  * Rules every page follows:
  *
  * - Stable ids: `https://tablepro.app/#organization` (the docs site asserts
- *   it), `#website` for the one site, `#app` for the Mac app and `#ios-app`
- *   for the iPhone and iPad app, the same in every locale. The site is one
+ *   it), `#founder` for the person who makes TablePro, `#website` for the one
+ *   site, `#app` for the Mac app and `#ios-app` for the iPhone and iPad app,
+ *   the same in every locale. The site is one
  *   `WebSite` in both languages (`inLanguage: ["en", "vi"]`, positioning
  *   §6.3), and every page in either language `isPartOf` it; the page itself
  *   carries its own language.
@@ -103,6 +104,10 @@ export function macAppId(baseUrl: string): string {
     return `${origin(baseUrl)}/#app`;
 }
 
+export function founderId(baseUrl: string): string {
+    return `${origin(baseUrl)}/#founder`;
+}
+
 export function iosAppId(baseUrl: string): string {
     return `${origin(baseUrl)}/#ios-app`;
 }
@@ -141,8 +146,20 @@ export function organizationProfiles(links: ProfileLinks): string[] {
     return [links.github, links.x, links.discord, links.telegram];
 }
 
+/** Who makes TablePro and where, from `facts.json` → `publisher`. The place is the same in every locale. */
+export interface PublisherInput {
+    name: string;
+    locality: string;
+    /** ISO 3166-1 alpha-2. */
+    countryCode: string;
+}
+
+function postalAddress(publisher: PublisherInput): JsonLdNode {
+    return { '@type': 'PostalAddress', addressLocality: publisher.locality, addressCountry: publisher.countryCode };
+}
+
 /** The publisher: the same node in every locale, with its description in the page's language. */
-export function organizationNode(baseUrl: string, input: { description: string; sameAs: readonly string[] }): JsonLdNode {
+export function organizationNode(baseUrl: string, input: { description: string; sameAs: readonly string[]; publisher: PublisherInput }): JsonLdNode {
     return {
         '@type': 'Organization',
         '@id': organizationId(baseUrl),
@@ -155,6 +172,13 @@ export function organizationNode(baseUrl: string, input: { description: string; 
             height: 256,
         },
         description: input.description,
+        address: postalAddress(input.publisher),
+        founder: {
+            '@type': 'Person',
+            '@id': founderId(baseUrl),
+            name: input.publisher.name,
+            address: postalAddress(input.publisher),
+        },
         ...(input.sameAs.length > 0 ? { sameAs: [...input.sameAs] } : {}),
     };
 }
@@ -365,8 +389,8 @@ export interface WebPageInput {
     breadcrumb?: string;
 }
 
-/** A page of its own, in the page's language, part of the one site. Feature, database, compare, FAQ and legal pages. */
-export function webPageNode(context: PageContext, input: WebPageInput, type: 'WebPage' | 'CollectionPage' = 'WebPage'): JsonLdNode {
+/** A page of its own, in the page's language, part of the one site. Feature, database, compare, FAQ, legal and about pages. */
+export function webPageNode(context: PageContext, input: WebPageInput, type: 'WebPage' | 'CollectionPage' | 'AboutPage' = 'WebPage'): JsonLdNode {
     return {
         '@type': type,
         '@id': `${input.url}#webpage`,

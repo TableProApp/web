@@ -30,7 +30,7 @@
             "blocks": [
                 {
                     "id": "mappings",
-                    "title": "保存映射和编码",
+                    "title": "已保存映射和编码",
                     "paragraphs": [
                         "TablePro 记住每个表的 CSV、JSON 和 Excel 导入映射。<ui>Match by Name</ui> 或 <ui>Match by Position</ui> 可一键映射全部字段。按位置匹配适用于字段顺序来自文件的 CSV 和 Excel。CSV 和 SQL 导入支持 UTF-16，以及 Shift JIS、GB 18030、Big5、EUC-KR 等日文、中文和韩文编码。"
                     ],
@@ -90,7 +90,7 @@
             "id": "files",
             "title": "作为数据库的文件",
             "paragraphs": [
-                "SQLite 和 DuckDB 文件从 Finder 以连接形式打开。DuckDB 也可将 Parquet、CSV 和 JSON 文件读取为只读视图，因此 <code>.parquet</code> 文件会作为 DuckDB 连接打开，而非进入 Data Files。SSH 服务器上的 SQLite 数据库可通过需要服务器安装 Python 3.6 或更高版本的小型代理直接访问，或打开为只读副本。",
+                "SQLite 和 DuckDB 文件从 Finder 以连接形式打开。DuckDB 也可将 Parquet、CSV 和 JSON 文件读取为只读视图，因此 <code>.parquet</code> 文件会作为 DuckDB 连接打开，而非进入 Data Files。SSH 服务器上的 SQLite 数据库可通过一个小型代理程序直接访问（服务器需安装 Python 3.6 或更高版本），或打开为只读副本。",
                 "<code>.sql</code> 文件以查询标签页打开并保存回磁盘，Beancount 账本以一组只读表打开。"
             ],
             "links": [
@@ -139,7 +139,7 @@
             "iosNote": "通过快捷指令从 JSON 或 CSV 导入"
         },
         {
-            "label": "保存映射、Match by Name 和 Match by Position",
+            "label": "已保存映射、Match by Name 和 Match by Position",
             "ios": "no"
         },
         {
@@ -175,7 +175,7 @@
     ],
     "limits": [
         "SQL 导出默认在每表前包含 DROP TABLE IF EXISTS，除非取消勾选。因此，在需要保留表的数据库上执行文件前，请检查选项。",
-        "Backup Dump 使用自行安装的命令行工具，仅支持列出的引擎。工具通过环境或临时文件获取密码。sqlpackage 例外：它在命令行接收 SQL Server 密码，Mac 上的其他进程可以读取；TablePro 会在启动前征求确认。",
+        "Backup Dump 使用自行安装的命令行工具，仅支持列出的引擎。工具通过环境变量或临时文件获取密码。sqlpackage 例外：它在命令行接收 SQL Server 密码，Mac 上的其他进程可以读取；TablePro 会在启动前征求确认。",
         "Restore Dump 会替换 MySQL 或 MariaDB 转储中的表。其他引擎不会替换已存在的对象，SQL Server 的 <code>.bacpac</code> 需要空数据库。",
         "通过 SSH 打开数据库文件仅支持 SQLite。",
         "S3 的 httpfs、Iceberg、Delta 等非内置 DuckDB 扩展，会在查询首次需要时从 DuckDB 自有服务器下载。",

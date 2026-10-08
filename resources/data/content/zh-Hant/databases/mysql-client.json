@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "適用於 {devices} 的 MySQL、MariaDB 用戶端",
-        "description": "透過 SSH、SSL/TLS 或 AWS IAM 連線 MySQL、MariaDB，同一驅動支援 TiDB、OceanBase 和 Databend，提供 EXPLAIN 圖和 mysqldump 備份。"
+        "description": "透過 SSH、SSL/TLS 或 AWS IAM 連線 MySQL、MariaDB，同一驅動程式支援 TiDB、OceanBase 和 Databend，提供 EXPLAIN 圖和 mysqldump 備份。"
     },
     "og": {
         "kicker": "資料庫",
@@ -33,10 +33,10 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "提供主機、連接埠和使用者，或貼上 <code>mysql://</code> URL。使用 <code>caching_sha2_password</code> 的 MySQL 8 帳號首次即可連線。資料庫可留空後再選擇，切換資料庫在同一連線中完成。",
+                "提供主機、連接埠和使用者，或貼上 <code>mysql://</code> URL。使用 <code>caching_sha2_password</code> 的 MySQL 8 帳戶首次即可連線。資料庫可留空後再選擇，切換資料庫在同一連線中完成。",
                 "新連線的 SSL 預設為 Preferred，先嘗試 TLS，僅在 TLS 交握失敗後退回明文。嚴格驗證請選擇 Verify CA 或 Verify Identity，並使用供應商憑證。",
-                "私有網路伺服器可透過 <network>SSH 通道（依需使用跳板主機）、SOCKS5 代理、Cloudflare Access 通道或自訂通道指令</network>連線，例如 kubectl port-forward。",
-                "Amazon RDS 和 Aurora 可使用 <cloudAuth>AWS IAM</cloudAuth> 登入，每次連線簽發新權杖，也可從 AWS 帳號直接匯入執行個體。Google Cloud SQL 由 TablePro 下載並執行 Cloud SQL Auth Proxy。",
+                "私有網路伺服器可透過 <network>SSH 通道（依需使用跳板主機）、SOCKS5 代理、Cloudflare Access 通道或自訂通道指令</network>（例如 kubectl port-forward）連線。",
+                "Amazon RDS 和 Aurora 可使用 <cloudAuth>AWS IAM</cloudAuth> 登入，每次連線簽發新權杖，也可從 AWS 帳戶直接匯入執行個體。對於 Google Cloud SQL，TablePro 會下載並執行 Cloud SQL Auth Proxy。",
                 "從 Sequel Ace 移轉？<importApps>Import from Other App</importApps> 讀取其喜好項目，並在確認後讀取其儲存在鑰匙圈中的密碼。"
             ]
         },
@@ -47,7 +47,7 @@
                 "SQL 編輯器從結構完成資料表和欄位名稱，包括別名和 CTE，可執行游標下的陳述式或整份指令碼。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE 與 EXPLAIN ANALYZE</explain> 繪製為計畫圖或樹狀圖，EXPLAIN Compare 顯示兩次執行間的變化。",
                 "列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示確切陳述式。儲存使用繫結參數執行，陳述式將修改的列數與預期不符時停止。沒有主索引鍵的資料表仍可編輯，透過所有欄位比對列。",
                 "所有工作階段使用 utf8mb4，表情符號和非拉丁文字可正確往返。舊用戶端透過 Latin 1 寫入的資料庫文字，可用 UTF-8 via Latin 1 編碼依該用戶端方式讀取。",
-                "分割資料表列出各分割區及界限，例如 <code>VALUES LESS THAN (2024)</code>；資料表和欄位註解顯示在側欄及格線欄位標題中。"
+                "分割資料表列出各分割區及界限，例如 <code>VALUES LESS THAN (2024)</code>；資料表和欄位註解顯示在側邊欄及格線欄位標題中。"
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "結構",
             "paragraphs": [
                 "<structure>Structure 分頁</structure> 暫存欄位、索引、外部索引鍵、CHECK 條件約束和產生欄位的修改，並在執行前顯示 DDL。<code>lower(email)</code> 等運算式索引鍵需要 MySQL 8.0.13 或更新版本。",
-                "常式和觸發程序及其原始碼顯示在側欄。<erDiagram>ER 圖</erDiagram> 將結構繪製為唯讀圖，可匯出為 PNG 或 SQL。",
+                "常式和觸發程序及其原始碼顯示在側邊欄。<erDiagram>ER 圖</erDiagram> 將結構繪製為唯讀圖，可匯出為 PNG 或 SQL。",
                 "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 比較兩個 MySQL 或 MariaDB 結構或資料，產生使兩者一致的指令碼。可能導致資料遺失的修改會暫緩，直到明確包含。"
             ]
         },
@@ -63,8 +63,8 @@
             "id": "operate",
             "title": "管理",
             "paragraphs": [
-                "<administer>Users & Roles</administer> 顯示每個帳號直到單一欄位的權限，並將所有 GRANT 和 REVOKE 暫存為執行前可檢閱的 SQL。",
-                "Server Dashboard 每隔幾秒重新整理工作階段、伺服器指標和慢查詢。使用 <code>KILL QUERY</code> 取消執行中的查詢，<code>KILL</code> 終止工作階段。沒有 PROCESS 權限的帳號僅看到自己的工作階段。",
+                "<administer>Users & Roles</administer> 顯示每個帳戶直到單一欄位的權限，並將所有 GRANT 和 REVOKE 暫存為執行前可檢閱的 SQL。",
+                "Server Dashboard 每隔幾秒重新整理工作階段、伺服器指標和慢查詢。使用 <code>KILL QUERY</code> 取消執行中的查詢，<code>KILL</code> 終止工作階段。沒有 PROCESS 權限的帳戶僅看到自己的工作階段。",
                 "資料表維護執行 OPTIMIZE TABLE、ANALYZE TABLE、CHECK TABLE 和 REPAIR TABLE，並在執行前顯示陳述式。",
                 "<backup>Backup Dump</backup> 執行 {dumpTool}，Restore Dump 執行 mysql 用戶端，兩者均透過連線的 SSH 通道；請先在 Mac 安裝 MySQL 用戶端工具。還原會取代傾印指定的物件。",
                 "離開時可設定連線在閒置數分鐘後釋放，以歸還伺服器連線名額；下次查詢會新建連線。若工作階段持有重新連線會遺失的狀態，例如未結束交易或暫存資料表，TablePro 會保持連線。"
@@ -83,7 +83,7 @@
             "id": "iphone",
             "title": "iPhone 與 iPad",
             "paragraphs": [
-                "iPhone 與 iPad 上可依卡片瀏覽資料表、篩選排序、編輯有主索引鍵的列，並在 Query 分頁執行 SQL。連線提供 Required 到 Verify Identity 的 SSL，以及密碼或金鑰 SSH 通道，不支援 SSH 跳板主機。"
+                "iPhone 與 iPad 上可以卡片形式瀏覽資料表、篩選排序、編輯有主索引鍵的列，並在 Query 分頁執行 SQL。連線提供 Required 到 Verify Identity 的 SSL，以及使用密碼或金鑰的 SSH 通道，不支援 SSH 跳板主機。"
             ],
             "asset": "ios-table-browse"
         }
@@ -94,7 +94,7 @@
             "title": "MariaDB",
             "paragraphs": [
                 "MariaDB 透過與 MySQL 相同的驅動程式連線，提供相同 SSH、SSL/TLS 和 AWS IAM 選項。<code>mariadb://</code> URL 建立 MariaDB 連線。",
-                "MariaDB 以 LONGTEXT 儲存的 JSON 欄位在 JSON 編輯器中開啟。虛擬和持續欄位會被識別並從產生的 INSERT、UPDATE 陳述式中排除。序列在側欄中唯讀列出，系統版本資料表則作為一般資料表列出。",
+                "MariaDB 以 LONGTEXT 儲存的 JSON 欄位在 JSON 編輯器中開啟。虛擬和持續欄位會被識別並從產生的 INSERT、UPDATE 陳述式中排除。序列在側邊欄中唯讀列出，系統版本資料表則作為一般資料表列出。",
                 "Users & Roles、Server Dashboard、資料表維護和 {dumpTool} 備份與 MySQL 相同。"
             ]
         },
@@ -105,14 +105,14 @@
                 "連線至 TiDB 伺服器的 SQL 連接埠，不要連線 PD 或 TiKV。TiDB Cloud 使用相同連接埠，請將 SSL Mode 設為 Required。",
                 "Stop 對自己的工作階段傳送 <code>KILL TIDB QUERY</code>。在 TiProxy 或負載平衡器後需要 Global Kill，TiDB 自 6.1 版本起預設啟用。",
                 "EXPLAIN 和 EXPLAIN ANALYZE 以文字顯示 TiDB 計畫。TiDB 7.2 及以上在叢集啟用後於 Structure 分頁顯示 CHECK 條件約束，可建立外部索引鍵，資料表維護提供 ANALYZE TABLE。<administer>Users & Roles</administer> 也可用於 TiDB，但沒有連線數限制欄位。",
-                "請選 TiDB 而非 MySQL 作為連線類型，使側欄、型別選擇器和 EXPLAIN 依 TiDB 運作。"
+                "請選 TiDB 而非 MySQL 作為連線類型，使側邊欄、型別選擇器和 EXPLAIN 依 TiDB 運作。"
             ]
         },
         {
             "engine": "oceanbase",
             "title": "OceanBase",
             "paragraphs": [
-                "使用者名稱需包含租戶：observer 使用 <code>root@test</code>，透過接聽 2883 連接埠的 OBProxy 時使用 <code>root@test#obcluster</code>。",
+                "使用者名稱需包含租戶：observer 使用 <code>root@test</code>，透過監聽 2883 連接埠的 OBProxy 時使用 <code>root@test#obcluster</code>。",
                 "連線時檢查伺服器是否宣告為 OceanBase，因此主機或連接埠錯誤會立即失敗。TablePro 查詢逾時取代 OceanBase 自身的陳述式限制。",
                 "EXPLAIN 以文字顯示計畫。無主索引鍵的資料表透過所有欄位比對來編輯；儲存若將修改多列或零列，會停止並說明。",
                 "請選 OceanBase 作為連線類型。以 MySQL 儲存的連線存取 OceanBase 時，不提供上述功能。"

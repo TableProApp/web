@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "iCloud Sync et connexions d’équipe",
-        "description": "Synchronisez connexions, groupes et étiquettes sur Mac, iPhone et iPad via iCloud Sync, partagez des fichiers et publiez dans la bibliothèque de l’équipe."
+        "description": "Synchronisez connexions, groupes et tags sur Mac, iPhone et iPad via iCloud Sync, partagez des fichiers et publiez dans la bibliothèque de l’équipe."
     },
     "og": {
         "kicker": "Synchronisation et équipes",
@@ -18,11 +18,11 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync conserve la même bibliothèque sur chaque Mac, iPhone et iPad connecté à votre compte iCloud. Les données vont dans une base privée de ce compte et la synchronisation reste désactivée jusqu’à ce que vous l’activiez sur chaque appareil. Elle est gratuite sur iPhone et iPad ; sur Mac, elle nécessite une offre qui l’inclut.",
-                "Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) dans Catégories de synchronisation sur Mac, ou <ui>Sync Passwords</ui> sur iPhone et iPad. Ils passent par le Trousseau iCloud. Sur Mac, cela transmet aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs d’IA et la clé de licence. Marquez une connexion comme Local only pour la conserver, avec ses favoris et requêtes enregistrées, sur un seul Mac."
+                "Les mots de passe ne se synchronisent que si vous activez aussi <ui>Mots de passe</ui> (Passwords) sous Catégories synchronisées (Sync Categories) sur Mac, ou <ui>Sync Passwords</ui> sur iPhone et iPad. Ils passent par le Trousseau iCloud. Sur Mac, le même interrupteur transmet aussi les autres secrets conservés par TablePro dans le Trousseau, comme les clés des fournisseurs d’IA et la clé de licence. Marquez une connexion comme Local only pour la conserver, avec ses favoris et requêtes enregistrées, sur un seul Mac."
             ],
             "points": [
-                "Sur Mac, vous choisissez ce qui se synchronise : connexions, groupes et étiquettes, réglages, profils SSH, profils d’identifiants (nom et nom d’utilisateur, jamais le mot de passe), favoris de tables et de bases, requêtes enregistrées avec leur SQL et dossiers de tables.",
-                "Sur iPhone et iPad : connexions, groupes et étiquettes.",
+                "Sur Mac, vous choisissez ce qui se synchronise : connexions, groupes et tags, réglages, profils SSH, profils d’identifiants (nom et nom d’utilisateur, jamais le mot de passe), favoris de tables et de bases, requêtes enregistrées avec leur SQL et dossiers de tables.",
+                "Sur iPhone et iPad : connexions, groupes et tags.",
                 "Une connexion synchronisée contient l’hôte, le port, le nom d’utilisateur, la base de données, les paramètres SSH et TLS, les commandes de démarrage, le script avant connexion et les règles d’IA.",
                 "Ne sont jamais synchronisés : l’historique des requêtes, Data Rewind, les sources de mot de passe, les commandes de tunnel et le niveau External Clients de chaque connexion."
             ],
@@ -46,7 +46,7 @@
             "id": "share",
             "title": "Partagez une connexion",
             "paragraphs": [
-                "Exportez des connexions dans un fichier <code>.tablepro</code> pour l’envoyer à un collègue ou le conserver à côté du code. Il contient les connexions avec leurs groupes, étiquettes et paramètres SSH, sans mots de passe. Encrypted Export ajoute les mots de passe et protège tout le fichier par une phrase secrète avec AES-256-GCM. L’import d’un fichier, chiffré ou non, est gratuit sur Mac, iPhone et iPad.",
+                "Exportez des connexions dans un fichier <code>.tablepro</code> pour l’envoyer à un collègue ou le conserver à côté du code. Il contient les connexions avec leurs groupes, tags et paramètres SSH, sans mots de passe. Encrypted Export ajoute les mots de passe et protège tout le fichier par une phrase secrète avec AES-256-GCM. L’import d’un fichier, chiffré ou non, est gratuit sur Mac, iPhone et iPad.",
                 "Sur iPhone et iPad, l’export avec mots de passe protégés par une phrase secrète est gratuit. Une connexion peut aussi être transmise par un lien <code>tablepro://import</code>, qui contient l’hôte, le port, le nom d’utilisateur, la base de données et les paramètres SSH et TLS, mais jamais le mot de passe."
             ],
             "paid": [
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "Sur iPhone et iPad",
             "paragraphs": [
-                "L’app iPhone et iPad synchronise connexions, groupes et étiquettes via iCloud, participe à Handoff et importe et exporte des fichiers <code>.tablepro</code>, avec des mots de passe protégés par une phrase secrète si vous le souhaitez. Linked Folders, Team Catalog et Team Library sont réservés à l’app Mac."
+                "L’app iPhone et iPad synchronise connexions, groupes et tags via iCloud, participe à Handoff et importe et exporte des fichiers <code>.tablepro</code>, avec des mots de passe protégés par une phrase secrète si vous le souhaitez. Linked Folders, Team Catalog et Team Library sont réservés à l’app Mac."
             ],
             "links": [
                 {
@@ -149,7 +149,7 @@
             "label": "iCloud Sync",
             "paid": "icloud-sync",
             "ios": "partial",
-            "iosNote": "Connexions, groupes et étiquettes, gratuit"
+            "iosNote": "Connexions, groupes et tags, gratuit"
         },
         {
             "label": "Synchronisation des mots de passe via le Trousseau iCloud",
@@ -193,7 +193,7 @@
     ],
     "limits": [
         "Lorsqu’une offre prend fin sur Mac, iCloud Sync se met en pause et indique pourquoi, et les connexions de Linked Folders et de Team Library disparaissent de la liste. Les commandes de publication Team sont masquées et Encrypted Export perd son option de mot de passe.",
-        "Modifier une connexion synchronisée sur iPhone ou iPad peut changer des paramètres absents de cette app. Un niveau de Safe Mode Mac plus strict, comme Safe Mode (Full), revient au niveau Alert, et les hôtes de rebond SSH peuvent être perdus. Modifiez ces connexions sur Mac.",
+        "Modifier une connexion synchronisée sur iPhone ou iPad peut changer des paramètres absents de cette app. Un niveau de Safe Mode plus strict sur Mac, comme Safe Mode (Full), revient au niveau Alert, et les hôtes de rebond SSH peuvent être perdus. Modifiez ces connexions sur Mac.",
         "Si une licence Team expire ou est suspendue, les publications de Team Library restent sur le serveur de TablePro jusqu’à ce que vous demandiez leur suppression."
     ],
     "docs": [
@@ -236,7 +236,7 @@
             "href": "/features/connections"
         },
         {
-            "label": "Les apports d’une offre payante",
+            "label": "Ce qu’ajoute une offre payante",
             "href": "/pricing#features"
         },
         {

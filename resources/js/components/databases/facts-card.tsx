@@ -22,6 +22,9 @@ interface FactsCardProps {
  * server; a floor that comes from the docs is the bare version, and "no
  * minimum" is shown only where the docs say so. The site never says "tested":
  * there is no test evidence for any engine version.
+ *
+ * A term is a third of a narrow card, too narrow for "Abfragesprache" or
+ * "Puerto predeterminado", so terms hyphenate in the page's language.
  */
 export default function FactsCard({ engine, labels, className }: FactsCardProps) {
     const { m, fmt } = useI18n();
@@ -29,7 +32,7 @@ export default function FactsCard({ engine, labels, className }: FactsCardProps)
 
     return (
         <Card title={facts.title} titleAs="h2" className={className}>
-            <DescriptionList className="mt-1">
+            <DescriptionList className="mt-1 [&_dt]:hyphens-auto">
                 <DescriptionItem term={facts.queryLanguage}>{engine.queryLanguage}</DescriptionItem>
                 <DescriptionItem term={facts.driver}>
                     {labels.driver[engine.distribution]}

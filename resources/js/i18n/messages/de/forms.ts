@@ -10,5 +10,5 @@ export default {
     "tooMany": "Zu viele Versuche. Warte eine Minute und versuche es erneut.",
     "failed": "Etwas ist schiefgelaufen. Versuche es erneut.",
     "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
-    "subscribed": "Prüfe deinen Posteingang auf den Bestätigungslink."
+    "subscribed": "Den Bestätigungslink findest du in deinem Posteingang."
 } satisfies Messages['forms'];

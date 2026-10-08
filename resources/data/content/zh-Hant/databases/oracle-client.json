@@ -82,7 +82,7 @@
     "faq": [
         {
             "id": "pluggable-database",
-            "question": "為什麼看不到應用程式的任何資料表？",
+            "question": "為什麼看不到 App 的任何資料表？",
             "answer": "可能連線到了容器資料庫。可插拔資料庫有獨立服務名稱，例如 <code>XE</code> 內的 <code>XEPDB1</code>。在伺服器執行 <code>lsnrctl services</code> 列出監聽器回應的名稱。"
         },
         {
@@ -92,7 +92,7 @@
         },
         {
             "id": "password-verifier",
-            "question": "舊 10G 密碼驗證器的帳號能連線嗎？",
+            "question": "舊 10G 密碼驗證器的帳戶能連線嗎？",
             "answer": "可以，但 Oracle 已淘汰其 DES 雜湊。用 <code>ALTER USER … IDENTIFIED BY</code> 修改密碼，再檢查 <code>dba_users</code> 的 <code>password_versions</code> 含 11G 或 12C。"
         }
     ],

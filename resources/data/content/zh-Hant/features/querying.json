@@ -17,11 +17,11 @@
             "id": "editor",
             "title": "了解資料庫結構的編輯器",
             "paragraphs": [
-                "自動完成在輸入時讀取連線的結構：FROM 與 JOIN 後的資料表、別名對應的欄位，以及陳述式前面定義的 CTE 或子查詢的欄位。語法標示使用 tree-sitter；<kbd>⌘⇧L</kbd> 格式化游標所在陳述式，同時保留註解。",
+                "自動完成在輸入時讀取連線的結構：FROM 與 JOIN 後的資料表、別名對應的欄位，以及陳述式前面定義的 CTE 或子查詢的欄位。語法醒目提示使用 tree-sitter；<kbd>⌘⇧L</kbd> 格式化游標所在陳述式，同時保留註解。",
                 "<kbd>⌘⏎</kbd> 執行游標所在陳述式或選取內容，<kbd>⌘⇧⏎</kbd> 執行全部，<kbd>⌘⌥⏎</kbd> 不限列數執行，<kbd>⌘.</kbd> 取消。一般陳述式批次在同一交易中執行，任一陳述式失敗即復原。例外包括自行管理交易的指令碼、SQL Server 指令碼，以及 VACUUM 等不能放入交易的陳述式。MySQL、MariaDB 與 Oracle 上的 DDL 會自行提交。"
             ],
             "points": [
-                "編輯器側欄中的陳述式標記各有獨立執行按鈕。",
+                "編輯器行號旁的陳述式標記各有獨立的執行按鈕。",
                 "支援正規表示式的尋找與取代。",
                 "Vim mode 支援移動、暫存器與巨集，使用 <code>:w</code> 執行查詢。",
                 "在查詢分頁中開啟、編輯與儲存 <code>.sql</code> 檔案。"
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "在查詢中寫入 <code>:customer_id</code>，TablePro 會在執行前詢問其值與型別，並在驅動程式支援時使用原生參數繫結。",
                 "每次執行的查詢都會進入本機歷史（<kbd>⌘Y</kbd>），支援全文搜尋及來源、失敗與時間範圍篩選。預設儲存 {historyEntries} 筆紀錄，保留 {historyDays} 天，從不同步。",
-                "以 <code>dau</code> 等關鍵字儲存查詢，然後在編輯器中輸入關鍵字展開。已儲存查詢保留版本歷史。連結 SQL 檔案夾將 <code>.sql</code> 檔案夾與側欄雙向同步，並顯示各檔案的 Git 狀態字母。此功能免費，與用於共用連線檔案的 Starter 功能 Linked Folders 相互獨立。"
+                "以 <code>dau</code> 等關鍵字儲存查詢，然後在編輯器中輸入關鍵字展開。已儲存查詢保留版本歷史。連結 SQL 資料夾會將存放 <code>.sql</code> 檔案的資料夾與側邊欄雙向同步，並顯示各檔案的 Git 狀態字母。此功能免費，與用於共用連線檔案的 Starter 功能 Linked Folders 相互獨立。"
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights 讀取此 Mac 的查詢歷史，並依執行次數、速度最慢、失敗以及比上一期間變慢的查詢進行排名。查詢依結構分類，因此使用不同值執行的同一陳述式只算一種。數據在 Mac 上計算，從不上傳。"
+                        "Query Insights 讀取此 Mac 的查詢歷史，並對結果排名：執行最多的查詢、最慢的查詢、失敗的查詢，以及比上一時段變慢的查詢。查詢依結構分類，因此使用不同值執行的同一陳述式只算一種。數據在 Mac 上計算，從不上傳。"
                     ],
                     "paid": [
                         "query-insights"
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "在 iPhone 與 iPad 上",
             "paragraphs": [
-                "iPhone 與 iPad App 的 Query 分頁提供 SQL 語法標示、Run 與 Stop（使用鍵盤時為 <kbd>⌘↩</kbd>），以及此裝置最近執行的 {historyEntriesIos} 筆查詢歷史。可以將結果複製或分享為 JSON、CSV 或 SQL INSERT 陳述式。",
+                "iPhone 與 iPad App 的 Query 分頁提供 SQL 語法醒目提示、Run 與 Stop（使用鍵盤時為 <kbd>⌘↩</kbd>），以及此裝置最近執行的 {historyEntriesIos} 筆查詢歷史。可以將結果複製或分享為 JSON、CSV 或 SQL INSERT 陳述式。",
                 "不提供自動完成、格式化、參數、EXPLAIN 或已儲存查詢，最多保留 {resultBufferIos} 列結果，因此請新增 LIMIT 來查看所需部分。"
             ],
             "links": [
@@ -149,7 +149,7 @@
         {
             "label": "支援自動完成與格式化的 SQL 編輯器",
             "ios": "partial",
-            "iosNote": "語法標示、Run 與 Stop；不支援自動完成"
+            "iosNote": "語法醒目提示、Run 與 Stop；不支援自動完成"
         },
         {
             "label": "查詢參數",
@@ -161,7 +161,7 @@
             "iosNote": "裝置上最近 {historyEntriesIos} 筆查詢"
         },
         {
-            "label": "已儲存查詢與連結 SQL 檔案夾",
+            "label": "已儲存查詢與連結 SQL 資料夾",
             "ios": "no"
         },
         {

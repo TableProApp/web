@@ -18,7 +18,7 @@ export default {
         badgeUndated: 'v{version}',
         notes: 'Ghi chú phát hành (tiếng Anh)',
         unavailable:
-            'Hiện chưa tải được thông tin bản phát hành. Cả hai nút đều mở bản phát hành mới nhất trên GitHub; tại đó bạn có thể chọn file DMG phù hợp với máy Mac của mình.',
+            'Không tải được thông tin của bản phát hành hiện tại. Cả hai nút đều mở bản phát hành mới nhất trên GitHub; tại đó bạn có thể chọn file DMG phù hợp với máy Mac của mình.',
     },
     file: {
         sized: '{name} · {size} MB',

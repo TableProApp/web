@@ -10,7 +10,7 @@ Todos os planos pagos podem ser reembolsados em até {refundDays} dias: Starter 
 
 Envie um email para [{email}](mailto:{email}) a partir do endereço usado na compra, ou inclua sua chave de licença, e informe qual compra deseja reembolsar. Reembolsos elegíveis são processados em até 5 dias úteis e devolvidos à forma de pagamento original.
 
-As licenças são vendidas por {merchant}, nosso vendedor responsável, portanto o reembolso é emitido por {merchant}. {merchant} também pode emitir reembolsos conforme seus próprios termos para compradores.
+As licenças são vendidas por {merchant}, nosso merchant of record, portanto o reembolso é emitido por {merchant}. {merchant} também pode emitir reembolsos conforme seus próprios termos para compradores.
 
 ## O que acontece com a licença {#license}
 

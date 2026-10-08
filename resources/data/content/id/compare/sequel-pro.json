@@ -116,7 +116,7 @@
                 "href": null
             },
             {
-                "text": "TablePro hanya menghubungkan MySQL dan MariaDB melalui TCP, bukan berkas socket lokal.",
+                "text": "TablePro hanya menghubungkan MySQL dan MariaDB melalui TCP, bukan file socket lokal.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -133,7 +133,7 @@
         "intro": "TablePro tidak memiliki pengimpor untuk Sequel Pro. Jalur yang tersedia melewati Sequel Ace: pindahkan favorit ke Sequel Ace, lalu impor dari Sequel Ace ke TablePro.",
         "steps": [],
         "after": [
-            "Di Sequel Ace, ikuti panduan “Migrating from Sequel Pro” yang menyalin berkas favorit dan preferensi ke Sequel Ace. Panduan menyatakan kata sandi tidak dipindahkan otomatis dan menyediakan skrip untuknya, serta kunci SSH harus dipilih ulang.",
+            "Di Sequel Ace, ikuti panduan “Migrating from Sequel Pro” yang menyalin file favorit dan preferensi ke Sequel Ace. Panduan menyatakan kata sandi tidak dipindahkan otomatis dan menyediakan skrip untuknya, serta kunci SSH harus dipilih ulang.",
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>, pilih Sequel Ace, dan aktifkan <ui>Include passwords</ui>.",
             "Sebelum menghapus salah satu aplikasi, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
         ],

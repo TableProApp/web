@@ -40,7 +40,7 @@
             "id": "work",
             "title": "查詢與編輯",
             "paragraphs": [
-                "任何連線都可從 SQL 直接讀取檔案，例如 <code>SELECT * FROM 'data.csv'</code> 或 <code>read_parquet('events.parquet')</code>。<code>ATTACH</code> 其他 DuckDB 檔案會作為第二個資料庫加入側欄，<code>⌘K</code> 無須重新連線即可切換。重新連線後 DuckDB 不保留任何附加。",
+                "任何連線都可從 SQL 直接讀取檔案，例如 <code>SELECT * FROM 'data.csv'</code> 或 <code>read_parquet('events.parquet')</code>。<code>ATTACH</code> 其他 DuckDB 檔案會作為第二個資料庫加入側邊欄，<code>⌘K</code> 無須重新連線即可切換。重新連線後 DuckDB 不保留任何附加。",
                 "<explain>EXPLAIN</explain> 繪製為計畫圖。編輯資料表中的列時，<editing>Preview SQL</editing> 先顯示每個陳述式，資料檔案上的檢視表保持唯讀。"
             ]
         },
@@ -57,7 +57,7 @@
             "paragraphs": [
                 "TablePro 持有檔案時，<code>duckdb</code> CLI、notebook 或 dbt 無法開啟。設定 <ui>Release the File Lock After</ui> 可在閒置數分鐘後釋放，下次查詢再取得；<ui>Open the File Read-Only</ui> 允許多個讀取者共用。<ui>資料庫 > Release File Lock</ui>（Database > Release File Lock）立即釋放並保留分頁。工作階段若持有未結束交易、暫存資料表、附加資料庫或已修改設定，會拒絕釋放並說明原因。",
                 "<dashboard>Server Dashboard</dashboard> 顯示資料庫大小、區塊大小、總區塊數、記憶體上限和執行緒數。",
-                "<backup>Backup Dump</backup> 無須安裝，因為 {dumpTool} 透過已開啟連線寫入。可選擇供日後在 TablePro 還原的 <code>.duckdb</code> 檔案，或含 <code>schema.sql</code>、<code>load.sql</code> 及每個資料表一個 Parquet 檔案的檔案夾，pandas、Spark 和 BigQuery 可直接讀取。Restore Dump 在首個名稱已被占用的物件處停止。"
+                "<backup>Backup Dump</backup> 無須安裝，因為 {dumpTool} 透過已開啟連線寫入。可選擇供日後在 TablePro 還原的 <code>.duckdb</code> 檔案，或含 <code>schema.sql</code>、<code>load.sql</code> 及每個資料表一個 Parquet 檔案的資料夾，pandas、Spark 和 BigQuery 可直接讀取。Restore Dump 在首個名稱已被占用的物件處停止。"
             ]
         },
         {
@@ -71,7 +71,7 @@
             "id": "iphone",
             "title": "iPhone 與 iPad",
             "paragraphs": [
-                "iPhone 與 iPad App 內建 DuckDB。在「檔案」App 選擇的檔案於原位置開啟，不建立副本；可選 In-Memory 建立暫用資料庫。依卡片瀏覽資料表，在 Query 分頁執行 SQL。Remote (Quack) 連線僅支援 Mac。"
+                "iPhone 與 iPad App 內建 DuckDB。在「檔案」App 選擇的檔案於原位置開啟，不建立副本；可選 In-Memory 建立暫用資料庫。以卡片形式瀏覽資料表，在 Query 分頁執行 SQL。Remote (Quack) 連線僅支援 Mac。"
             ],
             "asset": "ios-table-browse"
         }

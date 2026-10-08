@@ -2,7 +2,9 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "index": {
-        "empty": "Nenhum artigo ainda."
+        "empty": "Nenhum artigo ainda.",
+        "guides": "Guias",
+        "releases": "Notas de versão"
     },
     "latest": "Algumas versões também ganham um artigo no blog. O mais recente é <post>{title}</post>.",
     "post": {

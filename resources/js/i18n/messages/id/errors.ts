@@ -12,7 +12,7 @@ export default {
     },
     "serverError": {
         "title": "Terjadi kesalahan",
-        "body": "Masalah ada di pihak kami. Coba lagi sebentar lagi. Jika terus terjadi, kirim email ke {email}."
+        "body": "Masalah ada di pihak kami. Coba beberapa saat lagi. Jika terus terjadi, kirim email ke {email}."
     },
     "unavailable": {
         "title": "Sedang dalam pemeliharaan",
@@ -35,9 +35,9 @@ export default {
         "fr": "bahasa Prancis",
         "ja": "bahasa Jepang",
         "pt-BR": "bahasa Portugis Brasil",
-        "zh-Hans": "bahasa Mandarin sederhana",
+        "zh-Hans": "bahasa Mandarin Sederhana",
         "ko": "bahasa Korea",
-        "zh-Hant": "bahasa Mandarin tradisional",
+        "zh-Hant": "bahasa Mandarin Tradisional",
         "it": "bahasa Italia",
         "id": "bahasa Indonesia"
     },

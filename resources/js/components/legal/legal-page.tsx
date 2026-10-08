@@ -12,6 +12,7 @@ import ProseArticle from '@/components/ui/prose-article';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n } from '@/i18n';
 import LandingLayout from '@/layouts/landing-layout';
+import { PUBLISHER } from '@/lib/data/facts';
 
 export type LegalChrome = typeof import('@data/content/en/legal.json');
 
@@ -93,7 +94,7 @@ export default function LegalPage({ document, chrome, links, organizationProfile
                     name: document.title,
                     description: document.description,
                     crumbs,
-                    organization: { description: m.seo.product.short, sameAs: organizationProfiles },
+                    organization: { description: m.seo.product.short, sameAs: organizationProfiles, publisher: PUBLISHER },
                 })}
             />
 

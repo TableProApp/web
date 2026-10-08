@@ -17,6 +17,7 @@ export default {
             "changelog": "更新紀錄（英文）",
             "blog": "部落格",
             "faq": "常見問題",
+            "about": "關於",
             "source": "原始碼",
             "reportBug": "回報錯誤"
         },
@@ -50,6 +51,6 @@ export default {
         "note": "我們會先寄送確認連結給您。<link>隱私權政策</link>"
     },
     "bottom": {
-        "copyright": "© {year} TablePro。原始碼採用 AGPLv3 授權。"
+        "copyright": "© {year} TablePro，由{city}的 {maker} 開發。原始碼採用 AGPLv3 授權。"
     }
 } satisfies Messages['footer'];

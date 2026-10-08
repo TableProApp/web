@@ -269,7 +269,7 @@ it('server-renders a comparison with prices from data, its sources and the switc
 
     expect(ssrHtml('/vi/compare/tableplus'))
         ->not->toContain('Mac và iPhone và iPad')
-        ->toContain($basic['amount'] . ' US$ mua một lần')
+        ->toContain($basic['amount'] . "\u{a0}US$ mua một lần")
         ->toContain('Tệp &gt; Nhập &gt; Nhập từ ứng dụng khác…')
         ->toContain('(tiếng Anh)');
 });

@@ -56,7 +56,7 @@
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "データファイルをインポート、エクスポート、直接開く",
-                "body": "インポートに対応するエンジンでは {importFormats} ファイルを取り込み、{exportFormats} で書き出せます。Data Files ウィンドウではデータベースなしで CSV、JSON、XLSX ファイルを開き、検索や絞り込み、CSV と JSON の整形ができます。Backup Dump と Restore Dump は各エンジンのコマンドラインツール（{dumpTools}）を実行します。Mac にないツールは別途インストールしてください。"
+                "body": "インポートに対応するエンジンでは {importFormats} ファイルを取り込み、{exportFormats} で書き出せます。Data Files ウィンドウではデータベースなしで CSV、JSON、XLSX ファイルを開き、検索や絞り込み、CSV と JSON の整理ができます。Backup Dump と Restore Dump は各エンジンのコマンドラインツール（{dumpTools}）を実行します。Mac にないツールは別途インストールしてください。"
             },
             {
                 "id": "connect",
@@ -78,7 +78,7 @@
     "ai": {
         "title": "AI アシスタントと MCP サーバー",
         "body": [
-            "Mac では、任意の AI アシスタントでクエリの説明、最適化、修正や、スキーマに関する質問への回答を得られます。プロバイダーは自分で選べます。API キー、既存のアカウント、Mac 上で実行するモデルを利用できます。TablePro は独自の AI サービスを運営しておらず、プロバイダーを追加するまで何も送信しません。",
+            "Mac では、オプションの AI アシスタントでクエリの説明、最適化、修正や、スキーマに関する質問への回答を得られます。プロバイダーは自分で選べます。API キー、既存のアカウント、Mac 上で実行するモデルを利用できます。TablePro は独自の AI サービスを運営しておらず、プロバイダーを追加するまで何も送信しません。",
             "チャットは読み取りのみの Ask モードで始まります。Edit と Agent モードでは、アシスタントが SQL 文を実行できます。Alert から Safe Mode (Full) までは書き込みごとに確認が必要で、Read-Only では書き込みを拒否し、DROP と TRUNCATE は常にクリックでの承認が必要です。",
             "内蔵 MCP（Model Context Protocol）サーバーを使うと、{mcpClients} などの AI クライアントがパスワードを見ることなく保存済みの接続を利用できます。待ち受けは {mcpHost} のみで、外部アプリに許可する操作は接続ごとに Blocked、Read Only（初期設定）、Read & Write から選べます。",
             "これらはすべて無料です。"
@@ -89,7 +89,7 @@
         "title": "{deviceList} 向けのネイティブアプリ",
         "cardTitle": "{devices} 版 TablePro",
         "mac": "Mac 版 TablePro は Swift 製のアプリで、{architectures} 向けにそれぞれのビルドを用意しています。パスワードをキーチェーンに保存し、厳しい Safe Mode レベルでは Touch ID を求め、自動で更新します。",
-        "ios": "{devices} 版 TablePro は独自の機能範囲を持つ別のアプリです。SSH や TLS で接続し、テーブルの閲覧、クエリの実行、行の編集ができ、任意の Face ID ロック、ショートカット、ホーム画面ウィジェット、実行中のクエリのライブアクティビティにも対応します。",
+        "ios": "{devices} 版 TablePro は独自の機能範囲を持つ別のアプリです。SSH や TLS で接続し、テーブルの閲覧、クエリの実行、行の編集ができ、オプションの Face ID ロック、ショートカット、ホーム画面ウィジェット、実行中のクエリのライブアクティビティにも対応します。",
         "sync": "iCloud Sync は Mac と iPhone・iPad の間で接続、グループ、タグを同期します。初期設定ではオフで、Mac では {tier} プランが必要です。iCloud Sync がオンなら、Handoff で開いている接続を別のデバイスで続けられます。"
     },
     "switch": {
@@ -102,11 +102,13 @@
     },
     "pricing": {
         "title": "無料で利用、有料プランは任意",
-        "lead": "{macApp}は無料でダウンロードして使え、試用期間や時間制限はありません。Starter または Team プランで、{starterExamples} などの任意の機能を追加できます。Team は Starter の全機能に加え、チームで接続とクエリを共有する {teamExamples} を備えています。{iosApp}は無料で、アプリ内課金もありません。"
+        "lead": "{macApp}は無料でダウンロードして使え、試用期間や時間制限はありません。Starter または Team プランで、{starterExamples} などのオプション機能を追加できます。Team は Starter の全機能に加え、チームで接続とクエリを共有する {teamExamples} を備えています。{iosApp}は無料で、アプリ内課金もありません。"
     },
     "openSource": {
         "title": "オープンソースで、今すぐダウンロード",
         "body": "TablePro は有料機能のコードも含め、AGPLv3 で公開しています。有料プランとスポンサーが開発を支えています。TablePro に投資家はおらず、データの販売もしません。",
+        "maker": "TablePro は、{country}・{city}の個人開発者 {maker} が開発しています。",
+        "about": "TablePro について",
         "github": "GitHub で見る",
         "productHunt": "Product Hunt の TablePro"
     }

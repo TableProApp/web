@@ -70,7 +70,7 @@
         "title": "Protezioni per i database di produzione",
         "body": [
             "Sul Mac, assegna alle connessioni tag e colori in base all’ambiente e un livello di Safe Mode. Silent esegue le istruzioni così come sono scritte, Alert chiede conferma prima di una scrittura, i livelli chiamati Safe Mode richiedono anche Touch ID o password e Read-Only rifiuta le scritture. DROP, TRUNCATE e DELETE senza WHERE si fermano e chiedono conferma a ogni livello. Su iPhone e iPad, Confirm Writes chiede conferma prima di ogni scrittura e Read-Only le rifiuta.",
-            "In Agent mode l’assistente IA può eseguire istruzioni. Mentre una connessione è aperta in Agent mode, opera al livello Alert o superiore. Data Rewind può recuperare i valori sostituiti da un salvataggio recente. Non è un backup."
+            "In Agent mode l’assistente IA può eseguire istruzioni. Mentre una connessione è aperta in Agent mode, opera al livello Alert o a uno più restrittivo. Data Rewind può recuperare i valori sostituiti da un salvataggio recente. Non è un backup."
         ],
         "levels": "Livelli di Safe Mode",
         "link": "Safe Mode"
@@ -78,7 +78,7 @@
     "ai": {
         "title": "Assistente IA e server MCP",
         "body": [
-            "Sul Mac, un assistente IA opzionale spiega, ottimizza e corregge le query e risponde a domande sul tuo schema. Scegli il provider: una chiave API, un account che possiedi già o un modello eseguito sul tuo Mac. TablePro non gestisce un proprio servizio IA e non invia nulla finché non aggiungi un provider.",
+            "Sul Mac, un assistente IA opzionale spiega, ottimizza e corregge le query e risponde a domande sul tuo schema. Scegli il provider: una chiave API, un account che hai già o un modello eseguito sul tuo Mac. TablePro non gestisce un proprio servizio IA e non invia nulla finché non aggiungi un provider.",
             "La chat inizia in modalità Ask, che consente solo la lettura. Nelle modalità Edit e Agent, l’assistente può eseguire istruzioni. Dal livello Alert a Safe Mode (Full), ogni scrittura attende la tua approvazione; Read-Only le rifiuta e DROP o TRUNCATE richiedono sempre un tuo clic.",
             "Il server MCP (Model Context Protocol) integrato permette a client IA come {mcpClients} di usare le connessioni salvate senza vedere le password. Ascolta solo su {mcpHost} e ogni connessione stabilisce cosa possono fare le app esterne: Blocked, Read Only (predefinito) o Read & Write.",
             "Tutto questo è gratuito."
@@ -101,12 +101,14 @@
         "link": "Confronta TablePro con altri client"
     },
     "pricing": {
-        "title": "Gratuito da usare, con piani a pagamento opzionali",
-        "lead": "L’{macApp} si scarica e si usa gratuitamente, senza periodo di prova né limiti di tempo. Un piano Starter o Team aggiunge funzionalità opzionali, come {starterExamples}. Team include tutto Starter e aggiunge {teamExamples} per condividere connessioni e query con il tuo team. L’{iosApp} è gratuita, senza acquisti in-app."
+        "title": "Uso gratuito, con piani a pagamento opzionali",
+        "lead": "L’{macApp} si scarica e si usa gratuitamente, senza periodo di prova né limiti di tempo. Un piano Starter o Team aggiunge funzionalità opzionali, come {starterExamples}. Team include tutto ciò che offre Starter e aggiunge {teamExamples} per condividere connessioni e query con il tuo team. L’{iosApp} è gratuita, senza acquisti in-app."
     },
     "openSource": {
         "title": "Open source e pronto da scaricare",
         "body": "TablePro è open source sotto licenza AGPLv3, incluso il codice delle funzionalità a pagamento. I piani a pagamento e gli sponsor ne finanziano lo sviluppo. TablePro non ha investitori e non vende dati.",
+        "maker": "TablePro è sviluppato da {maker}, sviluppatore indipendente a {city}, in {country}.",
+        "about": "Informazioni su TablePro",
         "github": "Vedi su GitHub",
         "productHunt": "TablePro su Product Hunt"
     }

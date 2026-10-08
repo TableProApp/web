@@ -17,6 +17,7 @@ export default {
             "changelog": "Catatan perubahan (bahasa Inggris)",
             "blog": "Blog",
             "faq": "Pertanyaan umum",
+            "about": "Tentang",
             "source": "Kode sumber",
             "reportBug": "Laporkan bug"
         },
@@ -33,7 +34,7 @@ export default {
             "discord": "Discord",
             "x": "X",
             "telegram": "Telegram",
-            "sponsor": "Dukung TablePro"
+            "sponsor": "Sponsori TablePro"
         },
         "legal": {
             "title": "Legal",
@@ -50,6 +51,6 @@ export default {
         "note": "Kami mengirim tautan konfirmasi lewat email terlebih dahulu. <link>Kebijakan privasi</link>"
     },
     "bottom": {
-        "copyright": "© {year} TablePro. Kode sumber di bawah AGPLv3."
+        "copyright": "© {year} TablePro, dibuat oleh {maker} di {city}. Kode sumber di bawah AGPLv3."
     }
 } satisfies Messages['footer'];

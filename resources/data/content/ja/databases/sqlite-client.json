@@ -59,7 +59,7 @@
             "title": "保守とバックアップ",
             "paragraphs": [
                 "テーブル保守は VACUUM、ANALYZE、REINDEX と整合性検査を実行し、それぞれ実行前に SQL を表示します。Server Dashboard はファイルサイズ、ページ数、ページサイズ、ジャーナルモードとキャッシュサイズを表示します。",
-                "<backup>Backup Dump</backup> は {dumpTool} でデータベースを .sql ファイルに書き込み、Restore Dump はそのファイルをデータベースに実行します。"
+                "<backup>Backup Dump</backup> は {dumpTool} でデータベースを .sql ファイルに書き込み、Restore Dump はそのような .sql ファイルをデータベースに対して実行します。"
             ]
         },
         {

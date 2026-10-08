@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro vs Beekeeper Studio: 네이티브와 Electron",
-        "description": "Beekeeper Studio는 Windows, macOS, Linux용 Electron 오픈 소스 클라이언트입니다. 네이티브 TablePro와 요금제, 엔진, AI, 가져오기를 비교하세요."
+        "description": "Beekeeper Studio는 Windows, macOS, Linux용 Electron 오픈 소스 클라이언트입니다. 네이티브 TablePro와 플랜, 엔진, AI, 가져오기를 비교하세요."
     },
     "og": {
         "kicker": "비교",
@@ -9,12 +9,12 @@
     },
     "header": {
         "title": "TablePro vs Beekeeper Studio",
-        "lead": "Beekeeper Studio와 TablePro는 모두 오픈 소스 데이터베이스 클라이언트입니다. Beekeeper Studio는 {technology}를 기반으로 Windows, macOS, Linux에서 동일하게 작동하며 무료 Community 에디션 위에 유료 등급을 제공합니다. TablePro는 Mac과 iPhone·iPad 각각에 네이티브 앱을 제공하고 Mac에서는 선택형 유료 기능을 추가할 수 있습니다."
+        "lead": "Beekeeper Studio와 TablePro는 모두 오픈 소스 데이터베이스 클라이언트입니다. Beekeeper Studio는 {technology} 기반으로 Windows, macOS, Linux에서 동일하게 작동하며 무료 Community 에디션 위에 유료 등급을 제공합니다. TablePro는 Mac과 iPhone·iPad 각각에 네이티브 앱을 제공하고 Mac에서는 선택형 유료 기능을 추가할 수 있습니다."
     },
     "shortAnswer": {
         "tablepro": [
             "Oracle, Cassandra, Snowflake를 무료로 사용하고 싶습니다. TablePro는 지원하는 모든 엔진이 무료이지만 Beekeeper Studio는 이러한 엔진을 유료 등급에서 추가합니다.",
-            "유료 등급 없이 AI 어시스턴트와 MCP 서버를 원합니다. Mac 앱에서 둘 다 무료이며 AI 제공자를 선택할 수 있습니다.",
+            "유료 등급 없이 AI 어시스턴트와 MCP 서버를 원합니다. Mac 앱에서 둘 다 무료이며 AI 제공업체를 선택할 수 있습니다.",
             "Swift로 만든 네이티브 Mac 앱을 원하며 유료 기능의 코드도 오픈 소스이길 바랍니다.",
             "iPhone·iPad용 앱도 원합니다."
         ],
@@ -42,7 +42,7 @@
         },
         "lifetimeLicense": {
             "label": "구독 종료 후",
-            "tablepro": "월간·연간 요금제는 종료 시 유료 기능이 잠깁니다. 일회성 구매는 만료일 없음"
+            "tablepro": "월간·연간 플랜은 종료 시 유료 기능이 잠깁니다. 일회성 구매는 만료일 없음"
         }
     },
     "stronger": {
@@ -78,7 +78,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro는 Swift로 만든 Mac 앱으로 네이티브 데이터베이스 드라이버를 사용합니다. Beekeeper Studio는 {technology}를 기반으로 합니다. 둘 다 Apple silicon과 Intel Mac용 빌드를 따로 제공합니다.",
+                "text": "TablePro는 Swift로 만든 Mac 앱으로 네이티브 데이터베이스 드라이버를 사용합니다. Beekeeper Studio는 {technology} 기반입니다. 둘 다 Apple silicon과 Intel Mac용 빌드를 따로 제공합니다.",
                 "cite": [
                     "technology",
                     "mac"
@@ -95,7 +95,7 @@
                 "href": null
             },
             {
-                "text": "<link>AI 어시스턴트와 MCP 서버</link>는 Mac 앱에서 무료이며 AI 제공자를 선택할 수 있습니다. Beekeeper Studio의 AI Shell은 유료 등급이 필요합니다.",
+                "text": "<link>AI 어시스턴트와 MCP 서버</link>는 Mac 앱에서 무료이며 AI 제공업체를 선택할 수 있습니다. Beekeeper Studio의 AI Shell은 유료 등급이 필요합니다.",
                 "cite": [
                     "cells.ai"
                 ],
@@ -111,7 +111,7 @@
                 "href": "/features/import-export"
             },
             {
-                "text": "TablePro는 유료 기능의 코드까지 AGPLv3로 공개합니다. Beekeeper Studio Community 에디션은 {licence}로 공개됩니다.",
+                "text": "TablePro는 유료 기능의 코드까지 AGPLv3로 공개합니다. Beekeeper Studio Community 에디션은 {licence} 라이선스로 공개됩니다.",
                 "cite": [
                     "licence"
                 ],
@@ -156,7 +156,7 @@
                 "href": null
             },
             {
-                "text": "Beekeeper Studio는 결제 기간에 출시된 버전을 계속 사용할 수 있으며 월간 요금제에서는 12개월 후에 이 권리가 생깁니다. TablePro 월간·연간 요금제는 그런 권리를 남기지 않습니다. 종료되면 유료 기능은 잠기고 나머지 앱 기능은 계속 작동합니다. 일회성 구매는 만료일이 없습니다.",
+                "text": "Beekeeper Studio는 결제 기간에 출시된 버전을 계속 사용할 수 있으며 월간 플랜에서는 12개월 후에 이 권리가 생깁니다. TablePro 월간·연간 플랜은 그런 권리를 남기지 않습니다. 종료되면 유료 기능은 잠기고 나머지 앱 기능은 계속 작동합니다. 일회성 구매는 만료일이 없습니다.",
                 "cite": [
                     "cells.lifetimeLicense"
                 ],
@@ -189,7 +189,7 @@
         {
             "id": "free-engines",
             "question": "어떤 엔진을 무료로 사용할 수 있나요?",
-            "answer": "TablePro는 지원하는 모든 엔진과 AI 어시스턴트, MCP 서버, Safe Mode가 무료입니다. Starter 또는 Team 요금제는 엔진이 아니라 {starterExamples} 같은 기능을 추가합니다. Beekeeper Studio Community 에디션은 일반적인 엔진 일부를 지원하며 유료 등급에서 다른 엔진을 추가합니다.",
+            "answer": "TablePro는 지원하는 모든 엔진과 AI 어시스턴트, MCP 서버, Safe Mode가 무료입니다. Starter 또는 Team 플랜은 엔진이 아니라 {starterExamples} 같은 기능을 추가합니다. Beekeeper Studio Community 에디션은 일반적인 엔진 일부를 지원하며 유료 등급에서 다른 엔진을 추가합니다.",
             "href": null
         },
         {
@@ -205,6 +205,6 @@
         "beekeeper-cloud-workspaces": "{edition} 등급부터 연결과 쿼리를 동기화하고 공유하는 클라우드 워크스페이스",
         "beekeeper-erd-paid": "모든 유료 등급에 포함되며 Community에는 없음",
         "beekeeper-import-export-paid": "Import/Export & Backup/Restore는 모든 유료 등급에 포함되며 Community에는 없음",
-        "beekeeper-lifetime-license": "연간 요금제 또는 월간 요금제의 12개월 연속 이용 시, 결제 기간에 출시된 버전의 유료 기능을 구독 종료 후에도 계속 사용할 수 있습니다. 클라우드 워크스페이스는 활성 구독이 필요합니다."
+        "beekeeper-lifetime-license": "연간 플랜 또는 월간 플랜의 12개월 연속 이용 시, 결제 기간에 출시된 버전의 유료 기능을 구독 종료 후에도 계속 사용할 수 있습니다. 클라우드 워크스페이스는 활성 구독이 필요합니다."
     }
 }

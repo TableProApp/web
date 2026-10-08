@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro per iPhone e iPad",
-        "description": "Client gratuito per iPhone e iPad. Connettiti a MySQL, PostgreSQL, SQL Server e Oracle via SSH o TLS per esplorare, modificare e interrogare tabelle."
+        "description": "Client database gratuito per iPhone e iPad: MySQL, PostgreSQL, SQL Server, Oracle e altri via SSH o TLS. Esplora, modifica e interroga le tabelle."
     },
     "og": {
         "kicker": "iPhone e iPad",
@@ -9,7 +9,7 @@
     },
     "hero": {
         "title": "TablePro per iPhone e iPad",
-        "lead": "Connettiti ai database, esplora e modifica righe ed esegui query dal telefono o tablet, con tunnel SSH, Safe Mode e Face ID. È un’app separata realizzata per iPhone e iPad, non una copia dell’app per Mac.",
+        "lead": "Connettiti ai database, esplora e modifica righe ed esegui query dal telefono o dal tablet, con tunnel SSH, Safe Mode e Face ID. È un’app separata realizzata per iPhone e iPad, non una copia dell’app per Mac.",
         "noSignUp": "Nessuna registrazione e nessuna licenza",
         "mac": "Cerchi l’app per Mac? <download>Scarica TablePro per Mac</download>."
     },
@@ -18,7 +18,7 @@
         "lead": "Crea connessioni a questi database su iPhone e iPad. I driver sono integrati nell’app, quindi non c’è nulla da scaricare.",
         "syncedOnly": "Le connessioni {engines} si aprono quando provengono dal Mac, tramite iCloud Sync o un file .tablepro. Non puoi crearle in questa app.",
         "others": "Anche le connessioni ad altri database si sincronizzano dal Mac e compaiono nell’elenco, ma l’app non ha i relativi driver, quindi non si aprono qui. La <databases>pagina dei database</databases> elenca ogni motore supportato dall’app per Mac.",
-        "files": "SQLite: scegli un file di database e l’app lo copia nel proprio archivio, quindi le modifiche riguardano la copia. Puoi anche creare un nuovo database. DuckDB apre un file dove si trova oppure funziona in memoria.",
+        "files": "SQLite: scegli un file di database e l’app lo copia nel proprio spazio di archiviazione, quindi le modifiche riguardano la copia. Puoi anche creare un nuovo database. DuckDB apre un file dove si trova oppure funziona in memoria.",
         "redis": "Redis: esegui comandi nella scheda Query. L’esplorazione delle chiavi Redis non è disponibile nell’app per iPhone e iPad.",
         "sample": "Per esplorare prima l’app, apri Chinook, il database di esempio incluso."
     },
@@ -26,7 +26,7 @@
         "title": "Esplora e modifica le tabelle",
         "paragraphs": [
             "Ogni connessione si apre sulle tabelle, con editor di query, cronologia e dettagli della connessione nelle proprie schede.",
-            "Le righe appaiono come schede, con la chiave primaria o la prima colonna come titolo e le colonne successive sotto. Ordina per qualsiasi colonna, cerca in tutte tranne quelle binarie e combina filtri con AND o OR. Scegli quante righe contiene una pagina e vai a qualsiasi pagina. Tocca un valore di chiave esterna per vedere l’anteprima della riga referenziata. La vista Structure elenca colonne, indici e chiavi esterne della tabella.",
+            "Le righe appaiono come card, con la chiave primaria o la prima colonna come titolo e le colonne successive sotto. Ordina per qualsiasi colonna, cerca in tutte tranne quelle binarie e combina filtri con AND o OR. Scegli quante righe contiene una pagina e vai a qualsiasi pagina. Tocca un valore di chiave esterna per vedere l’anteprima della riga referenziata. La vista Structure elenca colonne, indici e chiavi esterne della tabella.",
             "Apri una riga per modificarla: cambia valori, imposta NULL e conferma prima del salvataggio. Puoi anche inserire ed eliminare righe, troncare o eliminare una tabella. Modifica ed eliminazione delle righe richiedono una chiave primaria e su una connessione Read-Only non cambia nulla."
         ]
     },
@@ -34,7 +34,7 @@
         "title": "Esegui query",
         "paragraphs": [
             "Scrivi SQL con evidenziazione della sintassi, eseguilo e interrompilo durante l’esecuzione. Inizia da un modello SELECT, poi copia o condividi i risultati come JSON, CSV o istruzioni SQL INSERT tramite appunti o pannello di condivisione.",
-            "L’app conserva fino a {results} righe di un risultato; aggiungi un LIMIT per vedere un’altra parte di un risultato grande. La cronologia conserva le ultime {history} query su questo dispositivo, tra connessioni, e non si sincronizza.",
+            "L’app conserva fino a {results} righe di un risultato; aggiungi un LIMIT per vedere un’altra parte di un risultato grande. La cronologia conserva le ultime {history} query su questo dispositivo, di tutte le connessioni, e non si sincronizza.",
             "Durante l’esecuzione, un’Attività in tempo reale mostra l’avanzamento sulla schermata di blocco e nella Dynamic Island: tempo trascorso e righe ricevute. La schermata di blocco e la Dynamic Island espansa mostrano anche l’SQL, a meno che non attivi <ui>Settings > Live Activities > Hide Query</ui>."
         ]
     },
@@ -50,7 +50,7 @@
         "title": "Safe Mode e blocco dell’app",
         "paragraphs": [
             "Ogni connessione ha un livello Safe Mode: {levels}. Confirm Writes chiede conferma prima di eseguire un’istruzione che modifica dati. Read-Only la rifiuta prima che raggiunga il server. Un’istruzione che l’app non identifica come lettura conta come scrittura.",
-            "Imposta il livello di una connessione nella sezione Organizzazione e il livello iniziale delle nuove connessioni in Impostazioni. I comandi rapidi che aggiungono righe rispettano lo stesso livello.",
+            "Imposta il livello di una connessione nella sezione Organization e il livello iniziale delle nuove connessioni nelle impostazioni dell’app. I comandi rapidi che aggiungono righe rispettano lo stesso livello.",
             "In <ui>Settings > Security</ui>, blocca l’app con Face ID o Touch ID, usando il codice come alternativa. Una volta attivato, l’app chiede l’autenticazione a ogni avvio e dopo il tempo di Auto-Lock scelto."
         ]
     },
@@ -58,13 +58,13 @@
         "title": "Su iPad",
         "paragraphs": [
             "Un’unica app per iPhone e iPad. Su iPad funziona in qualsiasi orientamento e in più finestre contemporaneamente con Stage Manager o Split View; la barra delle schede può diventare una barra laterale.",
-            "Con una tastiera, da ⌘1 a ⌘4 passi tra Tabelle, Query, Cronologia e Info; ⌘F cerca, ⌘↩ esegue la query e ⌘N aggiunge una connessione. Funzionano anche trackpad e mouse."
+            "Con una tastiera, da ⌘1 a ⌘4 passi tra Tables, Query, History e Info; ⌘F cerca, ⌘↩ esegue la query e ⌘N aggiunge una connessione. Funzionano anche trackpad e mouse."
         ]
     },
     "mac": {
         "title": "Con il tuo Mac",
         "paragraphs": [
-            "Attiva iCloud Sync durante la configurazione o in seguito in Impostazioni; connessioni, gruppi e tag si sincronizzano tra iPhone, iPad e Mac tramite il tuo account iCloud. Le password si sincronizzano solo se attivi anche Sync Passwords. Query salvate, profili SSH e impostazioni si sincronizzano solo tra Mac.",
+            "Attiva iCloud Sync durante la configurazione o in seguito nelle impostazioni dell’app; connessioni, gruppi e tag si sincronizzano tra iPhone, iPad e Mac tramite il tuo account iCloud. Le password si sincronizzano solo se attivi anche Sync Passwords. Query salvate, profili SSH e impostazioni si sincronizzano solo tra Mac.",
             "iCloud Sync è gratuito qui. Sul Mac fa parte di una licenza Starter o Team, quindi un Mac senza licenza non si sincronizza. La <pricing>pagina dei prezzi</pricing> contiene i dettagli.",
             "Senza iCloud, esporta le connessioni come file .tablepro e aprilo su un altro dispositivo tramite AirDrop o File. Le password sono escluse, salvo che tu le includa; in quel caso una passphrase scelta da te cifra il file. Entrambe le opzioni sono gratuite qui; sul Mac l’esportazione con password fa parte di una licenza.",
             "Con iCloud Sync attivo, Handoff permette di proseguire una connessione o una tabella aperta tra Mac e iPhone o iPad. <sync>Sincronizzazione e team</sync> descrive entrambi più in dettaglio."
@@ -83,7 +83,7 @@
         "items": [
             "L’assistente IA e il server MCP",
             "Query salvate, completamento automatico, formattazione delle query ed EXPLAIN",
-            "Modifiche allo schema oltre al troncamento o all’eliminazione di una tabella e diagrammi ER",
+            "Modifiche allo schema oltre al troncamento o all’eliminazione di una tabella, e diagrammi ER",
             "Compare & Sync, Query Insights, Result Charts e Data Rewind",
             "Esportazione di file in formati come XLSX e importazione di file in una tabella (Comandi Rapidi può aggiungere righe)",
             "Pannello del server, utenti e ruoli e backup",

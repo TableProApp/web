@@ -30,7 +30,7 @@ export default {
     },
     "checksum": {
         "summary": "Vérifier votre téléchargement",
-        "body": "Exécutez <code>shasum -a 256</code> sur le fichier dans Terminal. Le résultat doit correspondre à la somme SHA-256 ci-dessous."
+        "body": "Exécutez <code>shasum -a 256</code> sur le fichier dans Terminal. Le résultat doit correspondre à la somme de contrôle SHA-256 ci-dessous."
     },
     "afterClick": {
         "title": "Installez ensuite l’application",

@@ -39,7 +39,7 @@ export default {
                 "one": "Una licencia para una persona, en {count} Mac.",
                 "other": "Una licencia para una persona, en hasta {count} Mac."
             },
-            "includesTitle": "Todo lo de Gratis, más",
+            "includesTitle": "Todo lo del plan Gratis, más",
             "cta": "Comprar Starter"
         },
         "team": {
@@ -88,8 +88,8 @@ export default {
     "prioritySupport": {
         "name": "Soporte prioritario",
         "detail": {
-            "one": "Los correos de los clientes de Team se responden primero, en un día laborable.",
-            "other": "Los correos de los clientes de Team se responden primero, en {count} días laborables."
+            "one": "Los correos de los clientes de Team se responden primero, en el plazo de un día laborable.",
+            "other": "Los correos de los clientes de Team se responden primero, en un plazo de {count} días laborables."
         }
     },
     "allFeatures": "Todas las funciones de pago",
@@ -107,7 +107,7 @@ export default {
     "matrix": {
         "caption": "Qué incluye cada plan en la app para Mac",
         "feature": "Función",
-        "macs": "Macs",
+        "macs": "Mac",
         "macsFree": "Sin licencia",
         "macsStarter": {
             "one": "{count}",

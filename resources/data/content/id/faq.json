@@ -17,8 +17,8 @@
         "en": "bahasa Inggris",
         "vi": "bahasa Vietnam",
         "ko": "bahasa Korea",
-        "zh-Hans": "bahasa Mandarin sederhana",
-        "zh-Hant": "bahasa Mandarin tradisional",
+        "zh-Hans": "bahasa Mandarin Sederhana",
+        "zh-Hant": "bahasa Mandarin Tradisional",
         "tr": "bahasa Turki",
         "fr": "bahasa Prancis"
     },
@@ -61,7 +61,7 @@
                     "id": "work-use",
                     "question": "Bolehkah TablePro digunakan di tempat kerja?",
                     "answer": [
-                        "Ya, dalam perusahaan sebesar apa pun. AGPL tidak memberikan syarat untuk menjalankan TablePro. Syaratnya berlaku untuk distribusi dan penawaran versi yang dimodifikasi kepada pihak lain melalui jaringan. <agpl>Teks lisensi</agpl> menjelaskan detailnya."
+                        "Ya, dalam perusahaan sebesar apa pun. AGPL tidak menetapkan syarat apa pun untuk menjalankan TablePro. Syaratnya berlaku untuk distribusi dan penawaran versi yang dimodifikasi kepada pihak lain melalui jaringan. <agpl>Teks lisensi</agpl> menjelaskan detailnya."
                     ]
                 }
             ]
@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Berapa Mac yang dicakup lisensi?",
                     "answer": [
-                        "Lisensi Starter untuk satu orang, pada hingga {starterActivations} Mac. Lisensi Team memiliki antara {teamMinSeats} dan {teamMaxSeats} seat, dan setiap seat adalah satu Mac yang diaktifkan. iPhone atau iPad tidak pernah memakai seat: aplikasi tersebut tidak berlisensi.",
+                        "Lisensi Starter berlaku untuk satu orang, di maksimal {starterActivations} Mac. Lisensi Team memiliki antara {teamMinSeats} dan {teamMaxSeats} seat, dan setiap seat adalah satu Mac yang diaktifkan. iPhone atau iPad tidak pernah memakai seat: aplikasi tersebut tidak berlisensi.",
                         "Untuk memindahkan lisensi ke Mac lain, hapus Mac lama dalam <account>akun Anda</account>."
                     ]
                 },
@@ -185,8 +185,8 @@
                     "id": "offline",
                     "question": "Apakah lisensi bekerja offline?",
                     "answer": [
-                        "Ya. Aplikasi Mac memeriksa tanda tangan lisensi di Mac setiap kali dimulai dan memeriksa server kami setiap {revalidateDays} hari. Jika server tidak dapat diakses, fitur berbayar tetap berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil.",
-                        "Beberapa hal memerlukan internet secara alami: unduhan driver pertama, pembaruan, dan penyedia AI yang berjalan di cloud."
+                        "Ya. Aplikasi Mac memeriksa tanda tangan lisensi di Mac setiap kali dimulai dan memeriksanya ke server kami setiap {revalidateDays} hari. Jika server tidak dapat diakses, fitur berbayar tetap berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil.",
+                        "Beberapa hal memang memerlukan internet: unduhan driver pertama, pembaruan, dan penyedia AI yang berjalan di cloud."
                     ]
                 },
                 {
@@ -207,7 +207,7 @@
                     "id": "company-invoice",
                     "question": "Bisakah saya mendapat faktur untuk perusahaan saya?",
                     "answer": [
-                        "Ya. Di <portal>portal pelanggan {merchant}</portal>, Anda dapat menambahkan nama perusahaan, nomor PPN, dan alamat penagihan ke faktur, lalu mengunduhnya."
+                        "Ya. Di <portal>portal pelanggan {merchant}</portal>, Anda dapat menambahkan nama perusahaan, nomor pajak (VAT), dan alamat penagihan ke faktur, lalu mengunduhnya."
                     ]
                 },
                 {

@@ -1,7 +1,7 @@
 <?php
 
-// Wording ruled out per language: [pattern, what to write instead]. Checked against the content files and UI catalogs
-// by Localization/WordingTest. A variant found in review is added here, not only fixed in place.
+// Wording ruled out per language: [pattern, what to write instead]. Checked against the content files, the legal pages
+// and the UI catalogs by Localization/WordingTest. A variant found in review is added here, not only fixed in place.
 
 return [
     'vi' => [

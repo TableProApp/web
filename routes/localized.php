@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\DatabaseController;
@@ -49,6 +50,7 @@ Route::get('/download', DownloadController::class)->name('landing.download');
 Route::get('/ios', IosController::class)->name('landing.ios');
 Route::get('/pricing', PricingController::class)->name('landing.pricing');
 Route::get('/faq', FaqController::class)->name('landing.faq');
+Route::get('/about', AboutController::class)->name('landing.about');
 Route::get('/security', SecurityController::class)->name('landing.security');
 
 Route::get('/privacy', [LegalController::class, 'privacy'])->name('landing.privacy');

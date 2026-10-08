@@ -13,7 +13,7 @@ import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
-import { FACTS } from '@/lib/data/facts';
+import { FACTS, PUBLISHER } from '@/lib/data/facts';
 import { featureHref, PAID_FEATURES } from '@/lib/data/paid-features';
 import type { PaidTierId } from '@/lib/data/pricing';
 import { absoluteUrl, collectionPageNode, graph, organizationNode, organizationProfiles } from '@/lib/structured-data';
@@ -55,7 +55,7 @@ export default function FeatureIndex({ content, pages, facts }: FeatureHubProps)
 
     const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
     const jsonLd = graph([
-        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles(FACTS.links) }),
+        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles(FACTS.links), publisher: PUBLISHER }),
         collectionPageNode(context, {
             url: absoluteUrl(canonicalBaseUrl, path('/features')),
             name: content.header.title,

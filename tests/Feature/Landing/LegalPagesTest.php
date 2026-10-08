@@ -10,40 +10,76 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
 
-/**
- * The privacy policy, terms and refund policy (sitemap §A.6, §E.7).
- *
- * Each is markdown in `resources/data/legal/{en,vi}/`. English is
- * authoritative and each Vietnamese file is a full translation (spec §0). The
- * owner's direction for the privacy policy is to describe what the apps,
- * the website and the server actually do today, so most cases here pin a
- * fact the previous policy got wrong: the license check sends the Mac's name,
- * the server keeps IP addresses with no time limit and looks up their country
- * over plain HTTP, Team Library uploads SQL, and purchase attribution is
- * discarded rather than used.
- */
 beforeEach(function (): void {
     withoutVite();
 });
 
-/**
- * The raw markdown of a document, front matter included.
- */
-function legalSource(string $document, string $locale): string
-{
-    return (string) file_get_contents(resource_path("data/legal/{$locale}/{$document}.md"));
-}
+// The fragment each language uses for the date of the first query in a usage report.
+const LEGAL_FIRST_QUERY = [
+    'en' => 'first query',
+    'vi' => 'query đầu tiên',
+    'es' => 'primera consulta',
+    'de' => 'ersten Abfrage',
+    'fr' => 'première requête',
+    'ja' => '初めてクエリを実行',
+    'pt-BR' => 'primeira consulta',
+    'zh-Hans' => '首次运行查询',
+    'ko' => '첫 쿼리',
+    'zh-Hant' => '首次執行查詢',
+    'it' => 'prima query',
+    'id' => 'kueri pertama',
+];
 
 /**
- * The text of one `##` section of a document, by its heading id.
+ * @return list<string>
  */
+function legalLocales(): array
+{
+    // Read from disk: a dataset is built before the application boots.
+    return array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']);
+}
+
+function legalSource(string $document, string $locale): string
+{
+    return (string) file_get_contents(dirname(__DIR__, 3) . "/resources/data/legal/{$locale}/{$document}.md");
+}
+
 function legalSection(string $document, string $locale, string $id): string
 {
     $body = YamlFrontMatter::parse(legalSource($document, $locale))->body();
+    $anchor = '[^\n]*\{#' . preg_quote($id, '/') . '\}\n';
 
-    preg_match('/^## [^\n]*\{#' . preg_quote($id, '/') . '\}\n(.*?)(?=^## |\z)/ms', $body, $match);
+    if (preg_match('/^(#{2,6}) ' . $anchor . '/m', $body, $heading) !== 1) {
+        return '';
+    }
+
+    // A section runs to the next heading of its own level or above.
+    preg_match('/^' . $heading[1] . ' ' . $anchor . '(.*?)(?=^#{2,' . strlen($heading[1]) . '} |\z)/ms', $body, $match);
 
     return $match[1] ?? '';
+}
+
+/**
+ * What each line of a document is: a heading with its id, a list item, a paragraph or a blank, with the slots it fills.
+ *
+ * @return list<string>
+ */
+function legalShape(string $document, string $locale): array
+{
+    return array_map(function (string $line): string {
+        preg_match_all('/\{[a-zA-Z][a-zA-Z0-9]*\}/', $line, $found);
+        $slots = array_unique($found[0]);
+        sort($slots);
+
+        $kind = match (true) {
+            trim($line) === '' => '',
+            preg_match('/^(#{2,6}) .*(\{#[a-z0-9-]+\})$/', $line, $heading) === 1 => "{$heading[1]} {$heading[2]}",
+            str_starts_with($line, '- ') => '-',
+            default => 'p',
+        };
+
+        return trim($kind . ' ' . implode(' ', $slots));
+    }, explode("\n", YamlFrontMatter::parse(legalSource($document, $locale))->body()));
 }
 
 it('renders each document in both languages under its own component', function (string $path, string $component, string $title): void {
@@ -78,30 +114,31 @@ it('indexes each document in every supported language', function (string $route)
     expect($entry->hreflangCluster())->toBe(Locales::codes());
 })->with(['landing.privacy', 'landing.terms', 'landing.refundPolicy']);
 
-it('gives every heading an explicit id, the same in both languages', function (string $document): void {
-    foreach (['en', 'vi'] as $locale) {
-        $body = YamlFrontMatter::parse(legalSource($document, $locale))->body();
-
-        preg_match_all('/^#{2,6} .*$/m', $body, $headings);
+it('gives every heading an explicit id', function (string $locale): void {
+    foreach (LegalDocuments::DOCUMENTS as $document) {
+        preg_match_all('/^#{2,6} .*$/m', YamlFrontMatter::parse(legalSource($document, $locale))->body(), $headings);
 
         foreach ($headings[0] as $heading) {
             expect($heading)->toMatch('/\{#[a-z0-9-]+\}$/', "legal/{$locale}/{$document}.md: \"{$heading}\" has no explicit id");
         }
     }
+})->with(legalLocales());
 
-    preg_match_all('/\{#([a-z0-9-]+)\}/', legalSource($document, 'en'), $en);
-    preg_match_all('/\{#([a-z0-9-]+)\}/', legalSource($document, 'vi'), $vi);
+it('keeps every translation in step with the English page: headings, ids, list items, paragraphs, slots and the update date', function (string $locale): void {
+    foreach (LegalDocuments::DOCUMENTS as $document) {
+        expect(legalShape($document, $locale))->toBe(legalShape($document, 'en'));
+        expect(YamlFrontMatter::parse(legalSource($document, $locale))->matter('updatedAt'))
+            ->toBe(YamlFrontMatter::parse(legalSource($document, 'en'))->matter('updatedAt'));
+    }
+})->with(array_values(array_diff(legalLocales(), ['en'])));
 
-    expect($vi[1])->toBe($en[1]);
-})->with(['privacy', 'terms', 'refund-policy']);
-
-it('takes every number and address from the data files, the same ones in both languages', function (string $document): void {
+it('takes every number and address from the data files, the same ones in every language', function (string $locale): void {
     $documents = app(LegalDocuments::class);
 
-    expect($documents->tokenNames($document, 'vi'))->toBe($documents->tokenNames($document, 'en'));
-    expect(array_diff($documents->tokenNames($document, 'en'), array_keys($documents->tokens())))->toBe([]);
+    foreach (LegalDocuments::DOCUMENTS as $document) {
+        expect($documents->tokenNames($document, $locale))->toBe($documents->tokenNames($document, 'en'));
+        expect(array_diff($documents->tokenNames($document, $locale), array_keys($documents->tokens())))->toBe([]);
 
-    foreach (['en', 'vi'] as $locale) {
         $source = legalSource($document, $locale);
 
         // The support address, the refund window and the licence URL are slots, never typed.
@@ -109,7 +146,14 @@ it('takes every number and address from the data files, the same ones in both la
         Assert::assertStringNotContainsString('github.com', $source);
         Assert::assertStringNotContainsString('polar.sh', $source);
     }
-})->with(['privacy', 'terms', 'refund-policy']);
+})->with(legalLocales());
+
+it('closes every bold span on the rendered page', function (string $locale): void {
+    // CommonMark leaves ** in the text when the mark sits between punctuation and a letter, as in 。**后.
+    foreach (LegalDocuments::DOCUMENTS as $document) {
+        expect(app(LegalDocuments::class)->render($document, $locale)['html'])->not->toContain('**');
+    }
+})->with(legalLocales());
 
 it('keeps the cookie contract the consent bar and the account app rely on', function (string $locale, string $basis, string $settings): void {
     $privacy = legalSource('privacy', $locale);
@@ -173,7 +217,18 @@ it('states what the Mac app and the server actually do', function (): void {
     $ios = legalSection('privacy', 'en', 'ios-app');
 
     expect($ios)->toContain('**Nothing goes to TablePro unless you turn on Share Usage Data**');
+
+    // Both reports describe the connections that are open, and the iPhone report's license field is always off.
+    expect($mac)->toContain('of your open connections')->toContain('how many connections are open');
+    expect($ios)->toContain('of your open connections')->toContain('always reports that no license is activated');
 });
+
+it('lists the date of the first query for the iPhone report only', function (string $locale): void {
+    // The Mac app never records it: MacAnalyticsProvider.markFirstQueryExecuted has no caller at v0.78.0. The iPhone app does.
+    expect(LEGAL_FIRST_QUERY)->toHaveKey($locale);
+    expect(legalSection('privacy', $locale, 'mac-usage-report'))->not->toBe('')->not->toContain(LEGAL_FIRST_QUERY[$locale]);
+    expect(legalSection('privacy', $locale, 'ios-app'))->toContain(LEGAL_FIRST_QUERY[$locale]);
+})->with(legalLocales());
 
 it('sets no retention period the server does not keep', function (string $locale): void {
     $retention = legalSection('privacy', $locale, 'retention');
@@ -201,7 +256,7 @@ it('covers the documentation site and its own analytics question', function (str
     expect(legalSection('privacy', $locale, 'cookies'))->toContain('`mintlify_anonymous_id`');
     expect(legalSection('privacy', $locale, 'sharing'))->toContain('**Mintlify**');
     expect(legalSection('privacy', $locale, 'transfers'))->toContain('Mintlify');
-})->with(fn(): array => array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']));
+})->with(legalLocales());
 
 it('discloses Cloudflare Web Analytics and states Google\'s default retention, never 14 months', function (string $locale, string $twoMonths, string $sixMonths): void {
     /*
@@ -236,12 +291,12 @@ it('names Polar as merchant of record and no other payment route', function (str
         Assert::assertStringNotContainsStringIgnoringCase($needle, $source, "legal/{$locale}/{$document}.md mentions \"{$needle}\"");
     }
 
-    expect($source)->toContain('merchant of record');
+    expect(mb_stripos($source, 'merchant of record'))->not->toBeFalse();
 })->with(function (): array {
     $cases = [];
 
     foreach (['privacy', 'terms', 'refund-policy'] as $document) {
-        foreach (['en', 'vi'] as $locale) {
+        foreach (legalLocales() as $locale) {
             $cases["{$locale}/{$document}"] = [$document, $locale];
         }
     }
@@ -303,7 +358,7 @@ it('links each document to pages in its own language', function (string $locale)
     }
 
     expect($offences)->toBe([]);
-})->with(fn(): array => array_keys(json_decode((string) file_get_contents(dirname(__DIR__, 3) . '/resources/data/locales.json'), true)['supported']));
+})->with(legalLocales());
 
 it('notes on Vietnamese pages that the English version prevails', function (): void {
     $chrome = json_decode((string) file_get_contents(resource_path('data/content/vi/legal.json')), true);

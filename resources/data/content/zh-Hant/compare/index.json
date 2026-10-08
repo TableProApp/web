@@ -14,7 +14,7 @@
   "bySituation": {
     "title": "依情況選擇",
     "lead": "每款一句，連結完整比較。",
-    "tablepro": "想要一款開放原始碼用戶端，既有原生 Mac App，又有獨立的 iPhone 與 iPad App，選擇 TablePro。AI 助手和 MCP 伺服器在 Mac App 中免費，還可從 {apps} 匯入已存連線。",
+    "tablepro": "想要一款開放原始碼用戶端，既有原生 Mac App，又有獨立的 iPhone 與 iPad App，選擇 TablePro。AI 助理和 MCP 伺服器在 Mac App 中免費，還可從 {apps} 匯入已儲存連線。",
     "items": {
       "tableplus": "也在 Windows、Linux 工作，或連線 Vertica、Greenplum，選擇 TablePlus。",
       "dbeaver": "需要 Windows、macOS、Linux 免費用戶端，連線任何有 JDBC 驅動程式的引擎，選擇 DBeaver。",
@@ -25,12 +25,12 @@
       "sequel-pro": "還在用 Sequel Pro？最後版 {status.version} 發行於 {status.date}。Sequel Ace 延續開發，TablePro 可匯入 Sequel Ace 連線。",
       "postico": "僅用 PostgreSQL，希望專注此工作的 Mac App 和一次性授權，選擇 Postico。",
       "heidisql": "已在 Windows 使用 HeidiSQL，希望 Apple silicon Mac 使用相同免費用戶端，選擇 HeidiSQL。",
-      "phpmyadmin": "在瀏覽器管理 MySQL、MariaDB，例如 cPanel 提供的託管環境，選擇 phpMyAdmin。"
+      "phpmyadmin": "在瀏覽器中管理 MySQL、MariaDB，例如使用透過 cPanel 提供 phpMyAdmin 的主機代管服務，選擇 phpMyAdmin。"
     }
   },
   "atAGlance": {
     "title": "一覽",
-    "lead": "所比用戶端的平台、原始碼和價格。價格為稅前美元標價。",
+    "lead": "本頁所比較的各用戶端的平台、原始碼和價格。價格為稅前美元標價。",
     "caption": "用戶端比較日期 {date}，來源列在頁末。"
   },
   "openSource": {
@@ -39,16 +39,16 @@
     "caption": "開放原始碼用戶端，確認於 {date}。"
   },
   "switching": {
-    "title": "遷移至 TablePro",
-    "body": "TablePro 從 {apps} 匯入已存連線及密碼。Navicat 連線來自其匯出檔案。",
+    "title": "移轉至 TablePro",
+    "body": "TablePro 從 {apps} 匯入已儲存連線及密碼。Navicat 連線來自其匯出檔案。",
     "none": "無 {others} 匯入工具，請手動新增或貼上連線 URL。",
-    "link": "遷移連線",
-    "docs": "文件中的遷移指南"
+    "link": "移轉連線",
+    "docs": "文件中的移轉指南"
   },
   "method": {
     "title": "這些頁面如何編寫",
     "paragraphs": [
-      "其他產品所有事實均來自官方：自身網站、文件、存放庫、發行說明、商店頁面，或散布它的套件管理工具和平台廠商。各頁列出來源和檢查日期。",
+      "有關其他產品的所有事實均來自官方來源：自身網站、文件、儲存庫、發行說明、商店頁面，或散布它的套件管理工具和平台廠商。各頁列出來源和檢查日期。",
       "TablePro 一欄與網站其餘部分使用相同資料，價格、平台和功能與價格及功能頁一致。",
       "未找到可供他人重現的測量來引用，因此沒有速度、記憶體或啟動數據。",
       "價格和功能會變，若資訊過時，請<issues>在 GitHub 提出議題</issues>。"
@@ -79,11 +79,11 @@
       "price": "價格",
       "licence": "開放原始碼",
       "databases": "資料庫",
-      "ai": "AI 助手",
+      "ai": "AI 助理",
       "mcp": "MCP 伺服器",
       "ios": "iPhone 與 iPad",
       "sync": "同步",
-      "import": "遷移至 TablePro"
+      "import": "移轉至 TablePro"
     },
     "cell": {
       "yes": "有",
@@ -100,7 +100,7 @@
       "windows": "Windows",
       "linux": "Linux",
       "ios": "iPhone 與 iPad",
-      "web": "伺服器上的 Web 應用程式"
+      "web": "伺服器上的 Web App"
     },
     "macRequirement": "macOS {version} 或更新版本",
     "languages": {
@@ -180,16 +180,16 @@
       "databases": "{engines} 等",
       "databasesLink": "支援的資料庫",
       "ai": "Mac App 免費，自選雲端或本 Mac 的 AI 供應商",
-      "mcp": "Mac App 免費，僅在本 Mac 接聽，各連線決定外部 App 可做什麼",
+      "mcp": "Mac App 免費，僅在本 Mac 監聽，各連線決定外部 App 可做什麼",
       "ios": "獨立免費 App，無 App 內購買",
       "sync": "iCloud Sync：Mac 屬於 {tier}，iPhone、iPad 免費"
     },
     "import": {
-      "yes": "TablePro 匯入 {name} 連線及已存密碼。",
-      "yesFile": "TablePro 從 {name} 匯出的 {format} 檔案匯入 {name} 連線及已存密碼。",
-      "noPasswords": "TablePro 匯入 {name} 連線，密碼不遷移。",
+      "yes": "TablePro 匯入 {name} 連線及已儲存密碼。",
+      "yesFile": "TablePro 從 {name} 匯出的 {format} 檔案匯入 {name} 連線及已儲存密碼。",
+      "noPasswords": "TablePro 匯入 {name} 連線，密碼不移轉。",
       "none": "TablePro 無 {name} 匯入工具。",
-      "link": "如何遷移"
+      "link": "如何移轉"
     },
     "tiers": {
       "starter": "Starter",
@@ -200,14 +200,14 @@
       "stronger": "{name} 的優勢",
       "differs": "TablePro 有何不同",
       "limits": "TablePro 不能做什麼",
-      "switching": "從 {name} 遷移",
+      "switching": "從 {name} 移轉",
       "faq": "常見問題",
       "sources": "來源",
       "more": "更多比較",
       "cta": "取得 TablePro"
     },
     "switching": {
-      "docs": "文件中的遷移指南"
+      "docs": "文件中的移轉指南"
     },
     "sources": {
       "intro": "{name} 的事實於 {date} 對照這些頁面檢查。價格為稅前美元標價。",

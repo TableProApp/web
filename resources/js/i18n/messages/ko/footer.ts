@@ -17,6 +17,7 @@ export default {
             "changelog": "변경 기록 (영어)",
             "blog": "블로그",
             "faq": "자주 묻는 질문",
+            "about": "소개",
             "source": "소스 코드",
             "reportBug": "버그 신고"
         },
@@ -50,6 +51,6 @@ export default {
         "note": "먼저 확인 링크를 이메일로 보내드립니다. <link>개인정보 처리방침</link>"
     },
     "bottom": {
-        "copyright": "© {year} TablePro. 소스 코드는 AGPLv3로 배포됩니다."
+        "copyright": "© {year} TablePro. {city}의 {maker} 제작. 소스 코드는 AGPLv3로 배포됩니다."
     }
 } satisfies Messages['footer'];

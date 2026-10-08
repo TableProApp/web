@@ -14,7 +14,7 @@ updatedAt: "2026-10-08"
 - AI 请求从 Mac 应用直接发送至您设置的 AI 提供商，不经过我们。
 - 我们的服务器存储每份使用情况报告和许可证验证请求的 IP 地址，并为每份报告查询所属国家。我们尚未设置这些记录的保存期限。
 - 网站使用不设置 Cookie 的 Cloudflare Web Analytics 统计页面浏览量。网站也加载 Google Analytics，但只有获得您的允许才设置 Cookie。每个页面还会加载在线聊天服务 Crisp，它会设置自己的 Cookie。
-- 购买由我们的名义销售商 {merchant} 负责销售。
+- 购买由我们的 merchant of record {merchant} 负责销售。
 
 ## 谁负责处理 {#controller}
 
@@ -24,15 +24,15 @@ updatedAt: "2026-10-08"
 
 ### 使用情况报告 {#mac-usage-report}
 
-Mac 应用启动约十秒后向 `api.tablepro.app` 发送使用情况报告，随后在运行期间每天发送一次。**该功能默认开启，首次发送前不会征求同意。**要关闭，请进入 **Settings > General > Privacy** 并取消勾选 **Share anonymous usage data**。
+Mac 应用启动约十秒后向 `api.tablepro.app` 发送使用情况报告，随后在运行期间每天发送一次。**该功能默认开启，首次发送前不会征求同意**。要关闭，请进入**设置 > 通用 > 隐私**（Settings > General > Privacy）并取消勾选**共享匿名使用数据**（Share anonymous usage data）。
 
 报告包含：
 
 - 机器 ID：Mac 硬件 UUID 的 SHA-256 哈希值（UUID 本身从不发送）；
 - 平台、应用版本、macOS 版本、处理器架构和应用语言；
-- 连接所用数据库类型的名称（如 PostgreSQL）和连接数量；
+- 已打开连接的数据库类型名称（如 PostgreSQL）和已打开的连接数量；
 - 是否已激活许可证；
-- 首次尝试连接、首次成功连接和首次运行查询的日期；
+- 首次尝试连接和首次成功连接的日期和时间；
 - 更新设置（安装方式及检查频率）。报告抵达时，我们的服务器会丢弃这些设置。
 
 报告从不包含主机名、用户名、密码、查询或行数据。
@@ -54,9 +54,9 @@ Mac 应用仅在您输入许可证密钥后联系许可证服务器。它会在�
 
 ### Team Library {#library}
 
-Team Library 是 Team 许可证的功能。当您在连接上选择 **Share > Publish to Team Library…**，或在 Favorites 侧边栏选择 **Publish Saved Queries to Team…** 时，Mac 应用将您发布的内容上传至服务器：
+Team Library 是 Team 许可证的功能。当您在连接上选择**分享 > 发布到团队库…**（Share > Publish to Team Library…），或在 Favorites 侧边栏选择**将已保存的查询发布到团队…**（Publish Saved Queries to Team…）时，Mac 应用将您发布的内容上传至服务器：
 
-- 连接设置：主机、端口、数据库名、用户名、SSH 和 SSL 设置、驱动选项、启动命令、Tunnel Command 设置、安全模式级别和 AI 设置，但绝不包含密码；
+- 连接设置：主机、端口、数据库名、用户名、SSH 和 SSL 设置、驱动选项、启动命令、Tunnel Command 设置、Safe Mode 级别和 AI 设置，但绝不包含密码；
 - 已保存查询：名称、SQL 文本、关键词和文件夹。
 
 使用同一 Team 许可证的 Mac 在启动时下载库，最多每周一次；执行发布的 Mac 会在发布后立即重新下载。再次发布会替换此前发布的内容。移除团队成员会删除该成员发布的所有内容。许可证到期或被暂停后，库仍会保留在我们的服务器上，直到您要求删除。
@@ -65,8 +65,8 @@ Team Library 是 Team 许可证的功能。当您在连接上选择 **Share > Pu
 
 ### 更新和插件 {#mac-updates}
 
-- **更新检查。**Mac 应用每天从 GitHub（`raw.githubusercontent.com`）下载一次更新源。除所有网络请求都会携带的 IP 地址和含应用版本的 User-Agent 外，请求不会发送其他 Mac 信息。要关闭，请进入 **Settings > General > Software Update** 并取消勾选 **Automatically check for updates**。更新本身也从 GitHub 下载。
-- **插件目录。**应用启动时和打开插件设置时，会从 GitHub 下载可用驱动和主题列表。没有关闭此行为的设置。您安装的驱动和主题从 GitHub 下载，插件浏览器通过 GitHub API 获取下载次数。
+- **更新检查**。Mac 应用每天从 GitHub（`raw.githubusercontent.com`）下载一次更新源。除所有网络请求都会携带的 IP 地址和含应用版本的 User-Agent 外，请求不会发送其他 Mac 信息。要关闭，请进入**设置 > 通用 > 软件更新**（Settings > General > Software Update）并取消勾选**自动检查更新**（Automatically check for updates）。更新本身也从 GitHub 下载。
+- **插件目录**。应用启动时和打开插件设置时，会从 GitHub 下载可用驱动和主题列表。没有关闭此行为的设置。您安装的驱动和主题从 GitHub 下载，插件浏览器通过 GitHub API 获取下载次数。
 
 GitHub 会随这些请求收到您的 IP 地址，这些请求适用 GitHub 自身的隐私声明。
 
@@ -75,12 +75,12 @@ GitHub 会随这些请求收到您的 IP 地址，这些请求适用 GitHub 自�
 只有设置后，Mac 应用才会直接向以下服务发送数据，从不经过 TablePro：
 
 - **您的数据库、SSH 服务器和代理**接收连接向其发送的信息。
-- **AI 提供商。**添加提供商并使用 AI 助手或行内建议时，请求直接发送给该提供商或 Mac 本地运行的模型。默认包含数据库类型和名称、结构中的表和列定义，以及当前查询。仅在您开启相应选项后才发送结果行。适用提供商自身的条款。添加 GitHub Copilot 会从 npm 下载其语言服务器，其“Send telemetry to GitHub”设置默认开启。
+- **AI 提供商**。添加提供商并使用 AI 助手或行内建议时，请求直接发送给该提供商或 Mac 本地运行的模型。默认包含数据库类型和名称、结构中的表和列定义，以及当前查询。仅在您开启相应选项后才发送结果行。适用提供商自身的条款。添加 GitHub Copilot 会从 npm 下载其语言服务器，其“向 GitHub 发送遥测数据”（Send telemetry to GitHub）设置默认开启。
 - **登录服务**：连接使用时的 Microsoft Entra ID、Google、Amazon Web Services 和 Cloudflare Access。
 - **Apple Maps**：在地图上显示结果时提供地图瓦片。
 - **DuckDB**：查询首次使用某个扩展时提供该扩展。
-- **MCP 客户端。**MCP 服务器默认关闭。您开启它，或已设置的 MCP 客户端启动 TablePro 桥接程序或与其配对时，它会启动，且仅监听 Mac 本地（127.0.0.1）。连接的 AI 客户端（如 Claude 或 Cursor）接收其请求的结果，并按自身条款发送至其服务。
-- **您添加的 MCP 服务器。**AI 会话会将您批准的工具调用及其参数发送至该服务器。
+- **MCP 客户端**。MCP 服务器默认关闭。您开启它，或已设置的 MCP 客户端启动 TablePro 桥接程序或与其配对时，它会启动，且仅监听 Mac 本地（127.0.0.1）。连接的 AI 客户端（如 Claude 或 Cursor）接收其请求的结果，并按自身条款发送至其服务。
+- **您添加的 MCP 服务器**。AI 会话会将您批准的工具调用及其参数发送至该服务器。
 
 ### 留在 Mac 上的数据 {#mac-local}
 
@@ -88,47 +88,47 @@ GitHub 会随这些请求收到您的 IP 地址，这些请求适用 GitHub 自�
 
 ## iPhone 和 iPad 版 TablePro {#ios-app}
 
-**除非您开启 Share Usage Data，否则不会向 TablePro 发送任何信息**。您可在首次启动时或之后的 **Settings > Privacy** 中开启。开启后，应用每天向与 Mac 应用相同的服务器发送一次报告，服务器以相同方式存储和查询其 IP 地址。报告包含 Apple 为设备上的应用分配的标识符的 SHA-256 哈希值、平台、应用和 iOS 版本、处理器架构、应用语言、所用数据库类型名称、连接数量，以及相同的首次使用日期。不包含更新设置或许可证密钥，因为应用没有这两项内容。
+**除非您开启共享使用数据（Share Usage Data），否则不会向 TablePro 发送任何信息**。您可在首次启动时或之后的**设置 > 隐私**（Settings > Privacy）中开启。开启后，应用每天向与 Mac 应用相同的服务器发送一次报告，服务器以相同方式存储和查询其 IP 地址。报告包含 Apple 为设备上的应用分配的标识符的 SHA-256 哈希值、平台、应用和 iOS 版本、处理器架构、应用语言、已打开连接的数据库类型名称、已打开的连接数量，以及首次尝试连接、首次成功连接和首次运行查询的日期和时间。不包含更新设置，并始终报告未激活许可证，因为应用没有这两项内容。
 
-应用不会发起许可证验证、更新检查或插件请求。除可选报告外，它仅连接您的数据库和 SSH 服务器、开启 iCloud 同步时的 Apple iCloud，以及 SQL Server 连接使用 Microsoft Entra ID 登录时的 Microsoft。
+应用不会发起许可证验证、更新检查或插件请求。除可选报告外，它仅连接您的数据库和 SSH 服务器、开启 iCloud Sync 时的 Apple iCloud，以及 SQL Server 连接使用 Microsoft Entra ID 登录时的 Microsoft。
 
-在设备上，密码和粘贴的 SSH 密钥保存在钥匙串中，证书从不同步。查询历史留在设备上。连接会加入设备的 Spotlight 索引，以便搜索。查询运行期间，除非您开启 **Settings > Live Activities > Hide Query**，其实时活动会在锁屏和展开的灵动岛上显示 SQL。
+在设备上，密码和粘贴的 SSH 密钥保存在钥匙串中，证书从不同步。查询历史留在设备上。连接会加入设备的 Spotlight 索引，以便搜索。查询运行期间，除非您开启**设置 > 实时活动 > 隐藏查询**（Settings > Live Activities > Hide Query），其实时活动会在锁屏和展开的灵动岛上显示 SQL。
 
 如果您在 iPhone 或 iPad 设置中选择与应用开发者共享分析数据，Apple 可能通过 App Store Connect 向我们提供崩溃报告和使用统计。应用本身没有崩溃报告工具或第三方分析库。
 
-## iCloud 同步和 Handoff {#icloud}
+## iCloud Sync 和 Handoff {#icloud}
 
-iCloud 同步在 Mac、iPhone 和 iPad 上均默认关闭，直到您开启。开启后，记录会发送至您自己 iCloud 账户内的私有数据库（容器 `iCloud.com.TablePro`）。TablePro 无法读取它们。
+iCloud Sync 在 Mac、iPhone 和 iPad 上均默认关闭，直到您开启。开启后，记录会发送至您自己 iCloud 账户内的私有数据库（容器 `iCloud.com.TablePro`）。TablePro 无法读取它们。
 
 - 在 Mac 上，您可选择同步连接、分组和标签、设置、SSH 配置、凭据配置（名称和用户名，从不包含密码）、表和数据库收藏、已保存查询（包括 SQL 文本）以及表文件夹。连接记录包含主机、端口、用户名、数据库名、SSH 和 SSL 设置、启动命令、连接前脚本和 AI 规则。查询历史、Data Rewind 快照和密码来源从不同步。
 - iPhone 和 iPad 同步连接、分组和标签。
-- 密码仅在您同时开启 Mac 上 Sync Categories 中的 **Passwords**，或 iPhone 和 iPad 上的 **Sync Passwords** 后同步，使用 iCloud 钥匙串。在 Mac 上，这也会同步 TablePro 保存在钥匙串中的其他机密信息，如 AI 提供商密钥和许可证密钥。
+- 密码仅在您同时开启 Mac 上 Sync Categories 中的**密码**（Passwords），或 iPhone 和 iPad 上的**同步密码**（Sync Passwords）后同步，使用 iCloud 钥匙串。在 Mac 上，这也会同步 TablePro 保存在钥匙串中的其他机密信息，如 AI 提供商密钥和许可证密钥。
 
-Mac 上的 iCloud 同步属于 Starter 或 Team 许可证功能，在 iPhone 和 iPad 上免费。
+Mac 上的 iCloud Sync 属于 Starter 或 Team 许可证功能，在 iPhone 和 iPad 上免费。
 
 Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的表名。没有打开表时，传递连接名称；连接没有名称时则传递主机。不会发送设置或凭据。
 
 ## 网站 {#website}
 
-**托管。**网站和账户门户运行在我们的服务器上，由 Cloudflare 提供前置服务。与任何网络服务器一样，它们会收到您的 IP 地址、浏览器 User-Agent 和请求的每个页面地址。
+**托管**。网站和账户门户运行在我们的服务器上，由 Cloudflare 提供前置服务。与任何网络服务器一样，它们会收到您的 IP 地址、浏览器 User-Agent 和请求的每个页面地址。
 
-**Cloudflare Web Analytics。**Cloudflare 在网站和账户门户页面中加入 Web Analytics 脚本。浏览器从 `static.cloudflareinsights.com` 加载它，每次浏览页面都会向 Cloudflare 报告页面、链接来源网站、加载耗时，以及浏览器、操作系统和设备类型。Cloudflare 会补充连接所属国家。脚本不设置 Cookie，也不在浏览器中保存信息；Cloudflare 声明不会使用 IP 地址或浏览器信息对您进行指纹识别。Cloudflare 向我们提供页面或国家的浏览量等汇总数据，不提供每位访客的记录。合法依据：合法利益。
+**Cloudflare Web Analytics**。Cloudflare 在网站和账户门户页面中加入 Web Analytics 脚本。浏览器从 `static.cloudflareinsights.com` 加载它，每次浏览页面都会向 Cloudflare 报告页面、链接来源网站、加载耗时，以及浏览器、操作系统和设备类型。Cloudflare 会补充连接所属国家。脚本不设置 Cookie，也不在浏览器中保存信息；Cloudflare 声明不会使用 IP 地址或浏览器信息对您进行指纹识别。Cloudflare 向我们提供页面或国家的浏览量等汇总数据，不提供每位访客的记录。合法依据：合法利益。
 
-**Google Analytics。**网站在每个页面以 Consent Mode 加载 Google Analytics。在您于 Cookie 提问中选择**允许**之前，它不设置 Cookie，仅为每个页面向 Google 发送无 Cookie 信号，不在设备上存储标识符。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie，统计页面浏览、下载点击和开始结账等访问行为。广告存储、广告个性化和广告用户数据始终被拒绝。Google 声明 Google Analytics 4 不记录或存储 IP 地址。我们的 Google Analytics 媒体资源使用 Google 默认保留期：用户级和事件级数据收集后两个月由 Google 删除。保存汇总而非标识符的标准报告不受影响。合法依据：您对 Cookie 的同意。
+**Google Analytics**。网站在每个页面以 Consent Mode 加载 Google Analytics。在您于 Cookie 提问中选择**允许**之前，它不设置 Cookie，仅为每个页面向 Google 发送无 Cookie 信号，不在设备上存储标识符。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie，统计页面浏览、下载点击和开始结账等访问行为。广告存储、广告个性化和广告用户数据始终被拒绝。Google 声明 Google Analytics 4 不记录或存储 IP 地址。我们的 Google Analytics 媒体资源使用 Google 默认保留期：用户级和事件级数据收集后两个月由 Google 删除。保存汇总而非标识符的标准报告不受影响。合法依据：您对 Cookie 的同意。
 
-**在线聊天。**网站和账户门户的每个页面都显示聊天提供商 Crisp 的按钮。页面加载完成后，浏览器从 `client.crisp.chat` 加载 Crisp 脚本，Crisp 会设置 [Cookie 和浏览器存储](#cookies)中所述的 Cookie。Crisp 收到 IP 地址、浏览器信息、浏览的页面地址和您撰写的消息，并在您开始对话后保留 IP 地址。我们只向 Crisp 提供页面语言，不提供您的其他信息。Crisp 位于法国。
+**在线聊天**。网站和账户门户的每个页面都显示聊天提供商 Crisp 的按钮。页面加载完成后，浏览器从 `client.crisp.chat` 加载 Crisp 脚本，Crisp 会设置 [Cookie 和浏览器存储](#cookies)中所述的 Cookie。Crisp 收到 IP 地址、浏览器信息、浏览的页面地址和您撰写的消息，并在您开始对话后保留 IP 地址。我们只向 Crisp 提供页面语言，不提供您的其他信息。Crisp 位于法国。
 
-**结账脚本。**当您将指针移至购买按钮或用 Tab 键聚焦时，浏览器从 jsDelivr（`cdn.jsdelivr.net`）加载 {merchant} 的结账脚本。jsDelivr 会收到 IP 地址和浏览器信息。只有点击后，结账页面才从 {merchant} 打开。
+**结账脚本**。当您将指针移至购买按钮或用 Tab 键聚焦时，浏览器从 jsDelivr（`cdn.jsdelivr.net`）加载 {merchant} 的结账脚本。jsDelivr 会收到 IP 地址和浏览器信息。只有点击后，结账页面才从 {merchant} 打开。
 
-**购买归因。**首次到访网站时，浏览器在本地存储中保存名为 `tablepro:attribution` 的首访记录，期限为 90 天：访问来源（所点击链接中的 `ref` 或 `utm_*` 标签，或来源网站）、进入的页面和时间。开始购买时，该记录随结账请求发送。我们的服务器会丢弃它：不会验证、读取或存储，也不会传给 {merchant}。
+**购买归因**。首次到访网站时，浏览器在本地存储中保存名为 `tablepro:attribution` 的首访记录，期限为 90 天：访问来源（所点击链接中的 `ref` 或 `utm_*` 标签，或来源网站）、进入的页面和时间。开始购买时，该记录随结账请求发送。我们的服务器会丢弃它：不会验证、读取或存储，也不会传给 {merchant}。
 
-**文档。**位于 docs.tablepro.app 的文档由 Mintlify 托管。每打开一页，Mintlify 都会收到您的 IP 地址和浏览器信息；页面从 Google Fonts 加载字体。文档无法读取您在本网站的回答，因此会单独提出 Cookie 问题。在您于文档中选择 **Allow** 之前，它不设置 Cookie，也不保存访客 ID。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie 并统计您对文档的访问，Mintlify 则在本地存储中保存一个随机访客 ID `mintlify_anonymous_id` 用于计数。文档页脚的 **Cookie settings** 可更改您的回答；拒绝后两者都会被删除。合法依据：您的同意。
+**文档**。位于 docs.tablepro.app 的文档由 Mintlify 托管。每打开一页，Mintlify 都会收到您的 IP 地址和浏览器信息；页面从 Google Fonts 加载字体。文档无法读取您在本网站的回答，因此会单独提出 Cookie 问题。在您于文档中选择 **Allow** 之前，它不设置 Cookie，也不保存访客 ID。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie 并统计您对文档的访问，Mintlify 则在本地存储中保存一个随机访客 ID `mintlify_anonymous_id` 用于计数。文档页脚的 **Cookie settings** 可更改您的回答；拒绝后两者都会被删除。合法依据：您的同意。
 
 仅阅读网站不会设置网站自身的 Cookie。订阅邮件、开始结账或验证优惠码会向服务器发送请求，设置两个账户门户 Cookie：`tablepro-session` 和 `XSRF-TOKEN`。网站在浏览器中保存的全部信息列于 [Cookie 和浏览器存储](#cookies)。
 
 ## 购买 {#purchases}
 
-许可证由名义销售商和经销商 {merchant}（Polar Software, Inc.）销售。您依据 {merchant} 的购买者条款和隐私政策购买。{merchant} 负责收款、计算并缴纳销售税或增值税、发送收据和发票，并处理付款问题和争议。它收集姓名、邮箱地址、账单地址和支付信息。我们不会看到完整银行卡信息。
+许可证由 merchant of record 和经销商 {merchant}（Polar Software, Inc.）销售。您依据 {merchant} 的购买者条款和隐私政策购买。{merchant} 负责收款、计算并缴纳销售税或增值税、发送收据和发票，并处理付款问题和争议。它收集姓名、邮箱地址、账单地址和支付信息。我们不会看到完整银行卡信息。
 
 我们从 {merchant} 收到您的邮箱地址、您输入的姓名和账单地址、购买内容、金额、订单及订阅 ID，以及之后的续订、取消和退款等变更。我们向 {merchant} 提供购买页面的语言，以便我们的邮件使用该语言。发票、收据、付款方式和订阅可在 [{merchant} 客户门户]({portal})中管理，使用购买时的邮箱地址登录。退款详情请参阅[退款政策](/zh-Hans/refund-policy)，许可证的使用范围请参阅[服务条款](/zh-Hans/terms)。
 
@@ -171,7 +171,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 我们仅向运营 TablePro 所需的服务共享个人数据：
 
-- **{merchant}**：购买交易的名义销售商。
+- **{merchant}**：购买交易的 merchant of record。
 - **邮件发送服务商**：发送登录链接、我们提供的收据、团队邀请和订阅邮件。
 - **托管服务商及 Cloudflare**：运行网站、账户门户和应用连接的服务器。Cloudflare 也通过 Web Analytics 统计页面浏览量。
 - **Google**：网站、文档和账户门户上的 Google Analytics。
@@ -213,7 +213,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 您可随时撤回同意，并向数据保护机构投诉。行使上述权利，请发送邮件至 [{email}](mailto:{email})。我们会在 30 天内回应。数据删除由人工处理，请告知相关邮箱地址、许可证密钥或设备。{merchant}、Google、Crisp 或 GitHub 持有的数据还适用其自身政策。
 
-**加利福尼亚州居民。**California Consumer Privacy Act 赋予您了解我们收集哪些个人信息、要求删除、拒绝出售，以及不因行使这些权利而受到差别待遇的权利。我们不出售个人信息。
+**加利福尼亚州居民**。California Consumer Privacy Act 赋予您了解我们收集哪些个人信息、要求删除、拒绝出售，以及不因行使这些权利而受到差别待遇的权利。我们不出售个人信息。
 
 ## 儿童 {#children}
 

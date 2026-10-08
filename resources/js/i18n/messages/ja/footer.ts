@@ -17,6 +17,7 @@ export default {
             "changelog": "変更履歴（英語）",
             "blog": "ブログ",
             "faq": "よくある質問",
+            "about": "TablePro について",
             "source": "ソースコード",
             "reportBug": "不具合を報告"
         },
@@ -50,6 +51,6 @@ export default {
         "note": "まず確認リンクをメールでお送りします。<link>プライバシーポリシー</link>"
     },
     "bottom": {
-        "copyright": "© {year} TablePro。ソースコードは AGPLv3 で公開しています。"
+        "copyright": "© {year} TablePro。{city}の {maker} が開発しています。ソースコードは AGPLv3 で公開しています。"
     }
 } satisfies Messages['footer'];

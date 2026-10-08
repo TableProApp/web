@@ -59,7 +59,7 @@
             "paragraphs": [
                 "<dashboard>Server Dashboard</dashboard>는 세션과 느린 쿼리를 나열하고 연결, 캐시 적중률, 데이터베이스 크기, 가동 시간과 활성 쿼리를 지표로 보여 줍니다. Cancel Query는 <code>pg_cancel_backend</code>, Terminate Session은 <code>pg_terminate_backend</code>를 확인 후 보냅니다.",
                 "Redshift에는 Maintenance 메뉴나 Users & Roles가 없습니다. SQL 편집기에서 VACUUM, ANALYZE와 GRANT를 실행하세요.",
-                "<backup>Backup Dump와 Restore Dump</backup>는 Mac의 {dumpTool}과 pg_restore를 실행하며 SSH 터널이 있으면 이를 사용합니다. 먼저 Homebrew의 libpq로 설치하세요."
+                "<backup>Backup Dump와 Restore Dump</backup>는 Mac의 {dumpTool}와 pg_restore를 실행하며 SSH 터널이 있으면 이를 사용합니다. 먼저 Homebrew의 libpq로 설치하세요."
             ]
         },
         {

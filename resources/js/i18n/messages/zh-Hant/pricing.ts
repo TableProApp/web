@@ -26,7 +26,7 @@ export default {
             "includesTitle": "包含",
             "includes": [
                 "連線至任何支援的引擎",
-                "SQL 編輯器與資料表格",
+                "SQL 編輯器與資料格線",
                 "AI 助理與 MCP 伺服器",
                 "Safe Mode",
                 "iPhone 與 iPad App"
@@ -116,7 +116,7 @@ export default {
         "macsTeam": "每席位一台",
         "everythingElse": "App 中的其他所有功能",
         "everythingElseDetail": "所有支援的引擎、SQL 編輯器、AI 助理、MCP 伺服器與 Safe Mode",
-        "iphoneNote": "iPhone 與 iPad App 沒有付費功能，iCloud Sync 在這兩款裝置上免費。若要與 Mac 同步，Mac 需要 Starter 或 Team。"
+        "iphoneNote": "iPhone 與 iPad App 沒有付費功能，iCloud Sync 在此 App 中免費。若要與 Mac 同步，Mac 需要 Starter 或 Team。"
     },
     "discount": {
         "atCheckout": "有折扣碼？請在結帳時輸入。",

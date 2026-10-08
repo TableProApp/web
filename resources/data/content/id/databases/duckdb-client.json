@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "DuckDB untuk {devices}",
+        "title": "Klien DuckDB untuk {devices}",
         "description": "Buka database DuckDB, kueri Parquet, CSV, dan JSON di lokasi asal, gunakan memori, serta cadangkan ke DuckDB atau Parquet tanpa memasang alat."
     },
     "og": {
@@ -11,7 +11,7 @@
     "breadcrumb": "DuckDB",
     "header": {
         "title": "Klien DuckDB untuk {devices}",
-        "lead": "Buka berkas database DuckDB, atau pilih berkas Parquet, CSV, atau JSON dan kueri langsung dengan SQL di lokasi asal. DuckDB berjalan di dalam driver, sehingga tidak ada server yang berjalan kecuali Anda terhubung ke server."
+        "lead": "Buka file database DuckDB, atau pilih file Parquet, CSV, atau JSON dan kueri langsung dengan SQL di lokasi asal. DuckDB berjalan di dalam driver, sehingga tidak ada server yang berjalan kecuali Anda terhubung ke server."
     },
     "asset": "mac-db-duckdb-parquet",
     "links": {
@@ -28,11 +28,11 @@
     "sections": [
         {
             "id": "connect",
-            "title": "Buka berkas",
+            "title": "Buka file",
             "paragraphs": [
-                "Pilih berkas <code>.duckdb</code> atau <code>.ddb</code>, atau ketik jalur yang belum ada untuk membuatnya. Ketik <code>:memory:</code> untuk database yang bertahan selama sesi. Database dibuka sebagai DuckDB apa pun nama berkasnya karena DuckDB menandai berkasnya pada byte awal.",
-                "Pilih berkas <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code>, atau <code>.ndjson</code>, dan berkas dibuka sebagai view hanya baca dalam database di memori, satu bernama <code>file</code> dan satu sesuai nama berkas. Berkas pada disk tetap identik byte demi byte; untuk mengubah isinya, buat tabel darinya dalam database <code>.duckdb</code>.",
-                "Klik dua kali berkas <code>.duckdb</code> di Finder untuk membukanya di sini. Berkas Parquet menampilkan TablePro pada Buka Dengan, dan berkas Parquet yang dipilih melalui <ui>File > Open File</ui> dibuka sebagai koneksi DuckDB, bukan di <dataFiles>jendela Data Files</dataFiles>.",
+                "Pilih file <code>.duckdb</code> atau <code>.ddb</code>, atau ketik jalur yang belum ada untuk membuatnya. Ketik <code>:memory:</code> untuk database yang bertahan selama sesi. Database dibuka sebagai DuckDB apa pun nama file-nya karena DuckDB menandai file-nya pada byte awal.",
+                "Pilih file <code>.parquet</code>, <code>.csv</code>, <code>.tsv</code>, <code>.json</code>, atau <code>.ndjson</code>, dan file dibuka sebagai view hanya baca dalam database di memori, satu bernama <code>file</code> dan satu sesuai nama file. File pada disk tetap identik byte demi byte; untuk mengubah isinya, buat tabel darinya dalam database <code>.duckdb</code>.",
+                "Klik dua kali file <code>.duckdb</code> di Finder untuk membukanya di sini. File Parquet menampilkan TablePro pada Buka Dengan, dan file Parquet yang dipilih melalui <ui>File > Open File</ui> dibuka sebagai koneksi DuckDB, bukan di <dataFiles>jendela Data Files</dataFiles>.",
                 "<ui>Remote (Quack, experimental)</ui> terhubung ke server DuckDB yang dimulai menggunakan <code>quack_serve</code> dan melampirkannya dengan alias seperti <code>remotedb</code>; akses tabelnya berdasarkan nama melalui alias tersebut. Koneksi jarak jauh pertama mengunduh ekstensi <code>quack</code> dari DuckDB."
             ]
         },
@@ -40,38 +40,38 @@
             "id": "work",
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
-                "Setiap koneksi dapat membaca berkas langsung dari SQL, seperti <code>SELECT * FROM 'data.csv'</code> atau <code>read_parquet('events.parquet')</code>. Gunakan <code>ATTACH</code> pada berkas DuckDB lain untuk menambahkannya ke bilah samping sebagai database kedua, dan <code>⌘K</code> berpindah di antaranya tanpa menghubungkan ulang. DuckDB tidak mempertahankan lampiran setelah koneksi dibuka ulang.",
-                "<explain>EXPLAIN</explain> digambar sebagai diagram rencana. Baris tabel dapat diedit dengan <editing>Preview SQL</editing> yang menampilkan setiap pernyataan terlebih dahulu, sedangkan view atas berkas data tetap hanya baca."
+                "Setiap koneksi dapat membaca file langsung dari SQL, seperti <code>SELECT * FROM 'data.csv'</code> atau <code>read_parquet('events.parquet')</code>. Gunakan <code>ATTACH</code> pada file DuckDB lain untuk menambahkannya ke sidebar sebagai database kedua, dan <code>⌘K</code> berpindah di antaranya tanpa menghubungkan ulang. DuckDB tidak mempertahankan lampiran setelah koneksi dibuka ulang.",
+                "<explain>EXPLAIN</explain> digambar sebagai diagram rencana. Baris tabel dapat diedit dengan <editing>Preview SQL</editing> yang menampilkan setiap pernyataan terlebih dahulu, sedangkan view atas file data tetap hanya baca."
             ]
         },
         {
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "<structure>Tab Structure</structure> mengedit tabel dan menampilkan DDL sebelum dijalankan. Database di sini berupa berkas, sehingga tidak dapat dibuat atau dihapus dari aplikasi; <code>ATTACH</code> digunakan untuk mengakses berkas kedua."
+                "<structure>Tab Structure</structure> mengedit tabel dan menampilkan DDL sebelum dijalankan. Database di sini berupa file, sehingga tidak dapat dibuat atau dihapus dari aplikasi; <code>ATTACH</code> digunakan untuk mengakses file kedua."
             ]
         },
         {
             "id": "operate",
-            "title": "Bagikan berkas dan cadangkan",
+            "title": "Bagikan file dan cadangkan",
             "paragraphs": [
-                "Selama TablePro memegang berkas, CLI <code>duckdb</code>, notebook, atau proses dbt tidak dapat membukanya. Atur <ui>Release the File Lock After</ui> agar berkas dilepas setelah beberapa menit tidak aktif dan diambil kembali pada kueri berikutnya, atau <ui>Open the File Read-Only</ui> agar beberapa pembaca dapat mengaksesnya. <ui>Database > Release File Lock</ui> langsung melepaskannya sambil mempertahankan tab. Pelepasan ditolak dengan alasannya selama sesi memiliki transaksi terbuka, tabel sementara, database terlampir, atau pengaturan yang diubah.",
+                "Selama TablePro memegang file, CLI <code>duckdb</code>, notebook, atau proses dbt tidak dapat membukanya. Atur <ui>Release the File Lock After</ui> agar file dilepas setelah beberapa menit tidak aktif dan diambil kembali pada kueri berikutnya, atau <ui>Open the File Read-Only</ui> agar beberapa pembaca dapat mengaksesnya. <ui>Database > Release File Lock</ui> langsung melepaskannya sambil mempertahankan tab. Pelepasan ditolak dengan alasannya selama sesi memiliki transaksi terbuka, tabel sementara, database terlampir, atau pengaturan yang diubah.",
                 "<dashboard>Server Dashboard</dashboard> menampilkan ukuran database, ukuran blok, total blok, batas memori, dan thread.",
-                "<backup>Backup Dump</backup> tidak memerlukan pemasangan karena {dumpTool} menulis melalui koneksi terbuka. Pilih berkas <code>.duckdb</code> untuk dipulihkan di TablePro nanti, atau folder berisi <code>schema.sql</code>, <code>load.sql</code>, dan satu berkas Parquet per tabel yang dapat dibaca langsung oleh pandas, Spark, dan BigQuery. Restore Dump berhenti pada objek pertama yang namanya sudah digunakan."
+                "<backup>Backup Dump</backup> tidak memerlukan pemasangan karena {dumpTool} menulis melalui koneksi terbuka. Pilih file <code>.duckdb</code> untuk dipulihkan di TablePro nanti, atau folder berisi <code>schema.sql</code>, <code>load.sql</code>, dan satu file Parquet per tabel yang dapat dibaca langsung oleh pandas, Spark, dan BigQuery. Restore Dump berhenti pada objek pertama yang namanya sudah digunakan."
             ]
         },
         {
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Import</importData> menerima berkas {importFormats}, dan ekspor menulis tabel serta hasil sebagai {exportFormats}. <export>Plugin ekspor Parquet</export>, dipasang dari Settings > Plugins, menambahkan keluaran Parquet, satu berkas per tabel. Selengkapnya tentang <files>menggunakan berkas sebagai database</files>."
+                "<importData>Import</importData> menerima file {importFormats}, dan ekspor menulis tabel serta hasil sebagai {exportFormats}. <export>Plugin ekspor Parquet</export>, dipasang dari Settings > Plugins, menambahkan keluaran Parquet, satu file per tabel. Selengkapnya tentang <files>menggunakan file sebagai database</files>."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone dan iPad",
             "paragraphs": [
-                "Di iPhone dan iPad, DuckDB disertakan dalam aplikasi. Berkas yang dipilih di aplikasi File dibuka di lokasi aslinya, bukan sebagai salinan, atau pilih In-Memory untuk database sementara. Anda dapat menelusuri tabel sebagai kartu dan menjalankan SQL di tab Query. Koneksi Remote (Quack) hanya tersedia di Mac."
+                "Di iPhone dan iPad, DuckDB disertakan dalam aplikasi. File yang dipilih di aplikasi File dibuka di lokasi aslinya, bukan sebagai salinan, atau pilih In-Memory untuk database sementara. Anda dapat menelusuri tabel sebagai kartu dan menjalankan SQL di tab Query. Koneksi Remote (Quack) hanya tersedia di Mac."
             ],
             "asset": "ios-table-browse"
         }
@@ -87,16 +87,16 @@
         {
             "id": "csv-or-data-files",
             "question": "Sebaiknya saya membuka CSV di DuckDB atau jendela Data Files?",
-            "answer": "Buka di <dataFiles>jendela Data Files</dataFiles> untuk menelusuri, membersihkan, dan menyimpannya kembali. Buka sebagai DuckDB untuk menggabungkannya dengan berkas atau tabel lain melalui SQL; berkas tetap hanya baca di sana."
+            "answer": "Buka di <dataFiles>jendela Data Files</dataFiles> untuk menelusuri, membersihkan, dan menyimpannya kembali. Buka sebagai DuckDB untuk menggabungkannya dengan file atau tabel lain melalui SQL; file tetap hanya baca di sana."
         }
     ],
     "related": [
         {
-            "label": "Impor, ekspor, dan berkas data",
+            "label": "Impor, ekspor, dan file data",
             "href": "/features/import-export#files"
         },
         {
-            "label": "SQLite, untuk berkas database aplikasi",
+            "label": "SQLite, untuk file database aplikasi",
             "href": "/sqlite-client"
         },
         {

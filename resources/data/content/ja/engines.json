@@ -118,7 +118,7 @@
     "clickhouse": {
         "tagline": "HTTP・HTTPS で ClickHouse に接続し、EXPLAIN 各種、ミューテーション、Parts タブに対応。",
         "limits": {
-            "http-only": "ClickHouse の HTTP インターフェースで接続します。ネイティブ TCP プロトコルは使いません。",
+            "http-only": "ClickHouse の HTTP インターフェイスで接続します。ネイティブ TCP プロトコルは使いません。",
             "tls-off-by-default": "TLS は初期設定ではオフです。HTTPS を使うには接続フォームで SSL モードを選んでください。",
             "no-foreign-keys-or-transactions": "外部キーとトランザクションはありません。",
             "set-does-not-persist": "SET 文の設定は次のクエリに引き継がれません。"

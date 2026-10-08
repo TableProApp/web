@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Oracle Database untuk {devices}",
+        "title": "Klien Oracle Database untuk {devices}",
         "description": "Hubungkan Oracle tanpa Instant Client, jalankan PL/SQL dan skrip SQL*Plus, baca DBMS_OUTPUT, serta mulai ekspor Data Pump pada server."
     },
     "og": {
@@ -31,7 +31,7 @@
             "paragraphs": [
                 "Masukkan host, port listener, dan Service Name, atau ubah <ui>Connection Type</ui> ke SID untuk instance tanpa layanan. Masuk dengan nama pengguna dan kata sandi sebagai Normal atau dengan peran SYSDBA maupun SYSOPER.",
                 "Native Network Encryption tidak memerlukan konfigurasi: saat server memintanya, AES dengan checksum SHA-2 ditawarkan, dan pengaturan <ui>Network Encryption</ui> mengubah tawaran TablePro. Untuk TLS, pilih Required untuk TCPS, atau Verify CA maupun Verify Identity dengan sertifikat CA. Koneksi baru menggunakan SSL nonaktif, dan Preferred tetap menggunakan TCP tanpa enkripsi.",
-                "Pada Oracle Autonomous Database, salin host, port, dan nama layanan dari string koneksi TLS, bukan mTLS, lalu atur SSL ke Required atau Verify CA. Berkas wallet tidak pernah dibaca, sehingga database harus menerima TLS tanpa TLS timbal balik.",
+                "Pada Oracle Autonomous Database, salin host, port, dan nama layanan dari string koneksi TLS, bukan mTLS, lalu atur SSL ke Required atau Verify CA. File wallet tidak pernah dibaca, sehingga database harus menerima TLS tanpa TLS timbal balik.",
                 "Listener RAC SCAN, server bersama, atau load balancer di depan database tidak memerlukan konfigurasi, dan <network>tunnel SSH</network> mengakses listener pada jaringan pribadi."
             ]
         },
@@ -65,7 +65,7 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Impor</importData> berkas {importFormats}; saat berkas data membuat tabel baru, nama yang diusulkan menggunakan huruf besar dan sesuai batas panjang Oracle. Ekspor tabel atau hasil sebagai {exportFormats}. Ekspor SQL menambahkan baris <code>/</code> setelah setiap routine dan trigger agar SQL*Plus dapat memulihkannya."
+                "<importData>Impor</importData> file {importFormats}; saat file data membuat tabel baru, nama yang diusulkan menggunakan huruf besar dan sesuai batas panjang Oracle. Ekspor tabel atau hasil sebagai {exportFormats}. Ekspor SQL menambahkan baris <code>/</code> setelah setiap routine dan trigger agar SQL*Plus dapat memulihkannya."
             ]
         },
         {

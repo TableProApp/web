@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "スキーマ編集、ER 図とデータベース比較",
-        "description": "DDL のプレビューを見ながらテーブル構造を変更し、ER 図でスキーマを確認。二つのデータベースから同期スクリプトを作成し、別のエンジンへテーブルをコピーできます。"
+        "description": "DDL のプレビューを見ながらテーブル構造を変更し、ER 図でスキーマを確認。二つのデータベースを比較して同期スクリプトを作成し、別のエンジンへテーブルをコピーできます。"
     },
     "og": {
         "kicker": "スキーマ",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "スキーマ、比較と同期",
-        "lead": "データベースの構造を変更し、二つのデータベースを揃えるための機能です。DDL を確認しながらテーブルを編集し、テーブル間の関係を見て、ステージングを開発環境に合わせ、別のサーバーやエンジンへテーブルをコピーできます。ここで紹介するのは Mac アプリの機能です。iPhone と iPad アプリではその一部を使えます。",
+        "lead": "データベースの構造を変更し、二つのデータベースを揃えるための機能です。DDL を確認しながらテーブルを編集し、テーブル間の関係を見て、ステージングを開発環境に合わせ、別のサーバーやエンジンへテーブルをコピーできます。ここで紹介するのは Mac アプリの機能です。iPhone・iPad アプリではその一部を使えます。",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "構造を変更する前に DDL を確認",
             "paragraphs": [
-                "Structure タブではテーブルのカラム、インデックス、外部キーと CHECK 制約をグリッドで編集します。変更は保存まで保留され、<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）で実行前に ALTER TABLE 文を確認できます。削除、型の変更、NOT NULL の追加や主キーの変更は、接続の Safe Mode が {macSafeModeDefault} でも事前確認を求めます。",
+                "Structure タブではテーブルのカラム、インデックス、外部キーと CHECK 制約をグリッドで編集します。変更は保存まで保留され、<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）で実行前に ALTER TABLE 文を確認できます。削除、型の変更、NOT NULL の追加や主キーの変更は、接続の Safe Mode レベルが {macSafeModeDefault} でも事前確認を求めます。",
                 "インデックスには <code>lower(email)</code> などの式をキーとして使えます。New Table も同じ方式でテーブルを作成し、SQL プレビューを随時表示します。外部キーをその場で変更できない SQLite、libSQL、Turso、Cloudflare D1 では、TablePro が確認用のテーブル再構築スクリプトを生成します。SQLite とローカル libSQL ファイルでは確認後に実行し、Turso、リモート libSQL、D1 では実行をユーザーに任せます。"
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "テーブル間の関係を確認する",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> は現在のスキーマのテーブルと外部キーを描き、主キーと一意キーからカラスの足記法の多重度を算出します。<code>product_tags</code> などの中間テーブルは一つの多対多の線にまとめます。図を PNG としてエクスポートしたり画像としてコピーしたり、外部キーを含む CREATE TABLE 文の SQL としてエクスポートできます。",
+                "<ui>View ER Diagram</ui> は現在のスキーマのテーブルと外部キーを描き、主キーと一意キーから鳥の足記法のカーディナリティを割り出します。<code>product_tags</code> などの中間テーブルは一つの多対多の線にまとめます。図を PNG としてエクスポートしたり画像としてコピーしたり、外部キーを含む CREATE TABLE 文の SQL としてエクスポートできます。",
                 "図は確認して共有するためのスナップショットです。テーブルを変更する場所はキャンバスではなく Structure タブです。"
             ],
             "asset": "mac-er-diagram"
@@ -120,7 +120,7 @@
             "id": "iphone",
             "title": "iPhone と iPad では",
             "paragraphs": [
-                "iPhone と iPad アプリは、テーブルのカラム、インデックスと外部キーを読み取り専用で表示します。接続が Read-Only でなければ、SQL エンジンのテーブル一覧からテーブルを空にしたり削除したりできます。",
+                "iPhone・iPad アプリは、テーブルのカラム、インデックスと外部キーを読み取り専用で表示します。接続が Read-Only でなければ、SQL エンジンのテーブル一覧からテーブルを空にしたり削除したりできます。",
                 "構造編集、ER 図、Compare & Sync、Copy To、Users & Roles と Server Dashboard は Mac アプリ専用です。"
             ],
             "links": [

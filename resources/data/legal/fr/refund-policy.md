@@ -4,13 +4,13 @@ description: Toute offre TablePro est remboursable dans les {refundDays} jours s
 updatedAt: "2026-10-02"
 ---
 
-Toutes les offres payantes peuvent être remboursées sous {refundDays} jours : Starter et Team, mensuelles, annuelles et à paiement unique. Les {refundDays} jours commencent à la date d’achat ou, pour un abonnement annuel, à la date de son dernier renouvellement. Les offres figurent sur la [page des tarifs](/fr/pricing#refunds).
+Toutes les offres payantes peuvent être remboursées sous {refundDays} jours : Starter et Team, mensuelles, annuelles et à paiement unique. Les {refundDays} jours commencent à la date d’achat ou, pour un abonnement annuel, à la date de son dernier renouvellement. Les offres figurent sur la [page des tarifs](/fr/pricing#refunds).
 
 ## Demander un remboursement {#request}
 
 Écrivez à [{email}](mailto:{email}) depuis l’adresse utilisée pour l’achat, ou indiquez votre clé de licence, et précisez l’achat à rembourser. Les remboursements admissibles sont traités sous 5 jours ouvrés et reversés sur le moyen de paiement d’origine.
 
-Les licences sont vendues par {merchant}, notre vendeur officiel ; le remboursement est donc effectué par {merchant}. {merchant} peut aussi accorder des remboursements selon ses propres conditions d’achat.
+Les licences sont vendues par {merchant}, notre merchant of record ; le remboursement est donc effectué par {merchant}. {merchant} peut aussi accorder des remboursements selon ses propres conditions d’achat.
 
 ## Conséquences pour la licence {#license}
 
@@ -18,7 +18,7 @@ Après un remboursement, la clé de licence est suspendue. Chaque Mac cesse d’
 
 ## Abonnements {#subscriptions}
 
-Un remboursement couvre le paiement concerné par votre demande. Pour arrêter le renouvellement d’une offre mensuelle ou annuelle, résiliez-la dans [votre compte](/account?locale=fr) ou le [portail client de {merchant}]({portal}) ; une offre résiliée n’est plus facturée.
+Un remboursement couvre le paiement concerné par votre demande. Pour arrêter le renouvellement d’une offre mensuelle ou annuelle, résiliez-la dans [votre compte](/account?locale=fr) ou le [portail client de {merchant}]({portal}) ; une offre résiliée n’est plus facturée.
 
 Après les {refundDays} jours, la résiliation arrête le prochain renouvellement et la licence reste active jusqu’à la fin de la période payée. Le temps déjà payé n’est pas remboursé.
 

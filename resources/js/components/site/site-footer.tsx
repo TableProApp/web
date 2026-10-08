@@ -11,6 +11,7 @@ import { useEmailForm } from '@/hooks/use-email-form';
 import { joinList } from '@/i18n/format';
 import { Trans, useI18n } from '@/i18n';
 import { trackEvent } from '@/lib/analytics';
+import { publisherValues } from '@/lib/data/facts';
 import { openConsentSettings } from '@/lib/consent';
 import { cn } from '@/lib/utils';
 import ChatButton, { useChatAvailable } from './chat-button';
@@ -239,6 +240,11 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                             </LocaleLink>
                         </li>
                         <li>
+                            <LocaleLink href="/about" className={LINK}>
+                                {groups.resources.about}
+                            </LocaleLink>
+                        </li>
+                        <li>
                             <External href={EXTERNAL.github}>{groups.resources.source}</External>
                         </li>
                         <li>
@@ -318,6 +324,7 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                 <FooterBar
                     copyright={fmt(m.footer.bottom.copyright, {
                         year: new Date().getFullYear(),
+                        ...publisherValues(locale),
                     })}
                     language={<LanguageSwitcher variant="footer" />}
                     themeLabels={m.controls.theme}

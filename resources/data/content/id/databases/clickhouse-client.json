@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "ClickHouse untuk {devices}",
+        "title": "Klien ClickHouse untuk {devices}",
         "description": "Kueri ClickHouse via HTTP atau HTTPS, baca rencana EXPLAIN, pipeline, dan estimasi, kelola part serta partisi MergeTree, dan pantau mutasi."
     },
     "og": {
@@ -29,7 +29,7 @@
             "title": "Hubungkan",
             "paragraphs": [
                 "Masukkan host dan port HTTP, pengguna, dan jika diinginkan, database. Perpindahan database berlangsung pada koneksi yang sama, dan tab terbuka tetap pada database awalnya. <ui>View > Sidebar as Tree</ui> menampilkan database server sebagai pohon yang dapat diperluas di tempat.",
-                "Pilih mode SSL apa pun untuk beralih ke HTTPS. Port 443 atau 8443, yang digunakan ClickHouse Cloud, mengaktifkan Verify Identity untuk memeriksa sertifikat terhadap berkas CA atau penyimpanan kepercayaan sistem. Verify CA memerlukan berkas CA, dan sertifikat serta kunci klien mengakses server yang mewajibkan TLS timbal balik.",
+                "Pilih mode SSL apa pun untuk beralih ke HTTPS. Port 443 atau 8443, yang digunakan ClickHouse Cloud, mengaktifkan Verify Identity untuk memeriksa sertifikat terhadap file CA atau penyimpanan kepercayaan sistem. Verify CA memerlukan file CA, dan sertifikat serta kunci klien mengakses server yang mewajibkan TLS timbal balik.",
                 "Tanpa TLS, akses server jarak jauh melalui <network>tunnel SSH</network> alih-alih mengirim HTTP tanpa enkripsi melalui jaringan."
             ]
         },
@@ -63,7 +63,7 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "Muat berkas {importFormats} menggunakan <importData>Import</importData>, lalu ekspor tabel atau hasil kueri sebagai {exportFormats}. Kolom dengan satu nilai saja yang bukan UTF-8 valid ditampilkan sebagai heksadesimal pada grid; pilih <code>toValidUTF8(column)</code> untuk membacanya sebagai teks."
+                "Muat file {importFormats} menggunakan <importData>Import</importData>, lalu ekspor tabel atau hasil kueri sebagai {exportFormats}. Kolom dengan satu nilai saja yang bukan UTF-8 valid ditampilkan sebagai heksadesimal pada grid; pilih <code>toValidUTF8(column)</code> untuk membacanya sebagai teks."
             ]
         }
     ],
@@ -91,11 +91,11 @@
             "href": "/features/schema"
         },
         {
-            "label": "Impor, ekspor, dan berkas data",
+            "label": "Impor, ekspor, dan file data",
             "href": "/features/import-export"
         },
         {
-            "label": "DuckDB, untuk berkas analitik",
+            "label": "DuckDB, untuk file analitik",
             "href": "/duckdb-client"
         }
     ]

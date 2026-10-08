@@ -14,6 +14,7 @@ import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
 import { joinList, keepTogether } from '@/i18n/format';
+import { PUBLISHER } from '@/lib/data/facts';
 import type { Requirements } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
 import { absoluteUrl, graph, iosAppId, iosAppNode, organizationNode, webPageNode } from '@/lib/structured-data';
@@ -123,7 +124,7 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
     const context = { baseUrl: canonicalBaseUrl, inLanguage: LOCALES.supported[locale].hreflang };
 
     const jsonLd = graph([
-        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles }),
+        organizationNode(canonicalBaseUrl, { description: m.seo.product.short, sameAs: organizationProfiles, publisher: PUBLISHER }),
         webPageNode(context, {
             url: pageUrl,
             name: content.seo.title,

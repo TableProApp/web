@@ -43,7 +43,7 @@
     "redis": {
         "tagline": "Redis 指令、依冒號分層的鍵樹、TTL，以及 Sentinel 或 Cluster 連線。",
         "limits": {
-            "string-values-only": "表格中僅可編輯字串值。清單、集合、雜湊、有序集合和串流請用指令修改。",
+            "string-values-only": "格線中僅可編輯字串值。清單、集合、雜湊、有序集合和串流請用指令修改。",
             "no-pubsub": "沒有 pub/sub 檢視。PUBLISH 可作為指令執行，不進行訂閱。",
             "key-tree-cap": "側邊欄鍵樹最多載入 {value} 個鍵。",
             "filter-match-cap": "鍵篩選在找到 {value} 個符合項目後停止。",
@@ -135,7 +135,7 @@
     "cassandra": {
         "tagline": "支援接入節點、TLS 和 Amazon Keyspaces SigV4 登入的 CQL。",
         "limits": {
-            "scalar-edits-only": "表格中僅可編輯純量欄位。集合、Tuple、使用者定義型別和期間型別需在編輯器中使用 UPDATE。",
+            "scalar-edits-only": "格線中僅可編輯純量欄位。集合、Tuple、使用者定義型別和期間型別需在編輯器中使用 UPDATE。",
             "no-consistency-level": "沒有一致性等級設定。陳述式使用驅動程式預設值 LOCAL_ONE 執行。",
             "no-astra-bundle": "無法載入安全連線套件，因此無法連線至 DataStax Astra DB。",
             "no-views-or-types-in-sidebar": "側邊欄不列出具體化檢視和使用者定義型別。"

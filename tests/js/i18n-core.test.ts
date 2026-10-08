@@ -79,9 +79,18 @@ test('formatUsd writes the published prices without Intl', () => {
     assert.equal(formatUsd(24, en), '$24');
     assert.equal(formatUsd(1.25, en), '$1.25');
     assert.equal(formatUsd(1499, en), '$1,499');
-    assert.equal(formatUsd(2.99, vi), '2,99 US$');
-    assert.equal(formatUsd(59, vi), '59 US$');
-    assert.equal(formatUsd(1999.5, vi), '1.999,50 US$');
+    assert.equal(formatUsd(2.99, vi), '2,99\u00a0US$');
+    assert.equal(formatUsd(59, vi), '59\u00a0US$');
+    assert.equal(formatUsd(1999.5, vi), '1.999,50\u00a0US$');
+});
+
+test('formatUsd keeps the amount and the currency on one line in every pattern', () => {
+    for (const pattern of ['{amount} US$', 'US$ {amount}', '{amount} $US', '{amount} USD']) {
+        const price = formatUsd(2.99, { pattern, decimal: ',', group: '.' });
+
+        assert.ok(!price.includes(' '), price);
+        assert.ok(price.includes('\u00a0'), price);
+    }
 });
 
 test('formatNumber groups thousands and keeps the requested decimals', () => {

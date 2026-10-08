@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro para iPhone y iPad",
-        "description": "Cliente gratuito para iPhone y iPad: MySQL, PostgreSQL, SQL Server, Oracle y más por SSH o TLS. Explora, edita y consulta tablas."
+        "description": "Cliente de bases de datos gratuito para iPhone y iPad: MySQL, PostgreSQL, SQL Server, Oracle y más por SSH o TLS. Explora, edita y consulta tablas."
     },
     "og": {
         "kicker": "iPhone y iPad",
@@ -9,7 +9,7 @@
     },
     "hero": {
         "title": "TablePro para iPhone y iPad",
-        "lead": "Conecta a tus bases de datos, explora y edita filas y ejecuta consultas desde tu teléfono o tableta, con túneles SSH, Safe Mode y Face ID. Es una app independiente creada para iPhone y iPad, no una copia de la app para Mac.",
+        "lead": "Conéctate a tus bases de datos, explora y edita filas y ejecuta consultas desde tu teléfono o tableta, con túneles SSH, Safe Mode y Face ID. Es una app independiente creada para iPhone y iPad, no una copia de la app para Mac.",
         "noSignUp": "Sin registro ni licencia",
         "mac": "¿Buscas la app para Mac? <download>Descarga TablePro para Mac</download>."
     },
@@ -19,7 +19,7 @@
         "syncedOnly": "Las conexiones de {engines} se abren cuando vienen de tu Mac, mediante iCloud Sync o un archivo .tablepro. No puedes crearlas en esta app.",
         "others": "Las conexiones a otras bases de datos también se sincronizan desde el Mac y aparecen en tu lista, pero esta app no tiene sus controladores, así que no se abren aquí. La <databases>página de bases de datos</databases> enumera todos los motores compatibles con la app para Mac.",
         "files": "SQLite: elige un archivo de base de datos y la app lo copia a su propio almacenamiento, por lo que tus ediciones modifican la copia. También puedes crear una base de datos nueva. DuckDB abre los archivos donde están o se ejecuta en memoria.",
-        "redis": "Redis: ejecuta comandos en la pestaña Consulta. La app para iPhone y iPad no permite explorar las claves de Redis.",
+        "redis": "Redis: ejecuta comandos en la pestaña Query. La app para iPhone y iPad no permite explorar las claves de Redis.",
         "sample": "Para explorar primero, abre Chinook, la base de datos de ejemplo incluida con la app."
     },
     "browse": {
@@ -39,32 +39,32 @@
         ]
     },
     "security": {
-        "title": "Conecta de forma segura",
+        "title": "Conéctate de forma segura",
         "paragraphs": [
             "Los túneles SSH inician sesión con contraseña o clave privada, desde un archivo o pegada, con frase de contraseña opcional. Al acceder por primera vez a un servidor, la app muestra la huella de su clave de host y te pide que confíes en ella.",
             "TLS se configura por conexión. Las conexiones MySQL, MariaDB, TiDB, OceanBase y PostgreSQL pueden verificar el certificado y el nombre de host del servidor y presentar un certificado de cliente desde un archivo, texto pegado o un paquete PKCS#12. Las conexiones Redis también pueden verificar el certificado y presentar un certificado de cliente. SQL Server puede cifrar la conexión (Required), pero no verifica el certificado. Los certificados permanecen en este dispositivo y nunca se sincronizan.",
-            "Las contraseñas y claves pegadas se almacenan en el Llavero. Una conexión SQL Server con Microsoft Entra ID puede iniciar sesión aquí después de sincronizarse desde tu Mac; la autenticación Windows no es compatible. Para acceder a un servidor por su nombre .local en tu red, permite el acceso a la red local cuando iOS lo solicite."
+            "Las contraseñas y claves pegadas se almacenan en el Llavero. Una conexión SQL Server con Microsoft Entra ID puede iniciar sesión aquí después de sincronizarse desde tu Mac; la autenticación de Windows no está disponible. Para acceder a un servidor por su nombre .local en tu red, permite el acceso a la red local cuando iOS lo solicite."
         ]
     },
     "safeMode": {
         "title": "Safe Mode y bloqueo de la app",
         "paragraphs": [
             "Cada conexión tiene un nivel de Safe Mode: {levels}. Confirm Writes pregunta antes de ejecutar una sentencia que cambie datos. Read-Only la rechaza antes de que llegue al servidor. Toda sentencia que la app no pueda identificar como lectura cuenta como escritura.",
-            "Configura el nivel de una conexión en su sección Organización y el nivel inicial de las conexiones nuevas en Ajustes. Los Atajos que añaden filas respetan el mismo nivel.",
+            "Configura el nivel de una conexión en su sección Organization y el nivel inicial de las conexiones nuevas en los ajustes de la app. Los Atajos que añaden filas respetan el mismo nivel.",
             "En <ui>Settings > Security</ui>, bloquea la app con Face ID o Touch ID y tu código como alternativa. Una vez activado, la app pide autenticación cada vez que se inicia y tras el tiempo de Auto-Lock que elijas."
         ]
     },
     "ipad": {
         "title": "En iPad",
         "paragraphs": [
-            "Una app para iPhone y iPad. En iPad funciona en cualquier orientación y en varias ventanas a la vez con Stage Manager o Split View, y su barra de pestañas puede convertirse en barra lateral.",
-            "Con teclado, ⌘1 a ⌘4 cambian entre Tablas, Consulta, Historial e Información; ⌘F busca, ⌘↩ ejecuta la consulta y ⌘N añade una conexión. También funciona con trackpad o ratón."
+            "Una sola app para iPhone y iPad. En iPad funciona en cualquier orientación y en varias ventanas a la vez con Organizador Visual o Split View, y su barra de pestañas puede convertirse en barra lateral.",
+            "Con teclado, ⌘1 a ⌘4 cambian entre Tables, Query, History e Info; ⌘F busca, ⌘↩ ejecuta la consulta y ⌘N añade una conexión. También funciona con trackpad o ratón."
         ]
     },
     "mac": {
         "title": "Con tu Mac",
         "paragraphs": [
-            "Activa iCloud Sync durante la configuración o después en Ajustes, y tus conexiones, grupos y etiquetas se sincronizan entre iPhone, iPad y Mac mediante tu propia cuenta iCloud. Las contraseñas solo se sincronizan si también activas Sync Passwords. Las consultas guardadas, los perfiles SSH y los ajustes solo se sincronizan entre Mac.",
+            "Activa iCloud Sync durante la configuración o después en los ajustes de la app, y tus conexiones, grupos y etiquetas se sincronizan entre iPhone, iPad y Mac mediante tu propia cuenta de iCloud. Las contraseñas solo se sincronizan si también activas Sync Passwords. Las consultas guardadas, los perfiles SSH y los ajustes solo se sincronizan entre Mac.",
             "iCloud Sync es gratis aquí. En el Mac forma parte de una licencia Starter o Team, por lo que un Mac sin ella no se sincroniza. La <pricing>página de precios</pricing> tiene los detalles.",
             "Sin iCloud, exporta conexiones como archivo .tablepro y ábrelo en otro dispositivo mediante AirDrop o Archivos. Las contraseñas se omiten salvo que las incluyas; entonces una frase de contraseña que elijas cifra el archivo. Ambas opciones son gratis aquí; en el Mac, exportar con contraseñas forma parte de una licencia.",
             "Con iCloud Sync activado, Handoff continúa una conexión o tabla abierta entre tu Mac y tu iPhone o iPad. <sync>Sincronización y equipos</sync> describe ambos con más detalle."
@@ -73,7 +73,7 @@
     "automation": {
         "title": "Atajos, widgets y Spotlight",
         "paragraphs": [
-            "Abrir conexión abre una conexión desde un atajo o Siri. Añadir fila a tabla y Añadir filas a tabla insertan en una tabla sin abrir la app, desde texto JSON o CSV o un archivo. Solo funcionan con el dispositivo desbloqueado, respetan el nivel de Safe Mode de la conexión y no funcionan con Redis.",
+            "Open Connection abre una conexión desde un atajo o desde Siri. Add Row to Table y Add Rows to Table insertan filas en una tabla sin abrir la app, desde texto JSON o CSV o un archivo. Solo funcionan con el dispositivo desbloqueado, respetan el nivel de Safe Mode de la conexión y no funcionan con Redis.",
             "Los widgets Quick Connect ponen tus primeras conexiones en la pantalla de inicio y un toque abre una. Tus conexiones también aparecen en la búsqueda de Spotlight."
         ]
     },
@@ -83,12 +83,12 @@
         "items": [
             "El asistente de IA y el servidor MCP",
             "Consultas guardadas, autocompletado, formato de consultas y EXPLAIN",
-            "Cambios de esquema aparte de truncar o eliminar una tabla y diagramas ER",
+            "Cambios de esquema más allá de truncar o eliminar una tabla, y diagramas ER",
             "Compare & Sync, Query Insights, Result Charts y Data Rewind",
             "Exportación de archivos en formatos como XLSX e importación de archivos a una tabla (Atajos puede añadir filas)",
             "Panel del servidor, usuarios y roles, y copias de seguridad",
             "Plugins de controladores para otras bases de datos",
-            "Hosts de salto SSH, agentes SSH y autenticación Windows para SQL Server",
+            "Hosts de salto SSH, agentes SSH y autenticación de Windows para SQL Server",
             "Exploración de claves Redis"
         ],
         "mac": "<download>Descargar TablePro para Mac</download>"
@@ -106,7 +106,7 @@
         "title": "Privacidad",
         "paragraphs": [
             "No se envía nada a TablePro salvo que actives Share Usage Data durante la configuración o después en <ui>Settings > Privacy</ui>. Si lo haces, la app envía un informe diario con un identificador de dispositivo con hash, las versiones de la app y de iOS, la arquitectura del procesador, el idioma, los tipos de bases de datos usados, el número de conexiones y algunas fechas de primer uso. Nunca nombres de host, nombres de usuario, contraseñas, consultas ni filas.",
-            "La app no realiza comprobaciones de licencia, comprobaciones de actualización ni solicitudes de plugins. Tus consultas van a tus propios servidores, iCloud Sync a tu propia cuenta iCloud y el inicio de sesión Entra a Microsoft. La <privacyIos>política de privacidad</privacyIos> tiene los detalles."
+            "La app no realiza comprobaciones de licencia, comprobaciones de actualización ni solicitudes de plugins. Tus consultas van a tus propios servidores, iCloud Sync a tu propia cuenta de iCloud y el inicio de sesión con Entra a Microsoft. La <privacyIos>política de privacidad</privacyIos> tiene los detalles."
         ]
     },
     "get": {

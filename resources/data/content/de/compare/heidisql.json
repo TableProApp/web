@@ -22,7 +22,7 @@
         "competitor": [
             "Du arbeitest auch auf Windows oder Linux und willst denselben kostenlosen Client.",
             "Du nutzt Firebird, Interbase oder ProxySQL, die TablePro nicht unterstützt.",
-            "Du willst jede Funktion kostenlos, ohne Bezahlpläne.",
+            "Du willst jede Funktion kostenlos, ohne bezahlte Tarife.",
             "Du kennst HeidiSQL von Windows und willst es auf Apple-silicon-Mac."
         ]
     },
@@ -55,7 +55,7 @@
                 "href": null
             },
             {
-                "text": "Es ist kostenlos und Open Source unter GPL, ohne Bezahlpläne.",
+                "text": "Es ist kostenlos und Open Source unter GPL, ohne bezahlte Tarife.",
                 "cite": [
                     "licence",
                     "prices"
@@ -118,7 +118,7 @@
                 "href": null
             },
             {
-                "text": "Manche Funktionen kosten. Starter ergänzt etwa {starterExamples}; HeidiSQL hat keine Bezahlpläne.",
+                "text": "Manche Funktionen kosten. Starter ergänzt etwa {starterExamples}; HeidiSQL hat keine bezahlten Tarife.",
                 "cite": [
                     "prices"
                 ],
@@ -131,7 +131,7 @@
         "intro": "TablePro hat keinen HeidiSQL-Importer. Füge jede Sitzung als Verbindung hinzu: Formular ausfüllen oder mysql://-, postgresql://- oder sqlserver://-URL unter <ui>File > Import > Import from URL…</ui> einfügen.",
         "steps": [],
         "after": [
-            "Richte einen SSH-Tunnel im Tab <ui>Network</ui> ein. Auf Mac werden auch Sprunghosts unterstützt.",
+            "Richte einen SSH-Tunnel im Tab <ui>Network</ui> ein. Auf dem Mac werden auch Jump-Hosts unterstützt.",
             "Passwörter kommen in den macOS-Schlüsselbund.",
             "Der Abfrageverlauf beginnt in TablePro neu."
         ],
@@ -153,7 +153,7 @@
         {
             "id": "free",
             "question": "Ist TablePro kostenlos wie HeidiSQL?",
-            "answer": "Kostenlos nutzbar, aber nicht vollständig kostenlos wie HeidiSQL. Engines, KI und MCP kosten nichts; Code ist Open Source unter AGPLv3. HeidiSQL hat keine Bezahlpläne; Starter oder Team ergänzen optionale Mac-Funktionen wie {starterExamples}. <link>Preise ansehen</link>.",
+            "answer": "Kostenlos nutzbar, aber nicht vollständig kostenlos wie HeidiSQL. Engines, KI und MCP kosten nichts; Code ist Open Source unter AGPLv3. HeidiSQL hat keine bezahlten Tarife; Starter oder Team ergänzen optionale Mac-Funktionen wie {starterExamples}. <link>Preise ansehen</link>.",
             "href": "/pricing"
         },
         {

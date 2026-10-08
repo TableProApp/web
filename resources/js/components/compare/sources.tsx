@@ -1,4 +1,5 @@
-import type { ComparisonSource } from '@/lib/data/comparisons';
+import { useI18n } from '@/i18n';
+import { SOURCE_LANGUAGE, sourceLang, type ComparisonSource } from '@/lib/data/comparisons';
 import { cn } from '@/lib/utils';
 import { dateLabel, sourceAnchor } from './model';
 import type { DateLabels } from './types';
@@ -65,6 +66,8 @@ interface SourceListProps {
  * a marker keeps its number however the page orders its facts.
  */
 export function SourceList({ productId, sources, dates, retrievedTemplate, label, start = 1, className }: SourceListProps) {
+    const { locale } = useI18n();
+
     if (sources.length === 0) {
         return null;
     }
@@ -79,6 +82,8 @@ export function SourceList({ productId, sources, dates, retrievedTemplate, label
                 <li key={source.id} id={sourceAnchor(productId, source.id)} className="scroll-mt-24 pl-1">
                     <a
                         href={source.url}
+                        hrefLang={SOURCE_LANGUAGE}
+                        lang={sourceLang(locale)}
                         rel="noopener"
                         className="rounded-[2px] text-foreground underline decoration-muted-foreground decoration-1 underline-offset-3 transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-accent-text hover:decoration-accent-text"
                     >

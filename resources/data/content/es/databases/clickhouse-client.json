@@ -40,7 +40,7 @@
                 "Cada consulta lleva su propio ID y solicita información de progreso, de modo que una consulta larga informa de las filas leídas. Stop envía <code>KILL QUERY</code> para ese ID, y el tiempo de espera de consulta de la conexión llega al servidor.",
                 "El <explain>menú Explain</explain> ofrece Plan, Pipeline, AST, Syntax y Estimate. La salida con sangría se representa como diagrama o árbol; Estimate muestra las filas, marcas y partes que leería la consulta.",
                 "Las ediciones de la cuadrícula se envían como <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> y <code>ALTER TABLE … DELETE</code>, con <editing>Preview SQL</editing> antes. ClickHouse ejecuta actualizaciones y eliminaciones como mutaciones en segundo plano, por lo que guardar significa que se han aceptado, todavía no aplicado; <code>system.mutations</code> muestra el progreso. Las vistas materializadas se abren en solo lectura.",
-                "Un resultado con tuplas de puntos o anillos de ClickHouse se abre en la <map>vista Mapa</map>. Una consulta con su propia cláusula <code>FORMAT</code> muestra la salida bruta del servidor en una columna; omite la cláusula para obtener una cuadrícula."
+                "Un resultado con tuplas de puntos o anillos de ClickHouse se abre en la <map>vista de mapa</map>. Una consulta con su propia cláusula <code>FORMAT</code> muestra la salida bruta del servidor en una columna; omite la cláusula para obtener una cuadrícula."
             ]
         },
         {

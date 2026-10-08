@@ -21,7 +21,7 @@
         ],
         "competitor": [
             "Você trabalha em Windows ou Linux além do Mac.",
-            "Você precisa de um mecanismo para o qual TablePro não tem driver. DBeaver Community conecta a qualquer mecanismo que tenha um driver JDBC.",
+            "Você precisa de um mecanismo para o qual TablePro não tem driver. DBeaver Community se conecta a qualquer mecanismo que tenha um driver JDBC.",
             "Você precisa de um construtor visual de consultas, diagrama ER editável ou tarefas agendadas. As edições pagas do DBeaver têm esses recursos."
         ]
     },
@@ -54,7 +54,7 @@
                 "href": null
             },
             {
-                "text": "Community conecta a qualquer mecanismo que tenha driver JDBC, inclusive mecanismos para os quais TablePro não tem driver.",
+                "text": "Community se conecta a qualquer mecanismo que tenha driver JDBC, inclusive mecanismos para os quais TablePro não tem driver.",
                 "cite": [
                     "cells.databases"
                 ],
@@ -123,13 +123,13 @@
                 "href": null
             },
             {
-                "text": "TablePro conecta apenas aos mecanismos para os quais tem drivers. Não há conexão JDBC genérica, portanto confira primeiro os <link>bancos suportados</link>.",
+                "text": "TablePro se conecta apenas aos mecanismos para os quais tem drivers. Não há conexão JDBC genérica, portanto confira primeiro os <link>bancos suportados</link>.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
             },
             {
-                "text": "O diagrama ER é um retrato somente leitura, e não há construtor visual de consultas nem agendador de tarefas.",
+                "text": "O diagrama ER é um instantâneo somente leitura, e não há construtor visual de consultas nem agendador de tarefas.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -140,7 +140,7 @@
         "intro": "TablePro lê as conexões no seu workspace do DBeaver, da Community ou de qualquer edição paga. DBeaver não precisa estar aberto, e seus arquivos não são alterados.",
         "steps": [
             "No TablePro, escolha <ui>File > Import > Import from Other App…</ui>",
-            "Selecione DBeaver e ative <ui>Include passwords</ui>. TablePro descriptografa as senhas salvas pelo DBeaver, então não há nada a aprovar no Chaves.",
+            "Selecione DBeaver e ative <ui>Include passwords</ui>. TablePro descriptografa as senhas salvas pelo DBeaver, então não há nada a aprovar nas Chaves.",
             "Revise a lista, decida o que fazer com duplicatas e clique em <ui>Import</ui>. Pastas viram grupos, e configurações de túneis SSH são transferidas. Uma conexão a um banco não suportado pelo TablePro chega desmarcada.",
             "Antes de remover DBeaver, abra uma conexão que tinha senha para verificar se ela foi transferida."
         ],
@@ -165,7 +165,7 @@
         {
             "id": "free",
             "question": "TablePro é gratuito como DBeaver Community?",
-            "answer": "Sim, para todo mecanismo suportado, assistente de IA e servidor MCP: TablePro é gratuito para usar e de código aberto sob a AGPLv3. Enquanto DBeaver vende recursos extras como edições separadas, TablePro os oferece em planos Starter e Team para o app Mac, com recursos como {starterExamples}. <link>Veja os preços</link>.",
+            "answer": "Sim, para todo mecanismo suportado, assistente de IA e servidor MCP: TablePro é de uso gratuito e de código aberto sob a AGPLv3. Enquanto DBeaver vende recursos extras como edições separadas, TablePro os oferece em planos Starter e Team para o app Mac, com recursos como {starterExamples}. <link>Veja os preços</link>.",
             "href": "/pricing"
         },
         {
@@ -177,7 +177,7 @@
     ],
     "notes": {
         "dbeaver-bundled-jdk": "O download inclui seu próprio ambiente de execução Java",
-        "dbeaver-databases": "Community conecta a qualquer mecanismo que tenha driver JDBC, mas não a bancos NoSQL como MongoDB, Redis ou Cassandra. As edições pagas os adicionam.",
+        "dbeaver-databases": "Community se conecta a qualquer mecanismo que tenha driver JDBC, mas não a bancos NoSQL como MongoDB, Redis ou Cassandra. As edições pagas os adicionam.",
         "dbeaver-ai-community-providers": "Em {edition}, chat com IA com OpenAI ou GitHub Copilot. As edições pagas adicionam mais provedores e explicações de consultas e erros.",
         "dbeaver-mcp-server": "As edições Lite, Enterprise e Ultimate têm um servidor MCP local a partir da versão {version}, que estava em acesso antecipado na data da verificação. Community não tem.",
         "dbeaver-git-sync": "Sincronização Git para projetos, em {edition} ou superior",

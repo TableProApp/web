@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Cloudflare D1 untuk {devices}",
+        "title": "Klien Cloudflare D1 untuk {devices}",
         "description": "Hubungkan Cloudflare D1 dengan ID akun dan token API, berpindah antar-database, lalu gunakan dialek SQLite dengan diagram rencana kueri."
     },
     "og": {
@@ -27,7 +27,7 @@
             "id": "connect",
             "title": "Hubungkan dengan token API",
             "paragraphs": [
-                "Koneksi D1 memerlukan tiga nilai: nama atau UUID database, ID akun Cloudflare, dan token API. Token dimasukkan pada bidang <ui>API Token</ui> dan disimpan di <credentials>Keychain macOS</credentials>. Tidak ada host, port, pengaturan SSL, atau tunnel SSH karena setiap permintaan menuju API Cloudflare melalui HTTPS.",
+                "Koneksi D1 memerlukan tiga nilai: nama atau UUID database, ID akun Cloudflare, dan token API. Token dimasukkan pada bidang <ui>API Token</ui> dan disimpan di <credentials>Rantai Kunci macOS</credentials>. Tidak ada host, port, pengaturan SSL, atau tunnel SSH karena setiap permintaan menuju API Cloudflare melalui HTTPS.",
                 "Buat token dari templat Custom token dengan izin <ui>Account > D1 > Edit</ui>, lalu salin saat Cloudflare menampilkannya karena token hanya ditampilkan sekali. Token tersebut dapat mengakses setiap database D1 dalam akun, bukan hanya database yang Anda hubungkan.",
                 "Mengimpor URL <code>d1://account-id/database-name</code> mengisi akun dan database; token tidak pernah disertakan dalam URL, jadi tempel token setelahnya."
             ]
@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "Tabel, indeks, dan trigger",
             "paragraphs": [
-                "<structure>Tab Structure</structure> membuat dan menghapus tabel, menambah dan menghapus kolom, serta membuat dan menghapus indeks, termasuk indeks parsial dengan kondisi WHERE; Preview SQL menampilkan DDL sebelum Anda menyimpan. Tab Triggers membuat, mengedit, dan menghapus trigger, dan tabel dapat diganti namanya dari bilah samping.",
+                "<structure>Tab Structure</structure> membuat dan menghapus tabel, menambah dan menghapus kolom, serta membuat dan menghapus indeks, termasuk indeks parsial dengan kondisi WHERE; Preview SQL menampilkan DDL sebelum Anda menyimpan. Tab Triggers membuat, mengedit, dan menghapus trigger, dan tabel dapat diganti namanya dari sidebar.",
                 "Mengurutkan ulang kolom atau mengubah foreign key berarti membangun ulang tabel. Pada D1, TablePro menulis skrip pembangunan ulang dan menyerahkannya kepada Anda untuk dijalankan karena setiap pernyataan adalah permintaan terpisah dan tidak ada transaksi yang dapat menyatukan pembangunan ulang."
             ]
         },
@@ -53,7 +53,7 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "TablePro tidak menyediakan impor untuk D1. Muat berkas SQL dengan <code>wrangler d1 execute</code> dan opsi <code>--file</code>, lalu telusuri hasilnya di sini. <export>Export</export> menulis tabel D1 atau hasil kueri sebagai {exportFormats}."
+                "TablePro tidak menyediakan impor untuk D1. Muat file SQL dengan <code>wrangler d1 execute</code> dan opsi <code>--file</code>, lalu telusuri hasilnya di sini. <export>Export</export> menulis tabel D1 atau hasil kueri sebagai {exportFormats}."
             ]
         }
     ],
@@ -68,7 +68,7 @@
         {
             "id": "wrangler",
             "question": "Apakah saya perlu memasang Wrangler?",
-            "answer": "Tidak untuk menelusuri, menjalankan kueri, atau mengedit: TablePro berkomunikasi langsung dengan API Cloudflare. Wrangler hanya diperlukan untuk memuat berkas SQL karena TablePro tidak menyediakan impor untuk D1."
+            "answer": "Tidak untuk menelusuri, menjalankan kueri, atau mengedit: TablePro berkomunikasi langsung dengan API Cloudflare. Wrangler hanya diperlukan untuk memuat file SQL karena TablePro tidak menyediakan impor untuk D1."
         }
     ],
     "related": [

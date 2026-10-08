@@ -34,10 +34,10 @@
             "id": "work",
             "title": "瀏覽索引鍵與執行指令",
             "paragraphs": [
-                "設定<ui>索引鍵前綴根目錄</ui>（Key Prefix Root）（如 <code>/app</code>）將連線限制於一個子樹。側欄依其下第一個路徑區段分組，每個索引鍵一列，顯示值、版本、修改和建立修訂號及租約。",
+                "設定<ui>索引鍵前綴根目錄</ui>（Key Prefix Root）（如 <code>/app</code>）將連線限制於一個子樹。側邊欄依其下第一個路徑區段分組，每個索引鍵一列，顯示值、版本、修改和建立修訂號及租約。",
                 "儲存編輯傳送指令。新值或租約重新 put 索引鍵，NULL 租約移除租約，重新命名先 put 新名稱再刪除舊名稱。修訂號欄由 etcd 管理，編輯會停止儲存並指出欄名。",
                 "編輯器接受 etcdctl 風格指令，補全指令和旗標：帶 <code>--prefix</code>、<code>--limit</code>、<code>--keys-only</code> 及排序的 <code>get</code>，帶 <code>--lease</code> 的 <code>put</code>，<code>del</code>、<code>watch</code>、<code>lease</code> 子指令、<code>member list</code>、<code>endpoint status</code> 和 <code>health</code>、<code>compaction</code>，以及 <code>auth</code>、<code>user</code>、<code>role</code>。其他指令不傳送伺服器，直接傳回未知指令。",
-                "etcd 驅動程式無法開啟唯讀工作階段，因此 <safeMode>Safe Mode</safeMode> 將所有指令視為寫入：Alert、Safe Mode 層級每次先確認，Read-Only 全部阻擋。"
+                "etcd 驅動程式無法開啟唯讀工作階段，因此 <safeMode>Safe Mode</safeMode> 將所有指令視為寫入：Alert、Safe Mode 等級每次先確認，Read-Only 全部阻擋。"
             ]
         },
         {

@@ -65,7 +65,7 @@
                 "자체 sqld 서버나 이 Mac의 파일은 libSQL을 선택합니다. Remote 모드는 Hrana v2 pipeline 엔드포인트를 제공하는 모든 sqld에 연결하며 이 Mac의 기본 포트 8080 서버도 지원합니다. <code>--auth-jwt-key-file</code> 없이 시작한 서버는 토큰을 비우고 그 외에는 서버 키와 맞는 JWT를 입력합니다.",
                 "<ui>로컬 파일</ui>(Local File) 모드는 드라이버에 포함된 SQLite로 libSQL 파일을 열고 아직 없는 경로는 폴더까지 만듭니다. 로컬 파일은 트랜잭션, 연결의 Extensions 목록에서 SQLite 확장 로드와 확인 후 열 순서·외래 키 재구성을 지원합니다.",
                 "<code>ALTER TABLE … ALTER COLUMN</code>처럼 libSQL만 이해하는 명령문은 SQLite 엔진이 받기 때문에 로컬 파일에서 실패합니다. 암호화된 libSQL 파일은 열리지 않습니다. 실행 중인 앱이 Turso 내장 복제본으로 동기화하는 파일은 두 프로그램의 동시 접근으로 손상될 수 있으므로 절대로 열지 마세요.",
-                "<backup>Backup Dump와 Restore Dump</backup>는 로컬 libSQL 파일에 {dumpTool}을 실행합니다."
+                "<backup>Backup Dump와 Restore Dump</backup>는 로컬 libSQL 파일에 {dumpTool}를 실행합니다."
             ]
         }
     ],

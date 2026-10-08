@@ -35,7 +35,7 @@
             "id": "work",
             "title": "跨 catalog 查询",
             "paragraphs": [
-                "连接在某个 catalog、schema 打开，查询仍可完整指定 <code>catalog.schema.table</code>，例如联接 Hive 和 PostgreSQL 表。侧栏将各 catalog 展开为 schema 和表，物化视图与表、视图并列，行数来自 <code>SHOW STATS</code>。",
+                "连接在某个 catalog、schema 打开，查询仍可完整指定 <code>catalog.schema.table</code>，例如联接 Hive 和 PostgreSQL 表。侧边栏将各 catalog 展开为 schema 和表，物化视图与表、视图并列，行数来自 <code>SHOW STATS</code>。",
                 "<code>bigint</code>、<code>decimal</code> 以精确文本而非浮点数读取。<code>varbinary</code> 显示为十六进制，<code>array</code>、<code>map</code>、<code>row</code> 为 JSON，时间戳保留服务器返回值。",
                 "<explain>Explain</explain> 提供 Logical、Distributed、IO、Validate、Analyze。Validate 不运行而验证，Analyze 运行并报告实际耗时，所有计划均为原始文本。",
                 "<code>SET SESSION</code> 在连接余下期间保持。<ui>查询 > 取消查询</ui>（Query > Cancel Query）通知 coordinator 终止运行中的查询，这是停止查询的方法，因为连接查询超时不传至 Trino。",

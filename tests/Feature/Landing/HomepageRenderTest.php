@@ -5,6 +5,8 @@ use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
 use App\Support\Assets\AssetManifest;
 use App\Support\Seo\PageRegistry;
+use Dom\Element;
+use Dom\HTMLDocument;
 use Illuminate\Support\Facades\File;
 use Inertia\Testing\AssertableInertia;
 
@@ -451,7 +453,7 @@ describe('server-rendered', function (): void {
             'starter' => 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
             'person' => 'Một license cho một người, dùng trên tối đa {macs} máy Mac.',
             'refund' => 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua.',
-        ], '%s US$', ','],
+        ], "%s\u{a0}US$", ','],
     ]);
 
     it('describes the organization, the site and both apps, with no rating, FAQ or file size', function (string $path): void {
@@ -587,6 +589,57 @@ describe('server-rendered', function (): void {
         ['/', 'Importing from other apps and Open Project Folder are in the Mac app only.'],
         ['/vi', 'Import từ ứng dụng khác và Open Project Folder chỉ có trong ứng dụng Mac.'],
     ]);
+
+    it('sets each workflow beside its capture from 1280px, with one divider down the section', function (string $path, string $locale): void {
+        $grid = HTMLDocument::createFromString(ssrHome($path), LIBXML_NOERROR)->querySelector('#features .cell-grid');
+        $classes = fn(?Element $element): array => preg_split('/\s+/', trim((string) $element?->getAttribute('class')));
+        $manifest = app(AssetManifest::class);
+        $rows = homeContent($locale)['workflows']['rows'];
+
+        expect($grid)->not->toBeNull();
+        expect($grid->querySelectorAll('h3'))->toHaveCount(count($rows));
+
+        foreach ($rows as $row) {
+            $heading = $grid->querySelector("#features-{$row['id']}");
+            $cell = $heading;
+
+            while ($cell->parentElement !== $grid) {
+                $cell = $cell->parentElement;
+            }
+
+            if ($manifest->entry($row['asset'])['kind'] === 'detail') {
+                // Two cells, 5 / 7 from 1024px and 4 / 8 from 1280px, so the divider meets the window rows'.
+                expect($classes($cell))->toContain('lg:col-span-5', 'xl:col-span-4');
+                expect($classes($cell->nextElementSibling))->toContain('lg:col-span-7', 'xl:col-span-8');
+
+                continue;
+            }
+
+            // One cell at every width, so the stacked row below 1280px keeps no line between its text and its window.
+            [$text, $media] = [$cell->firstElementChild, $cell->lastElementChild];
+
+            expect($classes($cell))->toContain('lg:col-span-12', 'xl:grid', 'xl:grid-cols-12', 'xl:gap-px', 'xl:p-0');
+            expect(array_values(array_filter($classes($cell), fn(string $class): bool => str_contains($class, 'grid') && ! str_starts_with($class, 'xl:'))))->toBe([]);
+            expect($cell->childElementCount)->toBe(2);
+            expect($text->contains($heading))->toBeTrue();
+            expect($classes($text))->toContain('xl:col-span-4');
+            expect($classes($media))->toContain('xl:col-span-8', 'xl:shadow-[-1px_0_0_var(--rule)]');
+
+            // The desktop sources load the width the window has in its eight columns.
+            $sources = $media->querySelectorAll('source[media="(min-width: 768px)"]');
+
+            expect($sources->length)->toBeGreaterThan(0, "{$path}: {$row['asset']} renders no desktop source");
+
+            foreach ($sources as $source) {
+                expect($source->getAttribute('sizes'))->toStartWith('(min-width: 1280px) 790px,');
+            }
+        }
+
+        // 12 columns share the 1278px grid (76rem of content and a 31px bleed each side) with 1px between them; a window spans 8 and pads 31px each side.
+        $column = (76 * 16 + 2 * 31 - 11) / 12;
+
+        expect((int) round(8 * $column + 7 - 2 * 31))->toBe(790);
+    })->with([['/', 'en'], ['/vi', 'vi']]);
 
     it('shows each featured engine once, the engine count from data and the hub\'s categories', function (string $path, string $locale): void {
         $html = ssrHome($path);

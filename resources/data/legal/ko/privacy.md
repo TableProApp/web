@@ -14,7 +14,7 @@ updatedAt: "2026-10-08"
 - AI 요청은 Mac 앱에서 설정한 AI 제공업체로 직접 전송되며 당사를 거치지 않습니다.
 - 당사 서버는 모든 사용 보고서와 라이선스 확인 요청의 IP 주소를 저장하고 각 사용 보고서의 국가를 조회합니다. 이 기록의 보관 기한은 정하지 않았습니다.
 - 웹사이트는 쿠키를 설정하지 않는 Cloudflare Web Analytics로 페이지 조회 수를 집계합니다. Google Analytics도 로드하며 쿠키는 사용자가 허용한 경우에만 설정합니다. 모든 페이지에서 실시간 채팅 서비스인 Crisp도 로드하며, Crisp는 자체 쿠키를 설정합니다.
-- 구매는 공식 판매자인 {merchant}를 통해 이루어집니다.
+- 구매는 merchant of record인 {merchant}를 통해 이루어집니다.
 
 ## 책임 주체 {#controller}
 
@@ -24,15 +24,15 @@ updatedAt: "2026-10-08"
 
 ### 사용 보고서 {#mac-usage-report}
 
-Mac 앱은 시작 후 약 10초 뒤, 이후 실행 중에는 하루에 한 번 `api.tablepro.app`에 사용 보고서를 보냅니다. **기본적으로 켜져 있으며 첫 보고서를 보내기 전에 허락을 요청하지 않습니다.** 끄려면 **Settings > General > Privacy**에서 **Share anonymous usage data**를 해제하세요.
+Mac 앱은 시작 후 약 10초 뒤, 이후 실행 중에는 하루에 한 번 `api.tablepro.app`에 사용 보고서를 보냅니다. **기본적으로 켜져 있으며 첫 보고서를 보내기 전에 허락을 요청하지 않습니다.** 끄려면 **설정 > 일반 > 개인정보 보호**(Settings > General > Privacy)에서 **익명 사용 데이터 공유**(Share anonymous usage data)를 해제하세요.
 
 보고서에는 다음 정보가 포함됩니다.
 
 - 기기 ID: Mac 하드웨어 UUID의 SHA-256 해시(UUID 자체는 전송되지 않음)
 - 플랫폼, 앱 버전, macOS 버전, 프로세서 아키텍처 및 앱 언어
-- 연결에 사용하는 데이터베이스 유형 이름(예: PostgreSQL) 및 연결 수
+- 열려 있는 연결의 데이터베이스 유형 이름(예: PostgreSQL) 및 열려 있는 연결 수
 - 라이선스 활성화 여부
-- 처음 연결을 시도한 날짜, 처음 연결에 성공한 날짜 및 첫 쿼리 날짜
+- 처음 연결을 시도한 날짜와 시간 및 처음 연결에 성공한 날짜와 시간
 - 업데이트 설정(설치 방식과 확인 빈도). 당사 서버는 보고서가 도착하면 이 정보를 폐기합니다.
 
 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 포함하지 않습니다.
@@ -54,9 +54,9 @@ Mac 활성화 해제 시에는 라이선스 키와 기기 ID만 전송합니다.
 
 ### Team Library {#library}
 
-Team Library는 Team 라이선스에 포함됩니다. 연결에서 **Share > Publish to Team Library…**를 선택하거나 Favorites 사이드바에서 **Publish Saved Queries to Team…**을 선택하면 Mac 앱은 게시할 내용을 당사 서버에 업로드합니다.
+Team Library는 Team 라이선스에 포함됩니다. 연결에서 **공유 > 팀 라이브러리에 게시…**(Share > Publish to Team Library…)를 선택하거나 Favorites 사이드바에서 **저장된 쿼리를 팀에 게시…**(Publish Saved Queries to Team…)를 선택하면 Mac 앱은 게시할 내용을 당사 서버에 업로드합니다.
 
-- 연결 설정: 호스트, 포트, 데이터베이스 이름, 사용자 이름, SSH 및 SSL 설정, 드라이버 옵션, 시작 명령, Tunnel Command 설정, 안전 모드 수준 및 AI 설정. 비밀번호는 포함하지 않습니다.
+- 연결 설정: 호스트, 포트, 데이터베이스 이름, 사용자 이름, SSH 및 SSL 설정, 드라이버 옵션, 시작 명령, Tunnel Command 설정, Safe Mode 수준 및 AI 설정. 비밀번호는 포함하지 않습니다.
 - 저장된 쿼리: 이름, SQL 텍스트, 키워드 및 폴더
 
 같은 Team 라이선스의 Mac은 시작할 때 라이브러리를 다운로드하며 최대 일주일에 한 번입니다. 게시한 Mac은 게시 직후 다시 다운로드합니다. 다시 게시하면 이전에 게시한 내용을 대체합니다. 팀에서 구성원을 제거하면 해당 구성원이 게시한 모든 내용이 삭제됩니다. 라이선스가 만료되거나 정지되더라도 삭제를 요청할 때까지 라이브러리는 당사 서버에 남습니다.
@@ -65,7 +65,7 @@ Team Library는 Team 라이선스에 포함됩니다. 연결에서 **Share > Pub
 
 ### 업데이트 및 플러그인 {#mac-updates}
 
-- **업데이트 확인.** Mac 앱은 하루에 한 번 GitHub(`raw.githubusercontent.com`)에서 업데이트 피드를 다운로드합니다. 요청에는 일반적인 웹 요청에 포함되는 IP 주소 및 앱 버전이 포함된 사용자 에이전트 외에 Mac 정보가 포함되지 않습니다. 끄려면 **Settings > General > Software Update**에서 **Automatically check for updates**를 해제하세요. 업데이트 자체도 GitHub에서 다운로드합니다.
+- **업데이트 확인.** Mac 앱은 하루에 한 번 GitHub(`raw.githubusercontent.com`)에서 업데이트 피드를 다운로드합니다. 요청에는 일반적인 웹 요청에 포함되는 IP 주소 및 앱 버전이 포함된 사용자 에이전트 외에 Mac 정보가 포함되지 않습니다. 끄려면 **설정 > 일반 > 소프트웨어 업데이트**(Settings > General > Software Update)에서 **업데이트 자동 확인**(Automatically check for updates)을 해제하세요. 업데이트 자체도 GitHub에서 다운로드합니다.
 - **플러그인 카탈로그.** 앱 시작 시와 플러그인 설정을 열 때 GitHub에서 이용 가능한 드라이버와 테마 목록을 다운로드합니다. 이를 끄는 설정은 없습니다. 설치하는 드라이버와 테마는 GitHub에서 다운로드하며, 플러그인 브라우저는 GitHub API에서 다운로드 수를 읽습니다.
 
 GitHub는 이 요청과 함께 IP 주소를 받습니다. 해당 요청에는 GitHub의 개인정보 처리방침이 적용됩니다.
@@ -75,7 +75,7 @@ GitHub는 이 요청과 함께 IP 주소를 받습니다. 해당 요청에는 Gi
 Mac 앱은 아래 서비스를 설정한 경우에만 데이터를 직접 전송하며 TablePro를 거치지 않습니다.
 
 - **사용자의 데이터베이스, SSH 서버 및 프록시**는 해당 연결이 보내는 정보를 받습니다.
-- **AI 제공업체.** 제공업체를 추가하고 AI 어시스턴트 또는 인라인 제안을 사용하면 요청은 해당 제공업체 또는 Mac에서 실행되는 모델로 전달됩니다. 기본적으로 데이터베이스 유형과 이름, 스키마의 테이블 및 열 정의, 현재 쿼리가 포함됩니다. 결과 행은 사용자가 해당 옵션을 켠 경우에만 전송됩니다. 제공업체의 약관이 적용됩니다. GitHub Copilot을 추가하면 npm에서 언어 서버를 다운로드하며 "Send telemetry to GitHub" 설정은 처음부터 켜져 있습니다.
+- **AI 제공업체.** 제공업체를 추가하고 AI 어시스턴트 또는 인라인 제안을 사용하면 요청은 해당 제공업체 또는 Mac에서 실행되는 모델로 전달됩니다. 기본적으로 데이터베이스 유형과 이름, 스키마의 테이블 및 열 정의, 현재 쿼리가 포함됩니다. 결과 행은 사용자가 해당 옵션을 켠 경우에만 전송됩니다. 제공업체의 약관이 적용됩니다. GitHub Copilot을 추가하면 npm에서 언어 서버를 다운로드하며 "GitHub에 텔레메트리 보내기"(Send telemetry to GitHub) 설정은 처음부터 켜져 있습니다.
 - **로그인 서비스**: 연결에서 사용하는 경우 Microsoft Entra ID, Google, Amazon Web Services 및 Cloudflare Access.
 - **Apple Maps**는 결과를 지도에 표시할 때 지도 타일을 제공합니다.
 - **DuckDB**는 쿼리가 확장 기능을 처음 사용할 때 해당 확장을 제공합니다.
@@ -88,23 +88,23 @@ Mac 앱은 아래 서비스를 설정한 경우에만 데이터를 직접 전송
 
 ## iPhone 및 iPad용 TablePro {#ios-app}
 
-앱을 처음 시작할 때 또는 이후 **Settings > Privacy**에서 **Share Usage Data를 켜지 않으면 아무것도 TablePro에 전송되지 않습니다**. 켜면 Mac 앱과 같은 서버에 하루에 한 번 보고서를 보내며, 서버는 같은 방식으로 IP 주소를 저장하고 조회합니다. 보고서에는 Apple이 기기의 앱에 부여한 식별자의 SHA-256 해시, 플랫폼, 앱 및 iOS 버전, 프로세서 아키텍처, 앱 언어, 사용하는 데이터베이스 유형 이름, 연결 수 및 같은 최초 사용 날짜가 포함됩니다. 앱에 업데이트 설정과 라이선스 키가 없으므로 둘 다 전송하지 않습니다.
+앱을 처음 시작할 때 또는 이후 **설정 > 개인정보 보호**(Settings > Privacy)에서 **사용 데이터 공유(Share Usage Data)를 켜지 않으면 아무것도 TablePro에 전송되지 않습니다**. 켜면 Mac 앱과 같은 서버에 하루에 한 번 보고서를 보내며, 서버는 같은 방식으로 IP 주소를 저장하고 조회합니다. 보고서에는 Apple이 기기의 앱에 부여한 식별자의 SHA-256 해시, 플랫폼, 앱 및 iOS 버전, 프로세서 아키텍처, 앱 언어, 열려 있는 연결의 데이터베이스 유형 이름, 열려 있는 연결 수, 그리고 처음 연결을 시도한 날짜와 시간, 처음 연결에 성공한 날짜와 시간 및 첫 쿼리를 실행한 날짜와 시간이 포함됩니다. 앱에는 업데이트 설정과 라이선스가 없으므로 업데이트 설정은 포함되지 않으며 라이선스는 항상 활성화되지 않은 것으로 보고됩니다.
 
-앱은 라이선스 확인, 업데이트 확인 및 플러그인 요청을 하지 않습니다. 선택적 보고서 외에는 사용자의 데이터베이스와 SSH 서버, iCloud 동기화를 켠 경우 Apple의 iCloud, SQL Server 연결에서 Microsoft Entra ID로 로그인하는 경우 Microsoft에만 연결합니다.
+앱은 라이선스 확인, 업데이트 확인 및 플러그인 요청을 하지 않습니다. 선택적 보고서 외에는 사용자의 데이터베이스와 SSH 서버, iCloud Sync를 켠 경우 Apple의 iCloud, SQL Server 연결에서 Microsoft Entra ID로 로그인하는 경우 Microsoft에만 연결합니다.
 
-기기에서는 비밀번호와 붙여 넣은 SSH 키를 키체인에 보관하며 인증서는 동기화하지 않습니다. 쿼리 기록은 기기에 남습니다. 연결은 기기의 Spotlight 색인에 추가되어 검색할 수 있습니다. 쿼리 실행 중에는 **Settings > Live Activities > Hide Query**를 켜지 않으면 실시간 현황이 잠금 화면과 확장된 Dynamic Island에 SQL을 표시합니다.
+기기에서는 비밀번호와 붙여 넣은 SSH 키를 키체인에 보관하며 인증서는 동기화하지 않습니다. 쿼리 기록은 기기에 남습니다. 연결은 기기의 Spotlight 색인에 추가되어 검색할 수 있습니다. 쿼리 실행 중에는 **설정 > 실시간 현황 > 쿼리 가리기**(Settings > Live Activities > Hide Query)를 켜지 않으면 실시간 현황이 잠금 화면과 확장된 Dynamic Island에 SQL을 표시합니다.
 
 iPhone 또는 iPad 설정에서 앱 개발자와 분석 정보를 공유하면 Apple이 App Store Connect를 통해 충돌 보고서와 사용 통계를 제공할 수 있습니다. 앱 자체에는 충돌 보고 도구나 타사 분석 라이브러리가 없습니다.
 
-## iCloud 동기화 및 Handoff {#icloud}
+## iCloud Sync 및 Handoff {#icloud}
 
-iCloud 동기화는 Mac과 iPhone 및 iPad에서 사용자가 켤 때까지 꺼져 있습니다. 켜면 기록이 사용자의 iCloud 계정 내 비공개 데이터베이스(컨테이너 `iCloud.com.TablePro`)로 전송됩니다. TablePro는 이를 읽을 수 없습니다.
+iCloud Sync는 Mac과 iPhone 및 iPad에서 사용자가 켤 때까지 꺼져 있습니다. 켜면 기록이 사용자의 iCloud 계정 내 비공개 데이터베이스(컨테이너 `iCloud.com.TablePro`)로 전송됩니다. TablePro는 이를 읽을 수 없습니다.
 
 - Mac에서는 연결, 그룹과 태그, 설정, SSH 프로필, 인증 정보 프로필(이름과 사용자 이름만, 비밀번호 제외), 테이블 및 데이터베이스 즐겨찾기, 저장된 쿼리(SQL 텍스트 포함) 및 테이블 폴더 중 동기화할 항목을 선택합니다. 연결 기록에는 호스트, 포트, 사용자 이름, 데이터베이스 이름, SSH 및 SSL 설정, 시작 명령, 연결 전 스크립트 및 AI 규칙이 포함됩니다. 쿼리 기록, Data Rewind 스냅샷 및 비밀번호 출처는 동기화하지 않습니다.
 - iPhone 및 iPad는 연결, 그룹 및 태그를 동기화합니다.
-- 비밀번호를 동기화하려면 Mac의 Sync Categories에서 **Passwords**를, 또는 iPhone 및 iPad에서 **Sync Passwords**를 추가로 켜야 하며 iCloud 키체인을 사용합니다. Mac에서는 AI 제공업체 키와 라이선스 키 등 TablePro가 키체인에 보관하는 다른 비밀 정보도 동기화합니다.
+- 비밀번호를 동기화하려면 Mac의 Sync Categories에서 **암호**(Passwords)를, 또는 iPhone 및 iPad에서 **암호 동기화**(Sync Passwords)를 추가로 켜야 하며 iCloud 키체인을 사용합니다. Mac에서는 AI 제공업체 키와 라이선스 키 등 TablePro가 키체인에 보관하는 다른 비밀 정보도 동기화합니다.
 
-Mac의 iCloud 동기화는 Starter 또는 Team 라이선스에 포함됩니다. iPhone 및 iPad에서는 무료입니다.
+Mac의 iCloud Sync는 Starter 또는 Team 라이선스에 포함됩니다. iPhone 및 iPad에서는 무료입니다.
 
 Handoff는 Apple을 통해 사용자 자신의 기기 간에 열린 연결의 ID와 열린 테이블 이름을 전달합니다. 열린 테이블이 없으면 연결 이름을 전달하며, 연결에 이름이 없으면 호스트를 전달합니다. 설정이나 인증 정보는 보내지 않습니다.
 
@@ -128,7 +128,7 @@ Handoff는 Apple을 통해 사용자 자신의 기기 간에 열린 연결의 ID
 
 ## 구매 {#purchases}
 
-라이선스는 공식 판매자이자 재판매자인 {merchant}(Polar Software, Inc.)가 판매합니다. 구매에는 {merchant}의 구매자 약관과 개인정보 처리방침이 적용됩니다. {merchant}는 결제를 처리하고 판매세 또는 VAT를 계산하고 납부하며 영수증과 청구서를 보내고 결제 문제와 분쟁을 처리합니다. 이름, 이메일 주소, 청구 주소 및 결제 정보를 수집합니다. 당사는 카드 정보 전체를 볼 수 없습니다.
+라이선스는 merchant of record이자 재판매자인 {merchant}(Polar Software, Inc.)가 판매합니다. 구매에는 {merchant}의 구매자 약관과 개인정보 처리방침이 적용됩니다. {merchant}는 결제를 처리하고 판매세 또는 VAT를 계산하고 납부하며 영수증과 청구서를 보내고 결제 문제와 분쟁을 처리합니다. 이름, 이메일 주소, 청구 주소 및 결제 정보를 수집합니다. 당사는 카드 정보 전체를 볼 수 없습니다.
 
 당사는 {merchant}에서 이메일 주소, 입력한 이름과 청구 주소, 구매 내용, 금액, 주문 및 구독 ID, 이후 갱신·취소·환불 같은 변경 정보를 받습니다. 이메일을 해당 언어로 보내기 위해 구매한 페이지의 언어를 {merchant}에 알려줍니다. 청구서, 영수증, 결제 수단 및 구독은 [{merchant} 고객 포털]({portal})에서 관리하며 구매에 사용한 이메일 주소로 로그인합니다. 환불은 [환불 정책](/ko/refund-policy)에, 라이선스의 허용 범위는 [이용약관](/ko/terms)에 설명되어 있습니다.
 
@@ -171,7 +171,7 @@ tablepro.app/account의 [계정 포털](/account?locale=ko)은 라이선스 구�
 
 개인정보는 TablePro 운영에 필요한 서비스에만 공유합니다.
 
-- **{merchant}**: 구매의 공식 판매자.
+- **{merchant}**: 구매의 merchant of record.
 - **이메일 전송 제공업체**: 로그인 링크, 당사가 보내는 영수증, 팀 초대 및 뉴스레터.
 - **호스팅 제공업체 및 Cloudflare**: 웹사이트, 계정 포털 및 앱이 통신하는 서버 운영. Cloudflare는 Web Analytics로 페이지 조회 수도 집계합니다.
 - **Google**: 웹사이트, 문서 및 계정 포털의 Google Analytics.

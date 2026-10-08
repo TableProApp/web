@@ -30,9 +30,9 @@ Laporan berisi:
 
 - ID mesin: hash SHA-256 dari UUID perangkat keras Mac Anda (UUID itu sendiri tidak pernah dikirim);
 - platform, versi aplikasi, versi macOS, arsitektur prosesor, dan bahasa aplikasi;
-- nama jenis database yang digunakan koneksi Anda (misalnya "PostgreSQL") dan jumlah koneksi;
+- nama jenis database dari koneksi yang sedang terbuka (misalnya "PostgreSQL") dan jumlah koneksi yang terbuka;
 - status aktivasi lisensi;
-- tanggal percobaan koneksi pertama, koneksi pertama yang berhasil, dan kueri pertama;
+- tanggal dan waktu percobaan koneksi pertama serta koneksi pertama yang berhasil;
 - pengaturan pembaruan Anda (cara pembaruan dipasang dan frekuensi pemeriksaan aplikasi). Server kami membuang data ini saat laporan diterima.
 
 Laporan tidak pernah berisi nama host, nama pengguna, kata sandi, kueri, atau baris data.
@@ -88,7 +88,7 @@ Kata sandi disimpan di Keychain macOS. Daftar koneksi, riwayat kueri, Query Insi
 
 ## TablePro untuk iPhone dan iPad {#ios-app}
 
-**Tidak ada data yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data**, saat aplikasi pertama kali dimulai atau kemudian di **Settings > Privacy**. Jika diaktifkan, aplikasi mengirim laporan sekali sehari ke server yang sama dengan aplikasi Mac, dan server kami menyimpan serta mencari alamat IP-nya dengan cara yang sama. Laporan berisi hash SHA-256 dari pengenal yang diberikan Apple kepada aplikasi di perangkat Anda, platform, versi aplikasi dan iOS, arsitektur prosesor, bahasa aplikasi, nama jenis database yang Anda gunakan, jumlah koneksi, dan tanggal penggunaan pertama yang sama. Laporan tidak berisi pengaturan pembaruan atau kunci lisensi karena aplikasi tidak memiliki keduanya.
+**Tidak ada data yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data**, saat aplikasi pertama kali dimulai atau kemudian di **Settings > Privacy**. Jika diaktifkan, aplikasi mengirim laporan sekali sehari ke server yang sama dengan aplikasi Mac, dan server kami menyimpan serta mencari alamat IP-nya dengan cara yang sama. Laporan berisi hash SHA-256 dari pengenal yang diberikan Apple kepada aplikasi di perangkat Anda, platform, versi aplikasi dan iOS, arsitektur prosesor, bahasa aplikasi, nama jenis database dari koneksi yang sedang terbuka, jumlah koneksi yang terbuka, serta tanggal dan waktu percobaan koneksi pertama, koneksi pertama yang berhasil, dan kueri pertama. Laporan tidak berisi pengaturan pembaruan dan selalu menyatakan tidak ada lisensi yang diaktifkan karena aplikasi tidak memiliki keduanya.
 
 Aplikasi tidak melakukan pemeriksaan lisensi, pemeriksaan pembaruan, atau permintaan plugin. Selain laporan opsional tersebut, aplikasi hanya terhubung ke database dan server SSH Anda, iCloud Apple jika Anda mengaktifkan iCloud Sync, serta Microsoft saat koneksi SQL Server masuk menggunakan Microsoft Entra ID.
 
@@ -134,7 +134,7 @@ Dari {merchant}, kami menerima alamat email, nama dan alamat penagihan sesuai ya
 
 ## Portal akun {#account}
 
-[Portal akun](/account?locale=id) di tablepro.app/account diperuntukkan bagi pembeli lisensi. Anda masuk melalui tautan yang kami kirim ke alamat email tersebut; tautan hanya dapat digunakan sekali dan kedaluwarsa setelah 15 menit. Portal menampilkan lisensi Anda, Mac yang diaktifkan dengannya (berdasarkan nama), serta untuk lisensi Team, anggota, undangan, kursi, dan Team Library.
+[Portal akun](/account?locale=id) di tablepro.app/account diperuntukkan bagi pembeli lisensi. Anda masuk melalui tautan yang kami kirim ke alamat email tersebut; tautan hanya dapat digunakan sekali dan kedaluwarsa setelah 15 menit. Portal menampilkan lisensi Anda, Mac yang diaktifkan dengannya (berdasarkan nama), serta untuk lisensi Team, anggota, undangan, seat, dan Team Library.
 
 Kami menyimpan alamat email bersama lisensi dan pesanan Anda, serta bahasa yang Anda gunakan dengan kami agar email dikirim dalam bahasa tersebut. Saat Anda mengundang seseorang ke tim, kami menyimpan alamat email dan perannya, lalu mengirim kode undangan melalui email.
 

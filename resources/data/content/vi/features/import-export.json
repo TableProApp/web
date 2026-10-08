@@ -38,7 +38,7 @@
             "title": "Export table và kết quả query",
             "paragraphs": [
                 "<kbd>⌘⇧E</kbd> export các table và view bạn chọn ra {exportFormats}. Dữ liệu được đọc thẳng từ cơ sở dữ liệu trong lúc ghi file, nên giới hạn số dòng của data grid không áp dụng. Trên engine SQL, mỗi table có thể có mệnh đề WHERE, giới hạn số dòng và danh sách cột riêng. File SQL có thể kèm cấu trúc, nén gzip và chia thành nhiều phần, còn Excel đặt mỗi table vào một sheet riêng. Collection MongoDB còn export được thành script mongosh, và export SQL không có cho MongoDB và Redis.",
-                "<ui>Export Kết Quả…</ui> (Export Results…) ghi lại những gì query trả về; nếu kết quả bị cắt bởi giới hạn số dòng, query được chạy lại và ghi ra đầy đủ. Export {exportPluginFormats} đến từ một plugin miễn phí mà bạn cài trong <ui>Cài đặt > Plugin</ui> (Settings > Plugins), và ghi mỗi table ra một file."
+                "<ui>Export Kết Quả…</ui> (Export Results…) ghi lại những gì query trả về; nếu kết quả bị cắt bởi giới hạn số dòng, query được chạy lại và ghi ra đầy đủ. Export {exportPluginFormats} do một plugin miễn phí đảm nhận, bạn cài plugin này trong <ui>Cài đặt > Plugin</ui> (Settings > Plugins), và nó ghi mỗi table ra một file."
             ],
             "asset": "mac-export-dialog"
         },
@@ -80,7 +80,7 @@
             "id": "files",
             "title": "File cũng là cơ sở dữ liệu",
             "paragraphs": [
-                "File SQLite và DuckDB mở từ Finder thành connection. DuckDB còn đọc file Parquet, CSV và JSON như các view chỉ đọc, nên file <code>.parquet</code> mở thành connection DuckDB chứ không mở trong Data Files. Một cơ sở dữ liệu SQLite nằm trên server SSH có thể mở trực tiếp, qua một agent nhỏ cần Python 3.6 trở lên trên server, hoặc mở dưới dạng bản sao chỉ đọc.",
+                "File SQLite và DuckDB mở từ Finder thành connection. DuckDB còn đọc file Parquet, CSV và JSON như các view chỉ đọc, nên file <code>.parquet</code> mở thành connection DuckDB chứ không mở trong Data Files. Một cơ sở dữ liệu SQLite nằm trên server SSH có thể mở trực tiếp (qua một agent nhỏ cần Python 3.6 trở lên trên server) hoặc mở dưới dạng bản sao chỉ đọc.",
                 "File <code>.sql</code> mở thành tab query và lưu lại được xuống đĩa, còn một sổ cái Beancount mở thành các table chỉ đọc."
             ],
             "links": [

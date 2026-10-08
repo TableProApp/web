@@ -224,7 +224,7 @@ it('server-renders the plans, the table and every section, with prices written f
     }
 })->with([
     'English' => ['/pricing', 'en', ['$0', '$24', '$10', '5 seats: $50 per year']],
-    'Vietnamese' => ['/vi/pricing', 'vi', ['0 US$', '24 US$', '10 US$', '5 seat: 50 US$ mỗi năm']],
+    'Vietnamese' => ['/vi/pricing', 'vi', ["0\u{a0}US$", "24\u{a0}US$", "10\u{a0}US$", "5 seat: 50\u{a0}US$ mỗi năm"]],
 ]);
 
 it('carries every cycle\'s price in the server HTML and hides all but the yearly one', function (string $path, string $pattern, string $decimal): void {
@@ -244,7 +244,7 @@ it('carries every cycle\'s price in the server HTML and hides all but the yearly
     expect(pricingPricePoints(html_entity_decode(ssrHtml($path), ENT_QUOTES | ENT_HTML5)))->toBe($expected);
 })->with([
     'English' => ['/pricing', '$%s', '.'],
-    'Vietnamese' => ['/vi/pricing', '%s US$', ','],
+    'Vietnamese' => ['/vi/pricing', "%s\u{a0}US$", ','],
 ]);
 
 it('states the refund window under the buy buttons, with the policy linked', function (string $path, string $sentence, string $href): void {

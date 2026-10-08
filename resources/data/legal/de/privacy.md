@@ -10,11 +10,11 @@ Diese Erklärung gilt für TablePro für Mac, TablePro für iPhone und iPad, die
 
 - Die Mac-App sendet einmal täglich einen Nutzungsbericht an TablePro. Dies ist standardmäßig aktiv und kann deaktiviert werden. Die iPhone- und iPad-App sendet einen Bericht nur, wenn du es aktivierst.
 - Wenn du eine Lizenz aktivierst, prüft die Mac-App sie alle {revalidateDays} Tage auf unserem Server. Diese Prüfung enthält den Namen deines Macs.
-- Deine Abfragen, Ergebnisse und Passwörter werden nicht an TablePro gesendet. Ausgenommen ist, was du in einer Team-Bibliothek veröffentlichst: Verbindungseinstellungen (niemals Passwörter) und gespeicherte Abfragen.
+- Deine Abfragen, Ergebnisse und Passwörter werden nicht an TablePro gesendet. Ausgenommen ist, was du in der Team Library veröffentlichst: Verbindungseinstellungen (niemals Passwörter) und gespeicherte Abfragen.
 - KI-Anfragen gehen von der Mac-App direkt an den von dir eingerichteten KI-Anbieter, nicht an uns.
 - Unser Server speichert die IP-Adresse jedes Nutzungsberichts und jeder Lizenzprüfung und ermittelt ein Land für jeden Nutzungsbericht. Wir haben keine Aufbewahrungsfrist für diese Datensätze festgelegt.
 - Die Website zählt Seitenaufrufe mit Cloudflare Web Analytics, das keine Cookies setzt. Sie lädt auch Google Analytics, das nur mit deiner Erlaubnis Cookies setzt. Jede Seite lädt außerdem unseren Live-Chat Crisp, der eigene Cookies setzt.
-- Käufe werden von {merchant}, unserem verantwortlichen Verkäufer, abgewickelt.
+- Käufe werden von {merchant}, unserem Merchant of Record, abgewickelt.
 
 ## Wer verantwortlich ist {#controller}
 
@@ -24,15 +24,15 @@ TablePro, das die Apps und diese Website veröffentlicht, ist für die hier besc
 
 ### Nutzungsbericht {#mac-usage-report}
 
-Die Mac-App sendet etwa zehn Sekunden nach dem Start und danach einmal täglich während des Betriebs einen Nutzungsbericht an `api.tablepro.app`. **Dies ist standardmäßig aktiv, und die App fragt vor dem ersten Versand nicht nach.** Zum Deaktivieren öffne **Einstellungen > Allgemein > Datenschutz** und deaktiviere **Anonyme Nutzungsdaten teilen**.
+Die Mac-App sendet etwa zehn Sekunden nach dem Start und danach einmal täglich während des Betriebs einen Nutzungsbericht an `api.tablepro.app`. **Dies ist standardmäßig aktiv, und die App fragt vor dem ersten Versand nicht nach.** Zum Deaktivieren öffne **Settings > General > Privacy** und deaktiviere **Share anonymous usage data**.
 
 Ein Bericht enthält:
 
 - eine Rechner-ID: einen SHA-256-Hash der Hardware-UUID deines Macs (die UUID selbst wird nie gesendet);
 - die Plattform, die App-Version, die macOS-Version, die Prozessorarchitektur und die Sprache der App;
-- die Namen der Datenbanktypen deiner Verbindungen (zum Beispiel „PostgreSQL“) und die Anzahl der Verbindungen;
+- die Namen der Datenbanktypen deiner geöffneten Verbindungen (zum Beispiel „PostgreSQL“) und wie viele Verbindungen geöffnet sind;
 - ob eine Lizenz aktiviert ist;
-- die Daten deines ersten Verbindungsversuchs, deiner ersten erfolgreichen Verbindung und deiner ersten Abfrage;
+- Datum und Uhrzeit deines ersten Verbindungsversuchs und deiner ersten erfolgreichen Verbindung;
 - deine Update-Einstellungen (Installation und Häufigkeit der Prüfungen). Unser Server verwirft diese beim Eingang des Berichts.
 
 Er enthält niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen.
@@ -52,20 +52,20 @@ Die Deaktivierung eines Macs sendet nur den Lizenzschlüssel und die Rechner-ID.
 
 Unser Server protokolliert jede Lizenzanfrage mit IP-Adresse und Inhalt und speichert die Rechner-ID und den Namen jedes aktivierten Macs bei deiner Lizenz. Das Kontoportal zeigt diese Macs nach Namen an. Ist unser Server nicht erreichbar, funktionieren die Bezahlfunktionen noch {graceDays} Tage nach der letzten erfolgreichen Prüfung.
 
-### Team-Bibliothek {#library}
+### Team Library {#library}
 
-Die Team-Bibliothek ist Bestandteil einer Team-Lizenz. Wenn du bei einer Verbindung **Teilen > In Team-Bibliothek veröffentlichen…** oder in der Favoriten-Seitenleiste **Gespeicherte Abfragen für Team veröffentlichen…** wählst, lädt die Mac-App die veröffentlichten Inhalte auf unseren Server:
+Die Team Library ist Bestandteil einer Team-Lizenz. Wenn du bei einer Verbindung **Share > Publish to Team Library…** oder in der Favorites-Seitenleiste **Publish Saved Queries to Team…** wählst, lädt die Mac-App die veröffentlichten Inhalte auf unseren Server:
 
-- Verbindungseinstellungen: Host, Port, Datenbankname, Benutzername, SSH- und SSL-Einstellungen, Treiberoptionen, Startbefehle, Tunnelbefehl-Einstellungen, Stufe des sicheren Modus und KI-Einstellungen, aber niemals Passwörter;
+- Verbindungseinstellungen: Host, Port, Datenbankname, Benutzername, SSH- und SSL-Einstellungen, Treiberoptionen, Startbefehle, Tunnel-Command-Einstellungen, Safe-Mode-Stufe und KI-Einstellungen, aber niemals Passwörter;
 - gespeicherte Abfragen: ihre Namen, SQL-Texte, Schlüsselwörter und Ordner.
 
 Macs mit derselben Team-Lizenz laden die Bibliothek beim Start herunter, höchstens einmal pro Woche. Der veröffentlichende Mac lädt sie unmittelbar danach erneut herunter. Eine erneute Veröffentlichung ersetzt die zuvor veröffentlichten Inhalte. Das Entfernen eines Teammitglieds löscht alles, was dieses Mitglied veröffentlicht hat. Läuft die Lizenz ab oder wird sie gesperrt, bleibt die Bibliothek auf unserem Server, bis du ihre Löschung anforderst.
 
-Der Team-Katalog, die andere Team-Funktion, schreibt Verbindungsdateien ohne Passwörter in einen von dir gewählten freigegebenen Ordner. Er nutzt unseren Server nicht.
+Der Team Catalog, die andere Team-Funktion, schreibt Verbindungsdateien ohne Passwörter in einen von dir gewählten freigegebenen Ordner. Er nutzt unseren Server nicht.
 
 ### Updates und Plugins {#mac-updates}
 
-- **Update-Prüfungen.** Die Mac-App lädt einmal täglich den Update-Feed von GitHub (`raw.githubusercontent.com`) herunter. Die Anfrage sendet über die üblichen Angaben einer Webanfrage hinaus keine Informationen über deinen Mac: deine IP-Adresse und einen User-Agent mit der App-Version. Zum Deaktivieren öffne **Einstellungen > Allgemein > Softwareupdate** und deaktiviere **Automatisch nach Updates suchen**. Die Updates selbst werden von GitHub heruntergeladen.
+- **Update-Prüfungen.** Die Mac-App lädt einmal täglich den Update-Feed von GitHub (`raw.githubusercontent.com`) herunter. Die Anfrage sendet über die üblichen Angaben einer Webanfrage hinaus keine Informationen über deinen Mac: deine IP-Adresse und einen User-Agent mit der App-Version. Zum Deaktivieren öffne **Settings > General > Software Update** und deaktiviere **Automatically check for updates**. Die Updates selbst werden von GitHub heruntergeladen.
 - **Plugin-Katalog.** Beim Start der App und beim Öffnen der Plugin-Einstellungen lädt sie die Liste verfügbarer Treiber und Themes von GitHub herunter. Dies lässt sich nicht deaktivieren. Installierte Treiber und Themes werden von GitHub heruntergeladen; der Plugin-Browser liest Downloadzahlen über die GitHub-API.
 
 GitHub erhält bei diesen Anfragen deine IP-Adresse. Für sie gilt die Datenschutzerklärung von GitHub.
@@ -75,7 +75,7 @@ GitHub erhält bei diesen Anfragen deine IP-Adresse. Für sie gilt die Datenschu
 Die Mac-App sendet Daten an diese Dienste nur, wenn du sie einrichtest, und direkt, niemals über TablePro:
 
 - **Deine Datenbanken, SSH-Server und Proxys**, die das erhalten, was deine Verbindungen ihnen senden.
-- **KI-Anbieter.** Wenn du einen Anbieter hinzufügst und den KI-Assistenten oder Inline-Vorschläge nutzt, gehen Anfragen an diesen Anbieter oder an ein Modell auf deinem Mac. Standardmäßig enthält eine Anfrage den Datenbanktyp und -namen, Tabellen- und Spaltendefinitionen aus dem Schema sowie die aktuelle Abfrage. Ergebniszeilen werden nur gesendet, wenn du dies aktivierst. Es gelten die Bedingungen des Anbieters. Das Hinzufügen von GitHub Copilot lädt dessen Sprachserver von npm herunter; seine Einstellung „Telemetrie an GitHub senden“ ist anfangs aktiv.
+- **KI-Anbieter.** Wenn du einen Anbieter hinzufügst und den KI-Assistenten oder Inline-Vorschläge nutzt, gehen Anfragen an diesen Anbieter oder an ein Modell auf deinem Mac. Standardmäßig enthält eine Anfrage den Datenbanktyp und -namen, Tabellen- und Spaltendefinitionen aus dem Schema sowie die aktuelle Abfrage. Ergebniszeilen werden nur gesendet, wenn du dies aktivierst. Es gelten die Bedingungen des Anbieters. Das Hinzufügen von GitHub Copilot lädt dessen Sprachserver von npm herunter; seine Einstellung „Send telemetry to GitHub“ ist anfangs aktiv.
 - **Anmeldedienste**: Microsoft Entra ID, Google, Amazon Web Services und Cloudflare Access, wenn eine Verbindung sie verwendet.
 - **Apple Maps**, das Kartenkacheln liefert, wenn du Ergebnisse auf einer Karte anzeigst.
 - **DuckDB**, das DuckDB-Erweiterungen liefert, wenn eine Abfrage sie erstmals verwendet.
@@ -88,11 +88,11 @@ Passwörter werden im macOS-Schlüsselbund aufbewahrt. Deine Verbindungsliste, d
 
 ## TablePro für iPhone und iPad {#ios-app}
 
-**Nichts geht an TablePro, solange du „Nutzungsdaten teilen“ nicht aktivierst**, beim ersten Start oder später unter **Einstellungen > Datenschutz**. Wenn du es aktivierst, sendet die App einmal täglich einen Bericht an denselben Server wie die Mac-App. Unser Server speichert dessen IP-Adresse und ermittelt das Land auf dieselbe Weise. Der Bericht enthält einen SHA-256-Hash der Kennung, die Apple der App auf deinem Gerät zuweist, Plattform, App- und iOS-Version, Prozessorarchitektur, App-Sprache, Namen der verwendeten Datenbanktypen, Verbindungsanzahl und dieselben Daten zur ersten Nutzung. Er enthält keine Update-Einstellungen und keinen Lizenzschlüssel, da die App beides nicht hat.
+**Nichts geht an TablePro, solange du „Share Usage Data“ nicht aktivierst**, beim ersten Start oder später unter **Settings > Privacy**. Wenn du es aktivierst, sendet die App einmal täglich einen Bericht an denselben Server wie die Mac-App. Unser Server speichert dessen IP-Adresse und ermittelt das Land auf dieselbe Weise. Der Bericht enthält einen SHA-256-Hash der Kennung, die Apple der App auf deinem Gerät zuweist, Plattform, App- und iOS-Version, Prozessorarchitektur, App-Sprache, Namen der Datenbanktypen deiner geöffneten Verbindungen, deren Anzahl sowie Datum und Uhrzeit deines ersten Verbindungsversuchs, deiner ersten erfolgreichen Verbindung und deiner ersten Abfrage. Er enthält keine Update-Einstellungen und meldet immer, dass keine Lizenz aktiviert ist, da die App beides nicht hat.
 
 Die App führt weder Lizenz- noch Update-Prüfungen oder Plugin-Anfragen aus. Abgesehen vom optionalen Bericht verbindet sie sich nur mit deinen Datenbanken und SSH-Servern, mit Apples iCloud bei aktiviertem iCloud Sync und mit Microsoft, wenn sich eine SQL-Server-Verbindung über Microsoft Entra ID anmeldet.
 
-Auf dem Gerät werden Passwörter und eingefügte SSH-Schlüssel im Schlüsselbund aufbewahrt; Zertifikate werden nie synchronisiert. Der Abfrageverlauf bleibt auf dem Gerät. Deine Verbindungen werden dem lokalen Spotlight-Index hinzugefügt, damit du sie suchen kannst. Während einer Abfrage zeigt ihre Live-Aktivität das SQL auf dem Sperrbildschirm und in der erweiterten Dynamic Island, sofern du nicht **Einstellungen > Live-Aktivitäten > Abfrage verbergen** aktivierst.
+Auf dem Gerät werden Passwörter und eingefügte SSH-Schlüssel im Schlüsselbund aufbewahrt; Zertifikate werden nie synchronisiert. Der Abfrageverlauf bleibt auf dem Gerät. Deine Verbindungen werden dem lokalen Spotlight-Index hinzugefügt, damit du sie suchen kannst. Während einer Abfrage zeigt ihre Live-Aktivität das SQL auf dem Sperrbildschirm und in der erweiterten Dynamic Island, sofern du nicht **Settings > Live Activities > Hide Query** aktivierst.
 
 Wenn du in den Einstellungen deines iPhones oder iPads Analysedaten mit App-Entwicklern teilst, kann Apple uns Absturzberichte und Nutzungsstatistiken über App Store Connect übermitteln. Die App selbst enthält weder einen eigenen Absturzmelder noch eine Analysebibliothek eines Drittanbieters.
 
@@ -102,7 +102,7 @@ iCloud Sync ist auf dem Mac sowie auf iPhone und iPad aus, bis du es aktivierst.
 
 - Auf dem Mac wählst du, was synchronisiert wird: Verbindungen, Gruppen und Tags, Einstellungen, SSH-Profile, Zugangsdatenprofile (Name und Benutzername, niemals das Passwort), Tabellen- und Datenbankfavoriten, gespeicherte Abfragen (einschließlich SQL-Text) und Tabellenordner. Ein Verbindungsdatensatz enthält Host, Port, Benutzername, Datenbankname, SSH- und SSL-Einstellungen, Startbefehle, das Skript vor dem Verbinden und KI-Regeln. Abfrageverlauf, Data-Rewind-Snapshots und Passwortquellen werden nie synchronisiert.
 - iPhone und iPad synchronisieren Verbindungen, Gruppen und Tags.
-- Passwörter werden nur synchronisiert, wenn du auf dem Mac unter Synchronisierungskategorien zusätzlich **Passwörter** oder auf iPhone und iPad **Passwörter synchronisieren** aktivierst. Dies verwendet den iCloud-Schlüsselbund. Auf dem Mac werden dabei auch andere im Schlüsselbund gespeicherte Geheimnisse synchronisiert, etwa KI-Anbieterschlüssel und der Lizenzschlüssel.
+- Passwörter werden nur synchronisiert, wenn du auf dem Mac unter Sync Categories zusätzlich **Passwords** oder auf iPhone und iPad **Sync Passwords** aktivierst. Dies verwendet den iCloud-Schlüsselbund. Auf dem Mac werden dabei auch andere im Schlüsselbund gespeicherte Geheimnisse synchronisiert, etwa KI-Anbieterschlüssel und der Lizenzschlüssel.
 
 Auf dem Mac ist iCloud Sync Bestandteil einer Starter- oder Team-Lizenz. Auf iPhone und iPad ist es kostenlos.
 
@@ -128,13 +128,13 @@ Das Lesen der Website setzt keine eigenen Cookies. Das Abonnieren des Newsletter
 
 ## Käufe {#purchases}
 
-Lizenzen werden von {merchant} (Polar Software, Inc.), unserem verantwortlichen Verkäufer und Wiederverkäufer, verkauft. Du kaufst bei {merchant} nach dessen Käuferbedingungen und Datenschutzerklärung. {merchant} nimmt Zahlungen entgegen, berechnet und entrichtet anfallende Verkaufs- oder Mehrwertsteuer, sendet Belege und Rechnungen und bearbeitet Zahlungsprobleme und Streitigkeiten. Dabei werden Name, E-Mail-Adresse, Rechnungsadresse und Zahlungsdaten erfasst. Wir sehen niemals deine vollständigen Kartendaten.
+Lizenzen werden von {merchant} (Polar Software, Inc.), unserem Merchant of Record und Wiederverkäufer, verkauft. Du kaufst bei {merchant} nach dessen Käuferbedingungen und Datenschutzerklärung. {merchant} nimmt Zahlungen entgegen, berechnet und entrichtet anfallende Verkaufs- oder Mehrwertsteuer, sendet Belege und Rechnungen und bearbeitet Zahlungsprobleme und Streitigkeiten. Dabei werden Name, E-Mail-Adresse, Rechnungsadresse und Zahlungsdaten erfasst. Wir sehen niemals deine vollständigen Kartendaten.
 
 Von {merchant} erhalten wir deine E-Mail-Adresse, Name und Rechnungsadresse wie von dir eingegeben, deinen Kauf, die Beträge, Bestell- und Abonnement-IDs sowie spätere Änderungen wie Verlängerungen, Kündigungen und Erstattungen. Wir teilen {merchant} die Sprache deiner Kaufseite mit, damit unsere E-Mails dich in dieser Sprache erreichen. Rechnungen, Belege, Zahlungsmethode und Abonnement findest du im [Kundenportal von {merchant}]({portal}); die Anmeldung erfolgt mit der beim Kauf verwendeten E-Mail-Adresse. Erstattungen sind in der [Erstattungsrichtlinie](/de/refund-policy) beschrieben, der Umfang einer Lizenz in den [Nutzungsbedingungen](/de/terms).
 
 ## Kontoportal {#account}
 
-Das [Kontoportal](/account?locale=de) unter tablepro.app/account ist für die Person bestimmt, die eine Lizenz gekauft hat. Du meldest dich über einen Link an, den wir an diese E-Mail-Adresse senden; er funktioniert einmal und läuft nach 15 Minuten ab. Das Portal zeigt deine Lizenzen, die darauf aktivierten Macs nach Namen und bei einer Team-Lizenz Mitglieder, Einladungen, Arbeitsplätze und Team-Bibliothek.
+Das [Kontoportal](/account?locale=de) unter tablepro.app/account ist für die Person bestimmt, die eine Lizenz gekauft hat. Du meldest dich über einen Link an, den wir an diese E-Mail-Adresse senden; er funktioniert einmal und läuft nach 15 Minuten ab. Das Portal zeigt deine Lizenzen, die darauf aktivierten Macs nach Namen und bei einer Team-Lizenz Mitglieder, Einladungen, Arbeitsplätze und Team Library.
 
 Wir speichern deine E-Mail-Adresse bei Lizenzen und Bestellungen und deine bei uns verwendete Sprache, damit unsere E-Mails dich darin erreichen. Wenn du jemanden in ein Team einlädst, speichern wir E-Mail-Adresse und Rolle dieser Person und senden ihr einen Einladungscode.
 
@@ -162,7 +162,7 @@ Du kannst deine Analyseantwort jederzeit über **Cookie-Einstellungen** im Fußb
 
 Für Leser im Europäischen Wirtschaftsraum und im Vereinigten Königreich sind die Rechtsgrundlagen nach DSGVO und UK GDPR:
 
-- **Vertrag** (Art. 6 Abs. 1 lit. b): Verkauf und Bereitstellung einer Lizenz, Lizenzprüfungen, Kontoportal und Team-Bibliothek.
+- **Vertrag** (Art. 6 Abs. 1 lit. b): Verkauf und Bereitstellung einer Lizenz, Lizenzprüfungen, Kontoportal und Team Library.
 - **Berechtigtes Interesse** (Art. 6 Abs. 1 lit. f): Nutzungsbericht der Mac-App und Länderermittlung, Protokolle der Lizenzanfragen, Sicherheit und Missbrauchsprävention, Webserverprotokolle, Cloudflare Web Analytics, Kaufzuordnungsdatensatz und Live-Chat auf jeder Seite.
 - **Einwilligung** (Art. 6 Abs. 1 lit. a): Google-Analytics-Cookies, Nutzungsbericht der iPhone- und iPad-App, Newsletter und von dir begonnene Live-Chat-Gespräche.
 - **Gesetzliche Verpflichtung** (Art. 6 Abs. 1 lit. c): Steuer- und Buchhaltungsunterlagen sowie Antworten auf rechtmäßige Anfragen.
@@ -171,7 +171,7 @@ Für Leser im Europäischen Wirtschaftsraum und im Vereinigten Königreich sind 
 
 Wir teilen personenbezogene Daten nur mit den Diensten, die für den Betrieb von TablePro erforderlich sind:
 
-- **{merchant}**, dem verantwortlichen Verkäufer für Käufe.
+- **{merchant}**, dem Merchant of Record für Käufe.
 - **Einem E-Mail-Versandanbieter**, für Anmeldelinks, Belege von uns, Teameinladungen und Newsletter.
 - **Unserem Hostinganbieter und Cloudflare**, für Website, Kontoportal und den Server, mit dem die Apps kommunizieren. Cloudflare zählt auch Seitenaufrufe mit Cloudflare Web Analytics.
 - **Google**, für Google Analytics auf Website, Dokumentation und Kontoportal.
@@ -192,7 +192,7 @@ Die genannten Dienste sind in mehreren Ländern tätig; deine Daten können dahe
 - **Nutzungsberichte** mit IP-Adressen und Ländern: Es wurde keine Frist festgelegt, und sie werden nicht automatisch gelöscht.
 - **Lizenzdatensätze**: IDs und Namen aktivierter Macs sowie das Protokoll der Lizenzanfragen mit IP-Adressen bleiben gespeichert, solange die Lizenz besteht. Sie werden nicht automatisch gelöscht.
 - **Bestellungen**: werden für Steuern und Buchhaltung aufbewahrt.
-- **Team-Bibliothek**: bis zur erneuten Veröffentlichung, zur Entfernung des veröffentlichenden Mitglieds oder zu deiner Löschungsanfrage. Sie bleibt nach dem Ende einer Lizenz bestehen.
+- **Team Library**: bis zur erneuten Veröffentlichung, zur Entfernung des veröffentlichenden Mitglieds oder zu deiner Löschungsanfrage. Sie bleibt nach dem Ende einer Lizenz bestehen.
 - **Anmeldelinks für Konten**: laufen nach 15 Minuten ab und werden dann gelöscht. Portalsitzungen dauern 2 Stunden.
 - **Newsletter**: bis zur Abmeldung oder zur Löschung der Adresse auf deine Anfrage.
 - **Google Analytics**: Nutzer- und Ereignisdaten für 2 Monate, Googles Standardfrist, die unsere Property verwendet. Cookies bleiben bis zu 2 Jahre oder werden beim Ablehnen gelöscht.

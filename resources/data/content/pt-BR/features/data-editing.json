@@ -56,7 +56,7 @@
             "id": "safe-mode",
             "title": "Safe Mode para conexões de produção",
             "paragraphs": [
-                "Cada conexão tem um nível de Safe Mode: {macSafeModeLevels}. Novas conexões começam em {macSafeModeDefault}, onde as instruções são executadas como escritas. Alert pede confirmação antes de gravar; os níveis Safe Mode também pedem Touch ID ou a senha do Mac, os níveis Full pedem confirmação antes de ler e Read-Only recusa gravações e desativa a edição. O Safe Mode é gratuito.",
+                "Cada conexão tem um nível de Safe Mode: {macSafeModeLevels}. Novas conexões começam em {macSafeModeDefault}, onde as instruções são executadas como foram escritas. Alert pede confirmação antes de gravar; os níveis Safe Mode também pedem Touch ID ou a senha do Mac, os níveis Full também pedem confirmação antes de ler, e Read-Only recusa gravações e desativa a edição. O Safe Mode é gratuito.",
                 "Em todos os níveis, DROP, TRUNCATE e DELETE sem WHERE param e pedem confirmação primeiro. Algumas condições elevam o nível da conexão enquanto se aplicam: um mecanismo somente leitura, o Agent mode, que o eleva a pelo menos Alert, e um nível mínimo definido pela sua organização via gerenciamento de dispositivos (MDM)."
             ],
             "asset": "mac-safe-mode-touchid",

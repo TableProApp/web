@@ -41,8 +41,8 @@
             "title": "查询和编辑",
             "paragraphs": [
                 "驱动内置 SQLite，不论 macOS 版本，SQL 均在同一版本运行。<explain>EXPLAIN QUERY PLAN</explain> 绘制为图形。",
-                "可按列出顺序为每个连接加载 sqlite-vec、SpatiaLite 等扩展，其函数和虚拟表可用于编辑器、侧栏和 Structure 标签页。SQL 函数 <code>load_extension()</code> 仍被拒绝，通过同步、导入连接或链接传入的列表，在批准前不会加载任何扩展。",
-                "行编辑暂存至保存，<editing>Preview SQL</editing> 先显示所有语句。其他程序修改文件时，侧栏会自动重新加载。"
+                "可按列出顺序为每个连接加载 sqlite-vec、SpatiaLite 等扩展，其函数和虚拟表可用于编辑器、侧边栏和 Structure 标签页。SQL 函数 <code>load_extension()</code> 仍被拒绝，通过同步、导入连接或链接传入的列表，在批准前不会加载任何扩展。",
+                "行编辑暂存至保存，<editing>Preview SQL</editing> 先显示所有语句。其他程序修改文件时，侧边栏会自动重新加载。"
             ]
         },
         {
@@ -51,7 +51,7 @@
             "paragraphs": [
                 "重命名表或列、添加或删除列，以及 SQLite 3.53 起添加或删除 CHECK，使用 ALTER TABLE 执行。列类型、外键等其他 <structure>Structure 标签页</structure>修改会重建表：TablePro 生成脚本，连同 rowid 复制行，恢复索引和触发器，仅在确认后运行。",
                 "修改列类型会按新的类型亲和性重新读取值，例如 INTEGER 列中 <code>'007'</code> 变成 <code>7</code>，执行前审查面板会说明。FTS5 等虚拟表无法重建，保存时会指明其名称。",
-                "可从侧栏查看和编辑触发器。"
+                "可从侧边栏查看和编辑触发器。"
             ]
         },
         {
@@ -74,7 +74,7 @@
             "id": "iphone",
             "title": "iPhone 和 iPad",
             "paragraphs": [
-                "iPhone 和 iPad 上可选择或创建数据库文件，也可从 Open Sample Database 打开 Chinook 示例。按卡片浏览表、筛选、编辑有主键的行，并在 Query 标签页运行 SQL。"
+                "iPhone 和 iPad 上可选择或创建数据库文件，也可从 Open Sample Database 打开 Chinook 示例。以卡片形式浏览表、筛选、编辑有主键的行，并在 Query 标签页运行 SQL。"
             ],
             "asset": "ios-query"
         }

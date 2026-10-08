@@ -18,7 +18,7 @@
             "title": "Simpan pustaka koneksi",
             "paragraphs": [
                 "Setiap koneksi diedit dalam satu formulir dengan tab General, Network, Options, dan Appearance. Impor URL koneksi, termasuk URL <code>jdbc:</code> dan <code>+ssh</code> yang membawa hop SSH, lalu formulir terisi otomatis; jika URL sudah ada di papan klip, formulir menawarkan <ui>Use clipboard URL</ui>.",
-                "Beri koneksi warna, tag sebanyak yang diinginkan, dan tempat dalam grup bertingkat; tandai koneksi yang sering dipakai sebagai favorit. Lingkungan berupa tag: lokal, pengembangan, produksi, dan pengujian sudah tersedia, dan Anda dapat menambahkannya sendiri. Pustaka kosong menawarkan <ui>Open Sample Database</ui>, salinan SQLite Chinook yang disertakan.",
+                "Beri koneksi warna, tag sebanyak yang diinginkan, dan tempat dalam grup bertingkat; tandai koneksi yang sering dipakai sebagai favorit. Lingkungan berupa tag: local, development, production, dan testing sudah tersedia, dan Anda dapat menambahkan tag sendiri. Pustaka kosong menawarkan <ui>Open Sample Database</ui>, salinan SQLite Chinook yang disertakan.",
                 "Buka beberapa koneksi dalam satu jendela. Bilah koneksi di tepi kiri berpindah antar-koneksi, dan setiap koneksi kembali ke tab terakhir yang digunakan. <ui>Open in New Window</ui> menempatkan koneksi berdampingan."
             ],
             "asset": "mac-connection-library"
@@ -134,7 +134,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Tulis <code>$DB_HOST</code> pada host, database, nama pengguna, host SSH, pengguna dan jalur key SSH, jalur sertifikat TLS, perintah startup, atau field driver; TablePro mengisi nilainya dari lingkungan sendiri saat terhubung. Port dan kata sandi tidak pernah dibaca dengan cara ini; gunakan sumber untuk kata sandi."
+                        "Tulis <code>$DB_HOST</code> pada host, database, nama pengguna, host SSH, pengguna dan jalur key SSH, jalur sertifikat TLS, perintah startup, atau field driver; TablePro mengisi nilainya dari lingkungannya sendiri saat terhubung. Port dan kata sandi tidak pernah dibaca dengan cara ini; untuk kata sandi, gunakan sumber kata sandi."
                     ],
                     "paid": [
                         "environment-variables"
@@ -146,7 +146,7 @@
             "id": "policies",
             "title": "Aturan setiap koneksi",
             "paragraphs": [
-                "Level Safe Mode koneksi menentukan apakah pernyataan berjalan sebagaimana ditulis, meminta konfirmasi, meminta Touch ID atau kata sandi, atau ditolak. Level External Clients, Blocked, Read Only, atau Read & Write, mengatur tindakan klien MCP dan AppleScript serta tetap di Mac ini. Kebijakan AI mengatur apakah asisten AI dapat menggunakannya tanpa bertanya, hanya setelah bertanya, atau tidak pernah; Never juga memblokir klien MCP.",
+                "Level Safe Mode koneksi menentukan apakah pernyataan berjalan sebagaimana ditulis, meminta konfirmasi, meminta Touch ID atau kata sandi, atau ditolak. Level External Clients, Blocked, Read Only, atau Read & Write, mengatur apa yang boleh dilakukan klien MCP dan AppleScript terhadap koneksi itu, dan pengaturan ini tetap di Mac ini. Kebijakan AI mengatur apakah asisten AI dapat menggunakannya tanpa bertanya, hanya setelah bertanya, atau tidak pernah; Never juga memblokir klien MCP.",
                 "Organisasi dapat menerapkan level minimum Safe Mode untuk setiap koneksi dan mengontrol pembaruan melalui profil konfigurasi."
             ],
             "links": [

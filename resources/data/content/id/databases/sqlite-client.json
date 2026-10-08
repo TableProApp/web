@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "SQLite untuk {devices}",
+        "title": "Klien SQLite untuk {devices}",
         "description": "Buka SQLite di Mac atau via SSH, muat sqlite-vec dan SpatiaLite, serta ubah struktur dengan skrip pembangunan ulang yang ditinjau sebelum dijalankan."
     },
     "og": {
@@ -11,7 +11,7 @@
     "breadcrumb": "SQLite",
     "header": {
         "title": "Klien SQLite untuk {devices}",
-        "lead": "Buka berkas database dari Finder, dengan menyeretnya, atau dari server SSH, jalankan kueri dengan SQLite bawaan aplikasi, dan ubah strukturnya melalui skrip pembangunan ulang yang Anda tinjau sebelum dijalankan."
+        "lead": "Buka file database dari Finder, dengan menyeretnya, atau dari server SSH, jalankan kueri dengan SQLite bawaan aplikasi, dan ubah strukturnya melalui skrip pembangunan ulang yang Anda tinjau sebelum dijalankan."
     },
     "asset": "mac-db-sqlite-chinook",
     "links": {
@@ -28,11 +28,11 @@
     "sections": [
         {
             "id": "connect",
-            "title": "Buka berkas database",
+            "title": "Buka file database",
             "paragraphs": [
-                "Pilih berkas dalam formulir koneksi atau seret ke jendela TablePro atau ikon Dock. Jalur ke berkas yang belum ada akan membuatnya saat koneksi dibuka. Berkas dibuka sebagai SQLite jika byte awalnya bertuliskan <code>SQLite format 3</code>, apa pun namanya.",
-                "Finder menampilkan TablePro pada Buka Dengan untuk berkas .db, .sqlite, .sqlite3, dan sejenisnya. Database dalam folder yang dilindungi macOS, seperti Pesan atau riwayat Safari, memerlukan Akses Disk Penuh (Full Disk Access) terlebih dahulu, dan biasanya aplikasi pemiliknya harus ditutup.",
-                "Database di komputer lain dibuka melalui <remoteFiles>panel Remote File</remoteFiles>. On the Server menjalankan pernyataan pada berkas aktif melalui SSH, tanpa pemasangan apa pun pada host selain <code>python3</code>. As a Read-Only Copy mengambil snapshot melalui SFTP dan membukanya hanya untuk dibaca.",
+                "Pilih file dalam formulir koneksi atau seret ke jendela TablePro atau ikon Dock. Jalur ke file yang belum ada akan membuatnya saat koneksi dibuka. File dibuka sebagai SQLite jika byte awalnya bertuliskan <code>SQLite format 3</code>, apa pun namanya.",
+                "Finder menampilkan TablePro pada Buka Dengan untuk file .db, .sqlite, .sqlite3, dan sejenisnya. Database dalam folder yang dilindungi macOS, seperti Pesan atau riwayat Safari, memerlukan Akses Disk Penuh (Full Disk Access) terlebih dahulu, dan biasanya aplikasi pemiliknya harus ditutup.",
+                "Database di komputer lain dibuka melalui <remoteFiles>panel Remote File</remoteFiles>. On the Server menjalankan pernyataan pada file aktif melalui SSH, tanpa pemasangan apa pun pada host selain <code>python3</code>. As a Read-Only Copy mengambil snapshot melalui SFTP dan membukanya hanya untuk dibaca.",
                 "Untuk mencoba terlebih dahulu, pilih Help > Open Sample Database. Opsi ini membuka Chinook, contoh kecil toko musik digital yang disertakan dalam aplikasi."
             ]
         },
@@ -41,8 +41,8 @@
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
                 "Driver memiliki SQLite sendiri, sehingga SQL berjalan pada versi yang sama apa pun versi macOS Anda. <explain>EXPLAIN QUERY PLAN</explain> digambar sebagai diagram.",
-                "Muat ekstensi seperti sqlite-vec dan SpatiaLite per koneksi, sesuai urutan daftar, dan fungsi serta tabel virtualnya dapat digunakan di editor, bilah samping, dan tab Structure. Fungsi SQL <code>load_extension()</code> tetap ditolak, dan daftar yang diterima melalui sinkronisasi, koneksi impor, atau tautan tidak memuat apa pun sampai Anda menyetujuinya.",
-                "Perubahan baris ditampung sampai Anda menyimpan, dengan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu. Saat program lain mengubah berkas, bilah samping dimuat ulang secara otomatis."
+                "Muat ekstensi seperti sqlite-vec dan SpatiaLite per koneksi, sesuai urutan daftar, dan fungsi serta tabel virtualnya dapat digunakan di editor, sidebar, dan tab Structure. Fungsi SQL <code>load_extension()</code> tetap ditolak, dan daftar yang diterima melalui sinkronisasi, koneksi impor, atau tautan tidak memuat apa pun sampai Anda menyetujuinya.",
+                "Perubahan baris ditampung sampai Anda menyimpan, dengan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu. Saat program lain mengubah file, sidebar dimuat ulang secara otomatis."
             ]
         },
         {
@@ -51,30 +51,30 @@
             "paragraphs": [
                 "Mengganti nama tabel atau kolom, menambah atau menghapus kolom, dan sejak SQLite 3.53 menambah atau menghapus CHECK dijalankan sebagai ALTER TABLE. Perubahan lain pada <structure>tab Structure</structure>, seperti jenis kolom atau foreign key, membangun ulang tabel: TablePro menulis skrip, menyalin baris beserta rowid, memulihkan indeks dan trigger, lalu menjalankannya hanya setelah Anda mengonfirmasi.",
                 "Mengubah jenis kolom membaca ulang nilainya menggunakan afinitas baru, sehingga <code>'007'</code> menjadi <code>7</code> dalam kolom INTEGER; lembar peninjauan memberitahukannya sebelum perintah dijalankan. Tabel virtual, seperti tabel FTS5, tidak dapat dibangun ulang, dan proses penyimpanan menyebutkan namanya.",
-                "Trigger dapat dibaca dan diedit dari bilah samping."
+                "Trigger dapat dibaca dan diedit dari sidebar."
             ]
         },
         {
             "id": "operate",
             "title": "Pemeliharaan dan pencadangan",
             "paragraphs": [
-                "Pemeliharaan tabel menjalankan VACUUM, ANALYZE, REINDEX, dan pemeriksaan integritas, masing-masing ditampilkan sebagai SQL sebelum dijalankan. Server Dashboard menampilkan ukuran berkas, jumlah halaman, ukuran halaman, mode journal, dan ukuran cache.",
-                "<backup>Backup Dump</backup> menulis database ke berkas .sql menggunakan {dumpTool}, dan Restore Dump menjalankan berkas tersebut pada database."
+                "Pemeliharaan tabel menjalankan VACUUM, ANALYZE, REINDEX, dan pemeriksaan integritas, masing-masing ditampilkan sebagai SQL sebelum dijalankan. Server Dashboard menampilkan ukuran file, jumlah halaman, ukuran halaman, mode journal, dan ukuran cache.",
+                "<backup>Backup Dump</backup> menulis database ke file .sql menggunakan {dumpTool}, dan Restore Dump menjalankan file tersebut pada database."
             ]
         },
         {
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Impor</importData> berkas {importFormats}, atau buka berkas CSV, JSON, atau XLSX di <dataFiles>jendela Data Files</dataFiles> lalu impor dari sana. Tabel dan hasil diekspor sebagai {exportFormats}.",
-                "<copy>Copy To</copy> memindahkan tabel dan barisnya ke koneksi lain, seperti server PostgreSQL, serta mencantumkan setiap jenis kolom yang harus didekatkan ke jenis tujuan. Lihat juga <files>menggunakan berkas sebagai database</files>."
+                "<importData>Impor</importData> file {importFormats}, atau buka file CSV, JSON, atau XLSX di <dataFiles>jendela Data Files</dataFiles> lalu impor dari sana. Tabel dan hasil diekspor sebagai {exportFormats}.",
+                "<copy>Copy To</copy> memindahkan tabel dan barisnya ke koneksi lain, seperti server PostgreSQL, serta mencantumkan setiap jenis kolom yang harus didekatkan ke jenis tujuan. Lihat juga <files>menggunakan file sebagai database</files>."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone dan iPad",
             "paragraphs": [
-                "Di iPhone dan iPad, pilih berkas database atau buat yang baru, atau buka contoh Chinook dari Open Sample Database. Anda dapat menelusuri tabel sebagai kartu, memfilternya, mengedit baris dengan primary key, dan menjalankan SQL di tab Query."
+                "Di iPhone dan iPad, pilih file database atau buat yang baru, atau buka contoh Chinook dari Open Sample Database. Anda dapat menelusuri tabel sebagai kartu, memfilternya, mengedit baris dengan primary key, dan menjalankan SQL di tab Query."
             ],
             "asset": "ios-query"
         }
@@ -85,7 +85,7 @@
         {
             "id": "encrypted",
             "question": "Apakah TablePro dapat membuka database SQLite terenkripsi?",
-            "answer": "Tidak. Berkas SQLCipher dan SEE tidak dapat dibuka karena SQLite bawaan tidak menerima kunci. Dekripsi berkas terlebih dahulu menggunakan alat sqlcipher."
+            "answer": "Tidak. File SQLCipher dan SEE tidak dapat dibuka karena SQLite bawaan tidak menerima kunci. Dekripsi file terlebih dahulu menggunakan alat sqlcipher."
         },
         {
             "id": "version",
@@ -95,12 +95,12 @@
         {
             "id": "framework-files",
             "question": "Apakah saya dapat membuka database pengembangan aplikasi?",
-            "answer": "Ya. Buka berkas di lokasi yang digunakan framework, seperti <code>db/development.sqlite3</code> pada Rails atau <code>db.sqlite3</code> pada Django. Berkas di bawah <code>~/Library</code>, termasuk kontainer Simulator iOS, memerlukan Akses Disk Penuh (Full Disk Access)."
+            "answer": "Ya. Buka file di lokasi yang digunakan framework, seperti <code>db/development.sqlite3</code> pada Rails atau <code>db.sqlite3</code> pada Django. File di bawah <code>~/Library</code>, termasuk kontainer Simulator iOS, memerlukan Akses Disk Penuh (Full Disk Access)."
         }
     ],
     "related": [
         {
-            "label": "Impor, ekspor, dan berkas data",
+            "label": "Impor, ekspor, dan file data",
             "href": "/features/import-export"
         },
         {
@@ -112,7 +112,7 @@
             "href": "/turso-client"
         },
         {
-            "label": "DuckDB, untuk berkas analitik",
+            "label": "DuckDB, untuk file analitik",
             "href": "/duckdb-client"
         }
     ]

@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "輸入一個代理的主機和連接埠，從它探索叢集其餘部分。<ui>額外的 Bootstrap 伺服器</ui>（Additional Bootstrap Servers）列出首個代理無回應時嘗試的代理。一個連線對應一個叢集，無 Database 欄位，側欄直接顯示主題。",
+                "輸入一個代理的主機和連接埠，從它探索叢集其餘部分。<ui>額外的 Bootstrap 伺服器</ui>（Additional Bootstrap Servers）列出首個代理無回應時嘗試的代理。一個連線對應一個叢集，無 Database 欄位，側邊欄直接顯示主題。",
                 "<ui>安全性協定</ui>（Security Protocol）可選 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL 機制</ui>（SASL Mechanism）可選 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 適合 Confluent Cloud，SCRAM 適合 Amazon MSK 和自行託管代理。SSL 或 SASL_SSL 未選擇 SSL 模式時驗證憑證鏈和主機名稱。私有 CA 填入 <ui>CA 憑證</ui>（CA Certificate），用戶端憑證和金鑰提供雙向 TLS。",
                 "透過 <network>SSH 通道</network>時連線停留在啟動代理，僅讀取該代理領導的分割區。<ui>從 URL 匯入…</ui>（Import from URL…）接受 <code>kafka://</code> URL，macOS 不將其作為連結開啟。"
             ]
@@ -43,7 +43,7 @@
             "id": "operate",
             "title": "主題",
             "paragraphs": [
-                "從側欄或 <code>DROP TOPIC</code> 刪除主題是唯一破壞性操作。叢集隨後移除記錄，主題可能暫留清單。不提供 Truncate：Kafka 依保留策略或各分割區位移移除記錄，兩者均不清空主題。"
+                "從側邊欄或 <code>DROP TOPIC</code> 刪除主題是唯一破壞性操作。叢集隨後移除記錄，主題可能暫留清單。不提供 Truncate：Kafka 依保留策略或各分割區位移移除記錄，兩者均不清空主題。"
             ]
         },
         {

@@ -11,7 +11,7 @@ Ketentuan ini mengatur penggunaan TablePro: aplikasi, situs web tablepro.app, da
 - **"TablePro", "kami", dan "milik kami"** berarti proyek TablePro dan pengelolanya.
 - **"Aplikasi"** berarti TablePro untuk Mac dan TablePro untuk iPhone dan iPad, termasuk pembaruan dan plugin.
 - **"Situs Web"** berarti tablepro.app, docs.tablepro.app, dan domain lain yang kami operasikan.
-- **"Layanan"** berarti Situs Web, portal akun, dan server yang dihubungi Aplikasi untuk pemeriksaan lisensi, Pustaka Tim, dan laporan penggunaan.
+- **"Layanan"** berarti Situs Web, portal akun, dan server yang dihubungi Aplikasi untuk pemeriksaan lisensi, Team Library, dan laporan penggunaan.
 - **"Lisensi"** berarti paket Starter atau Team berbayar, dan **"Kunci Lisensi"** adalah kredensial yang mengaktifkan fiturnya dalam aplikasi Mac.
 - **"Anda"** berarti orang atau organisasi yang memakai Aplikasi atau Layanan.
 
@@ -93,7 +93,7 @@ Anda setuju mengganti kerugian dan membebaskan TablePro serta kontributornya dar
 
 Kami merilis pembaruan, perbaikan, dan fitur baru sesuai kebijakan kami. Selain dukungan prioritas di atas, kami tidak berkewajiban memelihara, memperbarui, atau mendukung versi Aplikasi apa pun, dan versi lama mungkin berhenti menerima perbaikan keamanan.
 
-Sebagian Layanan, seperti pemeriksaan lisensi dan Pustaka Tim, memerlukan akses jaringan. Kami tidak menjamin ketersediaan sepanjang waktu dan dapat menghentikannya dengan pemberitahuan yang wajar. Fitur berbayar aplikasi Mac memerlukan server lisensi kami: jika tidak dapat diakses, fitur tetap berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil.
+Sebagian Layanan, seperti pemeriksaan lisensi dan Team Library, memerlukan akses jaringan. Kami tidak menjamin ketersediaan sepanjang waktu dan dapat menghentikannya dengan pemberitahuan yang wajar. Fitur berbayar aplikasi Mac memerlukan server lisensi kami: jika tidak dapat diakses, fitur tetap berfungsi selama {graceDays} hari setelah pemeriksaan terakhir yang berhasil.
 
 ## Pengakhiran {#termination}
 

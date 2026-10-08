@@ -8,7 +8,7 @@ database and no credentials: every page is built from markdown in
 
 ```
 /                          homepage
-/download  /ios  /pricing  /faq  /security
+/download  /ios  /pricing  /faq  /about  /security
 /features  /features/{slug}
 /databases /{database}-client  /{database}-gui
 /compare   /compare/{slug}
@@ -248,8 +248,10 @@ Mode**, and nothing about it is optional:
    once the browser is idle (two seconds after the load in Safari), the way the
    chat loader is; `gtag()` queues every call in `dataLayer` until it arrives,
    and it replays them in order. A reader who leaves before then is not counted.
-2. **`ConsentBar` asks**, once, after hydration. Allow and Decline are the same
-   button at the same weight; that is a legal requirement, not a style choice.
+2. **`ConsentBar` asks.** It is in the server's HTML, hidden, and the head
+   script adds `consent-open` to `<html>` when no answer is stored. Allow and
+   Decline are the same button at the same weight; that is a legal
+   requirement, not a style choice.
 3. **`resources/js/lib/consent.ts` applies the answer** to the running tag and,
    on a decline, deletes any `_ga*` cookie already written. "Cookie settings" in
    the footer and a button in `/privacy#cookies` reopen the bar.
@@ -301,8 +303,8 @@ added after the page has loaded, and Cloudflare Web Analytics.
   `loadChatWhenIdle()` (`resources/js/lib/crisp.ts`), which adds the loader
   after the load event, once the browser is idle, so it is never in the server
   render and never delays the first paint. A "Live chat" button opens the same
-  widget. While the consent bar covers the bottom-right corner (on a phone it
-  spans the width), the launcher is hidden. Crisp sets its `crisp-client/`
+  widget. While the consent bar covers the bottom-right corner (on a phone,
+  reopened from "Cookie settings"), the launcher is hidden. Crisp sets its `crisp-client/`
   cookies as soon as it loads; the privacy policy describes them.
 - **The Polar or Lemon Squeezy checkout SDK** loads at checkout intent, not on
   every page. `resources/js/lib/checkout-sdk.ts` injects one script tag on the

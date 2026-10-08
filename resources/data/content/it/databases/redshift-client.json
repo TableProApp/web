@@ -32,7 +32,7 @@
             "title": "Connetti",
             "paragraphs": [
                 "Usa l’endpoint del cluster come host oppure l’endpoint del workgroup su Redshift Serverless; entrambi ascoltano sulla stessa porta. È necessario un database e ogni cluster ne include uno chiamato <code>dev</code>. Importare un URL <code>redshift://</code> compila il modulo.",
-                "Le nuove connessioni impostano SSL su Preferred e non controllano la versione, quindi si connette qualsiasi cluster ancora gestito da AWS. La password viene conservata nel portachiavi o letta da <code>~/.pgpass</code>, due delle <credentials>opzioni per le credenziali</credentials> della connessione. Un cluster non raggiungibile pubblicamente si raggiunge con un <network>tunnel SSH</network> verso un bastion host nella sua VPC."
+                "Le nuove connessioni impostano SSL su Preferred e non controllano la versione, quindi si connette qualsiasi cluster ancora gestito da AWS. La password viene conservata nel Portachiavi o letta da <code>~/.pgpass</code>, due delle <credentials>opzioni per le credenziali</credentials> della connessione. Un cluster non raggiungibile pubblicamente si raggiunge con un <network>tunnel SSH</network> verso un bastion host nella sua VPC."
             ]
         },
         {

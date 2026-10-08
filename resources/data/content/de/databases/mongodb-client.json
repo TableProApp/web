@@ -41,26 +41,26 @@
             "title": "Dokumente abfragen und bearbeiten",
             "paragraphs": [
                 "Der Abfrage-Tab ist eine JavaScript-Shell mit mongosh-Syntax: unquotierte Schlüssel, Regex-Literale, <code>ISODate()</code>, Variablen, Schleifen und <code>forEach</code>. Sie läuft in TablePro ohne weitere Installation; eine definierte Variable bleibt in allen Tabs der Verbindung bis zum Trennen verfügbar. Die Vervollständigung bietet Sammlungen, Methoden, verschachtelte Feldpfade und die an der Cursorposition gültigen <code>$</code>-Operatoren.",
-                "Eine Sammlung öffnet als Raster mit Feldern der obersten Ebene als Spalten und verschachtelten Objekten als Extended JSON. Eine bearbeitete Zelle behält den Feldtyp: Ein Datum bleibt Datum, eine ObjectId bleibt ObjectId. Eine Änderung im verschachtelten Objekt schreibt nur den geänderten Pfad wie <code>address.city</code>.",
+                "Eine Sammlung öffnet sich als Raster, mit den Feldern der obersten Ebene als Spalten und verschachtelten Objekten als Extended JSON. Eine bearbeitete Zelle behält den Typ ihres Felds: Ein Datum bleibt ein Datum, eine ObjectId bleibt eine ObjectId. Eine Änderung in einem verschachtelten Objekt schreibt nur den geänderten Pfad, etwa <code>address.city</code>.",
                 "<editing>Insert Document und Edit Document</editing> nehmen ein ganzes Dokument als Extended JSON entgegen. Edit Document liest es erneut vom Server; hat jemand es nach dem Öffnen geändert oder gelöscht, wird nichts gespeichert und der Dialog meldet es. <ui>Remove Field</ui> auf einer Zelle sendet <code>$unset</code>.",
-                "Die <filters>Filterleiste</filters> erreicht verschachtelte Objekte und Objektarrays, sodass <code>customer.country</code> und <code>items.sku</code> direkt filtern. Ein GeoJSON-Feld öffnet in der <map>Kartenansicht</map>.",
-                "<safeMode>Safe Mode</safeMode> behandelt jede MongoDB-Anweisung als Schreibzugriff, da der Treiber keine schreibgeschützte Sitzung öffnen kann. Alert und Safe Mode bestätigen jede Anweisung; Read-Only blockiert alle."
+                "Die <filters>Filterleiste</filters> reicht bis in verschachtelte Objekte und Arrays von Objekten, sodass du direkt nach <code>customer.country</code> und <code>items.sku</code> filtern kannst. Ein Feld mit GeoJSON öffnet sich in der <map>Kartenansicht</map>.",
+                "<safeMode>Safe Mode</safeMode> behandelt jede MongoDB-Anweisung als Schreibzugriff, da der Treiber keine schreibgeschützte Sitzung öffnen kann. Die Stufen Alert und Safe Mode fragen bei jeder Anweisung nach; Read-Only blockiert alle."
             ]
         },
         {
             "id": "schema",
             "title": "Sammlungen, Indizes und Validatoren",
             "paragraphs": [
-                "Der <structure>Structure-Tab</structure> listet jeden Index mit seinen Feldern in Schlüsselreihenfolge und seiner Art wie hashed, text, 2dsphere oder wildcard. Show DDL schreibt die <code>createIndex</code>-Aufrufe zum Wiederherstellen mit jeder vom Server gemeldeten Option.",
+                "Der <structure>Structure-Tab</structure> listet jeden Index mit seinen Feldern in Schlüsselreihenfolge und seiner Art wie hashed, text, 2dsphere oder wildcard. Show DDL schreibt die <code>createIndex</code>-Aufrufe, die sie neu aufbauen, mit allen vom Server gemeldeten Optionen.",
                 "Benenne im selben Tab ein Feld in der ganzen Sammlung um oder entferne es. Jede Änderung ist ein in Preview SQL gezeigtes <code>updateMany</code>; ein vom <code>$jsonSchema</code>-Validator deklariertes Feld wird dort ebenfalls geändert. Solange ein Index, Suchindex oder eine Sicht den Namen nutzt, wird das Speichern vor jedem Schreibvorgang abgelehnt.",
-                "<ui>New Table</ui> erstellt eine Sammlung, deren Felder zu einem <code>$jsonSchema</code>-Validator werden, und erstellt danach die aufgeführten Indizes. Sichten und Zeitreihensammlungen erscheinen in der Seitenleiste; Sichten öffnen schreibgeschützt."
+                "<ui>New Table</ui> erstellt eine Sammlung, deren Felder zu einem <code>$jsonSchema</code>-Validator werden, und erstellt danach die aufgeführten Indizes. Sichten und Zeitreihensammlungen erscheinen in der Seitenleiste; Sichten öffnen sich schreibgeschützt."
             ]
         },
         {
             "id": "operate",
             "title": "Sichern",
             "paragraphs": [
-                "<backup>Backup Dump</backup> schreibt jede markierte Datenbank mit {dumpTool} in ein gzip-Archiv, mit Hosts, Auth Database, SRV- und TLS-Einstellungen der Verbindung; ein Dump lässt sich auf einzelne Sammlungen begrenzen. Restore Dump führt mongorestore in der gewählten Datenbank aus und behält Vorhandenes. Installiere zuerst MongoDB Database Tools auf deinem Mac."
+                "<backup>Backup Dump</backup> schreibt jede markierte Datenbank mit {dumpTool} in ein gzip-Archiv, mit Hosts, Auth Database, SRV- und TLS-Einstellungen der Verbindung; ein Dump lässt sich auf einzelne Sammlungen begrenzen. Restore Dump führt mongorestore in der gewählten Datenbank aus und behält, was bereits vorhanden ist. Installiere zuerst die MongoDB Database Tools auf deinem Mac."
             ]
         },
         {
@@ -68,7 +68,7 @@
             "title": "Daten übertragen",
             "paragraphs": [
                 "<importData>Importiere</importData> {importFormats}-Dateien in eine Sammlung. <export>Exportiere</export> Sammlungen oder Ergebnisse als {exportFormats}.",
-                "Ein MQL-Export ist eine in mongosh ausführbare <code>.js</code>-Datei mit <code>insertMany</code>-Aufrufen und, wenn markiert, den Indizes und dem Validator jeder Sammlung. Werte der obersten Ebene behalten ihren Typ; ein typisierter Wert in einem Unterdokument oder Array, etwa eine ObjectId in einem Array, wird als String geschrieben. Exportiere solche Sammlungen als JSON oder sichere sie mit mongodump."
+                "Ein MQL-Export ist eine in mongosh ausführbare <code>.js</code>-Datei mit <code>insertMany</code>-Aufrufen und, wenn markiert, den Indizes und dem Validator jeder Sammlung. Werte der obersten Ebene behalten ihren Typ; ein typisierter Wert in einem Unterdokument oder Array, etwa eine ObjectId in einem Array, wird als String geschrieben. Exportiere solche Sammlungen stattdessen als JSON oder sichere sie mit mongodump."
             ]
         }
     ],

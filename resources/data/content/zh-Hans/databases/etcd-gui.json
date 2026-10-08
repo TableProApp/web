@@ -34,7 +34,7 @@
             "id": "work",
             "title": "浏览键和执行命令",
             "paragraphs": [
-                "设置<ui>键前缀根</ui>（Key Prefix Root）（如 <code>/app</code>）将连接限制于一个子树。侧栏按其下第一个路径段分组，每个键一行，显示值、版本、修改和创建修订号及租约。",
+                "设置<ui>键前缀根</ui>（Key Prefix Root）（如 <code>/app</code>）将连接限制于一个子树。侧边栏按其下第一个路径段分组，每个键一行，显示值、版本、修改和创建修订号及租约。",
                 "保存编辑发送命令。新值或租约重新 put 键，NULL 租约移除租约，重命名先 put 新名再删除旧名。修订号列由 etcd 管理，编辑会停止保存并指出列名。",
                 "编辑器接受 etcdctl 风格命令，补全命令和标志：带 <code>--prefix</code>、<code>--limit</code>、<code>--keys-only</code> 及排序的 <code>get</code>，带 <code>--lease</code> 的 <code>put</code>，<code>del</code>、<code>watch</code>、<code>lease</code> 子命令、<code>member list</code>、<code>endpoint status</code> 和 <code>health</code>、<code>compaction</code>，以及 <code>auth</code>、<code>user</code>、<code>role</code>。其他命令不发送服务器，直接返回未知命令。",
                 "etcd 驱动无法打开只读会话，因此 <safeMode>Safe Mode</safeMode> 将所有命令视为写入：Alert、Safe Mode 级别每次先确认，Read-Only 全部阻止。"

@@ -35,7 +35,7 @@
             "title": "接続",
             "paragraphs": [
                 "ホスト、ポート、ユーザーとデータベースを指定するか、<code>postgresql://</code> または <code>postgres://</code> URL を貼り付けます。PostgreSQL への接続にはデータベース指定が必要です。",
-                "新規接続の SSL は Preferred、libpq の <code>sslmode=prefer</code> で始まります。サーバー証明書を検証するには Verify CA または Verify Identity を選んでください。",
+                "新規接続の SSL は Preferred（libpq の <code>sslmode=prefer</code>）で始まります。サーバー証明書を検証するには Verify CA または Verify Identity を選んでください。",
                 "Use ~/.pgpass を有効にすると <code>~/.pgpass</code> からパスワードを読み取ります。フォームには検出結果を表示し、権限によって libpq がファイルを無視する場合も知らせます。",
                 "プライベートサーバーには、<network>必要に応じて踏み台ホストを使う SSH トンネル、SOCKS5 プロキシ、Cloudflare Access トンネルやトンネルコマンド</network>（kubectl port-forward など）でアクセスできます。Amazon RDS と Aurora では <code>rds_iam</code> を付与したロールで <cloudAuth>AWS IAM</cloudAuth> 認証できます。Google Cloud SQL では TablePro が Cloud SQL Auth Proxy をダウンロードして実行します。",
                 "<code>-c application_name=reporting</code> など、libpq が接続オプションとして受け付けるものは Connection Options に入力します。"
@@ -69,7 +69,7 @@
                 "<administer>Users & Roles</administer> は権限の付与・取り消し前に各権限の由来を表示し、すべての文を SQL として保留します。",
                 "Server Dashboard はセッション、接続数、キャッシュヒット率、データベースサイズと遅いクエリを表示します。<code>pg_cancel_backend</code> でクエリをキャンセルし、<code>pg_terminate_backend</code> でセッションを終了します。スーパーユーザーでも <code>pg_monitor</code> のメンバーでもないロールは、他のセッションのクエリを見られません。",
                 "テーブル保守は FULL、ANALYZE、VERBOSE オプション付きの VACUUM と、ANALYZE、REINDEX、CLUSTER を実行し、先に文を表示します。",
-                "<backup>Backup Dump と Restore Dump</backup> は、接続の SSH トンネル経由で自分の {dumpTool} と pg_restore を実行します。Homebrew でインストールしてください。PostgreSQL 9.1 サーバーのバックアップには pg_dump 14 以前を使います。"
+                "<backup>Backup Dump と Restore Dump</backup> は、接続の SSH トンネル経由で自分でインストールした {dumpTool} と pg_restore を実行します。Homebrew でインストールしてください。PostgreSQL 9.1 サーバーのバックアップには pg_dump 14 以前を使います。"
             ],
             "asset": "mac-server-dashboard-postgresql"
         },
@@ -96,7 +96,7 @@
             "title": "CockroachDB",
             "paragraphs": [
                 "CockroachDB はアプリに同梱した PostgreSQL ドライバーを使い、インストールは不要です。新しいクラスターは <code>defaultdb</code> データベースで始まります。",
-                "CockroachDB Cloud では Cloud コンソールからホスト、ユーザー、パスワードとデータベースをコピーし、クラスターのルーティング値 <code>--cluster=your-cluster</code> を Connection Options に入れ、SSL Mode を Verify Identity にします。ローカルの安全でないノードでは SSL Mode を Disabled にします。",
+                "CockroachDB Cloud では Cloud コンソールからホスト、ユーザー、パスワードとデータベースをコピーし、クラスターのルーティング値 <code>--cluster=your-cluster</code> を Connection Options に入れ、SSL Mode を Verify Identity にします。insecure モードで動かしているローカルノードでは SSL Mode を Disabled にします。",
                 "テーブルとビューの DDL は CockroachDB 独自の SHOW CREATE から取得します。EXPLAIN と EXPLAIN ANALYZE のテキストプランを解析してプランツリーにし、Server Dashboard はセッションと実行中のクエリを一覧表示します。",
                 "外部キーの検査は遅延できません。"
             ]

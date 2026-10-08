@@ -30,8 +30,8 @@
             "id": "connect",
             "title": "開啟資料庫檔案",
             "paragraphs": [
-                "在連線表單選擇檔案，或拖到 TablePro 視窗或 Dock 圖像。不存在的檔案路徑會在連線時建立。無論檔名是什麼，開頭位元組為 <code>SQLite format 3</code> 時便以 SQLite 開啟。",
-                "Finder 會在 .db、.sqlite、.sqlite3 等檔案的「打開檔案的應用程式」中列出 TablePro。Messages、Safari 歷史等受 macOS 保護檔案夾中的資料庫，需要先授予完整磁碟存取權，通常也需結束所屬 App。",
+                "在連線表單選擇檔案，或拖到 TablePro 視窗或 Dock 圖示。不存在的檔案路徑會在連線時建立。無論檔名是什麼，開頭位元組為 <code>SQLite format 3</code> 時便以 SQLite 開啟。",
+                "Finder 會在 .db、.sqlite、.sqlite3 等檔案的「打開檔案的應用程式」中列出 TablePro。Messages、Safari 歷史等受 macOS 保護資料夾中的資料庫，需要先授予完整磁碟存取權，通常也需結束所屬 App。",
                 "其他機器上的資料庫透過 <remoteFiles>Remote File 面板</remoteFiles>開啟。On the Server 透過 SSH 對即時檔案執行陳述式，主機除 <code>python3</code> 外無須安裝任何內容。As a Read-Only Copy 經 SFTP 取得快照並唯讀開啟。",
                 "可先選擇 Help > Open Sample Database，開啟 App 附帶的小型數位音樂商店範例 Chinook。"
             ]
@@ -41,8 +41,8 @@
             "title": "查詢與編輯",
             "paragraphs": [
                 "驅動程式內建 SQLite，不論 macOS 版本，SQL 均在同一版本執行。<explain>EXPLAIN QUERY PLAN</explain> 繪製為圖形。",
-                "可依列出順序為每個連線載入 sqlite-vec、SpatiaLite 等擴充功能，其函式和虛擬資料表可用於編輯器、側欄和 Structure 分頁。SQL 函式 <code>load_extension()</code> 仍被拒絕，透過同步、匯入連線或連結傳入的清單，在核准前不會載入任何擴充功能。",
-                "列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示所有陳述式。其他程式修改檔案時，側欄會自動重新載入。"
+                "可依列出順序為每個連線載入 sqlite-vec、SpatiaLite 等擴充功能，其函式和虛擬資料表可用於編輯器、側邊欄和 Structure 分頁。SQL 函式 <code>load_extension()</code> 仍被拒絕，透過同步、匯入連線或連結傳入的清單，在核准前不會載入任何擴充功能。",
+                "列編輯暫存至儲存，<editing>Preview SQL</editing> 先顯示所有陳述式。其他程式修改檔案時，側邊欄會自動重新載入。"
             ]
         },
         {
@@ -51,7 +51,7 @@
             "paragraphs": [
                 "重新命名資料表或欄位、新增或刪除欄位，以及 SQLite 3.53 起新增或刪除 CHECK，使用 ALTER TABLE 執行。欄位型別、外部索引鍵等其他 <structure>Structure 分頁</structure>修改會重建資料表：TablePro 產生指令碼，連同 rowid 複製列，還原索引和觸發程序，僅在確認後執行。",
                 "修改欄位型別會依新的型別親和性重新讀取值，例如 INTEGER 欄位中 <code>'007'</code> 變成 <code>7</code>，執行前檢閱面板會說明。FTS5 等虛擬資料表無法重建，儲存時會指明其名稱。",
-                "可從側欄查看和編輯觸發程序。"
+                "可從側邊欄查看和編輯觸發程序。"
             ]
         },
         {
@@ -74,7 +74,7 @@
             "id": "iphone",
             "title": "iPhone 與 iPad",
             "paragraphs": [
-                "iPhone 與 iPad 上可選擇或建立資料庫檔案，也可從 Open Sample Database 開啟 Chinook 範例。依卡片瀏覽資料表、篩選、編輯有主索引鍵的列，並在 Query 分頁執行 SQL。"
+                "iPhone 與 iPad 上可選擇或建立資料庫檔案，也可從 Open Sample Database 開啟 Chinook 範例。以卡片形式瀏覽資料表、篩選、編輯有主索引鍵的列，並在 Query 分頁執行 SQL。"
             ],
             "asset": "ios-query"
         }

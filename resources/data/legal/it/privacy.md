@@ -30,9 +30,9 @@ Un rapporto contiene:
 
 - un ID del dispositivo: un hash SHA-256 dell'UUID hardware del tuo Mac (l'UUID stesso non viene mai inviato);
 - la piattaforma, la versione dell'app, la versione di macOS, l'architettura del processore e la lingua dell'app;
-- i nomi dei tipi di database usati dalle connessioni (per esempio "PostgreSQL") e il numero di connessioni;
+- i nomi dei tipi di database delle connessioni aperte (per esempio "PostgreSQL") e il numero di connessioni aperte;
 - l'indicazione di una licenza attivata;
-- le date del primo tentativo di connessione, della prima connessione riuscita e della prima query;
+- la data e l'ora del primo tentativo di connessione e della prima connessione riuscita;
 - le impostazioni degli aggiornamenti (come vengono installati e con quale frequenza l'app li verifica). Il nostro server le scarta quando riceve il rapporto.
 
 Non contiene mai nomi host, nomi utente, password, query o righe.
@@ -88,7 +88,7 @@ Le password sono conservate nel portachiavi di macOS. L'elenco delle connessioni
 
 ## TablePro per iPhone e iPad {#ios-app}
 
-**Non viene inviato nulla a TablePro finché non attivi Share Usage Data**, al primo avvio dell'app oppure in seguito in **Settings > Privacy**. Se lo fai, l'app invia un rapporto una volta al giorno allo stesso server dell'app per Mac e il nostro server conserva e ricerca il relativo indirizzo IP nello stesso modo. Il rapporto contiene un hash SHA-256 dell'identificatore assegnato da Apple all'app sul dispositivo, la piattaforma, le versioni dell'app e di iOS, l'architettura del processore, la lingua dell'app, i nomi dei tipi di database che usi, il numero di connessioni e le stesse date del primo utilizzo. Non contiene impostazioni degli aggiornamenti né una chiave di licenza, perché l'app non ha né le une né l'altra.
+**Non viene inviato nulla a TablePro finché non attivi Share Usage Data**, al primo avvio dell'app oppure in seguito in **Settings > Privacy**. Se lo fai, l'app invia un rapporto una volta al giorno allo stesso server dell'app per Mac e il nostro server conserva e ricerca il relativo indirizzo IP nello stesso modo. Il rapporto contiene un hash SHA-256 dell'identificatore assegnato da Apple all'app sul dispositivo, la piattaforma, le versioni dell'app e di iOS, l'architettura del processore, la lingua dell'app, i nomi dei tipi di database delle connessioni aperte, il numero di connessioni aperte, e la data e l'ora del primo tentativo di connessione, della prima connessione riuscita e della prima query. Non contiene impostazioni degli aggiornamenti e indica sempre che nessuna licenza è attivata, perché l'app non ha né le une né l'altra.
 
 L'app non verifica licenze o aggiornamenti e non effettua richieste di plugin. Oltre al rapporto facoltativo, si connette solo ai tuoi database e server SSH, a iCloud di Apple se attivi iCloud Sync e a Microsoft quando una connessione SQL Server accede con Microsoft Entra ID.
 

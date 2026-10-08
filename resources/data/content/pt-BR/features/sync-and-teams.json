@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "iCloud Sync e conexões para equipes",
-        "description": "Sincronize conexões, grupos e tags entre Mac, iPhone e iPad com iCloud Sync. Compartilhe arquivos de conexão e publique na Team Library."
+        "description": "Sincronize conexões, grupos e etiquetas entre Mac, iPhone e iPad com iCloud Sync. Compartilhe arquivos de conexão e publique na Team Library."
     },
     "og": {
         "kicker": "Sincronização e equipes",
@@ -17,7 +17,7 @@
             "id": "icloud-sync",
             "title": "iCloud Sync",
             "paragraphs": [
-                "O iCloud Sync mantém sua biblioteca igual em todos os Macs, iPhones e iPads conectados à sua conta iCloud. Os registros vão para um banco privado dessa conta, e a sincronização permanece desativada até você ativá-la em cada dispositivo. No iPhone e iPad é gratuita; o Mac exige um plano que a inclua.",
+                "O iCloud Sync mantém sua biblioteca igual em todos os Macs, iPhones e iPads conectados à sua conta do iCloud. Os registros vão para um banco privado dessa conta, e a sincronização permanece desativada até você ativá-la em cada dispositivo. No iPhone e iPad é gratuita; o Mac exige um plano que a inclua.",
                 "As senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad. Elas passam pelas Chaves do iCloud. No Mac, a mesma opção também leva os outros segredos que TablePro guarda nas Chaves, como chaves de provedores de IA e a chave de licença. Marque uma conexão como Local only para mantê-la, com seus favoritos e consultas salvas, em um único Mac."
             ],
             "points": [
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> em uma conexão e <ui>Publish Saved Queries to Team…</ui> na barra lateral Favorites enviam conexões e consultas salvas ao servidor do TablePro. Cada Mac da licença as baixa, e as consultas aparecem em Favorites com o nome de quem as publicou. São enviadas as configurações de conexão e o texto SQL das consultas, nunca senhas; o Mac de um colega ignora os comandos de inicialização e de túnel recebidos, portanto nada executa sozinho. Publicar novamente substitui o que você publicou antes."
+                        "<ui>Share > Publish to Team Library…</ui> em uma conexão e <ui>Publish Saved Queries to Team…</ui> na barra lateral Favorites enviam conexões e consultas salvas ao servidor do TablePro. Cada Mac da licença as baixa, e as consultas aparecem em Favorites com o nome de quem as publicou. São enviadas as configurações de conexão e o texto SQL das consultas, nunca senhas; o Mac de um colega ignora os comandos de inicialização e de túnel recebidos, portanto nada é executado sozinho. Publicar novamente substitui o que você publicou antes."
                     ],
                     "paid": [
                         "team-library"
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "No iPhone e iPad",
             "paragraphs": [
-                "O app para iPhone e iPad sincroniza conexões, grupos e etiquetas pelo iCloud, participa do Handoff e importa e exporta arquivos <code>.tablepro</code>, com senhas sob uma frase secreta se você escolher. Linked Folders, Team Catalog e Team Library estão apenas no app para Mac."
+                "O app para iPhone e iPad sincroniza conexões, grupos e etiquetas pelo iCloud, participa do Handoff e importa e exporta arquivos <code>.tablepro</code>, com senhas protegidas por uma frase secreta, se você quiser. Linked Folders, Team Catalog e Team Library estão apenas no app para Mac."
             ],
             "links": [
                 {
@@ -192,7 +192,7 @@
         }
     ],
     "limits": [
-        "Quando um plano termina no Mac, o iCloud Sync pausa e informa o motivo, e conexões de Linked Folders e da Team Library desaparecem da lista. Comandos de publicação Team ficam ocultos e Encrypted Export perde a opção de senhas.",
+        "Quando um plano termina no Mac, o iCloud Sync é pausado e informa o motivo, e conexões de Linked Folders e da Team Library desaparecem da lista. Comandos de publicação Team ficam ocultos e Encrypted Export perde a opção de senhas.",
         "Editar uma conexão sincronizada no iPhone ou iPad pode alterar configurações que o app desses dispositivos não possui. Um nível mais rigoroso do Safe Mode no Mac, como Safe Mode (Full), volta como Alert, e hosts intermediários SSH podem não ser preservados. Altere essas conexões no Mac.",
         "Se uma licença Team termina ou é suspensa, o que foi publicado na Team Library fica no servidor do TablePro até você solicitar a exclusão."
     ],

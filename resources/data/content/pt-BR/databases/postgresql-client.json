@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "PostgreSQL para {devices}",
-        "description": "Conecte ao PostgreSQL por SSH, SSL/TLS, AWS IAM ou ~/.pgpass, e a CockroachDB e PGlite no mesmo driver. Diagramas EXPLAIN e backups pg_dump."
+        "description": "Conecte-se ao PostgreSQL por SSH, SSL/TLS, AWS IAM ou ~/.pgpass, e a CockroachDB e PGlite no mesmo driver. Diagramas EXPLAIN e backups pg_dump."
     },
     "og": {
         "kicker": "Bancos de dados",
@@ -34,7 +34,7 @@
             "id": "connect",
             "title": "Conecte-se",
             "paragraphs": [
-                "Informe host, porta, usuário e banco ao TablePro, ou cole uma URL <code>postgresql://</code> ou <code>postgres://</code>. PostgreSQL precisa do banco para conectar.",
+                "Informe host, porta, usuário e banco ao TablePro, ou cole uma URL <code>postgresql://</code> ou <code>postgres://</code>. PostgreSQL precisa do banco para se conectar.",
                 "Novas conexões começam com SSL em Preferred, o <code>sslmode=prefer</code> de libpq. Escolha Verify CA ou Verify Identity para verificar o certificado do servidor.",
                 "Ative Use ~/.pgpass para ler a senha de <code>~/.pgpass</code>. O formulário informa o que encontrou, inclusive um arquivo com permissões que fariam libpq ignorá-lo.",
                 "Acesse um servidor privado por um <network>túnel SSH, com hosts intermediários se necessário, proxy SOCKS5, túnel Cloudflare Access ou comando de túnel</network> como kubectl port-forward. No Amazon RDS e Aurora, entre com <cloudAuth>AWS IAM</cloudAuth> usando uma função com <code>rds_iam</code>. Para Google Cloud SQL, TablePro baixa e executa Cloud SQL Auth Proxy.",
@@ -45,9 +45,9 @@
             "id": "work",
             "title": "Consulte e edite",
             "paragraphs": [
-                "O editor SQL completa nomes de tabelas e colunas com base no esquema. <explain>EXPLAIN e EXPLAIN ANALYZE</explain> executam com FORMAT JSON e são apresentados como diagrama de plano ou árvore, e EXPLAIN Compare mostra se um plano ficou mais lento após uma alteração.",
+                "O editor SQL completa nomes de tabelas e colunas com base no esquema. <explain>EXPLAIN e EXPLAIN ANALYZE</explain> são executados com FORMAT JSON e são apresentados como diagrama de plano ou árvore, e EXPLAIN Compare mostra se um plano ficou mais lento após uma alteração.",
                 "jsonb é formatado, e uuid, inet, timestamptz, interval e bytea mantêm sua representação. Colunas array abrem um editor de listas para adicionar, remover, reordenar e definir elementos individuais como nulos, e colunas enum oferecem seus rótulos.",
-                "Valores geometry e geography de PostGIS são lidos como EWKT com seu SRID, e um resultado com geometria abre na <results>visualização Map</results>. Os mapas vêm da Apple; suas linhas permanecem no Mac.",
+                "Valores geometry e geography de PostGIS são lidos como EWKT com seu SRID, e um resultado com geometria abre na <results>visualização Mapa</results>. Os mapas vêm da Apple; suas linhas permanecem no Mac.",
                 "Edições de linhas ficam pendentes até salvar, com <editing>Preview SQL</editing> mostrando cada instrução antes, e os salvamentos usam parâmetros vinculados. As linhas de uma view materializada são somente leitura: atualize-a pelo menu, de forma concorrente quando tiver o índice único exigido por PostgreSQL."
             ],
             "asset": "mac-result-map"
@@ -106,7 +106,7 @@
             "title": "PGlite",
             "paragraphs": [
                 "PGlite é PostgreSQL compilado para WebAssembly, e nada o acessa até iniciar seu servidor de socket: <code>npx @electric-sql/pglite-socket</code>, com <code>--db=./my-pgdata</code> para manter os dados no disco.",
-                "Conecte a <code>127.0.0.1</code> em vez de localhost. O servidor de socket nunca verifica senha e não tem TLS, portanto o formulário não solicita nenhum dos dois.",
+                "Conecte-se a <code>127.0.0.1</code> em vez de localhost. O servidor de socket nunca verifica senha e não tem TLS, portanto o formulário não solicita nenhum dos dois.",
                 "Os catálogos PGlite são completos, portanto edição de estrutura, Users & Roles e diagramas EXPLAIN funcionam como em um servidor. Ele expõe um banco, <code>postgres</code>."
             ]
         }

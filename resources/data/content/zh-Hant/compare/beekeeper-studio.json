@@ -9,14 +9,14 @@
     },
     "header": {
         "title": "TablePro vs Beekeeper Studio",
-        "lead": "Beekeeper Studio 和 TablePro 都是開源資料庫用戶端。Beekeeper Studio 基於 {technology}，在 Windows、macOS 與 Linux 上以相同方式執行，免費 Community 版之上還有付費層級。TablePro 分別提供 Mac 和 iPhone、iPad 原生應用程式，並在 Mac 上提供選用付費功能。"
+        "lead": "Beekeeper Studio 和 TablePro 都是開源資料庫用戶端。Beekeeper Studio 基於 {technology}，在 Windows、macOS 與 Linux 上以相同方式執行，免費 Community 版之上還有付費層級。TablePro 分別提供 Mac 和 iPhone、iPad 原生 App，並在 Mac 上提供選用付費功能。"
     },
     "shortAnswer": {
         "tablepro": [
             "您希望免費使用 Oracle、Cassandra 或 Snowflake。TablePro 所有支援引擎均免費，Beekeeper Studio 則在付費層級中新增這些引擎。",
-            "您希望無須付費層級即可使用 AI 助手和 MCP 伺服器。兩者在 Mac 應用程式中均免費，可選擇 AI 服務商。",
-            "您希望使用 Swift 編寫的原生 Mac 應用程式，付費功能程式碼也開源。",
-            "您也希望有 iPhone 與 iPad 應用程式。"
+            "您希望無須付費層級即可使用 AI 助理和 MCP 伺服器。兩者在 Mac App 中均免費，可選擇 AI 供應商。",
+            "您希望使用 Swift 編寫的原生 Mac App，付費功能程式碼也開源。",
+            "您也希望有 iPhone 與 iPad App。"
         ],
         "competitor": [
             "您也在 Windows 或 Linux 上工作，希望各平台使用同一個用戶端。",
@@ -38,11 +38,11 @@
         },
         "importExport": {
             "label": "匯入、匯出和備份",
-            "tablepro": "Mac 應用程式中免費提供：匯入 CSV、JSON、XLSX 和 SQL 檔案，匯出為 CSV、JSON、SQL、XLSX 等格式；引擎具備傾印工具時可使用 Backup Dump 和 Restore Dump"
+            "tablepro": "Mac App 中免費提供：匯入 CSV、JSON、XLSX 和 SQL 檔案，匯出為 CSV、JSON、SQL、XLSX 等格式；引擎具備傾印工具時可使用 Backup Dump 和 Restore Dump"
         },
         "lifetimeLicense": {
             "label": "訂閱結束後",
-            "tablepro": "月繳或年繳方案結束後付費功能鎖定。一次性購買無到期日"
+            "tablepro": "月付或年付方案結束後付費功能鎖定。一次性購買無到期日"
         }
     },
     "stronger": {
@@ -78,7 +78,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro 是 Swift 編寫的 Mac 應用程式，使用原生資料庫驅動程式。Beekeeper Studio 基於 {technology}。兩者均分別提供 Apple silicon 和 Intel Mac 建置版本。",
+                "text": "TablePro 是 Swift 編寫的 Mac App，使用原生資料庫驅動程式。Beekeeper Studio 基於 {technology}。兩者均分別提供 Apple silicon 和 Intel Mac 建置版本。",
                 "cite": [
                     "technology",
                     "mac"
@@ -95,7 +95,7 @@
                 "href": null
             },
             {
-                "text": "<link>AI 助手和 MCP 伺服器</link>在 Mac 應用程式中免費，可選擇 AI 服務商。Beekeeper Studio 的 AI Shell 需要付費層級。",
+                "text": "<link>AI 助理和 MCP 伺服器</link>在 Mac App 中免費，可選擇 AI 供應商。Beekeeper Studio 的 AI Shell 需要付費層級。",
                 "cite": [
                     "cells.ai"
                 ],
@@ -125,7 +125,7 @@
                 "href": null
             },
             {
-                "text": "提供免費的 <link>iPhone 與 iPad 應用程式</link>，無 App 內購買。Beekeeper Studio 沒有行動應用程式。",
+                "text": "提供免費的 <link>iPhone 與 iPad App</link>，無 App 內購買。Beekeeper Studio 沒有行動 App。",
                 "cite": [
                     "platforms"
                 ],
@@ -138,7 +138,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro 沒有 Windows 或 Linux 應用程式。",
+                "text": "TablePro 沒有 Windows 或 Linux App。",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -156,7 +156,7 @@
                 "href": null
             },
             {
-                "text": "Beekeeper Studio 允許繼續使用付費期間發佈的版本，月繳方案在 12 個月後取得此權利。TablePro 月繳或年繳方案不保留這類權利：結束後付費功能鎖定，其餘應用程式功能仍可使用。一次性購買無到期日。",
+                "text": "Beekeeper Studio 允許繼續使用付費期間發佈的版本，月付方案在 12 個月後取得此權利。TablePro 月付或年付方案不保留這類權利：結束後付費功能鎖定，其餘 App 功能仍可使用。一次性購買無到期日。",
                 "cite": [
                     "cells.lifetimeLicense"
                 ],
@@ -189,7 +189,7 @@
         {
             "id": "free-engines",
             "question": "哪些引擎可以免費使用？",
-            "answer": "TablePro 所有支援引擎均免費，AI 助手、MCP 伺服器和 Safe Mode 也免費。Starter 或 Team 方案新增 {starterExamples} 等功能，而非引擎。Beekeeper Studio Community 版涵蓋一組常見引擎，付費層級新增其他引擎。",
+            "answer": "TablePro 所有支援引擎均免費，AI 助理、MCP 伺服器和 Safe Mode 也免費。Starter 或 Team 方案新增 {starterExamples} 等功能，而非引擎。Beekeeper Studio Community 版涵蓋一組常見引擎，付費層級新增其他引擎。",
             "href": null
         },
         {
@@ -205,6 +205,6 @@
         "beekeeper-cloud-workspaces": "從 {edition} 層級開始提供同步和分享連線及查詢的雲端工作區",
         "beekeeper-erd-paid": "所有付費層級提供，Community 不提供",
         "beekeeper-import-export-paid": "Import/Export & Backup/Restore 在所有付費層級提供，Community 不提供",
-        "beekeeper-lifetime-license": "年繳方案，或連續 12 個月使用月繳方案，可在訂閱結束後繼續使用付費期間發佈版本的付費功能。雲端工作區需要有效訂閱。"
+        "beekeeper-lifetime-license": "年付方案，或連續 12 個月使用月付方案，可在訂閱結束後繼續使用付費期間發佈版本的付費功能。雲端工作區需要有效訂閱。"
     }
 }

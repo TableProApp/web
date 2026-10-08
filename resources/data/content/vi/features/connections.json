@@ -51,7 +51,7 @@
                     "id": "aws",
                     "title": "Từ tài khoản AWS",
                     "paragraphs": [
-                        "<ui>Import from AWS</ui> liệt kê các RDS instance và Aurora cluster mà một AWS profile nhìn thấy trong các region bạn chọn, rồi thêm những cái bạn muốn. Profile đó cần quyền <code>rds:DescribeDBInstances</code> và <code>rds:DescribeDBClusters</code>."
+                        "<ui>Import from AWS</ui> liệt kê các RDS instance và Aurora cluster mà một AWS profile nhìn thấy trong các region bạn chọn, rồi thêm những mục bạn chọn. Profile đó cần quyền <code>rds:DescribeDBInstances</code> và <code>rds:DescribeDBClusters</code>."
                     ]
                 }
             ]
@@ -118,7 +118,7 @@
             "id": "policies",
             "title": "Quy tắc riêng của từng connection",
             "paragraphs": [
-                "Mức Safe Mode của connection quyết định một câu lệnh được chạy ngay, được hỏi lại trước, cần Touch ID hoặc mật khẩu, hay bị từ chối. Mức External Clients (Blocked, Read Only hoặc Read & Write) quyết định MCP client và AppleScript được làm gì với connection đó, và chỉ nằm trên máy Mac này. AI policy (Always Allow, Ask Each Time hoặc Never) quyết định trợ lý AI được dùng connection mà không cần hỏi, chỉ sau khi hỏi, hay không bao giờ; Never còn chặn luôn MCP client.",
+                "Mức Safe Mode của connection quyết định một câu lệnh được chạy ngay, được hỏi lại trước, cần Touch ID hoặc mật khẩu, hay bị từ chối. Mức External Clients (Blocked, Read Only hoặc Read & Write) quyết định MCP client và AppleScript được làm gì với connection đó, và chỉ nằm trên máy Mac này. Chính sách AI (Always Allow, Ask Each Time hoặc Never) quyết định trợ lý AI được dùng connection mà không cần hỏi, chỉ sau khi hỏi, hay không bao giờ; Never còn chặn luôn MCP client.",
                 "Tổ chức của bạn có thể áp một mức Safe Mode tối thiểu cho mọi connection, và kiểm soát việc cập nhật, thông qua configuration profile."
             ],
             "links": [
@@ -165,9 +165,9 @@
     ],
     "limits": [
         "Nguồn mật khẩu, cùng proxy và tunnel command trong tab Mạng, chỉ nằm trên máy Mac nơi bạn thiết lập: chúng không bao giờ được đồng bộ, nên một connection đồng bộ sang máy Mac khác cần thiết lập lại các phần này.",
-        "TablePro đọc môi trường mà nó được khởi chạy cùng. Khi mở từ Dock hoặc Finder, ứng dụng không thấy các biến do shell profile của bạn đặt, nên cả nguồn mật khẩu từ biến môi trường lẫn Environment Variables đều bị ảnh hưởng.",
+        "TablePro đọc các biến môi trường có tại thời điểm nó được khởi chạy. Khi mở từ Dock hoặc Finder, ứng dụng không thấy các biến do shell profile của bạn đặt, nên cả nguồn mật khẩu từ biến môi trường lẫn Environment Variables đều bị ảnh hưởng.",
         "Khi gói trả phí kết thúc, <code>$DB_HOST</code> và các tham chiếu khác không còn được điền giá trị mà được gửi tới server nguyên văn, không có cảnh báo nào.",
-        "Mở thư mục dự án (Open Project Folder) chỉ import một lần: không có gì được theo dõi, và import cùng một bộ thiết lập hai lần sẽ tạo ra hai connection.",
+        "Open Project Folder chỉ import một lần: không có gì được theo dõi, và import cùng một bộ thiết lập hai lần sẽ tạo ra hai connection.",
         "Xác thực AWS IAM dùng được với {awsIam}, không dùng được với Amazon Redshift. Configuration profile chỉ áp được mức Safe Mode tối thiểu và thiết lập cập nhật, ngoài ra không có gì khác."
     ],
     "docs": [

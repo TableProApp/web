@@ -11,7 +11,7 @@
     "hero": {
         "title": "为开发者打造的原生数据库客户端。",
         "subtitle": "在 {featuredEngines} <more>等数据库</more>中运行查询、浏览和编辑数据。",
-        "native": "原生是指每款应用都以 Swift 为对应平台编写，在 Mac 上使用 AppKit 和 SwiftUI。不含 Electron，也不含 Java 运行时。",
+        "native": "原生是指每款应用都针对各自的平台使用 Swift 编写，在 Mac 上使用 AppKit 和 SwiftUI。不含 Electron，也不含 Java 运行时。",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "其他安装方式",
@@ -38,13 +38,13 @@
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "编写、运行和理解查询",
-                "body": "SQL 编辑器提供感知数据库结构的自动补全、<code>:name</code> 查询参数、可搜索的历史记录、已保存查询，以及显示 Git 状态的 <code>.sql</code> 文件夹。在受支持的引擎上，EXPLAIN 会将执行计划绘制为图表，EXPLAIN Compare 则可将计划与基准进行比较。"
+                "body": "SQL 编辑器提供感知数据库结构的自动补全、<code>:name</code> 查询参数、可搜索的历史记录、已保存查询，以及存放 <code>.sql</code> 文件并显示 Git 状态的文件夹。在受支持的引擎上，EXPLAIN 会将执行计划绘制为图表，EXPLAIN Compare 则可将计划与基准进行比较。"
             },
             {
                 "id": "edit",
                 "asset": "mac-edit-preview-sql",
                 "title": "编辑数据和结构，保存前先查看 SQL",
-                "body": "单元格编辑、新增行和删除会暂存至您保存时，Preview SQL 可先显示将执行的语句。对于 TablePro 可编辑结构的引擎，Structure 选项卡会以相同方式暂存列、索引、外键和 CHECK 约束的修改。还包含筛选器、已保存筛选器、高亮规则、外键选择器和各选项卡独立的撤销功能。"
+                "body": "单元格编辑、新增行和删除会暂存至您保存时，Preview SQL 可先显示将执行的语句。对于 TablePro 可编辑结构的引擎，Structure 标签页会以相同方式暂存列、索引、外键和 CHECK 约束的修改。还包含筛选器、已保存筛选器、高亮规则、外键选择器和各标签页独立的撤销功能。"
             },
             {
                 "id": "schema",
@@ -107,6 +107,8 @@
     "openSource": {
         "title": "开源，随时下载",
         "body": "TablePro 采用 AGPLv3 开源，包括付费功能的代码。付费方案和赞助商为开发提供资金。TablePro 没有投资者，也不出售数据。",
+        "maker": "TablePro 由{country}{city}的个人开发者 {maker} 开发。",
+        "about": "关于 TablePro",
         "github": "在 GitHub 查看",
         "productHunt": "Product Hunt 上的 TablePro"
     }

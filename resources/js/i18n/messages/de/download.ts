@@ -12,7 +12,7 @@ export default {
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
         "notes": "Versionshinweise (Englisch)",
-        "unavailable": "Die Angaben zur aktuellen Version konnten nicht geladen werden. Beide Schaltflächen öffnen die neueste Version auf GitHub, wo du das Festplatten-Image für deinen Mac auswählen kannst."
+        "unavailable": "Die Angaben zur aktuellen Version konnten nicht geladen werden. Beide Schaltflächen öffnen die neueste Version auf GitHub, wo du das Disk-Image für deinen Mac auswählen kannst."
     },
     "file": {
         "sized": "{name} · {size} MB",
@@ -43,7 +43,7 @@ export default {
         "terminal": "Terminal"
     },
     "ios": {
-        "badge": "Im App Store laden"
+        "badge": "Laden im App Store"
     },
     "otherPlatforms": {
         "joiner": {
