@@ -141,6 +141,16 @@ html {
   margin-top: 1em;
 }
 
+/*
+ * The reading measure, about 75 characters a line. Running Inter averages
+ * 7.6px a character at 16px, so the 44rem column alone holds about 93; `ch`
+ * is the width of "0" (10.1px) and cannot set it. Figures, tables and code
+ * keep the column.
+ */
+.blog-article > :is(p, ul, ol, blockquote, h2, h3) {
+  max-width: 36rem;
+}
+
 .blog-article h2 {
   font-size: 1.5rem;
   line-height: var(--lh-h2);
