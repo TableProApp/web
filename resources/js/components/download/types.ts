@@ -3,6 +3,7 @@
  * page copy's type. The copy's shape is the English file's: `ContentParityTest`
  * holds every other locale to the same keys.
  */
+import type { PostSummary } from '@/components/blog/post-list';
 import type { MacArch } from '@/lib/device';
 import type { Requirements } from '@/lib/data/platforms';
 
@@ -64,4 +65,6 @@ export interface DownloadPageProps {
     links: LinksProp;
     /** The featured engines' names, in data order, for the Mac app's structured-data description. */
     featuredEngines: string[];
+    /** The newest release post, or null when there is none. */
+    latestPost: PostSummary | null;
 }
