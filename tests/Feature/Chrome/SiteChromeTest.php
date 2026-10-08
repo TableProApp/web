@@ -315,7 +315,7 @@ it('groups the footer links under a hidden heading, in five groups', function (s
         expect($titles[1])->toContain($group);
     }
 
-    foreach (['/features', '/databases', '/ios', '/pricing', '/download', '/compare', '/blog', '/faq', '/privacy', '/terms', '/refund-policy'] as $page) {
+    foreach (['/features', '/databases', '/ios', '/pricing', '/download', '/compare', '/blog', '/faq', '/about', '/privacy', '/terms', '/refund-policy'] as $page) {
         Assert::assertNotNull(chromeLink($footer, $prefix . $page), "The footer has no link to {$prefix}{$page}");
     }
 
@@ -329,8 +329,13 @@ it('groups the footer links under a hidden heading, in five groups', function (s
     // "Cookie settings" is a button that reopens the consent bar, not a link.
     expect($footer)->toContain('>' . ($vi ? 'Cài đặt cookie' : 'Cookie settings') . '</button>');
 
-    // The copyright names the licence, with the year filled in.
-    expect($footer)->toMatch($vi ? '/© \d{4} TablePro\. Mã nguồn theo giấy phép AGPLv3\./u' : '/© \d{4} TablePro\. Source code under the AGPLv3\./');
+    // The copyright names the maker and the licence, with the year and facts.json's publisher filled in.
+    $publisher = json_decode((string) file_get_contents(resource_path('data/facts.json')), true)['publisher'];
+    $line = $vi
+        ? "/© \\d{4} TablePro, do {$publisher['name']} phát triển tại {$publisher['city']['vi']}\\. Mã nguồn theo giấy phép AGPLv3\\./u"
+        : "/© \\d{4} TablePro, made by {$publisher['name']} in {$publisher['city']['en']}\\. Source code under the AGPLv3\\./";
+
+    expect($footer)->toMatch($line);
 })->with('chrome locales');
 
 it('lists the community channels a reader of that language can use', function (string $path, string $locale): void {

@@ -17,6 +17,7 @@ export default {
             changelog: 'Changelog (tiếng Anh)',
             blog: 'Blog',
             faq: 'Câu hỏi thường gặp',
+            about: 'Giới thiệu',
             source: 'Mã nguồn',
             reportBug: 'Báo lỗi',
         },
@@ -49,6 +50,6 @@ export default {
         note: 'Chúng tôi sẽ gửi cho bạn một liên kết xác nhận trước. <link>Chính sách quyền riêng tư</link>',
     },
     bottom: {
-        copyright: '© {year} TablePro. Mã nguồn theo giấy phép AGPLv3.',
+        copyright: '© {year} TablePro, do {maker} phát triển tại {city}. Mã nguồn theo giấy phép AGPLv3.',
     },
 } satisfies Messages['footer'];

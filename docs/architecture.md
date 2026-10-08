@@ -8,7 +8,7 @@ database and no credentials: every page is built from markdown in
 
 ```
 /                          homepage
-/download  /ios  /pricing  /faq
+/download  /ios  /pricing  /faq  /about
 /features  /features/{slug}
 /databases /{database}-client  /{database}-gui
 /compare   /compare/{slug}

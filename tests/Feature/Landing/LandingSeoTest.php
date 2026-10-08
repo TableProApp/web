@@ -245,6 +245,8 @@ it('renders the registry head on every page family, in each language', function 
     'iPhone and iPad, in Vietnamese' => ['/vi/ios', 'vi'],
     'FAQ' => ['/faq', 'en'],
     'FAQ, in Vietnamese' => ['/vi/faq', 'vi'],
+    'about' => ['/about', 'en'],
+    'about, in Japanese' => ['/ja/about', 'ja'],
     'features hub' => ['/features', 'en'],
     'features hub, in Vietnamese' => ['/vi/features', 'vi'],
     'a feature' => ['/features/querying', 'en'],

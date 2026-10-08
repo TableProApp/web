@@ -25,7 +25,7 @@ use Illuminate\Support\ServiceProvider;
  * it. Every family builds its pages from content files, so a page exists in
  * exactly the languages it has content for:
  *
- * 1. `StaticPages`: home, download, iOS, pricing, FAQ, the blog index.
+ * 1. `StaticPages`: home, download, iOS, pricing, FAQ, about, the blog index.
  * 2. `ContentCollection`: features, databases and comparisons, with their hubs.
  * 3. `LegalPages`: privacy, terms, refund policy.
  * 4. `BlogPosts`: one page per post, per language it is written in.

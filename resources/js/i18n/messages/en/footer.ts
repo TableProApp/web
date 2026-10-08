@@ -23,6 +23,7 @@ export default {
             changelog: 'Changelog',
             blog: 'Blog',
             faq: 'FAQ',
+            about: 'About',
             source: 'Source code',
             reportBug: 'Report a bug',
         },
@@ -55,6 +56,6 @@ export default {
         note: 'We email you a confirmation link first. <link>Privacy policy</link>',
     },
     bottom: {
-        copyright: '© {year} TablePro. Source code under the AGPLv3.',
+        copyright: '© {year} TablePro, made by {maker} in {city}. Source code under the AGPLv3.',
     },
 };

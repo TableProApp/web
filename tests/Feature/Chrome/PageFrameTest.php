@@ -21,7 +21,7 @@ use PHPUnit\Framework\Assert;
 /** @return array<string, array{string}> */
 function frameTemplates(): array
 {
-    $paths = ['/', '/vi', '/pricing', '/download', '/ios', '/faq', '/privacy', '/blog', '/blog/tablepro-0-77', '/features', '/features/querying', '/databases', '/postgresql-client', '/compare', '/compare/tableplus'];
+    $paths = ['/', '/vi', '/pricing', '/download', '/ios', '/faq', '/about', '/privacy', '/blog', '/blog/tablepro-0-77', '/features', '/features/querying', '/databases', '/postgresql-client', '/compare', '/compare/tableplus'];
 
     return array_combine($paths, array_map(fn(string $path): array => [$path], $paths));
 }

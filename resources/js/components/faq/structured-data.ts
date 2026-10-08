@@ -1,4 +1,4 @@
-import { absoluteUrl, breadcrumbNode, graph, organizationNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
+import { absoluteUrl, breadcrumbNode, graph, organizationNode, webPageNode, type JsonLdGraph, type PublisherInput } from '@/lib/structured-data';
 
 interface PlainPageInput {
     baseUrl: string;
@@ -9,7 +9,7 @@ interface PlainPageInput {
     description: string;
     /** The visible breadcrumb trail, same-locale paths, the current page last. */
     crumbs: { name: string; path: string }[];
-    organization: { description: string; sameAs: readonly string[] };
+    organization: { description: string; sameAs: readonly string[]; publisher: PublisherInput };
 }
 
 /**

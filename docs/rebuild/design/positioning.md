@@ -273,7 +273,7 @@ tier.
 
 | Node | `@id` (keep stable) | `@type` | Key fields |
 |---|---|---|---|
-| Organization | `https://tablepro.app/#organization` | Organization | `name` TablePro. `description` = short description, localized. `logo`, `sameAs` from `links`. No `legalName`, address or founder |
+| Organization | `https://tablepro.app/#organization` | Organization | `name` TablePro. `description` = short description, localized. `logo`, `sameAs` from `links`. `address` (locality and country code) and `founder`, a Person with the id `#founder`, from `facts.json` → `publisher`. No `legalName` |
 | WebSite | `https://tablepro.app/#website` | WebSite | `name` TablePro. `inLanguage` `["en","vi"]`. `publisher` → Organization. Page-level `WebPage` nodes carry the page's own `inLanguage` |
 | Mac app | `https://tablepro.app/#app` | SoftwareApplication | Fields below |
 | iPhone and iPad app | `https://tablepro.app/#ios-app` | MobileApplication | Fields below |
@@ -526,12 +526,12 @@ move to their hubs, so no page becomes undiscoverable. There is no footer blurb.
 | Group EN / VI | Links EN | Links VI | Targets |
 |---|---|---|---|
 | Product / Sản phẩm | Features · Databases · iPhone & iPad · Pricing · Download · Compare | Tính năng · Cơ sở dữ liệu · iPhone và iPad · Bảng giá · Tải về · So sánh | `/features`, `/databases`, the platform link (§10.1), `/pricing`, `/download`, `/compare` |
-| Resources / Tài nguyên | Documentation ↗ · Changelog ↗ · Blog · FAQ · Source code ↗ · Report a bug ↗ | Tài liệu (tiếng Anh) ↗ · Changelog (tiếng Anh) ↗ · Blog · Câu hỏi thường gặp · Mã nguồn ↗ · Báo lỗi ↗ | Docs, docs `/changelog`, `/blog`, `/faq`, the GitHub repository, GitHub issues |
+| Resources / Tài nguyên | Documentation ↗ · Changelog ↗ · Blog · FAQ · About · Source code ↗ · Report a bug ↗ | Tài liệu (tiếng Anh) ↗ · Changelog (tiếng Anh) ↗ · Blog · Câu hỏi thường gặp · Giới thiệu · Mã nguồn ↗ · Báo lỗi ↗ | Docs, docs `/changelog`, `/blog`, `/faq`, `/about`, the GitHub repository, GitHub issues |
 | Support / Hỗ trợ | Account · Troubleshooting ↗ · Email support · Live chat | Tài khoản · Khắc phục sự cố (tiếng Anh) ↗ · Gửi email hỗ trợ · Chat trực tuyến | `/account?locale=`; the docs troubleshooting page; `mailto:` the support address in `facts.json`; a button that loads Crisp only when clicked |
 | Community / Cộng đồng | GitHub Discussions · Discord · X · Sponsor TablePro ↗ | GitHub Discussions · Discord · X · Telegram · Tài trợ TablePro ↗ | `facts.json` `links`. Brand names stay as they are. Telegram is a Vietnamese group, so only Vietnamese pages link it. "Sponsor TablePro" goes to GitHub Sponsors |
 | Legal / Pháp lý | Privacy · Terms · Refund policy · Cookie settings | Quyền riêng tư · Điều khoản sử dụng · Chính sách hoàn tiền · Cài đặt cookie | `/privacy`, `/terms`, `/refund-policy`. "Cookie settings" is a button that reopens the consent bar (`tablepro:analytics-consent`) |
 | Newsletter block | Subscribe | Đăng ký nhận tin | `newsletter_signup_clicked{source:'footer'}`. No subscriber count (sitemap §B.3) |
-| Bottom row | © {year} TablePro. Source code under the AGPLv3. · English · Tiếng Việt · theme control | © {year} TablePro. Mã nguồn theo giấy phép AGPLv3. · English · Tiếng Việt · giao diện | The language links repeat as plain links |
+| Bottom row | © {year} TablePro, made by {maker} in {city}. Source code under the AGPLv3. · English · Tiếng Việt · theme control | © {year} TablePro, do {maker} phát triển tại {city}. Mã nguồn theo giấy phép AGPLv3. · English · Tiếng Việt · giao diện | `{maker}` and `{city}` come from `facts.json` → `publisher`. The language links repeat as plain links |
 
 **Keys:**
 - Group labels and their links live under `footer.groups.*`, which are identity keys (§13).

@@ -64,7 +64,7 @@ it('is dated and has the documented sections', function (): void {
     $facts = factsJson();
 
     expect(array_keys($facts))->toBe([
-        'verifiedAt', 'links', 'support', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
+        'verifiedAt', 'links', 'support', 'publisher', 'openSource', 'ai', 'mcp', 'safeMode', 'filterOperators',
         'connectionImport', 'dataImport', 'export', 'backup', 'sync', 'limits',
     ]);
     expect($facts['verifiedAt'])->toMatch('/^\d{4}-\d{2}-\d{2}$/');
@@ -101,11 +101,42 @@ it('gives the organization only the profiles the site links to', function (): vo
     expect($links)->not->toHaveKey('facebook');
 });
 
-it('names the support address and the open-source licence', function (): void {
+it('names the support address, the open-source licence and the day the repository was created', function (): void {
     $facts = factsJson();
 
     expect($facts['support'])->toBe(['email' => 'hello@tablepro.app']);
-    expect($facts['openSource'])->toBe(['license' => 'AGPL-3.0']);
+    expect($facts['openSource']['license'])->toBe('AGPL-3.0');
+    // GitHub API, repos/TableProApp/TablePro → created_at.
+    expect($facts['openSource']['repositoryCreatedAt'])->toBe('2025-12-17');
+    expect($facts['openSource']['evidence'])->toBeString()->not->toBe('');
+    expect(app(SiteFacts::class)->repositoryCreatedAt()?->toDateString())->toBe('2025-12-17');
+});
+
+it('names the publisher once, with the city and country in every supported language', function (): void {
+    $publisher = factsJson()['publisher'];
+    $locales = array_keys(json_decode(File::get(resource_path('data/locales.json')), true)['supported']);
+
+    // The seller on the App Store listing and the account behind GitHub Sponsors.
+    expect($publisher['name'])->toBe('Dat Ngo Quoc');
+    expect($publisher['countryCode'])->toBe('VN');
+    expect($publisher['evidence'])->toBeString()->not->toBe('');
+    expect(array_keys($publisher))->toBe(['name', 'countryCode', 'city', 'country', 'evidence']);
+
+    foreach (['city', 'country'] as $field) {
+        expect(array_keys($publisher[$field]))->toEqualCanonicalizing($locales, "publisher.{$field} does not cover every locale");
+
+        foreach ($publisher[$field] as $locale => $value) {
+            expect(trim($value))->not->toBe('', "publisher.{$field}.{$locale} is empty");
+            expect(Normalizer::isNormalized($value, Normalizer::FORM_C))->toBeTrue("publisher.{$field}.{$locale} is not NFC");
+        }
+    }
+
+    expect(app(SiteFacts::class)->publisher('vi'))->toBe([
+        'name' => 'Dat Ngo Quoc',
+        'city' => $publisher['city']['vi'],
+        'country' => $publisher['country']['vi'],
+        'countryCode' => 'VN',
+    ]);
 });
 
 it('names the AI providers in the app order, Mac only', function (): void {

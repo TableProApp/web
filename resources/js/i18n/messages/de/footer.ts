@@ -17,6 +17,7 @@ export default {
             "changelog": "Änderungsprotokoll (Englisch)",
             "blog": "Blog",
             "faq": "Häufige Fragen",
+            "about": "Über TablePro",
             "source": "Quellcode",
             "reportBug": "Fehler melden"
         },
@@ -49,6 +50,6 @@ export default {
         "note": "Zuerst senden wir dir einen Bestätigungslink. <link>Datenschutzerklärung</link>"
     },
     "bottom": {
-        "copyright": "© {year} TablePro. Quellcode unter der AGPLv3."
+        "copyright": "© {year} TablePro, entwickelt von {maker} in {city}. Quellcode unter der AGPLv3."
     }
 } satisfies Messages['footer'];

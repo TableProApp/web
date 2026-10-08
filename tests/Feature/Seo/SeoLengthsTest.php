@@ -68,8 +68,8 @@ function seoLengthsPages(): array
 }
 
 /**
- * The `<title>` a page renders: compare pages, the homepage and the iPhone page
- * lead with the brand and skip the template; every other page gets
+ * The `<title>` a page renders: compare pages, the homepage, the iPhone page and
+ * the about page lead with the brand and skip the template; every other page gets
  * "{title} – TablePro".
  *
  * @param  array<string, mixed>  $copy
@@ -97,7 +97,7 @@ function seoLengthsRenderedTitle(string $locale, string $path, array $copy): str
         return mb_strlen($title) <= 60 ? $title : (string) $copy['seo']['titleFallback'];
     }
 
-    $branded = str_starts_with($path, 'compare/') || $path === 'ios.json';
+    $branded = str_starts_with($path, 'compare/') || in_array($path, ['ios.json', 'about.json'], true);
 
     return $branded ? $title : "{$title} – TablePro";
 }
