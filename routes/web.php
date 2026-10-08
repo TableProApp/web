@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SecurityTxtController;
 use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,5 @@ Route::get('/robots.txt', function () {
 
     return response($content, 200, ['Content-Type' => 'text/plain']);
 })->name('web.robots');
+
+Route::get('/.well-known/security.txt', SecurityTxtController::class)->name('web.security');
