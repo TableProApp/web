@@ -63,6 +63,7 @@ class HandleInertiaRequests extends Middleware
             'seo' => fn(): array => app(SeoContext::class)->forRequest($request),
             'banner' => Banner::forRequest($request),
             'crispWebsiteId' => config('services.crisp.website_id') ?: null,
+            'assetPlaceholders' => ! App::isProduction(),
         ];
     }
 }

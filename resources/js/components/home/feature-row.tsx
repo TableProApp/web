@@ -7,7 +7,7 @@ interface FeatureRowProps {
     title: ReactNode;
     /** Two or three sentences, plus any paid-plan line and the link to the feature page. */
     children: ReactNode;
-    /** The image slot. */
+    /** The image slot, or null when there is none to show: the row is then one cell of text. */
     media: ReactNode;
     /**
      * `window`: text at a readable width, then the 16:9 window full width below.
@@ -37,7 +37,7 @@ export default function FeatureRow({ id, title, children, media, layout, heading
         </Heading>
     );
 
-    if (layout === 'detail') {
+    if (layout === 'detail' && media !== null) {
         return (
             <>
                 <div className="flex flex-col justify-center lg:col-span-5">
@@ -55,7 +55,7 @@ export default function FeatureRow({ id, title, children, media, layout, heading
                 {heading}
                 <div className="mt-3">{children}</div>
             </div>
-            <div className="mt-8">{media}</div>
+            {media !== null && <div className="mt-8">{media}</div>}
         </div>
     );
 }

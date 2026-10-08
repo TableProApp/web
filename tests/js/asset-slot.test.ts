@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import { renderAssetSlot, type AssetSlotLabels } from '../../resources/js/components/ui/asset-slot-view.ts';
-import { fileUrl, slotModel, srcSet, type AssetManifestData, type SlotManifestData } from '../../resources/js/lib/data/asset-model.ts';
+import { fileUrl, slotModel, slotSupplied, srcSet, type AssetManifestData, type SlotManifestData } from '../../resources/js/lib/data/asset-model.ts';
 import en from '../../resources/js/i18n/messages/en/assets.ts';
 import vi from '../../resources/js/i18n/messages/vi/assets.ts';
 import es from '../../resources/js/i18n/messages/es/assets.ts';
@@ -34,7 +34,7 @@ const fixture = read('../Fixtures/assets/manifest.json');
 const labels: Record<string, AssetSlotLabels> = { en, vi, es, de, fr, ja, 'pt-BR': ptBR, 'zh-Hans': zhHans, ko, 'zh-Hant': zhHant, it, id };
 const locales: string[] = Object.keys(JSON.parse(readFileSync(new URL('../../resources/data/locales.json', import.meta.url), 'utf8')).supported);
 
-function html(manifest: SlotManifestData, id: string, locale = 'en', extra: { sizes?: string; caption?: boolean; priority?: boolean } = {}): string {
+function html(manifest: SlotManifestData, id: string, locale = 'en', extra: { sizes?: string; caption?: boolean; priority?: boolean; placeholders?: boolean } = {}): string {
     return renderToStaticMarkup(renderAssetSlot(manifest, id, { locale, labels: labels[locale], ...extra }));
 }
 
@@ -229,6 +229,45 @@ test('the model switches mode on status alone', () => {
 
     assert.equal(slotModel(flipped, 'fixture-detail', { locale: 'en' }).main.mode, 'placeholder');
     assert.equal(slotModel(fixture, 'fixture-detail', { locale: 'en' }).main.mode, 'supplied');
+});
+
+test('with placeholders off, a slot with no image renders nothing and a supplied one is unchanged', () => {
+    const off = { placeholders: false };
+    let hidden = 0;
+
+    for (const [id, entry] of Object.entries(real.assets)) {
+        if (!entry.slot) {
+            continue;
+        }
+
+        for (const locale of locales) {
+            const element = renderAssetSlot(real, id, { locale, labels: labels[locale], ...off });
+
+            if (entry.status === 'supplied') {
+                assert.equal(html(real, id, locale, off), html(real, id, locale), `${id} (${locale}) changes with placeholders off`);
+            } else {
+                assert.equal(element, null, `${id} (${locale}) still renders with no image`);
+                hidden++;
+            }
+        }
+    }
+
+    assert.equal(hidden, Object.values(real.assets).filter((entry) => entry.slot && entry.status === 'placeholder').length * locales.length);
+    assert.equal(html(fixture, 'fixture-placeholder', 'en', off), '');
+    assert.equal(html(fixture, 'fixture-figure', 'vi', off), '');
+    assert.equal(html(fixture, 'fixture-hero', 'en', off), html(fixture, 'fixture-hero'));
+});
+
+test('a crop without its window does not fill a slot', () => {
+    const partial: AssetManifestData = structuredClone(fixture);
+    partial.assets['fixture-hero'].status = 'placeholder';
+    partial.assets['fixture-hero'].src = null;
+
+    assert.match(html(partial, 'fixture-hero'), /^<figure [^>]*data-asset-status="partial"/);
+    assert.equal(html(partial, 'fixture-hero', 'en', { placeholders: false }), '');
+    assert.equal(slotSupplied(partial, 'fixture-hero', 'en'), false);
+    assert.equal(slotSupplied(fixture, 'fixture-hero', 'en'), true);
+    assert.equal(slotSupplied(fixture, 'fixture-diagram', 'ja'), true);
 });
 
 test('the catalogs label every type the manifest uses in every language', () => {
