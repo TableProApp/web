@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\BlogController;
-use App\Services\Blog\AtomFeed;
 use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\Route;
 
@@ -36,10 +34,11 @@ foreach (Locales::all() as $code => $locale) {
         ->group(base_path('routes/localized.php'));
 }
 
+// One feed, in the default language, so it is not among the localized routes.
+Route::get(\App\Services\Blog\AtomFeed::PATH, [\App\Http\Controllers\BlogController::class, 'feed'])->name('web.blog.feed');
+
 Route::get('/robots.txt', function () {
     $content = "User-agent: *\nAllow: /\n\nSitemap: https://tablepro.app/sitemap.xml\nSitemap: https://docs.tablepro.app/sitemap.xml\n";
 
     return response($content, 200, ['Content-Type' => 'text/plain']);
 })->name('web.robots');
-
-Route::get(AtomFeed::PATH, [BlogController::class, 'feed'])->name('web.blog.feed');
