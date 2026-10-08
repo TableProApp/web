@@ -149,8 +149,10 @@ fake GitHub with `Http::fake()`. Tests that assert on rendered markup go behind
   sourced). Copy refers to them through `{token}` slots; counts are derived,
   never typed. After an app release, run `php artisan release:check`.
 - Content images are slots in `resources/data/assets.json`, rendered by
-  `<AssetSlot id>` (or `<asset-slot id>` in markdown) as a described placeholder
-  until the owner supplies the file. A new slot or a changed description is a
+  `<AssetSlot id>` (or `<asset-slot id>` in markdown). Until the owner supplies
+  the file, a slot is a described placeholder outside production and renders
+  nothing in production (the shared `assetPlaceholders` prop); layout that
+  makes room for a slot asks `useShownSlot()` first. A new slot or a changed description is a
   manifest edit plus a brief in `docs/rebuild/assets/{family}.md`; then run
   `php artisan assets:handoff`, which regenerates `docs/visual-assets.md` and
   the bundle's `resources/js/lib/data/asset-slots.json` and `asset-locales/*.json`. Never hand-edit generated files.

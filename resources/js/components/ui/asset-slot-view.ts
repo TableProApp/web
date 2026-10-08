@@ -15,6 +15,7 @@ import { Crop, ImageIcon, Shapes, Smartphone, Tablet, Workflow, type LucideIcon 
 import { interpolate } from '../../i18n/core.ts';
 import {
     slotModel,
+    slotSupplied,
     type SlotManifestData,
     type PictureModel,
     type PlaceholderPart,
@@ -38,6 +39,8 @@ export interface AssetSlotViewOptions {
     caption?: boolean;
     /** Load this placement with priority (`SlotOptions.priority`): the first image of a page that is not the homepage. */
     priority?: boolean;
+    /** False in production: a slot with no image renders nothing. Defaults to true. */
+    placeholders?: boolean;
 }
 
 const ICONS: Record<SlotType, LucideIcon> = {
@@ -211,14 +214,19 @@ function part(
  * Placeholder: `<figure data-asset-id data-asset-status="placeholder">` holding
  * a `role="img"` box (with its own `data-asset-id` and status) whose accessible
  * name is "{type label}: {description}". No `<img>`, no `background-image`, no
- * request of any kind.
+ * request of any kind. With `placeholders: false` it is null instead.
  *
  * Supplied: `<figure data-asset-status="supplied">` holding `<picture>`s, with
  * the caption when there is one. The id, the type label and the description
  * are never rendered in this mode (spec §9.1).
  */
-export function renderAssetSlot(manifest: SlotManifestData, id: string, options: AssetSlotViewOptions): ReactElement {
-    const { locale, labels, sizes, className, caption = true, priority } = options;
+export function renderAssetSlot(manifest: SlotManifestData, id: string, options: AssetSlotViewOptions): ReactElement | null {
+    const { locale, labels, sizes, className, caption = true, priority, placeholders = true } = options;
+
+    if (!placeholders && !slotSupplied(manifest, id, locale)) {
+        return null;
+    }
+
     const model = slotModel(manifest, id, { locale, sizes, priority });
     const modes = [model.main.mode, model.mobile?.mode].filter((mode) => mode !== undefined);
     /*

@@ -1,11 +1,10 @@
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import CellGrid from '@/components/ui/cell-grid';
 import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n, type Messages } from '@/i18n';
 import { joinList } from '@/i18n/format';
-import { isAssetId } from '@/lib/data/assets';
 import { FACTS } from '@/lib/data/facts';
 import { paidLines } from './availability';
 import FeatureRow from './feature-row';
@@ -47,6 +46,7 @@ interface WorkflowsSectionProps {
  */
 export default function WorkflowsSection({ content, engines, macApp, iosDevices }: WorkflowsSectionProps) {
     const { m, fmt } = useI18n();
+    const shown = useShownSlot();
 
     const values = {
         usersRolesEngines: joinList(
@@ -91,6 +91,7 @@ export default function WorkflowsSection({ content, engines, macApp, iosDevices 
                     }
 
                     const headingId = `features-${row.id}`;
+                    const asset = shown(row.asset);
 
                     return (
                         <FeatureRow
@@ -98,7 +99,7 @@ export default function WorkflowsSection({ content, engines, macApp, iosDevices 
                             id={headingId}
                             title={row.title}
                             layout={config.layout}
-                            media={isAssetId(row.asset) ? <AssetSlot id={row.asset} /> : null}
+                            media={asset !== null ? <AssetSlot id={asset} /> : null}
                         >
                             <p className="type-body text-foreground">
                                 <RichText text={row.body} values={values} />

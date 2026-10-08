@@ -1,5 +1,7 @@
+import { usePage } from '@inertiajs/react';
 import { useI18n } from '@/i18n';
-import { assetManifest, type AssetId } from '@/lib/data/assets';
+import { slotSupplied } from '@/lib/data/asset-model';
+import { assetManifest, isAssetId, type AssetId } from '@/lib/data/assets';
 import { renderAssetSlot } from './asset-slot-view';
 
 interface AssetSlotProps {
@@ -27,14 +29,24 @@ interface AssetSlotProps {
  *
  * While the manifest entry's `status` is `placeholder`, it renders a labelled,
  * correctly proportioned placeholder with the asset id and a short brief, and
- * requests nothing. When the owner supplies the files and flips `status` to
- * `supplied`, the same call renders `<picture>` with `srcset`, `sizes`,
- * dimensions, theme variants and the right loading priority. Nothing else on
- * the page changes, and the geometry is identical in both modes, so there is
- * no layout shift. See docs/visual-assets.md for the briefs.
+ * requests nothing. In production it renders nothing at all (the shared
+ * `assetPlaceholders` prop), and layout that makes room for a slot asks
+ * `useShownSlot()` first. When the owner supplies the files and flips `status`
+ * to `supplied`, the same call renders `<picture>` with `srcset`, `sizes`,
+ * dimensions, theme variants and the right loading priority. The geometry is
+ * identical in both modes. See docs/visual-assets.md for the briefs.
  */
 export default function AssetSlot({ id, sizes, className, caption = true, priority }: AssetSlotProps) {
     const { locale, m } = useI18n();
+    const { assetPlaceholders } = usePage().props;
 
-    return renderAssetSlot(assetManifest(locale), id, { locale, labels: m.assets, sizes, className, caption, priority });
+    return renderAssetSlot(assetManifest(locale), id, { locale, labels: m.assets, sizes, className, caption, priority, placeholders: assetPlaceholders });
+}
+
+/** Narrows an id to a slot that renders on this page; null for an unknown id, or one with no image where placeholders are off. */
+export function useShownSlot(): (id: unknown) => AssetId | null {
+    const { locale } = useI18n();
+    const { assetPlaceholders } = usePage().props;
+
+    return (id) => (isAssetId(id) && (assetPlaceholders || slotSupplied(assetManifest(locale), id, locale)) ? id : null);
 }

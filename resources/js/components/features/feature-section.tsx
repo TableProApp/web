@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import CellGrid from '@/components/ui/cell-grid';
 import Section from '@/components/ui/section';
-import { assetEntry, isAssetId } from '@/lib/data/assets';
+import { assetEntry, type AssetId } from '@/lib/data/assets';
 import { needsReleaseLabel } from '@/lib/data/platforms';
 import { cn } from '@/lib/utils';
 import EngineLists from './engine-lists';
@@ -49,21 +49,22 @@ function BlockText({ block, facts, values, place }: BlockTextProps) {
     );
 }
 
-/** A block whose crop sits beside its text, so it renders as two cells. */
-function isBeside(block: FeatureBlock): boolean {
-    return block.asset !== undefined && isAssetId(block.asset) && slotLayout(assetEntry(block.asset).kind) === 'beside';
+/** A slot that sits beside its block's text, so the block renders as two cells. */
+function isBeside(asset: AssetId | null): boolean {
+    return asset !== null && slotLayout(assetEntry(asset).kind) === 'beside';
 }
 
 /**
  * The text and the block's one slot (design-system §8.2): a detail crop sits
  * beside the text from 1024px, as two cells of the page grid, 5 and 7 columns
- * (§4.7); a 16:9 window or diagram runs full width below it. Without a slot
- * the text keeps the reading width.
+ * (§4.7); a 16:9 window or diagram runs full width below it. Without a slot,
+ * or in production with one that has no image, the text keeps the reading
+ * width.
  */
 function BlockBody({ block, facts, values }: BlockBodyProps) {
-    const asset = block.asset !== undefined && isAssetId(block.asset) ? block.asset : null;
+    const asset = useShownSlot()(block.asset);
 
-    if (asset !== null && isBeside(block)) {
+    if (asset !== null && isBeside(asset)) {
         return (
             <CellGrid className="lg:grid-cols-12">
                 <div className="lg:col-span-5">
@@ -109,13 +110,14 @@ interface FeatureSectionProps {
  * and Query Insights under `#performance`).
  */
 export default function FeatureSection({ section, facts, values, labels }: FeatureSectionProps) {
+    const shown = useShownSlot();
     const markers = <Markers paid={section.paid} since={section.since} labels={labels} />;
     const hasOwnText = section.paragraphs.length > 0 || (section.points?.length ?? 0) > 0;
     const last = section.blocks !== undefined && section.blocks.length > 0 ? section.blocks[section.blocks.length - 1] : section;
 
     /* A section that ends in cells closes them on its join (design-system §4.7). */
     return (
-        <Section id={section.id} title={section.title} lead={hasMarkers(section) ? markers : undefined} flush={isBeside(last)}>
+        <Section id={section.id} title={section.title} lead={hasMarkers(section) ? markers : undefined} flush={isBeside(shown(last.asset))}>
             {hasOwnText && <BlockBody block={section} facts={facts} values={values} />}
             {section.blocks?.map((block, index) => (
                 <SubBlock key={block.id ?? index} block={block} facts={facts} values={values} labels={labels} first={!hasOwnText && index === 0} />

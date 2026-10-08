@@ -1,4 +1,4 @@
-import AssetSlot from '@/components/ui/asset-slot';
+import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import CellGrid from '@/components/ui/cell-grid';
 import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
 import LocaleLink from '@/components/ui/locale-link';
@@ -8,6 +8,7 @@ import { useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { FACTS } from '@/lib/data/facts';
 import { devicesOf, macPlatform } from '@/lib/data/platforms';
+import { cn } from '@/lib/utils';
 import { paidLines, releasedIos } from './availability';
 import type { HomeContent } from './types';
 
@@ -31,11 +32,12 @@ interface SafetySectionProps {
 export default function SafetySection({ content, paidTemplate }: SafetySectionProps) {
     const { m } = useI18n();
     const ios = releasedIos();
+    const crop = useShownSlot()('mac-safe-mode-touchid');
 
     return (
         <Section id="safety" title={content.title} flush>
             <CellGrid className="lg:grid-cols-12">
-                <div className="flex flex-col justify-center lg:col-span-5">
+                <div className={cn('flex flex-col justify-center', crop ? 'lg:col-span-5' : 'lg:col-span-12 [&>p]:max-w-[44rem]')}>
                     {content.body.map((paragraph) => (
                         <p key={paragraph} className="type-body mt-3 text-foreground first:mt-0">
                             {paragraph}
@@ -75,9 +77,11 @@ export default function SafetySection({ content, paidTemplate }: SafetySectionPr
                         </LocaleLink>
                     </p>
                 </div>
-                <div className="flex flex-col justify-center lg:col-span-7">
-                    <AssetSlot id="mac-safe-mode-touchid" />
-                </div>
+                {crop && (
+                    <div className="flex flex-col justify-center lg:col-span-7">
+                        <AssetSlot id="mac-safe-mode-touchid" />
+                    </div>
+                )}
             </CellGrid>
         </Section>
     );
