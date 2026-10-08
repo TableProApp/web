@@ -17,7 +17,7 @@
             "PostgreSQL, SQL Server, SQLite, Redis 등도 사용합니다.",
             "운영 연결 Read-Only나 쓰기 전 Touch ID 등 연결별 Safe Mode를 원합니다.",
             "데이터를 자주 옮깁니다. CSV·JSON·XLSX·SQL 파일 가져오기·내보내기는 무료입니다.",
-            "Mac 앱에서 무료 AI 도우미·MCP 서버를 원합니다."
+            "Mac 앱에서 무료 AI 어시스턴트·MCP 서버를 원합니다."
         ],
         "competitor": [
             "호스트가 cPanel로 제공하며 데이터베이스 SSH·원격 접근은 없습니다.",
@@ -26,7 +26,7 @@
         ]
     },
     "glance": {
-        "intro": "phpMyAdmin은 웹 앱이므로 표의 일부 행은 컴퓨터 대신 실행 서버를 설명합니다. 현재 안정 버전은 {status.version}이며 {cells.nextMajor.version}은 개발 중입니다."
+        "intro": "phpMyAdmin은 웹 앱이므로 표의 일부 행은 컴퓨터 대신 실행 서버를 설명합니다. 현재 안정 버전은 {status.version}이며 {cells.nextMajor.version} 버전은 개발 중입니다."
     },
     "rows": {
         "cpanel": {
@@ -142,7 +142,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro가 데이터베이스에 연결하려면 Mac에서 데이터베이스 포트에 접근할 수 있거나 서버에 SSH로 접근할 수 있어야 합니다. 호스팅 요금제가 둘 다 제공하지 않으면 phpMyAdmin을 사용합니다.",
+                "text": "TablePro가 데이터베이스에 연결하려면 Mac에서 데이터베이스 포트에 접근할 수 있거나 서버에 SSH로 접근할 수 있어야 합니다. 호스팅 플랜이 둘 다 제공하지 않으면 phpMyAdmin을 사용합니다.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -183,7 +183,7 @@
         {
             "id": "access",
             "question": "TablePro를 쓰려면 호스트에서 무엇이 필요한가요?",
-            "answer": "데이터베이스에 접근할 방법이 하나는 필요합니다. 호스트가 사용자의 주소에서 허용하는 원격 MySQL 접근 또는 서버 SSH 접근입니다. TablePro는 두 방법 모두 지원합니다. 요금제가 둘 다 제공하지 않으면 phpMyAdmin을 계속 사용하세요.",
+            "answer": "데이터베이스에 접근할 방법이 하나는 필요합니다. 호스트가 사용자의 주소에서 허용하는 원격 MySQL 접근 또는 서버 SSH 접근입니다. TablePro는 두 방법 모두 지원합니다. 플랜이 둘 다 제공하지 않으면 phpMyAdmin을 계속 사용하세요.",
             "href": null
         },
         {
@@ -201,7 +201,7 @@
         {
             "id": "free",
             "question": "TablePro도 phpMyAdmin처럼 무료인가요?",
-            "answer": "MySQL·MariaDB 작업은 무료입니다. TablePro Mac 앱은 모든 지원 엔진·AI 도우미·MCP 서버를 포함해 무료 AGPLv3 오픈 소스입니다. phpMyAdmin과 달리 유료 플랜도 있어 Starter·Team은 {starterExamples} 등 선택 기능을 추가합니다. <link>가격 보기</link>.",
+            "answer": "MySQL·MariaDB 작업은 무료입니다. TablePro Mac 앱은 모든 지원 엔진·AI 어시스턴트·MCP 서버를 포함해 무료 AGPLv3 오픈 소스입니다. phpMyAdmin과 달리 유료 플랜도 있어 Starter·Team은 {starterExamples} 등 선택 기능을 추가합니다. <link>요금 보기</link>.",
             "href": "/pricing"
         }
     ],

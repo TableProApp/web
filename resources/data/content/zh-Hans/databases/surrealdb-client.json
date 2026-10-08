@@ -35,7 +35,7 @@
             "title": "SurrealQL 和记录",
             "paragraphs": [
                 "编辑器运行整个 SurrealQL 脚本，包括两条记录间的 <code>RELATE</code>，并提供常用语句补全。<explain>Explain 和 Explain Full</explain> 添加 <code>EXPLAIN</code> 重新运行当前查询，显示其解析方式及是否使用索引；计划以原始文本返回。",
-                "命名空间位于侧栏顶层，内含数据库。两者随每次请求发送，切换均无需重连。只有根用户能看到所有命名空间。",
+                "命名空间位于侧边栏顶层，内含数据库。两者随每次请求发送，切换均无需重连。只有根用户能看到所有命名空间。",
                 "修改单元格执行 <code>UPDATE</code>，仅用类型化参数设置改动的字段，让 <code>int</code> 仍为 <code>int</code>，不触碰计算的 <code>FUTURE</code> 字段或其他写入者的改动。新行留空 <code>id</code> 自动生成，或填写 <code>table:id</code>。<code>SCHEMALESS</code> 表从获取的记录确定列。",
                 "<filters>筛选</filters>转换为 SurrealQL，Raw SQL 行接受单个条件，例如图遍历。写入、含 <code>;</code> 或注释、调用 <code>fn::</code> 或 <code>http::</code> 的条件被拒绝，请在编辑器运行。"
             ]

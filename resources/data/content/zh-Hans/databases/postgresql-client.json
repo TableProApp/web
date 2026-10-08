@@ -11,7 +11,7 @@
     "breadcrumb": "PostgreSQL",
     "header": {
         "title": "适用于 {devices} 的 PostgreSQL 客户端",
-        "lead": "处理结构、数组、jsonb 和 PostGIS，以图形查看 EXPLAIN 计划，并管理角色、会话、维护和备份。同一驱动也支持 Amazon Redshift、CockroachDB 和 PGlite。"
+        "lead": "处理 schema、数组、jsonb 和 PostGIS，以图形查看 EXPLAIN 计划，并管理角色、会话、维护和备份。同一驱动也支持 Amazon Redshift、CockroachDB 和 PGlite。"
     },
     "asset": "mac-db-postgresql-explain",
     "links": {
@@ -37,7 +37,7 @@
                 "提供主机、端口、用户和数据库，或粘贴 <code>postgresql://</code>、<code>postgres://</code> URL。PostgreSQL 连接必须指定数据库。",
                 "新连接的 SSL 默认为 Preferred，即 libpq 的 <code>sslmode=prefer</code>。要验证服务器证书，请选 Verify CA 或 Verify Identity。",
                 "启用 Use ~/.pgpass 从 <code>~/.pgpass</code> 读取密码。表单报告发现的情况，包括因权限而被 libpq 忽略的文件。",
-                "可通过 <network>SSH 隧道（按需使用跳板机）、SOCKS5 代理、Cloudflare Access 隧道或隧道命令</network>访问私有服务器，例如 kubectl port-forward。在 Amazon RDS 和 Aurora 上，以获授 <code>rds_iam</code> 的角色通过 <cloudAuth>AWS IAM</cloudAuth> 登录。Google Cloud SQL 由 TablePro 下载并运行 Cloud SQL Auth Proxy。",
+                "可通过 <network>SSH 隧道（按需使用跳板机）、SOCKS5 代理、Cloudflare Access 隧道或隧道命令</network>（例如 kubectl port-forward）访问私有服务器。在 Amazon RDS 和 Aurora 上，以获授 <code>rds_iam</code> 的角色通过 <cloudAuth>AWS IAM</cloudAuth> 登录。对于 Google Cloud SQL，TablePro 会下载并运行 Cloud SQL Auth Proxy。",
                 "libpq 接受的任何连接选项，例如 <code>-c application_name=reporting</code>，均可填写在 Connection Options 中。"
             ]
         },
@@ -69,7 +69,7 @@
                 "<administer>Users & Roles</administer> 在授权或撤销前显示每项权限来源，并将每条语句暂存为 SQL。",
                 "Server Dashboard 显示会话、连接、缓存命中率、数据库大小和慢查询。使用 <code>pg_cancel_backend</code> 取消查询，或 <code>pg_terminate_backend</code> 终止会话。既非超级用户又非 <code>pg_monitor</code> 成员的角色，可看到其他会话但看不到其查询。",
                 "表维护可运行带 FULL、ANALYZE、VERBOSE 选项的 VACUUM，以及 ANALYZE、REINDEX、CLUSTER，并先显示语句。",
-                "<backup>Backup Dump 和 Restore Dump</backup> 通过连接的 SSH 隧道运行自有 {dumpTool} 和 pg_restore。使用 Homebrew 安装；备份 PostgreSQL 9.1 服务器需用 pg_dump 14 或更早版本。"
+                "<backup>Backup Dump 和 Restore Dump</backup> 通过连接的 SSH 隧道运行您自行安装的 {dumpTool} 和 pg_restore。使用 Homebrew 安装；备份 PostgreSQL 9.1 服务器需用 pg_dump 14 或更早版本。"
             ],
             "asset": "mac-server-dashboard-postgresql"
         },
@@ -85,7 +85,7 @@
             "id": "iphone",
             "title": "iPhone 和 iPad",
             "paragraphs": [
-                "iPhone 和 iPad 上可从工具栏切换数据库和 schema，按卡片浏览表，编辑有主键的行，并在 Query 标签页运行 SQL。SSL 支持 Required 到 Verify Identity，SSH 隧道使用密码或密钥，不支持跳板机。"
+                "iPhone 和 iPad 上可从工具栏切换数据库和 schema，以卡片形式浏览表，编辑有主键的行，并在 Query 标签页运行 SQL。SSL 支持 Required 到 Verify Identity，SSH 隧道使用密码或密钥，不支持跳板机。"
             ],
             "asset": "ios-connection-form"
         }
@@ -96,7 +96,7 @@
             "title": "CockroachDB",
             "paragraphs": [
                 "CockroachDB 使用应用内置 PostgreSQL 驱动，无需安装。新集群以 <code>defaultdb</code> 数据库开始。",
-                "CockroachDB Cloud 可从 Cloud 控制台复制主机、用户、密码和数据库，将集群路由值 <code>--cluster=your-cluster</code> 填入 Connection Options，并将 SSL Mode 设为 Verify Identity。本地不安全节点将 SSL Mode 设为 Disabled。",
+                "CockroachDB Cloud 可从 Cloud 控制台复制主机、用户、密码和数据库，将集群路由值 <code>--cluster=your-cluster</code> 填入 Connection Options，并将 SSL Mode 设为 Verify Identity。以 insecure 模式运行的本地节点需将 SSL Mode 设为 Disabled。",
                 "表和视图 DDL 来自 CockroachDB 自身的 SHOW CREATE。EXPLAIN、EXPLAIN ANALYZE 文本计划解析为计划树，Server Dashboard 列出会话和活动查询。",
                 "外键检查不能延迟。"
             ]
@@ -133,7 +133,7 @@
         {
             "id": "hosted",
             "question": "支持 Amazon RDS、Neon、Supabase 等托管 PostgreSQL 吗？",
-            "answer": "支持。托管服务器与其他服务器一样使用主机和端口。Neon、Supabase 和 Heroku 使用服务提供的主机连接。它们要求 TLS，新连接会先尝试 TLS。RDS、Aurora 还可用 AWS IAM 登录，Google Cloud SQL 由 TablePro 运行 Cloud SQL Auth Proxy。"
+            "answer": "支持。托管服务器与其他服务器一样使用主机和端口。Neon、Supabase 和 Heroku 使用服务提供的主机连接。它们要求 TLS，新连接会先尝试 TLS。RDS、Aurora 还可用 AWS IAM 登录，对于 Google Cloud SQL，TablePro 会运行 Cloud SQL Auth Proxy。"
         },
         {
             "id": "column-order",

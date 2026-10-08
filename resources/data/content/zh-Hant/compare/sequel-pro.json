@@ -14,9 +14,9 @@
     "shortAnswer": {
         "tablepro": [
             "除了 MySQL、MariaDB，也使用 PostgreSQL、SQL Server、SQLite、Redis 或 MongoDB。",
-            "希望在 Mac App 免費使用 AI 助手和 MCP 伺服器，自選 AI 供應商。",
+            "希望在 Mac App 免費使用 AI 助理和 MCP 伺服器，自選 AI 供應商。",
             "希望有免費 iPhone、iPad App 連線 MySQL 和 MariaDB。",
-            "願意學習不同介面，希望 Sequel Ace 連線連同密碼遷移。"
+            "願意學習不同介面，希望 Sequel Ace 連線連同密碼移轉。"
         ],
         "competitor": [
             "希望繼續用熟悉的 Sequel Pro 介面，免費且持續維護。",
@@ -93,7 +93,7 @@
                 "href": "/compare/sequel-ace"
             },
             {
-                "text": "<link>AI 助手和 MCP 伺服器</link>在 Mac App 中免費。",
+                "text": "<link>AI 助理和 MCP 伺服器</link>在 Mac App 中免費。",
                 "cite": [],
                 "feature": null,
                 "href": "/features/ai-mcp"
@@ -130,12 +130,12 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 無 Sequel Pro 匯入工具。可行路徑經 Sequel Ace：先遷移收藏到 Sequel Ace，再從 Sequel Ace 匯入 TablePro。",
+        "intro": "TablePro 無 Sequel Pro 匯入工具。可行路徑經 Sequel Ace：先移轉收藏到 Sequel Ace，再從 Sequel Ace 匯入 TablePro。",
         "steps": [],
         "after": [
-            "在 Sequel Ace 依「從 Sequel Pro 遷移」指南複製收藏檔案和偏好設定。指南說明密碼不會自動遷移，並提供指令碼；SSH 金鑰需重新選擇。",
+            "在 Sequel Ace 依「從 Sequel Pro 移轉」指南複製收藏檔案和偏好設定。指南說明密碼不會自動移轉，並提供指令碼；SSH 金鑰需重新選擇。",
             "TablePro 選擇<ui>檔案 > 匯入 > 從其他 App 匯入…</ui>（File > Import > Import from Other App…），選 Sequel Ace 並開啟<ui>包含密碼</ui>（Include passwords）。",
-            "移除任何一個 App 前，開啟原有密碼的連線，檢查是否遷移。"
+            "移除任何一個 App 前，開啟原有密碼的連線，檢查是否移轉。"
         ],
         "docs": "/switching"
     },
@@ -149,13 +149,13 @@
         {
             "id": "import",
             "question": "能匯入 Sequel Pro 收藏嗎？",
-            "answer": "無法直接匯入。依 Sequel Ace 遷移指南複製，再從 Sequel Ace 匯入。指南說明密碼不會自動遷移，請匯入前在 Sequel Ace 檢查或在 TablePro 輸入。",
+            "answer": "無法直接匯入。依 Sequel Ace 移轉指南複製，再從 Sequel Ace 匯入。指南說明密碼不會自動移轉，請匯入前在 Sequel Ace 檢查或在 TablePro 輸入。",
             "href": null
         },
         {
             "id": "which",
-            "question": "應該遷移至 Sequel Ace 還是 TablePro？",
-            "answer": "想要免費、持續維護的 MySQL、MariaDB Sequel Pro 介面，選 Sequel Ace。也使用其他引擎、需要 iPhone、iPad App 或內建 AI 助手，選 TablePro。<link>比較 TablePro 和 Sequel Ace</link>。",
+            "question": "應該移轉至 Sequel Ace 還是 TablePro？",
+            "answer": "想要免費、持續維護的 MySQL、MariaDB Sequel Pro 介面，選 Sequel Ace。也使用其他引擎、需要 iPhone、iPad App 或內建 AI 助理，選 TablePro。<link>比較 TablePro 和 Sequel Ace</link>。",
             "href": "/compare/sequel-ace"
         },
         {
@@ -168,7 +168,7 @@
     "notes": {
         "sequel-pro-databases": "MySQL 與 MariaDB",
         "sequel-pro-cask-removed": "Homebrew 以停止開發為由停用 cask，轉而推薦 Sequel Ace，於 {date} 移除",
-        "sequel-pro-site-down": "檢查時 sequelpro.com 無法載入，存放庫未關閉的議題也報告網站停機",
+        "sequel-pro-site-down": "檢查時 sequelpro.com 無法載入，儲存庫未關閉的議題也報告網站停機",
         "sequel-pro-rosetta": "Intel 版本，在 Apple silicon 需 Rosetta。Apple 表示 macOS 28 起僅保留給某些舊遊戲。",
         "sequel-pro-successor": "Sequel Ace，自稱 Sequel Pro 的「續篇」，基於其程式碼"
     }

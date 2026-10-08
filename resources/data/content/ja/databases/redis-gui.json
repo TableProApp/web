@@ -27,7 +27,7 @@
             "paragraphs": [
                 "<ui>Connection Mode</ui> を選びます。Standalone はホストとポート、Sentinel は一つ以上の Sentinel ノードとプライマリーグループ名を指定し、クォーラムからプライマリーを見つけ、フェイルオーバー後も追従します。Cluster は接続可能なメンバーをシードとしてシャードマップを読み、各コマンドをそのキーの所有シャードに送ります。",
                 "パスワードでログインするか、Username を入力して Redis 6 ACL ユーザーでログインします。Amazon ElastiCache は <cloudAuth>AWS IAM</cloudAuth> 方式を選ぶと短期トークンをパスワードにします。ElastiCache IAM には TLS が必要です。",
-                "新規接続の TLS は無効です。Upstash、Redis Cloud などは TLS が必要で、<code>rediss://</code> URL の貼り付けは有効にします。平文へのフォールバックがないため Preferred は Required と同じです。Valkey サーバーも Redis と同じ方法で接続します。",
+                "新規接続の TLS は無効です。Upstash、Redis Cloud などは TLS が必要で、<code>rediss://</code> URL を貼り付けると TLS が有効になります。平文へのフォールバックがないため Preferred は Required と同じです。Valkey サーバーも Redis と同じ方法で接続します。",
                 "サイドバーは <code>db0</code> から番号付きデータベースを表示し、クリックするとその場で閲覧します。"
             ]
         },
@@ -36,9 +36,9 @@
             "title": "キーとコマンド",
             "paragraphs": [
                 "キー名はコロンか Options タブで指定した区切り文字でフォルダーに分けます。各グリッド行は Key、Type、TTL、Length と Value を持ちます。文字列は全体、hash、list、set、sorted set や stream は最初の項目を表示し、Length は件数を示します。gzip データなど有効な UTF-8 でない値は十六進エディターで開きます。",
-                "<editing>グリッド</editing> でキー名の編集は <code>RENAME</code>、TTL は <code>EXPIRE</code> または <code>PERSIST</code>、文字列値は <code>SET</code> を実行します。Add Row は選んだ型を <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> か <code>SET</code> で書きます。フィルターバーはサーバーの <code>SCAN MATCH</code> と <code>SCAN TYPE</code> で Redis glob によるキー名と型を絞り込みます。",
+                "<editing>グリッド</editing> でキー名の編集は <code>RENAME</code>、TTL は <code>EXPIRE</code> または <code>PERSIST</code>、文字列値は <code>SET</code> を実行します。Add Row は選んだ型を <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> か <code>SET</code> で書きます。フィルターバーはサーバーの <code>SCAN MATCH</code> と <code>SCAN TYPE</code> で Redis の glob パターンでキー名を照合し、型で絞り込みます。",
                 "エディターは一文一コマンドを redis-cli の引用符形式で受け付け、認識しないものもそのまま送ります。<code>DB 3 GET key</code> はセッションを移さず別のデータベースで一つのコマンドを実行します。<code>MULTI</code> 内は各コマンドが <code>QUEUED</code> を返し、<code>EXEC</code> が全応答を順に返します。",
-                "<safeMode>Safe Mode</safeMode> は <code>GET</code> も含むすべての Redis コマンドを書き込みとするため、Alert と Safe Mode は毎回確認し、Read-Only はすべてブロックします。<code>FLUSHDB</code> と <code>FLUSHALL</code> は Silent でも実行前に確認します。"
+                "<safeMode>Safe Mode</safeMode> は <code>GET</code> も含むすべての Redis コマンドを書き込みとするため、Alert と Safe Mode レベルは毎回確認し、Read-Only はすべてブロックします。<code>FLUSHDB</code> と <code>FLUSHALL</code> は Silent でも実行前に確認します。"
             ]
         },
         {
@@ -84,7 +84,7 @@
         },
         {
             "id": "managed",
-            "question": "管理サービスに存在しないデータベースが表示されるのはなぜですか？",
+            "question": "マネージド Redis サービスで、存在しないデータベースが表示されるのはなぜですか？",
             "answer": "Upstash、Redis Cloud や ElastiCache は <code>CONFIG</code> を拒否するため、TablePro はデータベース数を取得できず既定の範囲を表示します。一つだけのサービスでは <code>db0</code> 以外を開くとサーバーのエラーになります。"
         }
     ],
@@ -98,7 +98,7 @@
             "href": "/features/connections"
         },
         {
-            "label": "iPhone と iPad 用 TablePro",
+            "label": "iPhone・iPad 版 TablePro",
             "href": "/ios"
         },
         {

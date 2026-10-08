@@ -4,7 +4,7 @@
         "description": "比较两款提供 Mac、iPhone 和 iPad 应用的原生数据库客户端：平台、价格、AI、MCP，以及将 TablePlus 连接导入 TablePro 的流程。"
     },
     "og": {
-        "kicker": "比较",
+        "kicker": "对比",
         "title": "TablePro vs TablePlus"
     },
     "header": {
@@ -24,11 +24,11 @@
         ]
     },
     "glance": {
-        "intro": "两个客户端都有 AI 聊天、MCP 服务器、模式图和 Excel 导出。TablePlus 在 {cells.mcp.date} 发布的 {cells.mcp.version} 版本中添加了 MCP 服务器、模式图和 Excel 导出。"
+        "intro": "两个客户端都有 AI 聊天、MCP 服务器、结构图和 Excel 导出。TablePlus 在 {cells.mcp.date} 发布的 {cells.mcp.version} 版本中添加了 MCP 服务器、结构图和 Excel 导出。"
     },
     "rows": {
         "diagram": {
-            "label": "模式图",
+            "label": "结构图",
             "tablepro": "只读 ER 图，可导出为 PNG 或 SQL"
         },
         "excelExport": {
@@ -139,7 +139,7 @@
                 "href": "/ios"
             },
             {
-                "text": "TablePro 不是模式设计器，其 ER 图是当前模式的只读快照。",
+                "text": "TablePro 不是结构设计器，其 ER 图是当前结构的只读快照。",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -194,7 +194,7 @@
         }
     ],
     "notes": {
-        "tableplus-free-limits": "无时间限制，但同时最多打开 {value} 个标签页、{value} 个窗口和 {value} 个高级过滤器",
+        "tableplus-free-limits": "无时间限制，但同时最多打开 {value} 个标签页、{value} 个窗口和 {value} 个高级筛选器",
         "tableplus-one-year-updates": "一次付款，包含一年更新，之后应用仍可使用。",
         "tableplus-databases": "关系型、文档、键值和分析引擎，包括 PostgreSQL、MySQL、SQL Server、SQLite、Redis、MongoDB、Oracle、Cassandra、Snowflake、Vertica 和 Greenplum。部分引擎仅在部分平台可用。",
         "tableplus-ai": "支持 OpenAI、Anthropic、GitHub Copilot 或本地模型的聊天插件",

@@ -63,7 +63,7 @@
             "id": "linked-folders",
             "title": "Linked Folders",
             "paragraphs": [
-                "Git 체크아웃이나 공유 드라이브 같은 폴더를 추가하면 TablePro가 그 안의 모든 <code>.tablepro</code> 파일을 연결로 나열하고 파일이 추가되거나 변경되면 목록을 갱신합니다. 연결된 항목은 TablePro에서 읽기 전용이므로 파일을 수정해서 변경해야 합니다. 암호화된 파일은 건너뛰기 때문에 공유 폴더는 비밀번호가 아닌 설정만 담고 연결 파일의 시작 명령과 터널 명령은 무시됩니다.",
+                "Git 체크아웃이나 공유 드라이브 같은 폴더를 추가하면 TablePro가 그 안의 모든 <code>.tablepro</code> 파일을 연결로 나열하고 파일이 추가되거나 변경되면 목록을 갱신합니다. 이렇게 불러온 연결은 TablePro에서 읽기 전용이므로 파일을 수정해서 변경해야 합니다. 암호화된 파일은 건너뛰기 때문에 공유 폴더는 비밀번호가 아닌 설정만 담고 불러온 파일의 시작 명령과 터널 명령은 무시됩니다.",
                 "Linked Folders는 연결 파일을 감시합니다. 연결된 SQL 폴더는 별도 기능이며 저장된 쿼리의 무료 기능으로 <code>.sql</code> 파일 폴더와 저장된 쿼리를 동기화합니다."
             ],
             "paid": [
@@ -240,7 +240,7 @@
             "href": "/pricing#features"
         },
         {
-            "label": "개인정보: iCloud Sync 및 Handoff",
+            "label": "개인정보 보호: iCloud Sync 및 Handoff",
             "href": "/privacy#icloud"
         }
     ]

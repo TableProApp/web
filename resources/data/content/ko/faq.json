@@ -31,7 +31,7 @@
                     "id": "what-is-tablepro",
                     "question": "TablePro는 무엇인가요?",
                     "answer": [
-                        "TablePro는 개발자를 위한 네이티브 오픈 소스 데이터베이스 클라이언트입니다. Mac에서는 {featuredEngines} 등에 연결하고 쿼리를 작성·실행하고 데이터를 탐색·편집하고 스키마를 변경할 수 있습니다. iPhone 및 iPad 앱은 책상 밖에서 데이터베이스 작업을 위한 별도의 더 작은 앱입니다.",
+                        "TablePro는 개발자를 위한 네이티브 오픈 소스 데이터베이스 클라이언트입니다. Mac에서는 {featuredEngines} 등에 연결하고 쿼리를 작성·실행하고 데이터를 탐색·편집하고 스키마를 변경할 수 있습니다. iPhone 및 iPad 앱은 자리를 떠나 있을 때 데이터베이스를 다루기 위한 별도의 더 작은 앱입니다.",
                         "<features>기능 페이지</features>에서 각 부분의 기능을 설명합니다."
                     ]
                 },
@@ -74,14 +74,14 @@
                     "id": "mac-requirements",
                     "question": "어떤 Mac에서 TablePro를 사용할 수 있나요?",
                     "answer": [
-                        "Mac용 TablePro는 {macRequirement}가 필요합니다. Apple silicon과 Intel용 빌드가 각각 있으며 <download>다운로드 페이지</download>에서 둘 다 받을 수 있습니다. Homebrew는 알맞은 빌드를 설치합니다."
+                        "Mac용 TablePro는 {macRequirement}이 필요합니다. Apple silicon과 Intel용 빌드가 각각 있으며 <download>다운로드 페이지</download>에서 둘 다 받을 수 있습니다. Homebrew는 알맞은 빌드를 설치합니다."
                     ]
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "iPhone 및 iPad 앱이 있나요?",
                     "answer": [
-                        "네. iPhone 및 iPad용 TablePro는 App Store에서 제공되며 {iosRequirement}가 필요하고 무료이며 앱 내 구입이 없습니다. {iosEngines}에 연결하고 SSH 터널, Safe Mode 및 Face ID를 지원하며 테이블 탐색·편집과 쿼리 실행이 가능합니다.",
+                        "네. iPhone 및 iPad용 TablePro는 App Store에서 제공되며 {iosRequirement}이 필요하고 무료이며 앱 내 구입이 없습니다. {iosEngines}에 연결하고 SSH 터널, Safe Mode 및 Face ID를 지원하며 테이블 탐색·편집과 쿼리 실행이 가능합니다.",
                         "휴대폰과 태블릿용으로 만든 별도 앱이며 Mac 앱의 복사본이 아닙니다. 예를 들어 AI 어시스턴트, MCP 서버 및 저장된 쿼리는 없습니다. <ios>iPhone 및 iPad 페이지</ios>에 제공 기능과 없는 기능이 나와 있습니다."
                     ]
                 },
@@ -110,7 +110,7 @@
                     "id": "supported-databases",
                     "question": "어떤 데이터베이스에 연결할 수 있나요?",
                     "answer": [
-                        "Mac에서는 {featuredEngines} 등 문서, 키-값, 검색, 스트리밍 및 분석 엔진에 연결할 수 있습니다. <databases>데이터베이스 페이지</databases>에는 모든 엔진과 각 엔진에서 TablePro가 지원하는 기능이 나와 있습니다.",
+                        "Mac에서는 {featuredEngines} 등에 연결할 수 있으며 문서, 키-값, 검색, 스트리밍 및 분석 엔진도 포함됩니다. <databases>데이터베이스 페이지</databases>에는 모든 엔진과 각 엔진에서 TablePro가 지원하는 기능이 나와 있습니다.",
                         "iPhone 및 iPad 앱은 {iosEngines}에 연결합니다."
                     ]
                 },
@@ -284,14 +284,14 @@
                     "id": "members",
                     "question": "팀원을 어떻게 추가하거나 제거하나요?",
                     "answer": [
-                        "<account>계정</account>에서 이메일로 초대하세요. 상대방은 받은 코드를 Mac의 TablePro에서 <ui>설정 > 라이선스</ui>(Settings > License)에 입력하고 Mac은 한 좌석을 사용합니다. 구성원을 제거하면 좌석이 확보되고 해당 Mac은 로그아웃되며 Team Library에 게시한 내용이 삭제됩니다."
+                        "<account>계정</account>에서 이메일로 초대하세요. 상대방은 받은 코드를 Mac의 TablePro에서 <ui>설정 > 라이선스</ui>(Settings > License)에 입력하고 그 Mac이 좌석 하나를 사용합니다. 구성원을 제거하면 좌석이 확보되고 해당 Mac은 로그아웃되며 Team Library에 게시한 내용이 삭제됩니다."
                     ]
                 },
                 {
                     "id": "seats",
                     "question": "좌석 수를 어떻게 변경하나요?",
                     "answer": [
-                        "월간 또는 연간 Team 구독은 <account>계정</account>에서 변경하며 다음 청구서에 반영됩니다. 일회성 Team 라이선스는 <email>{email}</email>로 이메일을 보내주세요."
+                        "월간 또는 연간 Team 구독은 <account>계정</account>에서 변경하며 다음 청구서에 반영됩니다. 일회성 Team 라이선스는 <email>{email}</email> 주소로 이메일을 보내주세요."
                     ]
                 },
                 {
@@ -326,7 +326,7 @@
     ],
     "contact": {
         "title": "답을 찾지 못하셨나요?",
-        "body": "<email>{email}</email>로 이메일을 보내거나 <issues>GitHub</issues>에서 문제를 신고하세요.",
+        "body": "<email>{email}</email> 주소로 이메일을 보내거나 <issues>GitHub</issues>에서 문제를 신고하세요.",
         "chat": "실시간 채팅 시작",
         "chatNote": "채팅은 각 페이지의 로딩이 완료된 후 로드됩니다."
     }

@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "提供接觸點和連接埠，叢集設定驗證器時再填使用者名稱和密碼。無索引鍵空間欄位：連線後在側欄選擇，或放入 <code>cassandra://</code>、<code>cql://</code> URL 路徑再匯入。索引鍵空間原地切換，清單排除系統索引鍵空間，已開啟分頁仍留在各自索引鍵空間。",
+                "提供接觸點和連接埠，叢集設定驗證器時再填使用者名稱和密碼。無索引鍵空間欄位：連線後在側邊欄選擇，或放入 <code>cassandra://</code>、<code>cql://</code> URL 路徑再匯入。索引鍵空間原地切換，清單排除系統索引鍵空間，已開啟分頁仍留在各自索引鍵空間。",
                 "新連線關閉 TLS。驅動程式沒有機會式 TLS，因此 Preferred、Required 均加密但不驗證憑證。Verify CA、Verify Identity 必須有 CA 憑證檔案，絕不退回系統根憑證。雙向 TLS 加入用戶端憑證、金鑰和金鑰通關密語。私有網路叢集透過 <network>SSH 通道</network>存取。",
                 "Amazon Keyspaces 用 SigV4 而非密碼登入。連線區域端點，例如 9142 連接埠的 <code>cassandra.us-east-1.amazonaws.com</code>，Authentication 設定為 <awsIam>AWS IAM 模式</awsIam>（存取金鑰、設定檔或 AWS IAM Identity Center），留空使用者名稱密碼並開啟 TLS，因為 Keyspaces 拒絕明文。"
             ]
@@ -37,7 +37,7 @@
             "id": "work",
             "title": "瀏覽與執行 CQL",
             "paragraphs": [
-                "從側欄開啟資料表讀取資料格線。清單、集合、對應和元組顯示為集合，使用者定義型別顯示欄位，<code>duration</code> 為 <code>1d2h30m</code>，向量為數字清單，blob 為十六進位。CQL 編輯器結果唯讀，請從側欄開啟的資料表修改列。",
+                "從側邊欄開啟資料表讀取資料格線。清單、集合、對應和元組顯示為集合，使用者定義型別顯示欄位，<code>duration</code> 為 <code>1d2h30m</code>，向量為數字清單，blob 為十六進位。CQL 編輯器結果唯讀，請從側邊欄開啟的資料表修改列。",
                 "CQL 無 OFFSET，因此從首列向前分頁：已顯示頁的 Next、Previous 各讀一次，跳到遠處需讀取此前每頁。列依權杖順序傳回，欄頭不重新排序，因為 CQL 僅能依單分割區內叢集欄位排序。開啟資料表不計數；<ui>精確計算</ui>（Count Exactly）執行 <code>SELECT COUNT(*)</code> 讀取所有分割區。",
                 "<filters>篩選</filters>加入 <code>ALLOW FILTERING</code>，除非固定完整分割區索引鍵，否則伺服器讀所有分割區。包含、開頭為、結尾為傳送 LIKE，Cassandra 僅在有 SASI 或 SAI 索引的欄位接受。CQL 無法表達的不等於、is NULL 等運算子依名稱拒絕；CQL 無 OR，條件僅以 AND 連接。",
                 "<editing>編輯值</editing>依欄位的 CQL 型別傳送，無法解析的值停止整個儲存。各列以完整主索引鍵用獨立陳述式寫入。<ui>新增列</ui>（Add Row）寫 <code>INSERT … IF NOT EXISTS</code>，新列絕不覆寫已有相同索引鍵的列。索引鍵欄不可原地修改，需刪除再新增列。",
@@ -80,7 +80,7 @@
         {
             "id": "views-and-types",
             "question": "如何查看具體化檢視表和使用者定義型別？",
-            "answer": "側欄不顯示，請在 CQL 編輯器查詢 <code>system_schema</code> 索引鍵空間，例如 <code>SELECT * FROM system_schema.views</code> 或 <code>system_schema.types</code>。"
+            "answer": "側邊欄不顯示，請在 CQL 編輯器查詢 <code>system_schema</code> 索引鍵空間，例如 <code>SELECT * FROM system_schema.views</code> 或 <code>system_schema.types</code>。"
         },
         {
             "id": "cassandra-2",

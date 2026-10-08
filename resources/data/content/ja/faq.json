@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro は無料ですか？",
                     "answer": [
-                        "Mac アプリは無料でダウンロードして使え、試用期間や時間制限はありません。Starter または Team ライセンスで Mac アプリに任意の機能を追加できます。<pricing>料金ページ</pricing>に一覧があります。すべての対応エンジンへの接続、AI アシスタント、MCP サーバー、Safe Mode にライセンスは不要です。",
+                        "Mac アプリは無料でダウンロードして使え、試用期間や時間制限はありません。Starter または Team ライセンスで Mac アプリにオプション機能を追加できます。<pricing>料金ページ</pricing>に一覧があります。すべての対応エンジンへの接続、AI アシスタント、MCP サーバー、Safe Mode にライセンスは不要です。",
                         "iPhone・iPad アプリは無料で、アプリ内課金はなく、ライセンスも不要です。"
                     ]
                 },
@@ -74,14 +74,14 @@
                     "id": "mac-requirements",
                     "question": "どの Mac で TablePro が動きますか？",
                     "answer": [
-                        "Mac 版 TablePro は {macRequirement} が必要です。Apple silicon 用と Intel 用のビルドをそれぞれ用意しています。<download>ダウンロードページ</download>には両方があり、Homebrew は適切なものをインストールします。"
+                        "Mac 版 TablePro は {macRequirement}が必要です。Apple silicon 用と Intel 用のビルドをそれぞれ用意しています。<download>ダウンロードページ</download>には両方があり、Homebrew は適切なものをインストールします。"
                     ]
                 },
                 {
                     "id": "iphone-ipad",
                     "question": "iPhone・iPad 版はありますか？",
                     "answer": [
-                        "はい。iPhone・iPad 版 TablePro は App Store で提供しており、{iosRequirement} が必要です。無料で、アプリ内課金はありません。SSH トンネル、Safe Mode、Face ID に対応し、{iosEngines} に接続してテーブルの閲覧・編集やクエリの実行ができます。",
+                        "はい。iPhone・iPad 版 TablePro は App Store で提供しており、{iosRequirement}が必要です。無料で、アプリ内課金はありません。SSH トンネル、Safe Mode、Face ID に対応し、{iosEngines} に接続してテーブルの閲覧・編集やクエリの実行ができます。",
                         "スマートフォンとタブレット向けに作られた別のアプリで、Mac アプリのコピーではありません。例えば AI アシスタント、MCP サーバー、保存済みクエリはありません。<ios>iPhone・iPad ページ</ios>に対応機能と非対応機能を掲載しています。"
                     ]
                 },
@@ -96,7 +96,7 @@
                     "id": "languages",
                     "question": "アプリはどの言語に対応していますか？",
                     "answer": [
-                        "Mac アプリのインターフェースは {macLanguages} に対応しています。英語以外の言語では、一部の画面に英語のテキストが残っています。iPhone・iPad アプリは {iosLanguages} に対応しています。",
+                        "Mac アプリのインターフェイスは {macLanguages} に対応しています。英語以外の言語では、一部の画面に英語のテキストが残っています。iPhone・iPad アプリは {iosLanguages} に対応しています。",
                         "このウェブサイトとアカウントポータルは複数の言語で利用できます。<docs>ドキュメント</docs>は英語です。"
                     ]
                 }
@@ -126,7 +126,7 @@
                     "id": "ssh-ssl",
                     "question": "SSH または SSL で接続できますか？",
                     "answer": [
-                        "はい。Mac の SSH トンネルはパスワード、鍵、1Password を含む SSH エージェントで認証でき、踏み台ホストも使えます。SSL/TLS はサーバー証明書を検証できます。Cloudflare Access、Cloud SQL Auth Proxy、SOCKS5 プロキシ、kubectl port-forward などのコマンド経由でも接続できます。<connections>接続ページ</connections>で各方法を説明しています。",
+                        "はい。Mac の SSH トンネルはパスワード、鍵、1Password のものを含む SSH エージェントで認証でき、踏み台ホストも使えます。SSL/TLS はサーバー証明書を検証できます。Cloudflare Access、Cloud SQL Auth Proxy、SOCKS5 プロキシ、kubectl port-forward などのコマンド経由でも接続できます。<connections>接続ページ</connections>で各方法を説明しています。",
                         "iPhone・iPad の SSH トンネルはパスワードまたは秘密鍵で認証します。踏み台ホストは非対応です。"
                     ]
                 },
@@ -256,7 +256,7 @@
                     "id": "ai-data",
                     "question": "AI アシスタントはデータを TablePro に送りますか？",
                     "answer": [
-                        "いいえ。AI アシスタントは Mac アプリの機能で、リクエストは追加したプロバイダーへ直接送られ、TablePro を経由しません。初期設定ではデータベースの種類と名前、スキーマのテーブルとカラム定義、現在のクエリを含みます。結果の行はオンにした場合のみ送られます。{localAiProviders} はお客様の Mac 上で動きます。<aiMcp>AI と MCP ページ</aiMcp>をご覧ください。"
+                        "いいえ。AI アシスタントは Mac アプリの機能で、リクエストは追加したプロバイダーへ直接送られ、TablePro を経由しません。初期設定ではデータベースの種類と名前、スキーマのテーブルとカラム定義、現在のクエリを含みます。結果の行はオンにした場合のみ送られます。{localAiProviders} はお客様の Mac 上で動きます。詳細は <aiMcp>AI と MCP ページ</aiMcp>をご覧ください。"
                     ]
                 },
                 {
@@ -298,7 +298,7 @@
                     "id": "cancel",
                     "question": "サブスクリプションを解約するには？",
                     "answer": [
-                        "<account>アカウント</account>または <portal>{merchant} のカスタマーポータル</portal>で解約します。再度請求されず、ライセンスは支払い済みの期間の終わりまで使えます。それまでに再開もできます。"
+                        "<account>アカウント</account>または <portal>{merchant} のカスタマーポータル</portal>で解約します。以降の請求は発生せず、ライセンスは支払い済みの期間が終わるまで使えます。それまでに再開もできます。"
                     ]
                 }
             ]

@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "选择<ui>认证方式</ui>（Auth Method）、<ui>AWS 区域</ui>（AWS Region），侧栏列出该区域的表。方式为带可选会话令牌的访问密钥、按 AWS CLI 方式读取 <code>~/.aws/config</code> 和 <code>~/.aws/credentials</code> 的配置，或会话过期时打开登录提示的 <cloudAuth>AWS IAM Identity Center</cloudAuth> 配置。",
+                "选择<ui>认证方式</ui>（Auth Method）、<ui>AWS 区域</ui>（AWS Region），侧边栏列出该区域的表。方式为带可选会话令牌的访问密钥、按 AWS CLI 方式读取 <code>~/.aws/config</code> 和 <code>~/.aws/credentials</code> 的配置，或会话过期时打开登录提示的 <cloudAuth>AWS IAM Identity Center</cloudAuth> 配置。",
                 "配置解析 <code>credential_process</code> 辅助程序和 <code>role_arn</code> 链，过期临时凭据重新获取并重试请求一次。所有请求经 HTTPS、Signature Version 4 签名，无 SSL 设置或 SSH 隧道。中国、European Sovereign Cloud 等其他 AWS 分区的区域自动访问自身端点，无需自定义。",
                 "DynamoDB Local 运行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>，选 <ui>DynamoDB Local (no credentials)</ui>；8000 端口留空<ui>自定义端点</ui>（Custom Endpoint）。自定义端点仅在此 Mac 可用明文 HTTP。设置指南列出<permissions>各任务需要的 IAM 操作</permissions>。"
             ]

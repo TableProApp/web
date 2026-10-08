@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "表、索引和触发器",
             "paragraphs": [
-                "<structure>Structure 标签页</structure> 可创建和删除表、添加和删除列、创建和删除索引，包括带 WHERE 条件的部分索引；Preview SQL 在保存前显示 DDL。Triggers 标签页可创建、编辑和删除触发器，表可从侧栏重命名。",
+                "<structure>Structure 标签页</structure> 可创建和删除表、添加和删除列、创建和删除索引，包括带 WHERE 条件的部分索引；Preview SQL 在保存前显示 DDL。Triggers 标签页可创建、编辑和删除触发器，表可从侧边栏重命名。",
                 "调整列顺序或修改外键需要重建表。在 D1 上每条语句都是独立请求，无法用事务将重建合并，TablePro 只生成重建脚本供自行运行。"
             ]
         },

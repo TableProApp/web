@@ -32,7 +32,7 @@
             "title": "索引和 Query DSL 控制台",
             "paragraphs": [
                 "控制台像 Kibana Dev Tools 一样接受方法、路径及可选 JSON 正文，例如带 <code>match</code> 查询的 <code>GET /orders/_search</code>。搜索命中返回为行，带 <code>format=json</code> 的 <code>_cat</code> 请求及其他数组响应转为表，其余显示格式化 JSON。无法访问 <code>_sql</code> 端点。",
-                "侧栏将索引列为表，隐藏点号开头的名称。列来自映射：对象字段展开为 <code>address.city</code> 等点分路径，nested 字段有一个存放数组的 JSON 列及每个叶字段的列，每个文档含 <code>_id</code>、<code>_index</code>、<code>_score</code>。",
+                "侧边栏将索引列为表，隐藏点号开头的名称。列来自映射：对象字段展开为 <code>address.city</code> 等点分路径，nested 字段有一个存放数组的 JSON 列及每个叶字段的列，每个文档含 <code>_id</code>、<code>_index</code>、<code>_score</code>。",
                 "<filters>列筛选</filters>转换为 <code>term</code>、<code>range</code>、<code>wildcard</code>、<code>terms</code>、<code>exists</code> 查询，Raw SQL 筛选行接受 <code>name:Widget</code> 等 Lucene 语法，以 <code>query_string</code> 发送。排序 <code>text</code> 字段时，映射存在 <code>.keyword</code> 子字段则使用它。",
                 "网格编辑转换为以 <code>_id</code> 为键的 REST 调用：修改用 <code>_update</code>，创建删除用 <code>_doc</code>。新行输入 <code>_id</code> 为文档命名。通过 JSON 列修改 nested 数组；在叶列输入值会停止保存，指出列名且不发送任何内容。"
             ]
@@ -41,7 +41,7 @@
             "id": "schema",
             "title": "映射",
             "paragraphs": [
-                "TablePro 中映射只读。不提供 Truncate，因为 Elasticsearch 最接近的 <code>_delete_by_query</code> 异步运行并逐文档报告冲突，请从控制台发送。从侧栏删除索引发送确认中显示的 DELETE 请求。"
+                "TablePro 中映射只读。不提供 Truncate，因为 Elasticsearch 最接近的 <code>_delete_by_query</code> 异步运行并逐文档报告冲突，请从控制台发送。从侧边栏删除索引发送确认中显示的 DELETE 请求。"
             ]
         },
         {

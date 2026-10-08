@@ -1,15 +1,15 @@
 {
     "seo": {
-        "title": "AI SQL 助手與本機 MCP 伺服器",
+        "title": "AI SQL 助理與本機 MCP 伺服器",
         "description": "使用自選 AI 供應商解釋、最佳化與修正 SQL，並讓 Claude Code 等 MCP 用戶端透過本機 MCP 伺服器使用已儲存連線。"
     },
     "og": {
         "kicker": "AI 與 MCP",
-        "title": "AI 助手與 MCP 伺服器"
+        "title": "AI 助理與 MCP 伺服器"
     },
     "header": {
-        "title": "AI 助手與 MCP 伺服器",
-        "lead": "適合希望使用自選模型協助 SQL，或讓 AI 用戶端操作資料庫的開發者。可詢問結構、檢閱或修正查詢，或讓 Claude Code、Cursor 等 MCP（Model Context Protocol）用戶端使用已儲存連線。所有功能均可選且僅在 Mac App 中提供，新增供應商或連線用戶端前不會向模型傳送任何內容。",
+        "title": "AI 助理與 MCP 伺服器",
+        "lead": "適合希望使用自選模型協助 SQL，或讓 AI 用戶端操作資料庫的開發者。可詢問結構、檢閱或修正查詢，或讓 Claude Code、Cursor 等 MCP（Model Context Protocol）用戶端使用已儲存連線。所有功能均可選且僅在 Mac App 中提供，新增供應商或連接用戶端前不會向模型傳送任何內容。",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "assistant",
             "title": "使用自選供應商",
             "paragraphs": [
-                "助手支援這些供應商：{aiProviders}。根據供應商，可貼上 API 金鑰、使用現有帳號登入，或在 Mac 上執行模型。TablePro 不經營自己的 AI 服務：請求直接傳送至供應商，新增前不傳送任何內容。",
-                "每則訊息包含連線中資料表的結構，受所設上限限制，以及編輯器中的查詢。結果列僅在<ui>設定 > AI</ui>（Settings > AI）中啟用後才傳送。每個連線也有 AI 政策，Never 會禁止助手和 MCP 用戶端存取。"
+                "助理支援這些供應商：{aiProviders}。根據供應商，可貼上 API 金鑰、使用現有帳戶登入，或在 Mac 上執行模型。TablePro 不經營自己的 AI 服務：請求直接傳送至供應商，新增前不傳送任何內容。",
+                "每則訊息包含連線中資料表的結構，受所設上限限制，以及編輯器中的查詢。結果列僅在<ui>設定 > AI</ui>（Settings > AI）中啟用後才傳送。每個連線也有 AI 政策，Never 會禁止助理和 MCP 用戶端存取。"
             ],
             "asset": "mac-ai-chat"
         },
@@ -27,7 +27,7 @@
             "title": "檢閱、解釋、最佳化與修正",
             "paragraphs": [
                 "將游標放在陳述式中，選擇 Review with AI（<kbd>⌥⇧⌘L</kbd>）檢閱正確性、成本和安全性，Explain（<kbd>⌘L</kbd>）逐步解釋，或 Optimize（<kbd>⌥⌘L</kbd>）建議改寫或索引。查詢失敗時，錯誤橫幅提供 Fix with AI。請求包含陳述式所參照資料表的結構，陳述式本身不會執行。<ui>套用到編輯器</ui>（Apply to Editor）僅在確認後取代陳述式。",
-                "行內建議在輸入時顯示淡色文字，預設關閉。AI Rules 可為連線固定純文字說明，例如哪些欄位絕不能選取，並隨每則訊息傳送。"
+                "行內建議在輸入時顯示淡色文字，預設關閉。AI Rules 可為連線固定純文字說明，例如哪些欄位絕不能查詢，並隨每則訊息傳送。"
             ]
         },
         {
@@ -49,14 +49,14 @@
             "id": "mcp",
             "title": "MCP 伺服器",
             "paragraphs": [
-                "內建 MCP 伺服器讓 AI 用戶端透過 TablePro 已儲存連線工作，從不看到密碼。它僅接聽 {mcpHost}，無遠端模式，在手動開啟或已設定用戶端啟動前保持關閉。",
+                "內建 MCP 伺服器讓 AI 用戶端透過 TablePro 已儲存連線工作，從不看到密碼。它僅監聽 {mcpHost}，無遠端模式，在手動開啟或已設定用戶端啟動前保持關閉。",
                 "工具涵蓋連線、結構探索、資料讀寫、資料庫和物件、伺服器管理以及 App 自身的分頁和歷史，並根據即時結構建立提示和資源。每次呼叫都進入 Mac 上的活動記錄，陳述式記錄為摘要而非文字；用戶端執行的查詢也會出現在查詢歷史中。"
             ],
             "asset": "mac-mcp-settings",
             "blocks": [
                 {
                     "id": "connect",
-                    "title": "連線用戶端",
+                    "title": "連接用戶端",
                     "paragraphs": [
                         "<ui>設定 > 整合</ui>（Settings > Integrations）提供 {mcpSetupClients} 的設定步驟和可複製片段。附帶的 <code>tablepro-mcp</code> 橋接也支援 {mcpBridgeClients}。它依需啟動 TablePro 並探索伺服器，因此用戶端設定無須連接埠或權杖。官方 Raycast 擴充功能則與 App 配對，由您在 Mac 上核准。",
                         "典型請求：讓用戶端找出使用同一電子郵件地址的使用者。它可呼叫 <code>list_tables</code> 和 <code>describe_table</code>，發現欄位名稱為 <code>email_address</code>，再透過已儲存連線執行一個 SELECT，無須將結構貼到聊天中。"
@@ -97,7 +97,7 @@
             "id": "privacy",
             "title": "資料傳送到哪裡",
             "paragraphs": [
-                "提示、結構內容和所有附件傳送至所選供應商，適用您與該供應商之間的帳號條款。使用 Ollama、llama.cpp、MLX 或自行執行的 OpenAI 相容伺服器時，內容留在自己的機器上。TablePro 不接收任何內容，Mac App 的每日使用報告也不包含 AI 或 MCP 資訊。",
+                "提示、結構內容和所有附件傳送至所選供應商，適用您與該供應商之間的帳戶條款。使用 Ollama、llama.cpp、MLX 或自行執行的 OpenAI 相容伺服器時，內容留在自己的機器上。TablePro 不接收任何內容，Mac App 的每日使用報告也不包含 AI 或 MCP 資訊。",
                 "新增 GitHub Copilot 時，向 GitHub 傳送遙測的選項預設開啟；可在 Copilot 設定處關閉。"
             ],
             "links": [
@@ -111,7 +111,7 @@
             "id": "iphone",
             "title": "iPhone 與 iPad 不提供",
             "paragraphs": [
-                "iPhone 與 iPad App 不提供 AI 助手、Agent mode 或 MCP 伺服器。本頁所有功能都在 Mac App 中。"
+                "iPhone 與 iPad App 不提供 AI 助理、Agent mode 或 MCP 伺服器。本頁所有功能都在 Mac App 中。"
             ],
             "links": [
                 {
@@ -158,13 +158,13 @@
     "limits": [
         "Cursor 無法呼叫 TablePro 工具，因此以 Cursor 為供應商時，Edit 和 Agent 不執行查詢。本機模型僅在模型支援時呼叫工具。",
         "Claude Agent 使用 Claude Code 登入，並透過必須開啟的 MCP 伺服器存取結構。它依賴 Claude Code，可能因 Claude Code 更新而失效。",
-        "MCP 伺服器僅接聽 {mcpHost}。從其他機器存取需要自行轉送連接埠，並承擔由此暴露存取的責任。",
+        "MCP 伺服器僅監聽 {mcpHost}。從其他機器存取需要自行轉送連接埠，並自行承擔由此帶來的暴露風險。",
         "Mac App 沒有捷徑動作，可透過 AppleScript、連結或 MCP 伺服器自動化。",
         "Agent 工作階段和外部 MCP 伺服器僅保留在設定它們的 Mac 上，不同步。"
     ],
     "docs": [
         {
-            "label": "AI 助手",
+            "label": "AI 助理",
             "docs": "/features/ai-assistant"
         },
         {

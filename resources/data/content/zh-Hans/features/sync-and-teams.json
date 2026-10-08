@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync 在登录同一 iCloud 账户的所有 Mac、iPhone 和 iPad 上保持连接库一致。记录存入该账户的私有数据库；各设备默认关闭同步，需自行开启。iPhone 和 iPad 上免费，Mac 需要包含此功能的方案。",
-                "密码仅在同时启用 Mac 的 Sync Categories 下的<ui>密码</ui>（Passwords），或 iPhone、iPad 上的<ui>同步密码</ui>（Sync Passwords）时才会同步。密码通过 iCloud 钥匙串传输。在 Mac 上，同一开关还会同步 TablePro 在钥匙串中保存的其他秘密，例如 AI 提供商密钥和许可证密钥。将连接标为 Local only，可让连接及其收藏和已保存查询仅保留在一台 Mac 上。"
+                "密码仅在同时启用 Mac 的 Sync Categories 下的<ui>密码</ui>（Passwords），或 iPhone、iPad 上的<ui>同步密码</ui>（Sync Passwords）时才会同步。密码通过 iCloud 钥匙串传输。在 Mac 上，同一开关还会同步 TablePro 在钥匙串中保存的其他机密信息，例如 AI 提供商密钥和许可证密钥。将连接标为 Local only，可让连接及其收藏和已保存查询仅保留在一台 Mac 上。"
             ],
             "points": [
                 "Mac 可选择同步内容：连接、分组和标签、设置、SSH 配置文件、凭据配置文件（名称和用户名，从不包含密码）、表和数据库收藏、包含 SQL 的已保存查询，以及表文件夹。",
@@ -97,7 +97,7 @@
                     "id": "team-library",
                     "title": "Team Library",
                     "paragraphs": [
-                        "连接上的<ui>分享 > 发布到团队库…</ui>（Share > Publish to Team Library…）和 Favorites 侧栏的<ui>将已保存的查询发布到团队…</ui>（Publish Saved Queries to Team…）将连接及已保存查询上传到 TablePro 服务器。许可证下的每台 Mac 会下载，查询在 Favorites 侧栏中显示发布者姓名。上传连接设置和查询 SQL 文本，从不上传密码。成员的 Mac 会忽略接收到的启动命令和隧道命令，因此不会自行运行任何命令。再次发布会替换先前发布的内容。"
+                        "连接上的<ui>分享 > 发布到团队库…</ui>（Share > Publish to Team Library…）和 Favorites 侧边栏的<ui>将已保存的查询发布到团队…</ui>（Publish Saved Queries to Team…）将连接及已保存查询上传到 TablePro 服务器。许可证下的每台 Mac 会下载，查询在 Favorites 侧边栏中显示发布者姓名。上传连接设置和查询 SQL 文本，从不上传密码。成员的 Mac 会忽略接收到的启动命令和隧道命令，因此不会自行运行任何命令。再次发布会替换先前发布的内容。"
                     ],
                     "paid": [
                         "team-library"

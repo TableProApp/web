@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "使用 Preview SQL 和 Safe Mode 编辑表数据",
-        "description": "筛选和编辑行，保存前审查 SQL，并为每个连接设置 Safe Mode。Data Rewind 可还原保存时被替换的值。"
+        "description": "筛选和编辑行，保存前审查 SQL，并为每个连接设置 Safe Mode 级别。Data Rewind 可还原保存时被替换的值。"
     },
     "og": {
         "kicker": "数据编辑",
@@ -56,7 +56,7 @@
             "id": "safe-mode",
             "title": "生产连接的 Safe Mode",
             "paragraphs": [
-                "每个连接都有 Safe Mode 级别：{macSafeModeLevels}。新连接默认为 {macSafeModeDefault}，直接执行语句。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也询问，Read-Only 拒绝写入并关闭编辑。Safe Mode 免费。",
+                "每个连接都有 Safe Mode 级别：{macSafeModeLevels}。新连接默认为 {macSafeModeDefault}，直接执行语句。Alert 在写入前询问，名称含 Safe Mode 的级别还要求 Touch ID 或 Mac 密码，名称含 Full 的级别在读取前也询问，Read-Only 拒绝写入并关闭编辑。Safe Mode 免费。",
                 "所有级别下，DROP、TRUNCATE 和无 WHERE 的 DELETE 都会停止并先询问。某些条件在生效期间会提高连接级别，例如只读引擎、将级别至少提高至 Alert 的 Agent mode，以及组织通过设备管理（MDM）设置的最低级别。"
             ],
             "asset": "mac-safe-mode-touchid",

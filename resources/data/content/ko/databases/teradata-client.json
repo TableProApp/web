@@ -39,7 +39,7 @@
             "paragraphs": [
                 "Teradata에서 데이터베이스와 사용자 모두 네임스페이스이므로 사이드바 상단에 테이블·뷰와 함께 표시됩니다. 다른 데이터베이스 탭도 같은 세션을 유지하고 명령문 앞에 <code>DATABASE</code>를 실행합니다.",
                 "저장 프로시저는 사이드바에, 매크로는 Functions 아래에 나열되고 각각 <objects>소스를 읽기 전용 탭</objects>으로 엽니다.",
-                "Teradata에는 <code>LIMIT</code>가 없어 첫 페이지는 <code>TOP</code>, 뒤 페이지는 <code>QUALIFY ROW_NUMBER()</code>를 씁니다. <explain>EXPLAIN</explain>은 원시 텍스트 계획을 반환합니다. 행 편집은 저장까지 대기하며 <editing>Preview SQL</editing>이 먼저 보여 줍니다."
+                "Teradata에는 <code>LIMIT</code>이 없어 첫 페이지는 <code>TOP</code>, 뒤 페이지는 <code>QUALIFY ROW_NUMBER()</code>를 씁니다. <explain>EXPLAIN</explain>은 원시 텍스트 계획을 반환합니다. 행 편집은 저장까지 대기하며 <editing>Preview SQL</editing>이 먼저 보여 줍니다."
             ]
         },
         {

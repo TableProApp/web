@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "選擇<ui>驗證方式</ui>（Auth Method）、<ui>AWS 區域</ui>（AWS Region），側欄列出該區域的資料表。方式為帶選用工作階段權杖的存取金鑰、依 AWS CLI 方式讀取 <code>~/.aws/config</code> 和 <code>~/.aws/credentials</code> 的設定檔，或工作階段過期時開啟登入提示的 <cloudAuth>AWS IAM Identity Center</cloudAuth> 設定檔。",
+                "選擇<ui>驗證方式</ui>（Auth Method）、<ui>AWS 區域</ui>（AWS Region），側邊欄列出該區域的資料表。方式為帶選用工作階段權杖的存取金鑰、依 AWS CLI 方式讀取 <code>~/.aws/config</code> 和 <code>~/.aws/credentials</code> 的設定檔，或工作階段過期時開啟登入提示的 <cloudAuth>AWS IAM Identity Center</cloudAuth> 設定檔。",
                 "設定檔解析 <code>credential_process</code> 輔助程式和 <code>role_arn</code> 鏈，過期臨時認證資訊重新取得並重試請求一次。所有請求經 HTTPS、Signature Version 4 簽章，無 SSL 設定或 SSH 通道。中國、European Sovereign Cloud 等其他 AWS 分割區的區域自動存取自身端點，無須自訂。",
                 "DynamoDB Local 執行 <code>docker run -p 8000:8000 amazon/dynamodb-local</code>，選 <ui>DynamoDB Local (no credentials)</ui>；8000 連接埠留空<ui>自訂端點</ui>（Custom Endpoint）。自訂端點僅在此 Mac 可用明文 HTTP。設定指南列出<permissions>各工作需要的 IAM 動作</permissions>。"
             ]

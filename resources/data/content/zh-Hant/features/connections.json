@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "SSH 通道、雲端帳號登入與連線匯入",
+        "title": "SSH 通道、雲端帳戶登入與連線匯入",
         "description": "透過 SSH 跳板主機、代理或 kubectl 存取資料庫，使用 AWS IAM 或 Entra ID 登入，並從 TablePlus、DBeaver 等工具匯入連線。"
     },
     "og": {
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "連線、通道與認證資訊",
-        "lead": "如果資料庫位於堡壘主機、叢集或雲端帳號登入之後，只需設定一次連線所需的存取路徑與密碼來源，並為正式環境連線訂定更嚴格的規則。本頁介紹的功能均在 Mac App 中。iPhone 與 iPad App 提供其中一部分。",
+        "lead": "如果資料庫位於堡壘主機、叢集或雲端帳戶登入之後，只需設定一次連線所需的存取路徑與密碼來源，並為正式環境連線訂定更嚴格的規則。本頁介紹的功能均在 Mac App 中。iPhone 與 iPad App 提供其中一部分。",
         "docs": "/connections"
     },
     "sections": [
@@ -27,7 +27,7 @@
             "id": "import",
             "title": "匯入現有連線",
             "paragraphs": [
-                "通常無須從空清單開始：TablePro 可以從其他用戶端、專案設定檔或 AWS 帳號讀取連線。"
+                "通常無須從空清單開始：TablePro 可以從其他用戶端、專案設定檔或 AWS 帳戶讀取連線。"
             ],
             "links": [
                 {
@@ -54,7 +54,7 @@
                 },
                 {
                     "id": "aws",
-                    "title": "從 AWS 帳號匯入",
+                    "title": "從 AWS 帳戶匯入",
                     "paragraphs": [
                         "<ui>Import from AWS</ui> 列出 AWS 設定檔在所選區域中可見的 RDS 執行個體與 Aurora 叢集，並新增選取的項目。設定檔需要 <code>rds:DescribeDBInstances</code> 與 <code>rds:DescribeDBClusters</code> 權限。"
                     ]
@@ -70,7 +70,7 @@
                     "id": "ssh",
                     "title": "SSH 與 TLS",
                     "paragraphs": [
-                        "SSH 通道支援密碼、私密金鑰、1Password 等 SSH 代理或鍵盤互動提示登入，可依序經過跳板主機，也可遵循 <code>~/.ssh/config</code> 中的 <code>ProxyJump</code>。一次性驗證碼可以根據鑰匙圈中的密鑰產生，或在每次連線時要求輸入；未知主機金鑰會在 TablePro 信任前顯示指紋。將通道儲存為 SSH 設定檔即可重複使用。",
+                        "SSH 通道支援密碼、私密金鑰、1Password 等 SSH 代理程式或鍵盤互動提示登入，可依序經過跳板主機，也可遵循 <code>~/.ssh/config</code> 中的 <code>ProxyJump</code>。一次性驗證碼可以根據鑰匙圈中的密鑰產生，或在每次連線時要求輸入；未知主機金鑰會在 TablePro 信任前顯示指紋。將通道儲存為 SSH 設定檔即可重複使用。",
                         "TLS 支援 Disabled、Preferred、Required、Verify CA 與 Verify Identity 模式，可使用自己的 CA、用戶端憑證與金鑰。Required 僅加密，不檢查伺服器憑證；Verify 模式會驗證憑證。"
                     ],
                     "engines": [
@@ -94,10 +94,10 @@
         },
         {
             "id": "cloud-auth",
-            "title": "使用雲端帳號登入",
+            "title": "使用雲端帳戶登入",
             "paragraphs": [
                 "AWS IAM 資料庫驗證在每次連線時簽發新權杖，可使用存取金鑰、<code>~/.aws</code> 中的設定檔（支援 <code>credential_process</code> 與角色擔任）或 AWS IAM Identity Center。它還會將 TLS 提升為 Required。Amazon ElastiCache for Redis、Amazon Keyspaces 與 DynamoDB 使用各自的 AWS 簽章。",
-                "SQL Server 可使用提供的應用程式註冊用戶端 ID，在瀏覽器中透過 Microsoft Entra ID 登入，或使用票證、主體與密碼進行 Kerberos 登入。Google BigQuery 支援服務帳號金鑰、Application Default Credentials，或使用自有用戶端的 Google OAuth；Google Cloud Spanner 與 Cloud SQL Auth Proxy 可使用 Google 帳號。"
+                "SQL Server 可使用提供的應用程式註冊用戶端 ID，在瀏覽器中透過 Microsoft Entra ID 登入，或使用票證、主體與密碼進行 Kerberos 登入。Google BigQuery 支援服務帳戶金鑰、Application Default Credentials，或使用自有用戶端的 Google OAuth；Google Cloud Spanner 與 Cloud SQL Auth Proxy 可使用 Google 帳戶。"
             ],
             "engines": [
                 {
@@ -146,7 +146,7 @@
             "id": "policies",
             "title": "每個連線的規則",
             "paragraphs": [
-                "連線的 Safe Mode 等級決定陳述式是直接執行、先詢問、要求 Touch ID 或密碼，還是被拒絕。External Clients 的 Blocked、Read Only 或 Read & Write 等級決定 MCP 用戶端與 AppleScript 可執行的操作，設定僅儲存在此 Mac 上。AI 政策決定 AI 助手可直接使用連線、僅在確認後使用，或永不使用；Never 也會阻止 MCP 用戶端。",
+                "連線的 Safe Mode 等級決定陳述式是直接執行、先詢問、要求 Touch ID 或密碼，還是被拒絕。External Clients 的 Blocked、Read Only 或 Read & Write 等級決定 MCP 用戶端與 AppleScript 可執行的操作，設定僅儲存在此 Mac 上。AI 政策決定 AI 助理可直接使用連線、僅在確認後使用，或永不使用；Never 也會阻止 MCP 用戶端。",
                 "組織可透過設定描述檔強制所有連線的最低 Safe Mode 等級，並控制更新。"
             ],
             "links": [
@@ -174,7 +174,7 @@
             "id": "iphone",
             "title": "在 iPhone 與 iPad 上",
             "paragraphs": [
-                "iPhone 與 iPad App 有專用於 {iosPicker} 的連線表單，支援群組、每個連線一個標籤以及喜好項目。SSH 通道使用密碼或從檔案讀取、直接貼上的私密金鑰登入，並檢查主機金鑰；iPhone 與 iPad 不支援 SSH 代理和跳板主機。TLS 可驗證伺服器憑證，但 SQL Server 僅加密而不驗證。憑證保留在裝置上，從不同步。",
+                "iPhone 與 iPad App 有專用於 {iosPicker} 的連線表單，支援群組、每個連線一個標籤以及喜好項目。SSH 通道使用密碼或從檔案讀取、直接貼上的私密金鑰登入，並檢查主機金鑰；iPhone 與 iPad 不支援 SSH 代理程式和跳板主機。TLS 可驗證伺服器憑證，但 SQL Server 僅加密而不驗證。憑證保留在裝置上，從不同步。",
                 "密碼與貼上的金鑰儲存在鑰匙圈中。從 Mac 同步的 SQL Server 連線可透過 Microsoft Entra ID 登入。從其他 App 匯入、AWS IAM、Kerberos 與 Google 登入、代理與通道指令、密碼來源及逾時設定僅在 Mac App 中提供。"
             ],
             "links": [
@@ -196,7 +196,7 @@
             "ios": "no"
         },
         {
-            "label": "從其他 App、專案檔案夾與 AWS 匯入",
+            "label": "從其他 App、專案資料夾與 AWS 匯入",
             "ios": "no"
         },
         {
@@ -204,7 +204,7 @@
             "ios": "yes"
         },
         {
-            "label": "SSH 代理、一次性驗證碼與跳板主機",
+            "label": "SSH 代理程式、一次性驗證碼與跳板主機",
             "ios": "no"
         },
         {
@@ -253,9 +253,9 @@
         }
     ],
     "limits": [
-        "密碼來源以及 Network 分頁的代理與通道指令僅儲存在設定它們的 Mac 上，從不同步，因此同步的連線需要在每台 Mac 上重新配置這些設定。",
+        "密碼來源以及 Network 分頁的代理與通道指令僅儲存在設定它們的 Mac 上，從不同步，因此同步的連線需要在每台 Mac 上重新設定。",
         "TablePro 讀取啟動時的環境。從 Dock 或 Finder 開啟時，它無法看到 shell 設定檔設定的變數，這同時影響環境變數密碼來源和 Environment Variables 功能。",
-        "方案結束後，<code>$DB_HOST</code> 等參照不再取代，也不會警告，而是以輸入的原文傳送給伺服器。",
+        "方案結束後，<code>$DB_HOST</code> 等參照不再替換，也不會警告，而是以輸入的原文傳送給伺服器。",
         "Open Project Folder 是一次性匯入，不會監控任何變更；重複匯入同一組設定會建立兩個連線。",
         "AWS IAM 驗證支援 {awsIam}，不支援 Amazon Redshift。設定描述檔只能強制最低 Safe Mode 等級和更新設定，無法控制其他項目。"
     ],

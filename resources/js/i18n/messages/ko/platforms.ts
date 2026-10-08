@@ -31,6 +31,6 @@ export default {
     },
     "release": {
         "badge": "{version}",
-        "badgeLabel": "Mac용 TablePro {version}에 추가되었습니다. Homebrew는 이전 버전을 설치할 수 있습니다."
+        "badgeLabel": "Mac용 TablePro {version}에 추가되었습니다. Homebrew로는 아직 이전 버전이 설치될 수 있습니다."
     }
 } satisfies Messages['platforms'];

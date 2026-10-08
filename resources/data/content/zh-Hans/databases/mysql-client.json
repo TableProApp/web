@@ -35,8 +35,8 @@
             "paragraphs": [
                 "提供主机、端口和用户，或粘贴 <code>mysql://</code> URL。使用 <code>caching_sha2_password</code> 的 MySQL 8 账户首次即可连接。数据库可留空后再选择，切换数据库在同一连接中完成。",
                 "新连接的 SSL 默认为 Preferred，先尝试 TLS，仅在 TLS 握手失败后退回明文。严格验证请选择 Verify CA 或 Verify Identity，并使用提供商证书。",
-                "私有网络服务器可通过 <network>SSH 隧道（按需使用跳板机）、SOCKS5 代理、Cloudflare Access 隧道或自定义隧道命令</network>连接，例如 kubectl port-forward。",
-                "Amazon RDS 和 Aurora 可使用 <cloudAuth>AWS IAM</cloudAuth> 登录，每次连接签发新令牌，也可从 AWS 账户直接导入实例。Google Cloud SQL 由 TablePro 下载并运行 Cloud SQL Auth Proxy。",
+                "私有网络服务器可通过 <network>SSH 隧道（按需使用跳板机）、SOCKS5 代理、Cloudflare Access 隧道或自定义隧道命令</network>（例如 kubectl port-forward）连接。",
+                "Amazon RDS 和 Aurora 可使用 <cloudAuth>AWS IAM</cloudAuth> 登录，每次连接签发新令牌，也可从 AWS 账户直接导入实例。对于 Google Cloud SQL，TablePro 会下载并运行 Cloud SQL Auth Proxy。",
                 "从 Sequel Ace 迁移？<importApps>Import from Other App</importApps> 读取其收藏，并在确认后读取其保存在钥匙串中的密码。"
             ]
         },
@@ -47,7 +47,7 @@
                 "SQL 编辑器从结构补全表名和列名，包括别名和 CTE，可运行光标下的语句或整个脚本。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE 和 EXPLAIN ANALYZE</explain> 绘制为计划图或树，EXPLAIN Compare 显示两次运行间的变化。",
                 "行编辑暂存至保存，<editing>Preview SQL</editing> 先显示确切语句。保存使用绑定参数执行，语句将修改的行数与预期不符时停止。没有主键的表仍可编辑，通过所有列匹配行。",
                 "所有会话使用 utf8mb4，表情符号和非拉丁文本可正确往返。旧客户端通过 Latin 1 写入的数据库文本，可用 UTF-8 via Latin 1 编码按该客户端方式读取。",
-                "分区表列出各分区及边界，例如 <code>VALUES LESS THAN (2024)</code>；表和列注释显示在侧栏及网格列标题中。"
+                "分区表列出各分区及边界，例如 <code>VALUES LESS THAN (2024)</code>；表和列注释显示在侧边栏及网格列标题中。"
             ]
         },
         {
@@ -55,7 +55,7 @@
             "title": "结构",
             "paragraphs": [
                 "<structure>Structure 标签页</structure> 暂存列、索引、外键、CHECK 约束和生成列的修改，并在执行前显示 DDL。<code>lower(email)</code> 等表达式索引键需要 MySQL 8.0.13 或更高版本。",
-                "例程和触发器及其源码显示在侧栏。<erDiagram>ER 图</erDiagram> 将结构绘制为只读图，可导出为 PNG 或 SQL。",
+                "例程和触发器及其源码显示在侧边栏。<erDiagram>ER 图</erDiagram> 将结构绘制为只读图，可导出为 PNG 或 SQL。",
                 "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 对比两个 MySQL 或 MariaDB 结构或数据，生成使两者一致的脚本。可能导致数据丢失的修改会暂缓，直到明确包含。"
             ]
         },
@@ -83,7 +83,7 @@
             "id": "iphone",
             "title": "iPhone 和 iPad",
             "paragraphs": [
-                "iPhone 和 iPad 上可按卡片浏览表、筛选排序、编辑有主键的行，并在 Query 标签页运行 SQL。连接提供 Required 到 Verify Identity 的 SSL，以及密码或密钥 SSH 隧道，不支持 SSH 跳板机。"
+                "iPhone 和 iPad 上可以卡片形式浏览表、筛选排序、编辑有主键的行，并在 Query 标签页运行 SQL。连接提供 Required 到 Verify Identity 的 SSL，以及使用密码或密钥的 SSH 隧道，不支持 SSH 跳板机。"
             ],
             "asset": "ios-table-browse"
         }
@@ -94,7 +94,7 @@
             "title": "MariaDB",
             "paragraphs": [
                 "MariaDB 通过与 MySQL 相同的驱动连接，提供相同 SSH、SSL/TLS 和 AWS IAM 选项。<code>mariadb://</code> URL 创建 MariaDB 连接。",
-                "MariaDB 以 LONGTEXT 存储的 JSON 列在 JSON 编辑器中打开。虚拟和持久列会被识别并从生成的 INSERT、UPDATE 语句中排除。序列在侧栏中只读列出，系统版本表则作为普通表列出。",
+                "MariaDB 以 LONGTEXT 存储的 JSON 列在 JSON 编辑器中打开。虚拟和持久列会被识别并从生成的 INSERT、UPDATE 语句中排除。序列在侧边栏中只读列出，系统版本表则作为普通表列出。",
                 "Users & Roles、Server Dashboard、表维护和 {dumpTool} 备份与 MySQL 相同。"
             ]
         },
@@ -105,7 +105,7 @@
                 "连接到 TiDB 服务器的 SQL 端口，不要连接 PD 或 TiKV。TiDB Cloud 使用相同端口，请将 SSL Mode 设为 Required。",
                 "Stop 对自己的会话发送 <code>KILL TIDB QUERY</code>。在 TiProxy 或负载均衡器后需要 Global Kill，TiDB 自 6.1 版本起默认启用。",
                 "EXPLAIN 和 EXPLAIN ANALYZE 以文本显示 TiDB 计划。TiDB 7.2 及以上在集群启用后于 Structure 标签页显示 CHECK 约束，可创建外键，表维护提供 ANALYZE TABLE。<administer>Users & Roles</administer> 也可用于 TiDB，但没有连接数限制字段。",
-                "请选 TiDB 而非 MySQL 作为连接类型，使侧栏、类型选择器和 EXPLAIN 按 TiDB 运作。"
+                "请选 TiDB 而非 MySQL 作为连接类型，使侧边栏、类型选择器和 EXPLAIN 按 TiDB 运作。"
             ]
         },
         {

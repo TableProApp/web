@@ -3,7 +3,7 @@ import type { Messages } from '../../types.ts';
 export default {
     "macCta": "下载 Mac 版",
     "builds": {
-        "arm64": "下载 Apple 芯片版",
+        "arm64": "下载 Apple silicon 版",
         "x86_64": "下载 Intel 版"
     },
     "release": {
@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "要安装 Mac 应用，请在 Mac 上打开此页面。",
     "whichMac": {
         "summary": "我的 Mac 是哪种型号？",
-        "body": "打开 Apple 菜单并选择“关于本机”。Apple 芯片 Mac 会显示“芯片”一栏，如 Apple M2。Intel Mac 则显示“处理器”一栏，其中标有 Intel。"
+        "body": "打开 Apple 菜单并选择“关于本机”。Apple silicon Mac 会显示“芯片”一栏，如 Apple M2。Intel Mac 则显示“处理器”一栏，其中标有 Intel。"
     },
     "checksum": {
         "summary": "验证下载的文件",

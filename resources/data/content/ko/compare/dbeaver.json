@@ -15,7 +15,7 @@
         "tablepro": [
             "MongoDB, Redis, Cassandra를 무료로 쓰고 싶습니다. TablePro는 지원하는 모든 엔진이 무료이지만 DBeaver Community는 NoSQL 데이터베이스를 제외합니다.",
             "Java가 필요 없는 Mac 앱을 원합니다. TablePro는 Swift로 만들었으며 데이터베이스 드라이버는 JDBC가 아닌 네이티브입니다.",
-            "원하는 제공자의 AI 어시스턴트를 무료로 쓰고 싶습니다. DBeaver Community의 AI 채팅은 OpenAI와 GitHub Copilot만 지원합니다.",
+            "원하는 제공업체의 AI 어시스턴트를 무료로 쓰고 싶습니다. DBeaver Community의 AI 채팅은 OpenAI와 GitHub Copilot만 지원합니다.",
             "AI 클라이언트가 내 연결을 사용할 수 있는 MCP 서버를 Mac 앱에서 무료로 쓰고 싶습니다.",
             "iPhone·iPad용 앱도 원합니다."
         ],
@@ -94,7 +94,7 @@
                 "href": null
             },
             {
-                "text": "<link>AI 어시스턴트와 MCP 서버</link>는 Mac 앱에서 무료입니다. AI 제공자를 선택할 수 있으며 MCP 서버를 통해 Claude Code나 Cursor 같은 클라이언트가 암호를 보지 않고 저장된 연결을 사용할 수 있습니다.",
+                "text": "<link>AI 어시스턴트와 MCP 서버</link>는 Mac 앱에서 무료입니다. AI 제공업체를 선택할 수 있으며 MCP 서버를 통해 Claude Code나 Cursor 같은 클라이언트가 비밀번호를 보지 않고 저장된 연결을 사용할 수 있습니다.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/ai-mcp"
@@ -165,7 +165,7 @@
         {
             "id": "free",
             "question": "TablePro도 DBeaver Community처럼 무료인가요?",
-            "answer": "지원하는 모든 엔진, AI 어시스턴트, MCP 서버는 무료입니다. TablePro는 무료로 사용할 수 있는 AGPLv3 오픈 소스입니다. DBeaver가 추가 기능을 별도 에디션으로 판매하는 데 비해 TablePro는 Mac 앱용 Starter와 Team 요금제로 {starterExamples} 같은 기능을 제공합니다. <link>요금 보기</link>.",
+            "answer": "지원하는 모든 엔진, AI 어시스턴트, MCP 서버는 무료입니다. TablePro는 무료로 사용할 수 있는 AGPLv3 오픈 소스입니다. DBeaver가 추가 기능을 별도 에디션으로 판매하는 데 비해 TablePro는 Mac 앱용 Starter와 Team 플랜으로 {starterExamples} 같은 기능을 제공합니다. <link>요금 보기</link>.",
             "href": "/pricing"
         },
         {
@@ -178,7 +178,7 @@
     "notes": {
         "dbeaver-bundled-jdk": "다운로드에 자체 Java 런타임 포함",
         "dbeaver-databases": "Community는 JDBC 드라이버가 있는 모든 엔진에 연결하지만 MongoDB, Redis, Cassandra 같은 NoSQL 데이터베이스는 제외합니다. 유료 에디션에서 추가됩니다.",
-        "dbeaver-ai-community-providers": "{edition}에서는 OpenAI 또는 GitHub Copilot AI 채팅을 제공합니다. 유료 에디션은 더 많은 제공자와 쿼리·오류 설명을 추가합니다.",
+        "dbeaver-ai-community-providers": "{edition}에서는 OpenAI 또는 GitHub Copilot AI 채팅을 제공합니다. 유료 에디션은 더 많은 제공업체와 쿼리·오류 설명을 추가합니다.",
         "dbeaver-mcp-server": "Lite, Enterprise, Ultimate 에디션은 {version} 버전부터 로컬 MCP 서버를 실행합니다. 확인 당시 이 버전은 얼리 액세스 단계였습니다. Community에는 없습니다.",
         "dbeaver-git-sync": "{edition} 이상에서 프로젝트 Git 동기화",
         "dbeaver-erd-edit-paid": "Community는 보기 전용입니다. 편집은 Enterprise, Ultimate, Team 에디션에 포함됩니다.",

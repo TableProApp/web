@@ -37,8 +37,8 @@
             "id": "work",
             "title": "查询和编辑",
             "paragraphs": [
-                "Teradata 中数据库和用户都是命名空间，均在侧栏顶层显示其表和视图。绑定第二个数据库的标签页保持同一会话，在语句前执行 <code>DATABASE</code>。",
-                "存储过程列在侧栏，宏位于 Functions 下，各自在<objects>只读标签页中打开源码</objects>。",
+                "Teradata 中数据库和用户都是命名空间，均在侧边栏顶层显示其表和视图。绑定第二个数据库的标签页保持同一会话，在语句前执行 <code>DATABASE</code>。",
+                "存储过程列在侧边栏，宏位于 Functions 下，各自在<objects>只读标签页中打开源码</objects>。",
                 "Teradata 没有 <code>LIMIT</code>，表第一页使用 <code>TOP</code>，后续使用 <code>QUALIFY ROW_NUMBER()</code>。<explain>EXPLAIN</explain> 返回原始文本计划。行编辑暂存至保存，<editing>Preview SQL</editing> 先显示每条语句。"
             ]
         },

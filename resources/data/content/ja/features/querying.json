@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "クエリを書き、実行し、理解する",
-        "lead": "稼働中のデータベースに SQL を書く方へ。スキーマを参照しながら記述し、一つの文やスクリプト全体を実行し、残しておきたいクエリを保存し、遅くなった原因を調べられます。ここで紹介するのは Mac アプリの機能です。iPhone と iPad アプリではその一部を使えます。",
+        "lead": "稼働中のデータベースに SQL を書く方へ。スキーマを参照しながら記述し、一つの文やスクリプト全体を実行し、残しておきたいクエリを保存し、遅くなった原因を調べられます。ここで紹介するのは Mac アプリの機能です。iPhone・iPad アプリではその一部を使えます。",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -33,7 +33,7 @@
             "title": "パラメーター、履歴と保存済みクエリ",
             "paragraphs": [
                 "クエリに <code>:customer_id</code> を書くと、実行前に TablePro が値と型を尋ねます。ドライバーが対応する場合は、値をネイティブにバインドします。",
-                "実行したすべてのクエリはローカル履歴（<kbd>⌘Y</kbd>）に入り、全文検索とソース、失敗、期間のフィルターを使えます。既定では {historyEntries} 件を {historyDays} 日間保持し、同期しません。",
+                "実行したすべてのクエリはローカル履歴（<kbd>⌘Y</kbd>）に入り、全文検索と、実行元、失敗、期間のフィルターを使えます。既定では {historyEntries} 件を {historyDays} 日間保持し、同期しません。",
                 "クエリに <code>dau</code> などのキーワードを付けて保存すると、エディターでそのキーワードを入力して展開できます。保存済みクエリにはバージョン履歴があります。リンクした SQL フォルダーは、<code>.sql</code> ファイルのフォルダーとサイドバーを双方向に同期し、ファイルごとに Git ステータスの文字を表示します。この機能は無料で、共有接続ファイル用の Starter 機能 Linked Folders とは別です。"
             ],
             "asset": "mac-query-parameters-history"
@@ -100,7 +100,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "結果を棒、折れ線、面、散布図として描けます。日付には時間軸を使い、選んだカラムの値ごとに系列を作成します。グラフは先頭 {chartInspectedRows} 行から最大 {chartPoints} 点、{chartSeries} 系列を描画し、すべてを描けない場合はツールバーに表示します。"
+                        "結果を棒グラフ、折れ線グラフ、面グラフ、散布図として描けます。日付には時間軸を使い、選んだカラムの値ごとに系列を作成します。グラフは先頭 {chartInspectedRows} 行から最大 {chartPoints} 点、{chartSeries} 系列を描画し、すべてを描けない場合はツールバーに表示します。"
                     ],
                     "paid": [
                         "result-charts"
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "iPhone と iPad では",
             "paragraphs": [
-                "iPhone と iPad アプリの Query タブには SQL ハイライト、Run と Stop（キーボードでは <kbd>⌘↩</kbd>）、そのデバイスで実行した直近 {historyEntriesIos} 件の履歴があります。結果を JSON、CSV や SQL INSERT 文としてコピーまたは共有できます。",
+                "iPhone・iPad アプリの Query タブには SQL ハイライト、Run と Stop（キーボードでは <kbd>⌘↩</kbd>）、そのデバイスで実行した直近 {historyEntriesIos} 件の履歴があります。結果を JSON、CSV や SQL INSERT 文としてコピーまたは共有できます。",
                 "自動補完、整形、パラメーター、EXPLAIN や保存済みクエリには対応しません。結果は最大 {resultBufferIos} 行まで保持するため、必要な範囲を見るには LIMIT を追加してください。"
             ],
             "links": [

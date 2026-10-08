@@ -18,7 +18,7 @@
             "title": "將檔案匯入資料表",
             "paragraphs": [
                 "<kbd>⌘⇧I</kbd> 匯入 {importFormats} 檔案。SQL 檔案依陳述式執行，支援 <code>.sql.gz</code> 傾印和以 <code>GO</code> 分隔的 SQL Server 指令碼。其他格式載入現有資料表，或根據檔名建立新資料表並從檔案取得欄位；Excel 活頁簿匯入第一個工作表。",
-                "每個欄位會進行對應，除非關閉該選項，否則匯入在同一交易中執行。某列失敗時，可選擇停止並復原、停止但保留已匯入內容，或跳過該列繼續。之後可將跳過列的報告儲存為 CSV。"
+                "檔案中的每個欄位對應至資料表的一個欄位，除非關閉該選項，否則匯入在同一交易中執行。某列失敗時，可選擇停止並復原、停止但保留已匯入內容，或跳過該列繼續。之後可將跳過列的報告儲存為 CSV。"
             ],
             "engines": [
                 {
@@ -30,7 +30,7 @@
             "blocks": [
                 {
                     "id": "mappings",
-                    "title": "儲存對應與編碼",
+                    "title": "已儲存對應與編碼",
                     "paragraphs": [
                         "TablePro 記住每個資料表的 CSV、JSON 和 Excel 匯入對應。<ui>Match by Name</ui> 或 <ui>Match by Position</ui> 可一鍵對應全部欄位。依位置配對適用於欄位順序來自檔案的 CSV 和 Excel。CSV 和 SQL 匯入支援 UTF-16，以及 Shift JIS、GB 18030、Big5、EUC-KR 等日文、中文與韓文編碼。"
                     ],
@@ -75,8 +75,8 @@
             "id": "backup",
             "title": "使用引擎原生工具備份",
             "paragraphs": [
-                "Backup Dump 和 Restore Dump 透過 {backupTools} 運作，使用連線的 SSH 通道和 TLS 設定，因此堡壘主機後的伺服器無須第二條通道。除 DuckDB 外，這些都是需自行安裝的命令列工具；DuckDB 自行將傾印寫為資料庫檔案或 Parquet 檔案夾。",
-                "在 {serverSideExport} 上，Server-Side Export 讓伺服器直接匯出至 Oracle Data Pump 工作、Snowflake stage 或 Cloud Storage 儲存桶，不會將資料下載至 Mac。"
+                "Backup Dump 和 Restore Dump 透過 {backupTools} 運作，使用連線的 SSH 通道和 TLS 設定，因此堡壘主機後的伺服器無須第二條通道。除 DuckDB 外，這些都是需自行安裝的命令列工具；DuckDB 自行將傾印寫為資料庫檔案或 Parquet 資料夾。",
+                "在 {serverSideExport} 上，Server-Side Export 讓伺服器直接匯出至 Oracle Data Pump 工作、Snowflake stage 或 Cloud Storage 值區，不會將資料下載至 Mac。"
             ],
             "engines": [
                 {
@@ -90,7 +90,7 @@
             "id": "files",
             "title": "作為資料庫的檔案",
             "paragraphs": [
-                "SQLite 和 DuckDB 檔案從 Finder 以連線形式開啟。DuckDB 也可將 Parquet、CSV 和 JSON 檔案讀取為唯讀檢視表，因此 <code>.parquet</code> 檔案會作為 DuckDB 連線開啟，而非進入 Data Files。SSH 伺服器上的 SQLite 資料庫可透過需要伺服器安裝 Python 3.6 或更新版本的小型代理直接存取，或開啟為唯讀副本。",
+                "SQLite 和 DuckDB 檔案從 Finder 以連線形式開啟。DuckDB 也可將 Parquet、CSV 和 JSON 檔案讀取為唯讀檢視表，因此 <code>.parquet</code> 檔案會作為 DuckDB 連線開啟，而非進入 Data Files。SSH 伺服器上的 SQLite 資料庫可透過一個小型代理程式直接存取（伺服器需安裝 Python 3.6 或更新版本），或開啟為唯讀副本。",
                 "<code>.sql</code> 檔案以查詢分頁開啟並儲存回磁碟，Beancount 帳本以一組唯讀資料表開啟。"
             ],
             "links": [
@@ -139,7 +139,7 @@
             "iosNote": "透過捷徑從 JSON 或 CSV 匯入"
         },
         {
-            "label": "儲存對應、Match by Name 與 Match by Position",
+            "label": "已儲存對應、Match by Name 與 Match by Position",
             "ios": "no"
         },
         {
@@ -175,7 +175,7 @@
     ],
     "limits": [
         "SQL 匯出預設在每個資料表前包含 DROP TABLE IF EXISTS，除非取消勾選。因此，在需要保留資料表的資料庫上執行檔案前，請檢查選項。",
-        "Backup Dump 使用自行安裝的命令列工具，僅支援列出的引擎。工具透過環境或暫存檔取得密碼。sqlpackage 例外：它在命令列接收 SQL Server 密碼，Mac 上的其他程序可以讀取；TablePro 會在啟動前徵求確認。",
+        "Backup Dump 使用自行安裝的命令列工具，僅支援列出的引擎。工具透過環境變數或暫存檔取得密碼。sqlpackage 例外：它在命令列接收 SQL Server 密碼，Mac 上的其他處理程序可以讀取；TablePro 會在啟動前徵求確認。",
         "Restore Dump 會取代 MySQL 或 MariaDB 傾印中的資料表。其他引擎不會取代已存在的物件，SQL Server 的 <code>.bacpac</code> 需要空資料庫。",
         "透過 SSH 開啟資料庫檔案僅支援 SQLite。",
         "S3 的 httpfs、Iceberg、Delta 等非內建 DuckDB 擴充功能，會在查詢首次需要時從 DuckDB 自有伺服器下載。",

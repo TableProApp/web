@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "TablePro が接続できるデータベース",
-        "lead": "{featured} を含む {count} 種類のデータベース用ネイティブドライバー。各行でエンジンのクエリ言語、ドライバーの提供元、iPhone と iPad で開けるかを示します。"
+        "lead": "{featured} を含む {count} 種類のデータベース用ネイティブドライバー。各行でエンジンのクエリ言語、ドライバーの入手方法、iPhone と iPad で開けるかを示します。"
     },
     "jump": "種類",
     "categories": {
@@ -30,7 +30,7 @@
             "intro": "それぞれ固有の言語で問い合わせる、ドキュメント型とマルチモデルのデータベース。"
         },
         "key-value": {
-            "title": "キー・バリュー",
+            "title": "キーバリュー",
             "intro": "コマンドや PartiQL で読み書きするキーと値。"
         },
         "wide-column": {
@@ -69,7 +69,7 @@
             "他のすべてのドライバーは署名済みプラグインで、初めてそのエンジンを選んだとき、接続フォームが開く前にダウンロードします。初回ダウンロードにはインターネット接続が必要です。",
             "ダウンロードしたドライバーをインストールする前に、TablePro は SHA-256 チェックサムをプラグインレジストリと照合し、コード署名を検証します。",
             "プラグインは独自のスケジュールで更新するため、アプリの更新なしでドライバーの修正を受け取れます。使用中のドライバーはアプリの再起動後に更新します。",
-            "iPhone と iPad アプリはドライバーを内蔵しており、ダウンロードは不要です。"
+            "iPhone・iPad アプリはドライバーを内蔵しており、ダウンロードは不要です。"
         ],
         "asset": "mac-engine-picker",
         "docs": {
@@ -79,14 +79,14 @@
     },
     "iphone": {
         "title": "iPhone と iPad では",
-        "picker": "iPhone と iPad アプリは {engines} に接続できます。",
+        "picker": "iPhone・iPad アプリは {engines} に接続できます。",
         "synced": "{engines} への接続は、iCloud Sync やエクスポートした接続ファイルで Mac から持ち込んだ場合のみ開けます。",
-        "others": "他のエンジンの接続も iPhone と iPad に同期され一覧に表示しますが、開くことはできません。",
-        "link": "iPhone と iPad 用 TablePro"
+        "others": "他のエンジンの接続も iPhone と iPad に同期されて一覧に表示されますが、開くことはできません。",
+        "link": "iPhone・iPad 版 TablePro"
     },
     "license": {
         "title": "どのデータベースもライセンス不要",
-        "body": "このページのどのエンジンに接続するのも無料です。Starter や Team プランは Mac アプリに任意の機能を追加しますが、特定のデータベースに紐付く機能はありません。",
+        "body": "このページのどのエンジンに接続するのも無料です。Starter や Team プランは Mac アプリにオプション機能を追加しますが、特定のデータベースに紐付く機能はありません。",
         "link": "料金を見る"
     },
     "missing": {
@@ -147,10 +147,10 @@
             "related": "関連ページ"
         },
         "iphone": {
-            "picker": "iPhone と iPad アプリで接続を作成するときに {name} を選べ、アプリから直接接続できます。",
-            "synced": "iPhone と iPad アプリが {name} 接続を開けるのは、iCloud Sync やエクスポートした接続ファイルで Mac から持ち込んだ場合のみです。アプリ内では作成できません。",
-            "none": "iPhone と iPad アプリには {name} ドライバーがありません。Mac から同期した {name} 接続は一覧に表示しますが、開けません。",
-            "link": "iPhone と iPad 用 TablePro"
+            "picker": "iPhone・iPad アプリで接続を作成するときに {name} を選べ、アプリから直接接続できます。",
+            "synced": "iPhone・iPad アプリが {name} 接続を開けるのは、iCloud Sync やエクスポートした接続ファイルで Mac から持ち込んだ場合のみです。アプリ内では作成できません。",
+            "none": "iPhone・iPad アプリには {name} ドライバーがありません。Mac から同期した {name} 接続は一覧に表示されますが、開けません。",
+            "link": "iPhone・iPad 版 TablePro"
         },
         "family": {
             "port": "既定のポート {port}"
@@ -182,8 +182,8 @@
         },
         "download": {
             "title": "TablePro を入手",
-            "mac": "Mac アプリは無料でダウンロードして使えます。Starter や Team プランは任意の機能を追加します。",
-            "ios": "iPhone と iPad アプリは App Store で入手できます。",
+            "mac": "Mac アプリは無料でダウンロードして使えます。Starter や Team プランはオプション機能を追加します。",
+            "ios": "iPhone・iPad アプリは App Store で入手できます。",
             "pricing": "料金を見る"
         }
     }

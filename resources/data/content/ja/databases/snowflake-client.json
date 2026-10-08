@@ -29,7 +29,7 @@
             "paragraphs": [
                 "<code>myorg-myaccount</code> や旧形式の <code>xy12345.us-east-1</code> など、<code>.snowflakecomputing.com</code> の前に付くアカウント識別子を入力します。すべてのリクエストは HTTPS でアカウントのエンドポイントに送るため、ホスト、SSL セクションや SSH ペインはありません。",
                 "<ui>Auth Method</ui> を選ぶと必要な項目だけ表示します。鍵ペアは PKCS#8 秘密鍵で接続ごとに署名するため、Mac の時計が正確である必要があります。ブラウザー SSO は ID プロバイダーへ進みます。OAuth トークンは貼り付けたまま使い、更新しません。MFA 必須のアカウントではパスワードと <ui>MFA Passcode (TOTP)</ui> の現在のコードを使います。",
-                "アカウントの <code>ALLOW_CLIENT_MFA_CACHING</code> が有効なら、新しいコードは一回で済みます。Snowflake が返す MFA トークンを TablePro が <credentials>キーチェーン</credentials> に保存します。<code>ALLOW_ID_TOKEN</code> ならブラウザー SSO のサインイントークンを保存し、Snowflake が拒否するまで次の接続はブラウザーを省略します。",
+                "アカウントの <code>ALLOW_CLIENT_MFA_CACHING</code> が有効なら、新しいコードは一回で済みます。Snowflake が返す MFA トークンを TablePro が <credentials>キーチェーン</credentials> に保存します。<code>ALLOW_ID_TOKEN</code> ならブラウザー SSO のログイントークンを保存し、Snowflake が拒否するまで次の接続はブラウザーを省略します。",
                 "Snowflake には URL スキームがありません。代わりに <ui>CLI Connection Name</ui> にセクション名を指定すると、空欄のフィールドを接続時に <code>~/.snowflake/connections.toml</code> から読みます。"
             ]
         },

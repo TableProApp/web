@@ -42,14 +42,14 @@
                 "脚本按仅含 <code>GO</code> 的行分隔，像 sqlcmd 一样逐批次发送服务器；<code>GO 5</code> 将前一批次运行五次。每个结果集在独立标签页打开，<code>PRINT</code> 输出和信息消息显示在 Output 视图。",
                 "若失败需回滚之前的批次，请在脚本加入 <code>BEGIN TRAN</code> 和 <code>COMMIT</code>；脚本留下未结束事务时会在结尾提示。运行在首个失败批次停止，错误指出编辑器中的行号。",
                 "每个会话以筛选索引、索引视图和计算列索引所需的 SET 选项打开，例如启用 <code>ANSI_NULLS</code> 和 <code>QUOTED_IDENTIFIER</code>。因此 <code>col = NULL</code> 不匹配任何记录，请用 <code>IS NULL</code> 比较。",
-                "表在侧栏 schema 下嵌套显示，<code>⌘K</code> 无需重新连接即可切换数据库。行编辑暂存并提供 <editing>Preview SQL</editing>，新行的 IDENTITY 列交给服务器生成，<code>nvarchar(max)</code> 值完整读取。"
+                "表在侧边栏 schema 下嵌套显示，<code>⌘K</code> 无需重新连接即可切换数据库。行编辑暂存并提供 <editing>Preview SQL</editing>，新行的 IDENTITY 列交给服务器生成，<code>nvarchar(max)</code> 值完整读取。"
             ]
         },
         {
             "id": "schema",
             "title": "结构",
             "paragraphs": [
-                "<structure>Structure 标签页</structure> 暂存列、索引、外键和约束的修改，在执行前显示 T-SQL。可从侧栏删除 schema，但 SQL Server 拒绝删除仍含对象的 schema；创建请在编辑器使用 CREATE SCHEMA。",
+                "<structure>Structure 标签页</structure> 暂存列、索引、外键和约束的修改，在执行前显示 T-SQL。可从侧边栏删除 schema，但 SQL Server 拒绝删除仍含对象的 schema；创建请在编辑器使用 CREATE SCHEMA。",
                 "{compareSyncTier} 方案中的 <compareSync>Compare & Sync</compareSync> 对比两个 SQL Server schema 或数据，保存每条语句后附 <code>GO</code> 行的脚本，可直接用于 sqlcmd 或 SQL Server Management Studio。"
             ]
         },
@@ -72,7 +72,7 @@
             "id": "iphone",
             "title": "iPhone 和 iPad",
             "paragraphs": [
-                "iPhone 和 iPad 上可通过 SQL Server 登录，按卡片浏览表、编辑有主键的行，并在 Query 标签页运行 T-SQL。不提供 Windows Authentication。Microsoft Entra ID 连接需通过 iCloud Sync 或导出的连接文件从 Mac 导入，打开时登录 Microsoft。"
+                "iPhone 和 iPad 上可通过 SQL Server 登录，以卡片形式浏览表、编辑有主键的行，并在 Query 标签页运行 T-SQL。不提供 Windows Authentication。Microsoft Entra ID 连接需通过 iCloud Sync 或导出的连接文件从 Mac 导入，打开时登录 Microsoft。"
             ],
             "asset": "ios-table-browse"
         }

@@ -11,7 +11,7 @@
     "hero": {
         "title": "為開發者打造的原生資料庫用戶端。",
         "subtitle": "在 {featuredEngines} <more>等資料庫</more>中執行查詢、瀏覽及編輯資料。",
-        "native": "原生是指每款 App 都以 Swift 為對應平台編寫，在 Mac 上使用 AppKit 與 SwiftUI。不含 Electron，也不含 Java 執行環境。",
+        "native": "原生是指每款 App 都針對各自的平台使用 Swift 編寫，在 Mac 上使用 AppKit 與 SwiftUI。不含 Electron，也不含 Java 執行環境。",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "其他安裝方式",
@@ -38,7 +38,7 @@
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "撰寫、執行及理解查詢",
-                "body": "SQL 編輯器提供感知資料庫結構的自動完成、<code>:name</code> 查詢參數、可搜尋的歷史紀錄、已儲存查詢，以及顯示 Git 狀態的 <code>.sql</code> 檔案夾。在支援的引擎上，EXPLAIN 會將執行計畫繪製為圖表，EXPLAIN Compare 則可將計畫與基準進行比較。"
+                "body": "SQL 編輯器提供感知資料庫結構的自動完成、<code>:name</code> 查詢參數、可搜尋的歷史紀錄、已儲存查詢，以及存放 <code>.sql</code> 檔案並顯示 Git 狀態的資料夾。在支援的引擎上，EXPLAIN 會將執行計畫繪製為圖表，EXPLAIN Compare 則可將計畫與基準進行比較。"
             },
             {
                 "id": "edit",

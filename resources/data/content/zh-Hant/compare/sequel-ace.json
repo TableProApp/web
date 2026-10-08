@@ -14,7 +14,7 @@
     "shortAnswer": {
         "tablepro": [
             "也使用 PostgreSQL、SQL Server、Redis、MongoDB 等引擎，希望一個用戶端處理全部。",
-            "希望 App 內免費 AI 助手，自選 AI 供應商。",
+            "希望 App 內免費 AI 助理，自選 AI 供應商。",
             "希望 EXPLAIN 圖、唯讀 ER 圖和編輯器 Vim 模式。",
             "希望免費 iPhone、iPad App 連線 MySQL、MariaDB。"
         ],
@@ -42,8 +42,8 @@
             "tablepro": "不提供"
         },
         "sequelProMigration": {
-            "label": "從 Sequel Pro 遷移",
-            "tablepro": "無 Sequel Pro 匯入工具，先遷移至 Sequel Ace 再匯入連線"
+            "label": "從 Sequel Pro 移轉",
+            "tablepro": "無 Sequel Pro 匯入工具，先移轉至 Sequel Ace 再匯入連線"
         }
     },
     "stronger": {
@@ -76,7 +76,7 @@
                 "href": null
             },
             {
-                "text": "提供從 Sequel Pro 遷移指南，將收藏和設定複製至 Sequel Ace。",
+                "text": "提供從 Sequel Pro 移轉指南，將收藏和設定複製至 Sequel Ace。",
                 "cite": [
                     "cells.sequelProMigration"
                 ],
@@ -95,7 +95,7 @@
                 "href": "/databases"
             },
             {
-                "text": "<link>AI 助手</link>在 Mac App 免費，用自選供應商解釋、最佳化、修復查詢。Sequel Ace 無 AI 聊天，外部 AI 用戶端經其 MCP 伺服器存取。",
+                "text": "<link>AI 助理</link>在 Mac App 免費，用自選供應商解釋、最佳化、修復查詢。Sequel Ace 無 AI 聊天，外部 AI 用戶端經其 MCP 伺服器存取。",
                 "cite": [
                     "cells.ai"
                 ],
@@ -158,9 +158,9 @@
         "steps": [
             "TablePro 選擇<ui>檔案 > 匯入 > 從其他 App 匯入…</ui>（File > Import > Import from Other App…）。",
             "選 Sequel Ace，開啟<ui>包含密碼</ui>（Include passwords）讀取 macOS 鑰匙圈的資料庫和 SSH 密碼。",
-            "macOS 為每個已存密碼詢問一次登入密碼，每次選<ui>永遠允許</ui>（Always Allow）。取消一次提示會略過剩餘密碼。",
-            "檢查清單，決定重複項處理方式，點<ui>匯入</ui>（Import）。群組、連線顏色、SSH 通道和 SSL 設定一起遷移。",
-            "移除 Sequel Ace 前，開啟原有密碼的連線檢查遷移。"
+            "macOS 為每個已儲存密碼詢問一次登入密碼，每次選<ui>永遠允許</ui>（Always Allow）。取消一次提示會略過剩餘密碼。",
+            "檢查清單，決定重複項處理方式，點<ui>匯入</ui>（Import）。群組、連線顏色、SSH 通道和 SSL 設定一起移轉。",
+            "移除 Sequel Ace 前，開啟原有密碼的連線檢查移轉。"
         ],
         "after": [
             "查詢收藏、記錄、Bundles 和鍵盤快速鍵留在 Sequel Ace。",
@@ -180,26 +180,26 @@
         {
             "id": "mcp",
             "question": "兩款都有 MCP 伺服器，有何區別？",
-            "answer": "Sequel Ace 在 {cells.mcp.version} 加入的伺服器預設關閉、僅在本 Mac 接聽、預設唯讀。TablePro 也僅在本 Mac 接聽，各連線決定阻擋外部 App、唯讀（預設）或允許寫入。TablePro 還有 App 內 AI 聊天。<link>了解 AI 和 MCP</link>。",
+            "answer": "Sequel Ace 在 {cells.mcp.version} 加入的伺服器預設關閉、僅在本 Mac 監聽、預設唯讀。TablePro 也僅在本 Mac 監聽，各連線決定阻擋外部 App、唯讀（預設）或允許寫入。TablePro 還有 App 內 AI 聊天。<link>了解 AI 和 MCP</link>。",
             "href": "/features/ai-mcp"
         },
         {
             "id": "free",
             "question": "TablePro 像 Sequel Ace 一樣免費嗎？",
-            "answer": "TablePro 免費使用，依 AGPLv3 開放原始碼，包括 MySQL、MariaDB、AI 助手、MCP 伺服器。Starter 或 Team 為 Mac 加入 {starterExamples} 等選用功能。Sequel Ace 無付費方案。<link>查看價格</link>。",
+            "answer": "TablePro 免費使用，依 AGPLv3 開放原始碼，包括 MySQL、MariaDB、AI 助理、MCP 伺服器。Starter 或 Team 為 Mac 加入 {starterExamples} 等選用功能。Sequel Ace 無付費方案。<link>查看價格</link>。",
             "href": "/pricing"
         },
         {
             "id": "sequel-pro",
             "question": "還在用 Sequel Pro，該從哪裡開始？",
-            "answer": "依 Sequel Ace 遷移指南轉移收藏，再匯入 TablePro。<link>Sequel Pro 替代方案</link>介紹整個路徑。",
+            "answer": "依 Sequel Ace 移轉指南轉移收藏，再匯入 TablePro。<link>Sequel Pro 替代方案</link>介紹整個路徑。",
             "href": "/compare/sequel-pro"
         }
     ],
     "notes": {
         "sequel-ace-databases": "MySQL 5.7 或更新、MariaDB 10.0 或更新，無其他資料庫",
         "sequel-ace-no-ai-chat": "無 App 內 AI 聊天，外部 AI 用戶端可用其 MCP 伺服器。",
-        "sequel-ace-mcp-read-only": "內建，預設關閉，僅在本 Mac 接聽，預設唯讀，提供 {value} 個工具。",
+        "sequel-ace-mcp-read-only": "內建，預設關閉，僅在本 Mac 監聽，預設唯讀，提供 {value} 個工具。",
         "sequel-ace-sequel-pro-migration": "指南複製 Sequel Pro 收藏和設定，密碼需獨立指令碼，SSH 金鑰需重新選擇。"
     }
 }
