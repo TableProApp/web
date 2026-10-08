@@ -387,7 +387,8 @@ const UNTRANSLATED_NEUTRAL_KEY = '/(^|\.)(id|paid|asset|anchor|feature|engine|ci
 
 /**
  * Words positioning §11 keeps in English, beyond the names the data files
- * already hold (untranslatedNames()). Each group says why.
+ * already hold (untranslatedNames()) and those every language keeps
+ * (untranslatedKeptNames()). Each group says why.
  *
  * @return list<string>
  */
@@ -397,25 +398,66 @@ function untranslatedGlossaryTerms(): array
         // §11.1 and §11.2: category and developer terms.
         'database client', 'native', 'engine', 'driver', 'plugin', 'connection', 'query', 'schema', 'table', 'view', 'index',
         'trigger', 'transaction', 'file', 'import', 'export', 'dump', 'SQL editor', 'data grid', 'autocomplete', 'execution plan',
-        'EXPLAIN', 'SSH tunnel', 'jump host', 'SSH', 'TLS', 'SSL', 'passphrase', 'tag', 'production', 'staging', 'Preview SQL',
-        'Keychain', 'iCloud Keychain', 'AI chat', 'API key', 'model', 'MCP server', 'MCP', 'client', 'AI', 'SQL', 'GUI', 'Driver',
-        // §11.2: Safe Mode, its levels and the modes.
-        'Safe Mode', 'Silent', 'Alert', 'Read-Only', 'Confirm Writes', 'Agent mode',
-        // §11.2: feature and command names stay as the app names them.
-        'iCloud Sync', 'Data Files', 'Copy To', 'Transfer To', 'Open Quickly', 'Open Project Folder', 'Tunnel Command',
-        'Server-Side Export', 'Server Dashboard', 'Users & Roles', 'ER diagram', 'Map view', 'New Table', 'Structure',
-        'Result Charts', 'Environment Variables',
-        // §11.2: Apple's names that are not translated.
-        'Face ID', 'Touch ID', 'Optic ID', 'Handoff', 'Siri', 'Dynamic Island', 'AppleScript', 'App Store', 'Mac App Store',
-        'Apple silicon', 'Intel',
+        'EXPLAIN', 'SSH tunnel', 'jump host', 'passphrase', 'tag', 'production', 'staging', 'Preview SQL',
+        'Keychain', 'iCloud Keychain', 'AI chat', 'API key', 'model', 'MCP server', 'client', 'AI', 'Driver',
+        // §11.2: feature names Vietnamese keeps and the other languages translate.
+        'ER diagram', 'Map view',
         // §11.3 and §11.4: commerce and navigation terms that read the same.
-        'license', 'license key', 'seat', 'merchant of record', 'Starter', 'Team', 'Blog', 'Changelog', 'Website', 'Web',
+        'license', 'license key', 'seat', 'Blog', 'Changelog', 'Website', 'Web',
         // Database categories kept in English on the homepage and hub.
         'Document', 'Key-value', 'Wide-column', 'Streaming', 'Cloud',
+        // Competitors' feature names as their vendors write them (compare rows).
+        'Visual query builder', 'Version control', 'Data modeling',
+        ...untranslatedKeptNames(),
+    ];
+}
+
+/**
+ * Names every language keeps in English, as the app, Apple or their owner
+ * writes them.
+ *
+ * @return list<string>
+ */
+function untranslatedKeptNames(): array
+{
+    return [
+        // Safe Mode, its levels and the modes.
+        'Safe Mode', 'Silent', 'Alert', 'Read-Only', 'Confirm Writes', 'Agent mode',
+        // Feature and command names, as the app names them.
+        'iCloud Sync', 'Data Files', 'Copy To', 'Transfer To', 'Open Quickly', 'Open Project Folder', 'Tunnel Command',
+        'Server-Side Export', 'Server Dashboard', 'Users & Roles', 'New Table', 'Structure', 'Result Charts',
+        'Environment Variables',
+        // Apple's names that are not translated.
+        'Face ID', 'Touch ID', 'Optic ID', 'Handoff', 'Siri', 'Dynamic Island', 'AppleScript', 'App Store', 'Mac App Store',
+        'Apple silicon', 'Intel',
+        // The plans and the merchant of record.
+        'Starter', 'Team', 'merchant of record',
+        // Acronyms.
+        'SQL', 'SSH', 'SSL', 'TLS', 'MCP', 'GUI',
         // Product and service names.
         'TablePro', 'GitHub', 'Homebrew', 'Setapp', 'Microsoft Entra ID', 'AWS IAM', 'Cloud SQL Auth Proxy', 'Windows', 'Linux',
-        // Competitors' feature names as their vendors write them (compare rows).
-        'Visual query builder', 'Version control', 'Data modeling', 'Bundles',
+        'BigQuery',
+        // An engine's objects and a competitor's feature, as their owners write them.
+        'Mappings', 'Topics', 'Bundles',
+    ];
+}
+
+/**
+ * Words each added language writes as English does. A label made only of
+ * these, names and slots is already translated.
+ *
+ * @return array<string, list<string>>
+ */
+function untranslatedSameWords(): array
+{
+    return [
+        'es' => ['Blog', 'General', 'No', 'Personal', 'Plan', 'Plugins', 'Streaming', 'Web'],
+        'de' => ['Blog', 'Client', 'Download', 'FAQ', 'in', 'Macs', 'Plugins', 'Relational', 'Schema', 'Status', 'Streaming', 'Updates', 'Web', 'Website'],
+        'fr' => ['Blog', 'Client', 'Contact', 'Coordination', 'Documentation', 'FAQ', 'Notes', 'Open source', 'Plugins', 'Questions', 'Source', 'Sources', 'Sponsors', 'Streaming', 'Web'],
+        'ja' => ['Web'],
+        'pt-BR' => ['Backups', 'Blog', 'Download', 'Driver', 'Macs', 'Plugins', 'Status', 'Streaming', 'Web'],
+        'it' => ['Blog', 'Client', 'Database', 'Download', 'Driver', 'Email', 'in', 'No', 'Open source', 'Privacy', 'Schema', 'Streaming', 'Web'],
+        'id' => ['Blog', 'Database', 'Driver', 'Email', 'Key-value', 'per', 'seat', 'Status', 'Streaming', 'Web'],
     ];
 }
 
@@ -447,9 +489,10 @@ function untranslatedNames(): array
 }
 
 /**
- * Whether a value has nothing to translate.
+ * Whether a value has nothing to translate: in Vietnamese by the glossary, in
+ * another language by the names every language keeps and its own same words.
  */
-function untranslatedIsNeutral(string $key, string $value): bool
+function untranslatedIsNeutral(string $key, string $value, string $locale = 'vi'): bool
 {
     if (structuralIdentifier($key, $value, UNTRANSLATED_NEUTRAL_KEY) || preg_match('#^(/|\#|https?:|mailto:)#', $value) === 1) {
         return true;
@@ -459,16 +502,17 @@ function untranslatedIsNeutral(string $key, string $value): bool
         return true;
     }
 
-    static $terms = null;
+    static $terms = [];
 
-    if ($terms === null) {
-        $terms = array_values(array_unique([...untranslatedGlossaryTerms(), ...untranslatedNames()]));
-        usort($terms, fn(string $a, string $b): int => mb_strlen($b) <=> mb_strlen($a));
+    if (! isset($terms[$locale])) {
+        $kept = $locale === 'vi' ? untranslatedGlossaryTerms() : [...untranslatedKeptNames(), ...(untranslatedSameWords()[$locale] ?? [])];
+        $terms[$locale] = array_values(array_unique([...$kept, ...untranslatedNames()]));
+        usort($terms[$locale], fn(string $a, string $b): int => mb_strlen($b) <=> mb_strlen($a));
     }
 
     $text = (string) preg_replace(['/\{[^}]*\}/u', '/<[^>]+>/u', '/`[^`]*`/u'], ' ', $value);
 
-    foreach ($terms as $term) {
+    foreach ($terms[$locale] as $term) {
         $text = (string) preg_replace('/(?<![\p{L}\p{N}])' . preg_quote($term, '/') . '(?![\p{L}\p{N}])/iu', ' ', $text);
     }
 
@@ -525,6 +569,42 @@ it('ships native prose and NFC source text in every added language', function (s
         }
     }
 })->with(array_values(array_diff(array_keys((json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true))['supported']), ['en', 'vi'])));
+
+it('translates every short label in every added language', function (string $locale): void {
+    $untranslated = [];
+
+    foreach (contentTree('en') as $file) {
+        $translated = Arr::dot(contentJson($locale, $file));
+
+        foreach (Arr::dot(contentJson('en', $file)) as $key => $label) {
+            // Five words or more is prose, which the check above covers.
+            if (! is_string($label) || ($translated[$key] ?? null) !== $label || preg_match_all('/\b[A-Za-z]{2,}\b/', $label) >= 5) {
+                continue;
+            }
+
+            if (! untranslatedIsNeutral((string) $key, $label, $locale)) {
+                $untranslated[] = "content/{$locale}/{$file} {$key}: \"{$label}\"";
+            }
+        }
+    }
+
+    expect($untranslated)->toBe([], "Labels left in English (translate them, or add a word {$locale} writes the same way):\n  " . implode("\n  ", $untranslated));
+})->with(array_values(array_diff(array_keys((json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true))['supported']), ['en', 'vi'])));
+
+it('tells a label left in English from one the language writes the same way', function (string $locale, string $label, bool $neutral): void {
+    expect(untranslatedIsNeutral('labels.picker', $label, $locale))->toBe($neutral);
+})->with([
+    'a verb' => ['it', 'Opens', false],
+    'a column header' => ['pt-BR', 'Database', false],
+    'a cell template' => ['de', 'Since version {version}', false],
+    'a word Italian writes the same' => ['it', 'Database', true],
+    'a word German writes the same' => ['de', 'Status', true],
+    'a product name with a slot' => ['pt-BR', 'TablePro vs {name}', true],
+    'a mode name' => ['it', 'Safe Mode', true],
+    'an engine name' => ['fr', 'PostgreSQL', true],
+    'a device name' => ['es', 'Mac', true],
+    'an acronym' => ['id', 'SQL', true],
+]);
 
 it('tells an untranslated string from one with nothing to translate', function (string $key, string $value, bool $neutral): void {
     expect(untranslatedIsNeutral($key, $value))->toBe($neutral);
