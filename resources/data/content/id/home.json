@@ -10,7 +10,8 @@
     },
     "hero": {
         "title": "Klien database native untuk developer.",
-        "subtitle": "Jalankan kueri, telusuri dan edit data di {featuredEngines} <more>dan lainnya</more>. TablePro memiliki aplikasi native terpisah untuk setiap platform yang didukung.",
+        "subtitle": "Jalankan kueri, telusuri dan edit data di {featuredEngines} <more>dan lainnya</more>.",
+        "native": "Native berarti setiap aplikasi ditulis dalam Swift untuk platformnya sendiri, dengan AppKit dan SwiftUI di Mac. Tanpa Electron, tanpa runtime Java.",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Cara instalasi lainnya",
@@ -19,19 +20,7 @@
     "databases": {
         "title": "Database relasional, dokumen, key-value, dan analitik",
         "lead": "Beberapa driver sudah disertakan dalam {macApp}. Driver lainnya diunduh saat Anda pertama kali memilih database tersebut dan diperbarui secara terpisah dari aplikasi.",
-        "byType": "Database yang didukung menurut jenis",
-        "categories": {
-            "relational": "Relasional",
-            "document": "Dokumen",
-            "key-value": "Key-value",
-            "analytical": "Analitik",
-            "wide-column": "Kolom lebar",
-            "search": "Pencarian dan vektor",
-            "streaming": "Streaming",
-            "coordination": "Konfigurasi dan koordinasi",
-            "cloud": "Cloud",
-            "files": "File lokal"
-        },
+        "count": "Di Mac, TablePro terhubung ke {count} database, dikelompokkan menurut jenis:",
         "ios": "Di {iosDevices}, TablePro terhubung ke {iosEngines}.",
         "iosSynced": "Koneksi {syncedOnly} yang disinkronkan dari Mac juga dapat dibuka di sana.",
         "link": "Database yang didukung"
@@ -41,16 +30,15 @@
         "link": "Dukung TablePro"
     },
     "workflows": {
-        "title": "Bekerja dengan database Anda",
-        "lead": "Alur kerja di bagian ini tersedia dalam {macApp}. Untuk {iosDevices}, TablePro memiliki aplikasi terpisah dengan cakupan sendiri, yang dijelaskan di bawah.",
-        "paid": "Memerlukan paket {tier}: {features}.",
+        "title": "Yang dapat dilakukan aplikasi Mac",
+        "paid": "Paket {tier}: {features}.",
         "link": "Semua fitur",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "Tulis, jalankan, dan pahami kueri",
-                "body": "Editor SQL dengan pelengkapan otomatis berdasarkan skema, parameter kueri <code>:name</code>, riwayat yang dapat dicari, kueri tersimpan, serta folder SQL tertaut yang menampilkan status Git. EXPLAIN menggambar rencana sebagai diagram pada mesin yang didukung, dan EXPLAIN Compare membandingkan rencana dengan acuan."
+                "body": "Editor SQL dengan pelengkapan otomatis berdasarkan skema, parameter kueri <code>:name</code>, riwayat yang dapat dicari, kueri tersimpan, serta folder berisi file <code>.sql</code> yang menampilkan status Git. EXPLAIN menggambar rencana sebagai diagram pada mesin yang didukung, dan EXPLAIN Compare membandingkan rencana dengan acuan."
             },
             {
                 "id": "edit",
@@ -68,7 +56,7 @@
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "Impor, ekspor, dan buka file data",
-                "body": "Impor file {importFormats} pada mesin yang mendukung impor dan ekspor ke {exportFormats}. Jendela File Data membuka file CSV, JSON, dan XLSX tanpa database, sehingga Anda dapat mencari dan memfilter, merapikan CSV dan JSON, lalu mengimpor hasilnya ke tabel. Backup Dump dan Restore Dump menjalankan alat baris perintah masing-masing mesin ({dumpTools}). TablePro tidak menyertakannya, jadi instal alat yang belum ada di Mac Anda."
+                "body": "Impor file {importFormats} pada mesin yang mendukung impor dan ekspor ke {exportFormats}. Jendela File Data membuka file CSV, JSON, dan XLSX tanpa database, sehingga Anda dapat mencari dan memfilternya serta merapikan CSV dan JSON. Backup Dump dan Restore Dump menjalankan alat baris perintah masing-masing mesin ({dumpTools}); instal alat yang belum ada di Mac Anda."
             },
             {
                 "id": "connect",
@@ -81,8 +69,8 @@
     "safety": {
         "title": "Pengamanan untuk database produksi",
         "body": [
-            "Di Mac, beri tag dan warna koneksi berdasarkan lingkungan, lalu atur level Mode Aman untuk masing-masing koneksi, dari Senyap hingga Hanya-Baca, dengan Touch ID atau kata sandi pada level yang lebih ketat. DROP, TRUNCATE, dan DELETE tanpa WHERE berhenti dan meminta konfirmasi di setiap level. Di iPhone dan iPad, Konfirmasi Penulisan meminta persetujuan sebelum setiap penulisan dan Hanya-Baca menolaknya.",
-            "Selama koneksi terbuka dalam mode Agen, koneksi berjalan pada level Peringatan atau lebih ketat. Pemulihan Data dapat mengembalikan nilai yang diganti oleh penyimpanan terbaru. Fitur ini bukan cadangan."
+            "Di Mac, beri tag dan warna koneksi berdasarkan lingkungan, lalu atur level Safe Mode untuk masing-masing koneksi. Silent menjalankan pernyataan sesuai tulisannya, Alert meminta konfirmasi sebelum penulisan, level bernama Safe Mode juga meminta Touch ID atau kata sandi Anda, dan Read-Only menolak penulisan. DROP, TRUNCATE, dan DELETE tanpa WHERE berhenti dan meminta konfirmasi di setiap level. Di iPhone dan iPad, Confirm Writes meminta persetujuan sebelum setiap penulisan dan Read-Only menolaknya.",
+            "Dalam Agent mode, asisten AI dapat menjalankan pernyataan. Selama koneksi terbuka dalam Agent mode, koneksi berjalan pada level Alert atau lebih ketat. Data Rewind dapat mengembalikan nilai yang diganti oleh penyimpanan terbaru. Fitur ini bukan cadangan."
         ],
         "levels": "Level Mode Aman",
         "link": "Mode Aman"
@@ -92,7 +80,7 @@
         "body": [
             "Di Mac, asisten AI opsional menjelaskan, mengoptimalkan, dan memperbaiki kueri serta menjawab pertanyaan tentang skema Anda. Anda memilih penyedia: kunci API, akun yang sudah Anda miliki, atau model yang berjalan di Mac Anda. TablePro tidak menjalankan layanan AI sendiri, dan tidak ada yang dikirim hingga Anda menambahkan penyedia.",
             "Chat dimulai dalam mode Tanya, yang hanya membaca. Dalam mode Edit dan Agen, asisten dapat menjalankan pernyataan. Dari Peringatan hingga Mode Aman (Penuh), setiap penulisan menunggu persetujuan Anda; Hanya-Baca menolaknya, dan DROP atau TRUNCATE selalu memerlukan klik Anda.",
-            "Server MCP bawaan memungkinkan klien seperti {mcpClients} memakai koneksi tersimpan tanpa melihat kata sandi. Server hanya mendengarkan di {mcpHost}, dan setiap koneksi menentukan tindakan yang diizinkan bagi aplikasi luar: Diblokir, Hanya-Baca (bawaan), atau Baca dan Tulis.",
+            "Server MCP (Model Context Protocol) bawaan memungkinkan klien AI seperti {mcpClients} memakai koneksi tersimpan tanpa melihat kata sandi. Server hanya mendengarkan di {mcpHost}, dan setiap koneksi menentukan tindakan yang diizinkan bagi aplikasi luar: Diblokir, Hanya-Baca (bawaan), atau Baca dan Tulis.",
             "Semua ini gratis."
         ],
         "providers": "Penyedia yang dapat Anda tambahkan: {providers}."
@@ -101,7 +89,7 @@
         "title": "Aplikasi native untuk {deviceList}",
         "cardTitle": "TablePro untuk {devices}",
         "mac": "Di Mac, TablePro adalah aplikasi Swift dengan build terpisah untuk {architectures}. Aplikasi menyimpan kata sandi di Rantai Kunci, meminta Touch ID pada level Mode Aman yang lebih ketat, dan memperbarui dirinya sendiri.",
-        "ios": "Di {devices}, TablePro adalah aplikasi terpisah dengan cakupan sendiri: terhubung lewat SSH atau TLS, menelusuri tabel, menjalankan kueri, dan mengedit baris, dengan kunci Face ID opsional, Pintasan, widget Layar Utama, serta Aktivitas Langsung untuk kueri yang sedang berjalan.",
+        "ios": "Di {devices}, TablePro adalah aplikasi terpisah dengan cakupan sendiri. Hubungkan lewat SSH atau TLS, telusuri tabel, jalankan kueri, dan edit baris, dengan kunci Face ID opsional, Pintasan, widget Layar Utama, serta Aktivitas Langsung untuk kueri yang sedang berjalan.",
         "sync": "Sinkronisasi iCloud menyelaraskan koneksi, grup, dan tag antara Mac dan iPhone atau iPad. Fitur ini nonaktif secara bawaan dan di Mac memerlukan paket {tier}. Saat Sinkronisasi iCloud aktif, Handoff melanjutkan koneksi yang terbuka di perangkat lain."
     },
     "switch": {

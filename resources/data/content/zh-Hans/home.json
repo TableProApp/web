@@ -10,7 +10,8 @@
     },
     "hero": {
         "title": "为开发者打造的原生数据库客户端。",
-        "subtitle": "在 {featuredEngines} <more>等数据库</more>中运行查询、浏览和编辑数据。TablePro 为每个受支持的平台提供独立的原生应用。",
+        "subtitle": "在 {featuredEngines} <more>等数据库</more>中运行查询、浏览和编辑数据。",
+        "native": "原生是指每款应用都以 Swift 为对应平台编写，在 Mac 上使用 AppKit 和 SwiftUI。不含 Electron，也不含 Java 运行时。",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "其他安装方式",
@@ -19,19 +20,7 @@
     "databases": {
         "title": "关系型、文档、键值和分析型数据库",
         "lead": "部分驱动随 {macApp} 提供。其余驱动会在首次选择对应数据库时下载，并独立于应用更新。",
-        "byType": "按类型查看受支持的数据库",
-        "categories": {
-            "relational": "关系型",
-            "document": "文档",
-            "key-value": "键值",
-            "analytical": "分析型",
-            "wide-column": "宽列",
-            "search": "搜索与向量",
-            "streaming": "流处理",
-            "coordination": "配置与协调",
-            "cloud": "云端",
-            "files": "本地文件"
-        },
+        "count": "在 Mac 上，TablePro 可连接 {count} 种数据库，按类型分组：",
         "ios": "在 {iosDevices} 上，TablePro 可连接 {iosEngines}。",
         "iosSynced": "从 Mac 同步的 {syncedOnly} 连接也可在这些设备上打开。",
         "link": "受支持的数据库"
@@ -41,16 +30,15 @@
         "link": "赞助 TablePro"
     },
     "workflows": {
-        "title": "处理数据库工作",
-        "lead": "本节中的工作流由 {macApp} 提供。TablePro 为 {iosDevices} 提供独立应用，其功能范围将在下文介绍。",
-        "paid": "需要 {tier} 方案：{features}。",
+        "title": "Mac 应用能做什么",
+        "paid": "{tier} 方案：{features}。",
         "link": "所有功能",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "编写、运行和理解查询",
-                "body": "SQL 编辑器提供感知数据库结构的自动补全、<code>:name</code> 查询参数、可搜索的历史记录、已保存查询，以及显示 Git 状态的关联 SQL 文件夹。在受支持的引擎上，EXPLAIN 会将执行计划绘制为图表，EXPLAIN Compare 则可将计划与基准进行比较。"
+                "body": "SQL 编辑器提供感知数据库结构的自动补全、<code>:name</code> 查询参数、可搜索的历史记录、已保存查询，以及显示 Git 状态的 <code>.sql</code> 文件夹。在受支持的引擎上，EXPLAIN 会将执行计划绘制为图表，EXPLAIN Compare 则可将计划与基准进行比较。"
             },
             {
                 "id": "edit",
@@ -68,7 +56,7 @@
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "导入、导出和打开数据文件",
-                "body": "在支持导入的引擎上导入 {importFormats} 文件，并导出为 {exportFormats}。Data Files 窗口可在不连接数据库的情况下打开 CSV、JSON 和 XLSX 文件，供您搜索、筛选、整理 CSV 和 JSON，并将结果导入表中。Backup Dump 和 Restore Dump 使用各引擎自己的命令行工具（{dumpTools}）。TablePro 不附带这些工具，请安装 Mac 上尚未具备的工具。"
+                "body": "在支持导入的引擎上导入 {importFormats} 文件，并导出为 {exportFormats}。Data Files 窗口可在不连接数据库的情况下打开 CSV、JSON 和 XLSX 文件，供您搜索和筛选，并整理 CSV 和 JSON。Backup Dump 和 Restore Dump 使用各引擎自己的命令行工具（{dumpTools}）；请安装 Mac 上尚未具备的工具。"
             },
             {
                 "id": "connect",
@@ -81,8 +69,8 @@
     "safety": {
         "title": "生产数据库的安全防护",
         "body": [
-            "在 Mac 上，可按环境为连接添加标签和颜色，并设置从 Silent 到 Read-Only 的安全模式级别；较严格的级别需要 Touch ID 或密码验证。在所有级别下，DROP、TRUNCATE 和不带 WHERE 的 DELETE 都会暂停并要求确认。在 iPhone 和 iPad 上，Confirm Writes 会在每次写入前询问，Read-Only 则拒绝写入。",
-            "以 Agent 模式打开的连接会使用 Alert 或更严格的级别。Data Rewind 可恢复最近一次保存所替换的值，但它不是备份。"
+            "在 Mac 上，可按环境为连接添加标签和颜色，并为每个连接设置 Safe Mode 级别。Silent 直接执行语句，Alert 在写入前询问，名为 Safe Mode 的级别还要求 Touch ID 或密码，Read-Only 则拒绝写入。在所有级别下，DROP、TRUNCATE 和不带 WHERE 的 DELETE 都会暂停并要求确认。在 iPhone 和 iPad 上，Confirm Writes 会在每次写入前询问，Read-Only 则拒绝写入。",
+            "在 Agent 模式下，AI 助手可执行语句。以 Agent 模式打开的连接会使用 Alert 或更严格的级别。Data Rewind 可恢复最近一次保存所替换的值，但它不是备份。"
         ],
         "levels": "安全模式级别",
         "link": "安全模式"
@@ -92,7 +80,7 @@
         "body": [
             "在 Mac 上，可选的 AI 助手可解释、优化和修复查询，并回答有关数据库结构的问题。提供商由您选择：使用 API 密钥、已有账户或在 Mac 本地运行的模型。TablePro 不运营自己的 AI 服务，添加提供商前不会发送任何内容。",
             "聊天默认从只读的 Ask 模式开始。在 Edit 和 Agent 模式下，助手可执行语句。从 Alert 到 Safe Mode (Full)，每次写入都等待您确认；Read-Only 拒绝写入，而 DROP 和 TRUNCATE 始终需要您点击确认。",
-            "内置 MCP 服务器让 {mcpClients} 等客户端可使用您保存的连接，而无需看到密码。它仅监听 {mcpHost}，每个连接可分别设置外部应用的权限：Blocked、Read Only（默认）或 Read & Write。",
+            "内置 MCP（Model Context Protocol）服务器让 {mcpClients} 等 AI 客户端可使用您保存的连接，而无需看到密码。它仅监听 {mcpHost}，每个连接可分别设置外部应用的权限：Blocked、Read Only（默认）或 Read & Write。",
             "这些功能全部免费。"
         ],
         "providers": "可添加的提供商：{providers}。"
@@ -101,7 +89,7 @@
         "title": "适用于 {deviceList} 的原生应用",
         "cardTitle": "{devices} 版 TablePro",
         "mac": "Mac 版 TablePro 是使用 Swift 编写的应用，为 {architectures} 提供独立构建版本。它将密码保存在钥匙串中，在更严格的安全模式级别下要求 Touch ID 验证，并自动更新。",
-        "ios": "在 {devices} 上，TablePro 是具有独立功能范围的应用：通过 SSH 或 TLS 连接，浏览表、运行查询和编辑行，并提供可选 Face ID 锁定、快捷指令、主屏幕小组件和显示运行中查询的实时活动。",
+        "ios": "在 {devices} 上，TablePro 是具有独立功能范围的应用。通过 SSH 或 TLS 连接，浏览表、运行查询和编辑行，并提供可选 Face ID 锁定、快捷指令、主屏幕小组件和显示运行中查询的实时活动。",
         "sync": "iCloud 同步可在 Mac 与 iPhone 或 iPad 之间同步连接、分组和标签。默认关闭，Mac 上需要 {tier} 方案。开启 iCloud 同步后，可通过 Handoff 在另一设备继续使用已打开的连接。"
     },
     "switch": {

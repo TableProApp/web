@@ -12,7 +12,6 @@ export type HomeContent = typeof import('@data/content/en/home.json');
 export interface HomeEngine {
     id: string;
     name: string;
-    category: EngineCategory;
     /** The vendor mark under public/, or null for a monogram. */
     icon: string | null;
     monogram: string;
@@ -22,8 +21,12 @@ export interface HomeEngine {
     featured: boolean;
     /** Users & Roles is documented and verified on it. */
     usersRoles: boolean;
-    /** `0.77` while some channel still serves a Mac app without this engine, else null. */
-    release: string | null;
+}
+
+// A /databases category that holds a published engine, under the hub's title.
+export interface HomeCategory {
+    id: EngineCategory;
+    title: string;
 }
 
 export interface HomeIosEngines {
@@ -36,6 +39,7 @@ export interface HomeIosEngines {
 export interface HomePageProps {
     content: HomeContent;
     engines: HomeEngine[];
+    categories: HomeCategory[];
     iosEngines: HomeIosEngines;
     /** How the plan cards hand a purchase to the platform. */
     checkout: CheckoutProp;

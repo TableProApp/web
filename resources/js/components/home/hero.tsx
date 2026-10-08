@@ -21,7 +21,8 @@ interface HeroProps {
  * they hold when a platform ships. Platforms appear only in the captions under
  * the two actions, which are built from platforms.json. "and more" jumps to the
  * databases section; "See pricing" to `#pricing`, where shipped Mac builds
- * already send people with `/?ref=…#pricing`.
+ * already send people with `/?ref=…#pricing`. What "native" means sits under
+ * the actions, beside the pricing line, not in the identity copy.
  *
  * The two actions are a row of cells across the page grid, the hero's one
  * piece of the frame (design-system §4.7); the headline above them stays
@@ -66,19 +67,22 @@ export default function Hero({ content, availability, featuredEngines }: HeroPro
                     }
                 />
 
-                <p className="type-small mt-8 max-w-[60ch] text-muted-foreground">
-                    <Trans
-                        text={content.business}
-                        values={{ paidPlatformApps: availability.paidPlatformApps }}
-                        tags={{
-                            pricing: (text) => (
-                                <a href="#pricing" className={textLinkClasses('inline')}>
-                                    {text}
-                                </a>
-                            ),
-                        }}
-                    />
-                </p>
+                <div className="type-small mt-8 grid gap-x-12 gap-y-3 text-muted-foreground md:grid-cols-2">
+                    <p className="max-w-[60ch]">
+                        <Trans
+                            text={content.business}
+                            values={{ paidPlatformApps: availability.paidPlatformApps }}
+                            tags={{
+                                pricing: (text) => (
+                                    <a href="#pricing" className={textLinkClasses('inline')}>
+                                        {text}
+                                    </a>
+                                ),
+                            }}
+                        />
+                    </p>
+                    <p className="max-w-[60ch]">{content.native}</p>
+                </div>
 
                 <div className="mt-12 md:mt-16">
                     <AssetSlot id="mac-hero-window" />
