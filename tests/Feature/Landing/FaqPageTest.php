@@ -136,13 +136,16 @@ it('fills every slot its copy uses, and resolves every link tag', function (stri
     expect(array_values(array_diff(array_unique($tags[1]), faqKnownTags())))->toBe([], "content/{$locale}/faq.json uses a link tag with no destination");
 })->with(['en', 'vi']);
 
-it('names a language for every app language in platforms.json', function (): void {
+it('names every app language in platforms.json in every locale', function (): void {
     $platforms = json_decode((string) file_get_contents(resource_path('data/platforms.json')), true)['platforms'];
     $tags = collect($platforms)->flatMap(fn(array $platform): array => $platform['appLanguages'] ?? [])->unique()->all();
 
-    foreach (['en', 'vi'] as $locale) {
+    foreach (Locales::codes() as $locale) {
+        $compare = json_decode((string) file_get_contents(resource_path("data/content/{$locale}/compare/index.json")), true)['labels']['languages'];
+
         foreach ($tags as $tag) {
-            expect(faqContent($locale)['languages'])->toHaveKey($tag);
+            expect(array_key_exists($tag, faqContent($locale)['languages']))->toBeTrue("content/{$locale}/faq.json names no {$tag}");
+            expect(array_key_exists($tag, $compare))->toBeTrue("content/{$locale}/compare/index.json names no {$tag}");
         }
     }
 });
