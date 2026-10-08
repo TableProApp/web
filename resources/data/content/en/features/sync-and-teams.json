@@ -21,7 +21,7 @@
                 "Passwords sync only if you also turn on <ui>Passwords</ui> under Sync Categories on the Mac, or <ui>Sync Passwords</ui> on iPhone and iPad, which goes through iCloud Keychain; on the Mac it also carries the other secrets TablePro keeps in the Keychain, such as AI provider keys and the license key. Mark a connection Local only to keep it, with its favorites and saved queries, on one Mac."
             ],
             "points": [
-                "On the Mac you choose what syncs: connections, groups and tags, settings, SSH profiles, table and database favorites, saved queries with their SQL, and table folders.",
+                "On the Mac you choose what syncs: connections, groups and tags, settings, SSH profiles, credential profiles (their name and username, never the password), table and database favorites, saved queries with their SQL, and table folders.",
                 "On iPhone and iPad: connections, groups and tags.",
                 "A synced connection carries its host, port, username, database, SSH and SSL settings, startup commands, pre-connect script and AI rules.",
                 "Never synced: query history, Data Rewind, password sources, tunnel commands and each connection’s External Clients level."

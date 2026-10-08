@@ -306,6 +306,28 @@ dataset('reviewed facts', [
         ['giao thức native', 'màn hình xem table', 'tab Truy vấn (Query)'],
         ['gốc', 'trình duyệt table', 'script structure'],
     ],
+    // SyncRecordMapper.swift:773-793 at v0.78.0 writes the name, the username and the password mode.
+    'iCloud Sync carries credential profiles, never their password' => [
+        'content/en/features/sync-and-teams.json',
+        ['SSH profiles, credential profiles (their name and username, never the password), table and database favorites'],
+        ['settings, SSH profiles, table and database favorites'],
+    ],
+    'credential profiles in iCloud Sync (vi)' => [
+        'content/vi/features/sync-and-teams.json',
+        ['credential profile (tên profile và tên người dùng, không bao giờ gồm mật khẩu)'],
+        ['SSH profile, table và cơ sở dữ liệu yêu thích'],
+    ],
+    // RowDetailView.swift:302-337 offers NULL only; InsertRowView.swift:134-151 offers Use Default, NULL and Empty String (iOS 232e8dae6).
+    'on iPhone, DEFAULT belongs to a new row, not to editing one' => [
+        'content/en/features/data-editing.json',
+        ['edit a row and set a value to NULL, insert rows', 'In a new row, each field starts at its DEFAULT'],
+        ['set a value to NULL or DEFAULT'],
+    ],
+    'DEFAULT on iPhone (vi)' => [
+        'content/vi/features/data-editing.json',
+        ['Trong dòng mới, mỗi cột ban đầu nhận DEFAULT'],
+        ['NULL hoặc DEFAULT'],
+    ],
 ]);
 
 it('keeps each reviewed correction', function (string $file, array $keeps, array $drops): void {
