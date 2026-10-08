@@ -150,7 +150,7 @@
                 "href": null
             },
             {
-                "text": "TablePro hanya terhubung ke MySQL melalui TCP, bukan berkas socket lokal.",
+                "text": "TablePro hanya terhubung ke MySQL melalui TCP, bukan file socket lokal.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -168,8 +168,8 @@
         "steps": [],
         "after": [
             "Atur tunnel SSH pada tab <ui>Network</ui> koneksi, dengan jump host jika diperlukan.",
-            "Jika proyek menyimpan pengaturan database dalam berkas seperti .env atau wp-config.php, <ui>File > Import > Open Project Folder…</ui> membacanya lalu membuka formulir koneksi yang terisi.",
-            "Kata sandi dimasukkan ke Keychain macOS, dan riwayat kueri dimulai dari awal di TablePro."
+            "Jika proyek menyimpan pengaturan database dalam file seperti .env atau wp-config.php, <ui>File > Import > Open Project Folder…</ui> membacanya lalu membuka formulir koneksi yang terisi.",
+            "Kata sandi dimasukkan ke Rantai Kunci macOS, dan riwayat kueri dimulai dari awal di TablePro."
         ],
         "docs": null
     },

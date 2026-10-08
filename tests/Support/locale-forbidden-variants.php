@@ -9,6 +9,7 @@ return [
         ['/thư mục SQL liên kết/iu', 'linked SQL folder'],
         ['/thư mục liên kết/iu', 'Linked Folders'],
         ['/làm mốc/iu', 'baseline'],
+        ['/chưa có ngày phát hành/iu', 'không có ngày phát hành'],
     ],
     'es' => [
         ['/\\bComparar y sincronizar\\b/iu', 'Compare & Sync'],
@@ -63,6 +64,13 @@ return [
         ['/(?<=[a-zñáéíóú,;:] )Solo local\\b/u', 'Local only'],
         ['/\\bComo copia de solo lectura\\b/u', 'As a Read-Only Copy'],
         ['/comerciante registrado/iu', 'merchant of record'],
+        ['/\\bAbrir base de datos de ejemplo\\b/iu', 'Open Sample Database'],
+        ['/\\bImportar desde otra app\\b/iu', 'Import from Other App'],
+        ['/\\bAñadir filas? a tabla\\b/iu', 'Add Row to Table, Add Rows to Table'],
+        ['/\\bCategorías de sincronización\\b/iu', 'Sync Categories'],
+        ['/\\bpestaña Consulta\\b|\\ben Consulta\\b/u', 'Query'],
+        ['/\\bUsar ~\\/\\.pgpass\\b/u', 'Use ~/.pgpass'],
+        ['/\\bcompras integradas\\b/iu', 'sin compras dentro de la app'],
     ],
     'de' => [
         ['/\\bsicher(?:er|en|e|em) Modus\\b/iu', 'Safe Mode'],
@@ -242,6 +250,9 @@ return [
         ['/\\baba Partes\\b/iu', 'aba Parts'],
         ['/\\babas? (?:Geral|Rede|Opções|Aparência)\\b/iu', 'General, Network, Options, Appearance'],
         ['/vendedor responsável/iu', 'merchant of record'],
+        ['/\\bno Chaves\\b/u', 'nas Chaves'],
+        ['/\\bvisualização Map\\b/u', 'visualização Mapa'],
+        ['/\\bgratuito para usar\\b/iu', 'de uso gratuito'],
     ],
     'zh-Hans' => [
         ['/安全模式/u', 'Safe Mode'],
@@ -349,6 +360,8 @@ return [
         ['/\\bSolo local[ei]\\b/u', 'Local only'],
         ['/\\bGenerale, Rete, Opzioni\\b/u', 'General, Network, Options, Appearance'],
         ['/venditore responsabile/iu', 'merchant of record'],
+        ['/\\bvista Map\\b/u', 'vista Mappa'],
+        ['/\\b(?:[Aa]ssistente|[Cc]hat|[Cc]lient|[Pp]rovider) AI\\b/u', 'IA'],
     ],
     'id' => [
         ['/\\bBandingkan (?:dan|&) Sinkronkan\\b/u', 'Compare & Sync'],
@@ -391,5 +404,7 @@ return [
         ['/(?<=[a-z,;:] )Favorit\\b/u', 'Favorites'],
         ['/belum (?:tersedia untuk|ada tanggal rilis|ada yang dapat diinstal)/iu', 'tidak tersedia, tidak ada tanggal rilis'],
         ['/\\bkursi\\b/iu', 'seat'],
+        ['/\\bpengurungan\\b/iu', 'pembatalan'],
+        ['/\\bEdit tertunda\\b/iu', 'Perubahan tertunda'],
     ],
 ];

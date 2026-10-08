@@ -107,7 +107,7 @@
                 "href": "/sql-server-client"
             },
             {
-                "text": "Masuk dengan login SQL Server, Kerberos, atau <link>Microsoft Entra ID</link>, dengan token disimpan di login keychain Anda.",
+                "text": "Masuk dengan login SQL Server, Kerberos, atau <link>Microsoft Entra ID</link>, dengan token disimpan di Rantai Kunci login Anda.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/connections#cloud-auth"
@@ -173,7 +173,7 @@
         "after": [
             "Pilih <ui>Authentication</ui> pada formulir: login SQL Server, Windows Authentication melalui Kerberos, atau Microsoft Entra ID.",
             "Untuk Azure SQL Database, atur SSL ke Required atau yang lebih ketat, dan isi Database untuk contained user.",
-            "Berkas .sql yang disimpan dari SQL Server Management Studio dapat diimpor ke sebuah koneksi, dan baris GO di dalamnya berjalan satu batch demi satu batch."
+            "File .sql yang disimpan dari SQL Server Management Studio dapat diimpor ke sebuah koneksi, dan baris GO di dalamnya berjalan satu batch demi satu batch."
         ],
         "docs": null
     },

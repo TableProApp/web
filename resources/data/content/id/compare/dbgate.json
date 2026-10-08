@@ -13,17 +13,17 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "Anda menginginkan asisten AI tanpa edisi berbayar. Asisten AI gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, sedangkan obrolan database DbGate ada di {cells.ai.edition}.",
+            "Anda menginginkan asisten AI tanpa edisi berbayar. Asisten AI gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, sedangkan chat database DbGate ada di {cells.ai.edition}.",
             "Anda masuk ke database dengan AWS IAM atau Microsoft Entra ID, dan ingin melakukannya secara gratis.",
             "Anda menginginkan pencadangan melalui alat dump milik setiap mesin tanpa edisi berbayar.",
-            "Anda menginginkan aplikasi Mac native yang ditulis dalam Swift, dengan kata sandi di Keychain macOS.",
+            "Anda menginginkan aplikasi Mac native yang ditulis dalam Swift, dengan kata sandi di Rantai Kunci macOS.",
             "Anda juga menginginkan aplikasi iPhone dan iPad."
         ],
         "competitor": [
             "Anda juga bekerja di Windows atau Linux, atau menginginkan aplikasi web yang dibuka tim Anda di peramban.",
             "Anda terhubung ke Firebird, Azure Cosmos DB, atau Firestore, yang tidak didukung TablePro.",
             "Anda menginginkan perancang kueri visual, mulai dari edisi {cells.queryDesigner.edition}.",
-            "Anda ingin DbGate Cloud menyimpan koneksi dan berkas SQL Anda di setiap perangkat tempat Anda masuk."
+            "Anda ingin DbGate Cloud menyimpan koneksi dan file SQL Anda di setiap perangkat tempat Anda masuk."
         ]
     },
     "glance": {
@@ -79,7 +79,7 @@
                 "href": null
             },
             {
-                "text": "DbGate Cloud menyimpan koneksi dan berkas SQL di setiap perangkat tempat Anda masuk, hingga {cells.sync.value} koneksi pada Community.",
+                "text": "DbGate Cloud menyimpan koneksi dan file SQL di setiap perangkat tempat Anda masuk, hingga {cells.sync.value} koneksi pada Community.",
                 "cite": ["cells.sync"],
                 "feature": null,
                 "href": null
@@ -96,7 +96,7 @@
                 "href": null
             },
             {
-                "text": "<link>Asisten AI</link> gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, di cloud atau di Mac Anda. Obrolan database DbGate ada di edisi berbayar dan melewati gateway DbGate ke OpenAI.",
+                "text": "<link>Asisten AI</link> gratis dalam aplikasi Mac, dengan penyedia AI pilihan Anda, di cloud atau di Mac Anda. Chat database DbGate ada di edisi berbayar dan melewati gateway DbGate ke OpenAI.",
                 "cite": ["cells.ai"],
                 "feature": null,
                 "href": "/features/ai-mcp"
@@ -161,8 +161,8 @@
         "steps": [],
         "after": [
             "Atur tunnel SSH pada tab <ui>Network</ui> koneksi. Pada Mac, jump host juga didukung.",
-            "Jika proyek menyimpan pengaturan database dalam berkas .env, <ui>File > Import > Open Project Folder…</ui> membacanya lalu membuka formulir koneksi yang terisi.",
-            "Kata sandi dimasukkan ke Keychain macOS, dan riwayat kueri dimulai dari awal di TablePro."
+            "Jika proyek menyimpan pengaturan database dalam file .env, <ui>File > Import > Open Project Folder…</ui> membacanya lalu membuka formulir koneksi yang terisi.",
+            "Kata sandi dimasukkan ke Rantai Kunci macOS, dan riwayat kueri dimulai dari awal di TablePro."
         ],
         "docs": null
     },
@@ -170,7 +170,7 @@
         {
             "id": "free-editions",
             "question": "Apa yang gratis di masing-masing?",
-            "answer": "DbGate Community gratis dan bersumber terbuka, dan edisi berbayarnya menambahkan fitur seperti obrolan database, perancang kueri, dan pencadangan native. TablePro gratis digunakan dengan setiap mesin yang didukung, asisten AI, dan server MCP, dan paket Starter atau Team menambahkan fitur seperti {starterExamples}. <link>Lihat harga</link>.",
+            "answer": "DbGate Community gratis dan bersumber terbuka, dan edisi berbayarnya menambahkan fitur seperti chat database, perancang kueri, dan pencadangan native. TablePro gratis digunakan dengan setiap mesin yang didukung, asisten AI, dan server MCP, dan paket Starter atau Team menambahkan fitur seperti {starterExamples}. <link>Lihat harga</link>.",
             "href": "/pricing"
         },
         {
@@ -188,8 +188,8 @@
     ],
     "notes": {
         "dbgate-databases": "Community mencakup MySQL, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, Cassandra, ClickHouse, DuckDB, dan lainnya. Premium menambahkan Amazon Redshift, DynamoDB, Azure Cosmos DB, Firestore, dan libSQL. Situsnya juga mencantumkan Firebird.",
-        "dbgate-ai": "Obrolan database, asisten AI untuk SQL, dan penjelasan galat, di Premium dan Team Premium, melalui gateway DbGate ke OpenAI",
-        "dbgate-cloud": "DbGate Cloud menyimpan koneksi dan berkas SQL secara daring. Community menyimpan hingga {value} koneksi di sana, sedangkan Premium menghapus batas tersebut dan menambahkan folder bersama.",
+        "dbgate-ai": "Chat database, asisten AI untuk SQL, dan penjelasan galat, di Premium dan Team Premium, melalui gateway DbGate ke OpenAI",
+        "dbgate-cloud": "DbGate Cloud menyimpan koneksi dan file SQL secara daring. Community menyimpan hingga {value} koneksi di sana, sedangkan Premium menghapus batas tersebut dan menambahkan folder bersama.",
         "dbgate-er-diagrams": "Di setiap edisi. Pengaturan lanjutan ada di Premium.",
         "dbgate-paid-editions": "Di Premium dan Team Premium, tidak di Community",
         "dbgate-backup": "Pencadangan dan pemulihan native di Premium dan Team Premium. Community mencadangkan dan memulihkan tabel satu per satu.",
