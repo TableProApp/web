@@ -16,7 +16,7 @@ export default {
     "databases": "Database",
     "pricing": "Prezzi",
     "docs": "Documentazione",
-    "docsLabel": "Documentazione",
+    "docsLabel": "Documentazione (inglese)",
     "blog": "Blog",
     "faq": "Domande frequenti",
     "account": "Account",

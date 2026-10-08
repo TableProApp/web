@@ -28,7 +28,7 @@ export default {
                 "지원하는 모든 엔진 연결",
                 "SQL 편집기 및 데이터 그리드",
                 "AI 어시스턴트 및 MCP 서버",
-                "안전 모드",
+                "Safe Mode",
                 "iPhone 및 iPad 앱"
             ]
         },
@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "모든 유료 기능",
-    "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 공식 판매자로서 결제를 받고 결제 시 판매세 또는 VAT를 계산합니다.",
+    "finePrint": "가격은 미국 달러 기준입니다. {merchant}가 merchant of record로서 결제를 받고 결제 시 판매세 또는 VAT를 계산합니다.",
     "finePrintCurrency": "가격은 미국 달러 기준입니다.",
     "comparePlans": "플랜 비교",
     "section": {
@@ -107,8 +107,8 @@ export default {
         },
         "macsTeam": "좌석당 한 대",
         "everythingElse": "앱의 나머지 모든 기능",
-        "everythingElseDetail": "지원하는 모든 엔진, SQL 편집기, AI 어시스턴트, MCP 서버 및 안전 모드",
-        "iphoneNote": "iPhone 및 iPad 앱에는 유료 기능이 없습니다. 해당 앱의 iCloud 동기화는 무료이며, Mac과 동기화하려면 Mac에 Starter 또는 Team이 필요합니다."
+        "everythingElseDetail": "지원하는 모든 엔진, SQL 편집기, AI 어시스턴트, MCP 서버 및 Safe Mode",
+        "iphoneNote": "iPhone 및 iPad 앱에는 유료 기능이 없습니다. 해당 앱의 iCloud Sync는 무료이며, Mac과 동기화하려면 Mac에 Starter 또는 Team이 필요합니다."
     },
     "discount": {
         "atCheckout": "할인 코드가 있나요? 결제 시 입력하세요.",

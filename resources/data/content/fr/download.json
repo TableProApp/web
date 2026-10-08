@@ -16,7 +16,7 @@
         "homebrew": {
             "title": "Homebrew",
             "body": "Homebrew installe la version adaptée à la puce de votre Mac. L’application se met ensuite à jour automatiquement.",
-            "trails": "La version de Homebrew est mise à jour séparément et peut être en retard sur une nouvelle sortie. Si une ancienne version est installée, choisissez <ui>TablePro > Rechercher des mises à jour…</ui> pour obtenir la version actuelle."
+            "trails": "La version de Homebrew est mise à jour séparément et peut être en retard sur une nouvelle sortie. Si une ancienne version est installée, choisissez <ui>TablePro > Rechercher les mises à jour…</ui> (TablePro > Check for Updates…) pour obtenir la version actuelle."
         },
         "releases": "Toutes les versions sur GitHub Releases",
         "source": "Compiler depuis le code source (AGPLv3)"
@@ -30,14 +30,14 @@
         "steps": [
             "Ouvrez le fichier .dmg téléchargé depuis votre dossier Téléchargements.",
             "Faites glisser TablePro dans le dossier Applications.",
-            "Ouvrez TablePro depuis Applications. Comme l’application provient d’internet, macOS demande une confirmation la première fois. Choisissez <ui>Ouvrir</ui>.",
-            "Ajoutez une connexion ou choisissez <ui>Aide > Ouvrir la base de données d’exemple</ui> pour explorer d’abord. Cela ouvre Chinook, une petite base SQLite fournie avec l’application."
+            "Ouvrez TablePro depuis Applications. Comme l’application provient d’internet, macOS demande une confirmation la première fois. Choisissez <ui>Ouvrir</ui> (Open).",
+            "Ajoutez une connexion ou choisissez <ui>Aide > Ouvrir la base de données d’exemple</ui> (Help > Open Sample Database) pour explorer d’abord. Cela ouvre Chinook, une petite base SQLite fournie avec l’application."
         ],
         "signing": "Les deux versions sont signées avec un Developer ID et notariées par Apple. Vous n’avez donc aucun réglage de sécurité à modifier pour ouvrir TablePro.",
         "drivers": "Les pilotes des bases de données courantes sont fournis avec l’application. Les autres sont téléchargés la première fois que vous choisissez cette base, ce qui nécessite une connexion internet, et sont mis à jour séparément.",
         "databases": "Bases de données prises en charge",
         "guide": {
-            "label": "Lire le guide d’installation",
+            "label": "Lire le guide d’installation (anglais)",
             "path": "/installation"
         }
     },
@@ -45,8 +45,8 @@
         "title": "Mises à jour",
         "paragraphs": [
             "TablePro recherche des mises à jour une fois par jour. Une nouvelle version se télécharge en arrière-plan et s’installe la prochaine fois que vous quittez l’application.",
-            "La plupart des versions sont distribuées aux Mac par étapes sur environ un jour et demi. Pour les obtenir plus tôt, choisissez <ui>TablePro > Rechercher des mises à jour…</ui>",
-            "Vous pouvez désactiver les recherches ou les installations automatiques dans <ui>Réglages > Général</ui>. Les recherches s’adressent à GitHub, où les versions sont publiées, et chaque mise à jour est signée et vérifiée avant son installation."
+            "La plupart des versions sont distribuées aux Mac par étapes sur environ un jour et demi. Pour les obtenir plus tôt, choisissez <ui>TablePro > Rechercher les mises à jour…</ui> (TablePro > Check for Updates…)",
+            "Vous pouvez désactiver les recherches ou les installations automatiques dans <ui>Réglages > Général</ui> (Settings > General). Les recherches s’adressent à GitHub, où les versions sont publiées, et chaque mise à jour est signée et vérifiée avant son installation."
         ]
     },
     "otherPlatforms": {
@@ -58,6 +58,6 @@
         "title": "Anciennes versions et notes de version",
         "body": "Chaque version, avec ses notes et ses deux images disque, figure sur GitHub Releases. Le journal des modifications liste les changements de chaque version.",
         "releases": "Toutes les versions sur GitHub",
-        "changelog": "Journal des modifications"
+        "changelog": "Journal des modifications (anglais)"
     }
 }

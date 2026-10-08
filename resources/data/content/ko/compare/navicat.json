@@ -13,7 +13,7 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "AI 어시스턴트, MCP 서버, 안전 모드가 이미 포함된 무료 앱을 원하며 {starterExamples} 같은 기능에만 유료 요금제를 쓰고 싶습니다.",
+            "AI 어시스턴트, MCP 서버, Safe Mode가 이미 포함된 무료 앱을 원하며 {starterExamples} 같은 기능에만 유료 요금제를 쓰고 싶습니다.",
             "오픈 소스 클라이언트를 원합니다. TablePro는 유료 기능의 코드까지 AGPLv3로 공개합니다.",
             "엔진별로 별도의 유료 앱을 쓰기보다 여러 엔진을 지원하는 무료 iPhone·iPad 앱 하나를 원합니다.",
             "ClickHouse, DuckDB, Cassandra처럼 Navicat Premium에 나열되지 않은 엔진을 사용합니다."
@@ -30,7 +30,7 @@
     "rows": {
         "schemaSync": {
             "label": "구조 동기화",
-            "tablepro": "Starter에 포함된 구조·데이터용 비교 및 동기화"
+            "tablepro": "Starter에 포함된 구조·데이터용 Compare & Sync"
         },
         "dataModeling": {
             "label": "데이터 모델링",
@@ -86,13 +86,13 @@
                 "href": null
             },
             {
-                "text": "무료 앱은 지원하는 모든 엔진에 연결하며 AI 어시스턴트, MCP 서버, 안전 모드를 포함합니다. <link>유료 요금제</link>는 {starterExamples} 같은 기능을 추가합니다.",
+                "text": "무료 앱은 지원하는 모든 엔진에 연결하며 AI 어시스턴트, MCP 서버, Safe Mode를 포함합니다. <link>유료 요금제</link>는 {starterExamples} 같은 기능을 추가합니다.",
                 "cite": [],
                 "feature": null,
                 "href": "/pricing"
             },
             {
-                "text": "두 제품 모두 구조를 동기화합니다. TablePro의 <link>비교 및 동기화</link>는 두 데이터베이스의 구조나 데이터를 비교하고 차이점에 대한 스크립트를 생성하며, 데이터를 파괴하는 문은 허용할 때까지 보류합니다. Starter에 포함됩니다.",
+                "text": "두 제품 모두 구조를 동기화합니다. TablePro의 <link>Compare & Sync</link>는 두 데이터베이스의 구조나 데이터를 비교하고 차이점에 대한 스크립트를 생성하며, 데이터를 파괴하는 명령문은 허용할 때까지 보류합니다. Starter에 포함됩니다.",
                 "cite": [
                     "cells.schemaSync"
                 ],
@@ -156,9 +156,9 @@
         "intro": "TablePro는 Navicat에서 내보낸 파일로 연결을 가져오므로 이전은 Navicat에서 시작합니다. Navicat 자체 설정은 읽거나 변경하지 않습니다.",
         "steps": [
             "Navicat에서 <ui>File > Export Connections…</ui>를 선택하고 연결을 고른 뒤 <ui>Export Password</ui>를 켜서 .ncx 파일을 저장합니다.",
-            "TablePro에서 <ui>File > Import > Import from Other App…</ui>를 선택합니다.",
-            "Navicat을 선택하고 <ui>Include passwords</ui>를 켠 뒤 <ui>Continue</ui>를 클릭하여 .ncx 파일을 고릅니다. TablePro가 저장된 암호를 복호화하므로 키체인에서 승인할 것은 없습니다.",
-            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>Import</ui>를 클릭합니다. SSH 터널과 SSL 설정이 함께 이전됩니다. TablePro가 지원하지 않는 데이터베이스의 연결은 체크되지 않은 상태로 표시됩니다.",
+            "TablePro에서 <ui>파일 > 가져오기 > 다른 앱에서 가져오기…</ui>(File > Import > Import from Other App…)를 선택합니다.",
+            "Navicat을 선택하고 <ui>암호 포함</ui>(Include passwords)을 켠 뒤 <ui>계속</ui>(Continue)을 클릭하여 .ncx 파일을 고릅니다. TablePro가 저장된 암호를 복호화하므로 키체인에서 승인할 것은 없습니다.",
+            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>가져오기</ui>(Import)를 클릭합니다. SSH 터널과 SSL 설정이 함께 이전됩니다. TablePro가 지원하지 않는 데이터베이스의 연결은 체크되지 않은 상태로 표시됩니다.",
             "Navicat을 삭제하기 전에 암호가 있던 연결을 열어 암호가 이전되었는지 확인합니다."
         ],
         "after": [
@@ -172,7 +172,7 @@
         {
             "id": "premium-lite",
             "question": "Navicat Premium Lite도 무료입니다. TablePro는 어떻게 다른가요?",
-            "answer": "둘 다 상업적 작업에 무료로 사용할 수 있습니다. Premium Lite는 Navicat의 핵심 기능을 제공합니다. TablePro 무료 앱은 지원하는 모든 엔진에 연결하며 AI 어시스턴트, MCP 서버, 안전 모드를 포함합니다. Starter 또는 Team 요금제는 {starterExamples} 같은 기능을 추가합니다.",
+            "answer": "둘 다 상업적 작업에 무료로 사용할 수 있습니다. Premium Lite는 Navicat의 핵심 기능을 제공합니다. TablePro 무료 앱은 지원하는 모든 엔진에 연결하며 AI 어시스턴트, MCP 서버, Safe Mode를 포함합니다. Starter 또는 Team 요금제는 {starterExamples} 같은 기능을 추가합니다.",
             "href": null
         },
         {

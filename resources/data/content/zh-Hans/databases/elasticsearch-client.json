@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "输入集群主机和 REST 端口，选择 <ui>Auth Method</ui>。Username & Password 发送 HTTP Basic，API Key 通过 <code>Authorization: ApiKey</code> 头发送字段，请粘贴创建 API 密钥请求返回的 <code>encoded</code> 值。None 适合关闭安全的开发集群。连接对应一个集群，所以表单无 Database 字段。",
+                "输入集群主机和 REST 端口，选择<ui>认证方式</ui>（Auth Method）。Username & Password 发送 HTTP Basic，API Key 通过 <code>Authorization: ApiKey</code> 头发送字段，请粘贴创建 API 密钥请求返回的 <code>encoded</code> 值。None 适合关闭安全的开发集群。连接对应一个集群，所以表单无 Database 字段。",
                 "新连接默认 SSL Disabled，即明文 HTTP。其他模式用 HTTPS：Preferred、Required (skip verify) 接受自签证书，Verify CA、Verify Identity 验证证书。Elasticsearch 8.x 默认开启安全和 TLS，因此通常需要 HTTPS 和凭据。"
             ]
         },

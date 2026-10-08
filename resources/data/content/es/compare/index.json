@@ -122,7 +122,7 @@
             "no": "No"
         },
         "currency": {
-            "pattern": "${amount}",
+            "pattern": "{amount} US$",
             "decimal": ",",
             "group": "."
         },
@@ -172,7 +172,7 @@
             "technology": "Swift, con controladores nativos de bases de datos",
             "priceFree": "Gratis. Los planes de pago añaden funciones opcionales en Mac.",
             "starter": "Starter: {monthly} al mes, {yearly} al año o {lifetime} una vez",
-            "team": "Equipo: {monthly} al mes, {yearly} al año o {lifetime} una vez, por puesto, mínimo {min} puestos",
+            "team": "Team: {monthly} al mes, {yearly} al año o {lifetime} una vez, por puesto, mínimo {min} puestos",
             "iosPrice": "La app para iPhone y iPad es gratuita, sin compras integradas.",
             "licence": "Sí: {licence}, incluido el código de las funciones de pago",
             "databases": "{engines} y más",
@@ -180,7 +180,7 @@
             "ai": "Gratis en Mac, con el proveedor IA que elijas, en nube o en tu Mac",
             "mcp": "Gratis en Mac. Solo escucha en tu Mac y cada conexión define lo que pueden hacer apps externas",
             "ios": "App gratuita separada, sin compras integradas",
-            "sync": "Sincronización con iCloud: incluida en {tier} en Mac, gratis en iPhone y iPad"
+            "sync": "iCloud Sync: incluido en {tier} en Mac, gratis en iPhone y iPad"
         },
         "import": {
             "yes": "TablePro importa conexiones de {name}, incluidas contraseñas.",
@@ -191,7 +191,7 @@
         },
         "tiers": {
             "starter": "Starter",
-            "team": "Equipo"
+            "team": "Team"
         },
         "tierBadge": "Plan {tier}",
         "sections": {

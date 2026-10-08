@@ -22,8 +22,8 @@ export default {
     "free": "Gratis, tanpa pembelian dalam aplikasi",
     "status": {
         "released": "Tersedia",
-        "prototype": "Hanya prototipe. Belum ada yang dapat diinstal dan belum ada tanggal rilis.",
-        "none": "Belum tersedia dan belum ada tanggal rilis."
+        "prototype": "Hanya prototipe. Tidak ada yang dapat diinstal dan tidak ada tanggal rilis.",
+        "none": "Tidak tersedia dan tidak ada tanggal rilis."
     },
     "names": {
         "linux": "Linux",

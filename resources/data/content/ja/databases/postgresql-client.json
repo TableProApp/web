@@ -45,10 +45,10 @@
             "id": "work",
             "title": "クエリと編集",
             "paragraphs": [
-                "SQL エディタはスキーマからテーブル名とカラム名を補完します。<explain>EXPLAIN と EXPLAIN ANALYZE</explain> は FORMAT JSON で実行し、プラン図やツリーで表示します。EXPLAIN Compare は変更後にプランが遅くなったかを示します。",
-                "jsonb は整形し、uuid、inet、timestamptz、interval と bytea はそれぞれの形式で表示します。配列カラムはリストエディタで開き、個々の要素を追加、削除、並べ替え、NULL にできます。enum カラムでは定義済みのラベルを選べます。",
+                "SQL エディターはスキーマからテーブル名とカラム名を補完します。<explain>EXPLAIN と EXPLAIN ANALYZE</explain> は FORMAT JSON で実行し、プラン図やツリーで表示します。EXPLAIN Compare は変更後にプランが遅くなったかを示します。",
+                "jsonb は整形し、uuid、inet、timestamptz、interval と bytea はそれぞれの形式で表示します。配列カラムはリストエディターで開き、個々の要素を追加、削除、並べ替え、NULL にできます。enum カラムでは定義済みのラベルを選べます。",
                 "PostGIS の geometry と geography 値は SRID 付き EWKT として読み取り、ジオメトリを含む結果は <results>地図ビュー</results> で開けます。地図タイルは Apple が提供し、行データは Mac に残ります。",
-                "行の編集は保存まで保留し、<editing>Preview SQL</editing> が文をすべて先に表示します。保存にはバインドパラメータを使います。マテリアライズドビューの行は読み取り専用です。メニューから更新でき、PostgreSQL が要求する一意インデックスがあれば並行更新できます。"
+                "行の編集は保存まで保留し、<editing>Preview SQL</editing> が文をすべて先に表示します。保存にはバインドパラメーターを使います。マテリアライズドビューの行は読み取り専用です。メニューから更新でき、PostgreSQL が要求する一意インデックスがあれば並行更新できます。"
             ],
             "asset": "mac-result-map"
         },
@@ -94,8 +94,8 @@
             "engine": "cockroachdb",
             "title": "CockroachDB",
             "paragraphs": [
-                "CockroachDB はアプリに同梱した PostgreSQL ドライバーを使い、インストールは不要です。新しいクラスタは <code>defaultdb</code> データベースで始まります。",
-                "CockroachDB Cloud では Cloud コンソールからホスト、ユーザー、パスワードとデータベースをコピーし、クラスタのルーティング値 <code>--cluster=your-cluster</code> を Connection Options に入れ、SSL Mode を Verify Identity にします。ローカルの安全でないノードでは SSL Mode を Disabled にします。",
+                "CockroachDB はアプリに同梱した PostgreSQL ドライバーを使い、インストールは不要です。新しいクラスターは <code>defaultdb</code> データベースで始まります。",
+                "CockroachDB Cloud では Cloud コンソールからホスト、ユーザー、パスワードとデータベースをコピーし、クラスターのルーティング値 <code>--cluster=your-cluster</code> を Connection Options に入れ、SSL Mode を Verify Identity にします。ローカルの安全でないノードでは SSL Mode を Disabled にします。",
                 "テーブルとビューの DDL は CockroachDB 独自の SHOW CREATE から取得します。EXPLAIN と EXPLAIN ANALYZE のテキストプランを解析してプランツリーにし、Server Dashboard はセッションと実行中のクエリを一覧表示します。",
                 "外部キーの検査は遅延できません。"
             ]

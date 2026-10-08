@@ -15,7 +15,7 @@
         "tablepro": [
             "Prefieres no instalar nada en el servidor y trabajar desde tu Mac, conectándote directamente o por SSH.",
             "También usas PostgreSQL, SQL Server, SQLite, Redis u otros motores.",
-            "Quieres un nivel de modo seguro para cada conexión, como Solo lectura para producción, o Touch ID antes de escribir.",
+            "Quieres un nivel de Safe Mode para cada conexión, como Read-Only para producción, o Touch ID antes de escribir.",
             "Importas y exportas datos con frecuencia. Importar archivos CSV, JSON, XLSX o SQL y exportarlos es gratuito.",
             "Quieres un asistente de IA y un servidor MCP, gratuitos en la app para Mac."
         ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "Cada conexión tiene un nivel de <link>modo seguro</link>, desde Silencioso hasta Solo lectura, con Touch ID en los niveles más estrictos.",
+                "text": "Cada conexión tiene un nivel de <link>Safe Mode</link>, desde Silent hasta Read-Only, con Touch ID en los niveles más estrictos.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -170,11 +170,11 @@
         ]
     },
     "switching": {
-        "intro": "TablePro no tiene importador para phpMyAdmin. Usa los datos de MySQL o SSH que te facilite tu proveedor: completa el formulario de conexión o pega una URL que empiece por mysql:// en <ui>Archivo > Importar > Importar desde URL…</ui>",
+        "intro": "TablePro no tiene importador para phpMyAdmin. Usa los datos de MySQL o SSH que te facilite tu proveedor: completa el formulario de conexión o pega una URL que empiece por mysql:// en <ui>File > Import > Import from URL…</ui>",
         "steps": [],
         "after": [
-            "Si el código del sitio está en tu Mac, <ui>Archivo > Importar > Abrir carpeta de proyecto…</ui> lee la configuración de la base de datos desde archivos como wp-config.php o .env y abre el formulario de conexión ya completado.",
-            "Para una base de datos de producción, configura el nivel de modo seguro de la conexión antes de empezar.",
+            "Si el código del sitio está en tu Mac, <ui>File > Import > Open Project Folder…</ui> lee la configuración de la base de datos desde archivos como wp-config.php o .env y abre el formulario de conexión ya completado.",
+            "Para una base de datos de producción, configura el nivel de Safe Mode de la conexión antes de empezar.",
             "Los archivos SQL exportados de phpMyAdmin se pueden importar a cualquier conexión MySQL o MariaDB, comprimidos con gzip o sin comprimir."
         ],
         "docs": null

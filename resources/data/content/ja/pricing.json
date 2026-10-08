@@ -16,7 +16,7 @@
     },
     "features": {
         "title": "有料プランで追加される機能",
-        "lead": "有料プランが必要な機能はこれだけで、すべて Mac アプリの機能です。Team は Starter のすべてを含みます。対応するすべてのエンジンへの接続、AI アシスタント、MCP サーバー、セーフモードにライセンスは不要です。"
+        "lead": "有料プランが必要な機能はこれだけで、すべて Mac アプリの機能です。Team は Starter のすべてを含みます。対応するすべてのエンジンへの接続、AI アシスタント、MCP サーバー、Safe Mode にライセンスは不要です。"
     },
     "license": {
         "title": "ライセンスの仕組み",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "お支払い",
-        "merchant": "{merchant} は TablePro の正式な販売者です。プランの販売、支払いの受け取り、請求先住所に基づく売上税や VAT の計算、領収書と請求書のメール送信を行います。価格は米ドルで表示しています。",
+        "merchant": "{merchant} は TablePro の merchant of record です。プランの販売、支払いの受け取り、請求先住所に基づく売上税や VAT の計算、領収書と請求書のメール送信を行います。価格は米ドルで表示しています。",
         "renewal": "月払いと年払いのプランは、<account>アカウント</account>または {merchant} のカスタマーポータルで解約するまで自動更新されます。解約後も支払い済みの期間が終わるまで利用でき、それまでに再開できます。更新の支払いに失敗した場合、{merchant} はカード情報の更新リンクをメールで送り、約 3 週間にわたり決済を再試行します。",
         "portal": "{merchant} 経由で購入した場合、請求書、領収書、支払い方法、解約は <portal>{merchant} のカスタマーポータル</portal>で管理できます。購入時のメールアドレスでログインしてください。アカウントの <account>Billing & invoices</account> からも開けます。"
     },
@@ -81,7 +81,7 @@
             },
             "ios-license": {
                 "question": "iPhone・iPad アプリにライセンスは必要ですか？",
-                "answer": "いいえ。有料機能はなく、ライセンスを求めることもありません。iPhone・iPad での iCloud 同期は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"
+                "answer": "いいえ。有料機能はなく、ライセンスを求めることもありません。iPhone・iPad での iCloud Sync は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"
             },
             "seats": {
                 "question": "Team の 1 シートは 1 人分ですか？",

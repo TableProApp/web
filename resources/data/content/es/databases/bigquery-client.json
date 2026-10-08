@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Cliente de Google BigQuery para {devices}",
-        "description": "Consulta BigQuery con cuenta de servicio, ADC u OAuth. Simula bytes y coste, limita los bytes facturados y exporta a Cloud Storage."
+        "description": "Consulta BigQuery con cuenta de servicio, ADC u OAuth. Revisa bytes y coste con Dry Run, limita el gasto con Max Bytes Billed y exporta a Cloud Storage."
     },
     "og": {
         "kicker": "Bases de datos",
@@ -26,17 +26,17 @@
             "id": "connect",
             "title": "Inicia sesión en Google Cloud",
             "paragraphs": [
-                "Elige un <ui>Método de autenticación</ui> e introduce el <ui>ID del proyecto</ui>: el ID, no su nombre ni su número. <ui>Application Default Credentials</ui> lee el archivo creado por <code>gcloud auth application-default login</code>, por lo que es la vía más directa si gcloud ya está configurado. <ui>Clave de cuenta de servicio</ui> acepta un archivo de clave .json o el JSON pegado.",
+                "Elige un <ui>Auth Method</ui> e introduce el <ui>Project ID</ui>: el ID, no su nombre ni su número. <ui>Application Default Credentials</ui> lee el archivo creado por <code>gcloud auth application-default login</code>, por lo que es la vía más directa si gcloud ya está configurado. <ui>Service Account Key</ui> acepta un archivo de clave .json o el JSON pegado.",
                 "Cuenta de Google (OAuth) inicia sesión en el navegador con un cliente OAuth de escritorio que creas en Google Cloud Console. El token de actualización se guarda en el Llavero, uno por cliente OAuth, por lo que las conexiones posteriores no abren el navegador. Cada cliente OAuth inicia sesión en una cuenta de Google; una segunda cuenta necesita otro cliente o su propio token de actualización.",
-                "Todo pasa por la API REST de BigQuery, así que no hay host, puerto, URL de conexión ni túnel SSH. <ui>Ubicación</ui> establece la ubicación de procesamiento enviada con cada trabajo. Más sobre <cloudAuth>autenticación en la nube</cloudAuth>."
+                "Todo pasa por la API REST de BigQuery, así que no hay host, puerto, URL de conexión ni túnel SSH. <ui>Location</ui> establece la ubicación de procesamiento enviada con cada trabajo. Más sobre <cloudAuth>autenticación en la nube</cloudAuth>."
             ]
         },
         {
             "id": "work",
             "title": "Consulta y controla el coste",
             "paragraphs": [
-                "Antes de ejecutar una consulta, elige <ui>Simulación (coste)</ui> en el menú <explain>Explicar</explain>. El resultado muestra los bytes que procesaría y facturaría la consulta, un indicador de acierto de caché y un coste estimado en dólares estadounidenses; la consulta no se ejecuta.",
-                "Tras la ejecución, la barra de estado muestra los bytes procesados, los facturados y una estimación a la tarifa bajo demanda, e indica los aciertos de caché. Para fijar un límite estricto, configura <ui>Máximo de bytes facturados</ui> en la pestaña Avanzado de la conexión: BigQuery rechazará un trabajo que lo supere en lugar de ejecutarlo.",
+                "Antes de ejecutar una consulta, elige <ui>Dry Run (Cost)</ui> en el menú <explain>Explain</explain>. El resultado muestra los bytes que procesaría y facturaría la consulta, un indicador de acierto de caché y un coste estimado en dólares estadounidenses; la consulta no se ejecuta.",
+                "Tras la ejecución, la barra de estado muestra los bytes procesados, los facturados y una estimación a la tarifa bajo demanda, e indica los aciertos de caché. Para fijar un límite estricto, configura <ui>Max Bytes Billed</ui> en la pestaña Advanced de la conexión: BigQuery rechazará un trabajo que lo supere en lugar de ejecutarlo.",
                 "El autocompletado, las comillas y el formato siguen GoogleSQL, con acentos graves alrededor de los nombres de tabla; las columnas STRUCT y ARRAY se muestran como JSON. Los conjuntos de datos actúan como bases de datos: aparecen en la barra lateral, <code>⌘K</code> permite cambiar entre ellos y cada pestaña permanece en el conjunto con el que se abrió. Se consulta el estado del trabajo hasta el tiempo de espera de consulta y después se cancela; con Sin límite, TablePro espera hasta que termine.",
                 "Las celdas, inserciones y eliminaciones pasan por la <editing>cuadrícula</editing>. UPDATE y DELETE identifican una fila por su clave primaria declarada; en tablas sin ella, comparan todas las columnas salvo ARRAY, JSON y GEOGRAPHY, por lo que las filas idénticas cambian juntas. Declara <code>PRIMARY KEY (…) NOT ENFORCED</code> para editar una sola fila con precisión. En una tabla particionada, escribe UPDATE y DELETE con un filtro de partición en el editor."
             ]
@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "Conjuntos de datos y DDL",
             "paragraphs": [
-                "Ejecuta DDL desde el editor, como <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> y <code>CREATE OR REPLACE VIEW</code>. <ui>Nueva base de datos…</ui> crea un conjunto de datos con <code>CREATE SCHEMA</code>, y puedes renombrar tablas desde la barra lateral. La pestaña DDL lee cada definición de <code>INFORMATION_SCHEMA.TABLES</code>; la agrupación en clústeres y las particiones aparecen en Índices."
+                "Ejecuta DDL desde el editor, como <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code> y <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> crea un conjunto de datos con <code>CREATE SCHEMA</code>, y puedes renombrar tablas desde la barra lateral. La pestaña DDL lee cada definición de <code>INFORMATION_SCHEMA.TABLES</code>; la agrupación en clústeres y las particiones aparecen en Indexes."
             ]
         },
         {
@@ -53,7 +53,7 @@
             "title": "Transfiere datos",
             "paragraphs": [
                 "TablePro no ofrece importación para BigQuery. <export>Exporta</export> una tabla o el resultado de una consulta a tu Mac como {exportFormats}.",
-                "<backup>Exportación en el servidor</backup> descarga una tabla con <code>EXPORT DATA</code> a un prefijo <code>gs://</code> como CSV, Parquet o JSON delimitado por saltos de línea, en fragmentos bajo ese prefijo. Se ejecuta en tu conexión con tus permisos, el cuadro espera hasta que termine y no se escribe ningún archivo en tu Mac."
+                "<backup>Server-Side Export</backup> descarga una tabla con <code>EXPORT DATA</code> a un prefijo <code>gs://</code> como CSV, Parquet o JSON delimitado por saltos de línea, en fragmentos bajo ese prefijo. Se ejecuta en tu conexión con tus permisos, el cuadro espera hasta que termine y no se escribe ningún archivo en tu Mac."
             ]
         }
     ],
@@ -77,7 +77,7 @@
             "href": "/features/connections#cloud-auth"
         },
         {
-            "label": "Exportación, copias de seguridad y Exportación en el servidor",
+            "label": "Exportación, copias de seguridad y Server-Side Export",
             "href": "/features/import-export#backup"
         },
         {

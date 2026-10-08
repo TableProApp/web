@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Elige un <ui>Método de autenticación</ui> y una <ui>Región AWS</ui>; la barra lateral muestra sus tablas. Los métodos son una clave de acceso con token de sesión opcional, un perfil de <code>~/.aws/config</code> y <code>~/.aws/credentials</code> leído como lo hace la CLI de AWS, o un perfil de <cloudAuth>AWS IAM Identity Center</cloudAuth>, que abre la solicitud de inicio de sesión cuando este caduca.",
+                "Elige un <ui>Auth Method</ui> y una <ui>AWS Region</ui>; la barra lateral muestra sus tablas. Los métodos son una clave de acceso con token de sesión opcional, un perfil de <code>~/.aws/config</code> y <code>~/.aws/credentials</code> leído como lo hace la CLI de AWS, o un perfil de <cloudAuth>AWS IAM Identity Center</cloudAuth>, que abre la solicitud de inicio de sesión cuando este caduca.",
                 "Los perfiles resuelven auxiliares <code>credential_process</code> y cadenas <code>role_arn</code>; las credenciales temporales caducadas se obtienen de nuevo y la solicitud se reintenta una vez. Cada solicitud va por HTTPS, firmada con Signature Version 4, así que no hay ajuste SSL ni túnel SSH. Una región en otra partición AWS, como China o European Sovereign Cloud, accede a su propio endpoint sin configurar uno personalizado.",
-                "Para DynamoDB Local, ejecuta <code>docker run -p 8000:8000 amazon/dynamodb-local</code> y elige <ui>DynamoDB Local (sin credenciales)</ui>; deja <ui>Endpoint personalizado</ui> vacío para el puerto 8000. Un endpoint personalizado solo puede usar HTTP sin cifrar en este Mac. La guía enumera <permissions>las acciones IAM necesarias para cada tarea</permissions>."
+                "Para DynamoDB Local, ejecuta <code>docker run -p 8000:8000 amazon/dynamodb-local</code> y elige <ui>DynamoDB Local (no credentials)</ui>; deja <ui>Custom Endpoint</ui> vacío para el puerto 8000. Un endpoint personalizado solo puede usar HTTP sin cifrar en este Mac. La guía enumera <permissions>las acciones IAM necesarias para cada tarea</permissions>."
             ]
         },
         {
@@ -37,9 +37,9 @@
             "paragraphs": [
                 "Abrir, filtrar y paginar una tabla pasa por un mismo planificador. Fija la clave de partición con = para ejecutar Query en una partición; los filtros que coinciden con las claves de un índice ejecutan Query en ese índice; lo demás ejecuta Scan, que lee toda la tabla y factura cada elemento leído. La barra de estado indica la lectura elegida, los elementos devueltos, los que DynamoDB leyó para encontrarlos y las unidades de capacidad de lectura consumidas.",
                 "Un <filters>filtro</filters> en la clave de ordenación se integra en la condición de clave si usa =, <, <=, >, >=, BETWEEN o STARTS WITH. Los demás se convierten en FilterExpression, aplicada por DynamoDB después de leer: reducen las filas, no la factura. Filtra un atributo anidado con una ruta como <code>address.city</code> o <code>items[0].sku</code>.",
-                "Pulsar el encabezado de la clave de ordenación en una Query de una partición hace que DynamoDB devuelva los elementos en ese orden. Cualquier otra ordenación se hace en la cuadrícula cuando la lectura incluye todos los elementos coincidentes; la barra de estado avisa cuando no es así. La página siguiente continúa donde terminó la anterior. El total bajo la cuadrícula es el recuento de DynamoDB; <ui>Contar exactamente</ui> lee todos los elementos que cumplen los filtros y esa lectura se factura íntegramente.",
+                "Pulsar el encabezado de la clave de ordenación en una Query de una partición hace que DynamoDB devuelva los elementos en ese orden. Cualquier otra ordenación se hace en la cuadrícula cuando la lectura incluye todos los elementos coincidentes; la barra de estado avisa cuando no es así. La página siguiente continúa donde terminó la anterior. El total bajo la cuadrícula es el recuento de DynamoDB; <ui>Count Exactly</ui> lee todos los elementos que cumplen los filtros y esa lectura se factura íntegramente.",
                 "Una tabla solo declara sus claves, por lo que las columnas provienen de los elementos: atributos de clave, atributos encontrados en una muestra de los primeros elementos y los de la página visible. Los mapas, listas y conjuntos se muestran como JSON y se abren en su editor; los números conservan todos sus dígitos.",
-                "Cada fila modificada se guarda como una sentencia PartiQL y <editing>cada valor conserva su tipo</editing>: Number sigue siendo Number, un String como <code>02134</code> sigue siendo String y un String Set editado como JSON vuelve como String Set. Una actualización compara cada atributo modificado con el valor cargado en la cuadrícula; falla en lugar de sobrescribir cambios ajenos. <ui>Establecer NULL</ui> elimina el atributo.",
+                "Cada fila modificada se guarda como una sentencia PartiQL y <editing>cada valor conserva su tipo</editing>: Number sigue siendo Number, un String como <code>02134</code> sigue siendo String y un String Set editado como JSON vuelve como String Set. Una actualización compara cada atributo modificado con el valor cargado en la cuadrícula; falla en lugar de sobrescribir cambios ajenos. <ui>Set NULL</ui> elimina el atributo.",
                 "El editor acepta PartiQL, con comillas dobles para nombres y simples para cadenas, o el nombre de una acción DynamoDB seguido del JSON de solicitud, como <code>Query</code>, <code>BatchWriteItem</code> o <code>TransactWriteItems</code>. Cualquier otro nombre de acción se rechaza. Los elementos vuelven en la cuadrícula; las demás respuestas, como JSON. Las solicitudes limitadas se reintentan con espera creciente, y <code>⌘.</code> detiene una sentencia en ejecución."
             ]
         },
@@ -47,15 +47,15 @@
             "id": "schema",
             "title": "Tablas e índices",
             "paragraphs": [
-                "<ui>Nueva tabla…</ui> abre un formulario para las claves de partición y ordenación, capacidad bajo demanda o provisionada, clase de tabla, protección contra eliminación e índices secundarios; <ui>Vista previa</ui> muestra la solicitud <code>CreateTable</code> antes de enviarla. Un índice secundario local solo puede definirse ahí, al crear la tabla.",
-                "En Estructura añades o eliminas un índice secundario global, un cambio por guardado, porque DynamoDB acepta uno por solicitud <code>UpdateTable</code>. Los atributos no se editan ahí: escribe uno en un elemento para que aparezca como columna. DDL muestra la solicitud <code>CreateTable</code> que recrea la tabla, con sus ajustes de Time to Live y recuperación a un punto en el tiempo."
+                "<ui>New Table…</ui> abre un formulario para las claves de partición y ordenación, capacidad bajo demanda o provisionada, clase de tabla, protección contra eliminación e índices secundarios; <ui>Preview</ui> muestra la solicitud <code>CreateTable</code> antes de enviarla. Un índice secundario local solo puede definirse ahí, al crear la tabla.",
+                "En Structure añades o eliminas un índice secundario global, un cambio por guardado, porque DynamoDB acepta uno por solicitud <code>UpdateTable</code>. Los atributos no se editan ahí: escribe uno en un elemento para que aparezca como columna. DDL muestra la solicitud <code>CreateTable</code> que recrea la tabla, con sus ajustes de Time to Live y recuperación a un punto en el tiempo."
             ]
         },
         {
             "id": "operate",
             "title": "Ajustes de tabla",
             "paragraphs": [
-                "Haz clic derecho en una tabla y elige <ui>Mantenimiento</ui> para recuperación a un punto en el tiempo, protección contra eliminación, el flujo, clase de tabla, cambio a capacidad bajo demanda y desactivación de Time to Live. Eliminar una tabla envía <code>DeleteTable</code>, que falla si está activa la protección contra eliminación."
+                "Haz clic derecho en una tabla y elige <ui>Maintenance</ui> para recuperación a un punto en el tiempo, protección contra eliminación, el flujo, clase de tabla, cambio a capacidad bajo demanda y desactivación de Time to Live. Eliminar una tabla envía <code>DeleteTable</code>, que falla si está activa la protección contra eliminación."
             ]
         },
         {
@@ -77,7 +77,7 @@
         {
             "id": "change-key",
             "question": "¿Cómo cambio la clave de un elemento?",
-            "answer": "Un atributo de clave no puede editarse directamente. Usa <ui>Duplicar fila</ui>, que copia todos los atributos salvo las claves, asigna la nueva clave a la copia, guarda y elimina el original."
+            "answer": "Un atributo de clave no puede editarse directamente. Usa <ui>Duplicate Row</ui>, que copia todos los atributos salvo las claves, asigna la nueva clave a la copia, guarda y elimina el original."
         },
         {
             "id": "transactions",

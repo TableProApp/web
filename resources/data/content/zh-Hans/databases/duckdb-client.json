@@ -32,8 +32,8 @@
             "paragraphs": [
                 "选择 <code>.duckdb</code> 或 <code>.ddb</code> 文件，或输入尚不存在的路径来创建。输入 <code>:memory:</code> 可创建仅在会话期间存在的数据库。DuckDB 在文件开头字节中标识格式，因此无论文件名如何均可识别并打开。",
                 "选择 <code>.parquet</code>、<code>.csv</code>、<code>.tsv</code>、<code>.json</code> 或 <code>.ndjson</code>，会在内存数据库中作为只读视图打开，一个名为 <code>file</code>，另一个以文件名命名。磁盘文件保持逐字节不变；要修改内容，请在 <code>.duckdb</code> 数据库中从文件创建表。",
-                "在 Finder 双击 <code>.duckdb</code> 即可在此打开。Parquet 文件的“打开方式”列出 TablePro，通过 <ui>File > Open File</ui> 选择 Parquet 会打开为 DuckDB 连接，而非进入 <dataFiles>Data Files 窗口</dataFiles>。",
-                "<ui>Remote (Quack, experimental)</ui> 连接由 <code>quack_serve</code> 启动的 DuckDB 服务器，并以 <code>remotedb</code> 等别名挂载，通过该别名访问表。首次远程连接从 DuckDB 下载 <code>quack</code> 扩展。"
+                "在 Finder 双击 <code>.duckdb</code> 即可在此打开。Parquet 文件的“打开方式”列出 TablePro，通过<ui>文件 > 打开文件</ui>（File > Open File）选择 Parquet 会打开为 DuckDB 连接，而非进入 <dataFiles>Data Files 窗口</dataFiles>。",
+                "<ui>远程（Quack，实验性）</ui>（Remote (Quack, experimental)）连接由 <code>quack_serve</code> 启动的 DuckDB 服务器，并以 <code>remotedb</code> 等别名挂载，通过该别名访问表。首次远程连接从 DuckDB 下载 <code>quack</code> 扩展。"
             ]
         },
         {
@@ -46,7 +46,7 @@
         },
         {
             "id": "schema",
-            "title": "结构",
+            "title": "Structure",
             "paragraphs": [
                 "<structure>Structure 标签页</structure> 编辑表并在执行前显示 DDL。此处数据库为文件，因此不能从应用创建或删除数据库；访问第二个文件请用 <code>ATTACH</code>。"
             ]
@@ -55,7 +55,7 @@
             "id": "operate",
             "title": "共享文件并备份",
             "paragraphs": [
-                "TablePro 持有文件时，<code>duckdb</code> CLI、notebook 或 dbt 无法打开。设置 <ui>Release the File Lock After</ui> 可在空闲数分钟后释放，下次查询再获取；<ui>Open the File Read-Only</ui> 允许多个读取者共享。<ui>Database > Release File Lock</ui> 立即释放并保留标签页。会话若持有未结束事务、临时表、挂载数据库或已修改设置，会拒绝释放并说明原因。",
+                "TablePro 持有文件时，<code>duckdb</code> CLI、notebook 或 dbt 无法打开。设置 <ui>Release the File Lock After</ui> 可在空闲数分钟后释放，下次查询再获取；<ui>Open the File Read-Only</ui> 允许多个读取者共享。<ui>数据库 > Release File Lock</ui>（Database > Release File Lock）立即释放并保留标签页。会话若持有未结束事务、临时表、挂载数据库或已修改设置，会拒绝释放并说明原因。",
                 "<dashboard>Server Dashboard</dashboard> 显示数据库大小、块大小、总块数、内存上限和线程数。",
                 "<backup>Backup Dump</backup> 无需安装，因为 {dumpTool} 通过已打开连接写入。可选择供日后在 TablePro 还原的 <code>.duckdb</code> 文件，或含 <code>schema.sql</code>、<code>load.sql</code> 及每表一个 Parquet 文件的文件夹，pandas、Spark 和 BigQuery 可直接读取。Restore Dump 在首个名称已被占用的对象处停止。"
             ]

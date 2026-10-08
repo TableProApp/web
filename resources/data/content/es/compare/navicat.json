@@ -13,7 +13,7 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "Quieres una app gratuita que ya incluya el asistente de IA, el servidor MCP y el modo seguro, con un plan de pago solo para funciones como {starterExamples}.",
+            "Quieres una app gratuita que ya incluya el asistente de IA, el servidor MCP y Safe Mode, con un plan de pago solo para funciones como {starterExamples}.",
             "Quieres un cliente de código abierto. TablePro es de código abierto bajo AGPLv3, incluido el código de sus funciones de pago.",
             "Quieres una sola app gratuita para iPhone y iPad con varios motores, en lugar de apps de pago independientes para cada motor.",
             "Usas motores que Navicat Premium no incluye, como ClickHouse, DuckDB o Cassandra."
@@ -30,7 +30,7 @@
     "rows": {
         "schemaSync": {
             "label": "Sincronización de estructura",
-            "tablepro": "Comparar y sincronizar, para estructura y datos, en Starter"
+            "tablepro": "Compare & Sync, para estructura y datos, en Starter"
         },
         "dataModeling": {
             "label": "Modelado de datos",
@@ -86,13 +86,13 @@
                 "href": null
             },
             {
-                "text": "La app gratuita se conecta a todos los motores compatibles e incluye el asistente de IA, el servidor MCP y el modo seguro. Los <link>planes de pago</link> añaden funciones como {starterExamples}.",
+                "text": "La app gratuita se conecta a todos los motores compatibles e incluye el asistente de IA, el servidor MCP y Safe Mode. Los <link>planes de pago</link> añaden funciones como {starterExamples}.",
                 "cite": [],
                 "feature": null,
                 "href": "/pricing"
             },
             {
-                "text": "Ambos sincronizan la estructura. <link>Comparar y sincronizar</link> de TablePro compara la estructura o los datos de dos bases de datos y genera un script con las diferencias, reteniendo las instrucciones que destruyen datos hasta que las autorices. Forma parte de Starter.",
+                "text": "Ambos sincronizan la estructura. <link>Compare & Sync</link> de TablePro compara la estructura o los datos de dos bases de datos y genera un script con las diferencias, reteniendo las instrucciones que destruyen datos hasta que las autorices. Forma parte de Starter.",
                 "cite": [
                     "cells.schemaSync"
                 ],
@@ -155,10 +155,10 @@
     "switching": {
         "intro": "TablePro importa conexiones de Navicat desde un archivo exportado en Navicat, así que el traslado empieza allí. La configuración propia de Navicat no se lee ni se modifica.",
         "steps": [
-            "En Navicat, elige <ui>Archivo > Exportar conexiones…</ui>, selecciona las conexiones, activa <ui>Exportar contraseña</ui> y guarda el archivo .ncx.",
-            "En TablePro, elige <ui>Archivo > Importar > Importar desde otra app…</ui>",
-            "Selecciona Navicat, activa <ui>Incluir contraseñas</ui>, haz clic en <ui>Continuar</ui> y elige el archivo .ncx. TablePro descifra las contraseñas guardadas, así que no hay nada que autorizar en el llavero.",
-            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Importar</ui>. Se trasladan la configuración de túneles SSH y SSL. Las conexiones a bases de datos que TablePro no admite llegan sin marcar.",
+            "En Navicat, elige <ui>File > Export Connections…</ui>, selecciona las conexiones, activa <ui>Export Password</ui> y guarda el archivo .ncx.",
+            "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
+            "Selecciona Navicat, activa <ui>Include passwords</ui>, haz clic en <ui>Continue</ui> y elige el archivo .ncx. TablePro descifra las contraseñas guardadas, así que no hay nada que autorizar en el llavero.",
+            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Import</ui>. Se trasladan la configuración de túneles SSH y SSL. Las conexiones a bases de datos que TablePro no admite llegan sin marcar.",
             "Antes de eliminar Navicat, abre una conexión que tuviera contraseña para comprobar que se ha trasladado."
         ],
         "after": [
@@ -172,7 +172,7 @@
         {
             "id": "premium-lite",
             "question": "Navicat Premium Lite también es gratuito. ¿En qué se diferencia TablePro?",
-            "answer": "Ambos son gratuitos para trabajo comercial. Premium Lite ofrece las funciones básicas de Navicat. La app gratuita de TablePro se conecta a todos los motores compatibles e incluye el asistente de IA, el servidor MCP y el modo seguro; un plan Starter o Team añade funciones como {starterExamples}.",
+            "answer": "Ambos son gratuitos para trabajo comercial. Premium Lite ofrece las funciones básicas de Navicat. La app gratuita de TablePro se conecta a todos los motores compatibles e incluye el asistente de IA, el servidor MCP y Safe Mode; un plan Starter o Team añade funciones como {starterExamples}.",
             "href": null
         },
         {

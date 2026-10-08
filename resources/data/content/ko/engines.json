@@ -18,7 +18,7 @@
             "no-named-instances": "명명된 인스턴스는 지원하지 않습니다. 인스턴스의 TCP 포트로 연결하세요.",
             "no-ntlm": "NTLM은 지원하지 않습니다. SQL Server 로그인, Kerberos 또는 Microsoft Entra ID를 사용하세요.",
             "no-explain": "SQL Server용 EXPLAIN 또는 실행 계획 화면은 없습니다.",
-            "scripts-not-in-transaction": "SQL Server Management Studio와 마찬가지로 스크립트는 TablePro가 여는 트랜잭션 밖에서 실행됩니다. 오류 전에 실행된 문은 적용된 상태로 남습니다.",
+            "scripts-not-in-transaction": "SQL Server Management Studio와 마찬가지로 스크립트는 TablePro가 여는 트랜잭션 밖에서 실행됩니다. 오류 전에 실행된 명령문은 적용된 상태로 남습니다.",
             "ios-tls-not-verified": "iPhone 및 iPad에서는 TLS를 필수로 설정할 수 있지만 서버 인증서는 검증하지 않습니다."
         }
     },
@@ -59,7 +59,7 @@
         }
     },
     "tidb": {
-        "tagline": "MySQL 드라이버로 TiDB와 TiDB Cloud에 연결하며 중지 시 KILL TIDB QUERY를 보냅니다.",
+        "tagline": "MySQL 드라이버로 TiDB와 TiDB Cloud에 연결하며 Stop은 KILL TIDB QUERY를 보냅니다.",
         "limits": {
             "no-triggers-or-routines": "트리거, 저장 루틴 및 이벤트는 없습니다.",
             "no-dashboard-or-dump": "Server Dashboard 및 Backup Dump는 없습니다. 대신 TiDB의 Dumpling으로 내보내세요.",
@@ -103,7 +103,7 @@
         "limits": {
             "needs-socket-server": "PGlite는 @electric-sql/pglite-socket으로 제공해야 하며 직접 시작하고 계속 실행해야 합니다.",
             "single-client": "소켓 서버는 한 번에 클라이언트 하나만 허용합니다.",
-            "cancel-has-no-effect": "취소는 효과가 없습니다. 쿼리는 항상 완료될 때까지 실행됩니다."
+            "cancel-has-no-effect": "Cancel은 효과가 없습니다. 쿼리는 항상 완료될 때까지 실행됩니다."
         }
     },
     "oracle": {
@@ -136,7 +136,7 @@
         "tagline": "접점, TLS 및 Amazon Keyspaces SigV4 로그인을 지원하는 CQL.",
         "limits": {
             "scalar-edits-only": "그리드에서는 스칼라 열만 편집할 수 있습니다. 컬렉션, 튜플, 사용자 정의 유형 및 기간은 편집기에서 UPDATE가 필요합니다.",
-            "no-consistency-level": "일관성 수준 설정은 없습니다. 실행문은 드라이버 기본값인 LOCAL_ONE으로 실행됩니다.",
+            "no-consistency-level": "일관성 수준 설정은 없습니다. 명령문은 드라이버 기본값인 LOCAL_ONE으로 실행됩니다.",
             "no-astra-bundle": "보안 연결 번들을 로드할 수 없어 DataStax Astra DB에는 연결할 수 없습니다.",
             "no-views-or-types-in-sidebar": "구체화된 뷰와 사용자 정의 유형은 사이드바에 표시되지 않습니다."
         }
@@ -168,7 +168,7 @@
     "cloudflare-d1": {
         "tagline": "Cloudflare 계정의 모든 D1 데이터베이스에 D1 HTTP API로 연결합니다.",
         "limits": {
-            "no-session-state-or-transactions": "각 실행문은 별도의 HTTP 요청이며 세션 상태가 이어지지 않고 트랜잭션도 지원하지 않습니다."
+            "no-session-state-or-transactions": "각 명령문은 별도의 HTTP 요청이며 세션 상태가 이어지지 않고 트랜잭션도 지원하지 않습니다."
         }
     },
     "turso": {

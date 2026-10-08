@@ -44,7 +44,7 @@
         },
         {
             "id": "schema",
-            "title": "Struktur",
+            "title": "Structure",
             "paragraphs": [
                 "Tampilan DDL berasal dari <code>GET_DDL</code>. <structure>Tab Structure</structure> menambah, mengganti nama, dan menghapus kolom, menetapkan NOT NULL, komentar, dan primary key, memperlebar VARCHAR, serta mengubah presisi NUMBER pada skala yang sama.",
                 "Perubahan yang akan ditolak Snowflake diblokir sebelum dijalankan: memperkecil VARCHAR, perubahan jenis lainnya, dan menetapkan nilai default kolom yang baru. Menghapus default dapat dijalankan."

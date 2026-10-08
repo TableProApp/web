@@ -13,8 +13,8 @@ export default {
         },
         "resources": {
             "title": "資源",
-            "docs": "文件",
-            "changelog": "更新紀錄",
+            "docs": "文件（英文）",
+            "changelog": "更新紀錄（英文）",
             "blog": "部落格",
             "faq": "常見問題",
             "source": "原始碼",
@@ -45,7 +45,7 @@ export default {
     },
     "newsletter": {
         "title": "透過電子郵件接收版本說明",
-        "body": "不定期寄送版本說明郵件。每封郵件均附有取消訂閱連結。",
+        "body": "不定期寄送英文版本說明郵件。每封郵件均附有取消訂閱連結。",
         "note": "我們會先寄送確認連結給您。<link>隱私權政策</link>"
     },
     "bottom": {

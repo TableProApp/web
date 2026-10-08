@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "连接和登录",
             "paragraphs": [
-                "SurrealDB 无法从凭据判断用户定义在哪一级，所以由 <ui>Auth Level</ui> 指定，表单再要求其余信息。Root 使用用户名和密码，Namespace 增加命名空间，Database 再增加数据库。Record Access 需要命名空间、数据库、<code>DEFINE ACCESS</code> 定义的访问方式及登录字段。Token 接受已持有的 JWT，包括 SurrealDB Cloud 的令牌。",
+                "SurrealDB 无法从凭据判断用户定义在哪一级，所以由<ui>认证级别</ui>（Auth Level）指定，表单再要求其余信息。Root 使用用户名和密码，Namespace 增加命名空间，Database 再增加数据库。Record Access 需要命名空间、数据库、<code>DEFINE ACCESS</code> 定义的访问方式及登录字段。Token 接受已持有的 JWT，包括 SurrealDB Cloud 的令牌。",
                 "驱动通过 HTTP RPC 端点传输 CBOR，记录链接、日期时间、时长、小数和 UUID 保留类型。<code>surrealdb://</code> 链接打开已填好的连接表单，远程服务器可经 <network>SSH 隧道</network>访问。",
                 "SSL 默认 Disabled，即明文 HTTP，其他模式均使用 HTTPS。Verify CA、Verify Identity 对照系统信任库验证证书，忽略 SSL/TLS 面板的 CA 文件，因此请先在 macOS 安装私有 CA。"
             ]
@@ -42,7 +42,7 @@
         },
         {
             "id": "schema",
-            "title": "结构",
+            "title": "Structure",
             "paragraphs": [
                 "Structure 标签页只读。在编辑器用 <code>DEFINE FIELD</code>、<code>DEFINE INDEX</code> 创建修改字段和索引。从菜单删除命名空间或数据库，多选时对全部项目仅确认一次。"
             ]

@@ -28,7 +28,7 @@ export default {
                 "Koneksi ke semua mesin database yang didukung",
                 "Editor SQL dan grid data",
                 "Asisten AI dan server MCP",
-                "Mode Aman",
+                "Safe Mode",
                 "Aplikasi iPhone dan iPad"
             ]
         },
@@ -107,8 +107,8 @@ export default {
         },
         "macsTeam": "Satu per seat",
         "everythingElse": "Semua fitur lain dalam aplikasi",
-        "everythingElseDetail": "Semua mesin database yang didukung, editor SQL, asisten AI, server MCP, dan Mode Aman",
-        "iphoneNote": "Aplikasi iPhone dan iPad tidak memiliki fitur berbayar. Sinkronisasi iCloud gratis di sana; untuk sinkronisasi dengan Mac, Mac memerlukan Starter atau Team."
+        "everythingElseDetail": "Semua mesin database yang didukung, editor SQL, asisten AI, server MCP, dan Safe Mode",
+        "iphoneNote": "Aplikasi iPhone dan iPad tidak memiliki fitur berbayar. iCloud Sync gratis di sana; untuk sinkronisasi dengan Mac, Mac memerlukan Starter atau Team."
     },
     "discount": {
         "atCheckout": "Punya kode diskon? Masukkan saat checkout.",

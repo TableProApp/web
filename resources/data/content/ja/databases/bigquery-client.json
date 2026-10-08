@@ -27,7 +27,7 @@
             "title": "Google Cloud で認証",
             "paragraphs": [
                 "<ui>Auth Method</ui> を選び、名前や番号ではなく ID を <ui>Project ID</ui> に入力します。<ui>Application Default Credentials</ui> は <code>gcloud auth application-default login</code> が書くファイルを読むため、gcloud 設定済みなら最短の方法です。<ui>Service Account Key</ui> は .json 鍵ファイルまたは貼り付けた JSON を使います。",
-                "Google Account (OAuth) は Google Cloud Console で作成したデスクトップ OAuth クライアントでブラウザ認証します。更新トークンはクライアントごとに一つキーチェーンに保持し、次の接続ではブラウザ不要です。一つの OAuth クライアントで認証できるのは一つの Google アカウントなので、二つ目には別のクライアントか専用の更新トークンが必要です。",
+                "Google Account (OAuth) は Google Cloud Console で作成したデスクトップ OAuth クライアントでブラウザー認証します。更新トークンはクライアントごとに一つキーチェーンに保持し、次の接続ではブラウザー不要です。一つの OAuth クライアントで認証できるのは一つの Google アカウントなので、二つ目には別のクライアントか専用の更新トークンが必要です。",
                 "すべて BigQuery の REST API を使うため、ホスト、ポート、接続 URL や SSH トンネルはありません。<ui>Location</ui> は各ジョブに送る処理場所を設定します。<cloudAuth>クラウド認証</cloudAuth>も参照してください。"
             ]
         },
@@ -38,14 +38,14 @@
                 "実行前に <explain>Explain</explain> メニューの <ui>Dry Run (Cost)</ui> を選べます。処理・請求される予定のバイト数、キャッシュヒットフラグと米ドルの推定費用を表示し、クエリ自体は実行しません。",
                 "実行後のステータスバーは処理バイト数、請求バイト数とオンデマンド料金での推定費用を表示し、キャッシュヒットを示します。厳密な上限には Advanced タブの <ui>Max Bytes Billed</ui> を設定します。BigQuery は超えるジョブを実行せず拒否します。",
                 "補完、引用と整形は GoogleSQL に従い、テーブル名をバッククォートで囲み、STRUCT と ARRAY は JSON 表示します。データセットがデータベースの役割を担い、サイドバーに表示します。<code>⌘K</code> で切り替え、各タブは開いたデータセットに留まります。ジョブはクエリタイムアウトまでポーリングしてキャンセルします。No limit なら完了まで待ちます。",
-                "セル、挿入と削除は <editing>グリッド</editing> で操作します。UPDATE と DELETE は宣言した主キーで特定し、なければ ARRAY、JSON、GEOGRAPHY 以外の全カラムで特定するため、同一行は一緒に変わります。一行を正確に編集するには <code>PRIMARY KEY (…) NOT ENFORCED</code> を宣言します。パーティションテーブルではエディタでパーティションフィルター付きの UPDATE と DELETE を書いてください。"
+                "セル、挿入と削除は <editing>グリッド</editing> で操作します。UPDATE と DELETE は宣言した主キーで特定し、なければ ARRAY、JSON、GEOGRAPHY 以外の全カラムで特定するため、同一行は一緒に変わります。一行を正確に編集するには <code>PRIMARY KEY (…) NOT ENFORCED</code> を宣言します。パーティションテーブルではエディターでパーティションフィルター付きの UPDATE と DELETE を書いてください。"
             ]
         },
         {
             "id": "schema",
             "title": "データセットと DDL",
             "paragraphs": [
-                "DDL はエディタで実行し、<code>CREATE SCHEMA</code>、<code>ALTER TABLE … ADD COLUMN</code>、<code>DROP COLUMN</code>、<code>CREATE OR REPLACE VIEW</code> などを使えます。<ui>New Database…</ui> は <code>CREATE SCHEMA</code> でデータセットを作り、テーブルはサイドバーから名前変更できます。DDL タブは <code>INFORMATION_SCHEMA.TABLES</code> から定義を取得し、クラスタリングとパーティションは Indexes に表示します。"
+                "DDL はエディターで実行し、<code>CREATE SCHEMA</code>、<code>ALTER TABLE … ADD COLUMN</code>、<code>DROP COLUMN</code>、<code>CREATE OR REPLACE VIEW</code> などを使えます。<ui>New Database…</ui> は <code>CREATE SCHEMA</code> でデータセットを作り、テーブルはサイドバーから名前変更できます。DDL タブは <code>INFORMATION_SCHEMA.TABLES</code> から定義を取得し、クラスタリングとパーティションは Indexes に表示します。"
             ]
         },
         {
@@ -77,7 +77,7 @@
             "href": "/features/connections#cloud-auth"
         },
         {
-            "label": "エクスポート、バックアップとサーバー側エクスポート",
+            "label": "エクスポート、バックアップと Server-Side Export",
             "href": "/features/import-export#backup"
         },
         {

@@ -35,7 +35,7 @@
         },
         "userManager": {
             "label": "Benutzer und Berechtigungen",
-            "tablepro": "Benutzer und Rollen für MySQL, MariaDB und PostgreSQL, mit Berechtigungen bis auf Spaltenebene und SQL-Anzeige vor der Ausführung"
+            "tablepro": "Users & Roles für MySQL, MariaDB und PostgreSQL, mit Berechtigungen bis auf Spaltenebene und SQL-Anzeige vor der Ausführung"
         },
         "bundles": {
             "label": "Bundles",
@@ -109,7 +109,7 @@
                 "href": "/mysql-client"
             },
             {
-                "text": "<link>Vergleichen und synchronisieren</link> vergleicht die Struktur oder Daten zweier Datenbanken und erstellt das Skript, das eine an die andere anpasst. Die Funktion gehört zu Starter.",
+                "text": "<link>Compare & Sync</link> vergleicht die Struktur oder Daten zweier Datenbanken und erstellt das Skript, das eine an die andere anpasst. Die Funktion gehört zu Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -156,10 +156,10 @@
     "switching": {
         "intro": "TablePro liest die von Sequel Ace gespeicherten Favoriten und dessen Passwörter im macOS-Schlüsselbund. Sequel Ace muss nicht geöffnet sein, und seine Dateien werden nicht verändert.",
         "steps": [
-            "Wähle in TablePro <ui>Ablage > Importieren > Aus anderer App importieren…</ui>",
-            "Wähle Sequel Ace. Aktiviere <ui>Passwörter einschließen</ui>, um gespeicherte Datenbank- und SSH-Passwörter aus dem macOS-Schlüsselbund zu lesen.",
-            "macOS fragt für jedes gespeicherte Passwort einmal nach deinem Anmeldepasswort. Wähle bei jeder Abfrage <ui>Immer erlauben</ui>. Wenn du eine Abfrage abbrichst, werden die übrigen Passwörter übersprungen.",
-            "Prüfe die Liste, lege den Umgang mit Duplikaten fest und klicke auf <ui>Importieren</ui>. Gruppen, Verbindungsfarben, SSH-Tunnel und SSL-Einstellungen werden übernommen.",
+            "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
+            "Wähle Sequel Ace. Aktiviere <ui>Include passwords</ui>, um gespeicherte Datenbank- und SSH-Passwörter aus dem macOS-Schlüsselbund zu lesen.",
+            "macOS fragt für jedes gespeicherte Passwort einmal nach deinem Anmeldepasswort. Wähle bei jeder Abfrage <ui>Always Allow</ui>. Wenn du eine Abfrage abbrichst, werden die übrigen Passwörter übersprungen.",
+            "Prüfe die Liste, lege den Umgang mit Duplikaten fest und klicke auf <ui>Import</ui>. Gruppen, Verbindungsfarben, SSH-Tunnel und SSL-Einstellungen werden übernommen.",
             "Öffne vor dem Entfernen von Sequel Ace eine Verbindung mit Passwort, um dessen Übernahme zu prüfen."
         ],
         "after": [

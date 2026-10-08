@@ -143,10 +143,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro에는 Postico 가져오기가 없습니다. 서버별로 연결을 추가해 폼을 채우거나 postgresql:// URL을 <ui>File > Import > Import from URL…</ui>에 붙여 넣으세요.",
+        "intro": "TablePro에는 Postico 가져오기가 없습니다. 서버별로 연결을 추가해 폼을 채우거나 postgresql:// URL을 <ui>파일 > 가져오기 > URL에서 가져오기…</ui>(File > Import > Import from URL…)에 붙여 넣으세요.",
         "steps": [],
         "after": [
-            "프로젝트 .env 파일·Prisma 스키마에 데이터베이스 URL이 있으면 <ui>File > Import > Open Project Folder…</ui>가 읽어 채워진 연결 폼을 엽니다.",
+            "프로젝트 .env 파일·Prisma 스키마에 데이터베이스 URL이 있으면 <ui>파일 > 가져오기 > 프로젝트 폴더 열기…</ui>(File > Import > Open Project Folder…)가 읽어 채워진 연결 폼을 엽니다.",
             "비밀번호는 macOS 키체인에 저장하며 PostgreSQL 연결은 ~/.pgpass도 읽습니다.",
             "쿼리 기록은 TablePro에서 새로 시작합니다."
         ],

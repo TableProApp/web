@@ -31,7 +31,7 @@
     "rows": {
         "vcs": {
             "label": "Control de versiones",
-            "tablepro": "Gratis para una carpeta SQL vinculada: letras de estado de Git, historial de commits de cada archivo con comparación en paralelo, Restaurar esta versión y Descartar cambios. Sin preparación, commits, envíos ni ramas"
+            "tablepro": "Gratis para una carpeta SQL vinculada: letras de estado de Git, historial de commits de cada archivo con comparación en paralelo, Restore This Version y Discard Changes. Sin preparación, commits, envíos ni ramas"
         }
     },
     "stronger": {
@@ -100,7 +100,7 @@
                 "href": "/features/ai-mcp"
             },
             {
-                "text": "Ambos tienen servidor MCP. <link>El de TablePro</link> es gratuito, escucha solo en tu Mac y permite que cada conexión decida qué pueden hacer las apps externas: Bloqueado, Solo lectura o Lectura y escritura.",
+                "text": "Ambos tienen servidor MCP. <link>El de TablePro</link> es gratuito, escucha solo en tu Mac y permite que cada conexión decida qué pueden hacer las apps externas: Blocked, Read Only o Read & Write.",
                 "cite": [
                     "cells.mcp"
                 ],
@@ -108,7 +108,7 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>Comparar y sincronizar</link> compara la estructura o los datos de dos bases de datos y genera el script que las alinea. Forma parte de Starter.",
+                "text": "<link>Compare & Sync</link> compara la estructura o los datos de dos bases de datos y genera el script que las alinea. Forma parte de Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -149,10 +149,10 @@
     "switching": {
         "intro": "TablePro lee las fuentes de datos globales de DataGrip y las de tus proyectos recientes. DataGrip no necesita estar abierto y sus archivos no se modifican.",
         "steps": [
-            "En TablePro, elige <ui>Archivo > Importar > Importar desde otra app…</ui>",
-            "Selecciona DataGrip. Activa <ui>Incluir contraseñas</ui> para leer las contraseñas que DataGrip guardó en el llavero de macOS, incluidas las contraseñas SSH y las frases de contraseña de las claves.",
-            "macOS solicita tu contraseña de inicio de sesión una vez por cada contraseña guardada. Elige <ui>Permitir siempre</ui> en cada aviso.",
-            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Importar</ui>. Se trasladan los grupos, los túneles SSH y la configuración SSL. Las conexiones a motores que TablePro no admite llegan sin marcar.",
+            "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
+            "Selecciona DataGrip. Activa <ui>Include passwords</ui> para leer las contraseñas que DataGrip guardó en el llavero de macOS, incluidas las contraseñas SSH y las frases de contraseña de las claves.",
+            "macOS solicita tu contraseña de inicio de sesión una vez por cada contraseña guardada. Elige <ui>Always Allow</ui> en cada aviso.",
+            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Import</ui>. Se trasladan los grupos, los túneles SSH y la configuración SSL. Las conexiones a motores que TablePro no admite llegan sin marcar.",
             "Antes de eliminar DataGrip, abre una conexión que tuviera contraseña para comprobar que se ha trasladado."
         ],
         "after": [
@@ -177,13 +177,13 @@
         {
             "id": "mcp",
             "question": "DataGrip también tiene servidor MCP. ¿Qué hace el de TablePro?",
-            "answer": "Permite que clientes como Claude Code y Cursor usen tus conexiones guardadas de TablePro sin ver las contraseñas. Escucha solo en 127.0.0.1, cada conexión es de solo lectura para apps externas salvo que lo cambies y es gratuito. DataGrip tiene el suyo desde la versión {cells.mcp.version}.",
+            "answer": "Permite que clientes como Claude Code y Cursor usen tus conexiones guardadas de TablePro sin ver las contraseñas. Escucha solo en 127.0.0.1, cada conexión es Read Only para apps externas salvo que lo cambies y es gratuito. DataGrip tiene el suyo desde la versión {cells.mcp.version}.",
             "href": null
         },
         {
             "id": "jdbc-url",
             "question": "¿Puedo pegar una URL JDBC de DataGrip?",
-            "answer": "Sí, para motores compatibles con TablePro. <ui>Archivo > Importar > Importar desde URL…</ui> lee URL jdbc: además de postgres:// y mysql://. Para trasladar todas las fuentes de datos de una vez, usa el importador descrito arriba.",
+            "answer": "Sí, para motores compatibles con TablePro. <ui>File > Import > Import from URL…</ui> lee URL jdbc: además de postgres:// y mysql://. Para trasladar todas las fuentes de datos de una vez, usa el importador descrito arriba.",
             "href": null
         }
     ],

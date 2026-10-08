@@ -128,27 +128,27 @@
     },
     "price": {
       "free": "無料",
-      "labelled": "{label}: {price}",
+      "labelled": "{label}：{price}",
       "amount": {
-        "once": "{amount} の一回払い",
+        "once": "一回払い {amount}",
         "month": "月額 {amount}",
         "year": "年額 {amount}",
         "none": "{amount}"
       },
       "per": {
-        "device": "デバイスごとに {price}",
-        "user": "ユーザーごとに {price}",
-        "seat": "シートごとに {price}",
-        "license": "ライセンスごとに {price}",
+        "device": "{price}/デバイス",
+        "user": "{price}/ユーザー",
+        "seat": "{price}/シート",
+        "license": "{price}/ライセンス",
         "none": "{price}"
       },
       "units": {
-        "one": "1 台で {price}",
-        "other": "最大 {count} 台で {price}"
+        "one": "{price}、1 台用",
+        "other": "{price}、最大 {count} 台"
       },
       "minUnits": {
-        "one": "最低 1 シート、{price}",
-        "other": "最低 {count} シート、{price}"
+        "one": "{price}、最低 1 シート",
+        "other": "{price}、最低 {count} シート"
       },
       "renewal": "更新",
       "ios": "iPhone・iPad アプリ",

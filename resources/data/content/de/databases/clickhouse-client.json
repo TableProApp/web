@@ -11,7 +11,7 @@
     "breadcrumb": "ClickHouse",
     "header": {
         "title": "ClickHouse-Client für {devices}",
-        "lead": "Führe analytisches SQL über die HTTP-Schnittstelle von ClickHouse aus, lies Plan, Pipeline oder Zeilenschätzung einer Abfrage und verwalte MergeTree-Parts und Partitionen im Parts-Tab der Tabelle. Lange Abfragen melden während der Ausführung gelesene Zeilen; Stoppen beendet sie auf dem Server."
+        "lead": "Führe analytisches SQL über die HTTP-Schnittstelle von ClickHouse aus, lies Plan, Pipeline oder Zeilenschätzung einer Abfrage und verwalte MergeTree-Parts und Partitionen im Parts-Tab der Tabelle. Lange Abfragen melden während der Ausführung gelesene Zeilen; Stop beendet sie auf dem Server."
     },
     "asset": "mac-db-clickhouse-parts",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host und HTTP-Port, einen Benutzer und auf Wunsch eine Datenbank an. Der Datenbankwechsel erfolgt direkt; ein offener Tab bleibt bei seiner ursprünglichen Datenbank. <ui>Ansicht > Seitenleiste als Baum</ui> zeigt die Serverdatenbanken als direkt aufklappbaren Baum.",
-                "Wähle einen beliebigen SSL-Modus, um auf HTTPS umzuschalten. Port 443 oder 8443, der von ClickHouse Cloud verwendete Port, aktiviert Identität prüfen. Dabei wird das Zertifikat gegen deine CA-Datei oder den System-Vertrauensspeicher geprüft. CA prüfen braucht eine CA-Datei; Client-Zertifikat und Schlüssel ermöglichen den Zugang zu Servern mit gegenseitigem TLS.",
+                "Gib Host und HTTP-Port, einen Benutzer und auf Wunsch eine Datenbank an. Der Datenbankwechsel erfolgt direkt; ein offener Tab bleibt bei seiner ursprünglichen Datenbank. <ui>View > Sidebar as Tree</ui> zeigt die Serverdatenbanken als direkt aufklappbaren Baum.",
+                "Wähle einen beliebigen SSL-Modus, um auf HTTPS umzuschalten. Port 443 oder 8443, der von ClickHouse Cloud verwendete Port, aktiviert Verify Identity. Dabei wird das Zertifikat gegen deine CA-Datei oder den System-Vertrauensspeicher geprüft. Verify CA braucht eine CA-Datei; Client-Zertifikat und Schlüssel ermöglichen den Zugang zu Servern mit gegenseitigem TLS.",
                 "Erreiche einen entfernten Server ohne TLS über einen <network>SSH-Tunnel</network>, statt unverschlüsseltes HTTP über das Netzwerk zu senden."
             ]
         },
@@ -37,9 +37,9 @@
             "id": "work",
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
-                "Jede Abfrage trägt ihre eigene ID und fordert Fortschrittsmeldungen an, sodass eine lange Abfrage die gelesenen Zeilen meldet. Stoppen sendet <code>KILL QUERY</code> für diese ID, und das Abfragezeitlimit der Verbindung wird an den Server weitergegeben.",
-                "Das <explain>Ausführungsplan-Menü</explain> bietet Plan, Pipeline, AST, Syntax und Schätzung. Die eingerückte Ausgabe wird als Diagramm oder Baum dargestellt; Schätzung zeigt die Zeilen, Marks und Parts, die eine Abfrage lesen würde.",
-                "Rasteränderungen werden als <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> und <code>ALTER TABLE … DELETE</code> gesendet, zuvor mit <editing>SQL-Vorschau</editing>. ClickHouse führt Änderungen und Löschungen als Hintergrundmutationen aus; Speichern bedeutet daher angenommen, noch nicht angewendet. <code>system.mutations</code> zeigt den Fortschritt. Eine materialisierte Sicht öffnet sich schreibgeschützt.",
+                "Jede Abfrage trägt ihre eigene ID und fordert Fortschrittsmeldungen an, sodass eine lange Abfrage die gelesenen Zeilen meldet. Stop sendet <code>KILL QUERY</code> für diese ID, und das Abfragezeitlimit der Verbindung wird an den Server weitergegeben.",
+                "Das <explain>Explain-Menü</explain> bietet Plan, Pipeline, AST, Syntax und Estimate. Die eingerückte Ausgabe wird als Diagramm oder Baum dargestellt; Estimate zeigt die Zeilen, Marks und Parts, die eine Abfrage lesen würde.",
+                "Rasteränderungen werden als <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> und <code>ALTER TABLE … DELETE</code> gesendet, zuvor mit <editing>Preview SQL</editing>. ClickHouse führt Änderungen und Löschungen als Hintergrundmutationen aus; Speichern bedeutet daher angenommen, noch nicht angewendet. <code>system.mutations</code> zeigt den Fortschritt. Eine materialisierte Sicht öffnet sich schreibgeschützt.",
                 "Ein Ergebnis mit ClickHouse-Punkt- oder Ring-Tupeln öffnet sich in der <map>Kartenansicht</map>. Eine Abfrage mit eigener <code>FORMAT</code>-Klausel zeigt die rohe Serverausgabe in einer Spalte; lasse die Klausel für ein Raster weg."
             ]
         },
@@ -47,16 +47,16 @@
             "id": "schema",
             "title": "Tabellen, Parts und Partitionen",
             "paragraphs": [
-                "Eine Tabelle öffnet sich mit den Tabs Struktur, Indizes, DDL und Parts. Indizes zeigt den Sortierschlüssel und Data-Skipping-Indizes; DDL zeigt das vollständige <code>CREATE TABLE</code> samt Engine und Einstellungen.",
-                "Parts listet jeden Part aus <code>system.parts</code> mit Partition, Zeilen, Größe auf dem Datenträger, Änderungszeit und Aktiv-Flag auf und führt dort Optimieren, Partition löschen und Partition abtrennen aus.",
-                "Der <structure>Struktur-Tab</structure> fügt Spalten hinzu, ändert und entfernt sie und entfernt Data-Skipping-Indizes. Sortier- und Primärschlüssel werden beim Erstellen der Tabelle festgelegt. Füge daher einen Data-Skipping-Index mit <code>ALTER TABLE … ADD INDEX</code> hinzu und erstelle die Tabelle für andere Änderungen neu."
+                "Eine Tabelle öffnet sich mit den Tabs Structure, Indexes, DDL und Parts. Indexes zeigt den Sortierschlüssel und Data-Skipping-Indizes; DDL zeigt das vollständige <code>CREATE TABLE</code> samt Engine und Einstellungen.",
+                "Parts listet jeden Part aus <code>system.parts</code> mit Partition, Zeilen, Größe auf dem Datenträger, Änderungszeit und Aktiv-Flag auf und führt dort Optimize, Drop Partition und Detach Partition aus.",
+                "Der <structure>Structure-Tab</structure> fügt Spalten hinzu, ändert und entfernt sie und entfernt Data-Skipping-Indizes. Sortier- und Primärschlüssel werden beim Erstellen der Tabelle festgelegt. Füge daher einen Data-Skipping-Index mit <code>ALTER TABLE … ADD INDEX</code> hinzu und erstelle die Tabelle für andere Änderungen neu."
             ]
         },
         {
             "id": "operate",
             "title": "Überwachen",
             "paragraphs": [
-                "Das <dashboard>Server-Dashboard</dashboard> zeigt aktive Abfragen, aktive Merges, Part-Mutationen und Datenträgernutzung, listet andere Sitzungen jeweils mit <ui>Sitzung beenden</ui> auf und liest langsame Abfragen aus <code>system.query_log</code>: die zuletzt abgeschlossenen Abfragen, die länger als eine Sekunde dauerten."
+                "Das <dashboard>Server-Dashboard</dashboard> zeigt aktive Abfragen, aktive Merges, Part-Mutationen und Datenträgernutzung, listet andere Sitzungen jeweils mit <ui>Terminate Session</ui> auf und liest langsame Abfragen aus <code>system.query_log</code>: die zuletzt abgeschlossenen Abfragen, die länger als eine Sekunde dauerten."
             ]
         },
         {

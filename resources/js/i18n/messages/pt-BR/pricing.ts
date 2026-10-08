@@ -28,7 +28,7 @@ export default {
                 "Conexões com qualquer mecanismo compatível",
                 "O editor SQL e a grade de dados",
                 "O assistente de IA e o servidor MCP",
-                "Modo Seguro",
+                "Safe Mode",
                 "O app para iPhone e iPad"
             ]
         },
@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "Todos os recursos pagos",
-    "finePrint": "Preços em dólares americanos. {merchant} é o vendedor responsável: recebe o pagamento e calcula os tributos sobre vendas ou IVA no checkout.",
+    "finePrint": "Preços em dólares americanos. {merchant} é o merchant of record: recebe o pagamento e calcula os tributos sobre vendas ou IVA no checkout.",
     "finePrintCurrency": "Preços em dólares americanos.",
     "comparePlans": "Comparar planos",
     "section": {
@@ -107,8 +107,8 @@ export default {
         },
         "macsTeam": "Um por vaga",
         "everythingElse": "Todo o restante do app",
-        "everythingElseDetail": "Todos os mecanismos compatíveis, o editor SQL, o assistente de IA, o servidor MCP e o Modo Seguro",
-        "iphoneNote": "O app para iPhone e iPad não tem recursos pagos. A Sincronização iCloud é gratuita nesses dispositivos; para sincronizar com um Mac, ele precisa de Starter ou Team."
+        "everythingElseDetail": "Todos os mecanismos compatíveis, o editor SQL, o assistente de IA, o servidor MCP e o Safe Mode",
+        "iphoneNote": "O app para iPhone e iPad não tem recursos pagos. O iCloud Sync é gratuito nesses dispositivos; para sincronizar com um Mac, ele precisa de Starter ou Team."
     },
     "discount": {
         "atCheckout": "Tem um código de desconto? Digite-o no checkout.",

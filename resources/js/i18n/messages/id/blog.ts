@@ -6,8 +6,8 @@ export default {
     },
     "post": {
         "archive": {
-            "named": "Diterbitkan pada {date}, artikel ini menjelaskan {release} pada saat itu. Untuk mengetahui fitur TablePro saat ini, lihat <features>Fitur</features> dan <changelog>catatan perubahan</changelog>.",
-            "unnamed": "Diterbitkan pada {date}, artikel ini menjelaskan TablePro pada saat itu. Untuk mengetahui fitur TablePro saat ini, lihat <features>Fitur</features> dan <changelog>catatan perubahan</changelog>."
+            "named": "Diterbitkan pada {date}, artikel ini menjelaskan {release} pada saat itu. Untuk mengetahui fitur TablePro saat ini, lihat <features>Fitur</features> dan <changelog>catatan perubahan</changelog> (bahasa Inggris).",
+            "unnamed": "Diterbitkan pada {date}, artikel ini menjelaskan TablePro pada saat itu. Untuk mengetahui fitur TablePro saat ini, lihat <features>Fitur</features> dan <changelog>catatan perubahan</changelog> (bahasa Inggris)."
         },
         "brandedTitle": "{title} – Blog TablePro",
         "correction": "Koreksi, {date}",

@@ -6,8 +6,8 @@ export default {
     },
     "post": {
         "archive": {
-            "named": "Publicado em {date}, este artigo descreve {release} como era na época. Para saber o que TablePro faz hoje, veja os <features>recursos</features> e o <changelog>histórico de alterações</changelog>.",
-            "unnamed": "Publicado em {date}, este artigo descreve TablePro como era na época. Para saber o que TablePro faz hoje, veja os <features>recursos</features> e o <changelog>histórico de alterações</changelog>."
+            "named": "Publicado em {date}, este artigo descreve {release} como era na época. Para saber o que TablePro faz hoje, veja os <features>recursos</features> e o <changelog>histórico de alterações</changelog> (inglês).",
+            "unnamed": "Publicado em {date}, este artigo descreve TablePro como era na época. Para saber o que TablePro faz hoje, veja os <features>recursos</features> e o <changelog>histórico de alterações</changelog> (inglês)."
         },
         "brandedTitle": "{title} – Blog do TablePro",
         "correction": "Correção, {date}",

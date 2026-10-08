@@ -28,25 +28,25 @@
             "title": "Verbinden und anmelden",
             "paragraphs": [
                 "Gib den Kontobezeichner wie <code>myorg-myaccount</code> oder einen alten Locator wie <code>xy12345.us-east-1</code> ein: alles vor <code>.snowflakecomputing.com</code>. Jede Anfrage läuft über HTTPS zum Konto-Endpunkt; es gibt daher keinen Host, SSL-Abschnitt oder SSH-Bereich.",
-                "Wähle eine <ui>Authentifizierungsmethode</ui>, und das Formular zeigt nur die nötigen Felder. Ein Schlüsselpaar signiert jede Verbindung mit deinem privaten PKCS#8-Schlüssel; die Mac-Uhr muss stimmen. Browser-SSO führt zum Identitätsanbieter. Ein OAuth-Token wird wie eingefügt genutzt und nie erneuert. Bei verpflichtendem MFA ergänzt ein aktueller Code unter <ui>MFA-Code (TOTP)</ui> das Passwort.",
+                "Wähle eine <ui>Auth Method</ui>, und das Formular zeigt nur die nötigen Felder. Ein Schlüsselpaar signiert jede Verbindung mit deinem privaten PKCS#8-Schlüssel; die Mac-Uhr muss stimmen. Browser-SSO führt zum Identitätsanbieter. Ein OAuth-Token wird wie eingefügt genutzt und nie erneuert. Bei verpflichtendem MFA ergänzt ein aktueller Code unter <ui>MFA Passcode (TOTP)</ui> das Passwort.",
                 "Mit <code>ALLOW_CLIENT_MFA_CACHING</code> im Konto reicht ein frischer Code: Snowflake liefert einen MFA-Token, den TablePro im <credentials>Schlüsselbund</credentials> speichert. Mit <code>ALLOW_ID_TOKEN</code> speichert Browser-SSO dort einen Anmeldetoken; spätere Verbindungen überspringen den Browser, bis Snowflake ihn ablehnt.",
-                "Snowflake hat kein URL-Schema. Nenne stattdessen einen Abschnitt unter <ui>CLI-Verbindungsname</ui>; jedes leere Feld wird beim Verbinden aus <code>~/.snowflake/connections.toml</code> gelesen."
+                "Snowflake hat kein URL-Schema. Nenne stattdessen einen Abschnitt unter <ui>CLI Connection Name</ui>; jedes leere Feld wird beim Verbinden aus <code>~/.snowflake/connections.toml</code> gelesen."
             ]
         },
         {
             "id": "work",
             "title": "Warehouses, Rollen und Abfragen",
             "paragraphs": [
-                "<ui>Datenbank > Sitzungskontext</ui> wechselt mit <code>USE WAREHOUSE</code> und <code>USE ROLE</code> Warehouse oder Rolle ohne Neuverbinden. Eine TablePro-Verbindung ist eine Snowflake-Sitzung, die auch bei Inaktivität offen bleibt. Ein an eine zweite Datenbank gebundener Tab führt vor seinen Anweisungen <code>USE DATABASE</code> auf derselben Sitzung aus.",
-                "Die Seitenleiste gruppiert Objekte nach Datenbank und Schema. Objektlisten stammen aus <code>SHOW</code>-Befehlen ohne Warehouse; Spaltendetails aus <code>INFORMATION_SCHEMA</code> benötigen eines. <explain>Ausführungsplan</explain> liefert Snowflakes Plan als Rohtext.",
+                "<ui>Database > Session Context</ui> wechselt mit <code>USE WAREHOUSE</code> und <code>USE ROLE</code> Warehouse oder Rolle ohne Neuverbinden. Eine TablePro-Verbindung ist eine Snowflake-Sitzung, die auch bei Inaktivität offen bleibt. Ein an eine zweite Datenbank gebundener Tab führt vor seinen Anweisungen <code>USE DATABASE</code> auf derselben Sitzung aus.",
+                "Die Seitenleiste gruppiert Objekte nach Datenbank und Schema. Objektlisten stammen aus <code>SHOW</code>-Befehlen ohne Warehouse; Spaltendetails aus <code>INFORMATION_SCHEMA</code> benötigen eines. <explain>Explain</explain> liefert Snowflakes Plan als Rohtext.",
                 "<editing>Rasteränderungen</editing> binden Werte auf dem Server; VARIANT-, OBJECT- und ARRAY-Zellen werden über <code>PARSE_JSON</code> gesendet. Identifiziert wird über den deklarierten Primärschlüssel oder ohne ihn über alle Spalten. Snowflake erzwingt Schlüsselbedingungen nie; ein doppelter Schlüssel bedeutet daher, dass Änderungen oder Löschungen alle passenden Zeilen treffen. Prüfe vor dem Bearbeiten auf Duplikate."
             ]
         },
         {
             "id": "schema",
-            "title": "Struktur",
+            "title": "Structure",
             "paragraphs": [
-                "Die DDL-Ansicht stammt aus <code>GET_DDL</code>. Der <structure>Struktur-Tab</structure> fügt Spalten hinzu, benennt sie um und entfernt sie, setzt NOT NULL, Kommentare und Primärschlüssel, erweitert VARCHAR und ändert NUMBER-Präzision bei gleicher Skalierung.",
+                "Die DDL-Ansicht stammt aus <code>GET_DDL</code>. Der <structure>Structure-Tab</structure> fügt Spalten hinzu, benennt sie um und entfernt sie, setzt NOT NULL, Kommentare und Primärschlüssel, erweitert VARCHAR und ändert NUMBER-Präzision bei gleicher Skalierung.",
                 "Änderungen, die Snowflake ablehnen würde, werden vor Ausführung verweigert: VARCHAR verkleinern, andere Typänderungen und einen Spaltenstandardwert neu setzen. Das Entfernen eines Standardwerts wird ausgeführt."
             ]
         },
@@ -55,7 +55,7 @@
             "title": "Daten übertragen",
             "paragraphs": [
                 "<importData>Importiere</importData> {importFormats}-Dateien über die Verbindung und exportiere Tabellen oder Ergebnisse als {exportFormats} auf deinen Mac.",
-                "Wähle zum Export ohne deinen Mac <ui>Ablage > Serverseitiger Export…</ui> und nenne eine Stage mit oder ohne <code>@</code>. <backup>Serverseitiger Export</backup> führt <code>COPY INTO</code> mit deinen Rechten aus und schreibt gzip-komprimiertes CSV, Parquet oder JSON. Der Dialog wartet bis zum Abschluss; nichts landet auf dem Mac."
+                "Wähle zum Export ohne deinen Mac <ui>File > Server-Side Export…</ui> und nenne eine Stage mit oder ohne <code>@</code>. <backup>Server-Side Export</backup> führt <code>COPY INTO</code> mit deinen Rechten aus und schreibt gzip-komprimiertes CSV, Parquet oder JSON. Der Dialog wartet bis zum Abschluss; nichts landet auf dem Mac."
             ]
         }
     ],
@@ -65,7 +65,7 @@
         {
             "id": "no-columns",
             "question": "Warum zeigt die Seitenleiste Tabellen ohne Spalten?",
-            "answer": "Spaltendetails stammen aus <code>INFORMATION_SCHEMA</code>, das ein laufendes Warehouse braucht. Setze <ui>Warehouse</ui> in Verbindung oder Sitzungskontext. Erscheinen die Objekte einer Datenbank gar nicht, benötigt die Verbindungsrolle <code>USAGE</code>."
+            "answer": "Spaltendetails stammen aus <code>INFORMATION_SCHEMA</code>, das ein laufendes Warehouse braucht. Setze <ui>Warehouse</ui> in Verbindung oder Session Context. Erscheinen die Objekte einer Datenbank gar nicht, benötigt die Verbindungsrolle <code>USAGE</code>."
         },
         {
             "id": "timestamp-ltz",

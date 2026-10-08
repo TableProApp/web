@@ -18,7 +18,7 @@
             "title": "Usa el proveedor que elijas",
             "paragraphs": [
                 "El asistente usa estos proveedores: {aiProviders}. Según el proveedor, pegas una clave API, accedes con una cuenta existente o ejecutas un modelo en tu Mac. TablePro no ofrece servicio de IA propio: las solicitudes van directamente al proveedor y nada se envía hasta añadirlo.",
-                "Cada mensaje incluye la estructura de las tablas de la conexión hasta el límite elegido y la consulta del editor. Las filas de resultados solo se envían si lo activas en <ui>Ajustes > IA</ui>. Cada conexión tiene política IA; Nunca mantiene alejados al asistente y a los clientes MCP."
+                "Cada mensaje incluye la estructura de las tablas de la conexión hasta el límite elegido y la consulta del editor. Las filas de resultados solo se envían si lo activas en <ui>Settings > AI</ui>. Cada conexión tiene política IA; Never mantiene alejados al asistente y a los clientes MCP."
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,21 +26,21 @@
             "id": "in-the-editor",
             "title": "Revisa, explica, optimiza y corrige",
             "paragraphs": [
-                "Coloca el cursor en una sentencia y elige Revisar con IA (<kbd>⌥⇧⌘L</kbd>) para corrección, coste y seguridad; Explicar (<kbd>⌘L</kbd>) para sus pasos, u Optimizar (<kbd>⌥⌘L</kbd>) para reescritura o índice. Si falla, Corregir con IA aparece en el aviso de error. La solicitud incluye las estructuras de las tablas nombradas y no ejecuta la sentencia. <ui>Aplicar al editor</ui> solo la reemplaza tras confirmar.",
-                "Las sugerencias en línea muestran texto tenue al escribir y están desactivadas por defecto. Reglas IA fija notas de texto por conexión, como qué columna nunca seleccionar, y las envía con todos los mensajes."
+                "Coloca el cursor en una sentencia y elige Review with AI (<kbd>⌥⇧⌘L</kbd>) para corrección, coste y seguridad; Explain (<kbd>⌘L</kbd>) para sus pasos, u Optimize (<kbd>⌥⌘L</kbd>) para reescritura o índice. Si falla, Fix with AI aparece en el aviso de error. La solicitud incluye las estructuras de las tablas nombradas y no ejecuta la sentencia. <ui>Apply to Editor</ui> solo la reemplaza tras confirmar.",
+                "Las sugerencias en línea muestran texto tenue al escribir y están desactivadas por defecto. AI Rules fija notas de texto por conexión, como qué columna nunca seleccionar, y las envía con todos los mensajes."
             ]
         },
         {
             "id": "agent-mode",
-            "title": "Modos del chat y modo Agente",
+            "title": "Modos del chat y Agent mode",
             "paragraphs": [
-                "El chat tiene tres modos. Preguntar, por defecto, consulta el esquema sin ejecutar nada. Editar puede ejecutar consultas y Agente también DROP, TRUNCATE y otras sentencias destructivas. En {macSafeModeDefault}, nivel inicial de nuevas conexiones, las escrituras de Editar y Agente no preguntan; desde Alerta a Modo seguro (completo) esperan Ejecutar y Solo lectura las rechaza. Las destructivas siempre esperan un clic y nunca se aprueban por anticipado.",
-                "Modo Agente (<kbd>⌥⇧⌘A</kbd>) dedica toda la ventana a una sesión: sesiones de la conexión, conversación y SQL propuesto y ejecutado. Mientras está activo, mantiene Alerta o superior, sin escrituras hasta pulsar Ejecutar. Es un recordatorio, no un bloqueo: basta una tecla para desactivarlo. Las sesiones permanecen en este Mac."
+                "El chat tiene tres modos. Ask, por defecto, consulta el esquema sin ejecutar nada. Edit puede ejecutar consultas y Agent también DROP, TRUNCATE y otras sentencias destructivas. En {macSafeModeDefault}, nivel de Safe Mode inicial de nuevas conexiones, las escrituras de Edit y Agent no preguntan; desde Alert a Safe Mode (Full) esperan Run y Read-Only las rechaza. Las destructivas siempre esperan un clic y nunca se aprueban por anticipado.",
+                "Agent mode (<kbd>⌥⇧⌘A</kbd>) dedica toda la ventana a una sesión: sesiones de la conexión, conversación y SQL propuesto y ejecutado. Mientras está activo, mantiene Alert o superior, sin escrituras hasta pulsar Run. Es un recordatorio, no un bloqueo: basta una tecla para desactivarlo. Las sesiones permanecen en este Mac."
             ],
             "asset": "mac-agent-mode",
             "links": [
                 {
-                    "label": "Niveles del modo seguro",
+                    "label": "Niveles de Safe Mode",
                     "href": "/features/data-editing#safe-mode"
                 }
             ]
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "Conecta un cliente",
                     "paragraphs": [
-                        "<ui>Ajustes > Integraciones</ui> ofrece pasos y un fragmento para {mcpSetupClients}. El puente <code>tablepro-mcp</code> incluido también funciona con {mcpBridgeClients}: inicia TablePro cuando hace falta y encuentra el servidor, sin puerto ni token en la configuración del cliente. La extensión oficial Raycast se empareja con la app y apruebas el emparejamiento en el Mac.",
+                        "<ui>Settings > Integrations</ui> ofrece pasos y un fragmento para {mcpSetupClients}. El puente <code>tablepro-mcp</code> incluido también funciona con {mcpBridgeClients}: inicia TablePro cuando hace falta y encuentra el servidor, sin puerto ni token en la configuración del cliente. La extensión oficial Raycast se empareja con la app y apruebas el emparejamiento en el Mac.",
                         "Ejemplo: pide usuarios que comparten correo. El cliente puede llamar <code>list_tables</code> y <code>describe_table</code>, descubrir la columna <code>email_address</code> y ejecutar SELECT mediante la conexión guardada sin pegar el esquema en el chat."
                     ]
                 },
@@ -69,11 +69,11 @@
                         "Cada llamada pasa por estas comprobaciones; prevalece la más estricta."
                     ],
                     "points": [
-                        "Alcance del token: Solo lectura, Lectura y escritura o Acceso completo, opcionalmente limitado a conexiones nombradas. El puente obtiene solo un token Lectura y escritura; sus clientes no ejecutan sentencias destructivas.",
-                        "Clientes externos por conexión: Bloqueado, Solo lectura (por defecto) o Lectura y escritura. Las conexiones bloqueadas ni aparecen.",
+                        "Alcance del token: Read Only, Read & Write o Full Access, opcionalmente limitado a conexiones nombradas. El puente obtiene solo un token Read & Write; sus clientes no ejecutan sentencias destructivas.",
+                        "External Clients por conexión: Blocked, Read Only (por defecto) o Read & Write. Las conexiones bloqueadas ni aparecen.",
                         "Aprobación de conexión: al primer acceso, un diálogo en tu Mac pregunta. Eliges preguntar siempre, una vez por conexión o nunca.",
-                        "Política IA: Nunca también rechaza clientes MCP.",
-                        "Modo seguro: confirma escrituras según el nivel; DROP y TRUNCATE requieren Acceso completo y aprobación cada vez. Se rechazan sentencias que lean o escriban archivos o ejecuten código en el servidor."
+                        "Política IA: Never también rechaza clientes MCP.",
+                        "Safe Mode: confirma escrituras según el nivel; DROP y TRUNCATE requieren Full Access y aprobación cada vez. Se rechazan sentencias que lean o escriban archivos o ejecuten código en el servidor."
                     ]
                 }
             ]
@@ -89,7 +89,7 @@
             "id": "automation",
             "title": "Automatización fuera del chat",
             "paragraphs": [
-                "AppleScript conecta, ejecuta consultas y abre tablas según Clientes externos y modo seguro. Los enlaces <code>tablepro://</code> abren conexión, tabla o pestaña; una consulta del enlace se rellena tras confirmar y nunca se ejecuta sola. URL como <code>postgresql://</code> se abren como conexiones.",
+                "AppleScript conecta, ejecuta consultas y abre tablas según External Clients y Safe Mode. Los enlaces <code>tablepro://</code> abren conexión, tabla o pestaña; una consulta del enlace se rellena tras confirmar y nunca se ejecuta sola. URL como <code>postgresql://</code> se abren como conexiones.",
                 "El comando <code>tablepro</code> abre esas URL y archivos en la app, sin ejecutar consultas desde terminal. La extensión Raycast oficial busca conexiones, tablas e historial y ejecuta mediante la app emparejada."
             ]
         },
@@ -111,7 +111,7 @@
             "id": "iphone",
             "title": "No disponible en iPhone ni iPad",
             "paragraphs": [
-                "La app para iPhone y iPad no tiene asistente IA, modo Agente ni servidor MCP. Todo lo descrito está en el Mac."
+                "La app para iPhone y iPad no tiene asistente IA, Agent mode ni servidor MCP. Todo lo descrito está en el Mac."
             ],
             "links": [
                 {
@@ -127,15 +127,15 @@
             "ios": "no"
         },
         {
-            "label": "Revisar, explicar, optimizar y corregir con IA",
+            "label": "Review, Explain, Optimize y Fix with AI",
             "ios": "no"
         },
         {
-            "label": "Sugerencias en línea y reglas IA",
+            "label": "Sugerencias en línea y AI Rules",
             "ios": "no"
         },
         {
-            "label": "Modo Agente",
+            "label": "Agent mode",
             "ios": "no"
         },
         {
@@ -156,11 +156,11 @@
         }
     ],
     "limits": [
-        "Cursor no puede llamar herramientas de TablePro; como proveedor, Editar y Agente no ejecutan consultas. Los modelos locales llaman herramientas solo si lo admiten.",
+        "Cursor no puede llamar herramientas de TablePro; como proveedor, Edit y Agent no ejecutan consultas. Los modelos locales llaman herramientas solo si lo admiten.",
         "Claude Agent usa tu sesión Claude Code y accede al esquema mediante MCP, que debe estar encendido. Depende de Claude Code y puede romperse con una versión nueva.",
         "MCP solo escucha en {mcpHost}. Acceder desde otra máquina requiere reenviar el puerto por tu cuenta y asumir lo que expone.",
         "El Mac no tiene acciones de Atajos; automatiza con AppleScript, enlaces o MCP.",
-        "Las sesiones Agente y servidores externos permanecen en el Mac donde se configuran y no se sincronizan."
+        "Las sesiones de Agent mode y servidores externos permanecen en el Mac donde se configuran y no se sincronizan."
     ],
     "docs": [
         {
@@ -168,7 +168,7 @@
             "docs": "/features/ai-assistant"
         },
         {
-            "label": "Modo Agente",
+            "label": "Agent mode",
             "docs": "/features/agent-mode"
         },
         {
@@ -198,7 +198,7 @@
     ],
     "related": [
         {
-            "label": "Modo seguro",
+            "label": "Safe Mode",
             "href": "/features/data-editing#safe-mode"
         },
         {

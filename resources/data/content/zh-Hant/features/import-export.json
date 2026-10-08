@@ -43,13 +43,13 @@
             "title": "匯出資料表與結果",
             "paragraphs": [
                 "<kbd>⌘⇧E</kbd> 將勾選的資料表和檢視表匯出為 {exportFormats}。每項在寫入時從資料庫串流讀取，不受資料格線列數上限影響；SQL 引擎允許各資料表獨立設定 WHERE 子句、列數限制和所選欄位。SQL 匯出可包含結構、使用 gzip 壓縮及分割檔案，Excel 為每個資料表建立單獨工作表。MongoDB 集合也可匯出為 mongosh 指令碼，MongoDB 和 Redis 不提供 SQL 匯出。",
-                "<ui>Export Results</ui> 寫入查詢結果；被列數上限截斷的結果會重新執行並完整串流匯出。{exportPluginFormats} 匯出由 <ui>Settings > Plugins</ui> 中安裝的免費外掛程式提供，每個資料表寫入一個檔案。"
+                "<ui>匯出結果</ui>（Export Results）寫入查詢結果；被列數上限截斷的結果會重新執行並完整串流匯出。{exportPluginFormats} 匯出由<ui>設定 > 外掛</ui>（Settings > Plugins）中安裝的免費外掛程式提供，每個資料表寫入一個檔案。"
             ],
             "asset": "mac-export-dialog"
         },
         {
             "id": "data-files",
-            "title": "資料檔案：無須資料庫即可處理檔案",
+            "title": "Data Files：無須資料庫即可處理檔案",
             "paragraphs": [],
             "blocks": [
                 {
@@ -122,7 +122,7 @@
             "title": "在 iPhone 與 iPad 上",
             "paragraphs": [
                 "iPhone 與 iPad App 從已載入的列中，將列和查詢結果複製或分享為 JSON、CSV 或 SQL INSERT 陳述式。複製內容僅留在該裝置剪貼簿，不會與其他裝置共用。",
-                "透過捷徑的 Add Row to Table 和 Add Rows to Table 動作可匯入列，接受 JSON 或 CSV 文字或檔案，並遵循連線的安全模式。iPhone 與 iPad 不提供匯入面板、檔案匯出、Data Files 視窗或備份。"
+                "透過捷徑的 Add Row to Table 和 Add Rows to Table 動作可匯入列，接受 JSON 或 CSV 文字或檔案，並遵循連線的 Safe Mode。iPhone 與 iPad 不提供匯入面板、檔案匯出、Data Files 視窗或備份。"
             ],
             "links": [
                 {
@@ -139,7 +139,7 @@
             "iosNote": "透過捷徑從 JSON 或 CSV 匯入"
         },
         {
-            "label": "儲存對應、依名稱與位置配對",
+            "label": "儲存對應、Match by Name 與 Match by Position",
             "ios": "no"
         },
         {
@@ -152,15 +152,15 @@
             "ios": "no"
         },
         {
-            "label": "資料檔案視窗",
+            "label": "Data Files 視窗",
             "ios": "no"
         },
         {
-            "label": "傾印備份與還原",
+            "label": "Backup Dump 與 Restore Dump",
             "ios": "no"
         },
         {
-            "label": "伺服器端匯出",
+            "label": "Server-Side Export",
             "ios": "no"
         },
         {
@@ -187,7 +187,7 @@
             "docs": "/features/import-export"
         },
         {
-            "label": "資料檔案",
+            "label": "Data Files",
             "docs": "/features/data-files"
         },
         {

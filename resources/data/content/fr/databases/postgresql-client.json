@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Client PostgreSQL pour {devices}",
-        "description": "PostgreSQL via SSH, TLS, AWS IAM ou ~/.pgpass ; CockroachDB et PGlite avec le même pilote. Diagrammes EXPLAIN et sauvegardes pg_dump."
+        "description": "PostgreSQL via SSH, TLS, AWS IAM ou ~/.pgpass ; CockroachDB et PGlite avec le même pilote. Diagrammes EXPLAIN et sauvegardes pg_dump."
     },
     "og": {
         "kicker": "Bases de données",
@@ -35,20 +35,20 @@
             "title": "Connexion",
             "paragraphs": [
                 "Indiquez hôte, port, utilisateur et base, ou collez une URL <code>postgresql://</code> ou <code>postgres://</code>. PostgreSQL nécessite la base pour se connecter.",
-                "Les nouvelles connexions démarrent avec SSL Préféré, le <code>sslmode=prefer</code> de libpq. Choisissez Vérifier l’AC ou Vérifier l’identité pour contrôler le certificat serveur.",
+                "Les nouvelles connexions démarrent avec SSL sur Preferred, le <code>sslmode=prefer</code> de libpq. Choisissez Verify CA ou Verify Identity pour contrôler le certificat serveur.",
                 "Activez Utiliser ~/.pgpass pour lire le mot de passe dans <code>~/.pgpass</code>. Le formulaire signale ce qu’il trouve, y compris un fichier dont les permissions feraient que libpq l’ignore.",
                 "Accédez à un serveur privé via <network>tunnel SSH avec hôtes de rebond au besoin, proxy SOCKS5, tunnel Cloudflare Access ou commande de tunnel</network> comme kubectl port-forward. Sur Amazon RDS et Aurora, authentifiez-vous avec <cloudAuth>AWS IAM</cloudAuth> sous un rôle ayant <code>rds_iam</code>. Pour Google Cloud SQL, TablePro télécharge et exécute Cloud SQL Auth Proxy.",
-                "Toute option de connexion acceptée par libpq, comme <code>-c application_name=reporting</code>, va dans Options de connexion."
+                "Toute option de connexion acceptée par libpq, comme <code>-c application_name=reporting</code>, va dans Connection Options."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "L’éditeur SQL complète les noms de tables et colonnes du schéma. <explain>EXPLAIN et EXPLAIN ANALYZE</explain> utilisent FORMAT JSON et sont dessinés en diagramme ou arbre ; Comparer EXPLAIN montre si un plan a ralenti après une modification.",
-                "jsonb est formaté, et uuid, inet, timestamptz, interval et bytea s’affichent dans leur format propre. Les colonnes tableau ouvrent un éditeur de liste pour ajouter, retirer, réordonner et mettre à null des éléments ; les colonnes enum proposent leurs libellés.",
-                "Les valeurs PostGIS geometry et geography se lisent en EWKT avec SRID ; un résultat avec géométrie s’ouvre dans la <results>vue Carte</results>. Les tuiles viennent d’Apple ; vos lignes restent sur le Mac.",
-                "Les modifications restent en attente jusqu’à l’enregistrement ; l’<editing>Aperçu SQL</editing> montre chaque instruction et l’enregistrement utilise des paramètres liés. Les lignes des vues matérialisées sont en lecture seule : actualisez-les par leur menu, en mode concurrent si elles ont l’index unique requis par PostgreSQL."
+                "L’éditeur SQL complète les noms de tables et colonnes du schéma. <explain>EXPLAIN et EXPLAIN ANALYZE</explain> utilisent FORMAT JSON et sont dessinés en diagramme ou arbre ; EXPLAIN Compare montre si un plan a ralenti après une modification.",
+                "jsonb est formaté, et uuid, inet, timestamptz, interval et bytea s’affichent dans leur format propre. Les colonnes tableau ouvrent un éditeur de liste pour ajouter, retirer, réordonner et mettre à null des éléments ; les colonnes enum proposent leurs libellés.",
+                "Les valeurs PostGIS geometry et geography se lisent en EWKT avec SRID ; un résultat avec géométrie s’ouvre dans la <results>vue Carte</results>. Les tuiles viennent d’Apple ; vos lignes restent sur le Mac.",
+                "Les modifications restent en attente jusqu’à l’enregistrement ; <editing>Preview SQL</editing> montre chaque instruction et l’enregistrement utilise des paramètres liés. Les lignes des vues matérialisées sont en lecture seule : actualisez-les par leur menu, en mode concurrent si elles ont l’index unique requis par PostgreSQL."
             ],
             "asset": "mac-result-map"
         },
@@ -57,19 +57,19 @@
             "title": "Schémas et structure",
             "paragraphs": [
                 "Tous les schémas accessibles sont listés. Créez et modifiez-les dans un dialogue qui écrit CREATE SCHEMA, propriétaire, commentaire et droits USAGE et CREATE, puis les montre avant exécution.",
-                "L’<structure>onglet Structure</structure> prépare les changements de colonnes, index, clés étrangères, contraintes CHECK et colonnes générées. Les partitions sont listées avec leurs bornes, imbriquées si elles sont repartitionnées. Enums, composites, domaines et plages figurent sous Types ; les libellés enum peuvent être ajoutés et renommés.",
-                "La définition d’une vue est reconstruite avec chaque table qualifiée par schéma ; un index resté invalide après échec de construction concurrente est nommé dans Index.",
-                "<compareSync>Comparer et synchroniser</compareSync>, du forfait {compareSyncTier}, compare deux schémas PostgreSQL ou leurs données et écrit le script d’alignement, en retenant les changements entraînant une perte de données."
+                "L’<structure>onglet Structure</structure> prépare les changements de colonnes, index, clés étrangères, contraintes CHECK et colonnes générées. Les partitions sont listées avec leurs bornes, imbriquées si elles sont repartitionnées. Enums, composites, domaines et plages figurent sous Types ; les libellés enum peuvent être ajoutés et renommés.",
+                "La définition d’une vue est reconstruite avec chaque table qualifiée par schéma ; un index resté invalide après échec de construction concurrente est nommé dans l’onglet Indexes.",
+                "<compareSync>Compare & Sync</compareSync>, de l’offre {compareSyncTier}, compare deux schémas PostgreSQL ou leurs données et écrit le script d’alignement, en retenant les changements entraînant une perte de données."
             ]
         },
         {
             "id": "operate",
             "title": "Administrer",
             "paragraphs": [
-                "<administer>Utilisateurs et rôles</administer> montre l’origine de chaque privilège avant de l’accorder ou retirer et prépare chaque instruction en SQL.",
-                "Le Tableau de bord serveur montre sessions, connexions, taux de cache, taille et requêtes lentes. Il annule une requête par <code>pg_cancel_backend</code> ou termine une session par <code>pg_terminate_backend</code>. Un rôle ni superutilisateur ni membre de <code>pg_monitor</code> voit les autres sessions sans leurs requêtes.",
+                "<administer>Users & Roles</administer> montre l’origine de chaque privilège avant de l’accorder ou retirer et prépare chaque instruction en SQL.",
+                "Server Dashboard montre sessions, connexions, taux de cache, taille et requêtes lentes. Il annule une requête par <code>pg_cancel_backend</code> ou termine une session par <code>pg_terminate_backend</code>. Un rôle ni superutilisateur ni membre de <code>pg_monitor</code> voit les autres sessions sans leurs requêtes.",
                 "La maintenance exécute VACUUM avec FULL, ANALYZE et VERBOSE, ainsi qu’ANALYZE, REINDEX et CLUSTER, en montrant d’abord l’instruction.",
-                "<backup>Dump de sauvegarde et Restaurer un dump</backup> utilisent votre {dumpTool} et pg_restore via le tunnel SSH. Installez-les avec Homebrew ; pour PostgreSQL 9.1, utilisez pg_dump 14 ou antérieur."
+                "<backup>Backup Dump et Restore Dump</backup> utilisent votre {dumpTool} et pg_restore via le tunnel SSH. Installez-les avec Homebrew ; pour PostgreSQL 9.1, utilisez pg_dump 14 ou antérieur."
             ],
             "asset": "mac-server-dashboard-postgresql"
         },
@@ -77,15 +77,15 @@
             "id": "move-data",
             "title": "Transférez des données",
             "paragraphs": [
-                "<importData>Importez</importData> des fichiers {importFormats} ; un fichier de données se charge dans une table avec correspondance des colonnes et choix du comportement pour une ligne échouée. Exportez en {exportFormats} ; l’export SQL conserve les commentaires des tables, vues et vues matérialisées.",
-                "<copy>Copier vers</copy> envoie tables, données ou les deux à une autre connexion PostgreSQL ou moteur et liste chaque type de colonne à approximer."
+                "<importData>Importez</importData> des fichiers {importFormats} ; un fichier de données se charge dans une table avec correspondance des colonnes et choix du comportement pour une ligne échouée. Exportez en {exportFormats} ; l’export SQL conserve les commentaires des tables, vues et vues matérialisées.",
+                "<copy>Copy To</copy> envoie tables, données ou les deux à une autre connexion PostgreSQL ou moteur et liste chaque type de colonne à approximer."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone et iPad",
             "paragraphs": [
-                "Sur iPhone et iPad, changez bases et schémas dans la barre d’outils, parcourez les tables en cartes, modifiez les lignes avec clé primaire et exécutez SQL dans Requête. SSL va de Requis à Vérifier l’identité ; les tunnels SSH utilisent mot de passe ou clé, sans hôtes de rebond."
+                "Sur iPhone et iPad, changez bases et schémas dans la barre d’outils, parcourez les tables en cartes, modifiez les lignes avec clé primaire et exécutez SQL dans Requête. SSL va de Required à Verify Identity ; les tunnels SSH utilisent mot de passe ou clé, sans hôtes de rebond."
             ]
         }
     ],
@@ -95,8 +95,8 @@
             "title": "CockroachDB",
             "paragraphs": [
                 "CockroachDB utilise le pilote PostgreSQL intégré sans installation. Les nouveaux clusters démarrent avec <code>defaultdb</code>.",
-                "Pour CockroachDB Cloud, copiez hôte, utilisateur, mot de passe et base depuis sa console, mettez <code>--cluster=your-cluster</code> dans Options de connexion et SSL sur Vérifier l’identité. Pour un nœud local non sécurisé, choisissez Désactivé.",
-                "Le DDL des tables et vues vient de SHOW CREATE de CockroachDB. Les plans texte EXPLAIN et EXPLAIN ANALYZE sont analysés en arbre ; le Tableau de bord serveur liste sessions et requêtes actives.",
+                "Pour CockroachDB Cloud, copiez hôte, utilisateur, mot de passe et base depuis sa console, mettez <code>--cluster=your-cluster</code> dans Connection Options et SSL sur Verify Identity. Pour un nœud local non sécurisé, choisissez Disabled.",
+                "Le DDL des tables et vues vient de SHOW CREATE de CockroachDB. Les plans texte EXPLAIN et EXPLAIN ANALYZE sont analysés en arbre ; Server Dashboard liste sessions et requêtes actives.",
                 "Les contrôles de clés étrangères ne peuvent être différés."
             ]
         },
@@ -104,9 +104,9 @@
             "engine": "pglite",
             "title": "PGlite",
             "paragraphs": [
-                "PGlite est PostgreSQL compilé en WebAssembly et n’est accessible qu’après démarrage du serveur de sockets : <code>npx @electric-sql/pglite-socket</code>, avec <code>--db=./my-pgdata</code> pour garder les données sur disque.",
-                "Connectez <code>127.0.0.1</code> plutôt que localhost. Le serveur ne vérifie jamais de mot de passe et n’a pas TLS ; le formulaire ne demande donc ni l’un ni l’autre.",
-                "Les catalogues PGlite sont complets ; édition de structure, Utilisateurs et rôles et diagrammes EXPLAIN fonctionnent comme sur un serveur. Il expose une base : <code>postgres</code>."
+                "PGlite est PostgreSQL compilé en WebAssembly et n’est accessible qu’après démarrage du serveur de sockets : <code>npx @electric-sql/pglite-socket</code>, avec <code>--db=./my-pgdata</code> pour garder les données sur disque.",
+                "Connectez <code>127.0.0.1</code> plutôt que localhost. Le serveur ne vérifie jamais de mot de passe et n’a pas TLS ; le formulaire ne demande donc ni l’un ni l’autre.",
+                "Les catalogues PGlite sont complets ; édition de structure, Users & Roles et diagrammes EXPLAIN fonctionnent comme sur un serveur. Il expose une base : <code>postgres</code>."
             ]
         }
     ],
@@ -125,18 +125,18 @@
             }
         ],
         "notes": {
-            "pgadmin-erd-design": "Son outil ERD conçoit un schéma et génère son SQL ; le diagramme ER de TablePro ne fait que le lire."
+            "pgadmin-erd-design": "Son outil ERD conçoit un schéma et génère son SQL ; le diagramme ER de TablePro ne fait que le lire."
         }
     },
     "faq": [
         {
             "id": "hosted",
-            "question": "TablePro fonctionne-t-il avec PostgreSQL hébergé, comme Amazon RDS ?",
-            "answer": "Oui. Un serveur hébergé est un hôte et port comme tout autre. RDS et Aurora permettent aussi AWS IAM ; pour Google Cloud SQL, TablePro lance Cloud SQL Auth Proxy."
+            "question": "TablePro fonctionne-t-il avec PostgreSQL hébergé, comme Amazon RDS ?",
+            "answer": "Oui. Un serveur hébergé est un hôte et port comme tout autre. RDS et Aurora permettent aussi AWS IAM ; pour Google Cloud SQL, TablePro lance Cloud SQL Auth Proxy."
         },
         {
             "id": "column-order",
-            "question": "Puis-je réordonner les colonnes ?",
+            "question": "Puis-je réordonner les colonnes ?",
             "answer": "TablePro écrit et montre le script reconstruisant la table dans le nouvel ordre, sans jamais l’exécuter. Lisez-le puis lancez-le quand la table peut être réécrite."
         }
     ],

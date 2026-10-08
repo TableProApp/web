@@ -25,7 +25,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "選擇 <ui>Connection Mode</ui>。Standalone 填主機連接埠。Sentinel 填一個或多個 Sentinel 節點和主要群組名稱，跟隨法定多數找到主要節點，並在容錯移轉後跟隨遷移。Cluster 以任意可連線成員為種子，讀取分片對應，將指令送往擁有其索引鍵的分片。",
+                "選擇<ui>連線模式</ui>（Connection Mode）。Standalone 填主機連接埠。Sentinel 填一個或多個 Sentinel 節點和主要群組名稱，跟隨法定多數找到主要節點，並在容錯移轉後跟隨遷移。Cluster 以任意可連線成員為種子，讀取分片對應，將指令送往擁有其索引鍵的分片。",
                 "用密碼登入，或填寫 Username 以 Redis 6 ACL 使用者登入。Amazon ElastiCache 選擇 <cloudAuth>AWS IAM</cloudAuth> 模式，用短期權杖作為密碼；ElastiCache IAM 需開啟 TLS。",
                 "新連線 TLS 關閉。Upstash、Redis Cloud 等服務要求 TLS，貼上 <code>rediss://</code> URL 會開啟。無明文退回機制，Preferred 等同 Required。Valkey 伺服器與 Redis 連線方式相同。",
                 "側欄從 <code>db0</code> 起列出各編號資料庫，點選原地瀏覽。"
@@ -38,7 +38,7 @@
                 "索引鍵名稱在每個冒號或 Options 分頁設定的分隔符號處分為資料夾。每索引鍵一列含 Key、Type、TTL、Length、Value。字串完整顯示；hash、list、set、sorted set、stream 顯示開頭項目，Length 標明數量。非有效 UTF-8 值（如 gzip 資料）在十六進位編輯器開啟。",
                 "<editing>格線中</editing>編輯索引鍵名稱執行 <code>RENAME</code>，TTL 執行 <code>EXPIRE</code> 或 <code>PERSIST</code>，字串值執行 <code>SET</code>。Add Row 用 <code>HSET</code>、<code>RPUSH</code>、<code>SADD</code>、<code>ZADD</code> 或 <code>SET</code> 寫入所選型別。篩選列在伺服器用 <code>SCAN MATCH</code>、<code>SCAN TYPE</code> 依 Redis glob 模式比對索引鍵名稱並限定型別。",
                 "編輯器每陳述式接受一條指令，依 redis-cli 引號規則，無法識別的指令原樣傳送。<code>DB 3 GET key</code> 不移動工作階段而在其他資料庫執行單一指令。<code>MULTI</code> 區塊內各指令傳回 <code>QUEUED</code>，直到 <code>EXEC</code> 依順序傳回所有回應。",
-                "<safeMode>安全模式</safeMode>將包括 <code>GET</code> 的所有 Redis 指令視為寫入，Alert、Safe Mode 逐一確認，Read-Only 全部阻擋。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先確認。"
+                "<safeMode>Safe Mode</safeMode> 將包括 <code>GET</code> 的所有 Redis 指令視為寫入，Alert、Safe Mode 逐一確認，Read-Only 全部阻擋。<code>FLUSHDB</code>、<code>FLUSHALL</code> 即使 Silent 也先確認。"
             ]
         },
         {
@@ -75,7 +75,7 @@
         {
             "id": "acl-scan",
             "question": "為什麼 ACL 使用者的索引鍵樹為空？",
-            "answer": "索引鍵樹用 <code>SCAN</code> 讀取索引鍵名稱，用 <code>TYPE</code> 讀取型別。授予兩者，如 <code>ACL SETUSER app +scan +type</code>，再右鍵點選側欄 <ui>Keys</ui> 選 <ui>Refresh</ui>。"
+            "answer": "索引鍵樹用 <code>SCAN</code> 讀取索引鍵名稱，用 <code>TYPE</code> 讀取型別。授予兩者，如 <code>ACL SETUSER app +scan +type</code>，再右鍵點選側欄<ui>鍵</ui>（Keys）選<ui>重新整理</ui>（Refresh）。"
         },
         {
             "id": "select",

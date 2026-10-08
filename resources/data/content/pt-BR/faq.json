@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro é gratuito?",
                     "answer": [
-                        "O app para Mac é gratuito para baixar e usar, sem período de avaliação nem limite de tempo. Uma licença Starter ou Team adiciona recursos opcionais ao app para Mac; a <pricing>página de preços</pricing> os lista. Conectar a qualquer mecanismo compatível não exige licença, assim como o assistente de IA, o servidor MCP e o Modo Seguro.",
+                        "O app para Mac é gratuito para baixar e usar, sem período de avaliação nem limite de tempo. Uma licença Starter ou Team adiciona recursos opcionais ao app para Mac; a <pricing>página de preços</pricing> os lista. Conectar a qualquer mecanismo compatível não exige licença, assim como o assistente de IA, o servidor MCP e o Safe Mode.",
                         "O app para iPhone e iPad é gratuito, sem compras no app, e não precisa de licença."
                     ]
                 },
@@ -81,7 +81,7 @@
                     "id": "iphone-ipad",
                     "question": "Existe um app para iPhone e iPad?",
                     "answer": [
-                        "Sim. TablePro para iPhone e iPad está na App Store, exige {iosRequirement} e é gratuito, sem compras no app. Conecta a {iosEngines}, com túneis SSH, Modo Seguro e Face ID, e permite explorar e editar tabelas e executar consultas.",
+                        "Sim. TablePro para iPhone e iPad está na App Store, exige {iosRequirement} e é gratuito, sem compras no app. Conecta a {iosEngines}, com túneis SSH, Safe Mode e Face ID, e permite explorar e editar tabelas e executar consultas.",
                         "É um app separado feito para celular e tablet, não uma cópia do app para Mac: por exemplo, não tem assistente de IA, servidor MCP nem consultas salvas. A <ios>página de iPhone e iPad</ios> lista o que faz e o que não inclui."
                     ]
                 },
@@ -135,7 +135,7 @@
                     "question": "Onde minhas senhas são armazenadas?",
                     "answer": [
                         "No Mac, nas Chaves do macOS. Uma conexão pode ler a senha ao conectar a partir de arquivo, variável de ambiente, comando de shell, 1Password, HashiCorp Vault ou AWS Secrets Manager. No iPhone e iPad, as senhas são mantidas nas Chaves do dispositivo.",
-                        "Com a Sincronização iCloud ativada, senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad, usando as Chaves do iCloud."
+                        "Com o iCloud Sync ativado, senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad, usando as Chaves do iCloud."
                     ]
                 },
                 {
@@ -177,7 +177,7 @@
                     "id": "subscription-ends",
                     "question": "O que acontece quando minha assinatura termina?",
                     "answer": [
-                        "Os recursos pagos são bloqueados: por exemplo, a Sincronização iCloud pausa e as conexões de Pastas Vinculadas ou da Biblioteca da Equipe ficam ocultas. Todo o restante continua funcionando, e conexões, consultas e configurações ficam no Mac como estão. Renovar reativa os recursos pagos.",
+                        "Os recursos pagos são bloqueados: por exemplo, o iCloud Sync pausa e as conexões de Linked Folders ou da Team Library ficam ocultas. Todo o restante continua funcionando, e conexões, consultas e configurações ficam no Mac como estão. Renovar reativa os recursos pagos.",
                         "Uma compra com pagamento único não tem data de expiração. Nada muda no iPhone nem iPad."
                     ]
                 },
@@ -193,7 +193,7 @@
                     "id": "payment",
                     "question": "Quem processa o pagamento?",
                     "answer": [
-                        "{merchant} é nosso vendedor responsável: você compra a licença de {merchant}, que recebe o pagamento, calcula tributos sobre vendas ou IVA no checkout e envia o recibo por email. Faturas, forma de pagamento e assinatura ficam no <portal>portal do cliente de {merchant}</portal>, onde você entra com o email usado na compra."
+                        "{merchant} é nosso merchant of record: você compra a licença de {merchant}, que recebe o pagamento, calcula tributos sobre vendas ou IVA no checkout e envia o recibo por email. Faturas, forma de pagamento e assinatura ficam no <portal>portal do cliente de {merchant}</portal>, onde você entra com o email usado na compra."
                     ]
                 },
                 {
@@ -228,7 +228,7 @@
                     "question": "O que os apps enviam ao TablePro?",
                     "answer": [
                         "Sem licença ativada, a única solicitação do app para Mac ao TablePro é um relatório diário de uso, ativado por padrão e que pode ser desativado em <ui>Settings > General > Privacy</ui>. Ele contém um hash do ID da máquina e informações do app, como versão, idioma e tipos de banco conectados, nunca nomes de host, nomes de usuário, senhas, consultas nem linhas.",
-                        "Com uma licença, o app para Mac também a verifica a cada {revalidateDays} dias, enviando a chave, o mesmo ID de máquina, o nome do Mac e as versões do app e macOS. No iPhone e iPad, nada vai ao TablePro a menos que você ative Compartilhar Dados de Uso. A <privacy>política de privacidade</privacy> tem a lista completa, incluindo o que nosso servidor armazena."
+                        "Com uma licença, o app para Mac também a verifica a cada {revalidateDays} dias, enviando a chave, o mesmo ID de máquina, o nome do Mac e as versões do app e macOS. No iPhone e iPad, nada vai ao TablePro a menos que você ative Share Usage Data. A <privacy>política de privacidade</privacy> tem a lista completa, incluindo o que nosso servidor armazena."
                     ]
                 },
                 {
@@ -247,10 +247,10 @@
                 },
                 {
                     "id": "icloud-data",
-                    "question": "O que a Sincronização iCloud armazena e onde?",
+                    "question": "O que o iCloud Sync armazena e onde?",
                     "answer": [
-                        "A Sincronização iCloud fica desativada até você ativá-la. Conexões sincronizadas e, no Mac, outras categorias escolhidas vão para um banco privado na sua conta iCloud, que TablePro não pode ler. Senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad.",
-                        "No Mac, a Sincronização iCloud faz parte de uma licença Starter ou Team. No iPhone e iPad, é gratuita."
+                        "O iCloud Sync fica desativado até você ativá-lo. Conexões sincronizadas e, no Mac, outras categorias escolhidas vão para um banco privado na sua conta iCloud, que TablePro não pode ler. Senhas só são sincronizadas se você também ativar <ui>Passwords</ui> em Sync Categories no Mac ou <ui>Sync Passwords</ui> no iPhone e iPad.",
+                        "No Mac, o iCloud Sync faz parte de uma licença Starter ou Team. No iPhone e iPad, é gratuito."
                     ]
                 }
             ]
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "Como adiciono ou removo membros da equipe?",
                     "answer": [
-                        "Na <account>sua conta</account>, convide alguém por email. A pessoa recebe um código para inserir no TablePro do Mac, em <ui>Settings > License</ui>, e seu Mac ocupa uma vaga. Remover um membro libera a vaga, desconecta seus Macs e exclui o que publicou na Biblioteca da Equipe."
+                        "Na <account>sua conta</account>, convide alguém por email. A pessoa recebe um código para inserir no TablePro do Mac, em <ui>Settings > License</ui>, e seu Mac ocupa uma vaga. Remover um membro libera a vaga, desconecta seus Macs e exclui o que publicou na Team Library."
                     ]
                 },
                 {

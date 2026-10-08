@@ -40,7 +40,7 @@
             "title": "スクリプト、バッチと編集",
             "paragraphs": [
                 "スクリプトは sqlcmd と同じく、<code>GO</code> だけがある行ごとに分割し、一つずつバッチとしてサーバーに送ります。<code>GO 5</code> は直前のバッチを五回実行します。結果セットはそれぞれ専用タブで開き、<code>PRINT</code> 出力と情報メッセージは Output ビューに表示します。",
-                "失敗時にそれ以前のバッチも戻す必要がある場合は、スクリプトに <code>BEGIN TRAN</code> と <code>COMMIT</code> を記述してください。トランザクションを開いたままのスクリプトは、終了時に通知します。最初に失敗したバッチで実行を停止し、エディタ内の行番号をエラーに表示します。",
+                "失敗時にそれ以前のバッチも戻す必要がある場合は、スクリプトに <code>BEGIN TRAN</code> と <code>COMMIT</code> を記述してください。トランザクションを開いたままのスクリプトは、終了時に通知します。最初に失敗したバッチで実行を停止し、エディター内の行番号をエラーに表示します。",
                 "すべてのセッションは、フィルター付きインデックス、インデックス付きビューと計算カラムのインデックスに必要な SET オプションで開きます。例えば <code>ANSI_NULLS</code> と <code>QUOTED_IDENTIFIER</code> をオンにします。そのため <code>col = NULL</code> は何にも一致せず、<code>IS NULL</code> で比較してください。",
                 "サイドバーではスキーマ配下にテーブルを表示し、<code>Cmd+K</code> は再接続せずにデータベースを切り替えます。行の編集は <editing>Preview SQL</editing> とともに保留し、新規行の IDENTITY カラムはサーバーに任せます。<code>nvarchar(max)</code> の値は全体を受け取ります。"
             ]
@@ -49,7 +49,7 @@
             "id": "schema",
             "title": "スキーマ",
             "paragraphs": [
-                "<structure>Structure タブ</structure> はカラム、インデックス、外部キーと制約の変更を保留し、実行前に T-SQL を表示します。スキーマはサイドバーから削除できますが、オブジェクトが残るスキーマは SQL Server が拒否します。作成はエディタで CREATE SCHEMA を使います。",
+                "<structure>Structure タブ</structure> はカラム、インデックス、外部キーと制約の変更を保留し、実行前に T-SQL を表示します。スキーマはサイドバーから削除できますが、オブジェクトが残るスキーマは SQL Server が拒否します。作成はエディターで CREATE SCHEMA を使います。",
                 "{compareSyncTier} プランの <compareSync>Compare & Sync</compareSync> は二つの SQL Server スキーマまたはデータを比較し、各文の後に <code>GO</code> 行を付けたスクリプトを保存します。sqlcmd や SQL Server Management Studio でそのまま使えます。"
             ]
         },
@@ -88,7 +88,7 @@
             },
             {
                 "product": "azure-data-studio",
-                "text": "Azure Data Studio は Microsoft の SQL Server・Azure SQL 用クエリエディタで、SQL Server Agent や Profiler などの作業用拡張を備えていました。",
+                "text": "Azure Data Studio は Microsoft の SQL Server・Azure SQL 用クエリエディターで、SQL Server Agent や Profiler などの作業用拡張を備えていました。",
                 "notes": [
                     "ads-retired-successor"
                 ]

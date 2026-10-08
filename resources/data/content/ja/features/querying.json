@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "自動補完と EXPLAIN を備えた SQL エディタ",
-        "description": "TablePro でスキーマを理解する自動補完やパラメータを使って SQL を書き、クエリ履歴を検索し、クエリを保存して、EXPLAIN プランを図で確認できます。"
+        "title": "自動補完と EXPLAIN を備えた SQL エディター",
+        "description": "TablePro でスキーマを理解する自動補完やパラメーターを使って SQL を書き、クエリ履歴を検索し、クエリを保存して、EXPLAIN プランを図で確認できます。"
     },
     "og": {
         "kicker": "クエリ",
@@ -15,7 +15,7 @@
     "sections": [
         {
             "id": "editor",
-            "title": "スキーマを理解するエディタ",
+            "title": "スキーマを理解するエディター",
             "paragraphs": [
                 "入力中に自動補完が接続のスキーマを参照します。FROM や JOIN の後のテーブル、エイリアスのカラム、その文の前方で定義した CTE やサブクエリのカラムも候補になります。ハイライトには tree-sitter を使い、<kbd>⌘⇧L</kbd> はコメントを残したままカーソル位置の文を整形します。",
                 "<kbd>⌘⏎</kbd> はカーソル位置の文または選択範囲、<kbd>⌘⇧⏎</kbd> はすべての文を実行し、<kbd>⌘⌥⏎</kbd> は行数制限なしで実行します。<kbd>⌘.</kbd> はキャンセルです。通常の文のバッチは一つのトランザクションで実行し、一つでも失敗するとロールバックします。例外は、自分でトランザクションを管理するスクリプト、SQL Server スクリプト、VACUUM などトランザクション内に置けない文、および独自にコミットする MySQL、MariaDB、Oracle の DDL です。"
@@ -23,24 +23,24 @@
             "points": [
                 "ガターに文のマーカーを表示し、それぞれに実行ボタンを用意。",
                 "正規表現に対応した検索と置換。",
-                "移動、レジスタとマクロに対応する Vim モード。<code>:w</code> でクエリを実行。",
+                "移動、レジスターとマクロに対応する Vim mode。<code>:w</code> でクエリを実行。",
                 "<code>.sql</code> ファイルをクエリタブとして開き、編集し、保存。"
             ],
             "asset": "mac-query-autocomplete"
         },
         {
             "id": "history",
-            "title": "パラメータ、履歴と保存済みクエリ",
+            "title": "パラメーター、履歴と保存済みクエリ",
             "paragraphs": [
                 "クエリに <code>:customer_id</code> を書くと、実行前に TablePro が値と型を尋ねます。ドライバーが対応する場合は、値をネイティブにバインドします。",
                 "実行したすべてのクエリはローカル履歴（<kbd>⌘Y</kbd>）に入り、全文検索とソース、失敗、期間のフィルターを使えます。既定では {historyEntries} 件を {historyDays} 日間保持し、同期しません。",
-                "クエリに <code>dau</code> などのキーワードを付けて保存すると、エディタでそのキーワードを入力して展開できます。保存済みクエリにはバージョン履歴があります。リンクした SQL フォルダは、<code>.sql</code> ファイルのフォルダとサイドバーを双方向に同期し、ファイルごとに Git ステータスの文字を表示します。この機能は無料で、共有接続ファイル用の Starter 機能 Linked Folders とは別です。"
+                "クエリに <code>dau</code> などのキーワードを付けて保存すると、エディターでそのキーワードを入力して展開できます。保存済みクエリにはバージョン履歴があります。リンクした SQL フォルダーは、<code>.sql</code> ファイルのフォルダーとサイドバーを双方向に同期し、ファイルごとに Git ステータスの文字を表示します。この機能は無料で、共有接続ファイル用の Starter 機能 Linked Folders とは別です。"
             ],
             "asset": "mac-query-parameters-history"
         },
         {
             "id": "open-quickly",
-            "title": "クイックオープンとタブ",
+            "title": "Open Quickly とタブ",
             "paragraphs": [
                 "Open Quickly（<kbd>⌘⇧O</kbd>）は、開いているすべての接続からテーブル、ビュー、システムテーブルを探し、保存済みと最近のクエリも検索します。各タブは独自の SQL、並べ替え、フィルターとカラム幅を保持し、アプリを終了して再び開いても復元されます。<kbd>⌃Tab</kbd> で直近に使ったタブを切り替えられます。"
             ]
@@ -78,7 +78,7 @@
                 },
                 {
                     "id": "query-insights",
-                    "title": "クエリ分析",
+                    "title": "Query Insights",
                     "paragraphs": [
                         "Query Insights はこの Mac のクエリ履歴を読み、最も多く実行したクエリ、最も遅いクエリ、失敗したクエリ、前の期間より遅くなったクエリを順位付けします。クエリは形式ごとにまとめるため、異なる値で実行した同じ文は一つとして数えます。数値は Mac 上で計算し、アップロードしません。"
                     ],
@@ -98,7 +98,7 @@
             "blocks": [
                 {
                     "id": "result-charts",
-                    "title": "結果グラフ",
+                    "title": "Result Charts",
                     "paragraphs": [
                         "結果を棒、折れ線、面、散布図として描けます。日付には時間軸を使い、選んだカラムの値ごとに系列を作成します。グラフは先頭 {chartInspectedRows} 行から最大 {chartPoints} 点、{chartSeries} 系列を描画し、すべてを描けない場合はツールバーに表示します。"
                     ],
@@ -121,7 +121,7 @@
             "id": "other-languages",
             "title": "SQL を使わないエンジン",
             "paragraphs": [
-                "SQL を使わない接続では、エディタはエンジン固有の言語を受け付けます。対応内容は各エンジンのページで説明しています。MongoDB エディタは TablePro 内で動く mongosh 風の JavaScript シェルで、mongosh 自体ではありません。"
+                "SQL を使わない接続では、エディターはエンジン固有の言語を受け付けます。対応内容は各エンジンのページで説明しています。MongoDB エディターは TablePro 内で動く mongosh 風の JavaScript シェルで、mongosh 自体ではありません。"
             ],
             "engines": [
                 {
@@ -135,7 +135,7 @@
             "title": "iPhone と iPad では",
             "paragraphs": [
                 "iPhone と iPad アプリの Query タブには SQL ハイライト、Run と Stop（キーボードでは <kbd>⌘↩</kbd>）、そのデバイスで実行した直近 {historyEntriesIos} 件の履歴があります。結果を JSON、CSV や SQL INSERT 文としてコピーまたは共有できます。",
-                "自動補完、整形、パラメータ、EXPLAIN や保存済みクエリには対応しません。結果は最大 {resultBufferIos} 行まで保持するため、必要な範囲を見るには LIMIT を追加してください。"
+                "自動補完、整形、パラメーター、EXPLAIN や保存済みクエリには対応しません。結果は最大 {resultBufferIos} 行まで保持するため、必要な範囲を見るには LIMIT を追加してください。"
             ],
             "links": [
                 {
@@ -147,12 +147,12 @@
     ],
     "availability": [
         {
-            "label": "自動補完と整形付き SQL エディタ",
+            "label": "自動補完と整形付き SQL エディター",
             "ios": "partial",
             "iosNote": "ハイライト、Run と Stop のみ。自動補完なし"
         },
         {
-            "label": "クエリパラメータ",
+            "label": "クエリパラメーター",
             "ios": "no"
         },
         {
@@ -161,11 +161,11 @@
             "iosNote": "デバイス上の直近 {historyEntriesIos} 件"
         },
         {
-            "label": "保存済みクエリとリンクした SQL フォルダ",
+            "label": "保存済みクエリとリンクした SQL フォルダー",
             "ios": "no"
         },
         {
-            "label": "クイックオープン",
+            "label": "Open Quickly",
             "ios": "no"
         },
         {
@@ -173,12 +173,12 @@
             "ios": "no"
         },
         {
-            "label": "クエリ分析",
+            "label": "Query Insights",
             "paid": "query-insights",
             "ios": "no"
         },
         {
-            "label": "結果グラフ",
+            "label": "Result Charts",
             "paid": "result-charts",
             "ios": "no"
         },
@@ -198,11 +198,11 @@
     ],
     "docs": [
         {
-            "label": "SQL エディタ",
+            "label": "SQL エディター",
             "docs": "/features/sql-editor"
         },
         {
-            "label": "クエリパラメータ",
+            "label": "クエリパラメーター",
             "docs": "/features/query-parameters"
         },
         {
@@ -214,7 +214,7 @@
             "docs": "/features/explain-visualization"
         },
         {
-            "label": "クエリ分析",
+            "label": "Query Insights",
             "docs": "/features/query-insights"
         },
         {

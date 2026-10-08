@@ -3,7 +3,7 @@ import type { Messages } from '../../types.ts';
 export default {
     "email": {
         "label": "メールアドレス",
-        "placeholder": "you@example.com"
+        "placeholder": "name@example.com"
     },
     "subscribe": "登録する",
     "invalidEmail": "有効なメールアドレスを入力してください。",

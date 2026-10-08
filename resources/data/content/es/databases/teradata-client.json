@@ -28,9 +28,9 @@
             "id": "connect",
             "title": "Conecta e inicia sesión",
             "paragraphs": [
-                "Introduce host, usuario y contraseña. Funciona cualquier sistema Vantage que acepte TD2; no se comprueba versión. <ui>Mecanismo de acceso</ui> en Opciones acepta <code>TD2</code> o <code>TDNEGO</code>; <ui>Base de datos</ui> solo es necesaria si el valor predeterminado difiere del de tu cuenta.",
-                "El puerto predeterminado lleva una sesión sin cifrar. Cualquier modo SSL la mueve al endpoint WebSocket del gateway en 443, que no se puede cambiar. Verificar CA necesita un certificado CA; Verificar identidad comprueba cadena y host con él o, sin él, con el almacén de confianza del sistema.",
-                "Deja <ui>Modo de transacción</ui> en <code>DEFAULT</code> salvo que el script requiera reglas ANSI o TERA de commit y sensibilidad a mayúsculas de sesión. Usa un <network>túnel SSH</network> para un sistema detrás de un bastión. <ui>Importar desde URL…</ui> acepta URL <code>teradata://</code>, que macOS no abre como enlaces."
+                "Introduce host, usuario y contraseña. Funciona cualquier sistema Vantage que acepte TD2; no se comprueba versión. <ui>Logon Mechanism</ui> en Options acepta <code>TD2</code> o <code>TDNEGO</code>; <ui>Database</ui> solo es necesaria si el valor predeterminado difiere del de tu cuenta.",
+                "El puerto predeterminado lleva una sesión sin cifrar. Cualquier modo SSL la mueve al endpoint WebSocket del gateway en 443, que no se puede cambiar. Verify CA necesita un certificado CA; Verify Identity comprueba cadena y host con él o, sin él, con el almacén de confianza del sistema.",
+                "Deja <ui>Transaction Mode</ui> en <code>DEFAULT</code> salvo que el script requiera reglas ANSI o TERA de commit y sensibilidad a mayúsculas de sesión. Usa un <network>túnel SSH</network> para un sistema detrás de un bastión. <ui>Import from URL…</ui> acepta URL <code>teradata://</code>, que macOS no abre como enlaces."
             ]
         },
         {
@@ -39,21 +39,21 @@
             "paragraphs": [
                 "Una base y un usuario son espacios de nombres en Teradata; ambos aparecen arriba en la barra lateral con tablas y vistas. Una pestaña asociada a otra base mantiene la sesión y ejecuta <code>DATABASE</code> antes de sus sentencias.",
                 "Los procedimientos almacenados aparecen en la barra lateral; las macros, en Funciones, abriendo su <objects>código en una pestaña de solo lectura</objects>.",
-                "Teradata no tiene <code>LIMIT</code>; la primera página usa <code>TOP</code> y las siguientes <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> devuelve el plan como texto sin procesar. Las ediciones esperan a guardar; <editing>Vista previa SQL</editing> muestra antes cada sentencia."
+                "Teradata no tiene <code>LIMIT</code>; la primera página usa <code>TOP</code> y las siguientes <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> devuelve el plan como texto sin procesar. Las ediciones esperan a guardar; <editing>Preview SQL</editing> muestra antes cada sentencia."
             ]
         },
         {
             "id": "schema",
-            "title": "Estructura",
+            "title": "Structure",
             "paragraphs": [
-                "Crea tablas y cambia columnas en la <structure>pestaña Estructura</structure>. DDL muestra su definición completa, incluidas restricciones."
+                "Crea tablas y cambia columnas en la <structure>pestaña Structure</structure>. DDL muestra su definición completa, incluidas restricciones."
             ]
         },
         {
             "id": "move-data",
             "title": "Transfiere datos",
             "paragraphs": [
-                "Carga archivos {importFormats} con <importData>Importar</importData> y guarda tablas o resultados como {exportFormats}. <copy>Copiar a</copy> envía tablas, filas o ambos a otra conexión Teradata; se rechaza copiar a otro motor."
+                "Carga archivos {importFormats} con <importData>Importar</importData> y guarda tablas o resultados como {exportFormats}. <copy>Copy To</copy> envía tablas, filas o ambos a otra conexión Teradata; se rechaza copiar a otro motor."
             ]
         }
     ],
@@ -68,7 +68,7 @@
         {
             "id": "tls-check",
             "question": "¿Cómo sé si la sesión está cifrada?",
-            "answer": "Prueba con Obligatorio (omitir verificación) o un modo de verificación. Preferido vuelve a una sesión sin cifrar si el puerto TLS no es accesible, así que un handshake fallido aún parece una conexión correcta."
+            "answer": "Prueba con Required (skip verify) o un modo de verificación. Preferred vuelve a una sesión sin cifrar si el puerto TLS no es accesible, así que un handshake fallido aún parece una conexión correcta."
         }
     ],
     "related": [

@@ -59,7 +59,7 @@
         }
     },
     "tidb": {
-        "tagline": "透過 MySQL 驅動程式連線至 TiDB 和 TiDB Cloud，停止操作傳送 KILL TIDB QUERY。",
+        "tagline": "透過 MySQL 驅動程式連線至 TiDB 和 TiDB Cloud，Stop 傳送 KILL TIDB QUERY。",
         "limits": {
             "no-triggers-or-routines": "沒有觸發程序、預存常式或事件。",
             "no-dashboard-or-dump": "沒有 Server Dashboard 和 Backup Dump。請改用 TiDB 的 Dumpling 匯出。",
@@ -103,7 +103,7 @@
         "limits": {
             "needs-socket-server": "PGlite 必須透過 @electric-sql/pglite-socket 提供服務，需自行啟動並保持執行。",
             "single-client": "Socket 伺服器一次只接受一個用戶端。",
-            "cancel-has-no-effect": "取消不起作用，查詢始終執行至完成。"
+            "cancel-has-no-effect": "Cancel 不起作用，查詢始終執行至完成。"
         }
     },
     "oracle": {

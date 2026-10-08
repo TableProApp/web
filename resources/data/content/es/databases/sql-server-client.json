@@ -29,10 +29,10 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Indica host y puerto TCP y elige <ui>Autenticación</ui>; el formulario se adapta: acceso SQL Server con contraseña, autenticación Windows mediante Kerberos o Microsoft Entra ID. Completa Base de datos para un acceso de una sola base, como un usuario contenido Azure SQL.",
+                "Indica host y puerto TCP y elige <ui>Authentication</ui>; el formulario se adapta: acceso SQL Server con contraseña, autenticación Windows mediante Kerberos o Microsoft Entra ID. Completa Base de datos para un acceso de una sola base, como un usuario contenido Azure SQL.",
                 "Kerberos usa el ticket de la caché de credenciales o pide uno con principal y contraseña introducidos. Conecta por nombre de host, no IP, porque el ticket corresponde al SPN registrado. TablePro nunca ejecuta <code>kinit</code> ni edita <code>/etc/krb5.conf</code>.",
                 "<cloudAuth>Microsoft Entra ID</cloudAuth> usa el flujo de código de dispositivo, respetando MFA y Acceso condicional. Registras una app en Azure e introduces su ID de cliente; los tokens quedan en tu llavero de acceso, marcados como exclusivos del dispositivo, y se renuevan en segundo plano.",
-                "Las conexiones nuevas usan Preferido, que en SQL Server cifra solo el acceso. Elige Obligatorio o más estricto para cifrar toda la sesión; Verificar CA e identidad comprueban el certificado con raíces de macOS. TablePro también ejecuta Cloud SQL Auth Proxy para Google Cloud SQL; los <network>túneles SSH</network> acceden a redes privadas."
+                "Las conexiones nuevas usan Preferred, que en SQL Server cifra solo el acceso. Elige Required o más estricto para cifrar toda la sesión; Verify CA y Verify Identity comprueban el certificado con raíces de macOS. TablePro también ejecuta Cloud SQL Auth Proxy para Google Cloud SQL; los <network>túneles SSH</network> acceden a redes privadas."
             ]
         },
         {
@@ -42,23 +42,23 @@
                 "El script llega por lotes, divididos en líneas con solo <code>GO</code>, como sqlcmd; <code>GO 5</code> repite cinco veces el lote anterior. Cada conjunto de resultados abre su pestaña; <code>PRINT</code> y mensajes informativos aparecen en Salida.",
                 "Incluye <code>BEGIN TRAN</code> y <code>COMMIT</code> si un fallo debe deshacer los lotes anteriores; un script que deje una transacción abierta termina con un aviso. La ejecución para en el primer lote fallido y el error señala su línea en el editor.",
                 "Cada sesión abre con las opciones SET necesarias para índices filtrados, vistas indexadas e índices de columnas calculadas, como <code>ANSI_NULLS</code> y <code>QUOTED_IDENTIFIER</code> activados. Por eso <code>col = NULL</code> no coincide con nada: usa <code>IS NULL</code>.",
-                "Las tablas se anidan en sus esquemas; <code>Cmd+K</code> cambia de base sin reconectar. Las ediciones se preparan con <editing>Vista previa SQL</editing>, las filas nuevas dejan IDENTITY al servidor y <code>nvarchar(max)</code> llega completo."
+                "Las tablas se anidan en sus esquemas; <code>Cmd+K</code> cambia de base sin reconectar. Las ediciones se preparan con <editing>Preview SQL</editing>, las filas nuevas dejan IDENTITY al servidor y <code>nvarchar(max)</code> llega completo."
             ]
         },
         {
             "id": "schema",
             "title": "Esquema",
             "paragraphs": [
-                "La <structure>pestaña Estructura</structure> prepara cambios de columnas, índices, claves foráneas y restricciones y muestra T-SQL antes. Puedes eliminar esquemas en la barra lateral; SQL Server rechaza los que contengan objetos. Crea uno con CREATE SCHEMA en el editor.",
-                "<compareSync>Comparar y sincronizar</compareSync>, del plan {compareSyncTier}, compara dos esquemas SQL Server o sus datos y guarda un script con <code>GO</code> tras cada sentencia, listo para sqlcmd o SQL Server Management Studio."
+                "La <structure>pestaña Structure</structure> prepara cambios de columnas, índices, claves foráneas y restricciones y muestra T-SQL antes. Puedes eliminar esquemas en la barra lateral; SQL Server rechaza los que contengan objetos. Crea uno con CREATE SCHEMA en el editor.",
+                "<compareSync>Compare & Sync</compareSync>, del plan {compareSyncTier}, compara dos esquemas SQL Server o sus datos y guarda un script con <code>GO</code> tras cada sentencia, listo para sqlcmd o SQL Server Management Studio."
             ]
         },
         {
             "id": "operate",
             "title": "Supervisa y haz copias",
             "paragraphs": [
-                "El <dashboard>Panel del servidor</dashboard> muestra sesiones de usuario, tiempo activo y tamaño, enumera las otras sesiones y consultas de más de un segundo y termina sesiones con <ui>Terminar sesión</ui>. SQL Server no tiene Cancelar consulta.",
-                "<backup>Volcado de copia de seguridad</backup> escribe <code>.bacpac</code> con {dumpTool}, descargado de Microsoft; Restaurar volcado lo carga en una base vacía. SqlPackage solo acepta contraseña por línea de comandos, legible por otros procesos del Mac, así que TablePro pregunta antes. Windows o Entra evitan pasarla."
+                "El <dashboard>Server Dashboard</dashboard> muestra sesiones de usuario, tiempo activo y tamaño, enumera las otras sesiones y consultas de más de un segundo y termina sesiones con <ui>Terminate Session</ui>. SQL Server no tiene Cancel Query.",
+                "<backup>Backup Dump</backup> escribe <code>.bacpac</code> con {dumpTool}, descargado de Microsoft; Restore Dump lo carga en una base vacía. SqlPackage solo acepta contraseña por línea de comandos, legible por otros procesos del Mac, así que TablePro pregunta antes. Windows o Entra evitan pasarla."
             ]
         },
         {
@@ -72,7 +72,7 @@
             "id": "iphone",
             "title": "iPhone y iPad",
             "paragraphs": [
-                "En iPhone y iPad accedes con login SQL Server, exploras tablas como tarjetas, editas filas con clave primaria y ejecutas T-SQL en Consulta. No hay autenticación Windows. Una conexión Entra ID viene del Mac por iCloud o archivo exportado; inicias sesión en Microsoft al abrirla."
+                "En iPhone y iPad accedes con login SQL Server, exploras tablas como tarjetas, editas filas con clave primaria y ejecutas T-SQL en Consulta. No hay autenticación Windows. Una conexión Entra ID viene del Mac por iCloud Sync o archivo exportado; inicias sesión en Microsoft al abrirla."
             ]
         }
     ],
@@ -103,7 +103,7 @@
         {
             "id": "azure-sql",
             "question": "¿Funciona TablePro con Azure SQL Database?",
-            "answer": "Sí. Usa <code>yourserver.database.windows.net</code> como host, SSL Obligatorio o más estricto y login SQL o Entra ID. Un usuario contenido también necesita completar Base de datos."
+            "answer": "Sí. Usa <code>yourserver.database.windows.net</code> como host, SSL en Required o más estricto y login SQL o Entra ID. Un usuario contenido también necesita completar Base de datos."
         },
         {
             "id": "declare",
@@ -113,7 +113,7 @@
         {
             "id": "freetds",
             "question": "¿Necesito FreeTDS o un controlador ODBC?",
-            "answer": "No. El controlador incorpora FreeTDS, no instala nada más ni lee tu <code>freetds.conf</code>. Solo Volcado de copia de seguridad y Restaurar volcado requieren tu herramienta: {dumpTool}."
+            "answer": "No. El controlador incorpora FreeTDS, no instala nada más ni lee tu <code>freetds.conf</code>. Solo Backup Dump y Restore Dump requieren tu herramienta: {dumpTool}."
         }
     ],
     "related": [

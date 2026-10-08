@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "연결",
             "paragraphs": [
-                "호스트, 리스너 포트와 Service Name을 입력하고 서비스 없는 인스턴스는 <ui>Connection Type</ui>을 SID로 바꿉니다. 사용자 이름·비밀번호로 Normal 또는 SYSDBA·SYSOPER 역할로 로그인합니다.",
+                "호스트, 리스너 포트와 Service Name을 입력하고 서비스 없는 인스턴스는 <ui>연결 유형</ui>(Connection Type)을 SID로 바꿉니다. 사용자 이름·비밀번호로 Normal 또는 SYSDBA·SYSOPER 역할로 로그인합니다.",
                 "Native Network Encryption은 설정 없이 서버가 요청하면 SHA-2 체크섬의 AES를 제공하며 <ui>Network Encryption</ui>으로 제공 방식을 바꿉니다. TLS는 TCPS용 Required 또는 CA 인증서의 Verify CA·Verify Identity를 고릅니다. 새 연결은 SSL이 꺼져 있고 Preferred는 평문 TCP를 유지합니다.",
                 "Oracle Autonomous Database는 mTLS 대신 TLS 연결 문자열의 호스트·포트·서비스 이름을 복사하고 SSL을 Required·Verify CA로 설정합니다. 지갑 파일은 읽지 않으므로 데이터베이스가 상호 TLS 없는 TLS를 허용해야 합니다.",
                 "RAC SCAN 리스너, 공유 서버나 데이터베이스 앞 로드 밸런서는 설정이 필요 없고 사설 네트워크 리스너에는 <network>SSH 터널</network>로 접근합니다."
@@ -39,9 +39,9 @@
             "id": "work",
             "title": "SQL, PL/SQL 및 트랜잭션",
             "paragraphs": [
-                "PL/SQL 블록·저장 단위는 세미콜론 수에 관계없이 구문 하나로 실행하니 안에 커서를 두고 실행하세요. SQL*Plus·SQL Developer 스크립트는 변경 없이 실행되며 <code>/</code>만 있는 행이 위 단위를 끝냅니다. 컴파일 실패는 Oracle 오류를 위치와 함께 한 줄씩 표시합니다.",
-                "<code>DBMS_OUTPUT.PUT_LINE</code> 출력은 출력한 구문 결과와 함께 표시돼 <code>SET SERVEROUTPUT ON</code>이 필요 없습니다. 익명 블록의 <code>:name</code>은 패널에서 입력하는 <parameters>쿼리 매개변수</parameters>입니다.",
-                "각 구문은 성공하면 커밋합니다. <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> 또는 <code>LOCK TABLE</code>로 시작하면 변경을 유지하며 그 뒤 그리드 저장까지 모두 <code>COMMIT</code>·<code>ROLLBACK</code>을 기다립니다.",
+                "PL/SQL 블록·저장 단위는 세미콜론 수에 관계없이 명령문 하나로 실행하니 안에 커서를 두고 실행하세요. SQL*Plus·SQL Developer 스크립트는 변경 없이 실행되며 <code>/</code>만 있는 행이 위 단위를 끝냅니다. 컴파일 실패는 Oracle 오류를 위치와 함께 한 줄씩 표시합니다.",
+                "<code>DBMS_OUTPUT.PUT_LINE</code> 출력은 출력한 명령문 결과와 함께 표시돼 <code>SET SERVEROUTPUT ON</code>이 필요 없습니다. 익명 블록의 <code>:name</code>은 패널에서 입력하는 <parameters>쿼리 매개변수</parameters>입니다.",
+                "각 명령문은 성공하면 커밋합니다. <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> 또는 <code>LOCK TABLE</code>로 시작하면 변경을 유지하며 그 뒤 그리드 저장까지 모두 <code>COMMIT</code>·<code>ROLLBACK</code>을 기다립니다.",
                 "각 사용자는 스키마이고 <code>Cmd+K</code>로 재연결 없이 활성 스키마를 바꿉니다. 행 편집은 <editing>Preview SQL</editing>로 대기합니다. <code>EXECUTE IMMEDIATE</code>를 통한 경우도 drop·truncate 블록은 실행 전 <safeMode>위험한 쿼리 경고</safeMode>를 표시합니다."
             ]
         },

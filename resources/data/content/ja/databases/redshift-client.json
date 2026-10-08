@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "{devices} 用 Amazon Redshift クライアント",
-        "description": "PostgreSQL ドライバーで Redshift クラスタと Serverless ワークグループをクエリ。DISTKEY、SORTKEY、外部スキーマを確認し、pg_dump でバックアップ。"
+        "description": "PostgreSQL ドライバーで Redshift クラスターと Serverless ワークグループをクエリ。DISTKEY、SORTKEY、外部スキーマを確認し、pg_dump でバックアップ。"
     },
     "og": {
         "kicker": "データベース",
@@ -11,7 +11,7 @@
     "breadcrumb": "Amazon Redshift",
     "header": {
         "title": "{devices} 用 Amazon Redshift クライアント",
-        "lead": "アプリ同梱の PostgreSQL ドライバーでプロビジョンドクラスタや Serverless ワークグループに問い合わせ、各テーブルの分散方式とソートキーを確認し、自分のスキーマと並んで Spectrum や datashare のスキーマを閲覧できます。"
+        "lead": "アプリ同梱の PostgreSQL ドライバーでプロビジョンドクラスターや Serverless ワークグループに問い合わせ、各テーブルの分散方式とソートキーを確認し、自分のスキーマと並んで Spectrum や datashare のスキーマを閲覧できます。"
     },
     "asset": "mac-db-redshift-ddl",
     "links": {
@@ -31,8 +31,8 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "ホストにはクラスタエンドポイント、Redshift Serverless ならワークグループエンドポイントを使い、どちらも同じポートで待ち受けます。データベースは必須で、すべてのクラスタには作成時に <code>dev</code> が用意されます。<code>redshift://</code> URL のインポートでフォームを入力できます。",
-                "新規接続は SSL を Preferred にし、バージョン検査は行わないため、AWS が稼働させているクラスタなら接続できます。パスワードはキーチェーンに保存するか <code>~/.pgpass</code> から読み取り、接続の <credentials>認証情報オプション</credentials> の二つです。公開アクセスできないクラスタには、VPC 内の踏み台への <network>SSH トンネル</network> でアクセスします。"
+                "ホストにはクラスターエンドポイント、Redshift Serverless ならワークグループエンドポイントを使い、どちらも同じポートで待ち受けます。データベースは必須で、すべてのクラスターには作成時に <code>dev</code> が用意されます。<code>redshift://</code> URL のインポートでフォームを入力できます。",
+                "新規接続は SSL を Preferred にし、バージョン検査は行わないため、AWS が稼働させているクラスターなら接続できます。パスワードはキーチェーンに保存するか <code>~/.pgpass</code> から読み取り、接続の <credentials>認証情報オプション</credentials> の二つです。公開アクセスできないクラスターには、VPC 内の踏み台への <network>SSH トンネル</network> でアクセスします。"
             ]
         },
         {
@@ -58,7 +58,7 @@
             "title": "監視とバックアップ",
             "paragraphs": [
                 "<dashboard>Server Dashboard</dashboard> はセッションと遅いクエリを一覧表示し、接続数、キャッシュヒット率、データベースサイズ、稼働時間と実行中のクエリをメトリクスとして示します。Cancel Query は <code>pg_cancel_backend</code>、Terminate Session は <code>pg_terminate_backend</code> を、それぞれ確認後に送ります。",
-                "Redshift には Maintenance メニューも Users & Roles もありません。VACUUM、ANALYZE と GRANT は SQL エディタで実行します。",
+                "Redshift には Maintenance メニューも Users & Roles もありません。VACUUM、ANALYZE と GRANT は SQL エディターで実行します。",
                 "<backup>Backup Dump と Restore Dump</backup> は Mac の {dumpTool} と pg_restore を実行し、SSH トンネルがある場合はそれを通します。先に Homebrew の libpq でインストールしてください。"
             ]
         },
@@ -83,7 +83,7 @@
         {
             "id": "serverless",
             "question": "Redshift Serverless に対応しますか？",
-            "answer": "はい。ホストにワークグループエンドポイントを入れ、プロビジョンドクラスタと同様にポート、データベースとユーザーを指定します。"
+            "answer": "はい。ホストにワークグループエンドポイントを入れ、プロビジョンドクラスターと同様にポート、データベースとユーザーを指定します。"
         },
         {
             "id": "pg-dump",
@@ -97,7 +97,7 @@
             "href": "/postgresql-client"
         },
         {
-            "label": "サーバーダッシュボードとスキーマツール",
+            "label": "Server Dashboard とスキーマツール",
             "href": "/features/schema"
         },
         {

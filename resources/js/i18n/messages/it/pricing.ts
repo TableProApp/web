@@ -28,7 +28,7 @@ export default {
                 "Connessioni a qualsiasi motore supportato",
                 "L’editor SQL e la griglia dei dati",
                 "L’assistente IA e il server MCP",
-                "Modalità sicura",
+                "Safe Mode",
                 "L’app per iPhone e iPad"
             ]
         },
@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "Tutte le funzionalità a pagamento",
-    "finePrint": "Prezzi in dollari statunitensi. {merchant} è il venditore responsabile: incassa il pagamento e calcola le eventuali imposte sulle vendite o l’IVA al checkout.",
+    "finePrint": "Prezzi in dollari statunitensi. {merchant} è il merchant of record: incassa il pagamento e calcola le eventuali imposte sulle vendite o l’IVA al checkout.",
     "finePrintCurrency": "Prezzi in dollari statunitensi.",
     "comparePlans": "Confronta i piani",
     "section": {
@@ -107,8 +107,8 @@ export default {
         },
         "macsTeam": "Uno per posto",
         "everythingElse": "Tutto il resto dell’app",
-        "everythingElseDetail": "Ogni motore supportato, l’editor SQL, l’assistente IA, il server MCP e la Modalità sicura",
-        "iphoneNote": "L’app per iPhone e iPad non ha funzionalità a pagamento. La sincronizzazione iCloud è gratuita su questi dispositivi; per sincronizzare con un Mac, il Mac deve avere Starter o Team."
+        "everythingElseDetail": "Ogni motore supportato, l’editor SQL, l’assistente IA, il server MCP e Safe Mode",
+        "iphoneNote": "L’app per iPhone e iPad non ha funzionalità a pagamento. iCloud Sync è gratuito su questi dispositivi; per sincronizzare con un Mac, il Mac deve avere Starter o Team."
     },
     "discount": {
         "atCheckout": "Hai un codice sconto? Inseriscilo al checkout.",

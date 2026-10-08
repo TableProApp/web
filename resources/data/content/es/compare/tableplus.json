@@ -37,8 +37,8 @@
             "tablepro": "Gratis, junto con CSV, JSON, SQL y otros formatos"
         },
         "safeMode": {
-            "label": "Modo seguro",
-            "tablepro": "Por conexión, de Silencioso a Solo lectura, con Touch ID en niveles estrictos"
+            "label": "Safe Mode",
+            "tablepro": "Por conexión, de Silent a Read-Only, con Touch ID en niveles estrictos"
         },
         "setapp": {
             "label": "Setapp",
@@ -86,7 +86,7 @@
                 "href": null
             },
             {
-                "text": "La app gratuita conecta todos los motores compatibles e incluye IA, MCP y Modo seguro, sin límites de pestañas o ventanas. Los <link>planes de pago</link> añaden funciones como {starterExamples}.",
+                "text": "La app gratuita conecta todos los motores compatibles e incluye IA, MCP y Safe Mode, sin límites de pestañas o ventanas. Los <link>planes de pago</link> añaden funciones como {starterExamples}.",
                 "cite": [],
                 "feature": null,
                 "href": "/pricing"
@@ -100,13 +100,13 @@
                 "href": null
             },
             {
-                "text": "<link>Sincronización con iCloud</link> mantiene conexiones entre Macs e iPhone o iPad. Es parte de Starter en Mac y gratis en iPhone y iPad.",
+                "text": "<link>iCloud Sync</link> mantiene conexiones entre Macs e iPhone o iPad. Es parte de Starter en Mac y gratis en iPhone y iPad.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
             },
             {
-                "text": "Los planes Equipo añaden <link>{teamExamples}</link> para compartir conexiones y consultas guardadas.",
+                "text": "Los planes Team añaden <link>{teamExamples}</link> para compartir conexiones y consultas guardadas.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/sync-and-teams#team"
@@ -145,10 +145,10 @@
     "switching": {
         "intro": "TablePro lee conexiones donde TablePlus las guarda, incluida su edición Setapp. TablePlus no necesita estar abierto y sus archivos no cambian.",
         "steps": [
-            "En TablePro, elige <ui>Archivo > Importar > Importar desde otra app…</ui>",
-            "Selecciona TablePlus y activa <ui>Incluir contraseñas</ui> para leer las del Llavero macOS.",
-            "macOS pide tu contraseña de acceso una vez por contraseña guardada. Elige <ui>Permitir siempre</ui> en cada aviso.",
-            "Revisa la lista, decide qué hacer con duplicados y pulsa <ui>Importar</ui>. Se transfieren grupos, túneles SSH y colores. Una conexión a motor incompatible llega desmarcada.",
+            "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
+            "Selecciona TablePlus y activa <ui>Include passwords</ui> para leer las del Llavero macOS.",
+            "macOS pide tu contraseña de acceso una vez por contraseña guardada. Elige <ui>Always Allow</ui> en cada aviso.",
+            "Revisa la lista, decide qué hacer con duplicados y pulsa <ui>Import</ui>. Se transfieren grupos, túneles SSH y colores. Una conexión a motor incompatible llega desmarcada.",
             "Antes de eliminar TablePlus, abre una conexión con contraseña para comprobar la transferencia."
         ],
         "after": [
@@ -173,7 +173,7 @@
         {
             "id": "license",
             "question": "¿Necesito licencia para TablePro?",
-            "answer": "No. TablePro es gratis, con todos los motores compatibles, asistente IA, MCP y Modo seguro. Starter o Equipo añaden funciones opcionales Mac, como {starterExamples}. <link>Ver precios</link>.",
+            "answer": "No. TablePro es gratis, con todos los motores compatibles, asistente IA, MCP y Safe Mode. Starter o Team añaden funciones opcionales Mac, como {starterExamples}. <link>Ver precios</link>.",
             "href": "/pricing"
         },
         {

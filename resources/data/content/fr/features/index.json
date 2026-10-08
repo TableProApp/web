@@ -9,12 +9,12 @@
     },
     "header": {
         "title": "Ce que vous pouvez faire dans TablePro",
-        "lead": "L’application Mac offre l’environnement de travail complet et chaque page ci-dessous la décrit en premier. L’application iPhone et iPad est une application native distincte aux possibilités plus restreintes ; chaque page se termine par ce qu’elle y propose."
+        "lead": "L’application Mac offre l’environnement de travail complet et chaque page ci-dessous la décrit en premier. L’application iPhone et iPad est une application native distincte aux possibilités plus restreintes ; chaque page se termine par ce qu’elle y propose."
     },
     "areas": {
         "title": "Domaines fonctionnels",
         "lead": "Chaque domaine a sa page avec les détails, l’offre nécessaire sur Mac pour chaque partie et les limites à connaître.",
-        "paid": "{tier} : {features}",
+        "paid": "{tier} : {features}",
         "noPaid": "Aucune fonctionnalité payante",
         "items": [
             {
@@ -23,11 +23,11 @@
             },
             {
                 "slug": "data-editing",
-                "summary": "Filtres et règles de surbrillance, clés étrangères à suivre, modifications en attente de sauvegarde, niveau de mode sécurisé par connexion et Data Rewind pour les valeurs remplacées."
+                "summary": "Filtres et règles de surbrillance, clés étrangères à suivre, modifications en attente d’enregistrement, niveau de Safe Mode par connexion et Data Rewind pour les valeurs remplacées."
             },
             {
                 "slug": "schema",
-                "summary": "Modifications de structure avec aperçu DDL, diagramme ER en lecture seule, Comparer et synchroniser entre bases, Copier vers entre moteurs et Utilisateurs et rôles."
+                "summary": "Modifications de structure avec aperçu DDL, diagramme ER en lecture seule, Compare & Sync entre bases, Copy To entre moteurs et Users & Roles."
             },
             {
                 "slug": "import-export",
@@ -43,18 +43,18 @@
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "iCloud Sync entre Mac, iPhone et iPad, fichiers de connexion partageables et catalogue et bibliothèque d’équipe pour partager avec votre groupe."
+                "summary": "iCloud Sync entre Mac, iPhone et iPad, fichiers de connexion partageables, ainsi que Team Catalog et Team Library pour partager avec votre équipe."
             }
         ]
     },
     "ios": {
         "title": "iPhone et iPad",
-        "body": "TablePro pour iPhone et iPad est une application distincte, gratuite sans achats intégrés. Elle se connecte via SSH ou TLS, parcourt et modifie les lignes et exécute des requêtes, avec Raccourcis, widget d’écran d’accueil et Activités en direct. Elle n’a ni assistant IA, ni modification de schéma, ni Data Rewind ou Comparer et synchroniser.",
+        "body": "TablePro pour iPhone et iPad est une application distincte, gratuite sans achats intégrés. Elle se connecte via SSH ou TLS, parcourt et modifie les lignes et exécute des requêtes, avec Raccourcis, widget d’écran d’accueil et Activités en direct. Elle n’a ni assistant IA, ni modification de schéma, ni Data Rewind ou Compare & Sync.",
         "link": "TablePro pour iPhone et iPad"
     },
     "paid": {
         "title": "Gratuit et payant",
-        "lead": "L’application Mac est gratuite, sans période d’essai. Starter ou Team ajoute les fonctionnalités ci-dessous sur Mac et Team comprend tout Starter. La connexion aux moteurs compatibles, l’assistant IA, le serveur MCP et le mode sécurisé ne nécessitent aucune licence ; l’application iPhone et iPad est gratuite, sans achats intégrés.",
+        "lead": "L’application Mac est gratuite, sans période d’essai. Starter ou Team ajoute les fonctionnalités ci-dessous sur Mac et Team comprend tout Starter. La connexion aux moteurs compatibles, l’assistant IA, le serveur MCP et Safe Mode ne nécessitent aucune licence ; l’application iPhone et iPad est gratuite, sans achats intégrés.",
         "caption": "Fonctionnalités payantes sur Mac, offre requise et page qui les décrit",
         "columns": {
             "feature": "Feature",
@@ -79,9 +79,9 @@
             "starter": "Starter",
             "team": "Team"
         },
-        "paidBadge": "{name} : offre {tier}",
+        "paidBadge": "{name} : offre {tier}",
         "header": {
-            "paid": "Fonctionnalités payantes sur cette page : {features}. Tout le reste est gratuit.",
+            "paid": "Fonctionnalités payantes sur cette page : {features}. Tout le reste est gratuit.",
             "paidItem": "{name} ({tier})",
             "allFree": "Tout sur cette page est gratuit.",
             "docs": "Lire la documentation"

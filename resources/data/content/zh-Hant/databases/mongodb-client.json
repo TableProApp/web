@@ -44,7 +44,7 @@
                 "集合以格線開啟，頂層欄位為欄，巢狀物件為 Extended JSON。編輯儲存格保留欄位型別，日期仍為日期，ObjectId 仍為 ObjectId；巢狀物件編輯僅寫入 <code>address.city</code> 等改動路徑。",
                 "<editing>Insert Document 與 Edit Document</editing> 接受整個 Extended JSON 文件。Edit Document 重新從伺服器讀取；面板開啟後若他人修改或刪除，不儲存任何內容並提示。儲存格 <ui>Remove Field</ui> 傳送 <code>$unset</code>。",
                 "<filters>篩選列</filters>可存取巢狀物件和物件陣列，直接篩選 <code>customer.country</code>、<code>items.sku</code>。GeoJSON 欄位在<map>地圖檢視</map>開啟。",
-                "驅動程式無法開啟唯讀工作階段，所以<safeMode>安全模式</safeMode>將 MongoDB 連線的所有陳述式視為寫入。Alert、Safe Mode 層級逐一確認，Read-Only 全部阻擋。"
+                "驅動程式無法開啟唯讀工作階段，所以 <safeMode>Safe Mode</safeMode> 將 MongoDB 連線的所有陳述式視為寫入。Alert、Safe Mode 層級逐一確認，Read-Only 全部阻擋。"
             ]
         },
         {
@@ -53,7 +53,7 @@
             "paragraphs": [
                 "<structure>Structure 分頁</structure>依索引鍵順序列出各索引欄位及 hashed、text、2dsphere、wildcard 等種類。Show DDL 產生重建它們的 <code>createIndex</code> 呼叫，含伺服器報告的所有選項。",
                 "在同一分頁重新命名或移除整個集合的欄位。每次修改為一個 <code>updateMany</code>，在 Preview SQL 顯示，<code>$jsonSchema</code> 驗證器宣告的欄位也同步修改。索引、搜尋索引或檢視表仍使用該名稱時，任何寫入前即拒絕儲存。",
-                "<ui>New Table</ui> 建立集合，將欄位轉為 <code>$jsonSchema</code> 驗證器，再建立所列索引。檢視表和時間序列集合顯示在側欄，檢視表以唯讀開啟。"
+                "<ui>新增資料表</ui>（New Table）建立集合，將欄位轉為 <code>$jsonSchema</code> 驗證器，再建立所列索引。檢視表和時間序列集合顯示在側欄，檢視表以唯讀開啟。"
             ]
         },
         {

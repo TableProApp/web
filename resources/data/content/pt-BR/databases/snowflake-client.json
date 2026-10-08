@@ -44,7 +44,7 @@
         },
         {
             "id": "schema",
-            "title": "Estrutura",
+            "title": "Structure",
             "paragraphs": [
                 "A visualização DDL vem de <code>GET_DDL</code>. A <structure>aba Structure</structure> adiciona, renomeia e remove colunas, define NOT NULL, comentários e a chave primária, aumenta o tamanho de um VARCHAR e altera a precisão de NUMBER mantendo a escala.",
                 "Alterações que Snowflake rejeitaria são recusadas antes de qualquer execução: reduzir o tamanho de um VARCHAR, qualquer outra alteração de tipo e definir um novo valor padrão para uma coluna. Remover um valor padrão funciona."

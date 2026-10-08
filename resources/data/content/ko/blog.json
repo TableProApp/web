@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "블로그",
-        "description": "TablePro 팀의 릴리스 소식: 각 버전의 추가 및 수정 사항을 최신순으로 소개합니다.",
+        "description": "TablePro 팀의 릴리스 소식(영어): 각 버전의 추가 및 수정 사항을 최신순으로 소개합니다.",
         "indexable": false
     },
     "og": {
@@ -10,11 +10,11 @@
     },
     "header": {
         "title": "블로그",
-        "lead": "릴리스 소식을 최신순으로 소개합니다. 각 버전의 전체 노트는 <changelog>변경 기록</changelog>에서 확인하세요."
+        "lead": "릴리스 소식을 최신순으로 소개합니다. 글은 영어로만 제공됩니다. 각 버전의 전체 노트는 <changelog>변경 기록</changelog> (영어)에서 확인하세요."
     },
     "newsletter": {
         "title": "릴리스 글을 이메일로 받기",
-        "body": "릴리스 노트를 가끔 보내드립니다. 모든 이메일에 구독 해지 링크가 있습니다."
+        "body": "릴리스 노트를 가끔 영어로 보내드립니다. 모든 이메일에 구독 해지 링크가 있습니다."
     },
     "corrections": {
         "tablepro-0-74": {
@@ -23,7 +23,7 @@
         },
         "tablepro-for-iphone": {
             "date": "2026-10-02",
-            "text": "이 글의 설명과 달리 버전 1.0은 SSH 점프 호스트를 통하는 연결을 거부하지 않습니다. iPhone 및 iPad는 점프 호스트를 지원하지 않으므로 그런 연결은 Mac에서 여세요. Oracle은 SQLite, DuckDB 및 SQL Server와 마찬가지로 두 개 이상의 실행문을 저장할 때만 트랜잭션 안에서 실행합니다. 메모리에서 실행할 수 있는 것은 DuckDB뿐이며, SQLite 파일은 앱으로 복사됩니다."
+            "text": "이 글의 설명과 달리 버전 1.0은 SSH 점프 호스트를 통하는 연결을 거부하지 않습니다. iPhone 및 iPad는 점프 호스트를 지원하지 않으므로 그런 연결은 Mac에서 여세요. Oracle은 SQLite, DuckDB 및 SQL Server와 마찬가지로 두 개 이상의 명령문을 저장할 때만 트랜잭션 안에서 실행합니다. 메모리에서 실행할 수 있는 것은 DuckDB뿐이며, SQLite 파일은 앱으로 복사됩니다."
         }
     }
 }

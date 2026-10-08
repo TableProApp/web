@@ -49,14 +49,14 @@
         },
         {
             "id": "data-files",
-            "title": "File di dati: lavora su un file senza database",
+            "title": "Data Files: lavora su un file senza database",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
                     "title": "Apri, cerca e ripulisci",
                     "paragraphs": [
-                        "Apri un CSV, un TSV o un altro file di testo delimitato, JSON o JSON Lines dal Finder o con <kbd>⌘O</kbd>; la finestra File di dati lo mostra come tabella modificabile. Filtra con la barra dei filtri della griglia, cerca in ogni colonna, trova e sostituisci con espressioni regolari e riordina con Riempi verso il basso, Rimuovi spazi, Cambia maiuscole/minuscole e Rimuovi righe duplicate. Le cartelle di lavoro Excel si aprono con una scheda per foglio e si aprono anche file compressi come <code>.csv.gz</code>, entrambi in sola lettura.",
+                        "Apri un CSV, un TSV o un altro file di testo delimitato, JSON o JSON Lines dal Finder o con <kbd>⌘O</kbd>; la finestra Data Files lo mostra come tabella modificabile. Filtra con la barra dei filtri della griglia, cerca in ogni colonna, trova e sostituisci con espressioni regolari e riordina con Fill Down, Trim Whitespace, Change Case e Remove Duplicate Rows. Le cartelle di lavoro Excel si aprono con una scheda per foglio e si aprono anche file compressi come <code>.csv.gz</code>, entrambi in sola lettura.",
                         "La finestra lavora su una copia privata e <kbd>⌘S</kbd> riscrive il file nel suo formato originale, lasciando inalterate le righe non toccate."
                     ],
                     "asset": "mac-data-files-window"
@@ -76,7 +76,7 @@
             "title": "Crea backup con gli strumenti del tuo motore",
             "paragraphs": [
                 "Backup Dump e Restore Dump usano {backupTools}, attraverso il tunnel SSH della connessione e con le sue impostazioni SSL, quindi un server dietro un bastion non richiede un secondo tunnel. Tutti, tranne DuckDB, sono strumenti a riga di comando da installare; DuckDB scrive direttamente il dump, come file di database o cartella di file Parquet.",
-                "Su {serverSideExport}, Esportazione lato server fa scrivere l’esportazione al server: un job Oracle Data Pump, uno stage Snowflake o un bucket Cloud Storage. Nulla arriva sul tuo Mac."
+                "Su {serverSideExport}, Server-Side Export fa scrivere l’esportazione al server: un job Oracle Data Pump, uno stage Snowflake o un bucket Cloud Storage. Nulla arriva sul tuo Mac."
             ],
             "engines": [
                 {
@@ -90,7 +90,7 @@
             "id": "files",
             "title": "File che sono database",
             "paragraphs": [
-                "I file SQLite e DuckDB si aprono dal Finder come connessioni. DuckDB legge anche file Parquet, CSV e JSON come viste in sola lettura, quindi un file <code>.parquet</code> si apre come connessione DuckDB anziché in File di dati. Un database SQLite su un server SSH si apre dal vivo, tramite un piccolo agente che richiede Python 3.6 o successivo sul server, oppure come copia in sola lettura.",
+                "I file SQLite e DuckDB si aprono dal Finder come connessioni. DuckDB legge anche file Parquet, CSV e JSON come viste in sola lettura, quindi un file <code>.parquet</code> si apre come connessione DuckDB anziché in Data Files. Un database SQLite su un server SSH si apre dal vivo, tramite un piccolo agente che richiede Python 3.6 o successivo sul server, oppure come copia in sola lettura.",
                 "I file <code>.sql</code> si aprono come schede di query e si salvano su disco; un registro Beancount si apre in sola lettura come insieme di tabelle."
             ],
             "links": [
@@ -108,11 +108,11 @@
             "id": "between-databases",
             "title": "Da un database a un altro",
             "paragraphs": [
-                "Spostare tabelle o righe tra due connessioni non richiede file intermedi. Copia in e Trasferisci in lo fanno direttamente, anche tra motori diversi, e mostrano cosa scriveranno prima di eseguire qualsiasi cosa."
+                "Spostare tabelle o righe tra due connessioni non richiede file intermedi. Copy To e Transfer To lo fanno direttamente, anche tra motori diversi, e mostrano cosa scriveranno prima di eseguire qualsiasi cosa."
             ],
             "links": [
                 {
-                    "label": "Copia in e Trasferisci in",
+                    "label": "Copy To e Transfer To",
                     "href": "/features/schema#copy"
                 }
             ]
@@ -122,7 +122,7 @@
             "title": "Su iPhone e iPad",
             "paragraphs": [
                 "L’app per iPhone e iPad copia o condivide righe e risultati delle query come JSON, CSV o istruzioni SQL INSERT, a partire dalle righe caricate. Una copia rimane negli appunti del dispositivo e non viene condivisa con gli altri dispositivi.",
-                "Le righe vengono inserite attraverso le azioni Comandi Rapidi Add Row to Table e Add Rows to Table, che accettano testo JSON o CSV oppure un file e rispettano la Modalità sicura della connessione. Su iPhone e iPad non sono disponibili una schermata di importazione, esportazione su file, finestra File di dati o backup."
+                "Le righe vengono inserite attraverso le azioni Comandi Rapidi Add Row to Table e Add Rows to Table, che accettano testo JSON o CSV oppure un file e rispettano il livello Safe Mode della connessione. Su iPhone e iPad non sono disponibili una schermata di importazione, esportazione su file, finestra Data Files o backup."
             ],
             "links": [
                 {
@@ -139,7 +139,7 @@
             "iosNote": "Azioni Comandi Rapidi, da JSON o CSV"
         },
         {
-            "label": "Mappature salvate, Corrispondenza per nome e per posizione",
+            "label": "Mappature salvate, Match by Name e Match by Position",
             "ios": "no"
         },
         {
@@ -152,7 +152,7 @@
             "ios": "no"
         },
         {
-            "label": "Finestra File di dati",
+            "label": "Finestra Data Files",
             "ios": "no"
         },
         {
@@ -160,7 +160,7 @@
             "ios": "no"
         },
         {
-            "label": "Esportazione lato server",
+            "label": "Server-Side Export",
             "ios": "no"
         },
         {
@@ -187,7 +187,7 @@
             "docs": "/features/import-export"
         },
         {
-            "label": "File di dati",
+            "label": "Data Files",
             "docs": "/features/data-files"
         },
         {

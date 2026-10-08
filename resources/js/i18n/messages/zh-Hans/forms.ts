@@ -3,7 +3,7 @@ import type { Messages } from '../../types.ts';
 export default {
     "email": {
         "label": "邮箱地址",
-        "placeholder": "you@example.com"
+        "placeholder": "name@example.com"
     },
     "subscribe": "订阅",
     "invalidEmail": "请输入有效的邮箱地址。",

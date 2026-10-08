@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro è gratuito?",
                     "answer": [
-                        "L’app per Mac si scarica e si usa gratuitamente, senza periodo di prova né limiti di tempo. Una licenza Starter o Team aggiunge funzionalità opzionali all’app per Mac; la <pricing>pagina dei prezzi</pricing> le elenca. La connessione a qualsiasi motore supportato non richiede una licenza, né l’assistente IA, il server MCP o la Modalità sicura.",
+                        "L’app per Mac si scarica e si usa gratuitamente, senza periodo di prova né limiti di tempo. Una licenza Starter o Team aggiunge funzionalità opzionali all’app per Mac; la <pricing>pagina dei prezzi</pricing> le elenca. La connessione a qualsiasi motore supportato non richiede una licenza, né l’assistente IA, il server MCP o Safe Mode.",
                         "L’app per iPhone e iPad è gratuita, senza acquisti in-app, e non richiede una licenza."
                     ]
                 },
@@ -81,7 +81,7 @@
                     "id": "iphone-ipad",
                     "question": "Esiste un’app per iPhone e iPad?",
                     "answer": [
-                        "Sì. TablePro per iPhone e iPad è su App Store, richiede {iosRequirement} ed è gratuita, senza acquisti in-app. Si connette a {iosEngines}, con tunnel SSH, Modalità sicura e Face ID, e permette di esplorare e modificare tabelle ed eseguire query.",
+                        "Sì. TablePro per iPhone e iPad è su App Store, richiede {iosRequirement} ed è gratuita, senza acquisti in-app. Si connette a {iosEngines}, con tunnel SSH, Safe Mode e Face ID, e permette di esplorare e modificare tabelle ed eseguire query.",
                         "È un’app separata realizzata per telefono e tablet, non una copia dell’app per Mac: per esempio non ha assistente IA, server MCP o query salvate. La <ios>pagina iPhone e iPad</ios> elenca ciò che offre e ciò che esclude."
                     ]
                 },
@@ -135,7 +135,7 @@
                     "question": "Dove vengono conservate le password?",
                     "answer": [
                         "Sul Mac, nel Portachiavi di macOS. Una connessione può invece leggere la password al momento dell’accesso da un file, una variabile d’ambiente, un comando shell, 1Password, HashiCorp Vault o AWS Secrets Manager. Su iPhone e iPad, le password sono conservate nel Portachiavi del dispositivo.",
-                        "Con la sincronizzazione iCloud attiva, le password si sincronizzano solo se attivi anche <ui>Passwords</ui> sotto Sync Categories sul Mac oppure <ui>Sync Passwords</ui> su iPhone e iPad, tramite Portachiavi iCloud."
+                        "Con iCloud Sync attivo, le password si sincronizzano solo se attivi anche <ui>Passwords</ui> sotto Sync Categories sul Mac oppure <ui>Sync Passwords</ui> su iPhone e iPad, tramite Portachiavi iCloud."
                     ]
                 },
                 {
@@ -177,7 +177,7 @@
                     "id": "subscription-ends",
                     "question": "Cosa succede quando termina l’abbonamento?",
                     "answer": [
-                        "Le funzionalità a pagamento vengono bloccate: per esempio la sincronizzazione iCloud si interrompe e le connessioni di Cartelle collegate o Libreria del team vengono nascoste. Tutto il resto continua a funzionare e connessioni, query e impostazioni restano sul Mac come sono. Il rinnovo riattiva le funzionalità a pagamento.",
+                        "Le funzionalità a pagamento vengono bloccate: per esempio iCloud Sync si interrompe e le connessioni di Linked Folders o della Team Library vengono nascoste. Tutto il resto continua a funzionare e connessioni, query e impostazioni restano sul Mac come sono. Il rinnovo riattiva le funzionalità a pagamento.",
                         "Un acquisto una tantum non ha scadenza. Nulla cambia su iPhone o iPad."
                     ]
                 },
@@ -193,7 +193,7 @@
                     "id": "payment",
                     "question": "Chi gestisce il pagamento?",
                     "answer": [
-                        "{merchant} è il nostro venditore responsabile: acquisti la licenza da {merchant}, che incassa il pagamento, calcola eventuali imposte sulle vendite o IVA al checkout e invia la ricevuta via email. Fatture, metodo di pagamento e abbonamento si trovano nel <portal>portale clienti di {merchant}</portal>, a cui accedi con l’email usata per l’acquisto."
+                        "{merchant} è il nostro merchant of record: acquisti la licenza da {merchant}, che incassa il pagamento, calcola eventuali imposte sulle vendite o IVA al checkout e invia la ricevuta via email. Fatture, metodo di pagamento e abbonamento si trovano nel <portal>portale clienti di {merchant}</portal>, a cui accedi con l’email usata per l’acquisto."
                     ]
                 },
                 {
@@ -228,7 +228,7 @@
                     "question": "Cosa inviano le app a TablePro?",
                     "answer": [
                         "Senza licenza attivata, l’unica richiesta dell’app per Mac a TablePro è un rapporto giornaliero d’uso, attivo per impostazione predefinita e disattivabile in <ui>Settings > General > Privacy</ui>. Contiene un hash dell’ID della macchina e dati dell’app, come versione, lingua e tipi di database a cui ti connetti, mai nomi host, nomi utente, password, query o righe.",
-                        "Con una licenza, l’app per Mac la verifica anche ogni {revalidateDays} giorni, inviando chiave, stesso ID macchina, nome del Mac e versioni dell’app e di macOS. Su iPhone e iPad nulla va a TablePro finché non attivi Condividi dati di utilizzo. L’<privacy>informativa sulla privacy</privacy> contiene l’elenco completo, incluso ciò che conserva il nostro server."
+                        "Con una licenza, l’app per Mac la verifica anche ogni {revalidateDays} giorni, inviando chiave, stesso ID macchina, nome del Mac e versioni dell’app e di macOS. Su iPhone e iPad nulla va a TablePro finché non attivi Share Usage Data. L’<privacy>informativa sulla privacy</privacy> contiene l’elenco completo, incluso ciò che conserva il nostro server."
                     ]
                 },
                 {
@@ -247,10 +247,10 @@
                 },
                 {
                     "id": "icloud-data",
-                    "question": "Cosa memorizza la sincronizzazione iCloud e dove?",
+                    "question": "Cosa memorizza iCloud Sync e dove?",
                     "answer": [
-                        "La sincronizzazione iCloud resta disattivata finché non la attivi. Le connessioni sincronizzate e, sul Mac, le altre categorie scelte vanno in un database privato del tuo account iCloud, che TablePro non può leggere. Le password si sincronizzano solo se attivi anche <ui>Passwords</ui> sotto Sync Categories sul Mac oppure <ui>Sync Passwords</ui> su iPhone e iPad.",
-                        "Sul Mac, la sincronizzazione iCloud fa parte di una licenza Starter o Team. Su iPhone e iPad è gratuita."
+                        "iCloud Sync resta disattivato finché non lo attivi. Le connessioni sincronizzate e, sul Mac, le altre categorie scelte vanno in un database privato del tuo account iCloud, che TablePro non può leggere. Le password si sincronizzano solo se attivi anche <ui>Passwords</ui> sotto Sync Categories sul Mac oppure <ui>Sync Passwords</ui> su iPhone e iPad.",
+                        "Sul Mac, iCloud Sync fa parte di una licenza Starter o Team. Su iPhone e iPad è gratuito."
                     ]
                 }
             ]
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "Come aggiungo o rimuovo membri del team?",
                     "answer": [
-                        "Nel <account>tuo account</account>, invita qualcuno via email. Riceve un codice da inserire in TablePro sul Mac, sotto <ui>Settings > License</ui>, e il Mac occupa un posto. Rimuovere un membro libera il posto, disconnette i suoi Mac ed elimina ciò che ha pubblicato nella Libreria del team."
+                        "Nel <account>tuo account</account>, invita qualcuno via email. Riceve un codice da inserire in TablePro sul Mac, sotto <ui>Settings > License</ui>, e il Mac occupa un posto. Rimuovere un membro libera il posto, disconnette i suoi Mac ed elimina ciò che ha pubblicato nella Team Library."
                     ]
                 },
                 {

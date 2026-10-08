@@ -6,10 +6,10 @@ export default {
     "englishOnly": "（英语）",
     "list": {
         "separator": "、",
-        "last": "和"
+        "last": " 和 "
     },
     "shortList": {
         "separator": "、",
-        "last": "與"
+        "last": " 和 "
     }
 } satisfies Messages['common'];

@@ -128,7 +128,7 @@
     },
     "price": {
       "free": "免費",
-      "labelled": "{label}: {price}",
+      "labelled": "{label}：{price}",
       "amount": {
         "once": "一次 {amount}",
         "month": "每月 {amount}",
@@ -136,19 +136,19 @@
         "none": "{amount}"
       },
       "per": {
-        "device": "每裝置 {price}",
-        "user": "每使用者 {price}",
-        "seat": "每席次 {price}",
-        "license": "每授權 {price}",
+        "device": "{price}/裝置",
+        "user": "{price}/使用者",
+        "seat": "{price}/席位",
+        "license": "{price}/授權",
         "none": "{price}"
       },
       "units": {
-        "one": "一台裝置 {price}",
-        "other": "最多 {count} 台裝置 {price}"
+        "one": "{price}，限 1 台裝置",
+        "other": "{price}，最多 {count} 台裝置"
       },
       "minUnits": {
-        "one": "至少一個席次，{price}",
-        "other": "至少 {count} 個席次，{price}"
+        "one": "{price}，至少 1 個席位",
+        "other": "{price}，至少 {count} 個席位"
       },
       "renewal": "續費",
       "ios": "iPhone、iPad App",
@@ -172,7 +172,7 @@
       "technology": "Swift 與原生資料庫驅動程式",
       "priceFree": "可免費使用，付費方案為 Mac App 加入選用功能。",
       "starter": "Starter：每月 {monthly}、每年 {yearly} 或一次 {lifetime}",
-      "team": "Team：每席次每月 {monthly}、每年 {yearly} 或一次 {lifetime}，至少 {min} 個席次",
+      "team": "Team：每席位每月 {monthly}、每年 {yearly} 或一次 {lifetime}，至少 {min} 個席位",
       "iosPrice": "iPhone、iPad App 免費，無 App 內購買。",
       "licence": "是：{licence}，包括付費功能程式碼",
       "databases": "{engines} 等",

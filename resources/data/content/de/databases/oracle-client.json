@@ -29,9 +29,9 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host, Listener-Port und Service Name ein oder wechsle <ui>Verbindungstyp</ui> für eine Instanz ohne Dienst auf SID. Melde dich mit Benutzername und Passwort als Normal oder mit SYSDBA- oder SYSOPER-Rolle an.",
-                "Native Network Encryption braucht keine Einrichtung: Fordert der Server sie an, wird AES mit SHA-2-Prüfsumme angeboten. <ui>Netzwerkverschlüsselung</ui> ändert das Angebot von TablePro. Wähle für TLS Erforderlich für TCPS oder CA prüfen beziehungsweise Identität prüfen mit CA-Zertifikat. Neue Verbindungen haben SSL aus; Bevorzugt bleibt bei Klartext-TCP.",
-                "Kopiere bei Oracle Autonomous Database Host, Port und Dienstnamen aus der TLS-Verbindungszeichenfolge, nicht der mTLS-Zeichenfolge, und setze SSL auf Erforderlich oder CA prüfen. Wallet-Dateien werden nie gelesen, daher muss die Datenbank TLS ohne gegenseitiges TLS akzeptieren.",
+                "Gib Host, Listener-Port und Service Name ein oder wechsle <ui>Connection Type</ui> für eine Instanz ohne Dienst auf SID. Melde dich mit Benutzername und Passwort als Normal oder mit SYSDBA- oder SYSOPER-Rolle an.",
+                "Native Network Encryption braucht keine Einrichtung: Fordert der Server sie an, wird AES mit SHA-2-Prüfsumme angeboten. <ui>Network Encryption</ui> ändert das Angebot von TablePro. Wähle für TLS Required für TCPS oder Verify CA beziehungsweise Verify Identity mit CA-Zertifikat. Neue Verbindungen haben SSL aus; Preferred bleibt bei Klartext-TCP.",
+                "Kopiere bei Oracle Autonomous Database Host, Port und Dienstnamen aus der TLS-Verbindungszeichenfolge, nicht der mTLS-Zeichenfolge, und setze SSL auf Required oder Verify CA. Wallet-Dateien werden nie gelesen, daher muss die Datenbank TLS ohne gegenseitiges TLS akzeptieren.",
                 "Ein RAC-SCAN-Listener, Shared Server oder Load Balancer vor der Datenbank braucht keine Konfiguration; ein <network>SSH-Tunnel</network> erreicht einen Listener im privaten Netzwerk."
             ]
         },
@@ -41,24 +41,24 @@
             "paragraphs": [
                 "Ein PL/SQL-Block oder eine gespeicherte Einheit läuft als eine Anweisung, unabhängig von der Zahl ihrer Semikolons: Setze den Cursor hinein und führe sie aus. SQL*Plus- oder SQL-Developer-Skripte laufen unverändert; eine Zeile mit nur <code>/</code> beendet die vorherige Einheit. Kompiliert eine Einheit nicht, meldet Oracle seine Fehler einzeln pro Zeile mit Position.",
                 "<code>DBMS_OUTPUT.PUT_LINE</code>-Zeilen erscheinen mit dem Ergebnis der Anweisung, die sie ausgab, ohne <code>SET SERVEROUTPUT ON</code>. In einem anonymen Block ist <code>:name</code> ein <parameters>Abfrageparameter</parameters>, den du in einem Panel ausfüllst.",
-                "Jede erfolgreiche Anweisung wird bestätigt. Beginne mit <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> oder <code>LOCK TABLE</code>, um Änderungen zu halten; alles danach wartet auf dein <code>COMMIT</code> oder <code>ROLLBACK</code>, einschließlich Raster-Speichern.",
-                "Jeder Benutzer ist ein Schema; <code>Cmd+K</code> wechselt das aktive ohne Neuverbinden. Zeilenänderungen werden mit <editing>SQL-Vorschau</editing> vorgemerkt. Ein Block mit Löschen oder Leeren, auch über <code>EXECUTE IMMEDIATE</code>, zeigt vorher die <safeMode>Warnung vor gefährlichen Abfragen</safeMode>."
+                "Jede erfolgreiche Anweisung wird committet. Beginne mit <code>SET TRANSACTION</code>, <code>SAVEPOINT</code> oder <code>LOCK TABLE</code>, um Änderungen zu halten; alles danach wartet auf dein <code>COMMIT</code> oder <code>ROLLBACK</code>, einschließlich Raster-Speichern.",
+                "Jeder Benutzer ist ein Schema; <code>Cmd+K</code> wechselt das aktive ohne Neuverbinden. Zeilenänderungen werden mit <editing>Preview SQL</editing> vorgemerkt. Ein Block mit Löschen oder Leeren, auch über <code>EXECUTE IMMEDIATE</code>, zeigt vorher die <safeMode>Warnung vor gefährlichen Abfragen</safeMode>."
             ]
         },
         {
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "Der <structure>Struktur-Tab</structure> schreibt <code>ALTER TABLE</code> zum Hinzufügen, Umbenennen, Ändern und Entfernen von Spalten und Erstellen von Indizes, mit doppelten Anführungszeichen für groß-/kleinschreibungssensitive Namen. Tabelleninformationen enthalten auch Primär- und Fremdschlüssel sowie CREATE-TABLE-DDL.",
+                "Der <structure>Structure-Tab</structure> schreibt <code>ALTER TABLE</code> zum Hinzufügen, Umbenennen, Ändern und Entfernen von Spalten und Erstellen von Indizes, mit doppelten Anführungszeichen für groß-/kleinschreibungssensitive Namen. Tabelleninformationen enthalten auch Primär- und Fremdschlüssel sowie CREATE-TABLE-DDL.",
                 "Eine partitionierte Tabelle listet ihre Partitionen darunter jeweils mit Position; Unterpartitionen liegen unter ihrer Partition. Frage eine mit <code>SELECT * FROM orders PARTITION (p2024)</code> ab.",
-                "<compareSync>Vergleichen und synchronisieren</compareSync> im Tarif {compareSyncTier} vergleicht zwei Oracle-Schemas oder deren Daten und speichert ein Skript mit einer <code>/</code>-Zeile nach jeder Einheit, bereit für SQL*Plus oder SQLcl."
+                "<compareSync>Compare & Sync</compareSync> im Tarif {compareSyncTier} vergleicht zwei Oracle-Schemas oder deren Daten und speichert ein Skript mit einer <code>/</code>-Zeile nach jeder Einheit, bereit für SQL*Plus oder SQLcl."
             ]
         },
         {
             "id": "operate",
             "title": "Auf dem Server exportieren",
             "paragraphs": [
-                "<serverExport>Serverseitiger Export</serverExport> startet einen Data-Pump-Job, der mit deinen Rechten eine Tabelle in ein <code>DIRECTORY</code>-Objekt auf dem Server schreibt. Nichts landet auf dem Mac. Der Job läuft nach der Startmeldung weiter; verfolge ihn in <code>DBA_DATAPUMP_JOBS</code>."
+                "<serverExport>Server-Side Export</serverExport> startet einen Data-Pump-Job, der mit deinen Rechten eine Tabelle in ein <code>DIRECTORY</code>-Objekt auf dem Server schreibt. Nichts landet auf dem Mac. Der Job läuft nach der Startmeldung weiter; verfolge ihn in <code>DBA_DATAPUMP_JOBS</code>."
             ]
         },
         {
@@ -72,7 +72,7 @@
             "id": "iphone",
             "title": "iPhone und iPad",
             "paragraphs": [
-                "Auf iPhone und iPad ist der Oracle-Treiber Teil der App. Das Formular nimmt Service Name oder SID, SYSDBA- und SYSOPER-Rollen und Netzwerkverschlüsselung entgegen. Du durchsuchst Tabellen als Karten, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Abfrage-Tab aus; Tabellen erstellen oder ändern bleibt auf dem Mac."
+                "Auf iPhone und iPad ist der Oracle-Treiber Teil der App. Das Formular nimmt Service Name oder SID, SYSDBA- und SYSOPER-Rollen und die Einstellung Network Encryption entgegen. Du durchsuchst Tabellen als Karten, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Abfrage-Tab aus; Tabellen erstellen oder ändern bleibt auf dem Mac."
             ]
         }
     ],

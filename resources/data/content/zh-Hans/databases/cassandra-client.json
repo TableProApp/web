@@ -38,9 +38,9 @@
             "title": "浏览和运行 CQL",
             "paragraphs": [
                 "从侧栏打开表读取数据网格。列表、集合、映射和元组显示为集合，用户定义类型显示字段，<code>duration</code> 为 <code>1d2h30m</code>，向量为数字列表，blob 为十六进制。CQL 编辑器结果只读，请从侧栏打开的表修改行。",
-                "CQL 无 OFFSET，因此从首行向前分页：已显示页的 Next、Previous 各读一次，跳到远处需读取此前每页。行按令牌顺序返回，列头不重新排序，因为 CQL 仅能按单分区内聚簇列排序。打开表不计数；<ui>Count Exactly</ui> 运行 <code>SELECT COUNT(*)</code> 读取所有分区。",
+                "CQL 无 OFFSET，因此从首行向前分页：已显示页的 Next、Previous 各读一次，跳到远处需读取此前每页。行按令牌顺序返回，列头不重新排序，因为 CQL 仅能按单分区内聚簇列排序。打开表不计数；<ui>精确计数</ui>（Count Exactly）运行 <code>SELECT COUNT(*)</code> 读取所有分区。",
                 "<filters>筛选</filters>添加 <code>ALLOW FILTERING</code>，除非固定完整分区键，否则服务器读所有分区。包含、开头为、结尾为发送 LIKE，Cassandra 仅在有 SASI 或 SAI 索引的列接受。CQL 无法表达的不等于、is NULL 等运算符按名称拒绝；CQL 无 OR，条件仅以 AND 连接。",
-                "<editing>编辑值</editing>按列的 CQL 类型发送，无法解析的值停止整个保存。各行以完整主键用独立语句写入。<ui>Add Row</ui> 写 <code>INSERT … IF NOT EXISTS</code>，新行绝不覆盖已有相同键的行。键列不可原地修改，需删除再添加行。",
+                "<editing>编辑值</editing>按列的 CQL 类型发送，无法解析的值停止整个保存。各行以完整主键用独立语句写入。<ui>添加行</ui>（Add Row）写 <code>INSERT … IF NOT EXISTS</code>，新行绝不覆盖已有相同键的行。键列不可原地修改，需删除再添加行。",
                 "计数器列需在 CQL 编辑器运行 <code>UPDATE … SET c = c + 1</code>，服务器拒绝网格编辑的普通 UPDATE。连接超时取自 Options；CQL 请求保持驱动自身固定超时，应用查询超时不改变它。"
             ]
         },

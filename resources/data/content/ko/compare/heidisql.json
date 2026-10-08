@@ -15,7 +15,7 @@
         "tablepro": [
             "Intel Mac을 씁니다. TablePro는 Intel·Apple silicon 별도 빌드가 있습니다.",
             "SQL 서버뿐 아니라 MongoDB, Redis, ClickHouse·DuckDB도 사용합니다.",
-            "macOS 키체인에 비밀번호를 저장하고 운영 연결 쓰기 전 Touch ID를 요구하는 안전 모드를 원합니다.",
+            "macOS 키체인에 비밀번호를 저장하고 운영 연결 쓰기 전 Touch ID를 요구하는 Safe Mode를 원합니다.",
             "Mac 앱에서 무료 AI 도우미·MCP 서버를 원합니다.",
             "iPhone·iPad 앱도 원합니다."
         ],
@@ -83,7 +83,7 @@
                 "href": "/databases"
             },
             {
-                "text": "비밀번호는 macOS 키체인에 저장되고 연결의 <link>안전 모드</link> 수준은 쓰기 전 Touch ID·비밀번호를 요구할 수 있습니다.",
+                "text": "비밀번호는 macOS 키체인에 저장되고 연결의 <link>Safe Mode</link> 수준은 쓰기 전 Touch ID·비밀번호를 요구할 수 있습니다.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -128,10 +128,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro에는 HeidiSQL 가져오기가 없습니다. 각 세션을 TablePro 연결로 추가해 폼을 채우거나 mysql://, postgresql://·sqlserver:// URL을 <ui>File > Import > Import from URL…</ui>에 붙여 넣으세요.",
+        "intro": "TablePro에는 HeidiSQL 가져오기가 없습니다. 각 세션을 TablePro 연결로 추가해 폼을 채우거나 mysql://, postgresql://·sqlserver:// URL을 <ui>파일 > 가져오기 > URL에서 가져오기…</ui>(File > Import > Import from URL…)에 붙여 넣으세요.",
         "steps": [],
         "after": [
-            "연결의 <ui>Network</ui> 탭에서 SSH 터널을 설정합니다. Mac은 점프 호스트도 지원합니다.",
+            "연결의 <ui>네트워크</ui>(Network) 탭에서 SSH 터널을 설정합니다. Mac은 점프 호스트도 지원합니다.",
             "비밀번호는 macOS 키체인에 저장합니다.",
             "쿼리 기록은 TablePro에서 새로 시작합니다."
         ],

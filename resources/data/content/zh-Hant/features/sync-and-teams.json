@@ -15,10 +15,10 @@
     "sections": [
         {
             "id": "icloud-sync",
-            "title": "iCloud 同步",
+            "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync 在登入同一 iCloud 帳號的所有 Mac、iPhone 與 iPad 上保持連線資源庫一致。紀錄存入該帳號的私有資料庫；各裝置預設關閉同步，需自行開啟。iPhone 與 iPad 上免費，Mac 需要包含此功能的方案。",
-                "密碼僅在同時啟用 Mac 的 Sync Categories 下的 <ui>Passwords</ui>，或 iPhone、iPad 上的 <ui>Sync Passwords</ui> 時，透過 iCloud 鑰匙圈同步；Mac 也會同步 TablePro 在鑰匙圈中儲存的其他秘密，例如 AI 供應商金鑰和授權金鑰。將連線標為 Local only，可讓連線及其喜好項目和已儲存查詢僅保留在一台 Mac 上。"
+                "密碼僅在同時啟用 Mac 的 Sync Categories 下的<ui>密碼</ui>（Passwords），或 iPhone、iPad 上的<ui>同步密碼</ui>（Sync Passwords）時，透過 iCloud 鑰匙圈同步；Mac 也會同步 TablePro 在鑰匙圈中儲存的其他秘密，例如 AI 供應商金鑰和授權金鑰。將連線標為 Local only，可讓連線及其喜好項目和已儲存查詢僅保留在一台 Mac 上。"
             ],
             "points": [
                 "Mac 可選擇同步內容：連線、群組和標籤、設定、SSH 設定檔、資料表和資料庫喜好項目、包含 SQL 的已儲存查詢，以及資料表檔案夾。",
@@ -61,7 +61,7 @@
         },
         {
             "id": "linked-folders",
-            "title": "連結檔案夾",
+            "title": "Linked Folders",
             "paragraphs": [
                 "新增 Git 簽出目錄或共用雲端硬碟等檔案夾，TablePro 會將其中每個 <code>.tablepro</code> 檔案列為連線，並隨檔案新增或修改更新清單。連結的連線在 TablePro 中唯讀，需修改檔案來變更。加密檔案會跳過，因此共用檔案夾儲存的是設定而非密碼，連結檔案中的啟動指令和通道指令也會被忽略。",
                 "Linked Folders 監控連線檔案。連結 SQL 檔案夾是另一項功能，屬於已儲存查詢的免費功能，用於讓 <code>.sql</code> 檔案夾與已儲存查詢保持同步。"
@@ -78,16 +78,16 @@
         },
         {
             "id": "team",
-            "title": "團隊目錄與團隊資源庫",
+            "title": "Team Catalog 與 Team Library",
             "paragraphs": [
                 "為 Team 授權下的所有人提供相同連線的兩種方式：一種透過現有共用檔案夾，另一種透過 TablePro 伺服器。"
             ],
             "blocks": [
                 {
                     "id": "team-catalog",
-                    "title": "團隊目錄",
+                    "title": "Team Catalog",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Catalog…</ui> 將所選連線以不含密碼的 <code>.tablepro</code> 檔案寫入共用檔案夾。團隊成員將該檔案夾新增為 Linked Folder，因此目錄透過現有共用雲端硬碟或儲存庫分發，不經過 TablePro。"
+                        "<ui>分享 > 發佈到團隊目錄…</ui>（Share > Publish to Team Catalog…）將所選連線以不含密碼的 <code>.tablepro</code> 檔案寫入共用檔案夾。團隊成員將該檔案夾新增為 Linked Folder，因此目錄透過現有共用雲端硬碟或儲存庫分發，不經過 TablePro。"
                     ],
                     "paid": [
                         "team-catalog"
@@ -95,9 +95,9 @@
                 },
                 {
                     "id": "team-library",
-                    "title": "團隊資源庫",
+                    "title": "Team Library",
                     "paragraphs": [
-                        "連線上的 <ui>Share > Publish to Team Library…</ui> 和 Favorites 側欄的 <ui>Publish Saved Queries to Team…</ui> 將連線及已儲存查詢上傳至 TablePro 伺服器，授權下的每台 Mac 會下載；查詢在 Favorites 側欄中顯示發佈者姓名。上傳連線設定和查詢 SQL 文字，從不上傳密碼。成員的 Mac 會忽略接收到的啟動指令和通道指令，因此不會自行執行任何指令。再次發佈會取代先前發佈的內容。"
+                        "連線上的<ui>分享 > 發佈到團隊庫…</ui>（Share > Publish to Team Library…）和 Favorites 側欄的<ui>將已儲存的查詢發佈到團隊…</ui>（Publish Saved Queries to Team…）將連線及已儲存查詢上傳至 TablePro 伺服器，授權下的每台 Mac 會下載；查詢在 Favorites 側欄中顯示發佈者姓名。上傳連線設定和查詢 SQL 文字，從不上傳密碼。成員的 Mac 會忽略接收到的啟動指令和通道指令，因此不會自行執行任何指令。再次發佈會取代先前發佈的內容。"
                     ],
                     "paid": [
                         "team-library"
@@ -114,10 +114,10 @@
         },
         {
             "id": "seats",
-            "title": "席次、邀請與帳號",
+            "title": "席位、邀請與帳號",
             "paragraphs": [
-                "Team 授權依席次計價，一個席次代表一台已啟用 Mac，而非一個人。透過網頁帳號邀請成員，每人會透過郵件收到單次使用代碼，在 Mac 的 <ui>Settings > License</ui> 中輸入；邀請需要空閒席次。App 顯示團隊成員，席次和邀請則在網頁管理。",
-                "有效月付或年付訂閱可自行調整席次數，一次性購買需聯絡支援。移除成員會立即釋出席次，並刪除其發佈至 Team Library 的內容；該成員的 Mac 在下次授權檢查時失去付費功能，最長 {licenseCheckDays} 天。帳號頁供授權購買者使用。"
+                "Team 授權依席位計價，一個席位代表一台已啟用 Mac，而非一個人。透過網頁帳號邀請成員，每人會透過郵件收到單次使用代碼，在 Mac 的<ui>設定 > 授權</ui>（Settings > License）中輸入；邀請需要空閒席位。App 顯示團隊成員，席位和邀請則在網頁管理。",
+                "有效月付或年付訂閱可自行調整席位數，一次性購買需聯絡支援。移除成員會立即釋出席位，並刪除其發佈至 Team Library 的內容；該成員的 Mac 在下次授權檢查時失去付費功能，最長 {licenseCheckDays} 天。帳號頁供授權購買者使用。"
             ],
             "links": [
                 {
@@ -125,7 +125,7 @@
                     "href": "/pricing#team"
                 },
                 {
-                    "label": "你的帳號",
+                    "label": "您的帳號",
                     "href": "/account?locale=zh-Hant"
                 }
             ]
@@ -146,7 +146,7 @@
     ],
     "availability": [
         {
-            "label": "iCloud 同步",
+            "label": "iCloud Sync",
             "paid": "icloud-sync",
             "ios": "partial",
             "iosNote": "連線、群組和標籤，免費"
@@ -171,34 +171,34 @@
             "ios": "yes"
         },
         {
-            "label": "含密碼的加密匯出",
+            "label": "含密碼的 Encrypted Export",
             "paid": "encrypted-export",
             "ios": "yes"
         },
         {
-            "label": "連結檔案夾",
+            "label": "Linked Folders",
             "paid": "linked-folders",
             "ios": "no"
         },
         {
-            "label": "團隊目錄",
+            "label": "Team Catalog",
             "paid": "team-catalog",
             "ios": "no"
         },
         {
-            "label": "團隊資源庫",
+            "label": "Team Library",
             "paid": "team-library",
             "ios": "no"
         }
     ],
     "limits": [
         "Mac 方案結束後，iCloud Sync 暫停並說明原因，Linked Folders 和 Team Library 的連線從清單消失，團隊發佈指令隱藏，Encrypted Export 不再提供密碼選項。",
-        "在 iPhone 或 iPad 編輯同步連線可能改變該 App 沒有的設定：Safe Mode (Full) 等更嚴格的 Mac 安全模式會回傳為 Alert，SSH 跳板主機設定也可能遺失。請在 Mac 上修改這些連線。",
-        "Team 授權結束或暫停後，發佈至 Team Library 的內容仍保留在 TablePro 伺服器上，直到你要求刪除。"
+        "在 iPhone 或 iPad 編輯同步連線可能改變該 App 沒有的設定：Safe Mode (Full) 等更嚴格的 Mac Safe Mode 等級會回傳為 Alert，SSH 跳板主機設定也可能遺失。請在 Mac 上修改這些連線。",
+        "Team 授權結束或暫停後，發佈至 Team Library 的內容仍保留在 TablePro 伺服器上，直到您要求刪除。"
     ],
     "docs": [
         {
-            "label": "iCloud 同步",
+            "label": "iCloud Sync",
             "docs": "/features/icloud-sync"
         },
         {
@@ -206,23 +206,23 @@
             "docs": "/features/handoff"
         },
         {
-            "label": "連線檔案與加密匯出",
+            "label": "連線檔案與 Encrypted Export",
             "docs": "/features/connection-sharing#export"
         },
         {
-            "label": "連結檔案夾",
+            "label": "Linked Folders",
             "docs": "/features/connection-sharing#linked-folders"
         },
         {
-            "label": "團隊目錄",
+            "label": "Team Catalog",
             "docs": "/features/connection-sharing#team-catalog"
         },
         {
-            "label": "團隊資源庫",
+            "label": "Team Library",
             "docs": "/features/favorites#team-library"
         },
         {
-            "label": "Team 方案與席次",
+            "label": "Team 方案與席位",
             "docs": "/features/team#seats"
         }
     ],

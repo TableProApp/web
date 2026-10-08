@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro 免费吗？",
                     "answer": [
-                        "Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 许可证可增加可选功能，<pricing>定价页面</pricing>列出了这些功能。连接任何受支持的引擎，以及使用 AI 助手、MCP 服务器或安全模式，均无需许可证。",
+                        "Mac 应用可免费下载使用，没有试用期或时间限制。Starter 或 Team 许可证可增加可选功能，<pricing>定价页面</pricing>列出了这些功能。连接任何受支持的引擎，以及使用 AI 助手、MCP 服务器或 Safe Mode，均无需许可证。",
                         "iPhone 和 iPad 应用免费，没有应用内购买，也无需许可证。"
                     ]
                 },
@@ -81,7 +81,7 @@
                     "id": "iphone-ipad",
                     "question": "有 iPhone 和 iPad 应用吗？",
                     "answer": [
-                        "有。iPhone 和 iPad 版 TablePro 在 App Store 提供，需要 {iosRequirement}，免费且无应用内购买。可连接 {iosEngines}，支持 SSH 隧道、安全模式和 Face ID，能浏览、编辑表和运行查询。",
+                        "有。iPhone 和 iPad 版 TablePro 在 App Store 提供，需要 {iosRequirement}，免费且无应用内购买。可连接 {iosEngines}，支持 SSH 隧道、Safe Mode 和 Face ID，能浏览、编辑表和运行查询。",
                         "它是为手机和平板打造的独立应用，并非 Mac 应用的复制版，例如没有 AI 助手、MCP 服务器和已保存查询。<ios>iPhone 和 iPad 页面</ios>列出了提供及未提供的功能。"
                     ]
                 },
@@ -89,7 +89,7 @@
                     "id": "windows-linux",
                     "question": "有 Windows 或 Linux 版本吗？",
                     "answer": [
-                        "没有 Windows 版本。Linux 有原型，但暂无可安装版本，发布日期未定。"
+                        "没有 Windows 版本。Linux 有原型，但没有可安装的版本，也没有发布日期。"
                     ]
                 },
                 {
@@ -135,7 +135,7 @@
                     "question": "密码存在哪里？",
                     "answer": [
                         "Mac 上保存在 macOS 钥匙串中，也可在连接时从文件、环境变量、Shell 命令、1Password、HashiCorp Vault 或 AWS Secrets Manager 读取。iPhone 和 iPad 上保存在设备钥匙串中。",
-                        "开启 iCloud 同步后，还必须开启 Mac 上 Sync Categories 中的 <ui>Passwords</ui>，或 iPhone 和 iPad 上的 <ui>Sync Passwords</ui>，才会通过 iCloud 钥匙串同步密码。"
+                        "开启 iCloud Sync 后，还必须开启 Mac 上 Sync Categories 中的<ui>密码</ui>（Passwords），或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords），才会通过 iCloud 钥匙串同步密码。"
                     ]
                 },
                 {
@@ -177,7 +177,7 @@
                     "id": "subscription-ends",
                     "question": "订阅结束后会怎样？",
                     "answer": [
-                        "付费功能会锁定，例如 iCloud 同步暂停，Linked Folders 或 Team Library 中的连接被隐藏。其余功能继续运行，连接、查询和设置原样保留在 Mac 上。续订后付费功能恢复。",
+                        "付费功能会锁定，例如 iCloud Sync 暂停，Linked Folders 或 Team Library 中的连接被隐藏。其余功能继续运行，连接、查询和设置原样保留在 Mac 上。续订后付费功能恢复。",
                         "一次性购买没有到期日。iPhone 和 iPad 不受影响。"
                     ]
                 },
@@ -193,7 +193,7 @@
                     "id": "payment",
                     "question": "谁处理付款？",
                     "answer": [
-                        "{merchant} 是我们的名义销售商。您向 {merchant} 购买许可证，由其收款、在结账时计算销售税或增值税并发送收据邮件。发票、付款方式和订阅可在 <portal>{merchant} 客户门户</portal>中管理，使用购买时的邮箱登录。"
+                        "{merchant} 是我们的 merchant of record。您向 {merchant} 购买许可证，由其收款、在结账时计算销售税或增值税并发送收据邮件。发票、付款方式和订阅可在 <portal>{merchant} 客户门户</portal>中管理，使用购买时的邮箱登录。"
                     ]
                 },
                 {
@@ -227,7 +227,7 @@
                     "id": "what-is-sent",
                     "question": "应用会向 TablePro 发送什么？",
                     "answer": [
-                        "未激活许可证时，Mac 应用向 TablePro 发出的唯一请求是每日使用报告，默认开启，可在 <ui>Settings > General > Privacy</ui> 中关闭。它包含经过哈希处理的机器 ID、应用版本、语言和所连接数据库类型等信息，从不包含主机名、用户名、密码、查询或行数据。",
+                        "未激活许可证时，Mac 应用向 TablePro 发出的唯一请求是每日使用报告，默认开启，可在<ui>设置 > 通用 > 隐私</ui>（Settings > General > Privacy）中关闭。它包含经过哈希处理的机器 ID、应用版本、语言和所连接数据库类型等信息，从不包含主机名、用户名、密码、查询或行数据。",
                         "激活许可证后，Mac 应用还会每隔 {revalidateDays} 天验证，发送密钥、相同机器 ID、Mac 名称及应用和 macOS 版本。iPhone 和 iPad 除非开启 Share Usage Data，否则不向 TablePro 发送信息。<privacy>隐私政策</privacy>提供完整列表，包括服务器存储的内容。"
                     ]
                 },
@@ -247,10 +247,10 @@
                 },
                 {
                     "id": "icloud-data",
-                    "question": "iCloud 同步存储什么，存在哪里？",
+                    "question": "iCloud Sync 存储什么，存在哪里？",
                     "answer": [
-                        "iCloud 同步默认关闭。同步的连接和 Mac 上选择的其他类别存入您自己 iCloud 账户的私有数据库，TablePro 无法读取。只有同时开启 Mac 上 Sync Categories 中的 <ui>Passwords</ui>，或 iPhone 和 iPad 上的 <ui>Sync Passwords</ui> 才会同步密码。",
-                        "Mac 上的 iCloud 同步属于 Starter 或 Team 许可证功能，iPhone 和 iPad 上免费。"
+                        "iCloud Sync 默认关闭。同步的连接和 Mac 上选择的其他类别存入您自己 iCloud 账户的私有数据库，TablePro 无法读取。只有同时开启 Mac 上 Sync Categories 中的<ui>密码</ui>（Passwords），或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords）才会同步密码。",
+                        "Mac 上的 iCloud Sync 属于 Starter 或 Team 许可证功能，iPhone 和 iPad 上免费。"
                     ]
                 }
             ]
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "如何添加或移除团队成员？",
                     "answer": [
-                        "在<account>您的账户</account>中通过邮件邀请。成员收到代码后，在 Mac 上的 TablePro 中进入 <ui>Settings > License</ui> 输入，其 Mac 占用一个席位。移除成员会释放席位、让其 Mac 退出登录，并删除其发布到 Team Library 的内容。"
+                        "在<account>您的账户</account>中通过邮件邀请。成员收到代码后，在 Mac 上的 TablePro 中进入<ui>设置 > 许可证</ui>（Settings > License）输入，其 Mac 占用一个席位。移除成员会释放席位、让其 Mac 退出登录，并删除其发布到 Team Library 的内容。"
                     ]
                 },
                 {

@@ -23,7 +23,7 @@
             "points": [
                 "Marcadores de sentencia en el margen, cada uno con su botón de ejecución.",
                 "Buscar y reemplazar con expresiones regulares.",
-                "Modo Vim con movimientos, registros y macros, donde <code>:w</code> ejecuta la consulta.",
+                "Vim mode con movimientos, registros y macros, donde <code>:w</code> ejecuta la consulta.",
                 "Los archivos <code>.sql</code> se abren, editan y guardan como pestañas de consulta."
             ],
             "asset": "mac-query-autocomplete"
@@ -34,15 +34,15 @@
             "paragraphs": [
                 "Escribe <code>:customer_id</code> en una consulta y TablePro pide su valor y tipo antes de ejecutarla, vinculando el valor de forma nativa si el controlador lo admite.",
                 "Cada consulta ejecutada entra en el historial local (<kbd>⌘Y</kbd>), con búsqueda de texto completo y filtros por origen, fallos y periodo. Por defecto conserva {historyEntries} entradas durante {historyDays} días y nunca se sincroniza.",
-                "Guarda una consulta con una palabra clave como <code>dau</code> y escríbela en el editor para expandirla. Las consultas guardadas conservan historial de versiones. Una carpeta SQL vinculada sincroniza una carpeta de archivos <code>.sql</code> con la barra lateral en ambos sentidos, con letras de estado Git por archivo; es gratis e independiente de Carpetas vinculadas, la función Starter para archivos de conexión compartidos."
+                "Guarda una consulta con una palabra clave como <code>dau</code> y escríbela en el editor para expandirla. Las consultas guardadas conservan historial de versiones. Una carpeta SQL vinculada sincroniza una carpeta de archivos <code>.sql</code> con la barra lateral en ambos sentidos, con letras de estado Git por archivo; es gratis e independiente de Linked Folders, la función Starter para archivos de conexión compartidos."
             ],
             "asset": "mac-query-parameters-history"
         },
         {
             "id": "open-quickly",
-            "title": "Apertura rápida y pestañas",
+            "title": "Open Quickly y pestañas",
             "paragraphs": [
-                "Apertura rápida (<kbd>⌘⇧O</kbd>) encuentra tablas, vistas y tablas del sistema en todas las conexiones abiertas, además de consultas guardadas y recientes. Cada pestaña conserva su SQL, orden, filtros y anchos de columna, y las pestañas vuelven al cerrar y abrir la app; <kbd>⌃Tab</kbd> alterna entre las usadas más recientemente."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) encuentra tablas, vistas y tablas del sistema en todas las conexiones abiertas, además de consultas guardadas y recientes. Cada pestaña conserva su SQL, orden, filtros y anchos de columna, y las pestañas vuelven al cerrar y abrir la app; <kbd>⌃Tab</kbd> alterna entre las usadas más recientemente."
             ]
         },
         {
@@ -54,7 +54,7 @@
                     "id": "explain",
                     "title": "EXPLAIN y EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> muestra el plan de una consulta como diagrama, árbol con barras de coste o salida original del motor. Elige una ejecución anterior de la misma consulta como referencia y Comparar indica si se volvió más lenta y si cambió el plan; una diferencia inferior al {explainNoise}% se considera ruido. Ambas funciones son gratis."
+                        "<kbd>⌥⌘E</kbd> muestra el plan de una consulta como diagrama, árbol con barras de coste o salida original del motor. Elige una ejecución anterior de la misma consulta como referencia y Compare indica si se volvió más lenta y si cambió el plan; una diferencia inferior al {explainNoise}% se considera ruido. Ambas funciones son gratis."
                     ],
                     "engines": [
                         {
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "En iPhone y iPad",
             "paragraphs": [
-                "La app para iPhone y iPad tiene una pestaña Consulta con resaltado SQL, Ejecutar y Detener (<kbd>⌘↩</kbd> con teclado), e historial de las últimas {historyEntriesIos} consultas de ese dispositivo. Puedes copiar o compartir resultados como JSON, CSV o sentencias SQL INSERT.",
+                "La app para iPhone y iPad tiene una pestaña Consulta con resaltado SQL, Run y Stop (<kbd>⌘↩</kbd> con teclado), e historial de las últimas {historyEntriesIos} consultas de ese dispositivo. Puedes copiar o compartir resultados como JSON, CSV o sentencias SQL INSERT.",
                 "No tiene autocompletado, formato, parámetros, EXPLAIN ni consultas guardadas, y conserva como máximo {resultBufferIos} filas por resultado; añade LIMIT para ver la parte necesaria."
             ],
             "links": [
@@ -149,7 +149,7 @@
         {
             "label": "Editor SQL con autocompletado y formato",
             "ios": "partial",
-            "iosNote": "Resaltado, Ejecutar y Detener; sin autocompletado"
+            "iosNote": "Resaltado, Run y Stop; sin autocompletado"
         },
         {
             "label": "Parámetros de consulta",
@@ -165,7 +165,7 @@
             "ios": "no"
         },
         {
-            "label": "Apertura rápida",
+            "label": "Open Quickly",
             "ios": "no"
         },
         {

@@ -49,14 +49,14 @@
         },
         {
             "id": "data-files",
-            "title": "File Data: kerjakan file tanpa database",
+            "title": "Data Files: kerjakan file tanpa database",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
                     "title": "Buka, cari, dan rapikan",
                     "paragraphs": [
-                        "Buka file CSV, TSV, atau teks ber-delimiter lainnya, JSON, atau JSON Lines dari Finder atau dengan <kbd>⌘O</kbd>; jendela File Data menampilkannya sebagai tabel yang dapat diedit. Filter dengan bilah filter grid, cari di semua kolom, cari dan ganti dengan ekspresi reguler, serta rapikan dengan Isi ke Bawah, Pangkas Spasi, Ubah Kapitalisasi, dan Hapus Baris Duplikat. Workbook Excel terbuka dengan satu tab per sheet; file terkompresi seperti <code>.csv.gz</code> juga dapat dibuka, keduanya hanya-baca.",
+                        "Buka file CSV, TSV, atau teks ber-delimiter lainnya, JSON, atau JSON Lines dari Finder atau dengan <kbd>⌘O</kbd>; jendela Data Files menampilkannya sebagai tabel yang dapat diedit. Filter dengan bilah filter grid, cari di semua kolom, cari dan ganti dengan ekspresi reguler, serta rapikan dengan Fill Down, Trim Whitespace, Change Case, dan Remove Duplicate Rows. Workbook Excel terbuka dengan satu tab per sheet; file terkompresi seperti <code>.csv.gz</code> juga dapat dibuka, keduanya hanya-baca.",
                         "Jendela bekerja pada salinan privat, dan <kbd>⌘S</kbd> menulis file kembali dalam format aslinya, dengan baris yang tidak disentuh tetap seperti semula."
                     ],
                     "asset": "mac-data-files-window"
@@ -76,7 +76,7 @@
             "title": "Cadangkan dengan alat mesin database Anda sendiri",
             "paragraphs": [
                 "Backup Dump dan Restore Dump bekerja melalui {backupTools}, lewat tunnel SSH koneksi dan pengaturan SSL-nya, sehingga server di balik bastion tidak memerlukan tunnel kedua. Semua kecuali DuckDB adalah alat baris perintah yang harus Anda instal; DuckDB menulis dump sendiri, sebagai file database atau folder file Parquet.",
-                "Pada {serverSideExport}, Ekspor Sisi Server meminta server menulis ekspor: job Oracle Data Pump, stage Snowflake, atau bucket Cloud Storage. Tidak ada yang disimpan di Mac Anda."
+                "Pada {serverSideExport}, Server-Side Export meminta server menulis ekspor: job Oracle Data Pump, stage Snowflake, atau bucket Cloud Storage. Tidak ada yang disimpan di Mac Anda."
             ],
             "engines": [
                 {
@@ -90,7 +90,7 @@
             "id": "files",
             "title": "File yang merupakan database",
             "paragraphs": [
-                "File SQLite dan DuckDB terbuka dari Finder sebagai koneksi. DuckDB juga membaca file Parquet, CSV, dan JSON sebagai view hanya-baca, sehingga file <code>.parquet</code> terbuka sebagai koneksi DuckDB, bukan di File Data. Database SQLite pada server SSH dapat dibuka secara langsung melalui agen kecil yang memerlukan Python 3.6 atau lebih baru di server, atau sebagai salinan hanya-baca.",
+                "File SQLite dan DuckDB terbuka dari Finder sebagai koneksi. DuckDB juga membaca file Parquet, CSV, dan JSON sebagai view hanya-baca, sehingga file <code>.parquet</code> terbuka sebagai koneksi DuckDB, bukan di Data Files. Database SQLite pada server SSH dapat dibuka secara langsung melalui agen kecil yang memerlukan Python 3.6 atau lebih baru di server, atau sebagai salinan hanya-baca.",
                 "File <code>.sql</code> terbuka sebagai tab kueri dan disimpan kembali ke disk; buku besar Beancount terbuka hanya-baca sebagai sekumpulan tabel."
             ],
             "links": [
@@ -108,11 +108,11 @@
             "id": "between-databases",
             "title": "Dari satu database ke database lain",
             "paragraphs": [
-                "Memindahkan tabel atau baris antara dua koneksi tidak memerlukan file perantara. Salin Ke dan Transfer Ke melakukannya langsung, termasuk lintas mesin, serta menampilkan yang akan ditulis sebelum apa pun berjalan."
+                "Memindahkan tabel atau baris antara dua koneksi tidak memerlukan file perantara. Copy To dan Transfer To melakukannya langsung, termasuk lintas mesin, serta menampilkan yang akan ditulis sebelum apa pun berjalan."
             ],
             "links": [
                 {
-                    "label": "Salin Ke dan Transfer Ke",
+                    "label": "Copy To dan Transfer To",
                     "href": "/features/schema#copy"
                 }
             ]
@@ -122,7 +122,7 @@
             "title": "Di iPhone dan iPad",
             "paragraphs": [
                 "Aplikasi iPhone dan iPad menyalin atau membagikan baris serta hasil kueri sebagai JSON, CSV, atau pernyataan SQL INSERT, dari baris yang sudah dimuat. Salinan tetap di papan klip perangkat tersebut dan tidak dibagikan ke perangkat lain.",
-                "Baris dimasukkan melalui tindakan Pintasan Add Row to Table dan Add Rows to Table, yang menerima teks JSON atau CSV atau file dan mengikuti Mode Aman koneksi. Tidak ada lembar impor, ekspor file, jendela File Data, atau pencadangan di iPhone dan iPad."
+                "Baris dimasukkan melalui tindakan Pintasan Add Row to Table dan Add Rows to Table, yang menerima teks JSON atau CSV atau file dan mengikuti Safe Mode koneksi. Tidak ada lembar impor, ekspor file, jendela Data Files, atau pencadangan di iPhone dan iPad."
             ],
             "links": [
                 {
@@ -139,7 +139,7 @@
             "iosNote": "Tindakan Pintasan, dari JSON atau CSV"
         },
         {
-            "label": "Pemetaan tersimpan, Cocokkan menurut Nama dan Posisi",
+            "label": "Pemetaan tersimpan, Match by Name, dan Match by Position",
             "ios": "no"
         },
         {
@@ -152,7 +152,7 @@
             "ios": "no"
         },
         {
-            "label": "Jendela File Data",
+            "label": "Jendela Data Files",
             "ios": "no"
         },
         {
@@ -160,7 +160,7 @@
             "ios": "no"
         },
         {
-            "label": "Ekspor Sisi Server",
+            "label": "Server-Side Export",
             "ios": "no"
         },
         {
@@ -187,7 +187,7 @@
             "docs": "/features/import-export"
         },
         {
-            "label": "File Data",
+            "label": "Data Files",
             "docs": "/features/data-files"
         },
         {

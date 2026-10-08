@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "TablePro vs phpMyAdmin : outil web ou app Mac",
+        "title": "TablePro vs phpMyAdmin : outil web ou app Mac",
         "description": "phpMyAdmin s’ouvre dans le navigateur depuis un serveur web. TablePro se connecte depuis votre Mac, directement ou par SSH. Comparez moteurs et accès."
     },
     "og": {
@@ -15,7 +15,7 @@
         "tablepro": [
             "Vous préférez ne rien installer sur le serveur et travailler depuis votre Mac, en connexion directe ou par SSH.",
             "Vous utilisez aussi PostgreSQL, SQL Server, SQLite, Redis ou d’autres moteurs.",
-            "Vous voulez un niveau de mode sécurisé pour chaque connexion, comme Lecture seule en production ou Touch ID avant les écritures.",
+            "Vous voulez un niveau de Safe Mode pour chaque connexion, comme Read-Only en production ou Touch ID avant les écritures.",
             "Vous importez et exportez souvent des données. L’importation et l’exportation de fichiers CSV, JSON, XLSX ou SQL sont gratuites.",
             "Vous voulez un assistant IA et un serveur MCP, gratuits dans l’app Mac."
         ],
@@ -26,7 +26,7 @@
         ]
     },
     "glance": {
-        "intro": "phpMyAdmin est une application web : plusieurs lignes décrivent donc le serveur qui l’exécute plutôt que votre ordinateur. Sa version stable actuelle est {status.version}, et la version {cells.nextMajor.version} est en développement."
+        "intro": "phpMyAdmin est une application web : plusieurs lignes décrivent donc le serveur qui l’exécute plutôt que votre ordinateur. Sa version stable actuelle est {status.version}, et la version {cells.nextMajor.version} est en développement."
     },
     "rows": {
         "cpanel": {
@@ -35,7 +35,7 @@
         },
         "languages": {
             "label": "Langues de l’interface",
-            "tablepro": "App Mac : {macLanguages}"
+            "tablepro": "App Mac : {macLanguages}"
         },
         "designer": {
             "label": "Diagramme du schéma",
@@ -58,7 +58,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Il fonctionne dans un navigateur : vous pouvez y accéder depuis tout ordinateur sans rien y installer.",
+                "text": "Il fonctionne dans un navigateur : vous pouvez y accéder depuis tout ordinateur sans rien y installer.",
                 "cite": [
                     "platforms"
                 ],
@@ -66,7 +66,7 @@
                 "href": null
             },
             {
-                "text": "Il est inclus dans cPanel ; un compte d’hébergement avec cPanel le propose donc prêt à l’emploi.",
+                "text": "Il est inclus dans cPanel ; un compte d’hébergement avec cPanel le propose donc prêt à l’emploi.",
                 "cite": [
                     "cells.cpanel"
                 ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "Chaque connexion a un niveau de <link>mode sécurisé</link>, de Silencieux à Lecture seule, avec Touch ID aux niveaux les plus stricts.",
+                "text": "Chaque connexion a un niveau de <link>Safe Mode</link>, de Silent à Read-Only, avec Touch ID aux niveaux les plus stricts.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -131,7 +131,7 @@
                 "href": "/databases"
             },
             {
-                "text": "L’<link>importation et l’exportation</link> s’exécutent sur votre Mac : import de CSV, JSON, XLSX et SQL ; export de CSV, JSON, SQL, XLSX, Markdown, HTML et XML.",
+                "text": "L’<link>importation et l’exportation</link> s’exécutent sur votre Mac : import de CSV, JSON, XLSX et SQL ; export de CSV, JSON, SQL, XLSX, Markdown, HTML et XML.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/import-export"
@@ -142,7 +142,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro nécessite un accès à la base : son port ouvert à votre Mac ou un accès SSH au serveur. Si votre offre d’hébergement ne propose ni l’un ni l’autre, phpMyAdmin est le moyen d’accès.",
+                "text": "TablePro nécessite un accès à la base : son port ouvert à votre Mac ou un accès SSH au serveur. Si votre offre d’hébergement ne propose ni l’un ni l’autre, phpMyAdmin est le moyen d’accès.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -170,11 +170,11 @@
         ]
     },
     "switching": {
-        "intro": "TablePro n’a pas d’importateur pour phpMyAdmin. Utilisez les informations MySQL ou SSH fournies par votre hébergeur : remplissez le formulaire de connexion ou collez une URL commençant par mysql:// dans <ui>Fichier > Importer > Importer depuis une URL…</ui>",
+        "intro": "TablePro n’a pas d’importateur pour phpMyAdmin. Utilisez les informations MySQL ou SSH fournies par votre hébergeur : remplissez le formulaire de connexion ou collez une URL commençant par mysql:// dans <ui>Fichier > Importer > Importer depuis une URL…</ui> (File > Import > Import from URL…)",
         "steps": [],
         "after": [
-            "Si le code du site est sur votre Mac, <ui>Fichier > Importer > Ouvrir un dossier de projet…</ui> lit les paramètres de base dans des fichiers comme wp-config.php ou .env et ouvre le formulaire de connexion prérempli.",
-            "Pour une base de production, réglez le niveau de mode sécurisé de la connexion avant de commencer.",
+            "Si le code du site est sur votre Mac, <ui>Fichier > Importer > Ouvrir le dossier du projet…</ui> (File > Import > Open Project Folder…) lit les paramètres de base dans des fichiers comme wp-config.php ou .env et ouvre le formulaire de connexion prérempli.",
+            "Pour une base de production, réglez le niveau de Safe Mode de la connexion avant de commencer.",
             "Les fichiers SQL exportés depuis phpMyAdmin s’importent dans toute connexion MySQL ou MariaDB, compressés avec gzip ou non."
         ],
         "docs": null
@@ -182,26 +182,26 @@
     "faq": [
         {
             "id": "access",
-            "question": "Que dois-je obtenir de mon hébergeur pour utiliser TablePro ?",
-            "answer": "Un accès à la base : un accès MySQL distant autorisé par l’hébergeur depuis votre adresse ou un accès SSH au serveur. TablePro se connecte par les deux moyens. Si votre offre ne propose ni l’un ni l’autre, continuez à utiliser phpMyAdmin sur cet hébergement.",
+            "question": "Que dois-je obtenir de mon hébergeur pour utiliser TablePro ?",
+            "answer": "Un accès à la base : un accès MySQL distant autorisé par l’hébergeur depuis votre adresse ou un accès SSH au serveur. TablePro se connecte par les deux moyens. Si votre offre ne propose ni l’un ni l’autre, continuez à utiliser phpMyAdmin sur cet hébergement.",
             "href": null
         },
         {
             "id": "sql-import",
-            "question": "TablePro peut-il importer un fichier SQL exporté depuis phpMyAdmin ?",
+            "question": "TablePro peut-il importer un fichier SQL exporté depuis phpMyAdmin ?",
             "answer": "Oui. L’importation accepte les fichiers .sql et .sql.gz et exécute leurs instructions sur la connexion choisie. <link>Découvrez l’importation et l’exportation</link>.",
             "href": "/features/import-export"
         },
         {
             "id": "adminer",
-            "question": "Et Adminer ?",
-            "answer": "Adminer est un autre outil web open source, distribué en un seul fichier PHP. En plus de MySQL et MariaDB, il se connecte à PostgreSQL, SQLite, SQL Server et Oracle. Comme phpMyAdmin, il fonctionne sur votre serveur ; son installation nécessite donc les mêmes précautions.",
+            "question": "Et Adminer ?",
+            "answer": "Adminer est un autre outil web open source, distribué en un seul fichier PHP. En plus de MySQL et MariaDB, il se connecte à PostgreSQL, SQLite, SQL Server et Oracle. Comme phpMyAdmin, il fonctionne sur votre serveur ; son installation nécessite donc les mêmes précautions.",
             "href": null
         },
         {
             "id": "free",
-            "question": "TablePro est-il gratuit comme phpMyAdmin ?",
-            "answer": "Pour travailler avec MySQL et MariaDB, oui : l’app Mac TablePro est gratuite et open source sous AGPLv3, avec tous les moteurs pris en charge, l’assistant IA et le serveur MCP. Contrairement à phpMyAdmin, elle propose aussi des offres payantes : Starter et Team ajoutent des fonctions facultatives comme {starterExamples}. <link>Voir les tarifs</link>.",
+            "question": "TablePro est-il gratuit comme phpMyAdmin ?",
+            "answer": "Pour travailler avec MySQL et MariaDB, oui : l’app Mac TablePro est gratuite et open source sous AGPLv3, avec tous les moteurs pris en charge, l’assistant IA et le serveur MCP. Contrairement à phpMyAdmin, elle propose aussi des offres payantes : Starter et Team ajoutent des fonctions facultatives comme {starterExamples}. <link>Voir les tarifs</link>.",
             "href": "/pricing"
         }
     ],

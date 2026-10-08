@@ -47,7 +47,7 @@
         },
         {
             "id": "schema",
-            "title": "結構",
+            "title": "Structure",
             "paragraphs": [
                 "重新命名資料表或欄位、新增或刪除欄位，以及 SQLite 3.53 起新增或刪除 CHECK，使用 ALTER TABLE 執行。欄位型別、外部索引鍵等其他 <structure>Structure 分頁</structure>修改會重建資料表：TablePro 產生指令碼，連同 rowid 複製列，還原索引和觸發程序，僅在確認後執行。",
                 "修改欄位型別會依新的型別親和性重新讀取值，例如 INTEGER 欄位中 <code>'007'</code> 變成 <code>7</code>，執行前檢閱面板會說明。FTS5 等虛擬資料表無法重建，儲存時會指明其名稱。",

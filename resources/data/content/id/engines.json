@@ -1,12 +1,12 @@
 {
     "postgresql": {
-        "tagline": "Array, jsonb, dan nilai PostGIS, diagram EXPLAIN, Pengguna dan Peran, serta cadangan pg_dump.",
+        "tagline": "Array, jsonb, dan nilai PostGIS, diagram EXPLAIN, Users & Roles, serta cadangan pg_dump.",
         "limits": {
             "column-reorder-script-only": "Mengurutkan ulang kolom menghasilkan skrip pembangunan ulang tabel. TablePro menampilkan skrip dan tidak pernah menjalankannya."
         }
     },
     "mysql": {
-        "tagline": "MySQL melalui TCP, dengan diagram EXPLAIN, Pengguna dan Peran, login AWS IAM, serta cadangan mysqldump.",
+        "tagline": "MySQL melalui TCP, dengan diagram EXPLAIN, Users & Roles, login AWS IAM, serta cadangan mysqldump.",
         "limits": {
             "tcp-only": "Koneksi memakai host dan port melalui TCP. Socket Unix lokal tidak didukung.",
             "load-data-local-refused": "Driver menolak LOAD DATA LOCAL INFILE. Muat file melalui Impor."
@@ -55,30 +55,30 @@
         "tagline": "Driver MySQL dengan sequence MariaDB, kolom virtual dan persisten, serta kolom JSON.",
         "limits": {
             "no-cloud-sql-proxy": "Cloud SQL Auth Proxy tidak tersedia untuk MariaDB. Akses server privat lewat tunnel SSH.",
-            "roles-listed-as-users": "Pengguna dan Peran mencantumkan peran MariaDB sebagai pengguna. Buat dan berikan peran dengan SQL di editor."
+            "roles-listed-as-users": "Users & Roles mencantumkan peran MariaDB sebagai pengguna. Buat dan berikan peran dengan SQL di editor."
         }
     },
     "tidb": {
-        "tagline": "TiDB dan TiDB Cloud pada driver MySQL, dengan Hentikan dikirim sebagai KILL TIDB QUERY.",
+        "tagline": "TiDB dan TiDB Cloud pada driver MySQL, dengan Stop dikirim sebagai KILL TIDB QUERY.",
         "limits": {
             "no-triggers-or-routines": "Tidak ada trigger, stored routine, atau event.",
-            "no-dashboard-or-dump": "Tidak ada Dasbor Server atau Backup Dump. Ekspor dengan Dumpling TiDB.",
-            "structure-sync-same-engine": "Bandingkan dan Sinkronkan menghasilkan skrip struktur hanya antar-database TiDB, bukan antara TiDB dan MySQL atau MariaDB."
+            "no-dashboard-or-dump": "Tidak ada Server Dashboard atau Backup Dump. Ekspor dengan Dumpling TiDB.",
+            "structure-sync-same-engine": "Compare & Sync menghasilkan skrip struktur hanya antar-database TiDB, bukan antara TiDB dan MySQL atau MariaDB."
         }
     },
     "oceanbase": {
         "tagline": "Tenant OceanBase dalam mode MySQL, masuk sebagai user@tenant, secara langsung atau melalui OBProxy.",
         "limits": {
             "mysql-mode-only": "Hanya tenant mode MySQL yang terhubung. Tenant mode Oracle ditolak.",
-            "no-dashboard-or-dump": "Tidak ada Dasbor Server atau Backup Dump.",
-            "structure-sync-same-engine": "Bandingkan dan Sinkronkan menghasilkan skrip struktur hanya antar-database OceanBase, bukan antara OceanBase dan MySQL atau MariaDB."
+            "no-dashboard-or-dump": "Tidak ada Server Dashboard atau Backup Dump.",
+            "structure-sync-same-engine": "Compare & Sync menghasilkan skrip struktur hanya antar-database OceanBase, bukan antara OceanBase dan MySQL atau MariaDB."
         }
     },
     "databend": {
         "tagline": "Databend dan Databend Cloud melalui handler MySQL Databend.",
         "limits": {
             "no-keys-or-indexes": "Databend tidak memiliki indeks, primary key, atau foreign key, sehingga edit baris mencocokkan semua kolom, dan penyimpanan yang akan mengubah lebih dari satu baris ditolak.",
-            "no-compare-sync": "Bandingkan dan Sinkronkan tidak tersedia.",
+            "no-compare-sync": "Compare & Sync tidak tersedia.",
             "no-url-scheme": "Tidak ada skema URL untuk membuka koneksi Databend. Buat melalui formulir koneksi.",
             "not-on-ios": "Tidak tersedia di iPhone dan iPad."
         }
@@ -87,14 +87,14 @@
         "tagline": "Amazon Redshift pada driver PostgreSQL, dengan DISTKEY dan SORTKEY dalam DDL.",
         "limits": {
             "no-aws-iam": "Login AWS IAM tidak tersedia untuk Redshift. Masuk sebagai pengguna database.",
-            "structure-read-only": "Tab Struktur hanya-baca. Jalankan DDL di editor.",
+            "structure-read-only": "Tab Structure hanya-baca. Jalankan DDL di editor.",
             "ios-synced-only": "Di iPhone dan iPad, koneksi Redshift hanya terbuka jika disinkronkan atau diimpor dari Mac."
         }
     },
     "cockroachdb": {
         "tagline": "CockroachDB dan CockroachDB Cloud melalui protokol komunikasi PostgreSQL.",
         "limits": {
-            "structure-read-only": "Tab Struktur hanya-baca. Jalankan perubahan skema sebagai SQL di editor.",
+            "structure-read-only": "Tab Structure hanya-baca. Jalankan perubahan skema sebagai SQL di editor.",
             "no-dump-or-maintenance": "Tidak ada Backup Dump, Restore Dump, atau pemeliharaan tabel. Gunakan pernyataan BACKUP dan RESTORE CockroachDB sendiri."
         }
     },
@@ -103,7 +103,7 @@
         "limits": {
             "needs-socket-server": "PGlite harus dilayani oleh @electric-sql/pglite-socket, yang Anda mulai sendiri dan pertahankan berjalan.",
             "single-client": "Server socket menerima satu klien setiap kali.",
-            "cancel-has-no-effect": "Batal tidak berpengaruh: kueri selalu berjalan sampai selesai."
+            "cancel-has-no-effect": "Cancel tidak berpengaruh: kueri selalu berjalan sampai selesai."
         }
     },
     "oracle": {
@@ -111,7 +111,7 @@
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "Wallet Oracle, autentikasi OS, Kerberos, dan LDAP tidak didukung. Terhubung dengan nama layanan atau SID dan kata sandi.",
             "no-explain": "Tidak ada EXPLAIN atau tampilan rencana eksekusi untuk Oracle.",
-            "no-users-roles": "Pengguna dan Peran tidak tersedia. Kelola akun dengan CREATE USER dan GRANT di editor.",
+            "no-users-roles": "Users & Roles tidak tersedia. Kelola akun dengan CREATE USER dan GRANT di editor.",
             "no-packages": "Package tidak tercantum dalam sidebar. Procedure dan function mandiri tercantum."
         }
     },
@@ -155,12 +155,12 @@
     "bigquery": {
         "tagline": "GoogleSQL dengan Max Bytes Billed dan estimasi biaya Dry Run sebelum kueri berjalan.",
         "limits": {
-            "structure-read-only": "Tab Struktur hanya-baca. Jalankan DDL di editor.",
+            "structure-read-only": "Tab Structure hanya-baca. Jalankan DDL di editor.",
             "no-transactions": "Transaksi tidak didukung."
         }
     },
     "snowflake": {
-        "tagline": "Pasangan key, SSO browser, OAuth, atau kata sandi dengan kode, dengan warehouse dan peran dalam Konteks Sesi.",
+        "tagline": "Pasangan key, SSO browser, OAuth, atau kata sandi dengan kode, dengan warehouse dan peran dalam Session Context.",
         "limits": {
             "duo-passcode-only": "Duo hanya mendukung kode. Persetujuan push tidak didukung."
         }
@@ -239,7 +239,7 @@
     "spanner": {
         "tagline": "Dialek GoogleSQL atau PostgreSQL, dideteksi saat terhubung, serta emulator Spanner.",
         "limits": {
-            "structure-read-only": "Tab Struktur hanya-baca. Ubah tabel dengan ALTER TABLE di editor."
+            "structure-read-only": "Tab Structure hanya-baca. Ubah tabel dengan ALTER TABLE di editor."
         }
     },
     "typesense": {

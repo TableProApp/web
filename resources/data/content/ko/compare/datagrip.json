@@ -108,7 +108,7 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>비교 및 동기화</link>는 두 데이터베이스의 구조나 데이터를 비교하고 한쪽을 다른 쪽에 맞추는 스크립트를 작성합니다. Starter에 포함됩니다.",
+                "text": "<link>Compare & Sync</link>는 두 데이터베이스의 구조나 데이터를 비교하고 한쪽을 다른 쪽에 맞추는 스크립트를 작성합니다. Starter에 포함됩니다.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -149,10 +149,10 @@
     "switching": {
         "intro": "TablePro는 DataGrip의 전역 데이터 소스와 최근 프로젝트의 데이터 소스를 읽습니다. DataGrip을 열어 둘 필요가 없으며 파일도 변경하지 않습니다.",
         "steps": [
-            "TablePro에서 <ui>File > Import > Import from Other App…</ui>를 선택합니다.",
-            "DataGrip을 선택합니다. <ui>Include passwords</ui>를 켜서 SSH 암호와 키 암호 문구를 포함해 DataGrip이 macOS 키체인에 저장한 암호를 읽습니다.",
-            "macOS는 저장된 암호마다 한 번씩 로그인 암호를 요청합니다. 각 메시지에서 <ui>Always Allow</ui>를 선택합니다.",
-            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>Import</ui>를 클릭합니다. 그룹, SSH 터널, SSL 설정이 함께 이전됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
+            "TablePro에서 <ui>파일 > 가져오기 > 다른 앱에서 가져오기…</ui>(File > Import > Import from Other App…)를 선택합니다.",
+            "DataGrip을 선택합니다. <ui>암호 포함</ui>(Include passwords)을 켜서 SSH 암호와 키 암호 문구를 포함해 DataGrip이 macOS 키체인에 저장한 암호를 읽습니다.",
+            "macOS는 저장된 암호마다 한 번씩 로그인 암호를 요청합니다. 각 메시지에서 <ui>항상 허용</ui>(Always Allow)을 선택합니다.",
+            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>가져오기</ui>(Import)를 클릭합니다. 그룹, SSH 터널, SSL 설정이 함께 이전됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
             "DataGrip을 삭제하기 전에 암호가 있던 연결을 열어 암호가 이전되었는지 확인합니다."
         ],
         "after": [
@@ -177,13 +177,13 @@
         {
             "id": "mcp",
             "question": "DataGrip에도 MCP 서버가 있습니다. TablePro의 서버는 무엇을 하나요?",
-            "answer": "Claude Code나 Cursor 같은 클라이언트가 암호를 보지 않고 저장된 TablePro 연결을 사용하게 합니다. 127.0.0.1에서만 수신하며 변경하지 않는 한 각 연결은 외부 앱에 읽기 전용이고 무료입니다. DataGrip도 {cells.mcp.version} 버전부터 자체 서버를 제공합니다.",
+            "answer": "Claude Code나 Cursor 같은 클라이언트가 암호를 보지 않고 저장된 TablePro 연결을 사용하게 합니다. 127.0.0.1에서만 수신하며 변경하지 않는 한 각 연결은 외부 앱에 Read Only이고 무료입니다. DataGrip도 {cells.mcp.version} 버전부터 자체 서버를 제공합니다.",
             "href": null
         },
         {
             "id": "jdbc-url",
             "question": "DataGrip의 JDBC URL을 붙여 넣을 수 있나요?",
-            "answer": "TablePro가 지원하는 엔진이라면 가능합니다. <ui>File > Import > Import from URL…</ui>는 postgres://, mysql://뿐 아니라 jdbc: URL도 읽습니다. 모든 데이터 소스를 한 번에 옮기려면 위에서 설명한 가져오기를 사용하세요.",
+            "answer": "TablePro가 지원하는 엔진이라면 가능합니다. <ui>파일 > 가져오기 > URL에서 가져오기…</ui>(File > Import > Import from URL…)는 postgres://, mysql://뿐 아니라 jdbc: URL도 읽습니다. 모든 데이터 소스를 한 번에 옮기려면 위에서 설명한 가져오기를 사용하세요.",
             "href": null
         }
     ],

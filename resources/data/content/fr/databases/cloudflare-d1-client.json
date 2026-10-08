@@ -27,9 +27,9 @@
             "id": "connect",
             "title": "Connectez-vous avec un jeton API",
             "paragraphs": [
-                "Une connexion D1 prend trois valeurs : le nom ou l’UUID de la base, votre ID de compte Cloudflare et un jeton API. Le jeton va dans le champ <ui>Jeton API</ui> et reste dans le <credentials>Trousseau macOS</credentials>. Il n’y a ni hôte, ni port, ni réglage SSL, ni tunnel SSH, car chaque requête va à l’API Cloudflare via HTTPS.",
-                "Créez le jeton depuis le modèle de jeton personnalisé avec l’autorisation <ui>Compte > D1 > Modifier</ui>, puis copiez-le lorsque Cloudflare l’affiche, car il n’apparaît qu’une fois. Ce jeton donne accès à toutes les bases D1 du compte, pas seulement à celle que vous connectez.",
-                "L’import d’une URL <code>d1://account-id/database-name</code> remplit le compte et la base ; le jeton n’est jamais transmis dans l’URL, collez-le donc ensuite."
+                "Une connexion D1 prend trois valeurs : le nom ou l’UUID de la base, votre ID de compte Cloudflare et un jeton API. Le jeton va dans le champ <ui>Jeton API</ui> (API Token) et reste dans le <credentials>Trousseau macOS</credentials>. Il n’y a ni hôte, ni port, ni réglage SSL, ni tunnel SSH, car chaque requête va à l’API Cloudflare via HTTPS.",
+                "Créez le jeton depuis le modèle de jeton personnalisé avec l’autorisation <ui>Account > D1 > Edit</ui>, puis copiez-le lorsque Cloudflare l’affiche, car il n’apparaît qu’une fois. Ce jeton donne accès à toutes les bases D1 du compte, pas seulement à celle que vous connectez.",
+                "L’import d’une URL <code>d1://account-id/database-name</code> remplit le compte et la base ; le jeton n’est jamais transmis dans l’URL, collez-le donc ensuite."
             ]
         },
         {
@@ -37,15 +37,15 @@
             "title": "Changez de base et interrogez",
             "paragraphs": [
                 "Le sélecteur de bases dans la barre d’outils liste les bases D1 du compte et permet d’en changer sans reconnexion. Il crée et supprime aussi des bases. Chaque onglet conserve la base avec laquelle il a été ouvert.",
-                "Les requêtes utilisent le dialecte SQLite. <explain>EXPLAIN QUERY PLAN</explain> est représenté en diagramme et les modifications de lignes attendent dans la grille jusqu’à l’enregistrement ; l’<editing>Aperçu SQL</editing> montre d’abord les instructions.",
-                "Écrivez chaque instruction pour qu’elle soit autonome : un réglage <code>PRAGMA</code> ou une table temporaire créés par une instruction disparaissent à la suivante, et chaque instruction est validée à son exécution, sans possibilité d’annulation. Lorsque Cloudflare limite le débit d’une requête, l’erreur indique l’attente demandée avant une nouvelle tentative."
+                "Les requêtes utilisent le dialecte SQLite. <explain>EXPLAIN QUERY PLAN</explain> est représenté en diagramme et les modifications de lignes attendent dans la grille jusqu’à l’enregistrement ; <editing>Preview SQL</editing> montre d’abord les instructions.",
+                "Écrivez chaque instruction pour qu’elle soit autonome : un réglage <code>PRAGMA</code> ou une table temporaire créés par une instruction disparaissent à la suivante, et chaque instruction est validée à son exécution, sans possibilité d’annulation. Lorsque Cloudflare limite le débit d’une requête, l’erreur indique l’attente demandée avant une nouvelle tentative."
             ]
         },
         {
             "id": "schema",
             "title": "Tables, index et déclencheurs",
             "paragraphs": [
-                "L’<structure>onglet Structure</structure> crée et supprime des tables, ajoute et supprime des colonnes, crée et supprime des index, y compris partiels avec condition WHERE ; l’Aperçu SQL montre le DDL avant l’enregistrement. L’onglet Déclencheurs crée, modifie et supprime les déclencheurs, et les tables se renomment depuis la barre latérale.",
+                "L’<structure>onglet Structure</structure> crée et supprime des tables, ajoute et supprime des colonnes, crée et supprime des index, y compris partiels avec condition WHERE ; Preview SQL montre le DDL avant l’enregistrement. L’onglet Déclencheurs crée, modifie et supprime les déclencheurs, et les tables se renomment depuis la barre latérale.",
                 "Réordonner les colonnes ou changer une clé étrangère nécessite de reconstruire la table. Sur D1, TablePro écrit le script de reconstruction et vous le remet pour exécution, car chaque instruction est une requête distincte et aucune transaction ne peut englober toute la reconstruction."
             ]
         },
@@ -62,13 +62,13 @@
     "faq": [
         {
             "id": "sessions",
-            "question": "TablePro utilise-t-il l’API Sessions de D1 ?",
-            "answer": "Non. Chaque instruction part comme une requête distincte, sans session ni marqueur ; rien ne persiste donc d’une instruction à l’autre, dans un onglet ou entre onglets."
+            "question": "TablePro utilise-t-il l’API Sessions de D1 ?",
+            "answer": "Non. Chaque instruction part comme une requête distincte, sans session ni marqueur ; rien ne persiste donc d’une instruction à l’autre, dans un onglet ou entre onglets."
         },
         {
             "id": "wrangler",
-            "question": "Dois-je installer Wrangler ?",
-            "answer": "Pas pour parcourir, interroger ou modifier : TablePro communique directement avec l’API Cloudflare. Wrangler n’est nécessaire que pour charger un fichier SQL, puisque TablePro ne propose pas d’import pour D1."
+            "question": "Dois-je installer Wrangler ?",
+            "answer": "Pas pour parcourir, interroger ou modifier : TablePro communique directement avec l’API Cloudflare. Wrangler n’est nécessaire que pour charger un fichier SQL, puisque TablePro ne propose pas d’import pour D1."
         }
     ],
     "related": [

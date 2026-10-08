@@ -13,15 +13,15 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "你希望免费应用已包含 AI 助手、MCP 服务器和安全模式，只为 {starterExamples} 等功能购买付费方案。",
-            "你希望使用开源客户端。TablePro 包括付费功能代码在内，均以 AGPLv3 开源。",
-            "你希望一个免费 iPhone 和 iPad 应用支持多个引擎，而不是为每个引擎分别购买应用。",
-            "你使用 ClickHouse、DuckDB 或 Cassandra 等未列入 Navicat Premium 支持列表的引擎。"
+            "您希望免费应用已包含 AI 助手、MCP 服务器和 Safe Mode，只为 {starterExamples} 等功能购买付费方案。",
+            "您希望使用开源客户端。TablePro 包括付费功能代码在内，均以 AGPLv3 开源。",
+            "您希望一个免费 iPhone 和 iPad 应用支持多个引擎，而不是为每个引擎分别购买应用。",
+            "您使用 ClickHouse、DuckDB 或 Cassandra 等未列入 Navicat Premium 支持列表的引擎。"
         ],
         "competitor": [
-            "你除了 Mac，也在 Windows 或 Linux 上工作。",
-            "你使用数据建模工具设计模式。Navicat 在 Premium Enterprise 中包含此工具。",
-            "你通过 Navicat Cloud，或自己服务器上的 Navicat On-Prem Server，与同事同步连接、查询和模型。"
+            "您除了 Mac，也在 Windows 或 Linux 上工作。",
+            "您使用数据建模工具设计模式。Navicat 在 Premium Enterprise 中包含此工具。",
+            "您通过 Navicat Cloud，或自己服务器上的 Navicat On-Prem Server，与同事同步连接、查询和模型。"
         ]
     },
     "glance": {
@@ -30,7 +30,7 @@
     "rows": {
         "schemaSync": {
             "label": "结构同步",
-            "tablepro": "Starter 中的比较与同步，支持结构和数据"
+            "tablepro": "Starter 中的 Compare & Sync，支持结构和数据"
         },
         "dataModeling": {
             "label": "数据建模",
@@ -86,13 +86,13 @@
                 "href": null
             },
             {
-                "text": "免费应用可连接所有支持的引擎，并包含 AI 助手、MCP 服务器和安全模式。<link>付费方案</link>添加 {starterExamples} 等功能。",
+                "text": "免费应用可连接所有支持的引擎，并包含 AI 助手、MCP 服务器和 Safe Mode。<link>付费方案</link>添加 {starterExamples} 等功能。",
                 "cite": [],
                 "feature": null,
                 "href": "/pricing"
             },
             {
-                "text": "两者都能同步结构。TablePro 的<link>比较与同步</link>会比较两个数据库的结构或数据并生成差异脚本；破坏数据的语句会暂缓执行，直到你明确允许。此功能包含在 Starter 中。",
+                "text": "两者都能同步结构。TablePro 的 <link>Compare & Sync</link> 会比较两个数据库的结构或数据并生成差异脚本；破坏数据的语句会暂缓执行，直到您明确允许。此功能包含在 Starter 中。",
                 "cite": [
                     "cells.schemaSync"
                 ],
@@ -133,7 +133,7 @@
                 "href": "/features/schema#er-diagram"
             },
             {
-                "text": "没有任务调度器，比较、导出和备份只会在你主动启动时运行。",
+                "text": "没有任务调度器，比较、导出和备份只会在您主动启动时运行。",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -156,9 +156,9 @@
         "intro": "TablePro 从 Navicat 导出的文件导入连接，因此迁移从 Navicat 开始。不会读取或更改 Navicat 自身的设置。",
         "steps": [
             "在 Navicat 中选择 <ui>File > Export Connections…</ui>，选择连接，开启 <ui>Export Password</ui> 并保存 .ncx 文件。",
-            "在 TablePro 中选择 <ui>File > Import > Import from Other App…</ui>。",
-            "选择 Navicat，开启 <ui>Include passwords</ui>，点击 <ui>Continue</ui> 并选择 .ncx 文件。TablePro 会解密已保存的密码，因此无需在钥匙串中批准。",
-            "检查列表，决定如何处理重复项，然后点击 <ui>Import</ui>。SSH 隧道和 SSL 设置会一并导入。TablePro 不支持的数据库连接默认不勾选。",
+            "在 TablePro 中选择<ui>文件 > 导入 > 从其他应用导入…</ui>（File > Import > Import from Other App…）。",
+            "选择 Navicat，开启<ui>包含密码</ui>（Include passwords），点击<ui>继续</ui>（Continue）并选择 .ncx 文件。TablePro 会解密已保存的密码，因此无需在钥匙串中批准。",
+            "检查列表，决定如何处理重复项，然后点击<ui>导入</ui>（Import）。SSH 隧道和 SSL 设置会一并导入。TablePro 不支持的数据库连接默认不勾选。",
             "删除 Navicat 前，打开一个原本有密码的连接，确认密码已成功迁移。"
         ],
         "after": [
@@ -172,7 +172,7 @@
         {
             "id": "premium-lite",
             "question": "Navicat Premium Lite 也免费，TablePro 有何不同？",
-            "answer": "两者均可免费用于商业工作。Premium Lite 提供 Navicat 的基础功能。TablePro 免费应用可连接所有支持的引擎，并包含 AI 助手、MCP 服务器和安全模式；Starter 或 Team 方案添加 {starterExamples} 等功能。",
+            "answer": "两者均可免费用于商业工作。Premium Lite 提供 Navicat 的基础功能。TablePro 免费应用可连接所有支持的引擎，并包含 AI 助手、MCP 服务器和 Safe Mode；Starter 或 Team 方案添加 {starterExamples} 等功能。",
             "href": null
         },
         {

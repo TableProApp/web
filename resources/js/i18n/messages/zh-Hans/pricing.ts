@@ -28,7 +28,7 @@ export default {
                 "连接任何受支持的引擎",
                 "SQL 编辑器和数据网格",
                 "AI 助手和 MCP 服务器",
-                "安全模式",
+                "Safe Mode",
                 "iPhone 和 iPad 应用"
             ]
         },
@@ -89,7 +89,7 @@ export default {
         }
     },
     "allFeatures": "所有付费功能",
-    "finePrint": "价格以美元计。{merchant} 为名义销售商，负责收款，并在结账时计算销售税或增值税。",
+    "finePrint": "价格以美元计。{merchant} 为 merchant of record，负责收款，并在结账时计算销售税或增值税。",
     "finePrintCurrency": "价格以美元计。",
     "comparePlans": "对比方案",
     "section": {
@@ -107,8 +107,8 @@ export default {
         },
         "macsTeam": "每席位一台",
         "everythingElse": "应用中的其他所有功能",
-        "everythingElseDetail": "所有受支持的引擎、SQL 编辑器、AI 助手、MCP 服务器和安全模式",
-        "iphoneNote": "iPhone 和 iPad 应用没有付费功能，iCloud 同步在这两款设备上免费。若要与 Mac 同步，Mac 需要 Starter 或 Team。"
+        "everythingElseDetail": "所有受支持的引擎、SQL 编辑器、AI 助手、MCP 服务器和 Safe Mode",
+        "iphoneNote": "iPhone 和 iPad 应用没有付费功能，iCloud Sync 在这两款设备上免费。若要与 Mac 同步，Mac 需要 Starter 或 Team。"
     },
     "discount": {
         "atCheckout": "有优惠码？请在结账时输入。",

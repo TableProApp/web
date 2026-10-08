@@ -13,8 +13,8 @@ export default {
         },
         "resources": {
             "title": "Ressources",
-            "docs": "Documentation",
-            "changelog": "Journal des modifications",
+            "docs": "Documentation (anglais)",
+            "changelog": "Journal des modifications (anglais)",
             "blog": "Blog",
             "faq": "Questions fréquentes",
             "source": "Code source",
@@ -45,7 +45,7 @@ export default {
     },
     "newsletter": {
         "title": "Notes de version par e-mail",
-        "body": "Des e-mails occasionnels avec les notes de version. Chaque e-mail contient un lien de désinscription.",
+        "body": "Des e-mails occasionnels, en anglais, avec les notes de version. Chaque e-mail contient un lien de désinscription.",
         "note": "Nous vous envoyons d’abord un lien de confirmation. <link>Politique de confidentialité</link>"
     },
     "bottom": {

@@ -14,8 +14,8 @@
     "shortAnswer": {
         "tablepro": [
             "Du arbeitest neben PostgreSQL auch mit MySQL, SQL Server, SQLite, Redis oder MongoDB.",
-            "Du betreust auch den Server. Benutzer und Rollen, ein Server-Dashboard zum Beenden von Sitzungen, VACUUM und Sicherungen mit pg_dump sind in der Mac-App kostenlos.",
-            "Du optimierst Abfragen. EXPLAIN zeigt den Plan als Diagramm, und der EXPLAIN-Vergleich prüft einen neuen Plan gegen eine Referenz.",
+            "Du betreust auch den Server. Users & Roles, ein Server-Dashboard zum Beenden von Sitzungen, VACUUM und Sicherungen mit pg_dump sind in der Mac-App kostenlos.",
+            "Du optimierst Abfragen. EXPLAIN zeigt den Plan als Diagramm, und EXPLAIN Compare prüft einen neuen Plan gegen eine Referenz.",
             "Du möchtest eine kostenlose iPhone- und iPad-App, die sich mit PostgreSQL verbindet.",
             "Du möchtest den KI-Assistenten und den MCP-Server kostenlos nutzen."
         ],
@@ -31,7 +31,7 @@
     "rows": {
         "administration": {
             "label": "Serververwaltung",
-            "tablepro": "Kostenlos in der Mac-App: Benutzer und Rollen, Server-Dashboard, Wartung wie VACUUM und Sicherungen mit pg_dump, das du selbst installierst"
+            "tablepro": "Kostenlos in der Mac-App: Users & Roles, Server-Dashboard, Wartung wie VACUUM und Sicherungen mit pg_dump, das du selbst installierst"
         },
         "macAppStore": {
             "label": "Mac App Store",
@@ -86,7 +86,7 @@
                 "href": "/databases"
             },
             {
-                "text": "Die kostenlose App enthält <link>Serverwerkzeuge</link>: Benutzer und Rollen mit Berechtigungen bis auf Spaltenebene, ein Server-Dashboard mit Sitzungen und langsamen Abfragen sowie VACUUM mit vorheriger SQL-Anzeige. Postico gibt an, nicht für diese Aufgaben entwickelt zu sein.",
+                "text": "Die kostenlose App enthält <link>Serverwerkzeuge</link>: Users & Roles mit Berechtigungen bis auf Spaltenebene, ein Server-Dashboard mit Sitzungen und langsamen Abfragen sowie VACUUM mit vorheriger SQL-Anzeige. Postico gibt an, nicht für diese Aufgaben entwickelt zu sein.",
                 "cite": [
                     "cells.administration"
                 ],
@@ -94,13 +94,13 @@
                 "href": "/features/schema#administer"
             },
             {
-                "text": "<link>EXPLAIN</link> zeigt einen Plan als Diagramm, Baum oder Rohtext, und der EXPLAIN-Vergleich prüft einen neuen Plan gegen eine Referenz. Beide sind kostenlos.",
+                "text": "<link>EXPLAIN</link> zeigt einen Plan als Diagramm, Baum oder Rohtext, und EXPLAIN Compare prüft einen neuen Plan gegen eine Referenz. Beide sind kostenlos.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/querying#performance"
             },
             {
-                "text": "<link>iCloud-Synchronisierung</link> hält Verbindungen zwischen Macs und iPhone oder iPad synchron. Sie gehört zu Starter auf Mac und ist auf iPhone und iPad kostenlos.",
+                "text": "<link>iCloud Sync</link> hält Verbindungen zwischen Macs und iPhone oder iPad synchron. Die Funktion gehört zu Starter auf Mac und ist auf iPhone und iPad kostenlos.",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -143,10 +143,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro hat keinen Importer für Postico. Füge jeden Server als TablePro-Verbindung hinzu: Fülle das Verbindungsformular aus oder füge eine mit postgresql:// beginnende URL unter <ui>Datei > Importieren > Aus URL importieren…</ui> ein.",
+        "intro": "TablePro hat keinen Importer für Postico. Füge jeden Server als TablePro-Verbindung hinzu: Fülle das Verbindungsformular aus oder füge eine mit postgresql:// beginnende URL unter <ui>File > Import > Import from URL…</ui> ein.",
         "steps": [],
         "after": [
-            "Wenn ein Projekt seine Datenbank-URL in einer .env-Datei oder einem Prisma-Schema speichert, liest <ui>Datei > Importieren > Projektordner öffnen…</ui> sie ein und öffnet das ausgefüllte Verbindungsformular.",
+            "Wenn ein Projekt seine Datenbank-URL in einer .env-Datei oder einem Prisma-Schema speichert, liest <ui>File > Import > Open Project Folder…</ui> sie ein und öffnet das ausgefüllte Verbindungsformular.",
             "Passwörter werden im macOS-Schlüsselbund gespeichert. TablePro liest für PostgreSQL-Verbindungen auch ~/.pgpass.",
             "Der Abfrageverlauf beginnt in TablePro neu."
         ],
@@ -161,14 +161,14 @@
         },
         {
             "id": "icloud-sync",
-            "question": "Ist die iCloud-Synchronisierung von TablePro kostenlos?",
+            "question": "Ist iCloud Sync von TablePro kostenlos?",
             "answer": "In der iPhone- und iPad-App ja. Auf dem Mac gehört sie zu Starter. Postico 2 synchronisiert Servereinstellungen über iCloud oder Dropbox.",
             "href": null
         },
         {
             "id": "admin",
             "question": "Kann ich in TablePro Rollen und Sitzungen verwalten?",
-            "answer": "Ja, kostenlos in der Mac-App. Benutzer und Rollen gewährt und entzieht Berechtigungen mit vorheriger SQL-Anzeige. Das Server-Dashboard listet Sitzungen auf und kann sie beenden. <link>Mehr zu den Serverwerkzeugen</link>.",
+            "answer": "Ja, kostenlos in der Mac-App. Users & Roles gewährt und entzieht Berechtigungen mit vorheriger SQL-Anzeige. Das Server-Dashboard listet Sitzungen auf und kann sie beenden. <link>Mehr zu den Serverwerkzeugen</link>.",
             "href": "/features/schema#administer"
         },
         {

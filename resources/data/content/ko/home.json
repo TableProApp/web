@@ -56,7 +56,7 @@
                 "id": "edit",
                 "asset": "mac-edit-preview-sql",
                 "title": "데이터와 스키마를 편집하고 저장 전에 SQL 확인",
-                "body": "셀 편집, 새 행 추가 및 삭제는 저장할 때까지 보류되며, Preview SQL로 실행문을 먼저 확인할 수 있습니다. TablePro가 구조를 편집할 수 있는 엔진에서는 Structure 탭의 열, 인덱스, 외래 키 및 CHECK 변경도 같은 방식으로 보류됩니다. 필터, 저장된 필터, 강조 규칙, 외래 키 선택기 및 탭별 실행 취소도 포함됩니다."
+                "body": "셀 편집, 새 행 추가 및 삭제는 저장할 때까지 보류되며, Preview SQL로 명령문을 먼저 확인할 수 있습니다. TablePro가 구조를 편집할 수 있는 엔진에서는 Structure 탭의 열, 인덱스, 외래 키 및 CHECK 변경도 같은 방식으로 보류됩니다. 필터, 저장된 필터, 강조 규칙, 외래 키 선택기 및 탭별 실행 취소도 포함됩니다."
             },
             {
                 "id": "schema",
@@ -81,17 +81,17 @@
     "safety": {
         "title": "운영 데이터베이스를 위한 안전장치",
         "body": [
-            "Mac에서는 환경별로 연결에 태그와 색상을 지정하고 Silent부터 Read-Only까지 안전 모드 수준을 설정할 수 있습니다. 엄격한 수준에서는 Touch ID 또는 비밀번호가 필요합니다. DROP, TRUNCATE 및 WHERE 없는 DELETE는 모든 수준에서 멈추고 확인을 요청합니다. iPhone 및 iPad에서는 Confirm Writes가 모든 쓰기 전에 확인하고 Read-Only는 쓰기를 거부합니다.",
-            "Agent 모드에서 열린 연결은 Alert 이상의 엄격한 수준으로 실행됩니다. Data Rewind는 최근 저장으로 대체된 값을 복원할 수 있습니다. 백업 기능은 아닙니다."
+            "Mac에서는 환경별로 연결에 태그와 색상을 지정하고 Silent부터 Read-Only까지 Safe Mode 수준을 설정할 수 있습니다. 엄격한 수준에서는 Touch ID 또는 비밀번호가 필요합니다. DROP, TRUNCATE 및 WHERE 없는 DELETE는 모든 수준에서 멈추고 확인을 요청합니다. iPhone 및 iPad에서는 Confirm Writes가 모든 쓰기 전에 확인하고 Read-Only는 쓰기를 거부합니다.",
+            "Agent mode에서 열린 연결은 Alert 이상의 엄격한 수준으로 실행됩니다. Data Rewind는 최근 저장으로 대체된 값을 복원할 수 있습니다. 백업 기능은 아닙니다."
         ],
-        "levels": "안전 모드 수준",
-        "link": "안전 모드"
+        "levels": "Safe Mode 수준",
+        "link": "Safe Mode"
     },
     "ai": {
         "title": "AI 어시스턴트 및 MCP 서버",
         "body": [
             "Mac의 선택적 AI 어시스턴트는 쿼리를 설명하고 최적화하고 수정하며, 스키마에 관한 질문에 답합니다. API 키, 이미 보유한 계정 또는 Mac에서 실행되는 모델 중에서 제공업체를 직접 선택합니다. TablePro는 자체 AI 서비스를 운영하지 않으며 제공업체를 추가하기 전에는 아무것도 전송하지 않습니다.",
-            "채팅은 읽기만 하는 Ask 모드로 시작합니다. Edit 및 Agent 모드에서는 어시스턴트가 실행문을 실행할 수 있습니다. Alert부터 Safe Mode (Full)까지는 매번 쓰기 전에 사용자의 승인을 기다리며, Read-Only는 쓰기를 거부하고 DROP 또는 TRUNCATE는 항상 사용자의 클릭 승인이 필요합니다.",
+            "채팅은 읽기만 하는 Ask 모드로 시작합니다. Edit 및 Agent 모드에서는 어시스턴트가 명령문을 실행할 수 있습니다. Alert부터 Safe Mode (Full)까지는 매번 쓰기 전에 사용자의 승인을 기다리며, Read-Only는 쓰기를 거부하고 DROP 또는 TRUNCATE는 항상 사용자의 클릭 승인이 필요합니다.",
             "내장 MCP 서버를 통해 {mcpClients} 같은 클라이언트가 비밀번호를 보지 않고 저장된 연결을 사용할 수 있습니다. {mcpHost}에서만 수신하며, 각 연결별로 외부 앱이 할 수 있는 작업을 Blocked, Read Only(기본값) 또는 Read & Write로 설정합니다.",
             "이 기능은 모두 무료입니다."
         ],
@@ -100,9 +100,9 @@
     "platforms": {
         "title": "{deviceList}용 네이티브 앱",
         "cardTitle": "{devices}용 TablePro",
-        "mac": "Mac용 TablePro는 Swift 앱이며 {architectures}용 빌드를 각각 제공합니다. 비밀번호를 키체인에 보관하고 엄격한 안전 모드 수준에서는 Touch ID를 요청하며 자동으로 업데이트됩니다.",
+        "mac": "Mac용 TablePro는 Swift 앱이며 {architectures}용 빌드를 각각 제공합니다. 비밀번호를 키체인에 보관하고 엄격한 Safe Mode 수준에서는 Touch ID를 요청하며 자동으로 업데이트됩니다.",
         "ios": "{devices}용 TablePro는 자체 기능 범위를 가진 별도 앱입니다. SSH 또는 TLS로 연결하고 테이블을 탐색하고 쿼리를 실행하고 행을 편집할 수 있으며, 선택적 Face ID 잠금, 단축어, 홈 화면 위젯 및 실행 중인 쿼리의 실시간 현황을 제공합니다.",
-        "sync": "iCloud 동기화는 Mac과 iPhone 또는 iPad 간에 연결, 그룹 및 태그를 동기화합니다. 기본적으로 꺼져 있으며 Mac에서는 {tier} 플랜이 필요합니다. iCloud 동기화가 켜져 있으면 Handoff로 열려 있는 연결을 다른 기기에서 이어갈 수 있습니다."
+        "sync": "iCloud Sync는 Mac과 iPhone 또는 iPad 간에 연결, 그룹 및 태그를 동기화합니다. 기본적으로 꺼져 있으며 Mac에서는 {tier} 플랜이 필요합니다. iCloud Sync가 켜져 있으면 Handoff로 열려 있는 연결을 다른 기기에서 이어갈 수 있습니다."
     },
     "switch": {
         "title": "다른 앱에서 전환",

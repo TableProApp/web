@@ -24,7 +24,7 @@ export default {
         "link": "Lire en {language}"
     },
     "account": {
-        "body": "Votre compte a une seule adresse pour toutes les langues. Ouvrez-le ici ; il s’affichera dans la langue sélectionnée.",
+        "body": "Votre compte a une seule adresse pour toutes les langues. Ouvrez-le ici ; il s’affichera dans la langue sélectionnée.",
         "link": "Ouvrir votre compte"
     },
     "languages": {

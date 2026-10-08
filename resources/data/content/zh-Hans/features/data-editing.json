@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "使用 SQL 预览和安全模式编辑表数据",
-        "description": "筛选和编辑行，保存前审查 SQL，并为每个连接设置安全模式。Data Rewind 可还原保存时被替换的值。"
+        "title": "使用 Preview SQL 和 Safe Mode 编辑表数据",
+        "description": "筛选和编辑行，保存前审查 SQL，并为每个连接设置 Safe Mode。Data Rewind 可还原保存时被替换的值。"
     },
     "og": {
         "kicker": "数据编辑",
@@ -42,7 +42,7 @@
             "id": "edit",
             "title": "修改数据后统一保存",
             "paragraphs": [
-                "单元格编辑、新增行和删除在标签页中标记并暂存，按下 <kbd>⌘S</kbd> 前不会发送任何修改。<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）列出已填入值的语句。保存时以绑定参数发送，在引擎允许时于同一事务中执行，并检查每条语句修改的行数是否符合预期；任一不符即回滚保存。"
+                "单元格编辑、新增行和删除在标签页中标记并暂存，按下 <kbd>⌘S</kbd> 前不会发送任何修改。<ui>预览 SQL</ui>（Preview SQL，<kbd>⌘⇧P</kbd>）列出已填入值的语句。保存时以绑定参数发送，在引擎允许时于同一事务中执行，并检查每条语句修改的行数是否符合预期；任一不符即回滚保存。"
             ],
             "points": [
                 "按列类型提供单元格编辑器：日期时间选择器、ENUM 和 SET 列表、数组、JSON、二进制值十六进制编辑器及图片查看器。",
@@ -54,29 +54,29 @@
         },
         {
             "id": "safe-mode",
-            "title": "生产连接的安全模式",
+            "title": "生产连接的 Safe Mode",
             "paragraphs": [
-                "每个连接都有安全模式级别：{macSafeModeLevels}。新连接默认为 {macSafeModeDefault}，直接执行语句。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也询问，Read-Only 拒绝写入并关闭编辑。安全模式免费。",
-                "所有级别下，DROP、TRUNCATE 和无 WHERE 的 DELETE 都会停止并先询问。某些条件在生效期间会提高连接级别，例如只读引擎、将级别至少提高至 Alert 的 Agent 模式，以及组织通过设备管理（MDM）设置的最低级别。"
+                "每个连接都有 Safe Mode 级别：{macSafeModeLevels}。新连接默认为 {macSafeModeDefault}，直接执行语句。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也询问，Read-Only 拒绝写入并关闭编辑。Safe Mode 免费。",
+                "所有级别下，DROP、TRUNCATE 和无 WHERE 的 DELETE 都会停止并先询问。某些条件在生效期间会提高连接级别，例如只读引擎、将级别至少提高至 Alert 的 Agent mode，以及组织通过设备管理（MDM）设置的最低级别。"
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
                 {
-                    "label": "安全模式和其他连接策略",
+                    "label": "Safe Mode 和其他连接策略",
                     "href": "/features/connections#policies"
                 },
                 {
-                    "label": "Agent 模式",
+                    "label": "Agent mode",
                     "href": "/features/ai-mcp#agent-mode"
                 }
             ]
         },
         {
             "id": "data-rewind",
-            "title": "数据回溯",
+            "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind 保留保存时被替换的值，可通过 <ui>Restore Previous Values</ui> 还原。审查面板先显示每行将发生的变化，包括保存后又被修改的行；还原遵循安全模式，在引擎允许时于同一事务中执行。还原操作本身也可还原。",
-                "保存的值使用钥匙串中的密钥加密，在此 Mac 上保留 {rewindDays} 天，从不同步。方案结束后，TablePro 停止记录保存操作，<ui>Restore Previous Values</ui> 将显示提示而不再还原。"
+                "Data Rewind 保留保存时被替换的值，可通过<ui>恢复之前的值</ui>（Restore Previous Values）还原。审查面板先显示每行将发生的变化，包括保存后又被修改的行；还原遵循 Safe Mode，在引擎允许时于同一事务中执行。还原操作本身也可还原。",
+                "保存的值使用钥匙串中的密钥加密，在此 Mac 上保留 {rewindDays} 天，从不同步。方案结束后，TablePro 停止记录保存操作，<ui>恢复之前的值</ui>（Restore Previous Values）将显示提示而不再还原。"
             ],
             "paid": [
                 "data-rewind"
@@ -105,7 +105,7 @@
             "title": "在 iPhone 和 iPad 上",
             "paragraphs": [
                 "iPhone 和 iPad 应用将行显示为卡片，支持排序、搜索及 AND、OR 筛选，点按外键可预览引用行。可编辑行，将值设为 NULL 或 DEFAULT，插入行并滑动删除；编辑和删除需要主键。",
-                "移动端安全模式有自己的级别 {iosSafeModeLevels}，新连接默认为 {iosSafeModeDefault}。暂存编辑、Preview SQL、高亮规则和 Data Rewind 仅在 Mac 应用中提供。"
+                "移动端 Safe Mode 有自己的级别 {iosSafeModeLevels}，新连接默认为 {iosSafeModeDefault}。暂存编辑、Preview SQL、高亮规则和 Data Rewind 仅在 Mac 应用中提供。"
             ],
             "links": [
                 {
@@ -113,7 +113,7 @@
                     "href": "/ios#browse"
                 },
                 {
-                    "label": "iPhone 和 iPad 上的安全模式",
+                    "label": "iPhone 和 iPad 上的 Safe Mode",
                     "href": "/ios#safe-mode"
                 }
             ]
@@ -143,7 +143,7 @@
             "ios": "no"
         },
         {
-            "label": "安全模式",
+            "label": "Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -152,7 +152,7 @@
             "ios": "no"
         },
         {
-            "label": "数据回溯",
+            "label": "Data Rewind",
             "paid": "data-rewind",
             "ios": "no"
         },
@@ -164,7 +164,7 @@
     "limits": [
         "Data Rewind 不是备份。它不能撤销触发器、级联操作或 TablePro 外部的修改，也无法还原无主键的行、超过 {rewindMaxValue} MB 的值或服务器计算的值。",
         "无 WHERE 的 UPDATE 属于普通写入，仅在 Alert 或更严格级别下先询问。",
-        "在 {everyStatementWrites} 上，安全模式将每条语句视为写入，因此 Alert 在读取前也询问，Read-Only 则阻止读取。",
+        "在 {everyStatementWrites} 上，Safe Mode 将每条语句视为写入，因此 Alert 在读取前也询问，Read-Only 则阻止读取。",
         "JOIN、CTE 或 UNION 的结果在网格中只读；请打开表进行编辑。"
     ],
     "docs": [
@@ -177,15 +177,15 @@
             "docs": "/features/filtering"
         },
         {
-            "label": "修改跟踪和 SQL 预览",
+            "label": "修改跟踪和 Preview SQL",
             "docs": "/features/change-tracking"
         },
         {
-            "label": "数据回溯",
+            "label": "Data Rewind",
             "docs": "/features/change-tracking#restoring-a-save"
         },
         {
-            "label": "安全模式",
+            "label": "Safe Mode",
             "docs": "/features/safe-mode"
         }
     ],

@@ -6,11 +6,11 @@ export default {
         "unnamed": "{systems} {version} 或更新版本"
     },
     "requires": "需要 {requirement}",
-    "systemsJoiner": "與",
+    "systemsJoiner": " 與 ",
     "architectures": {
         "arm64": "Apple silicon",
         "x86_64": "Intel",
-        "joiner": "或"
+        "joiner": " 或 "
     },
     "app": {
         "mac": "Mac App",
@@ -22,8 +22,8 @@ export default {
     "free": "免費，無 App 內購買",
     "status": {
         "released": "已推出",
-        "prototype": "目前僅有原型。暫無可安裝版本，發佈日期未定。",
-        "none": "尚未推出，發佈日期未定。"
+        "prototype": "僅有原型。沒有可安裝的版本，也沒有發佈日期。",
+        "none": "不提供，也沒有發佈日期。"
     },
     "names": {
         "linux": "Linux",

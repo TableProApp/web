@@ -49,14 +49,14 @@
         },
         {
             "id": "data-files",
-            "title": "Arquivos de Dados: trabalhe em um arquivo sem banco de dados",
+            "title": "Data Files: trabalhe em um arquivo sem banco de dados",
             "paragraphs": [],
             "blocks": [
                 {
                     "id": "open-and-clean",
                     "title": "Abra, pesquise e limpe",
                     "paragraphs": [
-                        "Abra um arquivo CSV, TSV ou outro texto delimitado, JSON ou JSON Lines pelo Finder ou com <kbd>⌘O</kbd>, e a janela Arquivos de Dados o mostra como uma tabela editável. Filtre com a barra de filtros da grade, pesquise todas as colunas, busque e substitua com expressões regulares e organize com Preencher Abaixo, Remover Espaços, Alterar Maiúsculas/Minúsculas e Remover Linhas Duplicadas. Pastas de trabalho Excel abrem com uma aba por planilha, e arquivos comprimidos como <code>.csv.gz</code> também abrem, ambos somente leitura.",
+                        "Abra um arquivo CSV, TSV ou outro texto delimitado, JSON ou JSON Lines pelo Finder ou com <kbd>⌘O</kbd>, e a janela Data Files o mostra como uma tabela editável. Filtre com a barra de filtros da grade, pesquise todas as colunas, busque e substitua com expressões regulares e organize com Fill Down, Trim Whitespace, Change Case e Remove Duplicate Rows. Pastas de trabalho Excel abrem com uma aba por planilha, e arquivos comprimidos como <code>.csv.gz</code> também abrem, ambos somente leitura.",
                         "A janela trabalha em uma cópia privada, e <kbd>⌘S</kbd> grava o arquivo de volta em seu formato original, mantendo intactas as linhas não alteradas."
                     ],
                     "asset": "mac-data-files-window"
@@ -76,7 +76,7 @@
             "title": "Faça backup com as ferramentas do seu mecanismo",
             "paragraphs": [
                 "Backup Dump e Restore Dump usam {backupTools}, pelo túnel SSH da conexão e com suas configurações SSL, portanto um servidor atrás de um bastion não precisa de outro túnel. Todas essas ferramentas, exceto DuckDB, são ferramentas de linha de comando que você instala; DuckDB grava o dump diretamente, como arquivo de banco ou pasta de arquivos Parquet.",
-                "Em {serverSideExport}, a Exportação no Servidor faz o próprio servidor gravar a exportação: um job Oracle Data Pump, um stage Snowflake ou um bucket Cloud Storage. Nada é salvo no seu Mac."
+                "Em {serverSideExport}, Server-Side Export faz o próprio servidor gravar a exportação: um job Oracle Data Pump, um stage Snowflake ou um bucket Cloud Storage. Nada é salvo no seu Mac."
             ],
             "engines": [
                 {
@@ -90,7 +90,7 @@
             "id": "files",
             "title": "Arquivos que são bancos de dados",
             "paragraphs": [
-                "Arquivos SQLite e DuckDB abrem pelo Finder como conexões. DuckDB também lê arquivos Parquet, CSV e JSON como visualizações somente leitura, portanto um arquivo <code>.parquet</code> abre como conexão DuckDB, e não em Arquivos de Dados. Um banco SQLite em um servidor SSH abre em acesso direto, por um pequeno agente que exige Python 3.6 ou posterior no servidor, ou como cópia somente leitura.",
+                "Arquivos SQLite e DuckDB abrem pelo Finder como conexões. DuckDB também lê arquivos Parquet, CSV e JSON como visualizações somente leitura, portanto um arquivo <code>.parquet</code> abre como conexão DuckDB, e não em Data Files. Um banco SQLite em um servidor SSH abre em acesso direto, por um pequeno agente que exige Python 3.6 ou posterior no servidor, ou como cópia somente leitura.",
                 "Arquivos <code>.sql</code> abrem como abas de consulta e são salvos de volta no disco, e um livro-razão Beancount abre somente leitura como um conjunto de tabelas."
             ],
             "links": [
@@ -108,11 +108,11 @@
             "id": "between-databases",
             "title": "De um banco de dados para outro",
             "paragraphs": [
-                "Mover tabelas ou linhas entre duas conexões não exige arquivo intermediário. Copiar Para e Transferir Para fazem isso diretamente, inclusive entre mecanismos, e mostram o que vão gravar antes de executar qualquer coisa."
+                "Mover tabelas ou linhas entre duas conexões não exige arquivo intermediário. Copy To e Transfer To fazem isso diretamente, inclusive entre mecanismos, e mostram o que vão gravar antes de executar qualquer coisa."
             ],
             "links": [
                 {
-                    "label": "Copiar Para e Transferir Para",
+                    "label": "Copy To e Transfer To",
                     "href": "/features/schema#copy"
                 }
             ]
@@ -122,7 +122,7 @@
             "title": "No iPhone e iPad",
             "paragraphs": [
                 "O app para iPhone e iPad copia ou compartilha linhas e resultados de consultas como JSON, CSV ou instruções SQL INSERT, a partir das linhas carregadas. Uma cópia fica na área de transferência desse dispositivo e não é compartilhada com os outros.",
-                "As linhas entram pelas ações dos Atalhos Add Row to Table e Add Rows to Table, que aceitam texto JSON ou CSV ou um arquivo e seguem o Modo Seguro da conexão. Não há tela de importação, exportação para arquivo, janela Arquivos de Dados nem backup no iPhone e iPad."
+                "As linhas entram pelas ações dos Atalhos Add Row to Table e Add Rows to Table, que aceitam texto JSON ou CSV ou um arquivo e seguem o Safe Mode da conexão. Não há tela de importação, exportação para arquivo, janela Data Files nem backup no iPhone e iPad."
             ],
             "links": [
                 {
@@ -139,7 +139,7 @@
             "iosNote": "Ações dos Atalhos, a partir de JSON ou CSV"
         },
         {
-            "label": "Mapeamentos salvos, Correspondência por Nome e por Posição",
+            "label": "Mapeamentos salvos, Match by Name e Match by Position",
             "ios": "no"
         },
         {
@@ -152,7 +152,7 @@
             "ios": "no"
         },
         {
-            "label": "Janela Arquivos de Dados",
+            "label": "Janela Data Files",
             "ios": "no"
         },
         {
@@ -160,7 +160,7 @@
             "ios": "no"
         },
         {
-            "label": "Exportação no Servidor",
+            "label": "Server-Side Export",
             "ios": "no"
         },
         {
@@ -187,7 +187,7 @@
             "docs": "/features/import-export"
         },
         {
-            "label": "Arquivos de Dados",
+            "label": "Data Files",
             "docs": "/features/data-files"
         },
         {

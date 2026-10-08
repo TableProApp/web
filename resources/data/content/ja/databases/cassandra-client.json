@@ -11,7 +11,7 @@
     "breadcrumb": "Cassandra と ScyllaDB",
     "header": {
         "title": "{devices} 用 Cassandra・ScyllaDB クライアント",
-        "lead": "キースペースとテーブルを閲覧し、エディタで CQL を実行して、完全な主キーで書き戻す行を編集します。同じドライバーで ScyllaDB と Amazon Keyspaces にも接続できます。"
+        "lead": "キースペースとテーブルを閲覧し、エディターで CQL を実行して、完全な主キーで書き戻す行を編集します。同じドライバーで ScyllaDB と Amazon Keyspaces にも接続できます。"
     },
     "asset": "mac-db-cassandra-table",
     "links": {
@@ -28,8 +28,8 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "コンタクトポイントとポートを指定し、クラスタに認証機構が設定されていればユーザー名とパスワードも入力します。キースペース欄はなく、接続後サイドバーで選ぶか、<code>cassandra://</code> または <code>cql://</code> URL のパスに入れてインポートします。キースペースはその場で切り替え、システム用は一覧から除きます。開いたタブはそれぞれのキースペースを保持します。",
-                "新しい接続では TLS は無効です。ドライバーに日和見 TLS がないため、Preferred と Required はどちらも証明書を検証せず暗号化します。Verify CA と Verify Identity は CA 証明書ファイルが必須で、システムのルート証明書には戻りません。相互 TLS はクライアント証明書、鍵とそのパスフレーズを追加します。プライベートネットワークのクラスタには <network>SSH トンネル</network> で接続します。",
+                "コンタクトポイントとポートを指定し、クラスターに認証機構が設定されていればユーザー名とパスワードも入力します。キースペース欄はなく、接続後サイドバーで選ぶか、<code>cassandra://</code> または <code>cql://</code> URL のパスに入れてインポートします。キースペースはその場で切り替え、システム用は一覧から除きます。開いたタブはそれぞれのキースペースを保持します。",
+                "新しい接続では TLS は無効です。ドライバーに日和見 TLS がないため、Preferred と Required はどちらも証明書を検証せず暗号化します。Verify CA と Verify Identity は CA 証明書ファイルが必須で、システムのルート証明書には戻りません。相互 TLS はクライアント証明書、鍵とそのパスフレーズを追加します。プライベートネットワークのクラスターには <network>SSH トンネル</network> で接続します。",
                 "Amazon Keyspaces はパスワードではなく SigV4 でログインします。ポート 9142 の <code>cassandra.us-east-1.amazonaws.com</code> など地域エンドポイントを指定し、Authentication を <awsIam>AWS IAM 方式</awsIam>（アクセスキー、プロファイルや AWS IAM Identity Center）にします。ユーザー名とパスワードは空欄にし、平文を拒否するため TLS を有効にします。"
             ]
         },
@@ -37,18 +37,18 @@
             "id": "work",
             "title": "閲覧と CQL 実行",
             "paragraphs": [
-                "サイドバーからテーブルを開き、データグリッドで読みます。リスト、セット、マップとタプルはコレクション、ユーザー定義型はフィールド、<code>duration</code> は <code>1d2h30m</code>、ベクトルは数値リスト、blob は十六進数で表示します。CQL エディタの結果は読み取り専用なので、行はサイドバーで開いたテーブルから変更します。",
+                "サイドバーからテーブルを開き、データグリッドで読みます。リスト、セット、マップとタプルはコレクション、ユーザー定義型はフィールド、<code>duration</code> は <code>1d2h30m</code>、ベクトルは数値リスト、blob は十六進数で表示します。CQL エディターの結果は読み取り専用なので、行はサイドバーで開いたテーブルから変更します。",
                 "CQL に OFFSET はないため、最初の行から前方向にページを読みます。表示済みの Next と Previous は一回の読み取り、遠いページへのジャンプはそれ以前をすべて読みます。行はトークン順で、CQL は一つのパーティション内のクラスタリングカラムでしか並べ替えないため、ヘッダーで再ソートしません。開く時に件数は数えず、<ui>Count Exactly</ui> の <code>SELECT COUNT(*)</code> はすべてのパーティションを読みます。",
                 "<filters>フィルター</filters> は <code>ALLOW FILTERING</code> を付けるため、完全なパーティションキーを指定しなければ全パーティションを読みます。含む、前方一致と後方一致は LIKE として送り、Cassandra は SASI または SAI インデックスのあるカラムだけで受け付けます。不等号や is NULL など CQL で表せない演算子は名前を示して拒否し、OR がないため条件は AND のみです。",
                 "<editing>編集した値</editing> はカラムの CQL 型で送り、解析できない値は保存全体を止めます。各行は完全な主キーを指定する個別の文で書きます。<ui>Add Row</ui> は <code>INSERT … IF NOT EXISTS</code> で、同じキーの行を上書きしません。キーのカラムはその場で変更できないため、行を削除して追加し直してください。",
-                "カウンターカラムは CQL エディタの <code>UPDATE … SET c = c + 1</code> が必要で、グリッドの単純な UPDATE はサーバーが拒否します。接続タイムアウトは接続の Options で設定しますが、CQL リクエストはドライバー固有の固定タイムアウトを使い、アプリのクエリタイムアウトは影響しません。"
+                "カウンターカラムは CQL エディターの <code>UPDATE … SET c = c + 1</code> が必要で、グリッドの単純な UPDATE はサーバーが拒否します。接続タイムアウトは接続の Options で設定しますが、CQL リクエストはドライバー固有の固定タイムアウトを使い、アプリのクエリタイムアウトは影響しません。"
             ]
         },
         {
             "id": "schema",
             "title": "キースペースとテーブル",
             "paragraphs": [
-                "<structure>Structure タブ</structure> は各カラムの CQL 型を示し、パーティションキーもクラスタリングカラムも主キーと表示し、セカンダリインデックスを示します。カラムの追加・削除に対応します。それ以外はインデックスも含め、エディタで CQL 文を実行します。",
+                "<structure>Structure タブ</structure> は各カラムの CQL 型を示し、パーティションキーもクラスタリングカラムも主キーと表示し、セカンダリインデックスを示します。カラムの追加・削除に対応します。それ以外はインデックスも含め、エディターで CQL 文を実行します。",
                 "DDL タブはカラム一覧から <code>CREATE TABLE</code> を再構築するため、compaction などのテーブルオプション、クラスタリング順序とパーティション・クラスタリングキーの区別は省きます。完全な定義は cqlsh の <code>DESCRIBE TABLE</code> で確認します。ユーザー定義関数と集約は Functions に表示します。"
             ]
         },
@@ -80,7 +80,7 @@
         {
             "id": "views-and-types",
             "question": "マテリアライズドビューやユーザー定義型を見るには？",
-            "answer": "サイドバーにはないため、CQL エディタで <code>system_schema</code> キースペースを問い合わせます。例えば <code>SELECT * FROM system_schema.views</code> や <code>system_schema.types</code> です。"
+            "answer": "サイドバーにはないため、CQL エディターで <code>system_schema</code> キースペースを問い合わせます。例えば <code>SELECT * FROM system_schema.views</code> や <code>system_schema.types</code> です。"
         },
         {
             "id": "cassandra-2",

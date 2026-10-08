@@ -13,8 +13,8 @@ export default {
         },
         "resources": {
             "title": "资源",
-            "docs": "文档",
-            "changelog": "更新日志",
+            "docs": "文档（英语）",
+            "changelog": "更新日志（英语）",
             "blog": "博客",
             "faq": "常见问题",
             "source": "源代码",
@@ -45,7 +45,7 @@ export default {
     },
     "newsletter": {
         "title": "通过邮件接收发行说明",
-        "body": "不定期发送发行说明邮件。每封邮件均包含退订链接。",
+        "body": "不定期发送英语发行说明邮件。每封邮件均包含退订链接。",
         "note": "我们会先向您发送确认链接。<link>隐私政策</link>"
     },
     "bottom": {

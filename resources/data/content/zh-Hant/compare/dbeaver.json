@@ -13,16 +13,16 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "你希望免費使用 MongoDB、Redis 或 Cassandra。TablePro 所有支援引擎均免費，DBeaver Community 不包含 NoSQL 資料庫。",
-            "你希望 Mac 應用程式無須 Java。TablePro 用 Swift 編寫，資料庫驅動程式為原生驅動程式，不使用 JDBC。",
-            "你希望免費使用可自選服務商的 AI 助手。DBeaver Community 的 AI 聊天僅支援 OpenAI 和 GitHub Copilot。",
-            "你希望 Mac 應用程式免費提供 MCP 伺服器，讓 AI 用戶端使用你的連線。",
-            "你也希望有 iPhone 與 iPad 應用程式。"
+            "您希望免費使用 MongoDB、Redis 或 Cassandra。TablePro 所有支援引擎均免費，DBeaver Community 不包含 NoSQL 資料庫。",
+            "您希望 Mac 應用程式無須 Java。TablePro 用 Swift 編寫，資料庫驅動程式為原生驅動程式，不使用 JDBC。",
+            "您希望免費使用可自選服務商的 AI 助手。DBeaver Community 的 AI 聊天僅支援 OpenAI 和 GitHub Copilot。",
+            "您希望 Mac 應用程式免費提供 MCP 伺服器，讓 AI 用戶端使用您的連線。",
+            "您也希望有 iPhone 與 iPad 應用程式。"
         ],
         "competitor": [
-            "你除了 Mac，也在 Windows 或 Linux 上工作。",
-            "你需要 TablePro 沒有驅動程式的引擎。DBeaver Community 可連接任何有 JDBC 驅動程式的引擎。",
-            "你需要視覺化查詢建立器、可編輯 ER 圖或排程工作。DBeaver 付費版提供這些功能。"
+            "您除了 Mac，也在 Windows 或 Linux 上工作。",
+            "您需要 TablePro 沒有驅動程式的引擎。DBeaver Community 可連接任何有 JDBC 驅動程式的引擎。",
+            "您需要視覺化查詢建立器、可編輯 ER 圖或排程工作。DBeaver 付費版提供這些功能。"
         ]
     },
     "glance": {
@@ -46,7 +46,7 @@
         "intro": "",
         "items": [
             {
-                "text": "DBeaver 可在 Windows、macOS 與 Linux 上執行，一個用戶端即可涵蓋你使用的電腦。",
+                "text": "DBeaver 可在 Windows、macOS 與 Linux 上執行，一個用戶端即可涵蓋您使用的電腦。",
                 "cite": [
                     "platforms"
                 ],
@@ -94,13 +94,13 @@
                 "href": null
             },
             {
-                "text": "<link>AI 助手和 MCP 伺服器</link>在 Mac 應用程式中免費。你可選擇 AI 服務商，MCP 伺服器讓 Claude Code 或 Cursor 等用戶端在不看到密碼的情況下使用已儲存連線。",
+                "text": "<link>AI 助手和 MCP 伺服器</link>在 Mac 應用程式中免費。您可選擇 AI 服務商，MCP 伺服器讓 Claude Code 或 Cursor 等用戶端在不看到密碼的情況下使用已儲存連線。",
                 "cite": [],
                 "feature": null,
                 "href": "/features/ai-mcp"
             },
             {
-                "text": "<link>比較與同步</link>比較兩個資料庫的結構或資料並同步差異。此功能包含在 Starter 中。",
+                "text": "<link>Compare & Sync</link> 比較兩個資料庫的結構或資料並同步差異。此功能包含在 Starter 中。",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -139,9 +139,9 @@
     "switching": {
         "intro": "TablePro 讀取 DBeaver 工作區中的連線，支援 Community 及所有付費版。DBeaver 無須開啟，檔案也不會修改。",
         "steps": [
-            "在 TablePro 中選擇 <ui>File > Import > Import from Other App…</ui>。",
-            "選擇 DBeaver 並開啟 <ui>Include passwords</ui>。TablePro 會解密 DBeaver 儲存的密碼，因此無須在鑰匙圈中核准。",
-            "檢查清單，決定如何處理重複項目，然後按一下 <ui>Import</ui>。資料夾轉為群組，SSH 通道設定一併移轉。TablePro 不支援的資料庫連線預設不勾選。",
+            "在 TablePro 中選擇<ui>檔案 > 匯入 > 從其他 App 匯入…</ui>（File > Import > Import from Other App…）。",
+            "選擇 DBeaver 並開啟<ui>包含密碼</ui>（Include passwords）。TablePro 會解密 DBeaver 儲存的密碼，因此無須在鑰匙圈中核准。",
+            "檢查清單，決定如何處理重複項目，然後按一下<ui>匯入</ui>（Import）。資料夾轉為群組，SSH 通道設定一併移轉。TablePro 不支援的資料庫連線預設不勾選。",
             "刪除 DBeaver 前，開啟一個原本有密碼的連線，確認密碼已成功移轉。"
         ],
         "after": [
@@ -171,7 +171,7 @@
         {
             "id": "unsupported",
             "question": "TablePro 無法開啟的 DBeaver 連線會怎樣？",
-            "answer": "它們顯示在匯入清單中，預設不勾選，旁邊附有原因。除非你勾選，否則不會匯入。",
+            "answer": "它們顯示在匯入清單中，預設不勾選，旁邊附有原因。除非您勾選，否則不會匯入。",
             "href": null
         }
     ],

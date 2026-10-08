@@ -23,7 +23,7 @@
             "points": [
                 "Penanda pernyataan di margin, masing-masing dengan tombol jalankan sendiri.",
                 "Cari dan ganti, dengan ekspresi reguler.",
-                "Mode Vim dengan gerakan, register, dan makro; <code>:w</code> menjalankan kueri.",
+                "Vim mode dengan gerakan, register, dan makro; <code>:w</code> menjalankan kueri.",
                 "File <code>.sql</code> dibuka, diedit, dan disimpan sebagai tab kueri."
             ],
             "asset": "mac-query-autocomplete"
@@ -34,15 +34,15 @@
             "paragraphs": [
                 "Tulis <code>:customer_id</code> dalam kueri, lalu TablePro meminta nilai dan tipenya sebelum dijalankan, dengan pengikatan nilai secara native jika driver mendukungnya.",
                 "Setiap kueri yang dijalankan masuk ke riwayat lokal (<kbd>⌘Y</kbd>) dengan pencarian teks lengkap dan filter sumber, kegagalan, serta rentang waktu. Secara bawaan, riwayat menyimpan {historyEntries} entri selama {historyDays} hari dan tidak pernah disinkronkan.",
-                "Simpan kueri dengan kata kunci seperti <code>dau</code>, lalu ketik kata kunci di editor untuk mengembangkannya. Kueri tersimpan memiliki riwayat versi. Folder SQL tertaut menyinkronkan folder file <code>.sql</code> dengan sidebar dua arah, dengan huruf status Git untuk setiap file; fitur ini gratis dan terpisah dari Folder Tertaut, fitur Starter untuk file koneksi bersama."
+                "Simpan kueri dengan kata kunci seperti <code>dau</code>, lalu ketik kata kunci di editor untuk mengembangkannya. Kueri tersimpan memiliki riwayat versi. Folder SQL tertaut menyinkronkan folder file <code>.sql</code> dengan sidebar dua arah, dengan huruf status Git untuk setiap file; fitur ini gratis dan terpisah dari Linked Folders, fitur Starter untuk file koneksi bersama."
             ],
             "asset": "mac-query-parameters-history"
         },
         {
             "id": "open-quickly",
-            "title": "Buka Cepat dan tab",
+            "title": "Open Quickly dan tab",
             "paragraphs": [
-                "Buka Cepat (<kbd>⌘⇧O</kbd>) menemukan tabel, view, dan tabel sistem di semua koneksi terbuka, beserta kueri tersimpan dan terbaru. Setiap tab menyimpan SQL, pengurutan, filter, dan lebar kolom sendiri; tab kembali saat Anda menutup lalu membuka aplikasi. <kbd>⌃Tab</kbd> berpindah antara tab yang terakhir digunakan."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) menemukan tabel, view, dan tabel sistem di semua koneksi terbuka, beserta kueri tersimpan dan terbaru. Setiap tab menyimpan SQL, pengurutan, filter, dan lebar kolom sendiri; tab kembali saat Anda menutup lalu membuka aplikasi. <kbd>⌃Tab</kbd> berpindah antara tab yang terakhir digunakan."
             ]
         },
         {
@@ -54,7 +54,7 @@
                     "id": "explain",
                     "title": "EXPLAIN dan EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> menampilkan rencana kueri sebagai diagram, pohon dengan batang biaya, atau keluaran mentah mesin. Pilih eksekusi sebelumnya dari kueri yang sama sebagai acuan, lalu Bandingkan menunjukkan apakah kueri melambat dan apakah rencana berubah; selisih di bawah {explainNoise}% dianggap sebagai noise. Keduanya gratis."
+                        "<kbd>⌥⌘E</kbd> menampilkan rencana kueri sebagai diagram, pohon dengan batang biaya, atau keluaran mentah mesin. Pilih eksekusi sebelumnya dari kueri yang sama sebagai acuan, lalu Compare menunjukkan apakah kueri melambat dan apakah rencana berubah; selisih di bawah {explainNoise}% dianggap sebagai noise. Keduanya gratis."
                     ],
                     "engines": [
                         {
@@ -78,9 +78,9 @@
                 },
                 {
                     "id": "query-insights",
-                    "title": "Analisis Kueri",
+                    "title": "Query Insights",
                     "paragraphs": [
-                        "Analisis Kueri membaca riwayat kueri Mac ini dan mengurutkan temuannya: kueri yang paling sering dijalankan, paling lambat, gagal, dan melambat dibandingkan periode sebelumnya. Kueri dikelompokkan berdasarkan bentuk, sehingga satu pernyataan yang dijalankan dengan nilai berbeda dihitung satu kali. Angka dihitung di Mac Anda dan tidak pernah diunggah."
+                        "Query Insights membaca riwayat kueri Mac ini dan mengurutkan temuannya: kueri yang paling sering dijalankan, paling lambat, gagal, dan melambat dibandingkan periode sebelumnya. Kueri dikelompokkan berdasarkan bentuk, sehingga satu pernyataan yang dijalankan dengan nilai berbeda dihitung satu kali. Angka dihitung di Mac Anda dan tidak pernah diunggah."
                     ],
                     "paid": [
                         "query-insights"
@@ -98,7 +98,7 @@
             "blocks": [
                 {
                     "id": "result-charts",
-                    "title": "Diagram Hasil",
+                    "title": "Result Charts",
                     "paragraphs": [
                         "Tampilkan hasil sebagai diagram batang, garis, area, atau sebar, dengan sumbu waktu untuk tanggal dan satu seri untuk setiap nilai kolom yang Anda pilih. Diagram menampilkan hingga {chartPoints} titik dan {chartSeries} seri dari {chartInspectedRows} baris pertama; toolbar memberi tahu jika tampilan dibatasi."
                     ],
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "Di iPhone dan iPad",
             "paragraphs": [
-                "Aplikasi iPhone dan iPad memiliki tab Kueri dengan sorotan SQL, Jalankan dan Hentikan (<kbd>⌘↩</kbd> dengan keyboard), serta riwayat {historyEntriesIos} kueri terakhir yang dijalankan di perangkat itu. Anda dapat menyalin atau membagikan hasil sebagai JSON, CSV, atau pernyataan SQL INSERT.",
+                "Aplikasi iPhone dan iPad memiliki tab Kueri dengan sorotan SQL, Run dan Stop (<kbd>⌘↩</kbd> dengan keyboard), serta riwayat {historyEntriesIos} kueri terakhir yang dijalankan di perangkat itu. Anda dapat menyalin atau membagikan hasil sebagai JSON, CSV, atau pernyataan SQL INSERT.",
                 "Tidak ada pelengkapan otomatis, pemformatan, parameter, EXPLAIN, atau kueri tersimpan, dan aplikasi menampung paling banyak {resultBufferIos} baris hasil; tambahkan LIMIT untuk melihat bagian yang diperlukan."
             ],
             "links": [
@@ -149,7 +149,7 @@
         {
             "label": "Editor SQL dengan pelengkapan otomatis dan pemformatan",
             "ios": "partial",
-            "iosNote": "Sorotan, Jalankan dan Hentikan; tanpa pelengkapan otomatis"
+            "iosNote": "Sorotan, Run dan Stop; tanpa pelengkapan otomatis"
         },
         {
             "label": "Parameter kueri",
@@ -165,7 +165,7 @@
             "ios": "no"
         },
         {
-            "label": "Buka Cepat",
+            "label": "Open Quickly",
             "ios": "no"
         },
         {
@@ -173,12 +173,12 @@
             "ios": "no"
         },
         {
-            "label": "Analisis Kueri",
+            "label": "Query Insights",
             "paid": "query-insights",
             "ios": "no"
         },
         {
-            "label": "Diagram Hasil",
+            "label": "Result Charts",
             "paid": "result-charts",
             "ios": "no"
         },
@@ -193,7 +193,7 @@
     ],
     "limits": [
         "Kueri mengembalikan paling banyak {rowCap} baris kecuali Anda menaikkan batas di Pengaturan, hingga {rowCapMax}, atau menjalankannya dengan <kbd>⌘⌥⏎</kbd>. LIMIT yang Anda tulis sendiri selalu berlaku lebih dahulu.",
-        "Riwayat kueri dan Analisis Kueri hanya mencakup Mac ini: kueri yang dijalankan di Mac lain atau iPhone tidak termasuk.",
+        "Riwayat kueri dan Query Insights hanya mencakup Mac ini: kueri yang dijalankan di Mac lain atau iPhone tidak termasuk.",
         "Perintah shell <code>tablepro</code> membuka koneksi dan file dalam aplikasi. Perintah ini tidak menjalankan kueri dari terminal."
     ],
     "docs": [
@@ -214,7 +214,7 @@
             "docs": "/features/explain-visualization"
         },
         {
-            "label": "Analisis Kueri",
+            "label": "Query Insights",
             "docs": "/features/query-insights"
         },
         {

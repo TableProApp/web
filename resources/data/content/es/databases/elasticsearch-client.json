@@ -23,8 +23,8 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Introduce el host y el puerto REST del clúster y elige un <ui>Método de autenticación</ui>. Usuario y contraseña envía HTTP Basic. Clave API envía el campo en una cabecera <code>Authorization: ApiKey</code>; pega el valor <code>encoded</code> que devuelve la solicitud de creación de clave API. La opción Ninguna sirve para un clúster de desarrollo con la seguridad desactivada. Cada conexión accede a un clúster, por lo que no hay campo Base de datos.",
-                "Las conexiones nuevas empiezan con SSL Desactivado, es decir, HTTP sin cifrar. Los demás modos usan HTTPS: Preferido y Obligatorio (omitir verificación) aceptan certificados autofirmados; Verificar CA y Verificar identidad los comprueban. Elasticsearch 8.x activa seguridad y TLS por defecto, así que un clúster 8.x suele necesitar HTTPS y credenciales."
+                "Introduce el host y el puerto REST del clúster y elige un <ui>Auth Method</ui>. Username & Password envía HTTP Basic. API Key envía el campo en una cabecera <code>Authorization: ApiKey</code>; pega el valor <code>encoded</code> que devuelve la solicitud de creación de clave API. La opción None sirve para un clúster de desarrollo con la seguridad desactivada. Cada conexión accede a un clúster, por lo que no hay campo Base de datos.",
+                "Las conexiones nuevas empiezan con SSL en Disabled, es decir, HTTP sin cifrar. Los demás modos usan HTTPS: Preferred y Required (skip verify) aceptan certificados autofirmados; Verify CA y Verify Identity los comprueban. Elasticsearch 8.x activa seguridad y TLS por defecto, así que un clúster 8.x suele necesitar HTTPS y credenciales."
             ]
         },
         {
@@ -33,7 +33,7 @@
             "paragraphs": [
                 "La consola acepta un método, una ruta y un cuerpo JSON opcional, como Kibana Dev Tools: por ejemplo, <code>GET /orders/_search</code> con una consulta <code>match</code>. Los resultados de búsqueda vuelven como filas; las solicitudes <code>_cat</code> con <code>format=json</code> y otras respuestas de tipo array se convierten en tabla; lo demás aparece como JSON formateado. El endpoint <code>_sql</code> no es accesible.",
                 "La barra lateral enumera los índices como tablas y oculta nombres que empiezan por punto. Las columnas proceden del mapping: los campos de objeto se aplanan en rutas como <code>address.city</code>, un campo anidado tiene una columna JSON para su array y otra por hoja; cada documento incluye <code>_id</code>, <code>_index</code> y <code>_score</code>.",
-                "Los <filters>filtros de columna</filters> se convierten en consultas <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> y <code>exists</code>; la fila de filtro SQL sin procesar acepta sintaxis Lucene, como <code>name:Widget</code>, enviada como <code>query_string</code>. Ordenar un campo <code>text</code> usa su subcampo <code>.keyword</code> si existe en el mapping.",
+                "Los <filters>filtros de columna</filters> se convierten en consultas <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code> y <code>exists</code>; la fila de filtro Raw SQL acepta sintaxis Lucene, como <code>name:Widget</code>, enviada como <code>query_string</code>. Ordenar un campo <code>text</code> usa su subcampo <code>.keyword</code> si existe en el mapping.",
                 "Las ediciones de la cuadrícula se convierten en llamadas REST por <code>_id</code>: <code>_update</code> para modificar un documento, <code>_doc</code> para crearlo o borrarlo. Escribe un <code>_id</code> en una fila nueva para nombrar el documento. Cambia un array anidado en su columna JSON; un valor escrito en una columna hoja detiene el guardado, indica la columna y no envía nada."
             ]
         },

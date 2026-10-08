@@ -17,7 +17,7 @@
             "id": "structure",
             "title": "修改结构前先查看 DDL",
             "paragraphs": [
-                "Structure 标签页可在网格中编辑表的列、索引、外键和 CHECK 约束。修改暂存至保存时才执行，<ui>Preview SQL</ui>（<kbd>⌘⇧P</kbd>）在执行前显示 ALTER TABLE 语句。删除项目、修改类型、添加 NOT NULL 或修改主键的操作会先征求确认，即使连接的安全模式级别为 {macSafeModeDefault}。",
+                "Structure 标签页可在网格中编辑表的列、索引、外键和 CHECK 约束。修改暂存至保存时才执行，<ui>预览 SQL</ui>（Preview SQL，<kbd>⌘⇧P</kbd>）在执行前显示 ALTER TABLE 语句。删除项目、修改类型、添加 NOT NULL 或修改主键的操作会先征求确认，即使连接的 Safe Mode 级别为 {macSafeModeDefault}。",
                 "索引可使用 <code>lower(email)</code> 等表达式键。New Table 以相同方式创建表，并提供实时 SQL 预览。对于不能直接修改外键的 SQLite、libSQL、Turso 和 Cloudflare D1，TablePro 生成表重建脚本供审查；SQLite 和本地 libSQL 文件在确认后执行，Turso、远程 libSQL 和 D1 则需自行运行。"
             ],
             "engines": [
@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "了解表间关系",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> 绘制当前结构的表和外键，根据主键和唯一键计算乌鸦脚表示法中的关系基数。<code>product_tags</code> 等关联表会折叠为一条多对多连线。可将图导出为 PNG、复制为图片，或导出为包含外键的 CREATE TABLE SQL 语句。",
+                "<ui>查看 ER 图</ui>（View ER Diagram）绘制当前结构的表和外键，根据主键和唯一键计算乌鸦脚表示法中的关系基数。<code>product_tags</code> 等关联表会折叠为一条多对多连线。可将图导出为 PNG、复制为图片，或导出为包含外键的 CREATE TABLE SQL 语句。",
                 "图表是用于查看和分享的快照。表需在 Structure 标签页修改，不能在画布上修改。"
             ],
             "asset": "mac-er-diagram"
@@ -52,7 +52,7 @@
                     "id": "table-folders",
                     "title": "表和视图的文件夹",
                     "paragraphs": [
-                        "在侧栏列表或树形布局中，拖动表和视图或使用 <ui>Move to</ui> 将其归入文件夹。筛选框也会搜索文件夹内部。文件夹仅存在于 TablePro 中，不改变服务器；启用 iCloud Sync 后会同步到其他 Mac。"
+                        "在侧栏列表或树形布局中，拖动表和视图或使用<ui>移动到</ui>（Move to）将其归入文件夹。筛选框也会搜索文件夹内部。文件夹仅存在于 TablePro 中，不改变服务器；启用 iCloud Sync 后会同步到其他 Mac。"
                     ],
                     "since": "0.77.0"
                 }
@@ -60,7 +60,7 @@
         },
         {
             "id": "compare-sync",
-            "title": "对比与同步",
+            "title": "Compare & Sync",
             "paragraphs": [
                 "选择源和目标，可为两台服务器或同一服务器上的两个数据库，Compare & Sync 会列出所有存在差异的表，也可包含视图、例程和触发器。数据模式按键匹配行并标记每个不同值，支持每表筛选和行数限制，以便比较大表的一部分。",
                 "生成的脚本按外键顺序排列，并针对目标原生客户端编写。删除列、缩小类型或删除行等破坏数据的语句，会暂缓到本次运行明确允许后才执行；Read-Only 连接不能选为目标。保存对比后可一键重跑。"
@@ -88,13 +88,13 @@
             "blocks": [
                 {
                     "id": "users-roles",
-                    "title": "用户和角色",
+                    "title": "Users & Roles",
                     "paragraphs": [
                         "Users & Roles 以树形显示每个用户从服务器到单列的权限。授权和撤销先作为暂存修改，并在执行前展示 SQL，因此无需手写 GRANT。"
                     ],
                     "engines": [
                         {
-                            "label": "用户和角色",
+                            "label": "Users & Roles",
                             "list": "usersRoles"
                         }
                     ],
@@ -102,13 +102,13 @@
                 },
                 {
                     "id": "server-dashboard",
-                    "title": "服务器仪表盘",
+                    "title": "Server Dashboard",
                     "paragraphs": [
-                        "Server Dashboard 按所选间隔刷新实时会话、服务器指标和慢查询。引擎允许时，可从对应行取消运行中的查询或终止会话，两项操作均遵循连接的安全模式。在 SQLite、DuckDB 和 Typesense 上仅显示指标。"
+                        "Server Dashboard 按所选间隔刷新实时会话、服务器指标和慢查询。引擎允许时，可从对应行取消运行中的查询或终止会话，两项操作均遵循连接的 Safe Mode。在 SQLite、DuckDB 和 Typesense 上仅显示指标。"
                     ],
                     "engines": [
                         {
-                            "label": "服务器仪表盘",
+                            "label": "Server Dashboard",
                             "list": "dashboard"
                         }
                     ],
@@ -138,7 +138,7 @@
             "iosNote": "列、索引和外键只读"
         },
         {
-            "label": "新建表",
+            "label": "New Table",
             "ios": "no"
         },
         {
@@ -154,7 +154,7 @@
             "ios": "no"
         },
         {
-            "label": "对比与同步",
+            "label": "Compare & Sync",
             "paid": "compare-sync",
             "ios": "no"
         },
@@ -163,11 +163,11 @@
             "ios": "no"
         },
         {
-            "label": "用户和角色",
+            "label": "Users & Roles",
             "ios": "no"
         },
         {
-            "label": "服务器仪表盘和表维护",
+            "label": "Server Dashboard 和表维护",
             "ios": "no"
         }
     ],
@@ -191,7 +191,7 @@
             "docs": "/features/routines-triggers"
         },
         {
-            "label": "对比与同步",
+            "label": "Compare & Sync",
             "docs": "/features/compare-sync"
         },
         {
@@ -199,11 +199,11 @@
             "docs": "/features/copy-objects"
         },
         {
-            "label": "用户和角色",
+            "label": "Users & Roles",
             "docs": "/features/users-roles"
         },
         {
-            "label": "服务器仪表盘",
+            "label": "Server Dashboard",
             "docs": "/features/server-dashboard"
         },
         {

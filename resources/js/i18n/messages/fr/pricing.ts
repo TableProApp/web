@@ -14,8 +14,8 @@ export default {
     },
     "captions": {
         "monthly": "Renouvellement chaque mois jusqu’à résiliation.",
-        "yearly": "Renouvellement chaque année jusqu’à résiliation. {percent}% de moins que douze paiements mensuels.",
-        "yearlyByTier": "Renouvellement chaque année jusqu’à résiliation. Starter coûte {starterPercent}% de moins que douze paiements mensuels, Team {teamPercent}% de moins.",
+        "yearly": "Renouvellement chaque année jusqu’à résiliation. {percent} % de moins que douze paiements mensuels.",
+        "yearlyByTier": "Renouvellement chaque année jusqu’à résiliation. Starter coûte {starterPercent} % de moins que douze paiements mensuels, Team {teamPercent} % de moins.",
         "lifetime": "Un seul paiement, sans date d’expiration."
     },
     "tiers": {
@@ -28,7 +28,7 @@ export default {
                 "Connexions à tous les moteurs pris en charge",
                 "L’éditeur SQL et la grille de données",
                 "L’assistant IA et le serveur MCP",
-                "Mode sécurisé",
+                "Safe Mode",
                 "L’application iPhone et iPad"
             ]
         },
@@ -68,16 +68,16 @@ export default {
         "bounds": "Minimum {min} postes, maximum {max}.",
         "total": {
             "monthly": {
-                "one": "{count} poste : {total} par mois",
-                "other": "{count} postes : {total} par mois"
+                "one": "{count} poste : {total} par mois",
+                "other": "{count} postes : {total} par mois"
             },
             "yearly": {
-                "one": "{count} poste : {total} par an",
-                "other": "{count} postes : {total} par an"
+                "one": "{count} poste : {total} par an",
+                "other": "{count} postes : {total} par an"
             },
             "lifetime": {
-                "one": "{count} poste : {total}, paiement unique",
-                "other": "{count} postes : {total}, paiement unique"
+                "one": "{count} poste : {total}, paiement unique",
+                "other": "{count} postes : {total}, paiement unique"
             }
         }
     },
@@ -89,12 +89,12 @@ export default {
         }
     },
     "allFeatures": "Toutes les fonctionnalités payantes",
-    "finePrint": "Prix en dollars américains. {merchant} est le vendeur officiel : il encaisse le paiement et calcule la taxe sur les ventes ou la TVA lors du règlement.",
+    "finePrint": "Prix en dollars américains. {merchant} est le merchant of record : il encaisse le paiement et calcule la taxe sur les ventes ou la TVA lors du règlement.",
     "finePrintCurrency": "Prix en dollars américains.",
     "comparePlans": "Comparer les offres",
     "section": {
         "title": "Tarifs",
-        "lead": "TablePro est open source et gratuit à utiliser. Les offres payantes ajoutent des fonctionnalités facultatives à l’application Mac."
+        "lead": "TablePro est open source et s’utilise gratuitement. Les offres payantes ajoutent des fonctionnalités facultatives à l’application Mac."
     },
     "matrix": {
         "caption": "Ce que chaque offre comprend dans l’application Mac",
@@ -107,17 +107,17 @@ export default {
         },
         "macsTeam": "Un par poste",
         "everythingElse": "Tout le reste de l’application",
-        "everythingElseDetail": "Tous les moteurs pris en charge, l’éditeur SQL, l’assistant IA, le serveur MCP et le mode sécurisé",
-        "iphoneNote": "L’application iPhone et iPad n’a aucune fonctionnalité payante. iCloud Sync y est gratuit ; pour synchroniser avec un Mac, celui-ci doit disposer de Starter ou Team."
+        "everythingElseDetail": "Tous les moteurs pris en charge, l’éditeur SQL, l’assistant IA, le serveur MCP et Safe Mode",
+        "iphoneNote": "L’application iPhone et iPad n’a aucune fonctionnalité payante. iCloud Sync y est gratuit ; pour synchroniser avec un Mac, celui-ci doit disposer de Starter ou Team."
     },
     "discount": {
-        "atCheckout": "Vous avez un code de réduction ? Saisissez-le lors du règlement.",
-        "summary": "Vous avez un code de réduction ?",
+        "atCheckout": "Vous avez un code de réduction ? Saisissez-le lors du règlement.",
+        "summary": "Vous avez un code de réduction ?",
         "label": "Code de réduction",
         "apply": "Appliquer le code",
         "checking": "Vérification du code…",
-        "percent": "Code accepté : {amount}% de réduction, appliquée lors du règlement.",
-        "fixed": "Code accepté : {amount} de réduction, appliquée lors du règlement.",
+        "percent": "Code accepté : {amount} % de réduction, appliquée lors du règlement.",
+        "fixed": "Code accepté : {amount} de réduction, appliquée lors du règlement.",
         "invalid": "Ce code de réduction est invalide ou a expiré."
     },
     "checkout": {

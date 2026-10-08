@@ -11,7 +11,7 @@
     "breadcrumb": "Elasticsearch",
     "header": {
         "title": "{devices} 用 Elasticsearch クライアント",
-        "lead": "Query DSL リクエスト用のコンソールと、各インデックスをテーブルとして読み、<code>_id</code> で文書を編集するグリッド。どちらも SQL ではなく、すべての操作はクラスタへの REST リクエストです。"
+        "lead": "Query DSL リクエスト用のコンソールと、各インデックスをテーブルとして読み、<code>_id</code> で文書を編集するグリッド。どちらも SQL ではなく、すべての操作はクラスターへの REST リクエストです。"
     },
     "asset": "mac-db-elasticsearch-console",
     "links": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "クラスタのホストと REST ポートを入力し、<ui>Auth Method</ui> を選びます。Username & Password は HTTP Basic、API Key は <code>Authorization: ApiKey</code> ヘッダーを送るため、API キー作成リクエストが返す <code>encoded</code> 値を貼り付けます。None はセキュリティを切った開発クラスタ向けです。一つのクラスタに接続するため Database フィールドはありません。",
+                "クラスターのホストと REST ポートを入力し、<ui>Auth Method</ui> を選びます。Username & Password は HTTP Basic、API Key は <code>Authorization: ApiKey</code> ヘッダーを送るため、API キー作成リクエストが返す <code>encoded</code> 値を貼り付けます。None はセキュリティを切った開発クラスター向けです。一つのクラスターに接続するため Database フィールドはありません。",
                 "新しい接続の SSL Disabled は平文 HTTP です。それ以外は HTTPS で、Preferred と Required (skip verify) は自己署名証明書を許可し、Verify CA と Verify Identity は検証します。Elasticsearch 8.x は既定でセキュリティと TLS が有効なので、通常 HTTPS と認証情報が必要です。"
             ]
         },

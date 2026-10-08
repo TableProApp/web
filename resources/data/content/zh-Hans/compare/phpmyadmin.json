@@ -15,7 +15,7 @@
         "tablepro": [
             "希望服务器不安装任何软件，从 Mac 直接或经 SSH 工作。",
             "也使用 PostgreSQL、SQL Server、SQLite、Redis 等引擎。",
-            "希望每个连接都有安全模式级别，如生产环境 Read-Only，或写入前 Touch ID。",
+            "希望每个连接都有 Safe Mode 级别，如生产环境 Read-Only，或写入前 Touch ID。",
             "经常移入移出数据。CSV、JSON、XLSX、SQL 文件导入导出免费。",
             "希望 Mac 应用内免费 AI 助手和 MCP 服务器。"
         ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "每连接有从 Silent 到 Read-Only 的<link>安全模式</link>，严格级别使用 Touch ID。",
+                "text": "每连接有从 Silent 到 Read-Only 的 <link>Safe Mode</link>，严格级别使用 Touch ID。",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -170,11 +170,11 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 无 phpMyAdmin 导入器。用主机商提供的 MySQL、SSH 信息填写表单，或将 mysql:// URL 粘贴到 <ui>File > Import > Import from URL…</ui>。",
+        "intro": "TablePro 无 phpMyAdmin 导入器。用主机商提供的 MySQL、SSH 信息填写表单，或将 mysql:// URL 粘贴到<ui>文件 > 导入 > 从 URL 导入…</ui>（File > Import > Import from URL…）。",
         "steps": [],
         "after": [
-            "网站代码在 Mac 时，<ui>File > Import > Open Project Folder…</ui> 从 wp-config.php、.env 等文件读取数据库设置，打开填好的表单。",
-            "生产数据库请开始前设置连接安全模式级别。",
+            "网站代码在 Mac 时，<ui>文件 > 导入 > 打开项目文件夹…</ui>（File > Import > Open Project Folder…）从 wp-config.php、.env 等文件读取数据库设置，打开填好的表单。",
+            "生产数据库请开始前设置连接 Safe Mode 级别。",
             "phpMyAdmin 导出的 SQL 文件无论 gzip 与否，均可导入任意 MySQL、MariaDB 连接。"
         ],
         "docs": null

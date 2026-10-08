@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "接続、トンネルと認証情報",
-        "lead": "踏み台、クラスタやクラウド認証の先にあるデータベースを使う方へ。必要な経路とパスワード取得元を指定して接続を一度設定し、本番用には厳しいルールを適用できます。ここで紹介するのは Mac アプリの機能です。最後の節では iPhone と iPad を説明します。",
+        "lead": "踏み台、クラスターやクラウド認証の先にあるデータベースを使う方へ。必要な経路とパスワード取得元を指定して接続を一度設定し、本番用には厳しいルールを適用できます。ここで紹介するのは Mac アプリの機能です。最後の節では iPhone と iPad を説明します。",
         "docs": "/connections"
     },
     "sections": [
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "プロジェクトの設定ファイルから",
                     "paragraphs": [
-                        "<ui>Open Project Folder</ui> はプロジェクト内の <code>.env</code>、<code>wp-config.php</code>、Prisma スキーマ、Rails の <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring の <code>application.properties</code> または <code>application.yml</code>、<code>appsettings.json</code> からデータベース設定を探します。見つかった設定を元ファイルとともに一覧表示し、選ぶと接続フォームに入力します。パスワードは直接キーチェーンに保存します。ファイルパス、ホストやデータベース名に <code>prod</code>、<code>production</code> または <code>live</code> が独立した単語として含まれる場合、その接続のセーフモードは Alert レベルで始まります。"
+                        "<ui>Open Project Folder</ui> はプロジェクト内の <code>.env</code>、<code>wp-config.php</code>、Prisma スキーマ、Rails の <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring の <code>application.properties</code> または <code>application.yml</code>、<code>appsettings.json</code> からデータベース設定を探します。見つかった設定を元ファイルとともに一覧表示し、選ぶと接続フォームに入力します。パスワードは直接キーチェーンに保存します。ファイルパス、ホストやデータベース名に <code>prod</code>、<code>production</code> または <code>live</code> が独立した単語として含まれる場合、その接続の Safe Mode は Alert レベルで始まります。"
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -56,14 +56,14 @@
                     "id": "aws",
                     "title": "AWS アカウントから",
                     "paragraphs": [
-                        "<ui>Import from AWS</ui> は、選んだリージョンで AWS プロファイルが参照できる RDS インスタンスと Aurora クラスタを一覧表示し、選択したものを追加します。プロファイルには <code>rds:DescribeDBInstances</code> と <code>rds:DescribeDBClusters</code> 権限が必要です。"
+                        "<ui>Import from AWS</ui> は、選んだリージョンで AWS プロファイルが参照できる RDS インスタンスと Aurora クラスターを一覧表示し、選択したものを追加します。プロファイルには <code>rds:DescribeDBInstances</code> と <code>rds:DescribeDBClusters</code> 権限が必要です。"
                     ]
                 }
             ]
         },
         {
             "id": "network",
-            "title": "踏み台、プロキシやクラスタの先に接続する",
+            "title": "踏み台、プロキシやクラスターの先に接続する",
             "paragraphs": [],
             "blocks": [
                 {
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "プロキシ、Cloudflare、Cloud SQL とトンネルコマンド",
                     "paragraphs": [
-                        "SSH を使わない場合、Network タブではリモート DNS に対応した SOCKS5 プロキシ、Cloudflare Access、Cloud SQL Auth Proxy 経由で接続できます。Cloudflare Access では TablePro が <code>cloudflared</code> を実行し、ブラウザやサービストークンで認証します。Cloud SQL Auth Proxy は、TablePro が {cloudSqlProxy} 用にダウンロード、検証して実行します。",
+                        "SSH を使わない場合、Network タブではリモート DNS に対応した SOCKS5 プロキシ、Cloudflare Access、Cloud SQL Auth Proxy 経由で接続できます。Cloudflare Access では TablePro が <code>cloudflared</code> を実行し、ブラウザーやサービストークンで認証します。Cloud SQL Auth Proxy は、TablePro が {cloudSqlProxy} 用にダウンロード、検証して実行します。",
                         "Tunnel Command は <code>kubectl port-forward</code>、<code>aws ssm start-session</code> または独自のコマンドを起動し、それが開いたローカルポートに接続します。接続前にシェルスクリプトを実行し、そのセッションで初めて実行するときに確認を求めることもできます。接続直後に SQL 文を実行することも可能です。"
                     ],
                     "asset": "mac-tunnel-command"
@@ -97,7 +97,7 @@
             "title": "クラウドアカウントで認証する",
             "paragraphs": [
                 "AWS IAM データベース認証は、アクセスキー、<code>~/.aws</code> のプロファイル（<code>credential_process</code> と引き受けたロールにも対応）、または AWS IAM Identity Center を使い、接続のたびに新しいトークンを署名します。この認証では TLS を Required に引き上げます。Amazon ElastiCache for Redis、Amazon Keyspaces、DynamoDB は、それぞれ独自の AWS 署名を使用します。",
-                "SQL Server は、指定したアプリ登録のクライアント ID を使ってブラウザで Microsoft Entra ID 認証を行うか、チケットまたはプリンシパルとパスワードで Kerberos 認証を行います。Google BigQuery はサービスアカウントキー、Application Default Credentials、または独自クライアントを使った Google OAuth に対応します。Google Cloud Spanner と Cloud SQL Auth Proxy では Google アカウントも使えます。"
+                "SQL Server は、指定したアプリ登録のクライアント ID を使ってブラウザーで Microsoft Entra ID 認証を行うか、チケットまたはプリンシパルとパスワードで Kerberos 認証を行います。Google BigQuery はサービスアカウントキー、Application Default Credentials、または独自クライアントを使った Google OAuth に対応します。Google Cloud Spanner と Cloud SQL Auth Proxy では Google アカウントも使えます。"
             ],
             "engines": [
                 {
@@ -132,7 +132,7 @@
             "blocks": [
                 {
                     "id": "environment-variables",
-                    "title": "環境変数",
+                    "title": "Environment Variables",
                     "paragraphs": [
                         "接続のホスト、データベース、ユーザー名、SSH のホスト・ユーザー・鍵パス、SSL パス、起動コマンドやドライバーフィールドに <code>$DB_HOST</code> を記入すると、TablePro が接続時に自身の環境から値を補います。ポートとパスワードはこの方法では読み取りません。パスワードには取得元を指定してください。"
                     ],
@@ -146,12 +146,12 @@
             "id": "policies",
             "title": "接続ごとのルール",
             "paragraphs": [
-                "接続のセーフモードレベルは、文をそのまま実行するか、事前確認するか、Touch ID またはパスワードを求めるか、拒否するかを決めます。External Clients の Blocked、Read Only、Read & Write レベルは MCP クライアントと AppleScript ができる操作を定め、この Mac にのみ保存します。AI ポリシーでは、AI アシスタントが確認なしに使えるか、確認後のみ使えるか、決して使えないかを設定します。Never は MCP クライアントも拒否します。",
-                "組織は構成プロファイルを使い、すべての接続にセーフモードの最低レベルを強制し、アップデートを管理できます。"
+                "接続の Safe Mode レベルは、文をそのまま実行するか、事前確認するか、Touch ID またはパスワードを求めるか、拒否するかを決めます。External Clients の Blocked、Read Only、Read & Write レベルは MCP クライアントと AppleScript ができる操作を定め、この Mac にのみ保存します。AI ポリシーでは、AI アシスタントが確認なしに使えるか、確認後のみ使えるか、決して使えないかを設定します。Never は MCP クライアントも拒否します。",
+                "組織は構成プロファイルを使い、すべての接続に Safe Mode の最低レベルを強制し、アップデートを管理できます。"
             ],
             "links": [
                 {
-                    "label": "セーフモードのレベル",
+                    "label": "Safe Mode のレベル",
                     "href": "/features/data-editing#safe-mode"
                 },
                 {
@@ -196,7 +196,7 @@
             "ios": "no"
         },
         {
-            "label": "他アプリ、プロジェクトフォルダや AWS からインポート",
+            "label": "他アプリ、プロジェクトフォルダーや AWS からインポート",
             "ios": "no"
         },
         {
@@ -234,12 +234,12 @@
             "ios": "no"
         },
         {
-            "label": "環境変数",
+            "label": "Environment Variables",
             "paid": "environment-variables",
             "ios": "no"
         },
         {
-            "label": "接続ごとのセーフモード",
+            "label": "接続ごとの Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -248,16 +248,16 @@
             "ios": "no"
         },
         {
-            "label": "構成プロファイルでセーフモードの最低レベルを強制",
+            "label": "構成プロファイルで Safe Mode の最低レベルを強制",
             "ios": "no"
         }
     ],
     "limits": [
         "パスワード取得元と Network タブのプロキシやトンネルコマンドは、設定した Mac にのみ保存され、同期しません。そのため同期した接続には、Mac ごとにこれらを再設定する必要があります。",
-        "TablePro は起動時の環境を読み取ります。Dock や Finder から起動した場合、シェルプロファイルで設定した変数は見えません。環境変数を使うパスワード取得元と環境変数機能の両方に影響します。",
+        "TablePro は起動時の環境を読み取ります。Dock や Finder から起動した場合、シェルプロファイルで設定した変数は見えません。環境変数を使うパスワード取得元と Environment Variables の両方に影響します。",
         "プランが終了すると、<code>$DB_HOST</code> などの参照は展開されず、警告なしに入力した文字列のままサーバーに送られます。",
         "Open Project Folder は一度限りのインポートです。変更は監視せず、同じ設定を二度インポートすると接続も二つ作成されます。",
-        "AWS IAM 認証は {awsIam} に対応し、Amazon Redshift には対応しません。構成プロファイルで強制できるのはセーフモードの最低レベルとアップデート設定のみです。"
+        "AWS IAM 認証は {awsIam} に対応し、Amazon Redshift には対応しません。構成プロファイルで強制できるのは Safe Mode の最低レベルとアップデート設定のみです。"
     ],
     "docs": [
         {
@@ -269,7 +269,7 @@
             "docs": "/switching"
         },
         {
-            "label": "プロジェクトフォルダを開く",
+            "label": "Open Project Folder",
             "docs": "/features/project-folder-import"
         },
         {
@@ -277,7 +277,7 @@
             "docs": "/connections/ssh-tunneling"
         },
         {
-            "label": "トンネルコマンド",
+            "label": "Tunnel Command",
             "docs": "/connections/tunnel-command"
         },
         {
@@ -289,7 +289,7 @@
             "docs": "/connections/credential-profiles"
         },
         {
-            "label": "パスワード取得元と環境変数",
+            "label": "パスワード取得元と Environment Variables",
             "docs": "/features/connection-sharing#environment-variables"
         }
     ],
@@ -299,7 +299,7 @@
             "href": "/features/sync-and-teams"
         },
         {
-            "label": "セーフモードとデータ編集",
+            "label": "Safe Mode とデータ編集",
             "href": "/features/data-editing#safe-mode"
         },
         {

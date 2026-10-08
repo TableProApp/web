@@ -17,9 +17,9 @@
             "id": "organize",
             "title": "管理连接库",
             "paragraphs": [
-                "每个连接都在一个包含 General、Network、Options 和 Appearance 标签页的表单中编辑。导入连接 URL 后，表单会自动填充，包括 <code>jdbc:</code> URL 和包含 SSH 中转信息的 <code>+ssh</code> URL；如果剪贴板中已有 URL，表单会提供 <ui>Use clipboard URL</ui>。",
-                "为连接设置颜色、任意数量的标签和嵌套分组，并将常用连接加星标为收藏。环境以标签表示，内置 local、development、production 和 testing，也可以添加自定义标签。空连接库会提供 <ui>Open Sample Database</ui>，打开随应用附带的 Chinook SQLite 副本。",
-                "在同一窗口打开多个连接，通过左侧的连接栏切换；每个连接都会回到上次使用的标签页。<ui>Open in New Window</ui> 可让两个连接并排显示。"
+                "每个连接都在一个包含 General、Network、Options 和 Appearance 标签页的表单中编辑。导入连接 URL 后，表单会自动填充，包括 <code>jdbc:</code> URL 和包含 SSH 中转信息的 <code>+ssh</code> URL；如果剪贴板中已有 URL，表单会提供<ui>使用剪贴板中的 URL</ui>（Use clipboard URL）。",
+                "为连接设置颜色、任意数量的标签和嵌套分组，并将常用连接加星标为收藏。环境以标签表示，内置 local、development、production 和 testing，也可以添加自定义标签。空连接库会提供<ui>打开示例数据库</ui>（Open Sample Database），打开随应用附带的 Chinook SQLite 副本。",
+                "在同一窗口打开多个连接，通过左侧的连接栏切换；每个连接都会回到上次使用的标签页。<ui>在新窗口中打开</ui>（Open in New Window）可让两个连接并排显示。"
             ],
             "asset": "mac-connection-library"
         },
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "从其他数据库客户端导入",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> 读取 {connectionImportApps} 中保存的连接，包括 TablePlus 的 Setapp 版，并从这些应用的存储位置导入密码，也支持 DBeaver 和 Navicat 保存的加密密码。Navicat 连接从 <code>.ncx</code> 导出文件读取。"
+                        "<ui>从其他应用导入</ui>（Import from Other App）读取 {connectionImportApps} 中保存的连接，包括 TablePlus 的 Setapp 版，并从这些应用的存储位置导入密码，也支持 DBeaver 和 Navicat 保存的加密密码。Navicat 连接从 <code>.ncx</code> 导出文件读取。"
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "从项目配置文件导入",
                     "paragraphs": [
-                        "<ui>Open Project Folder</ui> 在项目中扫描数据库配置，支持 <code>.env</code>、<code>wp-config.php</code>、Prisma schema、Rails 的 <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring 的 <code>application.properties</code> 或 <code>application.yml</code>，以及 <code>appsettings.json</code>。它会列出每组配置及其来源文件，选择后填入连接表单；密码直接存入钥匙串。如果文件路径、主机或数据库名称中出现独立单词 <code>prod</code>、<code>production</code> 或 <code>live</code>，该连接的安全模式默认设为 Alert 级别。"
+                        "<ui>打开项目文件夹</ui>（Open Project Folder）在项目中扫描数据库配置，支持 <code>.env</code>、<code>wp-config.php</code>、Prisma schema、Rails 的 <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring 的 <code>application.properties</code> 或 <code>application.yml</code>，以及 <code>appsettings.json</code>。它会列出每组配置及其来源文件，选择后填入连接表单；密码直接存入钥匙串。如果文件路径、主机或数据库名称中出现独立单词 <code>prod</code>、<code>production</code> 或 <code>live</code>，该连接的 Safe Mode 默认设为 Alert 级别。"
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -132,7 +132,7 @@
             "blocks": [
                 {
                     "id": "environment-variables",
-                    "title": "环境变量",
+                    "title": "Environment Variables",
                     "paragraphs": [
                         "在连接的主机、数据库、用户名、SSH 主机、用户和密钥路径、SSL 路径、启动命令或驱动字段中填写 <code>$DB_HOST</code>，TablePro 会在连接时从自身环境填入其值。端口和密码不会通过这种方式读取，请为密码指定来源。"
                     ],
@@ -146,12 +146,12 @@
             "id": "policies",
             "title": "每个连接的规则",
             "paragraphs": [
-                "连接的安全模式级别决定语句是直接执行、先询问、要求 Touch ID 或密码，还是被拒绝。External Clients 的 Blocked、Read Only 或 Read & Write 级别决定 MCP 客户端和 AppleScript 可执行的操作，设置仅保存在此 Mac 上。AI 策略决定 AI 助手可直接使用连接、仅在确认后使用，或永不使用；Never 也会阻止 MCP 客户端。",
-                "组织可通过配置描述文件强制所有连接的最低安全模式级别，并控制更新。"
+                "连接的 Safe Mode 级别决定语句是直接执行、先询问、要求 Touch ID 或密码，还是被拒绝。External Clients 的 Blocked、Read Only 或 Read & Write 级别决定 MCP 客户端和 AppleScript 可执行的操作，设置仅保存在此 Mac 上。AI 策略决定 AI 助手可直接使用连接、仅在确认后使用，或永不使用；Never 也会阻止 MCP 客户端。",
+                "组织可通过配置描述文件强制所有连接的最低 Safe Mode 级别，并控制更新。"
             ],
             "links": [
                 {
-                    "label": "安全模式级别",
+                    "label": "Safe Mode 级别",
                     "href": "/features/data-editing#safe-mode"
                 },
                 {
@@ -234,12 +234,12 @@
             "ios": "no"
         },
         {
-            "label": "环境变量",
+            "label": "Environment Variables",
             "paid": "environment-variables",
             "ios": "no"
         },
         {
-            "label": "每个连接的安全模式",
+            "label": "每个连接的 Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -248,16 +248,16 @@
             "ios": "no"
         },
         {
-            "label": "通过配置描述文件设置最低安全模式级别",
+            "label": "通过配置描述文件设置最低 Safe Mode 级别",
             "ios": "no"
         }
     ],
     "limits": [
         "密码来源以及 Network 标签页的代理和隧道命令仅保存在设置它们的 Mac 上，从不同步，因此同步的连接需要在每台 Mac 上重新配置这些设置。",
-        "TablePro 读取启动时的环境。从 Dock 或 Finder 打开时，它无法看到 shell 配置文件设置的变量，这同时影响环境变量密码来源和环境变量功能。",
+        "TablePro 读取启动时的环境。从 Dock 或 Finder 打开时，它无法看到 shell 配置文件设置的变量，这同时影响环境变量密码来源和 Environment Variables 功能。",
         "方案结束后，<code>$DB_HOST</code> 等引用不再替换，也不会警告，而是以输入的原文发送给服务器。",
         "Open Project Folder 是一次性导入，不会监控任何变化；重复导入同一组配置会创建两个连接。",
-        "AWS IAM 认证支持 {awsIam}，不支持 Amazon Redshift。配置描述文件只能强制最低安全模式级别和更新设置，无法控制其他项目。"
+        "AWS IAM 认证支持 {awsIam}，不支持 Amazon Redshift。配置描述文件只能强制最低 Safe Mode 级别和更新设置，无法控制其他项目。"
     ],
     "docs": [
         {
@@ -269,7 +269,7 @@
             "docs": "/switching"
         },
         {
-            "label": "打开项目文件夹",
+            "label": "Open Project Folder",
             "docs": "/features/project-folder-import"
         },
         {
@@ -277,7 +277,7 @@
             "docs": "/connections/ssh-tunneling"
         },
         {
-            "label": "隧道命令",
+            "label": "Tunnel Command",
             "docs": "/connections/tunnel-command"
         },
         {
@@ -289,7 +289,7 @@
             "docs": "/connections/credential-profiles"
         },
         {
-            "label": "密码来源和环境变量",
+            "label": "密码来源和 Environment Variables",
             "docs": "/features/connection-sharing#environment-variables"
         }
     ],
@@ -299,7 +299,7 @@
             "href": "/features/sync-and-teams"
         },
         {
-            "label": "安全模式和数据编辑",
+            "label": "Safe Mode 和数据编辑",
             "href": "/features/data-editing#safe-mode"
         },
         {

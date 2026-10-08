@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "Apakah TablePro gratis?",
                     "answer": [
-                        "Aplikasi Mac gratis diunduh dan digunakan, tanpa masa uji coba atau batas waktu. Lisensi Starter atau Team menambahkan fitur opsional ke aplikasi Mac; <pricing>halaman harga</pricing> mencantumkannya. Terhubung ke semua mesin yang didukung tidak memerlukan lisensi, begitu juga asisten AI, server MCP, dan Mode Aman.",
+                        "Aplikasi Mac gratis diunduh dan digunakan, tanpa masa uji coba atau batas waktu. Lisensi Starter atau Team menambahkan fitur opsional ke aplikasi Mac; <pricing>halaman harga</pricing> mencantumkannya. Terhubung ke semua mesin yang didukung tidak memerlukan lisensi, begitu juga asisten AI, server MCP, dan Safe Mode.",
                         "Aplikasi iPhone dan iPad gratis tanpa pembelian dalam aplikasi dan tidak memerlukan lisensi."
                     ]
                 },
@@ -81,7 +81,7 @@
                     "id": "iphone-ipad",
                     "question": "Apakah ada aplikasi iPhone dan iPad?",
                     "answer": [
-                        "Ya. TablePro untuk iPhone dan iPad tersedia di App Store, memerlukan {iosRequirement}, dan gratis tanpa pembelian dalam aplikasi. Aplikasi terhubung ke {iosEngines}, dengan tunnel SSH, Mode Aman, dan Face ID, serta memungkinkan penelusuran dan pengeditan tabel serta menjalankan kueri.",
+                        "Ya. TablePro untuk iPhone dan iPad tersedia di App Store, memerlukan {iosRequirement}, dan gratis tanpa pembelian dalam aplikasi. Aplikasi terhubung ke {iosEngines}, dengan tunnel SSH, Safe Mode, dan Face ID, serta memungkinkan penelusuran dan pengeditan tabel serta menjalankan kueri.",
                         "Ini aplikasi terpisah untuk ponsel dan tablet, bukan salinan aplikasi Mac: misalnya, tidak ada asisten AI, server MCP, atau kueri tersimpan. <ios>Halaman iPhone dan iPad</ios> mencantumkan fitur yang tersedia dan yang tidak disertakan."
                     ]
                 },
@@ -89,7 +89,7 @@
                     "id": "windows-linux",
                     "question": "Apakah ada versi Windows atau Linux?",
                     "answer": [
-                        "Tidak. Tidak ada versi Windows. Prototipe Linux tersedia, tetapi belum ada yang dapat diinstal dan belum ada tanggal rilis."
+                        "Tidak. Tidak ada versi Windows. Prototipe Linux ada, tetapi tidak ada yang dapat diinstal dan tidak ada tanggal rilis."
                     ]
                 },
                 {
@@ -135,7 +135,7 @@
                     "question": "Di mana kata sandi disimpan?",
                     "answer": [
                         "Di Mac, dalam Rantai Kunci macOS. Koneksi juga dapat membaca kata sandi saat terhubung dari file, variabel lingkungan, perintah shell, 1Password, HashiCorp Vault, atau AWS Secrets Manager. Di iPhone dan iPad, kata sandi disimpan dalam Rantai Kunci perangkat.",
-                        "Saat Sinkronisasi iCloud aktif, kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Sync Categories pada Mac atau <ui>Sync Passwords</ui> pada iPhone dan iPad, yang memakai Rantai Kunci iCloud."
+                        "Saat iCloud Sync aktif, kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Sync Categories pada Mac atau <ui>Sync Passwords</ui> pada iPhone dan iPad, yang memakai Rantai Kunci iCloud."
                     ]
                 },
                 {
@@ -177,7 +177,7 @@
                     "id": "subscription-ends",
                     "question": "Apa yang terjadi saat langganan berakhir?",
                     "answer": [
-                        "Fitur berbayar terkunci: misalnya Sinkronisasi iCloud dijeda, dan koneksi dari Folder Tertaut atau Pustaka Tim disembunyikan. Fitur lain tetap berfungsi, dan koneksi, kueri, serta pengaturan tetap di Mac seperti sebelumnya. Perpanjangan mengaktifkan kembali fitur berbayar.",
+                        "Fitur berbayar terkunci: misalnya iCloud Sync dijeda, dan koneksi dari Linked Folders atau Team Library disembunyikan. Fitur lain tetap berfungsi, dan koneksi, kueri, serta pengaturan tetap di Mac seperti sebelumnya. Perpanjangan mengaktifkan kembali fitur berbayar.",
                         "Pembelian sekali bayar tidak memiliki tanggal kedaluwarsa. Tidak ada perubahan di iPhone atau iPad."
                     ]
                 },
@@ -228,7 +228,7 @@
                     "question": "Apa yang dikirim aplikasi ke TablePro?",
                     "answer": [
                         "Tanpa lisensi aktif, satu-satunya permintaan aplikasi Mac ke TablePro adalah laporan penggunaan harian, aktif secara bawaan dan dapat dinonaktifkan di <ui>Settings > General > Privacy</ui>. Laporan membawa hash ID mesin dan informasi aplikasi seperti versi, bahasa, serta jenis database yang dihubungkan, tanpa nama host, nama pengguna, kata sandi, kueri, atau baris.",
-                        "Dengan lisensi, aplikasi Mac juga memeriksanya setiap {revalidateDays} hari, mengirim kunci, ID mesin yang sama, nama Mac, serta versi aplikasi dan macOS. Di iPhone dan iPad, tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Bagikan Data Penggunaan. <privacy>Kebijakan privasi</privacy> memiliki daftar lengkap, termasuk yang disimpan server kami."
+                        "Dengan lisensi, aplikasi Mac juga memeriksanya setiap {revalidateDays} hari, mengirim kunci, ID mesin yang sama, nama Mac, serta versi aplikasi dan macOS. Di iPhone dan iPad, tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data. <privacy>Kebijakan privasi</privacy> memiliki daftar lengkap, termasuk yang disimpan server kami."
                     ]
                 },
                 {
@@ -247,10 +247,10 @@
                 },
                 {
                     "id": "icloud-data",
-                    "question": "Apa yang disimpan Sinkronisasi iCloud dan di mana?",
+                    "question": "Apa yang disimpan iCloud Sync dan di mana?",
                     "answer": [
-                        "Sinkronisasi iCloud nonaktif hingga Anda mengaktifkannya. Koneksi tersinkron, serta kategori pilihan Anda di Mac, masuk ke database privat dalam akun iCloud Anda yang tidak dapat dibaca TablePro. Kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Sync Categories pada Mac atau <ui>Sync Passwords</ui> pada iPhone dan iPad.",
-                        "Di Mac, Sinkronisasi iCloud termasuk lisensi Starter atau Team. Di iPhone dan iPad gratis."
+                        "iCloud Sync nonaktif hingga Anda mengaktifkannya. Koneksi tersinkron, serta kategori pilihan Anda di Mac, masuk ke database privat dalam akun iCloud Anda yang tidak dapat dibaca TablePro. Kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Sync Categories pada Mac atau <ui>Sync Passwords</ui> pada iPhone dan iPad.",
+                        "Di Mac, iCloud Sync termasuk lisensi Starter atau Team. Di iPhone dan iPad gratis."
                     ]
                 }
             ]
@@ -270,7 +270,7 @@
                     "id": "members",
                     "question": "Bagaimana menambah atau menghapus anggota tim?",
                     "answer": [
-                        "Dalam <account>akun Anda</account>, undang seseorang lewat email. Mereka menerima kode untuk dimasukkan di TablePro pada Mac, melalui <ui>Settings > License</ui>, dan Mac mereka memakai satu seat. Menghapus anggota membebaskan seat, mengeluarkan Mac mereka, dan menghapus publikasinya di Pustaka Tim."
+                        "Dalam <account>akun Anda</account>, undang seseorang lewat email. Mereka menerima kode untuk dimasukkan di TablePro pada Mac, melalui <ui>Settings > License</ui>, dan Mac mereka memakai satu seat. Menghapus anggota membebaskan seat, mengeluarkan Mac mereka, dan menghapus publikasinya di Team Library."
                     ]
                 },
                 {

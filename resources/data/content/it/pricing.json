@@ -16,7 +16,7 @@
     },
     "features": {
         "title": "Cosa aggiunge un piano a pagamento",
-        "lead": "Queste sono le uniche funzionalità che richiedono un piano a pagamento e si trovano tutte nell’app per Mac. Team include tutto Starter. Per connettersi a qualsiasi motore supportato non serve una licenza, né per l’assistente IA, il server MCP o la Modalità sicura."
+        "lead": "Queste sono le uniche funzionalità che richiedono un piano a pagamento e si trovano tutte nell’app per Mac. Team include tutto Starter. Per connettersi a qualsiasi motore supportato non serve una licenza, né per l’assistente IA, il server MCP o Safe Mode."
     },
     "license": {
         "title": "Come funzionano le licenze",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Fatturazione",
-        "merchant": "{merchant} è il venditore responsabile per TablePro. Ti vende il piano, incassa il pagamento, calcola le eventuali imposte sulle vendite o l’IVA in base all’indirizzo di fatturazione e ti invia ricevuta e fattura via email. I prezzi sono indicati in dollari statunitensi.",
+        "merchant": "{merchant} è il merchant of record per TablePro. Ti vende il piano, incassa il pagamento, calcola le eventuali imposte sulle vendite o l’IVA in base all’indirizzo di fatturazione e ti invia ricevuta e fattura via email. I prezzi sono indicati in dollari statunitensi.",
         "renewal": "I piani mensili e annuali si rinnovano automaticamente finché non li annulli nel <account>tuo account</account> o nel portale clienti di {merchant}. Dopo la disdetta, il piano continua a funzionare fino alla fine del periodo pagato e puoi riprenderlo prima di allora. Se un pagamento di rinnovo fallisce, {merchant} ti invia via email un link per aggiornare la carta e ritenta il pagamento per circa tre settimane.",
         "portal": "Per gli acquisti effettuati tramite {merchant}, fatture, ricevute, metodo di pagamento e disdetta si trovano nel <portal>portale clienti di {merchant}</portal>, a cui accedi con l’indirizzo email usato al checkout. Anche <account>Fatturazione e fatture</account> nel tuo account apre il portale."
     },
@@ -81,7 +81,7 @@
             },
             "ios-license": {
                 "question": "Serve una licenza per l’app per iPhone e iPad?",
-                "answer": "No. Non ha funzionalità a pagamento e non richiede mai una licenza. La sincronizzazione iCloud è gratuita su iPhone e iPad; per sincronizzare con un Mac, il Mac deve avere Starter o Team."
+                "answer": "No. Non ha funzionalità a pagamento e non richiede mai una licenza. iCloud Sync è gratuito su iPhone e iPad; per sincronizzare con un Mac, il Mac deve avere Starter o Team."
             },
             "seats": {
                 "question": "Un posto Team corrisponde a una persona?",
