@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Blog\BlogService;
 use App\Services\Releases\MacReleaseService;
 use App\Services\Releases\PlatformCatalog;
 use App\Support\Content\ContentRepository;
+use App\Support\Localization\Locales;
+use App\Support\Seo\BlogPosts;
+use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
@@ -25,7 +29,7 @@ use Inertia\Response;
  */
 class DownloadController extends Controller
 {
-    public function __invoke(ContentRepository $content, MacReleaseService $releases, PlatformCatalog $platforms): Response
+    public function __invoke(ContentRepository $content, MacReleaseService $releases, PlatformCatalog $platforms, BlogService $blog, PageRegistry $registry): Response
     {
         $locale = App::getLocale();
         $release = $releases->latest();
@@ -43,7 +47,27 @@ class DownloadController extends Controller
             'unreleased' => $platforms->unreleased(),
             'links' => $this->links(),
             'featuredEngines' => $this->featuredEngines(),
+            'latestPost' => $this->latestPost($blog, $registry, $locale),
         ]);
+    }
+
+    /**
+     * The newest release post whose URL is a page, in the reader's language
+     * when it is written in it.
+     *
+     * @return array{slug: string, locale: string, title: string, description: string, date: string, dateFormatted: string, url: string}|null
+     */
+    private function latestPost(BlogService $blog, PageRegistry $registry, string $locale): ?array
+    {
+        foreach ($blog->all(Locales::default()) as $post) {
+            $post = $blog->find($post->slug, $locale) ?? $post;
+
+            if ($post->release !== null && ($registry->find(BlogPosts::ROUTE, ['slug' => $post->slug])?->renders($post->locale) ?? false)) {
+                return $post->summary($locale);
+            }
+        }
+
+        return null;
     }
 
     /**

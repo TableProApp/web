@@ -1,7 +1,7 @@
 ---
 slug: tablepro-0-72
 title: "TablePro 0.72: Backups Through Your Database's Own Tools"
-description: Backup Dump and Restore Dump drive pg_dump, mysqldump, mongodump, sqlite3 and sqlpackage from inside the app. Plus an export tree that reaches routines, triggers and privileges, Transfer To between two live connections, and an AppleScript dictionary.
+description: Backup Dump and Restore Dump drive pg_dump, mysqldump, mongodump, sqlite3 and sqlpackage from inside the app. Plus an AppleScript dictionary.
 date: 2026-09-04
 release: "TablePro 0.72"
 author: TablePro Team

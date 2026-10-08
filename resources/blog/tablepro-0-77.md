@@ -1,7 +1,7 @@
 ---
 slug: tablepro-0-77
 title: "TablePro 0.77: SAP HANA and Folders in the Sidebar"
-description: A native SAP HANA driver, folders for the tables and views in the sidebar, imports that remember each table's column mapping, and connect and query timeouts per connection. Plus 147 fixes.
+description: A native SAP HANA driver, folders for the tables and views in the sidebar, imports that remember each table's column mapping, and per-connection timeouts.
 date: 2026-10-02
 release: "TablePro 0.77"
 author: TablePro Team

@@ -374,7 +374,7 @@ Glyph metrics were read from the shipped font files with fontTools:
 
 ### 3.4 Other type rules
 
-- **Reading measure:** body copy max 70ch. The `text` container (704px) is about 70ch at 16px, because Inter's `0` advance is 0.631em, or 10.1px. Leads max 56ch.
+- **Reading measure:** running prose is about 75 characters a line. In `ProseArticle`, paragraphs, lists and headings stop at 36rem (576px); figures, tables and code keep the `text` container (704px). `ch` cannot set it: Inter's `0` advance is 0.631em, or 10.1px at 16px, while running text averages 7.6px a character, so the 704px column alone holds about 93. Leads max 56ch.
 - **Headings are left-aligned everywhere,** including the hero. Centred marketing stacks read as a template, and a left edge matches documentation and the app.
 - **No split-colour headlines.** A heading is one colour, `--foreground`. A second thought belongs in the lead.
 - **Semantic levels follow the outline,** never the size. The account H1 uses the `h2` style (§5.4). Footer group titles become `h3` under a visually hidden footer `h2`, so they no longer nest under the last content heading.
@@ -988,11 +988,11 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 #### 5.3.19 ProseArticle and TableOfContents
 
-- **`text` container.** Body is `body` 16/1.6 in `--foreground`, which ends the muted article body.
+- **`text` container.** Body is `body` 16/1.6 in `--foreground`, which ends the muted article body. Running text keeps the reading measure (§3.4) inside it.
 - **Headings:** `h2` in the `h2` style with 48px above and 16px below; `h3` in the `h3` style with 32px above and 8px below.
 - **Lists:** 24px indent and 8px item gap.
 - **Blocks:** `blockquote` with a 3px `--rule-strong` edge and `--foreground` (not italic). Tables use DataTable styling inside a scroll region. Code uses CodeBlock styling with Phiki colours.
-- **Figures** are `AssetSlot`s with `figcaption` at `caption` size in `--muted-foreground`, left-aligned and not italic.
+- **Figures** are `AssetSlot`s with `figcaption` at `caption` size in `--muted-foreground`, left-aligned and not italic. A post figure, and a detail with no phone crop, is a plain link to its widest file, because both shrink to about half size on a phone; no script, no lightbox.
 - **Heading permalinks:**
   - The `#` glyph sits in a sibling `<a aria-label="Link to this section">` *after* the heading text, outside the heading element's accessible name (the old site announced headings such as "One session, the whole window#").
   - Visible on hover or focus of the heading block. On touch it stays visible at `--muted-foreground`.
@@ -1585,12 +1585,12 @@ At 375 the phone slot (240) sits above its text.
 ### 8.9 Blog index (`/blog`, `/vi/blog`)
 
 ```
-PageHeader   H1 · one line: release announcements; every version's notes are in the docs changelog ↗
+PageHeader   H1 · release announcements; not every release gets a post; every version's notes are in the docs changelog ↗
 List         opens on the frame's join; per post, newest first, one row from rail to rail (§4.7): <time> (caption) in its
              own column from 768 · H2 (h3 style) title link · description (small, muted, ≤ 200 chars) at the reading measure
              /vi/blog: a Vietnamese intro saying the posts are in English; each entry lang="en", Badge "tiếng Anh",
              link to /blog/{slug} hreflang="en"
-Newsletter   inline signup (newsletter_signup_clicked{source:'blog'})
+Newsletter   inline signup under the footer's title and body (newsletter_signup_clicked{source:'blog'})
 ```
 
 - **No filter and no per-post type badge.** Every retained post is a release post (sitemap decision 5 merges all four guides away), so a "Guides" filter would lead nowhere and a "Release" badge on every row says nothing. Add both only when a second kind of post exists.
@@ -1601,13 +1601,16 @@ Newsletter   inline signup (newsletter_signup_clicked{source:'blog'})
 
 ```
 Breadcrumbs  Blog / {title}
-Header (text width)  H1 · meta: <time> (the original datePublished)
+Header (text width)  H1 · meta: <time> (the original datePublished) · the byline from the front matter
 Callout note         the dated archive note from the template ("Describes TablePro 0.74 as released on …; see Features for
-                     today's app"), plus an editor's correction only where a claim was never true (sitemap §E.6)
+                     today's app"), once platforms.json records a newer release than the post's; plus an editor's
+                     correction only where a claim was never true (sitemap §E.6)
 ProseArticle         paragraphs · H2/H3 · CodeBlocks · tables · ▒ blog-{slug}-{n} (one ID per figure) · Callouts
                      ≥ 1280 and > 4 H2s: TableOfContents in cols 10–12
-End                  two blocks after the article, each behind a join (§4.7): the current CTA from platforms.json
-                     (one-line download prompt with a secondary button) · #related: Related posts (3 rows, rail to rail)
+End                  three blocks after the article, each behind a join (§4.7): two cells, #pages (the feature and
+                     database pages that cover the post's tags today, Pricing where one is paid) and #notes (the
+                     release's changelog entry and GitHub release) · the current CTA from platforms.json (one-line
+                     download prompt with a secondary button) · #related: Related posts (3 rows, rail to rail)
 ```
 
 Release posts keep their original dates and meaning. They have no `/vi` URL: `/vi/blog/{slug}` is a 404 that links the English post (sitemap §A.7).

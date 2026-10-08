@@ -10,20 +10,19 @@ import { trackEvent } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 interface NewsletterSignupProps {
-    title: string;
-    body: string;
     className?: string;
 }
 
 /**
  * The blog index's email signup (sitemap §A.5): the same list as the footer's
- * form, offered where a reader of release posts is.
+ * form, offered where a reader of release posts is, under the footer's own
+ * title and body so the offer has one name.
  *
  * It posts `{ email, locale }` to the platform's `/newsletter/subscribe`
  * through `useEmailForm` (plain `fetch`, no cookies kept), counts the click as
  * `newsletter_signup_clicked{source:'blog'}`, and shows the answer in place.
  */
-export default function NewsletterSignup({ title, body, className }: NewsletterSignupProps) {
+export default function NewsletterSignup({ className }: NewsletterSignupProps) {
     const { m } = useI18n();
     const form = useEmailForm('/newsletter/subscribe');
     const id = useId();
@@ -39,9 +38,9 @@ export default function NewsletterSignup({ title, body, className }: NewsletterS
     return (
         <section aria-labelledby={`${id}-title`} className={cn('rounded-panel border border-rule bg-surface p-6', className)}>
             <h2 id={`${id}-title`} className="type-h3 text-foreground">
-                {title}
+                {m.footer.newsletter.title}
             </h2>
-            <p className="type-small mt-2 text-muted-foreground">{body}</p>
+            <p className="type-small mt-2 text-muted-foreground">{m.footer.newsletter.body}</p>
             <form onSubmit={submit} className="mt-4 grid gap-1.5">
                 <FieldLabel htmlFor={inputId}>{m.forms.email.label}</FieldLabel>
                 <div className="flex flex-col gap-2 sm:flex-row">

@@ -1,10 +1,15 @@
 <?php
 
 use App\Services\Blog\BlogService;
+use App\Services\Blog\Post;
+use App\Services\Blog\PostRelease;
+use App\Services\Blog\PostTopics;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
+use App\Support\Localization\Locales;
 use App\Support\Seo\PageRegistry;
 use App\Support\Seo\RedirectMap;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\File;
 use Inertia\Testing\AssertableInertia;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -12,6 +17,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 use function Pest\Laravel\withoutVite;
 
 require_once __DIR__ . '/../Seo/helpers.php';
+require_once __DIR__ . '/../Releases/ReleaseFixtures.php';
 
 /*
  * The blog (sitemap §A.5, §C.5, §E.6; architecture §1.1, §1.9, §1.17).
@@ -28,6 +34,9 @@ require_once __DIR__ . '/../Seo/helpers.php';
  *   404 that links the English post by its title, never an English body under
  *   Vietnamese chrome.
  * - Related posts stay in the post's language.
+ * - The template adds what the archive cannot: the byline, the archive note
+ *   once a newer release is out, the pages that cover the post's tags today,
+ *   and the release's changelog entry and GitHub release.
  */
 
 beforeEach(function (): void {
@@ -52,6 +61,9 @@ const BLOG_PUBLISHED = [
 ];
 
 /** The guides merged into other pages (sitemap §C.5), with where each one went. */
+/** Tags no page covers: the one every release post carries, and a claim the site does not make. */
+const BLOG_TAGS_WITHOUT_A_PAGE = ['release', 'performance'];
+
 const BLOG_MERGED = [
     'mcp-database-claude' => '/features/ai-mcp#mcp',
     'cloudflare-d1-mac' => '/cloudflare-d1-client',
@@ -108,7 +120,9 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('seo.canonical', 'https://localhost/blog')
             ->where('seo.alternates', [])
             ->where('content.header.title', 'Blog')
+            ->where('content.header.lead', fn(string $lead): bool => str_contains($lead, 'Not every release gets a post.'))
             ->missing('content.corrections')
+            ->missing('content.newsletter')
             ->has('posts', count($expected))
             ->where('posts', fn($posts): bool => collect($posts)->pluck('slug')->all() === $expected)
             ->where('posts.0.url', '/blog/' . $expected[0])
@@ -146,6 +160,8 @@ it('renders each release post as the archive it is', function (string $slug): vo
             ->where('post.description', $matter['description'])
             ->where('post.date', BLOG_PUBLISHED[$slug])
             ->where('post.release', fn(?string $release): bool => is_string($release) && str_starts_with($release, 'TablePro '))
+            ->where('post.author', $matter['author'])
+            ->where('post.seoTitle', $matter['seoTitle'] ?? null)
             ->where('post.bodyHtml', function (string $html) use ($slots): bool {
                 expect($html)
                     ->not->toContain('<img')
@@ -223,6 +239,115 @@ it('dates a correction on each post that said something never true, and on no ot
             default => $page->where('correction', null),
         });
 })->with(array_keys(BLOG_PUBLISHED));
+
+it('marks a post as an archive only once a newer release than its own is out', function (array $platforms, string $slug, bool $archived): void {
+    bindReleaseFixturePlatforms($platforms);
+
+    $this->get("/blog/{$slug}")
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page->where('archived', $archived));
+})->with([
+    'the post about the current release' => [[], 'tablepro-0-77', false],
+    'the same release after a patch' => [['mac.release.version' => '0.77.2'], 'tablepro-0-77', false],
+    'an older release' => [[], 'tablepro-0-76', true],
+    'once the next release is out' => [['mac.release.version' => '0.78.0'], 'tablepro-0-77', true],
+    'the iPhone app, whatever the Mac is on' => [['mac.release.version' => '0.78.0'], 'tablepro-for-iphone', false],
+    'the iPhone app, after its own next release' => [['ios.release.version' => '1.1'], 'tablepro-for-iphone', true],
+    'a platform with no release on record' => [['mac.release' => null], 'tablepro-0-76', false],
+]);
+
+it('links a Mac release to its changelog entry and its GitHub release, from the front matter alone', function (?string $release, ?array $notes): void {
+    bindReleaseFixturePlatforms();
+
+    $post = new Post('a-post', 'en', 'A post', 'What shipped.', CarbonImmutable::parse('2026-10-02'), [], $release);
+
+    expect(app(PostRelease::class)->notes($post))->toBe($notes);
+})->with([
+    'a release' => ['TablePro 0.77', ['changelog' => 'https://docs.tablepro.app/changelog#v0-77-0', 'github' => 'https://github.com/TableProApp/TablePro/releases/tag/v0.77.0']],
+    'a patch release' => ['TablePro 0.77.1', ['changelog' => 'https://docs.tablepro.app/changelog#v0-77-1', 'github' => 'https://github.com/TableProApp/TablePro/releases/tag/v0.77.1']],
+    // The docs changelog and the tagged releases are the Mac app's.
+    'the iPhone app' => ['TablePro for iPhone and iPad 1.0', null],
+    'a release with no version' => ['TablePro', null],
+    'a guide' => [null, null],
+]);
+
+it('hands each release post its notes links', function (string $slug): void {
+    $version = preg_match('/^tablepro-(\d+)-(\d+)$/', $slug, $match) === 1 ? "{$match[1]}.{$match[2]}.0" : null;
+
+    $this->get("/blog/{$slug}")
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $version === null
+            ? $page->where('notes', null)
+            : $page
+                ->where('notes.changelog', 'https://docs.tablepro.app/changelog#v' . str_replace('.', '-', $version))
+                ->where('notes.github', "https://github.com/TableProApp/TablePro/releases/tag/v{$version}"));
+})->with(array_keys(BLOG_PUBLISHED));
+
+it('links the pages that cover a post today, from its tags', function (): void {
+    $this->get('/blog/tablepro-0-77')
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('pages', fn($pages): bool => collect($pages)->pluck('href')->all() === [
+                '/databases#sap-hana',
+                '/features/schema#table-folders',
+                '/features/import-export#import',
+                '/features/connections',
+            ])
+            // Each label is the target's own title: an engine's name, a section's heading.
+            ->where('pages.0.label', collect(json_decode(File::get(resource_path('data/engines.json')), true))->firstWhere('id', 'sap-hana')['name'])
+            ->where('pages.1.label', collect(app(ContentRepository::class)->page('features/schema', 'en')['sections'])
+                ->flatMap(fn(array $section): array => $section['blocks'] ?? [])
+                ->firstWhere('id', 'table-folders')['title']));
+});
+
+it('closes the pages with Pricing where a linked feature is paid on the post’s platform', function (string $slug, bool $pricing): void {
+    $this->get("/blog/{$slug}")
+        ->assertOk()
+        ->assertInertia(function (AssertableInertia $page) use ($pricing): void {
+            $hrefs = array_column($page->toArray()['props']['pages'], 'href');
+
+            expect(in_array('/pricing', $hrefs, true))->toBe($pricing);
+            expect(count($hrefs))->toBe(count(array_unique($hrefs)));
+
+            if ($pricing) {
+                expect(end($hrefs))->toBe('/pricing');
+            }
+        });
+})->with([
+    'Result Charts' => ['tablepro-0-67', true],
+    'Compare & Sync' => ['tablepro-0-68', true],
+    'Data Rewind' => ['tablepro-0-69', true],
+    'no paid feature' => ['tablepro-0-77', false],
+    // iCloud Sync is paid on the Mac and free on iPhone and iPad.
+    'iCloud Sync on the iPhone app' => ['tablepro-for-iphone', false],
+]);
+
+it('resolves every tag of every post to a page in every language, or to none on purpose', function (): void {
+    $topics = app(PostTopics::class);
+    $seen = [];
+
+    foreach (blogFiles() as $slug) {
+        foreach (blogMatter($slug)['tags'] as $tag) {
+            $seen[] = $tag;
+
+            foreach (Locales::codes() as $locale) {
+                $link = $topics->link($tag, $locale);
+
+                if (in_array($tag, BLOG_TAGS_WITHOUT_A_PAGE, true)) {
+                    expect($link)->toBeNull("{$tag} is listed as having no page, and has one");
+
+                    continue;
+                }
+
+                expect($link)->not->toBeNull("{$slug}: the tag {$tag} names no page in {$locale}");
+                expect($link['href'])->toMatch('#^/[a-z0-9/-]+(\#[a-z0-9-]+)?$#');
+                expect($link['label'])->not->toBe('')->not->toMatch('/[{}<>]/', "{$tag} ({$locale}) takes a label with a slot or markup in it");
+            }
+        }
+    }
+
+    expect(array_diff(BLOG_TAGS_WITHOUT_A_PAGE, $seen))->toBe([]);
+});
 
 it('chooses related posts by shared topic first, then by closeness in time, and lists them newest first', function (): void {
     $this->get('/blog/tablepro-0-76')
@@ -374,6 +499,8 @@ describe('server-rendered', function (): void {
     });
 
     it('renders a post with its archive note, slots, named permalinks and download line', function (): void {
+        bindReleaseFixturePlatforms(['mac.release.version' => '0.78.0']);
+
         $html = (string) $this->get('/blog/tablepro-0-77')->getContent();
         $main = Dom\HTMLDocument::createFromString($html, LIBXML_NOERROR)->querySelector('main');
 
@@ -392,12 +519,65 @@ describe('server-rendered', function (): void {
             ->toContain('"datePublished":"2026-10-02"');
     });
 
-    it('gives a post that leads with the brand its own title, never the /ios page\'s', function (): void {
+    it('opens the post about the current release without the archive note, under its byline', function (): void {
+        bindReleaseFixturePlatforms();
+
+        $html = (string) $this->get('/blog/tablepro-0-77')->getContent();
+        $header = Dom\HTMLDocument::createFromString($html, LIBXML_NOERROR)->querySelector('main > header');
+
+        expect($html)->not->toContain('as it was then');
+        expect($header?->textContent)->toContain('October 2, 2026')->toContain(blogMatter('tablepro-0-77')['author']);
+    });
+
+    it('links each figure to its widest file, the pages that cover the post and the release’s own notes', function (): void {
+        $main = Dom\HTMLDocument::createFromString((string) $this->get('/blog/tablepro-0-77')->getContent(), LIBXML_NOERROR)->querySelector('main');
+        $figures = $main->querySelectorAll('figure[data-asset-status="supplied"]');
+
+        expect($figures->length)->toBe(3);
+
+        foreach ($figures as $figure) {
+            $link = $figure->firstElementChild;
+
+            expect($link?->tagName)->toBe('A', 'A figure does not open at full size');
+            expect($link->getAttribute('href'))->toStartWith('/images/blog/blog-tablepro-0-77-');
+            expect(File::exists(public_path(ltrim($link->getAttribute('href'), '/'))))->toBeTrue();
+            // The link's name is the picture's alt text.
+            expect($link->querySelector('img')?->getAttribute('alt'))->not->toBeEmpty();
+        }
+
+        expect($main->querySelector('#pages a[href="/databases#sap-hana"]'))->not->toBeNull();
+        expect($main->querySelector('#pages a[href="/features/schema#table-folders"]'))->not->toBeNull();
+        expect($main->querySelector('#notes a[href="https://docs.tablepro.app/changelog#v0-77-0"][hreflang="en"]')?->textContent)->toContain('TablePro 0.77 in the changelog');
+        expect($main->querySelector('#notes a[href="https://github.com/TableProApp/TablePro/releases/tag/v0.77.0"]')?->textContent)->toContain('TablePro 0.77 on GitHub');
+    });
+
+    it('titles a post without the brand twice, and never as the /ios page is titled', function (): void {
+        expect((string) $this->get('/blog/tablepro-0-77')->getContent())
+            ->toMatch('#<title[^>]*>TablePro 0\.77: SAP HANA and Folders in the Sidebar</title>#');
+
+        // The launch post's own title is the /ios page's; its `seoTitle` is not.
         expect((string) $this->get('/blog/tablepro-for-iphone')->getContent())
-            ->toMatch('#<title[^>]*>TablePro for iPhone and iPad – TablePro Blog</title>#u')
+            ->toMatch('#<title[^>]*>TablePro for iPhone and iPad is on the App Store</title>#')
+            ->toMatch('#<h1[^>]*>(<span[^>]*>)?TablePro for iPhone and iPad(</span>)?</h1>#')
             ->toContain('Correction, October 2, 2026')
             ->toContain('Jump hosts are not supported on iPhone and iPad');
     });
+
+    it('offers the newsletter on the index in the footer’s words', function (string $path, string $title, string $body): void {
+        $main = Dom\HTMLDocument::createFromString((string) $this->get($path)->getContent(), LIBXML_NOERROR)->querySelector('main');
+        $card = $main->querySelector('section:has(input[type="email"])');
+
+        /*
+         * The footer leaves its own copy out on this page, so both are read
+         * from the card. The body is the reviewed one: the list gets an
+         * occasional email, not one for each version.
+         */
+        expect($card?->querySelector('h2')?->textContent)->toBe($title);
+        expect($card->textContent)->toContain($body);
+    })->with([
+        ['/blog', 'Release notes by email', 'Occasional emails with release notes.'],
+        ['/vi/blog', 'Ghi chú phát hành qua email', 'Thỉnh thoảng một email, viết bằng tiếng Anh, về các bản phát hành.'],
+    ]);
 
     it('separates an English-only label from the post title with a real space', function (): void {
         $html = (string) $this->get('/vi/blog')->getContent();

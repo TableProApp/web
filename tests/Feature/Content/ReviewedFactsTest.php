@@ -293,7 +293,7 @@ dataset('reviewed facts', [
     ],
     'the iPhone launch post carries a correction' => [
         'content/en/blog.json',
-        ['Jump hosts are not supported on iPhone and iPad', 'Occasional emails with release notes.'],
+        ['Jump hosts are not supported on iPhone and iPad'],
         ['A short email when a new version ships.'],
     ],
     'the blog (vi) promises no translation' => [

@@ -18,10 +18,11 @@ interface ArticleProps {
  * `AssetSlot`.
  *
  * Each run of prose between two figures is its own `ProseArticle`, and the
- * figures sit between them at the same 704px column. The wrapper is a plain
- * block, so the prose's own margins collapse against a figure's the way they
- * would inside one article. A slot id the manifest does not know renders
- * nothing; AssetManifestTest fails on it first.
+ * figures sit between them at the full 704px column, where a capture links
+ * its widest file (`renderAssetSlot`). The wrapper is a plain block, so the
+ * prose's own margins collapse against a figure's the way they would inside
+ * one article. A slot id the manifest does not know renders nothing;
+ * AssetManifestTest fails on it first.
  *
  * Permalinks are named in the post's own language, like the rest of it.
  */

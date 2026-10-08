@@ -1,7 +1,7 @@
 ---
 slug: tablepro-0-70
 title: "TablePro 0.70: Follow a Foreign Key Without Writing the Join"
-description: The row inspector gets a JSON tab where a foreign key expands into the row it points at, five levels deep. Plus a real JavaScript shell for MongoDB, column reorder on six more engines, cross-connection database copy, and 31 fixes.
+description: The row inspector gets a JSON tab where a foreign key expands into the row it points at, five levels deep. Plus a JavaScript shell for MongoDB.
 date: 2026-09-01
 release: "TablePro 0.70"
 author: TablePro Team

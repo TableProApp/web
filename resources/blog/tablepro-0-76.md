@@ -1,7 +1,7 @@
 ---
 slug: tablepro-0-76
 title: "TablePro 0.76: One AI Session for the Whole Window"
-description: Agent mode hands one AI session the connection window, with its sessions, its conversation and the SQL it ran. Plus a window that opens CSV, JSON and Excel files as tables, MongoDB documents edited whole, and tools from your own MCP servers.
+description: Agent mode hands one AI session the connection window. Plus a window that opens CSV, JSON and Excel files as tables, and tools from your own MCP servers.
 date: 2026-09-28
 release: "TablePro 0.76"
 author: TablePro Team
