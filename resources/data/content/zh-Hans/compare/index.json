@@ -14,6 +14,7 @@
   "bySituation": {
     "title": "按情况选择",
     "lead": "每款一句，链接完整对比。",
+    "tablepro": "想要一款开源客户端，既有原生 Mac 应用，又有独立的 iPhone 和 iPad 应用，选择 TablePro。AI 助手和 MCP 服务器在 Mac 应用中免费，还可从 {apps} 导入已存连接。",
     "items": {
       "tableplus": "也在 Windows、Linux 工作，或连接 Vertica、Greenplum，选择 TablePlus。",
       "dbeaver": "需要 Windows、macOS、Linux 免费客户端，连接任何有 JDBC 驱动的引擎，选择 DBeaver。",
@@ -62,6 +63,7 @@
     "sourcesLink": "来源",
     "shortAnswer": {
       "title": "简要选择",
+      "lead": "在 Mac 上寻找 {name} 的替代方案？下面列出两款客户端各自适合的情况。",
       "tablepro": "适合选择 TablePro 的情况",
       "competitor": "适合选择 {name} 的情况"
     },
@@ -84,8 +86,8 @@
       "import": "迁移至 TablePro"
     },
     "cell": {
-      "yes": "支持",
-      "no": "不支持",
+      "yes": "有",
+      "no": "无",
       "partial": "部分支持",
       "edition": "在 {edition} 版本提供",
       "since": "从版本 {version} 起",
@@ -201,6 +203,7 @@
       "switching": "从 {name} 迁移",
       "faq": "常见问题",
       "sources": "来源",
+      "more": "更多对比",
       "cta": "获取 TablePro"
     },
     "switching": {
@@ -210,7 +213,8 @@
       "intro": "{name} 的事实于 {date} 对照这些页面检查。价格为税前美元标价。",
       "retrieved": "确认于 {date}",
       "latest": "当时最新 {name} 版本：{version}，发布于 {date}。",
-      "tablepro": "TablePro 一栏描述 Mac 的 {macVersion} 及 iPhone、iPad 的 {iosVersion}。"
+      "tablepro": "TablePro 一栏描述 Mac 的 {macVersion} 及 iPhone、iPad 的 {iosVersion}。",
+      "trademarks": "TablePro 是独立的开源项目，与此处所比较产品的开发者没有关联，也未获其认可。产品名称是其各自所有者的商标。"
     },
     "cta": {
       "body": "TablePro 可免费下载，付费方案为 Mac 应用添加可选功能。",

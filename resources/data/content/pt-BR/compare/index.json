@@ -14,6 +14,7 @@
     "bySituation": {
         "title": "Escolha conforme sua situação",
         "lead": "Uma linha para cada cliente, com um link para a comparação completa.",
+        "tablepro": "Escolha TablePro se quer um cliente de código aberto com um app nativo para Mac e outro separado para iPhone e iPad. O assistente de IA e o servidor MCP são gratuitos no app para Mac, e TablePro importa conexões salvas de {apps}.",
         "items": {
             "tableplus": "Escolha TablePlus se também trabalha em Windows ou Linux, ou se conecta a Vertica ou Greenplum.",
             "dbeaver": "Escolha DBeaver se quer um cliente gratuito para Windows, macOS e Linux que conecta a qualquer mecanismo com driver JDBC.",
@@ -62,6 +63,7 @@
         "sourcesLink": "Fontes",
         "shortAnswer": {
             "title": "Resposta direta",
+            "lead": "Procurando uma alternativa a {name} no Mac? Veja em que casos cada cliente se encaixa.",
             "tablepro": "Escolha TablePro se",
             "competitor": "Escolha {name} se"
         },
@@ -84,8 +86,8 @@
             "import": "Migração para TablePro"
         },
         "cell": {
-            "yes": "Suportado",
-            "no": "Não suportado",
+            "yes": "Sim",
+            "no": "Não",
             "partial": "Parcial",
             "edition": "Na edição {edition}",
             "since": "Desde a versão {version}",
@@ -201,6 +203,7 @@
             "switching": "Migração de {name}",
             "faq": "Perguntas",
             "sources": "Fontes",
+            "more": "Mais comparações",
             "cta": "Baixe TablePro"
         },
         "switching": {
@@ -210,7 +213,8 @@
             "intro": "As informações de {name} foram verificadas em {date} nestas páginas. Os preços são os de tabela, em dólares americanos, antes dos impostos.",
             "retrieved": "verificado em {date}",
             "latest": "Última versão de {name} nessa data: {version}, publicada em {date}.",
-            "tablepro": "A coluna TablePro descreve TablePro {macVersion} para Mac e {iosVersion} para iPhone e iPad."
+            "tablepro": "A coluna TablePro descreve TablePro {macVersion} para Mac e {iosVersion} para iPhone e iPad.",
+            "trademarks": "TablePro é um projeto independente de código aberto, sem afiliação com os criadores dos produtos comparados aqui e sem o endosso deles. Os nomes dos produtos são marcas de seus respectivos proprietários."
         },
         "cta": {
             "body": "TablePro é gratuito para baixar. Planos pagos adicionam recursos opcionais ao app para Mac.",

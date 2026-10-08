@@ -14,6 +14,7 @@
     "bySituation": {
         "title": "Pilih sesuai kebutuhan",
         "lead": "Satu baris untuk setiap klien, dengan tautan ke perbandingan lengkap.",
+        "tablepro": "Pilih TablePro jika Anda menginginkan klien sumber terbuka dengan aplikasi Mac native dan aplikasi terpisah untuk iPhone dan iPad. Asisten AI dan server MCP gratis dalam aplikasi Mac, dan TablePro mengimpor koneksi tersimpan dari {apps}.",
         "items": {
             "tableplus": "Pilih TablePlus jika Anda juga bekerja di Windows atau Linux, atau terhubung ke Vertica maupun Greenplum.",
             "dbeaver": "Pilih DBeaver jika Anda menginginkan klien gratis untuk Windows, macOS, dan Linux yang terhubung ke mesin apa pun dengan driver JDBC.",
@@ -62,6 +63,7 @@
         "sourcesLink": "Sumber",
         "shortAnswer": {
             "title": "Jawaban singkat",
+            "lead": "Mencari alternatif {name} di Mac? Berikut kapan masing-masing klien cocok.",
             "tablepro": "Pilih TablePro jika",
             "competitor": "Pilih {name} jika"
         },
@@ -84,8 +86,8 @@
             "import": "Beralih ke TablePro"
         },
         "cell": {
-            "yes": "Didukung",
-            "no": "Tidak didukung",
+            "yes": "Ya",
+            "no": "Tidak",
             "partial": "Sebagian",
             "edition": "Pada edisi {edition}",
             "since": "Sejak versi {version}",
@@ -201,6 +203,7 @@
             "switching": "Beralih dari {name}",
             "faq": "Pertanyaan",
             "sources": "Sumber",
+            "more": "Perbandingan lainnya",
             "cta": "Unduh TablePro"
         },
         "switching": {
@@ -210,7 +213,8 @@
             "intro": "Fakta tentang {name} diperiksa pada {date} berdasarkan halaman ini. Harga adalah harga daftar dalam dolar AS, sebelum pajak.",
             "retrieved": "diperiksa pada {date}",
             "latest": "Rilis {name} terbaru pada tanggal itu: {version}, diterbitkan {date}.",
-            "tablepro": "Kolom TablePro menjelaskan TablePro {macVersion} untuk Mac dan {iosVersion} untuk iPhone dan iPad."
+            "tablepro": "Kolom TablePro menjelaskan TablePro {macVersion} untuk Mac dan {iosVersion} untuk iPhone dan iPad.",
+            "trademarks": "TablePro adalah proyek sumber terbuka independen yang tidak berafiliasi dengan dan tidak didukung oleh pembuat produk yang dibandingkan di sini. Nama produk adalah merek dagang pemiliknya masing-masing."
         },
         "cta": {
             "body": "TablePro gratis diunduh. Paket berbayar menambahkan fitur opsional ke aplikasi Mac.",

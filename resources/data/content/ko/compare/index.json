@@ -14,6 +14,7 @@
   "bySituation": {
     "title": "상황별 선택",
     "lead": "클라이언트별 한 줄 설명이 전체 비교로 연결됩니다.",
+    "tablepro": "네이티브 Mac 앱과 별도의 iPhone·iPad 앱이 있는 오픈 소스 클라이언트를 원하면 TablePro입니다. AI 도우미와 MCP 서버는 Mac 앱에서 무료이며, {apps}의 저장된 연결을 가져올 수 있습니다.",
     "items": {
       "tableplus": "Windows·Linux도 쓰거나 Vertica·Greenplum에 연결하면 TablePlus를 고르세요.",
       "dbeaver": "Windows·macOS·Linux에서 JDBC 드라이버가 있는 모든 엔진에 연결할 무료 클라이언트를 원하면 DBeaver입니다.",
@@ -62,6 +63,7 @@
     "sourcesLink": "출처",
     "shortAnswer": {
       "title": "간단한 선택 기준",
+      "lead": "Mac에서 {name}의 대안을 찾고 있나요? 각 클라이언트가 맞는 경우를 정리했습니다.",
       "tablepro": "TablePro가 맞는 경우",
       "competitor": "{name}가 맞는 경우"
     },
@@ -84,8 +86,8 @@
       "import": "TablePro로 이전"
     },
     "cell": {
-      "yes": "지원",
-      "no": "지원하지 않음",
+      "yes": "있음",
+      "no": "없음",
       "partial": "부분 지원",
       "edition": "{edition} 에디션에서 제공",
       "since": "{version} 버전부터",
@@ -201,6 +203,7 @@
       "switching": "{name}에서 이전",
       "faq": "질문",
       "sources": "출처",
+      "more": "다른 비교",
       "cta": "TablePro 받기"
     },
     "switching": {
@@ -210,7 +213,8 @@
       "intro": "{name} 사실은 {date}에 이 페이지로 확인했습니다. 가격은 세전 미국 달러 정가입니다.",
       "retrieved": "{date} 확인",
       "latest": "해당 날짜 최신 {name}: {date} 출시한 {version}.",
-      "tablepro": "TablePro 열은 Mac용 {macVersion}·iPhone·iPad용 {iosVersion}을 설명합니다."
+      "tablepro": "TablePro 열은 Mac용 {macVersion}·iPhone·iPad용 {iosVersion}을 설명합니다.",
+      "trademarks": "TablePro는 독립적인 오픈 소스 프로젝트로, 여기서 비교하는 제품의 개발사와 제휴하지 않았으며 그들의 보증을 받지도 않았습니다. 제품 이름은 각 소유자의 상표입니다."
     },
     "cta": {
       "body": "TablePro는 무료 다운로드입니다. 유료 플랜은 Mac 앱 선택 기능을 추가합니다.",
