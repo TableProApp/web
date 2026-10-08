@@ -300,6 +300,11 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                             </LocaleLink>
                         </li>
                         <li>
+                            <LocaleLink href="/security" className={LINK}>
+                                {groups.legal.security}
+                            </LocaleLink>
+                        </li>
+                        <li>
                             <LocaleLink href="/terms" className={LINK}>
                                 {groups.legal.terms}
                             </LocaleLink>

@@ -39,6 +39,7 @@ export default {
         "legal": {
             "title": "Legal",
             "privacy": "Privacidad",
+            "security": "Seguridad",
             "terms": "Condiciones",
             "refund": "Política de reembolso",
             "cookies": "Configuración de cookies"

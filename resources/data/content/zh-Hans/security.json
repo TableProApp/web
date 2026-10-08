@@ -1,0 +1,265 @@
+{
+    "seo": {
+        "title": "安全与漏洞报告",
+        "description": "TablePro 将凭据保存在哪里、应用发送什么、如何签名和更新、Safe Mode 保护到什么程度，以及如何报告安全漏洞。"
+    },
+    "og": {
+        "kicker": "安全",
+        "title": "TablePro 的安全"
+    },
+    "header": {
+        "title": "安全",
+        "lead": "TablePro 将您的凭据保存在哪里、应用发送什么、如何签名和更新，以及每一层保护止于何处。"
+    },
+    "breadcrumb": "安全",
+    "jump": "本页内容",
+    "limits": "值得了解的限制",
+    "more": "了解更多",
+    "sections": [
+        {
+            "id": "credentials",
+            "title": "凭据保存在哪里",
+            "items": [
+                {
+                    "id": "mac-keychain",
+                    "title": "Mac 上",
+                    "text": "密码、密钥口令、AI 提供商的 API 密钥和许可证密钥保存在 macOS 钥匙串中。磁盘上的连接列表不含密码，SSH 密钥仍是磁盘上的文件。"
+                },
+                {
+                    "id": "ios-keychain",
+                    "title": "iPhone 和 iPad 上",
+                    "text": "密码和粘贴的 SSH 密钥保存在钥匙串中。"
+                },
+                {
+                    "id": "icloud",
+                    "title": "iCloud Sync",
+                    "text": "iCloud Sync 默认关闭。记录存入您自己 iCloud 账户中的私有数据库，TablePro 无法读取，且不含密码。只有同时开启 Mac 上的<ui>密码</ui>（Passwords）或 iPhone 和 iPad 上的<ui>同步密码</ui>（Sync Passwords），密码才会同步，并经由 iCloud 钥匙串传输。"
+                },
+                {
+                    "id": "not-sent",
+                    "title": "TablePro 会收到什么",
+                    "text": "您运行的查询、查询结果和您的密码不会发送给 TablePro。唯一的例外是您选择发布到的 Team Library：它会收到连接设置和已保存的查询，但从不包含密码。"
+                }
+            ],
+            "limits": [
+                "在 Mac 上，密码同步还会同步 AI 提供商的 API 密钥和许可证密钥。",
+                "1Password 或 Shell 命令等密码来源会在每次连接时在您的 Mac 上运行一个程序。"
+            ],
+            "links": [
+                {
+                    "label": "凭据和密码来源",
+                    "href": "/features/connections#credentials"
+                },
+                {
+                    "label": "iCloud Sync 同步哪些内容",
+                    "href": "/features/sync-and-teams#icloud-sync"
+                }
+            ]
+        },
+        {
+            "id": "network",
+            "title": "哪些内容会离开您的设备",
+            "items": [
+                {
+                    "id": "your-servers",
+                    "title": "发往您的服务器和提供商",
+                    "text": "查询和结果在应用与您自己的数据库服务器之间传输，从不经过 TablePro。AI 请求直接发往您添加的提供商。"
+                },
+                {
+                    "id": "to-tablepro",
+                    "title": "发往 TablePro",
+                    "text": "未激活许可证时，Mac 应用向 TablePro 发出的唯一请求是每日使用报告，默认开启，可在设置中关闭。iPhone 和 iPad 除非开启 Share Usage Data，否则不向 TablePro 发送信息。报告从不包含主机名、用户名、密码、查询或行数据，两款应用也都不含崩溃报告工具或第三方分析库。"
+                }
+            ],
+            "limits": [
+                "Mac 应用发送第一份使用报告前不会询问，我们的服务器会保存每份报告和每次许可证验证的 IP 地址。"
+            ],
+            "links": [
+                {
+                    "label": "隐私政策：Mac 应用发送什么",
+                    "href": "/privacy#mac-app"
+                },
+                {
+                    "label": "隐私政策：iPhone 和 iPad 应用发送什么",
+                    "href": "/privacy#ios-app"
+                },
+                {
+                    "label": "所有外发请求",
+                    "docs": "/security/privacy"
+                }
+            ]
+        },
+        {
+            "id": "distribution",
+            "title": "应用如何到达您手中",
+            "items": [
+                {
+                    "id": "signing",
+                    "title": "签名与公证",
+                    "text": "Mac 版本使用 Developer ID 签名，启用 Hardened Runtime，并经 Apple 公证。磁盘映像发布在 GitHub Releases，每个都附有 SHA-256 校验和。Homebrew cask 下载同一映像并核对其 SHA-256。"
+                },
+                {
+                    "id": "updates",
+                    "title": "更新",
+                    "text": "Mac 应用通过 Sparkle 更新，并在安装每个更新前使用应用内置的公钥验证其 EdDSA 签名。此项验证无法关闭。自动更新可以关闭，可在设置中或通过配置描述文件操作。"
+                },
+                {
+                    "id": "plugins",
+                    "title": "驱动插件",
+                    "text": "未随 Mac 应用提供的驱动从 GitHub 下载。每个驱动都必须与插件注册表中的 SHA-256 一致，并带有有效的代码签名：TablePro 自己的签名，或您明确同意信任的其他开发者的 Developer ID。"
+                },
+                {
+                    "id": "app-store",
+                    "title": "iPhone 和 iPad",
+                    "text": "iPhone 和 iPad 应用在 App Store 上提供，更新也由 App Store 推送。驱动已内置，应用不下载任何插件。"
+                }
+            ],
+            "limits": [
+                "Mac 应用不使用 macOS App Sandbox，而是以您的用户账户对文件和网络的访问权限运行。",
+                "驱动插件作为 TablePro 的一部分运行，可以读取您打开的每个连接的凭据。"
+            ],
+            "links": [
+                {
+                    "label": "下载与更新",
+                    "href": "/download#updates"
+                },
+                {
+                    "label": "受管理的更新",
+                    "docs": "/security/managed-updates"
+                },
+                {
+                    "label": "插件",
+                    "docs": "/features/plugins"
+                }
+            ]
+        },
+        {
+            "id": "safe-mode",
+            "title": "什么能防止数据库误操作",
+            "items": [
+                {
+                    "id": "levels",
+                    "title": "Safe Mode 级别",
+                    "text": "每个连接都有 Safe Mode 级别：{macSafeModeLevels}。Alert 在写入前询问，Safe Mode 级别还要求 Touch ID 或 Mac 密码，Full 级别在读取前也会询问，Read-Only 拒绝写入。组织可通过配置描述文件为其 Mac 强制设定最低级别。iPhone 和 iPad 上的级别为 {iosSafeModeLevels}。"
+                },
+                {
+                    "id": "destructive",
+                    "title": "破坏性语句",
+                    "text": "在 Mac 上的任何级别，DROP、TRUNCATE 和无 WHERE 的 DELETE 都会停下并先询问，同时显示完整语句。"
+                }
+            ],
+            "limits": [
+                "Safe Mode 在 TablePro 内部运行，用于防止误操作。它不是沙盒，也不是权限系统：必须严格执行的规则，请使用数据库自身的权限。",
+                "新连接默认为 {macSafeModeDefault}，语句按原样执行，无 WHERE 的 UPDATE 也一样。",
+                "在聊天的 Edit 和 Agent 模式下，AI 助手可以执行语句，在 {macSafeModeDefault} 级别下它的写入无需询问。占用整个窗口的 Agent mode 会让连接保持 Alert 或更严格的级别，但这只是提醒，不是锁定。"
+            ],
+            "links": [
+                {
+                    "label": "生产连接的 Safe Mode",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "聊天模式与 Agent mode",
+                    "href": "/features/ai-mcp#agent-mode"
+                },
+                {
+                    "label": "Safe Mode",
+                    "docs": "/features/safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "MCP 服务器",
+            "items": [
+                {
+                    "id": "local",
+                    "title": "仅限本地",
+                    "text": "MCP 服务器只在 Mac 应用中提供，在您手动开启或已配置的客户端启动它之前保持关闭。它监听 {mcpHost}，没有远程模式，客户端也从不会看到密码。"
+                },
+                {
+                    "id": "approval",
+                    "title": "客户端如何获得批准",
+                    "text": "默认情况下，每个请求都需要带有范围（Read Only、Read & Write 或 Full Access）的令牌；客户端首次访问某个连接时，Mac 上的对话框会询问您。"
+                },
+                {
+                    "id": "permissions",
+                    "title": "客户端可以做什么",
+                    "text": "每个连接决定外部客户端可以做什么：Blocked、Read Only（默认）或 Read & Write。写入仍需经过该连接的 Safe Mode 级别，DROP 和 TRUNCATE 每次都需要 Full Access 令牌和您的批准，每次调用都会记录在您的 Mac 上。"
+                }
+            ],
+            "limits": [
+                "{mcpHost} 表示服务器监听的位置，而不是谁能访问它。您 Mac 上的任何程序都能连接，在 claude.ai 或 app.cursor.com 上打开的页面也可以。它们都仍需要令牌，因此请保持要求身份验证。",
+                "客户端读取的内容会按其 AI 服务的条款发送给该服务。"
+            ],
+            "links": [
+                {
+                    "label": "MCP 服务器与客户端权限",
+                    "href": "/features/ai-mcp#mcp"
+                },
+                {
+                    "label": "MCP 令牌与范围",
+                    "docs": "/external-api/tokens"
+                }
+            ]
+        },
+        {
+            "id": "open-source",
+            "title": "开源",
+            "items": [
+                {
+                    "id": "source",
+                    "title": "代码公开",
+                    "text": "两款应用均采用 AGPLv3 开源，包括付费功能的代码。本页描述的内容都能在仓库中查阅，签名和公证每个版本的脚本也在其中，您还可以自行构建 Mac 应用。"
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "GitHub 上的源代码",
+                    "to": "github"
+                },
+                {
+                    "label": "AGPLv3 许可证全文",
+                    "to": "license"
+                },
+                {
+                    "label": "从源代码构建",
+                    "docs": "/development/building"
+                }
+            ]
+        },
+        {
+            "id": "report",
+            "title": "报告漏洞",
+            "items": [
+                {
+                    "id": "contact",
+                    "title": "如何报告",
+                    "text": "请发送邮件至 <email>{email}</email>，或<advisory>在 GitHub 上私下报告</advisory>，使用英语或越南语均可。请勿为漏洞创建公开的 issue、讨论或 pull request。"
+                },
+                {
+                    "id": "include",
+                    "title": "需要提供的信息",
+                    "text": "受影响的对象及其版本：Mac 应用、iPhone 和 iPad 应用、插件或本网站。另请提供 macOS 或 iOS 版本、涉及驱动时的数据库类型、复现步骤或概念验证，以及攻击者能获得什么。"
+                },
+                {
+                    "id": "fixes",
+                    "title": "哪些版本会得到修复",
+                    "text": "只有每个应用和插件的最新版本会获得安全修复，因此报告前请确认问题在最新版本中仍然存在。"
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "GitHub 上的安全策略",
+                    "to": "securityPolicy"
+                },
+                {
+                    "label": "security.txt",
+                    "to": "securityTxt"
+                }
+            ]
+        }
+    ]
+}

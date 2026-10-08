@@ -269,7 +269,7 @@ it('mounts every localized route once per locale, under the same name', function
 
 it('never lets a slug list swallow a root path or a locale prefix', function (): void {
     $reserved = [
-        'ios', 'download', 'pricing', 'faq', 'about', 'privacy', 'terms', 'refund-policy', 'blog', 'features',
+        'ios', 'download', 'pricing', 'faq', 'about', 'security', 'privacy', 'terms', 'refund-policy', 'blog', 'features',
         'databases', 'compare', 'robots.txt', 'sitemap.xml', 'up', 'account', 'checkout', 'og', 'images', 'build',
         ...array_filter(array_column(Locales::all(), 'prefix')),
     ];
