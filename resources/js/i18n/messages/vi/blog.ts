@@ -3,6 +3,8 @@ import type { Messages } from '../../types.ts';
 export default {
     index: {
         empty: 'Chưa có bài viết nào.',
+        guides: 'Hướng dẫn',
+        releases: 'Ghi chú phát hành',
     },
     latest: 'Một số phiên bản còn có bài viết trên blog. Bài mới nhất là <post>{title}</post>.',
     post: {

@@ -2,7 +2,9 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "index": {
-        "empty": "Belum ada artikel."
+        "empty": "Belum ada artikel.",
+        "guides": "Panduan",
+        "releases": "Catatan rilis"
     },
     "latest": "Sebagian rilis juga dibahas dalam artikel di blog. Yang terbaru adalah <post>{title}</post>.",
     "post": {

@@ -2,7 +2,9 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "index": {
-        "empty": "아직 게시물이 없습니다."
+        "empty": "아직 게시물이 없습니다.",
+        "guides": "가이드",
+        "releases": "릴리스 노트"
     },
     "latest": "일부 릴리스는 블로그 글로도 소개합니다. 최신 글은 <post>{title}</post>입니다.",
     "post": {

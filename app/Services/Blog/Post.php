@@ -15,7 +15,7 @@ use Carbon\CarbonImmutable;
  *
  * `date` is the original publication date from the front matter, and never
  * changes. `release` names what a release post announced ("TablePro 0.74"),
- * for the archive note above it; null for a post that announced no release.
+ * for the archive note above it; null for a guide, which announces nothing.
  * `tags` rank related posts and name the pages a post links (`PostTopics`);
  * the pages do not print them. `seoTitle` replaces the title in `<title>`
  * only. The body is not held here: `BlogService::html()` renders it for the
@@ -38,6 +38,18 @@ final readonly class Post
         public ?string $seoTitle = null,
     ) {}
 
+    public const KIND_GUIDE = 'guide';
+
+    public const KIND_RELEASE = 'release';
+
+    /**
+     * `release` for a post that announced a release, `guide` for every other.
+     */
+    public function kind(): string
+    {
+        return $this->release === null ? self::KIND_GUIDE : self::KIND_RELEASE;
+    }
+
     /**
      * The post's root-relative URL in its own language.
      */
@@ -59,13 +71,14 @@ final readonly class Post
     /**
      * What a list of posts shows for this one, on a page in `$pageLocale`.
      *
-     * @return array{slug: string, locale: string, title: string, description: string, date: string, dateFormatted: string, url: string}
+     * @return array{slug: string, locale: string, kind: string, title: string, description: string, date: string, dateFormatted: string, url: string}
      */
     public function summary(string $pageLocale): array
     {
         return [
             'slug' => $this->slug,
             'locale' => $this->locale,
+            'kind' => $this->kind(),
             'title' => $this->title,
             'description' => $this->description,
             'date' => $this->date->toDateString(),

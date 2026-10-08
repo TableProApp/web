@@ -157,9 +157,10 @@ it('declares reciprocal alternates and a self canonical on a real pair', functio
 });
 
 it('sends the switcher to the nearest index when a page has no translation', function (): void {
-    // A post that is still a page: a post merged elsewhere answers 301 and has no registry entry (sitemap §C.5).
+    // An English-only post that is still a page: a post merged elsewhere answers 301 and has no registry entry (sitemap §C.5).
     $slug = pathinfo((string) collect(glob(resource_path('blog/*.md')))->first(
-        fn(string $post): bool => ! app(RedirectMap::class)->retires('/blog/' . pathinfo($post, PATHINFO_FILENAME)),
+        fn(string $post): bool => ! is_file(resource_path('blog/vi/' . basename($post)))
+            && ! app(RedirectMap::class)->retires('/blog/' . pathinfo($post, PATHINFO_FILENAME)),
     ), PATHINFO_FILENAME);
 
     $before = app(LocaleSwitcher::class)->forRequest(matchedRequest("/blog/{$slug}", 'en'));
