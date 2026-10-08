@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Daten ändern mit Preview SQL und Safe Mode",
-        "description": "Zeilen filtern und ändern, SQL vor dem Speichern prüfen und den Safe Mode pro Verbindung wählen. Data Rewind stellt alte Werte wieder her."
+        "description": "Zeilen filtern und ändern, SQL vor dem Speichern prüfen und pro Verbindung eine Safe-Mode-Stufe wählen. Data Rewind stellt ersetzte Werte wieder her."
     },
     "og": {
         "kicker": "Daten bearbeiten",
@@ -9,22 +9,22 @@
     },
     "header": {
         "title": "Daten sicher durchsuchen und bearbeiten",
-        "lead": "Für die direkte Arbeit mit Zeilen: die richtigen finden, einige Werte ändern und dabei auf einer Produktionsdatenbank Überraschungen vermeiden. Änderungen warten bis zum Speichern; jede Verbindung bestimmt die Vorsicht vor einer Anweisung.",
+        "lead": "Für die direkte Arbeit mit Zeilen: die richtigen finden, einige Werte ändern und dabei auf einer Produktionsdatenbank Überraschungen vermeiden. Änderungen warten bis zum Speichern, und jede Verbindung legt fest, wie vorsichtig TablePro ist, bevor eine Anweisung ausgeführt wird.",
         "docs": "/features/change-tracking"
     },
     "sections": [
         {
             "id": "browse",
-            "title": "Finde die benötigten Zeilen",
+            "title": "Die Zeilen finden, die du brauchst",
             "paragraphs": [
-                "Sortierung und Seiteneinteilung laufen auf dem Server; große Tabellen öffnen daher ihre erste Seite. Über {countEstimate} Zeilen wird die Anzahl geschätzt. Count Exactly liefert bei Bedarf die tatsächliche Zahl."
+                "Sortieren und Blättern laufen auf dem Server; eine große Tabelle öffnet sich daher mit ihrer ersten Seite. Über {countEstimate} Zeilen wird die Anzahl geschätzt. Count Exactly liefert bei Bedarf die tatsächliche Zahl."
             ],
             "blocks": [
                 {
                     "id": "filters",
                     "title": "Filter und Hervorhebungsregeln",
                     "paragraphs": [
-                        "Die Filterleiste (<kbd>⌘⇧F</kbd>) erstellt eine WHERE-Klausel aus {filterOperatorCount} Operatoren, von = und BETWEEN bis REGEX, oder nimmt eine direkte SQL-Bedingung an. Speichere einen Tabellenfilter und hole ihn später ohne Ausführung zurück. Hervorhebungsregeln färben Zeilen oder Zellen nach Werten, wie bedingte Formatierung in Tabellenkalkulationen, und bleiben auf diesem Mac."
+                        "Die Filterleiste (<kbd>⌘⇧F</kbd>) erstellt eine WHERE-Klausel aus {filterOperatorCount} Operatoren, von = und BETWEEN bis REGEX, oder akzeptiert eine frei formulierte SQL-Bedingung. Speichere einen Filter für eine Tabelle und hole ihn später zurück, ohne ihn auszuführen. Hervorhebungsregeln färben Zeilen oder Zellen nach Werten, wie bedingte Formatierung in Tabellenkalkulationen, und bleiben auf diesem Mac."
                     ],
                     "asset": "mac-grid-highlight-rules"
                 },
@@ -32,7 +32,7 @@
                     "id": "foreign-keys",
                     "title": "Fremdschlüssel und JSON",
                     "paragraphs": [
-                        "Folge einem Fremdschlüssel zur zugehörigen Zeile in einem neuen Tab oder zeige sie in einem Popover. Beim Bearbeiten einer Fremdschlüsselspalte listet die Auswahl die referenzierten Zeilen nach gewählten Spalten, etwa Nach- und Vorname eines Kunden. JSON-Werte öffnen in einem Betrachter mit Baum zur Navigation und Textmodus zum Bearbeiten."
+                        "Folge einem Fremdschlüssel zur zugehörigen Zeile in einem neuen Tab oder sieh sie dir als Vorschau in einem Popover an. Beim Bearbeiten einer Fremdschlüsselspalte listet die Werteauswahl die referenzierten Zeilen anhand der Spalten auf, die du wählst, etwa Nach- und Vorname eines Kunden. JSON-Werte öffnen sich in einem Viewer mit Baumansicht zur Orientierung und Textmodus zum Bearbeiten."
                     ],
                     "asset": "mac-fk-picker"
                 }
@@ -42,7 +42,7 @@
             "id": "edit",
             "title": "Daten ändern, einmal speichern",
             "paragraphs": [
-                "Zellenänderungen, neue Zeilen und Löschungen warten markiert im Tab bis <kbd>⌘S</kbd>; vorher wird nichts gesendet. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) zeigt Anweisungen mit eingesetzten Werten. Beim Speichern werden sie mit gebundenen Parametern gesendet, soweit möglich in einer Transaktion. Die erwartete Zeilenzahl jeder Änderung wird geprüft; bei Abweichung wird das Speichern zurückgerollt."
+                "Zellenänderungen, neue Zeilen und Löschungen warten markiert im Tab, bis du <kbd>⌘S</kbd> drückst; vorher wird nichts gesendet. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) zeigt Anweisungen mit eingesetzten Werten. Beim Speichern werden sie mit gebundenen Parametern gesendet, soweit möglich in einer Transaktion. Dabei wird geprüft, ob jede Anweisung die erwartete Anzahl von Zeilen geändert hat; falls nicht, wird das Speichern zurückgerollt."
             ],
             "points": [
                 "Zelleneditoren passend zum Spaltentyp: Datums- und Zeitauswahl, ENUM- und SET-Listen, Arrays, JSON, Hex-Editor für Binärwerte und Bildbetrachter.",
@@ -56,8 +56,8 @@
             "id": "safe-mode",
             "title": "Safe Mode für Produktionsverbindungen",
             "paragraphs": [
-                "Jede Verbindung hat eine Safe-Mode-Stufe: {macSafeModeLevels}. Neue starten mit {macSafeModeDefault}, wo Anweisungen unverändert ausgeführt werden. Alert fragt vor Schreibvorgängen; die Stufen Safe Mode und Safe Mode (Full) verlangen zusätzlich Touch ID oder Mac-Passwort. Die Stufen mit dem Zusatz (Full) fragen auch vor Lesevorgängen; Read-Only verweigert Schreiben und deaktiviert die Bearbeitung. Der Safe Mode ist kostenlos.",
-                "Auf jeder Stufe stoppen DROP, TRUNCATE und DELETE ohne WHERE und fragen vorher. Manche Bedingungen erhöhen die Stufe während ihrer Geltung: ein nur lesendes System, Agent mode mit mindestens Alert und eine von deiner Organisation per Geräteverwaltung (MDM) gesetzte Mindeststufe."
+                "Jede Verbindung hat eine Safe-Mode-Stufe: {macSafeModeLevels}. Neue Verbindungen starten mit {macSafeModeDefault}; dort werden Anweisungen unverändert ausgeführt. Alert fragt vor Schreibvorgängen; die Stufen Safe Mode und Safe Mode (Full) verlangen zusätzlich Touch ID oder dein Mac-Passwort. Die Stufen mit dem Zusatz (Full) fragen auch vor Lesevorgängen; Read-Only verweigert Schreibvorgänge und deaktiviert die Bearbeitung. Der Safe Mode ist kostenlos.",
+                "Auf jeder Stufe halten DROP, TRUNCATE und ein DELETE ohne WHERE an und fragen zuerst nach. Manches hebt die Stufe einer Verbindung an, solange es gilt: ein System, das nur liest, der Agent mode, der sie auf mindestens Alert anhebt, und eine Mindeststufe, die deine Organisation per Geräteverwaltung (MDM) festlegt."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -75,7 +75,7 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind behält beim Speichern ersetzte Werte, damit <ui>Restore Previous Values</ui> sie zurücksetzt. Ein Prüfblatt zeigt zuerst die Folgen für jede Zeile, auch für danach geänderte Zeilen. Die Wiederherstellung läuft durch den Safe Mode, soweit möglich in einer Transaktion. Eine Wiederherstellung lässt sich ihrerseits wiederherstellen.",
+                "Data Rewind bewahrt die Werte auf, die ein Speichervorgang ersetzt hat, damit <ui>Restore Previous Values</ui> sie wiederherstellen kann. Ein Prüfdialog zeigt zuerst, was mit jeder Zeile geschieht, auch mit Zeilen, die sich nach deinem Speichern geändert haben. Die Wiederherstellung durchläuft den Safe Mode, soweit möglich in einer Transaktion. Eine Wiederherstellung lässt sich ihrerseits wiederherstellen.",
                 "Die Werte bleiben {rewindDays} Tage auf diesem Mac, mit einem Schlüssel aus dem Schlüsselbund verschlüsselt, und werden nie synchronisiert. Nach Tarifende zeichnet TablePro keine Speichervorgänge mehr auf; <ui>Restore Previous Values</ui> zeigt stattdessen einen Hinweis."
             ],
             "paid": [
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Dokumente und Schlüssel",
             "paragraphs": [
-                "Nicht jedes System speichert Zeilen. In MongoDB fügst du ganze Dokumente als Extended JSON ein und bearbeitest sie, entfernst ein Dokumentfeld und benennst oder entfernst ein Feld sammlungsweit im Tab Structure. In Redis benennst du Schlüssel um, setzt TTLs, bearbeitest Zeichenfolgen in der Datentabelle, ergänzt String-, Hash-, List-, Set- oder Sorted-Set-Schlüssel und änderst andere Typen mit Editorbefehlen."
+                "Nicht jedes System speichert Zeilen. In MongoDB fügst du ganze Dokumente als Extended JSON ein und bearbeitest sie, entfernst ein Feld aus einem Dokument und benennst im Tab Structure ein Feld in der ganzen Sammlung um oder entfernst es. In Redis benennst du Schlüssel um, setzt TTLs, bearbeitest String-Werte in der Datentabelle, fügst einen String-, Hash-, List-, Set- oder Sorted-Set-Schlüssel hinzu und änderst die anderen Typen mit Befehlen im Editor."
             ],
             "links": [
                 {
@@ -121,7 +121,7 @@
     ],
     "availability": [
         {
-            "label": "Sortierung, Seiten und Filter",
+            "label": "Sortieren, Blättern und Filtern",
             "ios": "yes"
         },
         {
@@ -162,8 +162,8 @@
         }
     ],
     "limits": [
-        "Data Rewind ist kein Backup. Es macht weder Trigger, Kaskaden noch Änderungen außerhalb von TablePro rückgängig und stellt keine Zeilen ohne Primärschlüssel, Werte über {rewindMaxValue} MB oder serverberechnete Werte wieder her.",
-        "UPDATE ohne WHERE ist ein gewöhnlicher Schreibvorgang: Es fragt nur bei Alert oder strenger vorher.",
+        "Data Rewind ist kein Backup. Es macht weder Trigger noch Kaskaden noch Änderungen außerhalb von TablePro rückgängig und stellt keine Zeilen ohne Primärschlüssel, Werte über {rewindMaxValue} MB oder serverberechnete Werte wieder her.",
+        "Ein UPDATE ohne WHERE ist ein gewöhnlicher Schreibvorgang: Nachgefragt wird nur auf Alert oder einer strengeren Stufe.",
         "Auf {everyStatementWrites} zählt der Safe Mode jede Anweisung als Schreibvorgang; Alert fragt daher auch vor Lesevorgängen und Read-Only blockiert sie.",
         "Das Ergebnis eines Joins, einer CTE oder UNION ist in der Datentabelle schreibgeschützt; öffne zum Bearbeiten die Tabelle."
     ],
@@ -199,7 +199,7 @@
             "href": "/features/schema"
         },
         {
-            "label": "Was ein bezahlter Tarif ergänzt",
+            "label": "Was ein bezahlter Tarif zusätzlich bietet",
             "href": "/pricing#features"
         }
     ]

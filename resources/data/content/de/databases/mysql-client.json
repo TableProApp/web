@@ -33,11 +33,11 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host, Port und Benutzer an oder füge eine <code>mysql://</code>-URL ein. MySQL-8-Konten mit <code>caching_sha2_password</code> verbinden sich beim ersten Versuch. Lasse die Datenbank leer und wähle später eine: Der Wechsel erfolgt direkt auf derselben Verbindung.",
-                "Neue Verbindungen beginnen mit SSL Preferred: TLS wird zuerst versucht, Klartext erst nach einem fehlgeschlagenen TLS-Handshake. Wähle Verify CA oder Verify Identity mit dem Zertifikat deines Anbieters für strikte Prüfung.",
-                "Verbinde einen Server im privaten Netzwerk über einen <network>SSH-Tunnel mit Sprunghosts bei Bedarf, einen SOCKS5-Proxy, einen Cloudflare-Access-Tunnel oder deinen eigenen Tunnelbefehl</network> wie kubectl port-forward.",
+                "Gib Host, Port und Benutzer an oder füge eine <code>mysql://</code>-URL ein. MySQL-8-Konten mit <code>caching_sha2_password</code> verbinden sich beim ersten Versuch. Lass die Datenbank leer und wähle später eine: Der Wechsel erfolgt direkt auf derselben Verbindung.",
+                "Neue Verbindungen beginnen mit SSL Preferred: TLS wird zuerst versucht, Klartext erst nach einem fehlgeschlagenen TLS-Handshake. Für eine strikte Prüfung wähle Verify CA oder Verify Identity mit dem Zertifikat deines Anbieters.",
+                "Einen Server in einem privaten Netzwerk erreichst du über einen <network>SSH-Tunnel, bei Bedarf mit Jump-Hosts, einen SOCKS5-Proxy, einen Cloudflare-Access-Tunnel oder deinen eigenen Tunnelbefehl</network> wie kubectl port-forward.",
                 "Melde dich bei Amazon RDS und Aurora mit <cloudAuth>AWS IAM</cloudAuth> an, das bei jeder Verbindung einen neuen Token signiert, und importiere Instanzen direkt aus deinem AWS-Konto. Für Google Cloud SQL lädt TablePro den Cloud SQL Auth Proxy herunter und führt ihn aus.",
-                "Wechselst du von Sequel Ace? <importApps>Aus anderer App importieren</importApps> liest dessen Favoriten und nach deiner Bestätigung die im Schlüsselbund gespeicherten Passwörter."
+                "Wechselst du von Sequel Ace? <importApps>Import from Other App</importApps> liest dessen Favoriten und nach deiner Bestätigung die im Schlüsselbund gespeicherten Passwörter."
             ]
         },
         {
@@ -46,15 +46,15 @@
             "paragraphs": [
                 "Der SQL-Editor vervollständigt Tabellen- und Spaltennamen aus dem Schema einschließlich Aliasen und CTEs und führt die Anweisung am Cursor oder das ganze Skript aus. <explain>EXPLAIN FORMAT=JSON, EXPLAIN FORMAT=TREE und EXPLAIN ANALYZE</explain> werden als Plandiagramm oder Baum gezeichnet; EXPLAIN Compare zeigt Änderungen zwischen zwei Ausführungen.",
                 "Zeilenänderungen werden bis zum Speichern vorgemerkt, und <editing>Preview SQL</editing> zeigt zuerst die genauen Anweisungen. Speichern nutzt gebundene Parameter und stoppt, wenn eine Anweisung eine unerwartete Zeilenzahl ändern würde. Auch Tabellen ohne Primärschlüssel lassen sich bearbeiten: Die Zeile wird über jede Spalte identifiziert.",
-                "Jede Sitzung nutzt utf8mb4, damit Emojis und nichtlateinische Texte unverändert bleiben. Für Datenbanken, deren Text ein alter Client über Latin 1 schrieb, liest die Kodierung UTF-8 über Latin 1 ihn wie dieser Client.",
-                "Partitionierte Tabellen zeigen ihre Partitionen mit Grenzen wie <code>VALUES LESS THAN (2024)</code>; Tabellen- und Spaltenkommentare erscheinen in der Seitenleiste und den Rasterspaltenköpfen."
+                "Jede Sitzung nutzt utf8mb4, damit Emojis und nichtlateinische Texte beim Lesen und Schreiben unverändert bleiben. Für eine Datenbank, deren Text ein alter Client über Latin 1 geschrieben hat, liest die Kodierung UTF-8 via Latin 1 ihn so, wie dieser Client es tat.",
+                "Partitionierte Tabellen zeigen ihre Partitionen mit Grenzen wie <code>VALUES LESS THAN (2024)</code>; Tabellen- und Spaltenkommentare erscheinen in der Seitenleiste und in den Spaltenköpfen der Datentabelle."
             ]
         },
         {
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "Der <structure>Structure-Tab</structure> merkt Änderungen an Spalten, Indizes, Fremdschlüsseln, CHECK-Bedingungen und generierten Spalten vor und zeigt das DDL vor Ausführung. Indexschlüssel über Ausdrücke wie <code>lower(email)</code> brauchen MySQL 8.0.13 oder neuer.",
+                "Der <structure>Structure-Tab</structure> merkt Änderungen an Spalten, Indizes, Fremdschlüsseln, CHECK-Bedingungen und generierten Spalten vor und zeigt das DDL vor der Ausführung. Indexschlüssel über Ausdrücke wie <code>lower(email)</code> brauchen MySQL 8.0.13 oder neuer.",
                 "Routinen und Trigger erscheinen mit ihrem Quelltext in der Seitenleiste. Das <erDiagram>ER-Diagramm</erDiagram> zeichnet das Schema als schreibgeschütztes Bild, das du als PNG oder SQL exportieren kannst.",
                 "<compareSync>Compare & Sync</compareSync>, Teil des Tarifs {compareSyncTier}, vergleicht zwei MySQL- oder MariaDB-Schemas oder deren Daten und schreibt ein Skript zum Abgleichen. Änderungen mit Datenverlust werden zurückgehalten, bis du sie einbeziehst."
             ]
@@ -63,11 +63,11 @@
             "id": "operate",
             "title": "Verwalten",
             "paragraphs": [
-                "<administer>Users & Roles</administer> zeigt die Rechte jedes Kontos bis zu einzelnen Spalten und merkt jedes GRANT und REVOKE als SQL vor, das du vor Ausführung liest.",
+                "<administer>Users & Roles</administer> zeigt die Rechte jedes Kontos bis zu einzelnen Spalten und merkt jedes GRANT und REVOKE als SQL vor, das du vor der Ausführung liest.",
                 "Das Server-Dashboard listet Sitzungen, Servermetriken und langsame Abfragen, alle paar Sekunden aktualisiert. Es bricht Abfragen mit <code>KILL QUERY</code> ab oder beendet Sitzungen mit <code>KILL</code>. Ein Konto ohne PROCESS-Recht sieht nur eigene Sitzungen.",
                 "Tabellenwartung führt OPTIMIZE TABLE, ANALYZE TABLE, CHECK TABLE und REPAIR TABLE aus und zeigt vorher die Anweisung.",
                 "<backup>Backup Dump</backup> führt {dumpTool} aus, Restore Dump den mysql-Client, beides über den SSH-Tunnel der Verbindung. Installiere zuerst die MySQL-Clientwerkzeuge auf deinem Mac. Eine Wiederherstellung ersetzt die im Dump benannten Objekte.",
-                "Um bei Abwesenheit einen Serverplatz freizugeben, lasse die Verbindung nach einigen inaktiven Minuten los; die nächste Abfrage öffnet eine neue. TablePro behält die Verbindung, wenn die Sitzung etwas hält, das beim Neuverbinden verloren ginge, etwa eine offene Transaktion oder temporäre Tabelle."
+                "Damit auf dem Server ein Verbindungsplatz frei wird, während du weg bist, stelle ein, dass sich die Verbindung nach einigen Minuten Inaktivität selbst trennt; die nächste Abfrage öffnet eine neue. TablePro behält die Verbindung, wenn die Sitzung etwas hält, das beim Neuverbinden verloren ginge, etwa eine offene Transaktion oder eine temporäre Tabelle."
             ],
             "asset": "mac-users-roles-mysql"
         },
@@ -76,14 +76,14 @@
             "title": "Daten übertragen",
             "paragraphs": [
                 "<importData>Importiere</importData> {importFormats}-Dateien mit Spaltenzuordnung zur Zieltabelle und wählbarem Verhalten bei einer fehlerhaften Zeile. Exportiere Tabellen oder Ergebnisse als {exportFormats}.",
-                "<copy>Copy To</copy> sendet Tabellen, Daten oder beides an eine andere MySQL-Verbindung oder Engine und listet jeden angenäherten Spaltentyp auf."
+                "<copy>Copy To</copy> sendet Tabellen, Daten oder beides an eine andere Verbindung, auf MySQL oder einem anderen System, und listet jeden Spaltentyp auf, der nur näherungsweise übertragen werden kann."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone und iPad",
             "paragraphs": [
-                "Auf iPhone und iPad durchsuchst du Tabellen als Karten, filterst und sortierst sie, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Abfrage-Tab aus. Verbindungen bieten SSL von Required bis Verify Identity und SSH-Tunnel mit Passwort oder Schlüssel. SSH-Sprunghosts werden dort nicht unterstützt."
+                "Auf iPhone und iPad durchsuchst du Tabellen als Karten, filterst und sortierst sie, bearbeitest Zeilen mit Primärschlüssel und führst SQL im Query-Tab aus. Verbindungen bieten SSL von Required bis Verify Identity und SSH-Tunnel mit Passwort oder Schlüssel. SSH-Jump-Hosts werden dort nicht unterstützt."
             ],
             "asset": "ios-table-browse"
         }
@@ -114,7 +114,7 @@
             "paragraphs": [
                 "Trage den Tenant im Benutzernamen ein: <code>root@test</code> auf einem Observer oder <code>root@test#obcluster</code> über OBProxy, das auf Port 2883 lauscht.",
                 "Beim Verbinden wird geprüft, ob der Server sich als OceanBase meldet; ein falscher Host oder Port schlägt sofort fehl. Das Abfragezeitlimit von TablePro ersetzt OceanBases eigenes Anweisungslimit.",
-                "EXPLAIN zeigt den Plan als Text. Tabellen ohne Primärschlüssel werden über alle Spalten bearbeitet; ein Speichern, das mehrere oder keine Zeilen ändern würde, stoppt mit Meldung.",
+                "EXPLAIN zeigt den Plan als Text. Tabellen ohne Primärschlüssel werden über alle Spalten bearbeitet; ein Speichervorgang, der mehr als eine oder gar keine Zeile ändern würde, bricht mit einem Hinweis ab.",
                 "Wähle OceanBase als Typ: Eine als MySQL gespeicherte Verbindung zu OceanBase erhält nichts davon."
             ]
         },
@@ -122,8 +122,8 @@
             "engine": "databend",
             "title": "Databend",
             "paragraphs": [
-                "Databend verbindet über seinen MySQL-Handler, nicht die HTTP-API. Wähle Databend als Typ; eine MySQL-Verbindung zu einem Databend-Server wird abgelehnt und fordert den Typwechsel.",
-                "Bitte bei Databend Cloud den Support, den MySQL-Endpunkt des Warehouses zu aktivieren, und kopiere Host und Port aus dessen Connect-Dialog.",
+                "TablePro verbindet sich mit Databend über dessen MySQL-Handler, nicht über die HTTP-API. Wähle Databend als Verbindungstyp; eine MySQL-Verbindung zu einem Databend-Server wird abgelehnt, mit der Aufforderung, den Typ zu ändern.",
+                "Bitte bei Databend Cloud den Databend-Support, den MySQL-Endpunkt des Warehouses zu aktivieren, und kopiere dann Host und Port aus dessen Connect-Dialog.",
                 "Der Structure-Tab bearbeitet Spalten und CHECK-Bedingungen und benennt Tabellen, Sichten und Spalten um. EXPLAIN und EXPLAIN ANALYZE zeigen den Plan als Text; Wartung bietet ANALYZE TABLE.",
                 "ARRAY-, MAP- und TUPLE-Zellen lassen sich nicht aus Text schreiben. Ändere sie mit UPDATE im Editor."
             ]
@@ -150,11 +150,11 @@
         {
             "id": "socket",
             "question": "Kann TablePro über einen lokalen MySQL-Socket verbinden?",
-            "answer": "Nein. Verbindungen nutzen TCP, daher muss Netzwerkzugriff auf dem Server aktiviert sein. Leite einen Socket auf einem entfernten Server über einen SSH-Tunnel weiter."
+            "answer": "Nein. Verbindungen nutzen TCP, daher muss auf dem Server der Netzwerkzugriff aktiviert sein. Um einen Socket auf einem entfernten Server zu erreichen, leite ihn über einen SSH-Tunnel weiter."
         },
         {
             "id": "mysqldump",
-            "question": "Brauche ich installierte MySQL-Clientwerkzeuge?",
+            "question": "Muss ich die MySQL-Clientwerkzeuge installieren?",
             "answer": "Nur für Backup Dump und Restore Dump, die {dumpTool} und mysql ausführen. Verbinden, Abfragen und Bearbeiten nutzen den mitgelieferten Treiber."
         },
         {

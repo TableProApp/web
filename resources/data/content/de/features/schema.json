@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Schema, Vergleich und Synchronisierung",
-        "lead": "Für Strukturänderungen und den Gleichlauf zweier Datenbanken. Bearbeite Tabellen mit sichtbarem DDL, sieh ihre Beziehungen, gleiche Staging an Entwicklung an oder kopiere Tabellen zu anderen Servern oder Systemen. Alles steht in der Mac-App bereit. Die iPhone- und iPad-App bietet einen Teil davon.",
+        "lead": "Für Strukturänderungen und dafür, zwei Datenbanken auf demselben Stand zu halten. Bearbeite eine Tabelle mit dem DDL vor Augen, sieh, wie die Tabellen zusammenhängen, gleiche Staging an die Entwicklungsumgebung an oder kopiere Tabellen auf einen anderen Server oder in ein anderes System. Alles steht in der Mac-App bereit. Die iPhone- und iPad-App bietet einen Teil davon.",
         "docs": "/features/table-structure"
     },
     "sections": [
@@ -17,8 +17,8 @@
             "id": "structure",
             "title": "Struktur ändern, DDL zuerst lesen",
             "paragraphs": [
-                "Der Tab Structure bearbeitet Spalten, Indizes, Fremdschlüssel und CHECK-Bedingungen in einer Tabelle. Änderungen warten bis zum Speichern; <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) zeigt vorher die ALTER-TABLE-Anweisungen. Entfernen, Typänderung, NOT NULL und Primärschlüsseländerung fragen vorher, selbst bei {macSafeModeDefault} als Safe-Mode-Stufe.",
-                "Indizes können Ausdrücke wie <code>lower(email)</code> verwenden. New Table erstellt Tabellen ebenso mit laufender SQL-Vorschau. Auf SQLite, libSQL, Turso und Cloudflare D1, die Fremdschlüssel nicht direkt ändern können, erstellt TablePro einen Tabellenneuaufbau zur Prüfung. Nach Bestätigung führt es ihn auf SQLite und lokalen libSQL-Dateien aus; auf Turso, Remote-libSQL und D1 bleibt die Ausführung dir überlassen."
+                "Im Tab Structure bearbeitest du Spalten, Indizes, Fremdschlüssel und CHECK-Bedingungen einer Tabelle in einem Raster. Änderungen warten bis zum Speichern; <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) zeigt vorher die ALTER-TABLE-Anweisungen. Eine Änderung, die etwas entfernt, einen Typ ändert, NOT NULL hinzufügt oder den Primärschlüssel ändert, fragt vorher nach, selbst auf einer Verbindung mit der Safe-Mode-Stufe {macSafeModeDefault}.",
+                "Indizes können Ausdrücke wie <code>lower(email)</code> verwenden. New Table erstellt eine Tabelle auf dieselbe Weise, mit laufender SQL-Vorschau. Auf SQLite, libSQL, Turso und Cloudflare D1, die Fremdschlüssel nicht direkt ändern können, schreibt TablePro ein Skript zum Neuaufbau der Tabelle, das du prüfen kannst. Nach deiner Bestätigung führt TablePro es auf SQLite und lokalen libSQL-Dateien aus; auf Turso, Remote-libSQL und D1 bleibt die Ausführung dir überlassen."
             ],
             "engines": [
                 {
@@ -34,10 +34,10 @@
         },
         {
             "id": "er-diagram",
-            "title": "Sieh die Beziehungen zwischen Tabellen",
+            "title": "Sehen, wie die Tabellen zusammenhängen",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> zeichnet Tabellen und Fremdschlüssel des Schemas mit aus Primär- und eindeutigen Schlüsseln berechneter Krähenfuß-Kardinalität. Verbindungstabellen wie <code>product_tags</code> werden zu einer Viele-zu-viele-Linie zusammengefasst. Exportiere als PNG, kopiere als Bild oder exportiere SQL: CREATE-TABLE-Anweisungen mit Fremdschlüsseln.",
-                "Das Diagramm ist eine Momentaufnahme zum Lesen und Teilen. Tabellen werden im Structure-Tab geändert, nicht auf der Zeichenfläche."
+                "<ui>View ER Diagram</ui> zeichnet die Tabellen und Fremdschlüssel des aktuellen Schemas, mit Krähenfuß-Kardinalität, die aus Primär- und eindeutigen Schlüsseln ermittelt wird. Verbindungstabellen wie <code>product_tags</code> werden zu einer Viele-zu-viele-Linie zusammengefasst. Exportiere das Diagramm als PNG, kopiere es als Bild oder exportiere es als SQL: die CREATE-TABLE-Anweisungen mit ihren Fremdschlüsseln.",
+                "Das Diagramm ist eine Momentaufnahme zum Lesen und Teilen. Tabellen werden im Tab Structure geändert, nicht auf der Zeichenfläche."
             ],
             "asset": "mac-er-diagram"
         },
@@ -45,14 +45,14 @@
             "id": "objects",
             "title": "Routinen, Trigger und Ordner in der Seitenleiste",
             "paragraphs": [
-                "Unter jedem Schema stehen Prozeduren, Funktionen und Trigger, soweit das System sie hat. Ihr Quelltext öffnet schreibgeschützt zum Kopieren oder Öffnen im Editor. Redshift, CockroachDB, PGlite und SAP HANA listen keine auf. PostgreSQL-Partitionen stehen unter ihrer übergeordneten Tabelle."
+                "Unter jedem Schema listet die Seitenleiste Prozeduren, Funktionen und Trigger auf, sofern das System sie kennt, und öffnet ihren Quelltext in einem schreibgeschützten Tab, aus dem du kopieren oder ihn im Editor öffnen kannst. Redshift, CockroachDB, PGlite und SAP HANA listen keine auf. PostgreSQL-Partitionen stehen unter ihrer übergeordneten Tabelle."
             ],
             "blocks": [
                 {
                     "id": "table-folders",
                     "title": "Ordner für Tabellen und Views",
                     "paragraphs": [
-                        "Gruppiere Tabellen und Views per Ziehen oder <ui>Move to</ui> in der Listen- oder Baumansicht der Seitenleiste. Der Filter sucht in Ordnern. Ein Ordner existiert nur in TablePro und ändert nichts auf dem Server; mit iCloud Sync folgt er dir auf andere Macs."
+                        "Gruppiere Tabellen und Views in Ordnern, per Ziehen oder mit <ui>Move to</ui>, in der Listen- oder Baumansicht der Seitenleiste. Das Filterfeld durchsucht auch Ordner. Ein Ordner existiert nur in TablePro und ändert nichts auf dem Server; mit aktiviertem iCloud Sync folgen Ordner dir auf deine anderen Macs."
                     ],
                     "since": "0.77.0"
                 }
@@ -62,8 +62,8 @@
             "id": "compare-sync",
             "title": "Compare & Sync",
             "paragraphs": [
-                "Wähle Quelle und Ziel: zwei Server oder zwei Datenbanken auf einem Server. Compare & Sync listet alle unterschiedlichen Tabellen sowie optional Views, Routinen und Trigger. Im Datenmodus werden Zeilen nach Schlüssel zugeordnet und abweichende Werte markiert, mit Filter und Zeilenlimit je Tabelle für Ausschnitte großer Tabellen.",
-                "Das erzeugte Skript ist nach Fremdschlüsseln geordnet und für den Client des Ziels geschrieben. Datenzerstörende Anweisungen wie Spaltenlöschen, Typverengung oder Zeilenlöschen bleiben zurückgehalten, bis du sie für diesen Lauf erlaubst. Read-Only-Verbindungen können kein Ziel sein. Speichere einen Vergleich für erneute Ausführung mit einem Klick."
+                "Wähle Quelle und Ziel: zwei Server oder zwei Datenbanken auf einem Server. Compare & Sync listet alle unterschiedlichen Tabellen sowie optional Views, Routinen und Trigger. Im Datenmodus werden Zeilen nach Schlüssel zugeordnet und abweichende Werte markiert, mit Filter und Zeilenlimit je Tabelle, sodass du einen Ausschnitt einer großen Tabelle vergleichen kannst.",
+                "Das erzeugte Skript ist nach Fremdschlüsseln geordnet und für den Client des Ziels geschrieben. Anweisungen, die Daten zerstören, etwa das Löschen einer Spalte, das Verengen eines Typs oder das Löschen von Zeilen, werden zurückgehalten, bis du sie für diesen Lauf erlaubst. Eine Verbindung mit Read-Only kann nicht als Ziel gewählt werden. Speichere einen Vergleich, um ihn mit einem Klick erneut auszuführen."
             ],
             "paid": [
                 "compare-sync"
@@ -74,8 +74,8 @@
             "id": "copy",
             "title": "Copy To, Duplicate Database und Transfer To",
             "paragraphs": [
-                "Copy To sendet Tabellen, Views, Routinen und Trigger als Struktur, Daten oder beides an eine andere Datenbank jeder gespeicherten Verbindung, auch eines anderen Systems. Vor dem Schreiben zeigt eine Prüfung DDL, erwartete Zeilen und geänderte Spaltentypen. Eine <code>ENUM</code>-Spalte aus MariaDB kommt zum Beispiel in PostgreSQL als <code>VARCHAR</code> ohne ihre Liste erlaubter Werte an. WHERE und Zeilenlimit je Tabelle kopieren Ausschnitte.",
-                "Duplicate Database kopiert eine ganze Datenbank unter neuem Namen auf derselben Verbindung. Transfer To bewegt Zeilen direkt in eine bestehende Tabelle einer anderen offenen Verbindung, mit Spaltenzuordnung und ohne Zwischendatei. Alle drei sind kostenlos."
+                "Copy To sendet Tabellen, Views, Routinen und Trigger als Struktur, Daten oder beides an eine andere Datenbank auf einer beliebigen gespeicherten Verbindung, auch auf einem anderen System. Bevor etwas geschrieben wird, listet eine Übersicht das DDL, die erwarteten Zeilen jeder Tabelle und jeden Spaltentyp auf, der sich unterwegs ändert. Eine <code>ENUM</code>-Spalte aus MariaDB kommt zum Beispiel in PostgreSQL als <code>VARCHAR</code> ohne ihre Liste erlaubter Werte an. Mit einer WHERE-Klausel und einem Zeilenlimit je Tabelle kopierst du einen Teil einer Tabelle.",
+                "Duplicate Database kopiert eine ganze Datenbank unter neuem Namen auf derselben Verbindung. Transfer To überträgt Zeilen direkt in eine bestehende Tabelle einer anderen offenen Verbindung, mit Spaltenzuordnung und ohne Zwischendatei. Alle drei sind kostenlos."
             ],
             "asset": "mac-copy-to-review"
         },
@@ -83,14 +83,14 @@
             "id": "administer",
             "title": "Benutzer, Sitzungen und Wartung",
             "paragraphs": [
-                "Tabellenwartung wie VACUUM und REINDEX auf PostgreSQL oder OPTIMIZE und CHECK auf MySQL zeigt vor Ausführung das SQL. Datenbanken und Schemas lassen sich über die Seitenleiste erstellen, löschen und umbenennen, soweit das System dies unterstützt."
+                "Tabellenwartung wie VACUUM und REINDEX auf PostgreSQL oder OPTIMIZE und CHECK auf MySQL zeigt vor der Ausführung ihr SQL. Datenbanken und Schemas lassen sich über die Seitenleiste erstellen, löschen und umbenennen, soweit das System dies unterstützt."
             ],
             "blocks": [
                 {
                     "id": "users-roles",
                     "title": "Users & Roles",
                     "paragraphs": [
-                        "Users & Roles zeigt die Rechte jedes Benutzers als Baum vom Server bis zur einzelnen Spalte. Vergaben und Entzüge warten als vorgemerkte Änderungen und zeigen SQL vor Ausführung, ohne ein GRANT von Hand schreiben zu müssen."
+                        "Users & Roles zeigt die Rechte jedes Benutzers als Baum vom Server bis zur einzelnen Spalte. Vergebene und entzogene Rechte warten als vorgemerkte Änderungen und zeigen ihr SQL vor der Ausführung; ein GRANT musst du nie von Hand schreiben."
                     ],
                     "engines": [
                         {
@@ -104,7 +104,7 @@
                     "id": "server-dashboard",
                     "title": "Server-Dashboard",
                     "paragraphs": [
-                        "Das Server-Dashboard zeigt laufende Sitzungen, Servermetriken und langsame Abfragen im gewählten Aktualisierungsintervall. Soweit erlaubt, brich eine Abfrage ab oder beende eine Sitzung über ihre Zeile; beides durchläuft den Safe Mode. Auf SQLite, DuckDB und Typesense zeigt es nur Metriken."
+                        "Das Server-Dashboard zeigt laufende Sitzungen, Servermetriken und langsame Abfragen im gewählten Aktualisierungsintervall. Sofern das System es zulässt, kannst du über ihre Zeile eine laufende Abfrage abbrechen oder eine Sitzung beenden; beides durchläuft den Safe Mode der Verbindung. Auf SQLite, DuckDB und Typesense zeigt es nur Metriken."
                     ],
                     "engines": [
                         {
@@ -120,7 +120,7 @@
             "id": "iphone",
             "title": "Auf iPhone und iPad",
             "paragraphs": [
-                "Die iPhone- und iPad-App zeigt Spalten, Indizes und Fremdschlüssel schreibgeschützt an. Über die Tabellenliste kannst du Tabellen auf SQL-Systemen leeren oder löschen, außer bei Read-Only-Verbindungen.",
+                "Die iPhone- und iPad-App zeigt Spalten, Indizes und Fremdschlüssel einer Tabelle schreibgeschützt an. Über die Tabellenliste kannst du Tabellen auf SQL-Systemen leeren oder löschen, außer bei Read-Only-Verbindungen.",
                 "Strukturbearbeitung, ER-Diagramm, Compare & Sync, Copy To, Users & Roles und Server-Dashboard gibt es nur auf dem Mac."
             ],
             "links": [
@@ -172,10 +172,10 @@
         }
     ],
     "limits": [
-        "Compare & Sync erstellt Strukturskripte nur zwischen Datenbanken desselben Systems; MySQL und MariaDB zählen als eines. Andere Paare werden schreibgeschützt verglichen, MongoDB-Strukturen erhalten nie ein Skript, und systemübergreifende Datensynchronisierung warnt vor der Werteschreibweise. Für Tabellen zu einem anderen System nutze Copy To.",
+        "Compare & Sync erstellt Strukturskripte nur zwischen Datenbanken desselben Systems; MySQL und MariaDB zählen als eines. Andere Paare werden schreibgeschützt verglichen, MongoDB-Strukturen erhalten nie ein Skript, und bei einer systemübergreifenden Datensynchronisierung erinnert dich ein Hinweis daran, zu prüfen, wie Werte geschrieben werden. Um Tabellen in ein anderes System zu übertragen, nutze Copy To.",
         "Das Umordnen von Spalten baut nach Bestätigung die Tabelle auf SQLite und lokalen libSQL-Dateien neu auf. Auf PostgreSQL, Turso, Remote-libSQL und Cloudflare D1 erstellt TablePro das Skript und überlässt dir die Ausführung.",
         "Das ER-Diagramm ist schreibgeschützt. Es ist kein Schema-Designer.",
-        "Sitzungen und Abfragetext im Server-Dashboard hängen von den Rechten deines Verbindungskontos ab."
+        "Sitzungen und Abfragetext im Server-Dashboard hängen von den Rechten des Kontos ab, mit dem du dich verbindest."
     ],
     "docs": [
         {
@@ -225,7 +225,7 @@
             "href": "/mysql-client"
         },
         {
-            "label": "Was ein bezahlter Tarif ergänzt",
+            "label": "Was ein bezahlter Tarif zusätzlich bietet",
             "href": "/pricing#features"
         }
     ]
