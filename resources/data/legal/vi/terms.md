@@ -1,25 +1,25 @@
 ---
 title: Điều khoản sử dụng
-description: Các điều khoản khi sử dụng ứng dụng, website và trang tài khoản của TablePro, và khi mua license Starter hoặc Team.
-updatedAt: "2026-10-02"
+description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Starter hoặc Team.
+updatedAt: "2026-10-08"
 ---
 
-Các điều khoản này điều chỉnh việc bạn sử dụng TablePro: các ứng dụng, website tablepro.app và các dịch vụ được mô tả dưới đây. Khi tải về, cài đặt, truy cập hoặc sử dụng bất kỳ phần nào của TablePro, bạn đồng ý với các điều khoản này. Nếu không đồng ý, bạn không được sử dụng TablePro.
+Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
 
 ## Định nghĩa {#definitions}
 
 - **"TablePro", "chúng tôi"** là dự án TablePro và những người duy trì dự án.
 - **"Ứng dụng"** là TablePro cho Mac và TablePro cho iPhone và iPad, bao gồm các bản cập nhật và plugin của chúng.
 - **"Website"** là tablepro.app, docs.tablepro.app và các tên miền khác do chúng tôi vận hành.
-- **"Dịch vụ"** là Website, trang tài khoản, và máy chủ mà Ứng dụng liên lạc để kiểm tra license, dùng Team Library và gửi báo cáo sử dụng.
+- **"Dịch vụ"** là Website, trang tài khoản, và máy chủ mà ứng dụng cho Mac liên lạc để kiểm tra license và dùng Team Library.
 - **"License"** là một gói trả phí Starter hoặc Team, và **"License Key"** là thông tin dùng để kích hoạt các tính năng của gói đó trong ứng dụng cho Mac.
-- **"Bạn"** là cá nhân hoặc tổ chức sử dụng Ứng dụng hoặc Dịch vụ.
+- **"Bạn"** là cá nhân hoặc tổ chức sử dụng Dịch vụ hoặc sở hữu một License.
 
 ## Giấy phép mã nguồn mở {#open-source}
 
-Mã nguồn của Ứng dụng được phát hành theo [giấy phép AGPLv3 (GNU Affero General Public License v3)]({license}), kể cả phần mã của các tính năng trả phí. Bạn có thể sử dụng, sửa đổi và phân phối mã nguồn theo giấy phép AGPLv3.
+Mã nguồn của Ứng dụng, kể cả phần mã của các tính năng trả phí, được phát hành theo [giấy phép AGPLv3 (GNU Affero General Public License v3)]({license}). Chính giấy phép AGPLv3, chứ không phải các điều khoản này, cho bạn quyền sử dụng, sửa đổi và phân phối Ứng dụng.
 
-Giấy phép AGPL không đặt điều kiện nào cho việc chạy TablePro, trong công ty ở bất kỳ quy mô nào. Các điều kiện của giấy phép AGPL áp dụng khi bạn đưa bản sao cho người khác, dù đã sửa đổi hay chưa, và khi bạn sửa đổi TablePro rồi cho người khác dùng phiên bản đã sửa đổi đó qua mạng. Không điều nào trong các điều khoản này giới hạn những quyền mà giấy phép AGPLv3 trao cho bạn đối với mã nguồn.
+Giấy phép AGPL không đặt điều kiện nào cho việc chạy TablePro, trong công ty ở bất kỳ quy mô nào. Các điều kiện của giấy phép AGPL áp dụng khi bạn đưa bản sao cho người khác, dù đã sửa đổi hay chưa, và khi bạn sửa đổi TablePro rồi cho người khác dùng phiên bản đã sửa đổi đó qua mạng. Không điều nào trong các điều khoản này giới hạn những quyền mà giấy phép AGPLv3 trao cho bạn.
 
 Bạn có thể tải về và dùng ứng dụng cho Mac miễn phí mà không cần đăng ký. Một License bổ sung các tính năng tùy chọn cho ứng dụng cho Mac. Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng.
 
@@ -33,7 +33,7 @@ Việc hoàn tiền được mô tả trong [chính sách hoàn tiền](/vi/refu
 
 ## Sử dụng license {#license}
 
-Một License cho bạn quyền không độc quyền, không chuyển nhượng, để dùng các tính năng trả phí của ứng dụng cho Mac trên số máy Mac và trong thời hạn của gói bạn mua:
+Một License cho bạn quyền không độc quyền, không chuyển nhượng, để kích hoạt các tính năng trả phí của ứng dụng cho Mac bằng License Key của nó, trên số máy Mac và trong thời hạn của gói bạn mua:
 
 - License **Starter** dành cho một người, trên tối đa {starterActivations} máy Mac.
 - License **Team** tính giá theo seat, tối thiểu {teamMinSeats} và tối đa {teamMaxSeats} seat. Mỗi seat là một máy Mac được kích hoạt. Người mua mời các thành viên nhóm, và họ tham gia bằng một mã mời.
@@ -50,8 +50,8 @@ Bạn quản lý các License của mình trong trang tài khoản, nơi bạn �
 
 Bạn đồng ý không:
 
-- sử dụng Ứng dụng hoặc Dịch vụ trái với pháp luật hoặc xâm phạm quyền của bất kỳ ai;
-- vượt qua cơ chế kiểm tra license trong các bản build do chúng tôi phân phối, hoặc lạm dụng máy chủ license của chúng tôi, vượt quá những gì giấy phép AGPLv3 cho phép;
+- sử dụng Dịch vụ trái với pháp luật hoặc xâm phạm quyền của bất kỳ ai;
+- lạm dụng máy chủ license của chúng tôi;
 - tìm cách truy cập trái phép vào hệ thống của chúng tôi hoặc vào tài khoản của người khác;
 - dùng Dịch vụ để phát tán mã độc hoặc thực hiện tấn công từ chối dịch vụ;
 - bán lại hoặc phân phối lại License Key khi chưa có sự cho phép bằng văn bản của chúng tôi.
@@ -60,30 +60,30 @@ Bạn đồng ý không:
 
 Bạn chịu trách nhiệm:
 
-- giữ an toàn cho thông tin đăng nhập cơ sở dữ liệu và License Key của bạn;
-- sao lưu dữ liệu trước khi chạy query hoặc thay đổi dữ liệu bằng Ứng dụng;
-- có quyền truy cập vào các cơ sở dữ liệu mà bạn kết nối;
-- tuân thủ pháp luật áp dụng cho việc bạn sử dụng Ứng dụng và Dịch vụ.
+- giữ an toàn cho License Key của bạn;
+- tuân thủ pháp luật áp dụng cho việc bạn sử dụng Dịch vụ.
 
-Ứng dụng tác động lên cơ sở dữ liệu của bạn theo chỉ dẫn của bạn. Bạn chấp nhận **chịu trách nhiệm duy nhất đối với lỗi, trục trặc hoặc hư hỏng của cơ sở dữ liệu** do việc bạn sử dụng Ứng dụng gây ra, bao gồm các query bạn chạy, các script bạn thực thi và các thay đổi bạn commit.
+Ứng dụng tác động lên cơ sở dữ liệu của bạn theo chỉ dẫn của bạn. Những gì Ứng dụng làm với chúng thuộc phạm vi giấy phép AGPLv3, không thuộc các điều khoản này: xem [Từ chối bảo đảm](#warranty) và [Giới hạn trách nhiệm](#liability).
 
 ## Từ chối bảo đảm {#warranty}
 
-ỨNG DỤNG VÀ DỊCH VỤ ĐƯỢC CUNG CẤP **"NGUYÊN TRẠNG"** VÀ **"THEO KHẢ NĂNG SẴN CÓ"**, KHÔNG CÓ BẤT KỲ BẢO ĐẢM NÀO, DÙ RÕ RÀNG HAY NGỤ Ý, BAO GỒM BẢO ĐẢM VỀ KHẢ NĂNG THƯƠNG MẠI, SỰ PHÙ HỢP CHO MỘT MỤC ĐÍCH CỤ THỂ, VIỆC KHÔNG XÂM PHẠM QUYỀN, TÍNH CHÍNH XÁC HOẶC HOẠT ĐỘNG KHÔNG GIÁN ĐOẠN.
+DỊCH VỤ ĐƯỢC CUNG CẤP **"NGUYÊN TRẠNG"** VÀ **"THEO KHẢ NĂNG SẴN CÓ"**, KHÔNG CÓ BẤT KỲ BẢO ĐẢM NÀO, DÙ RÕ RÀNG HAY NGỤ Ý, BAO GỒM BẢO ĐẢM VỀ KHẢ NĂNG THƯƠNG MẠI, SỰ PHÙ HỢP CHO MỘT MỤC ĐÍCH CỤ THỂ, VIỆC KHÔNG XÂM PHẠM QUYỀN, TÍNH CHÍNH XÁC HOẶC HOẠT ĐỘNG KHÔNG GIÁN ĐOẠN.
 
-Chúng tôi không bảo đảm rằng Ứng dụng sẽ đáp ứng yêu cầu của bạn, hoạt động với một phiên bản cơ sở dữ liệu cụ thể nào, hoạt động không có lỗi, hoặc rằng mọi lỗi sẽ được sửa.
+Ứng dụng đi kèm điều khoản từ chối bảo đảm tại mục 15 của giấy phép AGPLv3: Ứng dụng được cung cấp "nguyên trạng", không có bất kỳ bảo đảm nào, và toàn bộ rủi ro về chất lượng và hiệu năng của Ứng dụng thuộc về bạn. Chúng tôi không bảo đảm rằng Ứng dụng sẽ đáp ứng yêu cầu của bạn, hoạt động với một phiên bản cơ sở dữ liệu cụ thể nào, hoạt động không có lỗi, hoặc rằng mọi lỗi sẽ được sửa.
 
 ## Giới hạn trách nhiệm {#liability}
 
-TRONG PHẠM VI TỐI ĐA MÀ PHÁP LUẬT ÁP DỤNG CHO PHÉP, TABLEPRO VÀ NHỮNG NGƯỜI ĐÓNG GÓP KHÔNG CHỊU TRÁCH NHIỆM ĐỐI VỚI BẤT KỲ THIỆT HẠI GIÁN TIẾP, NGẪU NHIÊN, ĐẶC BIỆT, HỆ QUẢ, MANG TÍNH RĂN ĐE HOẶC TRỪNG PHẠT NÀO, BAO GỒM MẤT DỮ LIỆU, MẤT NỘI DUNG CƠ SỞ DỮ LIỆU, HỎNG DỮ LIỆU, MẤT LỢI NHUẬN HOẶC CƠ HỘI KINH DOANH, GIÁN ĐOẠN KINH DOANH, MẤT UY TÍN, HOẶC CHI PHÍ MUA HÀNG HÓA HAY DỊCH VỤ THAY THẾ, PHÁT SINH TỪ HOẶC LIÊN QUAN ĐẾN VIỆC BẠN SỬ DỤNG ỨNG DỤNG HOẶC DỊCH VỤ, NGAY CẢ KHI CHÚNG TÔI ĐÃ ĐƯỢC BÁO TRƯỚC VỀ KHẢ NĂNG XẢY RA CÁC THIỆT HẠI ĐÓ.
+TRONG PHẠM VI TỐI ĐA MÀ PHÁP LUẬT ÁP DỤNG CHO PHÉP, TABLEPRO VÀ NHỮNG NGƯỜI ĐÓNG GÓP KHÔNG CHỊU TRÁCH NHIỆM ĐỐI VỚI BẤT KỲ THIỆT HẠI GIÁN TIẾP, NGẪU NHIÊN, ĐẶC BIỆT, HỆ QUẢ, MANG TÍNH RĂN ĐE HOẶC TRỪNG PHẠT NÀO, BAO GỒM MẤT DỮ LIỆU, MẤT NỘI DUNG CƠ SỞ DỮ LIỆU, HỎNG DỮ LIỆU, MẤT LỢI NHUẬN HOẶC CƠ HỘI KINH DOANH, GIÁN ĐOẠN KINH DOANH, MẤT UY TÍN, HOẶC CHI PHÍ MUA HÀNG HÓA HAY DỊCH VỤ THAY THẾ, PHÁT SINH TỪ HOẶC LIÊN QUAN ĐẾN VIỆC BẠN SỬ DỤNG DỊCH VỤ HOẶC MỘT LICENSE, NGAY CẢ KHI CHÚNG TÔI ĐÃ ĐƯỢC BÁO TRƯỚC VỀ KHẢ NĂNG XẢY RA CÁC THIỆT HẠI ĐÓ.
 
-Trong trường hợp pháp luật áp dụng không cho phép loại trừ trách nhiệm, tổng trách nhiệm của chúng tôi đối với mọi khiếu nại phát sinh từ hoặc liên quan đến Ứng dụng và Dịch vụ được giới hạn ở **mức cao hơn giữa (a) mười đô la Mỹ hoặc (b) tổng số tiền bạn đã trả cho các License TablePro trong mười hai tháng trước sự việc dẫn đến khiếu nại**.
+Đối với Ứng dụng, mục 16 của giấy phép AGPLv3 được áp dụng: trừ khi pháp luật áp dụng quy định khác, không chủ sở hữu bản quyền nào, và không ai sửa đổi hay chuyển giao Ứng dụng theo cách giấy phép AGPLv3 cho phép, phải chịu trách nhiệm với bạn về thiệt hại phát sinh từ việc sử dụng hoặc không thể sử dụng Ứng dụng, kể cả mất dữ liệu hoặc dữ liệu bị sai lệch.
+
+Trong trường hợp pháp luật áp dụng không cho phép loại trừ trách nhiệm, tổng trách nhiệm của chúng tôi đối với mọi khiếu nại phát sinh từ hoặc liên quan đến Dịch vụ và License được giới hạn ở **mức cao hơn giữa (a) mười đô la Mỹ hoặc (b) tổng số tiền bạn đã trả cho các License TablePro trong mười hai tháng trước sự việc dẫn đến khiếu nại**.
 
 Một số khu vực tài phán không cho phép loại trừ hoặc giới hạn một số loại thiệt hại. Tại những nơi đó, trách nhiệm của chúng tôi được giới hạn ở mức nhỏ nhất mà pháp luật cho phép.
 
 ## Bồi thường {#indemnification}
 
-Bạn đồng ý bồi thường và bảo vệ TablePro cùng những người đóng góp khỏi mọi khiếu nại, yêu cầu, tổn thất hoặc thiệt hại, bao gồm chi phí pháp lý hợp lý, phát sinh từ việc bạn sử dụng Ứng dụng hoặc Dịch vụ vi phạm các điều khoản này hoặc xâm phạm quyền của bất kỳ ai.
+Bạn đồng ý bồi thường và bảo vệ TablePro cùng những người đóng góp khỏi mọi khiếu nại, yêu cầu, tổn thất hoặc thiệt hại, bao gồm chi phí pháp lý hợp lý, phát sinh từ việc bạn sử dụng Dịch vụ hoặc một License vi phạm các điều khoản này hoặc xâm phạm quyền của bất kỳ ai.
 
 ## Hỗ trợ {#support}
 
@@ -97,7 +97,7 @@ Một số Dịch vụ, chẳng hạn kiểm tra license và Team Library, cần
 
 ## Chấm dứt {#termination}
 
-Bạn có thể ngừng sử dụng Ứng dụng và Dịch vụ bất cứ lúc nào. Nếu bạn vi phạm các điều khoản này, kể cả mục sử dụng được chấp nhận, chúng tôi có thể tạm ngưng hoặc chấm dứt quyền dùng các tính năng trả phí của bạn mà không hoàn tiền.
+Bạn có thể ngừng sử dụng Dịch vụ bất cứ lúc nào. Nếu bạn vi phạm các điều khoản này, kể cả mục sử dụng được chấp nhận, chúng tôi có thể tạm ngưng hoặc chấm dứt quyền dùng các tính năng trả phí của bạn mà không hoàn tiền.
 
 Các mục mà theo bản chất vẫn có hiệu lực sau khi chấm dứt, bao gồm từ chối bảo đảm, giới hạn trách nhiệm, bồi thường và luật điều chỉnh, tiếp tục được áp dụng sau đó.
 
@@ -107,11 +107,11 @@ Cách chúng tôi xử lý dữ liệu cá nhân được mô tả trong [chính
 
 ## Thay đổi điều khoản {#changes}
 
-Chúng tôi có thể cập nhật các điều khoản này. Khi đó, chúng tôi đăng phiên bản mới tại đây với ngày "Cập nhật lần cuối" mới. Nếu bạn tiếp tục sử dụng Ứng dụng hoặc Dịch vụ sau khi điều khoản được cập nhật, bạn chấp nhận các điều khoản mới.
+Chúng tôi có thể cập nhật các điều khoản này. Khi đó, chúng tôi đăng phiên bản mới tại đây với ngày "Cập nhật lần cuối" mới. Nếu bạn tiếp tục sử dụng Dịch vụ hoặc một License sau khi điều khoản được cập nhật, bạn chấp nhận các điều khoản mới.
 
 ## Luật điều chỉnh và giải quyết tranh chấp {#governing-law}
 
-Các điều khoản này được điều chỉnh bởi pháp luật nước Cộng hòa Xã hội Chủ nghĩa Việt Nam, không áp dụng các quy tắc xung đột pháp luật, và mọi tranh chấp phát sinh từ các điều khoản này hoặc từ việc bạn sử dụng Ứng dụng hoặc Dịch vụ được giải quyết tại tòa án có thẩm quyền của Việt Nam. Giao dịch mua của bạn với {merchant} được điều chỉnh bởi điều khoản dành cho người mua của {merchant}.
+Các điều khoản này được điều chỉnh bởi pháp luật nước Cộng hòa Xã hội Chủ nghĩa Việt Nam, không áp dụng các quy tắc xung đột pháp luật, và mọi tranh chấp phát sinh từ các điều khoản này hoặc từ việc bạn sử dụng Dịch vụ hoặc một License được giải quyết tại tòa án có thẩm quyền của Việt Nam. Giao dịch mua của bạn với {merchant} được điều chỉnh bởi điều khoản dành cho người mua của {merchant}.
 
 Nếu bạn sống tại một khu vực tài phán có luật bảo vệ người tiêu dùng mang tính bắt buộc, các luật đó được áp dụng trong phạm vi không thể bị khước từ.
 
@@ -121,7 +121,7 @@ Nếu một tòa án có thẩm quyền xác định bất kỳ điều khoản 
 
 ## Toàn bộ thỏa thuận {#entire-agreement}
 
-Các điều khoản này, cùng với giấy phép AGPLv3, chính sách quyền riêng tư và chính sách hoàn tiền, là toàn bộ thỏa thuận giữa bạn và TablePro về Ứng dụng và Dịch vụ, và thay thế mọi thỏa thuận trước đó. Giao dịch mua của bạn còn được điều chỉnh bởi điều khoản dành cho người mua của {merchant}, và việc bạn sử dụng App Store được điều chỉnh bởi điều khoản của Apple.
+Các điều khoản này, cùng với chính sách quyền riêng tư và chính sách hoàn tiền, là toàn bộ thỏa thuận giữa bạn và TablePro về Dịch vụ và License, và thay thế mọi thỏa thuận trước đó. Ứng dụng được cấp phép cho bạn theo giấy phép AGPLv3. Giao dịch mua của bạn còn được điều chỉnh bởi điều khoản dành cho người mua của {merchant}, và việc bạn sử dụng App Store được điều chỉnh bởi điều khoản của Apple.
 
 ## Liên hệ {#contact}
 

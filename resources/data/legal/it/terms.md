@@ -1,25 +1,25 @@
 ---
 title: Termini di servizio
-description: I termini per usare app, sito e portale dell’account di TablePro e per acquistare una licenza Starter o Team.
-updatedAt: "2026-10-02"
+description: I termini per sito, portale dell’account, server delle licenze e Team Library di TablePro e per l’acquisto di una licenza Starter o Team.
+updatedAt: "2026-10-08"
 ---
 
-Questi termini regolano l’uso di TablePro: le app, il sito tablepro.app e i servizi descritti sotto. Scaricando, installando, accedendo o usando qualsiasi parte di TablePro, li accetti. Se non li accetti, non usare TablePro.
+Questi termini regolano il sito tablepro.app, il portale dell’account, il nostro server delle licenze, la Team Library e le Licenze e Chiavi di licenza a pagamento descritte sotto. Usandoli, oppure acquistando o attivando una Licenza, accetti questi termini. TablePro per Mac e TablePro per iPhone e iPad sono concessi in licenza solo con la AGPLv3: non devi accettare questi termini per scaricarli, installarli o eseguirli.
 
 ## Definizioni {#definitions}
 
 - **"TablePro", "noi", "ci" e "nostro"** indicano il progetto TablePro e i suoi responsabili.
 - **"Applicazione"** indica TablePro per Mac e TablePro per iPhone e iPad, inclusi aggiornamenti e plugin.
 - **"Sito"** indica tablepro.app, docs.tablepro.app e gli altri domini che gestiamo.
-- **"Servizi"** indica il Sito, il portale dell’account e il server con cui l’Applicazione comunica per verifiche delle licenze, Team Library e rapporti d’uso.
+- **"Servizi"** indica il Sito, il portale dell’account e il server che l’app per Mac contatta per le verifiche delle licenze e la Team Library.
 - **"Licenza"** indica un piano Starter o Team a pagamento e **"Chiave di licenza"** la credenziale che ne attiva le funzionalità nell’app per Mac.
-- **"Tu"** indica la persona o l’organizzazione che usa l’Applicazione o i Servizi.
+- **"Tu"** indica la persona o l’organizzazione che usa i Servizi o è titolare di una Licenza.
 
 ## Licenza open source {#open-source}
 
-Il codice sorgente dell’Applicazione è pubblicato sotto la [GNU Affero General Public License v3 (AGPLv3)]({license}), incluso il codice delle funzionalità a pagamento. Puoi usarlo, modificarlo e distribuirlo secondo quella licenza.
+Il codice sorgente dell’Applicazione, incluso il codice delle funzionalità a pagamento, è pubblicato sotto la [GNU Affero General Public License v3 (AGPLv3)]({license}). È la AGPLv3, non questi termini, a concederti la licenza per usare, modificare e distribuire l’Applicazione.
 
-La AGPL non impone condizioni sull’esecuzione di TablePro in un’azienda di qualsiasi dimensione. Le condizioni si applicano quando fornisci copie ad altri, modificate o meno, e quando modifichi TablePro e consenti ad altri di usare la versione modificata tramite rete. Nulla in questi termini limita i diritti sul codice sorgente concessi dalla AGPLv3.
+La AGPL non impone condizioni sull’esecuzione di TablePro in un’azienda di qualsiasi dimensione. Le condizioni si applicano quando fornisci copie ad altri, modificate o meno, e quando modifichi TablePro e consenti ad altri di usare la versione modificata tramite rete. Nulla in questi termini limita i diritti concessi dalla AGPLv3.
 
 L’app per Mac si scarica e si usa gratuitamente senza registrazione. Una Licenza aggiunge funzionalità opzionali all’app per Mac. L’app per iPhone e iPad è gratuita, senza acquisti in-app.
 
@@ -33,7 +33,7 @@ I rimborsi sono descritti nella [politica di rimborso](/it/refund-policy).
 
 ## Uso di una licenza {#license}
 
-Una Licenza concede un diritto non esclusivo e non trasferibile di usare le funzionalità a pagamento dell’app per Mac sul numero di Mac e per il periodo previsti dal piano:
+Una Licenza concede un diritto non esclusivo e non trasferibile di attivare le funzionalità a pagamento dell’app per Mac con la sua Chiave di licenza, sul numero di Mac e per il periodo previsti dal piano:
 
 - Una Licenza **Starter** è per una persona, su un massimo di {starterActivations} Mac.
 - Una Licenza **Team** ha un prezzo per posto, con almeno {teamMinSeats} e al massimo {teamMaxSeats} posti. Ogni posto è un Mac attivato. L’acquirente invita i membri del team, che partecipano tramite un codice di invito.
@@ -50,8 +50,8 @@ Gestisci le Licenze nel portale dell’account, a cui accedi tramite un link inv
 
 Accetti di non:
 
-- usare l’Applicazione o i Servizi in violazione di leggi o diritti altrui;
-- aggirare le verifiche delle licenze nelle build distribuite da noi o usare impropriamente il server delle licenze oltre quanto consentito dalla AGPLv3;
+- usare i Servizi in violazione di leggi o diritti altrui;
+- usare impropriamente il server delle licenze;
 - tentare di accedere senza autorizzazione ai nostri sistemi o agli account altrui;
 - usare i Servizi per diffondere malware o effettuare attacchi denial-of-service;
 - rivendere o ridistribuire Chiavi di licenza senza la nostra autorizzazione scritta.
@@ -60,30 +60,30 @@ Accetti di non:
 
 Sei responsabile di:
 
-- proteggere credenziali dei database e Chiavi di licenza;
-- creare backup dei dati prima di eseguire query o modificare dati tramite l’Applicazione;
-- avere l’autorizzazione per accedere ai database a cui ti connetti;
-- rispettare le leggi applicabili all’uso dell’Applicazione e dei Servizi.
+- proteggere le Chiavi di licenza;
+- rispettare le leggi applicabili all’uso dei Servizi.
 
-L’Applicazione opera sui tuoi database secondo le tue istruzioni. Accetti la **responsabilità esclusiva per errori, malfunzionamenti o corruzione di un database** causati dall’uso dell’Applicazione, comprese le query eseguite, gli script avviati e le modifiche confermate.
+L’Applicazione opera sui tuoi database secondo le tue istruzioni. Ciò che fa sui database è regolato dalla AGPLv3, non da questi termini: vedi [Esclusione delle garanzie](#warranty) e [Limitazione della responsabilità](#liability).
 
 ## Esclusione delle garanzie {#warranty}
 
-L’APPLICAZIONE E I SERVIZI SONO FORNITI **"COSÌ COME SONO"** E **"COME DISPONIBILI"**, SENZA GARANZIE DI ALCUN TIPO, ESPRESSE O IMPLICITE, INCLUSE GARANZIE DI COMMERCIABILITÀ, IDONEITÀ A UNO SCOPO PARTICOLARE, NON VIOLAZIONE, ACCURATEZZA O FUNZIONAMENTO ININTERROTTO.
+I SERVIZI SONO FORNITI **"COSÌ COME SONO"** E **"COME DISPONIBILI"**, SENZA GARANZIE DI ALCUN TIPO, ESPRESSE O IMPLICITE, INCLUSE GARANZIE DI COMMERCIABILITÀ, IDONEITÀ A UNO SCOPO PARTICOLARE, NON VIOLAZIONE, ACCURATEZZA O FUNZIONAMENTO ININTERROTTO.
 
-Non garantiamo che l’Applicazione soddisfi i tuoi requisiti, funzioni con una particolare versione di database, operi senza errori o che ogni errore venga corretto.
+L’Applicazione è soggetta all’esclusione di garanzia della sezione 15 della AGPLv3: è fornita "così com’è", senza garanzie di alcun tipo, e l’intero rischio relativo alla sua qualità e alle sue prestazioni è a tuo carico. Non garantiamo che soddisfi i tuoi requisiti, funzioni con una particolare versione di database, operi senza errori o che ogni errore venga corretto.
 
 ## Limitazione della responsabilità {#liability}
 
-NELLA MISURA MASSIMA CONSENTITA DALLA LEGGE APPLICABILE, TABLEPRO E I SUOI COLLABORATORI NON SONO RESPONSABILI DI DANNI INDIRETTI, INCIDENTALI, SPECIALI, CONSEQUENZIALI, ESEMPLARI O PUNITIVI, INCLUSI PERDITA DI DATI, PERDITA DI CONTENUTI DEI DATABASE, CORRUZIONE DEI DATI, PERDITA DI PROFITTI O ATTIVITÀ, INTERRUZIONE DELL’ATTIVITÀ, PERDITA DI AVVIAMENTO O COSTO DI BENI O SERVIZI SOSTITUTIVI, DERIVANTI O CONNESSI ALL’USO DELL’APPLICAZIONE O DEI SERVIZI, ANCHE SE SIAMO STATI AVVISATI DELLA POSSIBILITÀ DI TALI DANNI.
+NELLA MISURA MASSIMA CONSENTITA DALLA LEGGE APPLICABILE, TABLEPRO E I SUOI COLLABORATORI NON SONO RESPONSABILI DI DANNI INDIRETTI, INCIDENTALI, SPECIALI, CONSEQUENZIALI, ESEMPLARI O PUNITIVI, INCLUSI PERDITA DI DATI, PERDITA DI CONTENUTI DEI DATABASE, CORRUZIONE DEI DATI, PERDITA DI PROFITTI O ATTIVITÀ, INTERRUZIONE DELL’ATTIVITÀ, PERDITA DI AVVIAMENTO O COSTO DI BENI O SERVIZI SOSTITUTIVI, DERIVANTI O CONNESSI ALL’USO DEI SERVIZI O DI UNA LICENZA, ANCHE SE SIAMO STATI AVVISATI DELLA POSSIBILITÀ DI TALI DANNI.
 
-Quando la responsabilità non può essere esclusa secondo la legge applicabile, la nostra responsabilità complessiva per tutte le richieste derivanti o connesse all’Applicazione e ai Servizi è limitata al **maggiore tra (a) dieci dollari statunitensi e (b) l’importo totale pagato per Licenze TablePro nei dodici mesi precedenti l’evento che ha originato la richiesta**.
+Per l’Applicazione si applica la sezione 16 della AGPLv3: salvo quanto richiesto dalla legge applicabile, nessun titolare del copyright, né chi la modifica o la distribuisce come consentito dalla AGPLv3, è responsabile nei tuoi confronti per danni derivanti dal suo uso o dall’impossibilità di usarla, inclusa la perdita di dati o la loro inesattezza.
+
+Quando la responsabilità non può essere esclusa secondo la legge applicabile, la nostra responsabilità complessiva per tutte le richieste derivanti o connesse ai Servizi e alle Licenze è limitata al **maggiore tra (a) dieci dollari statunitensi e (b) l’importo totale pagato per Licenze TablePro nei dodici mesi precedenti l’evento che ha originato la richiesta**.
 
 Alcune giurisdizioni non consentono l’esclusione o la limitazione di determinati danni. In tali casi la responsabilità è limitata nella misura minima consentita dalla legge.
 
 ## Manleva {#indemnification}
 
-Accetti di indennizzare e tenere indenni TablePro e i suoi collaboratori da qualsiasi pretesa, richiesta, perdita o danno, incluse ragionevoli spese legali, derivante dall’uso dell’Applicazione o dei Servizi in violazione di questi termini o dei diritti altrui.
+Accetti di indennizzare e tenere indenni TablePro e i suoi collaboratori da qualsiasi pretesa, richiesta, perdita o danno, incluse ragionevoli spese legali, derivante dall’uso dei Servizi o di una Licenza in violazione di questi termini o dei diritti altrui.
 
 ## Assistenza {#support}
 
@@ -97,7 +97,7 @@ Alcuni Servizi, come verifiche delle licenze e Team Library, richiedono accesso 
 
 ## Cessazione {#termination}
 
-Puoi smettere di usare l’Applicazione e i Servizi in qualsiasi momento. Se violi questi termini, inclusa la sezione sull’uso accettabile, possiamo sospendere o terminare l’accesso alle funzionalità a pagamento senza rimborso.
+Puoi smettere di usare i Servizi in qualsiasi momento. Se violi questi termini, inclusa la sezione sull’uso accettabile, possiamo sospendere o terminare l’accesso alle funzionalità a pagamento senza rimborso.
 
 Le sezioni che per natura sopravvivono alla cessazione, incluse esclusione delle garanzie, limitazione della responsabilità, manleva e legge applicabile, continuano ad applicarsi.
 
@@ -107,11 +107,11 @@ Il trattamento dei dati personali è descritto nell’[informativa sulla privacy
 
 ## Modifiche a questi termini {#changes}
 
-Possiamo aggiornare questi termini. Quando lo facciamo, pubblichiamo qui la nuova versione con una nuova data di "Ultimo aggiornamento". Se continui a usare l’Applicazione o i Servizi dopo un aggiornamento, accetti i nuovi termini.
+Possiamo aggiornare questi termini. Quando lo facciamo, pubblichiamo qui la nuova versione con una nuova data di "Ultimo aggiornamento". Se continui a usare i Servizi o una Licenza dopo un aggiornamento, accetti i nuovi termini.
 
 ## Legge applicabile e controversie {#governing-law}
 
-Questi termini sono regolati dalle leggi della Repubblica Socialista del Vietnam, senza riguardo alle norme sui conflitti di leggi; ogni controversia derivante dai termini o dall’uso dell’Applicazione o dei Servizi viene risolta dai tribunali competenti del Vietnam. L’acquisto da {merchant} è regolato dai termini di {merchant} per gli acquirenti.
+Questi termini sono regolati dalle leggi della Repubblica Socialista del Vietnam, senza riguardo alle norme sui conflitti di leggi; ogni controversia derivante dai termini o dall’uso dei Servizi o di una Licenza viene risolta dai tribunali competenti del Vietnam. L’acquisto da {merchant} è regolato dai termini di {merchant} per gli acquirenti.
 
 Se risiedi in una giurisdizione con leggi obbligatorie di tutela dei consumatori, tali leggi si applicano nella misura in cui non possono essere derogate.
 
@@ -121,7 +121,7 @@ Se un tribunale competente ritiene una disposizione di questi termini invalida o
 
 ## Accordo completo {#entire-agreement}
 
-Questi termini, insieme alla AGPLv3, all’informativa sulla privacy e alla politica di rimborso, costituiscono l’intero accordo tra te e TablePro sull’Applicazione e sui Servizi e sostituiscono gli accordi precedenti. L’acquisto è regolato anche dai termini di {merchant} per gli acquirenti e l’uso di App Store dai termini di Apple.
+Questi termini, insieme all’informativa sulla privacy e alla politica di rimborso, costituiscono l’intero accordo tra te e TablePro sui Servizi e sulle Licenze e sostituiscono gli accordi precedenti. L’Applicazione ti è concessa in licenza con la AGPLv3. L’acquisto è regolato anche dai termini di {merchant} per gli acquirenti e l’uso di App Store dai termini di Apple.
 
 ## Contatti {#contact}
 
