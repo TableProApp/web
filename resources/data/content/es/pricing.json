@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Precios",
-        "description": "TablePro es gratis. Starter y Equipo añaden funciones para Mac con pago mensual, anual o único. Precios en dólares estadounidenses."
+        "title": "Precios: planes Gratis, Starter y Team",
+        "description": "TablePro es gratis. Starter y Team añaden funciones para Mac con pago mensual, anual o único. Precios en dólares estadounidenses."
     },
     "og": {
         "kicker": "Precios",
@@ -23,11 +23,11 @@
         "items": {
             "macs": {
                 "term": "Mac",
-                "body": "Una licencia Starter se activa en hasta {activations} Mac. En Team, cada puesto corresponde a un Mac activado, incluido el del comprador. La app para iPhone y iPad nunca usa una licencia ni un puesto."
+                "body": "Una licencia Starter es para una persona, en hasta {activations} Mac. En Team, cada puesto corresponde a un Mac activado, incluido el del comprador, así que quien trabaja en dos Mac usa dos puestos. La app para iPhone y iPad nunca usa una licencia ni un puesto."
             },
             "activate": {
                 "term": "Activación",
-                "body": "Introduce tu clave de licencia en TablePro en tu Mac, en <ui>Ajustes > Licencia</ui>. Para usarla en otro Mac, elimina el anterior en la página Máquinas de <account>tu cuenta</account>."
+                "body": "Introduce tu clave de licencia en TablePro en tu Mac, en <ui>Ajustes > Licencia</ui>. Para usarla en otro Mac, elimina el anterior en la página Macs de <account>tu cuenta</account>."
             },
             "checks": {
                 "term": "Comprobaciones",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Facturación",
-        "merchant": "{merchant} es el comerciante registrado de TablePro. Te vende el plan, recibe el pago, calcula los impuestos sobre ventas o el IVA según tu dirección de facturación y envía el recibo y la factura por correo. Los precios se indican en dólares estadounidenses.",
+        "merchant": "{merchant} es el comerciante registrado de TablePro. Te vende el plan, recibe el pago, calcula los impuestos sobre ventas o el IVA según tu dirección de facturación y envía el recibo y la factura por correo.",
         "renewal": "Los planes mensuales y anuales se renuevan automáticamente hasta que los canceles en <account>tu cuenta</account> o en el portal de clientes de {merchant}. Tras cancelar, el plan sigue funcionando hasta el final del periodo pagado y puedes reanudarlo antes de esa fecha. Si falla un pago de renovación, {merchant} te envía un enlace para actualizar tu tarjeta y vuelve a intentar cobrar durante unas tres semanas.",
         "portal": "Para compras realizadas a través de {merchant}, las facturas, los recibos, el método de pago y la cancelación están en el <portal>portal de clientes de {merchant}</portal>, al que accedes con el correo usado al comprar. <account>Facturación y facturas</account> en tu cuenta también lo abre."
     },
@@ -60,7 +60,7 @@
     },
     "team": {
         "title": "Planes Team",
-        "seats": "El precio de un plan Team es por puesto, de {min} a {max} puestos. Cada puesto corresponde a un Mac activado, incluido el del comprador, así que quien trabaja en dos Mac usa dos puestos.",
+        "seats": "El precio de un plan Team es por puesto, de {min} a {max} puestos.",
         "invites": "Quien compró el plan gestiona el equipo en su cuenta. Invita a sus compañeros por correo, y cada invitación es un código de un solo uso que caduca al cabo de una semana y requiere un puesto libre.",
         "changes": "En un plan Team mensual o anual, cambias el número de puestos en tu cuenta y la diferencia aparece en la siguiente factura. Para añadir puestos a una compra Team de pago único, escribe a <email>{email}</email>.",
         "account": "Gestiona tu equipo en tu cuenta"
@@ -75,21 +75,13 @@
         "title": "Preguntas sobre los planes",
         "more": "Más preguntas sobre planes y licencias",
         "items": {
-            "free": {
-                "question": "¿TablePro es gratis?",
-                "answer": "Sí. La app para Mac se puede descargar y usar gratis, sin periodo de prueba ni límite de tiempo. Un plan Starter o Team añade funciones opcionales a la app para Mac. La app para iPhone y iPad es gratis, sin compras dentro de la app."
+            "payment-methods": {
+                "question": "¿Qué métodos de pago puedo usar?",
+                "answer": "El proceso de pago de {merchant} acepta tarjetas de crédito y de débito."
             },
-            "ios-license": {
-                "question": "¿Necesito una licencia para la app de iPhone y iPad?",
-                "answer": "No. No tiene funciones de pago y nunca pide una licencia. iCloud Sync es gratis en iPhone y iPad; para sincronizar con un Mac, este necesita Starter o Team."
-            },
-            "seats": {
-                "question": "¿Un puesto Team equivale a una persona?",
-                "answer": "No. Un puesto corresponde a un Mac activado. Quien trabaja en dos Mac usa dos puestos."
-            },
-            "offline": {
-                "question": "¿Las funciones de pago necesitan conexión a internet?",
-                "answer": "Solo de vez en cuando. La licencia se confirma con el servidor de TablePro cada {revalidateDays} días y las funciones de pago siguen funcionando durante {graceDays} días sin conexión."
+            "company-invoice": {
+                "question": "¿Puedo obtener una factura para mi empresa?",
+                "answer": "Sí. En el <portal>portal de clientes de {merchant}</portal> puedes añadir a una factura el nombre de la empresa, un número de IVA y una dirección de facturación, y después descargarla."
             },
             "lost-key": {
                 "question": "¿Dónde encuentro mi clave de licencia?",

@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Một license dùng được trên bao nhiêu máy Mac?",
                     "answer": [
-                        "License Starter dùng được trên {starterActivations} máy Mac. License Team có từ {teamMinSeats} đến {teamMaxSeats} seat, mỗi seat là một máy Mac được kích hoạt. iPhone và iPad không bao giờ chiếm seat: ứng dụng đó không có license.",
+                        "License Starter dành cho một người, trên tối đa {starterActivations} máy Mac. License Team có từ {teamMinSeats} đến {teamMaxSeats} seat, mỗi seat là một máy Mac được kích hoạt. iPhone và iPad không bao giờ chiếm seat: ứng dụng đó không có license.",
                         "Để chuyển license sang máy Mac khác, hãy gỡ máy cũ trong <account>tài khoản của bạn</account>."
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "Ai xử lý thanh toán?",
                     "answer": [
                         "{merchant} là merchant of record của chúng tôi: bạn mua license từ {merchant}, đơn vị nhận thanh toán, tính thuế bán hàng hoặc VAT (nếu có) khi thanh toán và gửi biên nhận qua email. Hóa đơn, phương thức thanh toán và gói thuê bao của bạn nằm trong <portal>cổng khách hàng của {merchant}</portal>, nơi bạn đăng nhập bằng email đã dùng để mua."
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "Bạn có thể thanh toán bằng những phương thức nào?",
+                    "answer": [
+                        "Trang thanh toán của {merchant} chấp nhận thẻ tín dụng và thẻ ghi nợ."
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "Có lấy được hóa đơn cho công ty không?",
+                    "answer": [
+                        "Có. Trong <portal>cổng khách hàng của {merchant}</portal>, bạn có thể thêm tên công ty, mã số thuế và địa chỉ thanh toán vào hóa đơn rồi tải về."
                     ]
                 },
                 {

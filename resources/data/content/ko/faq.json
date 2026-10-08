@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "라이선스 하나로 Mac 몇 대를 사용할 수 있나요?",
                     "answer": [
-                        "Starter 라이선스는 Mac {starterActivations}대에서 작동합니다. Team 라이선스는 {teamMinSeats}~{teamMaxSeats}좌석이며 각 좌석은 활성화된 Mac 한 대입니다. iPhone과 iPad는 좌석을 사용하지 않으며 해당 앱에는 라이선스가 없습니다.",
+                        "Starter 라이선스는 한 사람이 최대 {starterActivations}대의 Mac에서 사용할 수 있습니다. Team 라이선스는 {teamMinSeats}~{teamMaxSeats}좌석이며 각 좌석은 활성화된 Mac 한 대입니다. iPhone과 iPad는 좌석을 사용하지 않으며 해당 앱에는 라이선스가 없습니다.",
                         "다른 Mac으로 라이선스를 옮기려면 <account>계정</account>에서 이전 Mac을 제거하세요."
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "누가 결제를 처리하나요?",
                     "answer": [
                         "{merchant}는 공식 판매자입니다. {merchant}에서 라이선스를 구매하며 해당 업체가 결제를 받고 결제 시 판매세 또는 VAT를 계산하고 영수증을 이메일로 보냅니다. 청구서, 결제 수단 및 구독은 <portal>{merchant} 고객 포털</portal>에서 관리하며 구매에 사용한 이메일로 로그인합니다."
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "어떤 결제 수단을 사용할 수 있나요?",
+                    "answer": [
+                        "{merchant} 결제 화면에서는 신용카드와 체크카드를 사용할 수 있습니다."
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "회사 명의로 청구서를 받을 수 있나요?",
+                    "answer": [
+                        "네. <portal>{merchant} 고객 포털</portal>에서 청구서에 회사명, VAT 번호, 청구 주소를 추가한 뒤 다운로드할 수 있습니다."
                     ]
                 },
                 {

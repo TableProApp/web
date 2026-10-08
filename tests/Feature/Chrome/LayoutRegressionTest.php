@@ -191,6 +191,41 @@ it('keeps a busy button focusable, so the reader who pressed it keeps their plac
     expect(layoutSource('js/hooks/use-email-form.ts'))->toContain("if (processing) {\n            return;\n        }");
 });
 
+it('keeps the billing-cycle control with the prices it changes while the plan cards are stacked', function (): void {
+    /*
+     * At 390x844 the control sat 1,200px above the Team price, so a tap
+     * changed nothing on screen but the caption. Below 1024px its row pins
+     * under the header; the caption stays in the flow, and a short viewport
+     * keeps the row there too.
+     */
+    $control = layoutSource('js/components/pricing/billing-cycle-control.tsx');
+
+    expect($control)->toContain('max-lg:[@media(min-height:40rem)]:sticky')
+        ->toContain('max-lg:top-16')
+        ->not->toContain('caption={');
+
+    // The caption keeps the height of the longest cycle's, so a tap on the pinned row moves no price.
+    expect($control)->toContain('className="type-small invisible col-start-1 row-start-1"');
+
+    // A focused control in a card must not scroll in under the pinned row; the row's own radios must not scroll at all.
+    expect(layoutSource('js/components/pricing/pricing-plans.tsx'))->toContain('max-lg:[&_:is(a,button,input:not([type=radio]),summary)]:scroll-mt-14');
+
+    expect(layoutSource('js/components/ui/segmented-control.tsx'))->toContain('pointer-coarse:min-h-11');
+});
+
+it('totals the seats as they are typed, and says when a typed count was changed', function (): void {
+    /*
+     * The shared Stepper reports a typed count on blur or Enter, so the card
+     * showed "5 seats" beside a field that read 50, and turned 3 into 5 or
+     * 999 into 200 without a word.
+     */
+    $card = layoutSource('js/components/pricing/pricing-card.tsx');
+
+    expect($card)->toContain('onChange={follow}')
+        ->toContain('onBlur={(event) => settle(event.target)}')
+        ->toContain('fmt(bound ? m.pricing.seats.clamped[bound] : m.pricing.seats.bounds, { min, max })');
+});
+
 it('drops a discount check whose code was edited while it ran', function (): void {
     $field = layoutSource('js/components/pricing/discount-field.tsx');
 

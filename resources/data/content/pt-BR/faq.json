@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "Quantos Macs uma licença cobre?",
                     "answer": [
-                        "Uma licença Starter funciona em {starterActivations} Macs. Uma licença Team tem entre {teamMinSeats} e {teamMaxSeats} vagas, e cada uma corresponde a um Mac ativado. iPhone e iPad nunca usam uma: esse app não tem licença.",
+                        "Uma licença Starter é para uma pessoa, em até {starterActivations} Macs. Uma licença Team tem entre {teamMinSeats} e {teamMaxSeats} vagas, e cada uma corresponde a um Mac ativado. iPhone e iPad nunca usam uma: esse app não tem licença.",
                         "Para mover uma licença para outro Mac, remova o antigo na <account>sua conta</account>."
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "Quem processa o pagamento?",
                     "answer": [
                         "{merchant} é nosso vendedor responsável: você compra a licença de {merchant}, que recebe o pagamento, calcula tributos sobre vendas ou IVA no checkout e envia o recibo por email. Faturas, forma de pagamento e assinatura ficam no <portal>portal do cliente de {merchant}</portal>, onde você entra com o email usado na compra."
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "Quais formas de pagamento posso usar?",
+                    "answer": [
+                        "O checkout de {merchant} aceita cartões de crédito e de débito."
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "Posso receber uma fatura para minha empresa?",
+                    "answer": [
+                        "Sim. No <portal>portal do cliente de {merchant}</portal>, você pode adicionar a uma fatura o nome da empresa, um número de IVA e um endereço de cobrança, e depois baixá-la."
                     ]
                 },
                 {

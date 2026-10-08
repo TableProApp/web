@@ -333,6 +333,49 @@ describe('server-rendered', function (): void {
         }
     })->with(['/', '/vi']);
 
+    it('says what Starter adds and whom it is for, every cycle\'s price and the refund window, in the pricing section', function (string $path, string $locale, array $copy, string $pattern, string $decimal): void {
+        $html = html_entity_decode(ssrHome($path), ENT_QUOTES | ENT_HTML5);
+        $start = (int) strpos($html, 'id="pricing"');
+        $section = substr($html, $start, (int) strpos($html, 'id="open-source"') - $start);
+        $pricing = homeData('pricing.json');
+
+        $examples = collect(homeData('paid-features.json'))->where('tier', 'starter')->where('highlight', true)->pluck('name');
+        $examples = $examples->slice(0, -1)->implode(', ') . $copy['and'] . $examples->last();
+
+        $fill = fn(string $line): string => strtr($line, [
+            '{examples}' => $examples,
+            '{macs}' => (string) $pricing['tiers']['starter']['activations'],
+            '{days}' => (string) $pricing['refund']['days'],
+        ]);
+
+        expect($section)
+            ->toContain($fill($copy['starter']))
+            ->toContain($fill($copy['person']))
+            ->toContain($fill($copy['refund']))
+            ->toContain('href="' . ($locale === 'en' ? '' : "/{$locale}") . '/refund-policy"');
+
+        foreach (['starter', 'team'] as $tier) {
+            foreach ($pricing['tiers'][$tier]['prices'] as $amount) {
+                $price = sprintf($pattern, str_replace('.', $decimal, is_int($amount) ? (string) $amount : number_format($amount, 2, '.', '')));
+
+                expect($section)->toContain(">{$price}<");
+            }
+        }
+    })->with([
+        'English' => ['/', 'en', [
+            'and' => ' and ',
+            'starter' => 'Adds features such as {examples} to the Mac app.',
+            'person' => 'One license for one person, on up to {macs} Macs.',
+            'refund' => 'Every paid plan can be refunded within {days} days of purchase.',
+        ], '$%s', '.'],
+        'Vietnamese' => ['/vi', 'vi', [
+            'and' => ' và ',
+            'starter' => 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
+            'person' => 'Một license cho một người, dùng trên tối đa {macs} máy Mac.',
+            'refund' => 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua.',
+        ], '%s US$', ','],
+    ]);
+
     it('describes the organization, the site and both apps, with no rating, FAQ or file size', function (string $path): void {
         $html = ssrHome($path);
 

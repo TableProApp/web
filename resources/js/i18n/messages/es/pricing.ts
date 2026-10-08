@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "Añade las funciones de Starter a la app para Mac.",
+            "description": "Añade a la app para Mac funciones como {examples}.",
             "activation": {
-                "one": "Una licencia para {count} Mac.",
-                "other": "Una licencia para hasta {count} Mac."
+                "one": "Una licencia para una persona, en {count} Mac.",
+                "other": "Una licencia para una persona, en hasta {count} Mac."
             },
             "includesTitle": "Todo lo de Gratis, más",
             "cta": "Comprar Starter"
@@ -66,6 +66,10 @@ export default {
         "label": "Puestos",
         "noun": "puestos",
         "bounds": "Mínimo {min} puestos, máximo {max}.",
+        "clamped": {
+            "min": "Se ha cambiado al mínimo, {min} puestos.",
+            "max": "Se ha cambiado al máximo, {max} puestos."
+        },
         "total": {
             "monthly": {
                 "one": "{count} puesto: {total} al mes",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "Todas las funciones de pago",
+    "refund": {
+        "one": "Todos los planes de pago se pueden reembolsar en el plazo de {count} día desde la compra. Consulta la <link>política de reembolso</link>.",
+        "other": "Todos los planes de pago se pueden reembolsar en los {count} días siguientes a la compra. Consulta la <link>política de reembolso</link>."
+    },
     "finePrint": "Precios en dólares estadounidenses. {merchant} es el comerciante registrado: recibe el pago y calcula los impuestos sobre ventas o el IVA al finalizar la compra.",
     "finePrintCurrency": "Precios en dólares estadounidenses.",
     "comparePlans": "Comparar planes",

@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "Menambahkan fitur Starter ke aplikasi Mac.",
+            "description": "Menambahkan fitur seperti {examples} ke aplikasi Mac.",
             "activation": {
-                "one": "Satu lisensi untuk {count} Mac.",
-                "other": "Satu lisensi untuk hingga {count} Mac."
+                "one": "Satu lisensi untuk satu orang, pada {count} Mac.",
+                "other": "Satu lisensi untuk satu orang, pada hingga {count} Mac."
             },
             "includesTitle": "Semua fitur Gratis, ditambah",
             "cta": "Beli Starter"
@@ -66,6 +66,10 @@ export default {
         "label": "Seat",
         "noun": "seat",
         "bounds": "Minimum {min} seat, maksimum {max}.",
+        "clamped": {
+            "min": "Diubah ke minimum, {min} seat.",
+            "max": "Diubah ke maksimum, {max} seat."
+        },
         "total": {
             "monthly": {
                 "one": "{count} seat: {total} per bulan",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "Semua fitur berbayar",
+    "refund": {
+        "one": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian. Lihat <link>kebijakan pengembalian dana</link>.",
+        "other": "Semua paket berbayar dapat dikembalikan dananya dalam {count} hari setelah pembelian. Lihat <link>kebijakan pengembalian dana</link>."
+    },
     "finePrint": "Harga dalam dolar AS. {merchant} adalah merchant of record: menerima pembayaran dan menghitung pajak penjualan atau PPN saat checkout.",
     "finePrintCurrency": "Harga dalam dolar AS.",
     "comparePlans": "Bandingkan paket",

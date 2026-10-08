@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "料金",
+        "title": "料金：無料、Starter、Team プラン",
         "description": "TablePro は無料でダウンロードして使えます。Starter と Team プランは Mac アプリに任意の機能を追加し、月払い、年払い、買い切りから選べます。価格は米ドルです。"
     },
     "og": {
@@ -23,11 +23,11 @@
         "items": {
             "macs": {
                 "term": "Mac 台数",
-                "body": "Starter ライセンスは最大 {activations} 台の Mac で有効化できます。Team は購入者本人の Mac も含め、1 シートにつき 1 台の Mac です。iPhone・iPad アプリはライセンスやシートを使いません。"
+                "body": "Starter ライセンスは 1 人用で、最大 {activations} 台の Mac で有効化できます。Team は購入者本人の Mac も含め、1 シートにつき 1 台の Mac なので、2 台の Mac で作業する人は 2 シートを使います。iPhone・iPad アプリはライセンスやシートを使いません。"
             },
             "activate": {
                 "term": "有効化",
-                "body": "Mac の TablePro で <ui>Settings > License</ui> にライセンスキーを入力してください。別の Mac で使うには、<account>アカウント</account>の Machines ページで古い Mac を削除します。"
+                "body": "Mac の TablePro で <ui>Settings > License</ui> にライセンスキーを入力してください。別の Mac で使うには、<account>アカウント</account>の Mac ページで古い Mac を削除します。"
             },
             "checks": {
                 "term": "検証",
@@ -50,9 +50,9 @@
     },
     "billing": {
         "title": "お支払い",
-        "merchant": "{merchant} は TablePro の正式な販売者です。プランの販売、支払いの受け取り、請求先住所に基づく売上税や VAT の計算、領収書と請求書のメール送信を行います。価格は米ドルで表示しています。",
+        "merchant": "{merchant} は TablePro の正式な販売者です。プランの販売、支払いの受け取り、請求先住所に基づく売上税や VAT の計算、領収書と請求書のメール送信を行います。",
         "renewal": "月払いと年払いのプランは、<account>アカウント</account>または {merchant} のカスタマーポータルで解約するまで自動更新されます。解約後も支払い済みの期間が終わるまで利用でき、それまでに再開できます。更新の支払いに失敗した場合、{merchant} はカード情報の更新リンクをメールで送り、約 3 週間にわたり決済を再試行します。",
-        "portal": "{merchant} 経由で購入した場合、請求書、領収書、支払い方法、解約は <portal>{merchant} のカスタマーポータル</portal>で管理できます。購入時のメールアドレスでログインしてください。アカウントの <account>Billing & invoices</account> からも開けます。"
+        "portal": "{merchant} 経由で購入した場合、請求書、領収書、支払い方法、解約は <portal>{merchant} のカスタマーポータル</portal>で管理できます。購入時のメールアドレスでログインしてください。アカウントの <account>請求と請求書</account> からも開けます。"
     },
     "refunds": {
         "title": "返金",
@@ -60,7 +60,7 @@
     },
     "team": {
         "title": "Team プラン",
-        "seats": "Team プランはシート単位の料金で、{min}～{max} シートから選べます。購入者本人の Mac も含め、1 シートは有効化した Mac 1 台なので、2 台の Mac で作業する人は 2 シートを使います。",
+        "seats": "Team プランはシート単位の料金で、{min}～{max} シートから選べます。",
         "invites": "プランの購入者がアカウントでチームを管理します。メンバーをメールで招待でき、各招待には一度だけ使えるコードが含まれます。コードは 1 週間で期限が切れ、空きシートが必要です。",
         "changes": "月払いまたは年払いの Team プランはアカウントでシート数を変更でき、差額は次の請求書に反映されます。買い切りの Team プランにシートを追加する場合は、<email>{email}</email> にご連絡ください。",
         "account": "アカウントでチームを管理"
@@ -75,21 +75,13 @@
         "title": "プランに関する質問",
         "more": "プランとライセンスのその他の質問",
         "items": {
-            "free": {
-                "question": "TablePro は無料ですか？",
-                "answer": "はい。Mac アプリは無料でダウンロードして使え、試用期間や時間制限はありません。Starter または Team プランで Mac アプリに任意の機能を追加できます。iPhone・iPad アプリは無料で、アプリ内課金もありません。"
+            "payment-methods": {
+                "question": "どの支払い方法が使えますか？",
+                "answer": "{merchant} のチェックアウトでは、クレジットカードとデビットカードが使えます。"
             },
-            "ios-license": {
-                "question": "iPhone・iPad アプリにライセンスは必要ですか？",
-                "answer": "いいえ。有料機能はなく、ライセンスを求めることもありません。iPhone・iPad での iCloud 同期は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"
-            },
-            "seats": {
-                "question": "Team の 1 シートは 1 人分ですか？",
-                "answer": "いいえ。1 シートは有効化した Mac 1 台です。2 台の Mac で作業する人は 2 シートを使います。"
-            },
-            "offline": {
-                "question": "有料機能にはインターネット接続が必要ですか？",
-                "answer": "時々必要になるだけです。ライセンスは {revalidateDays} 日ごとに TablePro のサーバーで確認され、接続がなくても有料機能は {graceDays} 日間使えます。"
+            "company-invoice": {
+                "question": "会社宛ての請求書は発行できますか？",
+                "answer": "はい。<portal>{merchant} のカスタマーポータル</portal>で、請求書に会社名、VAT 番号、請求先住所を追加してからダウンロードできます。"
             },
             "lost-key": {
                 "question": "ライセンスキーはどこにありますか？",
