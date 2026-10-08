@@ -23,17 +23,18 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         /*
-         * The client address, scheme and port from the proxy in front, but
-         * never the host. The proxies are trusted at `*`, and a client can
-         * send its own `X-Forwarded-Host`, so trusting it would let a request
-         * choose the origin of the page's script, stylesheet and font preload
-         * URLs, which a shared cache could then serve to every reader. The
-         * host comes from `Host`, which the request is routed on.
+         * The client address and scheme from the proxy in front, but never
+         * the host or the port. The proxies are trusted at `*`, and Cloudflare
+         * passes a client's own `X-Forwarded-Host` and `X-Forwarded-Port`
+         * through, so trusting either would let a request choose the origin
+         * of the page's script, stylesheet and font preload URLs, which the
+         * edge would then cache under the plain URL and serve to every
+         * reader. The host and port come from `Host`, which the request is
+         * routed on and which the edge keys its cache on.
          */
         $middleware->trustProxies(
             at: '*',
             headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR
-                | \Illuminate\Http\Request::HEADER_X_FORWARDED_PORT
                 | \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO,
         );
 
