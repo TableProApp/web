@@ -375,6 +375,12 @@ them with GitHub, the Sparkle appcast, Homebrew and the App Store, and exits
 non-zero on any drift or unreadable source. It needs the network, so it is run by hand before a launch
 or after a release, never in the test suite.
 
+Facts about other products are data in `comparisons.json`, each with its source
+and the date it was read. `php artisan comparisons:check` lists the products
+checked more than 30 days ago (`--max-age`) and compares every last release
+that cites a GitHub releases page with GitHub. Prices and features have no feed,
+so a stale row means re-reading that product's sources. Also run by hand.
+
 A few files are byte-identical with the platform app: the design tokens, the
 fonts, the theme partial and the consent and theme modules.
 `docs/shared-files.md` lists them and how to change them.
