@@ -91,6 +91,9 @@ test('picks the cheapest professional way in for the hub', () => {
     assert.equal(entryPrice(product('navicat'))?.amount, 74.99, 'a subscription is the cheapest way in, and the non-commercial edition is not a professional price');
     assert.equal(entryPrice(product('navicat'))?.period, 'month');
     assert.equal(entryPrice(product('sequel-ace')), null);
+    assert.equal(entryPrice(product('dbgate'))?.edition, 'Premium', 'a team edition with a seat minimum costs more up front');
+    assert.equal(entryPrice(product('dbgate'))?.period, 'month');
+    assert.equal(entryPrice(product('pgadmin')), null);
 });
 
 test('leaves out a row the product has no verified fact for, and derives iPhone and iPad from the sourced platforms', () => {
@@ -106,6 +109,12 @@ test('leaves out a row the product has no verified fact for, and derives iPhone 
     assert.ok(!datagrip.some((row) => row.key === 'sync'), 'DataGrip has no verified sync fact');
     assert.ok(tableplus.some((row) => row.key === 'sync'), 'TablePlus syncs through a cloud folder');
     assert.ok(!tableplus.some((row) => row.key === 'technology'));
+
+    const workbench = glanceRows(product('mysql-workbench'), comparisons.rows, facts, context('en'));
+    const platforms = workbench.find((row) => row.key === 'platforms')?.competitor?.lines.map((line) => line.text);
+
+    assert.ok(platforms?.includes('Apple silicon only'), 'the new Workbench ships a Mac build for Apple silicon only');
+    assert.ok(!workbench.some((row) => row.key === 'ai' || row.key === 'mcp'), 'no source states AI or MCP for MySQL Workbench');
 });
 
 test('derives no iPhone and iPad row for a web application, which opens in a phone’s browser', () => {

@@ -106,7 +106,7 @@ php artisan test --compact --filter='ComparisonsDataTest|CompareContentTest|Comp
 npm run typecheck && npm run test:js
 ```
 
-`ComparisonsDataTest` → "gives every compared product a page in both languages" and `LocaleRoutingTest` → "pins each slug constant…" fail until all ten comparisons exist in both languages. The server-rendered cases in `ComparePagesTest` run where SSR is available.
+`ComparisonsDataTest` → "gives every compared product a page in both languages" and `LocaleRoutingTest` → "pins each slug constant…" fail until every comparison exists in both languages. The server-rendered cases in `ComparePagesTest` run where SSR is available.
 
 ## Per page (sitemap §A.4)
 
@@ -120,3 +120,8 @@ npm run typecheck && npm run test:js
 | `postico` | no | A focused PostgreSQL client: one-time licenses by audience, Mac App Store copy, untimed evaluation with features disabled, iCloud or Dropbox sync, no admin tools. TablePro: multi-engine, Users & Roles, dashboard; iCloud Sync is Starter |
 | `heidisql` | no | Free (GPL), Windows heritage; the macOS build is Apple silicon only since early 2026. TablePro: Intel and Apple silicon builds, more engines |
 | `phpmyadmin` | no | A web admin tool against a desktop client: cPanel, many interface languages, its own hardening guidance, 6.0 in development. TablePro installs nothing on the server and connects over SSH. No fear-based rows |
+| `mysql-workbench` | no | Oracle's own MySQL tool, rebuilt as 26.7 on MySQL Shell; Workbench 8.0 is end of life at 8.0.47. SQL notebooks, MySQL Enterprise Backup, the HeatWave migration assistant. The Mac download is Apple silicon only and supports MySQL 8.4 and later. TablePro: more engines, MySQL 8.0 servers, Intel builds |
+| `pgadmin` | no | The PostgreSQL admin tool, free under the PostgreSQL License, desktop or multi-user web server. Debugger, schema diff, ERD design, bundled pg_dump, pgAgent, and its own AI assistant, so free AI is no difference. TablePro: more engines, native app, Safe Mode, MCP |
+| `dbgate` | no | An open-source Electron peer (GPL-3.0 Community) that also runs as a web app; Premium editions per user. AI chat, query designer, model compare, native backup and cloud sign-in are paid there and free or Starter in TablePro |
+| `mongodb-compass` | no | MongoDB's free GUI (SSPL): aggregation stage by stage, schema analysis, data modeling, visual explain, live server metrics, AI through Azure OpenAI. TablePro: MongoDB beside other engines, mongosh-style shell, field renames; no MongoDB on iPhone |
+| `ssms` | no | "SQL Server Management Studio alternatives for Mac": SSMS runs only on Windows, Azure Data Studio was retired on 2026-02-28 and Microsoft points to VS Code with MSSQL. Keep SSMS for Agent, Always On and security work. Never call it a head-to-head |

@@ -1,0 +1,198 @@
+{
+    "seo": {
+        "title": "TablePro vs DbGate: Mac và iPhone, hay desktop và web",
+        "description": "DbGate là client mã nguồn mở cho Windows, macOS, Linux và web, có các bản Premium trả phí. TablePro là mã nguồn mở, native trên Mac và iPhone."
+    },
+    "og": {
+        "kicker": "So sánh",
+        "title": "TablePro vs DbGate"
+    },
+    "header": {
+        "title": "TablePro vs DbGate",
+        "lead": "DbGate là client mã nguồn mở cho cơ sở dữ liệu SQL và NoSQL, xây dựng trên {technology}. DbGate chạy trên Windows, macOS, Linux và dưới dạng ứng dụng web, có bản Community miễn phí và các bản Premium trả phí. TablePro là client mã nguồn mở có ứng dụng native cho Mac, một ứng dụng riêng cho iPhone và iPad, cùng một số tính năng trả phí tùy chọn trên Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Bạn muốn trợ lý AI mà không cần bản trả phí. Trợ lý AI miễn phí trong ứng dụng Mac, với nhà cung cấp AI do bạn chọn, còn database chat của DbGate nằm trong bản {cells.ai.edition}.",
+            "Bạn đăng nhập cơ sở dữ liệu bằng AWS IAM hoặc Microsoft Entra ID, và muốn dùng miễn phí.",
+            "Bạn muốn sao lưu bằng công cụ dump của từng engine mà không cần bản trả phí.",
+            "Bạn muốn một ứng dụng Mac native viết bằng Swift, lưu mật khẩu trong Keychain của macOS.",
+            "Bạn muốn có cả ứng dụng cho iPhone và iPad."
+        ],
+        "competitor": [
+            "Bạn còn làm việc trên Windows hoặc Linux, hoặc muốn một ứng dụng web để nhóm mở bằng trình duyệt.",
+            "Bạn kết nối tới Firebird, Azure Cosmos DB hoặc Firestore, những engine TablePro không hỗ trợ.",
+            "Bạn muốn thiết kế query trực quan, có từ bản {cells.queryDesigner.edition}.",
+            "Bạn muốn DbGate Cloud lưu connection và file SQL để dùng ở bất kỳ thiết bị nào bạn đăng nhập."
+        ]
+    },
+    "glance": {
+        "intro": "DbGate có bản Community miễn phí, cùng bản Premium và Team Premium tính phí theo người dùng, nên nhiều dòng ghi rõ tính năng cần bản nào."
+    },
+    "rows": {
+        "diagram": {
+            "label": "Sơ đồ ER",
+            "tablepro": "Sơ đồ ER chỉ đọc, export ra PNG hoặc SQL, miễn phí"
+        },
+        "queryDesigner": {
+            "label": "Thiết kế query trực quan",
+            "tablepro": "Không có"
+        },
+        "modelCompare": {
+            "label": "So sánh database model",
+            "tablepro": "Compare & Sync so sánh cấu trúc hoặc dữ liệu của hai cơ sở dữ liệu và viết script đồng bộ. Thuộc gói Starter"
+        },
+        "backup": {
+            "label": "Sao lưu và khôi phục",
+            "tablepro": "Miễn phí trong ứng dụng Mac: Backup Dump và Restore Dump qua công cụ dump của từng engine, với các engine có công cụ này"
+        },
+        "cloudAuth": {
+            "label": "Đăng nhập bằng tài khoản cloud",
+            "tablepro": "Miễn phí: AWS IAM trên Amazon RDS và Aurora, và Microsoft Entra ID cho SQL Server"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DbGate chạy trên Windows, macOS và Linux, và cả dưới dạng ứng dụng web mà bạn triển khai trên server.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "DbGate kết nối được tới những engine TablePro không hỗ trợ, như Firebird, và các bản trả phí có thêm Azure Cosmos DB và Firestore.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Bản Community miễn phí và là mã nguồn mở theo license {licence}, có sơ đồ ER ở mọi bản.",
+                "cite": ["licence", "cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Bản Premium có thêm công cụ thiết kế query trực quan và công cụ so sánh, triển khai database model.",
+                "cite": ["cells.queryDesigner", "cells.modelCompare"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "DbGate Cloud lưu connection và file SQL để dùng ở bất kỳ thiết bị nào bạn đăng nhập, tối đa {cells.sync.value} connection với bản Community.",
+                "cite": ["cells.sync"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro là ứng dụng Mac viết bằng Swift, dùng driver cơ sở dữ liệu native. DbGate được xây dựng trên {technology}. Cả hai đều có bản build cho Mac chạy Apple silicon và Intel.",
+                "cite": ["technology", "mac"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Trợ lý AI</link> miễn phí trong ứng dụng Mac, với nhà cung cấp AI do bạn chọn, trên cloud hoặc ngay trên máy Mac. Database chat của DbGate nằm trong các bản trả phí và đi qua gateway của DbGate tới OpenAI.",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Đăng nhập bằng AWS IAM và Microsoft Entra ID</link> miễn phí trong TablePro. DbGate xếp các tính năng này vào bản trả phí.",
+                "cite": ["cells.cloudAuth"],
+                "feature": null,
+                "href": "/features/connections#cloud-auth"
+            },
+            {
+                "text": "<link>Sao lưu</link> qua công cụ dump của từng engine miễn phí trong TablePro. Native backup và restore của DbGate nằm trong các bản trả phí.",
+                "cite": ["cells.backup"],
+                "feature": null,
+                "href": "/features/import-export#backup"
+            },
+            {
+                "text": "<link>iCloud Sync</link> giữ connection đồng bộ giữa các máy Mac và iPhone hoặc iPad của bạn. Tính năng này thuộc gói Starter trên Mac và miễn phí trong ứng dụng cho iPhone và iPad.",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "Có <link>ứng dụng cho iPhone và iPad</link> miễn phí, không có mua hàng trong ứng dụng.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Không có ứng dụng TablePro cho Windows hay Linux, và không có bản web.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Firebird, Azure Cosmos DB và Firestore không nằm trong danh sách engine được hỗ trợ.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Không có công cụ thiết kế query trực quan, và sơ đồ ER chỉ đọc.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Một số tính năng phải trả phí. Gói Starter bổ sung những tính năng như {starterExamples}.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro không có công cụ import từ DbGate. Hãy thêm từng connection: điền vào form connection, hoặc dán URL bắt đầu bằng postgresql://, mysql:// hay mongodb:// vào <ui>Tệp > Nhập > Nhập từ URL…</ui> (File > Import > Import from URL…).",
+        "steps": [],
+        "after": [
+            "Thiết lập SSH tunnel ở tab <ui>Mạng</ui> (Network) của connection. Trên Mac, TablePro hỗ trợ cả jump host.",
+            "Nếu project lưu thiết lập cơ sở dữ liệu trong file .env, <ui>Tệp > Nhập > Mở thư mục dự án…</ui> (File > Import > Open Project Folder…) sẽ đọc thiết lập đó và mở form connection đã điền sẵn.",
+            "Mật khẩu được lưu trong Keychain của macOS, và lịch sử query bắt đầu lại từ đầu trong TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "free-editions",
+            "question": "Mỗi bên miễn phí những gì?",
+            "answer": "DbGate Community miễn phí và mã nguồn mở, còn các bản trả phí có thêm database chat, công cụ thiết kế query và native backup. TablePro dùng miễn phí với mọi engine được hỗ trợ, trợ lý AI và MCP server, và gói Starter hoặc Team bổ sung những tính năng như {starterExamples}. <link>Xem bảng giá</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "web",
+            "question": "TablePro có bản web không?",
+            "answer": "Không. TablePro chạy trên Mac, iPhone và iPad. Nếu nhóm của bạn cần một database client trong trình duyệt, DbGate cũng chạy được dưới dạng ứng dụng web.",
+            "href": null
+        },
+        {
+            "id": "mongodb-redis",
+            "question": "Cả hai có làm việc với MongoDB và Redis không?",
+            "answer": "Có, và cả hai đều hỗ trợ miễn phí. <link>Xem cơ sở dữ liệu được hỗ trợ</link>.",
+            "href": "/databases"
+        }
+    ],
+    "notes": {
+        "dbgate-databases": "Bản Community hỗ trợ MySQL, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, Cassandra, ClickHouse, DuckDB và nhiều engine khác. Bản Premium có thêm Amazon Redshift, DynamoDB, Azure Cosmos DB, Firestore và libSQL. Trang của DbGate cũng liệt kê Firebird.",
+        "dbgate-ai": "Database chat, trợ lý AI cho SQL và giải thích lỗi, trong bản Premium và Team Premium, qua gateway của DbGate tới OpenAI",
+        "dbgate-cloud": "DbGate Cloud lưu connection và file SQL trực tuyến. Bản Community lưu được tối đa {value} connection, còn bản Premium bỏ giới hạn này và có thêm thư mục dùng chung.",
+        "dbgate-er-diagrams": "Có ở mọi bản. Thiết lập nâng cao nằm trong bản Premium.",
+        "dbgate-paid-editions": "Trong bản Premium và Team Premium, không có trong Community",
+        "dbgate-backup": "Native backup và restore trong bản Premium và Team Premium. Bản Community sao lưu và khôi phục từng table.",
+        "dbgate-cloud-auth": "AWS IAM, Microsoft Entra ID và Azure managed identity, trong bản Premium và Team Premium"
+    }
+}

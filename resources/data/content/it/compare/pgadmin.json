@@ -1,0 +1,205 @@
+{
+    "seo": {
+        "title": "TablePro vs pgAdmin: strumento di amministrazione o client",
+        "description": "pgAdmin è lo strumento gratuito e open source per amministrare PostgreSQL, su desktop o su un server web. TablePro copre PostgreSQL e altri motori."
+    },
+    "og": {
+        "kicker": "Confronto",
+        "title": "TablePro vs pgAdmin"
+    },
+    "header": {
+        "title": "TablePro vs pgAdmin",
+        "lead": "pgAdmin 4 è lo strumento gratuito e open source di amministrazione e sviluppo per PostgreSQL. Funziona come app desktop su Windows, macOS e Linux oppure su un server web condiviso da più persone. TablePro è un client open source per PostgreSQL e altri motori, con un’app separata per iPhone e iPad e funzioni a pagamento opzionali sul Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Lavori anche con MySQL, SQL Server, SQLite, Redis o MongoDB, non solo con PostgreSQL.",
+            "Vuoi un’app nativa per Mac scritta in Swift, con le password nel portachiavi di macOS.",
+            "Vuoi che ogni connessione abbia un livello Safe Mode, come Read-Only per la produzione, o Touch ID prima di scrivere.",
+            "Vuoi un server MCP perché client IA come Claude Code o Cursor usino le tue connessioni salvate.",
+            "Vuoi un’app gratuita per iPhone e iPad che si connette a PostgreSQL."
+        ],
+        "competitor": [
+            "Usi solo PostgreSQL e gran parte del lavoro è amministrazione.",
+            "Esegui il debug di funzioni PL/pgSQL o pianifichi job con pgAgent.",
+            "Vuoi psql, pg_dump e pg_restore inclusi, senza installare altro.",
+            "Vuoi un’unica installazione su un server web che il team apre nel browser.",
+            "Lavori anche su Windows o Linux."
+        ]
+    },
+    "glance": {
+        "intro": "pgAdmin supporta le versioni di PostgreSQL supportate al momento di ogni rilascio. Entrambi gli strumenti hanno un assistente IA che funziona con il fornitore che configuri."
+    },
+    "rows": {
+        "debugger": {
+            "label": "Debugger per linguaggi procedurali",
+            "tablepro": "Non disponibile"
+        },
+        "schemaDiff": {
+            "label": "Confronto di schemi",
+            "tablepro": "Compare & Sync confronta la struttura o i dati di due database e scrive lo script di sincronizzazione. Fa parte di Starter"
+        },
+        "diagram": {
+            "label": "Diagramma ER",
+            "tablepro": "Un diagramma ER in sola lettura, esportabile come PNG o SQL, gratuito"
+        },
+        "backupRestore": {
+            "label": "Backup e ripristino",
+            "tablepro": "Gratuiti: Backup Dump e Restore Dump eseguono pg_dump e pg_restore, da installare"
+        },
+        "jobScheduler": {
+            "label": "Pianificazione dei job",
+            "tablepro": "Non disponibile"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "pgAdmin è fatto per PostgreSQL e anche per EDB Postgres Advanced Server.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Il suo debugger esegue passo per passo le funzioni PL/pgSQL e il suo strumento di confronto degli schemi confronta due schemi. Entrambi sono gratuiti.",
+                "cite": ["cells.debugger", "cells.schemaDiff"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Lo strumento ERD serve a progettare e documentare uno schema.",
+                "cite": ["cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "psql, pg_dump, pg_dumpall e pg_restore sono inclusi, quindi backup e ripristino funzionano senza installare altro.",
+                "cite": ["cells.backupRestore"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Funziona su Windows, macOS e Linux oppure su un server web per più utenti, e pgAgent pianifica job SQL, shell e batch.",
+                "cite": ["platforms", "cells.jobScheduler"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Un client copre PostgreSQL e altri motori, da MySQL e SQL Server a Redis, MongoDB e DuckDB. Vedi i <link>database supportati</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "TablePro è un’app Mac scritta in Swift, con driver nativi per database. pgAdmin è un’applicazione web in Python che gira in un runtime desktop {technology} o su un server web.",
+                "cite": ["technology"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "EXPLAIN mostra un piano come diagramma, albero o testo non elaborato ed <link>EXPLAIN Compare</link> confronta un nuovo piano con una base di riferimento. Entrambi sono gratuiti.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "Ogni connessione ha un livello <link>Safe Mode</link>, da Silent a Read-Only, con Touch ID nei livelli più restrittivi.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "Il <link>server MCP</link> permette a client IA come Claude Code o Cursor di usare le connessioni salvate senza vedere una password. È gratuito nell’app per Mac.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Un’<link>app gratuita per iPhone e iPad</link> si connette a PostgreSQL, senza acquisti in-app.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Non c’è un’app TablePro per Windows o Linux, né una versione web da installare su un server.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Non c’è un debugger per linguaggi procedurali né un pianificatore di job.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Il diagramma ER è in sola lettura: le tabelle si modificano nella scheda Structure, non disegnandole.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "I backup richiedono pg_dump e pg_restore sul Mac, da installare con Homebrew.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Compare & Sync</link> fa parte di Starter, mentre il confronto degli schemi di pgAdmin è gratuito.",
+                "cite": ["cells.schemaDiff"],
+                "feature": "compare-sync",
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro non ha un importatore per pgAdmin. Aggiungi ogni server come connessione TablePro: compila il modulo oppure incolla un URL che inizia con postgresql:// in <ui>File > Import > Import from URL…</ui>",
+        "steps": [],
+        "after": [
+            "Se un progetto conserva l’URL del database in .env o in uno schema Prisma, <ui>File > Import > Open Project Folder…</ui> lo legge e apre il modulo compilato.",
+            "Le password vanno nel portachiavi di macOS. TablePro legge anche ~/.pgpass per le connessioni PostgreSQL.",
+            "La cronologia delle query ricomincia da zero in TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "ai",
+            "question": "Entrambi hanno un assistente IA?",
+            "answer": "Sì. La Query Tool di pgAdmin scrive SQL a partire dal linguaggio naturale e i suoi AI Reports valutano sicurezza, prestazioni e design, con Anthropic, OpenAI o un modello locale tramite Ollama o Docker Model Runner. L’assistente IA di TablePro è gratuito nell’app per Mac, con il fornitore che scegli, e TablePro aggiunge un server MCP per i client IA esterni. <link>Leggi dell’IA in TablePro</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "web",
+            "question": "Il mio team può condividere TablePro come condivide un server pgAdmin?",
+            "answer": "Non tramite browser: TablePro gira su ogni Mac. Le connessioni si condividono con i file di connessione oppure con Team Catalog e Team Library in un piano Team. <link>Leggi della condivisione</link>.",
+            "href": "/features/sync-and-teams"
+        },
+        {
+            "id": "free",
+            "question": "TablePro è gratuito come pgAdmin?",
+            "answer": "È gratuito da usare. PostgreSQL e gli altri motori supportati, l’assistente IA e il server MCP non costano nulla e il codice è open source con licenza AGPLv3. A differenza di pgAdmin, TablePro ha anche piani a pagamento: Starter e Team aggiungono funzioni opzionali all’app Mac, come {starterExamples}. <link>Vedi i prezzi</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "pgadmin-web-application": "Un’applicazione web in Python, in un runtime desktop o su un server web",
+        "pgadmin-databases": "PostgreSQL ed EDB Postgres Advanced Server, nelle versioni supportate al momento di ogni rilascio di pgAdmin",
+        "pgadmin-ai": "Un AI Assistant nella Query Tool e AI Reports su sicurezza, prestazioni e design, con Anthropic, OpenAI, Ollama o Docker Model Runner come fornitore",
+        "pgadmin-debugger": "Per PL/pgSQL ed EDB SPL",
+        "pgadmin-erd-design": "Uno strumento ERD per progettare e documentare schemi",
+        "pgadmin-bundled-utilities": "Backup, ripristino, VACUUM e ANALYZE, con psql, pg_dump, pg_dumpall e pg_restore inclusi",
+        "pgadmin-pgagent": "pgAgent, da installare sul server, pianifica job SQL, shell e batch"
+    }
+}

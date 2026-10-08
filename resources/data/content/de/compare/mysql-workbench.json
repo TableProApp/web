@@ -1,0 +1,211 @@
+{
+    "seo": {
+        "title": "TablePro vs. MySQL Workbench: nur MySQL oder viele Engines",
+        "description": "MySQL Workbench ist Oracles kostenloses MySQL-Tool, neu aufgebaut auf MySQL Shell. TablePro deckt MySQL und weitere Engines auf Mac, iPhone und iPad ab."
+    },
+    "og": {
+        "kicker": "Vergleichen",
+        "title": "TablePro vs. MySQL Workbench"
+    },
+    "header": {
+        "title": "TablePro vs. MySQL Workbench",
+        "lead": "MySQL Workbench ist Oracles kostenloses Open-Source-Tool für MySQL. Version {status.version} wurde auf Basis von MySQL Shell neu aufgebaut, und Oracle pflegt Workbench 8.0 nicht mehr. TablePro ist ein Open-Source-Client für MySQL, MariaDB und weitere Engines, mit einer separaten iPhone- und iPad-App und optionalen kostenpflichtigen Funktionen auf dem Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Du nutzt auch MariaDB, PostgreSQL, SQL Server, SQLite oder Redis und möchtest einen Client für alle.",
+            "Du betreibst noch MySQL-8.0-Server. TablePro verbindet sich mit ihnen, während die neue Workbench MySQL {cells.databases.version} und neuer unterstützt.",
+            "Dein Mac hat einen Intel-Prozessor. TablePro bietet einen Build für Intel und einen für Apple silicon.",
+            "Du möchtest einen KI-Assistenten und einen MCP-Server, kostenlos in der Mac-App und mit einem KI-Anbieter deiner Wahl.",
+            "Du möchtest eine kostenlose iPhone- und iPad-App, die sich mit MySQL und MariaDB verbindet."
+        ],
+        "competitor": [
+            "Du möchtest Oracles eigenes Tool für MySQL, kostenlos und Open Source.",
+            "Du magst Notebooks, die Abfragen, Ergebnisse und Notizen verbinden und neben SQL auch JavaScript und TypeScript ausführen.",
+            "Du nutzt MySQL Enterprise Backup und möchtest Sicherungen aus einer Desktop-App planen und wiederherstellen.",
+            "Du ziehst zu MySQL HeatWave auf OCI um und möchtest eine geführte Migration.",
+            "Du arbeitest auch unter Windows oder Linux und möchtest überall dasselbe Tool."
+        ]
+    },
+    "glance": {
+        "intro": "MySQL Workbench {status.version} ist eine neue Generation auf Basis von MySQL Shell, und laut Oracle sind noch nicht alle Funktionen von Workbench 8.0 enthalten. Version {cells.workbench8.version} ist die letzte Version von Workbench 8.0."
+    },
+    "rows": {
+        "notebooks": {
+            "label": "SQL-Notebooks",
+            "tablepro": "Nicht verfügbar. SQL läuft in Editor-Tabs, mit Abfrageverlauf"
+        },
+        "administration": {
+            "label": "Serververwaltung",
+            "tablepro": "Kostenlos in der Mac-App: Users & Roles mit Berechtigungen bis auf Spaltenebene und ein Server-Dashboard, das Abfragen abbricht oder Sitzungen beendet"
+        },
+        "enterpriseBackup": {
+            "label": "Sicherungen",
+            "tablepro": "Kostenlos: Backup Dump und Restore Dump führen mysqldump und mysql aus, die du selbst installierst"
+        },
+        "migration": {
+            "label": "Migration zu MySQL HeatWave",
+            "tablepro": "Nicht verfügbar"
+        },
+        "workbench8": {
+            "label": "Vorherige Generation",
+            "tablepro": "Eine einzige Versionslinie, aktualisiert in der App oder über Homebrew"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "MySQL Workbench ist Oracles eigenes Tool für MySQL, kostenlos und Open Source unter der GPL.",
+                "cite": ["licence", "prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Seine SQL-Notebooks verbinden Abfragen, Ergebnisse und Notizen in einem Dokument und führen neben SQL auch JavaScript und TypeScript aus.",
+                "cite": ["cells.notebooks"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Mit MySQL Enterprise Backup erstellt und plant es vollständige und inkrementelle Sicherungen und stellt sie wieder her.",
+                "cite": ["cells.enterpriseBackup"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Der HeatWave Migration Assistant führt durch den Umzug zu MySQL HeatWave auf OCI.",
+                "cite": ["cells.migration"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Es läuft unter Windows, macOS und Linux.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Ein Client deckt MySQL, MariaDB und weitere Engines ab, etwa PostgreSQL, SQL Server, SQLite und Redis. Sieh dir die <link>unterstützten Datenbanken</link> an.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "TablePro verbindet sich auch mit MySQL-8.0-Servern. Oracle unterstützt in der neuen Workbench MySQL {cells.databases.version} und neuer und gibt an, dass ältere Versionen funktionieren können.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Es läuft auf Intel-Macs ebenso wie auf Apple silicon, mit einem eigenen Build für jede Architektur. Den Mac-Download der neuen Workbench gibt es nur für Apple silicon.",
+                "cite": ["mac"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Backup Dump</link> führt mysqldump aus und Restore Dump mysql, daher brauchen Sicherungen kein MySQL Enterprise Backup. Beide sind kostenlos.",
+                "cite": ["cells.enterpriseBackup"],
+                "feature": null,
+                "href": "/features/import-export#backup"
+            },
+            {
+                "text": "Der <link>KI-Assistent und der MCP-Server</link> sind in der Mac-App kostenlos, mit einem KI-Anbieter deiner Wahl.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "Eine kostenlose <link>iPhone- und iPad-App</link> verbindet sich mit MySQL und MariaDB, ohne In-App-Käufe.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Es gibt keine TablePro-App für Windows oder Linux.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Es gibt keine Notebooks, und MySQL-Verbindungen führen SQL aus, kein JavaScript oder TypeScript.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro hat keine Anbindung an MySQL Enterprise Backup und keinen Migrationsassistenten für MySQL HeatWave.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Es verbindet sich mit MySQL ausschließlich über TCP, nicht über eine lokale Socket-Datei.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Einige Funktionen sind kostenpflichtig. Starter ergänzt Funktionen wie {starterExamples}, während MySQL Workbench kostenlos ist.",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro hat keinen Importer für MySQL Workbench. Lege jede Verbindung von Hand an: Fülle das Verbindungsformular aus oder füge eine mit mysql:// beginnende URL unter <ui>File > Import > Import from URL…</ui> ein.",
+        "steps": [],
+        "after": [
+            "Richte einen SSH-Tunnel im Tab <ui>Network</ui> der Verbindung ein, bei Bedarf mit Sprunghosts.",
+            "Wenn ein Projekt seine Datenbankeinstellungen in einer Datei wie .env oder wp-config.php speichert, liest <ui>File > Import > Open Project Folder…</ui> sie ein und öffnet das ausgefüllte Verbindungsformular.",
+            "Passwörter kommen in den macOS-Schlüsselbund, und der Abfrageverlauf beginnt in TablePro neu."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "workbench-8",
+            "question": "Wird MySQL Workbench 8.0 noch gepflegt?",
+            "answer": "Nein. Laut Oracle hat Workbench 8.0 das Ende seines Lebenszyklus erreicht und erhält keine neuen Versionen mehr; {cells.workbench8.version} ist die letzte. Oracle bittet seine Nutzer, auf MySQL Workbench {status.version} umzusteigen, einen Neuaufbau, der noch nicht alle Funktionen von Workbench 8.0 bietet.",
+            "href": null
+        },
+        {
+            "id": "mysql-8",
+            "question": "Funktioniert TablePro mit MySQL 8.0 und MariaDB?",
+            "answer": "Ja. TablePro verbindet sich über denselben Treiber mit MySQL 8.0, neueren Versionen und MariaDB. Oracle unterstützt in der neuen Workbench MySQL {cells.databases.version} und neuer und gibt an, dass ältere Versionen funktionieren können. <link>Mehr zu MySQL in TablePro</link>.",
+            "href": "/mysql-client"
+        },
+        {
+            "id": "intel",
+            "question": "Läuft MySQL Workbench auf einem Intel-Mac?",
+            "answer": "Den Mac-Download von Version {status.version} gibt es nur für Apple silicon. TablePro bietet einen eigenen Build für Intel-Macs. <link>TablePro herunterladen</link>.",
+            "href": "/download"
+        },
+        {
+            "id": "free",
+            "question": "Ist TablePro so kostenlos wie MySQL Workbench?",
+            "answer": "Die Nutzung ist kostenlos. MySQL, MariaDB und die übrigen unterstützten Engines, der KI-Assistent und der MCP-Server kosten nichts, und der Code ist Open Source unter der AGPLv3. Ein Starter- oder Team-Tarif ergänzt optionale Funktionen in der Mac-App, etwa {starterExamples}. <link>Preise ansehen</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "mysql-workbench-built-on-shell": "Basiert auf MySQL Shell",
+        "mysql-workbench-databases": "MySQL {version} LTS und neuer. Ältere Versionen können sich verbinden, werden aber nicht offiziell unterstützt.",
+        "mysql-workbench-notebooks": "SQL-Notebooks verbinden Abfragen, Ergebnisse und Notizen und führen auch JavaScript und TypeScript aus",
+        "mysql-workbench-administration": "Serverstatus, Benutzer und Berechtigungen sowie Client-Verbindungen mit den Sperren, die sie halten oder auf die sie warten",
+        "mysql-workbench-enterprise-backup": "Für Kunden von MySQL Enterprise Backup: vollständige und inkrementelle Sicherungen, Planung und Wiederherstellung",
+        "mysql-workbench-heatwave-migration": "Der HeatWave Migration Assistant für den Umzug zu MySQL HeatWave auf OCI",
+        "mysql-workbench-8-end-of-life": "Version {version} vom {date} ist die letzte. Oracle pflegt Workbench 8.0 nicht mehr und gibt an, dass noch nicht alle ihre Funktionen in der neuen Generation enthalten sind."
+    }
+}

@@ -1120,9 +1120,285 @@
             ]
         },
         {
+            "id": "mysql-workbench",
+            "name": "MySQL Workbench",
+            "slug": "mysql-workbench",
+            "checkedAt": "2026-10-08",
+            "status": { "state": "active", "lastRelease": { "version": "26.7", "date": "2026-09-10", "source": "s3" } },
+            "platforms": ["mac", "windows", "linux"],
+            "platformsSource": "s2",
+            "mac": { "minVersion": null, "architectures": ["arm64"], "source": "s2" },
+            "technology": { "name": "Electron", "note": "mysql-workbench-built-on-shell", "source": "s3" },
+            "licence": { "name": "GPL-2.0", "openSource": true, "edition": "Community", "source": "s2" },
+            "prices": [
+                { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s2" }
+            ],
+            "cells": {
+                "databases": {
+                    "state": "qualified",
+                    "version": "8.4",
+                    "note": "mysql-workbench-databases",
+                    "engines": ["mysql"],
+                    "source": "s3"
+                },
+                "notebooks": { "state": "yes", "note": "mysql-workbench-notebooks", "source": "s1" },
+                "administration": { "state": "yes", "note": "mysql-workbench-administration", "source": "s5" },
+                "enterpriseBackup": {
+                    "state": "qualified",
+                    "note": "mysql-workbench-enterprise-backup",
+                    "source": "s5"
+                },
+                "migration": { "state": "qualified", "note": "mysql-workbench-heatwave-migration", "source": "s1" },
+                "workbench8": {
+                    "state": "qualified",
+                    "version": "8.0.47",
+                    "date": "2026-04-23",
+                    "note": "mysql-workbench-8-end-of-life",
+                    "source": ["s3", "s4"]
+                }
+            },
+            "sources": [
+                {
+                    "id": "s1",
+                    "url": "https://www.mysql.com/products/workbench/",
+                    "title": "MySQL Workbench",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s2",
+                    "url": "https://dev.mysql.com/downloads/workbench/?os=33",
+                    "title": "MySQL Workbench downloads",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s3",
+                    "url": "https://blogs.oracle.com/mysql/introducing-mysql-workbench-26",
+                    "title": "Introducing MySQL Workbench 26",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s4",
+                    "url": "https://dev.mysql.com/doc/relnotes/workbench/en/",
+                    "title": "MySQL Workbench 8.0 release notes",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s5",
+                    "url": "https://www.mysql.com/products/workbench/admin/",
+                    "title": "MySQL Workbench administration",
+                    "retrievedAt": "2026-10-08"
+                }
+            ]
+        },
+        {
+            "id": "pgadmin",
+            "name": "pgAdmin 4",
+            "slug": "pgadmin",
+            "checkedAt": "2026-10-08",
+            "status": { "state": "active", "lastRelease": { "version": "9.18", "date": "2026-09-17", "source": "s1" } },
+            "platforms": ["mac", "windows", "linux", "web"],
+            "platformsSource": "s2",
+            "mac": { "minVersion": "14", "architectures": ["arm64", "x86_64"], "source": "s1" },
+            "technology": { "name": "Electron", "note": "pgadmin-web-application", "source": "s2" },
+            "licence": { "name": "PostgreSQL License", "openSource": true, "edition": null, "source": "s2" },
+            "prices": [
+                { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s2" }
+            ],
+            "cells": {
+                "databases": {
+                    "state": "qualified",
+                    "note": "pgadmin-databases",
+                    "engines": ["postgresql"],
+                    "source": "s3"
+                },
+                "ai": { "state": "yes", "note": "pgadmin-ai", "source": ["s4", "s5"] },
+                "debugger": { "state": "yes", "note": "pgadmin-debugger", "source": "s3" },
+                "schemaDiff": { "state": "yes", "source": "s3" },
+                "diagram": { "state": "yes", "note": "pgadmin-erd-design", "source": "s3" },
+                "backupRestore": { "state": "yes", "note": "pgadmin-bundled-utilities", "source": ["s3", "s6"] },
+                "jobScheduler": { "state": "yes", "note": "pgadmin-pgagent", "source": ["s2", "s3"] }
+            },
+            "sources": [
+                {
+                    "id": "s1",
+                    "url": "https://www.pgadmin.org/download/pgadmin-4-macos/",
+                    "title": "pgAdmin 4 for macOS",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s2",
+                    "url": "https://www.pgadmin.org/download/",
+                    "title": "pgAdmin downloads",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s3",
+                    "url": "https://www.pgadmin.org/features/",
+                    "title": "pgAdmin features",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s4",
+                    "url": "https://www.pgadmin.org/docs/pgadmin4/latest/ai_tools.html",
+                    "title": "pgAdmin AI Reports",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s5",
+                    "url": "https://www.pgadmin.org/docs/pgadmin4/latest/query_tool.html",
+                    "title": "pgAdmin Query Tool",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s6",
+                    "url": "https://www.pgadmin.org/docs/pgadmin4/latest/release_notes_9_18.html",
+                    "title": "pgAdmin 4 9.18 release notes",
+                    "retrievedAt": "2026-10-08"
+                }
+            ]
+        },
+        {
+            "id": "dbgate",
+            "name": "DbGate",
+            "slug": "dbgate",
+            "checkedAt": "2026-10-08",
+            "status": {
+                "state": "active",
+                "lastRelease": { "version": "7.3.2", "date": "2026-10-08", "source": "s6" }
+            },
+            "platforms": ["mac", "windows", "linux", "web"],
+            "platformsSource": "s1",
+            "mac": { "minVersion": null, "architectures": ["arm64", "x86_64"], "source": "s4" },
+            "technology": { "name": "Electron", "note": null, "source": "s5" },
+            "licence": { "name": "GPL-3.0", "openSource": true, "edition": "Community", "source": "s5" },
+            "prices": [
+                { "edition": "Community", "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s2" },
+                {
+                    "edition": "Premium",
+                    "amount": 12,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "month",
+                    "source": "s2"
+                },
+                {
+                    "edition": "Premium",
+                    "amount": 120,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "year",
+                    "source": "s2"
+                },
+                {
+                    "edition": "Team Premium",
+                    "amount": 15,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "month",
+                    "minUnits": 2,
+                    "source": "s2"
+                },
+                {
+                    "edition": "Team Premium",
+                    "amount": 150,
+                    "currency": "USD",
+                    "per": "user",
+                    "period": "year",
+                    "minUnits": 2,
+                    "source": "s2"
+                }
+            ],
+            "cells": {
+                "databases": {
+                    "state": "qualified",
+                    "note": "dbgate-databases",
+                    "engines": [
+                        "mysql",
+                        "postgresql",
+                        "sqlserver",
+                        "oracle",
+                        "sqlite",
+                        "mongodb",
+                        "cassandra",
+                        "clickhouse",
+                        "redis",
+                        "mariadb",
+                        "cockroachdb",
+                        "duckdb",
+                        "libsql",
+                        "redshift",
+                        "dynamodb"
+                    ],
+                    "source": ["s1", "s3"]
+                },
+                "ai": { "state": "qualified", "edition": "Premium", "note": "dbgate-ai", "source": ["s3", "s8"] },
+                "sync": { "state": "qualified", "value": 5, "note": "dbgate-cloud", "source": "s7" },
+                "diagram": { "state": "yes", "note": "dbgate-er-diagrams", "source": "s3" },
+                "queryDesigner": {
+                    "state": "qualified",
+                    "edition": "Premium",
+                    "note": "dbgate-paid-editions",
+                    "source": "s3"
+                },
+                "modelCompare": {
+                    "state": "qualified",
+                    "edition": "Premium",
+                    "note": "dbgate-paid-editions",
+                    "source": "s3"
+                },
+                "backup": { "state": "qualified", "edition": "Premium", "note": "dbgate-backup", "source": "s3" },
+                "cloudAuth": { "state": "qualified", "edition": "Premium", "note": "dbgate-cloud-auth", "source": "s3" }
+            },
+            "sources": [
+                { "id": "s1", "url": "https://www.dbgate.io/", "title": "DbGate", "retrievedAt": "2026-10-08" },
+                {
+                    "id": "s2",
+                    "url": "https://www.dbgate.io/pricing/",
+                    "title": "DbGate pricing",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s3",
+                    "url": "https://www.dbgate.io/compare/",
+                    "title": "DbGate editions compared",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s4",
+                    "url": "https://www.dbgate.io/download-community/",
+                    "title": "DbGate Community download",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s5",
+                    "url": "https://github.com/dbgate/dbgate",
+                    "title": "DbGate repository",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s6",
+                    "url": "https://github.com/dbgate/dbgate/releases",
+                    "title": "DbGate releases",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s7",
+                    "url": "https://www.dbgate.io/features/dbgate-cloud/",
+                    "title": "DbGate Cloud",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s8",
+                    "url": "https://www.dbgate.io/features/database-chat/",
+                    "title": "DbGate database chat",
+                    "retrievedAt": "2026-10-08"
+                }
+            ]
+        },
+        {
             "id": "mongodb-compass",
             "name": "MongoDB Compass",
-            "slug": null,
+            "slug": "mongodb-compass",
             "checkedAt": "2026-10-08",
             "status": {
                 "state": "active",
@@ -1130,23 +1406,33 @@
             },
             "platforms": ["mac", "windows", "linux"],
             "platformsSource": "s4",
-            "mac": null,
+            "mac": { "minVersion": null, "architectures": ["arm64", "x86_64"], "source": "s4" },
             "technology": { "name": "Electron", "note": null, "source": "s2" },
             "licence": { "name": "SSPL-1.0", "openSource": false, "edition": null, "source": "s2" },
             "prices": [
                 { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s1" }
             ],
             "cells": {
-                "ai": { "state": "yes", "note": "compass-natural-language", "source": "s1" },
-                "pipelineBuilder": { "state": "yes", "source": "s1" },
-                "schemaAnalysis": { "state": "yes", "source": "s1" }
+                "databases": {
+                    "state": "qualified",
+                    "version": "7.0",
+                    "note": "compass-databases",
+                    "engines": ["mongodb"],
+                    "source": "s5"
+                },
+                "ai": { "state": "yes", "note": "compass-natural-language", "source": ["s1", "s6"] },
+                "pipelineBuilder": { "state": "yes", "note": "compass-aggregation-stages", "source": "s1" },
+                "schemaAnalysis": { "state": "yes", "note": "compass-schema-sampling", "source": "s1" },
+                "dataModeling": { "state": "yes", "note": "compass-data-modeling", "source": "s7" },
+                "explainPlan": { "state": "yes", "source": "s1" },
+                "serverStats": { "state": "yes", "source": "s1" }
             },
             "sources": [
                 {
                     "id": "s1",
                     "url": "https://www.mongodb.com/products/tools/compass",
                     "title": "MongoDB Compass",
-                    "retrievedAt": "2026-10-02"
+                    "retrievedAt": "2026-10-08"
                 },
                 {
                     "id": "s2",
@@ -1164,6 +1450,82 @@
                     "id": "s4",
                     "url": "https://www.mongodb.com/try/download/compass",
                     "title": "MongoDB Compass download",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s5",
+                    "url": "https://www.mongodb.com/docs/compass/install/",
+                    "title": "Download and install Compass",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s6",
+                    "url": "https://www.mongodb.com/docs/compass/ai-and-data-usage-information/",
+                    "title": "Compass AI and data usage",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s7",
+                    "url": "https://www.mongodb.com/docs/compass/data-modeling/",
+                    "title": "Data modeling in MongoDB Compass",
+                    "retrievedAt": "2026-10-08"
+                }
+            ]
+        },
+        {
+            "id": "ssms",
+            "name": "SQL Server Management Studio",
+            "slug": "ssms",
+            "checkedAt": "2026-10-08",
+            "status": {
+                "state": "active",
+                "lastRelease": { "version": "22.10.2", "date": "2026-09-28", "source": "s2" }
+            },
+            "platforms": ["windows"],
+            "platformsSource": "s1",
+            "mac": null,
+            "technology": null,
+            "licence": { "name": null, "openSource": false, "edition": null, "source": "s1" },
+            "prices": [
+                { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s1" }
+            ],
+            "cells": {
+                "databases": {
+                    "state": "qualified",
+                    "note": "ssms-databases",
+                    "engines": ["sqlserver"],
+                    "source": "s1"
+                },
+                "ai": { "state": "qualified", "note": "ssms-github-copilot-component", "source": "s1" },
+                "sqlAgent": { "state": "yes", "note": "ssms-sql-server-agent", "source": "s3" },
+                "availabilityGroups": { "state": "yes", "note": "ssms-always-on", "source": "s1" },
+                "securityManagement": { "state": "yes", "note": "ssms-security-management", "source": "s1" },
+                "queryStatistics": { "state": "yes", "note": "ssms-query-statistics", "source": "s1" },
+                "diagram": { "state": "yes", "note": "ssms-database-diagrams", "source": "s1" },
+                "microsoftOnMac": {
+                    "state": "qualified",
+                    "date": "2026-02-28",
+                    "note": "ssms-microsoft-on-mac",
+                    "source": "s3"
+                }
+            },
+            "sources": [
+                {
+                    "id": "s1",
+                    "url": "https://learn.microsoft.com/en-us/ssms/faq",
+                    "title": "SQL Server Management Studio FAQ",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s2",
+                    "url": "https://learn.microsoft.com/en-us/ssms/release-notes-22",
+                    "title": "SQL Server Management Studio 22 release notes",
+                    "retrievedAt": "2026-10-08"
+                },
+                {
+                    "id": "s3",
+                    "url": "https://learn.microsoft.com/en-us/sql/tools/whats-happening-azure-data-studio",
+                    "title": "What's happening with Azure Data Studio",
                     "retrievedAt": "2026-10-08"
                 }
             ]
@@ -1212,50 +1574,6 @@
             ]
         },
         {
-            "id": "pgadmin",
-            "name": "pgAdmin 4",
-            "slug": null,
-            "checkedAt": "2026-10-02",
-            "status": {
-                "state": "active",
-                "lastRelease": { "version": "9.18", "date": "2026-09-17", "source": "s2" }
-            },
-            "platforms": ["mac", "windows", "linux", "web"],
-            "platformsSource": "s2",
-            "mac": { "minVersion": "14", "architectures": ["arm64", "x86_64"], "source": "s1" },
-            "technology": { "name": "Electron", "note": null, "source": "s1" },
-            "licence": { "name": "PostgreSQL License", "openSource": true, "edition": null, "source": "s2" },
-            "prices": [
-                { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s2" }
-            ],
-            "cells": {
-                "debugger": { "state": "yes", "source": "s3" },
-                "schemaDiff": { "state": "yes", "source": "s3" },
-                "diagram": { "state": "yes", "note": "pgadmin-erd-design", "source": "s3" },
-                "backupRestore": { "state": "yes", "source": "s3" }
-            },
-            "sources": [
-                {
-                    "id": "s1",
-                    "url": "https://www.pgadmin.org/download/pgadmin-4-macos/",
-                    "title": "pgAdmin 4 for macOS",
-                    "retrievedAt": "2026-10-02"
-                },
-                {
-                    "id": "s2",
-                    "url": "https://www.pgadmin.org/download/",
-                    "title": "pgAdmin downloads",
-                    "retrievedAt": "2026-10-02"
-                },
-                {
-                    "id": "s3",
-                    "url": "https://www.pgadmin.org/features/",
-                    "title": "pgAdmin features",
-                    "retrievedAt": "2026-10-02"
-                }
-            ]
-        },
-        {
             "id": "adminer",
             "name": "Adminer",
             "slug": null,
@@ -1281,41 +1599,6 @@
                     "id": "s2",
                     "url": "https://github.com/vrana/adminer",
                     "title": "Adminer repository",
-                    "retrievedAt": "2026-10-02"
-                }
-            ]
-        },
-        {
-            "id": "ssms",
-            "name": "SQL Server Management Studio",
-            "slug": null,
-            "checkedAt": "2026-10-02",
-            "status": {
-                "state": "active",
-                "lastRelease": { "version": "22.10.2", "date": "2026-09-28", "source": "s2" }
-            },
-            "platforms": ["windows"],
-            "platformsSource": "s1",
-            "mac": null,
-            "technology": null,
-            "licence": { "name": null, "openSource": false, "edition": null, "source": "s1" },
-            "prices": [
-                { "edition": null, "amount": 0, "currency": "USD", "per": null, "period": null, "source": "s1" }
-            ],
-            "cells": {
-                "ai": { "state": "qualified", "note": "ssms-github-copilot-component", "source": "s1" }
-            },
-            "sources": [
-                {
-                    "id": "s1",
-                    "url": "https://learn.microsoft.com/en-us/ssms/faq",
-                    "title": "SQL Server Management Studio FAQ",
-                    "retrievedAt": "2026-10-02"
-                },
-                {
-                    "id": "s2",
-                    "url": "https://learn.microsoft.com/en-us/ssms/release-notes-22",
-                    "title": "SQL Server Management Studio 22 release notes",
                     "retrievedAt": "2026-10-02"
                 }
             ]

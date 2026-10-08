@@ -1,0 +1,210 @@
+{
+    "seo": {
+        "title": "Mac 上的 SSMS：搭配 MSSQL 的 VS Code 或 TablePro",
+        "description": "SQL Server Management Studio 僅在 Windows 上執行。在 Mac 上，Microsoft 推薦搭配 MSSQL 的 VS Code，TablePro 則是 SQL Server 的另一個選擇。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "Mac 上的 SSMS 替代方案"
+    },
+    "header": {
+        "title": "Mac 上的 SQL Server Management Studio 替代方案",
+        "lead": "SQL Server Management Studio 是 Microsoft 針對 SQL Server 和 Azure SQL 的免費工具，僅在 Windows 上執行。Microsoft 已於 {cells.microsoftOnMac.date} 淘汰 Azure Data Studio，並引導使用者改用搭配 MSSQL 延伸模組的 Visual Studio Code，後者也能在 macOS 上執行。TablePro 是原生 Mac 用戶端，可連線 SQL Server 和其他引擎。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "您在 Mac 上工作，希望有 SQL Server 的原生 App，T-SQL 指令碼在每個 GO 行處分批執行。",
+            "您以 SQL Server 登入、Kerberos 或 Microsoft Entra ID 登入。",
+            "您也使用 PostgreSQL、MySQL、SQLite 或 Redis，希望用一個用戶端處理這些資料庫。",
+            "您希望在 Mac App 中免費使用 AI 助手和 MCP 伺服器，並自選 AI 服務商。",
+            "您希望有免費的 iPhone 與 iPad App 連線 SQL Server。"
+        ],
+        "competitor": [
+            "您管理 SQL Server Agent 作業、Always On 可用性群組或 Always Encrypted。",
+            "您使用即時查詢統計資料、調整建議程式和儀表板來調校效能。",
+            "您管理登入、使用者和角色，或在資料庫圖表中設計資料表。",
+            "您有可執行它的 Windows 電腦。"
+        ],
+        "competitorTitle": "適合在 Windows 上繼續使用 SQL Server Management Studio 的情況"
+    },
+    "glance": {
+        "intro": "SQL Server Management Studio 沒有 Mac 版本。Microsoft 在 Mac 上的官方選擇是搭配 MSSQL 延伸模組的 Visual Studio Code：Microsoft 已於 {cells.microsoftOnMac.date} 淘汰 Azure Data Studio，並引導使用者改用它。"
+    },
+    "rows": {
+        "sqlAgent": {
+            "label": "SQL Server Agent 作業",
+            "tablepro": "不提供"
+        },
+        "availabilityGroups": {
+            "label": "Always On 可用性群組",
+            "tablepro": "不提供"
+        },
+        "securityManagement": {
+            "label": "登入、使用者和角色",
+            "tablepro": "SQL Server 不提供。Users & Roles 適用於 MySQL、MariaDB 和 PostgreSQL"
+        },
+        "queryStatistics": {
+            "label": "效能工具",
+            "tablepro": "SQL Server 沒有執行計畫檢視，也沒有調整建議程式"
+        },
+        "diagram": {
+            "label": "資料庫圖表與資料表設計",
+            "tablepro": "Structure 分頁可編輯資料表，ER 圖為唯讀"
+        },
+        "microsoftOnMac": {
+            "label": "Microsoft 在 Mac 上的工具",
+            "tablepro": "TablePro 是由獨立專案開發的原生 Mac App，並非出自 Microsoft"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "SQL Server Management Studio 是 Microsoft 官方工具，適用於 SQL Server、Azure SQL Database、Azure SQL Managed Instance 和 Fabric 中的 SQL 資料庫，而且免費。",
+                "cite": ["cells.databases", "prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Microsoft 稱其為 SQL Server Agent 作業和一般管理工作的受支援工具。",
+                "cite": ["cells.sqlAgent"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "可設定、監控 Always On 可用性群組並進行疑難排解，也能管理登入、使用者、角色和 Always Encrypted。",
+                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "即時查詢統計資料、用戶端統計資料、調整建議程式和儀表板有助於效能調校。",
+                "cite": ["cells.queryStatistics"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "透過 Visual Studio Installer 加入的 GitHub Copilot 可撰寫、修正和最佳化 T-SQL。",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro 在 Mac 上原生執行，分別提供 Apple silicon 與 Intel 版本。SQL Server Management Studio 僅在 Windows 上執行。",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>T-SQL 指令碼</link>在每個 GO 行處分批執行，顯示 PRINT 輸出，每個結果集位於各自的分頁中。",
+                "cite": [],
+                "feature": null,
+                "href": "/sql-server-client"
+            },
+            {
+                "text": "可使用 SQL Server 登入、Kerberos 或 <link>Microsoft Entra ID</link> 登入，權杖儲存在您的登入鑰匙圈中。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/connections#cloud-auth"
+            },
+            {
+                "text": "一個用戶端同時支援 SQL Server 和 PostgreSQL、MySQL、SQLite、Redis 等其他引擎。查看<link>支援的資料庫</link>。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>AI 助手和 MCP 伺服器</link>在 Mac App 中免費，可自選 AI 服務商。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "免費的 <link>iPhone 與 iPad App</link> 可用 SQL Server 登入連線 SQL Server。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "SQL Server 沒有 SQL Server Agent、Always On 管理和執行計畫檢視。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Users & Roles 不支援 SQL Server，也沒有調整建議程式。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "不支援具名執行個體和 NTLM：請連線至執行個體的 TCP 連接埠，並使用 SQL Server 登入、Kerberos 或 Microsoft Entra ID 登入。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "在 iPhone 與 iPad 上可以要求 TLS，但不會驗證伺服器憑證。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "部分功能付費。Starter 加入 {starterExamples} 等功能，而 SQL Server Management Studio 免費。",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 沒有 SQL Server Management Studio 匯入工具。請將各伺服器新增為 TablePro 連線：填寫連線表單，或將以 sqlserver:// 開頭的 URL 貼上至<ui>檔案 > 匯入 > 從 URL 匯入…</ui>（File > Import > Import from URL…）。",
+        "steps": [],
+        "after": [
+            "在表單中選擇<ui>身分驗證</ui>（Authentication）：SQL Server 登入、透過 Kerberos 的 Windows 驗證，或 Microsoft Entra ID。",
+            "連線 Azure SQL Database 時，請將 SSL 設為 Required 或更嚴格；自主資料庫使用者還需填寫 Database。",
+            "從 SQL Server Management Studio 儲存的 .sql 檔案可匯入連線，其中的 GO 行會分批執行。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "mac",
+            "question": "SQL Server Management Studio 能在 Mac 上執行嗎？",
+            "answer": "不能。Microsoft 的常見問題說明它僅適用於 Windows。在 Mac 上，Microsoft 推薦搭配 MSSQL 延伸模組的 Visual Studio Code。",
+            "href": null
+        },
+        {
+            "id": "azure-data-studio",
+            "question": "Azure Data Studio 怎麼了？",
+            "answer": "Microsoft 已於 {cells.microsoftOnMac.date} 淘汰它，不再提供更新或安全性修正，並請使用者移轉至搭配 MSSQL 延伸模組的 Visual Studio Code，現有的查詢、指令碼和資料庫專案無須轉換即可在其中開啟。",
+            "href": null
+        },
+        {
+            "id": "vs-code",
+            "question": "該用搭配 MSSQL 的 Visual Studio Code，還是 TablePro？",
+            "answer": "如果希望在程式碼編輯器中使用 Microsoft 官方工具，選擇搭配 MSSQL 延伸模組的 Visual Studio Code。如果希望用原生 Mac App 處理 SQL Server 和其他引擎，並有免費的 iPhone 與 iPad App，選擇 TablePro。<link>了解 TablePro 中的 SQL Server</link>。",
+            "href": "/sql-server-client"
+        }
+    ],
+    "notes": {
+        "ssms-databases": "SQL Server、Azure SQL Database、Azure SQL Managed Instance、Azure Synapse Analytics 和 Microsoft Fabric 中的 SQL 資料庫",
+        "ssms-github-copilot-component": "GitHub Copilot 可撰寫、修正和最佳化 T-SQL，是透過 Visual Studio Installer 加入的獨立元件。",
+        "ssms-sql-server-agent": "Microsoft 稱其為 SQL Server Agent 和一般管理工作的受支援工具",
+        "ssms-always-on": "設定、監控可用性群組並進行疑難排解",
+        "ssms-security-management": "登入、使用者和角色，以及 Always Encrypted",
+        "ssms-query-statistics": "即時查詢統計資料、用戶端統計資料、調整建議程式和儀表板",
+        "ssms-database-diagrams": "資料庫圖表和資料表設計工具",
+        "ssms-microsoft-on-mac": "Microsoft 已於 {date} 淘汰 Azure Data Studio，不再提供更新或安全性修正，並引導使用者改用搭配 MSSQL 延伸模組的 Visual Studio Code。後者可在 Windows、macOS 與 Linux 上執行，現有的查詢、指令碼和資料庫專案無須轉換即可開啟。"
+    }
+}

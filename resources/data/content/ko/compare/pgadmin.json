@@ -1,0 +1,205 @@
+{
+    "seo": {
+        "title": "TablePro vs pgAdmin: PostgreSQL 관리 도구 또는 클라이언트",
+        "description": "pgAdmin은 데스크톱이나 웹 서버에서 실행하는 PostgreSQL용 무료 오픈 소스 관리 도구입니다. TablePro는 PostgreSQL과 다른 엔진을 지원합니다."
+    },
+    "og": {
+        "kicker": "비교",
+        "title": "TablePro vs pgAdmin"
+    },
+    "header": {
+        "title": "TablePro vs pgAdmin",
+        "lead": "pgAdmin 4는 PostgreSQL용 무료 오픈 소스 관리·개발 도구입니다. Windows, macOS, Linux에서 데스크톱 앱으로 실행하거나 여러 사람이 함께 쓰는 웹 서버에서 실행합니다. TablePro는 PostgreSQL과 다른 엔진용 오픈 소스 클라이언트이며 별도 iPhone·iPad 앱과 Mac 선택 유료 기능이 있습니다."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "PostgreSQL뿐 아니라 MySQL, SQL Server, SQLite, Redis·MongoDB도 사용합니다.",
+            "Swift로 만든 네이티브 Mac 앱에서 비밀번호를 macOS 키체인에 저장하고 싶습니다.",
+            "운영용 Read-Only나 쓰기 전 Touch ID처럼 연결마다 Safe Mode 수준을 두고 싶습니다.",
+            "Claude Code나 Cursor 같은 AI 클라이언트가 저장된 연결을 쓰도록 MCP 서버를 원합니다.",
+            "PostgreSQL에 연결하는 무료 iPhone·iPad 앱을 원합니다."
+        ],
+        "competitor": [
+            "PostgreSQL만 사용하며 작업 대부분이 관리입니다.",
+            "PL/pgSQL 함수를 디버그하거나 pgAgent로 작업 일정을 잡습니다.",
+            "psql, pg_dump, pg_restore가 함께 설치되어 따로 설치할 것이 없기를 원합니다.",
+            "웹 서버에 한 번 설치해 팀이 브라우저로 여는 방식을 원합니다.",
+            "Windows나 Linux에서도 작업합니다."
+        ]
+    },
+    "glance": {
+        "intro": "pgAdmin은 각 릴리스 시점에 지원 중인 PostgreSQL 버전을 지원합니다. 두 도구 모두 설정한 제공업체로 작동하는 AI 도우미가 있습니다."
+    },
+    "rows": {
+        "debugger": {
+            "label": "절차형 언어 디버거",
+            "tablepro": "없음"
+        },
+        "schemaDiff": {
+            "label": "스키마 비교",
+            "tablepro": "Compare & Sync가 두 데이터베이스의 구조나 데이터를 비교하고 동기화 스크립트를 작성. Starter에 포함"
+        },
+        "diagram": {
+            "label": "ER 다이어그램",
+            "tablepro": "PNG 또는 SQL로 내보낼 수 있는 무료 읽기 전용 ER 다이어그램"
+        },
+        "backupRestore": {
+            "label": "백업과 복원",
+            "tablepro": "무료: Backup Dump와 Restore Dump가 별도로 설치한 pg_dump와 pg_restore를 실행"
+        },
+        "jobScheduler": {
+            "label": "작업 일정",
+            "tablepro": "없음"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "pgAdmin은 PostgreSQL용으로 만들어졌으며 EDB Postgres Advanced Server도 지원합니다.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "디버거로 PL/pgSQL 함수를 한 단계씩 실행하고, 스키마 비교 도구로 두 스키마를 비교합니다. 둘 다 무료입니다.",
+                "cite": ["cells.debugger", "cells.schemaDiff"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "ERD 도구로 스키마를 설계하고 문서화합니다.",
+                "cite": ["cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "psql, pg_dump, pg_dumpall, pg_restore가 함께 제공되어 백업과 복원에 다른 설치가 필요 없습니다.",
+                "cite": ["cells.backupRestore"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Windows, macOS, Linux에서 실행하거나 여러 사용자를 위한 웹 서버에서 실행하며, pgAgent가 SQL, 셸, 배치 작업의 일정을 잡습니다.",
+                "cite": ["platforms", "cells.jobScheduler"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "클라이언트 하나로 PostgreSQL과 MySQL·SQL Server부터 Redis·MongoDB·DuckDB까지 지원합니다. <link>지원 데이터베이스</link>를 보세요.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "TablePro는 Swift로 만든 Mac 앱으로 네이티브 데이터베이스 드라이버를 사용합니다. pgAdmin은 Python 웹 애플리케이션으로 {technology} 데스크톱 런타임이나 웹 서버에서 실행합니다.",
+                "cite": ["technology"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "EXPLAIN은 계획을 다이어그램·트리·원시 텍스트로 보여 주고 <link>EXPLAIN Compare</link>는 새 계획을 기준과 비교합니다. 둘 다 무료입니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "연결마다 Silent부터 Read-Only까지 <link>Safe Mode</link> 수준이 있으며 엄격한 수준에서는 Touch ID를 요구합니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "<link>MCP 서버</link>로 Claude Code나 Cursor 같은 AI 클라이언트가 비밀번호를 보지 않고 저장된 연결을 사용합니다. Mac 앱에서 무료입니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "무료 <link>iPhone·iPad 앱</link>은 PostgreSQL에 연결하고 인앱 구매는 없습니다.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Windows·Linux용 TablePro 앱이 없고 서버에 설치할 웹 버전도 없습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "절차형 언어 디버거와 작업 스케줄러가 없습니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "ER 다이어그램은 읽기 전용입니다. 테이블은 그려서 바꾸는 것이 아니라 Structure 탭에서 변경합니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "백업하려면 Mac에 pg_dump와 pg_restore가 있어야 하며 Homebrew로 설치합니다.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Compare & Sync</link>는 Starter에 포함되지만 pgAdmin의 스키마 비교는 무료입니다.",
+                "cite": ["cells.schemaDiff"],
+                "feature": "compare-sync",
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro에는 pgAdmin 가져오기가 없습니다. 서버별로 연결을 추가해 폼을 채우거나 postgresql:// URL을 <ui>파일 > 가져오기 > URL에서 가져오기…</ui>(File > Import > Import from URL…)에 붙여 넣으세요.",
+        "steps": [],
+        "after": [
+            "프로젝트 .env 파일·Prisma 스키마에 데이터베이스 URL이 있으면 <ui>파일 > 가져오기 > 프로젝트 폴더 열기…</ui>(File > Import > Open Project Folder…)가 읽어 채워진 연결 폼을 엽니다.",
+            "비밀번호는 macOS 키체인에 저장하며 PostgreSQL 연결은 ~/.pgpass도 읽습니다.",
+            "쿼리 기록은 TablePro에서 새로 시작합니다."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "ai",
+            "question": "둘 다 AI 도우미가 있나요?",
+            "answer": "네. pgAdmin의 Query Tool은 자연어로 SQL을 작성하고 AI Reports는 보안, 성능, 설계를 검토하며 Anthropic, OpenAI 또는 Ollama·Docker Model Runner의 로컬 모델을 사용합니다. TablePro의 AI 도우미도 Mac 앱에서 무료이고 제공업체를 고를 수 있으며, 외부 AI 클라이언트용 MCP 서버도 있습니다. <link>TablePro의 AI 읽기</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "web",
+            "question": "pgAdmin 서버처럼 팀이 TablePro를 함께 쓸 수 있나요?",
+            "answer": "브라우저로는 안 됩니다. TablePro는 각 Mac에서 실행합니다. 연결은 연결 파일로 공유하거나 Team 플랜의 Team Catalog와 Team Library로 공유합니다. <link>공유 읽기</link>.",
+            "href": "/features/sync-and-teams"
+        },
+        {
+            "id": "free",
+            "question": "TablePro도 pgAdmin처럼 무료인가요?",
+            "answer": "무료로 사용합니다. PostgreSQL과 다른 지원 엔진, AI 도우미, MCP 서버는 무료이며 코드는 AGPLv3 오픈 소스입니다. pgAdmin과 달리 TablePro에는 유료 플랜도 있어 Starter와 Team이 Mac 앱에 {starterExamples} 등 선택 기능을 추가합니다. <link>가격 보기</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "pgadmin-web-application": "데스크톱 런타임이나 웹 서버에서 실행하는 Python 웹 애플리케이션",
+        "pgadmin-databases": "PostgreSQL과 EDB Postgres Advanced Server, 각 pgAdmin 릴리스 시점에 지원 중인 버전",
+        "pgadmin-ai": "Query Tool의 AI Assistant와 보안·성능·설계 AI Reports, 제공업체는 Anthropic, OpenAI, Ollama, Docker Model Runner",
+        "pgadmin-debugger": "PL/pgSQL과 EDB SPL용",
+        "pgadmin-erd-design": "스키마를 설계하고 문서화하는 ERD 도구",
+        "pgadmin-bundled-utilities": "백업, 복원, VACUUM, ANALYZE, psql·pg_dump·pg_dumpall·pg_restore 포함",
+        "pgadmin-pgagent": "서버에 설치하는 pgAgent가 SQL, 셸, 배치 작업 일정을 관리"
+    }
+}

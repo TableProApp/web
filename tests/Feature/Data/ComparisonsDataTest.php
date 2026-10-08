@@ -2,7 +2,6 @@
 
 use App\Support\Content\Slugs\CompareSlugs;
 use Illuminate\Support\Facades\File;
-use PHPUnit\Framework\Assert;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
@@ -291,11 +290,12 @@ it('names engines only on a compared product’s databases cell, each from engin
     expect($named)->toBeGreaterThan(0);
 });
 
-it('has the ten compared products of the sitemap, each with a route', function (): void {
+it('has the compared products of the sitemap, each with a route', function (): void {
     $slugs = array_values(array_filter(array_column(comparisonsJson()['products'], 'slug')));
 
     expect($slugs)->toBe([
         'tableplus', 'dbeaver', 'datagrip', 'navicat', 'beekeeper-studio', 'sequel-ace', 'sequel-pro', 'postico', 'heidisql', 'phpmyadmin',
+        'mysql-workbench', 'pgadmin', 'dbgate', 'mongodb-compass', 'ssms',
     ]);
     expect(array_diff($slugs, CompareSlugs::ALL))->toBe([]);
     expect($slugs)->not->toContain('azimutt');
@@ -310,33 +310,16 @@ it('has the ten compared products of the sitemap, each with a route', function (
 it('covers the tools the engine pages cite', function (): void {
     $cited = collect(comparisonsJson()['products'])->whereNull('slug')->pluck('id')->all();
 
-    expect($cited)->toEqualCanonicalizing(['mongodb-compass', 'redis-insight', 'pgadmin', 'adminer', 'ssms', 'azure-data-studio']);
+    expect($cited)->toEqualCanonicalizing(['redis-insight', 'adminer', 'azure-data-studio']);
 });
 
-/*
- * Sitemap §A.3 lists MySQL Workbench among /mysql-client's other tools, but
- * nothing here sources it, and on 2026-10-02 its own pages disagreed (the
- * download page offered 26.7.0, the release notes ended at 8.0.47 of
- * 2026-04-23). With no entry here, the page has no fact to state, so it must
- * not name the tool until a sourced `mysql-workbench` entry lands.
- */
-it('keeps every engine page off a tool it has no data for', function (): void {
-    /*
-     * Adding a sourced entry is the way to lift this: drop the next line and
-     * this test together.
-     */
-    expect(array_column(comparisonsJson()['products'], 'id'))->not->toContain('mysql-workbench');
+it('names MySQL Workbench on the MySQL page only with its sourced entry', function (): void {
+    $workbench = collect(comparisonsJson()['products'])->firstWhere('id', 'mysql-workbench');
+    $page = json_decode(File::get(resource_path('data/content/en/databases/mysql-client.json')), true, 512, JSON_THROW_ON_ERROR);
 
-    $content = resource_path('data/content');
-    $files = is_dir($content) ? File::allFiles($content) : [];
-
-    foreach ($files as $file) {
-        Assert::assertStringNotContainsStringIgnoringCase(
-            'MySQL Workbench',
-            $file->getContents(),
-            "{$file->getRelativePathname()} names MySQL Workbench, which resources/data/comparisons.json has no sourced entry for.",
-        );
-    }
+    expect($workbench['slug'])->toBe('mysql-workbench');
+    expect($workbench['cells']['databases']['engines'])->toBe(['mysql']);
+    expect(array_column($page['otherTools']['items'], 'product'))->toContain('mysql-workbench');
 });
 
 it('pins the facts the pages lean on', function (): void {
@@ -403,6 +386,22 @@ it('pins the facts the pages lean on', function (): void {
     expect($products['mongodb-compass']['licence'])->toMatchArray(['name' => 'SSPL-1.0', 'openSource' => false]);
     expect($products['redis-insight']['licence'])->toMatchArray(['name' => 'SSPL-1.0', 'openSource' => false]);
     expect($products['mongodb-compass']['platforms'])->toBe(['mac', 'windows', 'linux']);
+
+    /*
+     * Read on the vendors' pages on 2026-10-08 for the five comparisons added
+     * then. MySQL Workbench 26.7 replaced Workbench 8.0, whose last release is
+     * 8.0.47, and its Mac download is for Apple silicon only. Compass's
+     * install guide and its download page disagree on the macOS floor, so the
+     * data names none. SQL Server Management Studio has no Mac version.
+     */
+    expect($products['mysql-workbench']['mac'])->toMatchArray(['minVersion' => null, 'architectures' => ['arm64']]);
+    expect($products['mysql-workbench']['cells']['workbench8'])->toMatchArray(['version' => '8.0.47', 'date' => '2026-04-23']);
+    expect($products['mysql-workbench']['cells']['databases'])->toMatchArray(['version' => '8.4']);
+    expect($products['mongodb-compass']['mac']['minVersion'])->toBeNull();
+    expect($products['mongodb-compass']['cells']['databases'])->toMatchArray(['version' => '7.0']);
+    expect($prices('dbgate'))->toContain(['Community', 0, null], ['Premium', 12, 'month'], ['Team Premium', 15, 'month']);
+    expect($products['dbgate']['cells']['ai'])->toMatchArray(['state' => 'qualified', 'edition' => 'Premium']);
+    expect($products['ssms']['cells']['microsoftOnMac'])->toMatchArray(['date' => '2026-02-28']);
 });
 
 it('never names TablePro and never stores a benchmark', function (): void {

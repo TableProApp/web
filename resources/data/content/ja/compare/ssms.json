@@ -1,0 +1,210 @@
+{
+    "seo": {
+        "title": "Mac の SSMS 代替：VS Code の MSSQL 拡張か TablePro",
+        "description": "SQL Server Management Studio は Windows 専用です。Mac では Microsoft が VS Code と MSSQL 拡張を勧め、TablePro も SQL Server 用の選択肢になります。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "Mac の SSMS 代替"
+    },
+    "header": {
+        "title": "Mac の SQL Server Management Studio 代替",
+        "lead": "SQL Server Management Studio は SQL Server と Azure SQL 用の Microsoft の無料ツールで、Windows でのみ動きます。Microsoft は {cells.microsoftOnMac.date} に Azure Data Studio を廃止し、macOS でも動く Visual Studio Code と MSSQL 拡張機能を利用者に勧めています。TablePro は SQL Server と他のエンジンに接続するネイティブ Mac クライアントです。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Mac で作業し、T-SQL スクリプトを GO 行ごとのバッチで実行するネイティブの SQL Server アプリが欲しい。",
+            "SQL Server ログイン、Kerberos、Microsoft Entra ID でサインインする。",
+            "PostgreSQL、MySQL、SQLite や Redis も使い、一つのクライアントで扱いたい。",
+            "選んだ AI プロバイダーで使える、Mac アプリで無料の AI アシスタントと MCP サーバーが欲しい。",
+            "SQL Server に接続する無料の iPhone・iPad アプリが欲しい。"
+        ],
+        "competitor": [
+            "SQL Server エージェントのジョブ、Always On 可用性グループ、Always Encrypted を管理する。",
+            "ライブクエリ統計、チューニングアドバイザー、ダッシュボードでパフォーマンスを調整する。",
+            "ログイン、ユーザー、ロールを管理する、またはデータベースダイアグラムでテーブルを設計する。",
+            "実行できる Windows コンピューターがある。"
+        ],
+        "competitorTitle": "Windows で SQL Server Management Studio を使い続けるのが向く場合"
+    },
+    "glance": {
+        "intro": "SQL Server Management Studio に Mac 版はありません。Mac での Microsoft の選択肢は Visual Studio Code と MSSQL 拡張機能です。Microsoft は {cells.microsoftOnMac.date} に Azure Data Studio を廃止し、利用者をそちらに案内しています。"
+    },
+    "rows": {
+        "sqlAgent": {
+            "label": "SQL Server エージェント",
+            "tablepro": "なし"
+        },
+        "availabilityGroups": {
+            "label": "Always On 可用性グループ",
+            "tablepro": "なし"
+        },
+        "securityManagement": {
+            "label": "ログイン、ユーザー、ロール",
+            "tablepro": "SQL Server ではなし。Users & Roles は MySQL、MariaDB、PostgreSQL が対象"
+        },
+        "queryStatistics": {
+            "label": "パフォーマンスツール",
+            "tablepro": "SQL Server の実行プラン表示とチューニングアドバイザーはなし"
+        },
+        "diagram": {
+            "label": "データベースダイアグラムとテーブル設計",
+            "tablepro": "Structure タブでテーブルを編集。ER 図は読み取り専用の図"
+        },
+        "microsoftOnMac": {
+            "label": "Mac での Microsoft のツール",
+            "tablepro": "TablePro は Microsoft 製ではなく、独立したプロジェクトのネイティブ Mac アプリ"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "SQL Server Management Studio は SQL Server、Azure SQL Database、Azure SQL Managed Instance、Fabric の SQL データベース向けの Microsoft 公式ツールで、無料です。",
+                "cite": ["cells.databases", "prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Microsoft は SQL Server エージェントのジョブと一般的な管理作業の正式な拠点としています。",
+                "cite": ["cells.sqlAgent"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Always On 可用性グループの構成、監視、トラブルシューティングと、ログイン、ユーザー、ロール、Always Encrypted の管理ができます。",
+                "cite": ["cells.availabilityGroups", "cells.securityManagement"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "ライブクエリ統計、クライアント統計、チューニングアドバイザー、ダッシュボードがパフォーマンス作業を助けます。",
+                "cite": ["cells.queryStatistics"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Visual Studio Installer で追加する GitHub Copilot が、T-SQL の作成、修正、最適化を手伝います。",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro は Mac でネイティブに動き、Apple silicon と Intel に別のビルドがあります。SQL Server Management Studio は Windows 専用です。",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>T-SQL スクリプト</link>は GO 行で区切って一バッチずつ実行し、PRINT の出力を表示し、結果セットごとにタブを分けます。",
+                "cite": [],
+                "feature": null,
+                "href": "/sql-server-client"
+            },
+            {
+                "text": "SQL Server ログイン、Kerberos、<link>Microsoft Entra ID</link> でサインインでき、トークンはログインキーチェーンに保存されます。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/connections#cloud-auth"
+            },
+            {
+                "text": "一つのクライアントで SQL Server と、PostgreSQL、MySQL、SQLite、Redis などのエンジンに対応します。<link>対応データベース</link>をご覧ください。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "<link>AI アシスタントと MCP サーバー</link>は Mac アプリで無料で、AI プロバイダーを選べます。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "無料の <link>iPhone・iPad アプリ</link>は SQL Server ログインで SQL Server に接続します。",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "SQL Server エージェント、Always On の管理、SQL Server の実行プラン表示はありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Users & Roles は SQL Server に対応せず、チューニングアドバイザーもありません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "名前付きインスタンスと NTLM には対応しません。インスタンスの TCP ポートに接続し、SQL Server ログイン、Kerberos、Microsoft Entra ID でサインインしてください。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "iPhone・iPad では TLS を必須にできますが、サーバー証明書は検証されません。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "一部の機能は有料です。Starter は {starterExamples} などを追加しますが、SQL Server Management Studio は無料です。",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro に SQL Server Management Studio のインポーターはありません。各サーバーを接続として追加し、フォームを入力するか sqlserver:// で始まる URL を <ui>File > Import > Import from URL…</ui> に貼り付けます。",
+        "steps": [],
+        "after": [
+            "フォームで <ui>Authentication</ui> を選びます。SQL Server ログイン、Kerberos による Windows 認証、Microsoft Entra ID から選べます。",
+            "Azure SQL Database では SSL を Required 以上にし、包含データベースユーザーの場合は Database を入力します。",
+            "SQL Server Management Studio で保存した .sql ファイルは接続にインポートでき、GO 行ごとにバッチで実行されます。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "mac",
+            "question": "SQL Server Management Studio は Mac で動きますか？",
+            "answer": "いいえ。Microsoft の FAQ によると Windows 専用です。Mac では、Microsoft は Visual Studio Code と MSSQL 拡張機能を勧めています。",
+            "href": null
+        },
+        {
+            "id": "azure-data-studio",
+            "question": "Azure Data Studio はどうなりましたか？",
+            "answer": "Microsoft は {cells.microsoftOnMac.date} に廃止しました。更新もセキュリティ修正もなくなり、Microsoft は Visual Studio Code と MSSQL 拡張機能への移行を勧めています。既存のクエリ、スクリプト、データベースプロジェクトは変換せずに開けます。",
+            "href": null
+        },
+        {
+            "id": "vs-code",
+            "question": "Visual Studio Code と MSSQL、TablePro のどちらを使うべきですか？",
+            "answer": "コードエディターの中で Microsoft 公式のツールを使いたいなら Visual Studio Code と MSSQL 拡張機能。SQL Server と他のエンジン用のネイティブ Mac アプリと、無料の iPhone・iPad アプリが欲しいなら TablePro です。<link>TablePro の SQL Server 対応について</link>。",
+            "href": "/sql-server-client"
+        }
+    ],
+    "notes": {
+        "ssms-databases": "SQL Server、Azure SQL Database、Azure SQL Managed Instance、Azure Synapse Analytics、Microsoft Fabric の SQL データベース",
+        "ssms-github-copilot-component": "GitHub Copilot が T-SQL の作成、修正、最適化を支援。Visual Studio Installer で追加する別コンポーネントです。",
+        "ssms-sql-server-agent": "Microsoft は SQL Server エージェントと一般的な管理作業の正式な拠点としています",
+        "ssms-always-on": "可用性グループの構成、監視、トラブルシューティング",
+        "ssms-security-management": "ログイン、ユーザー、ロールと Always Encrypted",
+        "ssms-query-statistics": "ライブクエリ統計、クライアント統計、チューニングアドバイザー、ダッシュボード",
+        "ssms-database-diagrams": "データベースダイアグラムとテーブルデザイナー",
+        "ssms-microsoft-on-mac": "Microsoft は {date} に Azure Data Studio を廃止し、更新とセキュリティ修正を終了しました。利用者には Windows、macOS、Linux で動く Visual Studio Code と MSSQL 拡張機能を勧めており、既存のクエリ、スクリプト、データベースプロジェクトは変換せずに開けます。"
+    }
+}

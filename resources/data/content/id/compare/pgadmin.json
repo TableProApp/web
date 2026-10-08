@@ -1,0 +1,205 @@
+{
+    "seo": {
+        "title": "TablePro vs pgAdmin: alat admin PostgreSQL atau klien",
+        "description": "pgAdmin adalah alat administrasi PostgreSQL gratis bersumber terbuka, di desktop atau server web. TablePro mendukung PostgreSQL dan mesin lain."
+    },
+    "og": {
+        "kicker": "Perbandingan",
+        "title": "TablePro vs pgAdmin"
+    },
+    "header": {
+        "title": "TablePro vs pgAdmin",
+        "lead": "pgAdmin 4 adalah alat administrasi dan pengembangan gratis bersumber terbuka untuk PostgreSQL. Aplikasi ini berjalan sebagai aplikasi desktop di Windows, macOS, dan Linux, atau di server web yang digunakan bersama oleh beberapa orang. TablePro adalah klien sumber terbuka untuk PostgreSQL dan mesin lain, dengan aplikasi iPhone dan iPad terpisah serta fitur berbayar opsional pada Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Anda juga menggunakan MySQL, SQL Server, SQLite, Redis, atau MongoDB, bukan hanya PostgreSQL.",
+            "Anda menginginkan aplikasi Mac native yang ditulis dalam Swift, dengan kata sandi di Keychain macOS.",
+            "Anda menginginkan tingkat Safe Mode pada setiap koneksi, seperti Read-Only untuk produksi atau Touch ID sebelum penulisan.",
+            "Anda menginginkan server MCP agar klien AI seperti Claude Code atau Cursor dapat menggunakan koneksi tersimpan Anda.",
+            "Anda menginginkan aplikasi iPhone dan iPad gratis yang terhubung ke PostgreSQL."
+        ],
+        "competitor": [
+            "Anda hanya menggunakan PostgreSQL, dan sebagian besar pekerjaan Anda adalah administrasi.",
+            "Anda men-debug fungsi PL/pgSQL atau menjadwalkan job dengan pgAgent.",
+            "Anda ingin psql, pg_dump, dan pg_restore sudah disertakan, tanpa perlu memasang apa pun lagi.",
+            "Anda ingin satu instalasi di server web yang dibuka tim Anda di peramban.",
+            "Anda juga bekerja di Windows atau Linux."
+        ]
+    },
+    "glance": {
+        "intro": "pgAdmin mendukung versi PostgreSQL yang masih didukung saat setiap rilisnya keluar. Kedua alat memiliki asisten AI yang bekerja dengan penyedia yang Anda konfigurasi."
+    },
+    "rows": {
+        "debugger": {
+            "label": "Debugger bahasa prosedural",
+            "tablepro": "Tidak tersedia"
+        },
+        "schemaDiff": {
+            "label": "Perbandingan skema",
+            "tablepro": "Compare & Sync membandingkan struktur atau data dua database dan menulis skrip sinkronisasi. Termasuk Starter"
+        },
+        "diagram": {
+            "label": "Diagram ER",
+            "tablepro": "Diagram ER hanya baca, dapat diekspor sebagai PNG atau SQL, gratis"
+        },
+        "backupRestore": {
+            "label": "Pencadangan dan pemulihan",
+            "tablepro": "Gratis: Backup Dump dan Restore Dump menjalankan pg_dump dan pg_restore yang Anda pasang"
+        },
+        "jobScheduler": {
+            "label": "Penjadwalan job",
+            "tablepro": "Tidak tersedia"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "pgAdmin dibuat untuk PostgreSQL, dan juga untuk EDB Postgres Advanced Server.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Debugger-nya menelusuri fungsi PL/pgSQL langkah demi langkah, dan alat schema diff-nya membandingkan dua skema. Keduanya gratis.",
+                "cite": ["cells.debugger", "cells.schemaDiff"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Alat ERD-nya merancang dan mendokumentasikan skema.",
+                "cite": ["cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "psql, pg_dump, pg_dumpall, dan pg_restore sudah disertakan, jadi pencadangan dan pemulihan berfungsi tanpa memasang apa pun lagi.",
+                "cite": ["cells.backupRestore"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Aplikasi ini berjalan di Windows, macOS, dan Linux, atau di server web untuk beberapa pengguna, dan pgAgent menjadwalkan job SQL, shell, dan batch.",
+                "cite": ["platforms", "cells.jobScheduler"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Satu klien mencakup PostgreSQL dan mesin lain, dari MySQL dan SQL Server hingga Redis, MongoDB, dan DuckDB. Lihat <link>database yang didukung</link>.",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "TablePro adalah aplikasi Mac yang ditulis dalam Swift, dengan driver database native. pgAdmin adalah aplikasi web Python yang berjalan dalam runtime desktop {technology} atau di server web.",
+                "cite": ["technology"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "EXPLAIN menampilkan rencana sebagai diagram, pohon, atau teks mentah, dan <link>EXPLAIN Compare</link> membandingkan rencana baru dengan acuan. Keduanya gratis.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/querying#performance"
+            },
+            {
+                "text": "Setiap koneksi memiliki tingkat <link>Safe Mode</link>, dari Silent hingga Read-Only, dengan Touch ID pada tingkat yang lebih ketat.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            },
+            {
+                "text": "<link>Server MCP</link> memungkinkan klien AI seperti Claude Code atau Cursor menggunakan koneksi tersimpan Anda tanpa melihat kata sandi. Fitur ini gratis dalam aplikasi Mac.",
+                "cite": [],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Aplikasi iPhone dan iPad gratis</link> terhubung ke PostgreSQL tanpa pembelian dalam aplikasi.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Tidak ada aplikasi TablePro untuk Windows atau Linux, dan tidak ada versi web untuk dipasang di server.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Tidak ada debugger bahasa prosedural dan tidak ada penjadwal job.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Diagram ER hanya baca: Anda mengubah tabel di tab Structure, bukan dengan menggambarnya.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Pencadangan memerlukan pg_dump dan pg_restore di Mac Anda, yang dipasang dengan Homebrew.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>Compare & Sync</link> termasuk Starter, sedangkan schema diff pgAdmin gratis.",
+                "cite": ["cells.schemaDiff"],
+                "feature": "compare-sync",
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro tidak memiliki pengimpor untuk pgAdmin. Tambahkan setiap server sebagai koneksi TablePro: isi formulir koneksi atau tempel URL yang diawali postgresql:// pada <ui>File > Import > Import from URL…</ui>",
+        "steps": [],
+        "after": [
+            "Jika proyek menyimpan URL database dalam berkas .env atau skema Prisma, <ui>File > Import > Open Project Folder…</ui> membacanya lalu membuka formulir koneksi yang terisi.",
+            "Kata sandi dimasukkan ke Keychain macOS. TablePro juga membaca ~/.pgpass untuk koneksi PostgreSQL.",
+            "Riwayat kueri dimulai dari awal di TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "ai",
+            "question": "Apakah keduanya memiliki asisten AI?",
+            "answer": "Ya. Query Tool pgAdmin menulis SQL dari bahasa sehari-hari, dan AI Reports-nya meninjau keamanan, performa, dan desain, dengan Anthropic, OpenAI, atau model lokal melalui Ollama atau Docker Model Runner. Asisten AI TablePro gratis dalam aplikasi Mac, dengan penyedia pilihan Anda, dan TablePro menambahkan server MCP untuk klien AI eksternal. <link>Baca tentang AI di TablePro</link>.",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "web",
+            "question": "Bisakah tim saya berbagi TablePro seperti berbagi server pgAdmin?",
+            "answer": "Tidak melalui peramban: TablePro berjalan di setiap Mac. Koneksi dibagikan melalui berkas koneksi, atau melalui Team Catalog dan Team Library dengan paket Team. <link>Baca tentang berbagi</link>.",
+            "href": "/features/sync-and-teams"
+        },
+        {
+            "id": "free",
+            "question": "Apakah TablePro gratis seperti pgAdmin?",
+            "answer": "Gratis digunakan. PostgreSQL dan mesin lain yang didukung, asisten AI, serta server MCP tidak dikenai biaya, dan kodenya bersumber terbuka dengan AGPLv3. Berbeda dari pgAdmin, TablePro juga memiliki paket berbayar: Starter dan Team menambah fitur opsional pada aplikasi Mac, seperti {starterExamples}. <link>Lihat harga</link>.",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "pgadmin-web-application": "Aplikasi web Python, dalam runtime desktop atau di server web",
+        "pgadmin-databases": "PostgreSQL dan EDB Postgres Advanced Server, dalam versi yang masih didukung saat setiap rilis pgAdmin keluar",
+        "pgadmin-ai": "AI Assistant di Query Tool, dan AI Reports tentang keamanan, performa, dan desain, dengan Anthropic, OpenAI, Ollama, atau Docker Model Runner sebagai penyedia",
+        "pgadmin-debugger": "Untuk PL/pgSQL dan EDB SPL",
+        "pgadmin-erd-design": "Alat ERD untuk merancang dan mendokumentasikan skema",
+        "pgadmin-bundled-utilities": "Pencadangan, pemulihan, VACUUM, dan ANALYZE, dengan psql, pg_dump, pg_dumpall, dan pg_restore yang disertakan",
+        "pgadmin-pgagent": "pgAgent, yang Anda pasang di server, menjadwalkan job SQL, shell, dan batch"
+    }
+}

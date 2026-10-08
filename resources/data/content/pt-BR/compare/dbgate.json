@@ -1,0 +1,198 @@
+{
+    "seo": {
+        "title": "TablePro vs. DbGate: Mac e iPhone, ou desktop e web",
+        "description": "DbGate é um cliente de código aberto para Windows, macOS, Linux e web, com edições Premium pagas. TablePro é de código aberto e nativo no Mac e iPhone."
+    },
+    "og": {
+        "kicker": "Comparação",
+        "title": "TablePro vs. DbGate"
+    },
+    "header": {
+        "title": "TablePro vs. DbGate",
+        "lead": "DbGate é um cliente de código aberto para bancos de dados SQL e NoSQL, construído sobre {technology}. Funciona em Windows, macOS e Linux e como app web, com uma edição Community gratuita e edições Premium pagas. TablePro é um cliente de código aberto com um app nativo para Mac, um app separado para iPhone e iPad e recursos pagos opcionais no Mac."
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "Você quer um assistente de IA sem uma edição paga. Ele é gratuito no app para Mac, com o provedor de IA que escolher, enquanto o chat de banco de dados do DbGate está no {cells.ai.edition}.",
+            "Você entra nos bancos com AWS IAM ou Microsoft Entra ID e quer fazer isso de graça.",
+            "Você quer backups pela ferramenta de dump de cada mecanismo sem uma edição paga.",
+            "Você quer um app nativo para Mac escrito em Swift, com senhas no Chaves do macOS.",
+            "Você também quer um app para iPhone e iPad."
+        ],
+        "competitor": [
+            "Você também trabalha em Windows ou Linux, ou quer um app web que sua equipe abre no navegador.",
+            "Você se conecta a Firebird, Azure Cosmos DB ou Firestore, que TablePro não suporta.",
+            "Você quer um designer visual de consultas, a partir da edição {cells.queryDesigner.edition}.",
+            "Você quer que o DbGate Cloud mantenha suas conexões e arquivos SQL em todo dispositivo em que você entrar."
+        ]
+    },
+    "glance": {
+        "intro": "DbGate tem uma edição Community gratuita e edições Premium e Team Premium cobradas por usuário, por isso várias linhas indicam qual edição um recurso exige."
+    },
+    "rows": {
+        "diagram": {
+            "label": "Diagrama ER",
+            "tablepro": "Um diagrama ER somente leitura, exportado como PNG ou SQL, gratuito"
+        },
+        "queryDesigner": {
+            "label": "Designer visual de consultas",
+            "tablepro": "Indisponível"
+        },
+        "modelCompare": {
+            "label": "Comparação de modelos de banco",
+            "tablepro": "Compare & Sync compara a estrutura ou os dados de dois bancos e gera o script de sincronização. Faz parte do Starter"
+        },
+        "backup": {
+            "label": "Backup e restauração",
+            "tablepro": "Gratuitos no app Mac: Backup Dump e Restore Dump pela ferramenta de dump do mecanismo, quando houver"
+        },
+        "cloudAuth": {
+            "label": "Login na nuvem",
+            "tablepro": "Gratuito: AWS IAM no Amazon RDS e Aurora, e Microsoft Entra ID para SQL Server"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "DbGate funciona em Windows, macOS e Linux, e também como app web que você implanta em um servidor.",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Ele se conecta a mecanismos que TablePro não suporta, como Firebird, e suas edições pagas adicionam Azure Cosmos DB e Firestore.",
+                "cite": ["cells.databases"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "A edição Community é gratuita e de código aberto sob {licence}, com diagramas ER em todas as edições.",
+                "cite": ["licence", "cells.diagram"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Premium adiciona um designer visual de consultas e uma ferramenta que compara e implanta modelos de banco.",
+                "cite": ["cells.queryDesigner", "cells.modelCompare"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "O DbGate Cloud mantém conexões e arquivos SQL em todo dispositivo em que você entra, com até {cells.sync.value} conexões na Community.",
+                "cite": ["cells.sync"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "TablePro é um app Mac escrito em Swift, com drivers nativos de bancos de dados. DbGate é construído sobre {technology}. Ambos oferecem versões para Macs com Apple silicon e Intel.",
+                "cite": ["technology", "mac"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "O <link>assistente de IA</link> é gratuito no app para Mac, com o provedor de IA que escolher, na nuvem ou no seu Mac. O chat de banco de dados do DbGate está nas edições pagas e passa pelo gateway do DbGate até a OpenAI.",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "<link>Login com AWS IAM e Microsoft Entra ID</link> é gratuito no TablePro. DbGate os lista nas edições pagas.",
+                "cite": ["cells.cloudAuth"],
+                "feature": null,
+                "href": "/features/connections#cloud-auth"
+            },
+            {
+                "text": "<link>Backups</link> pela ferramenta de dump de cada mecanismo são gratuitos no TablePro. O backup e a restauração nativos do DbGate estão nas edições pagas.",
+                "cite": ["cells.backup"],
+                "feature": null,
+                "href": "/features/import-export#backup"
+            },
+            {
+                "text": "<link>iCloud Sync</link> mantém conexões sincronizadas entre seus Macs e seu iPhone ou iPad. Faz parte do Starter no Mac e é gratuito no app para iPhone e iPad.",
+                "cite": [],
+                "feature": "icloud-sync",
+                "href": null
+            },
+            {
+                "text": "Há um <link>app gratuito para iPhone e iPad</link>, sem compras no app.",
+                "cite": [],
+                "feature": null,
+                "href": "/ios"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Não há app TablePro para Windows ou Linux, nem versão web.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Firebird, Azure Cosmos DB e Firestore não estão entre os mecanismos suportados.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Não há designer visual de consultas, e o diagrama ER é somente leitura.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "Alguns recursos são pagos. Starter adiciona recursos como {starterExamples}.",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro não tem importador para DbGate. Adicione cada conexão manualmente: preencha o formulário ou cole uma URL iniciada por postgresql://, mysql:// ou mongodb:// em <ui>File > Import > Import from URL…</ui>",
+        "steps": [],
+        "after": [
+            "Configure um túnel SSH na aba <ui>Network</ui> da conexão. No Mac, hosts intermediários também são suportados.",
+            "Se um projeto guarda as configurações do banco em um arquivo .env, <ui>File > Import > Open Project Folder…</ui> as lê e abre o formulário preenchido.",
+            "As senhas ficam no Chaves do macOS, e o histórico de consultas começa do zero no TablePro."
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "free-editions",
+            "question": "O que é gratuito em cada um?",
+            "answer": "DbGate Community é gratuito e de código aberto, e as edições pagas adicionam recursos como chat de banco de dados, designer de consultas e backup nativo. TablePro é gratuito para usar com todos os mecanismos suportados, o assistente de IA e o servidor MCP, e um plano Starter ou Team adiciona recursos como {starterExamples}. <link>Ver preços</link>.",
+            "href": "/pricing"
+        },
+        {
+            "id": "web",
+            "question": "Existe uma versão web do TablePro?",
+            "answer": "Não. TablePro funciona no seu Mac, iPhone e iPad. Se sua equipe precisa de um cliente de banco de dados no navegador, DbGate também funciona como app web.",
+            "href": null
+        },
+        {
+            "id": "mongodb-redis",
+            "question": "Os dois funcionam com MongoDB e Redis?",
+            "answer": "Sim, e ambos os incluem sem custo. <link>Veja os bancos de dados compatíveis</link>.",
+            "href": "/databases"
+        }
+    ],
+    "notes": {
+        "dbgate-databases": "Community cobre MySQL, PostgreSQL, SQL Server, Oracle, SQLite, MongoDB, Redis, Cassandra, ClickHouse, DuckDB e outros. Premium adiciona Amazon Redshift, DynamoDB, Azure Cosmos DB, Firestore e libSQL. O site também lista Firebird.",
+        "dbgate-ai": "Chat de banco de dados, um assistente de IA para SQL e explicação de erros, no Premium e no Team Premium, pelo gateway do DbGate até a OpenAI",
+        "dbgate-cloud": "DbGate Cloud guarda conexões e arquivos SQL online. Community mantém até {value} conexões lá, e Premium remove o limite e adiciona pastas compartilhadas.",
+        "dbgate-er-diagrams": "Em todas as edições. As configurações avançadas ficam no Premium.",
+        "dbgate-paid-editions": "No Premium e no Team Premium, não na Community",
+        "dbgate-backup": "Backup e restauração nativos no Premium e no Team Premium. Community faz backup e restauração de tabelas individuais.",
+        "dbgate-cloud-auth": "AWS IAM, Microsoft Entra ID e identidade gerenciada do Azure, no Premium e no Team Premium"
+    }
+}

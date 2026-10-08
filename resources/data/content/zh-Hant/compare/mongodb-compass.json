@@ -1,0 +1,196 @@
+{
+    "seo": {
+        "title": "TablePro vs MongoDB Compass：單一資料庫或多種",
+        "description": "MongoDB Compass 是 MongoDB 免費的 GUI，支援依階段建立彙總和 schema 分析。TablePro 在 Mac 上同時支援 MongoDB、SQL 資料庫和 Redis。"
+    },
+    "og": {
+        "kicker": "比較",
+        "title": "TablePro vs MongoDB Compass"
+    },
+    "header": {
+        "title": "TablePro vs MongoDB Compass",
+        "lead": "MongoDB Compass 是 MongoDB 官方的免費 GUI，用於瀏覽資料、建立彙總管道和研究集合的 schema。TablePro 是開放原始碼用戶端，可連線 MongoDB 以及 SQL 資料庫、Redis 和其他引擎，並在 Mac 上提供選用付費功能。"
+    },
+    "shortAnswer": {
+        "tablepro": [
+            "MongoDB 只是您使用的資料庫之一，您也使用 PostgreSQL、MySQL、SQL Server 或 Redis，希望用一個用戶端處理這些資料庫。",
+            "您喜歡 mongosh 風格的 shell，支援變數、迴圈，並能自動完成集合、欄位路徑和運算子。",
+            "您希望在整個集合中重新命名或移除欄位，執行前顯示每個陳述式。",
+            "您希望 AI 助手可自選服務商，使用雲端或 Mac 本機模型，並有供外部 AI 用戶端使用的 MCP 伺服器。"
+        ],
+        "competitor": [
+            "MongoDB 是您唯一的資料庫，您希望使用 MongoDB 官方的免費工具。",
+            "您依階段建立彙總管道，希望每個階段後都能預覽資料。",
+            "您需要研究集合的 schema，或在圖中為集合及其關係建模。",
+            "您需要 MongoDB 的視覺化執行計畫和即時伺服器指標。",
+            "您也在 Windows 或 Linux 上工作。"
+        ]
+    },
+    "glance": {
+        "intro": "Compass 的安裝指南列出 MongoDB {cells.databases.version} 及更新版本。其程式碼依 {licence} 發布。"
+    },
+    "rows": {
+        "pipelineBuilder": {
+            "label": "彙總管道",
+            "tablepro": "在 shell 中撰寫 aggregate()，支援自動完成。沒有依階段編輯器"
+        },
+        "schemaAnalysis": {
+            "label": "Schema 分析",
+            "tablepro": "不提供"
+        },
+        "dataModeling": {
+            "label": "資料建模",
+            "tablepro": "沒有建模工具。ER 圖是依外鍵繪製的唯讀圖"
+        },
+        "explainPlan": {
+            "label": "視覺化執行計畫",
+            "tablepro": "MongoDB 不提供。在 shell 中串接 .explain()，計畫以文件形式傳回"
+        },
+        "serverStats": {
+            "label": "即時伺服器指標",
+            "tablepro": "MongoDB 不提供。Server Dashboard 適用於 PostgreSQL、MySQL 和 SQL Server 等引擎"
+        }
+    },
+    "stronger": {
+        "intro": "",
+        "items": [
+            {
+                "text": "Compass 是 MongoDB 官方的 GUI，而且免費。",
+                "cite": ["prices"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "彙總管道依階段建立，每個階段後都可預覽資料。",
+                "cite": ["cells.pipelineBuilder"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "對集合中的文件取樣，顯示欄位類型、日期範圍和常見值，並為資料庫中的集合繪製實體關係圖。",
+                "cite": ["cells.schemaAnalysis", "cells.dataModeling"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "執行計畫以視覺化呈現，並內建即時伺服器指標。",
+                "cite": ["cells.explainPlan", "cells.serverStats"],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "可在 Windows、macOS 與 Linux 上執行。",
+                "cite": ["platforms"],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "differs": {
+        "intro": "",
+        "items": [
+            {
+                "text": "一個用戶端同時支援 MongoDB 和 PostgreSQL、MySQL、SQL Server、Redis 等其他引擎。查看<link>支援的資料庫</link>。",
+                "cite": [],
+                "feature": null,
+                "href": "/databases"
+            },
+            {
+                "text": "查詢分頁是接受 mongosh 語法的 <link>JavaScript shell</link>，定義的變數在該連線的所有分頁中都能使用。",
+                "cite": [],
+                "feature": null,
+                "href": "/mongodb-client"
+            },
+            {
+                "text": "Structure 分頁可在整個集合中重新命名或移除欄位，每項變更都會先在 Preview SQL 中顯示。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "<link>AI 助手</link>使用您選擇的 AI 服務商，可用雲端或 Mac 本機模型，MCP 伺服器讓外部 AI 用戶端使用您已儲存的連線。兩者均免費。Compass 的 AI 功能使用 Azure OpenAI。",
+                "cite": ["cells.ai"],
+                "feature": null,
+                "href": "/features/ai-mcp"
+            },
+            {
+                "text": "每個連線都有 <link>Safe Mode</link> 層級。在 MongoDB 上，每個陳述式都視為寫入，因此較嚴格的層級會逐一確認或封鎖。",
+                "cite": [],
+                "feature": null,
+                "href": "/features/data-editing#safe-mode"
+            }
+        ]
+    },
+    "limits": {
+        "intro": "",
+        "items": [
+            {
+                "text": "沒有依階段的彙總編輯器：需要在 shell 中撰寫 aggregate()。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "MongoDB 沒有 schema 分析、執行計畫圖或伺服器指標檢視。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "不支援交易、GridFS 和變更串流。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "MongoDB 連線無法在 iPhone 與 iPad App 中開啟。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            },
+            {
+                "text": "TablePro 沒有 Windows 或 Linux App。",
+                "cite": [],
+                "feature": null,
+                "href": null
+            }
+        ]
+    },
+    "switching": {
+        "intro": "TablePro 沒有 Compass 匯入工具。將您在 Compass 中使用、以 mongodb:// 或 mongodb+srv:// 開頭的連線字串貼上至<ui>檔案 > 匯入 > 從 URL 匯入…</ui>（File > Import > Import from URL…）。",
+        "steps": [],
+        "after": [
+            "主機以 .mongodb.net 結尾時，會自動開啟 MongoDB Atlas 所需的 SRV 和 TLS。",
+            "使用者定義在 admin 中，但您瀏覽的是其他資料庫時，請設定 <ui>Auth Database</ui>。",
+            "密碼儲存在 macOS 鑰匙圈中，TablePro 的查詢記錄從頭開始。"
+        ],
+        "docs": null
+    },
+    "faq": [
+        {
+            "id": "aggregation",
+            "question": "可以在 TablePro 中建立彙總管道嗎？",
+            "answer": "可以，但需要手寫：aggregate() 在 shell 中執行，可自動完成集合、欄位路徑和運算子。TablePro 沒有依階段編輯並在每個階段後預覽的編輯器，這是 Compass 較強的地方。",
+            "href": null
+        },
+        {
+            "id": "ai",
+            "question": "兩者分別使用哪種 AI？",
+            "answer": "Compass 的自然語言查詢和助手使用 Azure OpenAI，可在設定中關閉 AI 功能。TablePro 的 AI 助手使用您選擇的服務商，包括在 Mac 上執行的模型，在 Mac App 中免費。<link>了解 TablePro 中的 AI</link>。",
+            "href": "/features/ai-mcp"
+        },
+        {
+            "id": "free",
+            "question": "TablePro 用於 MongoDB 免費嗎？",
+            "answer": "免費。MongoDB 及其他支援的引擎、AI 助手和 MCP 伺服器在 Mac App 中均免費。付費方案加入 {starterExamples} 等選用功能。<link>查看價格</link>。",
+            "href": "/pricing"
+        }
+    ],
+    "notes": {
+        "compass-databases": "MongoDB {version} 及更新版本，見其安裝指南",
+        "compass-natural-language": "自然語言查詢和智慧助手，經由 Azure OpenAI，可關閉 AI 功能。",
+        "compass-aggregation-stages": "依階段建立，每個階段後預覽資料",
+        "compass-schema-sampling": "對文件取樣，顯示欄位類型、日期範圍和常見值",
+        "compass-data-modeling": "資料庫集合的實體關係圖，可推斷關係並加入註解"
+    }
+}
