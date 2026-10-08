@@ -1,16 +1,8 @@
 <?php
 
-/*
- * The app's own label for every menu item, button and option the site names
- * in a <ui> tag, in the languages the app is translated into: the Mac app in
- * French, Korean and both Chinese scripts, the iPhone app in Korean and both
- * Chinese scripts. Taken from the apps' string catalogs
- * (TablePro/Resources/Localizable.xcstrings and TableProMobile's).
- *
- * A language missing from a row means the app shows that label in English
- * there. So does an empty row: a driver's own field, another product's menu,
- * or a label the catalog does not translate yet.
- */
+// Every label the copy puts in a <ui> tag, with the app's own wording in the languages the app ships:
+// French, Korean and Chinese on the Mac, Korean and Chinese on iPhone. From the apps' Localizable.xcstrings.
+// A missing language, or an empty row, means the app shows the label in English there.
 
 return [
     'Account > D1 > Edit' => [],

@@ -1,0 +1,214 @@
+<?php
+
+use Illuminate\Support\Arr;
+
+const WORDING_RESOURCES = __DIR__ . '/../../../resources';
+
+/**
+ * @return list<string>
+ */
+function wordingLocales(): array
+{
+    return array_keys(json_decode((string) file_get_contents(WORDING_RESOURCES . '/data/locales.json'), true)['supported']);
+}
+
+/**
+ * @return array<string, array<string, string>>
+ */
+function wordingContent(string $locale): array
+{
+    $root = WORDING_RESOURCES . "/data/content/{$locale}";
+    $files = [];
+
+    foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS)) as $file) {
+        $path = substr($file->getPathname(), strlen($root) + 1);
+        $files[$path] = array_filter(Arr::dot(json_decode((string) file_get_contents($file->getPathname()), true, 512, JSON_THROW_ON_ERROR)), 'is_string');
+    }
+
+    ksort($files);
+
+    return $files;
+}
+
+/**
+ * The strings of a UI catalog file, in source order.
+ *
+ * @return list<string>
+ */
+function wordingCatalogStrings(string $path): array
+{
+    $code = preg_replace(['#/\*.*?\*/#s', '/^import .*;$/m'], '', (string) file_get_contents($path));
+    // Every literal in order, so a key never pairs up with the quote that opens its value.
+    preg_match_all('/\'((?:[^\'\\\\\n]|\\\\.)*)\'(\s*:)?|"((?:[^"\\\\\n]|\\\\.)*)"(\s*:)?/', (string) $code, $matches, PREG_SET_ORDER);
+    $strings = [];
+
+    foreach ($matches as $match) {
+        $key = ($match[2] ?? '') !== '' || ($match[4] ?? '') !== '';
+
+        if (! $key) {
+            $strings[] = stripcslashes(($match[3] ?? '') !== '' ? $match[3] : $match[1]);
+        }
+    }
+
+    return $strings;
+}
+
+/**
+ * Every string a reader sees in one language, keyed by where it is, without app labels, code and URLs.
+ *
+ * @return array<string, string>
+ */
+function wordingStrings(string $locale): array
+{
+    $strings = [];
+
+    foreach (wordingContent($locale) as $file => $values) {
+        foreach ($values as $key => $value) {
+            $strings["content/{$locale}/{$file} {$key}"] = $value;
+        }
+    }
+
+    foreach (glob(WORDING_RESOURCES . "/js/i18n/messages/{$locale}/*.ts") ?: [] as $path) {
+        foreach (wordingCatalogStrings($path) as $index => $value) {
+            $strings["messages/{$locale}/" . basename($path) . " #{$index}"] = $value;
+        }
+    }
+
+    return array_map(
+        fn(string $text): string => (string) preg_replace(['#<ui>.*?</ui>#u', '/`[^`]*`/u', '#<code>.*?</code>#u', '#https?://\S+#u'], ' ', $text),
+        $strings,
+    );
+}
+
+/**
+ * @return array<string, list<array{string, string}>>
+ */
+function wordingRuledOut(): array
+{
+    return require __DIR__ . '/../../Support/locale-forbidden-variants.php';
+}
+
+it('uses none of the wording ruled out for the language', function (string $locale): void {
+    $offences = [];
+
+    foreach (wordingStrings($locale) as $where => $text) {
+        foreach (wordingRuledOut()[$locale] as [$pattern, $use]) {
+            if (preg_match($pattern, $text, $match) === 1) {
+                $offences[] = "{$where}: \"{$match[0]}\" (use {$use})";
+            }
+        }
+    }
+
+    expect($offences)->toBe([], "Ruled-out wording:\n  " . implode("\n  ", $offences));
+})->with(array_keys(wordingRuledOut()));
+
+it('catches the wording it rules out', function (string $locale, string $text, bool $flagged): void {
+    $hit = collect(wordingRuledOut()[$locale])->contains(fn(array $rule): bool => preg_match($rule[0], $text) === 1);
+
+    expect($hit)->toBe($flagged);
+})->with([
+    ['es', 'Cada conexión tiene un nivel de Modo seguro.', true],
+    ['es', 'Cada conexión tiene un nivel de Safe Mode.', false],
+    ['es', 'Comparte conexiones con tu equipo.', false],
+    ['de', 'Der sichere Modus fragt vor jedem Schreibvorgang.', true],
+    ['de', 'Die Safe-Mode-Stufe gilt pro Verbindung.', false],
+    ['fr', 'Une licence Équipe est facturée par poste.', true],
+    ['fr', 'Partagez des connexions avec votre équipe.', false],
+    ['ja', 'セーフモードは接続ごとに設定します。', true],
+    ['ja', 'フォルダを追加します。', true],
+    ['ja', 'フォルダーを追加します。', false],
+    ['pt-BR', 'A Recuperação de Dados restaura os valores.', true],
+    ['zh-Hans', '如果你通过 Setapp 获取', true],
+    ['zh-Hans', 'TablePro 尚未支持 Windows，发布日期未定。', true],
+    ['ko', '안전 모드는 연결마다 설정합니다.', true],
+    ['zh-Hant', '每席次每月', true],
+    ['it', 'Ripristino dati conserva i valori sostituiti.', true],
+    ['id', 'Pemulihan Data menyimpan nilai yang diganti.', true],
+    ['vi', 'Vẽ biểu đồ điểm từ kết quả query.', true],
+    ['vi', 'Vẽ biểu đồ phân tán (scatter) từ kết quả query.', false],
+]);
+
+it('keeps the names of paid features, Safe Mode and the merchant of record where the English copy uses them', function (string $locale): void {
+    $names = [...array_column(json_decode((string) file_get_contents(WORDING_RESOURCES . '/data/paid-features.json'), true), 'name'), 'Safe Mode'];
+    // "Safe-Mode-Stufe" and "Safe Mode" on a no-break space are the same name.
+    $plain = fn(string $text): string => (string) preg_replace('/[-\x{2011}\x{00A0}\x{202F}]/u', ' ', $text);
+    $translated = wordingContent($locale);
+    $offences = [];
+
+    foreach (wordingContent('en') as $file => $values) {
+        foreach ($values as $key => $value) {
+            $target = $plain($translated[$file][$key] ?? '');
+
+            foreach ($names as $name) {
+                if (str_contains($plain($value), $plain($name)) && ! str_contains($target, $plain($name))) {
+                    $offences[] = "content/{$locale}/{$file} {$key}: {$name}";
+                }
+            }
+
+            if (str_contains($value, 'merchant of record') && mb_stripos($target, 'merchant of record') === false) {
+                $offences[] = "content/{$locale}/{$file} {$key}: merchant of record";
+            }
+        }
+    }
+
+    expect($offences)->toBe([], "Names the English copy uses and the translation does not:\n  " . implode("\n  ", $offences));
+})->with(array_values(array_diff(wordingLocales(), ['en'])));
+
+it('puts a no-break space before French double punctuation and inside guillemets', function (): void {
+    $offences = [];
+
+    foreach (wordingStrings('fr') as $where => $text) {
+        if (preg_match('/\S [;:!?»](?=\s|<|$)|« |[\d}]%/u', $text, $match) === 1) {
+            $offences[] = "{$where}: \"{$match[0]}\" in \"{$text}\"";
+        }
+    }
+
+    expect($offences)->toBe([], "Ordinary spaces a line can break at:\n  " . implode("\n  ", $offences));
+});
+
+it('writes Simplified Chinese with no Traditional character', function (): void {
+    $toSimplified = Transliterator::create('Traditional-Simplified');
+
+    if ($toSimplified === null) {
+        $this->markTestSkipped('ICU has no Traditional-Simplified transform here.');
+    }
+
+    foreach (wordingStrings('zh-Hans') as $where => $text) {
+        expect($toSimplified->transliterate($text))->toBe($text, "{$where} has a Traditional character");
+    }
+});
+
+/**
+ * @return array<string, string>
+ */
+function wordingCategories(): array
+{
+    return [
+        'en' => 'database client',
+        'vi' => 'database client',
+        'es' => 'cliente de bases de datos',
+        'de' => 'Datenbankclient',
+        'fr' => 'client de bases de données',
+        'ja' => 'データベースクライアント',
+        'pt-BR' => 'cliente de banco de dados',
+        'zh-Hans' => '数据库客户端',
+        'ko' => '데이터베이스 클라이언트',
+        'zh-Hant' => '資料庫用戶端',
+        'it' => 'client database',
+        'id' => 'klien database',
+    ];
+}
+
+it('names the database category in every homepage title and description', function (): void {
+    expect(array_keys(wordingCategories()))->toEqualCanonicalizing(wordingLocales());
+
+    foreach (wordingCategories() as $locale => $category) {
+        $seo = json_decode((string) file_get_contents(WORDING_RESOURCES . "/data/content/{$locale}/home.json"), true)['seo'];
+
+        foreach (['title', 'titleFallback', 'description'] as $key) {
+            expect(mb_stripos($seo[$key], $category))->not->toBeFalse("content/{$locale}/home.json seo.{$key} does not say \"{$category}\": {$seo[$key]}");
+        }
+
+        expect(mb_strlen($seo['titleFallback']))->toBeLessThanOrEqual(60, "content/{$locale}/home.json seo.titleFallback is too long");
+    }
+});
