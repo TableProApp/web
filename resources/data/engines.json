@@ -48,7 +48,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "mysql",
@@ -104,7 +104,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "sqlserver",
@@ -151,7 +151,7 @@
             { "id": "no-named-instances", "value": null, "evidence": "docs/databases/mssql.mdx:8" },
             { "id": "no-ntlm", "value": null, "evidence": "docs/databases/mssql.mdx:147" },
             { "id": "no-explain", "value": null, "evidence": "docs/features/explain-visualization.mdx:134-155" },
-            { "id": "scripts-not-in-transaction", "value": null, "evidence": "CHANGELOG.md:344 [0.76.0]" },
+            { "id": "scripts-not-in-transaction", "value": null, "evidence": "CHANGELOG.md:485 [0.76.0]" },
             {
                 "id": "ios-tls-not-verified",
                 "value": null,
@@ -159,7 +159,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "sqlite",
@@ -218,7 +218,7 @@
             { "id": "attached-files-not-listed", "value": null, "evidence": "docs/databases/sqlite.mdx:52 @v0.77.0" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "mongodb",
@@ -267,7 +267,7 @@
             { "id": "no-pipeline-builder", "value": null, "evidence": "docs/databases/mongodb.mdx:237" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "redis",
@@ -331,7 +331,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "mariadb",
@@ -379,7 +379,7 @@
             { "id": "roles-listed-as-users", "value": null, "evidence": "docs/databases/mariadb.mdx:37" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "tidb",
@@ -428,7 +428,7 @@
             { "id": "structure-sync-same-engine", "value": null, "evidence": "docs/databases/tidb.mdx:44 @v0.77.0" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "oceanbase",
@@ -477,7 +477,7 @@
             { "id": "structure-sync-same-engine", "value": null, "evidence": "docs/databases/oceanbase.mdx:49 @v0.77.0" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "databend",
@@ -527,7 +527,7 @@
             { "id": "not-on-ios", "value": null, "evidence": "docs/databases/databend.mdx:51" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "redshift",
@@ -584,7 +584,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "cockroachdb",
@@ -636,7 +636,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "pglite",
@@ -685,7 +685,7 @@
             { "id": "cancel-has-no-effect", "value": null, "evidence": "docs/databases/pglite.mdx:52 @v0.77.0" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "oracle",
@@ -733,9 +733,9 @@
         },
         "bundledVersion": null,
         "limits": [
-            { "id": "no-wallet-os-auth-kerberos-ldap", "value": null, "evidence": "docs/databases/oracle.mdx:68,153" },
+            { "id": "no-wallet-os-auth-kerberos-ldap", "value": null, "evidence": "docs/databases/oracle.mdx:68,162" },
             { "id": "no-explain", "value": null, "evidence": "docs/features/explain-visualization.mdx:134-155" },
-            { "id": "no-users-roles", "value": null, "evidence": "docs/databases/oracle.mdx:156" },
+            { "id": "no-users-roles", "value": null, "evidence": "docs/databases/oracle.mdx:165" },
             {
                 "id": "no-packages",
                 "value": null,
@@ -743,7 +743,7 @@
             }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "clickhouse",
@@ -801,7 +801,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "duckdb",
@@ -854,7 +854,7 @@
             { "id": "remote-quack-experimental", "value": null, "evidence": "docs/databases/duckdb.mdx:47" }
         ],
         "ios": { "inPicker": true, "openable": true, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "cassandra",
@@ -904,7 +904,7 @@
             { "id": "no-views-or-types-in-sidebar", "value": null, "evidence": "docs/databases/cassandra.mdx:103" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "scylladb",
@@ -949,7 +949,7 @@
         "bundledVersion": null,
         "limits": [],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "dynamodb",
@@ -997,7 +997,7 @@
             { "id": "no-dax-or-truncate", "value": null, "evidence": "docs/databases/dynamodb.mdx:185,188" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "bigquery",
@@ -1045,7 +1045,7 @@
             { "id": "no-transactions", "value": null, "evidence": "docs/databases/bigquery.mdx:85" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "snowflake",
@@ -1096,7 +1096,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "cloudflare-d1",
@@ -1147,7 +1147,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "turso",
@@ -1195,7 +1195,7 @@
             { "id": "no-embedded-replicas", "value": null, "evidence": "docs/databases/libsql.mdx:75" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "libsql",
@@ -1246,7 +1246,7 @@
             }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "elasticsearch",
@@ -1295,7 +1295,7 @@
             { "id": "no-ssh", "value": null, "evidence": "docs/databases/elasticsearch.mdx:82" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "etcd",
@@ -1344,7 +1344,7 @@
             { "id": "watch-collects-until-timeout", "value": null, "evidence": "docs/databases/etcd.mdx:81" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "kafka",
@@ -1393,7 +1393,7 @@
             { "id": "approximate-counts", "value": null, "evidence": "docs/databases/kafka.mdx:149" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "surrealdb",
@@ -1441,7 +1441,7 @@
             { "id": "no-live-queries", "value": null, "evidence": "docs/databases/surrealdb.mdx:105" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "teradata",
@@ -1489,7 +1489,7 @@
             { "id": "foreign-keys-not-listed", "value": null, "evidence": "docs/databases/teradata.mdx:65" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "trino",
@@ -1537,7 +1537,7 @@
             { "id": "no-kerberos-or-oauth", "value": null, "evidence": "docs/databases/trino.mdx:112" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "beancount",
@@ -1589,7 +1589,7 @@
             { "id": "needs-ledger-tool", "value": null, "evidence": "docs/databases/beancount.mdx:8" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "spanner",
@@ -1636,7 +1636,7 @@
             { "id": "structure-read-only", "value": null, "evidence": "docs/databases/spanner.mdx:101" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "typesense",
@@ -1683,7 +1683,7 @@
             { "id": "api-keys-as-users", "value": null, "evidence": "docs/databases/typesense.mdx:33,93" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "weaviate",
@@ -1730,7 +1730,7 @@
             { "id": "graphql-reads-rest-writes", "value": null, "evidence": "docs/databases/weaviate.mdx:8" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "cloudflare-r2-sql",
@@ -1779,7 +1779,7 @@
             { "id": "billed-per-scan", "value": null, "evidence": "docs/databases/cloudflare-r2-sql.mdx:62" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "dameng",
@@ -1826,7 +1826,7 @@
             { "id": "no-tls", "value": null, "evidence": "docs/databases/dameng.mdx:47" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     },
     {
         "id": "sap-hana",
@@ -1874,6 +1874,6 @@
             { "id": "unsupported-auth-methods", "value": null, "evidence": "docs/databases/sap-hana.mdx:56" }
         ],
         "ios": { "inPicker": false, "openable": false, "appearsAfterSync": true },
-        "verified": { "macTag": "v0.77.2", "iosCommit": "232e8dae6", "date": "2026-10-05" }
+        "verified": { "macTag": "v0.78.0", "iosCommit": "232e8dae6", "date": "2026-10-08" }
     }
 ]
