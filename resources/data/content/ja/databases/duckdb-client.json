@@ -57,7 +57,7 @@
             "paragraphs": [
                 "TablePro がファイルを保持する間は <code>duckdb</code> CLI、ノートブックや dbt 実行が開けません。<ui>Release the File Lock After</ui> でアイドル数分後にファイルを返し、次のクエリで再取得できます。<ui>Open the File Read-Only</ui> なら複数の読み取り側で共有できます。<ui>Database > Release File Lock</ui> はタブを残したまますぐ返します。セッションが開いたトランザクション、一時テーブル、アタッチしたデータベースや変更した設定を保持している場合は、理由とともに解放を拒否します。",
                 "<dashboard>Server Dashboard</dashboard> はデータベースサイズ、ブロックサイズ、総ブロック数、メモリ上限とスレッド数を表示します。",
-                "<backup>Backup Dump</backup> は {dumpTool} が開いている接続で書き込むため、インストール不要です。後で TablePro に復元する <code>.duckdb</code> ファイル、または <code>schema.sql</code>、<code>load.sql</code> とテーブルごとの Parquet を含むフォルダを選べます。後者は pandas、Spark、BigQuery が直接読み取れます。Restore Dump は、最初に名前が既に使われているオブジェクトで停止します。"
+                "<backup>Backup Dump</backup> は {dumpTool} が開いている接続で書き込むため、インストール不要です。後で TablePro に復元する <code>.duckdb</code> ファイル、または <code>schema.sql</code>、<code>load.sql</code> とテーブルごとの Parquet を含むフォルダーを選べます。後者は pandas、Spark、BigQuery が直接読み取れます。Restore Dump は、最初に名前が既に使われているオブジェクトで停止します。"
             ]
         },
         {

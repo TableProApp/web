@@ -21,7 +21,7 @@
                 "パスワードは、Mac の Sync Categories で <ui>Passwords</ui>、または iPhone と iPad で <ui>Sync Passwords</ui> も有効にした場合のみ、iCloud キーチェーン経由で同期します。Mac では AI プロバイダーのキーやライセンスキーなど、TablePro がキーチェーンに保存する他のシークレットも同期します。接続を Local only にすると、お気に入りと保存済みクエリも含め一台の Mac にだけ保持します。"
             ],
             "points": [
-                "Mac では同期対象を選択：接続、グループとタグ、設定、SSH プロファイル、テーブルとデータベースのお気に入り、SQL を含む保存済みクエリ、テーブルフォルダ。",
+                "Mac では同期対象を選択：接続、グループとタグ、設定、SSH プロファイル、テーブルとデータベースのお気に入り、SQL を含む保存済みクエリ、テーブルフォルダー。",
                 "iPhone と iPad：接続、グループとタグ。",
                 "同期する接続には、ホスト、ポート、ユーザー名、データベース、SSH と SSL 設定、起動コマンド、接続前スクリプトと AI ルールを含みます。",
                 "同期しないもの：クエリ履歴、Data Rewind、パスワード取得元、トンネルコマンドと接続ごとの External Clients レベル。"
@@ -61,17 +61,17 @@
         },
         {
             "id": "linked-folders",
-            "title": "リンクしたフォルダ",
+            "title": "リンクしたフォルダー",
             "paragraphs": [
-                "Git のチェックアウトや共有ドライブなどのフォルダを追加すると、TablePro は各 <code>.tablepro</code> ファイルを接続として一覧表示し、ファイルの追加や変更に合わせて更新します。リンクした接続は TablePro 内で読み取り専用で、変更するにはファイルを変更します。暗号化ファイルはスキップするため、共有フォルダにあるのは設定でありパスワードではありません。リンクファイル内の起動コマンドとトンネルコマンドは無視します。",
-                "Linked Folders は接続ファイルを監視します。リンクした SQL フォルダは別の機能で、保存済みクエリの無料機能として、<code>.sql</code> ファイルのフォルダを保存済みクエリと同期します。"
+                "Git のチェックアウトや共有ドライブなどのフォルダーを追加すると、TablePro は各 <code>.tablepro</code> ファイルを接続として一覧表示し、ファイルの追加や変更に合わせて更新します。リンクした接続は TablePro 内で読み取り専用で、変更するにはファイルを変更します。暗号化ファイルはスキップするため、共有フォルダーにあるのは設定でありパスワードではありません。リンクファイル内の起動コマンドとトンネルコマンドは無視します。",
+                "Linked Folders は接続ファイルを監視します。リンクした SQL フォルダーは別の機能で、保存済みクエリの無料機能として、<code>.sql</code> ファイルのフォルダーを保存済みクエリと同期します。"
             ],
             "paid": [
                 "linked-folders"
             ],
             "links": [
                 {
-                    "label": "保存済みクエリとリンクした SQL フォルダ",
+                    "label": "保存済みクエリとリンクした SQL フォルダー",
                     "href": "/features/querying#history"
                 }
             ]
@@ -80,14 +80,14 @@
             "id": "team",
             "title": "チームカタログとチームライブラリ",
             "paragraphs": [
-                "Team ライセンスの全員に同じ接続を配る二つの方法です。一つは既存の共有フォルダ経由、もう一つは TablePro のサーバー経由です。"
+                "Team ライセンスの全員に同じ接続を配る二つの方法です。一つは既存の共有フォルダー経由、もう一つは TablePro のサーバー経由です。"
             ],
             "blocks": [
                 {
                     "id": "team-catalog",
                     "title": "チームカタログ",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Catalog…</ui> は、選んだ接続をパスワードなしで <code>.tablepro</code> ファイルとして共有フォルダに書き込みます。チームメンバーはそのフォルダを Linked Folder として追加します。カタログは TablePro ではなく、既存の共有ドライブやリポジトリを通じて配布されます。"
+                        "<ui>Share > Publish to Team Catalog…</ui> は、選んだ接続をパスワードなしで <code>.tablepro</code> ファイルとして共有フォルダーに書き込みます。チームメンバーはそのフォルダーを Linked Folder として追加します。カタログは TablePro ではなく、既存の共有ドライブやリポジトリを通じて配布されます。"
                     ],
                     "paid": [
                         "team-catalog"
@@ -176,7 +176,7 @@
             "ios": "yes"
         },
         {
-            "label": "リンクしたフォルダ",
+            "label": "リンクしたフォルダー",
             "paid": "linked-folders",
             "ios": "no"
         },
@@ -210,7 +210,7 @@
             "docs": "/features/connection-sharing#export"
         },
         {
-            "label": "リンクしたフォルダ",
+            "label": "リンクしたフォルダー",
             "docs": "/features/connection-sharing#linked-folders"
         },
         {

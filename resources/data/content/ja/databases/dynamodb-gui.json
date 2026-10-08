@@ -11,7 +11,7 @@
     "breadcrumb": "Amazon DynamoDB",
     "header": {
         "title": "{devices} 用 Amazon DynamoDB GUI",
-        "lead": "キーやインデックスでテーブルを閲覧し、各読み取りの消費容量を確認。型を失わず項目を編集し、エディタで PartiQL や DynamoDB API リクエストを実行できます。"
+        "lead": "キーやインデックスでテーブルを閲覧し、各読み取りの消費容量を確認。型を失わず項目を編集し、エディターで PartiQL や DynamoDB API リクエストを実行できます。"
     },
     "asset": "mac-db-dynamodb-planner",
     "links": {
@@ -38,9 +38,9 @@
                 "テーブルを開く、絞り込む、ページを送る操作は一つのプランナーを使います。パーティションキーを = で指定するとそのパーティションの Query、インデックスのキーに合うフィルターはそのインデックスの Query、それ以外はテーブル全体を読み各項目分の料金がかかる Scan です。ステータスバーは選んだ読み取り、返った件数、取得のために読んだ件数と消費した読み取り容量ユニットを表示します。",
                 "ソートキーの <filters>フィルター</filters> は =、<、<=、>、>=、BETWEEN や STARTS WITH ならキー条件に加えます。それ以外は読み取り後に DynamoDB が適用する FilterExpression になり、行は絞れても料金は下がりません。入れ子属性は <code>address.city</code> や <code>items[0].sku</code> などのパスで絞り込みます。",
                 "一つのパーティションの Query でソートキーヘッダーをクリックすると DynamoDB がその順で返します。それ以外のソートはすべての一致項目を読めた場合グリッドで行い、揃わない場合はステータスバーで知らせます。次のページは前の終了位置から続きます。グリッド下の総件数は DynamoDB 自身の件数で、<ui>Count Exactly</ui> はフィルターに合う全項目を読み、その分すべて課金されます。",
-                "テーブルはキーだけを宣言するため、カラムは項目から取ります。キー属性、先頭項目のサンプルで見つかった属性と表示中ページの属性です。map、list と set は JSON で表示して JSON エディタで開き、数値はすべての桁を保持します。",
+                "テーブルはキーだけを宣言するため、カラムは項目から取ります。キー属性、先頭項目のサンプルで見つかった属性と表示中ページの属性です。map、list と set は JSON で表示して JSON エディターで開き、数値はすべての桁を保持します。",
                 "変更した各行は一つの PartiQL 文で保存し、<editing>すべての値は型を保ちます</editing>。Number は Number、<code>02134</code> などの String は String、JSON で編集した String Set は String Set です。更新は変更する各属性をグリッドが読んだ値と照合し、他の人の変更を上書きせず失敗します。<ui>Set NULL</ui> は属性を削除します。",
-                "エディタは名前を二重引用符、文字列を単一引用符で囲む PartiQL、または <code>Query</code>、<code>BatchWriteItem</code>、<code>TransactWriteItems</code> などの DynamoDB アクション名と JSON リクエストを受け付けます。他のアクション名は拒否します。項目はグリッド、その他の応答は JSON で表示します。制限されたリクエストはバックオフで再試行し、<code>⌘.</code> は実行中の文を停止します。"
+                "エディターは名前を二重引用符、文字列を単一引用符で囲む PartiQL、または <code>Query</code>、<code>BatchWriteItem</code>、<code>TransactWriteItems</code> などの DynamoDB アクション名と JSON リクエストを受け付けます。他のアクション名は拒否します。項目はグリッド、その他の応答は JSON で表示します。制限されたリクエストはバックオフで再試行し、<code>⌘.</code> は実行中の文を停止します。"
             ]
         },
         {
@@ -62,7 +62,7 @@
             "id": "move-data",
             "title": "データの移動",
             "paragraphs": [
-                "DynamoDB のインポートはありません。エディタの PartiQL <code>INSERT</code> や <code>BatchWriteItem</code> で項目を書き、後者は未処理項目を再送して書けなかったものを報告します。Export ダイアログからテーブルや結果をファイルに <export>エクスポート</export> できます。"
+                "DynamoDB のインポートはありません。エディターの PartiQL <code>INSERT</code> や <code>BatchWriteItem</code> で項目を書き、後者は未処理項目を再送して書けなかったものを報告します。Export ダイアログからテーブルや結果をファイルに <export>エクスポート</export> できます。"
             ]
         }
     ],
@@ -72,7 +72,7 @@
         {
             "id": "avoid-scans",
             "question": "読み取りでテーブル全体をスキャンしないようにするには？",
-            "answer": "パーティションキーを = で絞るか、グローバルインデックスのパーティションキーと各ソートキーを絞ると Query になります。グローバルインデックスの閲覧は全属性を投影するものだけなので、keys-only はエディタで <code>IndexName</code> を指定した <code>Query</code> を実行します。"
+            "answer": "パーティションキーを = で絞るか、グローバルインデックスのパーティションキーと各ソートキーを絞ると Query になります。グローバルインデックスの閲覧は全属性を投影するものだけなので、keys-only はエディターで <code>IndexName</code> を指定した <code>Query</code> を実行します。"
         },
         {
             "id": "change-key",
@@ -82,7 +82,7 @@
         {
             "id": "transactions",
             "question": "グリッド編集は一つのトランザクションで保存しますか？",
-            "answer": "いいえ。変更した各行を個別に書きます。同時に成功させる必要のある書き込みはエディタの <code>ExecuteTransaction</code> や <code>TransactWriteItems</code> にまとめます。"
+            "answer": "いいえ。変更した各行を個別に書きます。同時に成功させる必要のある書き込みはエディターの <code>ExecuteTransaction</code> や <code>TransactWriteItems</code> にまとめます。"
         }
     ],
     "related": [

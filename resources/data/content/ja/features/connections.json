@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "接続、トンネルと認証情報",
-        "lead": "踏み台、クラスタやクラウド認証の先にあるデータベースを使う方へ。必要な経路とパスワード取得元を指定して接続を一度設定し、本番用には厳しいルールを適用できます。ここで紹介するのは Mac アプリの機能です。最後の節では iPhone と iPad を説明します。",
+        "lead": "踏み台、クラスターやクラウド認証の先にあるデータベースを使う方へ。必要な経路とパスワード取得元を指定して接続を一度設定し、本番用には厳しいルールを適用できます。ここで紹介するのは Mac アプリの機能です。最後の節では iPhone と iPad を説明します。",
         "docs": "/connections"
     },
     "sections": [
@@ -56,14 +56,14 @@
                     "id": "aws",
                     "title": "AWS アカウントから",
                     "paragraphs": [
-                        "<ui>Import from AWS</ui> は、選んだリージョンで AWS プロファイルが参照できる RDS インスタンスと Aurora クラスタを一覧表示し、選択したものを追加します。プロファイルには <code>rds:DescribeDBInstances</code> と <code>rds:DescribeDBClusters</code> 権限が必要です。"
+                        "<ui>Import from AWS</ui> は、選んだリージョンで AWS プロファイルが参照できる RDS インスタンスと Aurora クラスターを一覧表示し、選択したものを追加します。プロファイルには <code>rds:DescribeDBInstances</code> と <code>rds:DescribeDBClusters</code> 権限が必要です。"
                     ]
                 }
             ]
         },
         {
             "id": "network",
-            "title": "踏み台、プロキシやクラスタの先に接続する",
+            "title": "踏み台、プロキシやクラスターの先に接続する",
             "paragraphs": [],
             "blocks": [
                 {
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "プロキシ、Cloudflare、Cloud SQL とトンネルコマンド",
                     "paragraphs": [
-                        "SSH を使わない場合、Network タブではリモート DNS に対応した SOCKS5 プロキシ、Cloudflare Access、Cloud SQL Auth Proxy 経由で接続できます。Cloudflare Access では TablePro が <code>cloudflared</code> を実行し、ブラウザやサービストークンで認証します。Cloud SQL Auth Proxy は、TablePro が {cloudSqlProxy} 用にダウンロード、検証して実行します。",
+                        "SSH を使わない場合、Network タブではリモート DNS に対応した SOCKS5 プロキシ、Cloudflare Access、Cloud SQL Auth Proxy 経由で接続できます。Cloudflare Access では TablePro が <code>cloudflared</code> を実行し、ブラウザーやサービストークンで認証します。Cloud SQL Auth Proxy は、TablePro が {cloudSqlProxy} 用にダウンロード、検証して実行します。",
                         "Tunnel Command は <code>kubectl port-forward</code>、<code>aws ssm start-session</code> または独自のコマンドを起動し、それが開いたローカルポートに接続します。接続前にシェルスクリプトを実行し、そのセッションで初めて実行するときに確認を求めることもできます。接続直後に SQL 文を実行することも可能です。"
                     ],
                     "asset": "mac-tunnel-command"
@@ -97,7 +97,7 @@
             "title": "クラウドアカウントで認証する",
             "paragraphs": [
                 "AWS IAM データベース認証は、アクセスキー、<code>~/.aws</code> のプロファイル（<code>credential_process</code> と引き受けたロールにも対応）、または AWS IAM Identity Center を使い、接続のたびに新しいトークンを署名します。この認証では TLS を Required に引き上げます。Amazon ElastiCache for Redis、Amazon Keyspaces、DynamoDB は、それぞれ独自の AWS 署名を使用します。",
-                "SQL Server は、指定したアプリ登録のクライアント ID を使ってブラウザで Microsoft Entra ID 認証を行うか、チケットまたはプリンシパルとパスワードで Kerberos 認証を行います。Google BigQuery はサービスアカウントキー、Application Default Credentials、または独自クライアントを使った Google OAuth に対応します。Google Cloud Spanner と Cloud SQL Auth Proxy では Google アカウントも使えます。"
+                "SQL Server は、指定したアプリ登録のクライアント ID を使ってブラウザーで Microsoft Entra ID 認証を行うか、チケットまたはプリンシパルとパスワードで Kerberos 認証を行います。Google BigQuery はサービスアカウントキー、Application Default Credentials、または独自クライアントを使った Google OAuth に対応します。Google Cloud Spanner と Cloud SQL Auth Proxy では Google アカウントも使えます。"
             ],
             "engines": [
                 {
@@ -196,7 +196,7 @@
             "ios": "no"
         },
         {
-            "label": "他アプリ、プロジェクトフォルダや AWS からインポート",
+            "label": "他アプリ、プロジェクトフォルダーや AWS からインポート",
             "ios": "no"
         },
         {
@@ -269,7 +269,7 @@
             "docs": "/switching"
         },
         {
-            "label": "プロジェクトフォルダを開く",
+            "label": "プロジェクトフォルダーを開く",
             "docs": "/features/project-folder-import"
         },
         {

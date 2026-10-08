@@ -26,7 +26,7 @@ export default {
             "includesTitle": "含まれる機能",
             "includes": [
                 "すべての対応エンジンへの接続",
-                "SQL エディタとデータグリッド",
+                "SQL エディターとデータグリッド",
                 "AI アシスタントと MCP サーバー",
                 "セーフモード",
                 "iPhone・iPad アプリ"
@@ -107,7 +107,7 @@ export default {
         },
         "macsTeam": "1 シートにつき 1 台",
         "everythingElse": "アプリのその他すべての機能",
-        "everythingElseDetail": "すべての対応エンジン、SQL エディタ、AI アシスタント、MCP サーバー、セーフモード",
+        "everythingElseDetail": "すべての対応エンジン、SQL エディター、AI アシスタント、MCP サーバー、セーフモード",
         "iphoneNote": "iPhone・iPad アプリに有料機能はありません。iCloud 同期は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"
     },
     "discount": {

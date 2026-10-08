@@ -22,7 +22,7 @@ export default {
             "group": ","
         }
     },
-    "detected": "ブラウザによると、お使いの Mac は {chip} 搭載です。",
+    "detected": "ブラウザーによると、お使いの Mac は {chip} 搭載です。",
     "onAnotherDevice": "Mac アプリをインストールするには、Mac でこのページを開いてください。",
     "whichMac": {
         "summary": "自分の Mac の種類を確認する",
@@ -30,7 +30,7 @@ export default {
     },
     "afterClick": {
         "title": "次はインストール",
-        "body": "ダウンロードフォルダの {file} を開き、TablePro をアプリケーションフォルダにドラッグします。",
+        "body": "ダウンロードフォルダーの {file} を開き、TablePro をアプリケーションフォルダーにドラッグします。",
         "retry": "ダウンロードが始まらない場合は、<link>{file} をもう一度ダウンロード</link>してください。",
         "steps": "インストールと初回起動"
     },

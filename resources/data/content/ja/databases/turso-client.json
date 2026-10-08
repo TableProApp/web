@@ -63,7 +63,7 @@
             "title": "libSQL",
             "paragraphs": [
                 "自前の sqld サーバーや Mac 上のファイルには libSQL を選びます。Remote モードは Hrana v2 pipeline エンドポイントを提供する任意の sqld に接続でき、この Mac 上で既定ポート 8080 を使うものにも対応します。<code>--auth-jwt-key-file</code> なしで起動したサーバーはトークンを空欄にし、それ以外はサーバーの鍵と一致する JWT を入力します。",
-                "<ui>Local File</ui> モードはドライバー同梱の SQLite で libSQL ファイルを開き、存在しないパスならフォルダも含めて作成します。ローカルファイルはトランザクションを使い、接続の Extensions リストから SQLite 拡張を読み込み、確認後にカラム順や外部キーの再構築を実行します。",
+                "<ui>Local File</ui> モードはドライバー同梱の SQLite で libSQL ファイルを開き、存在しないパスならフォルダーも含めて作成します。ローカルファイルはトランザクションを使い、接続の Extensions リストから SQLite 拡張を読み込み、確認後にカラム順や外部キーの再構築を実行します。",
                 "<code>ALTER TABLE … ALTER COLUMN</code> など libSQL だけが理解する文は、SQLite エンジンが受け取るためローカルファイルで失敗します。暗号化 libSQL ファイルは開けません。別の実行中アプリが Turso 埋め込みレプリカとして同期しているファイルは、二つのプログラムの同時アクセスで破損する可能性があるため、決して開かないでください。",
                 "<backup>Backup Dump と Restore Dump</backup> は、ローカル libSQL ファイルに {dumpTool} を実行します。"
             ]

@@ -11,7 +11,7 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "{devices} で Beancount 台帳を SQL クエリ",
-        "lead": "<code>.beancount</code> ファイルを開き、取引、仕訳、残高とメタデータを SQL テーブルとして問い合わせるか、rledger に BQL を送れます。台帳はテキストファイルのままで、自分のエディタで編集します。"
+        "lead": "<code>.beancount</code> ファイルを開き、取引、仕訳、残高とメタデータを SQL テーブルとして問い合わせるか、rledger に BQL を送れます。台帳はテキストファイルのままで、自分のエディターで編集します。"
     },
     "asset": "mac-db-beancount-bql",
     "links": {
@@ -36,8 +36,8 @@
             "paragraphs": [
                 "テーブルは取引と仕訳、口座、残高と残高アサーション、価格と商品、その他すべての指令、メタデータ、タグ、リンクとソースファイルを含みます。仕訳は <code>transaction_id</code> で取引と結合し、口座は名前で結合します。",
                 "金額は算術、原価と価格を解決した記帳済みの値で、仕訳の原価とインライン価格は専用カラムに入ります。取引、仕訳と一部の指令テーブルは <code>main.beancount:42</code> などの <code>source_location</code> を持ち、行から元の行番号を辿れます。",
-                "クエリの前に <code>BQL:</code> を付けると、テーブルではなく rledger に送ります。BQL 結果は閲覧、行数表示とページ分割に対応しますが、SQL パラメータは使えません。",
-                "<code>include</code> 指令はリテラルパスも glob も辿り、すべての台帳ファイルと参照ドキュメントを監視します。エディタで変更を保存すると次のクエリで再接続せず読み取れます。接続は常に <safeMode>セーフモード</safeMode> の Read-Only で、INSERT、UPDATE、DELETE とスキーマ変更を拒否します。"
+                "クエリの前に <code>BQL:</code> を付けると、テーブルではなく rledger に送ります。BQL 結果は閲覧、行数表示とページ分割に対応しますが、SQL パラメーターは使えません。",
+                "<code>include</code> 指令はリテラルパスも glob も辿り、すべての台帳ファイルと参照ドキュメントを監視します。エディターで変更を保存すると次のクエリで再接続せず読み取れます。接続は常に <safeMode>セーフモード</safeMode> の Read-Only で、INSERT、UPDATE、DELETE とスキーマ変更を拒否します。"
             ]
         },
         {
