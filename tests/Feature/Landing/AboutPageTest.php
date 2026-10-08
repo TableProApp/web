@@ -115,6 +115,17 @@ it('fills every slot its copy uses, and resolves every link tag', function (stri
     expect(array_values(array_diff(array_unique($tags[1]), aboutKnownTags())))->toBe([], "content/{$locale}/about.json uses a link tag with no destination");
 })->with(aboutLocales());
 
+it('links the security page from the policies, in every language', function (string $locale): void {
+    expect(aboutContent($locale)['policies']['body'])->toMatch('#<security>[^<]+</security>#u');
+
+    $prefix = $locale === Locales::default() ? '' : "/{$locale}";
+
+    preg_match('#<section[^>]*id="policies".*?</section>#s', ssrHtml("{$prefix}/about"), $section);
+
+    expect($section)->not->toBe([]);
+    expect($section[0])->toContain("href=\"{$prefix}/security\"");
+})->with(aboutLocales());
+
 it('types the publisher in facts.json only', function (): void {
     $publisher = aboutPublisher();
     $needles = [$publisher['name'], ...array_values($publisher['city'])];
