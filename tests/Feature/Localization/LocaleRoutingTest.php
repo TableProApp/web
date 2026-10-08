@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Middleware\CanonicalizeRequest;
-use App\Http\Middleware\SecurityHeaders;
 use App\Support\Content\Slugs\CompareSlugs;
 use App\Support\Content\Slugs\DatabaseSlugs;
 use App\Support\Content\Slugs\FeatureSlugs;
@@ -349,13 +348,10 @@ it('canonicalises every request before routing, matched or not', function (): vo
      * resolves, ahead of anything the app prepends. It reads only the response
      * (a 409 client redirect) and passes the request through untouched, so it
      * is left out: nothing that looks at the request runs before this one.
-     *
-     * `SecurityHeaders` sits outside it for the same reason, so the redirects
-     * and 410s answered here carry its headers.
      */
     $global = array_values(array_diff(
         app(Kernel::class)->getGlobalMiddleware(),
-        [EnsureDeferredCallbacksRun::class, SecurityHeaders::class],
+        [EnsureDeferredCallbacksRun::class],
     ));
 
     expect($global[0])->toBe(CanonicalizeRequest::class);

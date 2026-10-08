@@ -5,7 +5,6 @@ use App\Http\Middleware\CacheHtmlAtEdge;
 use App\Http\Middleware\CanonicalizeRequest;
 use App\Http\Middleware\EnsurePageRenders;
 use App\Http\Middleware\HandleInertiaRequests;
-use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Application;
@@ -46,9 +45,6 @@ return Application::configure(basePath: dirname(__DIR__))
          * routing. See the class for what it normalises.
          */
         $middleware->prepend(CanonicalizeRequest::class);
-
-        // Prepended last, so it runs outside CanonicalizeRequest and sees its redirects and 410s.
-        $middleware->prepend(SecurityHeaders::class);
 
         /*
          * This app is entirely read-only, so it runs without a session and
