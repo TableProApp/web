@@ -10,7 +10,7 @@ updatedAt: "2026-10-02"
 
 請使用購買時的電子郵件地址向 [{email}](mailto:{email}) 寄送郵件，或在郵件中附上授權金鑰，並告知希望退還哪筆購買款項。符合條件的退款會在 5 個工作天內處理，款項將退回原付款方式。
 
-授權由我們的交易登記銷售商 {merchant} 銷售，因此退款透過 {merchant} 發放。{merchant} 也可能根據其自身的購買者條款提供退款。
+授權由我們的 merchant of record {merchant} 銷售，因此退款透過 {merchant} 發放。{merchant} 也可能根據其自身的購買者條款提供退款。
 
 ## 授權如何處理 {#license}
 

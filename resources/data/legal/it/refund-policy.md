@@ -10,7 +10,7 @@ Ogni piano a pagamento può essere rimborsato entro {refundDays} giorni: Starter
 
 Scrivi a [{email}](mailto:{email}) dall’indirizzo usato per l’acquisto, oppure includi la chiave di licenza, e indica quale acquisto vuoi rimborsare. I rimborsi ammissibili vengono elaborati entro 5 giorni lavorativi e restituiti al metodo di pagamento originale.
 
-Le licenze sono vendute da {merchant}, il nostro venditore responsabile, quindi il rimborso viene emesso tramite {merchant}. {merchant} può anche emettere rimborsi in base ai propri termini per gli acquirenti.
+Le licenze sono vendute da {merchant}, il nostro merchant of record, quindi il rimborso viene emesso tramite {merchant}. {merchant} può anche emettere rimborsi in base ai propri termini per gli acquirenti.
 
 ## Cosa succede alla licenza {#license}
 

@@ -11,7 +11,7 @@ Estes termos regem seu uso do TablePro: os apps, o site tablepro.app e os servi�
 - **"TablePro", "nós", "nos" e "nosso"** significam o projeto TablePro e seus mantenedores.
 - **"Aplicativo"** significa TablePro para Mac e TablePro para iPhone e iPad, incluindo atualizações e plugins.
 - **"Site"** significa tablepro.app, docs.tablepro.app e os demais domínios que operamos.
-- **"Serviços"** significa o Site, o portal da conta e o servidor com que o Aplicativo se comunica para verificações de licença, Biblioteca da Equipe e relatórios de uso.
+- **"Serviços"** significa o Site, o portal da conta e o servidor com que o Aplicativo se comunica para verificações de licença, Team Library e relatórios de uso.
 - **"Licença"** significa um plano pago Starter ou Team, e **"Chave de Licença"**, a credencial que ativa seus recursos no app para Mac.
 - **"Você"** significa a pessoa ou organização que usa o Aplicativo ou os Serviços.
 
@@ -25,7 +25,7 @@ O app para Mac é gratuito para baixar e usar sem cadastro. Uma Licença adicion
 
 ## Compra de uma licença {#purchases}
 
-As Licenças são vendidas por {merchant} (Polar Software, Inc.), nosso vendedor responsável e revendedor. Você compra uma Licença de {merchant}, sob os termos de {merchant} para compradores, e TablePro concede o direito de usá-la conforme estes termos. {merchant} recebe o pagamento, calcula e recolhe os tributos sobre vendas ou IVA e envia recibos e faturas. Os preços são em dólares americanos e estão na [página de preços](/pt-BR/pricing).
+As Licenças são vendidas por {merchant} (Polar Software, Inc.), nosso merchant of record e revendedor. Você compra uma Licença de {merchant}, sob os termos de {merchant} para compradores, e TablePro concede o direito de usá-la conforme estes termos. {merchant} recebe o pagamento, calcula e recolhe os tributos sobre vendas ou IVA e envia recibos e faturas. Os preços são em dólares americanos e estão na [página de preços](/pt-BR/pricing).
 
 Os planos mensais e anuais são renovados automaticamente até você cancelá-los. Você pode cancelar no portal da conta ou no portal do cliente de {merchant}; um plano cancelado não é cobrado novamente e continua funcionando até o fim do período pago. Uma compra com pagamento único é paga uma vez e não tem data de expiração.
 
@@ -93,7 +93,7 @@ Você concorda em indenizar e isentar TablePro e seus colaboradores de qualquer 
 
 Publicamos atualizações, correções e novos recursos a nosso critério. Além do suporte prioritário acima, não temos obrigação de manter, atualizar ou oferecer suporte a qualquer versão do Aplicativo, e versões antigas podem deixar de receber correções de segurança.
 
-Alguns Serviços, como verificações de licença e a Biblioteca da Equipe, exigem acesso à rede. Não garantimos disponibilidade permanente e podemos descontinuá-los com aviso prévio razoável. Os recursos pagos do app para Mac precisam do nosso servidor de licenças: se ele não puder ser acessado, continuam funcionando por {graceDays} dias após a última verificação bem-sucedida.
+Alguns Serviços, como verificações de licença e a Team Library, exigem acesso à rede. Não garantimos disponibilidade permanente e podemos descontinuá-los com aviso prévio razoável. Os recursos pagos do app para Mac precisam do nosso servidor de licenças: se ele não puder ser acessado, continuam funcionando por {graceDays} dias após a última verificação bem-sucedida.
 
 ## Encerramento {#termination}
 

@@ -10,11 +10,11 @@ Esta política abrange TablePro para Mac, TablePro para iPhone e iPad, o site ta
 
 - O app para Mac envia um relatório de uso ao TablePro uma vez por dia. Está ativado por padrão e pode ser desativado. O app para iPhone e iPad só envia se você ativar.
 - Se ativar uma licença, o app para Mac a verifica com nosso servidor a cada {revalidateDays} dias. Essa verificação inclui o nome do seu Mac.
-- Consultas, resultados e senhas não são enviados ao TablePro. A exceção é o que você escolhe publicar na Biblioteca da Equipe: configurações de conexão (nunca senhas) e consultas salvas.
+- Consultas, resultados e senhas não são enviados ao TablePro. A exceção é o que você escolhe publicar na Team Library: configurações de conexão (nunca senhas) e consultas salvas.
 - Solicitações de IA vão do app para Mac diretamente ao provedor configurado por você, não a nós.
 - Nosso servidor armazena o endereço IP de cada relatório de uso e verificação de licença e consulta um país para cada relatório. Não definimos um prazo para manter esses registros.
 - O site conta visualizações de página com Cloudflare Web Analytics, que não define cookies. Também carrega Google Analytics, que só define cookies se você permitir. Todas as páginas carregam nosso chat ao vivo, Crisp, que define seus próprios cookies.
-- As compras são vendidas por {merchant}, nosso vendedor responsável.
+- As compras são vendidas por {merchant}, nosso merchant of record.
 
 ## Quem é responsável {#controller}
 
@@ -30,9 +30,9 @@ Um relatório contém:
 
 - um ID de máquina: hash SHA-256 do UUID de hardware do Mac (o UUID em si nunca é enviado);
 - plataforma, versão do app, versão do macOS, arquitetura do processador e idioma do app;
-- os nomes dos tipos de banco usados pelas conexões (por exemplo, "PostgreSQL") e uma contagem de conexões;
+- os nomes dos tipos de banco das conexões abertas (por exemplo, "PostgreSQL") e quantas conexões estão abertas;
 - se uma licença está ativada;
-- as datas da primeira tentativa de conexão, primeira conexão bem-sucedida e primeira consulta;
+- a data e a hora da primeira tentativa de conexão e da primeira conexão bem-sucedida;
 - configurações de atualização (como as atualizações são instaladas e a frequência das verificações). Nosso servidor as descarta quando o relatório chega.
 
 Nunca contém nomes de host, nomes de usuário, senhas, consultas nem linhas.
@@ -52,16 +52,16 @@ Desativar um Mac envia apenas a chave de licença e o ID de máquina.
 
 Nosso servidor registra todas as solicitações de licença com endereço IP e conteúdo e armazena o ID e nome de cada Mac ativado junto à licença. O portal da conta lista esses Macs pelo nome. Se o servidor não puder ser acessado, os recursos pagos continuam funcionando por {graceDays} dias após a última verificação bem-sucedida.
 
-### Biblioteca da Equipe {#library}
+### Team Library {#library}
 
-A Biblioteca da Equipe faz parte de uma licença Team. Ao escolher **Share > Publish to Team Library…** em uma conexão ou **Publish Saved Queries to Team…** na barra lateral Favoritos, o app para Mac envia o que você publica ao nosso servidor:
+A Team Library faz parte de uma licença Team. Ao escolher **Share > Publish to Team Library…** em uma conexão ou **Publish Saved Queries to Team…** na barra lateral Favorites, o app para Mac envia o que você publica ao nosso servidor:
 
-- configurações de conexão: host, porta, nome do banco, nome de usuário, configurações SSH e SSL, opções do driver, comandos de inicialização, configurações de Comando de Túnel, nível de Modo Seguro e configurações de IA, mas nunca senhas;
+- configurações de conexão: host, porta, nome do banco, nome de usuário, configurações SSH e SSL, opções do driver, comandos de inicialização, configurações de Tunnel Command, nível de Safe Mode e configurações de IA, mas nunca senhas;
 - consultas salvas: nomes, texto SQL, palavras-chave e pastas.
 
 Os Macs na mesma licença Team baixam a biblioteca ao iniciar, no máximo uma vez por semana; o Mac que publica a baixa novamente logo após. Publicar novamente substitui o que você publicou antes. Remover um membro da equipe exclui tudo que ele publicou. Se a licença expirar ou for suspensa, a biblioteca permanece no servidor até você solicitar a exclusão.
 
-Catálogo da Equipe, o outro recurso Team, grava arquivos de conexão sem senhas em uma pasta compartilhada escolhida por você. Não passa pelo nosso servidor.
+Team Catalog, o outro recurso Team, grava arquivos de conexão sem senhas em uma pasta compartilhada escolhida por você. Não passa pelo nosso servidor.
 
 ### Atualizações e plugins {#mac-updates}
 
@@ -84,27 +84,27 @@ O app para Mac só envia dados a estes serviços quando você os configura, dire
 
 ### Dados que ficam no seu Mac {#mac-local}
 
-As senhas ficam nas Chaves do macOS. Lista de conexões, histórico de consultas, Análise de Consultas, snapshots de Recuperação de Dados, configurações e abas abertas são armazenados no Mac. O app referencia as chaves SSH onde estão no disco e não as copia. Não contém relator de falhas nem biblioteca de análise de terceiros.
+As senhas ficam nas Chaves do macOS. Lista de conexões, histórico de consultas, Query Insights, snapshots de Data Rewind, configurações e abas abertas são armazenados no Mac. O app referencia as chaves SSH onde estão no disco e não as copia. Não contém relator de falhas nem biblioteca de análise de terceiros.
 
 ## TablePro para iPhone e iPad {#ios-app}
 
-**Nada vai ao TablePro, a menos que você ative Share Usage Data**, na primeira inicialização ou depois em **Settings > Privacy**. Nesse caso, o app envia um relatório diário ao mesmo servidor do app para Mac, e nosso servidor armazena e consulta seu IP da mesma forma. O relatório contém um hash SHA-256 do identificador atribuído pela Apple ao app no dispositivo, plataforma, versões do app e iOS, arquitetura do processador, idioma, nomes dos tipos de banco usados, contagem de conexões e as mesmas datas de primeiro uso. Não inclui configurações de atualização nem chave de licença, pois o app não tem nenhuma delas.
+**Nada vai ao TablePro, a menos que você ative Share Usage Data**, na primeira inicialização ou depois em **Settings > Privacy**. Nesse caso, o app envia um relatório diário ao mesmo servidor do app para Mac, e nosso servidor armazena e consulta seu IP da mesma forma. O relatório contém um hash SHA-256 do identificador atribuído pela Apple ao app no dispositivo, plataforma, versões do app e iOS, arquitetura do processador, idioma, nomes dos tipos de banco das conexões abertas, quantas estão abertas, e a data e a hora da primeira tentativa de conexão, da primeira conexão bem-sucedida e da primeira consulta. Não inclui configurações de atualização e sempre informa que não há licença ativada, pois o app não tem nenhuma das duas coisas.
 
-O app não verifica licenças, não verifica atualizações e não solicita plugins. Além do relatório opcional, conecta apenas aos seus bancos e servidores SSH, ao iCloud da Apple se você ativar a Sincronização iCloud e à Microsoft quando uma conexão SQL Server autentica com Microsoft Entra ID.
+O app não verifica licenças, não verifica atualizações e não solicita plugins. Além do relatório opcional, conecta apenas aos seus bancos e servidores SSH, ao iCloud da Apple se você ativar o iCloud Sync e à Microsoft quando uma conexão SQL Server autentica com Microsoft Entra ID.
 
 No dispositivo, senhas e chaves SSH coladas ficam nas Chaves, e certificados nunca são sincronizados. O histórico de consultas fica no dispositivo. As conexões são adicionadas ao índice Spotlight local para pesquisa. Durante uma consulta, a Atividade ao Vivo mostra o SQL na Tela Bloqueada e na Dynamic Island expandida, a menos que você ative **Settings > Live Activities > Hide Query**.
 
 Se compartilhar análises com desenvolvedores nos ajustes do iPhone ou iPad, a Apple poderá nos fornecer relatórios de falhas e estatísticas de uso pelo App Store Connect. O app não contém relator de falhas nem biblioteca própria de análise de terceiros.
 
-## Sincronização iCloud e Handoff {#icloud}
+## iCloud Sync e Handoff {#icloud}
 
-A Sincronização iCloud fica desativada até você ativá-la, no Mac e no iPhone e iPad. Quando ativa, os registros vão para um banco privado na sua conta iCloud (container `iCloud.com.TablePro`). TablePro não pode lê-los.
+O iCloud Sync fica desativado até você ativá-lo, no Mac e no iPhone e iPad. Quando ativo, os registros vão para um banco privado na sua conta iCloud (container `iCloud.com.TablePro`). TablePro não pode lê-los.
 
-- No Mac, você escolhe o que sincronizar: conexões, grupos e etiquetas, configurações, perfis SSH, perfis de credenciais (nome e nome de usuário, nunca senha), tabelas e bancos favoritos, consultas salvas (incluindo SQL) e pastas de tabelas. Um registro de conexão inclui host, porta, nome de usuário, nome do banco, configurações SSH e SSL, comandos de inicialização, script de pré-conexão e regras de IA. Histórico de consultas, snapshots de Recuperação de Dados e fontes de senha nunca são sincronizados.
+- No Mac, você escolhe o que sincronizar: conexões, grupos e etiquetas, configurações, perfis SSH, perfis de credenciais (nome e nome de usuário, nunca senha), tabelas e bancos favoritos, consultas salvas (incluindo SQL) e pastas de tabelas. Um registro de conexão inclui host, porta, nome de usuário, nome do banco, configurações SSH e SSL, comandos de inicialização, script de pré-conexão e regras de IA. Histórico de consultas, snapshots de Data Rewind e fontes de senha nunca são sincronizados.
 - iPhone e iPad sincronizam conexões, grupos e etiquetas.
 - Senhas só são sincronizadas se você também ativar **Passwords** em Sync Categories no Mac ou **Sync Passwords** no iPhone e iPad, usando as Chaves do iCloud. No Mac, isso também sincroniza outros segredos guardados pelo TablePro nas Chaves, como chaves de provedores de IA e a chave de licença.
 
-No Mac, a Sincronização iCloud faz parte de uma licença Starter ou Team. No iPhone e iPad é gratuita.
+No Mac, o iCloud Sync faz parte de uma licença Starter ou Team. No iPhone e iPad é gratuito.
 
 Handoff transmite o ID da conexão aberta e o nome da tabela aberta entre seus dispositivos, pela Apple. Sem tabela aberta, transmite o nome da conexão ou o host se ela não tiver nome. Não envia configurações nem credenciais.
 
@@ -128,13 +128,13 @@ Ler o site não define cookies próprios. Inscrever-se na newsletter, iniciar ch
 
 ## Compras {#purchases}
 
-As licenças são vendidas por {merchant} (Polar Software, Inc.), nosso vendedor responsável e revendedor. Você compra de {merchant} sob seus próprios termos para compradores e política de privacidade. {merchant} recebe o pagamento, calcula e recolhe tributos sobre vendas ou IVA, envia recibos e faturas e trata problemas e disputas de pagamento. Coleta nome, email, endereço de cobrança e detalhes de pagamento. Nunca vemos os dados completos do cartão.
+As licenças são vendidas por {merchant} (Polar Software, Inc.), nosso merchant of record e revendedor. Você compra de {merchant} sob seus próprios termos para compradores e política de privacidade. {merchant} recebe o pagamento, calcula e recolhe tributos sobre vendas ou IVA, envia recibos e faturas e trata problemas e disputas de pagamento. Coleta nome, email, endereço de cobrança e detalhes de pagamento. Nunca vemos os dados completos do cartão.
 
 De {merchant}, recebemos email, nome e endereço de cobrança conforme inseridos, o que comprou, valores, IDs de pedido e assinatura e mudanças posteriores, como renovações, cancelamentos e reembolsos. Informamos a {merchant} o idioma da página de compra para que nossos emails cheguem nesse idioma. Faturas, recibos, forma de pagamento e assinatura estão no [portal do cliente de {merchant}]({portal}), acessado com o email usado na compra. Os reembolsos são descritos na [política de reembolso](/pt-BR/refund-policy), e o que a licença permite nos [termos de serviço](/pt-BR/terms).
 
 ## Portal da conta {#account}
 
-O [portal da conta](/account?locale=pt-BR) em tablepro.app/account é para quem comprou uma licença. Você entra por um link enviado a esse email; o link funciona uma vez e expira após 15 minutos. O portal mostra licenças, Macs ativados (pelo nome) e, em licenças Team, membros, convites, vagas e Biblioteca da Equipe.
+O [portal da conta](/account?locale=pt-BR) em tablepro.app/account é para quem comprou uma licença. Você entra por um link enviado a esse email; o link funciona uma vez e expira após 15 minutos. O portal mostra licenças, Macs ativados (pelo nome) e, em licenças Team, membros, convites, vagas e Team Library.
 
 Armazenamos seu email com licenças e pedidos e o idioma usado conosco, para enviar emails nele. Ao convidar alguém para uma equipe, armazenamos seu email e função e enviamos um código de convite.
 
@@ -162,7 +162,7 @@ Você pode alterar ou retirar a resposta sobre análises a qualquer momento em *
 
 Para leitores no Espaço Econômico Europeu e Reino Unido, as bases legais sob o GDPR e UK GDPR são:
 
-- **Contrato** (Art. 6(1)(b)): vender e fornecer licenças, verificações de licença, portal da conta e Biblioteca da Equipe.
+- **Contrato** (Art. 6(1)(b)): vender e fornecer licenças, verificações de licença, portal da conta e Team Library.
 - **Interesse legítimo** (Art. 6(1)(f)): relatório de uso do app para Mac e consulta de país, registros de solicitações de licença, segurança e prevenção de abuso, logs do servidor web, Cloudflare Web Analytics, registro de atribuição de compras e chat ao vivo em todas as páginas.
 - **Consentimento** (Art. 6(1)(a)): cookies Google Analytics, relatório de uso do app para iPhone e iPad, newsletter e conversas iniciadas no chat ao vivo.
 - **Obrigação legal** (Art. 6(1)(c)): registros fiscais e contábeis e respostas a solicitações legais.
@@ -171,7 +171,7 @@ Para leitores no Espaço Econômico Europeu e Reino Unido, as bases legais sob o
 
 Compartilhamos dados pessoais apenas com os serviços necessários para operar TablePro:
 
-- **{merchant}**, vendedor responsável pelas compras.
+- **{merchant}**, merchant of record das compras.
 - **Um provedor de entrega de email**, para links de acesso, recibos enviados por nós, convites de equipe e newsletters.
 - **Nosso provedor de hospedagem e Cloudflare**, para site, portal da conta e servidor dos apps. Cloudflare também conta visualizações com Cloudflare Web Analytics.
 - **Google**, para Google Analytics no site, na documentação e no portal da conta.
@@ -192,7 +192,7 @@ Os serviços acima operam em vários países, portanto os dados podem ser proces
 - **Relatórios de uso**, com IPs e países: nenhum prazo foi definido, e nada os exclui automaticamente.
 - **Registros de licença**: IDs e nomes dos Macs ativados e logs de solicitações de licença com IPs são mantidos enquanto a licença existir. Nada os exclui automaticamente.
 - **Pedidos**: mantidos para fins fiscais e contábeis.
-- **Biblioteca da Equipe**: até nova publicação, remoção do membro que publicou ou solicitação de exclusão. Permanece após o fim da licença.
+- **Team Library**: até nova publicação, remoção do membro que publicou ou solicitação de exclusão. Permanece após o fim da licença.
 - **Links de acesso à conta**: expiram após 15 minutos e são excluídos. Sessões do portal duram 2 horas.
 - **Newsletter**: até cancelar a inscrição ou excluirmos o endereço a seu pedido.
 - **Google Analytics**: dados no nível de usuário e evento por 2 meses, o período padrão usado por nossa propriedade. Cookies duram até 2 anos ou são excluídos quando você recusa.

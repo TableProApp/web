@@ -30,9 +30,9 @@ Một báo cáo gồm:
 
 - mã máy (machine ID): giá trị băm SHA-256 của UUID phần cứng máy Mac (bản thân UUID không bao giờ được gửi đi);
 - nền tảng, phiên bản ứng dụng, phiên bản macOS, kiến trúc bộ xử lý và ngôn ngữ của ứng dụng;
-- tên các loại cơ sở dữ liệu mà connection của bạn dùng (ví dụ "PostgreSQL") và số lượng connection;
+- tên các loại cơ sở dữ liệu của những connection bạn đang mở (ví dụ "PostgreSQL") và số connection đang mở;
 - license đã được kích hoạt hay chưa;
-- ngày bạn thử kết nối lần đầu, ngày kết nối thành công lần đầu và ngày chạy query đầu tiên;
+- ngày giờ bạn thử kết nối lần đầu và ngày giờ kết nối thành công lần đầu;
 - cài đặt cập nhật của bạn (cách cài bản cập nhật và tần suất kiểm tra). Máy chủ của chúng tôi bỏ các thông tin này ngay khi nhận báo cáo.
 
 Báo cáo không bao giờ chứa hostname, username, mật khẩu, query hay dữ liệu trong các dòng.
@@ -75,7 +75,7 @@ GitHub nhận địa chỉ IP của bạn qua các yêu cầu này. Tuyên bố 
 Ứng dụng cho Mac chỉ gửi dữ liệu tới các dịch vụ sau khi bạn thiết lập chúng, và gửi trực tiếp, không bao giờ qua TablePro:
 
 - **Cơ sở dữ liệu, máy chủ SSH và proxy của bạn**, nhận mọi thứ mà connection của bạn gửi tới.
-- **Nhà cung cấp AI.** Khi bạn thêm một nhà cung cấp và dùng trợ lý AI hoặc gợi ý nội tuyến (inline suggestions), yêu cầu được gửi tới nhà cung cấp đó, hoặc tới một model chạy trên máy Mac của bạn. Theo mặc định, một yêu cầu gồm loại và tên cơ sở dữ liệu, định nghĩa table và cột lấy từ schema, cùng query hiện tại. Các dòng kết quả chỉ được gửi nếu bạn bật tùy chọn đó. Điều khoản của nhà cung cấp được áp dụng. Khi thêm GitHub Copilot, ứng dụng tải language server của Copilot từ npm, và cài đặt "Send telemetry to GitHub" của nó được bật sẵn.
+- **Nhà cung cấp AI.** Khi bạn thêm một nhà cung cấp và dùng trợ lý AI hoặc gợi ý nội tuyến (inline suggestions), yêu cầu được gửi tới nhà cung cấp đó, hoặc tới một model chạy trên máy Mac của bạn. Theo mặc định, một yêu cầu gồm loại và tên cơ sở dữ liệu, định nghĩa table và cột lấy từ schema, cùng query hiện tại. Các dòng kết quả chỉ được gửi nếu bạn bật tùy chọn đó. Điều khoản của nhà cung cấp được áp dụng. Khi thêm GitHub Copilot, ứng dụng tải language server của Copilot từ npm, và cài đặt "Gửi telemetry tới GitHub" (Send telemetry to GitHub) của nó được bật sẵn.
 - **Dịch vụ đăng nhập**: Microsoft Entra ID, Google, Amazon Web Services và Cloudflare Access, khi một connection dùng tới.
 - **Apple Maps**, cung cấp ô bản đồ khi bạn xem kết quả trên bản đồ.
 - **DuckDB**, cung cấp extension của DuckDB vào lần đầu một query cần tới.
@@ -88,7 +88,7 @@ Mật khẩu được lưu trong Keychain của macOS. Danh sách connection, l�
 
 ## TablePro cho iPhone và iPad {#ios-app}
 
-**Không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng** (Share Usage Data), khi ứng dụng khởi động lần đầu hoặc sau đó trong **Cài đặt > Quyền riêng tư** (Settings > Privacy). Nếu bạn bật, ứng dụng gửi một báo cáo mỗi ngày tới cùng máy chủ với ứng dụng cho Mac, và máy chủ của chúng tôi lưu và tra cứu địa chỉ IP của báo cáo theo cùng cách. Báo cáo gồm giá trị băm SHA-256 của mã định danh mà Apple cấp cho ứng dụng trên thiết bị của bạn, nền tảng, phiên bản ứng dụng và iOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng, tên các loại cơ sở dữ liệu bạn dùng, số lượng connection và các ngày dùng lần đầu như trên. Báo cáo không có cài đặt cập nhật và không có license key, vì ứng dụng không có cả hai.
+**Không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng** (Share Usage Data), khi ứng dụng khởi động lần đầu hoặc sau đó trong **Cài đặt > Quyền riêng tư** (Settings > Privacy). Nếu bạn bật, ứng dụng gửi một báo cáo mỗi ngày tới cùng máy chủ với ứng dụng cho Mac, và máy chủ của chúng tôi lưu và tra cứu địa chỉ IP của báo cáo theo cùng cách. Báo cáo gồm giá trị băm SHA-256 của mã định danh mà Apple cấp cho ứng dụng trên thiết bị của bạn, nền tảng, phiên bản ứng dụng và iOS, kiến trúc bộ xử lý, ngôn ngữ của ứng dụng, tên các loại cơ sở dữ liệu của những connection bạn đang mở, số connection đang mở, và ngày giờ bạn thử kết nối lần đầu, kết nối thành công lần đầu và chạy query đầu tiên. Báo cáo không có cài đặt cập nhật và luôn ghi là chưa kích hoạt license nào, vì ứng dụng không có cả hai.
 
 Ứng dụng không kiểm tra license, không kiểm tra cập nhật và không gửi yêu cầu nào về plugin. Ngoài báo cáo tùy chọn nói trên, ứng dụng chỉ kết nối tới cơ sở dữ liệu và máy chủ SSH của bạn, tới iCloud của Apple nếu bạn bật iCloud Sync, và tới Microsoft khi một connection SQL Server đăng nhập bằng Microsoft Entra ID.
 
@@ -102,7 +102,7 @@ iCloud Sync tắt cho tới khi bạn bật, trên Mac cũng như trên iPhone v
 
 - Trên Mac, bạn chọn những gì được đồng bộ: connection, nhóm và tag, cài đặt, SSH profile, credential profile (tên và username, không bao giờ gồm mật khẩu), table và cơ sở dữ liệu yêu thích, query đã lưu (kể cả nội dung SQL) và thư mục table. Một bản ghi connection gồm host, port, username, tên cơ sở dữ liệu, cài đặt SSH và SSL, lệnh khởi động, script chạy trước khi kết nối và quy tắc AI. Lịch sử query, các bản chụp của Data Rewind và nguồn mật khẩu không bao giờ được đồng bộ.
 - iPhone và iPad đồng bộ connection, nhóm và tag.
-- Mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục **Mật khẩu** (Passwords) trong Danh mục đồng bộ trên Mac, hoặc **Đồng bộ mật khẩu** (Sync Passwords) trên iPhone và iPad, tính năng dùng iCloud Keychain. Trên Mac, tùy chọn này cũng đồng bộ các thông tin bí mật khác mà TablePro giữ trong Keychain, chẳng hạn API key của nhà cung cấp AI và license key.
+- Mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục **Mật khẩu** (Passwords) trong Danh mục đồng bộ (Sync Categories) trên Mac, hoặc **Đồng bộ mật khẩu** (Sync Passwords) trên iPhone và iPad, tính năng dùng iCloud Keychain. Trên Mac, tùy chọn này cũng đồng bộ các thông tin bí mật khác mà TablePro giữ trong Keychain, chẳng hạn API key của nhà cung cấp AI và license key.
 
 Trên Mac, iCloud Sync thuộc license Starter hoặc Team. Trên iPhone và iPad, tính năng này miễn phí.
 

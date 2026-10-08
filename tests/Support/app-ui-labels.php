@@ -1,6 +1,6 @@
 <?php
 
-// Every label the copy puts in a <ui> tag, with the app's own wording in the languages the app ships:
+// Every label the copy puts in a <ui> tag or the legal pages quote, with the app's own wording in the languages the app ships:
 // French, Korean and Chinese on the Mac, Korean and Chinese on iPhone. From the apps' Localizable.xcstrings.
 // A missing language, or an empty row, means the app shows the label in English there.
 
@@ -16,6 +16,7 @@ return [
     'Auth Level' => ['fr' => 'Niveau d’authentification', 'ko' => '인증 수준', 'zh-Hans' => '认证级别', 'zh-Hant' => '驗證層級'],
     'Auth Method' => ['fr' => 'Méthode d’authentification', 'ko' => '인증 방식', 'zh-Hans' => '认证方式', 'zh-Hant' => '驗證方式'],
     'Authentication' => ['fr' => 'Authentification', 'ko' => '인증', 'zh-Hans' => '身份验证', 'zh-Hant' => '身分驗證'],
+    'Automatically check for updates' => ['fr' => 'Rechercher automatiquement les mises à jour', 'ko' => '업데이트 자동 확인', 'zh-Hans' => '自动检查更新', 'zh-Hant' => '自動檢查更新'],
     'AWS Region' => ['fr' => 'Région AWS', 'ko' => 'AWS 리전', 'zh-Hans' => 'AWS 区域', 'zh-Hant' => 'AWS 區域'],
     'Broker Addresses' => ['fr' => 'Adresses des brokers', 'ko' => '브로커 주소', 'zh-Hans' => 'Broker 地址', 'zh-Hant' => 'Broker 位址'],
     'Browse…' => ['fr' => 'Parcourir…', 'ko' => '찾아보기…', 'zh-Hans' => '浏览…', 'zh-Hant' => '瀏覽…'],
@@ -86,12 +87,14 @@ return [
     'SASL Mechanism' => ['fr' => 'Mécanisme SASL', 'ko' => 'SASL 메커니즘', 'zh-Hans' => 'SASL 机制', 'zh-Hant' => 'SASL 機制'],
     'Schema' => ['fr' => 'Schéma', 'ko' => '스키마', 'zh-Hant' => '綱要'],
     'Security Protocol' => ['fr' => 'Protocole de sécurité', 'ko' => '보안 프로토콜', 'zh-Hans' => '安全协议', 'zh-Hant' => '安全性協定'],
+    'Send telemetry to GitHub' => ['fr' => 'Envoyer la télémétrie à GitHub', 'ko' => 'GitHub에 텔레메트리 보내기', 'zh-Hans' => '向 GitHub 发送遥测数据', 'zh-Hant' => '向 GitHub 傳送遙測資料'],
     'Service Account Key' => ['fr' => 'Clé du compte de service', 'ko' => '서비스 계정 키', 'zh-Hans' => '服务账号密钥', 'zh-Hant' => '服務帳戶金鑰'],
     'Set NULL' => ['fr' => 'Définir sur NULL', 'ko' => 'NULL로 설정', 'zh-Hans' => '设为 NULL', 'zh-Hant' => '設為 NULL'],
     'Settings > AI' => ['fr' => 'Réglages > IA', 'ko' => '설정 > AI', 'zh-Hans' => '设置 > AI', 'zh-Hant' => '設定 > AI'],
     'Settings > Editor > Vim mode' => ['fr' => 'Réglages > Éditeur > Mode Vim', 'ko' => '설정 > 편집기 > Vim 모드', 'zh-Hans' => '设置 > 编辑器 > Vim 模式', 'zh-Hant' => '設定 > 編輯器 > Vim 模式'],
     'Settings > General' => ['fr' => 'Réglages > Général', 'ko' => '설정 > 일반', 'zh-Hans' => '设置 > 通用', 'zh-Hant' => '設定 > 一般'],
     'Settings > General > Privacy' => ['fr' => 'Réglages > Général > Confidentialité', 'ko' => '설정 > 일반 > 개인정보 보호', 'zh-Hans' => '设置 > 通用 > 隐私', 'zh-Hant' => '設定 > 一般 > 隱私'],
+    'Settings > General > Software Update' => ['fr' => 'Réglages > Général > Mise à jour de logiciels', 'ko' => '설정 > 일반 > 소프트웨어 업데이트', 'zh-Hans' => '设置 > 通用 > 软件更新', 'zh-Hant' => '設定 > 一般 > 軟體更新'],
     'Settings > Integrations' => ['fr' => 'Réglages > Intégrations', 'ko' => '설정 > 통합', 'zh-Hans' => '设置 > 集成', 'zh-Hant' => '設定 > 整合'],
     'Settings > License' => ['fr' => 'Réglages > Licence', 'ko' => '설정 > 라이선스', 'zh-Hans' => '设置 > 许可证', 'zh-Hant' => '設定 > 授權'],
     'Settings > Live Activities > Hide Query' => ['ko' => '설정 > 실시간 현황 > 쿼리 가리기', 'zh-Hans' => '设置 > 实时活动 > 隐藏查询', 'zh-Hant' => '設定 > 即時動態 > 隱藏查詢'],
@@ -100,6 +103,8 @@ return [
     'Settings > Security' => ['ko' => '설정 > 보안', 'zh-Hans' => '设置 > 安全', 'zh-Hant' => '設定 > 安全性'],
     'Share > Publish to Team Catalog…' => ['fr' => 'Partager > Publier dans le catalogue d’équipe…', 'ko' => '공유 > 팀 카탈로그에 게시…', 'zh-Hans' => '分享 > 发布到团队目录…', 'zh-Hant' => '分享 > 發佈到團隊目錄…'],
     'Share > Publish to Team Library…' => ['fr' => 'Partager > Publier dans la bibliothèque d’équipe…', 'ko' => '공유 > 팀 라이브러리에 게시…', 'zh-Hans' => '分享 > 发布到团队库…', 'zh-Hant' => '分享 > 發佈到團隊庫…'],
+    'Share anonymous usage data' => ['fr' => 'Partager des données d’utilisation anonymes', 'ko' => '익명 사용 데이터 공유', 'zh-Hans' => '共享匿名使用数据', 'zh-Hant' => '分享匿名使用資料'],
+    'Share Usage Data' => ['ko' => '사용 데이터 공유', 'zh-Hans' => '共享使用数据', 'zh-Hant' => '分享使用資料'],
     'Sync Passwords' => ['ko' => '암호 동기화', 'zh-Hans' => '同步密码', 'zh-Hant' => '同步密碼'],
     'TablePro > Check for Updates…' => ['fr' => 'TablePro > Rechercher les mises à jour…', 'ko' => 'TablePro > 업데이트 확인…', 'zh-Hans' => 'TablePro > 检查更新…', 'zh-Hant' => 'TablePro > 檢查更新…'],
     'Terminate Session' => ['fr' => 'Mettre fin à la session', 'ko' => '세션 종료', 'zh-Hans' => '终止会话', 'zh-Hant' => '終止工作階段'],

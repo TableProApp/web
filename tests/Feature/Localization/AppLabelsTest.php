@@ -63,6 +63,43 @@ function appLabelsLocales(): array
     return array_values(array_diff(array_keys($locales), ['en', 'vi']));
 }
 
+// Labels the legal pages print inside a sentence. The others are bold spans of their own.
+const APP_LABELS_LEGAL_INLINE = ['Share Usage Data', 'Send telemetry to GitHub'];
+
+/**
+ * @return list<string>
+ */
+function appLabelsLegalLines(string $locale, string $document): array
+{
+    return explode("\n", (string) file_get_contents(__DIR__ . "/../../../resources/data/legal/{$locale}/{$document}.md"));
+}
+
+/**
+ * The bold spans of a legal line.
+ *
+ * @return list<string>
+ */
+function appLabelsLegalBold(string $line): array
+{
+    preg_match_all('/\*\*(.+?)\*\*/u', $line, $matches);
+
+    return $matches[1];
+}
+
+/**
+ * The app labels an English legal line names.
+ *
+ * @param  array<string, array<string, string>>  $known
+ * @return list<string>
+ */
+function appLabelsOnLegalLine(string $line, array $known): array
+{
+    return [
+        ...array_filter(appLabelsLegalBold($line), fn(string $text): bool => array_key_exists($text, $known)),
+        ...array_filter(APP_LABELS_LEGAL_INLINE, fn(string $label): bool => str_contains($line, $label)),
+    ];
+}
+
 it('knows the app’s wording for every label the English copy names', function (): void {
     $known = require base_path('tests/Support/app-ui-labels.php');
     $missing = [];
@@ -148,6 +185,56 @@ it('gives a Vietnamese label its English label in parentheses at least once per 
 
     expect($offences)->toBe([], "content/vi:\n  " . implode("\n  ", $offences));
 });
+
+it('knows the app’s wording for every menu path the English legal pages name', function (string $document): void {
+    $known = require base_path('tests/Support/app-ui-labels.php');
+    $paths = [];
+
+    foreach (appLabelsLegalLines('en', $document) as $line) {
+        array_push($paths, ...array_filter(appLabelsLegalBold($line), fn(string $text): bool => str_contains($text, ' > ')));
+    }
+
+    expect(array_values(array_diff($paths, array_keys($known))))->toBe([]);
+
+    foreach (APP_LABELS_LEGAL_INLINE as $label) {
+        expect($known)->toHaveKey($label);
+    }
+})->with(['privacy', 'terms', 'refund-policy']);
+
+it('shows each label on the legal pages as the app does in that language, with the English label after a translated one', function (string $locale): void {
+    $known = require base_path('tests/Support/app-ui-labels.php');
+    $offences = [];
+    $checked = 0;
+
+    foreach (['privacy', 'terms', 'refund-policy'] as $document) {
+        $translated = appLabelsLegalLines($locale, $document);
+
+        foreach (appLabelsLegalLines('en', $document) as $index => $line) {
+            foreach (appLabelsOnLegalLine($line, $known) as $label) {
+                $shown = $translated[$index] ?? '';
+                $expected = $known[$label][$locale] ?? $label;
+                $where = "{$document}.md:" . ($index + 1);
+                $checked++;
+
+                if ($locale === 'vi') {
+                    // The fixture has no Vietnamese wording: the page gives the app's label and the English one after it.
+                    if (! str_contains($shown, "({$label})")) {
+                        $offences[] = "{$where}: ({$label}) should follow the app's label";
+                    }
+                } elseif ($expected === $label) {
+                    if (preg_match('/(?<![(（])' . preg_quote($label, '/') . '/u', $shown) !== 1) {
+                        $offences[] = "{$where}: {$label} should stay as the app shows it";
+                    }
+                } elseif (preg_match('/' . preg_quote($expected, '/') . '(?:\*\*|[»”」"\s\x{00A0}\x{202F}])*[(（]' . preg_quote($label, '/') . '[)）]/u', $shown) !== 1) {
+                    $offences[] = "{$where}: should read {$expected} ({$label})";
+                }
+            }
+        }
+    }
+
+    expect($checked)->toBeGreaterThan(10)
+        ->and($offences)->toBe([], "legal/{$locale}:\n  " . implode("\n  ", $offences));
+})->with(array_values(array_diff(array_keys(json_decode((string) file_get_contents(__DIR__ . '/../../../resources/data/locales.json'), true)['supported']), ['en'])));
 
 it('tells a glossed label from a bare one', function (string $after, bool $glossed): void {
     expect(appLabelsGlossed($after, 'Preview SQL'))->toBe($glossed);

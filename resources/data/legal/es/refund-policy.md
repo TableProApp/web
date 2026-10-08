@@ -10,7 +10,7 @@ Todos los planes de pago se pueden reembolsar en un plazo de {refundDays} días:
 
 Escribe a [{email}](mailto:{email}) desde la dirección usada para la compra, o incluye tu clave de licencia, e indica qué compra quieres reembolsar. Los reembolsos que cumplen los requisitos se procesan en 5 días laborables y se devuelven al método de pago original.
 
-Las licencias las vende {merchant}, nuestro comerciante registrado, por lo que el reembolso se tramita a través de {merchant}. {merchant} también puede emitir reembolsos según sus propias condiciones para compradores.
+Las licencias las vende {merchant}, nuestro merchant of record, por lo que el reembolso se tramita a través de {merchant}. {merchant} también puede emitir reembolsos según sus propias condiciones para compradores.
 
 ## Qué ocurre con la licencia {#license}
 
