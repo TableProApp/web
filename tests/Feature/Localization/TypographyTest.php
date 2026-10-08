@@ -86,3 +86,18 @@ it('imports the shared foundation into the site stylesheet', function (): void {
     expect(strpos($css, '@import "./fonts.css";'))->toBeGreaterThan(strpos($css, '@import "tailwindcss";'));
     expect($css)->toContain('@import "./tokens.css";')->not->toContain('@fontsource');
 });
+
+it('sets the root font from the per-language stacks international.css declares', function (): void {
+    preg_match_all('/html:lang\(([A-Za-z-]+)\) \{\s*--font-sans:/', stylesheet('international.css'), $languages);
+
+    expect($languages[1])->toBe(['ja', 'ko', 'zh-Hans', 'zh-Hant']);
+    // The preflight reads `--default-font-family`, which no language overrides.
+    expect(stylesheet('app.css'))->toMatch('/\nhtml \{\s*font-family: var\(--font-sans, var\(--default-font-family\)\);\s*\}/');
+});
+
+it('breaks Korean between words and keeps Japanese line starts clean', function (): void {
+    $css = stylesheet('app.css');
+
+    expect($css)->toMatch('/\n:lang\(ko\) \{\s*word-break: keep-all;\s*\}/')
+        ->toMatch('/\n:lang\(ja\) \{\s*line-break: strict;\s*\}/');
+});
