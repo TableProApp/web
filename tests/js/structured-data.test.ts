@@ -6,6 +6,7 @@ import {
     blogPostingNode,
     breadcrumbNode,
     collectionPageNode,
+    founderId,
     graph,
     iosAppNode,
     macAppNode,
@@ -30,6 +31,8 @@ const base = 'https://tablepro.app';
 const en_ = { baseUrl: base, inLanguage: 'en' };
 const vi_ = { baseUrl: `${base}/`, inLanguage: 'vi' };
 const pricing: PricingFacts = JSON.parse(readFileSync(new URL('../../resources/data/pricing.json', import.meta.url), 'utf8'));
+const facts = JSON.parse(readFileSync(new URL('../../resources/data/facts.json', import.meta.url), 'utf8'));
+const publisher = { name: facts.publisher.name, locality: facts.publisher.city.en, countryCode: facts.publisher.countryCode };
 
 const mac = macAppNode(vi_, {
     description: vi.product.long,
@@ -51,8 +54,8 @@ const ios = iosAppNode(en_, {
 });
 
 test('ids stay the same in every locale, whatever the base URL looks like', () => {
-    assert.equal(organizationNode(base, { description: 'x', sameAs: [] })['@id'], 'https://tablepro.app/#organization');
-    assert.equal(organizationNode(`${base}/`, { description: 'x', sameAs: [] })['@id'], 'https://tablepro.app/#organization');
+    assert.equal(organizationNode(base, { description: 'x', sameAs: [], publisher })['@id'], 'https://tablepro.app/#organization');
+    assert.equal(organizationNode(`${base}/`, { description: 'x', sameAs: [], publisher })['@id'], 'https://tablepro.app/#organization');
     assert.equal(mac['@id'], 'https://tablepro.app/#app');
     assert.equal(ios['@id'], 'https://tablepro.app/#ios-app');
 });
@@ -162,7 +165,7 @@ test('optional facts are left out rather than guessed', () => {
     assert.equal('downloadUrl' in mac, false);
     assert.equal('fileSize' in mac, false);
     assert.equal('isAccessibleForFree' in mac, false);
-    assert.equal('sameAs' in organizationNode(base, { description: 'x', sameAs: [] }), false);
+    assert.equal('sameAs' in organizationNode(base, { description: 'x', sameAs: [], publisher }), false);
 });
 
 test('breadcrumbs and hub lists use same-locale absolute URLs', () => {
@@ -186,7 +189,7 @@ test('breadcrumbs and hub lists use same-locale absolute URLs', () => {
 });
 
 test('a graph drops what a page leaves out', () => {
-    const document = graph([organizationNode(base, { description: 'x', sameAs: [] }), false, null, undefined, mac]);
+    const document = graph([organizationNode(base, { description: 'x', sameAs: [], publisher }), false, null, undefined, mac]);
 
     assert.equal(document['@context'], 'https://schema.org');
     assert.deepEqual(document['@graph'].map((node) => node['@type']), ['Organization', 'SoftwareApplication']);
@@ -197,7 +200,7 @@ test('no builder ever emits a rating, a review, FAQPage or HowTo', () => {
         mac,
         ios,
         graph([websiteNode(en_, { description: 'x', languages: ['en', 'vi'] })]),
-        graph([organizationNode(base, { description: en.product.short, sameAs: [] })]),
+        graph([organizationNode(base, { description: en.product.short, sameAs: [], publisher })]),
     ]);
 
     for (const banned of ['aggregateRating', 'AggregateRating', 'ratingValue', '"review"', 'Review', 'FAQPage', 'HowTo']) {
@@ -212,9 +215,8 @@ test('the identity sentence names no platform, version or number in either langu
 });
 
 test('the organization lists its own profiles from facts.json, and nothing else', () => {
-    const facts = JSON.parse(readFileSync(new URL('../../resources/data/facts.json', import.meta.url), 'utf8'));
     const profiles = organizationProfiles(facts.links);
-    const node = organizationNode(base, { description: en.product.short, sameAs: profiles });
+    const node = organizationNode(base, { description: en.product.short, sameAs: profiles, publisher });
 
     assert.deepEqual(node.sameAs, [facts.links.github, facts.links.x, facts.links.discord, facts.links.telegram]);
 
@@ -225,4 +227,27 @@ test('the organization lists its own profiles from facts.json, and nothing else'
     for (const notAProfile of [facts.links.docs, facts.links.appStore, facts.links.sponsorsProgram]) {
         assert.equal(profiles.includes(notAProfile), false);
     }
+});
+
+test('the organization names its founder and place from facts.json, the same in every locale', () => {
+    const english = organizationNode(base, { description: en.product.short, sameAs: [], publisher });
+    const vietnamese = organizationNode(`${base}/`, { description: vi.product.short, sameAs: [], publisher });
+    const place = { '@type': 'PostalAddress', addressLocality: facts.publisher.city.en, addressCountry: facts.publisher.countryCode };
+
+    for (const node of [english, vietnamese]) {
+        assert.deepEqual(node.address, place);
+        assert.deepEqual(node.founder, { '@type': 'Person', '@id': 'https://tablepro.app/#founder', name: facts.publisher.name, address: place });
+    }
+
+    assert.equal(founderId(`${base}/`), 'https://tablepro.app/#founder');
+    assert.match(facts.publisher.countryCode, /^[A-Z]{2}$/);
+});
+
+test('the about page is an AboutPage about the organization', () => {
+    const page = webPageNode(vi_, { url: `${base}/vi/about`, name: 'Giới thiệu về TablePro', about: 'https://tablepro.app/#organization' }, 'AboutPage');
+
+    assert.equal(page['@type'], 'AboutPage');
+    assert.equal(page['@id'], 'https://tablepro.app/vi/about#webpage');
+    assert.deepEqual(page.about, { '@id': 'https://tablepro.app/#organization' });
+    assert.equal(page.inLanguage, 'vi');
 });

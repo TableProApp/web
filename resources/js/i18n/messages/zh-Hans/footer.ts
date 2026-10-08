@@ -17,6 +17,7 @@ export default {
             "changelog": "更新日志（英语）",
             "blog": "博客",
             "faq": "常见问题",
+            "about": "关于",
             "source": "源代码",
             "reportBug": "报告问题"
         },
@@ -49,6 +50,6 @@ export default {
         "note": "我们会先向您发送确认链接。<link>隐私政策</link>"
     },
     "bottom": {
-        "copyright": "© {year} TablePro。源代码采用 AGPLv3 许可证。"
+        "copyright": "© {year} TablePro，由{city}的 {maker} 开发。源代码采用 AGPLv3 许可证。"
     }
 } satisfies Messages['footer'];

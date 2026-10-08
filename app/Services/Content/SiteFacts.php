@@ -3,6 +3,7 @@
 namespace App\Services\Content;
 
 use App\Support\Content\EnginePaths;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\File;
 
 /**
@@ -36,7 +37,7 @@ class SiteFacts
      * billing portal from `pricing.json`. Each value is an HTTPS URL or null;
      * `email` is a bare address or null.
      *
-     * @return array{docs: string|null, changelog: string|null, github: string|null, issues: string|null, license: string|null, appStore: string|null, portal: string|null, email: string|null}
+     * @return array{docs: string|null, changelog: string|null, github: string|null, issues: string|null, discussions: string|null, sponsorsProgram: string|null, license: string|null, appStore: string|null, portal: string|null, email: string|null}
      */
     public function links(): array
     {
@@ -49,11 +50,54 @@ class SiteFacts
             'changelog' => $this->url($links['changelog'] ?? null),
             'github' => $this->url($links['github'] ?? null),
             'issues' => $this->url($links['issues'] ?? null),
+            'discussions' => $this->url($links['discussions'] ?? null),
+            'sponsorsProgram' => $this->url($links['sponsorsProgram'] ?? null),
             'license' => $this->url($links['license'] ?? null),
             'appStore' => $this->url($links['appStore'] ?? null),
             'portal' => $this->url($this->json('pricing.json')['billingPortalUrl'] ?? null),
             'email' => is_string($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false ? $email : null,
         ];
+    }
+
+    /**
+     * Who makes and publishes TablePro, from `facts.json` → `publisher`, with
+     * the city and country as the locale writes them. Null without a name.
+     *
+     * @return array{name: string, city: string|null, country: string|null, countryCode: string|null}|null
+     */
+    public function publisher(string $locale): ?array
+    {
+        $publisher = $this->json('facts.json')['publisher'] ?? null;
+
+        if (! is_array($publisher) || ! is_string($publisher['name'] ?? null) || trim($publisher['name']) === '') {
+            return null;
+        }
+
+        $city = $publisher['city'][$locale] ?? null;
+        $country = $publisher['country'][$locale] ?? null;
+        $code = $publisher['countryCode'] ?? null;
+
+        return [
+            'name' => $publisher['name'],
+            'city' => is_string($city) ? $city : null,
+            'country' => is_string($country) ? $country : null,
+            'countryCode' => is_string($code) && preg_match('/^[A-Z]{2}$/', $code) === 1 ? $code : null,
+        ];
+    }
+
+    /**
+     * The day the source repository was created, from `facts.json` →
+     * `openSource.repositoryCreatedAt`, or null.
+     */
+    public function repositoryCreatedAt(): ?CarbonImmutable
+    {
+        $date = $this->json('facts.json')['openSource']['repositoryCreatedAt'] ?? null;
+
+        if (! is_string($date) || preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) !== 1) {
+            return null;
+        }
+
+        return CarbonImmutable::createFromFormat('!Y-m-d', $date) ?: null;
     }
 
     /**

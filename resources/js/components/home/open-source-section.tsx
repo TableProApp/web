@@ -1,7 +1,8 @@
+import LocaleLink from '@/components/ui/locale-link';
 import Section from '@/components/ui/section';
-import TextLink from '@/components/ui/text-link';
+import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
-import { FACTS } from '@/lib/data/facts';
+import { FACTS, publisherValues } from '@/lib/data/facts';
 import type { Availability } from './availability';
 import PlatformActions from './platform-actions';
 import type { HomeContent } from './types';
@@ -16,9 +17,10 @@ interface OpenSourceSectionProps {
  * I start?" (sitemap §D; positioning §3.3, §9). On the page background, never
  * the surface band, because the footer follows.
  *
- * The AGPL sentence and the funding sentence, the source on GitHub and the
- * Product Hunt page, then the same two actions as the hero with their
- * availability lines, and the availability summary from platforms.json.
+ * The AGPL sentence, the funding sentence and who makes it, the about page,
+ * the source on GitHub and the Product Hunt page, then the same two actions
+ * as the hero with their availability lines, and the availability summary
+ * from platforms.json.
  *
  * Product Hunt is a plain text link, by the owner's decision (spec §0): no
  * badge image and no hotlink, so the page makes no request to Product Hunt
@@ -26,13 +28,20 @@ interface OpenSourceSectionProps {
  * actions.
  */
 export default function OpenSourceSection({ content, availability }: OpenSourceSectionProps) {
-    const { m, fmt } = useI18n();
+    const { locale, m, fmt } = useI18n();
 
     return (
         <Section id="open-source" title={content.title} flush>
             <div className="max-w-[44rem]">
                 <p className="type-body text-foreground">{content.body}</p>
+                <p className="type-body mt-4 text-foreground">{fmt(content.maker, publisherValues(locale))}</p>
                 <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                    <li>
+                        <LocaleLink href="/about" className={textLinkClasses('standalone')}>
+                            {content.about}
+                            <span aria-hidden="true">→</span>
+                        </LocaleLink>
+                    </li>
                     <li>
                         <TextLink href={FACTS.links.github} kind="standalone" external>
                             {content.github}

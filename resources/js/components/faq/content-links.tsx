@@ -12,6 +12,8 @@ export interface SiteLinks {
     changelog: string | null;
     github: string | null;
     issues: string | null;
+    discussions: string | null;
+    sponsorsProgram: string | null;
     license: string | null;
     appStore: string | null;
     portal: string | null;
@@ -19,7 +21,7 @@ export interface SiteLinks {
 }
 
 /**
- * Where each link tag in FAQ and iPhone-page copy goes.
+ * Where each link tag in FAQ, iPhone-page and about-page copy goes.
  *
  * Copy marks a link with a tag named for its destination, `<pricing>pricing
  * page</pricing>`, and never holds a URL or a path: the destinations live
@@ -29,6 +31,7 @@ export interface SiteLinks {
  */
 const INTERNAL: Record<string, string> = {
     home: '/',
+    sponsors: '/#sponsors',
     features: '/features',
     querying: '/features/querying',
     connections: '/features/connections',
@@ -50,9 +53,10 @@ const INTERNAL: Record<string, string> = {
     terms: '/terms',
     termsSupport: '/terms#support',
     refundPolicy: '/refund-policy',
+    about: '/about',
 };
 
-type ExternalKey = 'docs' | 'changelog' | 'github' | 'issues' | 'license' | 'portal' | 'appStore';
+type ExternalKey = 'docs' | 'changelog' | 'github' | 'issues' | 'discussions' | 'sponsorsProgram' | 'license' | 'portal' | 'appStore';
 
 /** External destinations, by the `SiteLinks` key that holds their URL. `docs` and `changelog` are in English only. */
 const EXTERNAL: Record<string, { key: ExternalKey; englishOnly: boolean }> = {
@@ -60,13 +64,15 @@ const EXTERNAL: Record<string, { key: ExternalKey; englishOnly: boolean }> = {
     changelog: { key: 'changelog', englishOnly: true },
     source: { key: 'github', englishOnly: false },
     issues: { key: 'issues', englishOnly: false },
+    discussions: { key: 'discussions', englishOnly: false },
+    sponsorsProgram: { key: 'sponsorsProgram', englishOnly: false },
     agpl: { key: 'license', englishOnly: false },
     portal: { key: 'portal', englishOnly: false },
     appStore: { key: 'appStore', englishOnly: false },
 };
 
 /**
- * Renderers for every tag FAQ and iPhone-page copy may use, for `<Trans>`:
+ * Renderers for every tag FAQ, iPhone-page and about-page copy may use, for `<Trans>`:
  * the link tags above, `<account>` (the account app, in the reader's
  * language), `<email>` (the support address; its text is the address unless
  * the copy gives other words) and `<ui>` (an app label in a click path).
