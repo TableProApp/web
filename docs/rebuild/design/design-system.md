@@ -1634,7 +1634,7 @@ Callout note a block of its own: Didn't find it? Email us · Live chat (loads on
 
 ```
 SiteHeader   (public) · the transactional shell's header (license app, §5.4)
-NoticePage   caption "404" · H1 "Page not found" · one sentence · links (public): Home · Features · Databases · Download · Blog
+NoticePage   caption "404" · H1 "Page not found" · one sentence · links (public): Home · Features · Databases · Pricing · Download · Blog · Docs ↗
              (/vi/* paths render Vietnamese with /vi links; HTTP 404 or 410)
 SiteFooter   (public) · the transactional shell's footer (license app)
 ```

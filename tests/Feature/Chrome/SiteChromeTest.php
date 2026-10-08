@@ -432,6 +432,29 @@ it('gives the error pages the same chrome, in the language of their path', funct
 it('keeps the site chrome to its own link tables and catalogs', function (): void {
     $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
 
+it('offers Pricing and Docs on the 404 page, beside the pages it already listed', function (string $path, string $locale, string $prefix): void {
+    requireSsr();
+
+    $html = $this->get('http://' . config('app.web_domain') . $path)->assertNotFound()->getContent();
+    $main = substr($html, (int) strpos($html, '<main'), (int) strpos($html, '</main>') - (int) strpos($html, '<main'));
+    $nav = chromeCatalog($locale, 'nav');
+
+    foreach (['/', '/features', '/databases', '/download', '/blog'] as $page) {
+        Assert::assertNotNull(chromeLink($main, rtrim($prefix . $page, '/') ?: '/'), "The 404 page has no link to {$prefix}{$page}");
+    }
+
+    Assert::assertNotNull(chromeLink($main, "{$prefix}/pricing", $nav['pricing']), 'The 404 page has no Pricing link');
+
+    $docs = chromeLink($main, 'https://docs.tablepro.app', $nav['docs']);
+
+    Assert::assertNotNull($docs, 'The 404 page has no Docs link');
+    Assert::assertSame('en', $docs['attrs']['hreflang'] ?? null);
+    Assert::assertSame($nav['docsLabel'], $docs['attrs']['aria-label'] ?? null);
+})->with([
+    'English' => ['/no-such-page', 'en', ''],
+    'Vietnamese' => ['/vi/no-such-page', 'vi', '/vi'],
+]);
+
     // No device name, version or count is typed into the chrome: the platform link renders from platforms.json.
     foreach (['site-header.tsx', 'site-footer.tsx', 'mobile-nav.tsx', 'features-menu.tsx'] as $file) {
         expect($read($file))->not->toMatch("/>\s*(iPhone|iPad|macOS)[^<{]*</");
