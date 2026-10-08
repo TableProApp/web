@@ -38,6 +38,7 @@ export default {
         "legal": {
             "title": "Rechtliches",
             "privacy": "Datenschutz",
+            "security": "Sicherheit",
             "terms": "Nutzungsbedingungen",
             "refund": "Erstattungsrichtlinie",
             "cookies": "Cookie-Einstellungen"

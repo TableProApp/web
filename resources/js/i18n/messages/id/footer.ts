@@ -38,6 +38,7 @@ export default {
         "legal": {
             "title": "Legal",
             "privacy": "Privasi",
+            "security": "Keamanan",
             "terms": "Ketentuan",
             "refund": "Kebijakan pengembalian dana",
             "cookies": "Pengaturan cookie"

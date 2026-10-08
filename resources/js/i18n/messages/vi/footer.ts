@@ -38,6 +38,7 @@ export default {
         legal: {
             title: 'Pháp lý',
             privacy: 'Quyền riêng tư',
+            security: 'Bảo mật',
             terms: 'Điều khoản sử dụng',
             refund: 'Chính sách hoàn tiền',
             cookies: 'Cài đặt cookie',

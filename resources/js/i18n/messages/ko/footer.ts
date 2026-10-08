@@ -38,6 +38,7 @@ export default {
         "legal": {
             "title": "법률 정보",
             "privacy": "개인정보 보호",
+            "security": "보안",
             "terms": "이용약관",
             "refund": "환불 정책",
             "cookies": "쿠키 설정"
