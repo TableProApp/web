@@ -21,10 +21,12 @@ import { EXTERNAL, PLATFORM_PAGES, SUPPORT_EMAIL, accountHref } from './site-lin
  * A footer link: inline text in a block that is 32px tall for one line (the
  * small role's line height plus 5px above and below), so a long label wraps
  * like text and the row keeps the 32px rhythm. The line height follows the
- * small role, so Vietnamese gets its 1.6.
+ * small role, so Vietnamese gets its 1.6. On a touch screen the block is at
+ * least 44px each way: the rows touch, so a 32px row put the next link under
+ * the same finger.
  */
 const LINK =
-    'type-small inline-block py-[5px] rounded-[2px] text-left text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground';
+    'type-small inline-block py-[5px] rounded-[2px] text-left text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground pointer-coarse:min-w-11 pointer-coarse:py-[11px]';
 
 /**
  * A link that leaves the site, in the same tab, marked ↗. The arrow follows
@@ -250,12 +252,12 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                             </a>
                         </li>
                         <li>
-                            <a href={`mailto:${SUPPORT_EMAIL}`} className={LINK}>
-                        <li>
                             <External href={EXTERNAL.troubleshooting} hrefLang="en">
                                 {groups.support.troubleshooting}
                             </External>
                         </li>
+                        <li>
+                            <a href={`mailto:${SUPPORT_EMAIL}`} className={LINK}>
                                 {groups.support.email}
                             </a>
                         </li>
@@ -275,14 +277,14 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                         <li>
                             <External href={EXTERNAL.x}>{groups.community.x}</External>
                         </li>
-                        <li>
-                            <External href={EXTERNAL.sponsors}>{groups.community.sponsor}</External>
                         {/* The Telegram group is in Vietnamese. */}
                         {locale === 'vi' && (
                             <li>
                                 <External href={EXTERNAL.telegram}>{groups.community.telegram}</External>
                             </li>
                         )}
+                        <li>
+                            <External href={EXTERNAL.sponsors}>{groups.community.sponsor}</External>
                         </li>
                     </Group>
                     <Group title={groups.legal.title}>

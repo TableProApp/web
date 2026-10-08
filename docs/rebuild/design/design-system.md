@@ -862,7 +862,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - The newsletter is a full-width cell: its words beside its form from 768px of cell width, stacked below that.
   - The groups are two to a row below 640, three from 640 and five from 1024. Below 640 the cells draw their horizontals only.
   - Six cells in one row was measured and rejected: at 1280 it leaves 131px per group, and labels run to 196px (Indonesian) with unbreakable words of 150px (German).
-- Groups and links come from sitemap §B.3, with the labels in positioning §10.2 (for example "Supported databases", never "All databases"). Group titles are `h3` at 14/600; links are `small` `--muted-foreground` with `--foreground` on hover, 32px rows. A group cell keeps half its right padding and hyphenates a word that still cannot fit.
+- Groups and links come from sitemap §B.3, with the labels in positioning §10.2 (for example "Supported databases", never "All databases"). Group titles are `h3` at 14/600; links are `small` `--muted-foreground` with `--foreground` on hover, 32px rows (44px on a touch screen, where the rows are the tap targets). A group cell keeps half its right padding and hyphenates a word that still cannot fit.
 - **FooterBar** closes it: one shared file, `components/shared/footer-bar.tsx`, byte-identical in the account app, whose footer ends on the same row.
   - Left: the logo at 20px (decorative) and "© year TablePro. Source code under the AGPLv3."
   - Right: the language menu (§5.3.15) and ThemeControl `icons` (§5.3.16). Below 640 they sit on a second row, language left and theme right.

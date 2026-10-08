@@ -406,6 +406,9 @@ it('draws the footer as cells that close on the bar shared with the account app'
     // A phone sees the rows' lines only (design-system §4.7).
     expect($footer)->toContain("'max-sm:gap-x-0 max-sm:*:shadow-[0_-1px_0_var(--rule),0_1px_0_var(--rule)]'");
 
+    // The link rows touch, so on a touch screen each link is at least 44px each way instead of 32px tall.
+    expect($footer)->toContain("'type-small inline-block py-[5px] ")->toContain(' pointer-coarse:min-w-11 pointer-coarse:py-[11px]');
+
     // The bar keeps its controls clear of the chat launcher, which floats over the same corner.
     expect($footer)->toContain('chat={chat}');
     expect((string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx')))
@@ -429,9 +432,6 @@ it('gives the error pages the same chrome, in the language of their path', funct
     'Vietnamese' => ['/vi/no-such-page', 'vi'],
 ]);
 
-it('keeps the site chrome to its own link tables and catalogs', function (): void {
-    $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
-
 it('offers Pricing and Docs on the 404 page, beside the pages it already listed', function (string $path, string $locale, string $prefix): void {
     requireSsr();
 
@@ -454,6 +454,9 @@ it('offers Pricing and Docs on the 404 page, beside the pages it already listed'
     'English' => ['/no-such-page', 'en', ''],
     'Vietnamese' => ['/vi/no-such-page', 'vi', '/vi'],
 ]);
+
+it('keeps the site chrome to its own link tables and catalogs', function (): void {
+    $read = static fn(string $file): string => (string) file_get_contents(resource_path("js/components/site/{$file}"));
 
     // No device name, version or count is typed into the chrome: the platform link renders from platforms.json.
     foreach (['site-header.tsx', 'site-footer.tsx', 'mobile-nav.tsx', 'features-menu.tsx'] as $file) {
