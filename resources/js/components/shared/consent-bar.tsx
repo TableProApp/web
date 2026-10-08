@@ -1,18 +1,14 @@
 /* Shared with TableProApp/web and TableProApp/license at resources/js/components/shared/consent-bar.tsx. Change both in the same release. See docs/shared-files.md. */
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Button from '@/components/ui/button';
 import { textLinkClasses } from '@/components/ui/text-link';
-import { CONSENT_OPEN_EVENT, readConsent, saveConsent, type ConsentChoice } from '@/lib/consent';
+import { CONSENT_OPEN_EVENT, saveConsent, type ConsentChoice } from '@/lib/consent';
+import { cn } from '@/lib/utils';
 
 export interface ConsentBarLabels {
-    /** The region's name: "Analytics cookies". */
     label: string;
-    /**
-     * One short question naming the tool and its purpose. Kept to one line at
-     * 1440px and two at 375px, so the bar stays within 96px and 120px.
-     */
+    // One line at 1440px and two at 375px, so the bar stays within 96px and 120px.
     body: string;
-    /** The privacy link's text. */
     privacy: string;
     allow: string;
     decline: string;
@@ -20,83 +16,72 @@ export interface ConsentBarLabels {
 
 interface ConsentBarProps {
     labels: ConsentBarLabels;
-    /** The cookies section of the privacy policy in the page's language: `/privacy#cookies`, `/vi/privacy#cookies`. */
     privacyHref: string;
 }
 
-/**
- * Asks once whether Google Analytics may set cookies, and again whenever a
- * "Cookie settings" control reopens it (design-system §5.3.17).
- *
- * **Declining is as easy as allowing.** Allow and Decline are the same
- * variant, the same size and the same width, side by side. A filled "Allow"
- * beside an outlined "Decline" is the pattern regulators single out.
- *
- * **It never renders on the server.** Whether it is needed depends on
- * `localStorage`, which SSR cannot see, so the first render is nothing and the
- * check runs after hydration.
- *
- * **It exists only where the tag does.** With no measurement ID there is no
- * `gtag` and nothing to consent to, so development never shows it.
- *
- * **It never hides what it sits on.** Compact (one sentence, one row of
- * buttons), bottom-left, last in the DOM so it is the last tab stop, and while
- * it is open it sets `scroll-padding-bottom` to its own height so a focused
- * element is never scrolled underneath it. Where it reaches the bottom-right
- * corner (on a phone it spans the width), the chat launcher hides until it
- * closes (`lib/crisp.ts` finds it by `data-consent-bar`).
- */
+// Each app's head script sets this on <html> before first paint when no answer is stored.
+const OPEN = 'consent-open';
+
+const FLOATING = 'sticky bottom-4 z-60 m-4 rounded-panel border p-4 shadow-overlay sm:w-[26rem] sm:self-start';
+const IN_PAGE_ON_PHONES =
+    'max-sm:static max-sm:order-first max-sm:m-0 max-sm:rounded-none max-sm:border-x-0 max-sm:border-t-0 max-sm:py-2.5 max-sm:shadow-none';
+
+// A live region speaks only for what changes after it exists, so the question is put back once per document.
+let announced = false;
+
+// Design-system §5.3.17. In the server's HTML and shown by the class above, so it paints with the page and
+// nothing moves on hydration. It floats at the bottom and rests after the footer at the end of the page.
+// Below 640px the first ask sits in the page above the header instead, so it covers nothing.
 export default function ConsentBar({ labels, privacyHref }: ConsentBarProps) {
-    const [open, setOpen] = useState(false);
     const bar = useRef<HTMLElement>(null);
+    const [announce, setAnnounce] = useState(false);
+    const [reopened, setReopened] = useState(0);
 
     useEffect(() => {
-        if (typeof (window as unknown as { gtag?: unknown }).gtag !== 'function') {
-            return;
-        }
-
-        if (readConsent() === null) {
-            setOpen(true);
-        }
-
-        const reopen = (): void => setOpen(true);
-
-        window.addEventListener(CONSENT_OPEN_EVENT, reopen);
-
-        return () => window.removeEventListener(CONSENT_OPEN_EVENT, reopen);
-    }, []);
-
-    useLayoutEffect(() => {
         const node = bar.current;
 
-        if (!open || !node) {
+        // No tag, nothing to consent to.
+        if (!node || typeof (window as unknown as { gtag?: unknown }).gtag !== 'function') {
             return;
         }
 
         const root = document.documentElement;
         const reserve = (): void => {
-            root.style.scrollPaddingBottom = `${node.offsetHeight + 16}px`;
+            const covers = node.offsetHeight > 0 && getComputedStyle(node).position !== 'static';
+
+            // Keeps a focused element from scrolling underneath it.
+            root.style.scrollPaddingBottom = covers ? `${node.offsetHeight + 16}px` : '';
         };
+        const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(reserve) : null;
+        const reopen = (): void => setReopened((count) => count + 1);
 
         reserve();
-
-        const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(reserve) : null;
-
         observer?.observe(node);
+        window.addEventListener(CONSENT_OPEN_EVENT, reopen);
+
+        if (!announced && root.classList.contains(OPEN)) {
+            announced = true;
+            setAnnounce(true);
+        }
 
         return () => {
             observer?.disconnect();
+            window.removeEventListener(CONSENT_OPEN_EVENT, reopen);
             root.style.scrollPaddingBottom = '';
         };
-    }, [open]);
+    }, []);
 
-    if (!open) {
-        return null;
-    }
+    // After the render, so the bar is already floating when it shows.
+    useEffect(() => {
+        if (reopened > 0) {
+            document.documentElement.classList.add(OPEN);
+            bar.current?.focus({ preventScroll: true });
+        }
+    }, [reopened]);
 
     function choose(choice: ConsentChoice): void {
         saveConsent(choice);
-        setOpen(false);
+        document.documentElement.classList.remove(OPEN);
     }
 
     return (
@@ -104,19 +89,26 @@ export default function ConsentBar({ labels, privacyHref }: ConsentBarProps) {
             ref={bar}
             data-consent-bar
             aria-label={labels.label}
-            className="fixed right-4 bottom-4 left-4 z-60 rounded-panel border border-rule bg-raised p-4 text-foreground shadow-overlay sm:right-auto sm:w-[26rem] print:hidden"
+            aria-live="polite"
+            tabIndex={-1}
+            className={cn(
+                'hidden border-rule bg-raised text-foreground outline-none in-[.consent-open]:block print:hidden',
+                FLOATING,
+                reopened === 0 && IN_PAGE_ON_PHONES,
+            )}
         >
-            <p className="type-small">
+            <p key={announce ? 'announced' : 'server'} className="type-small">
                 {labels.body}{' '}
                 <a href={privacyHref} className={textLinkClasses('inline')}>
                     {labels.privacy}
                 </a>
             </p>
+            {/* Same variant, size and width: declining is as easy as allowing. */}
             <div className="mt-2 grid grid-cols-2 gap-2">
-                <Button variant="secondary" size="sm" onClick={() => choose('granted')}>
+                <Button variant="secondary" size="sm" className="pointer-coarse:min-h-11" onClick={() => choose('granted')}>
                     {labels.allow}
                 </Button>
-                <Button variant="secondary" size="sm" onClick={() => choose('denied')}>
+                <Button variant="secondary" size="sm" className="pointer-coarse:min-h-11" onClick={() => choose('denied')}>
                     {labels.decline}
                 </Button>
             </div>

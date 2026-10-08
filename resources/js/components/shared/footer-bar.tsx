@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 /** The class of one choice inside a FooterMenu, so both apps draw the same rows. */
 export const FOOTER_MENU_ITEM =
-    'flex min-h-10 w-full cursor-pointer items-start gap-3 rounded-control px-3 py-2 text-left text-sm leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:bg-surface focus-visible:-outline-offset-2 disabled:cursor-default aria-[current=true]:bg-accent-subtle';
+    'flex min-h-10 w-full cursor-pointer items-start gap-3 rounded-control px-3 py-2 text-left text-sm leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:bg-surface focus-visible:-outline-offset-2 disabled:cursor-default aria-[current=true]:bg-accent-subtle pointer-coarse:min-h-11';
 
 interface FooterMenuProps {
     /** The trigger's name, with the current choice in it: "Language: English". */
@@ -101,7 +101,7 @@ export function FooterMenu({ label, current, children }: FooterMenuProps) {
         >
             <summary
                 aria-label={label}
-                className="flex min-h-10 cursor-pointer list-none items-center gap-1.5 rounded-control px-2 text-sm leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) select-none hover:bg-surface-strong active:bg-surface-strong sm:min-h-9 [&::-webkit-details-marker]:hidden"
+                className="flex min-h-10 cursor-pointer list-none items-center gap-1.5 rounded-control px-2 text-sm leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) select-none hover:bg-surface-strong active:bg-surface-strong sm:min-h-9 pointer-coarse:min-h-11 [&::-webkit-details-marker]:hidden"
             >
                 <Globe className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
                 <span lang={current.lang}>{current.name}</span>

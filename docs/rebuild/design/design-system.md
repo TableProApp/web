@@ -822,7 +822,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
   - Accessible name: "Theme: Light" / "Giao diện: Sáng" (Dark / Tối; System / Theo hệ thống).
   - Opens a menu (`--raised`, `--shadow-overlay`, 12px radius) of three `menuitemradio` items with icon and label, `aria-checked` on the current one. Arrow keys move; Escape closes and returns focus to the button.
 - **`variant="segmented"` (mobile menu):** an inline `SegmentedControl` with the same three options, icon + label.
-- **`variant="icons"` (footer bar):** the same radios as icon-only segments, 32px square (36px below 640), each named for assistive tech and in a tooltip.
+- **`variant="icons"` (footer bar):** the same radios as icon-only segments, 32px square (36px below 640, 44px on a coarse pointer), each named for assistive tech and in a tooltip.
 - **SSR:** the markup is theme-independent; the icon and the selected style come from `html[data-theme-choice=…]`, and `aria-checked` is corrected on mount.
 - **Behaviour:** §2.8.
 
@@ -879,12 +879,14 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 **ConsentBar:**
 
-- Fixed, bottom-left, 16px from the edges; max-width 416px at ≥ 640; full width minus 32px below that.
-- `--raised` + `--shadow-overlay`, 12px radius, 16px padding.
+- In the server's HTML, hidden; the head script adds `consent-open` to `<html>` when no answer is stored, so it shows on the first paint and nothing moves on hydration.
+- ≥ 640: sticky to the bottom-left, 16px from the edges, 416px wide, `--raised` + `--shadow-overlay`, 12px radius, 16px padding. At the end of the page it rests after the footer, so the last links scroll clear of it.
+- < 640, first ask: a full-width strip in the page above the banner and header, a 1px `--rule` under it, 10px vertical padding. It covers nothing, so the hero and the first plan stay clear. Opened from "Cookie settings", it floats as above, full width minus 32px.
 - Text: one `small` sentence + a "Privacy" link.
-- Buttons: **Allow** and **Decline**, both `secondary` `sm`, equal width, on one row.
-- **Target height:** ≤ 120px at 375 × 812 (≤ 15%, against 25.6% measured on the old site) and ≤ 96px at 1440.
-- While visible it sets `scroll-padding-bottom` to its own height, so it cannot cover focused elements.
+- Buttons: **Allow** and **Decline**, both `secondary` `sm`, equal width, on one row; 44px tall on a coarse pointer.
+- **Target height:** ≤ 120px at 375 × 812 and ≤ 96px at 1440.
+- While it floats it sets `scroll-padding-bottom` to its own height, so it cannot cover focused elements.
+- A polite live region: the question is announced once per page load. "Cookie settings" moves focus to it.
 - Last in DOM order. Storage key and head order unchanged.
 
 #### 5.3.18 Commerce and platform components
