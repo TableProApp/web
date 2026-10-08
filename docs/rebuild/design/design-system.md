@@ -409,6 +409,7 @@ Glyph metrics were read from the shipped font files with fontTools:
 At 1216px, 12 columns are 72px wide with 32px gaps. Common splits:
 
 - **5 / 7:** text 488px | media 696px. Used for a detail crop beside its text.
+- **4 / 8:** text 363px | media 790px inside cells. The homepage workflow rows from 1280px: a window at 0.65 of its capture, or a detail crop at its 696px width.
 - **6 / 6:** 592 | 592.
 - **4 / 4 / 4:** 384 each. Used for pricing cards.
 - **8 / 4:** 800 | 384. Used for a database page lead with its facts card.
@@ -503,7 +504,7 @@ Decided by the owner on 2026-10-06, after a rendered survey of grid-line sites (
 
 **Shared.** The account app draws the same frame: `frame.css`, `FrameRails` and `CellGrid` are byte-identical in both repositories (`docs/shared-files.md`), so the rails, joins and cells stay put when a reader crosses from a public page to `/account`.
 
-- the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (a detail row is two cells, 5 / 7), the safety row, the platform block, the plans and the closing actions
+- the homepage: the hero's two download actions, the featured engines, the sponsors, the workflow rows (from 1280px each sets its text in 4 columns beside its capture in 8, so one divider runs down the section; a detail row is two cells, 5 / 7 from 1024), the safety row, the platform block, the plans and the closing actions
 - `/pricing`: the plans (`PricingPlans` is the same component)
 - `/download`: the Mac and iPhone and iPad platforms
 - `/faq`: one row per topic, the topic beside its questions
@@ -1405,8 +1406,8 @@ SiteFooter
 
 **FeatureRow** has two layouts:
 
-- **Window row:** H3, 2–3 sentences, the tier marker from `pricing.json` and the link in cols 1–6, then the 16:9 slot full width below.
-- **Detail row:** text in cols 1–5 and the 4:3 slot in cols 6–12.
+- **Window row:** H3, 2–3 sentences, the tier marker from `pricing.json` and the link at text width, then the 16:9 slot full width below. From 1280px the text takes cols 1–4 and the window cols 5–12, 790px wide, so its SQL and grid text render at about 8.5px and its smallest labels at about 7px. Measured on 2026-10-09: the homepage is 1,950px shorter at 1280 and wider. Below 1280 the window would drop under the 0.6 scale a phone crop may not go below, so the row stays stacked.
+- **Detail row:** text in cols 1–5 and the 4:3 slot in cols 6–12 from 1024px; from 1280px 4 / 8, with the crop at its 696px width, so its divider meets the window rows'.
 
 Its link is a standalone link whose text is the destination page's name in the Features menu (sitemap §B.1), for example "Querying →". Never "Learn more".
 
