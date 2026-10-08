@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "SQL Server untuk {devices}",
+        "title": "Klien SQL Server untuk {devices}",
         "description": "Jalankan T-SQL dengan batch GO dan keluaran PRINT, masuk memakai login SQL, Kerberos, atau Microsoft Entra ID, dan cadangkan SQL Server ke .bacpac."
     },
     "og": {
@@ -42,14 +42,14 @@
                 "Skrip dikirim ke server satu batch per waktu, dipisahkan pada setiap baris yang hanya berisi <code>GO</code>, seperti sqlcmd, dan <code>GO 5</code> menjalankan batch sebelumnya lima kali. Setiap kumpulan hasil dibuka dalam tab sendiri, dan keluaran <code>PRINT</code> serta pesan informasi ditampilkan pada tampilan Output.",
                 "Masukkan <code>BEGIN TRAN</code> dan <code>COMMIT</code> dalam skrip jika kegagalan harus membatalkan batch sebelumnya; skrip yang meninggalkan transaksi terbuka berakhir dengan pemberitahuan. Proses berhenti pada batch pertama yang gagal, dan kesalahan menyebutkan barisnya di editor.",
                 "Setiap sesi dibuka dengan opsi SET yang diperlukan indeks berfilter, view berindeks, dan indeks pada kolom terhitung, seperti <code>ANSI_NULLS</code> dan <code>QUOTED_IDENTIFIER</code> aktif. Ini juga berarti <code>col = NULL</code> tidak cocok dengan apa pun: bandingkan dengan <code>IS NULL</code>.",
-                "Tabel berada di bawah skemanya di bilah samping, dan <code>⌘K</code> mengganti database pada koneksi yang sama tanpa menghubungkan ulang. Perubahan baris ditampung dengan <editing>Preview SQL</editing>, baris baru menyerahkan kolom IDENTITY kepada server, dan nilai <code>nvarchar(max)</code> diterima utuh."
+                "Tabel berada di bawah skemanya di sidebar, dan <code>⌘K</code> mengganti database pada koneksi yang sama tanpa menghubungkan ulang. Perubahan baris ditampung dengan <editing>Preview SQL</editing>, baris baru menyerahkan kolom IDENTITY kepada server, dan nilai <code>nvarchar(max)</code> diterima utuh."
             ]
         },
         {
             "id": "schema",
             "title": "Skema",
             "paragraphs": [
-                "<structure>Tab Structure</structure> menampung perubahan kolom, indeks, foreign key, dan constraint, serta menampilkan T-SQL sebelum berjalan. Skema dapat dihapus dari bilah samping; SQL Server menolak menghapus skema yang masih berisi objek. Buat skema dengan CREATE SCHEMA dalam editor.",
+                "<structure>Tab Structure</structure> menampung perubahan kolom, indeks, foreign key, dan constraint, serta menampilkan T-SQL sebelum berjalan. Skema dapat dihapus dari sidebar; SQL Server menolak menghapus skema yang masih berisi objek. Buat skema dengan CREATE SCHEMA dalam editor.",
                 "<compareSync>Compare & Sync</compareSync>, bagian dari paket {compareSyncTier}, membandingkan dua skema SQL Server atau datanya, lalu menyimpan skrip dengan baris <code>GO</code> setelah setiap pernyataan, siap untuk sqlcmd atau SQL Server Management Studio."
             ]
         },
@@ -65,14 +65,14 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Impor</importData> berkas {importFormats}. Berkas <code>.sql</code> dengan baris <code>GO</code> berjalan per batch, seperti sqlcmd. Ekspor tabel atau hasil sebagai {exportFormats}; ekspor SQL mengakhiri setiap pernyataan dengan baris <code>GO</code>, sehingga setiap pernyataan berjalan sebagai batch sendiri."
+                "<importData>Impor</importData> file {importFormats}. File <code>.sql</code> dengan baris <code>GO</code> berjalan per batch, seperti sqlcmd. Ekspor tabel atau hasil sebagai {exportFormats}; ekspor SQL mengakhiri setiap pernyataan dengan baris <code>GO</code>, sehingga setiap pernyataan berjalan sebagai batch sendiri."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone dan iPad",
             "paragraphs": [
-                "Di iPhone dan iPad, masuk dengan login SQL Server, telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan T-SQL pada tab Query. Windows Authentication tidak tersedia. Koneksi Microsoft Entra ID berasal dari Mac melalui iCloud Sync atau berkas koneksi ekspor, dan Anda masuk ke Microsoft saat membukanya."
+                "Di iPhone dan iPad, masuk dengan login SQL Server, telusuri tabel sebagai kartu, edit baris dengan primary key, dan jalankan T-SQL pada tab Query. Windows Authentication tidak tersedia. Koneksi Microsoft Entra ID berasal dari Mac melalui iCloud Sync atau file koneksi ekspor, dan Anda masuk ke Microsoft saat membukanya."
             ],
             "asset": "ios-table-browse"
         }

@@ -4,7 +4,7 @@ export default {
     language: {
         label: 'Ngôn ngữ',
         current: 'Ngôn ngữ: {language}',
-        fallback: 'Trang này chưa có bản tiếng Việt',
+        fallback: 'Trang này không có bản tiếng Việt',
         fallbackPost: 'Bài viết này chỉ có bằng tiếng Anh',
         fallbackBlog: 'Xem danh sách Blog',
     },

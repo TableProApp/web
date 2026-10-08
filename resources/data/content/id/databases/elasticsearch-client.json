@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Elasticsearch untuk {devices}",
+        "title": "Klien Elasticsearch untuk {devices}",
         "description": "Kirim Query DSL dari konsol, telusuri indeks sebagai tabel, filter, urutkan, dan edit dokumen berdasarkan _id, dengan kata sandi atau kunci API."
     },
     "og": {
@@ -32,7 +32,7 @@
             "title": "Indeks dan konsol Query DSL",
             "paragraphs": [
                 "Konsol menerima metode, jalur, dan badan JSON opsional, seperti Kibana Dev Tools, misalnya <code>GET /orders/_search</code> dengan kueri <code>match</code>. Hasil pencarian dikembalikan sebagai baris, permintaan <code>_cat</code> dengan <code>format=json</code> dan respons array lainnya menjadi tabel, dan respons lainnya ditampilkan sebagai JSON terformat. Endpoint <code>_sql</code> tidak dapat diakses.",
-                "Bilah samping menampilkan indeks sebagai tabel dan menyembunyikan nama yang diawali titik. Kolom berasal dari mapping: bidang objek diratakan menjadi jalur bertitik seperti <code>address.city</code>, bidang nested memiliki satu kolom JSON untuk array-nya serta satu kolom per daun, dan setiap dokumen memiliki <code>_id</code>, <code>_index</code>, dan <code>_score</code>.",
+                "Sidebar menampilkan indeks sebagai tabel dan menyembunyikan nama yang diawali titik. Kolom berasal dari mapping: bidang objek diratakan menjadi jalur bertitik seperti <code>address.city</code>, bidang nested memiliki satu kolom JSON untuk array-nya serta satu kolom per daun, dan setiap dokumen memiliki <code>_id</code>, <code>_index</code>, dan <code>_score</code>.",
                 "<filters>Filter kolom</filters> menjadi kueri <code>term</code>, <code>range</code>, <code>wildcard</code>, <code>terms</code>, dan <code>exists</code>, sedangkan baris filter Raw SQL menerima sintaks Lucene, seperti <code>name:Widget</code>, yang dikirim sebagai <code>query_string</code>. Pengurutan bidang <code>text</code> menggunakan subbidang <code>.keyword</code> jika tersedia dalam mapping.",
                 "Perubahan grid menjadi panggilan REST berdasarkan <code>_id</code>: <code>_update</code> untuk dokumen yang diubah, <code>_doc</code> untuk membuat atau menghapus dokumen. Ketik <code>_id</code> pada baris baru untuk memberi nama dokumen. Ubah array nested melalui kolom JSON-nya; nilai yang diketik pada salah satu kolom daun menghentikan penyimpanan, menyebutkan kolomnya, dan tidak mengirim apa pun."
             ]
@@ -41,7 +41,7 @@
             "id": "schema",
             "title": "Mapping",
             "paragraphs": [
-                "Mapping hanya dapat dibaca di TablePro. Truncate tidak tersedia karena padanan terdekat di Elasticsearch, <code>_delete_by_query</code>, berjalan secara asinkron dan melaporkan konflik per dokumen; kirim dari konsol. Menghapus indeks dari bilah samping mengirim permintaan DELETE yang ditampilkan dalam konfirmasi."
+                "Mapping hanya dapat dibaca di TablePro. Truncate tidak tersedia karena padanan terdekat di Elasticsearch, <code>_delete_by_query</code>, berjalan secara asinkron dan melaporkan konflik per dokumen; kirim dari konsol. Menghapus indeks dari sidebar mengirim permintaan DELETE yang ditampilkan dalam konfirmasi."
             ]
         },
         {

@@ -26,7 +26,7 @@ export default {
     "onAnotherDevice": "Untuk menginstal aplikasi Mac, buka halaman ini di Mac Anda.",
     "whichMac": {
         "summary": "Mac apa yang saya miliki?",
-        "body": "Buka menu Apple lalu pilih Mengenai Mac Ini. Mac dengan Apple silicon menampilkan baris Chip, misalnya Apple M2. Mac Intel menampilkan baris Prosesor yang menyebutkan Intel."
+        "body": "Buka menu Apple lalu pilih Tentang Mac Ini. Mac dengan Apple silicon menampilkan baris Chip, misalnya Apple M2. Mac Intel menampilkan baris Prosesor yang menyebutkan Intel."
     },
     "checksum": {
         "summary": "Verifikasi unduhan Anda",

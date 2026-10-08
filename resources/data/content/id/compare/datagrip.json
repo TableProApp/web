@@ -31,7 +31,7 @@
     "rows": {
         "vcs": {
             "label": "Kontrol versi",
-            "tablepro": "Gratis untuk folder SQL tertaut: huruf status Git, riwayat commit setiap berkas dengan diff berdampingan, Restore This Version, dan Discard Changes. Tanpa staging, commit, push, atau branch"
+            "tablepro": "Gratis untuk folder SQL tertaut: huruf status Git, riwayat commit setiap file dengan diff berdampingan, Restore This Version, dan Discard Changes. Tanpa staging, commit, push, atau branch"
         },
         "usageStatistics": {
             "label": "Statistik penggunaan",
@@ -137,7 +137,7 @@
                 "href": null
             },
             {
-                "text": "TablePro adalah klien, bukan IDE. <link>Folder SQL tertaut</link> menampilkan status serta riwayat Git setiap berkas, tetapi staging, commit, push, dan branch dilakukan di alat Git Anda sendiri.",
+                "text": "TablePro adalah klien, bukan IDE. <link>Folder SQL tertaut</link> menampilkan status serta riwayat Git setiap file, tetapi staging, commit, push, dan branch dilakukan di alat Git Anda sendiri.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/querying#history"
@@ -151,16 +151,16 @@
         ]
     },
     "switching": {
-        "intro": "TablePro membaca sumber data global DataGrip dan sumber data proyek terbaru Anda. DataGrip tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "intro": "TablePro membaca sumber data global DataGrip dan sumber data proyek terbaru Anda. DataGrip tidak perlu terbuka, dan file-nya tidak diubah.",
         "steps": [
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
-            "Pilih DataGrip. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi yang disimpan DataGrip dalam Keychain macOS, termasuk kata sandi SSH dan frasa sandi kunci.",
+            "Pilih DataGrip. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi yang disimpan DataGrip dalam Rantai Kunci macOS, termasuk kata sandi SSH dan frasa sandi kunci.",
             "macOS meminta kata sandi login Anda sekali untuk setiap kata sandi tersimpan. Pilih <ui>Always Allow</ui> pada setiap permintaan.",
             "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Grup, tunnel SSH, dan pengaturan SSL ikut dipindahkan. Koneksi ke mesin yang tidak didukung TablePro masuk tanpa dicentang.",
             "Sebelum menghapus DataGrip, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
         ],
         "after": [
-            "Konsol, berkas sementara, riwayat kueri, dan pintasan keyboard tetap di DataGrip.",
+            "Konsol, file sementara, riwayat kueri, dan pintasan keyboard tetap di DataGrip.",
             "Kata sandi yang dilindungi kata sandi utama DataGrip tidak dapat dibaca. Koneksi tersebut masuk tanpa kata sandi, dan Anda mengaturnya di TablePro."
         ],
         "docs": "/switching"

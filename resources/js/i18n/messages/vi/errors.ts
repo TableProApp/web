@@ -24,8 +24,8 @@ export default {
         link: 'Đọc bản {language}',
     },
     account: {
-        body: 'Tài khoản có cùng một địa chỉ cho mọi ngôn ngữ. Bạn mở tài khoản tại đây, giao diện sẽ bằng tiếng Việt.',
-        link: 'Mở tài khoản',
+        body: 'Tài khoản có cùng một địa chỉ cho mọi ngôn ngữ. Bạn vào tài khoản tại đây, giao diện sẽ bằng tiếng Việt.',
+        link: 'Vào tài khoản',
     },
     languages: {
         en: 'tiếng Anh',

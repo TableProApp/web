@@ -22,7 +22,7 @@
         "competitor": [
             "Bạn làm việc trên Windows hoặc Linux, không chỉ trên Mac.",
             "Bạn cần một engine mà TablePro không có driver. DBeaver Community kết nối được với bất kỳ engine nào có JDBC driver.",
-            "Bạn cần visual query builder, chỉnh sửa sơ đồ ER hoặc lập lịch tác vụ. Các bản trả phí của DBeaver có những tính năng này."
+            "Bạn cần visual query builder, chỉnh sửa ER diagram hoặc lập lịch tác vụ. Các bản trả phí của DBeaver có những tính năng này."
         ]
     },
     "glance": {
@@ -30,8 +30,8 @@
     },
     "rows": {
         "diagram": {
-            "label": "Sơ đồ ER",
-            "tablepro": "Sơ đồ ER chỉ đọc, export ra PNG hoặc SQL, miễn phí"
+            "label": "ER diagram",
+            "tablepro": "ER diagram chỉ đọc, export ra PNG hoặc SQL, miễn phí"
         },
         "queryBuilder": {
             "label": "Visual query builder",
@@ -58,7 +58,7 @@
                 "href": null
             },
             {
-                "text": "Các bản trả phí có thêm visual query builder, chỉnh sửa sơ đồ ER, lập lịch tác vụ và đồng bộ project qua Git.",
+                "text": "Các bản trả phí có thêm visual query builder, chỉnh sửa ER diagram, lập lịch tác vụ và đồng bộ project qua Git.",
                 "cite": ["cells.queryBuilder", "cells.diagram", "cells.scheduler", "cells.sync"],
                 "feature": null,
                 "href": null
@@ -116,7 +116,7 @@
                 "href": "/databases"
             },
             {
-                "text": "Sơ đồ ER chỉ là bản chụp chỉ đọc, và TablePro không có visual query builder hay công cụ lập lịch tác vụ.",
+                "text": "ER diagram chỉ là bản chụp chỉ đọc, và TablePro không có visual query builder hay công cụ lập lịch tác vụ.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -146,7 +146,7 @@
         {
             "id": "speed",
             "question": "Tốc độ và mức dùng bộ nhớ so với DBeaver thế nào?",
-            "answer": "Trang này không đưa ra nhận định nào về tốc độ hay bộ nhớ, vì cả hai dự án đều chưa công bố phép đo mà người khác có thể kiểm chứng lại. Điều bạn có thể tự kiểm tra là bản tải về của DBeaver có kèm Java runtime, còn TablePro không cần Java.",
+            "answer": "Trang này không đưa ra nhận định nào về tốc độ hay bộ nhớ, vì không dự án nào công bố phép đo mà người khác có thể kiểm chứng lại. Điều bạn có thể tự kiểm tra là bản tải về của DBeaver có kèm Java runtime, còn TablePro không cần Java.",
             "href": null
         },
         {
@@ -158,13 +158,13 @@
         {
             "id": "unsupported",
             "question": "Connection DBeaver nào TablePro không mở được thì sao?",
-            "answer": "Chúng vẫn hiện trong danh sách import nhưng không được chọn sẵn, kèm lý do bên cạnh. Những connection này chỉ được import nếu bạn tự chọn.",
+            "answer": "Những connection này vẫn hiện trong danh sách import nhưng không được chọn sẵn, kèm lý do bên cạnh. Chúng chỉ được import nếu bạn tự chọn.",
             "href": null
         }
     ],
     "notes": {
         "dbeaver-bundled-jdk": "Bản tải về có kèm sẵn Java runtime riêng",
-        "dbeaver-databases": "Bản Community kết nối được với bất kỳ engine nào có JDBC driver, nhưng không hỗ trợ các cơ sở dữ liệu NoSQL như MongoDB, Redis hay Cassandra. Các bản trả phí có thêm chúng.",
+        "dbeaver-databases": "Bản Community kết nối được với bất kỳ engine nào có JDBC driver, nhưng không hỗ trợ các cơ sở dữ liệu NoSQL như MongoDB, Redis hay Cassandra. Các bản trả phí mới hỗ trợ những cơ sở dữ liệu này.",
         "dbeaver-ai-community-providers": "Trong bản {edition}: AI chat với OpenAI hoặc GitHub Copilot. Các bản trả phí có thêm nhà cung cấp khác và phần giải thích query, giải thích lỗi.",
         "dbeaver-mcp-server": "Các bản Lite, Enterprise và Ultimate có MCP server chạy trên máy từ phiên bản {version}. Tại thời điểm kiểm tra, phiên bản này mới ở giai đoạn early access. Bản Community không có.",
         "dbeaver-git-sync": "Đồng bộ project qua Git, từ bản {edition} trở lên",

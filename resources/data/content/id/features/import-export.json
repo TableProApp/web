@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Impor CSV dan Excel, ekspor XLSX, dan pencadangan",
-        "description": "Impor CSV, JSON, Excel, dan SQL. Ekspor tabel serta hasil ke XLSX, Parquet, dan format lain, buka berkas data, dan cadangkan dengan alat dump."
+        "description": "Impor CSV, JSON, Excel, dan SQL. Ekspor tabel serta hasil ke XLSX, Parquet, dan format lain, buka file data, dan cadangkan dengan alat dump."
     },
     "og": {
         "kicker": "Impor dan ekspor",
@@ -49,7 +49,7 @@
         },
         {
             "id": "data-files",
-            "title": "Data Files: kerjakan file tanpa database",
+            "title": "Data Files: olah file tanpa database",
             "paragraphs": [],
             "blocks": [
                 {
@@ -73,7 +73,7 @@
         },
         {
             "id": "backup",
-            "title": "Cadangkan dengan alat mesin database Anda sendiri",
+            "title": "Cadangkan dengan alat milik mesin database Anda",
             "paragraphs": [
                 "Backup Dump dan Restore Dump bekerja melalui {backupTools}, lewat tunnel SSH koneksi dan pengaturan TLS-nya, sehingga server di balik bastion tidak memerlukan tunnel kedua. Semua kecuali DuckDB adalah alat baris perintah yang harus Anda instal; DuckDB menulis dump sendiri, sebagai file database atau folder file Parquet.",
                 "Pada {serverSideExport}, Server-Side Export meminta server menulis ekspor: job Oracle Data Pump, stage Snowflake, atau bucket Cloud Storage. Tidak ada yang disimpan di Mac Anda."
@@ -175,7 +175,7 @@
     ],
     "limits": [
         "Ekspor SQL menyertakan DROP TABLE IF EXISTS sebelum setiap tabel kecuali Anda menghapus centangnya; periksa opsi sebelum menjalankan file pada database yang tabelnya ingin dipertahankan.",
-        "Backup Dump memakai alat baris perintah yang Anda instal sendiri, hanya pada mesin yang dicantumkan. Alat menerima kata sandi melalui lingkungan atau file sementara. Pengecualiannya adalah sqlpackage, yang menerima kata sandi SQL Server pada baris perintah, tempat proses lain di Mac dapat membacanya; TablePro meminta konfirmasi sebelum memulai.",
+        "Backup Dump memakai alat baris perintah yang Anda instal sendiri, hanya pada mesin yang dicantumkan. Alat menerima kata sandi melalui variabel lingkungan atau file sementara. Pengecualiannya adalah sqlpackage, yang menerima kata sandi SQL Server pada baris perintah, tempat proses lain di Mac dapat membacanya; TablePro meminta konfirmasi sebelum memulai.",
         "Restore Dump mengganti tabel dalam dump MySQL atau MariaDB. Pada mesin lain, objek yang sudah ada tidak diganti, dan <code>.bacpac</code> SQL Server memerlukan database kosong.",
         "Membuka file database lewat SSH hanya didukung untuk SQLite.",
         "Ekstensi DuckDB yang tidak disertakan, seperti httpfs untuk S3, Iceberg, dan Delta, diunduh dari server DuckDB saat kueri pertama kali memerlukannya.",

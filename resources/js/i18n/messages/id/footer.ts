@@ -33,7 +33,7 @@ export default {
             "discord": "Discord",
             "x": "X",
             "telegram": "Telegram",
-            "sponsor": "Dukung TablePro"
+            "sponsor": "Sponsori TablePro"
         },
         "legal": {
             "title": "Legal",

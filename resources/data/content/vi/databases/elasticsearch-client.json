@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Kết nối",
             "paragraphs": [
-                "Nhập host và REST port của cluster, rồi chọn <ui>Phương thức xác thực (Auth Method)</ui>. Username & Password gửi HTTP Basic. API Key gửi nội dung ô này trong header <code>Authorization: ApiKey</code>, nên hãy dán giá trị <code>encoded</code> mà request tạo API key trả về. None dành cho cluster phát triển đã tắt bảo mật. Mỗi connection tới một cluster, nên form không có ô Cơ sở dữ liệu (Database).",
+                "Nhập host và REST port của cluster, rồi chọn <ui>Phương thức xác thực (Auth Method)</ui>. Username & Password gửi HTTP Basic. API Key gửi nội dung ô này trong header <code>Authorization: ApiKey</code>, nên hãy dán giá trị <code>encoded</code> mà request tạo API key trả về. None dành cho cluster phát triển đã tắt bảo mật. Mỗi connection chỉ kết nối tới một cluster, nên form không có ô Cơ sở dữ liệu (Database).",
                 "Connection mới để SSL ở Đã tắt (Disabled), tức HTTP thường. Mọi chế độ khác dùng HTTPS: Ưu tiên (Preferred) và Bắt buộc, bỏ qua xác minh (Required, skip verify) chấp nhận chứng chỉ tự ký, còn Xác minh CA (Verify CA) và Xác minh danh tính (Verify Identity) kiểm tra chứng chỉ. Elasticsearch 8.x bật sẵn bảo mật và TLS, nên cluster 8.x thường cần HTTPS và thông tin đăng nhập."
             ]
         },

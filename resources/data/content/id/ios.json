@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro untuk iPhone dan iPad",
-        "description": "Klien gratis untuk iPhone dan iPad. Hubungkan MySQL, PostgreSQL, SQL Server, dan Oracle via SSH atau TLS untuk menelusuri, mengedit, dan mengueri tabel."
+        "description": "Klien database gratis untuk iPhone dan iPad. Hubungkan MySQL, PostgreSQL, SQL Server, dan Oracle via SSH atau TLS, lalu telusuri, edit, dan kueri tabel."
     },
     "og": {
         "kicker": "iPhone dan iPad",
@@ -18,8 +18,8 @@
         "lead": "Buat koneksi ke database berikut di iPhone dan iPad. Driver sudah disertakan dalam aplikasi, jadi tidak ada yang perlu diunduh.",
         "syncedOnly": "Koneksi {engines} dapat dibuka jika berasal dari Mac, melalui iCloud Sync atau file .tablepro. Anda tidak dapat membuatnya dalam aplikasi ini.",
         "others": "Koneksi ke database lain juga disinkronkan dari Mac dan tampil dalam daftar, tetapi aplikasi ini tidak memiliki drivernya sehingga tidak dapat dibuka. <databases>Halaman database</databases> mencantumkan semua mesin yang didukung aplikasi Mac.",
-        "files": "SQLite: pilih file database dan aplikasi menyalinnya ke penyimpanan sendiri, sehingga edit mengubah salinan. Anda juga dapat membuat database baru. DuckDB membuka file di lokasinya atau berjalan dalam memori.",
-        "redis": "Redis: jalankan perintah pada tab Kueri. Penelusuran key Redis tidak tersedia di aplikasi iPhone dan iPad.",
+        "files": "SQLite: pilih file database dan aplikasi menyalinnya ke penyimpanan sendiri, sehingga pengeditan Anda mengubah salinan tersebut. Anda juga dapat membuat database baru. DuckDB membuka file di lokasinya atau berjalan dalam memori.",
+        "redis": "Redis: jalankan perintah pada tab Query. Penelusuran kunci Redis tidak tersedia di aplikasi iPhone dan iPad.",
         "sample": "Untuk mencoba terlebih dahulu, buka Chinook, database contoh yang disertakan."
     },
     "browse": {
@@ -35,14 +35,14 @@
         "paragraphs": [
             "Tulis SQL dengan sorotan sintaks, jalankan, dan hentikan saat berjalan. Mulai dengan templat SELECT, lalu salin atau bagikan hasil sebagai JSON, CSV, atau pernyataan SQL INSERT melalui papan klip atau lembar berbagi.",
             "Aplikasi menyimpan hingga {results} baris hasil; tambahkan LIMIT untuk melihat bagian lain dari hasil besar. Riwayat menyimpan {history} kueri terakhir di perangkat ini lintas koneksi dan tidak disinkronkan.",
-            "Saat kueri berjalan, Aktivitas Langsung menampilkan kemajuan pada Layar Terkunci dan Dynamic Island: waktu berlalu dan baris diterima. Layar Terkunci dan Dynamic Island yang diperluas juga menampilkan SQL, kecuali Anda mengaktifkan <ui>Settings > Live Activities > Hide Query</ui>."
+            "Saat kueri berjalan, Aktivitas Langsung menampilkan kemajuan pada Layar Terkunci dan Dynamic Island: waktu yang telah berlalu dan jumlah baris yang diterima. Layar Terkunci dan Dynamic Island yang diperluas juga menampilkan SQL, kecuali Anda mengaktifkan <ui>Settings > Live Activities > Hide Query</ui>."
         ]
     },
     "security": {
         "title": "Terhubung dengan aman",
         "paragraphs": [
             "Tunnel SSH masuk dengan kata sandi atau private key dari file atau tempelan, dengan frasa sandi opsional. Saat pertama kali mengakses server, aplikasi menampilkan sidik jari host key dan meminta Anda memercayainya.",
-            "TLS diatur per koneksi. Koneksi MySQL, MariaDB, TiDB, OceanBase, dan PostgreSQL dapat memverifikasi sertifikat serta nama host server dan menyajikan sertifikat klien dari file, teks tempelan, atau bundel PKCS#12. Koneksi Redis juga dapat memverifikasi sertifikat dan menyajikan sertifikat klien. SQL Server dapat mengenkripsi koneksi (Required), tetapi tidak memverifikasi sertifikat. Sertifikat tetap di perangkat ini dan tidak pernah disinkronkan.",
+            "TLS diatur per koneksi. Koneksi MySQL, MariaDB, TiDB, OceanBase, dan PostgreSQL dapat memverifikasi sertifikat serta nama host server dan mengirim sertifikat klien dari file, teks tempelan, atau bundel PKCS#12. Koneksi Redis juga dapat memverifikasi sertifikat dan mengirim sertifikat klien. SQL Server dapat mengenkripsi koneksi (Required), tetapi tidak memverifikasi sertifikat. Sertifikat tetap di perangkat ini dan tidak pernah disinkronkan.",
             "Kata sandi dan key tempelan disimpan dalam Rantai Kunci. Koneksi SQL Server yang memakai Microsoft Entra ID dapat masuk di sini setelah disinkronkan dari Mac; autentikasi Windows tidak didukung. Untuk mengakses server dengan nama .local di jaringan Anda, izinkan akses Jaringan Lokal saat iOS meminta."
         ]
     },
@@ -50,7 +50,7 @@
         "title": "Safe Mode dan kunci aplikasi",
         "paragraphs": [
             "Setiap koneksi memiliki level Safe Mode: {levels}. Confirm Writes meminta persetujuan sebelum pernyataan yang mengubah data berjalan. Read-Only menolaknya sebelum mencapai server. Pernyataan yang tidak dapat dikenali sebagai pembacaan dianggap penulisan.",
-            "Atur level koneksi dalam bagian Organisasi dan level awal koneksi baru dalam Pengaturan. Pintasan yang menambah baris mengikuti level yang sama.",
+            "Atur level koneksi dalam bagian Organization dan level awal koneksi baru dalam Settings. Pintasan yang menambah baris mengikuti level yang sama.",
             "Dalam <ui>Settings > Security</ui>, kunci aplikasi dengan Face ID atau Touch ID, dengan kode sandi sebagai alternatif. Setelah aktif, aplikasi meminta autentikasi setiap kali dimulai dan setelah durasi Auto-Lock yang Anda pilih."
         ]
     },
@@ -58,13 +58,13 @@
         "title": "Di iPad",
         "paragraphs": [
             "Satu aplikasi untuk iPhone dan iPad. Di iPad aplikasi berjalan dalam orientasi apa pun dan beberapa jendela sekaligus dengan Stage Manager atau Split View; bilah tab dapat berubah menjadi sidebar.",
-            "Dengan keyboard, ⌘1 hingga ⌘4 berpindah antara Tabel, Kueri, Riwayat, dan Info; ⌘F mencari, ⌘↩ menjalankan kueri, dan ⌘N menambah koneksi. Trackpad atau mouse juga didukung."
+            "Dengan keyboard, ⌘1 hingga ⌘4 berpindah antara Tables, Query, History, dan Info; ⌘F mencari, ⌘↩ menjalankan kueri, dan ⌘N menambah koneksi. Trackpad atau mouse juga didukung."
         ]
     },
     "mac": {
         "title": "Bersama Mac Anda",
         "paragraphs": [
-            "Aktifkan iCloud Sync saat penyiapan atau nanti dalam Pengaturan, lalu koneksi, grup, dan tag disinkronkan antara iPhone, iPad, dan Mac melalui akun iCloud Anda sendiri. Kata sandi hanya disinkronkan jika Sync Passwords juga aktif. Kueri tersimpan, profil SSH, dan pengaturan hanya disinkronkan antar-Mac.",
+            "Aktifkan iCloud Sync saat penyiapan atau nanti dalam Settings, lalu koneksi, grup, dan tag disinkronkan antara iPhone, iPad, dan Mac melalui akun iCloud Anda sendiri. Kata sandi hanya disinkronkan jika Sync Passwords juga aktif. Kueri tersimpan, profil SSH, dan pengaturan hanya disinkronkan antar-Mac.",
             "iCloud Sync gratis di sini. Di Mac fitur ini termasuk lisensi Starter atau Team, sehingga Mac tanpa lisensi tidak disinkronkan. <pricing>Halaman harga</pricing> menjelaskan detailnya.",
             "Tanpa iCloud, ekspor koneksi sebagai file .tablepro dan buka di perangkat lain melalui AirDrop atau File. Kata sandi tidak disertakan kecuali Anda memasukkannya, lalu file dienkripsi dengan frasa sandi pilihan Anda. Keduanya gratis di sini; di Mac, ekspor dengan kata sandi termasuk fitur berlisensi.",
             "Saat iCloud Sync aktif, Handoff melanjutkan koneksi atau tabel terbuka antara Mac dan iPhone atau iPad. <sync>Sinkronisasi dan tim</sync> menjelaskan keduanya lebih lanjut."
@@ -89,14 +89,14 @@
             "Dasbor server, pengguna dan peran, serta pencadangan",
             "Plugin driver untuk database lain",
             "Jump host SSH, agen SSH, dan autentikasi Windows untuk SQL Server",
-            "Penelusuran key Redis"
+            "Penelusuran kunci Redis"
         ],
         "mac": "<download>Unduh TablePro untuk Mac</download>"
     },
     "knownIssues": {
         "title": "Masalah yang diketahui di versi {version}",
         "items": [
-            "Di editor baris, jangan simpan baris saat teks panjang atau nilai biner ditampilkan singkat: editor dapat menimpa nilai lengkap dengan teks singkat. Ubah baris tersebut di Mac.",
+            "Di editor baris, jangan simpan baris saat teks panjang atau nilai biner ditampilkan terpotong: editor dapat menimpa nilai lengkap dengan teks yang terpotong itu. Ubah baris tersebut di Mac.",
             "Menyimpan koneksi tersinkron di iPhone atau iPad dapat menghapus pengaturan khusus Mac seperti jump host SSH dan menurunkan level Safe Mode. Edit koneksi tersebut di Mac.",
             "Saat koneksi Redis memverifikasi sertifikat server, yang diperiksa adalah sertifikat, bukan nama host.",
             "Pada tindakan Pintasan yang menambah baris, CSV harus berupa teks UTF-8 dengan akhir baris LF."
@@ -106,7 +106,7 @@
         "title": "Privasi",
         "paragraphs": [
             "Tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data saat penyiapan atau nanti di <ui>Settings > Privacy</ui>. Jika aktif, aplikasi mengirim satu laporan per hari berisi hash ID perangkat, versi aplikasi dan iOS, arsitektur prosesor, bahasa, jenis database yang dipakai, jumlah koneksi, dan beberapa tanggal penggunaan pertama. Tidak pernah nama host, nama pengguna, kata sandi, kueri, atau baris.",
-            "Aplikasi tidak memeriksa lisensi, pembaruan, atau meminta plugin. Kueri dikirim ke server Anda, iCloud Sync ke akun iCloud Anda, dan login Entra ke Microsoft. <privacyIos>Kebijakan privasi</privacyIos> menjelaskan detailnya."
+            "Aplikasi tidak memeriksa lisensi, tidak memeriksa pembaruan, dan tidak meminta plugin. Kueri dikirim ke server Anda, iCloud Sync ke akun iCloud Anda, dan login Entra ke Microsoft. <privacyIos>Kebijakan privasi</privacyIos> menjelaskan detailnya."
         ]
     },
     "get": {

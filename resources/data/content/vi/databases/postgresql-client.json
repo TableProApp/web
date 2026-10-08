@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Client PostgreSQL cho {devices}",
-        "description": "Kết nối PostgreSQL qua SSH, SSL/TLS, AWS IAM hoặc ~/.pgpass, và CockroachDB, PGlite trên cùng driver. Sơ đồ EXPLAIN, PostGIS trên bản đồ, sao lưu bằng pg_dump."
+        "description": "Kết nối PostgreSQL qua SSH, SSL/TLS, AWS IAM hoặc ~/.pgpass, và CockroachDB, PGlite trên cùng driver. Sơ đồ EXPLAIN và sao lưu bằng pg_dump."
     },
     "og": {
         "kicker": "Cơ sở dữ liệu",
@@ -37,7 +37,7 @@
                 "Nhập host, port, user và cơ sở dữ liệu, hoặc dán một URL <code>postgresql://</code> hay <code>postgres://</code>. PostgreSQL cần biết cơ sở dữ liệu thì mới kết nối được.",
                 "Connection mới để SSL ở chế độ Ưu tiên (Preferred), tức <code>sslmode=prefer</code> của libpq. Hãy chọn Xác minh CA (Verify CA) hoặc Xác minh danh tính (Verify Identity) để kiểm tra chứng chỉ của server.",
                 "Bật Sử dụng ~/.pgpass (Use ~/.pgpass) để đọc mật khẩu từ <code>~/.pgpass</code>. Form cho biết nó tìm thấy gì, kể cả trường hợp quyền truy cập của file khiến libpq bỏ qua file đó.",
-                "Tới server nội bộ qua <network>SSH tunnel (kèm jump host nếu cần), SOCKS5 proxy, Cloudflare Access tunnel hoặc tunnel command</network>, chẳng hạn kubectl port-forward. Trên Amazon RDS và Aurora, bạn đăng nhập bằng <cloudAuth>AWS IAM</cloudAuth> với một role được cấp <code>rds_iam</code>. Với Google Cloud SQL, TablePro tự tải và chạy Cloud SQL Auth Proxy.",
+                "Kết nối tới server nội bộ qua <network>SSH tunnel (kèm jump host nếu cần), SOCKS5 proxy, Cloudflare Access tunnel hoặc tunnel command</network>, chẳng hạn kubectl port-forward. Trên Amazon RDS và Aurora, bạn đăng nhập bằng <cloudAuth>AWS IAM</cloudAuth> với một role được cấp <code>rds_iam</code>. Với Google Cloud SQL, TablePro tự tải và chạy Cloud SQL Auth Proxy.",
                 "Mọi tùy chọn kết nối mà libpq chấp nhận, như <code>-c application_name=reporting</code>, đều đặt được trong Tùy chọn kết nối (Connection Options)."
             ]
         },
@@ -77,7 +77,7 @@
             "id": "move-data",
             "title": "Di chuyển dữ liệu",
             "paragraphs": [
-                "<importData>Import</importData> file {importFormats}; file dữ liệu được nạp vào table với từng cột được ghép, và bạn chọn cách xử lý khi một dòng bị lỗi. Export table hoặc kết quả query ra {exportFormats}; bản export SQL giữ lại comment của table, view và materialized view.",
+                "<importData>Import</importData> file {importFormats}; file dữ liệu được nạp vào table sau khi bạn ghép từng cột, và bạn chọn cách xử lý khi một dòng bị lỗi. Export table hoặc kết quả query ra {exportFormats}; bản export SQL giữ lại comment của table, view và materialized view.",
                 "<copy>Copy To</copy> chuyển table, dữ liệu của chúng hoặc cả hai sang một connection khác, trên PostgreSQL hay trên một engine khác, và liệt kê mọi kiểu cột phải chuyển gần đúng."
             ]
         },
@@ -106,8 +106,8 @@
             "title": "PGlite",
             "paragraphs": [
                 "PGlite là PostgreSQL được biên dịch sang WebAssembly, và không gì kết nối được tới nó cho đến khi bạn khởi động socket server: <code>npx @electric-sql/pglite-socket</code>, thêm <code>--db=./my-pgdata</code> để giữ dữ liệu trên đĩa.",
-                "Hãy kết nối tới <code>127.0.0.1</code> thay vì localhost. Socket server không bao giờ kiểm tra mật khẩu và không có TLS, nên form không hỏi cả hai.",
-                "Catalog của PGlite đầy đủ, nên việc sửa cấu trúc, Users & Roles và sơ đồ EXPLAIN hoạt động như trên một server. Nó chỉ có một cơ sở dữ liệu là <code>postgres</code>."
+                "Hãy kết nối tới <code>127.0.0.1</code> thay vì localhost. Socket server không bao giờ kiểm tra mật khẩu và không có TLS, nên form không hỏi mật khẩu cũng như thiết lập TLS.",
+                "Catalog của PGlite đầy đủ, nên việc sửa cấu trúc, Users & Roles và sơ đồ EXPLAIN hoạt động như trên một server. PGlite chỉ có một cơ sở dữ liệu là <code>postgres</code>."
             ]
         }
     ],
@@ -120,7 +120,7 @@
             },
             {
                 "product": "postico",
-                "text": "Postico 2 là ứng dụng Mac cho PostgreSQL, tập trung vào việc xem và sửa dữ liệu. Chính tài liệu của Postico nói rằng nó không nhắm tới các việc quản trị như sao lưu và khôi phục, quản lý user hay theo dõi server. Postico phù hợp nếu bạn chỉ dùng PostgreSQL và muốn một ứng dụng Mac chuyên biệt."
+                "text": "Postico 2 là ứng dụng Mac cho PostgreSQL, tập trung vào việc xem và sửa dữ liệu. Tài liệu của chính Postico không đề cập tới các việc quản trị như sao lưu và khôi phục, quản lý user hay theo dõi server. Postico phù hợp nếu bạn chỉ dùng PostgreSQL và muốn một ứng dụng Mac chuyên biệt."
             }
         ],
         "notes": {

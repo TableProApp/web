@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Amazon DynamoDB GUI untuk {devices}",
+        "title": "GUI Amazon DynamoDB untuk {devices}",
         "description": "Telusuri DynamoDB dengan Query atau Scan berdasarkan filter, edit item sambil mempertahankan jenisnya, dan jalankan PartiQL atau permintaan API."
     },
     "og": {
@@ -26,7 +26,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Pilih <ui>Auth Method</ui> dan <ui>AWS Region</ui>, dan bilah samping mencantumkan tabel wilayah tersebut. Metodenya adalah kunci akses dengan token sesi opsional, profil dari <code>~/.aws/config</code> dan <code>~/.aws/credentials</code> yang dibaca seperti AWS CLI, atau profil <cloudAuth>AWS IAM Identity Center</cloudAuth> yang membuka permintaan masuk saat sesi kedaluwarsa.",
+                "Pilih <ui>Auth Method</ui> dan <ui>AWS Region</ui>, dan sidebar mencantumkan tabel wilayah tersebut. Metodenya adalah kunci akses dengan token sesi opsional, profil dari <code>~/.aws/config</code> dan <code>~/.aws/credentials</code> yang dibaca seperti AWS CLI, atau profil <cloudAuth>AWS IAM Identity Center</cloudAuth> yang membuka permintaan masuk saat sesi kedaluwarsa.",
                 "Profil menyelesaikan helper <code>credential_process</code> dan rantai <code>role_arn</code>, dan kredensial sementara yang kedaluwarsa diambil kembali dengan permintaan dicoba ulang sekali. Semua permintaan menggunakan HTTPS dan Signature Version 4, sehingga tidak ada pengaturan SSL atau tunnel SSH. Wilayah pada partisi AWS lain, seperti China atau European Sovereign Cloud, mengakses endpoint sendiri tanpa endpoint khusus.",
                 "Untuk DynamoDB Local, jalankan <code>docker run -p 8000:8000 amazon/dynamodb-local</code> dan pilih <ui>DynamoDB Local (no credentials)</ui>; kosongkan <ui>Custom Endpoint</ui> untuk port 8000. Endpoint khusus hanya dapat menggunakan HTTP tanpa enkripsi pada Mac ini. Panduan konfigurasi mencantumkan <permissions>tindakan IAM yang diperlukan setiap tugas</permissions>."
             ]

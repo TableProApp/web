@@ -89,7 +89,7 @@
                     "id": "windows-linux",
                     "question": "Có phiên bản cho Windows hoặc Linux không?",
                     "answer": [
-                        "Không. Không có phiên bản cho Windows. Có một bản thử nghiệm cho Linux, nhưng chưa có gì để cài đặt và chưa có ngày phát hành."
+                        "Không. Không có phiên bản cho Windows. Có một bản prototype cho Linux, nhưng không có gì để cài đặt và không có ngày phát hành."
                     ]
                 },
                 {
@@ -97,7 +97,7 @@
                     "question": "Ứng dụng có những ngôn ngữ nào?",
                     "answer": [
                         "Giao diện ứng dụng cho Mac có {macLanguages}. Ở các ngôn ngữ khác tiếng Anh, một số màn hình vẫn còn chữ tiếng Anh. Ứng dụng cho iPhone và iPad có {iosLanguages}.",
-                        "Website này và trang tài khoản hỗ trợ nhiều ngôn ngữ. <docs>Tài liệu</docs> hiện bằng tiếng Anh."
+                        "Website này và trang tài khoản hỗ trợ nhiều ngôn ngữ. <docs>Tài liệu</docs> chỉ có bằng tiếng Anh."
                     ]
                 }
             ]
@@ -135,7 +135,7 @@
                     "question": "Mật khẩu của tôi được lưu ở đâu?",
                     "answer": [
                         "Trên Mac, trong Keychain của macOS. Thay vào đó, một connection có thể đọc mật khẩu khi kết nối: từ một file, một biến môi trường, một lệnh shell, 1Password, HashiCorp Vault hoặc AWS Secrets Manager. Trên iPhone và iPad, mật khẩu được lưu trong Keychain của thiết bị.",
-                        "Khi bật iCloud Sync, mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục <ui>Mật khẩu</ui> (Passwords) trong Danh mục đồng bộ trên Mac, hoặc <ui>Đồng bộ mật khẩu</ui> (Sync Passwords) trên iPhone và iPad, tính năng dùng iCloud Keychain."
+                        "Khi bật iCloud Sync, mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục <ui>Mật khẩu</ui> (Passwords) trong Danh mục đồng bộ trên Mac, hoặc <ui>Đồng bộ mật khẩu</ui> (Sync Passwords) trên iPhone và iPad, là tùy chọn dùng iCloud Keychain."
                     ]
                 },
                 {
@@ -198,7 +198,7 @@
                 },
                 {
                     "id": "payment-methods",
-                    "question": "Bạn có thể thanh toán bằng những phương thức nào?",
+                    "question": "Tôi có thể thanh toán bằng những phương thức nào?",
                     "answer": [
                         "Trang thanh toán của {merchant} chấp nhận thẻ tín dụng và thẻ ghi nợ."
                     ]
@@ -242,7 +242,7 @@
                     "question": "Ứng dụng gửi gì cho TablePro?",
                     "answer": [
                         "Khi chưa kích hoạt license, yêu cầu duy nhất mà ứng dụng cho Mac gửi tới TablePro là một báo cáo sử dụng mỗi ngày, bật sẵn và có thể tắt trong <ui>Cài đặt > Tổng quát > Quyền riêng tư</ui> (Settings > General > Privacy). Báo cáo gồm mã máy đã băm và thông tin về ứng dụng, như phiên bản, ngôn ngữ và các loại cơ sở dữ liệu bạn kết nối, và không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng.",
-                        "Khi có license, ứng dụng cho Mac còn kiểm tra license mỗi {revalidateDays} ngày, gửi kèm key, cùng mã máy đó, tên máy Mac của bạn và phiên bản ứng dụng, macOS. Trên iPhone và iPad, không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data). <privacy>Chính sách quyền riêng tư</privacy> có danh sách đầy đủ, kể cả những gì máy chủ của chúng tôi lưu lại."
+                        "Khi có license, ứng dụng cho Mac còn kiểm tra license mỗi {revalidateDays} ngày, gửi kèm key, vẫn mã máy đó, tên máy Mac của bạn, phiên bản ứng dụng và phiên bản macOS. Trên iPhone và iPad, không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data). <privacy>Chính sách quyền riêng tư</privacy> có danh sách đầy đủ, kể cả những gì máy chủ của chúng tôi lưu lại."
                     ]
                 },
                 {

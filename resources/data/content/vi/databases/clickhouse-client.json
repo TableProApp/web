@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Client ClickHouse cho {devices}",
-        "description": "Query ClickHouse qua HTTP hoặc HTTPS, đọc kết quả EXPLAIN dạng Plan, Pipeline và Estimate, quản lý part và partition của MergeTree, theo dõi mutation và merge."
+        "description": "Query ClickHouse qua HTTP hoặc HTTPS, đọc kết quả EXPLAIN dạng Plan, Pipeline và Estimate, quản lý part và partition của MergeTree, và theo dõi mutation."
     },
     "og": {
         "kicker": "Cơ sở dữ liệu",
@@ -29,8 +29,8 @@
             "title": "Kết nối",
             "paragraphs": [
                 "Nhập host và port HTTP, user và, nếu muốn, một cơ sở dữ liệu. Việc đổi cơ sở dữ liệu diễn ra ngay tại chỗ, và tab đang mở vẫn ở cơ sở dữ liệu nó bắt đầu. <ui>Xem > Thanh bên dạng cây (View > Sidebar as Tree)</ui> hiển thị các cơ sở dữ liệu của server thành một cây mà bạn mở rộng ngay tại chỗ.",
-                "Chọn bất kỳ SSL mode nào là chuyển sang HTTPS. Port 443 hoặc 8443, port mà ClickHouse Cloud dùng, sẽ bật Xác minh danh tính (Verify Identity), kiểm tra chứng chỉ theo file CA của bạn hoặc kho chứng chỉ tin cậy của hệ thống. Xác minh CA (Verify CA) cần một file CA, và chứng chỉ cùng key của client được gửi tới server yêu cầu mutual TLS.",
-                "Khi không dùng TLS, hãy tới server từ xa qua <network>SSH tunnel</network> thay vì gửi HTTP không mã hóa qua mạng."
+                "Chọn bất kỳ chế độ SSL nào thì kết nối sẽ chuyển sang HTTPS. Port 443 hoặc 8443, port mà ClickHouse Cloud dùng, sẽ bật Xác minh danh tính (Verify Identity), kiểm tra chứng chỉ theo file CA của bạn hoặc kho chứng chỉ tin cậy của hệ thống. Xác minh CA (Verify CA) cần một file CA, và chứng chỉ cùng key của client được gửi tới server yêu cầu mutual TLS.",
+                "Khi không dùng TLS, hãy kết nối tới server từ xa qua <network>SSH tunnel</network> thay vì gửi HTTP không mã hóa qua mạng."
             ]
         },
         {
@@ -38,7 +38,7 @@
             "title": "Query và chỉnh sửa",
             "paragraphs": [
                 "Mỗi query mang một id riêng và yêu cầu báo tiến độ, nên query chạy lâu cho biết số dòng đã đọc trong lúc chạy. Nút Dừng (Stop) gửi <code>KILL QUERY</code> cho đúng id đó, và query timeout của connection được áp dụng ngay trên server.",
-                "<explain>Menu Explain</explain> có Plan, Pipeline, AST, Syntax và Estimate. Kết quả dạng thụt lề được vẽ thành sơ đồ hoặc cây, còn Estimate cho biết số dòng, mark và part mà query sẽ đọc.",
+                "<explain>Menu Giải thích (Explain)</explain> có Plan, Pipeline, AST, Syntax và Estimate. Kết quả dạng thụt lề được vẽ thành sơ đồ hoặc cây, còn Estimate cho biết số dòng, mark và part mà query sẽ đọc.",
                 "Thay đổi trong data grid được gửi đi dưới dạng <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> và <code>ALTER TABLE … DELETE</code>, với <editing>Preview SQL</editing> hiển thị trước. ClickHouse chạy update và delete thành mutation ở chế độ nền, nên lưu xong nghĩa là đã được chấp nhận, chưa chắc đã áp dụng; <code>system.mutations</code> cho biết tiến độ. Materialized view mở ở chế độ chỉ đọc.",
                 "Kết quả chứa tuple point hoặc ring của ClickHouse mở được trên <map>Map view</map>. Query có mệnh đề <code>FORMAT</code> riêng sẽ hiện nguyên output của server trong một cột, nên hãy bỏ mệnh đề đó để có data grid."
             ]

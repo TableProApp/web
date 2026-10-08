@@ -17,7 +17,7 @@
             "id": "browse",
             "title": "Tìm đúng dòng bạn cần",
             "paragraphs": [
-                "Sắp xếp và phân trang chạy trên server, nên một table lớn mở ra ngay ở trang đầu. Khi table có trên {countEstimate} dòng, tổng số dòng là con số ước tính, kèm Count Exactly khi bạn cần số chính xác."
+                "Sắp xếp và phân trang chạy trên server, nên một table lớn mở ra ngay ở trang đầu. Khi table có trên {countEstimate} dòng, tổng số dòng là con số ước tính, kèm nút Đếm chính xác (Count Exactly) khi bạn cần số chính xác."
             ],
             "blocks": [
                 {
@@ -56,7 +56,7 @@
             "id": "safe-mode",
             "title": "Safe Mode cho connection production",
             "paragraphs": [
-                "Mỗi connection có một mức Safe Mode: {macSafeModeLevels}. Connection mới bắt đầu ở mức {macSafeModeDefault}, câu lệnh chạy ngay như bạn viết. Alert hỏi lại trước khi chạy câu lệnh ghi, hai mức Safe Mode và Safe Mode (Full) còn yêu cầu Touch ID hoặc mật khẩu máy Mac, các mức có hậu tố (Full) hỏi cả trước câu lệnh đọc, còn Read-Only từ chối câu lệnh ghi và tắt chỉnh sửa. Safe Mode miễn phí.",
+                "Mỗi connection có một mức Safe Mode: {macSafeModeLevels}. Connection mới bắt đầu ở mức {macSafeModeDefault}, là mức chạy câu lệnh đúng như bạn viết. Alert hỏi lại trước khi chạy câu lệnh ghi, hai mức Safe Mode và Safe Mode (Full) còn yêu cầu Touch ID hoặc mật khẩu máy Mac, các mức có hậu tố (Full) hỏi cả trước câu lệnh đọc, còn Read-Only từ chối câu lệnh ghi và tắt chỉnh sửa. Safe Mode miễn phí.",
                 "Ở mọi mức, DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi trước. Một số yếu tố tự nâng mức Safe Mode của connection trong thời gian chúng có hiệu lực: engine chỉ cho phép đọc, Agent mode (nâng lên ít nhất là Alert), và mức tối thiểu do tổ chức của bạn đặt qua hệ thống quản lý thiết bị (MDM)."
             ],
             "asset": "mac-safe-mode-touchid",
@@ -91,7 +91,7 @@
             "title": "Trên iPhone và iPad",
             "paragraphs": [
                 "Trong ứng dụng cho iPhone và iPad, các dòng hiển thị dạng thẻ, có thể sắp xếp, tìm kiếm và lọc với AND và OR, và chạm vào một khóa ngoại để xem nhanh dòng được tham chiếu. Bạn có thể sửa một dòng, đặt giá trị thành NULL, thêm dòng và vuốt để xóa; muốn sửa và xóa, table cần có khóa chính. Trong dòng mới, mỗi cột ban đầu nhận DEFAULT và có thể đặt thành NULL hoặc chuỗi rỗng.",
-                "Safe Mode trên iPhone và iPad có các mức riêng: {iosSafeModeLevels}, với {iosSafeModeDefault} là mặc định cho connection mới. Thay đổi chờ lưu, Preview SQL, highlight rules và Data Rewind chỉ có trong ứng dụng Mac."
+                "Safe Mode trên iPhone và iPad có các mức riêng: {iosSafeModeLevels}, với {iosSafeModeDefault} là mặc định cho connection mới. Thay đổi đang chờ lưu, Preview SQL, highlight rules và Data Rewind chỉ có trong ứng dụng Mac."
             ],
             "links": [
                 { "label": "Xem và sửa dữ liệu trên iPhone và iPad", "href": "/ios#browse" },
@@ -104,7 +104,7 @@
         { "label": "Bộ lọc đã lưu và highlight rules", "ios": "no" },
         { "label": "Đi theo khóa ngoại và bộ chọn giá trị", "ios": "partial", "iosNote": "Chạm để xem nhanh dòng được tham chiếu" },
         { "label": "Sửa, thêm và xóa dòng", "ios": "partial", "iosNote": "Trình sửa từng dòng; cần khóa chính" },
-        { "label": "Thay đổi chờ lưu, Preview SQL và undo", "ios": "no" },
+        { "label": "Thay đổi đang chờ lưu, Preview SQL và undo", "ios": "no" },
         { "label": "Safe Mode", "ios": "partial", "iosNote": "{iosSafeModeLevels}" },
         { "label": "Touch ID hoặc mật khẩu trước câu lệnh ghi", "ios": "no" },
         { "label": "Data Rewind", "paid": "data-rewind", "ios": "no" },

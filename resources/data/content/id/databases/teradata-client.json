@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Teradata untuk {devices}",
+        "title": "Klien Teradata untuk {devices}",
         "description": "Masuk ke Teradata Vantage dengan TD2 atau TDNEGO, dengan atau tanpa TLS. Telusuri database, pengguna, prosedur, dan makro, serta buat dan ubah tabel."
     },
     "og": {
@@ -37,8 +37,8 @@
             "id": "work",
             "title": "Jalankan kueri dan edit",
             "paragraphs": [
-                "Database dan pengguna sama-sama merupakan namespace di Teradata, sehingga keduanya muncul di bagian atas bilah samping dengan tabel dan view-nya. Tab yang terkait dengan database kedua tetap menggunakan sesi yang sama dan menjalankan <code>DATABASE</code> sebelum pernyataannya.",
-                "Prosedur tersimpan tercantum di bilah samping, dan makro berada di bawah Functions; masing-masing membuka <objects>kode sumbernya dalam tab hanya baca</objects>.",
+                "Database dan pengguna sama-sama merupakan namespace di Teradata, sehingga keduanya muncul di bagian atas sidebar dengan tabel dan view-nya. Tab yang terkait dengan database kedua tetap menggunakan sesi yang sama dan menjalankan <code>DATABASE</code> sebelum pernyataannya.",
+                "Prosedur tersimpan tercantum di sidebar, dan makro berada di bawah Functions; masing-masing membuka <objects>kode sumbernya dalam tab hanya baca</objects>.",
                 "Teradata tidak memiliki <code>LIMIT</code>, sehingga halaman pertama tabel menggunakan <code>TOP</code> dan halaman berikutnya menggunakan <code>QUALIFY ROW_NUMBER()</code>. <explain>EXPLAIN</explain> mengembalikan rencana Teradata sebagai teks mentah. Perubahan baris menunggu hingga Anda menyimpan, dan <editing>Preview SQL</editing> menampilkan setiap pernyataan terlebih dahulu."
             ]
         },
@@ -53,7 +53,7 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "Muat berkas {importFormats} dengan <importData>Import</importData>, dan simpan tabel atau hasil sebagai {exportFormats}. <copy>Copy To</copy> mengirim tabel, barisnya, atau keduanya ke koneksi Teradata lain; penyalinan ke mesin berbeda ditolak."
+                "Muat file {importFormats} dengan <importData>Import</importData>, dan simpan tabel atau hasil sebagai {exportFormats}. <copy>Copy To</copy> mengirim tabel, barisnya, atau keduanya ke koneksi Teradata lain; penyalinan ke mesin berbeda ditolak."
             ]
         }
     ],

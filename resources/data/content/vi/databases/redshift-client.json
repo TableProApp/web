@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Client Amazon Redshift cho {devices}",
-        "description": "Query cluster và Serverless workgroup của Redshift qua driver PostgreSQL. Xem DISTKEY, SORTKEY, duyệt external schema, theo dõi session và sao lưu bằng pg_dump."
+        "description": "Query cluster và Serverless workgroup của Redshift qua driver PostgreSQL. Xem DISTKEY, SORTKEY, duyệt external schema và sao lưu bằng pg_dump."
     },
     "og": {
         "kicker": "Cơ sở dữ liệu",
@@ -40,7 +40,7 @@
             "title": "Query và chỉnh sửa",
             "paragraphs": [
                 "Query và <editing>thay đổi dòng đang chờ lưu cùng Preview SQL</editing> hoạt động như trên <postgresql>PostgreSQL</postgresql>, qua cùng một driver. Tab gắn với một cơ sở dữ liệu khác cơ sở dữ liệu đang dùng sẽ mở một connection thứ hai cho nó.",
-                "Phần thông tin table đọc <code>svv_table_info</code> để lấy distribution style, sort key và dung lượng của từng table, còn tab DDL ghi ra DISTKEY, SORTKEY, DISTSTYLE và ENCODE. Khóa ngoại được liệt kê, nhưng Redshift không bắt buộc chúng, nên không có gì ngăn một dòng vi phạm khóa ngoại.",
+                "Phần thông tin table đọc <code>svv_table_info</code> để lấy distribution style, sort key và dung lượng của từng table, còn tab DDL ghi ra DISTKEY, SORTKEY, DISTSTYLE và ENCODE. Khóa ngoại được liệt kê, nhưng Redshift không thực thi ràng buộc khóa ngoại, nên không có gì ngăn một dòng vi phạm chúng.",
                 "<explain>EXPLAIN và EXPLAIN VERBOSE</explain> trả về execution plan của Redshift dưới dạng văn bản, không vẽ thành sơ đồ.",
                 "Schema tạo bằng <code>CREATE EXTERNAL SCHEMA</code>, dù là Spectrum trên S3, federated query, tham chiếu chéo giữa các cơ sở dữ liệu hay datashare, đều được liệt kê cạnh schema của bạn và đánh dấu Bên ngoài (External). Table trong đó vẫn duyệt, lọc, sắp xếp và export như thường nhưng chỉ đọc, vì Redshift không nhận UPDATE hay DELETE trên chúng. Các table này không hiện số dòng, và kiểu cột hiển thị đúng như external catalog báo về."
             ]
