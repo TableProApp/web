@@ -30,9 +30,9 @@ A report contains:
 
 - a machine ID: a SHA-256 hash of your Mac's hardware UUID (the UUID itself is never sent);
 - the platform, the app version, the macOS version, the processor architecture and the app's language;
-- the names of the database types your connections use (for example "PostgreSQL") and a connection count;
+- the names of the database types of your open connections (for example "PostgreSQL") and how many connections are open;
 - whether a license is activated;
-- the dates of your first connection attempt, your first successful connection and your first query;
+- the date and time of your first connection attempt and of your first successful connection;
 - your update settings (how updates install and how often the app checks). Our server discards these when the report arrives.
 
 It never contains hostnames, usernames, passwords, queries or rows.
@@ -88,7 +88,7 @@ Passwords are kept in the macOS Keychain. Your connection list, query history, Q
 
 ## TablePro for iPhone and iPad {#ios-app}
 
-**Nothing goes to TablePro unless you turn on Share Usage Data**, when the app first starts or later in **Settings > Privacy**. If you do, the app sends a report once a day to the same server as the Mac app, and our server stores and looks up its IP address in the same way. The report contains a SHA-256 hash of the identifier Apple gives the app on your device, the platform, the app and iOS versions, the processor architecture, the app's language, the names of the database types you use, a connection count and the same first-use dates. It carries no update settings and no license key, because the app has neither.
+**Nothing goes to TablePro unless you turn on Share Usage Data**, when the app first starts or later in **Settings > Privacy**. If you do, the app sends a report once a day to the same server as the Mac app, and our server stores and looks up its IP address in the same way. The report contains a SHA-256 hash of the identifier Apple gives the app on your device, the platform, the app and iOS versions, the processor architecture, the app's language, the names of the database types of your open connections, how many are open, and the date and time of your first connection attempt, your first successful connection and your first query. It carries no update settings and always reports that no license is activated, because the app has neither.
 
 The app makes no license check, no update check and no plugin request. Apart from the optional report, it connects only to your databases and SSH servers, to Apple's iCloud if you turn on iCloud Sync, and to Microsoft when a SQL Server connection signs in with Microsoft Entra ID.
 

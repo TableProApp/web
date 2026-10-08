@@ -54,6 +54,22 @@ function wordingCatalogStrings(string $path): array
 }
 
 /**
+ * The lines of each legal page in one language.
+ *
+ * @return array<string, list<string>>
+ */
+function wordingLegal(string $locale): array
+{
+    $documents = [];
+
+    foreach (glob(WORDING_RESOURCES . "/data/legal/{$locale}/*.md") ?: [] as $path) {
+        $documents[basename($path)] = explode("\n", (string) file_get_contents($path));
+    }
+
+    return $documents;
+}
+
+/**
  * Every string a reader sees in one language, keyed by where it is, without app labels, code and URLs.
  *
  * @return array<string, string>
@@ -71,6 +87,17 @@ function wordingStrings(string $locale): array
     foreach (glob(WORDING_RESOURCES . "/js/i18n/messages/{$locale}/*.ts") ?: [] as $path) {
         foreach (wordingCatalogStrings($path) as $index => $value) {
             $strings["messages/{$locale}/" . basename($path) . " #{$index}"] = $value;
+        }
+    }
+
+    // A legal page prints an app label in bold, where the content files use <ui>.
+    $labels = array_map(fn(string $label): string => "**{$label}**", array_column(require __DIR__ . '/../../Support/app-ui-labels.php', $locale));
+
+    foreach (wordingLegal($locale) as $file => $lines) {
+        foreach ($lines as $index => $line) {
+            if (trim($line) !== '') {
+                $strings["legal/{$locale}/{$file}:" . ($index + 1)] = str_replace($labels, ' ', $line);
+            }
         }
     }
 
@@ -147,6 +174,27 @@ it('keeps the names of paid features, Safe Mode and the merchant of record where
 
             if (str_contains($value, 'merchant of record') && mb_stripos($target, 'merchant of record') === false) {
                 $offences[] = "content/{$locale}/{$file} {$key}: merchant of record";
+            }
+        }
+    }
+
+    // The legal pages also name the plans and two parts of the Mac app. A translation has the same lines as its original.
+    $legalNames = [...$names, 'Tunnel Command', 'Starter', 'Team', 'Favorites', 'Sync Categories'];
+    $legal = wordingLegal($locale);
+
+    foreach (wordingLegal('en') as $file => $lines) {
+        foreach ($lines as $index => $line) {
+            $target = $plain($legal[$file][$index] ?? '');
+            $where = "legal/{$locale}/{$file}:" . ($index + 1);
+
+            foreach ($legalNames as $name) {
+                if (str_contains($plain($line), $plain($name)) && ! str_contains($target, $plain($name))) {
+                    $offences[] = "{$where}: {$name}";
+                }
+            }
+
+            if (str_contains($line, 'merchant of record') && mb_stripos($target, 'merchant of record') === false) {
+                $offences[] = "{$where}: merchant of record";
             }
         }
     }

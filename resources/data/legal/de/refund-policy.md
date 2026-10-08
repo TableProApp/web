@@ -10,7 +10,7 @@ Jeder bezahlte Tarif kann innerhalb von {refundDays} Tagen erstattet werden: Sta
 
 Schreibe von der beim Kauf verwendeten Adresse an [{email}](mailto:{email}) oder gib deinen Lizenzschlüssel an. Nenne den Kauf, für den du eine Erstattung möchtest. Berechtigte Erstattungen werden innerhalb von 5 Werktagen bearbeitet und an die ursprüngliche Zahlungsmethode zurückgezahlt.
 
-Die Lizenzen werden von {merchant}, unserem verantwortlichen Verkäufer, verkauft. Die Erstattung erfolgt daher über {merchant}. {merchant} kann auch nach seinen eigenen Käuferbedingungen Erstattungen gewähren.
+Die Lizenzen werden von {merchant}, unserem Merchant of Record, verkauft. Die Erstattung erfolgt daher über {merchant}. {merchant} kann auch nach seinen eigenen Käuferbedingungen Erstattungen gewähren.
 
 ## Was mit der Lizenz passiert {#license}
 

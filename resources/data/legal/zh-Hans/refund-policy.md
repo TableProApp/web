@@ -10,7 +10,7 @@ updatedAt: "2026-10-02"
 
 请使用购买时的邮箱地址向 [{email}](mailto:{email}) 发送邮件，或在邮件中附上许可证密钥，并告知希望退还哪笔购买款项。符合条件的退款会在 5 个工作日内处理，款项原路退回。
 
-许可证由我们的名义销售商 {merchant} 销售，因此退款通过 {merchant} 发放。{merchant} 也可能根据其自身的购买者条款提供退款。
+许可证由我们的 merchant of record {merchant} 销售，因此退款通过 {merchant} 发放。{merchant} 也可能根据其自身的购买者条款提供退款。
 
 ## 许可证如何处理 {#license}
 
