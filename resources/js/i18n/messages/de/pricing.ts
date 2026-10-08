@@ -14,15 +14,15 @@ export default {
     },
     "captions": {
         "monthly": "Verlängert sich monatlich, bis du kündigst.",
-        "yearly": "Verlängert sich jährlich, bis du kündigst. {percent}% günstiger als zwölf Monatszahlungen.",
-        "yearlyByTier": "Verlängert sich jährlich, bis du kündigst. Starter ist {starterPercent}% günstiger als zwölf Monatszahlungen, Team {teamPercent}% günstiger.",
+        "yearly": "Verlängert sich jährlich, bis du kündigst. {percent} % günstiger als zwölf Monatszahlungen.",
+        "yearlyByTier": "Verlängert sich jährlich, bis du kündigst. Starter ist {starterPercent} % günstiger als zwölf Monatszahlungen, Team {teamPercent} % günstiger.",
         "lifetime": "Einmalige Zahlung, ohne Ablaufdatum."
     },
     "tiers": {
         "free": {
             "name": "Kostenlos",
             "description": "Die Mac-App ohne Bezahlfunktionen sowie die iPhone- und iPad-App.",
-            "activation": "Keine Registrierung zur Nutzung der App erforderlich.",
+            "activation": "Die App lässt sich ohne Registrierung nutzen.",
             "includesTitle": "Enthält",
             "includes": [
                 "Verbindungen zu allen unterstützten Datenbanksystemen",
@@ -122,14 +122,14 @@ export default {
         "atCheckout": "Hast du einen Rabattcode? Gib ihn beim Kauf ein.",
         "summary": "Hast du einen Rabattcode?",
         "label": "Rabattcode",
-        "apply": "Code anwenden",
+        "apply": "Code einlösen",
         "checking": "Code wird geprüft…",
-        "percent": "Code akzeptiert: {amount}% Rabatt, wird beim Kauf angewendet.",
-        "fixed": "Code akzeptiert: {amount} Rabatt, wird beim Kauf angewendet.",
+        "percent": "Code akzeptiert: {amount} % Rabatt, wird beim Kauf abgezogen.",
+        "fixed": "Code akzeptiert: {amount} Rabatt, wird beim Kauf abgezogen.",
         "invalid": "Dieser Rabattcode ist ungültig oder abgelaufen."
     },
     "checkout": {
-        "failed": "Der Kauf konnte nicht gestartet werden. Versuche es erneut."
+        "failed": "Der Bezahlvorgang konnte nicht gestartet werden. Versuche es erneut."
     },
     "offers": {
         "name": "{plan}, {cycle}",

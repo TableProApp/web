@@ -23,7 +23,7 @@
             "points": [
                 "Anweisungsmarkierungen am Rand mit jeweils eigener Ausführungsschaltfläche.",
                 "Suchen und Ersetzen mit regulären Ausdrücken.",
-                "Vim mode mit Bewegungen, Registern und Makros; <code>:w</code> führt die Abfrage aus.",
+                "Vim-Modus mit Bewegungen, Registern und Makros; <code>:w</code> führt die Abfrage aus.",
                 "<code>.sql</code>-Dateien lassen sich als Abfrage-Tabs öffnen, bearbeiten und speichern."
             ],
             "asset": "mac-query-autocomplete"
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Schreibe <code>:customer_id</code> in eine Abfrage; TablePro fragt vor der Ausführung nach Wert und Typ und bindet den Wert nativ, sofern der Treiber dies unterstützt.",
                 "Jede ausgeführte Abfrage landet im lokalen Verlauf (<kbd>⌘Y</kbd>) mit Volltextsuche und Filtern für Quelle, Fehler und Zeitraum. Standardmäßig bleiben {historyEntries} Einträge für {historyDays} Tage erhalten; der Verlauf wird nie synchronisiert.",
-                "Speichere eine Abfrage mit einem Schlüsselwort wie <code>dau</code> und tippe es im Editor zur Erweiterung. Gespeicherte Abfragen behalten einen Versionsverlauf. Ein verknüpfter SQL-Ordner synchronisiert <code>.sql</code>-Dateien und Seitenleiste in beide Richtungen mit Git-Statusbuchstaben pro Datei. Dies ist kostenlos und getrennt von Linked Folders, der Starter-Funktion für gemeinsame Verbindungsdateien."
+                "Speichere eine Abfrage mit einem Schlüsselwort wie <code>dau</code> und tippe dieses dann im Editor, um es zur Abfrage zu erweitern. Gespeicherte Abfragen behalten einen Versionsverlauf. Ein verknüpfter SQL-Ordner synchronisiert einen Ordner mit <code>.sql</code>-Dateien in beide Richtungen mit der Seitenleiste und zeigt für jede Datei den Git-Status als Buchstaben. Das ist kostenlos und etwas anderes als Linked Folders, die Starter-Funktion für gemeinsam genutzte Verbindungsdateien."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -42,7 +42,7 @@
             "id": "open-quickly",
             "title": "Open Quickly und Tabs",
             "paragraphs": [
-                "Open Quickly (<kbd>⌘⇧O</kbd>) findet Tabellen, Views und Systemtabellen aller offenen Verbindungen sowie gespeicherte und zuletzt verwendete Abfragen. Jeder Tab behält SQL, Sortierung, Filter und Spaltenbreiten. Tabs kehren nach dem Beenden und Öffnen der App zurück; <kbd>⌃Tab</kbd> wechselt zwischen den zuletzt verwendeten."
+                "Open Quickly (<kbd>⌘⇧O</kbd>) findet Tabellen, Views und Systemtabellen aller offenen Verbindungen sowie gespeicherte und zuletzt verwendete Abfragen. Jeder Tab behält SQL, Sortierung, Filter und Spaltenbreiten. Nach dem Beenden und erneuten Öffnen der App sind die Tabs wieder da; <kbd>⌃Tab</kbd> wechselt zwischen den zuletzt verwendeten."
             ]
         },
         {
@@ -54,7 +54,7 @@
                     "id": "explain",
                     "title": "EXPLAIN und EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> zeigt den Abfrageplan als Diagramm, Baum mit Kostenbalken oder Rohdaten des Systems. Wähle einen früheren Lauf derselben Abfrage als Ausgangspunkt; Compare zeigt, ob sie langsamer wurde und sich der Plan änderte. Eine Differenz unter {explainNoise}% gilt als Rauschen. Beides ist kostenlos."
+                        "<kbd>⌥⌘E</kbd> zeigt den Abfrageplan als Diagramm, Baum mit Kostenbalken oder Rohdaten des Systems. Wähle einen früheren Lauf derselben Abfrage als Ausgangspunkt; Compare zeigt, ob sie langsamer geworden ist und ob sich der Plan geändert hat. Eine Differenz unter {explainNoise} % gilt als Rauschen. Beides ist kostenlos."
                     ],
                     "engines": [
                         {
@@ -80,7 +80,7 @@
                     "id": "query-insights",
                     "title": "Query Insights",
                     "paragraphs": [
-                        "Query Insights liest den Abfrageverlauf dieses Macs und ordnet die Ergebnisse: häufigste, langsamste, fehlschlagende und gegenüber dem vorherigen Zeitraum verlangsamte Abfragen. Abfragen werden nach Form gruppiert; dieselbe Anweisung mit unterschiedlichen Werten zählt einmal. Die Zahlen werden auf deinem Mac berechnet und nie hochgeladen."
+                        "Query Insights liest den Abfrageverlauf dieses Macs und erstellt daraus Ranglisten: die am häufigsten ausgeführten Abfragen, die langsamsten, die fehlgeschlagenen und die, die gegenüber dem vorherigen Zeitraum langsamer geworden sind. Abfragen werden nach Form gruppiert; dieselbe Anweisung mit unterschiedlichen Werten zählt einmal. Die Zahlen werden auf deinem Mac berechnet und nie hochgeladen."
                     ],
                     "paid": [
                         "query-insights"
@@ -93,14 +93,14 @@
             "id": "results",
             "title": "Ergebnisse als Diagramme und Karten",
             "paragraphs": [
-                "Ein Ergebnis lässt sich im selben Tab von der Datentabelle zu einem Diagramm oder einer Karte und zurück wechseln."
+                "Ein Ergebnis lässt sich im selben Tab von der Datentabelle zu einem Diagramm oder einer Karte und zurück umschalten."
             ],
             "blocks": [
                 {
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Stelle Ergebnisse als Balken-, Linien-, Flächen- oder Streudiagramm dar, mit Zeitachse für Datumswerte und einer Reihe pro Wert einer gewählten Spalte. Ein Diagramm zeichnet bis zu {chartPoints} Punkte und {chartSeries} Reihen aus den ersten {chartInspectedRows} Zeilen; die Werkzeugleiste meldet, wenn es vorher stoppt."
+                        "Stelle Ergebnisse als Balken-, Linien-, Flächen- oder Streudiagramm dar, mit Zeitachse für Datumswerte und einer Reihe pro Wert einer gewählten Spalte. Ein Diagramm zeichnet bis zu {chartPoints} Punkte und {chartSeries} Reihen aus den ersten {chartInspectedRows} Zeilen; die Symbolleiste weist darauf hin, wenn nicht alles dargestellt wird."
                     ],
                     "paid": [
                         "result-charts"
@@ -111,7 +111,7 @@
                     "id": "map",
                     "title": "Kartenansicht",
                     "paragraphs": [
-                        "Wenn eine Spalte Geometrie als WKT, WKB, GeoJSON, ClickHouse-Tupel oder Elasticsearch-geo_point-Werte enthält, zeichnet die Kartenansicht sie auf Apple Maps. Die Auswahl einer Form wählt ihre Zeile. Deine Zeilen bleiben auf dem Mac; Apple liefert die Kartenkacheln. Die Kartenansicht ist kostenlos."
+                        "Wenn eine Spalte Geometrie als WKT, WKB, GeoJSON, ClickHouse-Tupel oder Elasticsearch-geo_point-Werte enthält, zeichnet die Kartenansicht sie auf Apple Maps. Wählst du eine Form aus, wird ihre Zeile ausgewählt. Deine Zeilen bleiben auf dem Mac; Apple liefert die Kartenkacheln. Die Kartenansicht ist kostenlos."
                     ],
                     "asset": "mac-result-map"
                 }
@@ -121,7 +121,7 @@
             "id": "other-languages",
             "title": "Systeme ohne SQL",
             "paragraphs": [
-                "Bei Verbindungen ohne SQL nimmt der Editor die eigene Sprache des Systems an; die jeweilige Systemseite erklärt die Unterstützung. Der MongoDB-Editor ist eine JavaScript-Shell im mongosh-Stil innerhalb von TablePro, nicht mongosh selbst."
+                "Bei Verbindungen ohne SQL versteht der Editor die eigene Sprache des Systems; die Seite des jeweiligen Systems erklärt, was unterstützt wird. Der MongoDB-Editor ist eine JavaScript-Shell im mongosh-Stil innerhalb von TablePro, nicht mongosh selbst."
             ],
             "engines": [
                 {
@@ -134,8 +134,8 @@
             "id": "iphone",
             "title": "Auf iPhone und iPad",
             "paragraphs": [
-                "Die iPhone- und iPad-App hat einen Abfrage-Tab mit SQL-Hervorhebung, Run und Stop (<kbd>⌘↩</kbd> mit Tastatur) und einem Verlauf der letzten {historyEntriesIos} Abfragen auf diesem Gerät. Ergebnisse lassen sich als JSON, CSV oder SQL-INSERT-Anweisungen kopieren oder teilen.",
-                "Sie hat keine Autovervollständigung, Formatierung, Parameter, EXPLAIN oder gespeicherte Abfragen und behält höchstens {resultBufferIos} Ergebniszeilen. Nutze LIMIT für den gewünschten Ausschnitt."
+                "Die iPhone- und iPad-App hat einen Query-Tab mit SQL-Hervorhebung, Run und Stop (<kbd>⌘↩</kbd> mit Tastatur) und einem Verlauf der letzten {historyEntriesIos} Abfragen auf diesem Gerät. Ergebnisse lassen sich als JSON, CSV oder SQL-INSERT-Anweisungen kopieren oder teilen.",
+                "Sie bietet weder Autovervollständigung noch Formatierung, Parameter, EXPLAIN oder gespeicherte Abfragen und behält höchstens {resultBufferIos} Ergebniszeilen. Nutze LIMIT für den gewünschten Ausschnitt."
             ],
             "links": [
                 {
@@ -232,7 +232,7 @@
             "href": "/databases"
         },
         {
-            "label": "Was ein bezahlter Tarif ergänzt",
+            "label": "Was ein bezahlter Tarif zusätzlich bietet",
             "href": "/pricing#features"
         }
     ]

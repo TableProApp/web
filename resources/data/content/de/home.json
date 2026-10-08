@@ -69,8 +69,8 @@
     "safety": {
         "title": "Schutzmechanismen für Produktionsdatenbanken",
         "body": [
-            "Auf dem Mac kannst du Verbindungen nach Umgebung markieren und einfärben und jeder eine Safe-Mode-Stufe zuweisen. Silent führt Anweisungen unverändert aus, Alert fragt vor einem Schreibvorgang nach, die Stufen namens Safe Mode verlangen zusätzlich Touch ID oder dein Passwort, und Read-Only verweigert Schreibvorgänge. DROP, TRUNCATE und DELETE ohne WHERE halten auf jeder Stufe an und fragen nach. Auf iPhone und iPad fragt Confirm Writes vor jeder Änderung; Read-Only verweigert sie.",
-            "Im Agent mode kann der KI-Assistent Anweisungen ausführen. Während eine Verbindung im Agent mode geöffnet ist, läuft sie auf Alert oder strenger. Data Rewind kann die Werte wiederherstellen, die ein kürzlicher Speichervorgang ersetzt hat. Es ist kein Backup."
+            "Auf dem Mac kannst du Verbindungen nach Umgebung markieren und einfärben und jeder eine Safe-Mode-Stufe zuweisen. Silent führt Anweisungen unverändert aus, Alert fragt vor einem Schreibvorgang nach, die Stufen namens Safe Mode verlangen zusätzlich Touch ID oder dein Passwort, und Read-Only verweigert Schreibvorgänge. DROP, TRUNCATE und DELETE ohne WHERE halten auf jeder Stufe an und fragen nach. Auf iPhone und iPad fragt Confirm Writes vor jeder Änderung nach; Read-Only verweigert sie.",
+            "Im Agent mode kann der KI-Assistent Anweisungen ausführen. Während eine Verbindung im Agent mode geöffnet ist, läuft sie auf Alert oder strenger. Data Rewind kann die Werte wiederherstellen, die ein kürzlich erfolgter Speichervorgang ersetzt hat. Es ist kein Backup."
         ],
         "levels": "Safe-Mode-Stufen",
         "link": "Safe Mode"
@@ -79,8 +79,8 @@
         "title": "KI-Assistent und MCP-Server",
         "body": [
             "Auf dem Mac erklärt, optimiert und korrigiert ein optionaler KI-Assistent Abfragen und beantwortet Fragen zu deinem Schema. Du wählst den Anbieter: einen API-Schlüssel, ein bestehendes Konto oder ein Modell, das auf deinem Mac läuft. TablePro betreibt keinen eigenen KI-Dienst, und es wird nichts gesendet, bis du einen Anbieter hinzufügst.",
-            "Der Chat beginnt im Modus Ask, der nur liest. In Edit und Agent kann der Assistent Anweisungen ausführen. Von Alert bis Safe Mode (Full) wartet jeder Schreibvorgang auf dich, Read-Only verweigert sie, und DROP oder TRUNCATE erfordern immer deinen Klick.",
-            "Der integrierte Server für MCP (Model Context Protocol) ermöglicht KI-Clients wie {mcpClients}, deine gespeicherten Verbindungen zu nutzen, ohne ein Passwort zu sehen. Er lauscht nur auf {mcpHost}; jede Verbindung legt fest, was externe Apps dürfen: Blocked, Read Only (Standard) oder Read & Write.",
+            "Der Chat beginnt im Modus Ask, der nur liest. In Edit und Agent kann der Assistent Anweisungen ausführen. Von Alert bis Safe Mode (Full) wartet jeder Schreibvorgang auf dich, Read-Only verweigert Schreibvorgänge, und DROP oder TRUNCATE erfordern immer deinen Klick.",
+            "Der integrierte Server für MCP (Model Context Protocol) ermöglicht es KI-Clients wie {mcpClients}, deine gespeicherten Verbindungen zu nutzen, ohne ein Passwort zu sehen. Er lauscht nur auf {mcpHost}; jede Verbindung legt fest, was externe Apps dürfen: Blocked, Read Only (Standard) oder Read & Write.",
             "All das ist kostenlos."
         ],
         "providers": "Anbieter, die du hinzufügen kannst: {providers}."
@@ -102,7 +102,7 @@
     },
     "pricing": {
         "title": "Kostenlos nutzbar, mit optionalen bezahlten Tarifen",
-        "lead": "Die {macApp} lässt sich kostenlos herunterladen und nutzen, ohne Testzeitraum oder Zeitlimit. Ein Starter- oder Team-Tarif ergänzt optionale Funktionen wie {starterExamples}. Team enthält alles aus Starter und ergänzt {teamExamples}, um Verbindungen und Abfragen mit deinem Team zu teilen. Die {iosApp} ist kostenlos, ohne In-App-Käufe."
+        "lead": "Die {macApp} lässt sich kostenlos herunterladen und nutzen, ohne Testzeitraum oder Zeitlimit. Ein Starter- oder Team-Tarif ergänzt sie um optionale Funktionen wie {starterExamples}. Team enthält alles aus Starter und zusätzlich {teamExamples}, um Verbindungen und Abfragen mit deinem Team zu teilen. Die {iosApp} ist kostenlos, ohne In-App-Käufe."
     },
     "openSource": {
         "title": "Quelloffen und bereit zum Download",

@@ -18,7 +18,7 @@
             "title": "iCloud Sync",
             "paragraphs": [
                 "iCloud Sync hält deine Bibliothek auf jedem Mac, iPhone und iPad mit deinem iCloud-Konto identisch. Die Datensätze gehen in eine private Datenbank dieses Kontos, und die Synchronisierung bleibt aus, bis du sie auf jedem Gerät aktivierst. Auf iPhone und iPad ist sie kostenlos; der Mac braucht einen Tarif, der sie enthält.",
-                "Passwörter werden nur synchronisiert, wenn du zusätzlich <ui>Passwords</ui> unter Synchronisierungskategorien auf dem Mac oder <ui>Sync Passwords</ui> auf iPhone und iPad aktivierst. Sie laufen über den iCloud-Schlüsselbund. Auf dem Mac überträgt derselbe Schalter auch andere Geheimnisse, die TablePro im Schlüsselbund speichert, etwa KI-Anbieterschlüssel und den Lizenzschlüssel. Markiere eine Verbindung als Local only, um sie samt Favoriten und gespeicherten Abfragen auf einem Mac zu behalten."
+                "Passwörter werden nur synchronisiert, wenn du zusätzlich <ui>Passwords</ui> unter Sync Categories auf dem Mac oder <ui>Sync Passwords</ui> auf iPhone und iPad aktivierst. Sie laufen über den iCloud-Schlüsselbund. Auf dem Mac überträgt derselbe Schalter auch andere Geheimnisse, die TablePro im Schlüsselbund speichert, etwa KI-Anbieterschlüssel und den Lizenzschlüssel. Markiere eine Verbindung als Local only, um sie samt Favoriten und gespeicherten Abfragen auf einem Mac zu behalten."
             ],
             "points": [
                 "Auf dem Mac wählst du, was synchronisiert wird: Verbindungen, Gruppen und Tags, Einstellungen, SSH-Profile, Zugangsdatenprofile (Name und Benutzername, niemals das Passwort), Tabellen- und Datenbankfavoriten, gespeicherte Abfragen mit ihrem SQL und Tabellenordner.",
@@ -117,7 +117,7 @@
             "title": "Arbeitsplätze, Einladungen und dein Konto",
             "paragraphs": [
                 "Eine Team-Lizenz wird pro Arbeitsplatz berechnet, und ein Arbeitsplatz entspricht einem aktivierten Mac, nicht einer Person. Du lädst Teammitglieder über dein Konto im Web ein; jedes erhält per E-Mail einen einmal verwendbaren Code für <ui>Settings > License</ui> auf seinem Mac. Eine Einladung erfordert einen freien Arbeitsplatz. Die App zeigt die Teammitglieder an; Arbeitsplätze und Einladungen verwaltest du im Web.",
-                "Bei einem aktiven Monats- oder Jahresabo änderst du die Zahl der Arbeitsplätze selbst; bei einem Einmalkauf kontaktierst du den Support. Wenn du jemanden entfernst, wird dessen Arbeitsplatz sofort frei und seine Veröffentlichungen in der Team Library werden gelöscht. Seine Macs verlieren die kostenpflichtigen Funktionen bei der nächsten Lizenzprüfung, innerhalb von {licenseCheckDays} Tagen. Die Kontoseite ist für die Person, die die Lizenz gekauft hat."
+                "Bei einem aktiven Monats- oder Jahresabo änderst du die Zahl der Arbeitsplätze selbst; bei einem Einmalkauf kontaktierst du den Support. Wenn du jemanden entfernst, wird dessen Arbeitsplatz sofort frei und seine Veröffentlichungen in der Team Library werden gelöscht. Seine Macs verlieren die Bezahlfunktionen bei der nächsten Lizenzprüfung, innerhalb von {licenseCheckDays} Tagen. Die Kontoseite ist für die Person gedacht, die die Lizenz gekauft hat."
             ],
             "links": [
                 {
@@ -193,7 +193,7 @@
     ],
     "limits": [
         "Wenn ein Tarif auf dem Mac endet, pausiert iCloud Sync mit einer Begründung, und Verbindungen aus Linked Folders und der Team Library verschwinden aus der Liste. Die Team-Veröffentlichungsbefehle werden ausgeblendet, und Encrypted Export verliert die Passwortoption.",
-        "Das Bearbeiten einer synchronisierten Verbindung auf iPhone oder iPad kann Einstellungen ändern, die es dort nicht gibt. Eine strengere Safe-Mode-Stufe des Mac wie Safe Mode (Full) kommt als Alert zurück, und SSH-Sprunghosts können verloren gehen. Ändere solche Verbindungen auf dem Mac.",
+        "Das Bearbeiten einer synchronisierten Verbindung auf iPhone oder iPad kann Einstellungen ändern, die es dort nicht gibt. Eine strengere Safe-Mode-Stufe des Mac wie Safe Mode (Full) kommt als Alert zurück, und SSH-Jump-Hosts können verloren gehen. Ändere solche Verbindungen auf dem Mac.",
         "Wenn eine Team-Lizenz endet oder gesperrt wird, bleiben Veröffentlichungen in der Team Library auf dem Server von TablePro, bis du ihre Löschung anforderst."
     ],
     "docs": [
@@ -236,7 +236,7 @@
             "href": "/features/connections"
         },
         {
-            "label": "Was ein kostenpflichtiger Tarif bietet",
+            "label": "Was ein bezahlter Tarif zusätzlich bietet",
             "href": "/pricing#features"
         },
         {
