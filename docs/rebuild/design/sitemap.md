@@ -341,7 +341,7 @@ Two lists drive this. **`alternates`** (for hreflang) holds real translations on
 
 **Theme across both apps.** Both use the same localStorage `theme` key on the same origin. Both head scripts default to light when nothing is stored, guard storage access with try/catch, and set the class before first paint. Screenshot variants follow the site's theme class, not `prefers-color-scheme`.
 
-**License banner.** `config/banner.php` is on by default (owner decision, 2026-10-05), on every public page except /pricing, and links to /pricing or to a release post. It asks a regular user to buy a license and says what a license adds and pays for; it never pleads. Its dismiss key `tablepro:banner-dismissed` holds the closed version and an end date: 30 days after closing, a year for a license holder or a buyer. The copy "The whole app is free" stays deleted.
+**License banner.** `config/banner.php` is on by default (owner decision, 2026-10-05), on every public page except /pricing in every language, and links to /pricing or to a release post. On /ios a reader on an iPhone or iPad does not get it: the license is for the Mac app. It asks a regular user to buy a license and says what a license adds and pays for; it never pleads. Its dismiss key `tablepro:banner-dismissed` holds the closed version and an end date: 30 days after closing, a year for a license holder or a buyer. The copy "The whole app is free" stays deleted.
 
 ---
 

@@ -848,9 +848,9 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 **SupportBanner:**
 
-- The license banner (decided 2026-10-05): on by default on every public page except Pricing, above the sticky header, scrolling away with the page.
-- 40px `--surface` band with a 1px `--rule` bottom border; text `small` `--foreground`; link `standalone`. From 1024px the sentence and "Get a license"; below, the short link alone; from 1280px also "Have a license? Hide this".
-- Dismiss is a 32px `quiet` icon button labelled "Dismiss" / "Ẩn thông báo". Closing it hides the bar for 30 days at that version; "Have a license?" and a purchase hide it for a year at every version (`lib/banner.ts`).
+- The license banner (decided 2026-10-05): on by default on every public page except Pricing, above the sticky header, scrolling away with the page. Off on `/ios` for a reader on an iPhone or iPad, whose app has no license.
+- 40px `--surface` band with a 1px `--rule` bottom border; text `small` `--foreground`; link `standalone`. From 1024px the sentence and "Get a license"; below, the short question ("Use TablePro daily?") and the same link, within 248px so it fits a 320px screen; from 1280px also "Have a license? Hide this".
+- Dismiss is a 32px `quiet` icon button labelled "Dismiss" / "Ẩn thông báo", in a 44px-wide target. Closing it hides the bar for 30 days at that version; "Have a license?" and a purchase hide it for a year at every version (`lib/banner.ts`).
 - Mechanics: `--banner-h`, `has-banner` stamped server-side on the pages that show it, and the dismissal record settled before first paint.
 
 **SiteFooter:**
