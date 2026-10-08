@@ -33,6 +33,10 @@
             "label": "Homebrew",
             "tablepro": "Dipasang dengan Homebrew sebagai cask tablepro"
         },
+        "website": {
+            "label": "Situs web",
+            "tablepro": "Tersedia dengan catatan rilis dan dokumentasi"
+        },
         "rosetta": {
             "label": "Apple silicon",
             "tablepro": "Build terpisah untuk Apple silicon, tanpa Rosetta"
@@ -164,6 +168,7 @@
     "notes": {
         "sequel-pro-databases": "MySQL dan MariaDB",
         "sequel-pro-cask-removed": "Homebrew menonaktifkan cask karena dihentikan, mengarahkan ke Sequel Ace, lalu menghapusnya pada {date}",
+        "sequel-pro-site-down": "sequelpro.com tidak dimuat saat diperiksa, dan issue terbuka pada repositori melaporkan situs tidak tersedia",
         "sequel-pro-rosetta": "Build Intel. Pada Apple silicon memerlukan Rosetta, yang menurut Apple hanya dipertahankan untuk beberapa game lama mulai macOS 28.",
         "sequel-pro-successor": "Sequel Ace, yang menyebut dirinya “sekuel” Sequel Pro dan dibangun dari kodenya"
     }

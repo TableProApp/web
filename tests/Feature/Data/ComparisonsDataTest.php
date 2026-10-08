@@ -218,10 +218,54 @@ it('links every source to a page a reader can open, never a data feed', function
         foreach ($product['sources'] as $source) {
             $where = "{$product['id']} {$source['id']} ({$source['url']})";
 
-            expect(preg_match('/\.(json|md|xml|txt)$/i', (string) parse_url($source['url'], PHP_URL_PATH)))->toBe(0, "{$where} is a raw file");
-            expect(preg_match('/^(api|data|raw)\./i', (string) parse_url($source['url'], PHP_URL_HOST)))->toBe(0, "{$where} is an API host");
+            $host = (string) parse_url($source['url'], PHP_URL_HOST);
+
+            // GitHub renders a repository's LICENSE.md as a page.
+            if ($host !== 'github.com') {
+                expect(preg_match('/\.(json|md|xml|txt)$/i', (string) parse_url($source['url'], PHP_URL_PATH)))->toBe(0, "{$where} is a raw file");
+            }
+
+            expect(preg_match('/^(api|data|raw)\./i', $host))->toBe(0, "{$where} is an API host");
         }
     }
+});
+
+it('lets only a cell cite several sources', function (): void {
+    foreach (comparisonsJson()['products'] as $product) {
+        $single = [
+            'status.lastRelease' => $product['status']['lastRelease']['source'],
+            'licence' => $product['licence']['source'],
+            'mac' => $product['mac']['source'] ?? '',
+            'technology' => $product['technology']['source'] ?? '',
+            'platformsSource' => $product['platformsSource'] ?? '',
+        ];
+
+        foreach ($product['prices'] as $index => $price) {
+            $single["prices.{$index}"] = $price['source'];
+        }
+
+        foreach ($single as $path => $source) {
+            expect($source)->toBeString("{$product['id']}.{$path}.source is a list, and only a cell renders one");
+        }
+    }
+});
+
+it('calls a named licence that is not open source only what the page can label', function (): void {
+    foreach (comparisonsJson()['products'] as $product) {
+        if (! $product['licence']['openSource'] && $product['licence']['name'] !== null) {
+            // "Source available ({licence})" on the engine pages: the code is published under it.
+            expect($product['licence']['name'])->toBeIn(['SSPL-1.0'], "{$product['id']}: is its source published under {$product['licence']['name']}?");
+        }
+    }
+});
+
+it('keeps true that TablePlus runs on older systems than TablePro', function (): void {
+    $platforms = collect(json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR)['platforms'])->keyBy('id');
+    $tableplus = collect(comparisonsJson()['products'])->firstWhere('id', 'tableplus');
+
+    // content/*/compare/tableplus.json says so under "Where TablePlus is stronger".
+    expect(version_compare($tableplus['mac']['minVersion'], $platforms['mac']['requirements']['minVersion'], '<'))->toBeTrue();
+    expect(version_compare((string) $tableplus['cells']['ios']['value'], $platforms['ios']['requirements']['minVersion'], '<'))->toBeTrue();
 });
 
 it('names engines only on a compared product’s databases cell, each from engines.json', function (): void {

@@ -8,7 +8,7 @@
  * - A competitor fact comes from its `comparisons.json` entry and carries the
  *   source it cites. A row with no verified cell for the product is left out,
  *   never guessed. The one derived row is iPhone and iPad: a product whose
- *   sourced platform list has no `ios` gets "not supported" citing that list.
+ *   sourced platform list has no `ios` gets "No" citing that list.
  * - TablePro's column is never stored with the competitors. It is built here
  *   from pricing, platforms, paid features and facts, which the caller reads.
  * - No sentence is assembled from fragments: every phrase is one template
@@ -463,7 +463,7 @@ function competitorPlatforms(product: ComparisonProduct, context: ModelContext):
 /**
  * The iPhone and iPad row: the product's own cell, or a yes or no derived from
  * its sourced platform list. A web application is left out of the derived
- * row, because it opens in a phone's browser; "not supported" would mislead.
+ * row, because it opens in a phone's browser; "No" would mislead.
  */
 function competitorIos(product: ComparisonProduct, context: ModelContext): CellView | null {
     const cell = product.cells.ios;

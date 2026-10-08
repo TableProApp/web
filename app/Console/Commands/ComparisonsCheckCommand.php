@@ -8,19 +8,12 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 /**
- * Says which facts in `resources/data/comparisons.json` need a second look.
- *
- * Run by hand, like `release:check`. For each product it reports:
- *
- * - how long ago it was checked, STALE past `--max-age` days;
- * - for a product whose last release cites a GitHub releases page, the latest
- *   release there against `status.lastRelease`, DRIFT when they differ.
- *
- * Prices, editions and features have no feed to compare with: a STALE row is
- * the prompt to re-read that product's sources. It exits non-zero on any
- * STALE, DRIFT or UNREADABLE row.
+ * Run by hand, like `release:check`. Prices, editions and features have no
+ * feed to compare with, so a STALE row is the prompt to re-read that product's
+ * sources.
  */
 #[Signature('comparisons:check {--max-age=30 : Days after which a product\'s check is stale}')]
 #[Description('List the compared products checked too long ago, and compare their last release with GitHub.')]
@@ -61,7 +54,7 @@ class ComparisonsCheckCommand extends Command
             $checkedAt = is_string($product['checkedAt'] ?? null) ? $product['checkedAt'] : null;
             $age = $checkedAt !== null ? (int) Carbon::parse($checkedAt)->diffInDays($today) : null;
 
-            $rows[] = [$id, 'checked', $checkedAt ?? '—', $age !== null ? "{$age} days ago" : '—', $age !== null && $age <= $maxAge ? self::OK : self::STALE];
+            $rows[] = [$id, 'checked', $checkedAt ?? 'n/a', $age !== null ? $age . ' ' . Str::plural('day', $age) . ' ago' : 'n/a', $age !== null && $age <= $maxAge ? self::OK : self::STALE];
 
             $repository = $this->releaseRepository($product);
 
@@ -72,8 +65,8 @@ class ComparisonsCheckCommand extends Command
             $recorded = $product['status']['lastRelease'];
             $latest = $this->latestRelease($repository);
 
-            $rows[] = [$id, 'release', (string) $recorded['version'], $latest['version'] ?? '—', $this->compare((string) $recorded['version'], $latest['version'] ?? null)];
-            $rows[] = [$id, 'released', (string) $recorded['date'], $latest['date'] ?? '—', $this->compare((string) $recorded['date'], $latest['date'] ?? null)];
+            $rows[] = [$id, 'release', (string) $recorded['version'], $latest['version'] ?? 'n/a', $this->compare((string) $recorded['version'], $latest['version'] ?? null)];
+            $rows[] = [$id, 'released', (string) $recorded['date'], $latest['date'] ?? 'n/a', $this->compare((string) $recorded['date'], $latest['date'] ?? null)];
         }
 
         $this->table(['Product', 'Field', 'comparisons.json', 'Now', 'Result'], $rows);

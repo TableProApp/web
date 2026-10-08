@@ -33,6 +33,10 @@
             "label": "Homebrew",
             "tablepro": "Cài được bằng Homebrew, qua cask tablepro"
         },
+        "website": {
+            "label": "Website",
+            "tablepro": "Đang hoạt động, có ghi chú phát hành và tài liệu"
+        },
         "rosetta": {
             "label": "Apple silicon",
             "tablepro": "Có bản riêng cho Apple silicon, không cần Rosetta"
@@ -156,6 +160,7 @@
     "notes": {
         "sequel-pro-databases": "MySQL và MariaDB",
         "sequel-pro-cask-removed": "Homebrew đã vô hiệu hóa cask vì ứng dụng ngừng phát triển, trỏ sang Sequel Ace để thay thế, rồi gỡ cask vào ngày {date}",
+        "sequel-pro-site-down": "sequelpro.com không truy cập được khi kiểm tra, và một issue còn mở trong repository báo website đã ngừng hoạt động",
         "sequel-pro-rosetta": "Bản cho Intel. Trên Apple silicon cần Rosetta, và Apple cho biết từ macOS 28, Rosetta chỉ còn dành cho một số trò chơi cũ.",
         "sequel-pro-successor": "Sequel Ace, dự án tự gọi mình là “phần tiếp theo” của Sequel Pro và xây dựng trên mã nguồn của Sequel Pro"
     }

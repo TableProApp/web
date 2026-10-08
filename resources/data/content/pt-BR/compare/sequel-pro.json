@@ -33,6 +33,10 @@
             "label": "Homebrew",
             "tablepro": "Instala por Homebrew com o cask tablepro"
         },
+        "website": {
+            "label": "Site",
+            "tablepro": "Disponível, com notas de versão e documentação"
+        },
         "rosetta": {
             "label": "Apple silicon",
             "tablepro": "Uma compilação separada para Apple silicon, dispensando Rosetta"
@@ -164,6 +168,7 @@
     "notes": {
         "sequel-pro-databases": "MySQL e MariaDB",
         "sequel-pro-cask-removed": "Homebrew desativou o cask como descontinuado, indicando Sequel Ace como alternativa, e o removeu em {date}",
+        "sequel-pro-site-down": "sequelpro.com não carregou durante a verificação, e uma issue aberta no repositório informa que o site está fora do ar",
         "sequel-pro-rosetta": "Uma compilação Intel. Em Apple silicon exige Rosetta, que a Apple afirma que continuará apenas para certos jogos antigos a partir do macOS 28.",
         "sequel-pro-successor": "Sequel Ace, que se apresenta como a “sequência” de Sequel Pro e se baseia em seu código"
     }
