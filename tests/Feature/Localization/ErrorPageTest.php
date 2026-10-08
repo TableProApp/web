@@ -78,6 +78,36 @@ it('offers the English post on /vi/blog/{slug} instead of its English body', fun
             ->where('localization.switcher.0.href', "/blog/{$slug}"));
 });
 
+it('switches a post missing in this language like the post itself, not to each home page', function (): void {
+    $slug = pathinfo((string) collect(glob(resource_path('blog/*.md')))->first(
+        fn(string $post): bool => ! is_file(resource_path('blog/de/' . basename($post)))
+            && ! app(RedirectMap::class)->retires('/blog/' . pathinfo($post, PATHINFO_FILENAME)),
+    ), PATHINFO_FILENAME);
+
+    $this->get("/de/blog/{$slug}")
+        ->assertNotFound()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->component('Error')
+            ->where('localization.switcher.0.href', "/blog/{$slug}")
+            ->where('localization.switcher.0.fallback', false)
+            ->where('localization.switcher.2.locale', 'es')
+            ->where('localization.switcher.2.href', '/es/blog')
+            ->where('localization.switcher.2.fallback', true)
+            ->where('localization.switcher.3.href', "/de/blog/{$slug}")
+            ->where('localization.switcher.3.current', true)
+            ->where('seo.robots', 'noindex, follow')
+            ->where('seo.alternates', []));
+});
+
+it('still switches an unknown path to each home page', function (): void {
+    $this->get('/de/blog/no-such-post')
+        ->assertNotFound()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('localization.switcher.0.href', '/')
+            ->where('localization.switcher.2.href', '/es')
+            ->where('localization.switcher.2.fallback', false));
+});
+
 it('preloads the Vietnamese font subset only on Vietnamese pages', function (): void {
     expect(substr_count($this->get('/no-such-page')->getContent(), 'as="font"'))->toBe(1);
     expect(substr_count($this->get('/vi/khong-co-trang-nay')->getContent(), 'as="font"'))->toBe(2);
