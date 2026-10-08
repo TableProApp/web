@@ -70,12 +70,14 @@ export interface OfferInput {
     cycle?: BillingCycle;
     /** What one unit of the price buys, such as "seat"; omitted for a whole license. */
     unitText?: string;
+    /** How many units one purchase can hold, where the page states it: a Team plan's seat bounds. */
+    quantity?: { min: number; max: number };
 }
 
 /** The parts of `resources/data/pricing.json` the offers are built from. */
 export interface PricingFacts {
     currency: string;
-    tiers: Record<string, { price?: number; unit?: string; prices?: Partial<Record<BillingCycle, number>> }>;
+    tiers: Record<string, { price?: number; unit?: string; prices?: Partial<Record<BillingCycle, number>>; seats?: { min: number; max: number } }>;
 }
 
 const BILLING_DURATION: Record<Exclude<BillingCycle, 'lifetime'>, string> = {
@@ -198,6 +200,16 @@ export function offerNode(input: OfferInput): JsonLdNode {
             ...(billingDuration !== undefined ? { billingDuration } : {}),
             ...(input.unitText !== undefined ? { unitText: input.unitText } : {}),
         },
+        ...(input.quantity !== undefined
+            ? {
+                  eligibleQuantity: {
+                      '@type': 'QuantitativeValue',
+                      minValue: input.quantity.min,
+                      maxValue: input.quantity.max,
+                      ...(input.unitText !== undefined ? { unitText: input.unitText } : {}),
+                  },
+              }
+            : {}),
     };
 }
 
@@ -234,6 +246,7 @@ export function pricingOffers(
                 currency: pricing.currency,
                 cycle,
                 ...(unit !== undefined ? { unitText: unit } : {}),
+                ...(unit !== undefined && facts.seats !== undefined ? { quantity: facts.seats } : {}),
             });
         }
     }

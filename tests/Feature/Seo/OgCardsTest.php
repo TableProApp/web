@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Blog\BlogService;
 use App\Support\Assets\AssetManifest;
 use App\Support\Content\ContentRepository;
 use App\Support\Localization\Locales;
@@ -148,6 +149,40 @@ it('gives each page with card copy its own card, in its own language', function 
             }
 
             Assert::assertSame($images->fallback($locale)['url'] ?? null, $url, "{$entry->key()} ({$locale}) should share its language's generic card");
+        }
+    }
+
+    expect($own)->toBeGreaterThan(80);
+});
+
+it('says what each card shows, in the language of the page that shares it', function (): void {
+    /*
+     * A card is text set in an image, so its `alt` is that text: the title
+     * `og:generate` printed on a page's own card, or what the manifest says
+     * the designed site card shows.
+     */
+    $site = app(AssetManifest::class)->entry(OgImages::SITE_CARD)['alt'];
+    $blog = app(BlogService::class);
+    $content = app(ContentRepository::class);
+    $own = 0;
+
+    foreach (app(PageRegistry::class)->all() as $entry) {
+        foreach ($entry->renderLocales as $locale) {
+            $path = $entry->url($locale, false);
+            $alt = app(SeoContext::class)->forRequest(seoMatchedRequest($path, $locale))['ogImage']['alt'] ?? null;
+
+            if (! ogCardsHasOwnCopy($entry, $locale)) {
+                Assert::assertSame($site[$locale], $alt, "{$path} does not describe the site card in its language");
+
+                continue;
+            }
+
+            $title = $entry->ogFamily === 'blog'
+                ? $blog->find((string) $entry->ogSlug, $locale)->title
+                : $content->page((string) ContentCollection::contentName($entry), $locale)['og']['title'];
+
+            Assert::assertSame($title, $alt, "{$path} does not describe its own card");
+            $own++;
         }
     }
 

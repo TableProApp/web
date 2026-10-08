@@ -57,8 +57,9 @@ export interface AppStoreBadgeViewOptions {
  */
 export function renderAppStoreBadge({ href, locale, label, onClick }: AppStoreBadgeViewOptions): ReactElement {
     const artwork = APP_STORE_BADGE_ARTWORK[locale];
+    // Apple's artboards are fractions of a pixel wide (119.66407), and the HTML attribute takes whole numbers only.
     const image = (src: string, className: string, width: number): ReactElement =>
-        createElement('img', { src, alt: label, width, height: 40, loading: 'lazy', decoding: 'async', className });
+        createElement('img', { src, alt: label, width: Math.round(width), height: 40, loading: 'lazy', decoding: 'async', className });
 
     return createElement(
         'a',

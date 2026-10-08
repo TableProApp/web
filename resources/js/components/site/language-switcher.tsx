@@ -3,7 +3,7 @@ import { usePage } from '@inertiajs/react';
 import { Check, ChevronDown, Globe } from 'lucide-react';
 import { FOOTER_MENU_ITEM, FooterMenu } from '@/components/shared/footer-bar';
 import DotList from '@/components/ui/dot-list';
-import { messagesFor, useI18n } from '@/i18n';
+import { languageCopy, useI18n } from '@/i18n';
 import type { SwitcherItem } from '@/types/shared-props';
 import { cn } from '@/lib/utils';
 
@@ -73,7 +73,7 @@ function FallbackNote({ item, className }: { item: SwitcherItem; className?: str
         return null;
     }
 
-    const copy = messagesFor(item.locale).controls.language;
+    const copy = languageCopy(item.locale);
     const toBlog = /\/blog\/?$/.test(item.href.replace(/[?#].*$/, ''));
 
     return (

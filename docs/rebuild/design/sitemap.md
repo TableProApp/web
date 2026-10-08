@@ -360,7 +360,7 @@ These apply to the public app only. Platform paths are routed by nginx before th
 | Trailing slash and `/index.php` | Nothing rewrites them. The router matches `/x/` to `/x`: `UriValidator::matches` trims the slash, and under `route:cache` `CompiledRouteCollection::requestWithoutTrailingSlash` does the same. Symfony also removes the `/index.php` script name from the path. So `/mariadb-client/` and `/index.php/mariadb-client` reach the redirect route and get one 301 to `/mysql-client#mariadb`. `/download/`, `/compare/`, `/vi/` and `/index.php/blog` return 200 with their slashless self-canonical, which is today's live behaviour. If a 301 for these variants is ever wanted, it must be global middleware (`$middleware->prepend`), never the `web` group. That is out of scope |
 | No chains | Every redirect target must return 200 directly. A test follows each `Location` once and asserts 200. No `from` is another entry's target, and no `from` is a live route (the merged database slugs leave `DatabaseSlugs::ALL`, and `azimutt` leaves `CompareSlugs`) |
 | No homepage fallback | Unknown paths return 404. Nothing redirects to `/` |
-| Case | Uppercase paths stay **404** (no case folding; no evidence of inbound links) |
+| Case | Uppercase paths stay **404** (no case folding; no evidence of inbound links). The language prefix is the exception: `/pt-br/…` and `/VI/…` go to `/pt-BR/…` and `/vi/…` in one 301, because a shared link loses its capitals easily |
 | Double slash | `//blog` stays 404 |
 | Host and protocol | Host and protocol redirects happen outside the repo |
 | Nothing only at the edge | Every redirect and 410 is versioned in the repo. Nothing lives only in Cloudflare |
@@ -442,7 +442,7 @@ These apply to the public app only. Platform paths are routed by nginx before th
 | `/?subscribe=true&source=mac` | never shipped | no action | `/` (query ignored) | 200 | Canonical `/` |
 | `/?preview=<token>` | old pricing preview | no action | `/` (query ignored) | 200 | Canonical `/` |
 | `/images/{connections,data-grid,databases,sql-editor}-{dark,light}.png`, `/sponsors/{dwarves-foundation,nimbus,unikorn}.svg` | Astro and early Laravel; no inbound links | none | — | 404 | Unchanged |
-| `/en`, `/en/*` | none | none | — | 404 | English lives at the root; no evidence of these paths |
+| `/en`, `/en/*` | none | redirect (in `CanonicalizeRequest`) | the same path without `/en` | 301 | English lives at the root, and `/en` is the first guess for it |
 | `/vi/account*`, `/vi/checkout*` and other platform prefixes under `/vi` | none | none | VI 404 linking `/account?locale=vi` | 404 | Spec §0: no `/vi/account`. nginx would never route these to the platform |
 
 ### C.7 Static assets and OG cards

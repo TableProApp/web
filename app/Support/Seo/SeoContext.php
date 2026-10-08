@@ -39,7 +39,7 @@ final class SeoContext
     ) {}
 
     /**
-     * @return array{robots: string, canonical: string|null, alternates: list<array{hreflang: string, href: string}>, xDefault: string|null, ogLocale: string, ogLocaleAlternates: list<string>, ogImage: array{url: string, width: int, height: int, type: string}|null}
+     * @return array{robots: string, canonical: string|null, alternates: list<array{hreflang: string, href: string}>, xDefault: string|null, ogLocale: string, ogLocaleAlternates: list<string>, ogImage: array{url: string, width: int, height: int, type: string, alt: string|null}|null}
      */
     public function forRequest(Request $request): array
     {

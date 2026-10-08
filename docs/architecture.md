@@ -20,8 +20,10 @@ database and no credentials: every page is built from markdown in
 ```
 
 Pages resolve by convention from `resources/js/pages`. The shared
-`resolve-page.ts` resolver loads the selected asset language before rendering
-on the client or through SSR.
+`resolve-page.ts` resolver loads the selected language's UI catalog and asset
+text before rendering on the client or through SSR. English is in the entry
+bundle; every other language's catalog is a chunk the root template sends with
+the document.
 
 ### Languages
 
@@ -96,7 +98,9 @@ file exists in a locale. `LocaleRoutingTest` holds the two lists together.
 
 Redirects and 410s are not routes. `App\Http\Middleware\CanonicalizeRequest`
 runs first in the global stack, for `GET` and `HEAD` only. It drops a trailing
-slash and a leading `/index.php`, then looks the clean path up in
+slash and a leading `/index.php`, writes a language prefix the way
+`locales.json` does (`/pt-br/…` becomes `/pt-BR/…`, `/en/…` loses the prefix),
+then looks the clean path up in
 `resources/data/redirects.json` (each entry is a `301` with a `to`, or a `410`)
 and in the `/databases/{docsSlug}` rule. The answer is a single hop that keeps
 the query string, so `/mariadb-client/?ref=x` goes straight to

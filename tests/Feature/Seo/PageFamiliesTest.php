@@ -425,7 +425,7 @@ describe('OgImages', function (): void {
         File::put($this->public . '/og/compare/tableplus.png', seoPngBytes());
         File::put($this->public . '/og/vi/compare/tableplus.png', seoPngBytes());
 
-        expect($images->for($entry, 'en'))->toBe(['url' => 'https://localhost/og/compare/tableplus.png', 'width' => 1, 'height' => 1, 'type' => 'image/png']);
+        expect($images->for($entry, 'en'))->toBe(['url' => 'https://localhost/og/compare/tableplus.png', 'width' => 1, 'height' => 1, 'type' => 'image/png', 'alt' => null]);
         expect($images->for($entry, 'vi')['url'])->toBe('https://localhost/og/vi/compare/tableplus.png');
     });
 
