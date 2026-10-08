@@ -29,7 +29,7 @@ Không cần sửa component nào: `<AssetSlot>` tự chuyển từ placeholder 
   - **shop emails:** the sample users have addresses on real-looking third-party domains (such as `acmecorp.com` or `techviet.vn`). Before any capture that can show the `email` column, point them at a reserved domain: `UPDATE users SET email = split_part(email, '@', 1) || '@example.com';` on PostgreSQL, `UPDATE users SET email = CONCAT(SUBSTRING_INDEX(email, '@', 1), '@example.com');` on MariaDB and MySQL.
   - **places**: PostGIS with Natural Earth populated places.
   - Fictional hosts under `*.acme.internal`.
-- **Mac:** capture TablePro 0.77.2. Homebrew may still serve 0.77.1, so a scene that shows a newer feature says so in its brief. Window captures follow `docs/screenshots.md`: a 1216 × 684 pt window on a 2× display, `screencapture -w -o`, traffic lights kept, no added shadow or border.
+- **Mac:** capture TablePro 0.78.0. Window captures follow `docs/screenshots.md`: a 1216 × 684 pt window on a 2× display, `screencapture -w -o`, traffic lights kept, no added shadow or border.
 - **iPhone and iPad:** capture App Store 1.0 (build 22), never a development build. Do not show what that build lacks or gets wrong: jump hosts, Redis key browsing, the table list beside the browser on iPad, or editing long values. Native captures with no device frame.
 - **Light and dark:** for an asset marked "Light and dark", take both from the same frame by switching the macOS appearance (not only the app theme). Phone and iPad captures are opaque and usually serve both themes.
 - **Language:** the app UI stays in English in every capture; one capture serves both the English and Vietnamese pages unless the asset says "per locale".
