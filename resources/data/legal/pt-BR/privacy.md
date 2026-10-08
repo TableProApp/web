@@ -122,7 +122,7 @@ Handoff transmite o ID da conexão aberta e o nome da tabela aberta entre seus d
 
 **Atribuição de compras.** Ao chegar ao site, o navegador mantém um registro da primeira visita chamado `tablepro:attribution` no armazenamento local por 90 dias: origem da visita (as tags `ref` ou `utm_*` do link seguido ou o site de origem), página de chegada e momento. Se iniciar uma compra, o registro acompanha a solicitação de checkout. Nosso servidor o descarta: não é validado, lido nem armazenado e não é enviado a {merchant}.
 
-**Documentação.** A documentação em docs.tablepro.app é hospedada pela Mintlify e não define cookies. Mintlify guarda um ID de visitante aleatório, `mintlify_anonymous_id`, no armazenamento local do seu navegador para esse site e o usa para contar as visitas à documentação. Mintlify recebe seu endereço IP e os dados do seu navegador a cada página, e as páginas carregam as fontes do Google Fonts. Base legal: interesse legítimo.
+**Documentação.** A documentação em docs.tablepro.app é hospedada pela Mintlify, que recebe seu endereço IP e os dados do seu navegador a cada página, e as páginas carregam as fontes do Google Fonts. A documentação faz a própria pergunta sobre cookies, porque não consegue ler a resposta que você deu neste site. Até você escolher **Allow** lá, ela não define cookies nem guarda um ID de visitante. Se permitir, Google Analytics define os cookies `_ga` e `_ga_<ID>` e mede suas visitas à documentação, e Mintlify guarda um ID de visitante aleatório, `mintlify_anonymous_id`, no armazenamento local para contá-las. **Cookie settings**, no rodapé da documentação, altera sua resposta, e recusar remove os dois. Base legal: seu consentimento.
 
 Ler o site não define cookies próprios. Inscrever-se na newsletter, iniciar checkout ou verificar um código de desconto envia uma solicitação ao servidor que define os dois cookies do portal da conta, `tablepro-session` e `XSRF-TOKEN`. Tudo que o site mantém no navegador está listado em [Cookies e armazenamento do navegador](#cookies).
 
@@ -150,7 +150,7 @@ Ler o site público não define cookies próprios; inscrever-se na newsletter ou
 - **`tablepro:analytics-consent`** (armazenamento local, até você limpar): sua resposta à pergunta de análises, para não perguntar em todas as páginas. Site e portal da conta compartilham o registro. Base legal: estritamente necessário para respeitar sua escolha.
 - **`tablepro:attribution`** (armazenamento local, 90 dias): registro da primeira visita descrito em [Site](#website). Não contém um identificador seu e só é enviado com a solicitação de checkout, onde nosso servidor o descarta. Base legal: interesse legítimo.
 - **`theme`** e **`tablepro:banner-dismissed`** (armazenamento local, até você limpar): se escolheu aparência clara, escura ou do sistema e qual aviso fechou e até quando: 30 dias ou um ano se informar que tem licença ou comprar uma. Base legal: interesse legítimo.
-- **`mintlify_anonymous_id`** (armazenamento local em docs.tablepro.app, definido pela Mintlify, até você limpar): o ID de visitante descrito em [Site](#website). Base legal: interesse legítimo.
+- **`mintlify_anonymous_id`** (armazenamento local em docs.tablepro.app, definido pela Mintlify, somente se você permitir Google Analytics lá): o ID de visitante descrito em [Site](#website). Recusar o remove. A documentação guarda a própria resposta `tablepro:analytics-consent`. Base legal: consentimento.
 - **Cookies que começam com `crisp-client/`** (Crisp, por exemplo `crisp-client/session/…`; 6 meses, renovados quando você volta; definidos em todas as páginas quando o chat carrega): mantêm o chat e sua conversa entre páginas e visitas. Base legal: interesse legítimo, para oferecer suporte em todas as páginas.
 - **`tablepro-session` e `XSRF-TOKEN`** (cookies do portal da conta, 2 horas): mantêm você conectado e protegem formulários contra falsificação de solicitações entre sites. Outras páginas do portal, como confirmação de compra e newsletter, também os definem, assim como inscrever-se na newsletter, iniciar checkout ou verificar um código de desconto em qualquer página deste site. Base legal: estritamente necessário.
 
@@ -174,7 +174,7 @@ Compartilhamos dados pessoais apenas com os serviços necessários para operar T
 - **{merchant}**, vendedor responsável pelas compras.
 - **Um provedor de entrega de email**, para links de acesso, recibos enviados por nós, convites de equipe e newsletters.
 - **Nosso provedor de hospedagem e Cloudflare**, para site, portal da conta e servidor dos apps. Cloudflare também conta visualizações com Cloudflare Web Analytics.
-- **Google**, para Google Analytics no site e portal da conta.
+- **Google**, para Google Analytics no site, na documentação e no portal da conta.
 - **Crisp**, para chat ao vivo em todas as páginas do site e portal da conta.
 - **jsDelivr**, que fornece o script de checkout de {merchant} ao navegador ao apontar para um botão Comprar.
 - **Mintlify**, que hospeda a documentação em docs.tablepro.app.

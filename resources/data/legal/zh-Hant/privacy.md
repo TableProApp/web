@@ -122,7 +122,7 @@ Mac 上的 iCloud 同步屬於 Starter 或 Team 授權功能，在 iPhone 與 iP
 
 **購買歸因。**首次造訪網站時，瀏覽器在本機儲存空間保存名為 `tablepro:attribution` 的首次造訪紀錄，期限為 90 天：造訪來源（所點按連結中的 `ref` 或 `utm_*` 標籤，或來源網站）、進入的網頁和時間。開始購買時，該紀錄隨結帳請求傳送。我們的伺服器會捨棄它：不會驗證、讀取或儲存，也不會傳給 {merchant}。
 
-**文件。**位於 docs.tablepro.app 的文件由 Mintlify 代管，不設定 Cookie。Mintlify 會在瀏覽器中該網站的本機儲存空間保存一個隨機訪客 ID `mintlify_anonymous_id`，用於統計文件的造訪次數。每開啟一頁，Mintlify 都會收到您的 IP 位址和瀏覽器資訊；頁面從 Google Fonts 載入字型。合法依據：正當利益。
+**文件。**位於 docs.tablepro.app 的文件由 Mintlify 代管。每開啟一頁，Mintlify 都會收到您的 IP 位址和瀏覽器資訊；頁面從 Google Fonts 載入字型。文件無法讀取您在本網站的回答，因此會另外提出 Cookie 問題。在您於文件中選擇 **Allow** 之前，它不設定 Cookie，也不保存訪客 ID。允許後，Google Analytics 設定 `_ga` 和 `_ga_<ID>` Cookie 並統計您對文件的造訪，Mintlify 則在本機儲存空間保存一個隨機訪客 ID `mintlify_anonymous_id` 用於計數。文件頁尾的 **Cookie settings** 可變更您的回答；拒絕後兩者都會被刪除。合法依據：您的同意。
 
 僅閱讀網站不會設定網站自身的 Cookie。訂閱郵件、開始結帳或驗證折扣碼會向伺服器傳送請求，設定兩個帳戶入口網站 Cookie：`tablepro-session` 與 `XSRF-TOKEN`。網站在瀏覽器中保存的全部資訊列於 [Cookie 與瀏覽器儲存空間](#cookies)。
 
@@ -150,7 +150,7 @@ Mac 上的 iCloud 同步屬於 Starter 或 Team 授權功能，在 iPhone 與 iP
 - **`tablepro:analytics-consent`**（本機儲存空間，直至您清除）：保存對分析提問的回答，避免每個網頁重複詢問。網站和帳戶入口網站共用。合法依據：履行您的選擇所絕對必要。
 - **`tablepro:attribution`**（本機儲存空間，90 天）：[網站](#website)一節所述的首次造訪紀錄。不包含您的識別碼，僅隨結帳請求傳送，伺服器之後捨棄。合法依據：正當利益。
 - **`theme`** 和 **`tablepro:banner-dismissed`**（本機儲存空間，直至您清除）：保存所選淺色、深色或系統外觀，以及關閉的橫幅和隱藏期限：30 天；若您表示已有授權或購買授權，則為一年。合法依據：正當利益。
-- **`mintlify_anonymous_id`**（docs.tablepro.app 的本機儲存空間，由 Mintlify 設定，直至您清除）：[網站](#website)一節所述的訪客 ID。合法依據：正當利益。
+- **`mintlify_anonymous_id`**（docs.tablepro.app 的本機儲存空間，由 Mintlify 設定，僅在您於文件中允許 Google Analytics 時）：[網站](#website)一節所述的訪客 ID。拒絕後即刪除。文件另外保存自己的 `tablepro:analytics-consent` 回答。合法依據：同意。
 - **以 `crisp-client/` 開頭的 Cookie**（Crisp，例如 `crisp-client/session/…`；六個月，再次造訪時延長；聊天載入後每個網頁都會設定）：在網頁和造訪之間保持聊天與對話。合法依據：為每個網頁提供支援的正當利益。
 - **`tablepro-session` 和 `XSRF-TOKEN`**（帳戶入口網站 Cookie，兩小時）：保持登入並保護入口網站表單免受跨站請求偽造。購買確認和電子報等入口網站網頁也會設定；從本網站任意網頁訂閱電子報、開始結帳或驗證折扣碼也會設定。合法依據：絕對必要。
 
@@ -174,7 +174,7 @@ Mac 上的 iCloud 同步屬於 Starter 或 Team 授權功能，在 iPhone 與 iP
 - **{merchant}**：購買交易的登記銷售商。
 - **電子郵件寄送服務商**：寄送登入連結、我們提供的收據、團隊邀請和電子報。
 - **託管服務商及 Cloudflare**：執行網站、帳戶入口網站和 App 連線的伺服器。Cloudflare 也透過 Web Analytics 統計網頁瀏覽量。
-- **Google**：網站和帳戶入口網站上的 Google Analytics。
+- **Google**：網站、文件和帳戶入口網站上的 Google Analytics。
 - **Crisp**：網站和帳戶入口網站每個網頁的線上聊天。
 - **jsDelivr**：在指標移至購買按鈕時向瀏覽器提供 {merchant} 的結帳指令碼。
 - **Mintlify**：代管位於 docs.tablepro.app 的文件。

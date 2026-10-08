@@ -122,7 +122,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 
 **购买归因。**首次到访网站时，浏览器在本地存储中保存名为 `tablepro:attribution` 的首访记录，期限为 90 天：访问来源（所点击链接中的 `ref` 或 `utm_*` 标签，或来源网站）、进入的页面和时间。开始购买时，该记录随结账请求发送。我们的服务器会丢弃它：不会验证、读取或存储，也不会传给 {merchant}。
 
-**文档。**位于 docs.tablepro.app 的文档由 Mintlify 托管，不设置 Cookie。Mintlify 会在浏览器中该站点的本地存储里保存一个随机访客 ID `mintlify_anonymous_id`，用于统计文档的访问量。每打开一页，Mintlify 都会收到您的 IP 地址和浏览器信息；页面从 Google Fonts 加载字体。合法依据：合法利益。
+**文档。**位于 docs.tablepro.app 的文档由 Mintlify 托管。每打开一页，Mintlify 都会收到您的 IP 地址和浏览器信息；页面从 Google Fonts 加载字体。文档无法读取您在本网站的回答，因此会单独提出 Cookie 问题。在您于文档中选择 **Allow** 之前，它不设置 Cookie，也不保存访客 ID。允许后，Google Analytics 设置 `_ga` 和 `_ga_<ID>` Cookie 并统计您对文档的访问，Mintlify 则在本地存储中保存一个随机访客 ID `mintlify_anonymous_id` 用于计数。文档页脚的 **Cookie settings** 可更改您的回答；拒绝后两者都会被删除。合法依据：您的同意。
 
 仅阅读网站不会设置网站自身的 Cookie。订阅邮件、开始结账或验证优惠码会向服务器发送请求，设置两个账户门户 Cookie：`tablepro-session` 和 `XSRF-TOKEN`。网站在浏览器中保存的全部信息列于 [Cookie 和浏览器存储](#cookies)。
 
@@ -150,7 +150,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 - **`tablepro:analytics-consent`**（本地存储，直至您清除）：保存对分析提问的回答，避免每个页面重复询问。网站和账户门户共用。合法依据：履行您的选择所严格必要。
 - **`tablepro:attribution`**（本地存储，90 天）：[网站](#website)一节所述的首访记录。不包含您的标识符，仅随结账请求发送，服务器随后丢弃。合法依据：合法利益。
 - **`theme`** 和 **`tablepro:banner-dismissed`**（本地存储，直至您清除）：保存所选浅色、深色或系统主题，以及关闭的横幅和隐藏期限：30 天；若您表示已持有许可证或购买许可证，则为一年。合法依据：合法利益。
-- **`mintlify_anonymous_id`**（docs.tablepro.app 的本地存储，由 Mintlify 设置，直至您清除）：[网站](#website)一节所述的访客 ID。合法依据：合法利益。
+- **`mintlify_anonymous_id`**（docs.tablepro.app 的本地存储，由 Mintlify 设置，仅在您于文档中允许 Google Analytics 时）：[网站](#website)一节所述的访客 ID。拒绝后即删除。文档单独保存自己的 `tablepro:analytics-consent` 回答。合法依据：同意。
 - **以 `crisp-client/` 开头的 Cookie**（Crisp，如 `crisp-client/session/…`；六个月，再次访问时续期；聊天加载后每个页面都会设置）：在页面和访问之间保持聊天及对话。合法依据：为每个页面提供支持的合法利益。
 - **`tablepro-session` 和 `XSRF-TOKEN`**（账户门户 Cookie，两小时）：保持登录并保护门户表单免受跨站请求伪造。购买确认和邮件订阅等门户页面也会设置；从本网站任意页面订阅邮件、开始结账或验证优惠码也会设置。合法依据：严格必要。
 
@@ -174,7 +174,7 @@ Handoff 通过 Apple 在您的设备之间传递当前连接的 ID 和打开的�
 - **{merchant}**：购买交易的名义销售商。
 - **邮件发送服务商**：发送登录链接、我们提供的收据、团队邀请和订阅邮件。
 - **托管服务商及 Cloudflare**：运行网站、账户门户和应用连接的服务器。Cloudflare 也通过 Web Analytics 统计页面浏览量。
-- **Google**：网站和账户门户上的 Google Analytics。
+- **Google**：网站、文档和账户门户上的 Google Analytics。
 - **Crisp**：网站和账户门户每个页面的在线聊天。
 - **jsDelivr**：在指针移至购买按钮时向浏览器提供 {merchant} 的结账脚本。
 - **Mintlify**：托管位于 docs.tablepro.app 的文档。

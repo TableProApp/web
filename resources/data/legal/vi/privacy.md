@@ -122,7 +122,7 @@ Handoff chuyển mã của connection đang mở và tên của table đang mở
 
 **Nguồn truy cập khi mua hàng.** Khi bạn vào website, trình duyệt giữ một bản ghi về lần truy cập đầu tiên, tên là `tablepro:attribution`, trong local storage trong 90 ngày: nguồn của lượt truy cập (các tag `ref` hoặc `utm_*` trên liên kết bạn đã theo, hoặc trang web đã dẫn bạn tới), trang bạn vào đầu tiên và thời điểm đó. Nếu bạn bắt đầu mua hàng, bản ghi này được gửi kèm yêu cầu thanh toán. Máy chủ của chúng tôi bỏ nó đi: bản ghi không được kiểm tra, đọc hay lưu lại, và không được chuyển cho {merchant}.
 
-**Tài liệu.** Trang tài liệu docs.tablepro.app do Mintlify lưu trữ và không đặt cookie. Mintlify giữ một ID người xem ngẫu nhiên, `mintlify_anonymous_id`, trong local storage của trình duyệt cho trang đó và dùng nó để đếm lượt xem tài liệu. Mintlify nhận địa chỉ IP và thông tin trình duyệt của bạn với mỗi trang, và các trang tải font từ Google Fonts. Cơ sở pháp lý: lợi ích hợp pháp.
+**Tài liệu.** Trang tài liệu docs.tablepro.app do Mintlify lưu trữ. Mintlify nhận địa chỉ IP và thông tin trình duyệt của bạn với mỗi trang, và các trang tải font từ Google Fonts. Trang tài liệu có câu hỏi về cookie của riêng nó, vì nó không đọc được câu trả lời bạn đã chọn trên website này. Cho tới khi bạn chọn **Allow** ở đó, trang không đặt cookie và không giữ ID người xem nào. Nếu bạn cho phép, Google Analytics đặt cookie `_ga` và `_ga_<ID>` và đo các lượt xem tài liệu của bạn, còn Mintlify giữ một ID người xem ngẫu nhiên, `mintlify_anonymous_id`, trong local storage để đếm các lượt đó. **Cookie settings** ở cuối trang tài liệu cho bạn đổi câu trả lời, và khi bạn từ chối thì cả hai bị xóa. Cơ sở pháp lý: sự đồng ý của bạn.
 
 Khi bạn chỉ đọc các trang, website không tự đặt cookie nào. Việc đăng ký nhận bản tin, hoặc bắt đầu thanh toán hay kiểm tra mã giảm giá, gửi một yêu cầu tới máy chủ của chúng tôi và yêu cầu đó đặt hai cookie của trang tài khoản là `tablepro-session` và `XSRF-TOKEN`. Mọi thứ website giữ trong trình duyệt của bạn được liệt kê trong mục [Cookie và bộ nhớ trình duyệt](#cookies).
 
@@ -150,7 +150,7 @@ Khi bạn chỉ đọc website công khai, website không tự đặt cookie nà
 - **`tablepro:analytics-consent`** (local storage, cho tới khi bạn xóa): câu trả lời của bạn cho câu hỏi về phân tích, để bạn không bị hỏi lại ở mỗi trang. Website và trang tài khoản dùng chung giá trị này. Cơ sở pháp lý: thực sự cần thiết để tôn trọng lựa chọn của bạn.
 - **`tablepro:attribution`** (local storage, 90 ngày): bản ghi lần truy cập đầu tiên được mô tả trong mục [Website](#website). Bản ghi không chứa mã định danh nào của bạn và chỉ được gửi kèm yêu cầu thanh toán, nơi máy chủ của chúng tôi bỏ nó đi. Cơ sở pháp lý: lợi ích hợp pháp.
 - **`theme`** và **`tablepro:banner-dismissed`** (local storage, cho tới khi bạn xóa): giao diện bạn chọn (sáng, tối hoặc theo hệ thống), và banner nào bạn đã đóng cùng thời hạn ẩn: 30 ngày, hoặc một năm nếu bạn cho biết đã có license hoặc vừa mua license. Cơ sở pháp lý: lợi ích hợp pháp.
-- **`mintlify_anonymous_id`** (local storage trên docs.tablepro.app, do Mintlify đặt, cho tới khi bạn xóa): ID người xem được mô tả trong mục [Website](#website). Cơ sở pháp lý: lợi ích hợp pháp.
+- **`mintlify_anonymous_id`** (local storage trên docs.tablepro.app, do Mintlify đặt, chỉ khi bạn cho phép Google Analytics ở đó): ID người xem được mô tả trong mục [Website](#website). Từ chối sẽ xóa nó. Trang tài liệu giữ câu trả lời `tablepro:analytics-consent` của riêng nó. Cơ sở pháp lý: sự đồng ý.
 - **Cookie có tên bắt đầu bằng `crisp-client/`** (của Crisp, ví dụ `crisp-client/session/…`; 6 tháng, được gia hạn khi bạn quay lại; được đặt trên mọi trang sau khi khung chat được tải): giữ khung chat và cuộc chat của bạn qua các trang và các lần truy cập. Cơ sở pháp lý: lợi ích hợp pháp, để hỗ trợ bạn trên mọi trang.
 - **`tablepro-session` và `XSRF-TOKEN`** (cookie của trang tài khoản, 2 giờ): giữ trạng thái đăng nhập và bảo vệ các biểu mẫu của trang tài khoản trước tấn công giả mạo yêu cầu liên trang (CSRF). Các trang khác của trang tài khoản, như trang xác nhận mua hàng và các trang bản tin, cũng đặt hai cookie này, và việc đăng ký nhận bản tin hay bắt đầu thanh toán hoặc kiểm tra mã giảm giá từ bất kỳ trang nào của website này cũng vậy. Cơ sở pháp lý: thực sự cần thiết.
 
@@ -174,7 +174,7 @@ Chúng tôi chỉ chia sẻ dữ liệu cá nhân với các dịch vụ cần t
 - **{merchant}**, merchant of record cho các giao dịch mua.
 - **Một nhà cung cấp dịch vụ gửi email**, để gửi liên kết đăng nhập, biên nhận từ chúng tôi, lời mời vào nhóm và bản tin.
 - **Nhà cung cấp hosting của chúng tôi và Cloudflare**, cho website, trang tài khoản và máy chủ mà các ứng dụng liên lạc. Cloudflare cũng đếm lượt xem trang bằng Cloudflare Web Analytics.
-- **Google**, cho Google Analytics trên website và trang tài khoản.
+- **Google**, cho Google Analytics trên website, trang tài liệu và trang tài khoản.
 - **Crisp**, cho chat trực tuyến trên mọi trang của website và trang tài khoản.
 - **jsDelivr**, nơi trình duyệt của bạn tải script thanh toán của {merchant} khi bạn trỏ tới một nút Mua.
 - **Mintlify**, nơi lưu trữ trang tài liệu docs.tablepro.app.

@@ -122,7 +122,7 @@ Handoff übermittelt über Apple die ID der offenen Verbindung und den Namen der
 
 **Kaufzuordnung.** Bei deiner Ankunft auf der Website speichert dein Browser 90 Tage lang einen Erstbesuchsdatensatz namens `tablepro:attribution` im lokalen Speicher: die Herkunft des Besuchs (die `ref`- oder `utm_*`-Parameter des gefolgten Links oder die verweisende Website), die Einstiegsseite und den Zeitpunkt. Wenn du einen Kauf beginnst, wird der Datensatz mit der Checkout-Anfrage gesendet. Unser Server verwirft ihn: Er wird nicht validiert, gelesen oder gespeichert und nicht an {merchant} übermittelt.
 
-**Dokumentation.** Die Dokumentation unter docs.tablepro.app wird von Mintlify gehostet und setzt keine Cookies. Mintlify speichert eine zufällige Besucher-ID, `mintlify_anonymous_id`, im lokalen Speicher deines Browsers für diese Website und zählt damit die Besuche der Dokumentation. Mintlify erhält mit jeder Seite deine IP-Adresse und Angaben zu deinem Browser, und die Seiten laden ihre Schriften von Google Fonts. Rechtsgrundlage: berechtigtes Interesse.
+**Dokumentation.** Die Dokumentation unter docs.tablepro.app wird von Mintlify gehostet. Mintlify erhält mit jeder Seite deine IP-Adresse und Angaben zu deinem Browser, und die Seiten laden ihre Schriften von Google Fonts. Die Dokumentation stellt ihre eigene Cookie-Frage, weil sie deine Antwort auf dieser Website nicht lesen kann. Bis du dort **Allow** wählst, setzt sie keine Cookies und speichert keine Besucher-ID. Mit deiner Erlaubnis setzt Google Analytics die Cookies `_ga` und `_ga_<ID>` und misst deine Besuche der Dokumentation, und Mintlify speichert eine zufällige Besucher-ID, `mintlify_anonymous_id`, im lokalen Speicher, um sie zu zählen. Mit **Cookie settings** in der Fußzeile der Dokumentation änderst du deine Antwort; lehnst du ab, wird beides gelöscht. Rechtsgrundlage: deine Einwilligung.
 
 Das Lesen der Website setzt keine eigenen Cookies. Das Abonnieren des Newsletters oder das Starten eines Checkouts oder einer Rabattcodeprüfung sendet eine Anfrage an unseren Server, die die beiden Kontoportal-Cookies `tablepro-session` und `XSRF-TOKEN` setzt. Alles, was die Website in deinem Browser aufbewahrt, steht unter [Cookies und Browserspeicher](#cookies).
 
@@ -150,7 +150,7 @@ Das Lesen der öffentlichen Website setzt keine eigenen Cookies. Das Abonnieren 
 - **`tablepro:analytics-consent`** (lokaler Speicher, bis du ihn löschst): deine Antwort auf die Analysefrage, damit sie nicht auf jeder Seite erscheint. Website und Kontoportal teilen diesen Eintrag. Rechtsgrundlage: unbedingt erforderlich, um deine Wahl zu beachten.
 - **`tablepro:attribution`** (lokaler Speicher, 90 Tage): der unter [Website](#website) beschriebene Erstbesuchsdatensatz. Er enthält keine persönliche Kennung und wird nur mit einer Checkout-Anfrage gesendet, bei der unser Server ihn verwirft. Rechtsgrundlage: berechtigtes Interesse.
 - **`theme`** und **`tablepro:banner-dismissed`** (lokaler Speicher, bis du ihn löschst): deine Wahl zwischen heller, dunkler oder Systemdarstellung sowie ausgeblendetes Banner und Ausblendungsdauer: 30 Tage oder ein Jahr, wenn du angibst, eine Lizenz zu haben, oder eine kaufst. Rechtsgrundlage: berechtigtes Interesse.
-- **`mintlify_anonymous_id`** (lokaler Speicher auf docs.tablepro.app, von Mintlify gesetzt, bis du ihn löschst): die unter [Website](#website) beschriebene Besucher-ID. Rechtsgrundlage: berechtigtes Interesse.
+- **`mintlify_anonymous_id`** (lokaler Speicher auf docs.tablepro.app, von Mintlify gesetzt, nur wenn du dort Google Analytics zulässt): die unter [Website](#website) beschriebene Besucher-ID. Beim Ablehnen wird sie gelöscht. Die Dokumentation speichert ihre eigene Antwort `tablepro:analytics-consent`. Rechtsgrundlage: Einwilligung.
 - **Cookies beginnend mit `crisp-client/`** (Crisp, etwa `crisp-client/session/…`; 6 Monate, bei Rückkehr erneuert; auf jeder Seite nach dem Laden des Chats gesetzt): halten Chat und Gespräch über Seiten und Besuche hinweg verfügbar. Rechtsgrundlage: berechtigtes Interesse, um auf jeder Seite Support anzubieten.
 - **`tablepro-session` und `XSRF-TOKEN`** (Kontoportal-Cookies, 2 Stunden): halten dich angemeldet und schützen Portalformulare vor Cross-Site-Request-Forgery. Andere Portalseiten wie Kaufbestätigung und Newsletterseiten setzen sie ebenfalls, ebenso das Abonnieren des Newsletters oder das Starten eines Checkouts oder einer Rabattcodeprüfung von jeder Seite dieser Website. Rechtsgrundlage: unbedingt erforderlich.
 
@@ -174,7 +174,7 @@ Wir teilen personenbezogene Daten nur mit den Diensten, die für den Betrieb von
 - **{merchant}**, dem verantwortlichen Verkäufer für Käufe.
 - **Einem E-Mail-Versandanbieter**, für Anmeldelinks, Belege von uns, Teameinladungen und Newsletter.
 - **Unserem Hostinganbieter und Cloudflare**, für Website, Kontoportal und den Server, mit dem die Apps kommunizieren. Cloudflare zählt auch Seitenaufrufe mit Cloudflare Web Analytics.
-- **Google**, für Google Analytics auf Website und Kontoportal.
+- **Google**, für Google Analytics auf Website, Dokumentation und Kontoportal.
 - **Crisp**, für den Live-Chat auf jeder Seite von Website und Kontoportal.
 - **jsDelivr**, das deinem Browser das Checkout-Skript von {merchant} liefert, wenn du auf eine Kaufen-Schaltfläche zeigst.
 - **Mintlify**, das die Dokumentation unter docs.tablepro.app hostet.

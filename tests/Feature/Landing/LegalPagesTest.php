@@ -184,17 +184,20 @@ it('sets no retention period the server does not keep', function (string $locale
     Assert::assertStringNotContainsStringIgnoringCase('anonymous analytics', legalSource('privacy', $locale));
 })->with(['en', 'vi']);
 
-it('covers the documentation site, which Mintlify hosts without cookies', function (string $locale): void {
+it('covers the documentation site and its own analytics question', function (string $locale): void {
     /*
      * docs.tablepro.app set Google Analytics cookies on .tablepro.app with no
-     * consent until the docs config dropped its GA4 integration, which made
-     * "Google Analytics cookies are not set until you allow them" false for
-     * anyone who had opened the docs.
+     * consent, which made "Google Analytics cookies are not set until you
+     * allow them" false for anyone who had opened the docs. The docs now ask
+     * first. Their bar is English only, so every language names its two
+     * controls as they are printed there.
      */
     $intro = strtok(YamlFrontMatter::parse(legalSource('privacy', $locale))->body(), "\n");
+    $website = legalSection('privacy', $locale, 'website');
 
     expect($intro)->toContain('docs.tablepro.app');
-    expect(legalSection('privacy', $locale, 'website'))->toContain('docs.tablepro.app')->toContain('`mintlify_anonymous_id`')->toContain('Google Fonts');
+    expect($website)->toContain('docs.tablepro.app')->toContain('Google Fonts')->toContain('**Allow**')->toContain('**Cookie settings**');
+    expect($website)->toContain('`_ga_<ID>`')->toContain('`mintlify_anonymous_id`');
     expect(legalSection('privacy', $locale, 'cookies'))->toContain('`mintlify_anonymous_id`');
     expect(legalSection('privacy', $locale, 'sharing'))->toContain('**Mintlify**');
     expect(legalSection('privacy', $locale, 'transfers'))->toContain('Mintlify');

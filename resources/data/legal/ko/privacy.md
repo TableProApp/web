@@ -122,7 +122,7 @@ Handoff는 Apple을 통해 사용자 자신의 기기 간에 열린 연결의 ID
 
 **구매 유입 기록.** 사이트에 도착하면 브라우저는 첫 방문 기록인 `tablepro:attribution`을 로컬 저장소에 90일간 보관합니다. 방문 출처(따라온 링크의 `ref` 또는 `utm_*` 태그나 유입 사이트), 처음 방문한 페이지 및 시간이 포함됩니다. 구매를 시작하면 결제 요청과 함께 전송됩니다. 당사 서버는 이를 폐기하며 검증, 읽기 또는 저장을 하지 않고 {merchant}에도 전달하지 않습니다.
 
-**문서.** docs.tablepro.app의 문서는 Mintlify가 호스팅하며 쿠키를 설정하지 않습니다. Mintlify는 해당 사이트용으로 브라우저의 로컬 저장소에 무작위 방문자 ID인 `mintlify_anonymous_id`를 저장하고, 이를 문서 방문 수 집계에 사용합니다. Mintlify는 페이지마다 IP 주소와 브라우저 정보를 받으며, 페이지는 Google Fonts에서 글꼴을 불러옵니다. 법적 근거: 정당한 이익.
+**문서.** docs.tablepro.app의 문서는 Mintlify가 호스팅합니다. Mintlify는 페이지마다 IP 주소와 브라우저 정보를 받으며, 페이지는 Google Fonts에서 글꼴을 불러옵니다. 문서는 이 사이트에서 선택한 답변을 읽을 수 없으므로 쿠키 질문을 따로 표시합니다. 문서에서 **Allow**를 선택하기 전에는 쿠키를 설정하지 않고 방문자 ID도 저장하지 않습니다. 허용하면 Google Analytics가 `_ga` 및 `_ga_<ID>` 쿠키를 설정해 문서 방문을 측정하고, Mintlify는 집계를 위해 무작위 방문자 ID인 `mintlify_anonymous_id`를 로컬 저장소에 저장합니다. 문서 바닥글의 **Cookie settings**에서 답변을 바꿀 수 있으며, 거부하면 둘 다 삭제됩니다. 법적 근거: 동의.
 
 사이트를 읽는 것만으로는 자체 쿠키가 설정되지 않습니다. 뉴스레터 구독, 결제 시작 또는 할인 코드 확인 시 서버에 요청을 보내며 계정 포털 쿠키인 `tablepro-session`과 `XSRF-TOKEN`을 설정합니다. 사이트가 브라우저에 보관하는 모든 항목은 [쿠키 및 브라우저 저장소](#cookies)에 나와 있습니다.
 
@@ -150,7 +150,7 @@ tablepro.app/account의 [계정 포털](/account?locale=ko)은 라이선스 구�
 - **`tablepro:analytics-consent`**(로컬 저장소, 사용자가 지울 때까지): 분석 질문에 대한 응답을 저장해 페이지마다 다시 묻지 않게 합니다. 웹사이트와 계정 포털이 공유합니다. 법적 근거: 선택을 존중하기 위해 반드시 필요.
 - **`tablepro:attribution`**(로컬 저장소, 90일): [웹사이트](#website)에 설명된 첫 방문 기록입니다. 사용자 식별자는 없으며 결제 요청과 함께만 전송되고 서버에서 폐기됩니다. 법적 근거: 정당한 이익.
 - **`theme`** 및 **`tablepro:banner-dismissed`**(로컬 저장소, 사용자가 지울 때까지): 선택한 라이트, 다크 또는 시스템 화면 모드, 닫은 배너와 숨김 기한을 저장합니다. 기한은 30일이며 라이선스 보유를 표시하거나 구매하면 1년입니다. 법적 근거: 정당한 이익.
-- **`mintlify_anonymous_id`**(docs.tablepro.app의 로컬 저장소, Mintlify가 설정, 사용자가 지울 때까지): [웹사이트](#website)에 설명된 방문자 ID입니다. 법적 근거: 정당한 이익.
+- **`mintlify_anonymous_id`**(docs.tablepro.app의 로컬 저장소, Mintlify가 설정, 문서에서 Google Analytics를 허용한 경우에만): [웹사이트](#website)에 설명된 방문자 ID입니다. 거부하면 삭제됩니다. 문서는 자체 `tablepro:analytics-consent` 답변을 따로 저장합니다. 법적 근거: 동의.
 - **`crisp-client/`로 시작하는 쿠키**(Crisp, 예: `crisp-client/session/…`, 6개월, 재방문 시 갱신, 채팅 로딩 후 모든 페이지에 설정): 페이지와 방문 간에 채팅과 대화를 유지합니다. 법적 근거: 모든 페이지에서 지원을 제공하기 위한 정당한 이익.
 - **`tablepro-session` 및 `XSRF-TOKEN`**(계정 포털 쿠키, 2시간): 로그인 상태를 유지하고 포털 양식을 사이트 간 요청 위조로부터 보호합니다. 구매 확인과 뉴스레터 페이지 같은 포털의 다른 페이지도 설정하며, 이 사이트의 어떤 페이지에서든 뉴스레터 구독, 결제 시작 또는 할인 코드 확인 시에도 설정합니다. 법적 근거: 반드시 필요.
 
@@ -174,7 +174,7 @@ tablepro.app/account의 [계정 포털](/account?locale=ko)은 라이선스 구�
 - **{merchant}**: 구매의 공식 판매자.
 - **이메일 전송 제공업체**: 로그인 링크, 당사가 보내는 영수증, 팀 초대 및 뉴스레터.
 - **호스팅 제공업체 및 Cloudflare**: 웹사이트, 계정 포털 및 앱이 통신하는 서버 운영. Cloudflare는 Web Analytics로 페이지 조회 수도 집계합니다.
-- **Google**: 웹사이트와 계정 포털의 Google Analytics.
+- **Google**: 웹사이트, 문서 및 계정 포털의 Google Analytics.
 - **Crisp**: 웹사이트와 계정 포털 모든 페이지의 실시간 채팅.
 - **jsDelivr**: 구매 버튼에 포인터를 올릴 때 브라우저에 {merchant} 결제 스크립트를 제공합니다.
 - **Mintlify**: docs.tablepro.app의 문서를 호스팅합니다.
