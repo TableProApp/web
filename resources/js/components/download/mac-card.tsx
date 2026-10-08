@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ChevronRight, Download } from 'lucide-react';
 import Badge from '@/components/ui/badge';
 import Button from '@/components/ui/button';
@@ -7,7 +7,7 @@ import { InlineCode } from '@/components/ui/code';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { Trans, useI18n } from '@/i18n';
 import { trackDownload } from '@/lib/analytics';
-import { buildVariant, type DeviceKind, type MacArch } from '@/lib/device';
+import { buildVariant, chipHelpOpen, type DeviceKind, type MacArch } from '@/lib/device';
 import { cn } from '@/lib/utils';
 import CommandBlock from './command-block';
 import { megabytes, requirementLine } from './format';
@@ -25,8 +25,8 @@ interface MacCardProps {
     links: LinksProp;
     /** Null until mounted: the server renders the same markup for every device. */
     device: DeviceKind | null;
-    /** Chromium's architecture hint, or null (Safari, Firefox, no hint). */
-    hint: MacArch | null;
+    /** Chromium's architecture hint, null when the browser gave none (Safari, Firefox), undefined until it has answered. */
+    hint: MacArch | null | undefined;
     className?: string;
 }
 
@@ -39,13 +39,22 @@ interface MacCardProps {
  *
  * Both DMG links are rendered on the server with their real URLs. The
  * browser's hint can only make one of them primary; with no hint both stay
- * equal. Nothing navigates on its own, and nothing claims a download started:
+ * equal and "Which Mac do I have?" opens. Nothing navigates on its own, and
+ * nothing claims a download started:
  * the "Next, install it" panel appears only after the reader clicked a build,
  * and offers the same file again in case nothing arrived.
  */
 export default function MacCard({ content, release, mac, links, device, hint, className }: MacCardProps) {
     const { m, fmt } = useI18n();
     const [clicked, setClicked] = useState<MacArch | null>(null);
+    const help = useRef<HTMLDetailsElement>(null);
+    const openHelp = chipHelpOpen(device, hint);
+
+    useEffect(() => {
+        if (openHelp && help.current) {
+            help.current.open = true;
+        }
+    }, [openHelp]);
 
     const available = release.source !== 'unavailable';
     const chosen = clicked !== null ? release.assets[clicked] : null;
@@ -90,7 +99,7 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
 
     if (device === 'ios' || device === 'other') {
         status = m.download.onAnotherDevice;
-    } else if (device === 'mac' && hint !== null) {
+    } else if (device === 'mac' && hint) {
         status = fmt(m.download.detected, { chip: m.platforms.architectures[hint] });
     }
 
@@ -117,7 +126,7 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
                         <li key={build}>
                             <Button
                                 href={asset.url}
-                                variant={buildVariant(build, device ?? 'other', hint)}
+                                variant={buildVariant(build, device ?? 'other', hint ?? null)}
                                 size="lg"
                                 fullWidth
                                 icon={<Download aria-hidden="true" />}
@@ -148,7 +157,7 @@ export default function MacCard({ content, release, mac, links, device, hint, cl
                 {status}
             </p>
 
-            <details className="group mt-1">
+            <details ref={help} className="group mt-1">
                 <summary className="type-label inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-chip text-foreground [&::-webkit-details-marker]:hidden">
                     <ChevronRight
                         aria-hidden="true"

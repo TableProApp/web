@@ -55,15 +55,16 @@ export interface FactsData {
     links: {
         github: string;
         issues: string;
+        discussions: string;
         license: string;
         appStore: string;
         sponsorsProgram: string;
         discord: string;
         x: string;
-        facebook: string;
         telegram: string;
         docs: string;
         changelog: string;
+        troubleshooting: string;
         raycast: string;
         /** Rendered as a plain text link only: no badge image and no request from the page (spec §0). */
         productHunt: string;

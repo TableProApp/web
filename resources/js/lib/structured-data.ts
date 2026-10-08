@@ -127,7 +127,6 @@ export interface ProfileLinks {
     github: string;
     x: string;
     discord: string;
-    facebook: string;
     telegram: string;
 }
 
@@ -137,7 +136,7 @@ export interface ProfileLinks {
  * profiles of the organization, so they are not in it.
  */
 export function organizationProfiles(links: ProfileLinks): string[] {
-    return [links.github, links.x, links.discord, links.facebook, links.telegram];
+    return [links.github, links.x, links.discord, links.telegram];
 }
 
 /** The publisher: the same node in every locale, with its description in the page's language. */

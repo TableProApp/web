@@ -200,7 +200,7 @@ test('the organization lists its own profiles from facts.json, and nothing else'
     const profiles = organizationProfiles(facts.links);
     const node = organizationNode(base, { description: en.product.short, sameAs: profiles });
 
-    assert.deepEqual(node.sameAs, [facts.links.github, facts.links.x, facts.links.discord, facts.links.facebook, facts.links.telegram]);
+    assert.deepEqual(node.sameAs, [facts.links.github, facts.links.x, facts.links.discord, facts.links.telegram]);
 
     for (const url of profiles) {
         assert.match(url, /^https:\/\//);

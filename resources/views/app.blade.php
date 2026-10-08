@@ -28,6 +28,18 @@
          `theme` key on this origin. --}}
     @include('partials.head-theme')
 
+    {{-- An iPhone or iPad, by `classifyDevice` in resources/js/lib/device.ts
+         (tests/js/device.test.ts runs this against it), before first paint:
+         the App Store badge leads there, and nothing swaps under a finger. --}}
+    <script>
+        (function () {
+            var ua = navigator.userAgent;
+            if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) {
+                document.documentElement.classList.add('ios');
+            }
+        })();
+    </script>
+
     @php($lcpAsset = $page['props']['lcpAsset'] ?? null)
     @if (is_array($lcpAsset) && is_array($lcpAsset['light'] ?? null))
         {{--
@@ -108,9 +120,17 @@
 
             Emitted only where the banner is shown, so elsewhere there is no
             element, no class, no reserved height and no dead script.
+
+            The license is for the Mac app, so on the iPhone and iPad page a
+            reader on one of those devices gets no banner either.
         --}}
         <script>
             (function () {
+                @if(\App\Support\Banner::hiddenOnIosDevices(request()))
+                if (document.documentElement.classList.contains('ios')) {
+                    document.documentElement.classList.remove('has-banner');
+                }
+                @endif
                 try {
                     var record = JSON.parse(localStorage.getItem('tablepro:banner-dismissed') || 'null');
                     if (record && typeof record.until === 'number' && record.until > Date.now() && (record.version === '*' || record.version === @json((string) config('banner.version')))) {

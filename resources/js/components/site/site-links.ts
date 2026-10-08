@@ -71,12 +71,13 @@ export const PLATFORM_PAGES: PlatformPage[] = platformData.platforms.flatMap((ca
 export const EXTERNAL = {
     docs: facts.links.docs,
     changelog: facts.links.changelog,
+    troubleshooting: facts.links.troubleshooting,
     github: facts.links.github,
     issues: facts.links.issues,
+    discussions: facts.links.discussions,
     sponsors: facts.links.sponsorsProgram,
     discord: facts.links.discord,
     x: facts.links.x,
-    facebook: facts.links.facebook,
     telegram: facts.links.telegram,
 } as const;
 
@@ -122,6 +123,36 @@ export function sectionOf(url: string): Section {
 /** The current page's path without its locale prefix, query or fragment. */
 export function basePath(url: string): string {
     return splitLocale(url, LOCALES).path.replace(/[?#].*$/, '');
+}
+
+export interface HeaderLayout {
+    nav: string;
+    controls: string;
+    menuButton: string;
+    // The media query the open menu closes on.
+    desktop: string;
+}
+
+const HEADER_FROM_1024: HeaderLayout = {
+    nav: 'hidden lg:block',
+    controls: 'hidden items-center gap-2 lg:flex',
+    menuButton: 'lg:hidden',
+    desktop: '(min-width: 64rem)',
+};
+
+const HEADER_FROM_1152: HeaderLayout = {
+    nav: 'hidden min-[72rem]:block',
+    controls: 'hidden items-center gap-2 min-[72rem]:flex',
+    menuButton: 'min-[72rem]:hidden',
+    desktop: '(min-width: 72rem)',
+};
+
+// The desktop row is wider than the 960px a 1024px window gives it in these languages
+// (fr 1065px, pt-BR 1040, es 1008, de 980, it 965), so they keep the menu button to 1152px.
+export const WIDE_HEADER_LOCALES: readonly string[] = ['de', 'es', 'fr', 'it', 'pt-BR'];
+
+export function headerLayout(locale: string): HeaderLayout {
+    return WIDE_HEADER_LOCALES.includes(locale) ? HEADER_FROM_1152 : HEADER_FROM_1024;
 }
 
 /**

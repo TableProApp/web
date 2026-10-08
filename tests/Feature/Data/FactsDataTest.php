@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Content\SiteFacts;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -80,14 +81,24 @@ it('keeps every outbound link in one place, over HTTPS', function (): void {
 
     expect($links['github'])->toBe('https://github.com/TableProApp/TablePro');
     expect($links['issues'])->toStartWith($links['github'] . '/');
+    expect($links['discussions'])->toStartWith($links['github'] . '/');
     expect($links['license'])->toStartWith($links['github'] . '/');
     expect($links['docs'])->toBe('https://docs.tablepro.app');
     expect($links['changelog'])->toStartWith($links['docs'] . '/');
+    expect($links['troubleshooting'])->toStartWith($links['docs'] . '/');
     expect($links['sponsorsProgram'])->toBe('https://github.com/sponsors/datlechin');
 
     $store = collect(factsReleasedPlatforms()['ios']['destinations'])->firstWhere('kind', 'app-store');
 
     expect($links['appStore'])->toBe($store['url'], 'links.appStore must equal the iOS App Store destination in platforms.json');
+});
+
+it('gives the organization only the profiles the site links to', function (): void {
+    $links = factsJson()['links'];
+
+    // The same list, in the same order, as `organizationProfiles()` in lib/structured-data.ts.
+    expect(app(SiteFacts::class)->organizationProfiles())->toBe([$links['github'], $links['x'], $links['discord'], $links['telegram']]);
+    expect($links)->not->toHaveKey('facebook');
 });
 
 it('names the support address and the open-source licence', function (): void {

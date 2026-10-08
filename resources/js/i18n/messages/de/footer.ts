@@ -23,14 +23,15 @@ export default {
         "support": {
             "title": "Support",
             "account": "Konto",
+            "troubleshooting": "Fehlerbehebung (Englisch)",
             "email": "Support per E-Mail",
             "chat": "Live-Chat"
         },
         "community": {
             "title": "Community",
+            "discussions": "GitHub Discussions",
             "discord": "Discord",
             "x": "X",
-            "facebook": "Facebook",
             "telegram": "Telegram",
             "sponsor": "TablePro unterstützen"
         },

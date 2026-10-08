@@ -1,5 +1,5 @@
 import SEOHead from '@/components/seo/seo-head';
-import { SUPPORT_EMAIL } from '@/components/site/site-links';
+import { EXTERNAL, SUPPORT_EMAIL } from '@/components/site/site-links';
 import { buttonClasses } from '@/components/ui/button';
 import LocaleLink from '@/components/ui/locale-link';
 import { useI18n, type Locale } from '@/i18n';
@@ -26,9 +26,12 @@ const START_PAGES = [
     ['home', '/'],
     ['features', '/features'],
     ['databases', '/databases'],
+    ['pricing', '/pricing'],
     ['download', '/download'],
     ['blog', '/blog'],
 ] as const;
+
+const START_LINK = 'text-foreground underline decoration-muted-foreground underline-offset-4 hover:text-accent-text hover:decoration-accent-text';
 
 /**
  * The branded 404, 410, 500 and 503 page, in the language of the path.
@@ -95,16 +98,22 @@ export default function ErrorPage({ status, suggestion, account }: Props) {
                 {status < 500 && (
                     <nav aria-label={m.errors.linksLabel} className="mt-10">
                         <ul className="type-body flex flex-wrap gap-x-6 gap-y-3">
+                            {/* Pricing and Docs take the header's labels. */}
                             {START_PAGES.map(([key, href]) => (
                                 <li key={key}>
-                                    <LocaleLink
-                                        href={href}
-                                        className="text-foreground underline decoration-muted-foreground underline-offset-4 hover:text-accent-text hover:decoration-accent-text"
-                                    >
-                                        {m.errors.links[key]}
+                                    <LocaleLink href={href} className={START_LINK}>
+                                        {key === 'pricing' ? m.nav.pricing : m.errors.links[key]}
                                     </LocaleLink>
                                 </li>
                             ))}
+                            <li>
+                                <a href={EXTERNAL.docs} hrefLang="en" aria-label={m.nav.docsLabel} className={START_LINK}>
+                                    {m.nav.docs}
+                                    <span aria-hidden="true" className="ml-1">
+                                        ↗
+                                    </span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 )}

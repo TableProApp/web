@@ -441,3 +441,25 @@ it('server-renders no version and sends both buttons to the latest release when 
         ->not->toContain('softwareVersion')
         ->not->toContain('.dmg"');
 });
+
+it('opens "Which Mac do I have?" by itself only for a Mac whose browser names no chip', function (): void {
+    /*
+     * Safari and Firefox give no architecture hint, so on the default Mac
+     * browser both builds stay equal and the reader has to choose. The help
+     * for choosing opens there instead of waiting behind a click. The server
+     * cannot know the browser, so it renders the disclosure closed, and the
+     * rule is `chipHelpOpen` (tests/js/device.test.ts).
+     */
+    $card = (string) file_get_contents(resource_path('js/components/download/mac-card.tsx'));
+
+    expect($card)->toContain('const openHelp = chipHelpOpen(device, hint);')
+        ->toContain('help.current.open = true;')
+        ->toContain('<details ref={help} className="group mt-1">');
+
+    // A hint not answered yet is not "no hint": Chrome's arrives a moment after the page mounts.
+    expect((string) file_get_contents(resource_path('js/pages/Download.tsx')))->toContain('useState<MacArch | null | undefined>(undefined)');
+
+    fakeLiveRelease();
+
+    expect(ssrHtml('/download'))->toMatch('/<details class="group mt-1"><summary/');
+});

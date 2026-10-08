@@ -29,14 +29,15 @@ export default {
         support: {
             title: 'Support',
             account: 'Account',
+            troubleshooting: 'Troubleshooting',
             email: 'Email support',
             chat: 'Live chat',
         },
         community: {
             title: 'Community',
+            discussions: 'GitHub Discussions',
             discord: 'Discord',
             x: 'X',
-            facebook: 'Facebook',
             telegram: 'Telegram',
             sponsor: 'Sponsor TablePro',
         },

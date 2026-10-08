@@ -108,6 +108,16 @@ it('draws shortcut glyphs in a face that has them, as an inline box', function (
         ->not->toContain('inline-flex');
 });
 
+it('draws the phone breadcrumb link as a block of its own', function (): void {
+    /*
+     * Below 640px the trail is one link on its own line. As inline content of
+     * the nav it read as a link inside the hidden trail's text, which a
+     * contrast check then compared it with: 2.28:1 in the dark theme.
+     */
+    expect(layoutSource('js/components/ui/breadcrumbs.tsx'))->toContain('className="flex min-h-8 w-fit items-center gap-1.5')
+        ->not->toContain('className="inline-flex min-h-8');
+});
+
 it('marks the current section in the mobile menu', function (): void {
     $nav = layoutSource('js/components/site/mobile-nav.tsx');
 
@@ -141,6 +151,26 @@ it('opens the Features panel on mouse hover, and only for a mouse', function ():
         ->toContain('export const HOVER_CLOSE_DELAY = 150;')
         ->toContain('if (open && openedByHover.current) {')
         ->toContain('aria-expanded={open}');
+});
+
+it('draws the App Store badge first on an iPhone or iPad, and keeps Mac first in the markup', function (): void {
+    /*
+     * Positioning §3.2: both actions are rendered Mac first on every device,
+     * and a client may promote the badge on an iPhone or iPad. The promotion
+     * is CSS order under the `ios` class the root template sets in the head,
+     * so the two actions never swap under a finger after the page is shown.
+     */
+    $pair = layoutSource('js/components/download/action-pair.tsx');
+    $menu = layoutSource('js/components/site/mobile-nav.tsx');
+    $template = layoutSource('views/app.blade.php');
+
+    expect($pair)->toContain('<div className="grid content-start justify-items-start gap-2 in-[.ios]:order-first">');
+    Assert::assertLessThan(strpos($pair, '{iosAction}'), strpos($pair, '{mac}'), 'The Mac action comes first in the markup');
+
+    expect($menu)->toContain('<div className="grid justify-items-start gap-2 in-[.ios]:order-first">');
+    Assert::assertLessThan(strpos($menu, '<AppStoreBadge'), strpos($menu, '{m.download.macCta}'), 'The Mac action comes first in the menu markup');
+
+    Assert::assertLessThan(strpos($template, '<body class='), strpos($template, "document.documentElement.classList.add('ios')"), 'The device class is set before first paint');
 });
 
 it('builds every download band from the one action row', function (string $file): void {

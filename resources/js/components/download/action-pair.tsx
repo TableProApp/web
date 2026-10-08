@@ -41,6 +41,10 @@ interface ActionPairProps {
  *
  * The badge is Apple's artwork in the page's language, and its accessible name
  * is that artwork's visible text (see app-store-badge.tsx).
+ *
+ * The markup is Mac first on every device. On an iPhone or iPad the badge is
+ * drawn first (positioning §3.2), from the `ios` class the root template sets
+ * before first paint, so nothing moves after the page is shown.
  */
 export default function ActionPair({ location, macCaption, macExtra, ios, cells = false, className }: ActionPairProps) {
     const { m } = useI18n();
@@ -57,7 +61,7 @@ export default function ActionPair({ location, macCaption, macExtra, ios, cells 
     );
 
     const iosAction = ios !== null && (
-        <div className="grid content-start justify-items-start gap-2">
+        <div className="grid content-start justify-items-start gap-2 in-[.ios]:order-first">
             <div className="flex h-12 items-center">
                 <AppStoreBadge href={ios.url} location={location} />
             </div>
