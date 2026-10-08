@@ -248,6 +248,8 @@ export interface PictureSource {
 export interface PictureModel {
     /** `null` for a single-theme image, which shows in both page themes. */
     theme: ThemeVariant | null;
+    /** The widest file of the image itself, never of its phone crop. */
+    full: string;
     sources: PictureSource[];
     img: {
         src: string;
@@ -412,6 +414,7 @@ function supplied(
 
             return {
                 theme,
+                full: largestUrl(entry, mainSource, variant, main.locale),
                 sources: [...desktop.sources, desktop.fallback, ...phone.sources],
                 img: {
                     src: largestUrl(crop.entry, cropSource, variant, cropSources.locale),
@@ -429,6 +432,7 @@ function supplied(
 
         return {
             theme,
+            full: largestUrl(entry, mainSource, variant, main.locale),
             sources: own.sources,
             img: {
                 src: largestUrl(entry, mainSource, variant, main.locale),

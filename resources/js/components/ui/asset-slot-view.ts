@@ -145,23 +145,21 @@ const THEME_CLASS = {
     dark: 'hidden dark:block',
 } as const;
 
-function picture(model: PictureModel, part: SuppliedPart, visibility: Visibility, key: string): ReactElement {
+function picture(model: PictureModel, part: SuppliedPart, visibility: Visibility, key: string, zoom: boolean): ReactElement {
     const { img } = model;
     const { kind } = part;
+    const box = cn(
+        model.theme ? THEME_CLASS[model.theme] : 'block',
+        kind === 'phone' && PHONE_WIDTH,
+        kind === 'mobile-crop' && CROP_WIDTH,
+        kind === 'diagram' && DIAGRAM_WIDTH,
+        part.phoneCrop && MERGED_CROP_WIDTH,
+        VISIBILITY[visibility],
+    );
 
-    return createElement(
+    const element = createElement(
         'picture',
-        {
-            key,
-            className: cn(
-                model.theme ? THEME_CLASS[model.theme] : 'block',
-                kind === 'phone' && PHONE_WIDTH,
-                kind === 'mobile-crop' && CROP_WIDTH,
-                kind === 'diagram' && DIAGRAM_WIDTH,
-                part.phoneCrop && MERGED_CROP_WIDTH,
-                VISIBILITY[visibility],
-            ),
-        },
+        { key, className: zoom ? 'block' : box },
         ...model.sources.map((source, index) =>
             createElement('source', {
                 key: index,
@@ -186,6 +184,9 @@ function picture(model: PictureModel, part: SuppliedPart, visibility: Visibility
             className: imageClass(kind),
         }),
     );
+
+    // The link takes the theme and width classes, so a hidden variant leaves no empty link in the tab order.
+    return zoom ? createElement('a', { key, href: model.full, className: cn(box, 'cursor-zoom-in') }, element) : element;
 }
 
 function part(
@@ -193,6 +194,7 @@ function part(
     labels: AssetSlotLabels,
     visibility: Visibility,
     key: string,
+    zoom: boolean,
 ): ReactNode {
     if (model.mode === 'placeholder') {
         return createElement(Fragment, { key }, placeholderBox(model, labels, visibility));
@@ -201,7 +203,7 @@ function part(
     return createElement(
         Fragment,
         { key },
-        ...model.pictures.map((pictureModel, index) => picture(pictureModel, model, visibility, `${key}-${index}`)),
+        ...model.pictures.map((pictureModel, index) => picture(pictureModel, model, visibility, `${key}-${index}`, zoom)),
     );
 }
 
@@ -220,6 +222,9 @@ function part(
 export function renderAssetSlot(manifest: SlotManifestData, id: string, options: AssetSlotViewOptions): ReactElement {
     const { locale, labels, sizes, className, caption = true, priority } = options;
     const model = slotModel(manifest, id, { locale, sizes, priority });
+    const cropped = model.mobile !== null || (model.main.mode === 'supplied' && model.main.phoneCrop);
+    // A post figure and a detail with no phone crop shrink to about half size on a phone, so each links its widest file.
+    const zoom = model.kind === 'figure' || (model.kind === 'detail' && !cropped);
     const modes = [model.main.mode, model.mobile?.mode].filter((mode) => mode !== undefined);
     /*
      * `partial` only while a window and its phone crop are at different
@@ -241,8 +246,8 @@ export function renderAssetSlot(manifest: SlotManifestData, id: string, options:
             'data-asset-id': status === 'supplied' ? undefined : id,
             'data-asset-status': status,
         },
-        part(model.main, labels, mainVisibility, 'main'),
-        model.mobile ? part(model.mobile, labels, 'phone', 'mobile') : null,
+        part(model.main, labels, mainVisibility, 'main', zoom),
+        model.mobile ? part(model.mobile, labels, 'phone', 'mobile', false) : null,
         caption && model.caption
             ? createElement('figcaption', { className: 'type-caption mt-3 text-muted-foreground' }, model.caption)
             : null,
