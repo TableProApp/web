@@ -335,6 +335,51 @@ it('server-renders both builds as links, and says nothing about a download start
         ->toContain('cho Linux hoặc Windows');
 });
 
+it('sends each DMG’s SHA-256 to the page when the release carries one', function (): void {
+    $arm64 = str_repeat('a1', 32);
+    $x86_64 = str_repeat('b2', 32);
+
+    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayloadWithDigests($arm64, $x86_64))]);
+    Artisan::call('release:refresh');
+
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page
+        ->where('release.assets.arm64.sha256', $arm64)
+        ->where('release.assets.x86_64.sha256', $x86_64));
+});
+
+it('sends no checksum when the release came from the appcast', function (): void {
+    Http::fake([
+        RELEASES_FAKE_GITHUB_LATEST => Http::response('', 500),
+        RELEASES_FAKE_APPCAST => Http::response(appcastXml()),
+    ]);
+    Artisan::call('release:refresh');
+
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page
+        ->where('release.source', 'appcast')
+        ->where('release.assets.arm64.sha256', null)
+        ->where('release.assets.x86_64.sha256', null));
+});
+
+it('server-renders each build’s SHA-256 with the command that checks it, in every language', function (): void {
+    $arm64 = str_repeat('a1', 32);
+    $x86_64 = str_repeat('b2', 32);
+
+    Http::fake([RELEASES_FAKE_GITHUB_LATEST => Http::response(githubReleasePayloadWithDigests($arm64, $x86_64))]);
+    Artisan::call('release:refresh');
+
+    expect(ssrHtml('/download'))->toContain('Verify your download', $arm64, $x86_64, 'shasum -a 256');
+
+    foreach (array_diff(Locales::codes(), ['en']) as $locale) {
+        expect(ssrHtml("/{$locale}/download"))->toContain($arm64, $x86_64, 'shasum -a 256')->not->toContain('Verify your download');
+    }
+});
+
+it('server-renders no checksum block when the release carries none', function (): void {
+    fakeLiveRelease();
+
+    expect(ssrHtml('/download'))->toContain('Which Mac do I have?')->not->toContain('Verify your download')->not->toContain('shasum');
+});
+
 it('server-renders no version and sends both buttons to the latest release when no source answers', function (): void {
     Http::fake([
         RELEASES_FAKE_GITHUB_LATEST => Http::response('', 500),

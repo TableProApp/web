@@ -28,6 +28,10 @@ export default {
         "summary": "我的 Mac 是哪種型號？",
         "body": "開啟 Apple 選單並選擇「關於這台 Mac」。Apple 晶片 Mac 會顯示「晶片」欄位，例如 Apple M2。Intel Mac 則顯示「處理器」欄位，其中標有 Intel。"
     },
+    "checksum": {
+        "summary": "驗證下載的檔案",
+        "body": "在終端機中對該檔案執行 <code>shasum -a 256</code>，結果應與下方的 SHA-256 檢查碼一致。"
+    },
     "afterClick": {
         "title": "接下來，安裝 App",
         "body": "從「下載項目」檔案夾開啟 {file}，將 TablePro 拖到「應用程式」。",

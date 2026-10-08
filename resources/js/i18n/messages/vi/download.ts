@@ -34,6 +34,10 @@ export default {
         summary: 'Máy Mac của bạn dùng chip nào?',
         body: 'Mở menu Apple và chọn Giới thiệu về máy Mac này (About This Mac). Máy Mac dùng Apple silicon có mục Chip, ví dụ Apple M2. Máy Mac dùng Intel có mục Bộ xử lý (Processor) ghi tên Intel.',
     },
+    checksum: {
+        summary: 'Kiểm tra file đã tải về',
+        body: 'Chạy <code>shasum -a 256</code> với file đó trong Terminal. Kết quả phải khớp với checksum SHA-256 bên dưới.',
+    },
     afterClick: {
         title: 'Tiếp theo, cài đặt ứng dụng',
         body: 'Mở {file} trong thư mục Tải về (Downloads), rồi kéo TablePro vào thư mục Ứng dụng (Applications).',

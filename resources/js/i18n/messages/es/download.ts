@@ -28,6 +28,10 @@ export default {
         "summary": "¿Qué Mac tengo?",
         "body": "Abre el menú Apple y selecciona Acerca de este Mac. Un Mac con Apple silicon muestra una línea Chip, por ejemplo Apple M2. Un Mac Intel muestra una línea Procesador que menciona Intel."
     },
+    "checksum": {
+        "summary": "Verifica tu descarga",
+        "body": "Ejecuta <code>shasum -a 256</code> sobre el archivo en Terminal. El resultado debe coincidir con la suma SHA-256 de abajo."
+    },
     "afterClick": {
         "title": "Ahora, instálalo",
         "body": "Abre {file} desde la carpeta Descargas y arrastra TablePro a Aplicaciones.",
