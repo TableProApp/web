@@ -3,7 +3,6 @@ import type { Messages } from '../../types.ts';
 export default {
     "language": {
         "label": "언어",
-        "inlineLabel": "언어:",
         "current": "언어: {language}",
         "fallback": "이 페이지의 한국어 버전이 없습니다",
         "fallbackPost": "이 글은 한국어로 제공되지 않습니다",

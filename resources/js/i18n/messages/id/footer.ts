@@ -28,7 +28,6 @@ export default {
         },
         "community": {
             "title": "Komunitas",
-            "github": "GitHub",
             "discord": "Discord",
             "x": "X",
             "facebook": "Facebook",

@@ -3,7 +3,6 @@ import type { Messages } from '../../types.ts';
 export default {
     language: {
         label: 'Ngôn ngữ',
-        inlineLabel: 'Ngôn ngữ:',
         current: 'Ngôn ngữ: {language}',
         fallback: 'Trang này chưa có bản tiếng Việt',
         fallbackPost: 'Bài viết này chỉ có bằng tiếng Anh',

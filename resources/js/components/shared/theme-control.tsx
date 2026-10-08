@@ -15,8 +15,12 @@ export interface ThemeControlLabels {
 }
 
 interface ThemeControlProps {
-    /** `menu`: a 40px icon button opening three options (header). `segmented`: the three inline (footer, mobile menu). */
-    variant: 'menu' | 'segmented';
+    /**
+     * `menu`: a 40px icon button opening three options (header). `segmented`:
+     * the three inline with their words (mobile menu). `icons`: the three
+     * inline as icons, each named for assistive tech and in a tooltip (footer).
+     */
+    variant: 'menu' | 'segmented' | 'icons';
     labels: ThemeControlLabels;
     className?: string;
 }
@@ -59,14 +63,18 @@ function useThemeChoice(): [ThemeChoice, (choice: ThemeChoice) => void] {
 }
 
 /**
- * Light, Dark or System, in either of two forms (design-system §5.3.16).
+ * Light, Dark or System, in one of three forms (design-system §5.3.16).
  *
  * Labels arrive as props, so this file is byte-identical in both applications
- * and each passes its own language. Both forms write the shared `theme` key
+ * and each passes its own language. Every form writes the shared `theme` key
  * through `applyTheme()`.
  */
 export default function ThemeControl({ variant, labels, className }: ThemeControlProps) {
-    return variant === 'menu' ? <ThemeMenu labels={labels} className={className} /> : <ThemeSegmented labels={labels} className={className} />;
+    return variant === 'menu' ? (
+        <ThemeMenu labels={labels} className={className} />
+    ) : (
+        <ThemeSegmented labels={labels} iconsOnly={variant === 'icons'} className={className} />
+    );
 }
 
 /**
@@ -256,8 +264,11 @@ function ThemeMenu({ labels, className }: { labels: ThemeControlLabels; classNam
  * group does. Which segment looks selected comes from tokens.css and
  * `html[data-theme-choice]`, so it is right before hydration too; `checked`
  * follows on mount.
+ *
+ * With `iconsOnly` each segment is a 36px square (32px from 640px) and its
+ * word stays in the label for assistive tech and in a tooltip.
  */
-function ThemeSegmented({ labels, className }: { labels: ThemeControlLabels; className?: string }) {
+function ThemeSegmented({ labels, iconsOnly, className }: { labels: ThemeControlLabels; iconsOnly: boolean; className?: string }) {
     const [choice, choose] = useThemeChoice();
     const name = useId();
 
@@ -272,7 +283,11 @@ function ThemeSegmented({ labels, className }: { labels: ThemeControlLabels; cla
                         <label
                             key={option}
                             data-theme-option={option}
-                            className="theme-segment inline-flex min-h-9 cursor-pointer items-center gap-2 rounded-control border border-transparent px-3 text-sm leading-[1.3] font-medium text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus"
+                            title={iconsOnly ? labels[option] : undefined}
+                            className={cn(
+                                'theme-segment inline-flex cursor-pointer items-center rounded-control border border-transparent text-sm leading-[1.3] font-medium text-muted-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus',
+                                iconsOnly ? 'size-9 justify-center sm:size-8' : 'min-h-9 gap-2 px-3',
+                            )}
                         >
                             <input
                                 type="radio"
@@ -283,7 +298,7 @@ function ThemeSegmented({ labels, className }: { labels: ThemeControlLabels; cla
                                 className="sr-only"
                             />
                             <Icon className="size-4 shrink-0" aria-hidden="true" />
-                            {labels[option]}
+                            {iconsOnly ? <span className="sr-only">{labels[option]}</span> : labels[option]}
                         </label>
                     );
                 })}

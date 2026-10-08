@@ -3,7 +3,6 @@ import type { Messages } from '../../types.ts';
 export default {
     "language": {
         "label": "語言",
-        "inlineLabel": "語言：",
         "current": "語言：{language}",
         "fallback": "此頁面沒有繁體中文版",
         "fallbackPost": "此文章沒有繁體中文譯文",

@@ -28,7 +28,6 @@ export default {
         },
         "community": {
             "title": "社区",
-            "github": "GitHub",
             "discord": "Discord",
             "x": "X",
             "facebook": "Facebook",

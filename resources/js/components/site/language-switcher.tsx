@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent, type MouseEvent } from 'react';
 import { usePage } from '@inertiajs/react';
 import { Check, ChevronDown, Globe } from 'lucide-react';
+import { FOOTER_MENU_ITEM, FooterMenu } from '@/components/shared/footer-bar';
 import DotList from '@/components/ui/dot-list';
 import { messagesFor, useI18n } from '@/i18n';
 import type { SwitcherItem } from '@/types/shared-props';
@@ -10,10 +11,11 @@ interface LanguageSwitcherProps {
     /**
      * - `menu`: the header button, the current language's own name, opening the
      *   choices.
-     * - `list`: "Language: English · Tiếng Việt" as plain links (footer).
-     * - `stack`: the same links one per row (mobile menu).
+     * - `footer`: the same choices in the shared FooterMenu, which opens upward
+     *   and works without JavaScript.
+     * - `stack`: the choices one per row (mobile menu).
      */
-    variant: 'menu' | 'list' | 'stack';
+    variant: 'menu' | 'footer' | 'stack';
     className?: string;
 }
 
@@ -42,7 +44,11 @@ export default function LanguageSwitcher({ variant, className }: LanguageSwitche
         return <LanguageMenu items={items} className={className} />;
     }
 
-    return <LanguageLinks items={items} stacked={variant === 'stack'} className={className} />;
+    if (variant === 'footer') {
+        return <LanguageFooterMenu items={items} />;
+    }
+
+    return <LanguageStack items={items} className={className} />;
 }
 
 /** Carries the reader's place (`#section`) across to the same page in another language. */
@@ -77,23 +83,18 @@ function FallbackNote({ item, className }: { item: SwitcherItem; className?: str
     );
 }
 
-function LanguageLinks({ items, stacked, className }: { items: SwitcherItem[]; stacked: boolean; className?: string }) {
+function LanguageStack({ items, className }: { items: SwitcherItem[]; className?: string }) {
     const { m } = useI18n();
     const labelId = useId();
 
     return (
-        <nav aria-labelledby={labelId} className={cn(stacked ? 'grid gap-1' : 'type-small flex flex-wrap items-baseline gap-x-2 gap-y-1', className)}>
-            <span id={labelId} className={stacked ? 'type-small font-medium text-muted-foreground' : 'text-muted-foreground'}>
-                {stacked ? m.controls.language.label : m.controls.language.inlineLabel}
+        <nav aria-labelledby={labelId} className={cn('grid gap-1', className)}>
+            <span id={labelId} className="type-small font-medium text-muted-foreground">
+                {m.controls.language.label}
             </span>
-            <ul className={stacked ? 'grid' : 'contents'}>
-                {items.map((item, index) => (
-                    <li key={item.locale} className={stacked ? '' : 'inline-flex items-baseline gap-2'}>
-                        {!stacked && index > 0 && (
-                            <span aria-hidden="true" className="text-muted-foreground">
-                                ·
-                            </span>
-                        )}
+            <ul className="grid">
+                {items.map((item) => (
+                    <li key={item.locale}>
                         <a
                             href={item.href}
                             hrefLang={item.hreflang}
@@ -101,19 +102,51 @@ function LanguageLinks({ items, stacked, className }: { items: SwitcherItem[]; s
                             aria-current={item.current ? 'true' : undefined}
                             onClick={keepFragment(item)}
                             className={cn(
-                                'rounded-[2px] transition-colors duration-(--dur-tap) ease-(--ease-feedback)',
-                                stacked ? 'flex min-h-12 items-center gap-3 text-lg leading-[1.3] font-medium' : 'inline-flex min-h-8 items-center',
+                                'flex min-h-12 items-center gap-3 rounded-[2px] text-lg leading-[1.3] font-medium transition-colors duration-(--dur-tap) ease-(--ease-feedback)',
                                 item.current ? 'text-foreground' : 'text-muted-foreground underline decoration-muted-foreground underline-offset-3 hover:text-foreground',
                             )}
                         >
                             {item.native}
-                            {stacked && item.current && <Check className="size-4 text-accent-text" aria-hidden="true" />}
+                            {item.current && <Check className="size-4 text-accent-text" aria-hidden="true" />}
                         </a>
-                        {stacked && <FallbackNote item={item} className="-mt-2 mb-2" />}
+                        <FallbackNote item={item} className="-mt-2 mb-2" />
                     </li>
                 ))}
             </ul>
         </nav>
+    );
+}
+
+function LanguageFooterMenu({ items }: { items: SwitcherItem[] }) {
+    const { m, fmt } = useI18n();
+    const current = items.find((item) => item.current) ?? items[0];
+
+    return (
+        <FooterMenu
+            label={fmt(m.controls.language.current, { language: current.native })}
+            current={{ name: current.native, lang: current.locale }}
+        >
+            <ul>
+                {items.map((item) => (
+                    <li key={item.locale}>
+                        <a
+                            href={item.href}
+                            hrefLang={item.hreflang}
+                            lang={item.locale}
+                            aria-current={item.current ? 'true' : undefined}
+                            onClick={keepFragment(item)}
+                            className={FOOTER_MENU_ITEM}
+                        >
+                            <span className="flex-1">
+                                {item.native}
+                                <FallbackNote item={item} className="mt-0.5 font-normal" />
+                            </span>
+                            <Check className={cn('mt-px size-4 shrink-0 text-accent-text', !item.current && 'invisible')} aria-hidden="true" />
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </FooterMenu>
     );
 }
 

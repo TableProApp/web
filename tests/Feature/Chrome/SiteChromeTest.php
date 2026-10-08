@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use PHPUnit\Framework\Assert;
 
 /**
@@ -181,6 +182,9 @@ it('groups the footer links under a hidden heading, in five groups', function (s
         Assert::assertNotNull(chromeLink($footer, $href), "The footer has no link to {$href}");
     }
 
+    // The repository is linked once, as "Source code"; Community no longer repeats it.
+    expect(substr_count($footer, 'href="https://github.com/TableProApp/TablePro"'))->toBe(1);
+
     // "Cookie settings" is a button that reopens the consent bar, not a link.
     expect($footer)->toContain('>' . ($vi ? 'Cài đặt cookie' : 'Cookie settings') . '</button>');
 
@@ -200,6 +204,51 @@ it('offers the newsletter without a subscriber count', function (string $path, s
     expect($footer)->toContain('>' . ($locale === 'vi' ? 'Đăng ký nhận tin' : 'Subscribe') . '</button>')
         ->not->toMatch('/\d[\d,.]*\s+(developers|subscribers|lập trình viên|người đăng ký)/u');
 })->with('chrome locales');
+
+it('ends the footer on a language menu that opens without JavaScript, one link per language', function (string $path, string $locale): void {
+    $footer = chromeRegion(ssrHtml($path), 'footer');
+
+    // A native disclosure, closed on load and named with the current language.
+    expect($footer)->toMatch('/<details[^>]*><summary[^>]*aria-label="' . ($locale === 'vi' ? 'Ngôn ngữ: Tiếng Việt' : 'Language: English') . '"/u')
+        ->not->toMatch('/<details[^>]*\sopen[\s=>]/');
+
+    $panel = substr($footer, (int) strpos($footer, 'data-menu-panel'));
+
+    foreach (Locales::all() as $code => $definition) {
+        $link = chromeLink($panel, ($definition['prefix'] === null ? '' : "/{$definition['prefix']}") . '/download', $definition['native']);
+
+        Assert::assertNotNull($link, "The footer menu has no {$definition['native']} link");
+        Assert::assertSame($definition['hreflang'], $link['attrs']['hreflang'] ?? null);
+        Assert::assertSame($code, $link['attrs']['lang'] ?? null);
+        Assert::assertSame($code === $locale ? 'true' : null, $link['attrs']['aria-current'] ?? null);
+    }
+
+    // The old inline list ("Language: English · Tiếng Việt · …") is gone.
+    expect($footer)->not->toContain($locale === 'vi' ? 'Ngôn ngữ:</span>' : 'Language:</span>');
+})->with('chrome locales');
+
+it('draws the footer as cells that close on the bar shared with the account app', function (): void {
+    $footer = (string) file_get_contents(resource_path('js/components/site/site-footer.tsx'));
+
+    // The newsletter is a full row; the groups are two, three, then five to a row.
+    expect($footer)->toContain('<CellGrid')
+        ->toContain("'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5'")
+        ->toContain('<div className="@container col-span-full">')
+        ->toContain('<FooterBar')
+        ->toContain('language={<LanguageSwitcher variant="footer" />}');
+
+    // A phone sees the rows' lines only (design-system §4.7).
+    expect($footer)->toContain("'max-sm:gap-x-0 max-sm:*:shadow-[0_-1px_0_var(--rule),0_1px_0_var(--rule)]'");
+
+    // The bar keeps its controls clear of the chat launcher, which floats over the same corner.
+    expect($footer)->toContain('chat={chat}');
+    expect((string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx')))
+        ->toContain('style={chat ? { paddingRight: `max(0px, calc(${LAUNCHER_REACH}px - max(var(--cell-bleed), (100vw - 76rem) / 2)))` } : undefined}');
+
+    // The switcher's footer form is the shared menu, on a <details>.
+    expect((string) file_get_contents(resource_path('js/components/site/language-switcher.tsx')))->toContain('<FooterMenu')->not->toContain("'list'");
+    expect((string) file_get_contents(resource_path('js/components/shared/footer-bar.tsx')))->toContain('<details')->toContain('<summary');
+});
 
 it('gives the error pages the same chrome, in the language of their path', function (string $path, string $locale): void {
     requireSsr();

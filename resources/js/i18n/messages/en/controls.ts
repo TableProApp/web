@@ -8,7 +8,6 @@
 export default {
     language: {
         label: 'Language',
-        inlineLabel: 'Language:',
         current: 'Language: {language}',
         /** Shown, in the target language, under an option that has no equivalent page. */
         fallback: 'No English version of this page',
