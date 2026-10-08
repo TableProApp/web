@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Services\Blog\AtomFeed;
 use App\Support\Localization\Locales;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +41,5 @@ Route::get('/robots.txt', function () {
 
     return response($content, 200, ['Content-Type' => 'text/plain']);
 })->name('web.robots');
+
+Route::get(AtomFeed::PATH, [BlogController::class, 'feed'])->name('web.blog.feed');
