@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\Assert;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 require_once __DIR__ . '/helpers.php';
 
@@ -82,7 +83,7 @@ function bannedClaimRows(): array
         [
             'class' => 'Privacy',
             'about' => 'Any',
-            'phrases' => ['nothing leaves your device', 'nothing leaves your Mac', 'nothing leaves your computer', 'fully offline', 'no account', 'nothing to sign up for', 'anonymous analytics', 'anonymous usage data', 'no tracking', 'only the license key is sent', 'no other data is sent', 'không có dữ liệu nào rời khỏi máy', 'hoàn toàn offline', 'không cần tài khoản', 'ẩn danh'],
+            'phrases' => ['nothing leaves your device', 'nothing leaves your Mac', 'nothing leaves your computer', 'nothing leaving your device', 'nothing leaving your Mac', 'nothing leaving your computer', 'fully offline', 'no account', 'nothing to sign up for', 'anonymous analytics', 'anonymous usage data', 'no tracking', 'only the license key is sent', 'no other data is sent', 'không có dữ liệu nào rời khỏi máy', 'hoàn toàn offline', 'không cần tài khoản', 'ẩn danh'],
         ],
         [
             /*
@@ -307,6 +308,38 @@ it('reads every source positioning §12 names, and leaves the release posts out'
     }
 
     expect($sources->sum(fn(array $source): int => count($source['strings'])))->toBeGreaterThan(5000);
+});
+
+it('holds a release post’s description and punchline to the privacy row', function (): void {
+    /*
+     * A release post is an archive and exempt from §12, but its description
+     * is also its row on every locale's /blog, its meta and OG description
+     * and its JSON-LD, and its punchline is its OG card. A correction printed
+     * on the post does not reach any of those, so a claim it retracts would
+     * keep running there.
+     */
+    $privacy = collect(bannedClaimRows())->firstWhere('class', 'Privacy');
+    $offences = [];
+
+    foreach (glob(resource_path('blog/*.md')) ?: [] as $post) {
+        if (! contentGuardIsReleasePost($post)) {
+            continue;
+        }
+
+        $document = YamlFrontMatter::parseFile($post);
+
+        foreach (['description', 'ogPunchline'] as $field) {
+            $text = contentGuardText((string) $document->matter($field));
+
+            foreach ($privacy['phrases'] as $phrase) {
+                if (preg_match(contentGuardPhrasePattern($phrase), $text, $match) === 1) {
+                    $offences[] = basename($post) . " {$field}: \"{$match[0]}\"";
+                }
+            }
+        }
+    }
+
+    expect($offences)->toBe([], "Privacy claims in a release post summary:\n  " . implode("\n  ", $offences));
 });
 
 it('reads a sentence under a key that usually holds an identifier', function (string $path, string $key): void {
