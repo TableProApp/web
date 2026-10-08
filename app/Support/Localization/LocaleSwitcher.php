@@ -49,7 +49,7 @@ final class LocaleSwitcher
     public function forRequest(Request $request): array
     {
         $current = App::getLocale();
-        $entry = $this->seo->isErrorPage($request) ? null : $this->seo->entryFor($request);
+        $entry = $this->entryFor($request);
 
         $items = [];
 
@@ -69,6 +69,20 @@ final class LocaleSwitcher
         }
 
         return $items;
+    }
+
+    /**
+     * The page the switcher translates. An error page has none, except the
+     * 404 for a page missing in this locale: that page still exists in the
+     * others, so `/vi/blog/{slug}` switches like the post itself.
+     */
+    private function entryFor(Request $request): ?PageEntry
+    {
+        if ($this->seo->isErrorPage($request) && ! $request->attributes->has(self::SUGGESTION_ATTRIBUTE)) {
+            return null;
+        }
+
+        return $this->seo->entryFor($request);
     }
 
     private function self(Request $request, ?PageEntry $entry, string $locale): string

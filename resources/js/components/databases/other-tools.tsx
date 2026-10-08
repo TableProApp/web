@@ -4,6 +4,7 @@ import Section from '@/components/ui/section';
 import TextLink, { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 import { joinList } from '@/i18n/format';
+import { SOURCE_LANGUAGE, sourceLang } from '@/lib/data/comparisons';
 import RichText from './rich-text';
 import type { CitedTool, DatabaseLabels, OtherToolsContent } from './types';
 
@@ -27,7 +28,7 @@ type PlatformName = keyof DatabaseLabels['platformNames'];
  * cited-only tool's comparison notes comes from the page's `notes`.
  */
 export default function OtherTools({ content, tools, comparisons, labels }: OtherToolsProps) {
-    const { m, fmt } = useI18n();
+    const { locale, m, fmt } = useI18n();
     const strings = labels.otherTools;
     const byId = new Map(tools.map((tool) => [tool.id, tool]));
     const checked = tools.map((tool) => tool.checked).find((date): date is string => date !== null) ?? null;
@@ -95,7 +96,7 @@ export default function OtherTools({ content, tools, comparisons, labels }: Othe
                                     {tool.sources.map((source, index) => (
                                         <span key={source.url}>
                                             {index > 0 && ', '}
-                                            <TextLink href={source.url} external>
+                                            <TextLink href={source.url} external hrefLang={SOURCE_LANGUAGE} lang={sourceLang(locale)}>
                                                 {source.title}
                                             </TextLink>
                                         </span>

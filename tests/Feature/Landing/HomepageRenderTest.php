@@ -453,7 +453,7 @@ describe('server-rendered', function (): void {
             'starter' => 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
             'person' => 'Một license cho một người, dùng trên tối đa {macs} máy Mac.',
             'refund' => 'Mọi gói trả phí đều được hoàn tiền trong vòng {days} ngày kể từ ngày mua.',
-        ], '%s US$', ','],
+        ], "%s\u{a0}US$", ','],
     ]);
 
     it('describes the organization, the site and both apps, with no rating, FAQ or file size', function (string $path): void {

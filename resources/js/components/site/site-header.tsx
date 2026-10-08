@@ -63,7 +63,7 @@ export default function SiteHeader() {
 
     return (
         <header className="relative border-b border-rule bg-background print:hidden">
-            <Container className="flex h-16 items-center gap-8">
+            <Container className="flex h-16 items-center gap-4 sm:gap-8">
                 <LocaleLink href="/" className="flex shrink-0 items-center gap-2 rounded-control">
                     <img src="/images/logo.png" alt="" width={28} height={28} className="size-7" />
                     <span className="text-lg leading-none font-semibold text-foreground">{m.common.brand}</span>
@@ -108,11 +108,11 @@ export default function SiteHeader() {
                             {m.nav.account}
                         </Button>
                     </div>
-                    {/* A 44px target around the 32px button. */}
+                    {/* A 44px target around the 32px button, on one line: ダウンロード broke in two at 320px. */}
                     <LocaleLink
                         href="/download"
                         onClick={() => trackDownload('header', 'mac')}
-                        className={buttonClasses('primary', 'sm', 'relative after:absolute after:inset-x-0 after:-inset-y-[7px]')}
+                        className={buttonClasses('primary', 'sm', 'relative whitespace-nowrap after:absolute after:inset-x-0 after:-inset-y-[7px]')}
                     >
                         {m.nav.download}
                     </LocaleLink>

@@ -81,8 +81,8 @@ test('lists every price in data order, with a shared note once after its last pr
 test('writes Vietnamese prices in US dollars with Vietnamese separators', () => {
     const texts = priceCell(product('tableplus'), context('vi', pages.vi.tableplus.notes)).lines.map((line) => line.text);
 
-    assert.ok(texts.includes('Basic: 99 US$ mua một lần cho mỗi license, dùng trên một thiết bị'));
-    assert.ok(texts.includes('Ứng dụng cho iPhone và iPad: 3,99 US$ mỗi tháng'));
+    assert.ok(texts.includes('Basic: 99\u00a0US$ mua một lần cho mỗi license, dùng trên một thiết bị'));
+    assert.ok(texts.includes('Ứng dụng cho iPhone và iPad: 3,99\u00a0US$ mỗi tháng'));
 });
 
 test('picks the cheapest professional way in for the hub', () => {
