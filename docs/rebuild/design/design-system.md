@@ -51,14 +51,14 @@ The page sketches in §8 add layout to the sitemap's structure. Where a sketch a
 
 ## 1. Principles
 
-1. **The product is the picture; the page stays quiet.** Real screenshots of the app carry the visual interest. HTML never imitates app chrome ("grammar, not costume"): no traffic lights, fake sidebars, fake result grids or dashboards. Until real images exist, placeholders say plainly that they are placeholders.
+1. **The product is the picture; the page stays quiet.** Real screenshots of the app carry the visual interest. HTML never imitates app chrome ("grammar, not costume"): no traffic lights, fake sidebars, fake result grids or dashboards. Until real images exist, placeholders say plainly that they are placeholders, and only outside production (§6.2).
 2. **Use native conventions, not invention.** TablePro sells a native client, so the site uses controls a Mac or iPhone user already knows: a segmented control for the billing cycle, disclosure triangles for optional detail, real tables, and a sidebar in the account. Labels are the conventional ones: Features, Databases, Pricing, Download, Docs, Account.
 3. **Tables for tabular facts, prose for explanation.** Engines, plans, comparisons, machines and seats are captioned `<table>`s built from data. Explanations get a reading measure and air. The old rule "grids are for data" survives; the decorative ledger framing around prose does not. The page frame (§4.7) draws the layout's own structure, the column and one line between blocks, on every page including prose pages; it never rules the paragraphs inside a block.
 4. **One accent, used for action and location.** Orange hue 55 marks the primary action, the current location, keyboard focus and the logo. It never colours headings, dividers, section backgrounds, gradients or glows. Accent text goes through a darker token computed for contrast.
 5. **Facts render from data, through one component each.** Requirements, availability, versions, prices, seats, engines and paid features render only through `AvailabilityLine`, `PlatformCard`, `PricingCard`, `PlanMatrix` and `EngineTable`, which read `resources/data/*.json`. No count is typed into prose; name things instead of counting them.
 6. **Two languages and two themes, by construction.** Every colour pair is computed in both themes (§2.3). Vietnamese gets the line-height its stacked diacritics need (§3.3). No label relies on uppercase with letter-spacing. Layouts absorb longer Vietnamese strings without truncation.
 7. **Calm by default.** One primary action per view region. Motion confirms what the user did and never performs on its own. There are no scroll reveals, marquees, carousels or animated gradients.
-8. **Placeholders are honest.** A slot without art is visibly a slot: neutral, labelled, carrying its ID and a description. Supplying the final file changes no layout.
+8. **Placeholders are honest.** A slot without art is visibly a slot: neutral, labelled, carrying its ID and a description. Supplying the final file changes no layout. The placeholder is for whoever supplies the image, so the live site renders nothing for such a slot (§6.2).
 
 ---
 
@@ -1212,6 +1212,7 @@ Handoff-only fields (`family`, `ownerRepo`, `slot`, `handoffPriority`, `replacem
 - `<figure data-asset-id="…" data-asset-status="placeholder">` holding `<div role="img" aria-label="{type label}: {description}">`, whose visible children are `aria-hidden="true"`.
 - The ID is not in the accessible name; it is for whoever supplies the image.
 - No `<img>`, no `background-image` and no request of any kind in placeholder mode, so there is no broken-image fetch.
+- **Not in production** (decided 2026-10-08). With `APP_ENV=production` a slot with no image renders nothing: no box, no accessible name, no reserved space, for the window and its phone crop alike. The block around it becomes text only (architecture §1.9).
 
 **Phone and iPad slots:**
 

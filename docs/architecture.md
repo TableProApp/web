@@ -336,6 +336,12 @@ request, and a `supplied` entry as `<picture>` sources with light and dark
 variants. Markdown places a slot with `<asset-slot id="…"></asset-slot>`. A
 supplied `priority` asset gets a head preload through the `lcpAsset` page prop.
 
+The placeholder is for the owner, so it shows only outside production.
+`HandleInertiaRequests` shares `assetPlaceholders` (false when `APP_ENV` is
+`production`), and there a slot with no image renders nothing. A component that
+wraps a slot or gives it a column narrows the id with `useShownSlot()` first, so
+the block becomes text only instead of keeping an empty box.
+
 The browser loads `resources/js/lib/data/asset-slots.json` for shared geometry
 and one `asset-locales/{locale}.json` catalog for the active language's text.
 The page resolver waits for that catalog before client or SSR rendering;

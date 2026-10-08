@@ -115,7 +115,9 @@ a content change that alters a page's `og` block, run the `og cards` workflow
 (or `php artisan og:generate --type=… --locale=…` locally, with Chromium) and
 deploy the commit it makes.
 
-**Server environment.** `PAYMENT_PROVIDER` must match the platform app's setting,
+**Server environment.** `APP_ENV` must be `production`: any other value shows
+visitors the placeholder of every image slot that has no file yet.
+`PAYMENT_PROVIDER` must match the platform app's setting,
 because the plan cards open the overlay of whichever provider's URL
 `POST /checkout` returns. This app does not read `TEAM_MIN_SEATS`: the minimum
 seat count it shows comes from `resources/data/pricing.json`, synced by hand
