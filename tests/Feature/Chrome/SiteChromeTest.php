@@ -319,6 +319,23 @@ it('switches language with plain links to the same page, named in their own lang
     expect($header)->toContain('aria-label="' . ($locale === 'vi' ? 'Ngôn ngữ: Tiếng Việt' : 'Language: English') . '"');
 })->with('chrome locales');
 
+it('opens the header language menu without JavaScript', function (string $path, string $locale): void {
+    /*
+     * The menu was a button whose panel React unhid, so with no script, or
+     * before hydration, the header offered no other language. A <details>
+     * opens on its own, as the footer's does.
+     */
+    $header = chromeRegion(ssrHtml($path), 'header');
+    $start = strpos($header, '<details class="group relative"><summary aria-label=');
+
+    expect($start)->not->toBeFalse();
+
+    $menu = substr($header, (int) $start, strpos($header, '</details>', (int) $start) - (int) $start);
+
+    expect($menu)->toContain('data-menu-panel')->not->toContain(' hidden');
+    expect(chromeLink($menu, $locale === 'vi' ? '/download' : '/vi/download'))->not->toBeNull();
+})->with('chrome locales');
+
 it('groups the footer links under a hidden heading, in five groups', function (string $path, string $locale, string $prefix): void {
     $footer = chromeRegion(ssrHtml($path), 'footer');
     $vi = $locale === 'vi';

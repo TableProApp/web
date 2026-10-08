@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent, type MouseEvent } from 'react';
+import { useEffect, useRef, type FocusEvent, type KeyboardEvent, type MouseEvent } from 'react';
 import { usePage } from '@inertiajs/react';
 import { Check, ChevronDown, Globe } from 'lucide-react';
 import { FOOTER_MENU_ITEM, FooterMenu } from '@/components/shared/footer-bar';
@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils';
 
 interface LanguageSwitcherProps {
     /**
-     * - `menu`: the header button, the current language's own name, opening the
-     *   choices.
+     * - `menu`: the header control, the current language's own name, opening
+     *   the choices below it. A `<details>`, so it needs no JavaScript.
      * - `footer`: the same choices in the shared FooterMenu, which opens upward
      *   and works without JavaScript.
      * - `stack`: one row naming the current language that opens the choices,
@@ -158,95 +158,106 @@ function LanguageFooterMenu({ items }: { items: SwitcherItem[] }) {
 
 function LanguageMenu({ items, className }: { items: SwitcherItem[]; className?: string }) {
     const { m, fmt } = useI18n();
-    const [open, setOpen] = useState(false);
-    const panelId = useId();
-    const root = useRef<HTMLDivElement>(null);
-    const trigger = useRef<HTMLButtonElement>(null);
-    const links = useRef<(HTMLAnchorElement | null)[]>([]);
+    const root = useRef<HTMLDetailsElement>(null);
     const current = items.find((item) => item.current) ?? items[0];
 
     useEffect(() => {
-        if (!open) {
+        const details = root.current;
+
+        if (!details) {
             return;
         }
 
         const onPointerDown = (event: PointerEvent): void => {
-            if (root.current && !root.current.contains(event.target as Node)) {
-                setOpen(false);
+            if (details.open && !details.contains(event.target as Node)) {
+                details.open = false;
             }
         };
 
         document.addEventListener('pointerdown', onPointerDown);
 
         return () => document.removeEventListener('pointerdown', onPointerDown);
-    }, [open]);
+    }, []);
 
-    function focusLink(index: number): void {
-        const count = items.length;
-
-        links.current[((index % count) + count) % count]?.focus();
+    function links(): HTMLAnchorElement[] {
+        return [...(root.current?.querySelectorAll<HTMLAnchorElement>('[data-menu-panel] a[href]') ?? [])];
     }
 
-    function onTriggerKeyDown(event: KeyboardEvent<HTMLButtonElement>): void {
-        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-            event.preventDefault();
-            setOpen(true);
-            requestAnimationFrame(() => focusLink(event.key === 'ArrowDown' ? 0 : items.length - 1));
-        }
-    }
+    function onKeyDown(event: KeyboardEvent<HTMLDetailsElement>): void {
+        const details = root.current;
 
-    function onPanelKeyDown(event: KeyboardEvent<HTMLDivElement>): void {
-        const index = links.current.findIndex((link) => link === document.activeElement);
-
-        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-            event.preventDefault();
-            focusLink(index + (event.key === 'ArrowDown' ? 1 : -1));
-        } else if (event.key === 'Escape') {
-            event.preventDefault();
-            setOpen(false);
-            trigger.current?.focus();
+        if (!details || (event.key !== 'ArrowDown' && event.key !== 'ArrowUp' && event.key !== 'Escape')) {
+            return;
         }
+
+        if (event.key === 'Escape') {
+            if (details.open) {
+                event.preventDefault();
+                details.open = false;
+                details.querySelector('summary')?.focus();
+            }
+
+            return;
+        }
+
+        event.preventDefault();
+
+        const step = event.key === 'ArrowDown' ? 1 : -1;
+
+        if (!details.open) {
+            details.open = true;
+            requestAnimationFrame(() => links().at(step === 1 ? 0 : -1)?.focus());
+
+            return;
+        }
+
+        const choices = links();
+        const index = choices.indexOf(document.activeElement as HTMLAnchorElement);
+        const next = index === -1 ? (step === 1 ? 0 : choices.length - 1) : (index + step + choices.length) % choices.length;
+
+        choices[next]?.focus();
     }
 
     /** Focus moving to something outside closes the panel, as the theme menu does; a blur to nothing is left to the pointer handler. */
-    function onBlur(event: FocusEvent<HTMLDivElement>): void {
+    function onBlur(event: FocusEvent<HTMLDetailsElement>): void {
         const next = event.relatedTarget as Node | null;
 
-        if (open && next !== null && root.current && !root.current.contains(next)) {
-            setOpen(false);
+        if (root.current?.open && next !== null && !root.current.contains(next)) {
+            root.current.open = false;
         }
     }
 
-    const name = fmt(m.controls.language.current, { language: current.native });
-
     return (
-        <div ref={root} className={cn('relative', className)} onKeyDown={onPanelKeyDown} onBlur={onBlur}>
-            <button
-                ref={trigger}
-                type="button"
-                aria-label={name}
-                aria-expanded={open}
-                aria-controls={panelId}
-                onClick={() => setOpen((value) => !value)}
-                onKeyDown={onTriggerKeyDown}
-                className="inline-flex min-h-8 cursor-pointer items-center gap-1.5 rounded-control px-2 text-sm leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:bg-surface active:bg-surface-strong"
+        <details
+            ref={root}
+            // Safari does not focus a <summary> on a click, so its keys would go to the page.
+            onToggle={(event) => {
+                const details = event.currentTarget;
+
+                if (details.open && !details.contains(document.activeElement)) {
+                    details.querySelector('summary')?.focus({ preventScroll: true });
+                }
+            }}
+            onKeyDown={onKeyDown}
+            onBlur={onBlur}
+            className={cn('group relative', className)}
+        >
+            <summary
+                aria-label={fmt(m.controls.language.current, { language: current.native })}
+                className="inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 rounded-control px-2 text-sm leading-[1.3] font-medium text-foreground transition-colors duration-(--dur-tap) ease-(--ease-feedback) select-none hover:bg-surface active:bg-surface-strong [&::-webkit-details-marker]:hidden"
             >
                 <Globe className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
                 <span lang={current.locale}>{current.native}</span>
-                <ChevronDown className={cn('size-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-state)', open && 'rotate-180')} aria-hidden="true" />
-            </button>
+                <ChevronDown className="size-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-state) group-open:rotate-180" aria-hidden="true" />
+            </summary>
             <div
-                id={panelId}
-                hidden={!open}
+                data-menu-panel
                 className="absolute top-full right-0 z-50 mt-2 max-h-[min(32rem,70dvh)] w-max max-w-72 min-w-48 overflow-y-auto overscroll-contain rounded-panel border border-rule bg-raised p-1 shadow-overlay"
             >
                 <ul>
-                    {items.map((item, index) => (
+                    {items.map((item) => (
                         <li key={item.locale}>
                             <a
-                                ref={(element) => {
-                                    links.current[index] = element;
-                                }}
                                 href={item.href}
                                 hrefLang={item.hreflang}
                                 lang={item.locale}
@@ -264,6 +275,6 @@ function LanguageMenu({ items, className }: { items: SwitcherItem[]; className?:
                     ))}
                 </ul>
             </div>
-        </div>
+        </details>
     );
 }
