@@ -35,7 +35,7 @@
             "title": "SurrealQL y registros",
             "paragraphs": [
                 "El editor ejecuta scripts SurrealQL completos, incluido <code>RELATE</code> entre dos registros, con autocompletado de sentencias comunes. <explain>Explain y Explain Full</explain> vuelven a ejecutar la consulta con <code>EXPLAIN</code> para mostrar su resolución y uso de índices; el plan vuelve como texto sin procesar.",
-                "Los namespaces están arriba en la barra lateral con sus bases dentro. Cambiar cualquiera no reconecta: ambos viajan en cada solicitud. Solo root ve todos los namespaces.",
+                "Los namespaces están arriba en la barra lateral con sus bases dentro. Cambiar de uno u otro nunca reconecta, porque el namespace y la base de datos viajan en cada solicitud. Solo un usuario root ve todos los namespaces.",
                 "Cambiar una celda ejecuta <code>UPDATE</code> solo de los campos tocados, con parámetros tipados: <code>int</code> sigue siendo <code>int</code>, sin tocar campos calculados <code>FUTURE</code> ni cambios ajenos. Deja <code>id</code> vacío para generar uno o escribe <code>table:id</code>. Una tabla <code>SCHEMALESS</code> obtiene las columnas de los registros leídos.",
                 "Los <filters>filtros</filters> se convierten en SurrealQL; una fila Raw SQL acepta una condición, como un recorrido de grafo. Se rechazan condiciones que escriban, contengan <code>;</code> o comentario, o llamen <code>fn::</code> o <code>http::</code>; ejecútalas en el editor."
             ]
@@ -44,7 +44,7 @@
             "id": "schema",
             "title": "Structure",
             "paragraphs": [
-                "Structure es de solo lectura. Crea y cambia campos e índices con <code>DEFINE FIELD</code> y <code>DEFINE INDEX</code> en el editor. Un namespace o base se elimina desde su menú; seleccionar varios pide una sola confirmación."
+                "La pestaña Structure es de solo lectura. Crea y cambia campos e índices con <code>DEFINE FIELD</code> y <code>DEFINE INDEX</code> en el editor. Un namespace o base se elimina desde su menú; seleccionar varios pide una sola confirmación."
             ]
         },
         {

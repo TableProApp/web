@@ -15,7 +15,7 @@
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Outras formas de instalar",
-        "business": "TablePro é de código aberto e gratuito para usar. Os planos pagos adicionam recursos opcionais ao {paidPlatformApps}. <pricing>Ver preços</pricing>"
+        "business": "TablePro é de código aberto e de uso gratuito. Os planos pagos adicionam recursos opcionais ao {paidPlatformApps}. <pricing>Ver preços</pricing>"
     },
     "databases": {
         "title": "Bancos relacionais, de documentos, de chave-valor e analíticos",
@@ -69,7 +69,7 @@
     "safety": {
         "title": "Proteções para bancos de dados de produção",
         "body": [
-            "No Mac, use etiquetas e cores para identificar o ambiente das conexões e atribua a cada uma um nível de Safe Mode. Silent executa as instruções como escritas, Alert pede confirmação antes de gravar, os níveis chamados Safe Mode também pedem Touch ID ou senha, e Read-Only recusa gravações. DROP, TRUNCATE e DELETE sem WHERE param e pedem confirmação em todos os níveis. No iPhone e iPad, Confirm Writes pede confirmação antes de cada gravação e Read-Only as recusa.",
+            "No Mac, use etiquetas e cores para identificar o ambiente das conexões e atribua a cada uma um nível de Safe Mode. Silent executa as instruções como foram escritas, Alert pede confirmação antes de gravar, os níveis chamados Safe Mode também pedem Touch ID ou senha, e Read-Only recusa gravações. DROP, TRUNCATE e DELETE sem WHERE param e pedem confirmação em todos os níveis. No iPhone e iPad, Confirm Writes pede confirmação antes de cada gravação e Read-Only as recusa.",
             "No Agent mode, o assistente de IA pode executar instruções. Enquanto uma conexão estiver aberta no Agent mode, ela opera no nível Alert ou mais rigoroso. Data Rewind pode restaurar os valores substituídos por um salvamento recente. Não é um backup."
         ],
         "levels": "Níveis do Safe Mode",
@@ -101,7 +101,7 @@
         "link": "Comparar TablePro com outros clientes"
     },
     "pricing": {
-        "title": "Gratuito para usar, com planos pagos opcionais",
+        "title": "Uso gratuito, com planos pagos opcionais",
         "lead": "O {macApp} é gratuito para baixar e usar, sem período de avaliação nem limite de tempo. Um plano Starter ou Team adiciona recursos opcionais, como {starterExamples}. Team inclui tudo do Starter e adiciona {teamExamples} para compartilhar conexões e consultas com sua equipe. O {iosApp} é gratuito, sem compras no app."
     },
     "openSource": {

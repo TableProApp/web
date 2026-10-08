@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Assistente SQL IA e server MCP locale",
-        "description": "Spiega, ottimizza e correggi SQL con il tuo fornitore IA. Client MCP come Claude Code accedono alle connessioni salvate tramite un server MCP locale."
+        "description": "Spiega, ottimizza e correggi SQL con il tuo provider IA. Client MCP come Claude Code accedono alle connessioni salvate tramite un server MCP locale."
     },
     "og": {
         "kicker": "IA e MCP",
@@ -17,7 +17,7 @@
             "id": "assistant",
             "title": "Usa il provider scelto da te",
             "paragraphs": [
-                "L’assistente funziona con questi provider: {aiProviders}. A seconda del provider, incolli una chiave API, accedi con un account che possiedi già oppure esegui un modello sul Mac. TablePro non gestisce un proprio servizio IA: le richieste vanno direttamente al provider e non viene inviato nulla finché non ne aggiungi uno.",
+                "L’assistente funziona con questi provider: {aiProviders}. A seconda del provider, incolli una chiave API, accedi con un account che hai già oppure esegui un modello sul Mac. TablePro non gestisce un proprio servizio IA: le richieste vanno direttamente al provider e non viene inviato nulla finché non ne aggiungi uno.",
                 "Ogni messaggio include la struttura delle tabelle della connessione, fino al limite impostato da te, e la query nell’editor. Le righe dei risultati vengono inviate solo se attivi l’opzione in <ui>Settings > AI</ui>. Ogni connessione ha anche una politica IA; Never impedisce l’accesso sia all’assistente sia ai client MCP."
             ],
             "asset": "mac-ai-chat"
@@ -35,7 +35,7 @@
             "title": "Modalità della chat e Agent mode",
             "paragraphs": [
                 "La chat ha tre modalità. Ask, quella predefinita, consulta lo schema e non esegue nulla. Edit può anche eseguire query e Agent può anche eseguire DROP, TRUNCATE e altre istruzioni distruttive. A {macSafeModeDefault}, il livello Safe Mode da cui iniziano le nuove connessioni, le scritture in Edit e Agent avvengono senza chiedere; da Alert a Safe Mode (Full), ciascuna attende Run e Read-Only le rifiuta. Le istruzioni distruttive attendono sempre un clic e non possono mai essere approvate in anticipo.",
-                "Agent mode (<kbd>⌥⇧⌘A</kbd>) dedica l’intera finestra a una sessione: le sessioni di questa connessione, la conversazione e l’SQL proposto ed eseguito. Mentre è attiva, la connessione resta ad Alert o superiore, quindi nessuna scrittura avviene finché non fai clic su Run. È un promemoria, non un blocco: basta un tasto per disattivarla. Le sessioni restano su questo Mac."
+                "Agent mode (<kbd>⌥⇧⌘A</kbd>) dedica l’intera finestra a una sessione: le sessioni di questa connessione, la conversazione e l’SQL proposto ed eseguito. Mentre è attiva, la connessione resta ad Alert o a un livello più restrittivo, quindi nessuna scrittura avviene finché non fai clic su Run. È un promemoria, non un blocco: basta un tasto per disattivarla. Le sessioni restano su questo Mac."
             ],
             "asset": "mac-agent-mode",
             "links": [
@@ -82,7 +82,7 @@
             "id": "outside-servers",
             "title": "Server MCP esterni",
             "paragraphs": [
-                "Funziona anche nell’altra direzione: una sessione IA in TablePro può chiamare strumenti su un server MCP che gestisci, tramite Streamable HTTP, con HTTPS obbligatorio salvo che il server sia su questo Mac. Scegli su quali connessioni offrire ogni server. Ogni chiamata mostra una scheda e attende il tuo clic, senza approvazioni permanenti. Indirizzo e token del server restano su questo Mac."
+                "Funziona anche nell’altra direzione: una sessione IA in TablePro può chiamare strumenti su un server MCP che gestisci, tramite Streamable HTTP, con HTTPS obbligatorio salvo che il server sia su questo Mac. Scegli su quali connessioni offrire ogni server. Ogni chiamata mostra una card e attende il tuo clic, senza approvazioni permanenti. Indirizzo e token del server restano su questo Mac."
             ]
         },
         {
@@ -159,7 +159,7 @@
         "Cursor non può chiamare gli strumenti di TablePro, quindi, con Cursor come provider, Edit e Agent non eseguono query. I modelli locali chiamano strumenti solo se il modello li supporta.",
         "Claude Agent usa il tuo accesso Claude Code e raggiunge lo schema tramite il server MCP, che deve essere attivo. Dipende da Claude Code e può smettere di funzionare con un suo nuovo rilascio.",
         "Il server MCP ascolta solo su {mcpHost}. Per raggiungerlo da un’altra macchina devi inoltrare autonomamente la porta e assumerti la responsabilità di ciò che esponi.",
-        "L’app per Mac non ha azioni Comandi Rapidi; automatizzala con AppleScript, link o il server MCP.",
+        "L’app per Mac non ha azioni di Comandi Rapidi; automatizzala con AppleScript, link o il server MCP.",
         "Le sessioni Agent e i server MCP esterni restano sul Mac dove li configuri e non si sincronizzano."
     ],
     "docs": [

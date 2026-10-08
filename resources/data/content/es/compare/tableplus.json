@@ -9,22 +9,22 @@
     },
     "header": {
         "title": "TablePro frente a TablePlus",
-        "lead": "TablePlus y TablePro se describen como clientes nativos con apps Mac, iPhone y iPad. TablePlus también funciona en Windows y Linux. TablePro es de código abierto y sus planes de pago añaden funciones opcionales en Mac. Pese al parecido de los nombres, son productos independientes de creadores sin relación entre sí."
+        "lead": "TablePlus y TablePro son clientes de bases de datos que se describen como nativos, con apps para Mac, iPhone y iPad. TablePlus también funciona en Windows y Linux. TablePro es de código abierto, y sus planes de pago añaden funciones opcionales a la app para Mac. Pese al parecido de los nombres, son productos independientes de creadores sin relación entre sí."
     },
     "shortAnswer": {
         "tablepro": [
-            "Quieres código abierto. TablePro usa AGPLv3, incluido el código de las funciones de pago.",
-            "Quieres una app gratuita para iPhone y iPad sin compras integradas.",
-            "Prefieres pagar solo por las funciones necesarias. La app gratis no limita pestañas ni ventanas; los planes añaden funciones como {starterExamples}."
+            "Quieres un cliente de código abierto. TablePro es de código abierto bajo AGPLv3, incluido el código de sus funciones de pago.",
+            "Quieres una app gratuita para iPhone y iPad, sin compras dentro de la app.",
+            "Prefieres pagar solo por las funciones que necesitas. La app gratuita no limita pestañas ni ventanas, y los planes de pago añaden funciones como {starterExamples}."
         ],
         "competitor": [
             "También trabajas en Windows o Linux.",
-            "Conectas a Vertica o Greenplum, que TablePlus enumera y TablePro no admite.",
-            "Obtienes tus apps Mac mediante Setapp."
+            "Te conectas a Vertica o Greenplum, que TablePlus incluye en su lista y TablePro no admite.",
+            "Consigues tus apps para Mac a través de Setapp."
         ]
     },
     "glance": {
-        "intro": "Ambos tienen chat IA, servidor MCP, diagrama de esquema y exportación Excel. TablePlus añadió MCP, diagrama y exportación Excel en {cells.mcp.version}, del {cells.mcp.date}."
+        "intro": "Ambos clientes tienen chat de IA, servidor MCP, diagrama de esquema y exportación a Excel. TablePlus añadió su servidor MCP, su diagrama y la exportación a Excel en la versión {cells.mcp.version}, publicada el {cells.mcp.date}."
     },
     "rows": {
         "diagram": {
@@ -37,7 +37,7 @@
         },
         "safeMode": {
             "label": "Safe Mode",
-            "tablepro": "Por conexión, de Silent a Read-Only, con Touch ID en niveles estrictos"
+            "tablepro": "Por conexión, de Silent a Read-Only, con Touch ID en los niveles más estrictos"
         },
         "setapp": {
             "label": "Setapp",
@@ -48,7 +48,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePlus funciona en Windows y Linux además de Mac, por lo que un cliente te acompaña entre equipos.",
+                "text": "TablePlus funciona en Windows y Linux además de en el Mac, así que un mismo cliente puede acompañarte de un ordenador a otro.",
                 "cite": [
                     "platforms"
                 ],
@@ -56,7 +56,7 @@
                 "href": null
             },
             {
-                "text": "Enumera motores no compatibles con TablePro, como Vertica y Greenplum.",
+                "text": "Incluye motores que TablePro no admite, como Vertica y Greenplum.",
                 "cite": [
                     "cells.databases"
                 ],
@@ -64,7 +64,7 @@
                 "href": null
             },
             {
-                "text": "Está disponible mediante Setapp si así obtienes tus apps Mac.",
+                "text": "Está disponible en Setapp, si es así como consigues tus apps para Mac.",
                 "cite": [
                     "cells.setapp"
                 ],
@@ -86,7 +86,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro es de código abierto AGPLv3, incluido el código de pago. TablePlus es de código cerrado.",
+                "text": "TablePro es de código abierto bajo AGPLv3, incluido el código de sus funciones de pago. TablePlus es de código cerrado.",
                 "cite": [
                     "licence"
                 ],
@@ -94,13 +94,13 @@
                 "href": null
             },
             {
-                "text": "La app gratuita conecta todos los motores compatibles e incluye IA, MCP y Safe Mode, sin límites de pestañas o ventanas. Los <link>planes de pago</link> añaden funciones como {starterExamples}.",
+                "text": "La app gratuita se conecta a todos los motores compatibles e incluye el asistente de IA, el servidor MCP y Safe Mode, sin límites de pestañas ni ventanas. Los <link>planes de pago</link> añaden funciones como {starterExamples}.",
                 "cite": [],
                 "feature": null,
                 "href": "/pricing"
             },
             {
-                "text": "La app iPhone y iPad es gratis, sin compras integradas ni licencia. La app iPhone de TablePlus tiene compras integradas o viene incluida con licencia TablePlus.",
+                "text": "La app para iPhone y iPad es gratis, sin compras dentro de la app ni licencia. La app de TablePlus para iPhone tiene compras dentro de la app o viene incluida con una licencia de TablePlus.",
                 "cite": [
                     "cells.ios"
                 ],
@@ -108,7 +108,7 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud Sync</link> mantiene las conexiones sincronizadas entre tus Macs y tu iPhone o iPad. Es parte de Starter en Mac y gratis en iPhone y iPad. TablePlus sincroniza sus conexiones mediante una carpeta en la nube que tú eliges, como Dropbox o iCloud.",
+                "text": "<link>iCloud Sync</link> mantiene las conexiones sincronizadas entre tus Mac y tu iPhone o iPad. Forma parte de Starter en el Mac y es gratis en la app para iPhone y iPad. TablePlus sincroniza sus conexiones mediante una carpeta en la nube que tú eliges, como Dropbox o iCloud.",
                 "cite": [
                     "cells.sync"
                 ],
@@ -116,7 +116,7 @@
                 "href": null
             },
             {
-                "text": "Los planes Team añaden <link>{teamExamples}</link> para compartir conexiones y consultas guardadas.",
+                "text": "Los planes Team añaden <link>{teamExamples}</link> para compartir conexiones y consultas guardadas con tu equipo.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/sync-and-teams#team"
@@ -127,25 +127,25 @@
         "intro": "",
         "items": [
             {
-                "text": "No hay TablePro para Windows ni Linux.",
+                "text": "No hay app de TablePro para Windows ni Linux.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Como TablePlus, TablePro tiene una <link>app separada para iPhone y iPad</link>, con menos funciones que Mac: no tiene asistente IA, MCP ni autocompletado.",
+                "text": "Igual que TablePlus, TablePro tiene una <link>app independiente para iPhone y iPad</link>, que hace menos que la app para Mac: no tiene asistente de IA, servidor MCP ni autocompletado.",
                 "cite": [],
                 "feature": null,
                 "href": "/ios"
             },
             {
-                "text": "TablePro no es diseñador de esquemas: el diagrama ER es una instantánea de solo lectura del esquema actual.",
+                "text": "TablePro no es un diseñador de esquemas: su diagrama ER es una instantánea de solo lectura del esquema actual.",
                 "cite": [],
                 "feature": null,
                 "href": null
             },
             {
-                "text": "Una licencia TablePlus sigue funcionando tras su año de actualizaciones, igual que una compra única TablePro. Un plan mensual o anual TablePro no: al terminar se bloquean sus funciones de pago y el resto sigue funcionando.",
+                "text": "Una licencia de TablePlus sigue funcionando después de su año de actualizaciones, y también una compra de pago único de TablePro. Un plan mensual o anual de TablePro no: cuando termina, sus funciones de pago se bloquean y el resto de la app sigue funcionando.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -153,16 +153,16 @@
         ]
     },
     "switching": {
-        "intro": "TablePro lee conexiones donde TablePlus las guarda, incluida su edición Setapp. TablePlus no necesita estar abierto y sus archivos no cambian.",
+        "intro": "TablePro lee tus conexiones de TablePlus donde TablePlus las guarda, incluidas las de la edición de TablePlus para Setapp. TablePlus no necesita estar abierto y sus archivos no se modifican.",
         "steps": [
             "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
-            "Selecciona TablePlus y activa <ui>Include passwords</ui> para leer las del Llavero macOS.",
+            "Selecciona TablePlus. Activa <ui>Include passwords</ui> para leer las contraseñas guardadas en el Llavero de macOS.",
             "macOS pide tu contraseña de acceso una vez por contraseña guardada. Elige <ui>Always Allow</ui> en cada aviso.",
-            "Revisa la lista, decide qué hacer con duplicados y pulsa <ui>Import</ui>. Se transfieren grupos, túneles SSH y colores. Una conexión a motor incompatible llega desmarcada.",
-            "Antes de eliminar TablePlus, abre una conexión con contraseña para comprobar la transferencia."
+            "Revisa la lista, decide qué hacer con los duplicados y haz clic en <ui>Import</ui>. Se transfieren los grupos, los túneles SSH y los colores de las conexiones. Una conexión a un motor que TablePro no admite llega desmarcada.",
+            "Antes de eliminar TablePlus, abre una conexión que tenía contraseña para comprobar que se ha transferido."
         ],
         "after": [
-            "Consultas guardadas, historial y atajos permanecen en TablePlus.",
+            "Las consultas guardadas, el historial de consultas y los atajos de teclado se quedan en TablePlus.",
             "Una conexión que pide contraseña cada vez sigue pidiéndola tras importar."
         ],
         "docs": "/switching"
@@ -171,34 +171,34 @@
         {
             "id": "keep-tableplus",
             "question": "¿Puedo seguir usando TablePlus tras importar?",
-            "answer": "Sí. Solo se leen sus archivos de conexión, así que ambas apps funcionan con sus propias copias.",
+            "answer": "Sí. La importación solo lee los archivos de conexión de TablePlus, así que ambas apps siguen funcionando con sus propias copias.",
             "href": null
         },
         {
             "id": "speed",
-            "question": "¿Cómo se compara la velocidad con TablePlus?",
-            "answer": "Esta página no afirma velocidad ni memoria. Ninguna app publica una medición reproducible; el resultado depende del Mac, base y red.",
+            "question": "¿Cómo es la velocidad de TablePro frente a TablePlus?",
+            "answer": "Esta página no hace afirmaciones sobre velocidad ni memoria. Ninguna de las dos apps publica una medición que otros puedan reproducir, y el resultado depende de tu Mac, tu base de datos y tu red.",
             "href": null
         },
         {
             "id": "license",
-            "question": "¿Necesito licencia para TablePro?",
-            "answer": "No. TablePro es gratis, con todos los motores compatibles, asistente IA, MCP y Safe Mode. Starter o Team añaden funciones opcionales Mac, como {starterExamples}. <link>Ver precios</link>.",
+            "question": "¿Necesito una licencia para usar TablePro?",
+            "answer": "No. TablePro se puede usar gratis, con todos los motores compatibles, el asistente de IA, el servidor MCP y Safe Mode. Un plan Starter o Team añade funciones opcionales a la app para Mac, como {starterExamples}. <link>Ver precios</link>.",
             "href": "/pricing"
         },
         {
             "id": "ios-license",
-            "question": "¿La app iPhone y iPad necesita licencia?",
-            "answer": "No. Es gratuita sin compras integradas. Para sincronizar por iCloud con Mac, este necesita Starter.",
+            "question": "¿La app para iPhone y iPad necesita licencia?",
+            "answer": "No. La app para iPhone y iPad es gratis, sin compras dentro de la app. Para sincronizarla con un Mac mediante iCloud, el Mac necesita Starter.",
             "href": null
         }
     ],
     "notes": {
         "tableplus-free-limits": "Sin límite de tiempo, pero máximo {value} pestañas, {value} ventanas y {value} filtros avanzados a la vez",
         "tableplus-one-year-updates": "Pago único con un año de actualizaciones. La app sigue funcionando después.",
-        "tableplus-databases": "Motores relacionales, documentales, clave-valor y analíticos, incluidos PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica y Greenplum. Algunos solo en ciertas plataformas.",
-        "tableplus-ai": "Plugin de chat con OpenAI, Anthropic, GitHub Copilot o modelo local",
-        "tableplus-ios-purchase": "Descarga gratuita con compras integradas. Una licencia TablePlus activa también cubre un número determinado de dispositivos. Requiere iOS {value} o posterior.",
+        "tableplus-databases": "Motores relacionales, documentales, clave-valor y analíticos, entre ellos PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica y Greenplum. Algunos motores solo están disponibles en ciertas plataformas.",
+        "tableplus-ai": "Un plugin de chat que funciona con OpenAI, Anthropic, GitHub Copilot o un modelo local",
+        "tableplus-ios-purchase": "Descarga gratuita, con compras dentro de la app. Una licencia activa de TablePlus también la cubre en un número determinado de dispositivos. Requiere iOS {value} o posterior.",
         "tableplus-sync-folder": "Las conexiones se sincronizan mediante una carpeta en la nube que tú eliges, como Dropbox o iCloud",
         "tableplus-safe-mode-levels": "{value} niveles, con Touch ID"
     }

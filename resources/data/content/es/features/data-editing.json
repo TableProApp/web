@@ -56,8 +56,8 @@
             "id": "safe-mode",
             "title": "Safe Mode para conexiones de producción",
             "paragraphs": [
-                "Cada conexión tiene un nivel de Safe Mode: {macSafeModeLevels}. Las nuevas empiezan en {macSafeModeDefault}, donde las sentencias se ejecutan tal como están. Alert pregunta antes de una escritura; los niveles Safe Mode también piden Touch ID o contraseña; los niveles Full preguntan antes de lecturas y Read-Only rechaza escrituras y desactiva la edición. Safe Mode es gratis.",
-                "En todos los niveles, DROP, TRUNCATE y DELETE sin WHERE se detienen y preguntan primero. Algunas condiciones aumentan el nivel mientras se aplican: motores que solo leen, Agent mode, que lo eleva al menos a Alert, y nivel mínimo fijado por tu organización mediante gestión de dispositivos (MDM)."
+                "Cada conexión tiene un nivel de Safe Mode: {macSafeModeLevels}. Las nuevas empiezan en {macSafeModeDefault}, donde las sentencias se ejecutan tal como están escritas. Alert pregunta antes de una escritura; los niveles Safe Mode también piden Touch ID o la contraseña del Mac; los niveles Full preguntan también antes de las lecturas, y Read-Only rechaza las escrituras y desactiva la edición. Safe Mode es gratis.",
+                "En todos los niveles, DROP, TRUNCATE y DELETE sin WHERE se detienen y preguntan primero. Algunas condiciones elevan el nivel de una conexión mientras se aplican: un motor que solo lee, Agent mode, que lo eleva al menos a Alert, y un nivel mínimo fijado por tu organización mediante la gestión de dispositivos (MDM)."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
@@ -75,7 +75,7 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind conserva los valores sustituidos al guardar para que <ui>Restore Previous Values</ui> los recupere. Primero muestra lo que ocurrirá con cada fila, incluidas las cambiadas después del guardado, y restaura mediante Safe Mode en una transacción si el motor lo permite. Una restauración también puede restaurarse.",
+                "Data Rewind conserva los valores sustituidos al guardar para que <ui>Restore Previous Values</ui> pueda recuperarlos. Antes, una hoja de revisión muestra lo que ocurrirá con cada fila, incluidas las que cambiaron después de tu guardado; la restauración pasa por Safe Mode, en una transacción si el motor lo permite. Una restauración también puede restaurarse.",
                 "Los valores guardados permanecen en este Mac durante {rewindDays} días, cifrados con una clave del Llavero, y nunca se sincronizan. Al terminar un plan, TablePro deja de registrar guardados y <ui>Restore Previous Values</ui> muestra un aviso."
             ],
             "paid": [
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Documentos y claves",
             "paragraphs": [
-                "No todos los motores almacenan filas. En MongoDB insertas y editas documentos completos como Extended JSON, eliminas un campo de un documento y renombras o eliminas un campo en toda una colección desde Structure. En Redis renombras claves, configuras TTL y editas cadenas en la cuadrícula, añades claves string, hash, list, set o sorted-set y cambias otros tipos con comandos en el editor."
+                "No todos los motores almacenan filas. En MongoDB insertas y editas documentos completos como Extended JSON, eliminas un campo de un documento y renombras o eliminas un campo en toda una colección desde la pestaña Structure. En Redis renombras claves, configuras TTL y editas cadenas en la cuadrícula, añades claves string, hash, list, set o sorted-set y cambias otros tipos con comandos en el editor."
             ],
             "links": [
                 {

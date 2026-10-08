@@ -11,7 +11,7 @@
     "breadcrumb": "Turso y libSQL",
     "header": {
         "title": "Cliente Turso y libSQL para {devices}",
-        "lead": "Conecta a Turso con URL y token, consulta con sintaxis SQLite y modifica tablas, índices y triggers. El mismo controlador abre servidores sqld propios y archivos libSQL en tu Mac."
+        "lead": "Conéctate a una base de datos Turso con su URL y un token, consúltala con sintaxis de SQLite y modifica sus tablas, índices y triggers. El mismo controlador abre servidores sqld propios y archivos libSQL en tu Mac."
     },
     "asset": "mac-db-turso-remote",
     "links": {
@@ -29,7 +29,7 @@
             "title": "Conecta a Turso",
             "paragraphs": [
                 "Elige Turso en los tipos de conexión y deja <ui>Connection Mode</ui> en <ui>Remote (Turso)</ui>. Pega la URL HTTPS de la base terminada en <code>.turso.io</code> y un token en <ui>API Token</ui>, guardado en el Llavero de macOS. El panel Turso muestra ambos, igual que <code>turso db show my-db --url</code> y <code>turso db tokens create my-db</code>.",
-                "Una URL <code>libsql://</code> se reescribe como HTTPS e importarla crea una conexión remota. No hay campos de host, puerto o base porque la URL identifica una base. La conexión está cifrada si usa HTTPS en lugar de HTTP sin cifrar; no hay túnel SSH."
+                "Una URL <code>libsql://</code> se reescribe como HTTPS e importarla crea una conexión remota. No hay campos de host, puerto ni base de datos, porque la URL identifica una única base de datos. La conexión está cifrada si usa HTTPS en lugar de HTTP sin cifrar; no hay túnel SSH."
             ]
         },
         {
@@ -62,8 +62,8 @@
             "engine": "libsql",
             "title": "libSQL",
             "paragraphs": [
-                "Elige libSQL para un servidor sqld propio o un archivo local. En Remoto accede a cualquier sqld con endpoint Hrana v2 pipeline, incluido uno local, que usa 8080 por defecto. Deja el token vacío si se inició sin <code>--auth-jwt-key-file</code>, o proporciona un JWT acorde a la clave del servidor.",
-                "<ui>Local File</ui> abre libSQL con el motor SQLite del controlador; una ruta inexistente se crea, incluidas carpetas. Un archivo local ejecuta transacciones, carga extensiones de la lista Extensiones y reconstruye por reordenación de columnas o claves foráneas tras confirmar.",
+                "Elige libSQL para un servidor sqld propio o un archivo en este Mac. En modo Remote accede a cualquier sqld que sirva el endpoint Hrana v2 pipeline, incluido uno que se ejecute en este Mac, que escucha en el puerto 8080 por defecto. Deja el token vacío para un servidor iniciado sin <code>--auth-jwt-key-file</code>, o indica un JWT que coincida con la clave del servidor.",
+                "El modo <ui>Local File</ui> abre un archivo libSQL con el motor SQLite que incluye el controlador, y una ruta que aún no existe se crea, carpetas incluidas. Un archivo local ejecuta transacciones, carga extensiones de SQLite desde la lista Extensions de la conexión y ejecuta una reordenación de columnas o una reconstrucción por claves foráneas cuando la confirmas.",
                 "Las sentencias exclusivas de libSQL, como <code>ALTER TABLE … ALTER COLUMN</code>, fallan en un archivo local porque las recibe SQLite. Los archivos libSQL cifrados no se abren. Nunca abras un archivo que otra app esté sincronizando como réplica embebida Turso: el acceso simultáneo puede corromperlo.",
                 "<backup>Backup Dump y Restore Dump</backup> ejecutan {dumpTool} en un archivo libSQL local."
             ]
@@ -74,12 +74,12 @@
         {
             "id": "remote-or-local",
             "question": "¿Elijo Remoto o Archivo local?",
-            "answer": "Remoto para Turso o sqld por URL. Archivo local para libSQL en el Mac, que también ofrece transacciones, extensiones SQLite y copias de seguridad."
+            "answer": "Remote, para una base de datos Turso o un servidor sqld al que accedes por URL. Local File, para un archivo libSQL en este Mac, que además te da transacciones, extensiones de SQLite y copias de seguridad."
         },
         {
             "id": "turso-cli",
             "question": "¿Necesito instalar Turso CLI?",
-            "answer": "No. El panel Turso muestra la URL y también crea tokens. La CLI sirve para cargar datos desde terminal, ya que TablePro no importa a Turso."
+            "answer": "No. El panel Turso muestra la URL y también crea tokens. La CLI sirve para cargar datos desde el terminal, ya que TablePro no tiene importación para Turso."
         }
     ],
     "related": [

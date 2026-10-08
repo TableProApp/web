@@ -10,16 +10,16 @@
     },
     "header": {
         "title": "Blog",
-        "lead": "Anuncios de versiones, de la más reciente a la más antigua. No todas las versiones tienen una publicación. Las entradas solo están en inglés. Las notas completas de cada versión están en el <changelog>historial de cambios</changelog> (inglés)."
+        "lead": "Anuncios de versiones, de la más reciente a la más antigua. No todas las versiones tienen una publicación. Las publicaciones solo están en inglés. Las notas completas de cada versión están en el <changelog>historial de cambios</changelog> (inglés)."
     },
     "corrections": {
         "tablepro-0-74": {
             "date": "2026-10-02",
-            "text": "La vista de mapa carga sus teselas desde Apple, por lo que esta publicación exagera qué permanece en tu Mac. Tus filas permanecen en el Mac; Apple proporciona las teselas del área que aparece en pantalla."
+            "text": "La vista de mapa carga sus teselas desde Apple, por lo que esta publicación exagera lo que permanece en tu Mac. Tus filas permanecen en el Mac; Apple proporciona las teselas del área que aparece en pantalla."
         },
         "tablepro-for-iphone": {
             "date": "2026-10-02",
-            "text": "La versión 1.0 no rechaza las conexiones que pasan por un host de salto SSH, como afirmaba esta publicación. Los hosts de salto no son compatibles con iPhone y iPad, así que abre esas conexiones en el Mac. En Oracle, al igual que en SQLite, DuckDB y SQL Server, solo los guardados de más de una sentencia se ejecutan dentro de una transacción. Solo DuckDB puede ejecutarse en memoria; los archivos SQLite se copian a la app."
+            "text": "La versión 1.0 no rechaza las conexiones que pasan por un host de salto SSH, como afirmaba esta publicación. Los hosts de salto no se admiten en iPhone y iPad, así que abre esas conexiones en el Mac. En Oracle, al igual que en SQLite, DuckDB y SQL Server, solo los guardados de más de una sentencia se ejecutan dentro de una transacción. Solo DuckDB puede ejecutarse en memoria; los archivos SQLite se copian a la app."
         }
     }
 }

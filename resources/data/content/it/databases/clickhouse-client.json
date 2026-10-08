@@ -40,7 +40,7 @@
                 "Ogni query ha un proprio ID e richiede aggiornamenti sul progresso, quindi una query lunga riporta le righe lette durante l’esecuzione. Stop invia <code>KILL QUERY</code> per quell’ID e il timeout delle query della connessione raggiunge il server.",
                 "Il <explain>menu Explain</explain> offre Plan, Pipeline, AST, Syntax ed Estimate. L’output indentato viene rappresentato come diagramma o albero ed Estimate mostra righe, mark e parti che la query leggerebbe.",
                 "Le modifiche nella griglia vengono inviate come <code>INSERT</code>, <code>ALTER TABLE … UPDATE</code> e <code>ALTER TABLE … DELETE</code>, con <editing>Preview SQL</editing> prima. ClickHouse esegue aggiornamenti ed eliminazioni come mutazioni in background, quindi un salvataggio significa accettato, non ancora applicato; <code>system.mutations</code> mostra il progresso. Una vista materializzata si apre in sola lettura.",
-                "Un risultato con tuple di punti o anelli ClickHouse si apre nella <map>vista Map</map>. Una query con una propria clausola <code>FORMAT</code> mostra l’output non elaborato del server in una colonna, quindi ometti la clausola per ottenere una griglia."
+                "Un risultato con tuple di punti o anelli ClickHouse si apre nella <map>vista Mappa</map>. Una query con una propria clausola <code>FORMAT</code> mostra l’output non elaborato del server in una colonna, quindi ometti la clausola per ottenere una griglia."
             ]
         },
         {

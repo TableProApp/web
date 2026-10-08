@@ -8,7 +8,7 @@ export default {
     },
     "latest": "Algunas versiones también tienen una publicación en el blog. La más reciente es <post>{title}</post>.",
     "post": {
-        "archive": "Publicada el {date}, esta entrada describe {release} tal como era entonces. Para conocer TablePro hoy, consulta las <features>funciones</features> y el <changelog>historial de cambios</changelog> (inglés).",
+        "archive": "Esta publicación, del {date}, describe {release} tal como era entonces. Para conocer TablePro hoy, consulta las <features>funciones</features> y el <changelog>historial de cambios</changelog> (inglés).",
         "correction": "Corrección, {date}",
         "toc": "En esta página",
         "pages": "Páginas relacionadas",

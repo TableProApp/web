@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Conecte ao Turso",
             "paragraphs": [
-                "Escolha Turso na lista de tipos de conexão e deixe <ui>Connection Mode</ui> em <ui>Remote (Turso)</ui>. Cole a URL HTTPS do banco, que termina em <code>.turso.io</code>, e coloque um token no campo <ui>API Token</ui>, armazenado no Chaves do macOS. O painel do Turso mostra ambos, assim como <code>turso db show my-db --url</code> e <code>turso db tokens create my-db</code>.",
+                "Escolha Turso na lista de tipos de conexão e deixe <ui>Connection Mode</ui> em <ui>Remote (Turso)</ui>. Cole a URL HTTPS do banco, que termina em <code>.turso.io</code>, e coloque um token no campo <ui>API Token</ui>, armazenado nas Chaves do macOS. O painel do Turso mostra ambos, assim como <code>turso db show my-db --url</code> e <code>turso db tokens create my-db</code>.",
                 "Uma URL <code>libsql://</code> é convertida para HTTPS, e importá-la cria uma conexão remota. Não há campos de host, porta ou banco, pois a URL identifica um banco. A conexão é criptografada quando a URL usa HTTPS em vez de HTTP sem criptografia, e não há túnel SSH."
             ]
         },

@@ -47,7 +47,7 @@
             "paragraphs": [
                 "L’editor SQL completa nomi di tabelle e colonne dallo schema. <explain>EXPLAIN ed EXPLAIN ANALYZE</explain> usano FORMAT JSON e vengono rappresentati come diagramma o albero del piano; EXPLAIN Compare mostra se un piano è diventato più lento dopo una modifica.",
                 "jsonb viene formattato e uuid, inet, timestamptz, interval e bytea mantengono la propria rappresentazione. Le colonne array aprono un editor di liste in cui aggiungi, rimuovi, riordini e imposti a null singoli elementi; le colonne enum offrono le proprie etichette.",
-                "I valori geometry e geography di PostGIS vengono letti come EWKT con SRID e un risultato con geometria si apre nella <results>vista Map</results>. Le tessere della mappa provengono da Apple; le righe rimangono sul Mac.",
+                "I valori geometry e geography di PostGIS vengono letti come EWKT con SRID e un risultato con geometria si apre nella <results>vista Mappa</results>. I tasselli della mappa provengono da Apple; le righe rimangono sul Mac.",
                 "Le modifiche alle righe restano in attesa del salvataggio, con <editing>Preview SQL</editing> che mostra prima ogni istruzione; i salvataggi usano parametri associati. Le righe di una vista materializzata sono in sola lettura: aggiornala dal menu, in modo concorrente quando ha l’indice univoco richiesto da PostgreSQL."
             ],
             "asset": "mac-result-map"

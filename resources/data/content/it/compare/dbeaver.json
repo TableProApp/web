@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro vs DBeaver: client nativo o Java",
-        "description": "DBeaver usa Java e JDBC su Windows, macOS e Linux. TablePro è nativo per Mac, iPhone e iPad. Confronta database, AI, MCP e prezzi."
+        "description": "DBeaver usa Java e JDBC su Windows, macOS e Linux. TablePro è nativo per Mac, iPhone e iPad. Confronta database, IA, MCP e prezzi."
     },
     "og": {
         "kicker": "Confronto",
@@ -15,8 +15,8 @@
         "tablepro": [
             "Vuoi MongoDB, Redis o Cassandra senza pagare. Ogni motore supportato è gratuito in TablePro, mentre DBeaver Community esclude i database NoSQL.",
             "Vuoi un’app Mac che non richieda Java. TablePro è scritto in Swift e i suoi driver per database sono nativi, senza JDBC.",
-            "Vuoi un assistente AI con il provider che preferisci, senza costi. La chat AI di DBeaver Community funziona solo con OpenAI e GitHub Copilot.",
-            "Vuoi un server MCP che i client AI possano usare con le tue connessioni, gratuito nell’app Mac.",
+            "Vuoi un assistente IA con il provider che preferisci, senza costi. La chat IA di DBeaver Community funziona solo con OpenAI e GitHub Copilot.",
+            "Vuoi un server MCP che i client IA possano usare con le tue connessioni, gratuito nell’app Mac.",
             "Vuoi anche un’app per iPhone e iPad."
         ],
         "competitor": [
@@ -94,7 +94,7 @@
                 "href": null
             },
             {
-                "text": "L’<link>assistente AI e il server MCP</link> sono gratuiti nell’app Mac. Scegli il provider AI, e il server MCP permette a client come Claude Code o Cursor di usare le connessioni salvate senza vedere una password.",
+                "text": "L’<link>assistente IA e il server MCP</link> sono gratuiti nell’app Mac. Scegli il provider IA, e il server MCP permette a client come Claude Code o Cursor di usare le connessioni salvate senza vedere una password.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/ai-mcp"
@@ -129,7 +129,7 @@
                 "href": "/databases"
             },
             {
-                "text": "Il diagramma ER è un’istantanea in sola lettura e non ci sono un generatore visuale di query o un pianificatore di attività.",
+                "text": "Il diagramma ER è un’istantanea in sola lettura e non ci sono né un generatore visuale di query né un pianificatore di attività.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -165,7 +165,7 @@
         {
             "id": "free",
             "question": "TablePro è gratuito come DBeaver Community?",
-            "answer": "Sì, per ogni motore supportato, l’assistente AI e il server MCP: TablePro è gratuito e open source con licenza AGPLv3. DBeaver vende le funzionalità aggiuntive come edizioni separate, mentre TablePro le offre nei piani Starter e Team per l’app Mac, con funzionalità come {starterExamples}. <link>Consulta i prezzi</link>.",
+            "answer": "Sì, per ogni motore supportato, l’assistente IA e il server MCP: TablePro è gratuito e open source con licenza AGPLv3. DBeaver vende le funzionalità aggiuntive come edizioni separate, mentre TablePro le offre nei piani Starter e Team per l’app Mac, con funzionalità come {starterExamples}. <link>Consulta i prezzi</link>.",
             "href": "/pricing"
         },
         {
@@ -178,10 +178,10 @@
     "notes": {
         "dbeaver-bundled-jdk": "Il download include il proprio runtime Java",
         "dbeaver-databases": "Community si connette a qualsiasi motore con un driver JDBC, ma non a database NoSQL come MongoDB, Redis o Cassandra. Le edizioni a pagamento li aggiungono.",
-        "dbeaver-ai-community-providers": "In {edition}, una chat AI con OpenAI o GitHub Copilot. Le edizioni a pagamento aggiungono altri provider e spiegazioni di query ed errori.",
+        "dbeaver-ai-community-providers": "In {edition}, una chat IA con OpenAI o GitHub Copilot. Le edizioni a pagamento aggiungono altri provider e spiegazioni di query ed errori.",
         "dbeaver-mcp-server": "Le edizioni Lite, Enterprise e Ultimate includono un server MCP locale dalla versione {version}, in accesso anticipato al momento della verifica. Community non lo ha.",
         "dbeaver-git-sync": "Sincronizzazione Git per progetti, in {edition} e successive",
-        "dbeaver-erd-edit-paid": "Sola visualizzazione in Community. La modifica è nelle edizioni Enterprise, Ultimate e Team.",
+        "dbeaver-erd-edit-paid": "Sola visualizzazione in Community. La modifica è disponibile nelle edizioni Enterprise, Ultimate e Team.",
         "dbeaver-query-builder-paid": "In tutte le edizioni a pagamento, non in Community",
         "dbeaver-task-scheduler": "Nelle edizioni Enterprise, Ultimate e Team"
     }

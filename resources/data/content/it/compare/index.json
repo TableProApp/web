@@ -23,7 +23,7 @@
             "beekeeper-studio": "Scegli Beekeeper Studio se vuoi un client open source che funziona allo stesso modo su Windows, macOS e Linux.",
             "sequel-ace": "Scegli Sequel Ace se usi solo MySQL e MariaDB e vuoi un’app Mac gratuita e open source dal Mac App Store.",
             "sequel-pro": "Usi ancora Sequel Pro? L’ultima versione, {status.version}, risale al {status.date}. Sequel Ace ne prosegue lo sviluppo e TablePro importa le connessioni Sequel Ace.",
-            "postico": "Scegli Postico se usi solo PostgreSQL e vuoi un’app Mac dedicata con licenza a pagamento unico.",
+            "postico": "Scegli Postico se usi solo PostgreSQL e vuoi un’app Mac dedicata con licenza una tantum.",
             "heidisql": "Scegli HeidiSQL se lo usi già su Windows e vuoi lo stesso client gratuito su un Mac con Apple silicon.",
             "phpmyadmin": "Scegli phpMyAdmin se gestisci MySQL o MariaDB in un browser, per esempio su un hosting che lo offre tramite cPanel."
         }
@@ -132,7 +132,7 @@
             "free": "Gratuito",
             "labelled": "{label}: {price}",
             "amount": {
-                "once": "{amount} una volta",
+                "once": "{amount} una tantum",
                 "month": "{amount} al mese",
                 "year": "{amount} all’anno",
                 "none": "{amount}"
@@ -173,13 +173,13 @@
         "tablepro": {
             "technology": "Swift, con driver di database nativi",
             "priceFree": "Uso gratuito. I piani a pagamento aggiungono funzioni opzionali all’app per Mac.",
-            "starter": "{monthly} al mese, {yearly} all’anno o {lifetime} una volta",
-            "team": "{monthly} al mese, {yearly} all’anno o {lifetime} una volta, per posto, almeno {min} posti",
+            "starter": "{monthly} al mese, {yearly} all’anno o {lifetime} una tantum",
+            "team": "{monthly} al mese, {yearly} all’anno o {lifetime} una tantum, per posto, almeno {min} posti",
             "iosPrice": "L’app per iPhone e iPad è gratuita, senza acquisti in-app.",
             "licence": "Sì: {licence}, incluso il codice delle funzioni a pagamento",
             "databases": "{engines} e altri",
             "databasesLink": "Database supportati",
-            "ai": "Gratuito nell’app per Mac, con il fornitore IA che scegli, nel cloud o sul Mac",
+            "ai": "Gratuito nell’app per Mac, con il provider IA che scegli, nel cloud o sul Mac",
             "mcp": "Gratuito nell’app per Mac. Ascolta solo sul Mac e ogni connessione decide cosa possono fare le app esterne",
             "ios": "Un’app gratuita separata, senza acquisti in-app",
             "sync": "iCloud Sync: incluso in {tier} sul Mac, gratuito su iPhone e iPad"

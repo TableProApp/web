@@ -36,7 +36,7 @@
             "id": "er-diagram",
             "title": "Scopri le relazioni tra le tabelle",
             "paragraphs": [
-                "<ui>View ER Diagram</ui> disegna le tabelle e le chiavi esterne dello schema corrente, con cardinalità a zampa di corvo ricavata dalle chiavi primarie e univoche. Le tabelle di collegamento come <code>product_tags</code> diventano un’unica linea molti-a-molti. Esporta il diagramma come PNG, copialo come immagine oppure esportalo come SQL: le istruzioni CREATE TABLE con le relative chiavi esterne.",
+                "<ui>View ER Diagram</ui> disegna le tabelle e le chiavi esterne dello schema corrente, con cardinalità in notazione a zampa di gallina ricavata dalle chiavi primarie e univoche. Le tabelle di collegamento come <code>product_tags</code> diventano un’unica linea molti-a-molti. Esporta il diagramma come PNG, copialo come immagine oppure esportalo come SQL: le istruzioni CREATE TABLE con le relative chiavi esterne.",
                 "Il diagramma è un’istantanea da leggere e condividere. Le tabelle si modificano nella scheda Structure, non sulla tela."
             ],
             "asset": "mac-er-diagram"
@@ -174,7 +174,7 @@
     "limits": [
         "Compare & Sync genera uno script di struttura solo tra due database dello stesso motore, considerando MySQL e MariaDB come uno solo. Le altre coppie vengono confrontate in sola lettura, le strutture MongoDB non ricevono mai uno script e una sincronizzazione dei dati tra motori avvisa di verificare come vengono scritti i valori. Per spostare tabelle su un altro motore, usa Copy To.",
         "Il riordino delle colonne ricostruisce la tabella su SQLite e su un file libSQL locale, dopo la conferma. Su PostgreSQL, Turso, libSQL remoto e Cloudflare D1, TablePro prepara lo script di ricostruzione e lascia a te l’esecuzione.",
-        "Il diagramma ER è in sola lettura. Non è un progettista di schemi.",
+        "Il diagramma ER è in sola lettura. Non è uno strumento per progettare schemi.",
         "Le sessioni e il testo delle query visibili nel Server Dashboard dipendono dai privilegi dell’account usato per la connessione."
     ],
     "docs": [

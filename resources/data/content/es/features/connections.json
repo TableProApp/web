@@ -164,7 +164,7 @@
                     "id": "timeouts",
                     "title": "Tiempos de espera de conexión y consulta",
                     "paragraphs": [
-                        "Cada conexión puede fijar su propio tiempo de espera de conexión, que cubre la red, TLS, la autenticación y cualquier túnel o proxy, y su propio tiempo de espera de consulta en lugar del general de la app. El tiempo de espera de consulta se aplica a los controladores compatibles después de volver a conectar."
+                        "Cada conexión puede fijar su propio tiempo de espera de conexión, que cubre la red, TLS, la autenticación y cualquier túnel o proxy, y su propio tiempo de espera de consulta en lugar del general de la app. El tiempo de espera de consulta se aplica a los controladores que lo admiten, después de volver a conectar."
                     ],
                     "since": "0.77.0"
                 }
@@ -174,7 +174,7 @@
             "id": "iphone",
             "title": "En iPhone y iPad",
             "paragraphs": [
-                "La app para iPhone y iPad tiene su propio formulario de conexión para {iosPicker}, con grupos, una etiqueta por conexión y favoritos. Los túneles SSH se autentican con contraseña o clave privada, desde un archivo o pegada, y comprueban la clave del host; los agentes SSH y los hosts de salto no son compatibles con iPhone y iPad. TLS puede verificar el certificado del servidor, excepto en SQL Server, donde cifra sin verificar. Los certificados permanecen en el dispositivo y nunca se sincronizan.",
+                "La app para iPhone y iPad tiene su propio formulario de conexión para {iosPicker}, con grupos, una etiqueta por conexión y favoritos. Los túneles SSH se autentican con contraseña o clave privada, desde un archivo o pegada, y comprueban la clave del host; los agentes SSH y los hosts de salto no se admiten en iPhone y iPad. TLS puede verificar el certificado del servidor, excepto en SQL Server, donde cifra sin verificar. Los certificados permanecen en el dispositivo y nunca se sincronizan.",
                 "Las contraseñas y las claves pegadas se guardan en el Llavero. Las conexiones de SQL Server sincronizadas desde un Mac pueden autenticarse con Microsoft Entra ID. La importación desde otras apps, AWS IAM, Kerberos, la autenticación de Google, los proxies, los comandos de túnel, los orígenes de contraseña y los tiempos de espera solo están en la app para Mac."
             ],
             "links": [

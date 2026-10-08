@@ -90,7 +90,7 @@
             "id": "files",
             "title": "File che sono database",
             "paragraphs": [
-                "I file SQLite e DuckDB si aprono dal Finder come connessioni. DuckDB legge anche file Parquet, CSV e JSON come viste in sola lettura, quindi un file <code>.parquet</code> si apre come connessione DuckDB anziché in Data Files. Un database SQLite su un server SSH si apre dal vivo, tramite un piccolo agente che richiede Python 3.6 o successivo sul server, oppure come copia in sola lettura.",
+                "I file SQLite e DuckDB si aprono dal Finder come connessioni. DuckDB legge anche file Parquet, CSV e JSON come viste in sola lettura, quindi un file <code>.parquet</code> si apre come connessione DuckDB anziché in Data Files. Un database SQLite su un server SSH si apre in tempo reale, tramite un piccolo agente che richiede Python 3.6 o successivo sul server, oppure come copia in sola lettura.",
                 "I file <code>.sql</code> si aprono come schede di query e si salvano su disco; un registro Beancount si apre in sola lettura come insieme di tabelle."
             ],
             "links": [
@@ -122,7 +122,7 @@
             "title": "Su iPhone e iPad",
             "paragraphs": [
                 "L’app per iPhone e iPad copia o condivide righe e risultati delle query come JSON, CSV o istruzioni SQL INSERT, a partire dalle righe caricate. Una copia rimane negli appunti del dispositivo e non viene condivisa con gli altri dispositivi.",
-                "Le righe vengono inserite attraverso le azioni Comandi Rapidi Add Row to Table e Add Rows to Table, che accettano testo JSON o CSV oppure un file e rispettano il livello Safe Mode della connessione. Su iPhone e iPad non sono disponibili una schermata di importazione, esportazione su file, finestra Data Files o backup."
+                "Le righe vengono inserite attraverso le azioni di Comandi Rapidi Add Row to Table e Add Rows to Table, che accettano testo JSON o CSV oppure un file e rispettano il livello Safe Mode della connessione. Su iPhone e iPad non sono disponibili una schermata di importazione, esportazione su file, finestra Data Files o backup."
             ],
             "links": [
                 {
@@ -136,7 +136,7 @@
         {
             "label": "Importazione di file in una tabella",
             "ios": "partial",
-            "iosNote": "Azioni Comandi Rapidi, da JSON o CSV"
+            "iosNote": "Azioni di Comandi Rapidi, da JSON o CSV"
         },
         {
             "label": "Mappature salvate, Match by Name e Match by Position",
@@ -179,7 +179,7 @@
         "Restore Dump sostituisce le tabelle di un dump MySQL o MariaDB. Sugli altri motori non sostituisce un oggetto esistente e un <code>.bacpac</code> SQL Server richiede un database vuoto.",
         "L’apertura di file di database tramite SSH funziona solo per SQLite.",
         "Le estensioni DuckDB non integrate, come httpfs per S3, Iceberg e Delta, vengono scaricate dai server di DuckDB la prima volta che una query ne ha bisogno.",
-        "Nell’attuale versione App Store, le azioni Comandi Rapidi leggono CSV e JSON solo come UTF-8 e CSV solo con terminazioni di riga LF."
+        "Nell’attuale versione App Store, le azioni di Comandi Rapidi leggono CSV e JSON solo come UTF-8 e CSV solo con terminazioni di riga LF."
     ],
     "docs": [
         {

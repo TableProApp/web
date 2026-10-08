@@ -27,7 +27,7 @@
             "id": "connect",
             "title": "Connetti con un token API",
             "paragraphs": [
-                "Una connessione D1 richiede tre valori: nome o UUID del database, ID dell’account Cloudflare e un token API. Il token va nel campo <ui>API Token</ui> ed è conservato nel <credentials>portachiavi di macOS</credentials>. Non ci sono host, porta, impostazioni SSL o tunnel SSH perché ogni richiesta raggiunge l’API di Cloudflare tramite HTTPS.",
+                "Una connessione D1 richiede tre valori: nome o UUID del database, ID dell’account Cloudflare e un token API. Il token va nel campo <ui>API Token</ui> ed è conservato nel <credentials>Portachiavi di macOS</credentials>. Non ci sono host, porta, impostazioni SSL o tunnel SSH perché ogni richiesta raggiunge l’API di Cloudflare tramite HTTPS.",
                 "Crea il token dal modello Custom token con il permesso <ui>Account > D1 > Edit</ui> e copialo quando Cloudflare lo mostra, perché viene mostrato una sola volta. Quel token raggiunge ogni database D1 dell’account, non solo quello a cui ti connetti.",
                 "Importare un URL <code>d1://account-id/database-name</code> compila account e database; il token non viene mai inserito nell’URL, quindi incollalo in seguito."
             ]
