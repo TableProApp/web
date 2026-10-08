@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\Blog\BlogService;
 use App\Services\Blog\Post;
+use App\Services\Blog\PostRelease;
+use App\Services\Blog\PostTopics;
 use App\Support\Content\ContentRepository;
 use App\Support\Seo\BlogPosts;
 use App\Support\Seo\PageRegistry;
@@ -54,7 +56,7 @@ class BlogController extends Controller
         ]);
     }
 
-    public function show(ContentRepository $content, string $slug): Response
+    public function show(ContentRepository $content, PostTopics $topics, PostRelease $releases, string $slug): Response
     {
         $locale = App::getLocale();
         $post = $this->blog->find($slug, $locale);
@@ -69,9 +71,14 @@ class BlogController extends Controller
             'post' => [
                 ...$post->summary($locale),
                 'release' => $post->release,
+                'author' => $post->author,
+                'seoTitle' => $post->seoTitle,
                 'bodyHtml' => $this->blog->html($post),
             ],
+            'archived' => $releases->superseded($post),
             'correction' => $this->correction($copy, $post, $locale),
+            'pages' => $topics->pages($post, $locale),
+            'notes' => $releases->notes($post),
             'related' => array_map(
                 static fn(Post $related): array => $related->summary($locale),
                 $this->related($post),

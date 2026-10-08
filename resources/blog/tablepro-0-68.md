@@ -1,7 +1,7 @@
 ---
 slug: tablepro-0-68
 title: "TablePro 0.68: Compare & Sync, Routines, and a Faster Grid"
-description: Compare two databases and generate the script that reconciles them. Procedures, functions and triggers on twelve more engines. A 500-column table opens in 26ms instead of 12 seconds. Plus a rebuilt License pane and 36 fixes.
+description: Compare two databases and generate the script that reconciles them. Procedures, functions and triggers on twelve more engines. Plus 36 fixes.
 date: 2026-08-25
 release: "TablePro 0.68"
 author: TablePro Team

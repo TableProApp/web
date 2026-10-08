@@ -16,8 +16,10 @@ use Carbon\CarbonImmutable;
  * `date` is the original publication date from the front matter, and never
  * changes. `release` names what a release post announced ("TablePro 0.74"),
  * for the archive note above it; null for a post that announced no release.
- * `tags` only rank related posts; the pages do not print them. The body is
- * not held here: `BlogService::html()` renders it for the one post shown.
+ * `tags` rank related posts and name the pages a post links (`PostTopics`);
+ * the pages do not print them. `seoTitle` replaces the title in `<title>`
+ * only. The body is not held here: `BlogService::html()` renders it for the
+ * one post shown.
  */
 final readonly class Post
 {
@@ -32,6 +34,8 @@ final readonly class Post
         public CarbonImmutable $date,
         public array $tags,
         public ?string $release,
+        public ?string $author = null,
+        public ?string $seoTitle = null,
     ) {}
 
     /**

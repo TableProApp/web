@@ -1,16 +1,16 @@
 /**
  * The `blog` namespace: the template around the blog's posts (sitemap §A.5,
- * §E.6; design-system §8.9, §8.10). The index page's own copy (its lead, the
- * newsletter box, the dated corrections) is in
- * resources/data/content/{locale}/blog.json; the posts are markdown.
+ * §E.6; design-system §8.9, §8.10). The index page's lead and the dated
+ * corrections are in resources/data/content/{locale}/blog.json; the posts are
+ * markdown.
  *
- * - `post.archive` is the note above every post. Its `{date}` is the original
- *   publication date, formatted by the server, and `{release}` is what a
- *   release post announced ("TablePro 0.74"), from the post's front matter.
- *   `unnamed` is for a post that announced no release. The note dates the
- *   post instead of editing it: release posts keep their words and meaning.
+ * - `latest` is the line on /download that links the newest release post.
+ * - `post.archive` is the note above a release post once a newer release is
+ *   out. `{date}` is the publication date, formatted by the server, and
+ *   `{release}` is the post's front matter `release` ("TablePro 0.74").
  * - `post.correction` titles an editor's correction, added only where a post
  *   said something that was never true. `{date}` is the correction's date.
+ * - `post.notes` links that release's changelog entry and GitHub release.
  * - The download line under a post is the availability layer's
  *   (`platforms.availability.summary`, `download.macCta`), never typed here.
  */
@@ -18,15 +18,17 @@ export default {
     index: {
         empty: 'No posts yet.',
     },
+    latest: 'Some releases also get a post on the blog. The latest is <post>{title}</post>.',
     post: {
-        archive: {
-            named: 'Published on {date}, this post describes {release} as it was then. For what TablePro does today, see <features>Features</features> and the <changelog>changelog</changelog>.',
-            unnamed: 'Published on {date}, this post describes TablePro as it was then. For what TablePro does today, see <features>Features</features> and the <changelog>changelog</changelog>.',
-        },
-        /** The <title> of a post whose title already starts with the brand, so it never repeats another page's title. */
-        brandedTitle: '{title} – TablePro Blog',
+        archive: 'Published on {date}, this post describes {release} as it was then. For what TablePro does today, see <features>Features</features> and the <changelog>changelog</changelog>.',
         correction: 'Correction, {date}',
         toc: 'On this page',
+        pages: 'Related pages',
+        notes: {
+            title: 'Full release notes',
+            changelog: '{release} in the changelog',
+            github: '{release} on GitHub',
+        },
         related: 'Related posts',
     },
 };

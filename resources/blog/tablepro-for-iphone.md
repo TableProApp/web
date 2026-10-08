@@ -1,7 +1,8 @@
 ---
 slug: tablepro-for-iphone
 title: "TablePro for iPhone and iPad"
-description: The iOS app is on the App Store. Ten engines with every driver built in, SSH tunnels, Face ID, and the same connections you already use on the Mac. Free, with no in-app purchases.
+seoTitle: "TablePro for iPhone and iPad is on the App Store"
+description: The iOS app is on the App Store. Every driver built in, SSH tunnels, Face ID, and the connections you already use on the Mac. Free, no in-app purchases.
 date: 2026-09-22
 release: "TablePro for iPhone and iPad 1.0"
 author: TablePro Team

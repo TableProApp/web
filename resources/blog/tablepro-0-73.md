@@ -1,7 +1,7 @@
 ---
 slug: tablepro-0-73
 title: "TablePro 0.73: Copy a Table Into a Different Engine"
-description: Copy To reads both databases, lists every type it had to approximate, and shows you the script before anything is written. Plus a rebuilt connection editor, Tunnel Command for kubectl and AWS SSM, foreign key editing on SQLite, a Typesense driver, and 163 fixes.
+description: Copy To reads both databases, lists every type it had to approximate, and shows you the script before anything is written. Plus a Typesense driver.
 date: 2026-09-09
 release: "TablePro 0.73"
 author: TablePro Team
