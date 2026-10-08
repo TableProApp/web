@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Apache Kafka untuk {devices}",
+        "title": "Klien Apache Kafka untuk {devices}",
         "description": "Baca topik Kafka dari pesan terbaru, terlama, offset, atau waktu, periksa lag consumer, dan hasilkan pesan dengan KafkaQL melalui SASL dan TLS."
     },
     "og": {
@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "Hubungkan",
             "paragraphs": [
-                "Masukkan host dan port satu broker; anggota cluster lainnya ditemukan melaluinya, dan <ui>Additional Bootstrap Servers</ui> mencantumkan broker yang dicoba jika broker pertama tidak menjawab. Satu koneksi adalah satu cluster, sehingga tidak ada bidang Database, dan bilah samping langsung menampilkan topiknya.",
+                "Masukkan host dan port satu broker; anggota cluster lainnya ditemukan melaluinya, dan <ui>Additional Bootstrap Servers</ui> mencantumkan broker yang dicoba jika broker pertama tidak menjawab. Satu koneksi adalah satu cluster, sehingga tidak ada bidang Database, dan sidebar langsung menampilkan topiknya.",
                 "<ui>Security Protocol</ui> adalah PLAINTEXT, SSL, SASL_PLAINTEXT, atau SASL_SSL, dan <ui>SASL Mechanism</ui> adalah PLAIN, SCRAM-SHA-256, atau SCRAM-SHA-512. PLAIN cocok untuk Confluent Cloud; SCRAM untuk Amazon MSK dan broker yang dihosting sendiri. Dengan SSL atau SASL_SSL tanpa mode SSL yang dipilih, rantai sertifikat dan nama host diverifikasi. CA pribadi dimasukkan ke <ui>CA Certificate</ui>, dan sertifikat serta kunci klien menambahkan TLS timbal balik.",
                 "Melalui <network>tunnel SSH</network>, koneksi tetap pada broker bootstrap, sehingga hanya membaca partisi yang dipimpin broker tersebut. <ui>Import from URL…</ui> menerima URL <code>kafka://</code>, yang tidak dibuka macOS sebagai tautan."
             ]
@@ -43,7 +43,7 @@
             "id": "operate",
             "title": "Topik",
             "paragraphs": [
-                "Menghapus topik dari bilah samping atau dengan <code>DROP TOPIC</code> adalah satu-satunya tindakan destruktif. Cluster menghapus log setelahnya, sehingga topik mungkin tetap muncul sebentar dalam daftar. Truncate tidak tersedia: Kafka menghapus record berdasarkan retensi atau offset per partisi, dan keduanya tidak mengosongkan topik."
+                "Menghapus topik dari sidebar atau dengan <code>DROP TOPIC</code> adalah satu-satunya tindakan destruktif. Cluster menghapus log setelahnya, sehingga topik mungkin tetap muncul sebentar dalam daftar. Truncate tidak tersedia: Kafka menghapus record berdasarkan retensi atau offset per partisi, dan keduanya tidak mengosongkan topik."
             ]
         },
         {

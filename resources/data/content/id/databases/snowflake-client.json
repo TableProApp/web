@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Snowflake untuk {devices}",
+        "title": "Klien Snowflake untuk {devices}",
         "description": "Masuk ke Snowflake dengan pasangan kunci, SSO, OAuth, atau kata sandi dan kode MFA. Ubah warehouse serta peran tanpa koneksi ulang dan ekspor ke stage."
     },
     "og": {
@@ -29,7 +29,7 @@
             "paragraphs": [
                 "Masukkan pengenal akun, seperti <code>myorg-myaccount</code> atau locator lama seperti <code>xy12345.us-east-1</code>: bagian sebelum <code>.snowflakecomputing.com</code>. Semua permintaan menggunakan HTTPS ke endpoint akun tersebut, sehingga tidak ada host, bagian SSL, atau panel SSH.",
                 "Pilih <ui>Auth Method</ui>, dan formulir hanya menampilkan bidang yang diperlukan. Pasangan kunci menandatangani setiap koneksi dengan kunci pribadi PKCS#8, sehingga jam Mac harus benar. Browser SSO mengarahkan Anda ke penyedia identitas. Token OAuth digunakan sebagaimana ditempel dan tidak pernah diperbarui. Kata sandi disertai kode terkini pada <ui>MFA Passcode (TOTP)</ui> jika akun mewajibkan MFA.",
-                "Dengan <code>ALLOW_CLIENT_MFA_CACHING</code> pada akun, satu kode baru sudah cukup: Snowflake mengembalikan token MFA yang disimpan TablePro di <credentials>Keychain</credentials>. Dengan <code>ALLOW_ID_TOKEN</code>, Browser SSO menyimpan token masuk di sana, dan koneksi berikutnya melewati peramban sampai Snowflake menolaknya.",
+                "Dengan <code>ALLOW_CLIENT_MFA_CACHING</code> pada akun, satu kode baru sudah cukup: Snowflake mengembalikan token MFA yang disimpan TablePro di <credentials>Rantai Kunci</credentials>. Dengan <code>ALLOW_ID_TOKEN</code>, Browser SSO menyimpan token masuk di sana, dan koneksi berikutnya melewati peramban sampai Snowflake menolaknya.",
                 "Snowflake tidak memiliki skema URL. Sebutkan bagian pada <ui>CLI Connection Name</ui>, dan setiap bidang yang Anda kosongkan dibaca dari <code>~/.snowflake/connections.toml</code> saat terhubung."
             ]
         },
@@ -38,7 +38,7 @@
             "title": "Warehouse, peran, dan kueri",
             "paragraphs": [
                 "<ui>Database > Session Context</ui> memindahkan sesi ke warehouse atau peran lain menggunakan <code>USE WAREHOUSE</code> dan <code>USE ROLE</code>, tanpa membuka ulang koneksi. Satu koneksi TablePro adalah satu sesi Snowflake yang tetap terbuka saat tidak aktif, dan tab yang terkait dengan database kedua menjalankan <code>USE DATABASE</code> sebelum pernyataannya pada sesi yang sama.",
-                "Bilah samping mengelompokkan objek berdasarkan database dan skema. Daftar objek berasal dari perintah <code>SHOW</code>, yang berjalan tanpa warehouse; detail kolom berasal dari <code>INFORMATION_SCHEMA</code>, yang memerlukannya. <explain>Explain</explain> mengembalikan rencana Snowflake sebagai teks mentah.",
+                "Sidebar mengelompokkan objek berdasarkan database dan skema. Daftar objek berasal dari perintah <code>SHOW</code>, yang berjalan tanpa warehouse; detail kolom berasal dari <code>INFORMATION_SCHEMA</code>, yang memerlukannya. <explain>Explain</explain> mengembalikan rencana Snowflake sebagai teks mentah.",
                 "<editing>Perubahan grid</editing> mengikat nilai di server, dengan sel VARIANT, OBJECT, dan ARRAY dikirim melalui <code>PARSE_JSON</code>. Perubahan mencocokkan primary key yang dideklarasikan, atau semua kolom jika tidak ada. Snowflake tidak pernah menegakkan constraint kunci, sehingga nilai kunci duplikat membuat perubahan atau penghapusan memengaruhi setiap baris yang cocok: periksa duplikat sebelum mengedit tabel."
             ]
         },
@@ -54,7 +54,7 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Impor</importData> berkas {importFormats} melalui koneksi, dan ekspor tabel atau hasil ke Mac sebagai {exportFormats}.",
+                "<importData>Impor</importData> file {importFormats} melalui koneksi, dan ekspor tabel atau hasil ke Mac sebagai {exportFormats}.",
                 "Untuk mengekspor tabel tanpa melewati Mac, pilih <ui>File > Server-Side Export…</ui> dan masukkan stage, dengan atau tanpa <code>@</code>. <backup>Server-Side Export</backup> menjalankan <code>COPY INTO</code> dengan hak akses Anda sendiri dan menulis CSV berkompresi gzip, Parquet, atau JSON; lembar menunggu hingga ekspor selesai, dan tidak ada data yang disimpan di Mac."
             ]
         }
@@ -64,7 +64,7 @@
     "faq": [
         {
             "id": "no-columns",
-            "question": "Mengapa bilah samping menampilkan tabel tetapi tidak kolom?",
+            "question": "Mengapa sidebar menampilkan tabel tetapi tidak kolom?",
             "answer": "Detail kolom berasal dari <code>INFORMATION_SCHEMA</code>, yang memerlukan warehouse aktif. Atur <ui>Warehouse</ui> pada koneksi atau di Session Context. Database yang objeknya tidak muncul sama sekali memerlukan izin <code>USAGE</code> untuk peran koneksi."
         },
         {
@@ -80,7 +80,7 @@
     ],
     "related": [
         {
-            "label": "Impor, ekspor, dan berkas data",
+            "label": "Impor, ekspor, dan file data",
             "href": "/features/import-export"
         },
         {

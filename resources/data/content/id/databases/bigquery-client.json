@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Google BigQuery untuk {devices}",
+        "title": "Klien Google BigQuery untuk {devices}",
         "description": "Kueri BigQuery dengan akun layanan, ADC, atau OAuth. Periksa byte dan biaya via Dry Run, batasi Max Bytes Billed, lalu ekspor ke Cloud Storage."
     },
     "og": {
@@ -26,8 +26,8 @@
             "id": "connect",
             "title": "Masuk ke Google Cloud",
             "paragraphs": [
-                "Pilih <ui>Auth Method</ui> dan masukkan <ui>Project ID</ui>: ID, bukan nama atau nomor proyek. <ui>Application Default Credentials</ui> membaca berkas yang ditulis <code>gcloud auth application-default login</code>, sehingga menjadi cara paling singkat jika gcloud sudah diatur. <ui>Service Account Key</ui> menerima berkas kunci .json atau JSON yang ditempel.",
-                "Google Account (OAuth) masuk melalui peramban dengan klien OAuth desktop yang Anda buat di Google Cloud Console. Refresh token disimpan di Keychain, satu per klien OAuth, sehingga koneksi berikutnya tidak membuka peramban. Satu klien OAuth masuk ke satu akun Google, jadi akun kedua memerlukan klien kedua atau refresh token sendiri.",
+                "Pilih <ui>Auth Method</ui> dan masukkan <ui>Project ID</ui>: ID, bukan nama atau nomor proyek. <ui>Application Default Credentials</ui> membaca file yang ditulis <code>gcloud auth application-default login</code>, sehingga menjadi cara paling singkat jika gcloud sudah diatur. <ui>Service Account Key</ui> menerima file kunci .json atau JSON yang ditempel.",
+                "Google Account (OAuth) masuk melalui peramban dengan klien OAuth desktop yang Anda buat di Google Cloud Console. Refresh token disimpan di Rantai Kunci, satu per klien OAuth, sehingga koneksi berikutnya tidak membuka peramban. Satu klien OAuth masuk ke satu akun Google, jadi akun kedua memerlukan klien kedua atau refresh token sendiri.",
                 "Semua akses melalui REST API BigQuery, sehingga tidak ada host, port, URL koneksi, atau tunnel SSH. <ui>Location</ui> menetapkan lokasi pemrosesan yang dikirim bersama setiap job. Selengkapnya tentang <cloudAuth>autentikasi cloud</cloudAuth>."
             ]
         },
@@ -37,7 +37,7 @@
             "paragraphs": [
                 "Sebelum menjalankan kueri, pilih <ui>Dry Run (Cost)</ui> dari menu <explain>Explain</explain>. Hasil mencantumkan byte yang akan diproses dan ditagih, flag cache hit, serta estimasi biaya dalam dolar AS, dan kueri itu sendiri tidak dijalankan.",
                 "Setelah dijalankan, bilah status menampilkan byte diproses, byte ditagih, dan estimasi berdasarkan tarif on-demand, serta menandai cache hit. Untuk batas tegas, atur <ui>Max Bytes Billed</ui> pada tab Advanced koneksi: BigQuery menolak job yang akan menagih lebih banyak alih-alih menjalankannya.",
-                "Pelengkapan, pembatasan nama, dan pemformatan mengikuti GoogleSQL, dengan backtick pada nama tabel, dan kolom STRUCT serta ARRAY ditampilkan sebagai JSON. Dataset berperan sebagai database: tercantum di bilah samping, <code>⌘K</code> berpindah di antaranya, dan setiap tab tetap pada dataset awalnya. Job dipantau hingga batas waktu kueri lalu dibatalkan; jika batas waktu No limit, TablePro menunggu hingga selesai.",
+                "Pelengkapan, pembatasan nama, dan pemformatan mengikuti GoogleSQL, dengan backtick pada nama tabel, dan kolom STRUCT serta ARRAY ditampilkan sebagai JSON. Dataset berperan sebagai database: tercantum di sidebar, <code>⌘K</code> berpindah di antaranya, dan setiap tab tetap pada dataset awalnya. Job dipantau hingga batas waktu kueri lalu dibatalkan; jika batas waktu No limit, TablePro menunggu hingga selesai.",
                 "Sel, penyisipan, dan penghapusan dilakukan melalui <editing>grid</editing>. UPDATE dan DELETE mencocokkan baris berdasarkan primary key yang dideklarasikan; pada tabel tanpa primary key, keduanya mencocokkan semua kolom kecuali ARRAY, JSON, dan GEOGRAPHY, sehingga baris identik berubah bersama. Deklarasikan <code>PRIMARY KEY (…) NOT ENFORCED</code> untuk mengedit tepat satu baris. Pada tabel berpartisi, tulis UPDATE dan DELETE dengan filter partisi dalam editor."
             ]
         },
@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "Dataset dan DDL",
             "paragraphs": [
-                "DDL dijalankan dari editor, seperti <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code>, dan <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> membuat dataset dengan <code>CREATE SCHEMA</code>, dan tabel dapat diganti namanya dari bilah samping. Tab DDL membaca setiap definisi dari <code>INFORMATION_SCHEMA.TABLES</code>, dan clustering serta partisi muncul di bawah Indexes."
+                "DDL dijalankan dari editor, seperti <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code>, dan <code>CREATE OR REPLACE VIEW</code>. <ui>New Database…</ui> membuat dataset dengan <code>CREATE SCHEMA</code>, dan tabel dapat diganti namanya dari sidebar. Tab DDL membaca setiap definisi dari <code>INFORMATION_SCHEMA.TABLES</code>, dan clustering serta partisi muncul di bawah Indexes."
             ]
         },
         {
@@ -53,7 +53,7 @@
             "title": "Pindahkan data",
             "paragraphs": [
                 "TablePro tidak menyediakan impor untuk BigQuery. <export>Ekspor</export> tabel atau hasil kueri ke Mac sebagai {exportFormats}.",
-                "<backup>Server-Side Export</backup> mengekspor tabel dengan <code>EXPORT DATA</code> ke prefiks <code>gs://</code> sebagai CSV, Parquet, atau JSON berbaris baru, dibagi menjadi beberapa berkas di bawah prefiks tersebut. Proses berjalan pada koneksi dengan izin Anda, lembar menunggu hingga selesai, dan tidak ada berkas yang ditulis ke Mac."
+                "<backup>Server-Side Export</backup> mengekspor tabel dengan <code>EXPORT DATA</code> ke prefiks <code>gs://</code> sebagai CSV, Parquet, atau JSON berbaris baru, dibagi menjadi beberapa file di bawah prefiks tersebut. Proses berjalan pada koneksi dengan izin Anda, lembar menunggu hingga selesai, dan tidak ada file yang ditulis ke Mac."
             ]
         }
     ],

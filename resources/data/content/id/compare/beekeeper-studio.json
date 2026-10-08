@@ -38,7 +38,7 @@
         },
         "importExport": {
             "label": "Impor, ekspor, dan pencadangan",
-            "tablepro": "Gratis dalam aplikasi Mac: impor berkas CSV, JSON, XLSX, dan SQL, ekspor ke CSV, JSON, SQL, XLSX, serta format lain, dan Backup Dump serta Restore Dump jika mesin memiliki alat dump"
+            "tablepro": "Gratis dalam aplikasi Mac: impor file CSV, JSON, XLSX, dan SQL, ekspor ke CSV, JSON, SQL, XLSX, serta format lain, dan Backup Dump serta Restore Dump jika mesin memiliki alat dump"
         },
         "lifetimeLicense": {
             "label": "Setelah langganan berakhir",
@@ -166,10 +166,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro membaca koneksi yang disimpan Beekeeper Studio di Mac Anda, dalam workspace lokalnya. Beekeeper Studio tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "intro": "TablePro membaca koneksi yang disimpan Beekeeper Studio di Mac Anda, dalam workspace lokalnya. Beekeeper Studio tidak perlu terbuka, dan file-nya tidak diubah.",
         "steps": [
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
-            "Pilih Beekeeper Studio dan aktifkan <ui>Include passwords</ui>. TablePro mendekripsi kata sandi yang disimpan Beekeeper Studio, termasuk kata sandi SSH dan frasa sandi kunci, jadi tidak ada yang perlu disetujui di Keychain.",
+            "Pilih Beekeeper Studio dan aktifkan <ui>Include passwords</ui>. TablePro mendekripsi kata sandi yang disimpan Beekeeper Studio, termasuk kata sandi SSH dan frasa sandi kunci, jadi tidak ada yang perlu disetujui di Rantai Kunci.",
             "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Folder menjadi grup, warna koneksi dan pengaturan SSL ikut dipindahkan, serta host bastion SSH menjadi jump host. Koneksi ke mesin yang tidak didukung TablePro masuk tanpa dicentang.",
             "Sebelum menghapus Beekeeper Studio, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
         ],

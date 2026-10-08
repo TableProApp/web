@@ -126,7 +126,7 @@
         "intro": "",
         "items": [
             {
-                "text": "TablePro terhubung ke MySQL dan MariaDB hanya melalui TCP, bukan berkas socket lokal.",
+                "text": "TablePro terhubung ke MySQL dan MariaDB hanya melalui TCP, bukan file socket lokal.",
                 "cite": [],
                 "feature": null,
                 "href": null
@@ -154,10 +154,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro membaca favorit yang disimpan Sequel Ace dan kata sandi dalam Keychain macOS. Sequel Ace tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "intro": "TablePro membaca favorit yang disimpan Sequel Ace dan kata sandi dalam Rantai Kunci macOS. Sequel Ace tidak perlu terbuka, dan file-nya tidak diubah.",
         "steps": [
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
-            "Pilih Sequel Ace. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi database dan SSH yang disimpan dalam Keychain macOS.",
+            "Pilih Sequel Ace. Aktifkan <ui>Include passwords</ui> untuk membaca kata sandi database dan SSH yang disimpan dalam Rantai Kunci macOS.",
             "macOS meminta kata sandi login Anda sekali untuk setiap kata sandi tersimpan. Pilih <ui>Always Allow</ui> pada setiap permintaan. Membatalkan permintaan melewati kata sandi yang tersisa.",
             "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Grup, warna koneksi, tunnel SSH, dan pengaturan SSL ikut dipindahkan.",
             "Sebelum menghapus Sequel Ace, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
@@ -165,8 +165,8 @@
         "after": [
             "Favorit kueri, riwayat kueri, bundles, dan pintasan keyboard tetap di Sequel Ace.",
             "Setiap koneksi masuk sebagai koneksi MySQL, termasuk server MariaDB.",
-            "Kunci SSH ditautkan melalui jalur berkasnya. Frasa sandi kunci tidak diimpor.",
-            "TablePro tidak terhubung melalui berkas socket, jadi koneksi yang menggunakannya memerlukan host dan port sebelum dibuka."
+            "Kunci SSH ditautkan melalui jalur file-nya. Frasa sandi kunci tidak diimpor.",
+            "TablePro tidak terhubung melalui file socket, jadi koneksi yang menggunakannya memerlukan host dan port sebelum dibuka."
         ],
         "docs": "/switching"
     },
@@ -174,7 +174,7 @@
         {
             "id": "keep-sequel-ace",
             "question": "Bisakah saya tetap menggunakan Sequel Ace setelah mengimpor?",
-            "answer": "Ya. Impor hanya membaca berkas favorit Sequel Ace dan item Keychain-nya, jadi kedua aplikasi tetap berfungsi dengan salinannya masing-masing.",
+            "answer": "Ya. Impor hanya membaca file favorit Sequel Ace dan item Rantai Kunci-nya, jadi kedua aplikasi tetap berfungsi dengan salinannya masing-masing.",
             "href": null
         },
         {

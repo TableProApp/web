@@ -157,17 +157,17 @@
         ]
     },
     "switching": {
-        "intro": "TablePro mengimpor koneksi Navicat dari berkas yang Anda ekspor di Navicat, jadi perpindahan dimulai di sana. Pengaturan Navicat sendiri tidak dibaca atau diubah.",
+        "intro": "TablePro mengimpor koneksi Navicat dari file yang Anda ekspor di Navicat, jadi perpindahan dimulai di sana. Pengaturan Navicat sendiri tidak dibaca atau diubah.",
         "steps": [
-            "Di Navicat, pilih <ui>File > Export Connections…</ui>, pilih koneksi, aktifkan <ui>Export Password</ui>, dan simpan berkas .ncx.",
+            "Di Navicat, pilih <ui>File > Export Connections…</ui>, pilih koneksi, aktifkan <ui>Export Password</ui>, dan simpan file .ncx.",
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
-            "Pilih Navicat, aktifkan <ui>Include passwords</ui>, klik <ui>Continue</ui>, lalu pilih berkas .ncx. TablePro mendekripsi kata sandi tersimpan, jadi tidak ada yang perlu disetujui di Keychain.",
+            "Pilih Navicat, aktifkan <ui>Include passwords</ui>, klik <ui>Continue</ui>, lalu pilih file .ncx. TablePro mendekripsi kata sandi tersimpan, jadi tidak ada yang perlu disetujui di Rantai Kunci.",
             "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Pengaturan tunnel SSH dan SSL ikut dipindahkan. Koneksi ke database yang tidak didukung TablePro masuk tanpa dicentang.",
             "Sebelum menghapus Navicat, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
         ],
         "after": [
             "Koneksi masuk tanpa grup Navicat, jadi susun ke dalam grup di TablePro.",
-            "Berkas .ncx melindungi kata sandi dengan kunci bawaan Navicat, jadi siapa pun yang memiliki berkasnya dapat membacanya. Hapus berkas setelah impor selesai.",
+            "File .ncx melindungi kata sandi dengan kunci bawaan Navicat, jadi siapa pun yang memiliki file-nya dapat membacanya. Hapus file setelah impor selesai.",
             "Kueri, model, snippet, dan proyek Navicat Cloud tetap di Navicat."
         ],
         "docs": "/switching"

@@ -15,7 +15,7 @@
         "tablepro": [
             "Anda lebih suka tidak memasang apa pun pada server dan bekerja dari Mac dengan koneksi langsung atau SSH.",
             "Anda juga menggunakan PostgreSQL, SQL Server, SQLite, Redis, atau mesin lain.",
-            "Anda menginginkan tingkat Safe Mode pada setiap koneksi, seperti Read-Only untuk produksi atau Touch ID sebelum penulisan.",
+            "Anda menginginkan level Safe Mode pada setiap koneksi, seperti Read-Only untuk produksi atau Touch ID sebelum penulisan.",
             "Anda sering memindahkan data. Mengimpor CSV, JSON, XLSX, atau SQL dan mengekspornya gratis.",
             "Anda menginginkan asisten AI dan server MCP gratis dalam aplikasi Mac."
         ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "Setiap koneksi memiliki tingkat <link>Safe Mode</link>, dari Silent hingga Read-Only, dengan Touch ID pada tingkat lebih ketat.",
+                "text": "Setiap koneksi memiliki level <link>Safe Mode</link>, dari Silent hingga Read-Only, dengan Touch ID pada level yang lebih ketat.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -173,9 +173,9 @@
         "intro": "TablePro tidak memiliki pengimpor untuk phpMyAdmin. Gunakan detail MySQL atau SSH dari hosting: isi formulir koneksi atau tempel URL yang diawali mysql:// pada <ui>File > Import > Import from URL…</ui>",
         "steps": [],
         "after": [
-            "Jika kode situs berada di Mac, <ui>File > Import > Open Project Folder…</ui> membaca pengaturan database dari berkas seperti wp-config.php atau .env, lalu membuka formulir yang terisi.",
-            "Untuk database produksi, atur tingkat Safe Mode koneksi sebelum memulai.",
-            "Berkas SQL yang diekspor dari phpMyAdmin dapat diimpor ke koneksi MySQL atau MariaDB apa pun, dengan atau tanpa kompresi gzip."
+            "Jika kode situs berada di Mac, <ui>File > Import > Open Project Folder…</ui> membaca pengaturan database dari file seperti wp-config.php atau .env, lalu membuka formulir yang terisi.",
+            "Untuk database produksi, atur level Safe Mode koneksi sebelum memulai.",
+            "File SQL yang diekspor dari phpMyAdmin dapat diimpor ke koneksi MySQL atau MariaDB apa pun, dengan atau tanpa kompresi gzip."
         ],
         "docs": null
     },
@@ -189,13 +189,13 @@
         {
             "id": "sql-import",
             "question": "Apakah TablePro dapat mengimpor SQL yang saya ekspor dari phpMyAdmin?",
-            "answer": "Ya. Import menerima berkas .sql dan .sql.gz lalu menjalankan pernyataannya pada koneksi pilihan Anda. <link>Baca tentang impor dan ekspor</link>.",
+            "answer": "Ya. Import menerima file .sql dan .sql.gz lalu menjalankan pernyataannya pada koneksi pilihan Anda. <link>Baca tentang impor dan ekspor</link>.",
             "href": "/features/import-export"
         },
         {
             "id": "adminer",
             "question": "Bagaimana dengan Adminer?",
-            "answer": "Adminer adalah alat web sumber terbuka lain yang disediakan sebagai satu berkas PHP. Selain MySQL dan MariaDB, alat terhubung ke PostgreSQL, SQLite, SQL Server, serta Oracle. Seperti phpMyAdmin, alat berjalan pada server, sehingga instalasinya memerlukan perhatian yang sama.",
+            "answer": "Adminer adalah alat web sumber terbuka lain yang disediakan sebagai satu file PHP. Selain MySQL dan MariaDB, alat terhubung ke PostgreSQL, SQLite, SQL Server, serta Oracle. Seperti phpMyAdmin, alat berjalan pada server, sehingga instalasinya memerlukan perhatian yang sama.",
             "href": null
         },
         {

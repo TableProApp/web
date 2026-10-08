@@ -23,14 +23,14 @@
         },
         "cloud": {
             "title": "Cloud dan serverless",
-            "intro": "Layanan SQL yang diakses melalui HTTP dengan token akun, serta berkas libSQL di Mac Anda."
+            "intro": "Layanan SQL yang diakses melalui HTTP dengan token akun, serta file libSQL di Mac Anda."
         },
         "document": {
             "title": "Dokumen",
             "intro": "Database dokumen dan multimodel, masing-masing dengan bahasa kuerinya sendiri."
         },
         "key-value": {
-            "title": "Kunci-nilai",
+            "title": "Key-value",
             "intro": "Kunci dan nilainya, dibaca dan ditulis menggunakan perintah atau PartiQL."
         },
         "wide-column": {
@@ -50,8 +50,8 @@
             "intro": "Ruang kunci etcd, dengan lease dan anggota cluster."
         },
         "files": {
-            "title": "Berkas",
-            "intro": "Database dalam berkas yang dibuka langsung, tanpa menjalankan server."
+            "title": "File",
+            "intro": "Database dalam file yang dibuka langsung, tanpa menjalankan server."
         }
     },
     "table": {
@@ -80,7 +80,7 @@
     "iphone": {
         "title": "Di iPhone dan iPad",
         "picker": "Aplikasi iPhone dan iPad terhubung ke {engines}.",
-        "synced": "Koneksi ke {engines} hanya dapat dibuka di sana jika berasal dari Mac, melalui iCloud Sync atau berkas koneksi yang diekspor.",
+        "synced": "Koneksi ke {engines} hanya dapat dibuka di sana jika berasal dari Mac, melalui iCloud Sync atau file koneksi yang diekspor.",
         "others": "Koneksi ke mesin lainnya disinkronkan ke iPhone dan iPad dan ditampilkan dalam daftar, tetapi tidak dapat dibuka di sana.",
         "link": "TablePro untuk iPhone dan iPad"
     },
@@ -90,8 +90,8 @@
         "link": "Lihat harga"
     },
     "missing": {
-        "title": "Database Anda belum tersedia?",
-        "body": "Mesin baru hadir sebagai plugin driver. Jika mesin yang Anda gunakan belum tercantum, mintalah melalui GitHub.",
+        "title": "Tidak menemukan database Anda?",
+        "body": "Mesin baru hadir sebagai plugin driver. Jika mesin yang Anda gunakan tidak tercantum, mintalah melalui GitHub.",
         "link": "Minta dukungan database di GitHub"
     },
     "docs": {
@@ -114,7 +114,7 @@
             "ios": "iPhone dan iPad"
         },
         "connect": {
-            "file": "Berkas",
+            "file": "File",
             "network": "Host dan port",
             "api": "API layanan",
             "ssh": "Tunnel SSH",
@@ -127,9 +127,9 @@
             "registry": "Diunduh saat pertama kali digunakan"
         },
         "ios": {
-            "picker": "Opens",
-            "synced": "Terbuka jika disinkronkan dari Mac",
-            "none": "Tidak terbuka"
+            "picker": "Dapat dibuka",
+            "synced": "Dapat dibuka jika disinkronkan dari Mac",
+            "none": "Tidak dapat dibuka"
         },
         "availability": {
             "devices": "Berfungsi di {devices}",
@@ -148,7 +148,7 @@
         },
         "iphone": {
             "picker": "{name} tersedia saat Anda membuat koneksi dalam aplikasi iPhone dan iPad, dan aplikasi terhubung langsung ke mesin tersebut.",
-            "synced": "Aplikasi iPhone dan iPad hanya membuka koneksi {name} yang berasal dari Mac, melalui iCloud Sync atau berkas koneksi yang diekspor. Anda tidak dapat membuatnya di sana.",
+            "synced": "Aplikasi iPhone dan iPad hanya membuka koneksi {name} yang berasal dari Mac, melalui iCloud Sync atau file koneksi yang diekspor. Anda tidak dapat membuatnya di sana.",
             "none": "Aplikasi iPhone dan iPad tidak memiliki driver {name}. Koneksi {name} yang disinkronkan dari Mac muncul dalam daftar tetapi tidak dapat dibuka.",
             "link": "TablePro untuk iPhone dan iPad"
         },

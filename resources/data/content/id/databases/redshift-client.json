@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Amazon Redshift untuk {devices}",
+        "title": "Klien Amazon Redshift untuk {devices}",
         "description": "Kueri cluster Redshift dan workgroup Serverless dengan driver PostgreSQL. Lihat DISTKEY dan SORTKEY, telusuri skema eksternal, dan gunakan pg_dump."
     },
     "og": {
@@ -32,7 +32,7 @@
             "title": "Hubungkan",
             "paragraphs": [
                 "Gunakan endpoint cluster sebagai host, atau endpoint workgroup pada Redshift Serverless; keduanya menggunakan port yang sama. Database wajib diisi, dan setiap cluster dibuat dengan database bernama <code>dev</code>. Mengimpor URL <code>redshift://</code> mengisi formulir.",
-                "Koneksi baru menetapkan SSL ke Preferred, dan tidak ada pemeriksaan versi, sehingga setiap cluster yang masih dijalankan AWS dapat terhubung. Kata sandi disimpan di Keychain atau dibaca dari <code>~/.pgpass</code>, dua dari <credentials>opsi kredensial</credentials> koneksi. Cluster yang tidak dapat diakses publik diakses melalui <network>tunnel SSH</network> ke bastion host di VPC-nya."
+                "Koneksi baru menetapkan SSL ke Preferred, dan tidak ada pemeriksaan versi, sehingga setiap cluster yang masih dijalankan AWS dapat terhubung. Kata sandi disimpan di Rantai Kunci atau dibaca dari <code>~/.pgpass</code>, dua dari <credentials>opsi kredensial</credentials> koneksi. Cluster yang tidak dapat diakses publik diakses melalui <network>tunnel SSH</network> ke bastion host di VPC-nya."
             ]
         },
         {
@@ -49,8 +49,8 @@
             "id": "schema",
             "title": "Skema",
             "paragraphs": [
-                "Redshift tidak memiliki indeks, enum, sequence, atau trigger untuk dikelola: DISTKEY dan SORTKEY menjalankan fungsi indeks, dan tab Structure tidak memiliki tab Triggers. Routine tidak tercantum di bilah samping.",
-                "Dari bilah samping, Anda dapat mengganti nama tabel, database, dan skema, serta membuat skema dengan pemiliknya."
+                "Redshift tidak memiliki indeks, enum, sequence, atau trigger untuk dikelola: DISTKEY dan SORTKEY menjalankan fungsi indeks, dan tab Structure tidak memiliki tab Triggers. Routine tidak tercantum di sidebar.",
+                "Dari sidebar, Anda dapat mengganti nama tabel, database, dan skema, serta membuat skema dengan pemiliknya."
             ]
         },
         {
@@ -66,14 +66,14 @@
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "<importData>Import</importData> memuat berkas {importFormats} dari Mac ke tabel Redshift. Ekspor menulis tabel atau hasil kueri sebagai {exportFormats}, dan tabel eksternal diekspor seperti tabel lainnya."
+                "<importData>Import</importData> memuat file {importFormats} dari Mac ke tabel Redshift. Ekspor menulis tabel atau hasil kueri sebagai {exportFormats}, dan tabel eksternal diekspor seperti tabel lainnya."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone dan iPad",
             "paragraphs": [
-                "Untuk membawa koneksi Redshift ke iPhone atau iPad, aktifkan <icloudSync>iCloud Sync</icloudSync>, bagian dari paket {icloudSyncTier} di Mac, atau <share>ekspor koneksi</share> ke berkas lalu buka pada perangkat. Koneksi kemudian berjalan dengan driver PostgreSQL bawaan aplikasi: telusuri tabel sebagai kartu, filter dan urutkan, serta jalankan SQL di tab Query. Kata sandi disertakan melalui iCloud Sync hanya jika sinkronisasi kata sandi aktif, atau dalam berkas ekspor terenkripsi yang menyertakan kata sandi, bagian dari paket {encryptedExportTier}. Sertifikat tetap pada setiap perangkat."
+                "Untuk membawa koneksi Redshift ke iPhone atau iPad, aktifkan <icloudSync>iCloud Sync</icloudSync>, bagian dari paket {icloudSyncTier} di Mac, atau <share>ekspor koneksi</share> ke file lalu buka pada perangkat. Koneksi kemudian berjalan dengan driver PostgreSQL bawaan aplikasi: telusuri tabel sebagai kartu, filter dan urutkan, serta jalankan SQL di tab Query. Kata sandi disertakan melalui iCloud Sync hanya jika sinkronisasi kata sandi aktif, atau dalam file ekspor terenkripsi yang menyertakan kata sandi, bagian dari paket {encryptedExportTier}. Sertifikat tetap pada setiap perangkat."
             ]
         }
     ],

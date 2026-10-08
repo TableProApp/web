@@ -100,7 +100,7 @@
                 "href": "/features/ai-mcp"
             },
             {
-                "text": "<link>Compare & Sync</link> membandingkan struktur atau data dua database dan menyinkronkan perbedaannya. Fitur ini termasuk Starter.",
+                "text": "<link>Compare & Sync</link> membandingkan struktur atau data dua database dan menyinkronkan perbedaannya. Fitur ini termasuk dalam Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -123,7 +123,7 @@
                 "href": null
             },
             {
-                "text": "TablePro hanya terhubung ke mesin yang memiliki driver. Tidak ada koneksi JDBC generik, jadi periksa <link>database yang didukung</link> terlebih dahulu.",
+                "text": "TablePro hanya terhubung ke mesin yang drivernya tersedia di TablePro. Tidak ada koneksi JDBC generik, jadi periksa <link>database yang didukung</link> terlebih dahulu.",
                 "cite": [],
                 "feature": null,
                 "href": "/databases"
@@ -137,10 +137,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro membaca koneksi dalam workspace DBeaver Anda, dari Community atau edisi berbayar mana pun. DBeaver tidak perlu terbuka, dan berkasnya tidak diubah.",
+        "intro": "TablePro membaca koneksi dalam workspace DBeaver Anda, dari Community atau edisi berbayar mana pun. DBeaver tidak perlu terbuka, dan file-nya tidak diubah.",
         "steps": [
             "Di TablePro, pilih <ui>File > Import > Import from Other App…</ui>",
-            "Pilih DBeaver dan aktifkan <ui>Include passwords</ui>. TablePro mendekripsi kata sandi yang disimpan DBeaver, jadi tidak ada yang perlu disetujui di Keychain.",
+            "Pilih DBeaver dan aktifkan <ui>Include passwords</ui>. TablePro mendekripsi kata sandi yang disimpan DBeaver, jadi tidak ada yang perlu disetujui di Rantai Kunci.",
             "Tinjau daftar, tentukan penanganan duplikat, lalu klik <ui>Import</ui>. Folder menjadi grup, dan pengaturan tunnel SSH ikut dipindahkan. Koneksi ke database yang tidak didukung TablePro masuk tanpa dicentang.",
             "Sebelum menghapus DBeaver, buka koneksi yang memiliki kata sandi untuk memastikan kata sandinya ikut dipindahkan."
         ],

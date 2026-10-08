@@ -18,7 +18,7 @@
             "title": "Ubah struktur, baca DDL terlebih dahulu",
             "paragraphs": [
                 "Tab Structure mengedit kolom, indeks, foreign key, dan constraint CHECK tabel dalam grid. Perubahan menunggu hingga Anda menyimpan, dan <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) menampilkan pernyataan ALTER TABLE sebelum apa pun berjalan. Perubahan yang menghapus sesuatu, mengubah tipe, menambah NOT NULL, atau mengubah primary key meminta konfirmasi terlebih dahulu, bahkan pada koneksi dengan level Safe Mode {macSafeModeDefault}.",
-                "Indeks dapat memakai key ekspresi seperti <code>lower(email)</code>. New Table menyusun tabel dengan cara yang sama, dengan pratinjau SQL langsung. Pada SQLite, libSQL, Turso, dan Cloudflare D1, yang tidak dapat mengubah foreign key secara langsung, TablePro menyiapkan pembangunan ulang tabel untuk ditinjau. Setelah dikonfirmasi, skrip dijalankan pada SQLite dan file libSQL lokal; pada Turso, libSQL jarak jauh, dan D1, Anda menjalankannya sendiri."
+                "Indeks dapat memakai ekspresi sebagai key, seperti <code>lower(email)</code>. New Table menyusun tabel dengan cara yang sama, dengan pratinjau SQL langsung. Pada SQLite, libSQL, Turso, dan Cloudflare D1, yang tidak dapat mengubah foreign key secara langsung, TablePro menyiapkan pembangunan ulang tabel untuk ditinjau. Setelah dikonfirmasi, skrip dijalankan pada SQLite dan file libSQL lokal; pada Turso, libSQL jarak jauh, dan D1, Anda menjalankannya sendiri."
             ],
             "engines": [
                 {
@@ -63,7 +63,7 @@
             "title": "Compare & Sync",
             "paragraphs": [
                 "Pilih sumber dan tujuan, yang dapat berupa dua server atau dua database pada satu server. Compare & Sync mencantumkan setiap tabel yang berbeda, beserta view, routine, dan trigger jika disertakan. Dalam mode data, baris dicocokkan berdasarkan key dan setiap nilai berbeda ditandai, dengan filter serta batas baris per tabel, sehingga Anda dapat membandingkan sebagian tabel besar.",
-                "Skrip yang dihasilkan diurutkan berdasarkan foreign key dan ditulis untuk klien tujuan. Pernyataan yang menghancurkan data, seperti menghapus kolom, mempersempit tipe, atau menghapus baris, ditahan hingga Anda mengizinkannya untuk eksekusi tersebut. Koneksi Read-Only tidak dapat dipilih sebagai tujuan. Simpan perbandingan untuk menjalankannya lagi dengan satu klik."
+                "Skrip yang dihasilkan diurutkan berdasarkan foreign key dan ditulis untuk klien milik mesin tujuan. Pernyataan yang menghilangkan data, seperti menghapus kolom, mempersempit tipe, atau menghapus baris, ditahan hingga Anda mengizinkannya untuk eksekusi tersebut. Koneksi Read-Only tidak dapat dipilih sebagai tujuan. Simpan perbandingan untuk menjalankannya lagi dengan satu klik."
             ],
             "paid": [
                 "compare-sync"

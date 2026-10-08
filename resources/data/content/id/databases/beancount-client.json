@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Beancount SQL untuk {devices}",
-        "description": "Buka transaksi, posting, saldo, dan metadata Beancount sebagai tabel SQL hanya baca. Ikuti berkas include dan jalankan BQL melalui rledger."
+        "title": "Kueri buku besar Beancount dengan SQL di {devices}",
+        "description": "Buka transaksi, posting, saldo, dan metadata Beancount sebagai tabel SQL hanya baca. Ikuti file include dan jalankan BQL melalui rledger."
     },
     "og": {
         "kicker": "Database",
@@ -11,7 +11,7 @@
     "breadcrumb": "Beancount",
     "header": {
         "title": "Kueri buku besar Beancount dengan SQL di {devices}",
-        "lead": "Buka berkas <code>.beancount</code> dan kueri transaksi, posting, saldo, dan metadatanya sebagai tabel SQL, atau kirim BQL ke rledger. Buku besar tetap berupa berkas teks yang Anda edit dalam editor sendiri."
+        "lead": "Buka file <code>.beancount</code> dan kueri transaksi, posting, saldo, dan metadatanya sebagai tabel SQL, atau kirim BQL ke rledger. Buku besar tetap berupa file teks yang Anda edit dalam editor sendiri."
     },
     "asset": "mac-db-beancount-bql",
     "links": {
@@ -25,7 +25,7 @@
             "title": "Buka buku besar",
             "paragraphs": [
                 "TablePro menjalankan <code>rledger</code> atau Python Beancount untuk membaca buku besar. Jika harus memilih, pasang rledger: rledger diprioritaskan jika keduanya tersedia, hanya rledger yang menjalankan BQL, dan hanya rledger yang mengisi tabel <code>diagnostics</code> dengan keluaran validasi.",
-                "Pilih berkas menggunakan <ui>Browse…</ui> pada formulir koneksi. Jalur buku besar menentukan seluruh koneksi, tanpa host, port, kata sandi, atau database. Berkas <code>.beancount</code> juga dapat dibuka dari Finder, dan URL <code>beancount:///path/to/main.beancount</code> dapat diimpor.",
+                "Pilih file menggunakan <ui>Browse…</ui> pada formulir koneksi. Jalur buku besar menentukan seluruh koneksi, tanpa host, port, kata sandi, atau database. File <code>.beancount</code> juga dapat dibuka dari Finder, dan URL <code>beancount:///path/to/main.beancount</code> dapat diimpor.",
                 "Aplikasi yang dibuka dari Finder tidak mewarisi <code>PATH</code> shell Anda. Jika backend berjalan di Terminal tetapi tidak di sini, tentukan lokasinya dengan <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> atau <code>TABLEPRO_BEANCOUNT_PYTHON</code>, lalu jalankan ulang aplikasi.",
                 "Backend Python menjalankan plugin bawaan Beancount dan melewati setiap direktif <code>plugin</code> lainnya, yang merupakan kode pihak ketiga, sampai Anda mengaktifkan <ui>Run Ledger Plugins</ui> untuk koneksi tersebut. Plugin yang dilewati tercantum di <code>diagnostics</code>."
             ]
@@ -34,17 +34,17 @@
             "id": "work",
             "title": "Kueri buku besar",
             "paragraphs": [
-                "Tabel mencakup transaksi dan posting, akun, saldo dan pernyataan saldo, harga dan komoditas, semua direktif lainnya, metadata, tag dan tautan, serta berkas sumber. Posting digabungkan dengan transaksi melalui <code>transaction_id</code>, dan akun digabungkan berdasarkan nama.",
+                "Tabel mencakup transaksi dan posting, akun, saldo dan pernyataan saldo, harga dan komoditas, semua direktif lainnya, metadata, tag dan tautan, serta file sumber. Posting digabungkan dengan transaksi melalui <code>transaction_id</code>, dan akun digabungkan berdasarkan nama.",
                 "Jumlah diterima setelah dibukukan, dengan aritmetika, biaya, dan harga yang sudah diselesaikan, serta biaya posting dan harga inline pada kolom tersendiri. Transaksi, posting, dan beberapa tabel direktif memiliki <code>source_location</code> seperti <code>main.beancount:42</code>, sehingga baris data dapat ditelusuri ke baris sumbernya.",
                 "Awali kueri dengan <code>BQL:</code> untuk mengirimnya ke rledger alih-alih tabel. Penelusuran, jumlah baris, dan paginasi berfungsi pada hasil BQL; parameter SQL tidak.",
-                "Direktif <code>include</code> diikuti, baik jalur literal maupun glob, dan setiap berkas buku besar serta dokumen yang dirujuk dipantau. Simpan perubahan di editor, dan kueri berikutnya membacanya tanpa menghubungkan ulang. Koneksi selalu berada pada tingkat Read-Only dalam <safeMode>Safe Mode</safeMode>, sehingga INSERT, UPDATE, DELETE, dan perubahan skema ditolak."
+                "Direktif <code>include</code> diikuti, baik jalur literal maupun glob, dan setiap file buku besar serta dokumen yang dirujuk dipantau. Simpan perubahan di editor, dan kueri berikutnya membacanya tanpa menghubungkan ulang. Koneksi selalu berada pada level Read-Only dalam <safeMode>Safe Mode</safeMode>, sehingga INSERT, UPDATE, DELETE, dan perubahan skema ditolak."
             ]
         },
         {
             "id": "move-data",
             "title": "Pindahkan data",
             "paragraphs": [
-                "Ekspor tabel atau hasil kueri sebagai {exportFormats}. <files>Berkas lain yang dibuka TablePro sebagai database</files> mencakup SQLite, DuckDB, dan Parquet."
+                "Ekspor tabel atau hasil kueri sebagai {exportFormats}. <files>File lain yang dibuka TablePro sebagai database</files> mencakup SQLite, DuckDB, dan Parquet."
             ]
         }
     ],
@@ -54,25 +54,25 @@
         {
             "id": "errors",
             "question": "Apakah buku besar yang memiliki kesalahan tetap dapat dibuka?",
-            "answer": "Melalui rledger, ya. Buku besar tetap diproyeksikan menjadi tabel meskipun validasi gagal, dan setiap masalah berupa baris di <code>diagnostics</code> dengan berkas, nomor baris, tingkat keparahan, dan pesan."
+            "answer": "Melalui rledger, ya. Buku besar tetap diproyeksikan menjadi tabel meskipun validasi gagal, dan setiap masalah berupa baris di <code>diagnostics</code> dengan file, nomor baris, tingkat keparahan, dan pesan."
         },
         {
             "id": "several-ledgers",
             "question": "Apakah satu koneksi dapat membuka beberapa buku besar?",
-            "answer": "Satu koneksi adalah satu berkas buku besar, tanpa perpindahan. Berkas utama yang menyertakan berkas lain akan memuat semuanya, termasuk melalui glob."
+            "answer": "Satu koneksi adalah satu file buku besar, tanpa perpindahan. File utama yang menyertakan file lain akan memuat semuanya, termasuk melalui glob."
         }
     ],
     "related": [
         {
-            "label": "DuckDB, untuk berkas analitik",
+            "label": "DuckDB, untuk file analitik",
             "href": "/duckdb-client"
         },
         {
-            "label": "SQLite, database dalam satu berkas",
+            "label": "SQLite, database dalam satu file",
             "href": "/sqlite-client"
         },
         {
-            "label": "Impor, ekspor, dan berkas data",
+            "label": "Impor, ekspor, dan file data",
             "href": "/features/import-export"
         }
     ]

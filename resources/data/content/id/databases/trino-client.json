@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Trino untuk {devices}",
+        "title": "Klien Trino untuk {devices}",
         "description": "Kueri lintas katalog Trino, masuk dengan kata sandi, JWT, atau sertifikat via TLS, baca rencana logis dan terdistribusi, serta batalkan kueri."
     },
     "og": {
@@ -27,7 +27,7 @@
             "title": "Hubungkan dan masuk",
             "paragraphs": [
                 "Masukkan host dan port koordinator serta <ui>Username</ui>, pengguna yang menjalankan kueri Anda. <ui>Catalog</ui> dan <ui>Schema</ui> adalah titik awal opsional; kosongkan Catalog untuk menelusuri semua katalog. <ui>Time Zone</ui> IANA pada bagian Options menetapkan zona waktu sesi.",
-                "Masuk dengan kata sandi, yang dikirim sebagai HTTP Basic untuk autentikasi LDAP atau berkas kata sandi, atau token akses JWT yang dikirim sebagai kredensial bearer. Keduanya hanya dikirim melalui TLS: dengan SSL Disabled, koneksi yang memuat salah satunya ditolak sebelum data dikirim. Sertifikat dan kunci klien pada panel SSL menambahkan TLS timbal balik.",
+                "Masuk dengan kata sandi, yang dikirim sebagai HTTP Basic untuk autentikasi LDAP atau file kata sandi, atau token akses JWT yang dikirim sebagai kredensial bearer. Keduanya hanya dikirim melalui TLS: dengan SSL Disabled, koneksi yang memuat salah satunya ditolak sebelum data dikirim. Sertifikat dan kunci klien pada panel SSL menambahkan TLS timbal balik.",
                 "SSL awalnya Disabled, yaitu HTTP tanpa enkripsi; mode lainnya mewajibkan TLS tanpa peralihan ke teks biasa, dan port 443 mengaktifkan Verify Identity. Pengalihan dari proxy di depan koordinator tidak pernah diikuti; kesalahan menyebutkan tujuannya. Akses koordinator di balik bastion melalui <network>tunnel SSH</network>, lalu impor URL <code>trino://</code> menggunakan <ui>Import from URL…</ui>."
             ]
         },
@@ -35,7 +35,7 @@
             "id": "work",
             "title": "Kueri lintas katalog",
             "paragraphs": [
-                "Koneksi dibuka pada katalog dan skema, dan setiap kueri tetap dapat menyebut <code>catalog.schema.table</code> secara lengkap, misalnya join antara tabel Hive dan PostgreSQL. Bilah samping menguraikan setiap katalog menjadi skema dan tabel, dengan materialized view di samping tabel dan view, serta jumlah baris dari <code>SHOW STATS</code>.",
+                "Koneksi dibuka pada katalog dan skema, dan setiap kueri tetap dapat menyebut <code>catalog.schema.table</code> secara lengkap, misalnya join antara tabel Hive dan PostgreSQL. Sidebar menguraikan setiap katalog menjadi skema dan tabel, dengan materialized view di samping tabel dan view, serta jumlah baris dari <code>SHOW STATS</code>.",
                 "<code>bigint</code> dan <code>decimal</code> dibaca sebagai teks presisi, bukan floating point. <code>varbinary</code> ditampilkan sebagai heksadesimal, <code>array</code>, <code>map</code>, dan <code>row</code> sebagai JSON, dan timestamp mempertahankan nilai yang dikembalikan server.",
                 "<explain>Explain</explain> menyediakan Logical, Distributed, IO, Validate, dan Analyze. Validate memeriksa kueri tanpa menjalankannya, Analyze menjalankan kueri dan melaporkan waktu aktual, dan setiap rencana dikembalikan sebagai teks mentah.",
                 "<code>SET SESSION</code> berlaku selama sisa koneksi. <ui>Query > Cancel Query</ui> meminta koordinator menghentikan kueri aktif, dan itulah cara menghentikannya: batas waktu kueri koneksi tidak diteruskan ke Trino.",
@@ -68,7 +68,7 @@
         {
             "id": "encrypted-key",
             "question": "Apakah saya dapat menggunakan kunci klien terenkripsi?",
-            "answer": "Tidak. Koneksi Trino tidak memiliki bidang frasa sandi kunci. Tulis salinan terdekripsi menggunakan <code>openssl pkey -in encrypted.key -out client.key</code>, lalu pilih berkas tersebut."
+            "answer": "Tidak. Koneksi Trino tidak memiliki bidang frasa sandi kunci. Tulis salinan terdekripsi menggunakan <code>openssl pkey -in encrypted.key -out client.key</code>, lalu pilih file tersebut."
         }
     ],
     "related": [
