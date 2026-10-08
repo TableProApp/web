@@ -29,10 +29,10 @@
             "id": "connect",
             "title": "Verbinden",
             "paragraphs": [
-                "Gib Host und TCP-Port an und wähle <ui>Authentifizierung</ui>; das Formular passt sich an: SQL-Server-Login und Passwort, Windows-Authentifizierung über Kerberos oder Microsoft Entra ID. Fülle Datenbank für einen datenbankgebundenen Login wie einen Azure-SQL-Contained-User aus.",
+                "Gib Host und TCP-Port an und wähle <ui>Authentication</ui>; das Formular passt sich an: SQL-Server-Login und Passwort, Windows-Authentifizierung über Kerberos oder Microsoft Entra ID. Fülle Datenbank für einen datenbankgebundenen Login wie einen Azure-SQL-Contained-User aus.",
                 "Kerberos nutzt das Ticket im Zugangsdaten-Cache oder fordert eines mit eingegebenem Prinzipal und Passwort an. Verbinde per Hostname statt IP, weil das Ticket für den registrierten SPN des Servers gilt. TablePro führt nie <code>kinit</code> aus und bearbeitet nie <code>/etc/krb5.conf</code>.",
                 "<cloudAuth>Microsoft Entra ID</cloudAuth> meldet per Gerätecodefluss an, der MFA und Conditional Access respektiert. Registriere eine App in Azure und gib ihre Client-ID ein; Tokens bleiben im Anmeldeschlüsselbund als nur auf diesem Gerät nutzbar und werden im Hintergrund erneuert.",
-                "Neue Verbindungen beginnen mit Bevorzugt, das bei SQL Server nur die Anmeldung verschlüsselt. Wähle Erforderlich oder strenger für die ganze Sitzung; CA prüfen und Identität prüfen nutzen macOS-Systemwurzeln. TablePro kann auch den Cloud SQL Auth Proxy für Google Cloud SQL ausführen; <network>SSH-Tunnel</network> erreichen private Netzwerke."
+                "Neue Verbindungen beginnen mit Preferred, das bei SQL Server nur die Anmeldung verschlüsselt. Wähle Required oder strenger für die ganze Sitzung; Verify CA und Verify Identity nutzen macOS-Systemwurzeln. TablePro kann auch den Cloud SQL Auth Proxy für Google Cloud SQL ausführen; <network>SSH-Tunnel</network> erreichen private Netzwerke."
             ]
         },
         {
@@ -42,23 +42,23 @@
                 "Ein Skript erreicht den Server Batch für Batch, geteilt an Zeilen mit nur <code>GO</code> wie bei sqlcmd; <code>GO 5</code> führt den vorherigen Batch fünfmal aus. Jede Ergebnismenge öffnet einen eigenen Tab; <code>PRINT</code> und Informationsmeldungen erscheinen in Ausgabe.",
                 "Setze <code>BEGIN TRAN</code> und <code>COMMIT</code> ins Skript, wenn ein Fehler vorherige Batches rückgängig machen muss; eine offen gebliebene Transaktion wird am Ende gemeldet. Die Ausführung stoppt beim ersten fehlgeschlagenen Batch, und der Fehler nennt seine Editorzeile.",
                 "Jede Sitzung startet mit den SET-Optionen für gefilterte Indizes, indizierte Sichten und Indizes berechneter Spalten, etwa aktivem <code>ANSI_NULLS</code> und <code>QUOTED_IDENTIFIER</code>. Daher findet <code>col = NULL</code> nichts: Vergleiche mit <code>IS NULL</code>.",
-                "Tabellen liegen unter ihren Schemas; <code>⌘K</code> wechselt die Datenbank ohne Neuverbinden. Änderungen werden mit <editing>SQL-Vorschau</editing> vorgemerkt, neue Zeilen überlassen IDENTITY-Spalten dem Server, und <code>nvarchar(max)</code> kommt vollständig an."
+                "Tabellen liegen unter ihren Schemas; <code>⌘K</code> wechselt die Datenbank ohne Neuverbinden. Änderungen werden mit <editing>Preview SQL</editing> vorgemerkt, neue Zeilen überlassen IDENTITY-Spalten dem Server, und <code>nvarchar(max)</code> kommt vollständig an."
             ]
         },
         {
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "Der <structure>Struktur-Tab</structure> merkt Änderungen an Spalten, Indizes, Fremdschlüsseln und Bedingungen vor und zeigt T-SQL vorher. Schemas werden in der Seitenleiste gelöscht; SQL Server verweigert Schemas mit Objekten. Erstelle eines mit CREATE SCHEMA im Editor.",
-                "<compareSync>Vergleichen und synchronisieren</compareSync> im Tarif {compareSyncTier} vergleicht zwei SQL-Server-Schemas oder Daten und speichert ein Skript mit <code>GO</code> nach jeder Anweisung, bereit für sqlcmd oder SQL Server Management Studio."
+                "Der <structure>Structure-Tab</structure> merkt Änderungen an Spalten, Indizes, Fremdschlüsseln und Bedingungen vor und zeigt T-SQL vorher. Schemas werden in der Seitenleiste gelöscht; SQL Server verweigert Schemas mit Objekten. Erstelle eines mit CREATE SCHEMA im Editor.",
+                "<compareSync>Compare & Sync</compareSync> im Tarif {compareSyncTier} vergleicht zwei SQL-Server-Schemas oder Daten und speichert ein Skript mit <code>GO</code> nach jeder Anweisung, bereit für sqlcmd oder SQL Server Management Studio."
             ]
         },
         {
             "id": "operate",
             "title": "Überwachen und sichern",
             "paragraphs": [
-                "Das <dashboard>Server-Dashboard</dashboard> zeigt Benutzersitzungen, Laufzeit und Datenbankgröße, listet andere Sitzungen und länger als eine Sekunde laufende Abfragen und beendet mit <ui>Sitzung beenden</ui>. SQL Server hat kein Abfrage abbrechen.",
-                "<backup>Backup-Dump</backup> schreibt <code>.bacpac</code> mit {dumpTool}, das du von Microsoft lädst; Dump wiederherstellen lädt es in eine leere Datenbank. SqlPackage nimmt Passwörter nur in der Kommandozeile, wo andere Mac-Prozesse sie lesen können; daher fragt TablePro vorher. Windows- oder Entra-Anmeldung vermeidet das."
+                "Das <dashboard>Server-Dashboard</dashboard> zeigt Benutzersitzungen, Laufzeit und Datenbankgröße, listet andere Sitzungen und länger als eine Sekunde laufende Abfragen und beendet mit <ui>Terminate Session</ui>. SQL Server hat kein Cancel Query.",
+                "<backup>Backup Dump</backup> schreibt <code>.bacpac</code> mit {dumpTool}, das du von Microsoft lädst; Restore Dump lädt es in eine leere Datenbank. SqlPackage nimmt Passwörter nur in der Kommandozeile, wo andere Mac-Prozesse sie lesen können; daher fragt TablePro vorher. Windows- oder Entra-Anmeldung vermeidet das."
             ]
         },
         {
@@ -72,7 +72,7 @@
             "id": "iphone",
             "title": "iPhone und iPad",
             "paragraphs": [
-                "Auf iPhone und iPad meldest du dich mit SQL-Server-Login an, durchsuchst Tabellen als Karten, bearbeitest Zeilen mit Primärschlüssel und führst T-SQL im Abfrage-Tab aus. Windows-Anmeldung fehlt. Eine Entra-ID-Verbindung kommt per iCloud oder Exportdatei vom Mac; beim Öffnen meldest du dich bei Microsoft an."
+                "Auf iPhone und iPad meldest du dich mit SQL-Server-Login an, durchsuchst Tabellen als Karten, bearbeitest Zeilen mit Primärschlüssel und führst T-SQL im Abfrage-Tab aus. Windows-Anmeldung fehlt. Eine Entra-ID-Verbindung kommt per iCloud Sync oder Exportdatei vom Mac; beim Öffnen meldest du dich bei Microsoft an."
             ],
             "asset": "ios-table-browse"
         }
@@ -104,7 +104,7 @@
         {
             "id": "azure-sql",
             "question": "Funktioniert TablePro mit Azure SQL Database?",
-            "answer": "Ja. Nutze <code>yourserver.database.windows.net</code>, SSL Erforderlich oder strenger und SQL-Login oder Entra ID. Ein Contained User braucht auch das Datenbankfeld."
+            "answer": "Ja. Nutze <code>yourserver.database.windows.net</code>, SSL Required oder strenger und SQL-Login oder Entra ID. Ein Contained User braucht auch das Datenbankfeld."
         },
         {
             "id": "declare",
@@ -114,7 +114,7 @@
         {
             "id": "freetds",
             "question": "Brauche ich FreeTDS oder einen ODBC-Treiber?",
-            "answer": "Nein. Der Treiber enthält FreeTDS, ohne weitere Installation oder Lesen deiner <code>freetds.conf</code>. Nur Backup-Dump und Dump wiederherstellen benötigen dein eigenes Tool: {dumpTool}."
+            "answer": "Nein. Der Treiber enthält FreeTDS, ohne weitere Installation oder Lesen deiner <code>freetds.conf</code>. Nur Backup Dump und Restore Dump benötigen dein eigenes Tool: {dumpTool}."
         }
     ],
     "related": [

@@ -11,7 +11,7 @@ export default {
         "undated": "版本 {version}",
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
-        "notes": "发行说明",
+        "notes": "发行说明（英语）",
         "unavailable": "无法加载当前版本详情。两个按钮都会打开 GitHub 上的最新版本，您可在那里选择适合 Mac 的磁盘映像。"
     },
     "file": {
@@ -48,7 +48,7 @@ export default {
     "otherPlatforms": {
         "joiner": {
             "separator": "、",
-            "last": "或"
+            "last": " 或 "
         }
     }
 } satisfies Messages['download'];

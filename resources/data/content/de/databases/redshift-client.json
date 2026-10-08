@@ -32,14 +32,14 @@
             "title": "Verbinden",
             "paragraphs": [
                 "Nutze den Cluster-Endpunkt als Host oder den Workgroup-Endpunkt bei Redshift Serverless; beide nutzen denselben Port. Eine Datenbank ist erforderlich; jeder Cluster wird mit einer namens <code>dev</code> erstellt. Eine importierte <code>redshift://</code>-URL füllt das Formular.",
-                "Neue Verbindungen nutzen SSL Bevorzugt ohne Versionsprüfung; jeder noch von AWS betriebene Cluster verbindet. Das Passwort liegt im Schlüsselbund oder wird aus <code>~/.pgpass</code> gelesen, zwei <credentials>Zugangsdatenoptionen</credentials>. Ein nicht öffentlich erreichbarer Cluster wird per <network>SSH-Tunnel</network> zu einem Bastion-Host in seiner VPC erreicht."
+                "Neue Verbindungen nutzen SSL Preferred ohne Versionsprüfung; jeder noch von AWS betriebene Cluster verbindet. Das Passwort liegt im Schlüsselbund oder wird aus <code>~/.pgpass</code> gelesen, zwei <credentials>Zugangsdatenoptionen</credentials>. Ein nicht öffentlich erreichbarer Cluster wird per <network>SSH-Tunnel</network> zu einem Bastion-Host in seiner VPC erreicht."
             ]
         },
         {
             "id": "work",
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
-                "Abfragen und <editing>vorgemerkte Zeilenänderungen mit SQL-Vorschau</editing> funktionieren wie auf <postgresql>PostgreSQL</postgresql> über denselben Treiber. Ein an eine andere als die aktive Datenbank gebundener Tab öffnet dafür eine zweite Verbindung.",
+                "Abfragen und <editing>vorgemerkte Zeilenänderungen mit Preview SQL</editing> funktionieren wie auf <postgresql>PostgreSQL</postgresql> über denselben Treiber. Ein an eine andere als die aktive Datenbank gebundener Tab öffnet dafür eine zweite Verbindung.",
                 "Tabelleninfo liest <code>svv_table_info</code> für Verteilungsart, Sortierschlüssel und Größe; DDL schreibt DISTKEY, SORTKEY, DISTSTYLE und ENCODE. Fremdschlüssel werden gelistet, aber von Redshift nicht erzwungen; nichts verhindert verletzende Zeilen.",
                 "<explain>EXPLAIN und EXPLAIN VERBOSE</explain> liefern Redshifts Plan als Text statt Diagramm.",
                 "Schemas aus <code>CREATE EXTERNAL SCHEMA</code>, ob Spectrum über S3, föderierte Abfrage, datenbankübergreifender Verweis oder Datashare, stehen als Extern neben deinen eigenen. Ihre Tabellen lassen sich durchsuchen, filtern, sortieren und exportieren, sind aber schreibgeschützt: Redshift nimmt dort kein UPDATE oder DELETE. Sie zeigen keine Zeilenzahl; Spaltentypen stammen vom externen Katalog."
@@ -49,7 +49,7 @@
             "id": "schema",
             "title": "Schema",
             "paragraphs": [
-                "Redshift hat keine Indizes, Enums, Sequenzen oder Trigger zu verwalten: DISTKEY und SORTKEY übernehmen Indexaufgaben, und Struktur hat keinen Trigger-Tab. Routinen stehen nicht in der Seitenleiste.",
+                "Redshift hat keine Indizes, Enums, Sequenzen oder Trigger zu verwalten: DISTKEY und SORTKEY übernehmen Indexaufgaben, und der Structure-Tab hat keinen Trigger-Tab. Routinen stehen nicht in der Seitenleiste.",
                 "In der Seitenleiste benennst du Tabellen, Datenbanken und Schemas um und erstellst ein Schema mit Besitzer."
             ]
         },
@@ -57,9 +57,9 @@
             "id": "operate",
             "title": "Überwachen und sichern",
             "paragraphs": [
-                "Das <dashboard>Server-Dashboard</dashboard> listet Sitzungen und langsame Abfragen sowie Verbindungen, Cache-Trefferquote, Datenbankgröße, Laufzeit und aktive Abfragen als Metriken. Abfrage abbrechen sendet <code>pg_cancel_backend</code>, Sitzung beenden <code>pg_terminate_backend</code>, jeweils nach Bestätigung.",
-                "Redshift hat kein Wartungsmenü und keine Benutzer und Rollen: Führe VACUUM, ANALYZE und GRANT im SQL-Editor aus.",
-                "<backup>Backup-Dump und Dump wiederherstellen</backup> führen {dumpTool} und pg_restore auf deinem Mac über den vorhandenen SSH-Tunnel aus. Installiere sie zuerst mit Homebrews libpq."
+                "Das <dashboard>Server-Dashboard</dashboard> listet Sitzungen und langsame Abfragen sowie Verbindungen, Cache-Trefferquote, Datenbankgröße, Laufzeit und aktive Abfragen als Metriken. Cancel Query sendet <code>pg_cancel_backend</code>, Terminate Session <code>pg_terminate_backend</code>, jeweils nach Bestätigung.",
+                "Redshift hat kein Wartungsmenü und kein Users & Roles: Führe VACUUM, ANALYZE und GRANT im SQL-Editor aus.",
+                "<backup>Backup Dump und Restore Dump</backup> führen {dumpTool} und pg_restore auf deinem Mac über den vorhandenen SSH-Tunnel aus. Installiere sie zuerst mit Homebrews libpq."
             ]
         },
         {
@@ -73,7 +73,7 @@
             "id": "iphone",
             "title": "iPhone und iPad",
             "paragraphs": [
-                "Aktiviere für Redshift auf iPhone oder iPad <icloudSync>iCloud-Synchronisierung</icloudSync> im Mac-Tarif {icloudSyncTier} oder <share>exportiere die Verbindung</share> in eine Datei und öffne sie auf dem Gerät. Sie nutzt dort den integrierten PostgreSQL-Treiber: Tabellen als Karten durchsuchen, filtern, sortieren und SQL im Abfrage-Tab ausführen. Passwörter kommen über iCloud nur bei aktiver Passwortsynchronisierung oder in einer verschlüsselten Exportdatei mit Passwörtern im Tarif {encryptedExportTier}. Zertifikate bleiben auf jedem Gerät."
+                "Aktiviere für Redshift auf iPhone oder iPad <icloudSync>iCloud Sync</icloudSync> im Mac-Tarif {icloudSyncTier} oder <share>exportiere die Verbindung</share> in eine Datei und öffne sie auf dem Gerät. Sie nutzt dort den integrierten PostgreSQL-Treiber: Tabellen als Karten durchsuchen, filtern, sortieren und SQL im Abfrage-Tab ausführen. Passwörter kommen über iCloud Sync nur bei aktiver Passwortsynchronisierung oder in einer verschlüsselten Exportdatei mit Passwörtern im Tarif {encryptedExportTier}. Zertifikate bleiben auf jedem Gerät."
             ]
         }
     ],

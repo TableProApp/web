@@ -31,25 +31,25 @@
             "id": "connect",
             "title": "Connexion",
             "paragraphs": [
-                "Utilisez l’adresse du cluster comme hôte, ou celle du workgroup Serverless ; tous deux écoutent sur le même port. Une base est requise et chaque cluster en crée une nommée <code>dev</code>. Importer une URL <code>redshift://</code> remplit le formulaire.",
-                "Les nouvelles connexions utilisent SSL Préféré sans vérification de version ; tout cluster encore exploité par AWS se connecte. Le mot de passe reste dans le Trousseau ou est lu de <code>~/.pgpass</code>, deux <credentials>options d’identifiants</credentials>. Un cluster privé est atteint par <network>tunnel SSH</network> vers un bastion de son VPC."
+                "Utilisez l’adresse du cluster comme hôte, ou celle du workgroup Serverless ; tous deux écoutent sur le même port. Une base est requise et chaque cluster en crée une nommée <code>dev</code>. Importer une URL <code>redshift://</code> remplit le formulaire.",
+                "Les nouvelles connexions utilisent SSL sur Preferred, sans vérification de version ; tout cluster encore exploité par AWS se connecte. Le mot de passe reste dans le Trousseau ou est lu de <code>~/.pgpass</code>, deux <credentials>options d’identifiants</credentials>. Un cluster privé est atteint par <network>tunnel SSH</network> vers un bastion de son VPC."
             ]
         },
         {
             "id": "work",
             "title": "Interrogez et modifiez",
             "paragraphs": [
-                "Les requêtes et <editing>modifications en attente avec Aperçu SQL</editing> fonctionnent comme sur <postgresql>PostgreSQL</postgresql>, avec le même pilote. Un onglet lié à une autre base que l’active ouvre une seconde connexion.",
-                "Les informations lisent <code>svv_table_info</code> pour distribution, clés de tri et taille ; DDL écrit DISTKEY, SORTKEY, DISTSTYLE et ENCODE. Les clés étrangères sont listées mais non imposées par Redshift ; rien n’empêche une ligne les violant.",
+                "Les requêtes et <editing>modifications en attente avec Preview SQL</editing> fonctionnent comme sur <postgresql>PostgreSQL</postgresql>, avec le même pilote. Un onglet lié à une autre base que l’active ouvre une seconde connexion.",
+                "Les informations lisent <code>svv_table_info</code> pour distribution, clés de tri et taille ; DDL écrit DISTKEY, SORTKEY, DISTSTYLE et ENCODE. Les clés étrangères sont listées mais non imposées par Redshift ; rien n’empêche une ligne les violant.",
                 "<explain>EXPLAIN et EXPLAIN VERBOSE</explain> retournent le plan Redshift en texte, sans diagramme.",
-                "Les schémas de <code>CREATE EXTERNAL SCHEMA</code>, Spectrum sur S3, requête fédérée, référence interbases ou datashare, figurent près des vôtres marqués Externe. Leurs tables se parcourent, filtrent, trient et exportent normalement mais restent en lecture seule : Redshift n’y accepte ni UPDATE ni DELETE. Aucun comptage n’est affiché ; les types viennent du catalogue externe."
+                "Les schémas de <code>CREATE EXTERNAL SCHEMA</code>, Spectrum sur S3, requête fédérée, référence interbases ou datashare, figurent près des vôtres marqués Externe. Leurs tables se parcourent, filtrent, trient et exportent normalement mais restent en lecture seule : Redshift n’y accepte ni UPDATE ni DELETE. Aucun comptage n’est affiché ; les types viennent du catalogue externe."
             ]
         },
         {
             "id": "schema",
             "title": "Schéma",
             "paragraphs": [
-                "Redshift n’a ni index, enums, séquences ni déclencheurs à gérer : DISTKEY et SORTKEY jouent le rôle d’un index et Structure n’a pas d’onglet Déclencheurs. Les routines ne figurent pas dans la barre latérale.",
+                "Redshift n’a ni index, enums, séquences ni déclencheurs à gérer : DISTKEY et SORTKEY jouent le rôle d’un index et Structure n’a pas d’onglet Déclencheurs. Les routines ne figurent pas dans la barre latérale.",
                 "Depuis la barre latérale, renommez tables, bases et schémas et créez un schéma avec son propriétaire."
             ]
         },
@@ -57,23 +57,23 @@
             "id": "operate",
             "title": "Surveillez et sauvegardez",
             "paragraphs": [
-                "Le <dashboard>Tableau de bord serveur</dashboard> liste sessions et requêtes lentes, avec connexions, taux de cache, taille, durée de fonctionnement et requêtes actives comme métriques. Annuler la requête envoie <code>pg_cancel_backend</code> ; Terminer la session, <code>pg_terminate_backend</code>, après confirmation.",
-                "Redshift n’a ni menu Maintenance ni Utilisateurs et rôles : exécutez VACUUM, ANALYZE et GRANT dans l’éditeur SQL.",
-                "<backup>Dump de sauvegarde et Restaurer un dump</backup> exécutent {dumpTool} et pg_restore depuis le Mac, via le tunnel SSH s’il existe. Installez-les d’abord avec libpq de Homebrew."
+                "<dashboard>Server Dashboard</dashboard> liste sessions et requêtes lentes, avec connexions, taux de cache, taille, durée de fonctionnement et requêtes actives comme métriques. Cancel Query envoie <code>pg_cancel_backend</code> ; Terminate Session, <code>pg_terminate_backend</code>, après confirmation.",
+                "Redshift n’a ni menu Maintenance ni Users & Roles : exécutez VACUUM, ANALYZE et GRANT dans l’éditeur SQL.",
+                "<backup>Backup Dump et Restore Dump</backup> exécutent {dumpTool} et pg_restore depuis le Mac, via le tunnel SSH s’il existe. Installez-les d’abord avec libpq de Homebrew."
             ]
         },
         {
             "id": "move-data",
             "title": "Transférez des données",
             "paragraphs": [
-                "<importData>Importer</importData> charge des fichiers {importFormats} du Mac dans une table Redshift. L’export écrit tables ou résultats en {exportFormats} ; les tables externes s’exportent aussi."
+                "<importData>Importer</importData> charge des fichiers {importFormats} du Mac dans une table Redshift. L’export écrit tables ou résultats en {exportFormats} ; les tables externes s’exportent aussi."
             ]
         },
         {
             "id": "iphone",
             "title": "iPhone et iPad",
             "paragraphs": [
-                "Pour amener Redshift sur iPhone ou iPad, activez la <icloudSync>synchronisation iCloud</icloudSync>, du forfait {icloudSyncTier} sur Mac, ou <share>exportez la connexion</share> en fichier et ouvrez-le sur l’appareil. Elle utilise le pilote PostgreSQL intégré : tables en cartes, filtrage, tri et SQL dans Requête. Les mots de passe suivent iCloud uniquement avec leur synchronisation activée, ou dans un export chiffré les incluant, du forfait {encryptedExportTier}. Les certificats restent sur chaque appareil."
+                "Pour amener Redshift sur iPhone ou iPad, activez <icloudSync>iCloud Sync</icloudSync>, de l’offre {icloudSyncTier} sur Mac, ou <share>exportez la connexion</share> en fichier et ouvrez-le sur l’appareil. Elle utilise le pilote PostgreSQL intégré : tables en cartes, filtrage, tri et SQL dans Requête. Les mots de passe suivent via iCloud Sync uniquement avec leur synchronisation activée, ou dans un export chiffré les incluant, de l’offre {encryptedExportTier}. Les certificats restent sur chaque appareil."
             ]
         }
     ],
@@ -82,13 +82,13 @@
     "faq": [
         {
             "id": "serverless",
-            "question": "TablePro fonctionne-t-il avec Redshift Serverless ?",
+            "question": "TablePro fonctionne-t-il avec Redshift Serverless ?",
             "answer": "Oui. Placez l’adresse du workgroup dans Hôte et remplissez port, base et utilisateur comme pour un cluster provisionné."
         },
         {
             "id": "pg-dump",
-            "question": "pg_dump prend-il en charge Redshift ?",
-            "answer": "Aucune version de pg_dump ne revendique la version PostgreSQL annoncée par Redshift. TablePro lance votre pg_dump installé, alors que sur PostgreSQL il en choisit un adapté au serveur ; testez une sauvegarde d’un petit schéma avant de vous y fier."
+            "question": "pg_dump prend-il en charge Redshift ?",
+            "answer": "Aucune version de pg_dump ne revendique la version PostgreSQL annoncée par Redshift. TablePro lance votre pg_dump installé, alors que sur PostgreSQL il en choisit un adapté au serveur ; testez une sauvegarde d’un petit schéma avant de vous y fier."
         }
     ],
     "related": [
@@ -97,7 +97,7 @@
             "href": "/postgresql-client"
         },
         {
-            "label": "Tableau de bord serveur et outils de schéma",
+            "label": "Server Dashboard et outils de schéma",
             "href": "/features/schema"
         },
         {

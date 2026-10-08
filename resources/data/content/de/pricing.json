@@ -16,7 +16,7 @@
     },
     "features": {
         "title": "Was ein bezahlter Tarif ergänzt",
-        "lead": "Nur diese Funktionen erfordern einen bezahlten Tarif, und alle stehen in der Mac-App bereit. Team enthält alles aus Starter. Verbindungen zu allen unterstützten Systemen erfordern keine Lizenz, ebenso wenig der KI-Assistent, der MCP-Server oder der sichere Modus."
+        "lead": "Nur diese Funktionen erfordern einen bezahlten Tarif, und alle stehen in der Mac-App bereit. Team enthält alles aus Starter. Verbindungen zu allen unterstützten Systemen erfordern keine Lizenz, ebenso wenig der KI-Assistent, der MCP-Server oder der Safe Mode."
     },
     "license": {
         "title": "So funktionieren Lizenzen",
@@ -27,7 +27,7 @@
             },
             "activate": {
                 "term": "Aktivierung",
-                "body": "Gib deinen Lizenzschlüssel in TablePro auf deinem Mac unter <ui>Einstellungen > Lizenz</ui> ein. Um ihn auf einem anderen Mac zu nutzen, entferne den bisherigen auf der Seite „Macs“ in <account>deinem Konto</account>."
+                "body": "Gib deinen Lizenzschlüssel in TablePro auf deinem Mac unter <ui>Settings > License</ui> ein. Um ihn auf einem anderen Mac zu nutzen, entferne den bisherigen auf der Seite „Macs“ in <account>deinem Konto</account>."
             },
             "checks": {
                 "term": "Prüfungen",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Abrechnung",
-        "merchant": "{merchant} ist der verantwortliche Verkäufer für TablePro. Er verkauft dir den Tarif, nimmt die Zahlung entgegen, berechnet die Verkaufs- oder Mehrwertsteuer anhand deiner Rechnungsadresse und sendet Beleg und Rechnung per E-Mail.",
+        "merchant": "{merchant} ist der Merchant of Record für TablePro. Er verkauft dir den Tarif, nimmt die Zahlung entgegen, berechnet die Verkaufs- oder Mehrwertsteuer anhand deiner Rechnungsadresse und sendet Beleg und Rechnung per E-Mail.",
         "renewal": "Monatliche und jährliche Tarife verlängern sich automatisch, bis du sie in <account>deinem Konto</account> oder im Kundenportal von {merchant} kündigst. Nach der Kündigung bleibt der Tarif bis zum Ende des bezahlten Zeitraums aktiv; vorher kannst du ihn wieder fortsetzen. Falls eine Verlängerungszahlung fehlschlägt, sendet {merchant} dir einen Link zur Aktualisierung deiner Karte und versucht die Zahlung etwa drei Wochen lang erneut.",
         "portal": "Bei Käufen über {merchant} findest du Rechnungen, Belege, Zahlungsmethode und Kündigung im <portal>Kundenportal von {merchant}</portal>. Melde dich dort mit der beim Kauf verwendeten E-Mail-Adresse an. <account>Abrechnung und Rechnungen</account> in deinem Konto öffnet es ebenfalls."
     },
@@ -70,6 +70,10 @@
         "body": "TablePro ist quelloffen unter der AGPLv3, einschließlich des Codes seiner Bezahlfunktionen. Ein Build aus dem Quellcode prüft die Lizenz genauso wie die veröffentlichte App.",
         "agpl": "Die AGPL stellt keine Bedingungen an die Ausführung von TablePro, auch nicht bei der Arbeit oder in Unternehmen beliebiger Größe. Ihre Bedingungen gelten für die Weitergabe und für das Bereitstellen einer geänderten Version an andere über ein Netzwerk.",
         "github": "Auf GitHub ansehen"
+    },
+    "compare": {
+        "title": "Im Vergleich mit anderen Clients",
+        "body": "Jeder Vergleich zeigt die Preise des anderen Clients neben denen von TablePro, mit dem Datum der Prüfung."
     },
     "faq": {
         "title": "Fragen zu den Tarifen",

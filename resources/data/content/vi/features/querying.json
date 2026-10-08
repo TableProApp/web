@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Viết, chạy và phân tích query",
-        "lead": "Dành cho bất kỳ ai viết SQL trên cơ sở dữ liệu đang hoạt động: viết query với schema ngay trước mắt, chạy một câu lệnh hay cả script, giữ lại những query đáng giữ và tìm ra vì sao một query chậm đi. Mọi thứ ở đây có trong ứng dụng Mac; phần cuối nói về iPhone và iPad.",
+        "lead": "Dành cho bất kỳ ai viết SQL trên cơ sở dữ liệu đang hoạt động: viết query với schema ngay trước mắt, chạy một câu lệnh hay cả script, giữ lại những query đáng giữ và tìm ra vì sao một query chậm đi. Mọi thứ ở đây có trong ứng dụng Mac. Ứng dụng cho iPhone và iPad làm được một phần trong số đó.",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Editor hiểu schema của bạn",
             "paragraphs": [
                 "Autocomplete đọc schema của connection ngay khi bạn gõ: tên table sau FROM và JOIN, các cột của một alias, và các cột của CTE hay subquery đã khai báo trước đó trong câu lệnh. Tô sáng cú pháp dùng tree-sitter, còn <kbd>⌘⇧L</kbd> định dạng câu lệnh tại con trỏ mà vẫn giữ nguyên comment.",
-                "<kbd>⌘⏎</kbd> chạy câu lệnh tại con trỏ hoặc phần đang chọn, <kbd>⌘⇧⏎</kbd> chạy tất cả, <kbd>⌘⌥⏎</kbd> chạy mà không giới hạn số dòng, và <kbd>⌘.</kbd> để hủy. Một loạt câu lệnh thông thường chạy trong cùng một transaction và được rollback nếu có câu lỗi; ngoại lệ là script tự quản lý transaction, script SQL Server, câu lệnh không thể nằm trong transaction như VACUUM, và DDL trên MySQL, MariaDB và Oracle vốn tự commit."
+                "<kbd>⌘⏎</kbd> chạy câu lệnh tại con trỏ hoặc phần đang chọn, <kbd>⌘⇧⏎</kbd> chạy tất cả, <kbd>⌘⌥⏎</kbd> chạy mà không giới hạn số dòng, và <kbd>⌘.</kbd> để hủy. Một loạt câu lệnh thông thường chạy trong cùng một transaction và được rollback nếu có câu lỗi. Ngoại lệ là script tự quản lý transaction, script SQL Server và câu lệnh không thể nằm trong transaction, như VACUUM. DDL trên MySQL, MariaDB và Oracle tự commit."
             ],
             "points": [
                 "Đánh dấu từng câu lệnh ở lề trái, mỗi câu có nút chạy riêng.",
@@ -34,7 +34,7 @@
             "paragraphs": [
                 "Viết <code>:customer_id</code> trong query, TablePro sẽ hỏi giá trị và kiểu dữ liệu trước khi chạy, rồi bind giá trị theo cách native khi driver hỗ trợ.",
                 "Mọi query bạn chạy đều được ghi vào lịch sử trên máy (<kbd>⌘Y</kbd>), có tìm kiếm toàn văn và bộ lọc theo nguồn, theo query lỗi và theo khoảng thời gian. Mặc định lịch sử giữ {historyEntries} mục trong {historyDays} ngày và không bao giờ được đồng bộ.",
-                "Lưu một query kèm từ khóa, chẳng hạn <code>dau</code>, rồi gõ từ khóa đó trong editor để chèn lại cả query. Query đã lưu có lịch sử phiên bản. Linked SQL folder đồng bộ hai chiều một thư mục file <code>.sql</code> với sidebar, kèm ký hiệu trạng thái Git cho từng file; tính năng này miễn phí và khác với Linked Folders, tính năng của gói Starter để chia sẻ file connection."
+                "Lưu một query kèm từ khóa, chẳng hạn <code>dau</code>, rồi gõ từ khóa đó trong editor để chèn lại cả query. Query đã lưu có lịch sử phiên bản. Linked SQL folder đồng bộ hai chiều một thư mục file <code>.sql</code> với sidebar, kèm ký hiệu trạng thái Git cho từng file. Tính năng này miễn phí và khác với Linked Folders, tính năng của gói Starter để chia sẻ file connection."
             ],
             "asset": "mac-query-parameters-history"
         },
@@ -54,7 +54,7 @@
                     "id": "explain",
                     "title": "EXPLAIN và EXPLAIN Compare",
                     "paragraphs": [
-                        "<kbd>⌥⌘E</kbd> hiển thị execution plan của query dưới dạng sơ đồ, dạng cây kèm thanh chi phí, hoặc nguyên văn kết quả của engine. Chọn một lần chạy trước của cùng query làm mốc, Compare sẽ cho biết query có chậm đi không và plan có thay đổi không; chênh lệch dưới {explainNoise}% được coi là nhiễu. Cả hai đều miễn phí."
+                        "<kbd>⌥⌘E</kbd> hiển thị execution plan của query dưới dạng sơ đồ, dạng cây kèm thanh chi phí, hoặc nguyên văn kết quả của engine. Chọn một lần chạy trước của cùng query làm baseline, Compare sẽ cho biết query có chậm đi không và plan có thay đổi không; chênh lệch dưới {explainNoise}% được coi là nhiễu. Cả hai đều miễn phí."
                     ],
                     "engines": [
                         { "label": "Plan dạng sơ đồ và cây", "list": "explainDiagram" },
@@ -84,7 +84,7 @@
                     "id": "result-charts",
                     "title": "Result Charts",
                     "paragraphs": [
-                        "Vẽ kết quả thành biểu đồ cột, đường, vùng hoặc biểu đồ điểm (scatter), với trục thời gian cho cột ngày tháng và một series cho mỗi giá trị của cột bạn chọn. Một biểu đồ vẽ tối đa {chartPoints} điểm và {chartSeries} series từ {chartInspectedRows} dòng đầu tiên, và thanh công cụ sẽ báo khi biểu đồ không vẽ hết dữ liệu."
+                        "Vẽ kết quả thành biểu đồ cột, đường, vùng hoặc biểu đồ phân tán (scatter), với trục thời gian cho cột ngày tháng và một series cho mỗi giá trị của cột bạn chọn. Một biểu đồ vẽ tối đa {chartPoints} điểm và {chartSeries} series từ {chartInspectedRows} dòng đầu tiên, và thanh công cụ sẽ báo khi biểu đồ không vẽ hết dữ liệu."
                     ],
                     "paid": ["result-charts"],
                     "asset": "mac-result-chart"

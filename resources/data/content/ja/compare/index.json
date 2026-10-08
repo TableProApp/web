@@ -14,6 +14,7 @@
   "bySituation": {
     "title": "用途から選ぶ",
     "lead": "各クライアントを一行で紹介し、詳しい比較にリンクします。",
+    "tablepro": "ネイティブの Mac アプリと、別の iPhone・iPad アプリを備えたオープンソースクライアントなら TablePro。AI アシスタントと MCP サーバーは Mac アプリで無料で使え、{apps} の保存済み接続をインポートできます。",
     "items": {
       "tableplus": "Windows や Linux でも使う、または Vertica・Greenplum に接続するなら TablePlus。",
       "dbeaver": "Windows、macOS と Linux で JDBC ドライバーのあるどのエンジンにも接続する無料クライアントなら DBeaver。",
@@ -62,6 +63,7 @@
     "sourcesLink": "出典",
     "shortAnswer": {
       "title": "まず選び方",
+      "lead": "Mac で {name} の代替を探していますか？それぞれのクライアントが向く場合をまとめました。",
       "tablepro": "TablePro が向く場合",
       "competitor": "{name} が向く場合"
     },
@@ -84,8 +86,8 @@
       "import": "TablePro への移行"
     },
     "cell": {
-      "yes": "対応",
-      "no": "非対応",
+      "yes": "あり",
+      "no": "なし",
       "partial": "一部対応",
       "edition": "{edition} エディションで対応",
       "since": "{version} 以降",
@@ -128,27 +130,27 @@
     },
     "price": {
       "free": "無料",
-      "labelled": "{label}: {price}",
+      "labelled": "{label}：{price}",
       "amount": {
-        "once": "{amount} の一回払い",
+        "once": "一回払い {amount}",
         "month": "月額 {amount}",
         "year": "年額 {amount}",
         "none": "{amount}"
       },
       "per": {
-        "device": "デバイスごとに {price}",
-        "user": "ユーザーごとに {price}",
-        "seat": "シートごとに {price}",
-        "license": "ライセンスごとに {price}",
+        "device": "{price}/デバイス",
+        "user": "{price}/ユーザー",
+        "seat": "{price}/シート",
+        "license": "{price}/ライセンス",
         "none": "{price}"
       },
       "units": {
-        "one": "1 台で {price}",
-        "other": "最大 {count} 台で {price}"
+        "one": "{price}、1 台用",
+        "other": "{price}、最大 {count} 台"
       },
       "minUnits": {
-        "one": "最低 1 シート、{price}",
-        "other": "最低 {count} シート、{price}"
+        "one": "{price}、最低 1 シート",
+        "other": "{price}、最低 {count} シート"
       },
       "renewal": "更新",
       "ios": "iPhone・iPad アプリ",
@@ -171,8 +173,8 @@
     "tablepro": {
       "technology": "Swift とネイティブデータベースドライバー",
       "priceFree": "無料で利用可能。有料プランは Mac の任意の機能を追加します。",
-      "starter": "Starter：月額 {monthly}、年額 {yearly} または一回払い {lifetime}",
-      "team": "Team：1 シートごとに月額 {monthly}、年額 {yearly} または一回払い {lifetime}、最低 {min} シート",
+      "starter": "月額 {monthly}、年額 {yearly} または一回払い {lifetime}",
+      "team": "1 シートごとに月額 {monthly}、年額 {yearly} または一回払い {lifetime}、最低 {min} シート",
       "iosPrice": "iPhone・iPad アプリは無料で、アプリ内購入はありません。",
       "licence": "はい：有料機能のコードも含め {licence}",
       "databases": "{engines} など",
@@ -201,6 +203,7 @@
       "switching": "{name} からの移行",
       "faq": "よくある質問",
       "sources": "出典",
+      "more": "他の比較",
       "cta": "TablePro を入手"
     },
     "switching": {
@@ -210,7 +213,8 @@
       "intro": "{name} の事実は {date} にこれらのページで確認しました。価格は税別米ドル定価です。",
       "retrieved": "{date} に確認",
       "latest": "その時点の最新 {name} は {date} 公開の {version}。",
-      "tablepro": "TablePro の欄は Mac 版 {macVersion} と iPhone・iPad 版 {iosVersion} を説明します。"
+      "tablepro": "TablePro の欄は Mac 版 {macVersion} と iPhone・iPad 版 {iosVersion} を説明します。",
+      "trademarks": "TablePro は独立したオープンソースプロジェクトで、ここで比較している製品の開発元とは提携しておらず、その承認も受けていません。製品名は各所有者の商標です。"
     },
     "cta": {
       "body": "TablePro は無料でダウンロードできます。有料プランは Mac の任意の機能を追加します。",

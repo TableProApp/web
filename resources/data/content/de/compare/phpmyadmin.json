@@ -15,7 +15,7 @@
         "tablepro": [
             "Du möchtest nichts auf dem Server installieren und vom Mac aus arbeiten, mit direkter Verbindung oder über SSH.",
             "Du nutzt auch PostgreSQL, SQL Server, SQLite, Redis oder weitere Engines.",
-            "Du möchtest für jede Verbindung eine Sicherheitsstufe, etwa Schreibgeschützt für Produktion oder Touch ID vor Schreibzugriffen.",
+            "Du möchtest für jede Verbindung eine Safe-Mode-Stufe, etwa Read-Only für Produktion oder Touch ID vor Schreibzugriffen.",
             "Du überträgst häufig Daten. Der Import und Export von CSV-, JSON-, XLSX- oder SQL-Dateien ist kostenlos.",
             "Du möchtest einen KI-Assistenten und einen MCP-Server, kostenlos in der Mac-App."
         ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "Jede Verbindung hat eine Stufe im <link>Sicherheitsmodus</link>, von Stumm bis Schreibgeschützt, mit Touch ID auf den strengeren Stufen.",
+                "text": "Jede Verbindung hat eine Stufe im <link>Safe Mode</link>, von Silent bis Read-Only, mit Touch ID auf den strengeren Stufen.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -170,11 +170,11 @@
         ]
     },
     "switching": {
-        "intro": "TablePro hat keinen Importer für phpMyAdmin. Nutze die MySQL- oder SSH-Zugangsdaten deines Hosters: Fülle das Verbindungsformular aus oder füge eine mit mysql:// beginnende URL unter <ui>Datei > Importieren > Aus URL importieren…</ui> ein.",
+        "intro": "TablePro hat keinen Importer für phpMyAdmin. Nutze die MySQL- oder SSH-Zugangsdaten deines Hosters: Fülle das Verbindungsformular aus oder füge eine mit mysql:// beginnende URL unter <ui>File > Import > Import from URL…</ui> ein.",
         "steps": [],
         "after": [
-            "Wenn der Website-Code auf deinem Mac liegt, liest <ui>Datei > Importieren > Projektordner öffnen…</ui> die Datenbankeinstellungen aus Dateien wie wp-config.php oder .env und öffnet das ausgefüllte Verbindungsformular.",
-            "Lege bei einer Produktionsdatenbank vor Beginn die Sicherheitsstufe der Verbindung fest.",
+            "Wenn der Website-Code auf deinem Mac liegt, liest <ui>File > Import > Open Project Folder…</ui> die Datenbankeinstellungen aus Dateien wie wp-config.php oder .env und öffnet das ausgefüllte Verbindungsformular.",
+            "Lege bei einer Produktionsdatenbank vor Beginn die Safe-Mode-Stufe der Verbindung fest.",
             "Aus phpMyAdmin exportierte SQL-Dateien lassen sich in jede MySQL- oder MariaDB-Verbindung importieren, mit oder ohne gzip-Komprimierung."
         ],
         "docs": null
@@ -207,6 +207,7 @@
     ],
     "notes": {
         "phpmyadmin-databases": "MySQL und MariaDB",
+        "phpmyadmin-languages": "{value} Sprachen",
         "phpmyadmin-schema-visualization": "Grafische Ansichten des Datenbankschemas in mehreren Formaten",
         "phpmyadmin-in-development": "Version {version} ist in Entwicklung",
         "phpmyadmin-hardening": "Die Dokumentation empfiehlt, es nur über HTTPS bereitzustellen, den Zugriff einzuschränken, die Root-Anmeldung zu deaktivieren und Zwei-Faktor-Authentifizierung zu aktivieren"

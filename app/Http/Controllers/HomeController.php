@@ -29,7 +29,7 @@ use Inertia\Response;
  * hero is a placeholder, because a placeholder requests nothing, and becomes
  * a preload for the shown variant once the owner supplies the image.
  *
- * @phpstan-type HomeEngine array{id: string, name: string, category: string, icon: string|null, monogram: string, path: string, featured: bool, usersRoles: bool, release: string|null}
+ * @phpstan-type HomeEngine array{id: string, name: string, icon: string|null, monogram: string, path: string, featured: bool, usersRoles: bool}
  */
 class HomeController extends Controller
 {
@@ -43,11 +43,11 @@ class HomeController extends Controller
     public function __invoke(ContentRepository $content, PlatformCatalog $platforms, AssetManifest $assets, Checkout $checkout): Response
     {
         $locale = App::getLocale();
-        $engines = $this->engines($platforms->macFloorVersion());
 
         return Inertia::render('Home', [
             'content' => $content->page('home', $locale),
-            'engines' => $engines,
+            'engines' => $this->engines(),
+            'categories' => $this->categories($content->page('databases/index', $locale)),
             'iosEngines' => $this->iosEngines($platforms),
             'checkout' => $checkout->props(),
             'lcpAsset' => $assets->lcpDescriptor('mac-hero-window', $locale),
@@ -55,13 +55,12 @@ class HomeController extends Controller
     }
 
     /**
-     * Every published engine in data order, with what the databases section
-     * shows: its name and mark, its category, where the site describes it, and
-     * a release label while some channel still serves an app without it.
+     * Every published engine in data order, with what the page shows: its
+     * name and mark, and where the site describes it.
      *
      * @return list<HomeEngine>
      */
-    private function engines(?string $floor): array
+    private function engines(): array
     {
         $all = array_values(array_filter($this->json('engines.json'), 'is_array'));
         $byId = EnginePaths::byId($all);
@@ -79,22 +78,42 @@ class HomeController extends Controller
                 continue;
             }
 
-            $since = is_string($engine['sinceAppVersion'] ?? null) ? $engine['sinceAppVersion'] : null;
-
             $engines[] = [
                 'id' => $engine['id'],
                 'name' => $engine['name'],
-                'category' => (string) ($engine['category'] ?? ''),
                 'icon' => is_string($engine['icon'] ?? null) ? $engine['icon'] : null,
                 'monogram' => (string) ($engine['monogram'] ?? ''),
                 'path' => $path,
                 'featured' => ($engine['featured'] ?? false) === true,
                 'usersRoles' => ($engine['capabilities']['usersRoles'] ?? false) === true,
-                'release' => $since !== null && $floor !== null && version_compare($since, $floor, '>') ? $this->releaseLabel($since) : null,
             ];
         }
 
         return $engines;
+    }
+
+    /**
+     * The hub's categories that hold a published engine, under the hub's
+     * titles and in its order.
+     *
+     * @param  array<string, mixed>  $hub
+     * @return list<array{id: string, title: string}>
+     */
+    private function categories(array $hub): array
+    {
+        $published = array_filter($this->json('engines.json'), fn(mixed $engine): bool => is_array($engine) && ($engine['state'] ?? null) === 'published');
+        $used = array_column($published, 'category');
+        $categories = [];
+
+        foreach (DatabaseController::CATEGORIES as $id) {
+            $title = $hub['categories'][$id]['title'] ?? null;
+
+            if (in_array($id, $used, true) && is_string($title)) {
+                $categories[] = ['id' => $id, 'title' => $title];
+            }
+        }
+
+        return $categories;
     }
 
     /**
@@ -134,16 +153,6 @@ class HomeController extends Controller
         }
 
         return ['picker' => $picker, 'syncedOnly' => $syncedOnly];
-    }
-
-    /**
-     * `0.77.0` → `0.77`, the label the rest of the site shows for a release.
-     */
-    private function releaseLabel(string $version): string
-    {
-        $parts = explode('.', $version);
-
-        return ($parts[0] ?? '0') . '.' . ($parts[1] ?? '0');
     }
 
     /**

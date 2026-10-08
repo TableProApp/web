@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Édition avec aperçu SQL et mode sécurisé",
-        "description": "Filtrez et modifiez les lignes, vérifiez le SQL avant d’enregistrer et fixez le Mode sécurisé par connexion. Le Retour des données restaure les valeurs."
+        "title": "Édition avec Preview SQL et Safe Mode",
+        "description": "Filtrez et modifiez les lignes, vérifiez le SQL avant d’enregistrer et fixez le niveau de Safe Mode par connexion. Data Rewind restaure les valeurs."
     },
     "og": {
         "kicker": "Modification des données",
@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Parcourez et modifiez les données en sécurité",
-        "lead": "Pour travailler directement sur les lignes : trouver celles nécessaires, modifier quelques valeurs et le faire en production sans surprise. Les modifications attendent la sauvegarde et chaque connexion définit les précautions de TablePro avant une instruction.",
+        "lead": "Pour travailler directement sur les lignes : trouver celles nécessaires, modifier quelques valeurs et le faire en production sans surprise. Les modifications attendent l’enregistrement et chaque connexion définit les précautions de TablePro avant une instruction.",
         "docs": "/features/change-tracking"
     },
     "sections": [
@@ -17,7 +17,7 @@
             "id": "browse",
             "title": "Trouvez les lignes nécessaires",
             "paragraphs": [
-                "Le tri et la pagination s’exécutent sur le serveur ; une grande table s’ouvre donc sur sa première page. Au-delà de {countEstimate} lignes, le nombre est estimé ; Compter exactement fournit le nombre réel au besoin."
+                "Le tri et la pagination s’exécutent sur le serveur ; une grande table s’ouvre donc sur sa première page. Au-delà de {countEstimate} lignes, le nombre est estimé ; Count Exactly fournit le nombre réel au besoin."
             ],
             "blocks": [
                 {
@@ -40,13 +40,13 @@
         },
         {
             "id": "edit",
-            "title": "Modifiez les données, puis sauvegardez une fois",
+            "title": "Modifiez les données, puis enregistrez une fois",
             "paragraphs": [
-                "Modifications de cellules, nouvelles lignes et suppressions attendent, marquées dans l’onglet, jusqu’à <kbd>⌘S</kbd> ; rien n’est envoyé avant. <ui>Aperçu SQL</ui> (<kbd>⌘⇧P</kbd>) liste les instructions avec valeurs renseignées. La sauvegarde les envoie avec paramètres liés, en une transaction si possible, et vérifie le nombre de lignes attendu ; sinon, elle est annulée."
+                "Modifications de cellules, nouvelles lignes et suppressions attendent, marquées dans l’onglet, jusqu’à <kbd>⌘S</kbd> ; rien n’est envoyé avant. <ui>Aperçu SQL</ui> (Preview SQL, <kbd>⌘⇧P</kbd>) liste les instructions avec valeurs renseignées. L’enregistrement les envoie avec paramètres liés, en une transaction si possible, et vérifie le nombre de lignes attendu ; sinon, il est annulé."
             ],
             "points": [
-                "Éditeurs adaptés au type de colonne : date et heure, listes ENUM et SET, tableaux, JSON, éditeur hexadécimal pour valeurs binaires et visualiseur d’images.",
-                "Annulation et rétablissement par onglet jusqu’à la sauvegarde.",
+                "Éditeurs adaptés au type de colonne : date et heure, listes ENUM et SET, tableaux, JSON, éditeur hexadécimal pour valeurs binaires et visualiseur d’images.",
+                "Annulation et rétablissement par onglet jusqu’à l’enregistrement.",
                 "Les résultats sont modifiables si la requête lit une seule table sans jointure, CTE ou UNION.",
                 "Copiez les lignes en CSV, JSON, Markdown, liste IN ou instructions INSERT et UPDATE."
             ],
@@ -54,19 +54,19 @@
         },
         {
             "id": "safe-mode",
-            "title": "Mode sécurisé pour les connexions de production",
+            "title": "Safe Mode pour les connexions de production",
             "paragraphs": [
-                "Chaque connexion a un niveau de mode sécurisé : {macSafeModeLevels}. Les nouvelles commencent avec {macSafeModeDefault}, où les instructions s’exécutent telles quelles. Alerte demande confirmation avant écriture ; les niveaux sécurisés demandent aussi Touch ID ou mot de passe Mac, les niveaux complets avant lecture aussi. Lecture seule refuse les écritures et désactive l’édition. Le mode sécurisé est gratuit.",
-                "À tous les niveaux, DROP, TRUNCATE et DELETE sans WHERE s’arrêtent pour confirmation. Certaines conditions relèvent le niveau : moteur en lecture seule, mode Agent imposant au moins Alerte et niveau minimum défini par votre organisation via la gestion des appareils (MDM)."
+                "Chaque connexion a un niveau de Safe Mode : {macSafeModeLevels}. Les nouvelles commencent avec {macSafeModeDefault}, où les instructions s’exécutent telles quelles. Alert demande confirmation avant écriture ; les niveaux Safe Mode demandent aussi Touch ID ou mot de passe Mac, les niveaux (Full) avant lecture aussi. Read-Only refuse les écritures et désactive l’édition. Safe Mode est gratuit.",
+                "À tous les niveaux, DROP, TRUNCATE et DELETE sans WHERE s’arrêtent pour confirmation. Certaines conditions relèvent le niveau : moteur en lecture seule, Agent mode imposant au moins Alert et niveau minimum défini par votre organisation via la gestion des appareils (MDM)."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
                 {
-                    "label": "Mode sécurisé et autres règles de connexion",
+                    "label": "Safe Mode et autres règles de connexion",
                     "href": "/features/connections#policies"
                 },
                 {
-                    "label": "Mode Agent",
+                    "label": "Agent mode",
                     "href": "/features/ai-mcp#agent-mode"
                 }
             ]
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind conserve les valeurs remplacées pour que <ui>Restaurer les valeurs précédentes</ui> les rétablisse. Une feuille de contrôle montre d’abord les effets sur chaque ligne, même modifiée après sauvegarde ; la restauration passe par le mode sécurisé, en une transaction si possible. Une restauration peut elle-même être restaurée.",
-                "Les valeurs restent sur ce Mac pendant {rewindDays} jours, chiffrées avec une clé du Trousseau, et ne se synchronisent jamais. À la fin d’une offre, TablePro cesse d’enregistrer les sauvegardes et <ui>Restaurer les valeurs précédentes</ui> affiche une alerte."
+                "Data Rewind conserve les valeurs remplacées pour que <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values) les rétablisse. Une feuille de contrôle montre d’abord les effets sur chaque ligne, même modifiée après enregistrement ; la restauration passe par Safe Mode, en une transaction si possible. Une restauration peut elle-même être restaurée.",
+                "Les valeurs restent sur ce Mac pendant {rewindDays} jours, chiffrées avec une clé du Trousseau, et ne se synchronisent jamais. À la fin d’une offre, TablePro cesse de consigner les enregistrements et <ui>Restaurer les valeurs précédentes</ui> (Restore Previous Values) affiche une alerte."
             ],
             "paid": [
                 "data-rewind"
@@ -104,8 +104,8 @@
             "id": "iphone",
             "title": "Sur iPhone et iPad",
             "paragraphs": [
-                "Sur iPhone et iPad, les lignes sont des cartes à trier, rechercher et filtrer avec AND et OR ; toucher une clé étrangère prévisualise sa ligne. Vous pouvez modifier une ligne, définir NULL, insérer et supprimer par balayage ; modifier et supprimer nécessite une clé primaire. Dans une nouvelle ligne, chaque champ part de sa valeur DEFAULT et peut passer à NULL ou à une chaîne vide.",
-                "Le mode sécurisé a ses propres niveaux, {iosSafeModeLevels}, avec {iosSafeModeDefault} par défaut pour les nouvelles connexions. Modifications en attente, aperçu SQL, règles de surbrillance et Data Rewind sont uniquement sur Mac."
+                "Sur iPhone et iPad, les lignes sont des cartes à trier, rechercher et filtrer avec AND et OR ; toucher une clé étrangère prévisualise sa ligne. Vous pouvez modifier une ligne, définir NULL, insérer et supprimer par balayage ; modifier et supprimer nécessite une clé primaire. Dans une nouvelle ligne, chaque champ part de sa valeur DEFAULT et peut passer à NULL ou à une chaîne vide.",
+                "Safe Mode a ses propres niveaux, {iosSafeModeLevels}, avec {iosSafeModeDefault} par défaut pour les nouvelles connexions. Modifications en attente, Preview SQL, règles de surbrillance et Data Rewind sont uniquement sur Mac."
             ],
             "links": [
                 {
@@ -113,7 +113,7 @@
                     "href": "/ios#browse"
                 },
                 {
-                    "label": "Mode sécurisé sur iPhone et iPad",
+                    "label": "Safe Mode sur iPhone et iPad",
                     "href": "/ios#safe-mode"
                 }
             ]
@@ -136,14 +136,14 @@
         {
             "label": "Modifier, insérer et supprimer des lignes",
             "ios": "partial",
-            "iosNote": "Éditeur de lignes ; nécessite une clé primaire"
+            "iosNote": "Éditeur de lignes ; nécessite une clé primaire"
         },
         {
-            "label": "Modifications en attente, aperçu SQL et annulation",
+            "label": "Modifications en attente, Preview SQL et annulation",
             "ios": "no"
         },
         {
-            "label": "Mode sécurisé",
+            "label": "Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -163,9 +163,9 @@
     ],
     "limits": [
         "Data Rewind n’est pas une sauvegarde. Il n’annule ni déclencheurs, cascades ou changements externes, et ne restaure pas les lignes sans clé primaire, valeurs de plus de {rewindMaxValue} Mo ou valeurs calculées par le serveur.",
-        "UPDATE sans WHERE est une écriture ordinaire : confirmation uniquement à Alerte ou plus strict.",
-        "Sur {everyStatementWrites}, le mode sécurisé compte toute instruction comme écriture ; Alerte confirme donc aussi les lectures et Lecture seule les bloque.",
-        "Le résultat d’une jointure, CTE ou UNION est en lecture seule dans la grille ; ouvrez la table pour modifier."
+        "UPDATE sans WHERE est une écriture ordinaire : confirmation uniquement au niveau Alert ou plus strict.",
+        "Sur {everyStatementWrites}, Safe Mode compte toute instruction comme écriture ; Alert confirme donc aussi les lectures et Read-Only les bloque.",
+        "Le résultat d’une jointure, CTE ou UNION est en lecture seule dans la grille ; ouvrez la table pour modifier."
     ],
     "docs": [
         {
@@ -177,7 +177,7 @@
             "docs": "/features/filtering"
         },
         {
-            "label": "Suivi des modifications et aperçu SQL",
+            "label": "Suivi des modifications et Preview SQL",
             "docs": "/features/change-tracking"
         },
         {
@@ -185,7 +185,7 @@
             "docs": "/features/change-tracking#restoring-a-save"
         },
         {
-            "label": "Mode sécurisé",
+            "label": "Safe Mode",
             "docs": "/features/safe-mode"
         }
     ],

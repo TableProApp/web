@@ -157,6 +157,8 @@ export interface CitedTool {
     name: string;
     /** `/compare/{slug}` when the tool has a comparison page. */
     comparePath: string | null;
+    /** That page's H1 in this locale: the text of the link to it. */
+    compareTitle: string | null;
     state: 'active' | 'discontinued';
     version: string | null;
     /** Formatted on the server in the page's locale. */
@@ -198,6 +200,8 @@ export interface EnginePageProps {
     family: EngineDetail[];
     copy: Record<string, EngineCopy>;
     tools: CitedTool[];
+    /** Comparisons with clients for this engine that the "Other tools" block does not already link. */
+    comparisons: { path: string; title: string }[];
     platforms: { mac: PlatformSummary | null; ios: PlatformSummary | null };
     links: DatabaseLinks;
     product: ProductFacts;

@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Koneksi, tunnel, dan kredensial",
-        "lead": "Untuk database di balik bastion, cluster, atau login cloud: siapkan koneksi sekali dengan jalur dan sumber kata sandi yang diperlukan, lalu beri aturan lebih ketat pada koneksi produksi. Semua fitur ini tersedia di aplikasi Mac; bagian terakhir membahas iPhone dan iPad.",
+        "lead": "Untuk database di balik bastion, cluster, atau login cloud: siapkan koneksi sekali dengan jalur dan sumber kata sandi yang diperlukan, lalu beri aturan lebih ketat pada koneksi produksi. Semua fitur ini tersedia di aplikasi Mac. Aplikasi iPhone dan iPad menyediakan sebagian di antaranya.",
         "docs": "/connections"
     },
     "sections": [
@@ -17,7 +17,7 @@
             "id": "organize",
             "title": "Simpan pustaka koneksi",
             "paragraphs": [
-                "Setiap koneksi diedit dalam satu formulir dengan tab Umum, Jaringan, Opsi, dan Tampilan. Impor URL koneksi, termasuk URL <code>jdbc:</code> dan <code>+ssh</code> yang membawa hop SSH, lalu formulir terisi otomatis; jika URL sudah ada di papan klip, formulir menawarkan <ui>Use clipboard URL</ui>.",
+                "Setiap koneksi diedit dalam satu formulir dengan tab General, Network, Options, dan Appearance. Impor URL koneksi, termasuk URL <code>jdbc:</code> dan <code>+ssh</code> yang membawa hop SSH, lalu formulir terisi otomatis; jika URL sudah ada di papan klip, formulir menawarkan <ui>Use clipboard URL</ui>.",
                 "Beri koneksi warna, tag sebanyak yang diinginkan, dan tempat dalam grup bertingkat; tandai koneksi yang sering dipakai sebagai favorit. Lingkungan berupa tag: lokal, pengembangan, produksi, dan pengujian sudah tersedia, dan Anda dapat menambahkannya sendiri. Pustaka kosong menawarkan <ui>Open Sample Database</ui>, salinan SQLite Chinook yang disertakan.",
                 "Buka beberapa koneksi dalam satu jendela. Bilah koneksi di tepi kiri berpindah antar-koneksi, dan setiap koneksi kembali ke tab terakhir yang digunakan. <ui>Open in New Window</ui> menempatkan koneksi berdampingan."
             ],
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Dari klien database lain",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> membaca koneksi tersimpan di {connectionImportApps}, termasuk edisi Setapp TablePlus, dan membawa kata sandi dari tempat penyimpanannya, termasuk kata sandi terenkripsi DBeaver dan Navicat. Koneksi Navicat berasal dari file ekspor <code>.ncx</code>."
+                        "<ui>Import from Other App</ui> membaca koneksi tersimpan di {connectionImportApps}, termasuk edisi Setapp TablePlus. Fitur ini membawa kata sandi dari tempat penyimpanannya, termasuk kata sandi terenkripsi DBeaver dan Navicat. Koneksi Navicat berasal dari file ekspor <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "Dari file konfigurasi proyek",
                     "paragraphs": [
-                        "<ui>Open Project Folder</ui> memindai proyek untuk pengaturan database dalam <code>.env</code>, <code>wp-config.php</code>, skema Prisma, <code>config/database.yml</code> Rails, <code>docker-compose.yml</code>, <code>application.properties</code> atau <code>application.yml</code> Spring, serta <code>appsettings.json</code>. Setiap temuan dicantumkan beserta file asalnya, dan yang dipilih mengisi formulir koneksi; kata sandi langsung masuk ke Rantai Kunci. Jika <code>prod</code>, <code>production</code>, atau <code>live</code> muncul sebagai kata utuh pada jalur file, host, atau nama database, koneksi dimulai pada level Peringatan Mode Aman."
+                        "<ui>Open Project Folder</ui> memindai proyek untuk pengaturan database dalam <code>.env</code>, <code>wp-config.php</code>, skema Prisma, <code>config/database.yml</code> Rails, <code>docker-compose.yml</code>, <code>application.properties</code> atau <code>application.yml</code> Spring, serta <code>appsettings.json</code>. Setiap temuan dicantumkan beserta file asalnya, dan yang dipilih mengisi formulir koneksi; kata sandi langsung masuk ke Rantai Kunci. Jika <code>prod</code>, <code>production</code>, atau <code>live</code> muncul sebagai kata utuh pada jalur file, host, atau nama database, koneksi dimulai pada level Safe Mode Alert."
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -71,7 +71,7 @@
                     "title": "SSH dan TLS",
                     "paragraphs": [
                         "Tunnel SSH masuk dengan kata sandi, private key, agen SSH seperti milik 1Password, atau prompt interaktif keyboard; tunnel dapat melewati jump host berurutan atau mengikuti <code>ProxyJump</code> dari <code>~/.ssh/config</code>. Kode sekali pakai dapat dibuat dari rahasia dalam Rantai Kunci atau diminta setiap koneksi; host key yang belum dikenal menampilkan sidik jari sebelum dipercayai TablePro. Simpan tunnel sebagai profil SSH untuk digunakan ulang.",
-                        "TLS berjalan dalam mode Nonaktif, Diutamakan, Wajib, Verifikasi CA, atau Verifikasi Identitas, dengan CA, sertifikat klien, dan key Anda sendiri. Wajib mengenkripsi tanpa memeriksa sertifikat server; mode Verifikasi memeriksanya."
+                        "TLS berjalan dalam mode Disabled, Preferred, Required, Verify CA, atau Verify Identity, dengan CA, sertifikat klien, dan key Anda sendiri. Required mengenkripsi tanpa memeriksa sertifikat server; mode Verify memeriksanya."
                     ],
                     "engines": [
                         {
@@ -85,8 +85,8 @@
                     "id": "tunnels",
                     "title": "Proxy, Cloudflare, Cloud SQL, dan perintah tunnel",
                     "paragraphs": [
-                        "Jika SSH bukan jalur akses, tab Jaringan terhubung melalui proxy SOCKS5 dengan DNS jarak jauh, Cloudflare Access tempat TablePro menjalankan <code>cloudflared</code> dan masuk melalui browser atau token layanan, atau Cloud SQL Auth Proxy yang diunduh, diperiksa, dan dijalankan TablePro untuk {cloudSqlProxy}.",
-                        "Perintah Tunnel memulai <code>kubectl port-forward</code>, <code>aws ssm start-session</code>, atau perintah Anda sendiri, lalu terhubung ke port lokal yang dibuka. Koneksi juga dapat menjalankan skrip shell sebelum terhubung, dengan konfirmasi setiap sesi, dan pernyataan SQL tepat setelahnya."
+                        "Jika SSH bukan jalur akses, tab Network terhubung melalui proxy SOCKS5 dengan DNS jarak jauh. Tab ini juga terhubung melalui Cloudflare Access, tempat TablePro menjalankan <code>cloudflared</code> dan masuk melalui browser atau token layanan. Untuk {cloudSqlProxy}, tab ini terhubung melalui Cloud SQL Auth Proxy, yang diunduh, diperiksa, dan dijalankan TablePro.",
+                        "Tunnel Command memulai <code>kubectl port-forward</code>, <code>aws ssm start-session</code>, atau perintah Anda sendiri, lalu terhubung ke port lokal yang dibuka. Koneksi juga dapat menjalankan skrip shell sebelum terhubung, dengan konfirmasi setiap sesi, dan pernyataan SQL tepat setelahnya."
                     ],
                     "asset": "mac-tunnel-command"
                 }
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "Masuk dengan akun cloud",
             "paragraphs": [
-                "Autentikasi database AWS IAM menandatangani token baru setiap koneksi, dari access key, profil di <code>~/.aws</code> (dengan <code>credential_process</code> dan assumed role), atau AWS IAM Identity Center, serta menaikkan TLS ke Wajib. Amazon ElastiCache for Redis, Amazon Keyspaces, dan DynamoDB memiliki penandatanganan AWS sendiri.",
+                "Autentikasi database AWS IAM menandatangani token baru setiap koneksi, dari access key, profil di <code>~/.aws</code> (dengan <code>credential_process</code> dan assumed role), atau AWS IAM Identity Center. Autentikasi ini juga menaikkan TLS ke Required. Amazon ElastiCache for Redis, Amazon Keyspaces, dan DynamoDB memiliki penandatanganan AWS sendiri.",
                 "SQL Server masuk dengan Microsoft Entra ID melalui browser, memakai client ID dari app registration yang Anda sediakan, atau Kerberos dari tiket maupun principal dan kata sandi. Google BigQuery menerima key akun layanan, Application Default Credentials, atau Google OAuth dengan klien Anda sendiri; Google Cloud Spanner dan Cloud SQL Auth Proxy dapat memakai akun Google Anda."
             ],
             "engines": [
@@ -120,21 +120,21 @@
             "id": "credentials",
             "title": "Simpan kata sandi di tempat yang tepat",
             "paragraphs": [
-                "Kata sandi disimpan dalam Rantai Kunci macOS; saat Sinkronisasi iCloud aktif, sinkronisasi kata sandi membawanya ke perangkat lain melalui Rantai Kunci iCloud. Key SSH tetap berupa file di disk yang dirujuk koneksi; hanya frasa sandinya masuk ke Rantai Kunci.",
+                "Kata sandi disimpan dalam Rantai Kunci macOS; saat iCloud Sync aktif, sinkronisasi kata sandi membawanya ke perangkat lain melalui Rantai Kunci iCloud. Key SSH tetap berupa file di disk yang dirujuk koneksi; hanya frasa sandinya masuk ke Rantai Kunci.",
                 "Profil kredensial membagikan satu login ke banyak koneksi dan dapat membaca kata sandi saat terhubung dari 1Password (<code>op</code>), HashiCorp Vault, AWS Secrets Manager, perintah shell, file, atau variabel lingkungan. Sumber kata sandi ini gratis dan tidak pernah disinkronkan; setiap alat baris perintah harus berada di <code>PATH</code>, <code>/usr/local/bin</code>, atau <code>/opt/homebrew/bin</code>. Koneksi juga dapat memakai <code>~/.pgpass</code> pada PostgreSQL, Amazon Redshift, dan CockroachDB, atau meminta kata sandi setiap kali."
             ],
             "links": [
                 {
-                    "label": "Sinkronisasi iCloud dan kata sandi",
+                    "label": "iCloud Sync dan kata sandi",
                     "href": "/features/sync-and-teams#icloud-sync"
                 }
             ],
             "blocks": [
                 {
                     "id": "environment-variables",
-                    "title": "Variabel Lingkungan",
+                    "title": "Environment Variables",
                     "paragraphs": [
-                        "Tulis <code>$DB_HOST</code> pada host, database, nama pengguna, host SSH, pengguna dan jalur key SSH, jalur SSL, perintah startup, atau field driver; TablePro mengisi nilainya dari lingkungan sendiri saat terhubung. Port dan kata sandi tidak pernah dibaca dengan cara ini; gunakan sumber untuk kata sandi."
+                        "Tulis <code>$DB_HOST</code> pada host, database, nama pengguna, host SSH, pengguna dan jalur key SSH, jalur sertifikat TLS, perintah startup, atau field driver; TablePro mengisi nilainya dari lingkungan sendiri saat terhubung. Port dan kata sandi tidak pernah dibaca dengan cara ini; gunakan sumber untuk kata sandi."
                     ],
                     "paid": [
                         "environment-variables"
@@ -146,16 +146,16 @@
             "id": "policies",
             "title": "Aturan setiap koneksi",
             "paragraphs": [
-                "Level Mode Aman koneksi menentukan apakah pernyataan berjalan sebagaimana ditulis, meminta konfirmasi, meminta Touch ID atau kata sandi, atau ditolak. Level Klien Eksternal, Diblokir, Hanya-Baca, atau Baca dan Tulis, mengatur tindakan klien MCP dan AppleScript serta tetap di Mac ini. Kebijakan AI mengatur apakah asisten AI dapat menggunakannya tanpa bertanya, hanya setelah bertanya, atau tidak pernah; Jangan Pernah juga memblokir klien MCP.",
-                "Organisasi dapat menerapkan level minimum Mode Aman untuk setiap koneksi dan mengontrol pembaruan melalui profil konfigurasi."
+                "Level Safe Mode koneksi menentukan apakah pernyataan berjalan sebagaimana ditulis, meminta konfirmasi, meminta Touch ID atau kata sandi, atau ditolak. Level External Clients, Blocked, Read Only, atau Read & Write, mengatur tindakan klien MCP dan AppleScript serta tetap di Mac ini. Kebijakan AI mengatur apakah asisten AI dapat menggunakannya tanpa bertanya, hanya setelah bertanya, atau tidak pernah; Never juga memblokir klien MCP.",
+                "Organisasi dapat menerapkan level minimum Safe Mode untuk setiap koneksi dan mengontrol pembaruan melalui profil konfigurasi."
             ],
             "links": [
                 {
-                    "label": "Level Mode Aman",
+                    "label": "Level Safe Mode",
                     "href": "/features/data-editing#safe-mode"
                 },
                 {
-                    "label": "Klien MCP dan Klien Eksternal",
+                    "label": "Klien MCP dan External Clients",
                     "href": "/features/ai-mcp#mcp"
                 }
             ],
@@ -213,7 +213,7 @@
             "iosNote": "SQL Server mengenkripsi tanpa verifikasi"
         },
         {
-            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy, dan Perintah Tunnel",
+            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy, dan Tunnel Command",
             "ios": "no"
         },
         {
@@ -234,12 +234,12 @@
             "ios": "no"
         },
         {
-            "label": "Variabel Lingkungan",
+            "label": "Environment Variables",
             "paid": "environment-variables",
             "ios": "no"
         },
         {
-            "label": "Mode Aman per koneksi",
+            "label": "Safe Mode per koneksi",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -248,16 +248,16 @@
             "ios": "no"
         },
         {
-            "label": "Level minimum Mode Aman melalui profil konfigurasi",
+            "label": "Level minimum Safe Mode melalui profil konfigurasi",
             "ios": "no"
         }
     ],
     "limits": [
-        "Sumber kata sandi serta proxy dan perintah tunnel tab Jaringan tetap di Mac tempat Anda mengaturnya: tidak pernah disinkronkan, sehingga koneksi tersinkron memerlukan pengaturan ulang pada setiap Mac.",
-        "TablePro membaca lingkungan saat aplikasi dimulai. Jika dibuka dari Dock atau Finder, aplikasi tidak melihat variabel yang diatur profil shell; ini memengaruhi sumber kata sandi dari variabel lingkungan maupun Variabel Lingkungan.",
+        "Sumber kata sandi serta proxy dan perintah tunnel tab Network tetap di Mac tempat Anda mengaturnya: tidak pernah disinkronkan, sehingga koneksi tersinkron memerlukan pengaturan ulang pada setiap Mac.",
+        "TablePro membaca lingkungan saat aplikasi dimulai. Jika dibuka dari Dock atau Finder, aplikasi tidak melihat variabel yang diatur profil shell; ini memengaruhi sumber kata sandi dari variabel lingkungan maupun Environment Variables.",
         "Saat paket berakhir, <code>$DB_HOST</code> dan referensi lain tidak lagi diganti dan mencapai server persis seperti ditulis, tanpa peringatan.",
-        "Buka Folder Proyek adalah impor sekali jalan: tidak ada yang dipantau, dan mengimpor pengaturan yang sama dua kali membuat dua koneksi.",
-        "Autentikasi AWS IAM mencakup {awsIam}, bukan Amazon Redshift. Profil konfigurasi hanya dapat menerapkan level minimum Mode Aman dan pengaturan pembaruan."
+        "Open Project Folder adalah impor sekali jalan: tidak ada yang dipantau, dan mengimpor pengaturan yang sama dua kali membuat dua koneksi.",
+        "Autentikasi AWS IAM mencakup {awsIam}, bukan Amazon Redshift. Profil konfigurasi hanya dapat menerapkan level minimum Safe Mode dan pengaturan pembaruan."
     ],
     "docs": [
         {
@@ -269,7 +269,7 @@
             "docs": "/switching"
         },
         {
-            "label": "Buka Folder Proyek",
+            "label": "Open Project Folder",
             "docs": "/features/project-folder-import"
         },
         {
@@ -277,7 +277,7 @@
             "docs": "/connections/ssh-tunneling"
         },
         {
-            "label": "Perintah Tunnel",
+            "label": "Tunnel Command",
             "docs": "/connections/tunnel-command"
         },
         {
@@ -289,7 +289,7 @@
             "docs": "/connections/credential-profiles"
         },
         {
-            "label": "Sumber kata sandi dan Variabel Lingkungan",
+            "label": "Sumber kata sandi dan Environment Variables",
             "docs": "/features/connection-sharing#environment-variables"
         }
     ],
@@ -299,7 +299,7 @@
             "href": "/features/sync-and-teams"
         },
         {
-            "label": "Mode Aman dan pengeditan data",
+            "label": "Safe Mode dan pengeditan data",
             "href": "/features/data-editing#safe-mode"
         },
         {

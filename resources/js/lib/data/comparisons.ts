@@ -36,7 +36,10 @@ export interface ComparisonCell {
     version?: string;
     /** `YYYY-MM-DD`. */
     date?: string;
-    source: string;
+    /** `databases` only: the engines.json ids the sources name. Their database pages link the comparison. */
+    engines?: string[];
+    /** One source id, or several when no single page states the whole fact. */
+    source: string | string[];
 }
 
 export interface ComparisonPrice {

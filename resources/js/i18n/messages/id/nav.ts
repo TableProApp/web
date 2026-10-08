@@ -16,7 +16,7 @@ export default {
     "databases": "Database",
     "pricing": "Harga",
     "docs": "Dokumentasi",
-    "docsLabel": "Dokumentasi",
+    "docsLabel": "Dokumentasi (bahasa Inggris)",
     "blog": "Blog",
     "faq": "Pertanyaan umum",
     "account": "Akun",

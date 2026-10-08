@@ -16,8 +16,10 @@ interface SourceMarkersProps {
 
 /**
  * Superscript links from a fact to the sources it rests on (design-system
- * §5.3.13), at 12px, the type floor (a bare `<sup>` drew them at 10.5px), with
- * 2px of padding each side to widen the target. A source cited by several cells is one list entry, so the markers
+ * §5.3.13), at 12px, the type floor (a bare `<sup>` drew them at 10.5px). The
+ * number stays small; an `::after` box makes the target 24px tall and 25px
+ * or wider, and the 14px between neighbours keeps two targets from
+ * overlapping. A source cited by several cells is one list entry, so the markers
  * carry no id of their own: two cells citing the same page would otherwise
  * give the document two elements with one id.
  */
@@ -29,12 +31,12 @@ export function SourceMarkers({ productId, ids, numbers, label, className }: Sou
     }
 
     return (
-        <sup className={cn('ml-0.5 inline-flex gap-0.5 text-xs font-normal', className)}>
+        <sup className={cn('ml-0.5 inline-flex gap-3.5 text-xs font-normal', className)}>
             {cited.map((id) => (
                 <a
                     key={id}
                     href={`#${sourceAnchor(productId, id)}`}
-                    className="rounded-[2px] px-0.5 text-accent-text tabular-nums underline-offset-2 hover:underline"
+                    className="relative rounded-[2px] px-0.5 text-accent-text tabular-nums underline-offset-2 after:absolute after:-inset-x-[7px] after:-inset-y-1 after:content-[''] hover:underline"
                 >
                     <span className="sr-only">{label} </span>
                     {numbers.get(id)}

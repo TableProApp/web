@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "連線、通道與認證資訊",
-        "lead": "如果資料庫位於堡壘主機、叢集或雲端帳號登入之後，只需設定一次連線所需的存取路徑與密碼來源，並為正式環境連線訂定更嚴格的規則。本頁介紹的功能均在 Mac App 中，最後一節介紹 iPhone 與 iPad。",
+        "lead": "如果資料庫位於堡壘主機、叢集或雲端帳號登入之後，只需設定一次連線所需的存取路徑與密碼來源，並為正式環境連線訂定更嚴格的規則。本頁介紹的功能均在 Mac App 中。iPhone 與 iPad App 提供其中一部分。",
         "docs": "/connections"
     },
     "sections": [
@@ -17,9 +17,9 @@
             "id": "organize",
             "title": "管理連線資源庫",
             "paragraphs": [
-                "每個連線都在一個包含 General、Network、Options 與 Appearance 分頁的表單中編輯。匯入連線 URL 後，表單會自動填入，包括 <code>jdbc:</code> URL 與包含 SSH 中繼資訊的 <code>+ssh</code> URL；如果剪貼簿中已有 URL，表單會提供 <ui>Use clipboard URL</ui>。",
-                "為連線設定顏色、任意數量的標籤與巢狀群組，並將常用連線加星號設為喜好項目。環境以標籤表示，內建 local、development、production 與 testing，也可以新增自訂標籤。空連線資源庫會提供 <ui>Open Sample Database</ui>，開啟隨 App 附帶的 Chinook SQLite 副本。",
-                "在同一視窗開啟多個連線，透過左側的連線列切換；每個連線都會回到上次使用的分頁。<ui>Open in New Window</ui> 可讓兩個連線並排顯示。"
+                "每個連線都在一個包含 General、Network、Options 與 Appearance 分頁的表單中編輯。匯入連線 URL 後，表單會自動填入，包括 <code>jdbc:</code> URL 與包含 SSH 中繼資訊的 <code>+ssh</code> URL；如果剪貼簿中已有 URL，表單會提供<ui>使用剪貼簿中的 URL</ui>（Use clipboard URL）。",
+                "為連線設定顏色、任意數量的標籤與巢狀群組，並將常用連線加星號設為喜好項目。環境以標籤表示，內建 local、development、production 與 testing，也可以新增自訂標籤。空連線資源庫會提供<ui>開啟範例資料庫</ui>（Open Sample Database），開啟隨 App 附帶的 Chinook SQLite 副本。",
+                "在同一視窗開啟多個連線，透過左側的連線列切換；每個連線都會回到上次使用的分頁。<ui>在新視窗中開啟</ui>（Open in New Window）可讓兩個連線並排顯示。"
             ],
             "asset": "mac-connection-library"
         },
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "從其他資料庫用戶端匯入",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> 讀取 {connectionImportApps} 中儲存的連線，包括 TablePlus 的 Setapp 版，並從這些 App 的儲存位置匯入密碼，也支援 DBeaver 與 Navicat 儲存的加密密碼。Navicat 連線從 <code>.ncx</code> 匯出檔讀取。"
+                        "<ui>從其他 App 匯入</ui>（Import from Other App）讀取 {connectionImportApps} 中儲存的連線，包括 TablePlus 的 Setapp 版。它會從這些 App 的儲存位置匯入密碼，也支援 DBeaver 與 Navicat 儲存的加密密碼。Navicat 連線從 <code>.ncx</code> 匯出檔讀取。"
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "從專案設定檔匯入",
                     "paragraphs": [
-                        "<ui>Open Project Folder</ui> 在專案中掃描資料庫設定，支援 <code>.env</code>、<code>wp-config.php</code>、Prisma schema、Rails 的 <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring 的 <code>application.properties</code> 或 <code>application.yml</code>，以及 <code>appsettings.json</code>。它會列出每組設定及其來源檔案，選取後填入連線表單；密碼直接存入鑰匙圈。如果檔案路徑、主機或資料庫名稱中出現獨立單字 <code>prod</code>、<code>production</code> 或 <code>live</code>，該連線的安全模式預設為 Alert 等級。"
+                        "<ui>開啟專案資料夾</ui>（Open Project Folder）在專案中掃描資料庫設定，支援 <code>.env</code>、<code>wp-config.php</code>、Prisma schema、Rails 的 <code>config/database.yml</code>、<code>docker-compose.yml</code>、Spring 的 <code>application.properties</code> 或 <code>application.yml</code>，以及 <code>appsettings.json</code>。它會列出每組設定及其來源檔案，選取後填入連線表單；密碼直接存入鑰匙圈。如果檔案路徑、主機或資料庫名稱中出現獨立單字 <code>prod</code>、<code>production</code> 或 <code>live</code>，該連線的 Safe Mode 預設為 Alert 等級。"
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -85,7 +85,7 @@
                     "id": "tunnels",
                     "title": "代理、Cloudflare、Cloud SQL 與通道指令",
                     "paragraphs": [
-                        "不透過 SSH 存取時，Network 分頁可使用支援遠端 DNS 的 SOCKS5 代理、Cloudflare Access 或 Cloud SQL Auth Proxy。使用 Cloudflare Access 時，TablePro 執行 <code>cloudflared</code> 並透過瀏覽器或服務權杖登入；使用 Cloud SQL Auth Proxy 時，TablePro 為 {cloudSqlProxy} 下載、驗證並執行該代理。",
+                        "不透過 SSH 存取時，Network 分頁可透過支援遠端 DNS 的 SOCKS5 代理連線。也可透過 Cloudflare Access 連線，此時 TablePro 執行 <code>cloudflared</code> 並透過瀏覽器或服務權杖登入。對於 {cloudSqlProxy}，可透過 Cloud SQL Auth Proxy 連線，TablePro 會下載、驗證並執行該代理。",
                         "Tunnel Command 啟動 <code>kubectl port-forward</code>、<code>aws ssm start-session</code> 或自訂指令，再連線到它開啟的本機連接埠。連線也可在建立前執行 shell 指令碼，每個工作階段先徵求確認，並在連線後立即執行 SQL 陳述式。"
                     ],
                     "asset": "mac-tunnel-command"
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "使用雲端帳號登入",
             "paragraphs": [
-                "AWS IAM 資料庫驗證在每次連線時簽發新權杖，可使用存取金鑰、<code>~/.aws</code> 中的設定檔（支援 <code>credential_process</code> 與角色擔任）或 AWS IAM Identity Center，並將 TLS 提升為 Required。Amazon ElastiCache for Redis、Amazon Keyspaces 與 DynamoDB 使用各自的 AWS 簽章。",
+                "AWS IAM 資料庫驗證在每次連線時簽發新權杖，可使用存取金鑰、<code>~/.aws</code> 中的設定檔（支援 <code>credential_process</code> 與角色擔任）或 AWS IAM Identity Center。它還會將 TLS 提升為 Required。Amazon ElastiCache for Redis、Amazon Keyspaces 與 DynamoDB 使用各自的 AWS 簽章。",
                 "SQL Server 可使用提供的應用程式註冊用戶端 ID，在瀏覽器中透過 Microsoft Entra ID 登入，或使用票證、主體與密碼進行 Kerberos 登入。Google BigQuery 支援服務帳號金鑰、Application Default Credentials，或使用自有用戶端的 Google OAuth；Google Cloud Spanner 與 Cloud SQL Auth Proxy 可使用 Google 帳號。"
             ],
             "engines": [
@@ -132,9 +132,9 @@
             "blocks": [
                 {
                     "id": "environment-variables",
-                    "title": "環境變數",
+                    "title": "Environment Variables",
                     "paragraphs": [
-                        "在連線的主機、資料庫、使用者名稱、SSH 主機、使用者與金鑰路徑、SSL 路徑、啟動指令或驅動程式欄位中填寫 <code>$DB_HOST</code>，TablePro 會在連線時從自身環境填入其值。連接埠與密碼不會透過這種方式讀取，請為密碼指定來源。"
+                        "在連線的主機、資料庫、使用者名稱、SSH 主機、使用者與金鑰路徑、TLS 憑證路徑、啟動指令或驅動程式欄位中填寫 <code>$DB_HOST</code>，TablePro 會在連線時從自身環境填入其值。連接埠與密碼不會透過這種方式讀取，請為密碼指定來源。"
                     ],
                     "paid": [
                         "environment-variables"
@@ -146,12 +146,12 @@
             "id": "policies",
             "title": "每個連線的規則",
             "paragraphs": [
-                "連線的安全模式等級決定陳述式是直接執行、先詢問、要求 Touch ID 或密碼，還是被拒絕。External Clients 的 Blocked、Read Only 或 Read & Write 等級決定 MCP 用戶端與 AppleScript 可執行的操作，設定僅儲存在此 Mac 上。AI 政策決定 AI 助手可直接使用連線、僅在確認後使用，或永不使用；Never 也會阻止 MCP 用戶端。",
-                "組織可透過設定描述檔強制所有連線的最低安全模式等級，並控制更新。"
+                "連線的 Safe Mode 等級決定陳述式是直接執行、先詢問、要求 Touch ID 或密碼，還是被拒絕。External Clients 的 Blocked、Read Only 或 Read & Write 等級決定 MCP 用戶端與 AppleScript 可執行的操作，設定僅儲存在此 Mac 上。AI 政策決定 AI 助手可直接使用連線、僅在確認後使用，或永不使用；Never 也會阻止 MCP 用戶端。",
+                "組織可透過設定描述檔強制所有連線的最低 Safe Mode 等級，並控制更新。"
             ],
             "links": [
                 {
-                    "label": "安全模式等級",
+                    "label": "Safe Mode 等級",
                     "href": "/features/data-editing#safe-mode"
                 },
                 {
@@ -234,12 +234,12 @@
             "ios": "no"
         },
         {
-            "label": "環境變數",
+            "label": "Environment Variables",
             "paid": "environment-variables",
             "ios": "no"
         },
         {
-            "label": "每個連線的安全模式",
+            "label": "每個連線的 Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -248,16 +248,16 @@
             "ios": "no"
         },
         {
-            "label": "透過設定描述檔設定最低安全模式等級",
+            "label": "透過設定描述檔設定最低 Safe Mode 等級",
             "ios": "no"
         }
     ],
     "limits": [
         "密碼來源以及 Network 分頁的代理與通道指令僅儲存在設定它們的 Mac 上，從不同步，因此同步的連線需要在每台 Mac 上重新配置這些設定。",
-        "TablePro 讀取啟動時的環境。從 Dock 或 Finder 開啟時，它無法看到 shell 設定檔設定的變數，這同時影響環境變數密碼來源和環境變數功能。",
+        "TablePro 讀取啟動時的環境。從 Dock 或 Finder 開啟時，它無法看到 shell 設定檔設定的變數，這同時影響環境變數密碼來源和 Environment Variables 功能。",
         "方案結束後，<code>$DB_HOST</code> 等參照不再取代，也不會警告，而是以輸入的原文傳送給伺服器。",
         "Open Project Folder 是一次性匯入，不會監控任何變更；重複匯入同一組設定會建立兩個連線。",
-        "AWS IAM 驗證支援 {awsIam}，不支援 Amazon Redshift。設定描述檔只能強制最低安全模式等級和更新設定，無法控制其他項目。"
+        "AWS IAM 驗證支援 {awsIam}，不支援 Amazon Redshift。設定描述檔只能強制最低 Safe Mode 等級和更新設定，無法控制其他項目。"
     ],
     "docs": [
         {
@@ -269,7 +269,7 @@
             "docs": "/switching"
         },
         {
-            "label": "開啟專案檔案夾",
+            "label": "Open Project Folder",
             "docs": "/features/project-folder-import"
         },
         {
@@ -277,7 +277,7 @@
             "docs": "/connections/ssh-tunneling"
         },
         {
-            "label": "通道指令",
+            "label": "Tunnel Command",
             "docs": "/connections/tunnel-command"
         },
         {
@@ -289,7 +289,7 @@
             "docs": "/connections/credential-profiles"
         },
         {
-            "label": "密碼來源與環境變數",
+            "label": "密碼來源與 Environment Variables",
             "docs": "/features/connection-sharing#environment-variables"
         }
     ],
@@ -299,7 +299,7 @@
             "href": "/features/sync-and-teams"
         },
         {
-            "label": "安全模式與資料編輯",
+            "label": "Safe Mode 與資料編輯",
             "href": "/features/data-editing#safe-mode"
         },
         {

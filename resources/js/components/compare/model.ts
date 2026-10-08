@@ -8,7 +8,7 @@
  * - A competitor fact comes from its `comparisons.json` entry and carries the
  *   source it cites. A row with no verified cell for the product is left out,
  *   never guessed. The one derived row is iPhone and iPad: a product whose
- *   sourced platform list has no `ios` gets "not supported" citing that list.
+ *   sourced platform list has no `ios` gets "No" citing that list.
  * - TablePro's column is never stored with the competitors. It is built here
  *   from pricing, platforms, paid features and facts, which the caller reads.
  * - No sentence is assembled from fragments: every phrase is one template
@@ -40,6 +40,8 @@ export interface CellView {
     lines: CellLine[];
     /** Source ids in the product's `sources`, in citation order, without repeats. */
     sources: string[];
+    /** The first line already says yes or no, so the mark is not read out as well. */
+    worded?: boolean;
     /** An internal link under the lines (TablePro's cells only). */
     link?: { href: string; label: string };
 }
@@ -63,7 +65,8 @@ export interface TableProFacts {
     /** `iOS and iPadOS 18 or later`, or null while there is no iPhone and iPad app. */
     iosRequirement: string | null;
     macArchitectures: ('arm64' | 'x86_64')[];
-    starter: { monthly: number; yearly: number; lifetime: number };
+    /** `activations`: the Macs one Starter license covers. */
+    starter: { monthly: number; yearly: number; lifetime: number; activations: number };
     team: { monthly: number; yearly: number; lifetime: number; minSeats: number };
     /** The iPhone and iPad app is free and sells nothing. */
     iosFree: boolean;
@@ -187,6 +190,10 @@ function unique<T>(items: T[]): T[] {
     return [...new Set(items)];
 }
 
+function cellSources(cell: Pick<ComparisonCell, 'source'>): string[] {
+    return typeof cell.source === 'string' ? [cell.source] : cell.source;
+}
+
 /**
  * The source ids behind a list item's `cite` entries: `platforms`, `licence`,
  * `status`, `mac`, `technology`, `prices` or `cells.{key}`. An entry that
@@ -200,7 +207,7 @@ export function citedSources(product: ComparisonProduct, cite: readonly string[]
             const cell = product.cells[entry.slice('cells.'.length)];
 
             if (cell) {
-                ids.push(cell.source);
+                ids.push(...cellSources(cell));
             }
 
             continue;
@@ -274,7 +281,7 @@ export function cellView(product: ComparisonProduct, cell: ComparisonCell, conte
     return {
         mark: cell.state === 'qualified' ? 'none' : cell.state,
         lines,
-        sources: [cell.source],
+        sources: cellSources(cell),
     };
 }
 
@@ -456,7 +463,7 @@ function competitorPlatforms(product: ComparisonProduct, context: ModelContext):
 /**
  * The iPhone and iPad row: the product's own cell, or a yes or no derived from
  * its sourced platform list. A web application is left out of the derived
- * row, because it opens in a phone's browser; "not supported" would mislead.
+ * row, because it opens in a phone's browser; "No" would mislead.
  */
 function competitorIos(product: ComparisonProduct, context: ModelContext): CellView | null {
     const cell = product.cells.ios;
@@ -481,13 +488,14 @@ function competitorLicence(product: ComparisonProduct, context: ModelContext): C
     const { name, openSource, edition } = product.licence;
 
     if (!openSource || name === null) {
-        return { mark: 'no', lines: [{ text: labels.licence.no }], sources: [product.licence.source] };
+        return { mark: 'no', lines: [{ text: labels.licence.no }], sources: [product.licence.source], worded: true };
     }
 
     return {
         mark: 'yes',
         lines: [{ text: interpolate(edition ? labels.licence.yesEdition : labels.licence.yes, { licence: name, edition: edition ?? '' }) }],
         sources: [product.licence.source],
+        worded: true,
     };
 }
 
@@ -518,18 +526,27 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
             const lines: CellLine[] = [
                 { text: t.priceFree },
                 {
-                    text: interpolate(t.starter, {
-                        monthly: money(facts.starter.monthly),
-                        yearly: money(facts.starter.yearly),
-                        lifetime: money(facts.starter.lifetime),
+                    // Built like a competitor's line, device limit included, so the two columns compare.
+                    text: interpolate(labels.price.labelled, {
+                        label: labels.tiers.starter,
+                        price: context.plural(labels.price.units, facts.starter.activations, {
+                            price: interpolate(t.starter, {
+                                monthly: money(facts.starter.monthly),
+                                yearly: money(facts.starter.yearly),
+                                lifetime: money(facts.starter.lifetime),
+                            }),
+                        }),
                     }),
                 },
                 {
-                    text: interpolate(t.team, {
-                        monthly: money(facts.team.monthly),
-                        yearly: money(facts.team.yearly),
-                        lifetime: money(facts.team.lifetime),
-                        min: facts.team.minSeats,
+                    text: interpolate(labels.price.labelled, {
+                        label: labels.tiers.team,
+                        price: interpolate(t.team, {
+                            monthly: money(facts.team.monthly),
+                            yearly: money(facts.team.yearly),
+                            lifetime: money(facts.team.lifetime),
+                            min: facts.team.minSeats,
+                        }),
                     }),
                 },
             ];
@@ -541,7 +558,7 @@ export function tableproCell(row: Exclude<StandardRow, 'import'> | 'technology',
             return { mark: 'none', lines, sources: [], link: { href: '/pricing', label: labels.cta.pricing } };
         }
         case 'licence':
-            return { mark: 'yes', lines: [{ text: interpolate(t.licence, { licence: facts.licence }) }], sources: [] };
+            return { mark: 'yes', lines: [{ text: interpolate(t.licence, { licence: facts.licence }) }], sources: [], worded: true };
         case 'databases':
             return {
                 mark: 'none',

@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro untuk iPhone dan iPad",
-        "description": "Klien gratis untuk iPhone dan iPad. Hubungkan MySQL, PostgreSQL, SQL Server, dan Oracle via SSH atau SSL untuk menelusuri, mengedit, dan mengueri tabel."
+        "description": "Klien gratis untuk iPhone dan iPad. Hubungkan MySQL, PostgreSQL, SQL Server, dan Oracle via SSH atau TLS untuk menelusuri, mengedit, dan mengueri tabel."
     },
     "og": {
         "kicker": "iPhone dan iPad",
@@ -9,25 +9,25 @@
     },
     "hero": {
         "title": "TablePro untuk iPhone dan iPad",
-        "lead": "Terhubung ke database, telusuri dan edit baris, serta jalankan kueri dari ponsel atau tablet, dengan tunnel SSH, Mode Aman, dan Face ID. Ini aplikasi terpisah untuk iPhone dan iPad, bukan salinan aplikasi Mac.",
+        "lead": "Terhubung ke database, telusuri dan edit baris, serta jalankan kueri dari ponsel atau tablet, dengan tunnel SSH, Safe Mode, dan Face ID. Ini aplikasi terpisah untuk iPhone dan iPad, bukan salinan aplikasi Mac.",
         "noSignUp": "Tanpa pendaftaran dan lisensi",
         "mac": "Mencari aplikasi Mac? <download>Unduh TablePro untuk Mac</download>."
     },
     "databases": {
         "title": "Database",
         "lead": "Buat koneksi ke database berikut di iPhone dan iPad. Driver sudah disertakan dalam aplikasi, jadi tidak ada yang perlu diunduh.",
-        "syncedOnly": "Koneksi {engines} dapat dibuka jika berasal dari Mac, melalui Sinkronisasi iCloud atau file .tablepro. Anda tidak dapat membuatnya dalam aplikasi ini.",
+        "syncedOnly": "Koneksi {engines} dapat dibuka jika berasal dari Mac, melalui iCloud Sync atau file .tablepro. Anda tidak dapat membuatnya dalam aplikasi ini.",
         "others": "Koneksi ke database lain juga disinkronkan dari Mac dan tampil dalam daftar, tetapi aplikasi ini tidak memiliki drivernya sehingga tidak dapat dibuka. <databases>Halaman database</databases> mencantumkan semua mesin yang didukung aplikasi Mac.",
         "files": "SQLite: pilih file database dan aplikasi menyalinnya ke penyimpanan sendiri, sehingga edit mengubah salinan. Anda juga dapat membuat database baru. DuckDB membuka file di lokasinya atau berjalan dalam memori.",
-        "redis": "Redis: jalankan perintah pada tab Kueri. Penelusuran key Redis tidak tersedia pada versi ini.",
+        "redis": "Redis: jalankan perintah pada tab Kueri. Penelusuran key Redis tidak tersedia di aplikasi iPhone dan iPad.",
         "sample": "Untuk mencoba terlebih dahulu, buka Chinook, database contoh yang disertakan."
     },
     "browse": {
         "title": "Telusuri dan edit tabel",
         "paragraphs": [
             "Setiap koneksi terbuka pada tabelnya, dengan editor kueri, riwayat, dan detail koneksi dalam tab masing-masing.",
-            "Baris tampil sebagai kartu, dengan primary key atau kolom pertama sebagai judul dan kolom berikutnya di bawah. Urutkan berdasarkan kolom apa pun, cari di semua kolom kecuali biner, serta gabungkan filter dengan AND atau OR. Pilih jumlah baris per halaman dan lompat ke halaman mana pun. Ketuk nilai foreign key untuk pratinjau baris rujukan. Tampilan Struktur mencantumkan kolom, indeks, dan foreign key tabel.",
-            "Buka baris untuk mengedit: ubah nilai, atur NULL, dan konfirmasi sebelum disimpan. Anda juga dapat menyisipkan atau menghapus baris, melakukan truncate atau menghapus tabel. Pengeditan dan penghapusan baris memerlukan primary key, dan tidak ada yang berubah pada koneksi Hanya-Baca. Pada versi ini, jangan simpan baris saat teks panjang atau nilai biner ditampilkan singkat: editor dapat menimpa nilai lengkap dengan teks singkat. Ubah baris tersebut di Mac."
+            "Baris tampil sebagai kartu, dengan primary key atau kolom pertama sebagai judul dan kolom berikutnya di bawah. Urutkan berdasarkan kolom apa pun, cari di semua kolom kecuali biner, serta gabungkan filter dengan AND atau OR. Pilih jumlah baris per halaman dan lompat ke halaman mana pun. Ketuk nilai foreign key untuk pratinjau baris rujukan. Tampilan Structure mencantumkan kolom, indeks, dan foreign key tabel.",
+            "Buka baris untuk mengedit: ubah nilai, atur NULL, dan konfirmasi sebelum disimpan. Anda juga dapat menyisipkan atau menghapus baris, melakukan truncate atau menghapus tabel. Pengeditan dan penghapusan baris memerlukan primary key, dan tidak ada yang berubah pada koneksi Read-Only."
         ]
     },
     "query": {
@@ -42,16 +42,16 @@
         "title": "Terhubung dengan aman",
         "paragraphs": [
             "Tunnel SSH masuk dengan kata sandi atau private key dari file atau tempelan, dengan frasa sandi opsional. Saat pertama kali mengakses server, aplikasi menampilkan sidik jari host key dan meminta Anda memercayainya.",
-            "SSL diatur per koneksi. Koneksi MySQL, MariaDB, TiDB, OceanBase, dan PostgreSQL dapat memverifikasi sertifikat serta nama host server dan menyajikan sertifikat klien dari file, teks tempelan, atau bundel PKCS#12. Koneksi Redis juga mendukungnya, tetapi versi ini memeriksa sertifikat tanpa nama host. SQL Server dapat mengenkripsi koneksi (Wajib), tetapi tidak memverifikasi sertifikat. Sertifikat tetap di perangkat ini dan tidak pernah disinkronkan.",
+            "TLS diatur per koneksi. Koneksi MySQL, MariaDB, TiDB, OceanBase, dan PostgreSQL dapat memverifikasi sertifikat serta nama host server dan menyajikan sertifikat klien dari file, teks tempelan, atau bundel PKCS#12. Koneksi Redis juga dapat memverifikasi sertifikat dan menyajikan sertifikat klien. SQL Server dapat mengenkripsi koneksi (Required), tetapi tidak memverifikasi sertifikat. Sertifikat tetap di perangkat ini dan tidak pernah disinkronkan.",
             "Kata sandi dan key tempelan disimpan dalam Rantai Kunci. Koneksi SQL Server yang memakai Microsoft Entra ID dapat masuk di sini setelah disinkronkan dari Mac; autentikasi Windows tidak didukung. Untuk mengakses server dengan nama .local di jaringan Anda, izinkan akses Jaringan Lokal saat iOS meminta."
         ]
     },
     "safeMode": {
-        "title": "Mode Aman dan kunci aplikasi",
+        "title": "Safe Mode dan kunci aplikasi",
         "paragraphs": [
-            "Setiap koneksi memiliki level Mode Aman: {levels}. Konfirmasi Penulisan meminta persetujuan sebelum pernyataan yang mengubah data berjalan. Hanya-Baca menolaknya sebelum mencapai server. Pernyataan yang tidak dapat dikenali sebagai pembacaan dianggap penulisan.",
+            "Setiap koneksi memiliki level Safe Mode: {levels}. Confirm Writes meminta persetujuan sebelum pernyataan yang mengubah data berjalan. Read-Only menolaknya sebelum mencapai server. Pernyataan yang tidak dapat dikenali sebagai pembacaan dianggap penulisan.",
             "Atur level koneksi dalam bagian Organisasi dan level awal koneksi baru dalam Pengaturan. Pintasan yang menambah baris mengikuti level yang sama.",
-            "Dalam <ui>Settings > Security</ui>, kunci aplikasi dengan Face ID atau Touch ID, dengan kode sandi sebagai alternatif. Setelah aktif, aplikasi meminta autentikasi setiap kali dimulai dan setelah durasi Kunci Otomatis yang Anda pilih."
+            "Dalam <ui>Settings > Security</ui>, kunci aplikasi dengan Face ID atau Touch ID, dengan kode sandi sebagai alternatif. Setelah aktif, aplikasi meminta autentikasi setiap kali dimulai dan setelah durasi Auto-Lock yang Anda pilih."
         ]
     },
     "ipad": {
@@ -64,18 +64,17 @@
     "mac": {
         "title": "Bersama Mac Anda",
         "paragraphs": [
-            "Aktifkan Sinkronisasi iCloud saat penyiapan atau nanti dalam Pengaturan, lalu koneksi, grup, dan tag disinkronkan antara iPhone, iPad, dan Mac melalui akun iCloud Anda sendiri. Kata sandi hanya disinkronkan jika Sinkronkan Kata Sandi juga aktif. Kueri tersimpan, profil SSH, dan pengaturan hanya disinkronkan antar-Mac.",
-            "Sinkronisasi iCloud gratis di sini. Di Mac fitur ini termasuk lisensi Starter atau Team, sehingga Mac tanpa lisensi tidak disinkronkan. <pricing>Halaman harga</pricing> menjelaskan detailnya.",
-            "Pada versi ini, menyimpan koneksi tersinkron di iPhone atau iPad dapat menghapus pengaturan khusus Mac seperti jump host SSH dan menurunkan level Mode Aman. Edit koneksi tersebut di Mac.",
+            "Aktifkan iCloud Sync saat penyiapan atau nanti dalam Pengaturan, lalu koneksi, grup, dan tag disinkronkan antara iPhone, iPad, dan Mac melalui akun iCloud Anda sendiri. Kata sandi hanya disinkronkan jika Sync Passwords juga aktif. Kueri tersimpan, profil SSH, dan pengaturan hanya disinkronkan antar-Mac.",
+            "iCloud Sync gratis di sini. Di Mac fitur ini termasuk lisensi Starter atau Team, sehingga Mac tanpa lisensi tidak disinkronkan. <pricing>Halaman harga</pricing> menjelaskan detailnya.",
             "Tanpa iCloud, ekspor koneksi sebagai file .tablepro dan buka di perangkat lain melalui AirDrop atau File. Kata sandi tidak disertakan kecuali Anda memasukkannya, lalu file dienkripsi dengan frasa sandi pilihan Anda. Keduanya gratis di sini; di Mac, ekspor dengan kata sandi termasuk fitur berlisensi.",
-            "Saat Sinkronisasi iCloud aktif, Handoff melanjutkan koneksi atau tabel terbuka antara Mac dan iPhone atau iPad. <sync>Sinkronisasi dan tim</sync> menjelaskan keduanya lebih lanjut."
+            "Saat iCloud Sync aktif, Handoff melanjutkan koneksi atau tabel terbuka antara Mac dan iPhone atau iPad. <sync>Sinkronisasi dan tim</sync> menjelaskan keduanya lebih lanjut."
         ]
     },
     "automation": {
         "title": "Pintasan, widget, dan Spotlight",
         "paragraphs": [
-            "Open Connection membuka koneksi dari pintasan atau Siri. Add Row to Table dan Add Rows to Table menyisipkan data ke tabel tanpa membuka aplikasi dari teks JSON atau CSV atau file. Keduanya hanya berjalan saat perangkat tidak terkunci, mengikuti level Mode Aman koneksi, dan tidak mendukung koneksi Redis. Pada versi ini, CSV harus berupa teks UTF-8 dengan akhir baris LF.",
-            "Widget Koneksi Cepat menempatkan koneksi awal Anda pada Layar Utama, dan satu ketukan membukanya. Koneksi juga tampil dalam pencarian Spotlight."
+            "Open Connection membuka koneksi dari pintasan atau Siri. Add Row to Table dan Add Rows to Table menyisipkan data ke tabel tanpa membuka aplikasi dari teks JSON atau CSV atau file. Keduanya hanya berjalan saat perangkat tidak terkunci, mengikuti level Safe Mode koneksi, dan tidak mendukung koneksi Redis.",
+            "Widget Quick Connect menempatkan koneksi awal Anda pada Layar Utama, dan satu ketukan membukanya. Koneksi juga tampil dalam pencarian Spotlight."
         ]
     },
     "limits": {
@@ -85,7 +84,7 @@
             "Asisten AI dan server MCP",
             "Kueri tersimpan, pelengkapan otomatis, pemformatan kueri, dan EXPLAIN",
             "Perubahan skema selain truncate atau penghapusan tabel, serta diagram ER",
-            "Bandingkan dan Sinkronkan, Analisis Kueri, Diagram Hasil, serta Pemulihan Data",
+            "Compare & Sync, Query Insights, Result Charts, serta Data Rewind",
             "Ekspor file dalam format seperti XLSX dan impor file ke tabel (Pintasan dapat menambah baris)",
             "Dasbor server, pengguna dan peran, serta pencadangan",
             "Plugin driver untuk database lain",
@@ -94,11 +93,20 @@
         ],
         "mac": "<download>Unduh TablePro untuk Mac</download>"
     },
+    "knownIssues": {
+        "title": "Masalah yang diketahui di versi {version}",
+        "items": [
+            "Di editor baris, jangan simpan baris saat teks panjang atau nilai biner ditampilkan singkat: editor dapat menimpa nilai lengkap dengan teks singkat. Ubah baris tersebut di Mac.",
+            "Menyimpan koneksi tersinkron di iPhone atau iPad dapat menghapus pengaturan khusus Mac seperti jump host SSH dan menurunkan level Safe Mode. Edit koneksi tersebut di Mac.",
+            "Saat koneksi Redis memverifikasi sertifikat server, yang diperiksa adalah sertifikat, bukan nama host.",
+            "Pada tindakan Pintasan yang menambah baris, CSV harus berupa teks UTF-8 dengan akhir baris LF."
+        ]
+    },
     "privacy": {
         "title": "Privasi",
         "paragraphs": [
-            "Tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Bagikan Data Penggunaan saat penyiapan atau nanti di <ui>Settings > Privacy</ui>. Jika aktif, aplikasi mengirim satu laporan per hari berisi hash ID perangkat, versi aplikasi dan iOS, arsitektur prosesor, bahasa, jenis database yang dipakai, jumlah koneksi, dan beberapa tanggal penggunaan pertama. Tidak pernah nama host, nama pengguna, kata sandi, kueri, atau baris.",
-            "Aplikasi tidak memeriksa lisensi, pembaruan, atau meminta plugin. Kueri dikirim ke server Anda, Sinkronisasi iCloud ke akun iCloud Anda, dan login Entra ke Microsoft. <privacyIos>Kebijakan privasi</privacyIos> menjelaskan detailnya."
+            "Tidak ada yang dikirim ke TablePro kecuali Anda mengaktifkan Share Usage Data saat penyiapan atau nanti di <ui>Settings > Privacy</ui>. Jika aktif, aplikasi mengirim satu laporan per hari berisi hash ID perangkat, versi aplikasi dan iOS, arsitektur prosesor, bahasa, jenis database yang dipakai, jumlah koneksi, dan beberapa tanggal penggunaan pertama. Tidak pernah nama host, nama pengguna, kata sandi, kueri, atau baris.",
+            "Aplikasi tidak memeriksa lisensi, pembaruan, atau meminta plugin. Kueri dikirim ke server Anda, iCloud Sync ke akun iCloud Anda, dan login Entra ke Microsoft. <privacyIos>Kebijakan privasi</privacyIos> menjelaskan detailnya."
         ]
     },
     "get": {
@@ -107,11 +115,11 @@
         "faq": [
             {
                 "question": "Apakah aplikasi Mac diperlukan?",
-                "answer": "Tidak. Aplikasi iPhone dan iPad berfungsi sendiri. Jika Anda juga memakai Mac, Sinkronisasi iCloud dan Handoff menghubungkan keduanya."
+                "answer": "Tidak. Aplikasi iPhone dan iPad berfungsi sendiri. Jika Anda juga memakai Mac, iCloud Sync dan Handoff menghubungkan keduanya."
             },
             {
                 "question": "Apakah perlu lisensi?",
-                "answer": "Tidak. Aplikasi tidak memiliki fitur berbayar, pembelian dalam aplikasi, atau lisensi. Sinkronisasi iCloud gratis di sini; hanya Mac yang perlu lisensi Starter atau Team untuk sinkronisasi."
+                "answer": "Tidak. Aplikasi tidak memiliki fitur berbayar, pembelian dalam aplikasi, atau lisensi. iCloud Sync gratis di sini; hanya Mac yang perlu lisensi Starter atau Team untuk sinkronisasi."
             },
             {
                 "question": "Apakah sama dengan aplikasi Mac?",

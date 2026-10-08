@@ -16,7 +16,7 @@
     },
     "features": {
         "title": "Qué añade un plan de pago",
-        "lead": "Estas son las únicas funciones que requieren un plan de pago y todas están en la app para Mac. Team incluye todo lo de Starter. Conectar a cualquier motor compatible no requiere licencia, ni tampoco el asistente de IA, el servidor MCP o el modo seguro."
+        "lead": "Estas son las únicas funciones que requieren un plan de pago y todas están en la app para Mac. Team incluye todo lo de Starter. Conectar a cualquier motor compatible no requiere licencia, ni tampoco el asistente de IA, el servidor MCP o Safe Mode."
     },
     "license": {
         "title": "Cómo funcionan las licencias",
@@ -27,7 +27,7 @@
             },
             "activate": {
                 "term": "Activación",
-                "body": "Introduce tu clave de licencia en TablePro en tu Mac, en <ui>Ajustes > Licencia</ui>. Para usarla en otro Mac, elimina el anterior en la página Macs de <account>tu cuenta</account>."
+                "body": "Introduce tu clave de licencia en TablePro en tu Mac, en <ui>Settings > License</ui>. Para usarla en otro Mac, elimina el anterior en la página Macs de <account>tu cuenta</account>."
             },
             "checks": {
                 "term": "Comprobaciones",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Facturación",
-        "merchant": "{merchant} es el comerciante registrado de TablePro. Te vende el plan, recibe el pago, calcula los impuestos sobre ventas o el IVA según tu dirección de facturación y envía el recibo y la factura por correo.",
+        "merchant": "{merchant} es el merchant of record de TablePro. Te vende el plan, recibe el pago, calcula los impuestos sobre ventas o el IVA según tu dirección de facturación y envía el recibo y la factura por correo.",
         "renewal": "Los planes mensuales y anuales se renuevan automáticamente hasta que los canceles en <account>tu cuenta</account> o en el portal de clientes de {merchant}. Tras cancelar, el plan sigue funcionando hasta el final del periodo pagado y puedes reanudarlo antes de esa fecha. Si falla un pago de renovación, {merchant} te envía un enlace para actualizar tu tarjeta y vuelve a intentar cobrar durante unas tres semanas.",
         "portal": "Para compras realizadas a través de {merchant}, las facturas, los recibos, el método de pago y la cancelación están en el <portal>portal de clientes de {merchant}</portal>, al que accedes con el correo usado al comprar. <account>Facturación y facturas</account> en tu cuenta también lo abre."
     },
@@ -70,6 +70,10 @@
         "body": "TablePro es de código abierto bajo AGPLv3, incluido el código de sus funciones de pago. Una compilación desde el código fuente comprueba la licencia igual que la app publicada.",
         "agpl": "La AGPL no impone condiciones para ejecutar TablePro, tampoco en el trabajo ni en empresas de cualquier tamaño. Sus condiciones se aplican a su distribución y a ofrecer una versión modificada a otros a través de una red.",
         "github": "Ver en GitHub"
+    },
+    "compare": {
+        "title": "Comparado con otros clientes",
+        "body": "Cada comparación muestra los precios del otro cliente junto a los de TablePro, con la fecha en que se comprobaron."
     },
     "faq": {
         "title": "Preguntas sobre los planes",

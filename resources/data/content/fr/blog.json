@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Blog",
-        "description": "Annonces de versions de l’équipe TablePro : nouveautés et corrections de chaque version, des plus récentes aux plus anciennes.",
+        "description": "Annonces de versions de l’équipe TablePro, en anglais : nouveautés et corrections de chaque version, des plus récentes aux plus anciennes.",
         "indexable": false
     },
     "og": {
@@ -10,16 +10,16 @@
     },
     "header": {
         "title": "Blog",
-        "lead": "Annonces de versions, des plus récentes aux plus anciennes. Toutes les versions ne font pas l’objet d’un article. Les notes complètes de chaque version figurent dans le <changelog>journal des modifications</changelog>."
+        "lead": "Annonces de versions, des plus récentes aux plus anciennes. Toutes les versions ne font pas l’objet d’un article. Les articles sont uniquement en anglais. Les notes complètes de chaque version figurent dans le <changelog>journal des modifications</changelog> (anglais)."
     },
     "corrections": {
         "tablepro-0-74": {
             "date": "2026-10-02",
-            "text": "La vue Carte charge ses tuiles depuis Apple ; cet article exagère donc ce qui reste sur votre Mac. Vos lignes restent sur le Mac ; Apple fournit les tuiles de la zone affichée à l’écran."
+            "text": "La vue Carte charge ses tuiles depuis Apple ; cet article exagère donc ce qui reste sur votre Mac. Vos lignes restent sur le Mac ; Apple fournit les tuiles de la zone affichée à l’écran."
         },
         "tablepro-for-iphone": {
             "date": "2026-10-02",
-            "text": "La version 1.0 ne refuse pas les connexions passant par un hôte de rebond SSH, contrairement à ce qu’affirmait cet article. Les hôtes de rebond ne sont pas pris en charge sur iPhone et iPad ; ouvrez donc ces connexions sur Mac. Sur Oracle, comme sur SQLite, DuckDB et SQL Server, seule une sauvegarde de plusieurs instructions s’exécute dans une transaction. Seul DuckDB peut fonctionner en mémoire ; un fichier SQLite est copié dans l’application."
+            "text": "La version 1.0 ne refuse pas les connexions passant par un hôte de rebond SSH, contrairement à ce qu’affirmait cet article. Les hôtes de rebond ne sont pas pris en charge sur iPhone et iPad ; ouvrez donc ces connexions sur Mac. Sur Oracle, comme sur SQLite, DuckDB et SQL Server, seul un enregistrement de plusieurs instructions s’exécute dans une transaction. Seul DuckDB peut fonctionner en mémoire ; un fichier SQLite est copié dans l’application."
         }
     }
 }

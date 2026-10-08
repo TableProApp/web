@@ -25,9 +25,9 @@
             "title": "Ein Journal öffnen",
             "paragraphs": [
                 "TablePro führt <code>rledger</code> oder Python Beancount aus, um das Journal zu lesen. Wenn du eines auswählen musst, installiere rledger: Es hat Vorrang, wenn beide vorhanden sind, nur damit läuft BQL, und nur rledger füllt die Tabelle <code>diagnostics</code> mit Validierungsergebnissen.",
-                "Wähle die Datei mit <ui>Durchsuchen…</ui> im Verbindungsformular. Der Journalpfad ist die gesamte Verbindung, ohne Host, Port, Passwort oder Datenbank. Eine <code>.beancount</code>-Datei öffnet sich auch aus dem Finder, und <code>beancount:///path/to/main.beancount</code>-URLs lassen sich importieren.",
+                "Wähle die Datei mit <ui>Browse…</ui> im Verbindungsformular. Der Journalpfad ist die gesamte Verbindung, ohne Host, Port, Passwort oder Datenbank. Eine <code>.beancount</code>-Datei öffnet sich auch aus dem Finder, und <code>beancount:///path/to/main.beancount</code>-URLs lassen sich importieren.",
                 "Eine aus dem Finder geöffnete App übernimmt den <code>PATH</code> deiner Shell nicht. Läuft das Backend im Terminal, aber nicht hier, gib es mit <code>launchctl setenv TABLEPRO_RUSTLEDGER_BINARY</code> oder <code>TABLEPRO_BEANCOUNT_PYTHON</code> an und starte die App neu.",
-                "Das Python-Backend führt die mit Beancount gelieferten Plugins aus und überspringt jede andere <code>plugin</code>-Direktive, da sie Drittanbietercode ist, bis du <ui>Journal-Plugins ausführen</ui> für diese Verbindung aktivierst. Übersprungene Plugins werden in <code>diagnostics</code> aufgelistet."
+                "Das Python-Backend führt die mit Beancount gelieferten Plugins aus und überspringt jede andere <code>plugin</code>-Direktive, da sie Drittanbietercode ist, bis du <ui>Run Ledger Plugins</ui> für diese Verbindung aktivierst. Übersprungene Plugins werden in <code>diagnostics</code> aufgelistet."
             ]
         },
         {
@@ -37,7 +37,7 @@
                 "Die Tabellen decken Transaktionen und Buchungen, Konten, Salden und Saldenprüfungen, Preise und Commodities, alle anderen Direktiven, Metadaten, Tags und Links sowie Quelldateien ab. Buchungen werden über <code>transaction_id</code> mit Transaktionen verknüpft, Konten über ihren Namen.",
                 "Beträge sind bereits verbucht, mit aufgelöster Arithmetik, Kosten und Preisen; Buchungskosten und Inline-Preise stehen in eigenen Spalten. Transaktionen, Buchungen und mehrere Direktivtabellen enthalten eine <code>source_location</code> wie <code>main.beancount:42</code>, sodass eine Zeile zu ihrer Quellzeile zurückführt.",
                 "Stelle einer Abfrage <code>BQL:</code> voran, um sie statt an die Tabellen an rledger zu senden. Durchsuchen, Zeilenzählung und Seitennavigation funktionieren für BQL-Ergebnisse; SQL-Parameter nicht.",
-                "<code>include</code>-Direktiven werden verfolgt, sowohl konkrete Pfade als auch Glob-Muster, und jede Journaldatei sowie jedes referenzierte Dokument wird überwacht. Speichere eine Änderung in deinem Editor, und die nächste Abfrage liest sie ohne erneutes Verbinden. Die Verbindung steht immer auf <safeMode>Sicherer Modus</safeMode> Nur lesen; INSERT, UPDATE, DELETE und Schemaänderungen werden daher abgelehnt."
+                "<code>include</code>-Direktiven werden verfolgt, sowohl konkrete Pfade als auch Glob-Muster, und jede Journaldatei sowie jedes referenzierte Dokument wird überwacht. Speichere eine Änderung in deinem Editor, und die nächste Abfrage liest sie ohne erneutes Verbinden. Die Verbindung steht immer auf <safeMode>Safe Mode</safeMode> Read-Only; INSERT, UPDATE, DELETE und Schemaänderungen werden daher abgelehnt."
             ]
         },
         {

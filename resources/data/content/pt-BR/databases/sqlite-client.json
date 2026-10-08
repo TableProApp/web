@@ -47,7 +47,7 @@
         },
         {
             "id": "schema",
-            "title": "Estrutura",
+            "title": "Structure",
             "paragraphs": [
                 "Renomear uma tabela ou coluna, adicionar ou remover uma coluna e, a partir do SQLite 3.53, adicionar ou remover uma restrição CHECK usa ALTER TABLE. Outras alterações na <structure>aba Structure</structure>, como o tipo de uma coluna ou uma chave estrangeira, reconstroem a tabela: TablePro escreve o script, copia as linhas com seus rowids, restaura índices e triggers e só o executa depois da sua confirmação.",
                 "Alterar o tipo de uma coluna relê seus valores com a nova afinidade, portanto <code>'007'</code> se torna <code>7</code> em uma coluna INTEGER; a tela de revisão informa isso antes de qualquer execução. Uma tabela virtual, como uma tabela FTS5, não pode ser reconstruída, e o salvamento informa seu nome.",

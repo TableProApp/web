@@ -189,9 +189,9 @@ function bannedClaimAllowlist(): array
              * entry widens to any phrase in the compare files).
              */
             'id' => 'A10',
-            'phrases' => ['Enterprise, Ultimate and Team', 'Enterprise, Ultimate và Team'],
+            'phrases' => ['Enterprise, Ultimate and Team', 'Enterprise, Ultimate và Team', 'Lite, Enterprise and Ultimate', 'Lite, Enterprise và Ultimate'],
             'sources' => ['resources/data/content/*/compare/dbeaver.json'],
-            'evidence' => 'DBeaver\'s paid editions (dbeaver.com/edition)',
+            'evidence' => 'DBeaver\'s paid editions (dbeaver.com/edition), and the three with an MCP server (its MCP server documentation)',
             'spec' => false,
         ],
         [

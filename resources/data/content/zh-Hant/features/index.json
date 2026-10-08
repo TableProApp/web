@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro 能做什麼",
-        "lead": "Mac App 提供完整工作環境，以下各頁面均先介紹 Mac 版。iPhone 與 iPad App 是功能範圍較小的獨立原生 App，每頁最後說明其提供的功能。"
+        "lead": "Mac App 提供完整工作環境。iPhone 與 iPad App 是功能範圍較小的獨立原生 App，各功能頁面會說明其提供的功能。"
     },
     "areas": {
-        "title": "功能領域",
-        "lead": "每個領域都有詳細頁面，說明各功能在 Mac 上需要的方案及值得了解的限制。",
-        "paid": "{tier}: {features}",
+        "title": "依任務查看功能",
+        "paid": "{tier} 方案：{features}",
         "noPaid": "無付費功能",
         "items": [
             {
@@ -23,7 +22,7 @@
             },
             {
                 "slug": "data-editing",
-                "summary": "篩選器和醒目提示規則、可追蹤的外部索引鍵、儲存前暫存的編輯、各連線的安全模式，以及還原被儲存取代值的 Data Rewind。"
+                "summary": "篩選器和醒目提示規則、可追蹤的外部索引鍵、儲存前暫存的編輯、各連線的 Safe Mode，以及還原被儲存取代值的 Data Rewind。"
             },
             {
                 "slug": "schema",
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "使用自選供應商的選用 AI 助理，以及讓 Claude Code、Cursor 等用戶端使用已儲存連線的本機 MCP 伺服器。"
+                "summary": "使用自選供應商的選用 AI 助理，以及讓 Claude Code、Cursor 等用戶端使用已儲存連線的本機 MCP（Model Context Protocol）伺服器。"
             },
             {
                 "slug": "connections",
@@ -43,7 +42,7 @@
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "Mac、iPhone 與 iPad 之間的 iCloud 同步、可共用的連線檔案，以及用於團隊共用的 Team Catalog 和 Team Library。"
+                "summary": "Mac、iPhone 與 iPad 之間的 iCloud Sync、可共用的連線檔案，以及用於團隊共用的 Team Catalog 和 Team Library。"
             }
         ]
     },
@@ -54,7 +53,7 @@
     },
     "paid": {
         "title": "免費與付費",
-        "lead": "Mac App 可免費使用，沒有試用期。Starter 或 Team 方案為 Mac App 增加以下功能，Team 包含 Starter 的所有功能。連線至任何支援的引擎、AI 助理、MCP 伺服器和安全模式均無需授權，iPhone 與 iPad App 免費且無 App 內購買。",
+        "lead": "Mac App 可免費使用，沒有試用期。Starter 或 Team 方案為 Mac App 增加以下功能，Team 包含 Starter 的所有功能。連線至任何支援的引擎、AI 助理、MCP 伺服器和 Safe Mode 均無需授權，iPhone 與 iPad App 免費且無 App 內購買。",
         "caption": "Mac App 的付費功能、各自所需方案及說明頁面",
         "columns": {
             "feature": "功能",

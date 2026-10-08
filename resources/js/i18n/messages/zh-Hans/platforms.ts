@@ -6,11 +6,11 @@ export default {
         "unnamed": "{systems} {version} 或更新版本"
     },
     "requires": "需要 {requirement}",
-    "systemsJoiner": "和",
+    "systemsJoiner": " 和 ",
     "architectures": {
         "arm64": "Apple silicon",
         "x86_64": "Intel",
-        "joiner": "或"
+        "joiner": " 或 "
     },
     "app": {
         "mac": "Mac 应用",
@@ -22,8 +22,8 @@ export default {
     "free": "免费，无应用内购买",
     "status": {
         "released": "已推出",
-        "prototype": "目前仅有原型。暂无可安装版本，发布日期未定。",
-        "none": "尚未推出，发布日期未定。"
+        "prototype": "仅有原型。没有可安装的版本，也没有发布日期。",
+        "none": "不提供，也没有发布日期。"
     },
     "names": {
         "linux": "Linux",

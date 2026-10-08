@@ -52,7 +52,7 @@ const facts: TableProFacts = {
     macRequirement: 'macOS 13 Ventura or later',
     iosRequirement: 'iOS and iPadOS 18 or later',
     macArchitectures: ['arm64', 'x86_64'],
-    starter: pricing.tiers.starter.prices,
+    starter: { ...pricing.tiers.starter.prices, activations: pricing.tiers.starter.activations },
     team: { ...pricing.tiers.team.prices, minSeats: pricing.tiers.team.seats.min },
     iosFree: true,
     licence: 'AGPL-3.0',
@@ -88,7 +88,8 @@ test('writes Vietnamese prices in US dollars with Vietnamese separators', () => 
 test('picks the cheapest professional way in for the hub', () => {
     assert.equal(entryPrice(product('tableplus'))?.amount, 99);
     assert.equal(entryPrice(product('datagrip'))?.amount, 10.9);
-    assert.equal(entryPrice(product('navicat'))?.amount, 1499, 'the non-commercial edition is not a professional price');
+    assert.equal(entryPrice(product('navicat'))?.amount, 74.99, 'a subscription is the cheapest way in, and the non-commercial edition is not a professional price');
+    assert.equal(entryPrice(product('navicat'))?.period, 'month');
     assert.equal(entryPrice(product('sequel-ace')), null);
 });
 
@@ -100,8 +101,10 @@ test('leaves out a row the product has no verified fact for, and derives iPhone 
     assert.deepEqual(dbeaver.find((row) => row.key === 'ios')?.competitor, { mark: 'no', lines: [], sources: ['s1'] });
 
     const tableplus = glanceRows(product('tableplus'), comparisons.rows, facts, context('en'));
+    const datagrip = glanceRows(product('datagrip'), comparisons.rows, facts, context('en'));
 
-    assert.ok(!tableplus.some((row) => row.key === 'sync'), 'TablePlus has no verified sync fact');
+    assert.ok(!datagrip.some((row) => row.key === 'sync'), 'DataGrip has no verified sync fact');
+    assert.ok(tableplus.some((row) => row.key === 'sync'), 'TablePlus syncs through a cloud folder');
     assert.ok(!tableplus.some((row) => row.key === 'technology'));
 });
 
@@ -130,7 +133,11 @@ test('builds TablePro’s price cell from pricing.json, never a bare "Free"', ()
     const cell = tableproCell('price', facts, context('en'));
 
     assert.equal(cell.lines[0].text, hub.en.labels.tablepro.priceFree);
-    assert.equal(cell.lines[1].text, `Starter: $${pricing.tiers.starter.prices.monthly} a month, $${pricing.tiers.starter.prices.yearly} a year or $${pricing.tiers.starter.prices.lifetime} once`);
+    assert.equal(
+        cell.lines[1].text,
+        `Starter: $${pricing.tiers.starter.prices.monthly} a month, $${pricing.tiers.starter.prices.yearly} a year or $${pricing.tiers.starter.prices.lifetime} once, for up to ${pricing.tiers.starter.activations} devices`,
+    );
+    assert.ok(pricing.tiers.starter.activations > 1, 'the sentence above is the plural form');
     assert.match(cell.lines[2].text, new RegExp(`at least ${pricing.tiers.team.seats.min} seats$`));
     assert.notEqual(cell.lines[0].text, 'Free');
 });
@@ -149,6 +156,26 @@ test('states the importer from facts, or that there is none', () => {
 
 test('resolves citations to the product’s own source ids', () => {
     assert.deepEqual(citedSources(product('tableplus'), ['platforms', 'cells.diagram', 'prices', 'cells.nope']), ['s1', 's3', 's2', 's5']);
+});
+
+test('cites every source of a fact that no single page states', () => {
+    const dbeaver = product('dbeaver');
+    const view = cellView(dbeaver, dbeaver.cells.mcp, context('en', { 'dbeaver-mcp-server': 'From version {version}' }));
+
+    assert.ok(Array.isArray(dbeaver.cells.mcp.source) && dbeaver.cells.mcp.source.length > 1);
+    assert.deepEqual(view.sources, dbeaver.cells.mcp.source);
+    assert.deepEqual(view.lines.map((line) => line.text), ['From version 26.3'], 'the note names the version, so no "since" line follows');
+    assert.deepEqual(citedSources(dbeaver, ['cells.mcp', 'cells.sync']), [...dbeaver.cells.mcp.source, dbeaver.cells.sync.source]);
+});
+
+test('does not read a mark aloud when the cell’s words already say yes or no', () => {
+    const rows = glanceRows(product('tableplus'), comparisons.rows, facts, context('en'));
+    const licence = rows.find((row) => row.key === 'licence');
+
+    assert.equal(licence?.competitor?.worded, true);
+    assert.equal(licence?.tablepro.worded, true);
+    assert.equal(rows.find((row) => row.key === 'mcp')?.competitor?.worded, undefined);
+    assert.deepEqual([hub.en.labels.cell.yes, hub.en.labels.cell.no], ['Yes', 'No']);
 });
 
 test('fills a note with the slots of the fact that cites it', () => {

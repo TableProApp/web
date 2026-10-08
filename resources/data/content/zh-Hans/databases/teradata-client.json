@@ -28,9 +28,9 @@
             "id": "connect",
             "title": "连接和登录",
             "paragraphs": [
-                "填写主机、用户名和密码。任何接受 TD2 登录的 Vantage 均可，不检查版本。Options 的 <ui>Logon Mechanism</ui> 接受 <code>TD2</code> 或 <code>TDNEGO</code>；仅需不同于账户默认数据库时填写 <ui>Database</ui>。",
+                "填写主机、用户名和密码。任何接受 TD2 登录的 Vantage 均可，不检查版本。Options 的 <ui>Logon Mechanism</ui> 接受 <code>TD2</code> 或 <code>TDNEGO</code>；仅需不同于账户默认数据库时填写<ui>数据库</ui>（Database）。",
                 "默认端口使用明文会话。任意 SSL 模式将会话移至网关 WebSocket 端点的 443 端口，不可更改。Verify CA 需 CA 证书，Verify Identity 用该证书验证链和主机名，未提供时使用系统信任库。",
-                "除非脚本需要 ANSI 或 TERA 提交规则及会话大小写敏感性，<ui>Transaction Mode</ui> 保持 <code>DEFAULT</code>。堡垒机后的系统通过 <network>SSH 隧道</network>访问。<ui>Import from URL…</ui> 接受 <code>teradata://</code>，macOS 不会将其作为链接打开。"
+                "除非脚本需要 ANSI 或 TERA 提交规则及会话大小写敏感性，<ui>Transaction Mode</ui> 保持 <code>DEFAULT</code>。堡垒机后的系统通过 <network>SSH 隧道</network>访问。<ui>从 URL 导入…</ui>（Import from URL…）接受 <code>teradata://</code>，macOS 不会将其作为链接打开。"
             ]
         },
         {
@@ -44,7 +44,7 @@
         },
         {
             "id": "schema",
-            "title": "结构",
+            "title": "Structure",
             "paragraphs": [
                 "从 <structure>Structure 标签页</structure>创建表和修改列。表 DDL 视图显示含约束的完整定义。"
             ]

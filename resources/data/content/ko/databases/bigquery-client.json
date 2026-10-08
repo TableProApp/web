@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "Google Cloud 로그인",
             "paragraphs": [
-                "<ui>Auth Method</ui>를 고르고 <ui>Project ID</ui>에 프로젝트 이름이나 번호가 아닌 ID를 넣습니다. <ui>Application Default Credentials</ui>는 <code>gcloud auth application-default login</code>의 파일을 읽어 gcloud가 설정됐다면 가장 간단합니다. <ui>Service Account Key</ui>는 .json 키 파일이나 붙여넣은 JSON을 받습니다.",
+                "<ui>인증 방식</ui>(Auth Method)을 고르고 <ui>프로젝트 ID</ui>(Project ID)에 프로젝트 이름이나 번호가 아닌 ID를 넣습니다. <ui>애플리케이션 기본 사용자 인증 정보</ui>(Application Default Credentials)는 <code>gcloud auth application-default login</code>의 파일을 읽어 gcloud가 설정됐다면 가장 간단합니다. <ui>서비스 계정 키</ui>(Service Account Key)는 .json 키 파일이나 붙여넣은 JSON을 받습니다.",
                 "Google Account (OAuth)는 Google Cloud Console에서 만든 데스크톱 OAuth 클라이언트로 브라우저 로그인합니다. 갱신 토큰은 클라이언트당 하나씩 키체인에 보관해 다음 연결은 브라우저가 필요 없습니다. 한 OAuth 클라이언트는 Google 계정 하나이므로 두 번째 계정은 다른 클라이언트나 자체 갱신 토큰이 필요합니다.",
-                "모든 작업은 BigQuery REST API로 진행되어 호스트, 포트, 연결 URL이나 SSH 터널은 없습니다. <ui>Location</ui>은 모든 작업에 보낼 처리 위치를 정합니다. <cloudAuth>클라우드 로그인</cloudAuth>도 참고하세요."
+                "모든 작업은 BigQuery REST API로 진행되어 호스트, 포트, 연결 URL이나 SSH 터널은 없습니다. <ui>위치</ui>(Location)는 모든 작업에 보낼 처리 위치를 정합니다. <cloudAuth>클라우드 로그인</cloudAuth>도 참고하세요."
             ]
         },
         {
@@ -36,7 +36,7 @@
             "title": "쿼리 및 비용 제어",
             "paragraphs": [
                 "실행 전에 <explain>Explain</explain> 메뉴의 <ui>Dry Run (Cost)</ui>를 선택합니다. 처리·청구 예상 바이트, 캐시 적중 표시와 미국 달러 예상 비용을 보여 주며 쿼리 자체는 실행하지 않습니다.",
-                "실행 후 상태 표시줄에 처리·청구 바이트와 온디맨드 요금 예상 비용, 캐시 적중을 표시합니다. 확실한 상한은 Advanced 탭의 <ui>Max Bytes Billed</ui>로 정하며 BigQuery는 초과할 작업을 실행하지 않고 거부합니다.",
+                "실행 후 상태 표시줄에 처리·청구 바이트와 온디맨드 요금 예상 비용, 캐시 적중을 표시합니다. 확실한 상한은 Advanced 탭의 <ui>최대 청구 바이트</ui>(Max Bytes Billed)로 정하며 BigQuery는 초과할 작업을 실행하지 않고 거부합니다.",
                 "완성, 인용과 서식은 GoogleSQL을 따르며 테이블 이름은 백틱, STRUCT·ARRAY 열은 JSON으로 표시합니다. 데이터 세트가 데이터베이스 역할로 사이드바에 표시되고 <code>⌘K</code>로 전환하며 각 탭은 처음 데이터 세트에 남습니다. 작업은 쿼리 제한 시간까지 폴링 후 취소되고 No limit이면 완료까지 기다립니다.",
                 "셀·삽입·삭제는 <editing>그리드</editing>를 사용합니다. UPDATE·DELETE는 선언된 기본 키나 없으면 ARRAY·JSON·GEOGRAPHY 외 모든 열로 매칭해 동일 행은 함께 바뀝니다. 한 행을 정확히 편집하려면 <code>PRIMARY KEY (…) NOT ENFORCED</code>를 선언하세요. 분할 테이블은 편집기에서 파티션 필터로 UPDATE·DELETE를 작성하세요."
             ]
@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "데이터 세트 및 DDL",
             "paragraphs": [
-                "DDL은 편집기에서 <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code>과 <code>CREATE OR REPLACE VIEW</code> 등으로 실행합니다. <ui>New Database…</ui>는 <code>CREATE SCHEMA</code>로 데이터 세트를 만들고 사이드바에서 테이블 이름을 바꿉니다. DDL 탭은 <code>INFORMATION_SCHEMA.TABLES</code>에서 정의를 읽으며 클러스터링·파티션은 Indexes에 표시합니다."
+                "DDL은 편집기에서 <code>CREATE SCHEMA</code>, <code>ALTER TABLE … ADD COLUMN</code>, <code>DROP COLUMN</code>과 <code>CREATE OR REPLACE VIEW</code> 등으로 실행합니다. <ui>새 데이터베이스…</ui>(New Database…)는 <code>CREATE SCHEMA</code>로 데이터 세트를 만들고 사이드바에서 테이블 이름을 바꿉니다. DDL 탭은 <code>INFORMATION_SCHEMA.TABLES</code>에서 정의를 읽으며 클러스터링·파티션은 Indexes에 표시합니다."
             ]
         },
         {
@@ -77,7 +77,7 @@
             "href": "/features/connections#cloud-auth"
         },
         {
-            "label": "내보내기, 백업 및 서버 측 내보내기",
+            "label": "내보내기, 백업 및 Server-Side Export",
             "href": "/features/import-export#backup"
         },
         {

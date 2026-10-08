@@ -26,9 +26,9 @@ export default {
             "includesTitle": "含まれる機能",
             "includes": [
                 "すべての対応エンジンへの接続",
-                "SQL エディタとデータグリッド",
+                "SQL エディターとデータグリッド",
                 "AI アシスタントと MCP サーバー",
-                "セーフモード",
+                "Safe Mode",
                 "iPhone・iPad アプリ"
             ]
         },
@@ -97,7 +97,7 @@ export default {
         "one": "すべての有料プランは、購入から {count} 日以内であれば返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。",
         "other": "すべての有料プランは、購入から {count} 日以内であれば返金できます。詳しくは<link>返金ポリシー</link>をご覧ください。"
     },
-    "finePrint": "価格は米ドルです。{merchant} が正式な販売者として支払いを受け取り、チェックアウト時に売上税や VAT を計算します。",
+    "finePrint": "価格は米ドルです。{merchant} が merchant of record として支払いを受け取り、チェックアウト時に売上税や VAT を計算します。",
     "finePrintCurrency": "価格は米ドルです。",
     "comparePlans": "プランを比較",
     "section": {
@@ -115,8 +115,8 @@ export default {
         },
         "macsTeam": "1 シートにつき 1 台",
         "everythingElse": "アプリのその他すべての機能",
-        "everythingElseDetail": "すべての対応エンジン、SQL エディタ、AI アシスタント、MCP サーバー、セーフモード",
-        "iphoneNote": "iPhone・iPad アプリに有料機能はありません。iCloud 同期は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"
+        "everythingElseDetail": "すべての対応エンジン、SQL エディター、AI アシスタント、MCP サーバー、Safe Mode",
+        "iphoneNote": "iPhone・iPad アプリに有料機能はありません。iCloud Sync は無料です。Mac と同期するには、Mac 側に Starter または Team が必要です。"
     },
     "discount": {
         "atCheckout": "割引コードをお持ちですか？チェックアウト時に入力してください。",

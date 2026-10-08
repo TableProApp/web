@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "AI 助手與 MCP 伺服器",
-        "lead": "適合希望使用自選模型協助 SQL，或讓 AI 用戶端操作資料庫的開發者：詢問結構、檢閱或修正查詢，或讓 Claude Code、Cursor 使用已儲存連線。所有功能均可選且僅在 Mac App 中提供，新增供應商或連線用戶端前不會向模型傳送任何內容。",
+        "lead": "適合希望使用自選模型協助 SQL，或讓 AI 用戶端操作資料庫的開發者。可詢問結構、檢閱或修正查詢，或讓 Claude Code、Cursor 等 MCP（Model Context Protocol）用戶端使用已儲存連線。所有功能均可選且僅在 Mac App 中提供，新增供應商或連線用戶端前不會向模型傳送任何內容。",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "使用自選供應商",
             "paragraphs": [
                 "助手支援這些供應商：{aiProviders}。根據供應商，可貼上 API 金鑰、使用現有帳號登入，或在 Mac 上執行模型。TablePro 不經營自己的 AI 服務：請求直接傳送至供應商，新增前不傳送任何內容。",
-                "每則訊息包含連線中資料表的結構，受所設上限限制，以及編輯器中的查詢。結果列僅在 <ui>Settings > AI</ui> 中啟用後才傳送。每個連線也有 AI 政策，Never 會禁止助手和 MCP 用戶端存取。"
+                "每則訊息包含連線中資料表的結構，受所設上限限制，以及編輯器中的查詢。結果列僅在<ui>設定 > AI</ui>（Settings > AI）中啟用後才傳送。每個連線也有 AI 政策，Never 會禁止助手和 MCP 用戶端存取。"
             ],
             "asset": "mac-ai-chat"
         },
@@ -26,21 +26,21 @@
             "id": "in-the-editor",
             "title": "檢閱、解釋、最佳化與修正",
             "paragraphs": [
-                "將游標放在陳述式中，選擇 Review with AI（<kbd>⌥⇧⌘L</kbd>）檢閱正確性、成本和安全性，Explain（<kbd>⌘L</kbd>）逐步解釋，或 Optimize（<kbd>⌥⌘L</kbd>）建議改寫或索引；查詢失敗時，錯誤橫幅提供 Fix with AI。請求包含陳述式所參照資料表的結構，陳述式本身不會執行。<ui>Apply to Editor</ui> 僅在確認後取代陳述式。",
+                "將游標放在陳述式中，選擇 Review with AI（<kbd>⌥⇧⌘L</kbd>）檢閱正確性、成本和安全性，Explain（<kbd>⌘L</kbd>）逐步解釋，或 Optimize（<kbd>⌥⌘L</kbd>）建議改寫或索引。查詢失敗時，錯誤橫幅提供 Fix with AI。請求包含陳述式所參照資料表的結構，陳述式本身不會執行。<ui>套用到編輯器</ui>（Apply to Editor）僅在確認後取代陳述式。",
                 "行內建議在輸入時顯示淡色文字，預設關閉。AI Rules 可為連線固定純文字說明，例如哪些欄位絕不能選取，並隨每則訊息傳送。"
             ]
         },
         {
             "id": "agent-mode",
-            "title": "聊天模式與 Agent 模式",
+            "title": "聊天模式與 Agent mode",
             "paragraphs": [
-                "聊天有三種模式。預設 Ask 查閱結構，不執行任何內容。Edit 可執行查詢，Agent 也可執行 DROP、TRUNCATE 等破壞性陳述式。在新連線預設安全模式 {macSafeModeDefault} 下，Edit 和 Agent 的寫入無須詢問；從 Alert 到 Safe Mode (Full)，每次都等待 Run，Read-Only 則拒絕。破壞性陳述式始終等待點選，不能預先核准。",
-                "Agent 模式（<kbd>⌥⇧⌘A</kbd>）讓一個工作階段使用整個視窗，顯示該連線的工作階段、對話，以及建議和執行的 SQL。開啟期間，連線保持 Alert 或更嚴格等級，點選 Run 前不會執行寫入。這是提醒而非鎖定，一個快捷鍵就能關閉。工作階段儲存在此 Mac 上。"
+                "聊天有三種模式。預設 Ask 查閱結構，不執行任何內容。Edit 可執行查詢，Agent 也可執行 DROP、TRUNCATE 等破壞性陳述式。在新連線預設的 Safe Mode 等級 {macSafeModeDefault} 下，Edit 和 Agent 的寫入無須詢問；從 Alert 到 Safe Mode (Full)，每次都等待 Run，Read-Only 則拒絕。破壞性陳述式始終等待點選，不能預先核准。",
+                "Agent mode（<kbd>⌥⇧⌘A</kbd>）讓一個工作階段使用整個視窗，顯示該連線的工作階段、對話，以及建議和執行的 SQL。開啟期間，連線保持 Alert 或更嚴格等級，點選 Run 前不會執行寫入。這是提醒而非鎖定，一個快捷鍵就能關閉。工作階段儲存在此 Mac 上。"
             ],
             "asset": "mac-agent-mode",
             "links": [
                 {
-                    "label": "安全模式等級",
+                    "label": "Safe Mode 等級",
                     "href": "/features/data-editing#safe-mode"
                 }
             ]
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "連線用戶端",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> 提供 {mcpSetupClients} 的設定步驟和可複製片段。附帶的 <code>tablepro-mcp</code> 橋接也支援 {mcpBridgeClients}：它依需啟動 TablePro 並探索伺服器，因此用戶端設定無須連接埠或權杖。官方 Raycast 擴充功能則與 App 配對，由你在 Mac 上核准。",
+                        "<ui>設定 > 整合</ui>（Settings > Integrations）提供 {mcpSetupClients} 的設定步驟和可複製片段。附帶的 <code>tablepro-mcp</code> 橋接也支援 {mcpBridgeClients}。它依需啟動 TablePro 並探索伺服器，因此用戶端設定無須連接埠或權杖。官方 Raycast 擴充功能則與 App 配對，由您在 Mac 上核准。",
                         "典型請求：讓用戶端找出使用同一電子郵件地址的使用者。它可呼叫 <code>list_tables</code> 和 <code>describe_table</code>，發現欄位名稱為 <code>email_address</code>，再透過已儲存連線執行一個 SELECT，無須將結構貼到聊天中。"
                     ]
                 },
@@ -73,7 +73,7 @@
                         "每個連線的 External Clients：Blocked、Read Only（預設）或 Read & Write。被阻止的連線甚至不會列出。",
                         "連線核准：用戶端首次存取連線時，Mac 上的對話框會詢問。可選擇每次詢問、每個連線詢問一次，或不再詢問。",
                         "AI 政策：設為 Never 的連線也拒絕 MCP 用戶端。",
-                        "安全模式：寫入依連線等級確認，DROP 或 TRUNCATE 每次都需要 Full Access 權杖和你的核准。讀寫檔案或在伺服器上執行程式碼的陳述式會被拒絕。"
+                        "Safe Mode：寫入依連線等級確認，DROP 或 TRUNCATE 每次都需要 Full Access 權杖和您的核准。讀寫檔案或在伺服器上執行程式碼的陳述式會被拒絕。"
                     ]
                 }
             ]
@@ -82,14 +82,14 @@
             "id": "outside-servers",
             "title": "外部 MCP 伺服器",
             "paragraphs": [
-                "也可反向使用：TablePro 的 AI 工作階段透過 Streamable HTTP 呼叫你執行的 MCP 伺服器工具，除非伺服器在此 Mac 上，否則必須使用 HTTPS。可選擇每個伺服器在哪些連線上提供。每次呼叫都顯示卡片並等待點選，不接受長期核准。伺服器位址和權杖僅儲存在此 Mac 上。"
+                "也可反向使用：TablePro 的 AI 工作階段透過 Streamable HTTP 呼叫您執行的 MCP 伺服器工具，除非伺服器在此 Mac 上，否則必須使用 HTTPS。可選擇每個伺服器在哪些連線上提供。每次呼叫都顯示卡片並等待點選，不接受長期核准。伺服器位址和權杖僅儲存在此 Mac 上。"
             ]
         },
         {
             "id": "automation",
             "title": "聊天之外的自動化",
             "paragraphs": [
-                "AppleScript 可在連線的 External Clients 等級和安全模式限制內連線、執行查詢和開啟資料表。<code>tablepro://</code> 連結開啟連線、資料表或查詢分頁；連結中的查詢在確認後填入，從不自行執行。<code>postgresql://</code> 等資料庫 URL 以連線形式開啟。",
+                "AppleScript 可在連線的 External Clients 等級和 Safe Mode 限制內連線、執行查詢和開啟資料表。<code>tablepro://</code> 連結開啟連線、資料表或查詢分頁；連結中的查詢在確認後填入，從不自行執行。<code>postgresql://</code> 等資料庫 URL 以連線形式開啟。",
                 "<code>tablepro</code> shell 指令在 App 中開啟這些 URL 和檔案，不從終端機執行查詢。官方 Raycast 擴充功能搜尋連線、資料表和查詢歷史，並透過已配對 App 執行查詢。"
             ]
         },
@@ -97,7 +97,7 @@
             "id": "privacy",
             "title": "資料傳送到哪裡",
             "paragraphs": [
-                "提示、結構內容和所有附件傳送至所選供應商，適用你與該供應商之間的帳號條款。使用 Ollama、llama.cpp、MLX 或自行執行的 OpenAI 相容伺服器時，內容留在自己的機器上。TablePro 不接收任何內容，Mac App 的每日使用報告也不包含 AI 或 MCP 資訊。",
+                "提示、結構內容和所有附件傳送至所選供應商，適用您與該供應商之間的帳號條款。使用 Ollama、llama.cpp、MLX 或自行執行的 OpenAI 相容伺服器時，內容留在自己的機器上。TablePro 不接收任何內容，Mac App 的每日使用報告也不包含 AI 或 MCP 資訊。",
                 "新增 GitHub Copilot 時，向 GitHub 傳送遙測的選項預設開啟；可在 Copilot 設定處關閉。"
             ],
             "links": [
@@ -111,7 +111,7 @@
             "id": "iphone",
             "title": "iPhone 與 iPad 不提供",
             "paragraphs": [
-                "iPhone 與 iPad App 不提供 AI 助手、Agent 模式或 MCP 伺服器。本頁所有功能都在 Mac App 中。"
+                "iPhone 與 iPad App 不提供 AI 助手、Agent mode 或 MCP 伺服器。本頁所有功能都在 Mac App 中。"
             ],
             "links": [
                 {
@@ -127,15 +127,15 @@
             "ios": "no"
         },
         {
-            "label": "AI 檢閱、解釋、最佳化與修正",
+            "label": "Review、Explain、Optimize 與 Fix with AI",
             "ios": "no"
         },
         {
-            "label": "行內建議與 AI 規則",
+            "label": "行內建議與 AI Rules",
             "ios": "no"
         },
         {
-            "label": "Agent 模式",
+            "label": "Agent mode",
             "ios": "no"
         },
         {
@@ -168,7 +168,7 @@
             "docs": "/features/ai-assistant"
         },
         {
-            "label": "Agent 模式",
+            "label": "Agent mode",
             "docs": "/features/agent-mode"
         },
         {
@@ -198,7 +198,7 @@
     ],
     "related": [
         {
-            "label": "安全模式",
+            "label": "Safe Mode",
             "href": "/features/data-editing#safe-mode"
         },
         {

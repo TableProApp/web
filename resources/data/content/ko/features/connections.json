@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "연결, 터널 및 자격 증명",
-        "lead": "데이터베이스가 배스천, 클러스터 또는 클라우드 로그인 뒤에 있다면 필요한 경로와 비밀번호 소스를 지정해 연결을 한 번 설정하고 운영 연결에는 더 엄격한 규칙을 적용하세요. 여기서 소개하는 기능은 Mac 앱에 있으며 마지막 절에서 iPhone과 iPad를 다룹니다.",
+        "lead": "데이터베이스가 배스천, 클러스터 또는 클라우드 로그인 뒤에 있다면 필요한 경로와 비밀번호 소스를 지정해 연결을 한 번 설정하고 운영 연결에는 더 엄격한 규칙을 적용하세요. 여기서 소개하는 기능은 Mac 앱에 있습니다. iPhone과 iPad 앱은 그중 일부를 제공합니다.",
         "docs": "/connections"
     },
     "sections": [
@@ -17,9 +17,9 @@
             "id": "organize",
             "title": "연결 라이브러리 관리",
             "paragraphs": [
-                "각 연결은 General, Network, Options, Appearance 탭이 있는 하나의 양식에서 편집합니다. <code>jdbc:</code> URL이나 SSH 경유 정보를 포함한 <code>+ssh</code> URL 등 연결 URL을 가져오면 양식이 자동으로 채워집니다. 클립보드에 URL이 있으면 <ui>Use clipboard URL</ui> 옵션을 제공합니다.",
-                "연결에 색상과 원하는 만큼의 태그를 지정하고 중첩 그룹에 배치하며 자주 쓰는 연결에 별표를 붙여 즐겨찾기로 등록합니다. 환경은 태그로 구분합니다. local, development, production, testing이 기본 제공되며 직접 추가할 수도 있습니다. 빈 라이브러리에서는 번들로 포함된 Chinook의 SQLite 복사본을 여는 <ui>Open Sample Database</ui>를 제공합니다.",
-                "한 창에서 여러 연결을 엽니다. 왼쪽 가장자리의 연결 표시줄에서 전환하면 각 연결에서 마지막으로 사용한 탭으로 돌아갑니다. <ui>Open in New Window</ui>를 사용하면 다른 연결을 옆에 나란히 놓을 수 있습니다."
+                "각 연결은 General, Network, Options, Appearance 탭이 있는 하나의 양식에서 편집합니다. <code>jdbc:</code> URL이나 SSH 경유 정보를 포함한 <code>+ssh</code> URL 등 연결 URL을 가져오면 양식이 자동으로 채워집니다. 클립보드에 URL이 있으면 <ui>클립보드 URL 사용</ui>(Use clipboard URL) 옵션을 제공합니다.",
+                "연결에 색상과 원하는 만큼의 태그를 지정하고 중첩 그룹에 배치하며 자주 쓰는 연결에 별표를 붙여 즐겨찾기로 등록합니다. 환경은 태그로 구분합니다. local, development, production, testing이 기본 제공되며 직접 추가할 수도 있습니다. 빈 라이브러리에서는 번들로 포함된 Chinook의 SQLite 복사본을 여는 <ui>샘플 데이터베이스 열기</ui>(Open Sample Database)를 제공합니다.",
+                "한 창에서 여러 연결을 엽니다. 왼쪽 가장자리의 연결 표시줄에서 전환하면 각 연결에서 마지막으로 사용한 탭으로 돌아갑니다. <ui>새 윈도우에서 열기</ui>(Open in New Window)를 사용하면 다른 연결을 옆에 나란히 놓을 수 있습니다."
             ],
             "asset": "mac-connection-library"
         },
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "다른 데이터베이스 클라이언트에서",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui>은 TablePlus의 Setapp 버전을 포함한 {connectionImportApps}에 저장된 연결을 읽고 해당 앱의 저장 위치에서 비밀번호도 가져옵니다. DBeaver와 Navicat이 저장한 암호화된 비밀번호도 포함됩니다. Navicat 연결은 <code>.ncx</code> 내보내기 파일에서 가져옵니다."
+                        "<ui>다른 앱에서 가져오기</ui>(Import from Other App)는 TablePlus의 Setapp 버전을 포함한 {connectionImportApps}에 저장된 연결을 읽고 해당 앱의 저장 위치에서 비밀번호도 가져옵니다. DBeaver와 Navicat이 저장한 암호화된 비밀번호도 포함됩니다. Navicat 연결은 <code>.ncx</code> 내보내기 파일에서 가져옵니다."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "프로젝트 설정 파일에서",
                     "paragraphs": [
-                        "<ui>Open Project Folder</ui>는 프로젝트의 <code>.env</code>, <code>wp-config.php</code>, Prisma 스키마, Rails의 <code>config/database.yml</code>, <code>docker-compose.yml</code>, Spring의 <code>application.properties</code> 또는 <code>application.yml</code>, <code>appsettings.json</code>에서 데이터베이스 설정을 찾습니다. 찾은 설정과 원본 파일을 목록으로 보여 주며 선택한 설정이 연결 양식을 채웁니다. 비밀번호는 바로 키체인에 저장됩니다. 파일 경로, 호스트 또는 데이터베이스 이름에 <code>prod</code>, <code>production</code>, <code>live</code>가 독립된 단어로 있으면 연결의 안전 모드가 Alert 수준으로 시작됩니다."
+                        "<ui>프로젝트 폴더 열기</ui>(Open Project Folder)는 프로젝트의 <code>.env</code>, <code>wp-config.php</code>, Prisma 스키마, Rails의 <code>config/database.yml</code>, <code>docker-compose.yml</code>, Spring의 <code>application.properties</code> 또는 <code>application.yml</code>, <code>appsettings.json</code>에서 데이터베이스 설정을 찾습니다. 찾은 설정과 원본 파일을 목록으로 보여 주며 선택한 설정이 연결 양식을 채웁니다. 비밀번호는 바로 키체인에 저장됩니다. 파일 경로, 호스트 또는 데이터베이스 이름에 <code>prod</code>, <code>production</code>, <code>live</code>가 독립된 단어로 있으면 연결의 Safe Mode가 Alert 수준으로 시작됩니다."
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "클라우드 계정으로 로그인",
             "paragraphs": [
-                "AWS IAM 데이터베이스 인증은 액세스 키, <code>~/.aws</code>의 프로필(<code>credential_process</code>와 역할 수임 지원) 또는 AWS IAM Identity Center를 사용해 연결할 때마다 새 토큰에 서명하며 TLS를 Required로 높입니다. Amazon ElastiCache for Redis, Amazon Keyspaces 및 DynamoDB는 각자의 AWS 서명을 사용합니다.",
+                "AWS IAM 데이터베이스 인증은 액세스 키, <code>~/.aws</code>의 프로필(<code>credential_process</code>와 역할 수임 지원) 또는 AWS IAM Identity Center를 사용해 연결할 때마다 새 토큰에 서명합니다. 또한 TLS를 Required로 높입니다. Amazon ElastiCache for Redis, Amazon Keyspaces 및 DynamoDB는 각자의 AWS 서명을 사용합니다.",
                 "SQL Server는 제공한 앱 등록의 클라이언트 ID를 사용해 브라우저에서 Microsoft Entra ID로 로그인하거나 티켓 또는 보안 주체와 비밀번호를 사용해 Kerberos로 로그인합니다. Google BigQuery는 서비스 계정 키, Application Default Credentials 또는 자체 클라이언트를 통한 Google OAuth를 지원하며 Google Cloud Spanner와 Cloud SQL Auth Proxy에서는 Google 계정을 사용할 수 있습니다."
             ],
             "engines": [
@@ -132,9 +132,9 @@
             "blocks": [
                 {
                     "id": "environment-variables",
-                    "title": "환경 변수",
+                    "title": "Environment Variables",
                     "paragraphs": [
-                        "연결의 호스트, 데이터베이스, 사용자 이름, SSH 호스트·사용자·키 경로, SSL 경로, 시작 명령 또는 드라이버 필드에 <code>$DB_HOST</code>를 쓰면 TablePro가 연결할 때 자체 환경에서 값을 채웁니다. 포트와 비밀번호는 이 방식으로 읽지 않습니다. 비밀번호에는 별도의 소스를 지정하세요."
+                        "연결의 호스트, 데이터베이스, 사용자 이름, SSH 호스트·사용자·키 경로, TLS 인증서 경로, 시작 명령 또는 드라이버 필드에 <code>$DB_HOST</code>를 쓰면 TablePro가 연결할 때 자체 환경에서 값을 채웁니다. 포트와 비밀번호는 이 방식으로 읽지 않습니다. 비밀번호에는 별도의 소스를 지정하세요."
                     ],
                     "paid": [
                         "environment-variables"
@@ -146,12 +146,12 @@
             "id": "policies",
             "title": "연결별 규칙",
             "paragraphs": [
-                "연결의 안전 모드 수준은 구문을 그대로 실행할지, 먼저 확인할지, Touch ID나 비밀번호를 요구할지 또는 거부할지를 결정합니다. External Clients의 Blocked, Read Only, Read & Write 수준은 MCP 클라이언트와 AppleScript가 할 수 있는 작업을 정하며 이 Mac에만 저장됩니다. AI 정책은 AI 어시스턴트가 확인 없이 연결을 사용할지, 확인 후에만 사용할지 또는 전혀 사용하지 못할지를 정합니다. Never는 MCP 클라이언트도 차단합니다.",
-                "조직은 구성 프로필을 통해 모든 연결의 최소 안전 모드 수준을 강제하고 업데이트를 제어할 수 있습니다."
+                "연결의 Safe Mode 수준은 명령문을 그대로 실행할지, 먼저 확인할지, Touch ID나 비밀번호를 요구할지 또는 거부할지를 결정합니다. External Clients의 Blocked, Read Only, Read & Write 수준은 MCP 클라이언트와 AppleScript가 할 수 있는 작업을 정하며 이 Mac에만 저장됩니다. AI 정책은 AI 어시스턴트가 확인 없이 연결을 사용할지, 확인 후에만 사용할지 또는 전혀 사용하지 못할지를 정합니다. Never는 MCP 클라이언트도 차단합니다.",
+                "조직은 구성 프로필을 통해 모든 연결의 최소 Safe Mode 수준을 강제하고 업데이트를 제어할 수 있습니다."
             ],
             "links": [
                 {
-                    "label": "안전 모드 수준",
+                    "label": "Safe Mode 수준",
                     "href": "/features/data-editing#safe-mode"
                 },
                 {
@@ -234,12 +234,12 @@
             "ios": "no"
         },
         {
-            "label": "환경 변수",
+            "label": "Environment Variables",
             "paid": "environment-variables",
             "ios": "no"
         },
         {
-            "label": "연결별 안전 모드",
+            "label": "연결별 Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -248,16 +248,16 @@
             "ios": "no"
         },
         {
-            "label": "구성 프로필을 통한 최소 안전 모드 수준",
+            "label": "구성 프로필을 통한 최소 Safe Mode 수준",
             "ios": "no"
         }
     ],
     "limits": [
         "비밀번호 소스와 Network 탭의 프록시 및 터널 명령은 설정한 Mac에만 남고 동기화되지 않습니다. 따라서 동기화된 연결에서는 각 Mac마다 다시 설정해야 합니다.",
-        "TablePro는 시작할 때의 환경을 읽습니다. Dock이나 Finder에서 열면 셸 프로필이 설정한 변수를 볼 수 없으며 환경 변수 비밀번호 소스와 환경 변수 기능 모두에 영향을 줍니다.",
+        "TablePro는 시작할 때의 환경을 읽습니다. Dock이나 Finder에서 열면 셸 프로필이 설정한 변수를 볼 수 없으며 환경 변수 비밀번호 소스와 Environment Variables 기능 모두에 영향을 줍니다.",
         "플랜이 종료되면 <code>$DB_HOST</code>와 기타 참조가 더 이상 치환되지 않고 경고 없이 입력된 그대로 서버에 전달됩니다.",
         "Open Project Folder는 일회성 가져오기입니다. 변경을 감시하지 않으며 같은 설정을 두 번 가져오면 연결이 두 개 생성됩니다.",
-        "AWS IAM 인증은 {awsIam}을 지원하지만 Amazon Redshift는 지원하지 않습니다. 구성 프로필은 최소 안전 모드 수준과 업데이트 설정만 강제할 수 있습니다."
+        "AWS IAM 인증은 {awsIam}을 지원하지만 Amazon Redshift는 지원하지 않습니다. 구성 프로필은 최소 Safe Mode 수준과 업데이트 설정만 강제할 수 있습니다."
     ],
     "docs": [
         {
@@ -269,7 +269,7 @@
             "docs": "/switching"
         },
         {
-            "label": "프로젝트 폴더 열기",
+            "label": "Open Project Folder",
             "docs": "/features/project-folder-import"
         },
         {
@@ -277,7 +277,7 @@
             "docs": "/connections/ssh-tunneling"
         },
         {
-            "label": "터널 명령",
+            "label": "Tunnel Command",
             "docs": "/connections/tunnel-command"
         },
         {
@@ -289,7 +289,7 @@
             "docs": "/connections/credential-profiles"
         },
         {
-            "label": "비밀번호 소스 및 환경 변수",
+            "label": "비밀번호 소스 및 Environment Variables",
             "docs": "/features/connection-sharing#environment-variables"
         }
     ],
@@ -299,7 +299,7 @@
             "href": "/features/sync-and-teams"
         },
         {
-            "label": "안전 모드 및 데이터 편집",
+            "label": "Safe Mode 및 데이터 편집",
             "href": "/features/data-editing#safe-mode"
         },
         {

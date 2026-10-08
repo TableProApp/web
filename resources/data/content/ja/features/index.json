@@ -9,21 +9,20 @@
     },
     "header": {
         "title": "TablePro でできること",
-        "lead": "Mac アプリはすべての作業を行える環境です。以下の各ページはまず Mac 版を説明します。iPhone・iPad アプリは機能範囲が小さい別のネイティブアプリで、各ページの末尾で対応内容を説明しています。"
+        "lead": "Mac アプリはすべての作業を行える環境です。iPhone・iPad アプリは機能範囲が小さい別のネイティブアプリで、各機能ページで対応内容を説明しています。"
     },
     "areas": {
-        "title": "機能分野",
-        "lead": "各分野のページで詳細、Mac で各機能に必要なプラン、知っておきたい制約を説明します。",
-        "paid": "{tier}: {features}",
+        "title": "作業別の機能",
+        "paid": "{tier} プラン：{features}",
         "noPaid": "有料機能なし",
         "items": [
             {
                 "slug": "querying",
-                "summary": "スキーマを把握した自動補完、<code>:name</code> パラメータ、検索可能な履歴、保存済みクエリ、比較できる EXPLAIN 計画、グラフや地図での結果表示。"
+                "summary": "スキーマを把握した自動補完、<code>:name</code> パラメーター、検索可能な履歴、保存済みクエリ、比較できる EXPLAIN 計画、グラフや地図での結果表示。"
             },
             {
                 "slug": "data-editing",
-                "summary": "フィルタとハイライトルール、参照先をたどれる外部キー、保存まで保留する編集、接続ごとのセーフモード、保存で置き換えた値を戻す Data Rewind。"
+                "summary": "フィルターとハイライトルール、参照先をたどれる外部キー、保存まで保留する編集、接続ごとの Safe Mode、保存で置き換えた値を戻す Data Rewind。"
             },
             {
                 "slug": "schema",
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "自分で選んだプロバイダを使う任意の AI アシスタントと、Claude Code や Cursor などが保存済み接続を使えるローカル MCP サーバー。"
+                "summary": "自分で選んだプロバイダーを使う任意の AI アシスタントと、Claude Code や Cursor などが保存済み接続を使えるローカル MCP（Model Context Protocol）サーバー。"
             },
             {
                 "slug": "connections",
@@ -43,7 +42,7 @@
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "Mac、iPhone、iPad 間の iCloud 同期、共有できる接続ファイル、チーム共有のための Team Catalog と Team Library。"
+                "summary": "Mac、iPhone、iPad 間の iCloud Sync、共有できる接続ファイル、チーム共有のための Team Catalog と Team Library。"
             }
         ]
     },
@@ -54,7 +53,7 @@
     },
     "paid": {
         "title": "無料と有料",
-        "lead": "Mac アプリは無料で、試用期間はありません。Starter または Team プランで以下の機能を追加でき、Team は Starter の全機能を含みます。すべての対応エンジンへの接続、AI アシスタント、MCP サーバー、セーフモードにライセンスは不要です。iPhone・iPad アプリは無料で、アプリ内課金もありません。",
+        "lead": "Mac アプリは無料で、試用期間はありません。Starter または Team プランで以下の機能を追加でき、Team は Starter の全機能を含みます。すべての対応エンジンへの接続、AI アシスタント、MCP サーバー、Safe Mode にライセンスは不要です。iPhone・iPad アプリは無料で、アプリ内課金もありません。",
         "caption": "Mac アプリの有料機能、必要なプラン、説明ページ",
         "columns": {
             "feature": "機能",

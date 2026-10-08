@@ -100,7 +100,7 @@
                 "href": "/features/ai-mcp"
             },
             {
-                "text": "<link>Vergleichen und synchronisieren</link> vergleicht Struktur oder Daten zweier Datenbanken und gleicht Unterschiede ab. Es gehört zu Starter.",
+                "text": "<link>Compare & Sync</link> vergleicht Struktur oder Daten zweier Datenbanken und gleicht Unterschiede ab. Es gehört zu Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -139,9 +139,9 @@
     "switching": {
         "intro": "TablePro liest Verbindungen aus deinem DBeaver-Workspace, Community oder bezahlt. DBeaver muss nicht offen sein; Dateien bleiben unverändert.",
         "steps": [
-            "Wähle in TablePro <ui>Ablage > Importieren > Aus anderer App importieren…</ui>",
-            "Wähle DBeaver und aktiviere <ui>Passwörter einschließen</ui>. TablePro entschlüsselt gespeicherte Passwörter; im Schlüsselbund ist nichts zu genehmigen.",
-            "Prüfe Liste und Duplikate und klicke <ui>Importieren</ui>. Ordner werden Gruppen, SSH-Einstellungen werden übernommen. Nicht unterstützte Datenbanken sind abgewählt.",
+            "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
+            "Wähle DBeaver und aktiviere <ui>Include passwords</ui>. TablePro entschlüsselt gespeicherte Passwörter; im Schlüsselbund ist nichts zu genehmigen.",
+            "Prüfe Liste und Duplikate und klicke <ui>Import</ui>. Ordner werden Gruppen, SSH-Einstellungen werden übernommen. Nicht unterstützte Datenbanken sind abgewählt.",
             "Öffne vor dem Entfernen von DBeaver eine Verbindung mit Passwort zum Prüfen der Übernahme."
         ],
         "after": [
@@ -179,7 +179,7 @@
         "dbeaver-bundled-jdk": "Der Download enthält eine eigene Java-Laufzeit",
         "dbeaver-databases": "Community verbindet JDBC-Engines, aber kein NoSQL wie MongoDB, Redis oder Cassandra. Bezahlversionen ergänzen sie.",
         "dbeaver-ai-community-providers": "In {edition} KI-Chat mit OpenAI oder GitHub Copilot. Bezahlversionen ergänzen Anbieter und Erklärungen von Abfragen und Fehlern.",
-        "dbeaver-mcp-client": "Bezahlversionen nutzen MCP-Server als Client. Die Desktop-App betreibt keinen eigenen MCP-Server.",
+        "dbeaver-mcp-server": "Lite, Enterprise und Ultimate enthalten ab Version {version} einen lokalen MCP-Server. Diese Version war bei der Prüfung im Early Access. Community hat keinen.",
         "dbeaver-git-sync": "Git-Sync für Projekte ab {edition}",
         "dbeaver-erd-edit-paid": "Nur Ansicht in Community. Bearbeitung in Enterprise, Ultimate und Team.",
         "dbeaver-query-builder-paid": "In jeder Bezahlversion, nicht Community",

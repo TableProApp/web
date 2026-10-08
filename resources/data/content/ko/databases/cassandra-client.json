@@ -38,9 +38,9 @@
             "title": "탐색 및 CQL 실행",
             "paragraphs": [
                 "사이드바에서 테이블을 열어 데이터 그리드로 읽습니다. 리스트·세트·맵·튜플은 컬렉션, 사용자 정의 유형은 필드, <code>duration</code>은 <code>1d2h30m</code>, 벡터는 숫자 목록, blob은 십육진수로 표시됩니다. CQL 편집기 결과는 읽기 전용이므로 사이드바에서 연 테이블로 행을 변경합니다.",
-                "CQL에는 OFFSET이 없어 첫 행부터 앞으로 읽습니다. 이미 본 페이지의 Next·Previous는 읽기 한 번이고 먼 페이지로 이동하면 앞 페이지를 모두 읽습니다. 행은 토큰 순서이며 CQL은 한 파티션 내 클러스터링 열만 정렬하므로 열 헤더는 재정렬하지 않습니다. 테이블을 열 때는 세지 않고 <ui>Count Exactly</ui>의 <code>SELECT COUNT(*)</code>가 모든 파티션을 읽습니다.",
+                "CQL에는 OFFSET이 없어 첫 행부터 앞으로 읽습니다. 이미 본 페이지의 Next·Previous는 읽기 한 번이고 먼 페이지로 이동하면 앞 페이지를 모두 읽습니다. 행은 토큰 순서이며 CQL은 한 파티션 내 클러스터링 열만 정렬하므로 열 헤더는 재정렬하지 않습니다. 테이블을 열 때는 세지 않고 <ui>정확히 계산</ui>(Count Exactly)의 <code>SELECT COUNT(*)</code>가 모든 파티션을 읽습니다.",
                 "<filters>필터</filters>는 <code>ALLOW FILTERING</code>을 추가하므로 전체 파티션 키를 지정하지 않으면 서버가 모든 파티션을 읽습니다. 포함·시작·끝 일치는 LIKE로 보내고 Cassandra는 SASI·SAI 인덱스 열에서만 받습니다. 같지 않음·is NULL처럼 CQL로 표현 못하는 연산자는 이름을 알려 거부하며 OR가 없어 조건은 AND만 사용합니다.",
-                "<editing>편집한 값</editing>은 열의 CQL 유형으로 보내며 파싱 못하는 값은 전체 저장을 멈춥니다. 각 행은 전체 기본 키로 지정한 개별 구문으로 씁니다. <ui>Add Row</ui>는 <code>INSERT … IF NOT EXISTS</code>를 써 같은 키의 기존 행을 덮어쓰지 않습니다. 키 열은 직접 변경 못하므로 행을 삭제하고 다시 추가하세요.",
+                "<editing>편집한 값</editing>은 열의 CQL 유형으로 보내며 파싱 못하는 값은 전체 저장을 멈춥니다. 각 행은 전체 기본 키로 지정한 개별 명령문으로 씁니다. <ui>행 추가</ui>(Add Row)는 <code>INSERT … IF NOT EXISTS</code>를 써 같은 키의 기존 행을 덮어쓰지 않습니다. 키 열은 직접 변경 못하므로 행을 삭제하고 다시 추가하세요.",
                 "카운터 열은 CQL 편집기에서 <code>UPDATE … SET c = c + 1</code>이 필요하며 그리드가 쓰는 일반 UPDATE는 서버가 거부합니다. 연결 시간 제한은 Options를 따르지만 CQL 요청은 드라이버 고정 제한을 유지하고 앱의 쿼리 시간 제한은 바꾸지 않습니다."
             ]
         },
@@ -48,7 +48,7 @@
             "id": "schema",
             "title": "키스페이스 및 테이블",
             "paragraphs": [
-                "<structure>Structure 탭</structure>은 열별 CQL 유형을 나열하고 파티션 키·클러스터링 열 모두 기본 키로 표시하며 보조 인덱스를 보여 줍니다. 열 추가·삭제를 지원하고 인덱스 등 나머지 변경은 편집기의 CQL 구문으로 합니다.",
+                "<structure>Structure 탭</structure>은 열별 CQL 유형을 나열하고 파티션 키·클러스터링 열 모두 기본 키로 표시하며 보조 인덱스를 보여 줍니다. 열 추가·삭제를 지원하고 인덱스 등 나머지 변경은 편집기의 CQL 문으로 합니다.",
                 "DDL 탭은 열 목록에서 <code>CREATE TABLE</code>을 재구성해 compaction 같은 테이블 옵션, 클러스터링 순서와 파티션·클러스터링 키 구분을 생략합니다. 전체 정의는 cqlsh의 <code>DESCRIBE TABLE</code>로 읽으세요. 사용자 정의 함수·집계는 Functions에 나열됩니다."
             ]
         },

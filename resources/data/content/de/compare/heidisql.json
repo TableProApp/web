@@ -15,7 +15,7 @@
         "tablepro": [
             "Dein Mac hat Intel. TablePro bietet getrennte Builds für Intel und Apple silicon.",
             "Du nutzt auch MongoDB, Redis, ClickHouse oder DuckDB, nicht nur SQL-Server.",
-            "Du willst Passwörter im macOS-Schlüsselbund und sicheren Modus mit Touch ID vor Produktionsschreibzugriffen.",
+            "Du willst Passwörter im macOS-Schlüsselbund und Safe Mode mit Touch ID vor Produktionsschreibzugriffen.",
             "Du willst KI-Assistent und MCP-Server kostenlos auf Mac.",
             "Du willst auch eine iPhone- und iPad-App."
         ],
@@ -83,7 +83,7 @@
                 "href": "/databases"
             },
             {
-                "text": "Passwörter bleiben im macOS-Schlüsselbund; der <link>sichere Modus</link> einer Verbindung kann vor Schreiben Touch ID oder Passwort verlangen.",
+                "text": "Passwörter bleiben im macOS-Schlüsselbund; der <link>Safe Mode</link> einer Verbindung kann vor Schreiben Touch ID oder Passwort verlangen.",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -128,10 +128,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro hat keinen HeidiSQL-Importer. Füge jede Sitzung als Verbindung hinzu: Formular ausfüllen oder mysql://-, postgresql://- oder sqlserver://-URL unter <ui>Ablage > Importieren > Aus URL importieren…</ui> einfügen.",
+        "intro": "TablePro hat keinen HeidiSQL-Importer. Füge jede Sitzung als Verbindung hinzu: Formular ausfüllen oder mysql://-, postgresql://- oder sqlserver://-URL unter <ui>File > Import > Import from URL…</ui> einfügen.",
         "steps": [],
         "after": [
-            "Richte einen SSH-Tunnel im Tab <ui>Netzwerk</ui> ein. Auf Mac werden auch Sprunghosts unterstützt.",
+            "Richte einen SSH-Tunnel im Tab <ui>Network</ui> ein. Auf Mac werden auch Sprunghosts unterstützt.",
             "Passwörter kommen in den macOS-Schlüsselbund.",
             "Der Abfrageverlauf beginnt in TablePro neu."
         ],

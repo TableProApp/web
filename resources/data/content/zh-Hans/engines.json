@@ -59,7 +59,7 @@
         }
     },
     "tidb": {
-        "tagline": "通过 MySQL 驱动连接 TiDB 和 TiDB Cloud，停止操作发送 KILL TIDB QUERY。",
+        "tagline": "通过 MySQL 驱动连接 TiDB 和 TiDB Cloud，Stop 发送 KILL TIDB QUERY。",
         "limits": {
             "no-triggers-or-routines": "没有触发器、存储例程或事件。",
             "no-dashboard-or-dump": "没有 Server Dashboard 和 Backup Dump。请改用 TiDB 的 Dumpling 导出。",
@@ -103,7 +103,7 @@
         "limits": {
             "needs-socket-server": "PGlite 必须通过 @electric-sql/pglite-socket 提供服务，需自行启动并保持运行。",
             "single-client": "Socket 服务器一次只接受一个客户端。",
-            "cancel-has-no-effect": "取消不起作用，查询始终运行至完成。"
+            "cancel-has-no-effect": "Cancel 不起作用，查询始终运行至完成。"
         }
     },
     "oracle": {
@@ -263,7 +263,7 @@
         }
     },
     "dameng": {
-        "tagline": "通过原生协议连接Dameng DM8，支持 EXPLAIN 计划和 SSH 隧道。",
+        "tagline": "通过原生协议连接 Dameng DM8，支持 EXPLAIN 计划和 SSH 隧道。",
         "limits": {
             "no-tls": "不支持 TLS。访问私有网络之外的服务器时，请使用 SSH 隧道。"
         }

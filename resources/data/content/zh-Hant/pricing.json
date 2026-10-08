@@ -16,7 +16,7 @@
     },
     "features": {
         "title": "付費方案增加哪些功能",
-        "lead": "只有以下功能需要付費方案，且全部位於 Mac App 中。Team 包含 Starter 的所有功能。連線至任何支援的引擎，以及使用 AI 助理、MCP 伺服器或安全模式，都無需授權。"
+        "lead": "只有以下功能需要付費方案，且全部位於 Mac App 中。Team 包含 Starter 的所有功能。連線至任何支援的引擎，以及使用 AI 助理、MCP 伺服器或 Safe Mode，都無需授權。"
     },
     "license": {
         "title": "授權如何運作",
@@ -27,7 +27,7 @@
             },
             "activate": {
                 "term": "啟用",
-                "body": "在 Mac 上的 TablePro 中，進入 <ui>Settings > License</ui> 輸入授權金鑰。若要在另一台 Mac 使用，請在<account>您的帳戶</account>的 Macs 頁面移除舊裝置。"
+                "body": "在 Mac 上的 TablePro 中，進入<ui>設定 > 授權</ui>（Settings > License）輸入授權金鑰。若要在另一台 Mac 使用，請在<account>您的帳戶</account>的 Macs 頁面移除舊裝置。"
             },
             "checks": {
                 "term": "驗證",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "帳務",
-        "merchant": "{merchant} 是 TablePro 的交易登記銷售商，負責向您銷售方案、收款、根據帳單地址計算銷售稅或加值稅，並透過電子郵件寄送收據和發票。",
+        "merchant": "{merchant} 是 TablePro 的 merchant of record，負責向您銷售方案、收款、根據帳單地址計算銷售稅或加值稅，並透過電子郵件寄送收據和發票。",
         "renewal": "月付與年付方案會自動續訂，直到您在<account>您的帳戶</account>或 {merchant} 客戶入口網站中取消。取消後，方案可繼續使用至已付費期間結束，您也可在此之前恢復訂閱。如果續費失敗，{merchant} 會透過電子郵件寄送更新信用卡的連結，並在約三週內重試扣款。",
         "portal": "透過 {merchant} 購買的訂單，其發票、收據、付款方式與取消訂閱均可在 <portal>{merchant} 客戶入口網站</portal>中管理，使用結帳時的電子郵件地址登入即可。您帳戶中的 <account>帳單與發票</account> 也可開啟該入口網站。"
     },
@@ -70,6 +70,10 @@
         "body": "TablePro 採用 AGPLv3 開放原始碼，包括付費功能的程式碼。從原始碼建置的版本會以與發行版相同的方式檢查授權。",
         "agpl": "AGPL 對執行 TablePro 不設條件，包括在任何規模的公司中用於工作。其條件適用於散布軟體，以及透過網路向他人提供修改後的版本。",
         "github": "在 GitHub 查看"
+    },
+    "compare": {
+        "title": "與其他用戶端比較",
+        "body": "每個比較頁面都將對方用戶端的價格與 TablePro 的價格並列，並註明查核日期。"
     },
     "faq": {
         "title": "方案常見問題",

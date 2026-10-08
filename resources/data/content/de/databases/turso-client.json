@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "Mit Turso verbinden",
             "paragraphs": [
-                "Wähle Turso als Verbindungstyp und lasse <ui>Verbindungsmodus</ui> auf <ui>Remote (Turso)</ui>. Füge die HTTPS-Datenbank-URL mit Endung <code>.turso.io</code> und einen Token unter <ui>API-Token</ui> ein, der im macOS-Schlüsselbund bleibt. Turso zeigt beides im Dashboard, ebenso <code>turso db show my-db --url</code> und <code>turso db tokens create my-db</code>.",
+                "Wähle Turso als Verbindungstyp und lasse <ui>Connection Mode</ui> auf <ui>Remote (Turso)</ui>. Füge die HTTPS-Datenbank-URL mit Endung <code>.turso.io</code> und einen Token unter <ui>API Token</ui> ein, der im macOS-Schlüsselbund bleibt. Turso zeigt beides im Dashboard, ebenso <code>turso db show my-db --url</code> und <code>turso db tokens create my-db</code>.",
                 "Eine <code>libsql://</code>-URL wird auf HTTPS umgeschrieben; ihr Import erstellt eine Remote-Verbindung. Host-, Port- und Datenbankfelder fehlen, weil die URL eine Datenbank nennt. Verschlüsselt ist die Verbindung bei HTTPS statt Klartext-HTTP; es gibt keinen SSH-Tunnel."
             ]
         },
@@ -36,7 +36,7 @@
             "id": "work",
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
-                "libSQL spricht SQLite-Syntax; Durchsuchen, <explain>EXPLAIN QUERY PLAN</explain>-Diagramme, <editing>vorgemerkte Änderungen mit SQL-Vorschau</editing> und Export funktionieren wie bei <sqlite>SQLite</sqlite>.",
+                "libSQL spricht SQLite-Syntax; Durchsuchen, <explain>EXPLAIN QUERY PLAN</explain>-Diagramme, <editing>vorgemerkte Änderungen mit Preview SQL</editing> und Export funktionieren wie bei <sqlite>SQLite</sqlite>.",
                 "Eine Remote-Verbindung führt keine Transaktionen aus. Jede Anweisung ist eine eigene HTTP-Anfrage mit eigenem Commit; <code>BEGIN</code> meldet „Transaktionen werden in diesem Modus nicht unterstützt“. Transaktionen brauchen eine lokale libSQL-Datei, beschrieben im <libsql>libSQL-Abschnitt</libsql>.",
                 "Remote-Modus lädt keine SQLite-Erweiterungen: Turso führt die mit seinem Server gebauten aus. Drosselt Turso eine Verbindung, nennt der Fehler die Wartezeit in Sekunden vor dem Wiederholen."
             ]
@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "Tabellen, Indizes und Trigger",
             "paragraphs": [
-                "Der <structure>Struktur-Tab</structure> erstellt Tabellen, fügt Spalten und Indizes hinzu und entfernt sie und erstellt, bearbeitet und löscht Trigger. Tabellen, nicht Sichten, lassen sich in der Seitenleiste umbenennen.",
+                "Der <structure>Structure-Tab</structure> erstellt Tabellen, fügt Spalten und Indizes hinzu und entfernt sie und erstellt, bearbeitet und löscht Trigger. Tabellen, nicht Sichten, lassen sich in der Seitenleiste umbenennen.",
                 "Zum Umordnen von Spalten oder Ändern eines Fremdschlüssels in einer Remote-Datenbank schreibt TablePro das Neuaufbauskript zum Lesen und eigenen Ausführen. Es kann es nicht selbst ausführen, weil eine Transaktion über getrennte HTTP-Anfragen nötig wäre."
             ]
         },
@@ -63,9 +63,9 @@
             "title": "libSQL",
             "paragraphs": [
                 "Wähle libSQL für eigene sqld-Server oder eine Datei auf diesem Mac. Remote erreicht jeden sqld mit Hrana-v2-Pipeline-Endpunkt, auch einen lokalen mit Standardport 8080. Lasse den Token bei einem Server ohne <code>--auth-jwt-key-file</code> leer oder gib einen JWT passend zu seinem Schlüssel an.",
-                "<ui>Lokale Datei</ui> öffnet libSQL mit der SQLite-Engine des Treibers; ein fehlender Pfad wird samt Ordnern erstellt. Lokale Dateien führen Transaktionen aus, laden SQLite-Erweiterungen aus der Erweiterungsliste und führen Spaltenumordnung oder Fremdschlüsselneuaufbau nach Bestätigung aus.",
+                "<ui>Local File</ui> öffnet libSQL mit der SQLite-Engine des Treibers; ein fehlender Pfad wird samt Ordnern erstellt. Lokale Dateien führen Transaktionen aus, laden SQLite-Erweiterungen aus der Erweiterungsliste und führen Spaltenumordnung oder Fremdschlüsselneuaufbau nach Bestätigung aus.",
                 "Nur libSQL bekannte Anweisungen wie <code>ALTER TABLE … ALTER COLUMN</code> scheitern lokal, weil SQLite sie erhält. Verschlüsselte libSQL-Dateien öffnen nicht. Öffne nie eine Datei, die eine laufende App als eingebettete Turso-Replik synchronisiert: Gleichzeitiger Zugriff zweier Programme kann sie beschädigen.",
-                "<backup>Backup-Dump und Dump wiederherstellen</backup> führen {dumpTool} auf einer lokalen libSQL-Datei aus."
+                "<backup>Backup Dump und Restore Dump</backup> führen {dumpTool} auf einer lokalen libSQL-Datei aus."
             ]
         }
     ],

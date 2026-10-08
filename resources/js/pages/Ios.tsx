@@ -95,7 +95,9 @@ function Row({ text, children }: { text: ReactNode; children: ReactNode }) {
  * it. Engines are named from data and never counted, Safe Mode has its own
  * three levels, export goes through the clipboard and the share sheet, and
  * the page says plainly what the app leaves to the Mac: jump hosts, Redis key
- * browsing, the AI assistant and the rest of `#limits`.
+ * browsing, the AI assistant and the rest of `#limits`. What is wrong in the
+ * released version sits in `#known-issues`, under that version's number, and
+ * not inside the feature copy.
  *
  * Every image is an `AssetSlot` from the manifest; one the owner has not
  * supplied yet leaves no gap in production. The App Store badge is Apple's
@@ -305,6 +307,18 @@ export default function Ios({ content, ios, macRequirements, engines, safeModeLe
                     />
                 </p>
             </Section>
+
+            {ios?.version && (
+                <Section id="known-issues" title={fmt(content.knownIssues.title, { version: ios.version })} width="text">
+                    <ul className="type-body list-disc space-y-2 pl-6 text-foreground marker:text-muted-foreground">
+                        {content.knownIssues.items.map((item) => (
+                            <li key={item} className="pl-1">
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+            )}
 
             <Section id="privacy" title={content.privacy.title}>
                 <Row text={<Paragraphs items={content.privacy.paragraphs} tags={tags} values={values} />}>

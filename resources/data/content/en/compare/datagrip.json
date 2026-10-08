@@ -32,6 +32,10 @@
         "vcs": {
             "label": "Version control",
             "tablepro": "Free for a linked SQL folder: Git status letters, each file’s commit history with a side-by-side diff, Restore This Version and Discard Changes. No staging, commits, pushes or branches"
+        },
+        "usageStatistics": {
+            "label": "Usage statistics",
+            "tablepro": "A daily usage report, on by default, which you can turn off in Settings"
         }
     },
     "stronger": {
@@ -169,8 +173,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "For learning, hobby projects, content creation and open-source work without commercial benefit, with every feature. It is activated through a JetBrains Account, and usage statistics are collected with no way to opt out.",
+        "datagrip-non-commercial": "For learning, hobby projects, content creation and open-source work without commercial benefit, with every feature. It is activated through a JetBrains Account.",
         "datagrip-databases": "Complete support, with code inspections and quick-fixes, for its main engines. Others, such as DuckDB, Firebird, Informix and Databricks, get basic support through their JDBC driver: highlighting and object browsing, without error checking.",
-        "datagrip-ai-quota": "JetBrains AI: a free tier with a small, recurring quota of AI credits, paid AI plans for more use of JetBrains’ own service, or your own provider key or a local model."
+        "datagrip-ai-quota": "JetBrains AI: a free tier with a small, recurring quota of AI credits, paid AI plans for more use of JetBrains’ own service, or your own provider key or a local model.",
+        "datagrip-usage-statistics": "With the free non-commercial license, usage statistics are collected with no way to opt out"
     }
 }

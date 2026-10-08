@@ -31,7 +31,11 @@
     "rows": {
         "vcs": {
             "label": "Versionsverwaltung",
-            "tablepro": "Kostenlos für einen verknüpften SQL-Ordner: Git-Statusbuchstaben, Commit-Verlauf jeder Datei mit nebeneinander angezeigten Änderungen, Diese Version wiederherstellen und Änderungen verwerfen. Kein Staging, Commit, Push oder Branching"
+            "tablepro": "Kostenlos für einen verknüpften SQL-Ordner: Git-Statusbuchstaben, Commit-Verlauf jeder Datei mit nebeneinander angezeigten Änderungen, Restore This Version und Discard Changes. Kein Staging, Commit, Push oder Branching"
+        },
+        "usageStatistics": {
+            "label": "Nutzungsstatistiken",
+            "tablepro": "Ein täglicher Nutzungsbericht, standardmäßig aktiviert und in den Einstellungen abschaltbar"
         }
     },
     "stronger": {
@@ -100,7 +104,7 @@
                 "href": "/features/ai-mcp"
             },
             {
-                "text": "Beide haben einen MCP-Server. <link>Der von TablePro</link> ist kostenlos, lauscht nur auf deinem Mac und lässt jede Verbindung festlegen, was externe Apps dürfen: Gesperrt, Nur lesen oder Lesen und schreiben.",
+                "text": "Beide haben einen MCP-Server. <link>Der von TablePro</link> ist kostenlos, lauscht nur auf deinem Mac und lässt jede Verbindung festlegen, was externe Apps dürfen: Blocked, Read Only oder Read & Write.",
                 "cite": [
                     "cells.mcp"
                 ],
@@ -108,7 +112,7 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>Vergleichen und synchronisieren</link> vergleicht die Struktur oder Daten zweier Datenbanken und erstellt das Skript, das eine an die andere anpasst. Die Funktion gehört zu Starter.",
+                "text": "<link>Compare & Sync</link> vergleicht die Struktur oder Daten zweier Datenbanken und erstellt das Skript, das eine an die andere anpasst. Die Funktion gehört zu Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -149,10 +153,10 @@
     "switching": {
         "intro": "TablePro liest DataGrips globale Datenquellen und die deiner zuletzt verwendeten Projekte. DataGrip muss nicht geöffnet sein, und seine Dateien werden nicht verändert.",
         "steps": [
-            "Wähle in TablePro <ui>Ablage > Importieren > Aus anderer App importieren…</ui>",
-            "Wähle DataGrip. Aktiviere <ui>Passwörter einschließen</ui>, um die von DataGrip im macOS-Schlüsselbund gespeicherten Passwörter zu lesen, einschließlich SSH-Passwörtern und Schlüssel-Passphrasen.",
-            "macOS fragt für jedes gespeicherte Passwort einmal nach deinem Anmeldepasswort. Wähle bei jeder Abfrage <ui>Immer erlauben</ui>.",
-            "Prüfe die Liste, lege den Umgang mit Duplikaten fest und klicke auf <ui>Importieren</ui>. Gruppen, SSH-Tunnel und SSL-Einstellungen werden übernommen. Verbindungen zu nicht unterstützten Engines sind in der Liste nicht ausgewählt.",
+            "Wähle in TablePro <ui>File > Import > Import from Other App…</ui>",
+            "Wähle DataGrip. Aktiviere <ui>Include passwords</ui>, um die von DataGrip im macOS-Schlüsselbund gespeicherten Passwörter zu lesen, einschließlich SSH-Passwörtern und Schlüssel-Passphrasen.",
+            "macOS fragt für jedes gespeicherte Passwort einmal nach deinem Anmeldepasswort. Wähle bei jeder Abfrage <ui>Always Allow</ui>.",
+            "Prüfe die Liste, lege den Umgang mit Duplikaten fest und klicke auf <ui>Import</ui>. Gruppen, SSH-Tunnel und SSL-Einstellungen werden übernommen. Verbindungen zu nicht unterstützten Engines sind in der Liste nicht ausgewählt.",
             "Öffne vor dem Entfernen von DataGrip eine Verbindung mit Passwort, um dessen Übernahme zu prüfen."
         ],
         "after": [
@@ -177,19 +181,20 @@
         {
             "id": "mcp",
             "question": "DataGrip hat ebenfalls einen MCP-Server. Was macht der von TablePro?",
-            "answer": "Er lässt Clients wie Claude Code und Cursor deine gespeicherten TablePro-Verbindungen nutzen, ohne ein Passwort zu sehen. Er lauscht nur auf 127.0.0.1, jede Verbindung ist für externe Apps schreibgeschützt, bis du das änderst, und er ist kostenlos. DataGrip bietet seinen seit Version {cells.mcp.version}.",
+            "answer": "Er lässt Clients wie Claude Code und Cursor deine gespeicherten TablePro-Verbindungen nutzen, ohne ein Passwort zu sehen. Er lauscht nur auf 127.0.0.1, jede Verbindung steht für externe Apps auf Read Only, bis du das änderst, und er ist kostenlos. DataGrip bietet seinen seit Version {cells.mcp.version}.",
             "href": null
         },
         {
             "id": "jdbc-url",
             "question": "Kann ich eine JDBC-URL aus DataGrip einfügen?",
-            "answer": "Ja, für von TablePro unterstützte Engines. <ui>Datei > Importieren > Aus URL importieren…</ui> liest jdbc:-URLs sowie postgres://- und mysql://-URLs. Nutze den oben beschriebenen Importer, um alle Datenquellen auf einmal zu übernehmen.",
+            "answer": "Ja, für von TablePro unterstützte Engines. <ui>File > Import > Import from URL…</ui> liest jdbc:-URLs sowie postgres://- und mysql://-URLs. Nutze den oben beschriebenen Importer, um alle Datenquellen auf einmal zu übernehmen.",
             "href": null
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "Für Lernen, Hobbyprojekte, Inhaltserstellung und Open-Source-Arbeit ohne kommerziellen Nutzen, mit allen Funktionen. Aktivierung über einen JetBrains Account; Nutzungsstatistiken werden ohne Abschaltmöglichkeit erfasst.",
+        "datagrip-non-commercial": "Für Lernen, Hobbyprojekte, Inhaltserstellung und Open-Source-Arbeit ohne kommerziellen Nutzen, mit allen Funktionen. Aktivierung über einen JetBrains Account.",
         "datagrip-databases": "Vollständige Unterstützung mit Codeprüfungen und Schnellkorrekturen für die Haupt-Engines. Andere wie DuckDB, Firebird, Informix und Databricks erhalten grundlegende Unterstützung über ihren JDBC-Treiber: Hervorhebung und Objektbrowser, ohne Fehlerprüfung.",
-        "datagrip-ai-quota": "JetBrains AI: kostenlose Stufe mit kleinem wiederkehrendem KI-Credit-Kontingent, kostenpflichtige KI-Tarife für mehr Nutzung von JetBrains’ eigenem Dienst oder eigener Anbieterschlüssel bzw. lokales Modell."
+        "datagrip-ai-quota": "JetBrains AI: kostenlose Stufe mit kleinem wiederkehrendem KI-Credit-Kontingent, kostenpflichtige KI-Tarife für mehr Nutzung von JetBrains’ eigenem Dienst oder eigener Anbieterschlüssel bzw. lokales Modell.",
+        "datagrip-usage-statistics": "Mit der kostenlosen Lizenz für nicht gewerbliche Nutzung werden Nutzungsstatistiken ohne Abschaltmöglichkeit erfasst"
     }
 }

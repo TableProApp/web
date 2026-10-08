@@ -32,7 +32,7 @@
             "paragraphs": [
                 "Wähle eine Datei im Formular oder ziehe sie auf ein TablePro-Fenster oder Dock-Symbol. Ein noch nicht vorhandener Dateipfad wird beim Verbinden erstellt. Eine Datei öffnet als SQLite, wenn die ersten Bytes <code>SQLite format 3</code> lauten, unabhängig vom Namen.",
                 "Finder zeigt TablePro unter Öffnen mit für .db, .sqlite, .sqlite3 und ähnliche Dateien. Eine Datenbank in einem geschützten macOS-Ordner wie Nachrichten oder Safari-Verlauf braucht zuerst Festplattenvollzugriff; die besitzende App muss meist beendet werden.",
-                "Eine Datenbank auf einem anderen Rechner öffnet im <remoteFiles>Remote-Datei-Bereich</remoteFiles>. Auf dem Server führt Anweisungen über SSH gegen die aktive Datei aus, ohne weitere Hostinstallation außer <code>python3</code>. Als schreibgeschützte Kopie lädt einen Snapshot über SFTP und öffnet ihn schreibgeschützt.",
+                "Eine Datenbank auf einem anderen Rechner öffnet im <remoteFiles>Bereich Remote File</remoteFiles>. Die Option On the Server führt Anweisungen über SSH gegen die aktive Datei aus, ohne weitere Hostinstallation außer <code>python3</code>. Die Option As a Read-Only Copy lädt einen Snapshot über SFTP und öffnet ihn schreibgeschützt.",
                 "Wähle zum Erkunden Hilfe > Beispieldatenbank öffnen. Es öffnet Chinook, ein mitgeliefertes kleines Beispiel eines digitalen Musikladens."
             ]
         },
@@ -41,15 +41,15 @@
             "title": "Abfragen und bearbeiten",
             "paragraphs": [
                 "Der Treiber enthält eigenes SQLite; SQL läuft daher unabhängig von macOS auf derselben Version. <explain>EXPLAIN QUERY PLAN</explain> wird als Diagramm gezeichnet.",
-                "Lade Erweiterungen wie sqlite-vec und SpatiaLite pro Verbindung in der gelisteten Reihenfolge; Funktionen und virtuelle Tabellen funktionieren in Editor, Seitenleiste und Struktur. Die SQL-Funktion <code>load_extension()</code> bleibt verweigert; eine durch Sync, Import oder Link erhaltene Liste lädt bis zu deiner Zustimmung nichts.",
-                "Zeilenänderungen werden bis zum Speichern vorgemerkt; <editing>SQL-Vorschau</editing> zeigt vorher jede Anweisung. Ändert ein anderes Programm die Datei, lädt die Seitenleiste automatisch neu."
+                "Lade Erweiterungen wie sqlite-vec und SpatiaLite pro Verbindung in der gelisteten Reihenfolge; Funktionen und virtuelle Tabellen funktionieren in Editor, Seitenleiste und Structure-Tab. Die SQL-Funktion <code>load_extension()</code> bleibt verweigert; eine durch Sync, Import oder Link erhaltene Liste lädt bis zu deiner Zustimmung nichts.",
+                "Zeilenänderungen werden bis zum Speichern vorgemerkt; <editing>Preview SQL</editing> zeigt vorher jede Anweisung. Ändert ein anderes Programm die Datei, lädt die Seitenleiste automatisch neu."
             ]
         },
         {
             "id": "schema",
-            "title": "Struktur",
+            "title": "Structure",
             "paragraphs": [
-                "Tabellen oder Spalten umbenennen, Spalten hinzufügen oder entfernen und ab SQLite 3.53 CHECK hinzufügen oder entfernen laufen als ALTER TABLE. Andere <structure>Struktur</structure>-Änderungen wie Spaltentyp oder Fremdschlüssel bauen die Tabelle neu: TablePro schreibt das Skript, kopiert Zeilen mit rowids, stellt Indizes und Trigger wieder her und führt erst nach Bestätigung aus.",
+                "Tabellen oder Spalten umbenennen, Spalten hinzufügen oder entfernen und ab SQLite 3.53 CHECK hinzufügen oder entfernen laufen als ALTER TABLE. Andere Änderungen im <structure>Structure-Tab</structure> wie Spaltentyp oder Fremdschlüssel bauen die Tabelle neu: TablePro schreibt das Skript, kopiert Zeilen mit rowids, stellt Indizes und Trigger wieder her und führt erst nach Bestätigung aus.",
                 "Ein Typwechsel liest Werte mit neuer Affinität erneut: <code>'007'</code> wird in INTEGER zu <code>7</code>; der Prüfdialog meldet es vor Ausführung. Virtuelle Tabellen wie FTS5 lassen sich nicht neu aufbauen; Speichern nennt sie.",
                 "Trigger lassen sich in der Seitenleiste lesen und bearbeiten."
             ]
@@ -59,15 +59,15 @@
             "title": "Warten und sichern",
             "paragraphs": [
                 "Wartung führt VACUUM, ANALYZE, REINDEX und eine Integritätsprüfung aus, jeweils vorher als SQL gezeigt. Das Server-Dashboard zeigt Dateigröße, Seitenzahl, Seitengröße, Journal-Modus und Cachegröße.",
-                "<backup>Backup-Dump</backup> schreibt die Datenbank mit {dumpTool} in eine .sql-Datei; Dump wiederherstellen führt eine solche gegen eine Datenbank aus."
+                "<backup>Backup Dump</backup> schreibt die Datenbank mit {dumpTool} in eine .sql-Datei; Restore Dump führt eine solche gegen eine Datenbank aus."
             ]
         },
         {
             "id": "move-data",
             "title": "Daten übertragen",
             "paragraphs": [
-                "<importData>Importiere</importData> {importFormats}-Dateien oder öffne CSV, JSON oder XLSX im <dataFiles>Datendateien-Fenster</dataFiles> und importiere dort. Tabellen und Ergebnisse exportieren als {exportFormats}.",
-                "<copy>Kopieren nach</copy> überträgt Tabellen und Zeilen in eine andere Verbindung wie PostgreSQL und listet jeden angenäherten Spaltentyp. Siehe auch <files>Dateien als Datenbanken nutzen</files>."
+                "<importData>Importiere</importData> {importFormats}-Dateien oder öffne CSV, JSON oder XLSX im <dataFiles>Fenster Data Files</dataFiles> und importiere dort. Tabellen und Ergebnisse exportieren als {exportFormats}.",
+                "<copy>Copy To</copy> überträgt Tabellen und Zeilen in eine andere Verbindung wie PostgreSQL und listet jeden angenäherten Spaltentyp. Siehe auch <files>Dateien als Datenbanken nutzen</files>."
             ]
         },
         {

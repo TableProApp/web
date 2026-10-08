@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro vs TablePlus",
-        "lead": "TablePlus와 TablePro는 모두 스스로를 네이티브라고 설명하는 데이터베이스 클라이언트로, Mac, iPhone, iPad 앱을 제공합니다. TablePlus는 Windows와 Linux에서도 실행됩니다. TablePro는 오픈 소스이며 유료 요금제는 Mac 앱에 선택 기능을 추가합니다."
+        "lead": "TablePlus와 TablePro는 모두 스스로를 네이티브라고 설명하는 데이터베이스 클라이언트로, Mac, iPhone, iPad 앱을 제공합니다. TablePlus는 Windows와 Linux에서도 실행됩니다. TablePro는 오픈 소스이며 유료 요금제는 Mac 앱에 선택 기능을 추가합니다. 이름은 비슷하지만 서로 관련 없는 개발사가 만든 별개의 제품입니다."
     },
     "shortAnswer": {
         "tablepro": [
             "오픈 소스 클라이언트를 원합니다. TablePro는 유료 기능의 코드까지 AGPLv3로 공개합니다.",
-            "AI 어시스턴트와 MCP 서버를 무료로 원합니다. Mac 앱에서 둘 다 무료이며 AI 제공자를 선택할 수 있습니다.",
             "앱 내 구입이 없는 무료 iPhone·iPad 앱을 원합니다.",
             "필요한 기능에만 비용을 내고 싶습니다. 무료 앱에는 탭이나 창 제한이 없으며 유료 요금제는 {starterExamples} 같은 기능을 추가합니다."
         ],
@@ -37,7 +36,7 @@
             "tablepro": "CSV, JSON, SQL 및 다른 형식과 함께 무료"
         },
         "safeMode": {
-            "label": "안전 모드",
+            "label": "Safe Mode",
             "tablepro": "연결별로 Silent부터 Read-Only까지 설정하며 엄격한 수준에서는 Touch ID 사용"
         },
         "setapp": {
@@ -71,6 +70,15 @@
                 ],
                 "feature": null,
                 "href": null
+            },
+            {
+                "text": "더 오래된 시스템에서도 실행됩니다. macOS {mac.minVersion} 및 iOS {cells.ios.value}만 있으면 되지만, TablePro는 둘 다 더 최신 버전이 필요합니다.",
+                "cite": [
+                    "mac",
+                    "cells.ios"
+                ],
+                "feature": null,
+                "href": null
             }
         ]
     },
@@ -86,7 +94,7 @@
                 "href": null
             },
             {
-                "text": "무료 앱은 지원하는 모든 엔진에 연결하고 AI 어시스턴트, MCP 서버, 안전 모드를 포함하며 탭이나 창 제한이 없습니다. <link>유료 요금제</link>는 {starterExamples} 같은 기능을 추가합니다.",
+                "text": "무료 앱은 지원하는 모든 엔진에 연결하고 AI 어시스턴트, MCP 서버, Safe Mode를 포함하며 탭이나 창 제한이 없습니다. <link>유료 요금제</link>는 {starterExamples} 같은 기능을 추가합니다.",
                 "cite": [],
                 "feature": null,
                 "href": "/pricing"
@@ -100,8 +108,10 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud 동기화</link>는 Mac과 iPhone 또는 iPad 사이의 연결을 맞춰 줍니다. Mac에서는 Starter에 포함되며 iPhone·iPad 앱에서는 무료입니다.",
-                "cite": [],
+                "text": "<link>iCloud Sync</link>는 Mac과 iPhone 또는 iPad 사이의 연결을 맞춰 줍니다. Mac에서는 Starter에 포함되며 iPhone·iPad 앱에서는 무료입니다. TablePlus는 Dropbox나 iCloud처럼 직접 고른 클라우드 폴더를 통해 연결을 동기화합니다.",
+                "cite": [
+                    "cells.sync"
+                ],
                 "feature": "icloud-sync",
                 "href": null
             },
@@ -145,10 +155,10 @@
     "switching": {
         "intro": "TablePro는 TablePlus가 저장하는 위치에서 연결을 읽으며 Setapp 에디션의 연결도 포함합니다. TablePlus를 열어 둘 필요가 없으며 파일도 변경하지 않습니다.",
         "steps": [
-            "TablePro에서 <ui>File > Import > Import from Other App…</ui>를 선택합니다.",
-            "TablePlus를 선택합니다. <ui>Include passwords</ui>를 켜서 macOS 키체인에 저장된 암호를 읽습니다.",
-            "macOS는 저장된 암호마다 한 번씩 로그인 암호를 요청합니다. 각 메시지에서 <ui>Always Allow</ui>를 선택합니다.",
-            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>Import</ui>를 클릭합니다. 그룹, SSH 터널, 연결 색상이 함께 이전됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
+            "TablePro에서 <ui>파일 > 가져오기 > 다른 앱에서 가져오기…</ui>(File > Import > Import from Other App…)를 선택합니다.",
+            "TablePlus를 선택합니다. <ui>암호 포함</ui>(Include passwords)을 켜서 macOS 키체인에 저장된 암호를 읽습니다.",
+            "macOS는 저장된 암호마다 한 번씩 로그인 암호를 요청합니다. 각 메시지에서 <ui>항상 허용</ui>(Always Allow)을 선택합니다.",
+            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>가져오기</ui>(Import)를 클릭합니다. 그룹, SSH 터널, 연결 색상이 함께 이전됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
             "TablePlus를 삭제하기 전에 암호가 있던 연결을 열어 암호가 이전되었는지 확인합니다."
         ],
         "after": [
@@ -173,7 +183,7 @@
         {
             "id": "license",
             "question": "TablePro를 사용하려면 라이선스가 필요한가요?",
-            "answer": "아니요. TablePro는 지원하는 모든 엔진, AI 어시스턴트, MCP 서버, 안전 모드를 포함해 무료로 사용할 수 있습니다. Starter 또는 Team 요금제는 Mac 앱에 {starterExamples} 같은 선택 기능을 추가합니다. <link>요금 보기</link>.",
+            "answer": "아니요. TablePro는 지원하는 모든 엔진, AI 어시스턴트, MCP 서버, Safe Mode를 포함해 무료로 사용할 수 있습니다. Starter 또는 Team 요금제는 Mac 앱에 {starterExamples} 같은 선택 기능을 추가합니다. <link>요금 보기</link>.",
             "href": "/pricing"
         },
         {
@@ -188,7 +198,8 @@
         "tableplus-one-year-updates": "한 번 결제하면 1년 업데이트가 포함되며 이후에도 앱은 계속 작동합니다.",
         "tableplus-databases": "관계형, 문서, 키-값, 분석 엔진을 지원하며 PostgreSQL, MySQL, SQL Server, SQLite, Redis, MongoDB, Oracle, Cassandra, Snowflake, Vertica, Greenplum 등이 포함됩니다. 일부 엔진은 특정 플랫폼에서만 사용할 수 있습니다.",
         "tableplus-ai": "OpenAI, Anthropic, GitHub Copilot 또는 로컬 모델과 작동하는 채팅 플러그인",
-        "tableplus-ios-purchase": "무료로 다운로드할 수 있으며 앱 내 구입이 있습니다. 활성 TablePlus 라이선스에도 정해진 수의 기기 사용이 포함됩니다.",
+        "tableplus-ios-purchase": "무료로 다운로드할 수 있으며 앱 내 구입이 있습니다. 활성 TablePlus 라이선스에도 정해진 수의 기기 사용이 포함됩니다. iOS {value} 이상이 필요합니다.",
+        "tableplus-sync-folder": "Dropbox나 iCloud처럼 직접 고른 클라우드 폴더를 통해 연결을 동기화합니다",
         "tableplus-safe-mode-levels": "Touch ID를 지원하는 {value}개 수준"
     }
 }

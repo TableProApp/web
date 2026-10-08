@@ -31,7 +31,7 @@
             "title": "Apri un file di database",
             "paragraphs": [
                 "Scegli un file nel modulo di connessione oppure trascinalo su una finestra di TablePro o sull’icona nel Dock. Un percorso verso un file non ancora esistente lo crea alla connessione. Un file si apre come SQLite quando i primi byte indicano <code>SQLite format 3</code>, indipendentemente dal nome.",
-                "Il Finder elenca TablePro sotto Apri con per file .db, .sqlite, .sqlite3 e simili. Un database in una cartella protetta da macOS, come Messaggi o la cronologia di Safari, richiede prima Accesso completo al disco e di solito è necessario chiudere l’app a cui appartiene.",
+                "Il Finder elenca TablePro sotto Apri con per file .db, .sqlite, .sqlite3 e simili. Un database in una cartella protetta da macOS, come Messaggi o la cronologia di Safari, richiede prima Accesso completo al disco (Full Disk Access) e di solito è necessario chiudere l’app a cui appartiene.",
                 "Un database su un altro computer si apre dal <remoteFiles>pannello Remote File</remoteFiles>. On the Server esegue le istruzioni sul file attivo tramite SSH, senza installare nulla sull’host oltre a <code>python3</code>. As a Read-Only Copy scarica un’istantanea tramite SFTP e la apre in sola lettura.",
                 "Per esplorare prima, scegli Help > Open Sample Database. Apre Chinook, un piccolo esempio di negozio di musica digitale incluso nell’app."
             ]
@@ -47,7 +47,7 @@
         },
         {
             "id": "schema",
-            "title": "Struttura",
+            "title": "Structure",
             "paragraphs": [
                 "Rinominare una tabella o colonna, aggiungere o eliminare una colonna e, da SQLite 3.53, aggiungere o eliminare un CHECK usa ALTER TABLE. Altre modifiche nella <structure>scheda Structure</structure>, come il tipo di una colonna o una chiave esterna, ricostruiscono la tabella: TablePro scrive lo script, copia le righe con i relativi rowid, ripristina indici e trigger e lo esegue solo dopo la tua conferma.",
                 "Cambiare il tipo di una colonna rilegge i valori tramite la nuova affinità, quindi <code>'007'</code> diventa <code>7</code> in una colonna INTEGER; la schermata di revisione lo segnala prima di eseguire qualsiasi istruzione. Una tabella virtuale, come una tabella FTS5, non può essere ricostruita e il salvataggio ne indica il nome.",
@@ -95,7 +95,7 @@
         {
             "id": "framework-files",
             "question": "Posso aprire il database di sviluppo della mia app?",
-            "answer": "Sì. Apri il file nella posizione usata dal framework, come <code>db/development.sqlite3</code> in Rails o <code>db.sqlite3</code> in Django. I file sotto <code>~/Library</code>, inclusi i contenitori del Simulatore iOS, richiedono Accesso completo al disco."
+            "answer": "Sì. Apri il file nella posizione usata dal framework, come <code>db/development.sqlite3</code> in Rails o <code>db.sqlite3</code> in Django. I file sotto <code>~/Library</code>, inclusi i contenitori del Simulatore iOS, richiedono Accesso completo al disco (Full Disk Access)."
         }
     ],
     "related": [

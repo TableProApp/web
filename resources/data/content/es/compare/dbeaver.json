@@ -100,7 +100,7 @@
                 "href": "/features/ai-mcp"
             },
             {
-                "text": "<link>Comparar y sincronizar</link> compara estructura o datos de dos bases y sincroniza diferencias. Está en Starter.",
+                "text": "<link>Compare & Sync</link> compara estructura o datos de dos bases y sincroniza diferencias. Está en Starter.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -139,9 +139,9 @@
     "switching": {
         "intro": "TablePro lee conexiones del workspace DBeaver, Community o cualquier edición de pago. DBeaver no necesita estar abierto y sus archivos no cambian.",
         "steps": [
-            "En TablePro, elige <ui>Archivo > Importar > Importar desde otra app…</ui>",
-            "Selecciona DBeaver y activa <ui>Incluir contraseñas</ui>. TablePro descifra las guardadas por DBeaver; no hay aprobación en el Llavero.",
-            "Revisa la lista, decide sobre duplicados y pulsa <ui>Importar</ui>. Carpetas pasan a grupos y se transfieren ajustes SSH. Una base incompatible llega desmarcada.",
+            "En TablePro, elige <ui>File > Import > Import from Other App…</ui>",
+            "Selecciona DBeaver y activa <ui>Include passwords</ui>. TablePro descifra las guardadas por DBeaver; no hay aprobación en el Llavero.",
+            "Revisa la lista, decide sobre duplicados y pulsa <ui>Import</ui>. Carpetas pasan a grupos y se transfieren ajustes SSH. Una base incompatible llega desmarcada.",
             "Antes de eliminar DBeaver, abre una conexión con contraseña para comprobar la transferencia."
         ],
         "after": [
@@ -165,7 +165,7 @@
         {
             "id": "free",
             "question": "¿TablePro es gratis como DBeaver Community?",
-            "answer": "Sí para todos los motores compatibles, IA y MCP: es gratuito y de código abierto AGPLv3. DBeaver vende funciones adicionales como ediciones; TablePro ofrece Starter y Equipo en Mac, con {starterExamples}. <link>Ver precios</link>.",
+            "answer": "Sí para todos los motores compatibles, IA y MCP: es gratuito y de código abierto AGPLv3. DBeaver vende funciones adicionales como ediciones; TablePro ofrece Starter y Team en Mac, con {starterExamples}. <link>Ver precios</link>.",
             "href": "/pricing"
         },
         {
@@ -179,7 +179,7 @@
         "dbeaver-bundled-jdk": "La descarga incluye runtime Java propio",
         "dbeaver-databases": "Community conecta motores JDBC, pero no NoSQL como MongoDB, Redis o Cassandra. Las ediciones de pago los añaden.",
         "dbeaver-ai-community-providers": "En {edition}, chat IA con OpenAI o GitHub Copilot. Las ediciones de pago añaden proveedores y explicaciones de consultas y errores.",
-        "dbeaver-mcp-client": "Las ediciones de pago usan MCP como cliente. La app de escritorio no ejecuta servidor propio.",
+        "dbeaver-mcp-server": "Las ediciones Lite, Enterprise y Ultimate incluyen un servidor MCP local desde la versión {version}, que estaba en acceso anticipado en la fecha de comprobación. Community no lo tiene.",
         "dbeaver-git-sync": "Sincronización Git de proyectos, en {edition} o superior",
         "dbeaver-erd-edit-paid": "Solo lectura en Community. Editable en Enterprise, Ultimate y Team.",
         "dbeaver-query-builder-paid": "En todas las ediciones de pago, no en Community",

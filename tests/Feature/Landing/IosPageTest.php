@@ -261,6 +261,41 @@ it('states the limits a phone user would otherwise discover', function (): void 
     expect(iosPageContent('vi')['limits']['items'])->toHaveCount(count($en['limits']['items']));
 });
 
+it('keeps the notes about the released version in one block, out of the feature copy', function (): void {
+    $en = iosPageContent('en');
+    $issues = implode("\n", $en['knownIssues']['items']);
+
+    // Each is true of App Store 1.0 (build 22): the row editor, the sync round trip, Redis TLS and the Shortcuts CSV parser.
+    expect($issues)->toContain('long text or binary value')->toContain('SSH jump hosts')->toContain('not the host name')->toContain('LF line endings');
+    expect($en['knownIssues']['title'])->toContain('{version}');
+
+    // A feature paragraph says what the app does; "in this version" belongs under the version's heading.
+    $features = Arr::except($en, ['knownIssues', 'seo', 'og']);
+
+    Assert::assertStringNotContainsStringIgnoringCase('this version', implode("\n", array_filter(Arr::dot($features), 'is_string')));
+
+    foreach (Locales::codes() as $locale) {
+        $translated = iosPageContent($locale)['knownIssues'];
+
+        expect($translated['items'])->toHaveCount(count($en['knownIssues']['items']));
+        expect($translated['title'])->toContain('{version}');
+    }
+});
+
+it('server-renders the known issues under the App Store version, after the Mac-only list', function (): void {
+    $html = ssrHtml('/ios');
+    $version = iosPagePlatform()['release']['version'];
+    $limits = strpos($html, 'id="limits"');
+    $issues = strpos($html, 'id="known-issues"');
+    $privacy = strpos($html, 'id="privacy"');
+
+    expect($limits)->not->toBeFalse();
+    expect($issues)->not->toBeFalse('/ios has no #known-issues');
+    expect($privacy)->not->toBeFalse();
+    expect($issues)->toBeGreaterThan($limits)->toBeLessThan($privacy);
+    expect($html)->toMatch('#<h2 id="known-issues-title"[^>]*>Known issues in version ' . preg_quote($version, '#') . '</h2>#');
+});
+
 it('places every iPhone and iPad slot and only manifest ids', function (): void {
     $source = (string) file_get_contents(resource_path('js/pages/Ios.tsx'));
     $assets = json_decode((string) file_get_contents(resource_path('data/assets.json')), true)['assets'];

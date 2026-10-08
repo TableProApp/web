@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Daten ändern mit SQL-Vorschau und sicherem Modus",
-        "description": "Zeilen filtern und ändern, SQL vor dem Speichern prüfen und den sicheren Modus pro Verbindung wählen. Daten zurückspulen stellt alte Werte wieder her."
+        "title": "Daten ändern mit Preview SQL und Safe Mode",
+        "description": "Zeilen filtern und ändern, SQL vor dem Speichern prüfen und den Safe Mode pro Verbindung wählen. Data Rewind stellt alte Werte wieder her."
     },
     "og": {
         "kicker": "Daten bearbeiten",
@@ -17,7 +17,7 @@
             "id": "browse",
             "title": "Finde die benötigten Zeilen",
             "paragraphs": [
-                "Sortierung und Seiteneinteilung laufen auf dem Server; große Tabellen öffnen daher ihre erste Seite. Über {countEstimate} Zeilen wird die Anzahl geschätzt. „Genau zählen“ liefert bei Bedarf die tatsächliche Zahl."
+                "Sortierung und Seiteneinteilung laufen auf dem Server; große Tabellen öffnen daher ihre erste Seite. Über {countEstimate} Zeilen wird die Anzahl geschätzt. Count Exactly liefert bei Bedarf die tatsächliche Zahl."
             ],
             "blocks": [
                 {
@@ -42,7 +42,7 @@
             "id": "edit",
             "title": "Daten ändern, einmal speichern",
             "paragraphs": [
-                "Zellenänderungen, neue Zeilen und Löschungen warten markiert im Tab bis <kbd>⌘S</kbd>; vorher wird nichts gesendet. <ui>SQL-Vorschau</ui> (<kbd>⌘⇧P</kbd>) zeigt Anweisungen mit eingesetzten Werten. Beim Speichern werden sie mit gebundenen Parametern gesendet, soweit möglich in einer Transaktion. Die erwartete Zeilenzahl jeder Änderung wird geprüft; bei Abweichung wird das Speichern zurückgerollt."
+                "Zellenänderungen, neue Zeilen und Löschungen warten markiert im Tab bis <kbd>⌘S</kbd>; vorher wird nichts gesendet. <ui>Preview SQL</ui> (<kbd>⌘⇧P</kbd>) zeigt Anweisungen mit eingesetzten Werten. Beim Speichern werden sie mit gebundenen Parametern gesendet, soweit möglich in einer Transaktion. Die erwartete Zeilenzahl jeder Änderung wird geprüft; bei Abweichung wird das Speichern zurückgerollt."
             ],
             "points": [
                 "Zelleneditoren passend zum Spaltentyp: Datums- und Zeitauswahl, ENUM- und SET-Listen, Arrays, JSON, Hex-Editor für Binärwerte und Bildbetrachter.",
@@ -54,19 +54,19 @@
         },
         {
             "id": "safe-mode",
-            "title": "Sicherer Modus für Produktionsverbindungen",
+            "title": "Safe Mode für Produktionsverbindungen",
             "paragraphs": [
-                "Jede Verbindung hat eine Stufe des sicheren Modus: {macSafeModeLevels}. Neue starten mit {macSafeModeDefault}, wo Anweisungen unverändert ausgeführt werden. „Warnung“ fragt vor Schreibvorgängen; die sicheren Stufen verlangen zusätzlich Touch ID oder Mac-Passwort. Vollständige Stufen fragen auch vor Lesevorgängen; „Schreibgeschützt“ verweigert Schreiben und deaktiviert die Bearbeitung. Der sichere Modus ist kostenlos.",
-                "Auf jeder Stufe stoppen DROP, TRUNCATE und DELETE ohne WHERE und fragen vorher. Manche Bedingungen erhöhen die Stufe während ihrer Geltung: ein nur lesendes System, Agent-Modus mit mindestens „Warnung“ und eine von deiner Organisation per Geräteverwaltung (MDM) gesetzte Mindeststufe."
+                "Jede Verbindung hat eine Safe-Mode-Stufe: {macSafeModeLevels}. Neue starten mit {macSafeModeDefault}, wo Anweisungen unverändert ausgeführt werden. Alert fragt vor Schreibvorgängen; die Stufen Safe Mode und Safe Mode (Full) verlangen zusätzlich Touch ID oder Mac-Passwort. Die Stufen mit dem Zusatz (Full) fragen auch vor Lesevorgängen; Read-Only verweigert Schreiben und deaktiviert die Bearbeitung. Der Safe Mode ist kostenlos.",
+                "Auf jeder Stufe stoppen DROP, TRUNCATE und DELETE ohne WHERE und fragen vorher. Manche Bedingungen erhöhen die Stufe während ihrer Geltung: ein nur lesendes System, Agent mode mit mindestens Alert und eine von deiner Organisation per Geräteverwaltung (MDM) gesetzte Mindeststufe."
             ],
             "asset": "mac-safe-mode-touchid",
             "links": [
                 {
-                    "label": "Sicherer Modus und weitere Verbindungsrichtlinien",
+                    "label": "Safe Mode und weitere Verbindungsrichtlinien",
                     "href": "/features/connections#policies"
                 },
                 {
-                    "label": "Agent-Modus",
+                    "label": "Agent mode",
                     "href": "/features/ai-mcp#agent-mode"
                 }
             ]
@@ -75,8 +75,8 @@
             "id": "data-rewind",
             "title": "Data Rewind",
             "paragraphs": [
-                "Data Rewind behält beim Speichern ersetzte Werte, damit <ui>Vorherige Werte wiederherstellen</ui> sie zurücksetzt. Ein Prüfblatt zeigt zuerst die Folgen für jede Zeile, auch für danach geänderte Zeilen. Die Wiederherstellung läuft durch den sicheren Modus, soweit möglich in einer Transaktion. Eine Wiederherstellung lässt sich ihrerseits wiederherstellen.",
-                "Die Werte bleiben {rewindDays} Tage auf diesem Mac, mit einem Schlüssel aus dem Schlüsselbund verschlüsselt, und werden nie synchronisiert. Nach Tarifende zeichnet TablePro keine Speichervorgänge mehr auf; <ui>Vorherige Werte wiederherstellen</ui> zeigt stattdessen einen Hinweis."
+                "Data Rewind behält beim Speichern ersetzte Werte, damit <ui>Restore Previous Values</ui> sie zurücksetzt. Ein Prüfblatt zeigt zuerst die Folgen für jede Zeile, auch für danach geänderte Zeilen. Die Wiederherstellung läuft durch den Safe Mode, soweit möglich in einer Transaktion. Eine Wiederherstellung lässt sich ihrerseits wiederherstellen.",
+                "Die Werte bleiben {rewindDays} Tage auf diesem Mac, mit einem Schlüssel aus dem Schlüsselbund verschlüsselt, und werden nie synchronisiert. Nach Tarifende zeichnet TablePro keine Speichervorgänge mehr auf; <ui>Restore Previous Values</ui> zeigt stattdessen einen Hinweis."
             ],
             "paid": [
                 "data-rewind"
@@ -87,7 +87,7 @@
             "id": "documents-and-keys",
             "title": "Dokumente und Schlüssel",
             "paragraphs": [
-                "Nicht jedes System speichert Zeilen. In MongoDB fügst du ganze Dokumente als Extended JSON ein und bearbeitest sie, entfernst ein Dokumentfeld und benennst oder entfernst ein Feld sammlungsweit im Tab „Struktur“. In Redis benennst du Schlüssel um, setzt TTLs, bearbeitest Zeichenfolgen in der Datentabelle, ergänzt String-, Hash-, List-, Set- oder Sorted-Set-Schlüssel und änderst andere Typen mit Editorbefehlen."
+                "Nicht jedes System speichert Zeilen. In MongoDB fügst du ganze Dokumente als Extended JSON ein und bearbeitest sie, entfernst ein Dokumentfeld und benennst oder entfernst ein Feld sammlungsweit im Tab Structure. In Redis benennst du Schlüssel um, setzt TTLs, bearbeitest Zeichenfolgen in der Datentabelle, ergänzt String-, Hash-, List-, Set- oder Sorted-Set-Schlüssel und änderst andere Typen mit Editorbefehlen."
             ],
             "links": [
                 {
@@ -105,7 +105,7 @@
             "title": "Auf iPhone und iPad",
             "paragraphs": [
                 "Auf iPhone und iPad erscheinen Zeilen als Karten zum Sortieren, Suchen und Filtern mit AND und OR. Das Tippen auf einen Fremdschlüssel zeigt die zugehörige Zeile. Du kannst Zeilen bearbeiten, Werte auf NULL setzen, Zeilen einfügen und per Wischen löschen; Bearbeiten und Löschen benötigen einen Primärschlüssel. In einer neuen Zeile steht jedes Feld zunächst auf DEFAULT und lässt sich auf NULL oder eine leere Zeichenfolge setzen.",
-                "Der sichere Modus hat dort eigene Stufen, {iosSafeModeLevels}, mit {iosSafeModeDefault} als Standard für neue Verbindungen. Vorgemerkte Änderungen, SQL-Vorschau, Hervorhebungsregeln und Data Rewind gibt es nur auf dem Mac."
+                "Der Safe Mode hat dort eigene Stufen, {iosSafeModeLevels}, mit {iosSafeModeDefault} als Standard für neue Verbindungen. Vorgemerkte Änderungen, Preview SQL, Hervorhebungsregeln und Data Rewind gibt es nur auf dem Mac."
             ],
             "links": [
                 {
@@ -113,7 +113,7 @@
                     "href": "/ios#browse"
                 },
                 {
-                    "label": "Sicherer Modus auf iPhone und iPad",
+                    "label": "Safe Mode auf iPhone und iPad",
                     "href": "/ios#safe-mode"
                 }
             ]
@@ -139,11 +139,11 @@
             "iosNote": "Zeileneditor; benötigt einen Primärschlüssel"
         },
         {
-            "label": "Vorgemerkte Änderungen, SQL-Vorschau und Rückgängig",
+            "label": "Vorgemerkte Änderungen, Preview SQL und Rückgängig",
             "ios": "no"
         },
         {
-            "label": "Sicherer Modus",
+            "label": "Safe Mode",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -163,8 +163,8 @@
     ],
     "limits": [
         "Data Rewind ist kein Backup. Es macht weder Trigger, Kaskaden noch Änderungen außerhalb von TablePro rückgängig und stellt keine Zeilen ohne Primärschlüssel, Werte über {rewindMaxValue} MB oder serverberechnete Werte wieder her.",
-        "UPDATE ohne WHERE ist ein gewöhnlicher Schreibvorgang: Es fragt nur bei „Warnung“ oder strenger vorher.",
-        "Auf {everyStatementWrites} zählt der sichere Modus jede Anweisung als Schreibvorgang; „Warnung“ fragt daher auch vor Lesevorgängen und „Schreibgeschützt“ blockiert sie.",
+        "UPDATE ohne WHERE ist ein gewöhnlicher Schreibvorgang: Es fragt nur bei Alert oder strenger vorher.",
+        "Auf {everyStatementWrites} zählt der Safe Mode jede Anweisung als Schreibvorgang; Alert fragt daher auch vor Lesevorgängen und Read-Only blockiert sie.",
         "Das Ergebnis eines Joins, einer CTE oder UNION ist in der Datentabelle schreibgeschützt; öffne zum Bearbeiten die Tabelle."
     ],
     "docs": [
@@ -177,7 +177,7 @@
             "docs": "/features/filtering"
         },
         {
-            "label": "Änderungsverfolgung und SQL-Vorschau",
+            "label": "Änderungsverfolgung und Preview SQL",
             "docs": "/features/change-tracking"
         },
         {
@@ -185,7 +185,7 @@
             "docs": "/features/change-tracking#restoring-a-save"
         },
         {
-            "label": "Sicherer Modus",
+            "label": "Safe Mode",
             "docs": "/features/safe-mode"
         }
     ],

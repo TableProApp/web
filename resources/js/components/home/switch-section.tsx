@@ -13,9 +13,10 @@ import type { HomeContent } from './types';
  *
  * The importers are facts.json's, each with whether it brings the saved
  * passwords across. Only the apps whose passwords come along are named with
- * "saved passwords included"; any other gets its own sentence. The lead
- * scopes both tools to the Mac app, because the iPhone and iPad app has
- * neither. The comparison tables live on /compare, not here.
+ * "saved passwords included"; any other gets its own sentence. What the
+ * reader can bring leads; the note that scopes both tools to the Mac app,
+ * because the iPhone and iPad app has neither, closes the text. The
+ * comparison tables live on /compare, not here.
  */
 interface SwitchSectionProps {
     content: HomeContent['switch'];
@@ -33,7 +34,13 @@ export default function SwitchSection({ content, macApp }: SwitchSectionProps) {
         <Section
             id="switch"
             width="text"
-            lead={fmt(content.lead, { macApp })}
+            lead={
+                <>
+                    {withPasswords.length > 0 && fmt(content.import, { apps: joinList(withPasswords, m.common.list) })}
+                    {withPasswords.length > 0 && withoutPasswords.length > 0 && ' '}
+                    {withoutPasswords.length > 0 && fmt(content.importWithoutPasswords, { apps: joinList(withoutPasswords, m.common.list) })}
+                </>
+            }
             title={
                 <>
                     {/* `#compare` predates this section; an empty anchor keeps old links landing here. */}
@@ -43,13 +50,9 @@ export default function SwitchSection({ content, macApp }: SwitchSectionProps) {
             }
         >
             <p className="type-body text-foreground">
-                {withPasswords.length > 0 && fmt(content.import, { apps: joinList(withPasswords, m.common.list) })}
-                {withPasswords.length > 0 && withoutPasswords.length > 0 && ' '}
-                {withoutPasswords.length > 0 && fmt(content.importWithoutPasswords, { apps: joinList(withoutPasswords, m.common.list) })}
-            </p>
-            <p className="type-body mt-4 text-foreground">
                 <RichText text={content.project} />
             </p>
+            <p className="type-small mt-4 text-muted-foreground">{fmt(content.lead, { macApp })}</p>
             <p className="mt-6">
                 <LocaleLink href="/compare" className={textLinkClasses('standalone')}>
                     {content.link}

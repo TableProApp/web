@@ -25,8 +25,8 @@
             "title": "Verbinden",
             "paragraphs": [
                 "Gib TablePro einen Host und den Client-Port. etcd hat keine Datenbanken, daher gibt es kein Datenbankfeld. Verwende den Client-Port: Der Peer-Port bietet kein JSON-Gateway, und eine darauf gerichtete Verbindung öffnet nie. Das Formular nimmt einen Endpunkt und bietet kein Failover; wähle daher ein erreichbares Mitglied.",
-                "Lasse <ui>Benutzername</ui> und <ui>Passwort</ui> bei einem Cluster ohne Authentifizierung leer. Ein Benutzer ohne <code>root</code>-Rolle verbindet sich und durchsucht die Schlüssel seiner Rollen; <code>endpoint status</code> sowie <code>user</code>- und <code>role</code>-Befehle antworten dagegen mit Zugriff verweigert.",
-                "TLS wird mit <ui>TLS-Modus</ui> in den erweiterten Feldern festgelegt, nicht in einem SSL-Abschnitt, und beginnt deaktiviert. Erforderlich (Prüfung überspringen) verschlüsselt ohne Prüfung; CA prüfen prüft das Zertifikat gegen die angegebene CA-Datei, und Identität prüfen ergänzt den Hostnamen. Client-Zertifikat und Schlüssel fügen gegenseitiges TLS hinzu.",
+                "Lasse <ui>Username</ui> und <ui>Password</ui> bei einem Cluster ohne Authentifizierung leer. Ein Benutzer ohne <code>root</code>-Rolle verbindet sich und durchsucht die Schlüssel seiner Rollen; <code>endpoint status</code> sowie <code>user</code>- und <code>role</code>-Befehle antworten dagegen mit Zugriff verweigert.",
+                "TLS wird mit <ui>TLS Mode</ui> in den Advanced-Feldern festgelegt, nicht in einem SSL-Abschnitt, und beginnt mit Disabled. Required (skip verify) verschlüsselt ohne Prüfung; Verify CA prüft das Zertifikat gegen die angegebene CA-Datei, und Verify Identity ergänzt den Hostnamen. Client-Zertifikat und Schlüssel fügen gegenseitiges TLS hinzu.",
                 "Erreiche einen Cluster hinter einem Bastion-Host über einen <network>SSH-Tunnel</network>. <code>etcd://</code>- und <code>etcds://</code>-URLs lassen sich importieren; keine aktiviert TLS von selbst."
             ]
         },
@@ -34,10 +34,10 @@
             "id": "work",
             "title": "Schlüssel durchsuchen und Befehle ausführen",
             "paragraphs": [
-                "Setze <ui>Schlüsselpräfix-Wurzel</ui>, etwa <code>/app</code>, um eine Verbindung auf einen Teilbaum zu begrenzen. Die Seitenleiste gruppiert Schlüssel nach ihrem ersten Pfadsegment darunter; jeder Schlüssel ist eine Zeile mit Wert, Version, Änderungs- und Erstellungsrevision sowie Lease.",
+                "Setze <ui>Key Prefix Root</ui>, etwa <code>/app</code>, um eine Verbindung auf einen Teilbaum zu begrenzen. Die Seitenleiste gruppiert Schlüssel nach ihrem ersten Pfadsegment darunter; jeder Schlüssel ist eine Zeile mit Wert, Version, Änderungs- und Erstellungsrevision sowie Lease.",
                 "Das Speichern einer Änderung sendet Befehle. Ein neuer Wert oder Lease schreibt den Schlüssel erneut; ein NULL-Lease entfernt den Lease, und beim Umbenennen wird der neue Name geschrieben und der alte gelöscht. Revisionsspalten gehören etcd; ihre Bearbeitung stoppt daher das Speichern und nennt die Spalte.",
                 "Der Editor nimmt Befehle im etcdctl-Stil mit Vervollständigung für Befehle und Optionen entgegen: <code>get</code> mit <code>--prefix</code>, <code>--limit</code>, <code>--keys-only</code> und Sortierung, <code>put</code> mit <code>--lease</code>, <code>del</code>, <code>watch</code>, die <code>lease</code>-Unterbefehle, <code>member list</code>, <code>endpoint status</code> und <code>health</code>, <code>compaction</code> sowie <code>auth</code>-, <code>user</code>- und <code>role</code>-Befehle. Alles andere kommt als unbekannter Befehl zurück, ohne den Server zu erreichen.",
-                "Der etcd-Treiber kann keine schreibgeschützte Sitzung öffnen, daher behandelt <safeMode>Sicherer Modus</safeMode> jeden Befehl als Schreibzugriff: Auf den Stufen Warnung und Sicherer Modus fragt jeder Befehl zuerst nach; Nur lesen blockiert alle."
+                "Der etcd-Treiber kann keine schreibgeschützte Sitzung öffnen, daher behandelt <safeMode>Safe Mode</safeMode> jeden Befehl als Schreibzugriff: Auf den Stufen Alert und Safe Mode fragt jeder Befehl zuerst nach; Read-Only blockiert alle."
             ]
         },
         {

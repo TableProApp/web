@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Import, export và file dữ liệu",
-        "lead": "Dành cho lúc bạn chuyển dữ liệu qua lại giữa file và cơ sở dữ liệu: đưa một bảng tính vào table, gửi kết quả query cho người khác dưới dạng Excel, dọn dẹp một file CSV trước khi dùng, hoặc tạo bản dump trước một thay đổi rủi ro. Mọi thứ ở đây có trong ứng dụng Mac; phần cuối nói về phần nhỏ hơn có trên iPhone và iPad.",
+        "lead": "Dành cho lúc bạn chuyển dữ liệu qua lại giữa file và cơ sở dữ liệu: đưa một bảng tính vào table, gửi kết quả query cho người khác dưới dạng Excel, dọn dẹp một file CSV trước khi dùng, hoặc tạo bản dump trước một thay đổi rủi ro. Mọi thứ ở đây có trong ứng dụng Mac. Ứng dụng cho iPhone và iPad làm được một phần trong số đó.",
         "docs": "/features/import-export"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "Import file vào table",
             "paragraphs": [
                 "<kbd>⌘⇧I</kbd> import file {importFormats}. File SQL được chạy như các câu lệnh, kể cả dump <code>.sql.gz</code> và script SQL Server chia khối bằng <code>GO</code>. Các định dạng còn lại được nạp vào một table có sẵn, hoặc vào table mới đặt tên theo file với các cột lấy từ file; với workbook Excel, TablePro import sheet đầu tiên.",
-                "Mỗi trường được ghép với một cột, và cả lần import chạy trong một transaction trừ khi bạn tắt tùy chọn này. Khi một dòng bị lỗi, bạn chọn dừng và rollback, dừng và giữ phần đã import, hoặc bỏ qua dòng đó và chạy tiếp, rồi lưu báo cáo các dòng bị bỏ qua thành file CSV."
+                "Mỗi trường được ghép với một cột, và cả lần import chạy trong một transaction trừ khi bạn tắt tùy chọn này. Khi một dòng bị lỗi, bạn chọn dừng và rollback, dừng và giữ phần đã import, hoặc bỏ qua dòng đó và chạy tiếp. Sau đó bạn có thể lưu báo cáo các dòng bị bỏ qua thành file CSV."
             ],
             "engines": [{ "label": "Engine không hỗ trợ import", "list": "noImport" }],
             "asset": "mac-import-mapping",
@@ -27,7 +27,7 @@
                     "id": "mappings",
                     "title": "Ghép cột đã lưu và bảng mã",
                     "paragraphs": [
-                        "TablePro nhớ cách ghép cột bạn đã chọn cho từng table khi import CSV, JSON và Excel, và <ui>Match by Name</ui> hoặc <ui>Match by Position</ui> ghép mọi trường chỉ với một cú nhấp; ghép theo vị trí dùng được cho CSV và Excel, nơi thứ tự các trường đi theo file. Khi import CSV và SQL, TablePro đọc được UTF-16 và các bảng mã tiếng Nhật, tiếng Trung, tiếng Hàn như Shift JIS, GB 18030, Big5 và EUC-KR."
+                        "TablePro nhớ cách ghép cột bạn đã chọn cho từng table khi import CSV, JSON và Excel. <ui>Match by Name</ui> hoặc <ui>Match by Position</ui> ghép mọi trường chỉ với một cú nhấp. Ghép theo vị trí dùng được cho CSV và Excel, nơi thứ tự các trường đi theo file. Khi import CSV và SQL, TablePro đọc được UTF-16 và các bảng mã tiếng Nhật, tiếng Trung, tiếng Hàn như Shift JIS, GB 18030, Big5 và EUC-KR."
                     ],
                     "since": "0.77.0"
                 }
@@ -37,7 +37,7 @@
             "id": "export",
             "title": "Export table và kết quả query",
             "paragraphs": [
-                "<kbd>⌘⇧E</kbd> export các table và view bạn chọn ra {exportFormats}. Dữ liệu được đọc thẳng từ cơ sở dữ liệu trong lúc ghi file, nên giới hạn số dòng của data grid không áp dụng, và trên engine SQL, mỗi table có thể có mệnh đề WHERE, giới hạn số dòng và danh sách cột riêng. File SQL có thể kèm cấu trúc, nén gzip và chia thành nhiều phần, còn Excel đặt mỗi table vào một sheet riêng. Collection MongoDB còn export được thành script mongosh, và export SQL không có cho MongoDB và Redis.",
+                "<kbd>⌘⇧E</kbd> export các table và view bạn chọn ra {exportFormats}. Dữ liệu được đọc thẳng từ cơ sở dữ liệu trong lúc ghi file, nên giới hạn số dòng của data grid không áp dụng. Trên engine SQL, mỗi table có thể có mệnh đề WHERE, giới hạn số dòng và danh sách cột riêng. File SQL có thể kèm cấu trúc, nén gzip và chia thành nhiều phần, còn Excel đặt mỗi table vào một sheet riêng. Collection MongoDB còn export được thành script mongosh, và export SQL không có cho MongoDB và Redis.",
                 "<ui>Export Kết Quả…</ui> (Export Results…) ghi lại những gì query trả về; nếu kết quả bị cắt bởi giới hạn số dòng, query được chạy lại và ghi ra đầy đủ. Export {exportPluginFormats} đến từ một plugin miễn phí mà bạn cài trong <ui>Cài đặt > Plugin</ui> (Settings > Plugins), và ghi mỗi table ra một file."
             ],
             "asset": "mac-export-dialog"
@@ -70,7 +70,7 @@
             "id": "backup",
             "title": "Sao lưu bằng công cụ của chính engine",
             "paragraphs": [
-                "Backup Dump và Restore Dump làm việc qua {backupTools}, đi qua SSH tunnel và dùng cấu hình SSL của connection, nên server nằm sau bastion không cần mở thêm tunnel thứ hai. Trừ DuckDB, mỗi công cụ trên là một công cụ dòng lệnh bạn tự cài; DuckDB tự ghi bản dump ra một file cơ sở dữ liệu hoặc một thư mục file Parquet.",
+                "Backup Dump và Restore Dump làm việc qua {backupTools}, đi qua SSH tunnel và dùng cấu hình TLS của connection, nên server nằm sau bastion không cần mở thêm tunnel thứ hai. Trừ DuckDB, mỗi công cụ trên là một công cụ dòng lệnh bạn tự cài; DuckDB tự ghi bản dump ra một file cơ sở dữ liệu hoặc một thư mục file Parquet.",
                 "Trên {serverSideExport}, Server-Side Export để chính server ghi bản export: một job Oracle Data Pump, một stage của Snowflake hoặc một bucket Cloud Storage. Không có gì được ghi xuống máy Mac của bạn."
             ],
             "engines": [{ "label": "Backup Dump, kèm công cụ được dùng", "list": "backupEngines" }],
@@ -119,7 +119,7 @@
     ],
     "limits": [
         "File export SQL có DROP TABLE IF EXISTS trước mỗi table trừ khi bạn bỏ chọn, nên hãy kiểm tra tùy chọn trước khi chạy file trên một cơ sở dữ liệu có những table bạn muốn giữ.",
-        "Backup Dump dùng công cụ dòng lệnh do bạn tự cài, và chỉ có trên các engine được liệt kê. Các công cụ nhận mật khẩu qua biến môi trường hoặc một file tạm, trừ sqlpackage: công cụ này nhận mật khẩu SQL Server trên dòng lệnh, nơi các tiến trình khác trên máy Mac đọc được; TablePro hỏi lại trước khi chạy.",
+        "Backup Dump dùng công cụ dòng lệnh do bạn tự cài, và chỉ có trên các engine được liệt kê. Các công cụ nhận mật khẩu qua biến môi trường hoặc một file tạm. Ngoại lệ là sqlpackage: công cụ này nhận mật khẩu SQL Server trên dòng lệnh, nơi các tiến trình khác trên máy Mac đọc được; TablePro hỏi lại trước khi chạy.",
         "Restore Dump thay thế các table có trong bản dump MySQL hoặc MariaDB. Trên các engine khác, đối tượng đã tồn tại không bị thay thế, còn file <code>.bacpac</code> của SQL Server cần một cơ sở dữ liệu trống.",
         "Mở file cơ sở dữ liệu qua SSH chỉ áp dụng cho SQLite.",
         "Các extension DuckDB không có sẵn, như httpfs cho S3, Iceberg và Delta, được tải về từ server của DuckDB vào lần đầu một query cần tới.",

@@ -14,6 +14,7 @@
     "bySituation": {
         "title": "Choose by situation",
         "lead": "One line for each client. Each links to the full comparison.",
+        "tablepro": "Choose TablePro if you want an open-source client with a native Mac app and a separate iPhone and iPad app. The AI assistant and the MCP server are free in the Mac app, and it imports saved connections from {apps}.",
         "items": {
             "tableplus": "Choose TablePlus if you also work on Windows or Linux, or connect to Vertica or Greenplum.",
             "dbeaver": "Choose DBeaver if you want a free client for Windows, macOS and Linux that connects to any engine with a JDBC driver.",
@@ -62,6 +63,7 @@
         "sourcesLink": "Sources",
         "shortAnswer": {
             "title": "The short answer",
+            "lead": "Looking for an alternative to {name} on the Mac? This is when each client fits.",
             "tablepro": "Choose TablePro if",
             "competitor": "Choose {name} if"
         },
@@ -84,8 +86,8 @@
             "import": "Moving to TablePro"
         },
         "cell": {
-            "yes": "Supported",
-            "no": "Not supported",
+            "yes": "Yes",
+            "no": "No",
             "partial": "Partial",
             "edition": "In the {edition} edition",
             "since": "Since version {version}",
@@ -171,8 +173,8 @@
         "tablepro": {
             "technology": "Swift, with native database drivers",
             "priceFree": "Free to use. Paid plans add optional features to the Mac app.",
-            "starter": "Starter: {monthly} a month, {yearly} a year or {lifetime} once",
-            "team": "Team: {monthly} a month, {yearly} a year or {lifetime} once, per seat, at least {min} seats",
+            "starter": "{monthly} a month, {yearly} a year or {lifetime} once",
+            "team": "{monthly} a month, {yearly} a year or {lifetime} once, per seat, at least {min} seats",
             "iosPrice": "The iPhone and iPad app is free, with no in-app purchases.",
             "licence": "Yes: {licence}, including the code of the paid features",
             "databases": "{engines} and more",
@@ -201,6 +203,7 @@
             "switching": "Switching from {name}",
             "faq": "Questions",
             "sources": "Sources",
+            "more": "More comparisons",
             "cta": "Get TablePro"
         },
         "switching": {
@@ -210,7 +213,8 @@
             "intro": "Facts about {name} were checked on {date} against these pages. Prices are list prices in US dollars, before tax.",
             "retrieved": "checked {date}",
             "latest": "Latest {name} release at that date: {version}, published {date}.",
-            "tablepro": "TablePro’s column describes TablePro {macVersion} for Mac and {iosVersion} for iPhone and iPad."
+            "tablepro": "TablePro’s column describes TablePro {macVersion} for Mac and {iosVersion} for iPhone and iPad.",
+            "trademarks": "TablePro is an independent open-source project, not affiliated with or endorsed by the makers of the products compared here. Product names are trademarks of their owners."
         },
         "cta": {
             "body": "TablePro is free to download. Paid plans add optional features to the Mac app.",

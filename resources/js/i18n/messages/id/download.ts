@@ -11,7 +11,7 @@ export default {
         "undated": "Versi {version}",
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
-        "notes": "Catatan rilis",
+        "notes": "Catatan rilis (bahasa Inggris)",
         "unavailable": "Detail rilis saat ini tidak dapat dimuat. Kedua tombol membuka rilis terbaru di GitHub, tempat Anda dapat memilih disk image untuk Mac Anda."
     },
     "file": {

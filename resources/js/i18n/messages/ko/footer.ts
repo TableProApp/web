@@ -13,8 +13,8 @@ export default {
         },
         "resources": {
             "title": "자료",
-            "docs": "문서",
-            "changelog": "변경 기록",
+            "docs": "문서 (영어)",
+            "changelog": "변경 기록 (영어)",
             "blog": "블로그",
             "faq": "자주 묻는 질문",
             "source": "소스 코드",
@@ -45,7 +45,7 @@ export default {
     },
     "newsletter": {
         "title": "이메일로 받는 릴리스 노트",
-        "body": "릴리스 노트를 가끔 보내드립니다. 모든 이메일에 구독 해지 링크가 있습니다.",
+        "body": "릴리스 노트를 가끔 영어로 보내드립니다. 모든 이메일에 구독 해지 링크가 있습니다.",
         "note": "먼저 확인 링크를 이메일로 보내드립니다. <link>개인정보 처리방침</link>"
     },
     "bottom": {

@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "接続",
             "paragraphs": [
-                "一つのブローカーのホストとポートを入力すると、残りのクラスタを検出します。<ui>Additional Bootstrap Servers</ui> は最初が応答しない場合に試すブローカーを指定します。一つの接続は一つのクラスタで、Database フィールドはなく、サイドバーにトピックを直接表示します。",
+                "一つのブローカーのホストとポートを入力すると、残りのクラスターを検出します。<ui>Additional Bootstrap Servers</ui> は最初が応答しない場合に試すブローカーを指定します。一つの接続は一つのクラスターで、Database フィールドはなく、サイドバーにトピックを直接表示します。",
                 "<ui>Security Protocol</ui> は PLAINTEXT、SSL、SASL_PLAINTEXT または SASL_SSL、<ui>SASL Mechanism</ui> は PLAIN、SCRAM-SHA-256 または SCRAM-SHA-512 です。PLAIN は Confluent Cloud、SCRAM は Amazon MSK と自己ホストのブローカー向けです。SSL または SASL_SSL で SSL モード未選択なら証明書チェーンとホスト名を検証します。プライベート CA は <ui>CA Certificate</ui>、クライアント証明書と鍵は相互 TLS に使います。",
                 "<network>SSH トンネル</network> では接続がブートストラップブローカーに留まり、そのブローカーがリーダーのパーティションだけを読みます。<ui>Import from URL…</ui> は <code>kafka://</code> URL を受け付けますが、macOS はリンクとして開きません。"
             ]
@@ -33,7 +33,7 @@
             "title": "読み取り、確認と送信",
             "paragraphs": [
                 "トピックを開くと最近のメッセージを新しいものが最後になる順序で表示し、パーティション、オフセット、タイムスタンプ、キー、値、ヘッダーとサイズを示します。読みやすくするため異なるパーティションを時刻で混在させますが、メッセージの識別はパーティションとオフセットです。UTF-8 ではないキーや値は十六進数で表示し、tombstone と空のメッセージを区別します。",
-                "KafkaQL は並べ替えや絞り込みの代わりに開始位置を指定します。<code>CONSUME \"orders\" FROM NEWEST</code>、<code>FROM OLDEST</code>、<code>FROM OFFSET</code> または ISO 8601 時刻付き <code>FROM TIME</code> で、任意のパーティションに限定できます。<code>SHOW TOPICS</code>、<code>SHOW BROKERS</code>、<code>SHOW GROUPS</code>、<code>SHOW CLUSTER</code> と <code>DESCRIBE TOPIC</code> でクラスタの他の情報を確認します。",
+                "KafkaQL は並べ替えや絞り込みの代わりに開始位置を指定します。<code>CONSUME \"orders\" FROM NEWEST</code>、<code>FROM OLDEST</code>、<code>FROM OFFSET</code> または ISO 8601 時刻付き <code>FROM TIME</code> で、任意のパーティションに限定できます。<code>SHOW TOPICS</code>、<code>SHOW BROKERS</code>、<code>SHOW GROUPS</code>、<code>SHOW CLUSTER</code> と <code>DESCRIBE TOPIC</code> でクラスターの他の情報を確認します。",
                 "<code>DESCRIBE GROUP</code> はパーティションごとのコミット済みオフセット、末尾オフセットと差分を示す遅延レポートです。グループが一度もコミットしていないパーティションはゼロから数えず遅延なしと表示します。ブローカーにアクセスできないと <code>SHOW GROUPS</code> は一覧が不完全と示します。",
                 "<code>PRODUCE INTO</code> は任意のキー、ヘッダーとパーティションを持つメッセージを書き込みます。キーがありパーティション未指定なら Kafka 自身の producer と同じ場所に送ります。gzip、snappy、lz4、zstd バッチは読み取り時に展開し、設定の選択は不要です。",
                 "Kafka に更新、メッセージ単位の削除、サーバー側の並べ替えがないため、セル編集、行削除やカラムソートはできず、操作を無効表示にします。各ページは前の終了位置から続けるため、書き込み中のトピックでもメッセージを重複・欠落させません。"
@@ -43,7 +43,7 @@
             "id": "operate",
             "title": "トピック",
             "paragraphs": [
-                "サイドバーや <code>DROP TOPIC</code> からのトピック削除が唯一の破壊的操作です。クラスタが後からログを削除するため、一覧にしばらく残ることがあります。Kafka は保持ポリシーかパーティションごとのオフセットでレコードを削除し、どちらもトピックを空にしないため Truncate は提供しません。"
+                "サイドバーや <code>DROP TOPIC</code> からのトピック削除が唯一の破壊的操作です。クラスターが後からログを削除するため、一覧にしばらく残ることがあります。Kafka は保持ポリシーかパーティションごとのオフセットでレコードを削除し、どちらもトピックを空にしないため Truncate は提供しません。"
             ]
         },
         {
@@ -60,12 +60,12 @@
         {
             "id": "advertised-addresses",
             "question": "トピックは読み込めるのにメッセージがタイムアウトするのはなぜですか？",
-            "answer": "クラスタがコンテナのホスト名やプライベート IP など、この Mac から届かないアドレスを通知しています。<code>advertised.listeners</code> を修正するか、<ui>Broker Addresses</ui> をブートストラップアドレスだけ使う設定にしてください。"
+            "answer": "クラスターがコンテナのホスト名やプライベート IP など、この Mac から届かないアドレスを通知しています。<code>advertised.listeners</code> を修正するか、<ui>Broker Addresses</ui> をブートストラップアドレスだけ使う設定にしてください。"
         },
         {
             "id": "msk-iam",
             "question": "Amazon MSK の IAM ログインに対応しますか？",
-            "answer": "対応しません。SASL 方式は PLAIN、SCRAM-SHA-256 と SCRAM-SHA-512 なので、MSK クラスタで SCRAM ユーザーを作成し、SASL_SSL で接続してください。"
+            "answer": "対応しません。SASL 方式は PLAIN、SCRAM-SHA-256 と SCRAM-SHA-512 なので、MSK クラスターで SCRAM ユーザーを作成し、SASL_SSL で接続してください。"
         }
     ],
     "related": [

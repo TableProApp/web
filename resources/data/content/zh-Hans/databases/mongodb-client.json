@@ -44,7 +44,7 @@
                 "集合以网格打开，顶层字段为列，嵌套对象为 Extended JSON。编辑单元格保留字段类型，日期仍为日期，ObjectId 仍为 ObjectId；嵌套对象编辑仅写入 <code>address.city</code> 等改动路径。",
                 "<editing>Insert Document 和 Edit Document</editing> 接受整个 Extended JSON 文档。Edit Document 重新从服务器读取；面板打开后若他人修改或删除，不保存任何内容并提示。单元格 <ui>Remove Field</ui> 发送 <code>$unset</code>。",
                 "<filters>筛选栏</filters>可访问嵌套对象和对象数组，直接筛选 <code>customer.country</code>、<code>items.sku</code>。GeoJSON 字段在<map>地图视图</map>打开。",
-                "驱动无法打开只读会话，所以<safeMode>安全模式</safeMode>将 MongoDB 连接的所有语句视为写入。Alert、Safe Mode 级别逐条确认，Read-Only 全部阻止。"
+                "驱动无法打开只读会话，所以 <safeMode>Safe Mode</safeMode> 将 MongoDB 连接的所有语句视为写入。Alert、Safe Mode 级别逐条确认，Read-Only 全部阻止。"
             ]
         },
         {
@@ -53,7 +53,7 @@
             "paragraphs": [
                 "<structure>Structure 标签页</structure>按键顺序列出各索引字段及 hashed、text、2dsphere、wildcard 等类型。Show DDL 生成重建它们的 <code>createIndex</code> 调用，含服务器报告的所有选项。",
                 "在同一标签页重命名或移除整个集合的字段。每次修改为一个 <code>updateMany</code>，在 Preview SQL 显示，<code>$jsonSchema</code> 验证器声明的字段也同步修改。索引、搜索索引或视图仍使用该名称时，任何写入前即拒绝保存。",
-                "<ui>New Table</ui> 创建集合，将字段转为 <code>$jsonSchema</code> 验证器，再建立所列索引。视图和时间序列集合显示在侧栏，视图以只读打开。"
+                "<ui>新建表</ui>（New Table）创建集合，将字段转为 <code>$jsonSchema</code> 验证器，再建立所列索引。视图和时间序列集合显示在侧栏，视图以只读打开。"
             ]
         },
         {

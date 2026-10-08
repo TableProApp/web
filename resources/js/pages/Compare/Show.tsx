@@ -1,6 +1,8 @@
 import { usePage } from '@inertiajs/react';
 import ComparisonTable from '@/components/compare/comparison-table';
+import GetStarted from '@/components/compare/get-started';
 import ItemList from '@/components/compare/item-list';
+import JumpList from '@/components/compare/jump-list';
 import { extraRows, glanceRows, productTokens, sourceNumbers, type ModelContext } from '@/components/compare/model';
 import RichText from '@/components/compare/rich-text';
 import { SourceList, SourceMarkers } from '@/components/compare/sources';
@@ -37,7 +39,7 @@ import { absoluteUrl, breadcrumbNode, graph, macAppId, webPageNode } from '@/lib
  * There is no `Review` of the other product, no rating, no `FAQPage` and no
  * benchmark anywhere on the page.
  */
-export default function CompareShow({ slug, content, labels, product, rows: rowOrder, dates, tablepro }: ComparePageProps) {
+export default function CompareShow({ slug, content, labels, product, rows: rowOrder, others, dates, tablepro }: ComparePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, plural, path } = useI18n();
 
@@ -109,9 +111,18 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
                         </LocaleLink>
                     </>
                 }
-            />
+            >
+                <JumpList
+                    items={[
+                        { id: 'short-answer', label: labels.shortAnswer.title },
+                        { id: 'at-a-glance', label: labels.glance.title },
+                        { id: 'switching', label: fmt(labels.sections.switching, { name: product.name }) },
+                        ...(content.faq.length > 0 ? [{ id: 'faq', label: labels.sections.faq }] : []),
+                    ]}
+                />
+            </PageHeader>
 
-            <Section id="short-answer" title={labels.shortAnswer.title}>
+            <Section id="short-answer" title={labels.shortAnswer.title} lead={fmt(labels.shortAnswer.lead, { name: product.name })}>
                 <div className="grid gap-10 md:grid-cols-2 md:gap-8">
                     {[
                         { id: 'choose-tablepro', title: labels.shortAnswer.tablepro, items: content.shortAnswer.tablepro },
@@ -242,26 +253,25 @@ export default function CompareShow({ slug, content, labels, product, rows: rowO
                             {fmt(labels.sources.tablepro, { macVersion: tablepro.mac.version, iosVersion: tablepro.ios.version })}
                         </p>
                     )}
+                    <p className="type-small text-muted-foreground">{labels.sources.trademarks}</p>
                 </div>
             </Section>
 
-            <Section id="get-started" title={labels.sections.cta} width="text">
-                <p className="type-body text-foreground">{labels.cta.body}</p>
-                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
-                    <LocaleLink href="/download" onClick={() => trackDownload('compare-end', 'mac')} className={buttonClasses('primary', 'md')}>
-                        <AppleGlyph />
-                        {m.download.macCta}
-                    </LocaleLink>
-                    <LocaleLink href="/pricing" className={textLinkClasses('standalone')}>
-                        {labels.cta.pricing}
-                        <span aria-hidden="true">→</span>
-                    </LocaleLink>
-                    <LocaleLink href="/compare" className={textLinkClasses('standalone')}>
-                        {labels.cta.hub}
-                        <span aria-hidden="true">→</span>
-                    </LocaleLink>
-                </div>
-            </Section>
+            {others.length > 0 && (
+                <Section id="more" title={labels.sections.more} width="text">
+                    <ul className="type-body flex flex-wrap gap-x-6 gap-y-2">
+                        {others.map((other) => (
+                            <li key={other.slug}>
+                                <LocaleLink href={`/compare/${other.slug}`} className={textLinkClasses('inline')}>
+                                    {other.title}
+                                </LocaleLink>
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+            )}
+
+            <GetStarted labels={labels} location="compare-end" />
         </LandingLayout>
     );
 }

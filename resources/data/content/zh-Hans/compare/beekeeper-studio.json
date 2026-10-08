@@ -13,15 +13,15 @@
     },
     "shortAnswer": {
         "tablepro": [
-            "你希望免费使用 Oracle、Cassandra 或 Snowflake。TablePro 所有支持引擎均免费，Beekeeper Studio 则在付费档位中添加这些引擎。",
-            "你希望无需付费档位即可使用 AI 助手和 MCP 服务器。两者在 Mac 应用中均免费，可选择 AI 服务商。",
-            "你希望使用 Swift 编写的原生 Mac 应用，付费功能代码也开源。",
-            "你也希望有 iPhone 和 iPad 应用。"
+            "您希望免费使用 Oracle、Cassandra 或 Snowflake。TablePro 所有支持引擎均免费，Beekeeper Studio 则在付费档位中添加这些引擎。",
+            "您希望无需付费档位即可使用 AI 助手和 MCP 服务器。两者在 Mac 应用中均免费，可选择 AI 服务商。",
+            "您希望使用 Swift 编写的原生 Mac 应用，付费功能代码也开源。",
+            "您也希望有 iPhone 和 iPad 应用。"
         ],
         "competitor": [
-            "你也在 Windows 或 Linux 上工作，希望各平台使用同一个客户端。",
-            "你连接 TablePro 不支持的 Firebird、SQL Anywhere 或 GreengageDB。",
-            "你希望从 {cells.sync.edition} 档位开始，通过云工作区同步和共享连接及查询。"
+            "您也在 Windows 或 Linux 上工作，希望各平台使用同一个客户端。",
+            "您连接 TablePro 不支持的 Firebird、SQL Anywhere 或 GreengageDB。",
+            "您希望从 {cells.sync.edition} 档位开始，通过云工作区同步和共享连接及查询。"
         ]
     },
     "glance": {
@@ -49,7 +49,7 @@
         "intro": "",
         "items": [
             {
-                "text": "Beekeeper Studio 在 Windows、macOS 和 Linux 上提供相同功能，一个客户端即可覆盖你使用的所有电脑。",
+                "text": "Beekeeper Studio 在 Windows、macOS 和 Linux 上提供相同功能，一个客户端即可覆盖您使用的所有电脑。",
                 "cite": [
                     "platforms"
                 ],
@@ -119,7 +119,7 @@
                 "href": null
             },
             {
-                "text": "<link>iCloud 同步</link>让多台 Mac 与 iPhone 或 iPad 的连接保持一致。在 Mac 上包含于 Starter，在 iPhone 和 iPad 上免费。",
+                "text": "<link>iCloud Sync</link> 让多台 Mac 与 iPhone 或 iPad 的连接保持一致。在 Mac 上包含于 Starter，在 iPhone 和 iPad 上免费。",
                 "cite": [],
                 "feature": "icloud-sync",
                 "href": null
@@ -168,9 +168,9 @@
     "switching": {
         "intro": "TablePro 读取 Beekeeper Studio 在 Mac 本地工作区保存的连接。Beekeeper Studio 无需打开，文件也不会修改。",
         "steps": [
-            "在 TablePro 中选择 <ui>File > Import > Import from Other App…</ui>。",
-            "选择 Beekeeper Studio 并开启 <ui>Include passwords</ui>。TablePro 会解密 Beekeeper Studio 保存的密码，包括 SSH 密码和密钥口令，因此无需在钥匙串中批准。",
-            "检查列表，决定如何处理重复项，然后点击 <ui>Import</ui>。文件夹转为分组，连接颜色和 SSL 设置一并迁移，SSH 堡垒主机转为跳板主机。TablePro 不支持的引擎连接默认不勾选。",
+            "在 TablePro 中选择<ui>文件 > 导入 > 从其他应用导入…</ui>（File > Import > Import from Other App…）。",
+            "选择 Beekeeper Studio 并开启<ui>包含密码</ui>（Include passwords）。TablePro 会解密 Beekeeper Studio 保存的密码，包括 SSH 密码和密钥口令，因此无需在钥匙串中批准。",
+            "检查列表，决定如何处理重复项，然后点击<ui>导入</ui>（Import）。文件夹转为分组，连接颜色和 SSL 设置一并迁移，SSH 堡垒主机转为跳板主机。TablePro 不支持的引擎连接默认不勾选。",
             "删除 Beekeeper Studio 前，打开一个原本有密码的连接，确认密码已成功迁移。"
         ],
         "after": [
@@ -189,13 +189,13 @@
         {
             "id": "free-engines",
             "question": "哪些引擎可以免费使用？",
-            "answer": "TablePro 所有支持引擎均免费，AI 助手、MCP 服务器和安全模式也免费。Starter 或 Team 方案添加 {starterExamples} 等功能，而非引擎。Beekeeper Studio Community 版覆盖一组常见引擎，付费档位添加其他引擎。",
+            "answer": "TablePro 所有支持引擎均免费，AI 助手、MCP 服务器和 Safe Mode 也免费。Starter 或 Team 方案添加 {starterExamples} 等功能，而非引擎。Beekeeper Studio Community 版覆盖一组常见引擎，付费档位添加其他引擎。",
             "href": null
         },
         {
             "id": "vim",
             "question": "我在 Beekeeper Studio 使用 Vim 模式，TablePro 也有吗？",
-            "answer": "有，而且免费。开启 <ui>Settings > Editor > Vim mode</ui> 即可使用移动、寄存器和宏，:w 用于执行查询。",
+            "answer": "有，而且免费。开启<ui>设置 > 编辑器 > Vim 模式</ui>（Settings > Editor > Vim mode）即可使用移动、寄存器和宏，:w 用于执行查询。",
             "href": null
         }
     ],

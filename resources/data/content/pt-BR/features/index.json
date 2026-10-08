@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "O que você pode fazer no TablePro",
-        "lead": "O app para Mac é a ferramenta completa, e todas as páginas abaixo o descrevem primeiro. O app para iPhone e iPad é um app nativo separado com escopo menor; cada página termina explicando o que ele oferece."
+        "lead": "O app para Mac é a ferramenta completa. O app para iPhone e iPad é um app nativo separado com escopo menor; cada página de recursos diz o que ele oferece."
     },
     "areas": {
-        "title": "Áreas de recursos",
-        "lead": "Cada área tem uma página com os detalhes, o plano que cada parte exige no Mac e os limites que você precisa conhecer.",
-        "paid": "{tier}: {features}",
+        "title": "Recursos por tarefa",
+        "paid": "Plano {tier}: {features}",
         "noPaid": "Sem recursos pagos",
         "items": [
             {
@@ -23,11 +22,11 @@
             },
             {
                 "slug": "data-editing",
-                "summary": "Filtros e regras de destaque, chaves estrangeiras que você pode seguir, edições que aguardam o salvamento, um nível de Modo Seguro por conexão e Recuperação de Dados para valores substituídos ao salvar."
+                "summary": "Filtros e regras de destaque, chaves estrangeiras que você pode seguir, edições que aguardam o salvamento, um nível de Safe Mode por conexão e Data Rewind para valores substituídos ao salvar."
             },
             {
                 "slug": "schema",
-                "summary": "Mudanças de estrutura com prévia DDL, diagrama ER somente leitura, Comparar e Sincronizar entre dois bancos, Copiar Para entre mecanismos e Usuários e Funções."
+                "summary": "Mudanças de estrutura com prévia DDL, diagrama ER somente leitura, Compare & Sync entre dois bancos, Copy To entre mecanismos e Users & Roles."
             },
             {
                 "slug": "import-export",
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Um assistente de IA opcional que usa o provedor escolhido por você e um servidor MCP local que permite que clientes como Claude Code e Cursor usem suas conexões salvas."
+                "summary": "Um assistente de IA opcional que usa o provedor escolhido por você e um servidor MCP (Model Context Protocol) local que permite que clientes como Claude Code e Cursor usem suas conexões salvas."
             },
             {
                 "slug": "connections",
@@ -43,18 +42,18 @@
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "Sincronização iCloud entre seus Macs, iPhone e iPad, arquivos de conexão que você pode compartilhar e Catálogo da Equipe e Biblioteca da Equipe para compartilhar com sua equipe."
+                "summary": "iCloud Sync entre seus Macs, iPhone e iPad, arquivos de conexão que você pode compartilhar e Team Catalog e Team Library para compartilhar com sua equipe."
             }
         ]
     },
     "ios": {
         "title": "iPhone e iPad",
-        "body": "TablePro para iPhone e iPad é um app separado, gratuito e sem compras no app. Conecta por SSH ou TLS, explora e edita linhas e executa consultas, com Atalhos, widget na Tela de Início e Atividades ao Vivo para consultas em execução. Não tem assistente de IA, edição de esquema, Recuperação de Dados nem Comparar e Sincronizar.",
+        "body": "TablePro para iPhone e iPad é um app separado, gratuito e sem compras no app. Conecta por SSH ou TLS, explora e edita linhas e executa consultas, com Atalhos, widget na Tela de Início e Atividades ao Vivo para consultas em execução. Não tem assistente de IA, edição de esquema, Data Rewind nem Compare & Sync.",
         "link": "TablePro para iPhone e iPad"
     },
     "paid": {
         "title": "Gratuito e pago",
-        "lead": "O app para Mac é gratuito para usar, sem período de avaliação. Um plano Starter ou Team adiciona os recursos abaixo ao app para Mac, e Team inclui tudo do Starter. Conectar-se a qualquer mecanismo compatível, usar o assistente de IA, o servidor MCP e o Modo Seguro não exige licença, e o app para iPhone e iPad é gratuito, sem compras no app.",
+        "lead": "O app para Mac é gratuito para usar, sem período de avaliação. Um plano Starter ou Team adiciona os recursos abaixo ao app para Mac, e Team inclui tudo do Starter. Conectar-se a qualquer mecanismo compatível, usar o assistente de IA, o servidor MCP e o Safe Mode não exige licença, e o app para iPhone e iPad é gratuito, sem compras no app.",
         "caption": "Os recursos pagos do app para Mac, o plano que cada um exige e a página que o descreve",
         "columns": {
             "feature": "Recurso",

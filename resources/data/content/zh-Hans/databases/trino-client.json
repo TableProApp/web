@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "连接和登录",
             "paragraphs": [
-                "填写 coordinator 主机、端口及运行查询的 <ui>Username</ui>。<ui>Catalog</ui>、<ui>Schema</ui> 为可选起点，Catalog 留空可浏览全部。Options 中的 IANA <ui>Time Zone</ui> 设置会话时区。",
+                "填写 coordinator 主机、端口及运行查询的<ui>用户名</ui>（Username）。<ui>Catalog</ui>、<ui>Schema</ui> 为可选起点，Catalog 留空可浏览全部。Options 中的 IANA <ui>时区</ui>（Time Zone）设置会话时区。",
                 "密码以 HTTP Basic 发送，用于 LDAP 或密码文件认证；JWT 访问令牌以 bearer 凭据发送。两者仅通过 TLS，SSL Disabled 下含此凭据的连接在发送前即拒绝。SSL 面板的客户端证书和密钥添加双向 TLS。",
-                "SSL 默认为 Disabled，即明文 HTTP；其他模式强制 TLS，不退回明文，443 端口启用 Verify Identity。不跟随 coordinator 前代理的重定向，错误指出目标地址。堡垒机后的 coordinator 可通过 <network>SSH 隧道</network>访问，并用 <ui>Import from URL…</ui> 导入 <code>trino://</code> URL。"
+                "SSL 默认为 Disabled，即明文 HTTP；其他模式强制 TLS，不退回明文，443 端口启用 Verify Identity。不跟随 coordinator 前代理的重定向，错误指出目标地址。堡垒机后的 coordinator 可通过 <network>SSH 隧道</network>访问，并用<ui>从 URL 导入…</ui>（Import from URL…）导入 <code>trino://</code> URL。"
             ]
         },
         {
@@ -38,13 +38,13 @@
                 "连接在某个 catalog、schema 打开，查询仍可完整指定 <code>catalog.schema.table</code>，例如联接 Hive 和 PostgreSQL 表。侧栏将各 catalog 展开为 schema 和表，物化视图与表、视图并列，行数来自 <code>SHOW STATS</code>。",
                 "<code>bigint</code>、<code>decimal</code> 以精确文本而非浮点数读取。<code>varbinary</code> 显示为十六进制，<code>array</code>、<code>map</code>、<code>row</code> 为 JSON，时间戳保留服务器返回值。",
                 "<explain>Explain</explain> 提供 Logical、Distributed、IO、Validate、Analyze。Validate 不运行而验证，Analyze 运行并报告实际耗时，所有计划均为原始文本。",
-                "<code>SET SESSION</code> 在连接余下期间保持。<ui>Query > Cancel Query</ui> 通知 coordinator 终止运行中的查询，这是停止查询的方法，因为连接查询超时不传至 Trino。",
+                "<code>SET SESSION</code> 在连接余下期间保持。<ui>查询 > 取消查询</ui>（Query > Cancel Query）通知 coordinator 终止运行中的查询，这是停止查询的方法，因为连接查询超时不传至 Trino。",
                 "<editing>单元格编辑</editing>转换为 INSERT、UPDATE、DELETE，每个值带 Trino 类型。Trino 不报告主键，因此按读取时整行所有列匹配，没有事务可回滚。编辑两条相同行中的一条会同时修改两条，请先检查重复。"
             ]
         },
         {
             "id": "schema",
-            "title": "结构",
+            "title": "Structure",
             "paragraphs": [
                 "<structure>Structure 标签页</structure>自动提交创建表、添加、删除、重命名和更改列类型的操作。能否执行取决于 catalog connector，其中类型修改被最少 connector 支持。"
             ]

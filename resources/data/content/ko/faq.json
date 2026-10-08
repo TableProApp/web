@@ -46,7 +46,7 @@
                     "id": "is-it-free",
                     "question": "TablePro는 무료인가요?",
                     "answer": [
-                        "Mac 앱은 무료로 다운로드하고 사용할 수 있으며 체험 기간이나 시간 제한이 없습니다. Starter 또는 Team 라이선스는 Mac 앱에 선택 기능을 추가하며 <pricing>요금 페이지</pricing>에 목록이 있습니다. 지원하는 모든 엔진 연결, AI 어시스턴트, MCP 서버 및 안전 모드에는 라이선스가 필요하지 않습니다.",
+                        "Mac 앱은 무료로 다운로드하고 사용할 수 있으며 체험 기간이나 시간 제한이 없습니다. Starter 또는 Team 라이선스는 Mac 앱에 선택 기능을 추가하며 <pricing>요금 페이지</pricing>에 목록이 있습니다. 지원하는 모든 엔진 연결, AI 어시스턴트, MCP 서버 및 Safe Mode에는 라이선스가 필요하지 않습니다.",
                         "iPhone 및 iPad 앱은 무료이고 앱 내 구입이 없으며 라이선스가 필요하지 않습니다."
                     ]
                 },
@@ -81,7 +81,7 @@
                     "id": "iphone-ipad",
                     "question": "iPhone 및 iPad 앱이 있나요?",
                     "answer": [
-                        "네. iPhone 및 iPad용 TablePro는 App Store에서 제공되며 {iosRequirement}가 필요하고 무료이며 앱 내 구입이 없습니다. {iosEngines}에 연결하고 SSH 터널, 안전 모드 및 Face ID를 지원하며 테이블 탐색·편집과 쿼리 실행이 가능합니다.",
+                        "네. iPhone 및 iPad용 TablePro는 App Store에서 제공되며 {iosRequirement}가 필요하고 무료이며 앱 내 구입이 없습니다. {iosEngines}에 연결하고 SSH 터널, Safe Mode 및 Face ID를 지원하며 테이블 탐색·편집과 쿼리 실행이 가능합니다.",
                         "휴대폰과 태블릿용으로 만든 별도 앱이며 Mac 앱의 복사본이 아닙니다. 예를 들어 AI 어시스턴트, MCP 서버 및 저장된 쿼리는 없습니다. <ios>iPhone 및 iPad 페이지</ios>에 제공 기능과 없는 기능이 나와 있습니다."
                     ]
                 },
@@ -135,7 +135,7 @@
                     "question": "비밀번호는 어디에 저장되나요?",
                     "answer": [
                         "Mac에서는 macOS 키체인에 저장합니다. 연결할 때 파일, 환경 변수, 셸 명령, 1Password, HashiCorp Vault 또는 AWS Secrets Manager에서 비밀번호를 읽도록 설정할 수도 있습니다. iPhone 및 iPad에서는 기기의 키체인에 보관합니다.",
-                        "iCloud 동기화를 켜도 Mac의 Sync Categories에서 <ui>Passwords</ui> 또는 iPhone·iPad의 <ui>Sync Passwords</ui>를 추가로 켜야 iCloud 키체인으로 비밀번호가 동기화됩니다."
+                        "iCloud Sync를 켜도 Mac의 Sync Categories에서 <ui>암호</ui>(Passwords) 또는 iPhone·iPad의 <ui>암호 동기화</ui>(Sync Passwords)를 추가로 켜야 iCloud 키체인으로 비밀번호가 동기화됩니다."
                     ]
                 },
                 {
@@ -177,7 +177,7 @@
                     "id": "subscription-ends",
                     "question": "구독이 종료되면 어떻게 되나요?",
                     "answer": [
-                        "유료 기능이 잠깁니다. 예를 들어 iCloud 동기화가 일시 중지되고 Linked Folders 또는 Team Library의 연결이 숨겨집니다. 나머지는 계속 작동하며 연결, 쿼리 및 설정은 Mac에 그대로 남습니다. 갱신하면 유료 기능이 다시 켜집니다.",
+                        "유료 기능이 잠깁니다. 예를 들어 iCloud Sync가 일시 중지되고 Linked Folders 또는 Team Library의 연결이 숨겨집니다. 나머지는 계속 작동하며 연결, 쿼리 및 설정은 Mac에 그대로 남습니다. 갱신하면 유료 기능이 다시 켜집니다.",
                         "일회성 구매는 만료일이 없습니다. iPhone과 iPad는 달라지는 것이 없습니다."
                     ]
                 },
@@ -193,7 +193,7 @@
                     "id": "payment",
                     "question": "누가 결제를 처리하나요?",
                     "answer": [
-                        "{merchant}는 공식 판매자입니다. {merchant}에서 라이선스를 구매하며 해당 업체가 결제를 받고 결제 시 판매세 또는 VAT를 계산하고 영수증을 이메일로 보냅니다. 청구서, 결제 수단 및 구독은 <portal>{merchant} 고객 포털</portal>에서 관리하며 구매에 사용한 이메일로 로그인합니다."
+                        "{merchant}는 merchant of record입니다. {merchant}에서 라이선스를 구매하며 해당 업체가 결제를 받고 결제 시 판매세 또는 VAT를 계산하고 영수증을 이메일로 보냅니다. 청구서, 결제 수단 및 구독은 <portal>{merchant} 고객 포털</portal>에서 관리하며 구매에 사용한 이메일로 로그인합니다."
                     ]
                 },
                 {
@@ -241,7 +241,7 @@
                     "id": "what-is-sent",
                     "question": "앱은 TablePro에 무엇을 전송하나요?",
                     "answer": [
-                        "라이선스를 활성화하지 않으면 Mac 앱이 TablePro에 보내는 요청은 하루 한 번의 사용 보고서뿐입니다. 기본적으로 켜져 있으며 <ui>Settings > General > Privacy</ui>에서 변경할 수 있습니다. 해시된 기기 ID와 앱 버전, 언어, 연결하는 데이터베이스 유형 등을 포함하며 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 포함하지 않습니다.",
+                        "라이선스를 활성화하지 않으면 Mac 앱이 TablePro에 보내는 요청은 하루 한 번의 사용 보고서뿐입니다. 기본적으로 켜져 있으며 <ui>설정 > 일반 > 개인정보 보호</ui>(Settings > General > Privacy)에서 변경할 수 있습니다. 해시된 기기 ID와 앱 버전, 언어, 연결하는 데이터베이스 유형 등을 포함하며 호스트 이름, 사용자 이름, 비밀번호, 쿼리 또는 행 데이터는 포함하지 않습니다.",
                         "라이선스가 있으면 Mac 앱은 {revalidateDays}일마다 키, 같은 기기 ID, Mac 이름 및 앱·macOS 버전을 보내 확인합니다. iPhone 및 iPad는 Share Usage Data를 켜지 않으면 TablePro에 아무것도 보내지 않습니다. 서버에 저장되는 내용까지 포함한 전체 목록은 <privacy>개인정보 처리방침</privacy>에 있습니다."
                     ]
                 },
@@ -261,10 +261,10 @@
                 },
                 {
                     "id": "icloud-data",
-                    "question": "iCloud 동기화는 무엇을 어디에 저장하나요?",
+                    "question": "iCloud Sync는 무엇을 어디에 저장하나요?",
                     "answer": [
-                        "iCloud 동기화는 사용자가 켤 때까지 꺼져 있습니다. 동기화된 연결과 Mac에서 선택한 다른 범주는 본인의 iCloud 계정 내 비공개 데이터베이스로 전송되며 TablePro는 읽을 수 없습니다. 비밀번호는 Mac의 Sync Categories에서 <ui>Passwords</ui> 또는 iPhone·iPad의 <ui>Sync Passwords</ui>를 추가로 켜야 동기화됩니다.",
-                        "Mac의 iCloud 동기화는 Starter 또는 Team 라이선스에 포함됩니다. iPhone 및 iPad에서는 무료입니다."
+                        "iCloud Sync는 사용자가 켤 때까지 꺼져 있습니다. 동기화된 연결과 Mac에서 선택한 다른 범주는 본인의 iCloud 계정 내 비공개 데이터베이스로 전송되며 TablePro는 읽을 수 없습니다. 비밀번호는 Mac의 Sync Categories에서 <ui>암호</ui>(Passwords) 또는 iPhone·iPad의 <ui>암호 동기화</ui>(Sync Passwords)를 추가로 켜야 동기화됩니다.",
+                        "Mac의 iCloud Sync는 Starter 또는 Team 라이선스에 포함됩니다. iPhone 및 iPad에서는 무료입니다."
                     ]
                 }
             ]
@@ -284,7 +284,7 @@
                     "id": "members",
                     "question": "팀원을 어떻게 추가하거나 제거하나요?",
                     "answer": [
-                        "<account>계정</account>에서 이메일로 초대하세요. 상대방은 받은 코드를 Mac의 TablePro에서 <ui>Settings > License</ui>에 입력하고 Mac은 한 좌석을 사용합니다. 구성원을 제거하면 좌석이 확보되고 해당 Mac은 로그아웃되며 Team Library에 게시한 내용이 삭제됩니다."
+                        "<account>계정</account>에서 이메일로 초대하세요. 상대방은 받은 코드를 Mac의 TablePro에서 <ui>설정 > 라이선스</ui>(Settings > License)에 입력하고 Mac은 한 좌석을 사용합니다. 구성원을 제거하면 좌석이 확보되고 해당 Mac은 로그아웃되며 Team Library에 게시한 내용이 삭제됩니다."
                     ]
                 },
                 {

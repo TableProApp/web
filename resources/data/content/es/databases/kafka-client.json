@@ -23,9 +23,9 @@
             "id": "connect",
             "title": "Conectar",
             "paragraphs": [
-                "Introduce el host y puerto de un broker; a partir de él se descubre el resto del clúster. <ui>Servidores bootstrap adicionales</ui> enumera brokers que probar si el primero no responde. Una conexión corresponde a un clúster, así que no hay campo Base de datos y la barra lateral muestra sus topics directamente.",
-                "<ui>Protocolo de seguridad</ui> es PLAINTEXT, SSL, SASL_PLAINTEXT o SASL_SSL; <ui>Mecanismo SASL</ui> es PLAIN, SCRAM-SHA-256 o SCRAM-SHA-512. PLAIN sirve para Confluent Cloud; SCRAM, para Amazon MSK y brokers propios. Con SSL o SASL_SSL sin modo SSL elegido, se verifican la cadena de certificados y el host. Una CA privada va en <ui>Certificado CA</ui>; un certificado de cliente y clave añaden TLS mutuo.",
-                "Con un <network>túnel SSH</network>, la conexión permanece en el broker bootstrap, así que solo lee las particiones que este lidera. <ui>Importar desde URL…</ui> acepta URL <code>kafka://</code>, que macOS no abre como enlaces."
+                "Introduce el host y puerto de un broker; a partir de él se descubre el resto del clúster. <ui>Additional Bootstrap Servers</ui> enumera brokers que probar si el primero no responde. Una conexión corresponde a un clúster, así que no hay campo Base de datos y la barra lateral muestra sus topics directamente.",
+                "<ui>Security Protocol</ui> es PLAINTEXT, SSL, SASL_PLAINTEXT o SASL_SSL; <ui>SASL Mechanism</ui> es PLAIN, SCRAM-SHA-256 o SCRAM-SHA-512. PLAIN sirve para Confluent Cloud; SCRAM, para Amazon MSK y brokers propios. Con SSL o SASL_SSL sin modo SSL elegido, se verifican la cadena de certificados y el host. Una CA privada va en <ui>CA Certificate</ui>; un certificado de cliente y clave añaden TLS mutuo.",
+                "Con un <network>túnel SSH</network>, la conexión permanece en el broker bootstrap, así que solo lee las particiones que este lidera. <ui>Import from URL…</ui> acepta URL <code>kafka://</code>, que macOS no abre como enlaces."
             ]
         },
         {
@@ -60,7 +60,7 @@
         {
             "id": "advertised-addresses",
             "question": "¿Por qué cargan los topics pero los mensajes agotan el tiempo?",
-            "answer": "El clúster anuncia direcciones inaccesibles desde este Mac, como un host de contenedor o IP privada. Corrige <code>advertised.listeners</code> o configura <ui>Direcciones de brokers</ui> para usar solo la dirección bootstrap."
+            "answer": "El clúster anuncia direcciones inaccesibles desde este Mac, como un host de contenedor o IP privada. Corrige <code>advertised.listeners</code> o configura <ui>Broker Addresses</ui> para usar solo la dirección bootstrap."
         },
         {
             "id": "msk-iam",

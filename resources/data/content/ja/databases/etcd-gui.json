@@ -11,7 +11,7 @@
     "breadcrumb": "etcd",
     "header": {
         "title": "{devices} 用 etcd GUI",
-        "lead": "クラスタのキーをプレフィックスで閲覧し、グリッドで値やリースを変更して、エディタで <code>get --prefix</code>、<code>lease grant</code> や <code>member list</code> などの etcdctl 形式のコマンドを実行できます。"
+        "lead": "クラスターのキーをプレフィックスで閲覧し、グリッドで値やリースを変更して、エディターで <code>get --prefix</code>、<code>lease grant</code> や <code>member list</code> などの etcdctl 形式のコマンドを実行できます。"
     },
     "asset": "mac-db-etcd-keys",
     "links": {
@@ -25,9 +25,9 @@
             "title": "接続",
             "paragraphs": [
                 "ホストとクライアントポートを指定します。etcd にデータベースはないため Database フィールドはありません。ピアポートは JSON ゲートウェイを提供せず接続できないので、クライアントポートを使ってください。エンドポイントは一つでフェイルオーバーしないため、稼働中のメンバーを選びます。",
-                "認証のないクラスタでは <ui>Username</ui> と <ui>Password</ui> を空欄にします。<code>root</code> ロールのないユーザーも接続し、ロールが許可するキーを閲覧できますが、<code>endpoint status</code> と <code>user</code>、<code>role</code> コマンドは権限不足を返します。",
+                "認証のないクラスターでは <ui>Username</ui> と <ui>Password</ui> を空欄にします。<code>root</code> ロールのないユーザーも接続し、ロールが許可するキーを閲覧できますが、<code>endpoint status</code> と <code>user</code>、<code>role</code> コマンドは権限不足を返します。",
                 "TLS は SSL セクションではなく Advanced の <ui>TLS Mode</ui> で設定し、初期値は Disabled です。Required (skip verify) は検証せず暗号化、Verify CA は指定した CA ファイルで証明書を検証、Verify Identity はさらにホスト名を確認します。クライアント証明書と鍵で相互 TLS を使えます。",
-                "踏み台の背後のクラスタには <network>SSH トンネル</network> で接続します。<code>etcd://</code> と <code>etcds://</code> URL をインポートできますが、どちらも単独では TLS を有効にしません。"
+                "踏み台の背後のクラスターには <network>SSH トンネル</network> で接続します。<code>etcd://</code> と <code>etcds://</code> URL をインポートできますが、どちらも単独では TLS を有効にしません。"
             ]
         },
         {
@@ -36,16 +36,16 @@
             "paragraphs": [
                 "<ui>Key Prefix Root</ui> に <code>/app</code> などを設定し、接続を一つのサブツリーに限定します。サイドバーはその下の最初のパス要素でキーをまとめ、各行にキーの値、バージョン、変更・作成リビジョンとリースを表示します。",
                 "編集の保存はコマンドを送信します。値やリースの変更はキーを再度 put し、NULL リースはリースを解除、キーの名前変更は新しい名前を put して古い名前を削除します。リビジョン列は etcd が管理するため、変更すると保存を止めて列名を示します。",
-                "エディタは etcdctl 形式でコマンドとフラグを補完します。<code>get</code> の <code>--prefix</code>、<code>--limit</code>、<code>--keys-only</code> と並べ替え、<code>put</code> の <code>--lease</code>、<code>del</code>、<code>watch</code>、<code>lease</code> サブコマンド、<code>member list</code>、<code>endpoint status</code> と <code>health</code>、<code>compaction</code>、<code>auth</code>、<code>user</code>、<code>role</code> コマンドに対応します。それ以外はサーバーに送らず不明なコマンドとして返します。",
-                "etcd ドライバーは読み取り専用セッションを開けないため、<safeMode>セーフモード</safeMode> はすべてのコマンドを書き込みとして扱います。Alert と Safe Mode レベルでは毎回確認し、Read-Only ではすべてをブロックします。"
+                "エディターは etcdctl 形式でコマンドとフラグを補完します。<code>get</code> の <code>--prefix</code>、<code>--limit</code>、<code>--keys-only</code> と並べ替え、<code>put</code> の <code>--lease</code>、<code>del</code>、<code>watch</code>、<code>lease</code> サブコマンド、<code>member list</code>、<code>endpoint status</code> と <code>health</code>、<code>compaction</code>、<code>auth</code>、<code>user</code>、<code>role</code> コマンドに対応します。それ以外はサーバーに送らず不明なコマンドとして返します。",
+                "etcd ドライバーは読み取り専用セッションを開けないため、<safeMode>Safe Mode</safeMode> はすべてのコマンドを書き込みとして扱います。Alert と Safe Mode レベルでは毎回確認し、Read-Only ではすべてをブロックします。"
             ]
         },
         {
             "id": "operate",
-            "title": "リースとクラスタ",
+            "title": "リースとクラスター",
             "paragraphs": [
-                "<code>lease grant</code>、<code>revoke</code>、<code>--keys</code> 付き <code>timetolive</code>、<code>list</code> と <code>keep-alive</code> でリースを管理し、<code>compaction</code> でリビジョン履歴を削減します。etcd に Server Dashboard はないため、エディタの <code>member list</code>、<code>endpoint status</code>、<code>endpoint health</code> でクラスタ状況を確認します。",
-                "エディタで <code>auth enable</code> を実行するとクラスタ全体の認証を有効にします。ユーザー名とパスワードのある接続は続けて使えますが、どちらもない接続は認証情報を入れて開き直す必要があります。"
+                "<code>lease grant</code>、<code>revoke</code>、<code>--keys</code> 付き <code>timetolive</code>、<code>list</code> と <code>keep-alive</code> でリースを管理し、<code>compaction</code> でリビジョン履歴を削減します。etcd に Server Dashboard はないため、エディターの <code>member list</code>、<code>endpoint status</code>、<code>endpoint health</code> でクラスター状況を確認します。",
+                "エディターで <code>auth enable</code> を実行するとクラスター全体の認証を有効にします。ユーザー名とパスワードのある接続は続けて使えますが、どちらもない接続は認証情報を入れて開き直す必要があります。"
             ]
         },
         {

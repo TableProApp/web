@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Trợ lý AI và MCP server",
-        "lead": "Dành cho lập trình viên muốn được hỗ trợ viết SQL bằng model do mình chọn, hoặc muốn một AI client làm việc với cơ sở dữ liệu của mình: hỏi về schema, nhờ review hay sửa một query, hoặc cho Claude Code và Cursor dùng connection đã lưu. Tất cả đều là tùy chọn, chỉ có trong ứng dụng Mac, và không có gì đến được model cho tới khi bạn thêm nhà cung cấp AI hoặc kết nối một client.",
+        "lead": "Dành cho lập trình viên muốn được hỗ trợ viết SQL bằng model do mình chọn, hoặc muốn một AI client làm việc với cơ sở dữ liệu của mình. Hỏi về schema, nhờ review hay sửa một query, hoặc cho các MCP (Model Context Protocol) client như Claude Code và Cursor dùng connection đã lưu. Tất cả đều là tùy chọn, chỉ có trong ứng dụng Mac, và không có gì đến được model cho tới khi bạn thêm nhà cung cấp AI hoặc kết nối một client.",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -26,7 +26,7 @@
             "id": "in-the-editor",
             "title": "Review, giải thích, tối ưu và sửa lỗi",
             "paragraphs": [
-                "Đặt con trỏ vào một câu lệnh rồi chọn Review with AI (<kbd>⌥⇧⌘L</kbd>) để kiểm tra tính đúng đắn, chi phí và độ an toàn, Explain (<kbd>⌘L</kbd>) để xem câu lệnh làm gì từng bước, hoặc Optimize (<kbd>⌥⌘L</kbd>) để nhận một cách viết lại hay một index nên thêm; khi query lỗi, Fix with AI nằm ngay trên thanh báo lỗi. Yêu cầu gửi kèm cấu trúc của các table mà câu lệnh nhắc tới, và bản thân câu lệnh không được chạy. <ui>Áp dụng vào trình soạn thảo</ui> (Apply to Editor) chỉ thay câu lệnh của bạn sau khi bạn xác nhận.",
+                "Đặt con trỏ vào một câu lệnh rồi chọn Review with AI (<kbd>⌥⇧⌘L</kbd>) để kiểm tra tính đúng đắn, chi phí và độ an toàn, Explain (<kbd>⌘L</kbd>) để xem câu lệnh làm gì từng bước, hoặc Optimize (<kbd>⌥⌘L</kbd>) để nhận một cách viết lại hay một index nên thêm. Khi query lỗi, Fix with AI nằm ngay trên thanh báo lỗi. Yêu cầu gửi kèm cấu trúc của các table mà câu lệnh nhắc tới, và bản thân câu lệnh không được chạy. <ui>Áp dụng vào trình soạn thảo</ui> (Apply to Editor) chỉ thay câu lệnh của bạn sau khi bạn xác nhận.",
                 "Gợi ý nội tuyến hiện phần gợi ý dạng chữ mờ ngay khi bạn gõ, và mặc định tắt. AI Rules gắn ghi chú dạng văn bản vào một connection, chẳng hạn cột nào không bao giờ được SELECT, và được gửi kèm mọi tin nhắn."
             ]
         },
@@ -53,7 +53,7 @@
                     "id": "connect",
                     "title": "Kết nối một client",
                     "paragraphs": [
-                        "<ui>Cài đặt > Tích hợp</ui> (Settings > Integrations) có các bước thiết lập và đoạn cấu hình để sao chép cho {mcpSetupClients}. Bridge <code>tablepro-mcp</code> đi kèm ứng dụng còn dùng được với {mcpBridgeClients}: bridge tự khởi động TablePro khi cần và tự tìm server, nên cấu hình của client không chứa port hay token. Extension Raycast chính thức thì ghép nối (pair) với ứng dụng, và bạn duyệt việc ghép nối ngay trên máy Mac.",
+                        "<ui>Cài đặt > Tích hợp</ui> (Settings > Integrations) có các bước thiết lập và đoạn cấu hình để sao chép cho {mcpSetupClients}. Bridge <code>tablepro-mcp</code> đi kèm ứng dụng còn dùng được với {mcpBridgeClients}. Bridge tự khởi động TablePro khi cần và tự tìm server, nên cấu hình của client không chứa port hay token. Extension Raycast chính thức thì ghép nối (pair) với ứng dụng, và bạn duyệt việc ghép nối ngay trên máy Mac.",
                         "Một yêu cầu điển hình: bạn nhờ client tìm các user dùng chung một địa chỉ email. Client có thể gọi <code>list_tables</code> và <code>describe_table</code>, thấy cột có tên là <code>email_address</code>, rồi chạy một câu SELECT qua connection đã lưu, mà bạn không phải dán schema vào cuộc chat."
                     ]
                 },

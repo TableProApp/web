@@ -1,12 +1,12 @@
 {
     "postgresql": {
-        "tagline": "Array, jsonb e valori PostGIS, diagrammi EXPLAIN, Utenti e ruoli e backup pg_dump.",
+        "tagline": "Array, jsonb e valori PostGIS, diagrammi EXPLAIN, Users & Roles e backup pg_dump.",
         "limits": {
             "column-reorder-script-only": "Il riordino delle colonne prepara uno script che ricostruisce la tabella. TablePro mostra lo script e non lo esegue mai."
         }
     },
     "mysql": {
-        "tagline": "MySQL tramite TCP, con diagrammi EXPLAIN, Utenti e ruoli, accesso AWS IAM e backup mysqldump.",
+        "tagline": "MySQL tramite TCP, con diagrammi EXPLAIN, Users & Roles, accesso AWS IAM e backup mysqldump.",
         "limits": {
             "tcp-only": "Le connessioni usano host e porta tramite TCP. Un socket Unix locale non è supportato.",
             "load-data-local-refused": "Il driver rifiuta LOAD DATA LOCAL INFILE. Carica un file tramite Importazione."
@@ -55,30 +55,30 @@
         "tagline": "Il driver MySQL con sequenze, colonne virtuali e persistenti e colonne JSON di MariaDB.",
         "limits": {
             "no-cloud-sql-proxy": "Cloud SQL Auth Proxy non è disponibile per MariaDB. Accedi a un server privato tramite un tunnel SSH.",
-            "roles-listed-as-users": "Utenti e ruoli elenca i ruoli MariaDB come utenti. Crea e assegna ruoli con SQL nell’editor."
+            "roles-listed-as-users": "Users & Roles elenca i ruoli MariaDB come utenti. Crea e assegna ruoli con SQL nell’editor."
         }
     },
     "tidb": {
-        "tagline": "TiDB e TiDB Cloud sul driver MySQL, con Interrompi inviato come KILL TIDB QUERY.",
+        "tagline": "TiDB e TiDB Cloud sul driver MySQL, con Stop inviato come KILL TIDB QUERY.",
         "limits": {
             "no-triggers-or-routines": "Nessun trigger, routine memorizzata o evento.",
-            "no-dashboard-or-dump": "Nessun Pannello del server o Backup Dump. Esporta invece con Dumpling di TiDB.",
-            "structure-sync-same-engine": "Confronta e sincronizza genera script di struttura solo tra database TiDB, non tra TiDB e MySQL o MariaDB."
+            "no-dashboard-or-dump": "Nessun Server Dashboard o Backup Dump. Esporta invece con Dumpling di TiDB.",
+            "structure-sync-same-engine": "Compare & Sync genera script di struttura solo tra database TiDB, non tra TiDB e MySQL o MariaDB."
         }
     },
     "oceanbase": {
         "tagline": "Tenant OceanBase in modalità MySQL, con accesso come user@tenant, direttamente o tramite OBProxy.",
         "limits": {
             "mysql-mode-only": "Si connettono solo i tenant in modalità MySQL. Quelli in modalità Oracle vengono rifiutati.",
-            "no-dashboard-or-dump": "Nessun Pannello del server o Backup Dump.",
-            "structure-sync-same-engine": "Confronta e sincronizza genera script di struttura solo tra database OceanBase, non tra OceanBase e MySQL o MariaDB."
+            "no-dashboard-or-dump": "Nessun Server Dashboard o Backup Dump.",
+            "structure-sync-same-engine": "Compare & Sync genera script di struttura solo tra database OceanBase, non tra OceanBase e MySQL o MariaDB."
         }
     },
     "databend": {
         "tagline": "Databend e Databend Cloud tramite l’handler MySQL di Databend.",
         "limits": {
             "no-keys-or-indexes": "Databend non ha indici, chiavi primarie o esterne, quindi una modifica di riga cerca la corrispondenza su ogni colonna e viene rifiutato un salvataggio che cambierebbe più di una riga.",
-            "no-compare-sync": "Confronta e sincronizza non è disponibile.",
+            "no-compare-sync": "Compare & Sync non è disponibile.",
             "no-url-scheme": "Nessuno schema URL apre una connessione Databend. Creala nel modulo di connessione.",
             "not-on-ios": "Non disponibile su iPhone e iPad."
         }
@@ -87,14 +87,14 @@
         "tagline": "Amazon Redshift sul driver PostgreSQL, con DISTKEY e SORTKEY nel DDL.",
         "limits": {
             "no-aws-iam": "L’accesso AWS IAM non è disponibile per Redshift. Accedi come utente del database.",
-            "structure-read-only": "La scheda Struttura è in sola lettura. Esegui DDL nell’editor.",
+            "structure-read-only": "La scheda Structure è in sola lettura. Esegui DDL nell’editor.",
             "ios-synced-only": "Su iPhone e iPad, una connessione Redshift si apre solo se sincronizzata o importata da un Mac."
         }
     },
     "cockroachdb": {
         "tagline": "CockroachDB e CockroachDB Cloud tramite il protocollo di comunicazione PostgreSQL.",
         "limits": {
-            "structure-read-only": "La scheda Struttura è in sola lettura. Esegui le modifiche allo schema come SQL nell’editor.",
+            "structure-read-only": "La scheda Structure è in sola lettura. Esegui le modifiche allo schema come SQL nell’editor.",
             "no-dump-or-maintenance": "Nessun Backup Dump, Restore Dump o manutenzione delle tabelle. Usa le istruzioni BACKUP e RESTORE di CockroachDB."
         }
     },
@@ -103,7 +103,7 @@
         "limits": {
             "needs-socket-server": "PGlite deve essere servito da @electric-sql/pglite-socket, che avvii e mantieni in esecuzione.",
             "single-client": "Il server socket accetta un client alla volta.",
-            "cancel-has-no-effect": "Annulla non ha effetto: una query viene sempre eseguita fino alla fine."
+            "cancel-has-no-effect": "Cancel non ha effetto: una query viene sempre eseguita fino alla fine."
         }
     },
     "oracle": {
@@ -111,12 +111,12 @@
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "Wallet Oracle, autenticazione del sistema operativo, Kerberos e LDAP non sono supportati. Connettiti con nome del servizio o SID e password.",
             "no-explain": "Non sono disponibili EXPLAIN o una vista del piano di esecuzione per Oracle.",
-            "no-users-roles": "Utenti e ruoli non è disponibile. Gestisci gli account con CREATE USER e GRANT nell’editor.",
+            "no-users-roles": "Users & Roles non è disponibile. Gestisci gli account con CREATE USER e GRANT nell’editor.",
             "no-packages": "I package non sono elencati nella barra laterale. Procedure e funzioni autonome sì."
         }
     },
     "clickhouse": {
-        "tagline": "ClickHouse tramite HTTP o HTTPS, con varianti EXPLAIN, mutazioni e scheda Parti.",
+        "tagline": "ClickHouse tramite HTTP o HTTPS, con varianti EXPLAIN, mutazioni e scheda Parts.",
         "limits": {
             "http-only": "Le connessioni usano l’interfaccia HTTP di ClickHouse. Il protocollo TCP nativo non viene usato.",
             "tls-off-by-default": "TLS è disattivato per impostazione predefinita. Scegli una modalità SSL nel modulo di connessione per usare HTTPS.",
@@ -155,12 +155,12 @@
     "bigquery": {
         "tagline": "GoogleSQL con Max Bytes Billed e una stima dei costi Dry Run prima dell’esecuzione della query.",
         "limits": {
-            "structure-read-only": "La scheda Struttura è in sola lettura. Esegui DDL nell’editor.",
+            "structure-read-only": "La scheda Structure è in sola lettura. Esegui DDL nell’editor.",
             "no-transactions": "Le transazioni non sono supportate."
         }
     },
     "snowflake": {
-        "tagline": "Coppia di chiavi, SSO nel browser, OAuth o password con codice, con warehouse e ruolo in Contesto di sessione.",
+        "tagline": "Coppia di chiavi, SSO nel browser, OAuth o password con codice, con warehouse e ruolo in Session Context.",
         "limits": {
             "duo-passcode-only": "Duo funziona solo con un codice. L’approvazione push non è supportata."
         }
@@ -239,7 +239,7 @@
     "spanner": {
         "tagline": "Dialetto GoogleSQL o PostgreSQL, rilevato alla connessione, ed emulatore Spanner.",
         "limits": {
-            "structure-read-only": "La scheda Struttura è in sola lettura. Modifica una tabella con ALTER TABLE nell’editor."
+            "structure-read-only": "La scheda Structure è in sola lettura. Modifica una tabella con ALTER TABLE nell’editor."
         }
     },
     "typesense": {

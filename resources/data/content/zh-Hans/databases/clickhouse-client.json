@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "提供主机、HTTP 端口、用户，可选数据库。切换数据库原地完成，已打开标签页保持原数据库。<ui>View > Sidebar as Tree</ui> 将服务器数据库显示为可展开的树。",
+                "提供主机、HTTP 端口、用户，可选数据库。切换数据库原地完成，已打开标签页保持原数据库。<ui>视图 > 侧边栏显示为树状</ui>（View > Sidebar as Tree）将服务器数据库显示为可展开的树。",
                 "选择任意 SSL 模式切换为 HTTPS。443 或 ClickHouse Cloud 的 8443 端口会启用 Verify Identity，使用 CA 文件或系统信任库验证证书。Verify CA 需要 CA 文件，客户端证书和密钥可访问要求双向 TLS 的服务器。",
                 "未使用 TLS 时，请通过 <network>SSH 隧道</network>访问远程服务器，避免在网络上传输明文 HTTP。"
             ]
@@ -56,7 +56,7 @@
             "id": "operate",
             "title": "监控",
             "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> 显示活动查询、合并、数据部件 mutation 和磁盘使用，列出其他会话并各提供 <ui>Terminate Session</ui>。慢查询从 <code>system.query_log</code> 读取最近完成且耗时超过一秒的查询。"
+                "<dashboard>Server Dashboard</dashboard> 显示活动查询、合并、数据部件 mutation 和磁盘使用，列出其他会话并各提供<ui>终止会话</ui>（Terminate Session）。慢查询从 <code>system.query_log</code> 读取最近完成且耗时超过一秒的查询。"
             ]
         },
         {

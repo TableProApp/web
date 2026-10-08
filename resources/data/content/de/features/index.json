@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "Was du mit TablePro tun kannst",
-        "lead": "Die Mac-App bietet den vollständigen Arbeitsplatz; jede der folgenden Seiten beschreibt sie zuerst. Die iPhone- und iPad-App ist eine eigenständige native App mit kleinerem Umfang. Jede Seite endet mit ihren dort verfügbaren Funktionen."
+        "lead": "Die Mac-App bietet den vollständigen Arbeitsplatz. Die iPhone- und iPad-App ist eine eigenständige native App mit kleinerem Umfang, und jede Funktionsseite nennt, was sie dort bietet."
     },
     "areas": {
-        "title": "Funktionsbereiche",
-        "lead": "Jeder Bereich hat eine Seite mit Details, dem für jede Funktion nötigen Mac-Tarif und den relevanten Einschränkungen.",
-        "paid": "{tier}: {features}",
+        "title": "Funktionen nach Aufgabe",
+        "paid": "{tier}-Tarif: {features}",
         "noPaid": "Keine Bezahlfunktionen",
         "items": [
             {
@@ -23,11 +22,11 @@
             },
             {
                 "slug": "data-editing",
-                "summary": "Filter und Hervorhebungsregeln, verfolgbare Fremdschlüssel, Änderungen bis zum Speichern, eine Stufe des sicheren Modus pro Verbindung und Data Rewind für ersetzte Werte."
+                "summary": "Filter und Hervorhebungsregeln, verfolgbare Fremdschlüssel, Änderungen bis zum Speichern, eine Safe-Mode-Stufe pro Verbindung und Data Rewind für ersetzte Werte."
             },
             {
                 "slug": "schema",
-                "summary": "Strukturänderungen mit DDL-Vorschau, ein schreibgeschütztes ER-Diagramm, Vergleichen und synchronisieren zwischen Datenbanken, Kopieren nach über Systemgrenzen hinweg sowie Benutzer und Rollen."
+                "summary": "Strukturänderungen mit DDL-Vorschau, ein schreibgeschütztes ER-Diagramm, Compare & Sync zwischen Datenbanken, Copy To über Systemgrenzen hinweg sowie Users & Roles."
             },
             {
                 "slug": "import-export",
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "Ein optionaler KI-Assistent mit deinem gewählten Anbieter und ein lokaler MCP-Server, über den Clients wie Claude Code und Cursor deine gespeicherten Verbindungen nutzen."
+                "summary": "Ein optionaler KI-Assistent mit deinem gewählten Anbieter und ein lokaler Server für MCP (Model Context Protocol), über den Clients wie Claude Code und Cursor deine gespeicherten Verbindungen nutzen."
             },
             {
                 "slug": "connections",
@@ -43,18 +42,18 @@
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "iCloud Sync zwischen deinen Macs, iPhone und iPad, teilbare Verbindungsdateien sowie Team-Katalog und Team-Bibliothek zum Teilen mit deinem Team."
+                "summary": "iCloud Sync zwischen deinen Macs, iPhone und iPad, teilbare Verbindungsdateien sowie Team Catalog und Team Library zum Teilen mit deinem Team."
             }
         ]
     },
     "ios": {
         "title": "iPhone und iPad",
-        "body": "TablePro für iPhone und iPad ist eine eigenständige kostenlose App ohne In-App-Käufe. Sie verbindet sich über SSH oder TLS, durchsucht und bearbeitet Zeilen und führt Abfragen aus, mit Kurzbefehlen, Home-Bildschirm-Widget und Live-Aktivitäten für laufende Abfragen. KI-Assistent, Schemabearbeitung, Data Rewind und Vergleichen und synchronisieren fehlen.",
+        "body": "TablePro für iPhone und iPad ist eine eigenständige kostenlose App ohne In-App-Käufe. Sie verbindet sich über SSH oder TLS, durchsucht und bearbeitet Zeilen und führt Abfragen aus, mit Kurzbefehlen, Home-Bildschirm-Widget und Live-Aktivitäten für laufende Abfragen. KI-Assistent, Schemabearbeitung, Data Rewind und Compare & Sync fehlen.",
         "link": "TablePro für iPhone und iPad"
     },
     "paid": {
         "title": "Kostenlos und bezahlt",
-        "lead": "Die Mac-App ist kostenlos nutzbar, ohne Testzeitraum. Starter oder Team ergänzt die folgenden Mac-Funktionen; Team enthält alles aus Starter. Verbindungen zu unterstützten Systemen, KI-Assistent, MCP-Server und sicherer Modus benötigen keine Lizenz. Die iPhone- und iPad-App ist kostenlos, ohne In-App-Käufe.",
+        "lead": "Die Mac-App ist kostenlos nutzbar, ohne Testzeitraum. Starter oder Team ergänzt die folgenden Mac-Funktionen; Team enthält alles aus Starter. Verbindungen zu unterstützten Systemen, KI-Assistent, MCP-Server und Safe Mode benötigen keine Lizenz. Die iPhone- und iPad-App ist kostenlos, ohne In-App-Käufe.",
         "caption": "Die Bezahlfunktionen der Mac-App, der jeweils nötige Tarif und die beschreibende Seite",
         "columns": {
             "feature": "Feature",

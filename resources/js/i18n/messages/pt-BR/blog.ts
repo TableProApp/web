@@ -6,7 +6,7 @@ export default {
     },
     "latest": "Algumas versões também ganham um artigo no blog. O mais recente é <post>{title}</post>.",
     "post": {
-        "archive": "Publicado em {date}, este artigo descreve {release} como era na época. Para saber o que TablePro faz hoje, veja os <features>recursos</features> e o <changelog>histórico de alterações</changelog>.",
+        "archive": "Publicado em {date}, este artigo descreve {release} como era na época. Para saber o que TablePro faz hoje, veja os <features>recursos</features> e o <changelog>histórico de alterações</changelog> (inglês).",
         "correction": "Correção, {date}",
         "toc": "Nesta página",
         "pages": "Páginas relacionadas",

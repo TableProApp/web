@@ -70,7 +70,7 @@ export default function FeatureIndex({ content, pages, facts }: FeatureHubProps)
 
             <PageHeader title={content.header.title} lead={content.header.lead} />
 
-            <Section id="areas" title={content.areas.title} lead={content.areas.lead}>
+            <Section id="areas" title={content.areas.title}>
                 <ul data-rule-list className="frame-rows border-t border-rule">
                     {areas.map((area) => {
                         const paid = PAID_FEATURES.filter((feature) => feature.page.path === area.href);

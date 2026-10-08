@@ -13,8 +13,8 @@ export default {
         "joiner": " o "
     },
     "app": {
-        "mac": "App para Mac",
-        "ios": "App para iPhone y iPad"
+        "mac": "app para Mac",
+        "ios": "app para iPhone y iPad"
     },
     "availability": {
         "summary": "Disponible para {deviceList}."

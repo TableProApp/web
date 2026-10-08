@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Sinkronisasi iCloud dan berbagi koneksi untuk tim",
-        "description": "Selaraskan koneksi, grup, dan tag di Mac, iPhone, dan iPad dengan Sinkronisasi iCloud, bagikan file koneksi, dan publikasikan ke pustaka tim."
+        "title": "iCloud Sync dan berbagi koneksi untuk tim",
+        "description": "Selaraskan koneksi, grup, dan tag di Mac, iPhone, dan iPad dengan iCloud Sync, bagikan file koneksi, dan publikasikan ke pustaka tim."
     },
     "og": {
         "kicker": "Sinkronisasi dan tim",
@@ -9,22 +9,22 @@
     },
     "header": {
         "title": "Sinkronkan antarperangkat dan bagikan dengan tim",
-        "lead": "Untuk penggunaan TablePro di lebih dari satu perangkat atau saat beberapa orang memerlukan koneksi yang sama. Sinkronisasi iCloud menyelaraskan Mac, iPhone, dan iPad Anda; file koneksi, Folder Tertaut, dan fitur Team membagikan koneksi serta kueri kepada orang lain.",
+        "lead": "Untuk penggunaan TablePro di lebih dari satu perangkat atau saat beberapa orang memerlukan koneksi yang sama. iCloud Sync menyelaraskan Mac, iPhone, dan iPad Anda; file koneksi, Linked Folders, dan fitur Team membagikan koneksi serta kueri kepada orang lain.",
         "docs": "/features/icloud-sync"
     },
     "sections": [
         {
             "id": "icloud-sync",
-            "title": "Sinkronisasi iCloud",
+            "title": "iCloud Sync",
             "paragraphs": [
-                "Sinkronisasi iCloud menyamakan pustaka di setiap Mac, iPhone, dan iPad yang masuk ke akun iCloud Anda. Rekaman masuk ke database privat dalam akun tersebut, dan sinkronisasi tetap nonaktif hingga Anda mengaktifkannya pada setiap perangkat. Di iPhone dan iPad fitur ini gratis; Mac memerlukan paket yang mencakupnya.",
-                "Kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Sync Categories pada Mac, atau <ui>Sync Passwords</ui> pada iPhone dan iPad, melalui Rantai Kunci iCloud. Pada Mac, fitur ini juga membawa rahasia lain yang disimpan TablePro di Rantai Kunci, seperti kunci penyedia AI dan kunci lisensi. Tandai koneksi sebagai Hanya Lokal untuk menyimpannya, beserta favorit dan kueri tersimpan, pada satu Mac."
+                "iCloud Sync menyamakan pustaka di setiap Mac, iPhone, dan iPad yang masuk ke akun iCloud Anda. Rekaman masuk ke database privat dalam akun tersebut, dan sinkronisasi tetap nonaktif hingga Anda mengaktifkannya pada setiap perangkat. Di iPhone dan iPad fitur ini gratis; Mac memerlukan paket yang mencakupnya.",
+                "Kata sandi hanya disinkronkan jika Anda juga mengaktifkan <ui>Passwords</ui> di Sync Categories pada Mac, atau <ui>Sync Passwords</ui> pada iPhone dan iPad. Kata sandi dikirim melalui Rantai Kunci iCloud. Pada Mac, sakelar yang sama juga membawa rahasia lain yang disimpan TablePro di Rantai Kunci, seperti kunci penyedia AI dan kunci lisensi. Tandai koneksi sebagai Local only untuk menyimpannya, beserta favorit dan kueri tersimpan, pada satu Mac."
             ],
             "points": [
                 "Di Mac Anda memilih yang disinkronkan: koneksi, grup dan tag, pengaturan, profil SSH, profil kredensial (nama dan nama pengguna, tanpa kata sandi), tabel dan database favorit, kueri tersimpan beserta SQL-nya, dan folder tabel.",
                 "Di iPhone dan iPad: koneksi, grup, dan tag.",
-                "Koneksi yang disinkronkan membawa host, port, nama pengguna, database, pengaturan SSH dan SSL, perintah startup, skrip prakoneksi, dan aturan AI.",
-                "Tidak pernah disinkronkan: riwayat kueri, Pemulihan Data, sumber kata sandi, perintah tunnel, serta level Klien Eksternal setiap koneksi."
+                "Koneksi yang disinkronkan membawa host, port, nama pengguna, database, pengaturan SSH dan TLS, perintah startup, skrip prakoneksi, dan aturan AI.",
+                "Tidak pernah disinkronkan: riwayat kueri, Data Rewind, sumber kata sandi, perintah tunnel, serta level External Clients setiap koneksi."
             ],
             "paid": [
                 "icloud-sync"
@@ -35,7 +35,7 @@
             "id": "handoff",
             "title": "Handoff",
             "paragraphs": [
-                "Buka koneksi atau tabel di TablePro pada iPhone atau iPad dan Mac menawarkannya di Dock, begitu juga sebaliknya. Handoff membuka kembali koneksi tersimpan yang sama, sehingga harus ada di kedua perangkat: Sinkronisasi iCloud menempatkannya di sana, sedangkan salinan yang diimpor dari file dianggap koneksi berbeda. Handoff meneruskan ID koneksi dan nama tabel terbuka antarperangkat melalui Apple. Jika tidak ada tabel terbuka, nama koneksi yang diteruskan, atau host jika tidak bernama."
+                "Buka koneksi atau tabel di TablePro pada iPhone atau iPad dan Mac menawarkannya di Dock, begitu juga sebaliknya. Handoff membuka kembali koneksi tersimpan yang sama, sehingga harus ada di kedua perangkat: iCloud Sync menempatkannya di sana, sedangkan salinan yang diimpor dari file dianggap koneksi berbeda. Handoff meneruskan ID koneksi dan nama tabel terbuka antarperangkat melalui Apple. Jika tidak ada tabel terbuka, nama koneksi yang diteruskan, atau host jika tidak bernama."
             ],
             "paid": [
                 "icloud-sync"
@@ -46,8 +46,8 @@
             "id": "share",
             "title": "Bagikan koneksi",
             "paragraphs": [
-                "Ekspor koneksi ke file <code>.tablepro</code> untuk dikirim ke rekan kerja atau disimpan bersama kode. File berisi koneksi dengan grup, tag, dan pengaturan SSH, tanpa kata sandi. Ekspor Terenkripsi menambahkan kata sandi dan melindungi seluruh file dengan frasa sandi memakai AES-256-GCM. Impor file, terenkripsi atau tidak, gratis di Mac maupun iPhone dan iPad.",
-                "Di iPhone dan iPad, ekspor dengan kata sandi yang dilindungi frasa sandi gratis. Koneksi juga dapat dikirim sebagai tautan <code>tablepro://import</code>, yang membawa host, port, nama pengguna, database, serta pengaturan SSH dan SSL, tanpa kata sandi."
+                "Ekspor koneksi ke file <code>.tablepro</code> untuk dikirim ke rekan kerja atau disimpan bersama kode. File berisi koneksi dengan grup, tag, dan pengaturan SSH, tanpa kata sandi. Encrypted Export menambahkan kata sandi dan melindungi seluruh file dengan frasa sandi memakai AES-256-GCM. Impor file, terenkripsi atau tidak, gratis di Mac maupun iPhone dan iPad.",
+                "Di iPhone dan iPad, ekspor dengan kata sandi yang dilindungi frasa sandi gratis. Koneksi juga dapat dikirim sebagai tautan <code>tablepro://import</code>, yang membawa host, port, nama pengguna, database, serta pengaturan SSH dan TLS, tanpa kata sandi."
             ],
             "paid": [
                 "encrypted-export"
@@ -61,10 +61,10 @@
         },
         {
             "id": "linked-folders",
-            "title": "Folder Tertaut",
+            "title": "Linked Folders",
             "paragraphs": [
                 "Tambahkan folder, seperti checkout Git atau drive bersama, lalu TablePro mencantumkan setiap file <code>.tablepro</code> sebagai koneksi dan memperbarui daftar saat file ditambah atau diubah. Koneksi tertaut hanya-baca di TablePro: Anda mengubahnya dengan mengubah file. File terenkripsi dilewati, sehingga folder bersama berisi pengaturan, bukan kata sandi; perintah startup dan tunnel dalam file tertaut juga diabaikan.",
-                "Folder Tertaut memantau file koneksi. Folder SQL tertaut, bagian gratis dari kueri tersimpan, adalah fitur berbeda yang menyelaraskan folder file <code>.sql</code> dengan kueri tersimpan."
+                "Linked Folders memantau file koneksi. Folder SQL tertaut, bagian gratis dari kueri tersimpan, adalah fitur berbeda yang menyelaraskan folder file <code>.sql</code> dengan kueri tersimpan."
             ],
             "paid": [
                 "linked-folders"
@@ -78,16 +78,16 @@
         },
         {
             "id": "team",
-            "title": "Katalog Tim dan Pustaka Tim",
+            "title": "Team Catalog dan Team Library",
             "paragraphs": [
                 "Dua cara memberikan koneksi yang sama kepada semua anggota lisensi Team: melalui folder yang sudah dibagikan atau melalui server TablePro."
             ],
             "blocks": [
                 {
                     "id": "team-catalog",
-                    "title": "Katalog Tim",
+                    "title": "Team Catalog",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Catalog…</ui> menulis koneksi pilihan Anda, tanpa kata sandi, sebagai file <code>.tablepro</code> dalam folder bersama. Rekan tim menambahkan folder itu sebagai Folder Tertaut, sehingga katalog lewat drive bersama atau repositori yang sudah Anda miliki, bukan melalui TablePro."
+                        "<ui>Share > Publish to Team Catalog…</ui> menulis koneksi pilihan Anda, tanpa kata sandi, sebagai file <code>.tablepro</code> dalam folder bersama. Rekan tim menambahkan folder itu sebagai Linked Folder, sehingga katalog lewat drive bersama atau repositori yang sudah Anda miliki, bukan melalui TablePro."
                     ],
                     "paid": [
                         "team-catalog"
@@ -95,9 +95,9 @@
                 },
                 {
                     "id": "team-library",
-                    "title": "Pustaka Tim",
+                    "title": "Team Library",
                     "paragraphs": [
-                        "<ui>Share > Publish to Team Library…</ui> pada koneksi dan <ui>Publish Saved Queries to Team…</ui> di sidebar Favorit mengunggah koneksi serta kueri tersimpan ke server TablePro, lalu setiap Mac dalam lisensi mengunduhnya; kueri tampil di Favorit dengan nama penerbitnya. Yang diunggah adalah pengaturan koneksi dan teks SQL kueri, bukan kata sandi; Mac rekan tim mengabaikan perintah startup dan tunnel yang diterima, sehingga tidak ada yang berjalan sendiri. Publikasi ulang mengganti yang diterbitkan sebelumnya."
+                        "<ui>Share > Publish to Team Library…</ui> pada koneksi dan <ui>Publish Saved Queries to Team…</ui> di sidebar Favorites mengunggah koneksi serta kueri tersimpan ke server TablePro. Setiap Mac dalam lisensi mengunduhnya, dan kueri tampil di Favorites dengan nama penerbitnya. Yang diunggah adalah pengaturan koneksi dan teks SQL kueri, bukan kata sandi; Mac rekan tim mengabaikan perintah startup dan tunnel yang diterima, sehingga tidak ada yang berjalan sendiri. Publikasi ulang mengganti yang diterbitkan sebelumnya."
                     ],
                     "paid": [
                         "team-library"
@@ -105,7 +105,7 @@
                     "asset": "mac-team-library",
                     "links": [
                         {
-                            "label": "Yang dikirim Pustaka Tim ke TablePro",
+                            "label": "Yang dikirim Team Library ke TablePro",
                             "href": "/privacy#library"
                         }
                     ]
@@ -117,7 +117,7 @@
             "title": "Seat, undangan, dan akun Anda",
             "paragraphs": [
                 "Lisensi Team dihargai per seat, dan satu seat adalah satu Mac yang diaktifkan, bukan satu orang. Anda mengundang rekan tim dari akun web; masing-masing menerima kode sekali pakai lewat email untuk dimasukkan di <ui>Settings > License</ui> pada Mac, dan undangan memerlukan seat kosong. Aplikasi menampilkan anggota tim, tetapi seat dan undangan dikelola lewat web.",
-                "Pada langganan bulanan atau tahunan aktif, Anda mengubah jumlah seat sendiri; untuk pembelian sekali bayar, hubungi dukungan. Menghapus anggota langsung membebaskan seat dan menghapus publikasinya di Pustaka Tim; Mac miliknya kehilangan fitur berbayar pada pemeriksaan lisensi berikutnya, dalam {licenseCheckDays} hari. Halaman akun diperuntukkan bagi pembeli lisensi."
+                "Pada langganan bulanan atau tahunan aktif, Anda mengubah jumlah seat sendiri; untuk pembelian sekali bayar, hubungi dukungan. Menghapus anggota langsung membebaskan seat dan menghapus publikasinya di Team Library; Mac miliknya kehilangan fitur berbayar pada pemeriksaan lisensi berikutnya, dalam {licenseCheckDays} hari. Halaman akun diperuntukkan bagi pembeli lisensi."
             ],
             "links": [
                 {
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "Di iPhone dan iPad",
             "paragraphs": [
-                "Aplikasi iPhone dan iPad menyinkronkan koneksi, grup, dan tag lewat iCloud, ikut dalam Handoff, serta mengimpor dan mengekspor file <code>.tablepro</code>, dengan kata sandi yang dilindungi frasa sandi jika dipilih. Folder Tertaut, Katalog Tim, dan Pustaka Tim hanya tersedia di aplikasi Mac."
+                "Aplikasi iPhone dan iPad menyinkronkan koneksi, grup, dan tag lewat iCloud, ikut dalam Handoff, serta mengimpor dan mengekspor file <code>.tablepro</code>, dengan kata sandi yang dilindungi frasa sandi jika dipilih. Linked Folders, Team Catalog, dan Team Library hanya tersedia di aplikasi Mac."
             ],
             "links": [
                 {
@@ -146,7 +146,7 @@
     ],
     "availability": [
         {
-            "label": "Sinkronisasi iCloud",
+            "label": "iCloud Sync",
             "paid": "icloud-sync",
             "ios": "partial",
             "iosNote": "Koneksi, grup, dan tag, gratis"
@@ -157,12 +157,12 @@
             "ios": "yes"
         },
         {
-            "label": "Pilih yang disinkronkan dan simpan koneksi Hanya Lokal",
+            "label": "Pilih yang disinkronkan dan simpan koneksi Local only",
             "paid": "icloud-sync",
             "ios": "no"
         },
         {
-            "label": "Handoff dengan Sinkronisasi iCloud aktif",
+            "label": "Handoff dengan iCloud Sync aktif",
             "paid": "icloud-sync",
             "ios": "yes"
         },
@@ -171,34 +171,34 @@
             "ios": "yes"
         },
         {
-            "label": "Ekspor Terenkripsi dengan kata sandi",
+            "label": "Encrypted Export dengan kata sandi",
             "paid": "encrypted-export",
             "ios": "yes"
         },
         {
-            "label": "Folder Tertaut",
+            "label": "Linked Folders",
             "paid": "linked-folders",
             "ios": "no"
         },
         {
-            "label": "Katalog Tim",
+            "label": "Team Catalog",
             "paid": "team-catalog",
             "ios": "no"
         },
         {
-            "label": "Pustaka Tim",
+            "label": "Team Library",
             "paid": "team-library",
             "ios": "no"
         }
     ],
     "limits": [
-        "Saat paket berakhir di Mac, Sinkronisasi iCloud dijeda dan menjelaskan alasannya; koneksi dari Folder Tertaut dan Pustaka Tim hilang dari daftar, perintah publikasi Team disembunyikan, dan Ekspor Terenkripsi kehilangan opsi kata sandi.",
-        "Mengedit koneksi tersinkron di iPhone atau iPad dapat mengubah pengaturan yang tidak dimiliki aplikasi tersebut: level Mode Aman Mac yang lebih ketat, seperti Mode Aman (Penuh), kembali sebagai Peringatan, dan jump host SSH mungkin tidak dipertahankan. Ubah koneksi tersebut di Mac.",
-        "Jika lisensi Team berakhir atau ditangguhkan, publikasi di Pustaka Tim tetap berada di server TablePro hingga Anda meminta penghapusannya."
+        "Saat paket berakhir di Mac, iCloud Sync dijeda dan menjelaskan alasannya, dan koneksi dari Linked Folders dan Team Library hilang dari daftar. Perintah publikasi Team disembunyikan, dan Encrypted Export kehilangan opsi kata sandi.",
+        "Mengedit koneksi tersinkron di iPhone atau iPad dapat mengubah pengaturan yang tidak dimiliki aplikasi tersebut. Level Safe Mode Mac yang lebih ketat, seperti Safe Mode (Full), kembali sebagai Alert, dan jump host SSH mungkin tidak dipertahankan. Ubah koneksi tersebut di Mac.",
+        "Jika lisensi Team berakhir atau ditangguhkan, publikasi di Team Library tetap berada di server TablePro hingga Anda meminta penghapusannya."
     ],
     "docs": [
         {
-            "label": "Sinkronisasi iCloud",
+            "label": "iCloud Sync",
             "docs": "/features/icloud-sync"
         },
         {
@@ -206,19 +206,19 @@
             "docs": "/features/handoff"
         },
         {
-            "label": "File koneksi dan Ekspor Terenkripsi",
+            "label": "File koneksi dan Encrypted Export",
             "docs": "/features/connection-sharing#export"
         },
         {
-            "label": "Folder Tertaut",
+            "label": "Linked Folders",
             "docs": "/features/connection-sharing#linked-folders"
         },
         {
-            "label": "Katalog Tim",
+            "label": "Team Catalog",
             "docs": "/features/connection-sharing#team-catalog"
         },
         {
-            "label": "Pustaka Tim",
+            "label": "Team Library",
             "docs": "/features/favorites#team-library"
         },
         {
@@ -240,7 +240,7 @@
             "href": "/pricing#features"
         },
         {
-            "label": "Privasi: Sinkronisasi iCloud dan Handoff",
+            "label": "Privasi: iCloud Sync dan Handoff",
             "href": "/privacy#icloud"
         }
     ]

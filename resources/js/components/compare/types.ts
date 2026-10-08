@@ -109,6 +109,8 @@ export interface ComparePageProps {
     product: ComparisonProduct;
     /** `comparisons.json` → `rows`: the order of the "At a glance" rows. */
     rows: string[];
+    /** The other comparisons, each with its page's H1 in this locale. */
+    others: { slug: string; title: string }[];
     dates: DateLabels;
     tablepro: TableProProp;
 }
@@ -121,6 +123,8 @@ export interface CompareHubProps {
     products: HubProduct[];
     /** For each slug, the text of its free tier's note, when that page's copy exists. */
     freeNotes: Record<string, string | null>;
+    /** For each slug, its page's H1 in this locale: the text of a link to that page. */
+    titles: Record<string, string>;
     checkedAt: string;
     dates: DateLabels;
     tablepro: TableProProp;

@@ -16,7 +16,7 @@
     },
     "features": {
         "title": "Cosa aggiunge un piano a pagamento",
-        "lead": "Queste sono le uniche funzionalità che richiedono un piano a pagamento e si trovano tutte nell’app per Mac. Team include tutto Starter. Per connettersi a qualsiasi motore supportato non serve una licenza, né per l’assistente IA, il server MCP o la Modalità sicura."
+        "lead": "Queste sono le uniche funzionalità che richiedono un piano a pagamento e si trovano tutte nell’app per Mac. Team include tutto Starter. Per connettersi a qualsiasi motore supportato non serve una licenza, né per l’assistente IA, il server MCP o Safe Mode."
     },
     "license": {
         "title": "Come funzionano le licenze",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Fatturazione",
-        "merchant": "{merchant} è il venditore responsabile per TablePro. Ti vende il piano, incassa il pagamento, calcola le eventuali imposte sulle vendite o l’IVA in base all’indirizzo di fatturazione e ti invia ricevuta e fattura via email.",
+        "merchant": "{merchant} è il merchant of record per TablePro. Ti vende il piano, incassa il pagamento, calcola le eventuali imposte sulle vendite o l’IVA in base all’indirizzo di fatturazione e ti invia ricevuta e fattura via email.",
         "renewal": "I piani mensili e annuali si rinnovano automaticamente finché non li annulli nel <account>tuo account</account> o nel portale clienti di {merchant}. Dopo la disdetta, il piano continua a funzionare fino alla fine del periodo pagato e puoi riprenderlo prima di allora. Se un pagamento di rinnovo fallisce, {merchant} ti invia via email un link per aggiornare la carta e ritenta il pagamento per circa tre settimane.",
         "portal": "Per gli acquisti effettuati tramite {merchant}, fatture, ricevute, metodo di pagamento e disdetta si trovano nel <portal>portale clienti di {merchant}</portal>, a cui accedi con l’indirizzo email usato al checkout. Anche <account>Fatturazione e fatture</account> nel tuo account apre il portale."
     },
@@ -70,6 +70,10 @@
         "body": "TablePro è open source sotto licenza AGPLv3, incluso il codice delle funzionalità a pagamento. Una build compilata dal sorgente verifica la licenza nello stesso modo dell’app distribuita.",
         "agpl": "La AGPL non impone condizioni sull’esecuzione di TablePro, anche al lavoro, in un’azienda di qualsiasi dimensione. Le sue condizioni si applicano alla distribuzione e all’offerta di una versione modificata ad altri tramite rete.",
         "github": "Vedi su GitHub"
+    },
+    "compare": {
+        "title": "Confronto con altri client",
+        "body": "Ogni confronto riporta i prezzi dell’altro client accanto a quelli di TablePro, con la data in cui sono stati verificati."
     },
     "faq": {
         "title": "Domande sui piani",

@@ -32,6 +32,10 @@
         "vcs": {
             "label": "バージョン管理",
             "tablepro": "リンクした SQL フォルダーでは無料：Git 状態の文字表示、各ファイルのコミット履歴と左右比較、Restore This Version、Discard Changes。ステージング、コミット、プッシュ、ブランチ操作はなし"
+        },
+        "usageStatistics": {
+            "label": "利用統計",
+            "tablepro": "既定で有効な 1 日 1 回の利用状況レポート。設定で無効にできます"
         }
     },
     "stronger": {
@@ -177,7 +181,7 @@
         {
             "id": "mcp",
             "question": "DataGrip にも MCP サーバーがあります。TablePro のサーバーは何をしますか？",
-            "answer": "Claude Code や Cursor などのクライアントが、パスワードを見ずに保存済みの TablePro 接続を使えるようにします。127.0.0.1 でのみ待ち受け、変更しない限り各接続は外部アプリから読み取り専用で、無料です。DataGrip もバージョン {cells.mcp.version} から提供しています。",
+            "answer": "Claude Code や Cursor などのクライアントが、パスワードを見ずに保存済みの TablePro 接続を使えるようにします。127.0.0.1 でのみ待ち受け、変更しない限り各接続は外部アプリに対して Read Only で、無料です。DataGrip もバージョン {cells.mcp.version} から提供しています。",
             "href": null
         },
         {
@@ -188,8 +192,9 @@
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "学習、趣味のプロジェクト、コンテンツ制作、商業的利益のないオープンソース活動に、全機能を提供します。JetBrains Account で有効化し、無効にできない利用統計が収集されます。",
+        "datagrip-non-commercial": "学習、趣味のプロジェクト、コンテンツ制作、商業的利益のないオープンソース活動に、全機能を提供します。JetBrains Account で有効化します。",
         "datagrip-databases": "主なエンジンにはコード検査とクイックフィックスを含む完全サポート。DuckDB、Firebird、Informix、Databricks などには JDBC ドライバー経由の基本サポートがあり、強調表示とオブジェクト閲覧はできますが、エラーチェックはありません。",
-        "datagrip-ai-quota": "JetBrains AI：少量の AI クレジット枠が定期的に補充される無料枠、JetBrains 独自サービスをより多く使うための有料 AI プラン、または自分のプロバイダーキーやローカルモデル。"
+        "datagrip-ai-quota": "JetBrains AI：少量の AI クレジット枠が定期的に補充される無料枠、JetBrains 独自サービスをより多く使うための有料 AI プラン、または自分のプロバイダーキーやローカルモデル。",
+        "datagrip-usage-statistics": "非商用の無料ライセンスでは、無効にできない利用統計が収集されます"
     }
 }

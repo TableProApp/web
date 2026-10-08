@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "提供主機和 TCP 連接埠，再選擇 <ui>Authentication</ui>，表單會隨之調整：SQL Server 使用者密碼、Kerberos Windows Authentication 或 Microsoft Entra ID。屬於單一資料庫的登入，例如 Azure SQL contained user，也需填寫 Database。",
+                "提供主機和 TCP 連接埠，再選擇<ui>身分驗證</ui>（Authentication），表單會隨之調整：SQL Server 使用者密碼、Kerberos Windows Authentication 或 Microsoft Entra ID。屬於單一資料庫的登入，例如 Azure SQL contained user，也需填寫 Database。",
                 "Kerberos 使用認證資訊快取中的現有票證，或根據輸入的主體和密碼請求票證。票證為伺服器註冊的 SPN 簽發，因此請用主機名稱而非 IP 連線。TablePro 從不執行 <code>kinit</code> 或編輯 <code>/etc/krb5.conf</code>。",
                 "<cloudAuth>Microsoft Entra ID</cloudAuth> 使用裝置代碼流程登入，遵循多因素驗證和 Conditional Access。需在 Azure 註冊 App 並填寫用戶端 ID；權杖儲存在登入鑰匙圈中，標記為僅限此裝置，並在背景重新整理。",
                 "新連線預設為 Preferred，在 SQL Server 上僅加密登入。要加密整個工作階段，請選 Required 或更嚴格等級；Verify CA、Verify Identity 使用 macOS 系統根憑證驗證。TablePro 也可為 Google Cloud SQL 執行 Cloud SQL Auth Proxy，並透過 <network>SSH 通道</network>存取私有網路伺服器。"
@@ -57,7 +57,7 @@
             "id": "operate",
             "title": "監控與備份",
             "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> 顯示使用者工作階段、運作時間和資料庫大小，列出所有其他工作階段及執行超過一秒的查詢，並透過 <ui>Terminate Session</ui> 終止工作階段。SQL Server 不提供 Cancel Query。",
+                "<dashboard>Server Dashboard</dashboard> 顯示使用者工作階段、運作時間和資料庫大小，列出所有其他工作階段及執行超過一秒的查詢，並透過<ui>終止工作階段</ui>（Terminate Session）終止工作階段。SQL Server 不提供 Cancel Query。",
                 "<backup>Backup Dump</backup> 使用從 Microsoft 下載的 {dumpTool} 寫入 <code>.bacpac</code>，Restore Dump 載入空資料庫。SqlPackage 僅在命令列接收密碼，Mac 上其他程序可以讀取，因此 TablePro 會在啟動前詢問。Windows 或 Entra 驗證無須傳遞密碼。"
             ]
         },

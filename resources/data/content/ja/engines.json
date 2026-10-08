@@ -9,7 +9,7 @@
         "tagline": "TCP で MySQL に接続。EXPLAIN 図、Users & Roles、AWS IAM 認証、mysqldump バックアップ。",
         "limits": {
             "tcp-only": "ホストとポートを指定して TCP で接続します。ローカル Unix ソケットは非対応です。",
-            "load-data-local-refused": "ドライバは LOAD DATA LOCAL INFILE を拒否します。代わりに Import でファイルを取り込んでください。"
+            "load-data-local-refused": "ドライバーは LOAD DATA LOCAL INFILE を拒否します。代わりに Import でファイルを取り込んでください。"
         }
     },
     "sqlserver": {
@@ -29,11 +29,11 @@
             "no-primary-key-changes": "主キーの追加、削除、移動はできません。",
             "ios-file-copied": "iPhone・iPad で選んだファイルはアプリ内にコピーされ、編集はそのコピーを変更します。",
             "extensions-local-file-only": "拡張機能はこの Mac で読むファイルにのみ読み込めます。SSH サーバーで開いたデータベースには読み込めませんが、読み取り専用のコピーでは使えます。",
-            "attached-files-not-listed": "エディタで ATTACH したファイルはクエリできますが、サイドバーには表示されません。"
+            "attached-files-not-listed": "エディターで ATTACH したファイルはクエリできますが、サイドバーには表示されません。"
         }
     },
     "mongodb": {
-        "tagline": "mongosh 形式の JavaScript シェル、Extended JSON のドキュメント、SRV 経由の Atlas クラスタ。",
+        "tagline": "mongosh 形式の JavaScript シェル、Extended JSON のドキュメント、SRV 経由の Atlas クラスター。",
         "limits": {
             "no-transactions": "トランザクションは非対応です。",
             "no-gridfs-or-change-streams": "GridFS と変更ストリームは非対応です。",
@@ -46,20 +46,20 @@
             "string-values-only": "グリッドで編集できるのは文字列値だけです。リスト、集合、ハッシュ、ソート済み集合、ストリームはコマンドで変更してください。",
             "no-pubsub": "pub/sub ビューはありません。PUBLISH はコマンドとして実行でき、購読はしません。",
             "key-tree-cap": "サイドバーのキーツリーは最大 {value} 件のキーを読み込みます。",
-            "filter-match-cap": "キーフィルタは {value} 件一致すると停止します。",
-            "cluster-db0-only": "Cluster 接続はデータベース 0 を使います。複数データベースを設定した Valkey クラスタは例外です。",
-            "ios-query-tab-only": "iPhone・iPad ではテーブルブラウザでキーを開けません。Query タブでコマンドを実行してください。"
+            "filter-match-cap": "キーフィルターは {value} 件一致すると停止します。",
+            "cluster-db0-only": "Cluster 接続はデータベース 0 を使います。複数データベースを設定した Valkey クラスターは例外です。",
+            "ios-query-tab-only": "iPhone・iPad ではテーブルブラウザーでキーを開けません。Query タブでコマンドを実行してください。"
         }
     },
     "mariadb": {
-        "tagline": "MySQL ドライバで MariaDB のシーケンス、仮想・永続カラム、JSON カラムに対応。",
+        "tagline": "MySQL ドライバーで MariaDB のシーケンス、仮想・永続カラム、JSON カラムに対応。",
         "limits": {
             "no-cloud-sql-proxy": "MariaDB には Cloud SQL Auth Proxy を提供しません。非公開サーバーへは SSH トンネルで接続してください。",
-            "roles-listed-as-users": "Users & Roles は MariaDB のロールをユーザーとして表示します。作成と付与はエディタの SQL で行ってください。"
+            "roles-listed-as-users": "Users & Roles は MariaDB のロールをユーザーとして表示します。作成と付与はエディターの SQL で行ってください。"
         }
     },
     "tidb": {
-        "tagline": "MySQL ドライバで TiDB と TiDB Cloud に接続。停止操作は KILL TIDB QUERY を送信します。",
+        "tagline": "MySQL ドライバーで TiDB と TiDB Cloud に接続。Stop は KILL TIDB QUERY を送信します。",
         "limits": {
             "no-triggers-or-routines": "トリガー、ストアドルーチン、イベントはありません。",
             "no-dashboard-or-dump": "Server Dashboard と Backup Dump はありません。TiDB の Dumpling でエクスポートしてください。",
@@ -75,7 +75,7 @@
         }
     },
     "databend": {
-        "tagline": "Databend の MySQL ハンドラで Databend と Databend Cloud に接続。",
+        "tagline": "Databend の MySQL ハンドラーで Databend と Databend Cloud に接続。",
         "limits": {
             "no-keys-or-indexes": "Databend にはインデックス、主キー、外部キーがないため、行編集では全カラムで照合します。複数の行を変更する保存は拒否します。",
             "no-compare-sync": "Compare & Sync は使えません。",
@@ -84,17 +84,17 @@
         }
     },
     "redshift": {
-        "tagline": "PostgreSQL ドライバで Amazon Redshift に接続し、DDL に DISTKEY と SORTKEY を表示。",
+        "tagline": "PostgreSQL ドライバーで Amazon Redshift に接続し、DDL に DISTKEY と SORTKEY を表示。",
         "limits": {
             "no-aws-iam": "Redshift の AWS IAM 認証は非対応です。データベースユーザーでログインしてください。",
-            "structure-read-only": "Structure タブは読み取り専用です。エディタで DDL を実行してください。",
+            "structure-read-only": "Structure タブは読み取り専用です。エディターで DDL を実行してください。",
             "ios-synced-only": "iPhone・iPad で Redshift 接続を開けるのは、Mac から同期またはインポートした場合のみです。"
         }
     },
     "cockroachdb": {
         "tagline": "PostgreSQL ワイヤプロトコルで CockroachDB と CockroachDB Cloud に接続。",
         "limits": {
-            "structure-read-only": "Structure タブは読み取り専用です。スキーマ変更はエディタで SQL として実行してください。",
+            "structure-read-only": "Structure タブは読み取り専用です。スキーマ変更はエディターで SQL として実行してください。",
             "no-dump-or-maintenance": "Backup Dump、Restore Dump、テーブルメンテナンスはありません。CockroachDB 自身の BACKUP と RESTORE 文を使ってください。"
         }
     },
@@ -103,15 +103,15 @@
         "limits": {
             "needs-socket-server": "PGlite は @electric-sql/pglite-socket で提供する必要があり、自分で起動して動作を続けてください。",
             "single-client": "ソケットサーバーは同時に 1 クライアントのみ接続できます。",
-            "cancel-has-no-effect": "キャンセルは効きません。クエリは常に完了まで実行します。"
+            "cancel-has-no-effect": "Cancel は効きません。クエリは常に完了まで実行します。"
         }
     },
     "oracle": {
-        "tagline": "Instant Client 不要の純 Swift ドライバ、PL/SQL スクリプト、DBMS_OUTPUT。",
+        "tagline": "Instant Client 不要の純 Swift ドライバー、PL/SQL スクリプト、DBMS_OUTPUT。",
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "Oracle ウォレット、OS 認証、Kerberos、LDAP は非対応です。サービス名または SID とパスワードで接続してください。",
             "no-explain": "Oracle の EXPLAIN や実行計画ビューはありません。",
-            "no-users-roles": "Users & Roles は使えません。エディタの CREATE USER と GRANT でアカウントを管理してください。",
+            "no-users-roles": "Users & Roles は使えません。エディターの CREATE USER と GRANT でアカウントを管理してください。",
             "no-packages": "パッケージはサイドバーに表示しません。独立したプロシージャと関数は表示します。"
         }
     },
@@ -128,25 +128,25 @@
         "tagline": "DuckDB ファイル、Parquet・CSV・JSON ファイルをビューとして扱う機能、インメモリデータベース。",
         "limits": {
             "one-writer-per-file": "接続が開いている間、DuckDB ファイルへの書き込みは同時に 1 プロセスのみです。",
-            "extensions-download-on-first-use": "ドライバはコア機能、JSON、Parquet、ICU、自動補完の拡張機能を含みます。httpfs などのその他の拡張機能は、クエリで初めて必要になったときに DuckDB からダウンロードします。",
+            "extensions-download-on-first-use": "ドライバーはコア機能、JSON、Parquet、ICU、自動補完の拡張機能を含みます。httpfs などのその他の拡張機能は、クエリで初めて必要になったときに DuckDB からダウンロードします。",
             "remote-quack-experimental": "Quack 経由のリモート接続は実験的な機能です。"
         }
     },
     "cassandra": {
         "tagline": "接続先ノード、TLS、Amazon Keyspaces SigV4 認証に対応した CQL。",
         "limits": {
-            "scalar-edits-only": "グリッドで編集できるのはスカラーカラムのみです。コレクション、タプル、ユーザー定義型、期間型はエディタの UPDATE で変更してください。",
-            "no-consistency-level": "整合性レベルの設定はありません。文はドライバの初期設定 LOCAL_ONE で実行します。",
+            "scalar-edits-only": "グリッドで編集できるのはスカラーカラムのみです。コレクション、タプル、ユーザー定義型、期間型はエディターの UPDATE で変更してください。",
+            "no-consistency-level": "整合性レベルの設定はありません。文はドライバーの初期設定 LOCAL_ONE で実行します。",
             "no-astra-bundle": "セキュア接続バンドルを読み込めないため、DataStax Astra DB には接続できません。",
             "no-views-or-types-in-sidebar": "マテリアライズドビューとユーザー定義型はサイドバーに表示しません。"
         }
     },
     "scylladb": {
-        "tagline": "Cassandra ドライバで ScyllaDB に接続し、同じ CQL ワークフローを利用。",
+        "tagline": "Cassandra ドライバーで ScyllaDB に接続し、同じ CQL ワークフローを利用。",
         "limits": {}
     },
     "dynamodb": {
-        "tagline": "PartiQL と DynamoDB API JSON。フィルタに応じて Query・Scan を選ぶプランナーと、読み取りごとの消費キャパシティを表示。",
+        "tagline": "PartiQL と DynamoDB API JSON。フィルターに応じて Query・Scan を選ぶプランナーと、読み取りごとの消費キャパシティを表示。",
         "limits": {
             "one-account-and-region": "各接続は 1 つのリージョンの 1 つの AWS アカウントを対象とします。",
             "no-dax-or-truncate": "DAX エンドポイントは非対応で、Truncate も提供しません。"
@@ -155,12 +155,12 @@
     "bigquery": {
         "tagline": "Max Bytes Billed と、実行前の Dry Run 費用見積もりに対応した GoogleSQL。",
         "limits": {
-            "structure-read-only": "Structure タブは読み取り専用です。エディタで DDL を実行してください。",
+            "structure-read-only": "Structure タブは読み取り専用です。エディターで DDL を実行してください。",
             "no-transactions": "トランザクションは非対応です。"
         }
     },
     "snowflake": {
-        "tagline": "鍵ペア、ブラウザ SSO、OAuth、パスコード付きパスワードで認証。Session Context にウェアハウスとロールを表示。",
+        "tagline": "鍵ペア、ブラウザー SSO、OAuth、パスコード付きパスワードで認証。Session Context にウェアハウスとロールを表示。",
         "limits": {
             "duo-passcode-only": "Duo はパスコードのみ対応します。プッシュ承認は非対応です。"
         }
@@ -172,7 +172,7 @@
         }
     },
     "turso": {
-        "tagline": "libSQL ドライバでトークンを使い、HTTP 経由でリモート Turso データベースに接続。",
+        "tagline": "libSQL ドライバーでトークンを使い、HTTP 経由でリモート Turso データベースに接続。",
         "limits": {
             "no-database-switching-or-branches": "各接続は 1 つのデータベースです。データベースの切り替えとブランチは非対応です。",
             "no-embedded-replicas": "埋め込みレプリカは非対応です。ローカルファイルは独立して開き、同期しません。"
@@ -211,7 +211,7 @@
     "surrealdb": {
         "tagline": "HTTP RPC 経由の SurrealQL。root、名前空間、データベース、レコード、トークンで認証。",
         "limits": {
-            "no-syntax-highlighting": "エディタの SurrealQL は構文ハイライトされません。",
+            "no-syntax-highlighting": "エディターの SurrealQL は構文ハイライトされません。",
             "no-live-queries": "ライブクエリは非対応です。新しいレコードを見るにはクエリを再実行してください。"
         }
     },
@@ -239,7 +239,7 @@
     "spanner": {
         "tagline": "接続時に GoogleSQL・PostgreSQL 方言を検出し、Spanner エミュレータにも対応。",
         "limits": {
-            "structure-read-only": "Structure タブは読み取り専用です。エディタの ALTER TABLE でテーブルを変更してください。"
+            "structure-read-only": "Structure タブは読み取り専用です。エディターの ALTER TABLE でテーブルを変更してください。"
         }
     },
     "typesense": {

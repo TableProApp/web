@@ -37,7 +37,7 @@ import LandingLayout from '@/layouts/landing-layout';
 /** Positioning §5: a homepage title longer than this falls back to the "for developers" form. */
 const TITLE_LIMIT = 60;
 
-export default function Home({ content, engines, iosEngines, checkout }: HomePageProps) {
+export default function Home({ content, engines, categories, iosEngines, checkout }: HomePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
 
@@ -66,9 +66,16 @@ export default function Home({ content, engines, iosEngines, checkout }: HomePag
             />
 
             <Hero content={content.hero} availability={availability} featuredEngines={featuredEngines.join(', ')} />
-            <DatabasesSection content={content.databases} engines={engines} iosEngines={iosEngines} availability={availability} macApp={macApp} />
+            <DatabasesSection
+                content={content.databases}
+                engines={engines}
+                categories={categories}
+                iosEngines={iosEngines}
+                availability={availability}
+                macApp={macApp}
+            />
             <SponsorsSection content={content.sponsors} />
-            <WorkflowsSection content={content.workflows} engines={engines} macApp={macApp} iosDevices={availability.iosDevices} />
+            <WorkflowsSection content={content.workflows} engines={engines} />
             <SafetySection content={content.safety} paidTemplate={content.workflows.paid} />
             <AiSection content={content.ai} />
             <PlatformsSection content={content.platforms} availability={availability} />

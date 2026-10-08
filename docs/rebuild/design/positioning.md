@@ -21,7 +21,7 @@ pillar copy. No counts appear in prose.
 | Item | English | Tiếng Việt |
 |---|---|---|
 | H1 | A native database client for developers. | Database client native dành cho lập trình viên. |
-| Subtitle | Run queries, browse and edit data in {featuredEngines} and more. TablePro has a separate native app for each platform it supports. | Chạy query, xem và chỉnh sửa dữ liệu trên {featuredEngines} và nhiều cơ sở dữ liệu khác. TablePro có ứng dụng native riêng cho từng nền tảng được hỗ trợ. |
+| Subtitle | Run queries, browse and edit data in {featuredEngines} and more. | Chạy query, xem và chỉnh sửa dữ liệu trên {featuredEngines} và nhiều cơ sở dữ liệu khác. |
 | Primary action | Download for Mac | Tải về cho Mac |
 | Caption under it | macOS 13 Ventura or later · Apple silicon or Intel | macOS 13 Ventura trở lên · Apple silicon hoặc Intel |
 | Secondary action | Official App Store badge | Apple's official Vietnamese App Store badge |
@@ -96,8 +96,7 @@ and meta. The Vietnamese column is judged as a fluent Vietnamese developer would
 | Slot | English | Tiếng Việt |
 |---|---|---|
 | H1 | A native database client for developers. | Database client native dành cho lập trình viên. |
-| Subtitle, sentence 1 | Run queries, browse and edit data in {featuredEngines} and more. | Chạy query, xem và chỉnh sửa dữ liệu trên {featuredEngines} và nhiều cơ sở dữ liệu khác. |
-| Subtitle, sentence 2 | TablePro has a separate native app for each platform it supports. | TablePro có ứng dụng native riêng cho từng nền tảng được hỗ trợ. |
+| Subtitle | Run queries, browse and edit data in {featuredEngines} and more. | Chạy query, xem và chỉnh sửa dữ liệu trên {featuredEngines} và nhiều cơ sở dữ liệu khác. |
 
 **Why this wording:**
 
@@ -107,13 +106,14 @@ and meta. The Vietnamese column is judged as a fluent Vietnamese developer would
     linked SQL folders show Git status, there is a Vim mode, and the MCP server works with Claude Code, Cursor and
     Zed.
   - The H1 contains no platform, count or universal, so it never changes.
-- **Sentence 1 answers "is it a GUI, and does it support mine?"** It uses three verbs that only make sense in an app,
-  then recognisable engine names instead of a count.
+- **The subtitle answers "is it a GUI, and does it support mine?"** It uses three verbs that only make sense in an
+  app, then recognisable engine names instead of a count.
   - "Browse and edit data" fits rows, documents and keys.
   - Each engine page states its own limits, for example that Redis edits are string-only.
-- **Sentence 2 says what "native" means without listing platforms.** It also warns that the apps differ: the iPhone
-  app is a separate app with its own scope.
-  - "Each platform it supports" promises nothing about Windows or Linux.
+- **What "native" means sits under the actions, not in the subtitle** (`hero.native`): each app is written in Swift
+  for its own platform, with AppKit and SwiftUI on the Mac, and there is no Electron and no Java runtime. It is not an
+  identity key, so it may name the Mac. The platforms section says that the iPhone app is a separate app with its own
+  scope.
 - **Vietnamese choices:**
   - "xem và chỉnh sửa" reads more naturally than "duyệt" in running copy.
   - "trên PostgreSQL" is how Vietnamese developers say "in PostgreSQL".

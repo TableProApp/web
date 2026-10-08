@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Connection, tunnel và thông tin đăng nhập",
-        "lead": "Dành cho bạn khi cơ sở dữ liệu nằm sau bastion, trong một cluster hay sau một lớp đăng nhập cloud: thiết lập connection một lần, kèm đường kết nối và nguồn mật khẩu mà nó cần, rồi đặt quy tắc chặt hơn cho các connection production. Mọi thứ ở đây có trong ứng dụng Mac; phần cuối nói về iPhone và iPad.",
+        "lead": "Dành cho bạn khi cơ sở dữ liệu nằm sau bastion, trong một cluster hay sau một lớp đăng nhập cloud: thiết lập connection một lần, kèm đường kết nối và nguồn mật khẩu mà nó cần, rồi đặt quy tắc chặt hơn cho các connection production. Mọi thứ ở đây có trong ứng dụng Mac. Ứng dụng cho iPhone và iPad làm được một phần trong số đó.",
         "docs": "/connections"
     },
     "sections": [
@@ -35,7 +35,7 @@
                     "id": "other-apps",
                     "title": "Từ một database client khác",
                     "paragraphs": [
-                        "<ui>Nhập từ ứng dụng khác</ui> (Import from Other App) đọc các connection đã lưu trong {connectionImportApps}, kể cả bản Setapp của TablePlus, và mang theo mật khẩu nếu ứng dụng đó có lưu, bao gồm cả mật khẩu đã mã hóa mà DBeaver và Navicat giữ. Connection từ Navicat được lấy từ file export <code>.ncx</code>."
+                        "<ui>Nhập từ ứng dụng khác</ui> (Import from Other App) đọc các connection đã lưu trong {connectionImportApps}, kể cả bản Setapp của TablePlus. Mật khẩu cũng được mang theo nếu ứng dụng đó có lưu, bao gồm cả mật khẩu đã mã hóa mà DBeaver và Navicat giữ. Connection từ Navicat được lấy từ file export <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -75,7 +75,7 @@
                     "id": "tunnels",
                     "title": "Proxy, Cloudflare, Cloud SQL và tunnel command",
                     "paragraphs": [
-                        "Khi không vào được bằng SSH, tab Mạng (Network) kết nối qua SOCKS5 proxy có phân giải DNS ở phía proxy, qua Cloudflare Access, khi đó TablePro chạy <code>cloudflared</code> và đăng nhập bằng trình duyệt hoặc service token, hoặc qua Cloud SQL Auth Proxy, được TablePro tải về, kiểm tra và chạy cho {cloudSqlProxy}.",
+                        "Khi không vào được bằng SSH, tab Mạng (Network) kết nối qua SOCKS5 proxy có phân giải DNS ở phía proxy. Tab này cũng kết nối qua Cloudflare Access, khi đó TablePro chạy <code>cloudflared</code> và đăng nhập bằng trình duyệt hoặc service token. Với {cloudSqlProxy}, tab này kết nối qua Cloud SQL Auth Proxy, được TablePro tải về, kiểm tra và chạy.",
                         "Tunnel Command chạy <code>kubectl port-forward</code>, <code>aws ssm start-session</code> hoặc một lệnh của riêng bạn, rồi kết nối vào port cục bộ mà lệnh đó mở ra. Một connection còn có thể chạy một shell script trước khi kết nối, có hỏi bạn trước ở mỗi phiên làm việc, và chạy các câu lệnh SQL ngay sau khi kết nối."
                     ],
                     "asset": "mac-tunnel-command"
@@ -86,7 +86,7 @@
             "id": "cloud-auth",
             "title": "Đăng nhập bằng tài khoản cloud",
             "paragraphs": [
-                "Xác thực cơ sở dữ liệu bằng AWS IAM ký một token mới cho mỗi lần kết nối, từ access key, một profile trong <code>~/.aws</code> (hỗ trợ <code>credential_process</code> và assume role) hoặc AWS IAM Identity Center, và nâng TLS lên Required cho kết nối đó. Amazon ElastiCache for Redis, Amazon Keyspaces và DynamoDB có cơ chế ký AWS riêng.",
+                "Xác thực cơ sở dữ liệu bằng AWS IAM ký một token mới cho mỗi lần kết nối, từ access key, một profile trong <code>~/.aws</code> (hỗ trợ <code>credential_process</code> và assume role) hoặc AWS IAM Identity Center. Cách xác thực này cũng nâng TLS lên Required. Amazon ElastiCache for Redis, Amazon Keyspaces và DynamoDB có cơ chế ký AWS riêng.",
                 "SQL Server đăng nhập bằng Microsoft Entra ID qua trình duyệt, với client ID của app registration do bạn cung cấp, hoặc bằng Kerberos từ ticket có sẵn hay từ principal và mật khẩu. Google BigQuery nhận service account key, Application Default Credentials hoặc Google OAuth với client của riêng bạn, còn Google Cloud Spanner và Cloud SQL Auth Proxy có thể dùng tài khoản Google của bạn."
             ],
             "engines": [{ "label": "Xác thực AWS IAM trên RDS và Aurora", "list": "awsIam" }],
@@ -108,7 +108,7 @@
                     "id": "environment-variables",
                     "title": "Environment Variables",
                     "paragraphs": [
-                        "Viết <code>$DB_HOST</code> vào host, tên cơ sở dữ liệu, tên người dùng, SSH host, SSH user và đường dẫn key, đường dẫn SSL, startup command hay các trường của driver trong một connection, và TablePro điền giá trị từ môi trường của chính nó khi kết nối. Port và mật khẩu không bao giờ được đọc theo cách này; với mật khẩu, hãy dùng một nguồn mật khẩu."
+                        "Viết <code>$DB_HOST</code> vào host, tên cơ sở dữ liệu, tên người dùng, SSH host, SSH user và đường dẫn key, đường dẫn chứng chỉ TLS, startup command hay các trường của driver trong một connection, và TablePro điền giá trị từ môi trường của chính nó khi kết nối. Port và mật khẩu không bao giờ được đọc theo cách này; với mật khẩu, hãy dùng một nguồn mật khẩu."
                     ],
                     "paid": ["environment-variables"]
                 }

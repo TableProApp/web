@@ -19,7 +19,7 @@ interface CellContentProps {
  * One cell: the mark, the words and the source markers.
  *
  * The tick and the dash are drawn but not read; a visually hidden
- * "Supported" or "Not supported" carries the meaning, so a cell never
+ * "Yes" or "No" carries the meaning, so a cell never
  * announces as empty (design-system §5.3.8). A qualified cell has no mark at
  * all: its words say what the condition is. A marked cell with no words of
  * its own shows the yes or no word beside the mark, so a source marker never
@@ -34,7 +34,7 @@ export function CellContent({ view, productId, numbers, labels }: CellContentPro
             {view.mark === 'yes' && (
                 <>
                     <CheckGlyph className="mt-[0.2em] shrink-0" />
-                    {word === null && <span className="sr-only">{labels.cell.yes}</span>}
+                    {word === null && !view.worded && <span className="sr-only">{labels.cell.yes}</span>}
                 </>
             )}
             {view.mark === 'no' && (
@@ -42,7 +42,7 @@ export function CellContent({ view, productId, numbers, labels }: CellContentPro
                     <span aria-hidden="true" className="w-4 shrink-0 text-center text-muted-foreground">
                         –
                     </span>
-                    {word === null && <span className="sr-only">{labels.cell.no}</span>}
+                    {word === null && !view.worded && <span className="sr-only">{labels.cell.no}</span>}
                 </>
             )}
             <div className="min-w-0 space-y-1">

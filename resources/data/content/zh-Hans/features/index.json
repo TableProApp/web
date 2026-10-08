@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "TablePro 能做什么",
-        "lead": "Mac 应用提供完整工作环境，以下各页面均先介绍 Mac 版。iPhone 和 iPad 应用是功能范围较小的独立原生应用，每页最后说明其提供的功能。"
+        "lead": "Mac 应用提供完整工作环境。iPhone 和 iPad 应用是功能范围较小的独立原生应用，各功能页面会说明其提供的功能。"
     },
     "areas": {
-        "title": "功能领域",
-        "lead": "每个领域都有详细页面，说明各功能在 Mac 上需要的方案及值得了解的限制。",
-        "paid": "{tier}: {features}",
+        "title": "按任务查看功能",
+        "paid": "{tier} 方案：{features}",
         "noPaid": "无付费功能",
         "items": [
             {
@@ -23,7 +22,7 @@
             },
             {
                 "slug": "data-editing",
-                "summary": "筛选器和高亮规则、可追踪的外键、保存前暂存的编辑、各连接的安全模式，以及恢复被保存替换值的 Data Rewind。"
+                "summary": "筛选器和高亮规则、可追踪的外键、保存前暂存的编辑、各连接的 Safe Mode，以及恢复被保存替换值的 Data Rewind。"
             },
             {
                 "slug": "schema",
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "使用自选提供商的可选 AI 助手，以及让 Claude Code、Cursor 等客户端使用已保存连接的本地 MCP 服务器。"
+                "summary": "使用自选提供商的可选 AI 助手，以及让 Claude Code、Cursor 等客户端使用已保存连接的本地 MCP（Model Context Protocol）服务器。"
             },
             {
                 "slug": "connections",
@@ -43,7 +42,7 @@
             },
             {
                 "slug": "sync-and-teams",
-                "summary": "Mac、iPhone 和 iPad 之间的 iCloud 同步、可共享的连接文件，以及用于团队共享的 Team Catalog 和 Team Library。"
+                "summary": "Mac、iPhone 和 iPad 之间的 iCloud Sync、可共享的连接文件，以及用于团队共享的 Team Catalog 和 Team Library。"
             }
         ]
     },
@@ -54,7 +53,7 @@
     },
     "paid": {
         "title": "免费与付费",
-        "lead": "Mac 应用可免费使用，没有试用期。Starter 或 Team 方案为 Mac 应用增加以下功能，Team 包含 Starter 的全部功能。连接任何受支持的引擎、AI 助手、MCP 服务器和安全模式均无需许可证，iPhone 和 iPad 应用免费且无应用内购买。",
+        "lead": "Mac 应用可免费使用，没有试用期。Starter 或 Team 方案为 Mac 应用增加以下功能，Team 包含 Starter 的全部功能。连接任何受支持的引擎、AI 助手、MCP 服务器和 Safe Mode 均无需许可证，iPhone 和 iPad 应用免费且无应用内购买。",
         "caption": "Mac 应用的付费功能、各自所需方案及说明页面",
         "columns": {
             "feature": "功能",

@@ -1,12 +1,12 @@
 {
     "postgresql": {
-        "tagline": "Valores de arrays, jsonb y PostGIS, diagramas EXPLAIN, Usuarios y roles y copias con pg_dump.",
+        "tagline": "Valores de arrays, jsonb y PostGIS, diagramas EXPLAIN, Users & Roles y copias con pg_dump.",
         "limits": {
             "column-reorder-script-only": "Reordenar columnas genera un script que reconstruye la tabla. TablePro lo muestra y nunca lo ejecuta."
         }
     },
     "mysql": {
-        "tagline": "MySQL mediante TCP, con diagramas EXPLAIN, Usuarios y roles, autenticación AWS IAM y copias con mysqldump.",
+        "tagline": "MySQL mediante TCP, con diagramas EXPLAIN, Users & Roles, autenticación AWS IAM y copias con mysqldump.",
         "limits": {
             "tcp-only": "Las conexiones usan host y puerto mediante TCP. Los sockets Unix locales no son compatibles.",
             "load-data-local-refused": "El controlador rechaza LOAD DATA LOCAL INFILE. Carga archivos mediante Importar."
@@ -55,30 +55,30 @@
         "tagline": "El controlador MySQL con secuencias de MariaDB, columnas virtuales y persistentes y columnas JSON.",
         "limits": {
             "no-cloud-sql-proxy": "Cloud SQL Auth Proxy no está disponible para MariaDB. Accede a un servidor privado mediante un túnel SSH.",
-            "roles-listed-as-users": "Usuarios y roles muestra los roles MariaDB como usuarios. Crea y asigna roles con SQL en el editor."
+            "roles-listed-as-users": "Users & Roles muestra los roles MariaDB como usuarios. Crea y asigna roles con SQL en el editor."
         }
     },
     "tidb": {
-        "tagline": "TiDB y TiDB Cloud con el controlador MySQL; Detener se envía como KILL TIDB QUERY.",
+        "tagline": "TiDB y TiDB Cloud con el controlador MySQL; Stop se envía como KILL TIDB QUERY.",
         "limits": {
             "no-triggers-or-routines": "Sin triggers, rutinas almacenadas ni eventos.",
-            "no-dashboard-or-dump": "Sin panel del servidor ni creación de volcados. Exporta con Dumpling de TiDB.",
-            "structure-sync-same-engine": "Comparar y sincronizar genera scripts de estructura solo entre bases TiDB, no entre TiDB y MySQL o MariaDB."
+            "no-dashboard-or-dump": "Sin Server Dashboard ni Backup Dump. Exporta con Dumpling de TiDB.",
+            "structure-sync-same-engine": "Compare & Sync genera scripts de estructura solo entre bases TiDB, no entre TiDB y MySQL o MariaDB."
         }
     },
     "oceanbase": {
         "tagline": "Tenants OceanBase en modo MySQL, con usuario user@tenant, directamente o mediante OBProxy.",
         "limits": {
             "mysql-mode-only": "Solo se conectan tenants en modo MySQL. Los tenants en modo Oracle se rechazan.",
-            "no-dashboard-or-dump": "Sin panel del servidor ni creación de volcados.",
-            "structure-sync-same-engine": "Comparar y sincronizar genera scripts de estructura solo entre bases OceanBase, no entre OceanBase y MySQL o MariaDB."
+            "no-dashboard-or-dump": "Sin Server Dashboard ni Backup Dump.",
+            "structure-sync-same-engine": "Compare & Sync genera scripts de estructura solo entre bases OceanBase, no entre OceanBase y MySQL o MariaDB."
         }
     },
     "databend": {
         "tagline": "Databend y Databend Cloud mediante el controlador MySQL de Databend.",
         "limits": {
             "no-keys-or-indexes": "Databend no tiene índices, claves primarias ni foráneas, así que editar una fila busca coincidencias en todas las columnas y rechaza los guardados que modificarían varias filas.",
-            "no-compare-sync": "Comparar y sincronizar no está disponible.",
+            "no-compare-sync": "Compare & Sync no está disponible.",
             "no-url-scheme": "Ningún esquema URL abre una conexión Databend. Créala en el formulario de conexión.",
             "not-on-ios": "No disponible en iPhone y iPad."
         }
@@ -87,15 +87,15 @@
         "tagline": "Amazon Redshift con el controlador PostgreSQL, con DISTKEY y SORTKEY en el DDL.",
         "limits": {
             "no-aws-iam": "La autenticación AWS IAM no está disponible para Redshift. Usa un usuario de base de datos.",
-            "structure-read-only": "La pestaña Estructura es de solo lectura. Ejecuta DDL en el editor.",
+            "structure-read-only": "La pestaña Structure es de solo lectura. Ejecuta DDL en el editor.",
             "ios-synced-only": "En iPhone y iPad, una conexión Redshift solo se abre si se sincronizó o importó desde un Mac."
         }
     },
     "cockroachdb": {
         "tagline": "CockroachDB y CockroachDB Cloud mediante el protocolo de comunicación PostgreSQL.",
         "limits": {
-            "structure-read-only": "La pestaña Estructura es de solo lectura. Ejecuta los cambios de esquema como SQL en el editor.",
-            "no-dump-or-maintenance": "Sin creación o restauración de volcados ni mantenimiento de tablas. Usa las sentencias BACKUP y RESTORE de CockroachDB."
+            "structure-read-only": "La pestaña Structure es de solo lectura. Ejecuta los cambios de esquema como SQL en el editor.",
+            "no-dump-or-maintenance": "Sin Backup Dump, Restore Dump ni mantenimiento de tablas. Usa las sentencias BACKUP y RESTORE de CockroachDB."
         }
     },
     "pglite": {
@@ -103,7 +103,7 @@
         "limits": {
             "needs-socket-server": "PGlite debe servirse mediante @electric-sql/pglite-socket, que inicias tú y mantienes en ejecución.",
             "single-client": "El servidor de sockets acepta un cliente a la vez.",
-            "cancel-has-no-effect": "Cancelar no tiene efecto: la consulta siempre termina de ejecutarse."
+            "cancel-has-no-effect": "Cancel no tiene efecto: la consulta siempre termina de ejecutarse."
         }
     },
     "oracle": {
@@ -111,7 +111,7 @@
         "limits": {
             "no-wallet-os-auth-kerberos-ldap": "Oracle Wallet, autenticación del sistema operativo, Kerberos y LDAP no son compatibles. Conecta con nombre de servicio o SID y contraseña.",
             "no-explain": "No hay EXPLAIN ni vista de plan de ejecución para Oracle.",
-            "no-users-roles": "Usuarios y roles no está disponible. Gestiona las cuentas con CREATE USER y GRANT en el editor.",
+            "no-users-roles": "Users & Roles no está disponible. Gestiona las cuentas con CREATE USER y GRANT en el editor.",
             "no-packages": "Los paquetes no aparecen en la barra lateral. Los procedimientos y funciones independientes sí."
         }
     },
@@ -155,12 +155,12 @@
     "bigquery": {
         "tagline": "GoogleSQL con Max Bytes Billed y estimación de coste Dry Run antes de ejecutar una consulta.",
         "limits": {
-            "structure-read-only": "La pestaña Estructura es de solo lectura. Ejecuta DDL en el editor.",
+            "structure-read-only": "La pestaña Structure es de solo lectura. Ejecuta DDL en el editor.",
             "no-transactions": "Las transacciones no son compatibles."
         }
     },
     "snowflake": {
-        "tagline": "Par de claves, SSO en navegador, OAuth o contraseña con código, con almacén y rol en Contexto de sesión.",
+        "tagline": "Par de claves, SSO en navegador, OAuth o contraseña con código, con almacén y rol en Session Context.",
         "limits": {
             "duo-passcode-only": "Duo solo funciona con código. La aprobación push no es compatible."
         }
@@ -181,7 +181,7 @@
     "libsql": {
         "tagline": "Archivos libSQL en este Mac o servidores sqld mediante HTTP.",
         "limits": {
-            "dump-local-file-only": "Crear volcado solo funciona para archivos libSQL locales, no para bases remotas."
+            "dump-local-file-only": "Backup Dump solo funciona para archivos libSQL locales, no para bases remotas."
         }
     },
     "elasticsearch": {
@@ -239,7 +239,7 @@
     "spanner": {
         "tagline": "Dialecto GoogleSQL o PostgreSQL detectado al conectar y emulador Spanner.",
         "limits": {
-            "structure-read-only": "La pestaña Estructura es de solo lectura. Modifica tablas con ALTER TABLE en el editor."
+            "structure-read-only": "La pestaña Structure es de solo lectura. Modifica tablas con ALTER TABLE en el editor."
         }
     },
     "typesense": {

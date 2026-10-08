@@ -32,6 +32,10 @@
         "vcs": {
             "label": "버전 관리",
             "tablepro": "연결된 SQL 폴더에서 무료: Git 상태 문자, 파일별 커밋 기록과 나란히 표시되는 diff, Restore This Version, Discard Changes. 스테이징, 커밋, 푸시, 브랜치 기능 없음"
+        },
+        "usageStatistics": {
+            "label": "사용 통계",
+            "tablepro": "기본적으로 켜져 있는 일일 사용 보고서. 설정에서 끌 수 있습니다"
         }
     },
     "stronger": {
@@ -108,7 +112,7 @@
                 "href": "/features/ai-mcp#mcp"
             },
             {
-                "text": "<link>비교 및 동기화</link>는 두 데이터베이스의 구조나 데이터를 비교하고 한쪽을 다른 쪽에 맞추는 스크립트를 작성합니다. Starter에 포함됩니다.",
+                "text": "<link>Compare & Sync</link>는 두 데이터베이스의 구조나 데이터를 비교하고 한쪽을 다른 쪽에 맞추는 스크립트를 작성합니다. Starter에 포함됩니다.",
                 "cite": [],
                 "feature": "compare-sync",
                 "href": null
@@ -149,10 +153,10 @@
     "switching": {
         "intro": "TablePro는 DataGrip의 전역 데이터 소스와 최근 프로젝트의 데이터 소스를 읽습니다. DataGrip을 열어 둘 필요가 없으며 파일도 변경하지 않습니다.",
         "steps": [
-            "TablePro에서 <ui>File > Import > Import from Other App…</ui>를 선택합니다.",
-            "DataGrip을 선택합니다. <ui>Include passwords</ui>를 켜서 SSH 암호와 키 암호 문구를 포함해 DataGrip이 macOS 키체인에 저장한 암호를 읽습니다.",
-            "macOS는 저장된 암호마다 한 번씩 로그인 암호를 요청합니다. 각 메시지에서 <ui>Always Allow</ui>를 선택합니다.",
-            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>Import</ui>를 클릭합니다. 그룹, SSH 터널, SSL 설정이 함께 이전됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
+            "TablePro에서 <ui>파일 > 가져오기 > 다른 앱에서 가져오기…</ui>(File > Import > Import from Other App…)를 선택합니다.",
+            "DataGrip을 선택합니다. <ui>암호 포함</ui>(Include passwords)을 켜서 SSH 암호와 키 암호 문구를 포함해 DataGrip이 macOS 키체인에 저장한 암호를 읽습니다.",
+            "macOS는 저장된 암호마다 한 번씩 로그인 암호를 요청합니다. 각 메시지에서 <ui>항상 허용</ui>(Always Allow)을 선택합니다.",
+            "목록을 검토하고 중복 처리 방식을 정한 뒤 <ui>가져오기</ui>(Import)를 클릭합니다. 그룹, SSH 터널, SSL 설정이 함께 이전됩니다. TablePro가 지원하지 않는 엔진의 연결은 체크되지 않은 상태로 표시됩니다.",
             "DataGrip을 삭제하기 전에 암호가 있던 연결을 열어 암호가 이전되었는지 확인합니다."
         ],
         "after": [
@@ -177,19 +181,20 @@
         {
             "id": "mcp",
             "question": "DataGrip에도 MCP 서버가 있습니다. TablePro의 서버는 무엇을 하나요?",
-            "answer": "Claude Code나 Cursor 같은 클라이언트가 암호를 보지 않고 저장된 TablePro 연결을 사용하게 합니다. 127.0.0.1에서만 수신하며 변경하지 않는 한 각 연결은 외부 앱에 읽기 전용이고 무료입니다. DataGrip도 {cells.mcp.version} 버전부터 자체 서버를 제공합니다.",
+            "answer": "Claude Code나 Cursor 같은 클라이언트가 암호를 보지 않고 저장된 TablePro 연결을 사용하게 합니다. 127.0.0.1에서만 수신하며 변경하지 않는 한 각 연결은 외부 앱에 Read Only이고 무료입니다. DataGrip도 {cells.mcp.version} 버전부터 자체 서버를 제공합니다.",
             "href": null
         },
         {
             "id": "jdbc-url",
             "question": "DataGrip의 JDBC URL을 붙여 넣을 수 있나요?",
-            "answer": "TablePro가 지원하는 엔진이라면 가능합니다. <ui>File > Import > Import from URL…</ui>는 postgres://, mysql://뿐 아니라 jdbc: URL도 읽습니다. 모든 데이터 소스를 한 번에 옮기려면 위에서 설명한 가져오기를 사용하세요.",
+            "answer": "TablePro가 지원하는 엔진이라면 가능합니다. <ui>파일 > 가져오기 > URL에서 가져오기…</ui>(File > Import > Import from URL…)는 postgres://, mysql://뿐 아니라 jdbc: URL도 읽습니다. 모든 데이터 소스를 한 번에 옮기려면 위에서 설명한 가져오기를 사용하세요.",
             "href": null
         }
     ],
     "notes": {
-        "datagrip-non-commercial-telemetry": "학습, 취미 프로젝트, 콘텐츠 제작, 상업적 이익이 없는 오픈 소스 작업에 모든 기능을 제공합니다. JetBrains Account로 활성화하며 해제할 수 없는 사용 통계가 수집됩니다.",
+        "datagrip-non-commercial": "학습, 취미 프로젝트, 콘텐츠 제작, 상업적 이익이 없는 오픈 소스 작업에 모든 기능을 제공합니다. JetBrains Account로 활성화합니다.",
         "datagrip-databases": "주요 엔진은 코드 검사와 빠른 수정을 포함한 완전 지원을 제공합니다. DuckDB, Firebird, Informix, Databricks 등은 JDBC 드라이버를 통한 기본 지원으로, 오류 검사는 없고 구문 강조와 객체 탐색을 제공합니다.",
-        "datagrip-ai-quota": "JetBrains AI: 소량의 AI 크레딧이 주기적으로 제공되는 무료 등급, JetBrains 자체 서비스를 더 많이 쓰기 위한 유료 AI 요금제, 또는 개인 제공자 키나 로컬 모델."
+        "datagrip-ai-quota": "JetBrains AI: 소량의 AI 크레딧이 주기적으로 제공되는 무료 등급, JetBrains 자체 서비스를 더 많이 쓰기 위한 유료 AI 요금제, 또는 개인 제공자 키나 로컬 모델.",
+        "datagrip-usage-statistics": "비상업용 무료 라이선스에서는 해제할 수 없는 사용 통계가 수집됩니다"
     }
 }

@@ -9,12 +9,11 @@
     },
     "header": {
         "title": "What you can do in TablePro",
-        "lead": "The Mac app is the full workbench, and every page below describes it first. The iPhone and iPad app is a separate native app with a smaller scope, and each page ends with what it offers there."
+        "lead": "The Mac app is the full workbench. The iPhone and iPad app is a separate native app with a smaller scope, and each feature page says what it offers there."
     },
     "areas": {
-        "title": "Feature areas",
-        "lead": "Each area has a page with the details, the plan each part needs on the Mac, and the limits worth knowing.",
-        "paid": "{tier}: {features}",
+        "title": "Features by task",
+        "paid": "{tier} plan: {features}",
         "noPaid": "No paid features",
         "items": [
             {
@@ -35,7 +34,7 @@
             },
             {
                 "slug": "ai-mcp",
-                "summary": "An optional AI assistant that uses the provider you choose, and a local MCP server that lets clients such as Claude Code and Cursor use your saved connections."
+                "summary": "An optional AI assistant that uses the provider you choose, and a local MCP (Model Context Protocol) server that lets clients such as Claude Code and Cursor use your saved connections."
             },
             {
                 "slug": "connections",

@@ -23,9 +23,9 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "輸入一個代理的主機和連接埠，從它探索叢集其餘部分。<ui>Additional Bootstrap Servers</ui> 列出首個代理無回應時嘗試的代理。一個連線對應一個叢集，無 Database 欄位，側欄直接顯示主題。",
-                "<ui>Security Protocol</ui> 可選 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL Mechanism</ui> 可選 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 適合 Confluent Cloud，SCRAM 適合 Amazon MSK 和自行託管代理。SSL 或 SASL_SSL 未選擇 SSL 模式時驗證憑證鏈和主機名稱。私有 CA 填入 <ui>CA Certificate</ui>，用戶端憑證和金鑰提供雙向 TLS。",
-                "透過 <network>SSH 通道</network>時連線停留在啟動代理，僅讀取該代理領導的分割區。<ui>Import from URL…</ui> 接受 <code>kafka://</code> URL，macOS 不將其作為連結開啟。"
+                "輸入一個代理的主機和連接埠，從它探索叢集其餘部分。<ui>額外的 Bootstrap 伺服器</ui>（Additional Bootstrap Servers）列出首個代理無回應時嘗試的代理。一個連線對應一個叢集，無 Database 欄位，側欄直接顯示主題。",
+                "<ui>安全性協定</ui>（Security Protocol）可選 PLAINTEXT、SSL、SASL_PLAINTEXT、SASL_SSL，<ui>SASL 機制</ui>（SASL Mechanism）可選 PLAIN、SCRAM-SHA-256、SCRAM-SHA-512。PLAIN 適合 Confluent Cloud，SCRAM 適合 Amazon MSK 和自行託管代理。SSL 或 SASL_SSL 未選擇 SSL 模式時驗證憑證鏈和主機名稱。私有 CA 填入 <ui>CA 憑證</ui>（CA Certificate），用戶端憑證和金鑰提供雙向 TLS。",
+                "透過 <network>SSH 通道</network>時連線停留在啟動代理，僅讀取該代理領導的分割區。<ui>從 URL 匯入…</ui>（Import from URL…）接受 <code>kafka://</code> URL，macOS 不將其作為連結開啟。"
             ]
         },
         {
@@ -60,7 +60,7 @@
         {
             "id": "advertised-addresses",
             "question": "為什麼主題能載入但訊息逾時？",
-            "answer": "叢集公布了此 Mac 無法存取的位址，如容器主機名稱或私有 IP。請修正 <code>advertised.listeners</code>，或設定 <ui>Broker Addresses</ui> 僅用啟動位址。"
+            "answer": "叢集公布了此 Mac 無法存取的位址，如容器主機名稱或私有 IP。請修正 <code>advertised.listeners</code>，或設定 <ui>Broker 位址</ui>（Broker Addresses）僅用啟動位址。"
         },
         {
             "id": "msk-iam",

@@ -10,7 +10,8 @@
     },
     "hero": {
         "title": "개발자를 위한 네이티브 데이터베이스 클라이언트.",
-        "subtitle": "{featuredEngines} <more>등의 데이터베이스</more>에서 쿼리를 실행하고 데이터를 탐색하고 편집하세요. TablePro는 지원하는 각 플랫폼에 맞춘 별도의 네이티브 앱을 제공합니다.",
+        "subtitle": "{featuredEngines} <more>등의 데이터베이스</more>에서 쿼리를 실행하고 데이터를 탐색하고 편집하세요.",
+        "native": "네이티브란 각 앱을 해당 플랫폼용으로 Swift로 작성했다는 뜻이며, Mac에서는 AppKit과 SwiftUI를 사용합니다. Electron도 Java 런타임도 없습니다.",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "다른 설치 방법",
@@ -19,19 +20,7 @@
     "databases": {
         "title": "관계형, 문서, 키-값 및 분석 데이터베이스",
         "lead": "일부 드라이버는 {macApp}에 포함되어 있습니다. 나머지는 해당 데이터베이스를 처음 선택할 때 다운로드되며 앱과 별도로 업데이트됩니다.",
-        "byType": "유형별 지원 데이터베이스",
-        "categories": {
-            "relational": "관계형",
-            "document": "문서",
-            "key-value": "키-값",
-            "analytical": "분석",
-            "wide-column": "와이드 컬럼",
-            "search": "검색 및 벡터",
-            "streaming": "스트리밍",
-            "coordination": "구성 및 조정",
-            "cloud": "클라우드",
-            "files": "로컬 파일"
-        },
+        "count": "Mac에서 TablePro는 다음 분류의 {count}개 데이터베이스에 연결합니다:",
         "ios": "{iosDevices}에서 TablePro는 {iosEngines}에 연결합니다.",
         "iosSynced": "Mac에서 동기화한 {syncedOnly} 연결도 열 수 있습니다.",
         "link": "지원 데이터베이스"
@@ -41,22 +30,21 @@
         "link": "TablePro 후원"
     },
     "workflows": {
-        "title": "데이터베이스 작업",
-        "lead": "이 섹션의 작업 흐름은 {macApp}에서 제공합니다. {iosDevices}용 TablePro는 별도 앱이며, 그 기능 범위는 아래에서 설명합니다.",
-        "paid": "{tier} 플랜 필요: {features}.",
+        "title": "Mac 앱으로 할 수 있는 일",
+        "paid": "{tier} 플랜: {features}.",
         "link": "모든 기능",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "쿼리 작성, 실행 및 이해",
-                "body": "스키마를 인식하는 자동 완성, <code>:name</code> 쿼리 매개변수, 검색 가능한 기록, 저장된 쿼리, Git 상태를 표시하는 연결된 SQL 폴더를 갖춘 SQL 편집기입니다. 지원 엔진에서는 EXPLAIN이 실행 계획을 다이어그램으로 보여주며, EXPLAIN Compare는 계획을 기준 계획과 비교합니다."
+                "body": "스키마를 인식하는 자동 완성, <code>:name</code> 쿼리 매개변수, 검색 가능한 기록, 저장된 쿼리, Git 상태를 표시하는 <code>.sql</code> 파일 폴더를 갖춘 SQL 편집기입니다. 지원 엔진에서는 EXPLAIN이 실행 계획을 다이어그램으로 보여주며, EXPLAIN Compare는 계획을 기준 계획과 비교합니다."
             },
             {
                 "id": "edit",
                 "asset": "mac-edit-preview-sql",
                 "title": "데이터와 스키마를 편집하고 저장 전에 SQL 확인",
-                "body": "셀 편집, 새 행 추가 및 삭제는 저장할 때까지 보류되며, Preview SQL로 실행문을 먼저 확인할 수 있습니다. TablePro가 구조를 편집할 수 있는 엔진에서는 Structure 탭의 열, 인덱스, 외래 키 및 CHECK 변경도 같은 방식으로 보류됩니다. 필터, 저장된 필터, 강조 규칙, 외래 키 선택기 및 탭별 실행 취소도 포함됩니다."
+                "body": "셀 편집, 새 행 추가 및 삭제는 저장할 때까지 보류되며, Preview SQL로 명령문을 먼저 확인할 수 있습니다. TablePro가 구조를 편집할 수 있는 엔진에서는 Structure 탭의 열, 인덱스, 외래 키 및 CHECK 변경도 같은 방식으로 보류됩니다. 필터, 저장된 필터, 강조 규칙, 외래 키 선택기 및 탭별 실행 취소도 포함됩니다."
             },
             {
                 "id": "schema",
@@ -68,7 +56,7 @@
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "데이터 파일 가져오기, 내보내기 및 열기",
-                "body": "가져오기를 지원하는 엔진에서 {importFormats} 파일을 가져오고 {exportFormats}로 내보낼 수 있습니다. Data Files 창은 데이터베이스 없이 CSV, JSON 및 XLSX 파일을 열어 검색하고 필터링하며, CSV와 JSON을 정리한 후 결과를 테이블에 가져올 수 있습니다. Backup Dump와 Restore Dump는 각 엔진의 명령줄 도구({dumpTools})를 실행합니다. TablePro에 포함되어 있지 않으므로 Mac에 없는 도구는 직접 설치하세요."
+                "body": "가져오기를 지원하는 엔진에서 {importFormats} 파일을 가져오고 {exportFormats}로 내보낼 수 있습니다. Data Files 창은 데이터베이스 없이 CSV, JSON 및 XLSX 파일을 열어 검색하고 필터링하며 CSV와 JSON을 정리할 수 있습니다. Backup Dump와 Restore Dump는 각 엔진의 명령줄 도구({dumpTools})를 실행합니다. Mac에 없는 도구는 직접 설치하세요."
             },
             {
                 "id": "connect",
@@ -81,18 +69,18 @@
     "safety": {
         "title": "운영 데이터베이스를 위한 안전장치",
         "body": [
-            "Mac에서는 환경별로 연결에 태그와 색상을 지정하고 Silent부터 Read-Only까지 안전 모드 수준을 설정할 수 있습니다. 엄격한 수준에서는 Touch ID 또는 비밀번호가 필요합니다. DROP, TRUNCATE 및 WHERE 없는 DELETE는 모든 수준에서 멈추고 확인을 요청합니다. iPhone 및 iPad에서는 Confirm Writes가 모든 쓰기 전에 확인하고 Read-Only는 쓰기를 거부합니다.",
-            "Agent 모드에서 열린 연결은 Alert 이상의 엄격한 수준으로 실행됩니다. Data Rewind는 최근 저장으로 대체된 값을 복원할 수 있습니다. 백업 기능은 아닙니다."
+            "Mac에서는 환경별로 연결에 태그와 색상을 지정하고 연결마다 Safe Mode 수준을 설정할 수 있습니다. Silent는 명령문을 그대로 실행하고 Alert는 쓰기 전에 확인하며, 이름에 Safe Mode가 들어간 수준은 Touch ID 또는 비밀번호도 요구하고 Read-Only는 쓰기를 거부합니다. DROP, TRUNCATE 및 WHERE 없는 DELETE는 모든 수준에서 멈추고 확인을 요청합니다. iPhone 및 iPad에서는 Confirm Writes가 모든 쓰기 전에 확인하고 Read-Only는 쓰기를 거부합니다.",
+            "Agent mode에서는 AI 어시스턴트가 명령문을 실행할 수 있습니다. Agent mode에서 열린 연결은 Alert 이상의 엄격한 수준으로 실행됩니다. Data Rewind는 최근 저장으로 대체된 값을 복원할 수 있습니다. 백업 기능은 아닙니다."
         ],
-        "levels": "안전 모드 수준",
-        "link": "안전 모드"
+        "levels": "Safe Mode 수준",
+        "link": "Safe Mode"
     },
     "ai": {
         "title": "AI 어시스턴트 및 MCP 서버",
         "body": [
             "Mac의 선택적 AI 어시스턴트는 쿼리를 설명하고 최적화하고 수정하며, 스키마에 관한 질문에 답합니다. API 키, 이미 보유한 계정 또는 Mac에서 실행되는 모델 중에서 제공업체를 직접 선택합니다. TablePro는 자체 AI 서비스를 운영하지 않으며 제공업체를 추가하기 전에는 아무것도 전송하지 않습니다.",
-            "채팅은 읽기만 하는 Ask 모드로 시작합니다. Edit 및 Agent 모드에서는 어시스턴트가 실행문을 실행할 수 있습니다. Alert부터 Safe Mode (Full)까지는 매번 쓰기 전에 사용자의 승인을 기다리며, Read-Only는 쓰기를 거부하고 DROP 또는 TRUNCATE는 항상 사용자의 클릭 승인이 필요합니다.",
-            "내장 MCP 서버를 통해 {mcpClients} 같은 클라이언트가 비밀번호를 보지 않고 저장된 연결을 사용할 수 있습니다. {mcpHost}에서만 수신하며, 각 연결별로 외부 앱이 할 수 있는 작업을 Blocked, Read Only(기본값) 또는 Read & Write로 설정합니다.",
+            "채팅은 읽기만 하는 Ask 모드로 시작합니다. Edit 및 Agent 모드에서는 어시스턴트가 명령문을 실행할 수 있습니다. Alert부터 Safe Mode (Full)까지는 매번 쓰기 전에 사용자의 승인을 기다리며, Read-Only는 쓰기를 거부하고 DROP 또는 TRUNCATE는 항상 사용자의 클릭 승인이 필요합니다.",
+            "내장 MCP(Model Context Protocol) 서버를 통해 {mcpClients} 같은 AI 클라이언트가 비밀번호를 보지 않고 저장된 연결을 사용할 수 있습니다. {mcpHost}에서만 수신하며, 각 연결별로 외부 앱이 할 수 있는 작업을 Blocked, Read Only(기본값) 또는 Read & Write로 설정합니다.",
             "이 기능은 모두 무료입니다."
         ],
         "providers": "추가할 수 있는 제공업체: {providers}."
@@ -100,9 +88,9 @@
     "platforms": {
         "title": "{deviceList}용 네이티브 앱",
         "cardTitle": "{devices}용 TablePro",
-        "mac": "Mac용 TablePro는 Swift 앱이며 {architectures}용 빌드를 각각 제공합니다. 비밀번호를 키체인에 보관하고 엄격한 안전 모드 수준에서는 Touch ID를 요청하며 자동으로 업데이트됩니다.",
+        "mac": "Mac용 TablePro는 Swift 앱이며 {architectures}용 빌드를 각각 제공합니다. 비밀번호를 키체인에 보관하고 엄격한 Safe Mode 수준에서는 Touch ID를 요청하며 자동으로 업데이트됩니다.",
         "ios": "{devices}용 TablePro는 자체 기능 범위를 가진 별도 앱입니다. SSH 또는 TLS로 연결하고 테이블을 탐색하고 쿼리를 실행하고 행을 편집할 수 있으며, 선택적 Face ID 잠금, 단축어, 홈 화면 위젯 및 실행 중인 쿼리의 실시간 현황을 제공합니다.",
-        "sync": "iCloud 동기화는 Mac과 iPhone 또는 iPad 간에 연결, 그룹 및 태그를 동기화합니다. 기본적으로 꺼져 있으며 Mac에서는 {tier} 플랜이 필요합니다. iCloud 동기화가 켜져 있으면 Handoff로 열려 있는 연결을 다른 기기에서 이어갈 수 있습니다."
+        "sync": "iCloud Sync는 Mac과 iPhone 또는 iPad 간에 연결, 그룹 및 태그를 동기화합니다. 기본적으로 꺼져 있으며 Mac에서는 {tier} 플랜이 필요합니다. iCloud Sync가 켜져 있으면 Handoff로 열려 있는 연결을 다른 기기에서 이어갈 수 있습니다."
     },
     "switch": {
         "title": "다른 앱에서 전환",

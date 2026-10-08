@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "输入主机、监听端口及 Service Name，无服务的实例将 <ui>Connection Type</ui> 切为 SID。用用户名密码以 Normal、SYSDBA 或 SYSOPER 角色登录。",
+                "输入主机、监听端口及 Service Name，无服务的实例将<ui>连接类型</ui>（Connection Type）切为 SID。用用户名密码以 Normal、SYSDBA 或 SYSOPER 角色登录。",
                 "Native Network Encryption 无需设置：服务器要求时提供带 SHA-2 校验和的 AES，<ui>Network Encryption</ui> 改变 TablePro 提供的选项。TLS 选择用于 TCPS 的 Required，或带 CA 证书的 Verify CA、Verify Identity。新连接 SSL 关闭，Preferred 仍用明文 TCP。",
                 "Oracle Autonomous Database 请从 TLS 连接字符串（非 mTLS）复制主机、端口和服务名，SSL 设 Required 或 Verify CA。从不读取钱包文件，所以数据库必须接受不带双向 TLS 的 TLS。",
                 "RAC SCAN 监听器、共享服务器或数据库前的负载均衡器无需配置；私网监听器通过 <network>SSH 隧道</network>访问。"

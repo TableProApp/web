@@ -6,7 +6,7 @@ export default {
     },
     "latest": "一部のリリースはブログ記事でも紹介しています。最新の記事は<post>{title}</post>です。",
     "post": {
-        "archive": "{date} 公開の記事で、当時の {release} について説明しています。現在の TablePro の機能は、<features>機能一覧</features>と<changelog>変更履歴</changelog>をご覧ください。",
+        "archive": "{date} 公開の記事で、当時の {release} について説明しています。現在の TablePro の機能は、<features>機能一覧</features>と<changelog>変更履歴</changelog>（英語）をご覧ください。",
         "correction": "訂正：{date}",
         "toc": "このページの内容",
         "pages": "関連ページ",

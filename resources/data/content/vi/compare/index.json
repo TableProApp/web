@@ -14,6 +14,7 @@
     "bySituation": {
         "title": "Chọn theo nhu cầu",
         "lead": "Mỗi ứng dụng một dòng, kèm liên kết tới trang so sánh đầy đủ.",
+        "tablepro": "Chọn TablePro nếu bạn muốn một client mã nguồn mở có ứng dụng native cho Mac và một ứng dụng riêng cho iPhone và iPad. Trợ lý AI và MCP server miễn phí trong ứng dụng Mac, và TablePro import được connection đã lưu từ {apps}.",
         "items": {
             "tableplus": "Chọn TablePlus nếu bạn còn làm việc trên Windows hoặc Linux, hoặc cần kết nối tới Vertica hay Greenplum.",
             "dbeaver": "Chọn DBeaver nếu bạn cần một client miễn phí cho Windows, macOS và Linux, kết nối được với bất kỳ engine nào có JDBC driver.",
@@ -62,6 +63,7 @@
         "sourcesLink": "Nguồn",
         "shortAnswer": {
             "title": "Trả lời ngắn gọn",
+            "lead": "Bạn đang tìm một lựa chọn thay thế {name} trên Mac? Dưới đây là trường hợp phù hợp với từng ứng dụng.",
             "tablepro": "Chọn TablePro nếu",
             "competitor": "Chọn {name} nếu"
         },
@@ -171,8 +173,8 @@
         "tablepro": {
             "technology": "Swift, với driver cơ sở dữ liệu native",
             "priceFree": "Dùng miễn phí. Các gói trả phí bổ sung một số tính năng tùy chọn cho ứng dụng Mac.",
-            "starter": "Starter: {monthly} mỗi tháng, {yearly} mỗi năm hoặc {lifetime} mua một lần",
-            "team": "Team: {monthly} mỗi tháng, {yearly} mỗi năm hoặc {lifetime} mua một lần, tính theo seat, tối thiểu {min} seat",
+            "starter": "{monthly} mỗi tháng, {yearly} mỗi năm hoặc {lifetime} mua một lần",
+            "team": "{monthly} mỗi tháng, {yearly} mỗi năm hoặc {lifetime} mua một lần, tính theo seat, tối thiểu {min} seat",
             "iosPrice": "Ứng dụng cho iPhone và iPad miễn phí, không có mua hàng trong ứng dụng.",
             "licence": "Có: {licence}, kể cả phần mã của các tính năng trả phí",
             "databases": "{engines} và nhiều cơ sở dữ liệu khác",
@@ -201,6 +203,7 @@
             "switching": "Chuyển từ {name} sang TablePro",
             "faq": "Câu hỏi thường gặp",
             "sources": "Nguồn",
+            "more": "Các trang so sánh khác",
             "cta": "Tải TablePro"
         },
         "switching": {
@@ -210,7 +213,8 @@
             "intro": "Thông tin về {name} được kiểm tra ngày {date} trên các trang dưới đây. Giá là giá niêm yết bằng USD, chưa gồm thuế.",
             "retrieved": "kiểm tra ngày {date}",
             "latest": "Bản phát hành mới nhất của {name} vào thời điểm đó: {version}, phát hành ngày {date}.",
-            "tablepro": "Cột TablePro mô tả TablePro {macVersion} cho Mac và {iosVersion} cho iPhone và iPad."
+            "tablepro": "Cột TablePro mô tả TablePro {macVersion} cho Mac và {iosVersion} cho iPhone và iPad.",
+            "trademarks": "TablePro là một dự án mã nguồn mở độc lập, không liên kết với nhà phát triển của các sản phẩm được so sánh ở đây và không được họ bảo trợ. Tên sản phẩm là nhãn hiệu của chủ sở hữu tương ứng."
         },
         "cta": {
             "body": "TablePro tải về miễn phí. Các gói trả phí bổ sung một số tính năng tùy chọn cho ứng dụng Mac.",

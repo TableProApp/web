@@ -12,8 +12,7 @@ use Symfony\Component\Finder\SplFileInfo;
  *
  * Every competitor price, date, platform, licence and capability is typed once
  * here, each with a source and a retrieval date (the vendors' own pages, and
- * Microsoft Learn for SSMS and Azure Data Studio, all retrieved 2026-10-02 or
- * 2026-10-03).
+ * Microsoft Learn for SSMS and Azure Data Studio).
  * TablePro's own column is derived from the other data files and never
  * stored here. A fact nobody verified has no cell, and the page leaves that
  * row out. There are no benchmarks: the old pages' RAM, startup and size
@@ -42,8 +41,9 @@ function comparisonSourceRefs(array $node, string $path = ''): array
         $here = $path === '' ? (string) $key : "{$path}.{$key}";
 
         if ($key === 'source' || $key === 'platformsSource') {
-            if ($value !== null) {
-                $refs[] = [$here, $value];
+            // A cell may cite several sources: one ref for each.
+            foreach ((array) $value as $id) {
+                $refs[] = [$here, $id];
             }
 
             continue;
@@ -170,7 +170,13 @@ it('gives every cell one of three states and a source', function (): void {
 
             expect($cell['state'])->toBeIn(['yes', 'no', 'qualified'], $where);
             expect($cell)->toHaveKey('source');
-            expect(array_diff(array_keys($cell), ['state', 'edition', 'note', 'value', 'version', 'date', 'source']))->toBe([], "{$where} has an unknown field");
+            expect(array_diff(array_keys($cell), ['state', 'edition', 'note', 'value', 'version', 'date', 'engines', 'source']))->toBe([], "{$where} has an unknown field");
+
+            $sources = (array) $cell['source'];
+
+            expect($sources)->not->toBeEmpty("{$where} cites nothing");
+            expect($sources)->toBe(array_values(array_unique($sources)), "{$where} cites a source twice");
+            expect($sources)->each->toBeString();
 
             if (isset($cell['note'])) {
                 expect($cell['note'])->toMatch('/^[a-z0-9]+(-[a-z0-9]+)*$/', "{$where}.note is an id, not a sentence");
@@ -205,6 +211,84 @@ it('resolves every source to an HTTPS page with a retrieval date', function (): 
             expect($sources->has($id))->toBeTrue("{$product['id']}.{$path} cites {$id}, which is not in its sources");
         }
     }
+});
+
+it('links every source to a page a reader can open, never a data feed', function (): void {
+    foreach (comparisonsJson()['products'] as $product) {
+        foreach ($product['sources'] as $source) {
+            $where = "{$product['id']} {$source['id']} ({$source['url']})";
+
+            $host = (string) parse_url($source['url'], PHP_URL_HOST);
+
+            // GitHub renders a repository's LICENSE.md as a page.
+            if ($host !== 'github.com') {
+                expect(preg_match('/\.(json|md|xml|txt)$/i', (string) parse_url($source['url'], PHP_URL_PATH)))->toBe(0, "{$where} is a raw file");
+            }
+
+            expect(preg_match('/^(api|data|raw)\./i', $host))->toBe(0, "{$where} is an API host");
+        }
+    }
+});
+
+it('lets only a cell cite several sources', function (): void {
+    foreach (comparisonsJson()['products'] as $product) {
+        $single = [
+            'status.lastRelease' => $product['status']['lastRelease']['source'],
+            'licence' => $product['licence']['source'],
+            'mac' => $product['mac']['source'] ?? '',
+            'technology' => $product['technology']['source'] ?? '',
+            'platformsSource' => $product['platformsSource'] ?? '',
+        ];
+
+        foreach ($product['prices'] as $index => $price) {
+            $single["prices.{$index}"] = $price['source'];
+        }
+
+        foreach ($single as $path => $source) {
+            expect($source)->toBeString("{$product['id']}.{$path}.source is a list, and only a cell renders one");
+        }
+    }
+});
+
+it('calls a named licence that is not open source only what the page can label', function (): void {
+    foreach (comparisonsJson()['products'] as $product) {
+        if (! $product['licence']['openSource'] && $product['licence']['name'] !== null) {
+            // "Source available ({licence})" on the engine pages: the code is published under it.
+            expect($product['licence']['name'])->toBeIn(['SSPL-1.0'], "{$product['id']}: is its source published under {$product['licence']['name']}?");
+        }
+    }
+});
+
+it('keeps true that TablePlus runs on older systems than TablePro', function (): void {
+    $platforms = collect(json_decode(File::get(resource_path('data/platforms.json')), true, 512, JSON_THROW_ON_ERROR)['platforms'])->keyBy('id');
+    $tableplus = collect(comparisonsJson()['products'])->firstWhere('id', 'tableplus');
+
+    // content/*/compare/tableplus.json says so under "Where TablePlus is stronger".
+    expect(version_compare($tableplus['mac']['minVersion'], $platforms['mac']['requirements']['minVersion'], '<'))->toBeTrue();
+    expect(version_compare((string) $tableplus['cells']['ios']['value'], $platforms['ios']['requirements']['minVersion'], '<'))->toBeTrue();
+});
+
+it('names engines only on a compared product’s databases cell, each from engines.json', function (): void {
+    $engines = array_column(json_decode(File::get(resource_path('data/engines.json')), true, 512, JSON_THROW_ON_ERROR), 'id');
+    $named = 0;
+
+    foreach (comparisonsJson()['products'] as $product) {
+        foreach ($product['cells'] as $row => $cell) {
+            if (! array_key_exists('engines', $cell)) {
+                continue;
+            }
+
+            $where = "{$product['id']}.cells.{$row}.engines";
+            $named++;
+
+            expect($row)->toBe('databases', "{$where}: only the databases cell names engines");
+            expect($product['slug'])->not->toBeNull("{$where}: the list links a comparison page, and this product has none");
+            expect($cell['engines'])->not->toBeEmpty($where);
+            expect(array_values(array_diff($cell['engines'], $engines)))->toBe([], "{$where} names an engine engines.json does not have");
+        }
+    }
+
+    expect($named)->toBeGreaterThan(0);
 });
 
 it('has the ten compared products of the sitemap, each with a route', function (): void {
@@ -297,6 +381,28 @@ it('pins the facts the pages lean on', function (): void {
     expect($products['pgadmin']['platformsSource'])->toBe('s2');
     expect($products['azure-data-studio']['status']['state'])->toBe('discontinued');
     expect($products['azure-data-studio']['cells']['successor']['date'])->toBe('2026-02-28');
+
+    /*
+     * Re-read on the vendors' pages on 2026-10-08. Navicat sells monthly and
+     * yearly subscriptions beside the perpetual licenses, so the hub's "From"
+     * is a monthly price like its neighbours'; the non-commercial ones keep
+     * their audience, which keeps them out of that column. DBeaver's paid
+     * editions get an MCP server in 26.3. TablePlus syncs through a cloud
+     * folder. Compass and Redis Insight publish their code under the SSPL,
+     * which is neither open source nor closed.
+     */
+    expect($prices('navicat'))->toContain(['Premium Standard', 74.99, 'month'], ['Premium Standard', 749.99, 'year'], ['Premium Enterprise', 99.99, 'month']);
+    expect(collect($products['navicat']['prices'])->where('edition', 'Premium Non-Commercial')->pluck('audience')->unique()->all())->toBe(['non-commercial']);
+    expect(collect($products['navicat']['prices'])->firstWhere('amount', 0))->toMatchArray(['value' => 5, 'note' => 'navicat-lite-commercial-use']);
+    expect($products['navicat']['cells']['ai'])->toMatchArray(['note' => 'navicat-ai-editions', 'source' => ['s3', 's8']]);
+    expect($products['dbeaver']['cells']['mcp'])->toMatchArray(['state' => 'qualified', 'version' => '26.3', 'note' => 'dbeaver-mcp-server']);
+    expect($products['tableplus']['cells']['sync'])->toMatchArray(['state' => 'qualified', 'note' => 'tableplus-sync-folder']);
+    // The vendor's site still says 10.13; the current build and its Homebrew cask need 12.
+    expect($products['tableplus']['mac'])->toMatchArray(['minVersion' => '12', 'source' => 's10']);
+    expect($products['tableplus']['cells']['ios'])->toMatchArray(['value' => 15, 'source' => 's5']);
+    expect($products['mongodb-compass']['licence'])->toMatchArray(['name' => 'SSPL-1.0', 'openSource' => false]);
+    expect($products['redis-insight']['licence'])->toMatchArray(['name' => 'SSPL-1.0', 'openSource' => false]);
+    expect($products['mongodb-compass']['platforms'])->toBe(['mac', 'windows', 'linux']);
 });
 
 it('never names TablePro and never stores a benchmark', function (): void {

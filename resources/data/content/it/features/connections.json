@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "Connessioni, tunnel e credenziali",
-        "lead": "Per chi ha database dietro un bastion, un cluster o un accesso cloud: configura una connessione una volta, con il percorso e la sorgente della password necessari, e assegna regole più restrittive a quelle di produzione. Tutto è disponibile nell’app per Mac; l’ultima sezione riguarda iPhone e iPad.",
+        "lead": "Per chi ha database dietro un bastion, un cluster o un accesso cloud: configura una connessione una volta, con il percorso e la sorgente della password necessari, e assegna regole più restrittive a quelle di produzione. Tutto è disponibile nell’app per Mac. L’app per iPhone e iPad ne copre una parte.",
         "docs": "/connections"
     },
     "sections": [
@@ -17,7 +17,7 @@
             "id": "organize",
             "title": "Mantieni una libreria di connessioni",
             "paragraphs": [
-                "Ogni connessione si modifica in un modulo con schede Generale, Rete, Opzioni e Aspetto. Importa un URL di connessione, inclusi URL <code>jdbc:</code> e <code>+ssh</code> con un passaggio SSH, e il modulo si compila da solo; quando un URL è già negli appunti, propone <ui>Use clipboard URL</ui>.",
+                "Ogni connessione si modifica in un modulo con schede General, Network, Options e Appearance. Importa un URL di connessione, inclusi URL <code>jdbc:</code> e <code>+ssh</code> con un passaggio SSH, e il modulo si compila da solo; quando un URL è già negli appunti, propone <ui>Use clipboard URL</ui>.",
                 "Assegna a una connessione un colore, tutti i tag che desideri e una posizione in gruppi annidati; contrassegna come preferite quelle che usi più spesso. Gli ambienti sono tag: locale, sviluppo, produzione e test sono integrati e puoi aggiungerne altri. Una libreria vuota propone <ui>Open Sample Database</ui>, una copia SQLite di Chinook inclusa nell’app.",
                 "Apri più connessioni in una finestra. La fascia delle connessioni lungo il bordo sinistro permette di passare tra esse e ogni connessione torna alla scheda usata per ultima. <ui>Open in New Window</ui> le affianca."
             ],
@@ -40,7 +40,7 @@
                     "id": "other-apps",
                     "title": "Da un altro client database",
                     "paragraphs": [
-                        "<ui>Import from Other App</ui> legge le connessioni salvate in {connectionImportApps}, inclusa l’edizione Setapp di TablePlus, e trasferisce le password da dove l’app le conserva, comprese quelle cifrate di DBeaver e Navicat. Le connessioni Navicat provengono da un file di esportazione <code>.ncx</code>."
+                        "<ui>Import from Other App</ui> legge le connessioni salvate in {connectionImportApps}, inclusa l’edizione Setapp di TablePlus. Trasferisce le password da dove l’app le conserva, comprese quelle cifrate di DBeaver e Navicat. Le connessioni Navicat provengono da un file di esportazione <code>.ncx</code>."
                     ],
                     "asset": "mac-import-other-app"
                 },
@@ -48,7 +48,7 @@
                     "id": "project-folder",
                     "title": "Dai file di configurazione di un progetto",
                     "paragraphs": [
-                        "<ui>Open Project Folder</ui> cerca impostazioni di database in <code>.env</code>, <code>wp-config.php</code>, uno schema Prisma, <code>config/database.yml</code> di Rails, <code>docker-compose.yml</code>, <code>application.properties</code> o <code>application.yml</code> di Spring e <code>appsettings.json</code>. Elenca ogni insieme trovato con il file di origine e quello scelto compila il modulo di connessione; le password vanno direttamente al Portachiavi. Quando <code>prod</code>, <code>production</code> o <code>live</code> compare come parola intera nel percorso del file, nell’host o nel nome del database, la connessione inizia dal livello Avviso della Modalità sicura."
+                        "<ui>Open Project Folder</ui> cerca impostazioni di database in <code>.env</code>, <code>wp-config.php</code>, uno schema Prisma, <code>config/database.yml</code> di Rails, <code>docker-compose.yml</code>, <code>application.properties</code> o <code>application.yml</code> di Spring e <code>appsettings.json</code>. Elenca ogni insieme trovato con il file di origine e quello scelto compila il modulo di connessione; le password vanno direttamente al Portachiavi. Quando <code>prod</code>, <code>production</code> o <code>live</code> compare come parola intera nel percorso del file, nell’host o nel nome del database, la connessione inizia dal livello Alert di Safe Mode."
                     ],
                     "asset": "mac-open-project-folder"
                 },
@@ -71,7 +71,7 @@
                     "title": "SSH e TLS",
                     "paragraphs": [
                         "I tunnel SSH accedono con password, chiave privata, un agente SSH come quello di 1Password oppure richieste interattive da tastiera; possono attraversare jump host in sequenza o seguire <code>ProxyJump</code> da <code>~/.ssh/config</code>. Un codice monouso può essere generato da un segreto nel Portachiavi o richiesto a ogni connessione; una chiave host sconosciuta mostra l’impronta prima che TablePro la consideri attendibile. Salva un tunnel come profilo SSH per riutilizzarlo.",
-                        "TLS opera nelle modalità Disattivato, Preferito, Obbligatorio, Verifica CA o Verifica identità, con la tua CA, il certificato client e la chiave. Obbligatorio cifra senza controllare il certificato del server; le modalità Verifica lo controllano."
+                        "TLS opera nelle modalità Disabled, Preferred, Required, Verify CA o Verify Identity, con la tua CA, il certificato client e la chiave. Required cifra senza controllare il certificato del server; le modalità Verify lo controllano."
                     ],
                     "engines": [
                         {
@@ -85,8 +85,8 @@
                     "id": "tunnels",
                     "title": "Proxy, Cloudflare, Cloud SQL e comandi di tunneling",
                     "paragraphs": [
-                        "Quando SSH non è la strada d’accesso, la scheda Rete si connette tramite un proxy SOCKS5 con DNS remoto, Cloudflare Access, dove TablePro esegue <code>cloudflared</code> e accede tramite browser o token di servizio, oppure Cloud SQL Auth Proxy, che TablePro scarica, verifica ed esegue per {cloudSqlProxy}.",
-                        "Comando tunnel avvia <code>kubectl port-forward</code>, <code>aws ssm start-session</code> o un tuo comando e si connette alla porta locale aperta. Una connessione può anche eseguire uno script shell prima di connettersi, chiedendo conferma a ogni sessione, e istruzioni SQL subito dopo."
+                        "Quando SSH non è la strada d’accesso, la scheda Network si connette tramite un proxy SOCKS5 con DNS remoto. Si connette anche tramite Cloudflare Access, dove TablePro esegue <code>cloudflared</code> e accede tramite browser o token di servizio. Per {cloudSqlProxy}, si connette tramite Cloud SQL Auth Proxy, che TablePro scarica, verifica ed esegue.",
+                        "Tunnel Command avvia <code>kubectl port-forward</code>, <code>aws ssm start-session</code> o un tuo comando e si connette alla porta locale aperta. Una connessione può anche eseguire uno script shell prima di connettersi, chiedendo conferma a ogni sessione, e istruzioni SQL subito dopo."
                     ],
                     "asset": "mac-tunnel-command"
                 }
@@ -96,7 +96,7 @@
             "id": "cloud-auth",
             "title": "Accedi con il tuo account cloud",
             "paragraphs": [
-                "L’autenticazione database AWS IAM firma un nuovo token a ogni connessione, da una chiave di accesso, un profilo in <code>~/.aws</code> (con <code>credential_process</code> e ruoli assunti) oppure AWS IAM Identity Center e porta TLS a Obbligatorio. Amazon ElastiCache for Redis, Amazon Keyspaces e DynamoDB hanno una propria firma AWS.",
+                "L’autenticazione database AWS IAM firma un nuovo token a ogni connessione, da una chiave di accesso, un profilo in <code>~/.aws</code> (con <code>credential_process</code> e ruoli assunti) oppure AWS IAM Identity Center. Porta anche TLS a Required. Amazon ElastiCache for Redis, Amazon Keyspaces e DynamoDB hanno una propria firma AWS.",
                 "SQL Server accede con Microsoft Entra ID nel browser, usando l’ID client di una registrazione di app fornita da te, oppure con Kerberos da un ticket o un principal e password. Google BigQuery accetta una chiave di account di servizio, Application Default Credentials oppure Google OAuth con il tuo client; Google Cloud Spanner e Cloud SQL Auth Proxy possono usare il tuo account Google."
             ],
             "engines": [
@@ -120,21 +120,21 @@
             "id": "credentials",
             "title": "Conserva le password al posto giusto",
             "paragraphs": [
-                "Le password vengono salvate nel Portachiavi di macOS; con la sincronizzazione iCloud attiva, la sincronizzazione delle password le trasferisce agli altri dispositivi tramite Portachiavi iCloud. Una chiave SSH resta un file su disco a cui punta la connessione; solo la passphrase va nel Portachiavi.",
+                "Le password vengono salvate nel Portachiavi di macOS; con iCloud Sync attivo, la sincronizzazione delle password le trasferisce agli altri dispositivi tramite Portachiavi iCloud. Una chiave SSH resta un file su disco a cui punta la connessione; solo la passphrase va nel Portachiavi.",
                 "Un profilo di credenziali condivide un accesso tra più connessioni e può leggere la password al momento della connessione da 1Password (<code>op</code>), HashiCorp Vault, AWS Secrets Manager, un comando shell, un file o una variabile d’ambiente. Queste sorgenti delle password sono gratuite e non si sincronizzano mai; ogni strumento a riga di comando deve trovarsi nel <code>PATH</code>, in <code>/usr/local/bin</code> o in <code>/opt/homebrew/bin</code>. Una connessione può anche usare <code>~/.pgpass</code> su PostgreSQL, Amazon Redshift e CockroachDB oppure chiedere la password ogni volta."
             ],
             "links": [
                 {
-                    "label": "Sincronizzazione iCloud e delle password",
+                    "label": "iCloud Sync e sincronizzazione delle password",
                     "href": "/features/sync-and-teams#icloud-sync"
                 }
             ],
             "blocks": [
                 {
                     "id": "environment-variables",
-                    "title": "Variabili d’ambiente",
+                    "title": "Environment Variables",
                     "paragraphs": [
-                        "Scrivi <code>$DB_HOST</code> nei campi host, database, nome utente, host SSH, utente e percorso della chiave SSH, percorsi SSL, comandi di avvio o campi del driver; TablePro inserisce il valore dal proprio ambiente quando si connette. Porta e password non vengono mai lette così; assegna invece una sorgente alla password."
+                        "Scrivi <code>$DB_HOST</code> nei campi host, database, nome utente, host SSH, utente e percorso della chiave SSH, percorsi dei certificati TLS, comandi di avvio o campi del driver; TablePro inserisce il valore dal proprio ambiente quando si connette. Porta e password non vengono mai lette così; assegna invece una sorgente alla password."
                     ],
                     "paid": [
                         "environment-variables"
@@ -146,16 +146,16 @@
             "id": "policies",
             "title": "Regole di ogni connessione",
             "paragraphs": [
-                "Il livello di Modalità sicura di una connessione decide se un’istruzione viene eseguita così com’è, chiede conferma, richiede Touch ID o password oppure viene rifiutata. Il livello Client esterni, Bloccato, Sola lettura o Lettura e scrittura, stabilisce cosa possono fare client MCP e AppleScript e resta su questo Mac. La politica IA stabilisce se l’assistente può usarla senza chiedere, solo dopo aver chiesto oppure mai; Mai esclude anche i client MCP.",
-                "Un’organizzazione può imporre un livello minimo di Modalità sicura per ogni connessione e controllare gli aggiornamenti tramite un profilo di configurazione."
+                "Il livello Safe Mode di una connessione decide se un’istruzione viene eseguita così com’è, chiede conferma, richiede Touch ID o password oppure viene rifiutata. Il livello External Clients, Blocked, Read Only o Read & Write, stabilisce cosa possono fare client MCP e AppleScript e resta su questo Mac. La politica IA stabilisce se l’assistente può usarla senza chiedere, solo dopo aver chiesto oppure mai; Never esclude anche i client MCP.",
+                "Un’organizzazione può imporre un livello Safe Mode minimo per ogni connessione e controllare gli aggiornamenti tramite un profilo di configurazione."
             ],
             "links": [
                 {
-                    "label": "Livelli della Modalità sicura",
+                    "label": "Livelli di Safe Mode",
                     "href": "/features/data-editing#safe-mode"
                 },
                 {
-                    "label": "Client MCP e Client esterni",
+                    "label": "Client MCP ed External Clients",
                     "href": "/features/ai-mcp#mcp"
                 }
             ],
@@ -213,7 +213,7 @@
             "iosNote": "SQL Server cifra senza verificare"
         },
         {
-            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy e Comando tunnel",
+            "label": "SOCKS5, Cloudflare Access, Cloud SQL Auth Proxy e Tunnel Command",
             "ios": "no"
         },
         {
@@ -234,12 +234,12 @@
             "ios": "no"
         },
         {
-            "label": "Variabili d’ambiente",
+            "label": "Environment Variables",
             "paid": "environment-variables",
             "ios": "no"
         },
         {
-            "label": "Modalità sicura per connessione",
+            "label": "Safe Mode per connessione",
             "ios": "partial",
             "iosNote": "{iosSafeModeLevels}"
         },
@@ -248,16 +248,16 @@
             "ios": "no"
         },
         {
-            "label": "Livello minimo di Modalità sicura tramite profilo di configurazione",
+            "label": "Livello Safe Mode minimo tramite profilo di configurazione",
             "ios": "no"
         }
     ],
     "limits": [
-        "Sorgenti delle password, proxy e comandi di tunneling della scheda Rete restano sul Mac dove li configuri: non si sincronizzano mai, quindi una connessione sincronizzata richiede di configurarli di nuovo su ogni Mac.",
-        "TablePro legge l’ambiente con cui è stato avviato. Aperto dal Dock o dal Finder, non vede le variabili impostate dal profilo shell; questo riguarda sia la sorgente della password da variabile d’ambiente sia Variabili d’ambiente.",
+        "Sorgenti delle password, proxy e comandi di tunneling della scheda Network restano sul Mac dove li configuri: non si sincronizzano mai, quindi una connessione sincronizzata richiede di configurarli di nuovo su ogni Mac.",
+        "TablePro legge l’ambiente con cui è stato avviato. Aperto dal Dock o dal Finder, non vede le variabili impostate dal profilo shell; questo riguarda sia la sorgente della password da variabile d’ambiente sia Environment Variables.",
         "Quando termina un piano, <code>$DB_HOST</code> e gli altri riferimenti non vengono più sostituiti e raggiungono il server così come sono scritti, senza avvisi.",
-        "Apri cartella progetto è un’importazione una tantum: nulla viene monitorato e importare due volte le stesse impostazioni crea due connessioni.",
-        "L’autenticazione AWS IAM copre {awsIam}, non Amazon Redshift. Un profilo di configurazione può imporre un livello minimo di Modalità sicura e impostazioni di aggiornamento, nulla di più."
+        "Open Project Folder è un’importazione una tantum: nulla viene monitorato e importare due volte le stesse impostazioni crea due connessioni.",
+        "L’autenticazione AWS IAM copre {awsIam}, non Amazon Redshift. Un profilo di configurazione può imporre un livello Safe Mode minimo e impostazioni di aggiornamento, nulla di più."
     ],
     "docs": [
         {
@@ -269,7 +269,7 @@
             "docs": "/switching"
         },
         {
-            "label": "Apri cartella progetto",
+            "label": "Open Project Folder",
             "docs": "/features/project-folder-import"
         },
         {
@@ -277,7 +277,7 @@
             "docs": "/connections/ssh-tunneling"
         },
         {
-            "label": "Comando tunnel",
+            "label": "Tunnel Command",
             "docs": "/connections/tunnel-command"
         },
         {
@@ -289,7 +289,7 @@
             "docs": "/connections/credential-profiles"
         },
         {
-            "label": "Sorgenti delle password e Variabili d’ambiente",
+            "label": "Sorgenti delle password ed Environment Variables",
             "docs": "/features/connection-sharing#environment-variables"
         }
     ],
@@ -299,7 +299,7 @@
             "href": "/features/sync-and-teams"
         },
         {
-            "label": "Modalità sicura e modifica dei dati",
+            "label": "Safe Mode e modifica dei dati",
             "href": "/features/data-editing#safe-mode"
         },
         {

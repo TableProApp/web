@@ -11,7 +11,7 @@
     "breadcrumb": "Cloudflare D1",
     "header": {
         "title": "Cliente Cloudflare D1 para {devices}",
-        "lead": "Accede a las bases D1 de tu cuenta Cloudflare desde una sola conexión, consúltalas en el dialecto SQLite por la API de Cloudflare y gestiona sus tablas, índices y triggers en la pestaña Estructura."
+        "lead": "Accede a las bases D1 de tu cuenta Cloudflare desde una sola conexión, consúltalas en el dialecto SQLite por la API de Cloudflare y gestiona sus tablas, índices y triggers en la pestaña Structure."
     },
     "asset": "mac-db-d1-databases",
     "links": {
@@ -27,8 +27,8 @@
             "id": "connect",
             "title": "Conecta con un token API",
             "paragraphs": [
-                "Una conexión D1 requiere tres valores: el nombre o UUID de la base de datos, tu ID de cuenta Cloudflare y un token API. El token va en el campo <ui>Token API</ui> y se guarda en el <credentials>Llavero de macOS</credentials>. No hay host, puerto, ajuste SSL ni túnel SSH, porque todas las solicitudes van a la API de Cloudflare por HTTPS.",
-                "Crea el token desde la plantilla de token personalizado con el permiso <ui>Cuenta > D1 > Editar</ui> y cópialo cuando Cloudflare lo muestre, porque solo se muestra una vez. Ese token accede a todas las bases D1 de la cuenta, no solo a la que conectes.",
+                "Una conexión D1 requiere tres valores: el nombre o UUID de la base de datos, tu ID de cuenta Cloudflare y un token API. El token va en el campo <ui>API Token</ui> y se guarda en el <credentials>Llavero de macOS</credentials>. No hay host, puerto, ajuste SSL ni túnel SSH, porque todas las solicitudes van a la API de Cloudflare por HTTPS.",
+                "Crea el token desde la plantilla de token personalizado con el permiso <ui>Account > D1 > Edit</ui> y cópialo cuando Cloudflare lo muestre, porque solo se muestra una vez. Ese token accede a todas las bases D1 de la cuenta, no solo a la que conectes.",
                 "Importar una URL <code>d1://account-id/database-name</code> rellena la cuenta y la base de datos; el token nunca viaja en la URL, por lo que debes pegarlo después."
             ]
         },
@@ -37,7 +37,7 @@
             "title": "Cambia de base de datos y consulta",
             "paragraphs": [
                 "El selector de bases de la barra de herramientas muestra las bases D1 de la cuenta y permite cambiar sin reconectar. También crea y elimina bases. Cada pestaña permanece en la base con la que se abrió.",
-                "Las consultas usan el dialecto de SQLite. <explain>EXPLAIN QUERY PLAN</explain> se representa como diagrama, y las ediciones de filas quedan pendientes en la cuadrícula hasta guardar, con <editing>Vista previa SQL</editing> mostrando antes las sentencias.",
+                "Las consultas usan el dialecto de SQLite. <explain>EXPLAIN QUERY PLAN</explain> se representa como diagrama, y las ediciones de filas quedan pendientes en la cuadrícula hasta guardar, con <editing>Preview SQL</editing> mostrando antes las sentencias.",
                 "Escribe cada sentencia de forma autónoma: un ajuste <code>PRAGMA</code> o una tabla temporal creados por una sentencia desaparecen en la siguiente; cada sentencia se confirma al ejecutarse, sin nada que revertir. Si Cloudflare limita la frecuencia de una solicitud, el error incluye el tiempo que Cloudflare pide esperar antes de reintentarlo."
             ]
         },
@@ -45,7 +45,7 @@
             "id": "schema",
             "title": "Tablas, índices y triggers",
             "paragraphs": [
-                "La <structure>pestaña Estructura</structure> crea y elimina tablas, añade y elimina columnas y crea y elimina índices, incluidos los parciales con condición WHERE; Vista previa SQL muestra el DDL antes de guardar. La pestaña Triggers crea, edita y elimina triggers, y puedes renombrar tablas desde la barra lateral.",
+                "La <structure>pestaña Structure</structure> crea y elimina tablas, añade y elimina columnas y crea y elimina índices, incluidos los parciales con condición WHERE; Preview SQL muestra el DDL antes de guardar. La pestaña Triggers crea, edita y elimina triggers, y puedes renombrar tablas desde la barra lateral.",
                 "Reordenar columnas o cambiar una clave foránea requiere reconstruir la tabla. En D1, TablePro escribe el script de reconstrucción y te lo entrega para ejecutarlo, porque cada sentencia es una solicitud independiente y ninguna transacción puede abarcar toda la reconstrucción."
             ]
         },

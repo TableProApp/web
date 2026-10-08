@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "编写、运行和理解查询",
-        "lead": "面向在实际数据库上编写 SQL 的用户：参考结构编写查询，运行一条语句或整个脚本，保存值得保留的查询，并找出变慢的原因。本页介绍的功能均在 Mac 应用中，最后一节介绍 iPhone 和 iPad。",
+        "lead": "面向在实际数据库上编写 SQL 的用户：参考结构编写查询，运行一条语句或整个脚本，保存值得保留的查询，并找出变慢的原因。本页介绍的功能均在 Mac 应用中。iPhone 和 iPad 应用提供其中一部分。",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,12 +18,12 @@
             "title": "了解数据库结构的编辑器",
             "paragraphs": [
                 "自动补全在输入时读取连接的结构：FROM 和 JOIN 后的表、别名对应的列，以及语句前面定义的 CTE 或子查询的列。语法高亮使用 tree-sitter；<kbd>⌘⇧L</kbd> 格式化光标所在语句，同时保留注释。",
-                "<kbd>⌘⏎</kbd> 运行光标所在语句或选中内容，<kbd>⌘⇧⏎</kbd> 运行全部，<kbd>⌘⌥⏎</kbd> 不限行数运行，<kbd>⌘.</kbd> 取消。普通语句批次在同一事务中执行，任一语句失败即回滚；例外包括自行管理事务的脚本、SQL Server 脚本、VACUUM 等不能放入事务的语句，以及会自行提交的 MySQL、MariaDB 和 Oracle DDL。"
+                "<kbd>⌘⏎</kbd> 运行光标所在语句或选中内容，<kbd>⌘⇧⏎</kbd> 运行全部，<kbd>⌘⌥⏎</kbd> 不限行数运行，<kbd>⌘.</kbd> 取消。普通语句批次在同一事务中执行，任一语句失败即回滚。例外包括自行管理事务的脚本、SQL Server 脚本，以及 VACUUM 等不能放入事务的语句。MySQL、MariaDB 和 Oracle 上的 DDL 会自行提交。"
             ],
             "points": [
                 "编辑器侧栏中的语句标记各有独立运行按钮。",
                 "支持正则表达式的查找和替换。",
-                "Vim 模式支持移动、寄存器和宏，使用 <code>:w</code> 运行查询。",
+                "Vim mode 支持移动、寄存器和宏，使用 <code>:w</code> 运行查询。",
                 "在查询标签页中打开、编辑和保存 <code>.sql</code> 文件。"
             ],
             "asset": "mac-query-autocomplete"
@@ -34,13 +34,13 @@
             "paragraphs": [
                 "在查询中写入 <code>:customer_id</code>，TablePro 会在运行前询问其值和类型，并在驱动支持时使用原生参数绑定。",
                 "每次运行的查询都会进入本地历史（<kbd>⌘Y</kbd>），支持全文搜索及来源、失败和时间范围筛选。默认保存 {historyEntries} 条记录，保留 {historyDays} 天，从不同步。",
-                "以 <code>dau</code> 等关键字保存查询，然后在编辑器中输入关键字展开。已保存查询保留版本历史。关联 SQL 文件夹将 <code>.sql</code> 文件夹与侧栏双向同步，并显示各文件的 Git 状态字母；该功能免费，与用于共享连接文件的 Starter 功能 Linked Folders 相互独立。"
+                "以 <code>dau</code> 等关键字保存查询，然后在编辑器中输入关键字展开。已保存查询保留版本历史。关联 SQL 文件夹将 <code>.sql</code> 文件夹与侧栏双向同步，并显示各文件的 Git 状态字母。该功能免费，与用于共享连接文件的 Starter 功能 Linked Folders 相互独立。"
             ],
             "asset": "mac-query-parameters-history"
         },
         {
             "id": "open-quickly",
-            "title": "快速打开和标签页",
+            "title": "Open Quickly 和标签页",
             "paragraphs": [
                 "Open Quickly（<kbd>⌘⇧O</kbd>）在所有已打开连接中查找表、视图和系统表，也搜索已保存和最近的查询。每个标签页保留自己的 SQL、排序、筛选和列宽，退出并重新打开应用后会恢复；<kbd>⌃Tab</kbd> 可在最近使用的标签页间切换。"
             ]
@@ -78,7 +78,7 @@
                 },
                 {
                     "id": "query-insights",
-                    "title": "查询分析",
+                    "title": "Query Insights",
                     "paragraphs": [
                         "Query Insights 读取此 Mac 的查询历史，并按运行次数、速度最慢、失败以及比上一期间变慢的查询进行排名。查询按结构归类，因此使用不同值运行的同一语句只算一种。数据在 Mac 上计算，从不上传。"
                     ],
@@ -98,7 +98,7 @@
             "blocks": [
                 {
                     "id": "result-charts",
-                    "title": "结果图表",
+                    "title": "Result Charts",
                     "paragraphs": [
                         "将结果绘制为柱状图、折线图、面积图或散点图，日期使用时间轴，所选列的每个值对应一个系列。图表从前 {chartInspectedRows} 行中最多绘制 {chartPoints} 个点和 {chartSeries} 个系列，未全部绘制时工具栏会提示。"
                     ],
@@ -165,7 +165,7 @@
             "ios": "no"
         },
         {
-            "label": "快速打开",
+            "label": "Open Quickly",
             "ios": "no"
         },
         {
@@ -173,12 +173,12 @@
             "ios": "no"
         },
         {
-            "label": "查询分析",
+            "label": "Query Insights",
             "paid": "query-insights",
             "ios": "no"
         },
         {
-            "label": "结果图表",
+            "label": "Result Charts",
             "paid": "result-charts",
             "ios": "no"
         },
@@ -214,7 +214,7 @@
             "docs": "/features/explain-visualization"
         },
         {
-            "label": "查询分析",
+            "label": "Query Insights",
             "docs": "/features/query-insights"
         },
         {

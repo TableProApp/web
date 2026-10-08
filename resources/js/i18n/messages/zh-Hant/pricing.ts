@@ -28,7 +28,7 @@ export default {
                 "連線至任何支援的引擎",
                 "SQL 編輯器與資料表格",
                 "AI 助理與 MCP 伺服器",
-                "安全模式",
+                "Safe Mode",
                 "iPhone 與 iPad App"
             ]
         },
@@ -97,7 +97,7 @@ export default {
         "one": "所有付費方案均可在購買後 {count} 天內退款。詳見<link>退款政策</link>。",
         "other": "所有付費方案均可在購買後 {count} 天內退款。詳見<link>退款政策</link>。"
     },
-    "finePrint": "價格以美元計。{merchant} 為交易的登記銷售商，負責收款，並在結帳時計算銷售稅或加值稅。",
+    "finePrint": "價格以美元計。{merchant} 為 merchant of record，負責收款，並在結帳時計算銷售稅或加值稅。",
     "finePrintCurrency": "價格以美元計。",
     "comparePlans": "比較方案",
     "section": {
@@ -115,8 +115,8 @@ export default {
         },
         "macsTeam": "每席位一台",
         "everythingElse": "App 中的其他所有功能",
-        "everythingElseDetail": "所有支援的引擎、SQL 編輯器、AI 助理、MCP 伺服器與安全模式",
-        "iphoneNote": "iPhone 與 iPad App 沒有付費功能，iCloud 同步在這兩款裝置上免費。若要與 Mac 同步，Mac 需要 Starter 或 Team。"
+        "everythingElseDetail": "所有支援的引擎、SQL 編輯器、AI 助理、MCP 伺服器與 Safe Mode",
+        "iphoneNote": "iPhone 與 iPad App 沒有付費功能，iCloud Sync 在這兩款裝置上免費。若要與 Mac 同步，Mac 需要 Starter 或 Team。"
     },
     "discount": {
         "atCheckout": "有折扣碼？請在結帳時輸入。",

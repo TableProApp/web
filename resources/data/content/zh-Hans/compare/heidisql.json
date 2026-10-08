@@ -15,7 +15,7 @@
         "tablepro": [
             "Mac 使用 Intel 处理器。TablePro 有 Intel、Apple silicon 独立构建。",
             "除 SQL 服务器，也使用 MongoDB、Redis、ClickHouse 或 DuckDB。",
-            "希望密码保存在 macOS 钥匙串，安全模式在生产连接写入前要求 Touch ID。",
+            "希望密码保存在 macOS 钥匙串，Safe Mode 在生产连接写入前要求 Touch ID。",
             "希望在 Mac 应用免费使用 AI 助手和 MCP 服务器。",
             "也需要 iPhone、iPad 应用。"
         ],
@@ -83,7 +83,7 @@
                 "href": "/databases"
             },
             {
-                "text": "密码保存在 macOS 钥匙串，连接的<link>安全模式</link>级别可在写入前要求 Touch ID 或密码。",
+                "text": "密码保存在 macOS 钥匙串，连接的 <link>Safe Mode</link> 级别可在写入前要求 Touch ID 或密码。",
                 "cite": [],
                 "feature": null,
                 "href": "/features/data-editing#safe-mode"
@@ -128,10 +128,10 @@
         ]
     },
     "switching": {
-        "intro": "TablePro 无 HeidiSQL 导入器。将各会话添加为连接：填表单，或将 mysql://、postgresql://、sqlserver:// 开头 URL 粘贴到 <ui>File > Import > Import from URL…</ui>。",
+        "intro": "TablePro 无 HeidiSQL 导入器。将各会话添加为连接：填表单，或将 mysql://、postgresql://、sqlserver:// 开头 URL 粘贴到<ui>文件 > 导入 > 从 URL 导入…</ui>（File > Import > Import from URL…）。",
         "steps": [],
         "after": [
-            "在连接 <ui>Network</ui> 标签页设置 SSH 隧道，Mac 也支持跳板机。",
+            "在连接<ui>网络</ui>（Network）标签页设置 SSH 隧道，Mac 也支持跳板机。",
             "密码保存至 macOS 钥匙串。",
             "TablePro 查询历史从头开始。"
         ],

@@ -138,7 +138,6 @@ export interface FeatureHubContent {
     header: { title: string; lead: string };
     areas: {
         title: string;
-        lead: string;
         /** `{tier}`, `{features}`. */
         paid: string;
         noPaid: string;

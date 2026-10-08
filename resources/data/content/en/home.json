@@ -10,7 +10,8 @@
     },
     "hero": {
         "title": "A native database client for developers.",
-        "subtitle": "Run queries, browse and edit data in {featuredEngines} <more>and more</more>. TablePro has a separate native app for each platform it supports.",
+        "subtitle": "Run queries, browse and edit data in {featuredEngines} <more>and more</more>.",
+        "native": "Native means each app is written in Swift for its own platform, with AppKit and SwiftUI on the Mac. No Electron, no Java runtime.",
         "macCaption": "{requirement} · {architectures}",
         "iosCaption": "{devices} · {requirement}",
         "otherWays": "Other ways to install",
@@ -19,19 +20,7 @@
     "databases": {
         "title": "Relational, document, key-value and analytical databases",
         "lead": "Some drivers come with the {macApp}. The others download the first time you pick that database, and they update separately from the app.",
-        "byType": "Supported databases by type",
-        "categories": {
-            "relational": "Relational",
-            "document": "Document",
-            "key-value": "Key-value",
-            "analytical": "Analytical",
-            "wide-column": "Wide-column",
-            "search": "Search and vector",
-            "streaming": "Streaming",
-            "coordination": "Configuration and coordination",
-            "cloud": "Cloud",
-            "files": "Local files"
-        },
+        "count": "On the Mac, TablePro connects to {count} databases, grouped by kind:",
         "ios": "On {iosDevices}, TablePro connects to {iosEngines}.",
         "iosSynced": "{syncedOnly} connections synced from a Mac open there too.",
         "link": "Supported databases"
@@ -41,16 +30,15 @@
         "link": "Sponsor TablePro"
     },
     "workflows": {
-        "title": "Work with your databases",
-        "lead": "The workflows in this section are in the {macApp}. For {iosDevices}, TablePro has a separate app with its own scope, described further down.",
-        "paid": "Requires a {tier} plan: {features}.",
+        "title": "What the Mac app does",
+        "paid": "{tier} plan: {features}.",
         "link": "All features",
         "rows": [
             {
                 "id": "query",
                 "asset": "mac-query-autocomplete",
                 "title": "Write, run and understand queries",
-                "body": "A SQL editor with schema-aware autocomplete, <code>:name</code> query parameters, searchable history, saved queries and linked SQL folders that show Git status. EXPLAIN draws the plan as a diagram on supported engines, and EXPLAIN Compare checks a plan against a baseline."
+                "body": "A SQL editor with schema-aware autocomplete, <code>:name</code> query parameters, searchable history, saved queries and folders of <code>.sql</code> files that show Git status. EXPLAIN draws the plan as a diagram on supported engines, and EXPLAIN Compare checks a plan against a baseline."
             },
             {
                 "id": "edit",
@@ -68,7 +56,7 @@
                 "id": "files",
                 "asset": "mac-data-files-window",
                 "title": "Import, export and open data files",
-                "body": "Import {importFormats} files on engines that support import, and export to {exportFormats}. The Data Files window opens CSV, JSON and XLSX files without a database, so you can search and filter them, clean up CSV and JSON, and import the result into a table. Backup Dump and Restore Dump run each engine’s own command-line tools ({dumpTools}). TablePro doesn’t bundle them, so install any your Mac doesn’t already have."
+                "body": "Import {importFormats} files on engines that support import, and export to {exportFormats}. The Data Files window opens CSV, JSON and XLSX files without a database, to search and filter them and clean up CSV and JSON. Backup Dump and Restore Dump run each engine’s own command-line tools ({dumpTools}); install any your Mac doesn’t already have."
             },
             {
                 "id": "connect",
@@ -81,8 +69,8 @@
     "safety": {
         "title": "Guardrails for production databases",
         "body": [
-            "On the Mac, tag and colour connections by environment, and give each one a Safe Mode level, from Silent to Read-Only, with Touch ID or your password on the stricter levels. DROP, TRUNCATE and DELETE without WHERE stop and ask at every level. On iPhone and iPad, Confirm Writes asks before every write and Read-Only refuses them.",
-            "While a connection is open in Agent mode, it runs at Alert or stricter. Data Rewind can put back the values a recent save replaced. It is not a backup."
+            "On the Mac, tag and color connections by environment, and give each one a Safe Mode level. Silent runs statements as written, Alert asks before a write, the levels named Safe Mode also ask for Touch ID or your password, and Read-Only refuses writes. DROP, TRUNCATE and DELETE without WHERE stop and ask at every level. On iPhone and iPad, Confirm Writes asks before every write and Read-Only refuses them.",
+            "In Agent mode the AI assistant can run statements. While a connection is open in Agent mode, it runs at Alert or stricter. Data Rewind can put back the values a recent save replaced. It is not a backup."
         ],
         "levels": "Safe Mode levels",
         "link": "Safe Mode"
@@ -92,7 +80,7 @@
         "body": [
             "On the Mac, an optional AI assistant explains, optimizes and fixes queries and answers questions about your schema. You choose the provider: an API key, an account you already have, or a model running on your Mac. TablePro runs no AI service of its own, and nothing is sent until you add a provider.",
             "Chat starts in Ask mode, which only reads. In Edit and Agent modes the assistant can run statements. From Alert to Safe Mode (Full) each write waits for you, Read-Only refuses them, and DROP or TRUNCATE always needs your click.",
-            "The built-in MCP server lets clients such as {mcpClients} use your saved connections without seeing a password. It listens only on {mcpHost}, and each connection decides what outside apps may do: Blocked, Read Only (the default) or Read & Write.",
+            "The built-in MCP (Model Context Protocol) server lets AI clients such as {mcpClients} use your saved connections without seeing a password. It listens only on {mcpHost}, and each connection decides what outside apps may do: Blocked, Read Only (the default) or Read & Write.",
             "All of this is free."
         ],
         "providers": "Providers you can add: {providers}."
@@ -101,7 +89,7 @@
         "title": "Native apps for {deviceList}",
         "cardTitle": "TablePro for {devices}",
         "mac": "On the Mac, TablePro is a Swift app with separate builds for {architectures}. It keeps passwords in the Keychain, asks for Touch ID on stricter Safe Mode levels and updates itself.",
-        "ios": "On {devices}, TablePro is a separate app with its own scope: connect over SSH or TLS, browse tables, run queries and edit rows, with an optional Face ID lock, Shortcuts, a Home Screen widget and Live Activities for running queries.",
+        "ios": "On {devices}, TablePro is a separate app with its own scope. Connect over SSH or TLS, browse tables, run queries and edit rows, with an optional Face ID lock, Shortcuts, a Home Screen widget and Live Activities for running queries.",
         "sync": "iCloud Sync keeps connections, groups and tags in step between a Mac and an iPhone or iPad. It is off by default, and on the Mac it needs a {tier} plan. With iCloud Sync on, Handoff continues an open connection on the other device."
     },
     "switch": {

@@ -28,7 +28,7 @@
             "id": "connect",
             "title": "连接 Turso",
             "paragraphs": [
-                "连接类型选择 Turso，<ui>Connection Mode</ui> 保持 <ui>Remote (Turso)</ui>。粘贴以 <code>.turso.io</code> 结尾的数据库 HTTPS URL，将令牌填入 <ui>API Token</ui>，保存在 macOS 钥匙串。Turso 仪表盘可获取两者，也可用 <code>turso db show my-db --url</code>、<code>turso db tokens create my-db</code>。",
+                "连接类型选择 Turso，<ui>连接模式</ui>（Connection Mode）保持<ui>远程 (Turso)</ui>（Remote (Turso)）。粘贴以 <code>.turso.io</code> 结尾的数据库 HTTPS URL，将令牌填入 <ui>API Token</ui>，保存在 macOS 钥匙串。Turso 仪表盘可获取两者，也可用 <code>turso db show my-db --url</code>、<code>turso db tokens create my-db</code>。",
                 "<code>libsql://</code> URL 会改写为 HTTPS，导入后创建远程连接。URL 指定单个数据库，因此无主机、端口或数据库字段。使用 HTTPS 而非明文 HTTP 时连接加密，不提供 SSH 隧道。"
             ]
         },
@@ -63,7 +63,7 @@
             "title": "libSQL",
             "paragraphs": [
                 "自托管 sqld 或此 Mac 上的文件请选择 libSQL。Remote 模式可访问任何提供 Hrana v2 pipeline 端点的 sqld，包括默认监听 8080 端口的本机服务器。未使用 <code>--auth-jwt-key-file</code> 启动的服务器可留空令牌，否则提供匹配服务器密钥的 JWT。",
-                "<ui>Local File</ui> 使用驱动内置 SQLite 打开 libSQL 文件，不存在的路径连同文件夹一起创建。本地文件支持事务、从连接 Extensions 列表加载 SQLite 扩展，并在确认后执行列重排或外键重建。",
+                "<ui>本地文件</ui>（Local File）使用驱动内置 SQLite 打开 libSQL 文件，不存在的路径连同文件夹一起创建。本地文件支持事务、从连接 Extensions 列表加载 SQLite 扩展，并在确认后执行列重排或外键重建。",
                 "<code>ALTER TABLE … ALTER COLUMN</code> 等仅 libSQL 理解的语句，在本地文件上会失败，因为执行者是 SQLite。加密 libSQL 文件无法打开。切勿打开运行中的应用正在作为 Turso 嵌入式副本同步的文件，两个程序同时访问可能导致损坏。",
                 "<backup>Backup Dump 和 Restore Dump</backup> 对本地 libSQL 文件运行 {dumpTool}。"
             ]

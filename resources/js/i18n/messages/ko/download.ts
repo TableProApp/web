@@ -11,7 +11,7 @@ export default {
         "undated": "버전 {version}",
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
-        "notes": "릴리스 노트",
+        "notes": "릴리스 노트 (영어)",
         "unavailable": "현재 릴리스 정보를 불러오지 못했습니다. 두 버튼 모두 GitHub의 최신 릴리스를 열며, 거기서 Mac에 맞는 디스크 이미지를 선택할 수 있습니다."
     },
     "file": {

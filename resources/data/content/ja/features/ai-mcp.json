@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "AI アシスタントと MCP サーバー",
-        "lead": "自分で選んだモデルから SQL の支援を受けたい開発者や、AI クライアントにデータベースを扱わせたい方へ。スキーマを尋ね、クエリをレビュー・修正し、Claude Code や Cursor に保存済み接続を使わせられます。すべて任意の Mac 専用機能です。プロバイダーの追加やクライアントの接続まで、モデルには何も送信しません。",
+        "lead": "自分で選んだモデルから SQL の支援を受けたい開発者や、AI クライアントにデータベースを扱わせたい方へ。スキーマを尋ね、クエリをレビュー・修正し、Claude Code や Cursor などの MCP（Model Context Protocol）クライアントに保存済み接続を使わせられます。すべて任意の Mac 専用機能です。プロバイダーの追加やクライアントの接続まで、モデルには何も送信しません。",
         "docs": "/features/ai-assistant"
     },
     "sections": [
@@ -18,7 +18,7 @@
             "title": "自分で選んだプロバイダーを使う",
             "paragraphs": [
                 "アシスタントは {aiProviders} に対応します。プロバイダーに応じて API キーを貼り付け、既存アカウントでサインインするか、Mac でモデルを実行します。TablePro 自身は AI サービスを運営しません。リクエストはプロバイダーに直接送り、追加するまでは何も送信しません。",
-                "各メッセージには、指定した上限までの接続内テーブルの構造と、エディタ内のクエリを含みます。結果の行は <ui>Settings > AI</ui> で有効にした場合のみ送ります。各接続には AI ポリシーもあり、Never ならアシスタントと MCP クライアントの両方がアクセスできません。"
+                "各メッセージには、指定した上限までの接続内テーブルの構造と、エディター内のクエリを含みます。結果の行は <ui>Settings > AI</ui> で有効にした場合のみ送ります。各接続には AI ポリシーもあり、Never ならアシスタントと MCP クライアントの両方がアクセスできません。"
             ],
             "asset": "mac-ai-chat"
         },
@@ -32,15 +32,15 @@
         },
         {
             "id": "agent-mode",
-            "title": "チャットモードと Agent モード",
+            "title": "チャットモードと Agent mode",
             "paragraphs": [
-                "チャットには三つのモードがあります。既定の Ask はスキーマを調べ、何も実行しません。Edit はクエリも実行でき、Agent は DROP、TRUNCATE などの破壊的な文も実行できます。新規接続の既定レベル {macSafeModeDefault} では、Edit と Agent の書き込みは確認なしで実行します。Alert から Safe Mode (Full) では各操作が Run を待ち、Read-Only は拒否します。破壊的な文は必ずクリックを待ち、事前承認はできません。",
-                "Agent モード（<kbd>⌥⇧⌘A</kbd>）は一つのセッションにウィンドウ全体を割り当て、接続のセッション、会話、提案して実行した SQL を表示します。有効な間は接続を Alert 以上に保ち、Run をクリックするまで書き込みは実行しません。これは注意喚起であり、ロックではありません。一回のキー操作でオフにできます。セッションはこの Mac に保存します。"
+                "チャットには三つのモードがあります。既定の Ask はスキーマを調べ、何も実行しません。Edit はクエリも実行でき、Agent は DROP、TRUNCATE などの破壊的な文も実行できます。新規接続の既定の Safe Mode レベル {macSafeModeDefault} では、Edit と Agent の書き込みは確認なしで実行します。Alert から Safe Mode (Full) では各操作が Run を待ち、Read-Only は拒否します。破壊的な文は必ずクリックを待ち、事前承認はできません。",
+                "Agent mode（<kbd>⌥⇧⌘A</kbd>）は一つのセッションにウィンドウ全体を割り当て、接続のセッション、会話、提案して実行した SQL を表示します。有効な間は接続を Alert 以上に保ち、Run をクリックするまで書き込みは実行しません。これは注意喚起であり、ロックではありません。一回のキー操作でオフにできます。セッションはこの Mac に保存します。"
             ],
             "asset": "mac-agent-mode",
             "links": [
                 {
-                    "label": "セーフモードのレベル",
+                    "label": "Safe Mode のレベル",
                     "href": "/features/data-editing#safe-mode"
                 }
             ]
@@ -58,7 +58,7 @@
                     "id": "connect",
                     "title": "クライアントを接続する",
                     "paragraphs": [
-                        "<ui>Settings > Integrations</ui> に {mcpSetupClients} の設定手順とコピー用のスニペットがあります。同梱の <code>tablepro-mcp</code> ブリッジは {mcpBridgeClients} にも対応し、必要なら TablePro を起動してサーバーを見つけるため、クライアントの設定にポートやトークンは不要です。公式 Raycast 拡張は代わりにアプリとペアリングし、Mac 上で承認します。",
+                        "<ui>Settings > Integrations</ui> に {mcpSetupClients} の設定手順とコピー用のスニペットがあります。同梱の <code>tablepro-mcp</code> ブリッジは {mcpBridgeClients} にも対応します。必要なら TablePro を起動してサーバーを見つけるため、クライアントの設定にポートやトークンは不要です。公式 Raycast 拡張は代わりにアプリとペアリングし、Mac 上で承認します。",
                         "典型的なリクエストは、同じメールアドレスを使うユーザーを探すことです。クライアントは <code>list_tables</code> と <code>describe_table</code> を呼び、カラム名が <code>email_address</code> だと確認して、保存済み接続で一つの SELECT を実行できます。チャットにスキーマを貼り付ける必要はありません。"
                     ]
                 },
@@ -73,7 +73,7 @@
                         "接続ごとの External Clients：Blocked、Read Only（既定）、Read & Write。ブロックした接続は一覧にも表示しません。",
                         "接続の承認：クライアントが初めて接続にアクセスすると、Mac のダイアログで確認します。毎回、接続ごとに一度、確認しない、から選べます。",
                         "AI ポリシー：Never に設定した接続は MCP クライアントも拒否します。",
-                        "セーフモード：書き込みは接続のレベルに従って確認し、DROP や TRUNCATE は Full Access トークンと毎回の承認が必要です。ファイルを読み書きする文やサーバーでコードを実行する文は拒否します。"
+                        "Safe Mode：書き込みは接続のレベルに従って確認し、DROP や TRUNCATE は Full Access トークンと毎回の承認が必要です。ファイルを読み書きする文やサーバーでコードを実行する文は拒否します。"
                     ]
                 }
             ]
@@ -89,7 +89,7 @@
             "id": "automation",
             "title": "チャット以外の自動化",
             "paragraphs": [
-                "AppleScript は、接続の External Clients レベルとセーフモードに従って接続、クエリ実行、テーブル表示を行えます。<code>tablepro://</code> リンクは接続、テーブルやクエリタブを開きます。リンク内のクエリは確認後に入力され、自動実行しません。<code>postgresql://</code> などのデータベース URL は接続として開きます。",
+                "AppleScript は、接続の External Clients レベルと Safe Mode に従って接続、クエリ実行、テーブル表示を行えます。<code>tablepro://</code> リンクは接続、テーブルやクエリタブを開きます。リンク内のクエリは確認後に入力され、自動実行しません。<code>postgresql://</code> などのデータベース URL は接続として開きます。",
                 "シェルコマンド <code>tablepro</code> はそれらの URL やファイルをアプリで開き、ターミナルからクエリは実行しません。公式 Raycast 拡張は接続、テーブルとクエリ履歴を検索し、ペアリングしたアプリ経由でクエリを実行します。"
             ]
         },
@@ -111,7 +111,7 @@
             "id": "iphone",
             "title": "iPhone と iPad は非対応",
             "paragraphs": [
-                "iPhone と iPad アプリには AI アシスタント、Agent モードや MCP サーバーはありません。このページの機能はすべて Mac アプリにあります。"
+                "iPhone と iPad アプリには AI アシスタント、Agent mode や MCP サーバーはありません。このページの機能はすべて Mac アプリにあります。"
             ],
             "links": [
                 {
@@ -127,15 +127,15 @@
             "ios": "no"
         },
         {
-            "label": "AI によるレビュー、説明、最適化と修正",
+            "label": "Review、Explain、Optimize と Fix with AI",
             "ios": "no"
         },
         {
-            "label": "インライン候補と AI ルール",
+            "label": "インライン候補と AI Rules",
             "ios": "no"
         },
         {
-            "label": "Agent モード",
+            "label": "Agent mode",
             "ios": "no"
         },
         {
@@ -168,7 +168,7 @@
             "docs": "/features/ai-assistant"
         },
         {
-            "label": "Agent モード",
+            "label": "Agent mode",
             "docs": "/features/agent-mode"
         },
         {
@@ -198,7 +198,7 @@
     ],
     "related": [
         {
-            "label": "セーフモード",
+            "label": "Safe Mode",
             "href": "/features/data-editing#safe-mode"
         },
         {

@@ -29,7 +29,7 @@
             "id": "connect",
             "title": "连接",
             "paragraphs": [
-                "提供主机和 TCP 端口，再选择 <ui>Authentication</ui>，表单会随之调整：SQL Server 用户密码、Kerberos Windows Authentication 或 Microsoft Entra ID。属于单个数据库的登录，例如 Azure SQL contained user，还需填写 Database。",
+                "提供主机和 TCP 端口，再选择<ui>身份验证</ui>（Authentication），表单会随之调整：SQL Server 用户密码、Kerberos Windows Authentication 或 Microsoft Entra ID。属于单个数据库的登录，例如 Azure SQL contained user，还需填写 Database。",
                 "Kerberos 使用凭据缓存中的现有票据，或根据输入的主体和密码请求票据。票据为服务器注册的 SPN 签发，因此请用主机名而非 IP 连接。TablePro 从不运行 <code>kinit</code> 或编辑 <code>/etc/krb5.conf</code>。",
                 "<cloudAuth>Microsoft Entra ID</cloudAuth> 使用设备代码流程登录，遵循多因素认证和 Conditional Access。需在 Azure 注册应用并填写客户端 ID；令牌保存在登录钥匙串中，标记为仅限此设备，并在后台刷新。",
                 "新连接默认为 Preferred，在 SQL Server 上仅加密登录。要加密整个会话，请选 Required 或更严格级别；Verify CA、Verify Identity 使用 macOS 系统根证书验证。TablePro 也可为 Google Cloud SQL 运行 Cloud SQL Auth Proxy，并通过 <network>SSH 隧道</network>访问私有网络服务器。"
@@ -57,7 +57,7 @@
             "id": "operate",
             "title": "监控和备份",
             "paragraphs": [
-                "<dashboard>Server Dashboard</dashboard> 显示用户会话、运行时间和数据库大小，列出所有其他会话及运行超过一秒的查询，并通过 <ui>Terminate Session</ui> 终止会话。SQL Server 不提供 Cancel Query。",
+                "<dashboard>Server Dashboard</dashboard> 显示用户会话、运行时间和数据库大小，列出所有其他会话及运行超过一秒的查询，并通过<ui>终止会话</ui>（Terminate Session）终止会话。SQL Server 不提供 Cancel Query。",
                 "<backup>Backup Dump</backup> 使用从 Microsoft 下载的 {dumpTool} 写入 <code>.bacpac</code>，Restore Dump 载入空数据库。SqlPackage 仅在命令行接收密码，Mac 上其他进程可以读取，因此 TablePro 会在启动前询问。Windows 或 Entra 认证无需传递密码。"
             ]
         },

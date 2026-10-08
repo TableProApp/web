@@ -13,8 +13,8 @@ export default {
         },
         "resources": {
             "title": "Risorse",
-            "docs": "Documentazione",
-            "changelog": "Registro delle modifiche",
+            "docs": "Documentazione (inglese)",
+            "changelog": "Registro delle modifiche (inglese)",
             "blog": "Blog",
             "faq": "Domande frequenti",
             "source": "Codice sorgente",
@@ -45,7 +45,7 @@ export default {
     },
     "newsletter": {
         "title": "Note di rilascio via email",
-        "body": "Email occasionali con le note di rilascio. Ogni email contiene un link per annullare l’iscrizione.",
+        "body": "Email occasionali, in inglese, con le note di rilascio. Ogni email contiene un link per annullare l’iscrizione.",
         "note": "Prima ti inviamo un link di conferma via email. <link>Informativa sulla privacy</link>"
     },
     "bottom": {

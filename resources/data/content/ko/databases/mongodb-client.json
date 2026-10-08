@@ -11,7 +11,7 @@
     "breadcrumb": "MongoDB",
     "header": {
         "title": "{devices}용 MongoDB 클라이언트",
-        "lead": "mongosh 방식으로 쿼리를 쓰고 그리드에서 컬렉션을 페이지로 탐색하며 Extended JSON으로 전체 문서를 추가·편집합니다. 컬렉션 전체 필드 이름 변경·제거도 실행 전 모든 구문을 표시합니다."
+        "lead": "mongosh 방식으로 쿼리를 쓰고 그리드에서 컬렉션을 페이지로 탐색하며 Extended JSON으로 전체 문서를 추가·편집합니다. 컬렉션 전체 필드 이름 변경·제거도 실행 전 모든 명령문을 표시합니다."
     },
     "asset": "mac-db-mongodb-document",
     "links": {
@@ -44,7 +44,7 @@
                 "컬렉션은 최상위 필드를 열로, 중첩 객체를 Extended JSON으로 표시하는 그리드로 열립니다. 편집 셀은 필드 유형을 유지해 날짜·ObjectId가 그대로이며 중첩 객체 편집은 <code>address.city</code>처럼 바뀐 경로만 씁니다.",
                 "<editing>Insert Document와 Edit Document</editing>는 전체 문서를 Extended JSON으로 받습니다. Edit Document는 서버에서 다시 읽고 시트를 연 뒤 누군가 변경·삭제했으면 저장하지 않고 알려 줍니다. 셀의 <ui>Remove Field</ui>는 <code>$unset</code>을 보냅니다.",
                 "<filters>필터 바</filters>는 중첩 객체·객체 배열 안에 접근해 <code>customer.country</code>·<code>items.sku</code>를 바로 필터링합니다. GeoJSON 필드는 <map>지도 보기</map>로 열립니다.",
-                "드라이버가 읽기 전용 세션을 열 수 없어 <safeMode>안전 모드</safeMode>는 MongoDB 연결의 모든 구문을 쓰기로 취급합니다. Alert·Safe Mode는 각각 확인하고 Read-Only는 모두 차단합니다."
+                "드라이버가 읽기 전용 세션을 열 수 없어 <safeMode>Safe Mode</safeMode>는 MongoDB 연결의 모든 명령문을 쓰기로 취급합니다. Alert·Safe Mode는 각각 확인하고 Read-Only는 모두 차단합니다."
             ]
         },
         {
@@ -53,7 +53,7 @@
             "paragraphs": [
                 "<structure>Structure 탭</structure>은 인덱스별 필드를 키 순서와 hashed·text·2dsphere·wildcard 같은 종류로 나열합니다. Show DDL은 서버가 보고한 모든 옵션을 담아 재구성할 <code>createIndex</code> 호출을 만듭니다.",
                 "같은 탭에서 컬렉션 전체 필드 이름을 바꾸거나 제거합니다. 변경마다 <code>updateMany</code> 하나를 Preview SQL에 표시하며 <code>$jsonSchema</code> 검증기가 선언한 필드도 바뀝니다. 인덱스·검색 인덱스·뷰가 이름을 계속 사용하면 쓰기 전에 저장을 거부합니다.",
-                "<ui>New Table</ui>은 필드를 <code>$jsonSchema</code> 검증기로 구성한 컬렉션을 만든 뒤 나열한 인덱스를 만듭니다. 뷰·시계열 컬렉션은 사이드바에 표시되며 뷰는 읽기 전용입니다."
+                "<ui>새 테이블</ui>(New Table)은 필드를 <code>$jsonSchema</code> 검증기로 구성한 컬렉션을 만든 뒤 나열한 인덱스를 만듭니다. 뷰·시계열 컬렉션은 사이드바에 표시되며 뷰는 읽기 전용입니다."
             ]
         },
         {

@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "TablePro per iPhone e iPad",
-        "description": "Client gratuito per iPhone e iPad. Connettiti a MySQL, PostgreSQL, SQL Server e Oracle via SSH o SSL per esplorare, modificare e interrogare tabelle."
+        "description": "Client gratuito per iPhone e iPad. Connettiti a MySQL, PostgreSQL, SQL Server e Oracle via SSH o TLS per esplorare, modificare e interrogare tabelle."
     },
     "og": {
         "kicker": "iPhone e iPad",
@@ -9,25 +9,25 @@
     },
     "hero": {
         "title": "TablePro per iPhone e iPad",
-        "lead": "Connettiti ai database, esplora e modifica righe ed esegui query dal telefono o tablet, con tunnel SSH, Modalità sicura e Face ID. È un’app separata realizzata per iPhone e iPad, non una copia dell’app per Mac.",
+        "lead": "Connettiti ai database, esplora e modifica righe ed esegui query dal telefono o tablet, con tunnel SSH, Safe Mode e Face ID. È un’app separata realizzata per iPhone e iPad, non una copia dell’app per Mac.",
         "noSignUp": "Nessuna registrazione e nessuna licenza",
         "mac": "Cerchi l’app per Mac? <download>Scarica TablePro per Mac</download>."
     },
     "databases": {
         "title": "Database",
         "lead": "Crea connessioni a questi database su iPhone e iPad. I driver sono integrati nell’app, quindi non c’è nulla da scaricare.",
-        "syncedOnly": "Le connessioni {engines} si aprono quando provengono dal Mac, tramite sincronizzazione iCloud o un file .tablepro. Non puoi crearle in questa app.",
+        "syncedOnly": "Le connessioni {engines} si aprono quando provengono dal Mac, tramite iCloud Sync o un file .tablepro. Non puoi crearle in questa app.",
         "others": "Anche le connessioni ad altri database si sincronizzano dal Mac e compaiono nell’elenco, ma l’app non ha i relativi driver, quindi non si aprono qui. La <databases>pagina dei database</databases> elenca ogni motore supportato dall’app per Mac.",
         "files": "SQLite: scegli un file di database e l’app lo copia nel proprio archivio, quindi le modifiche riguardano la copia. Puoi anche creare un nuovo database. DuckDB apre un file dove si trova oppure funziona in memoria.",
-        "redis": "Redis: esegui comandi nella scheda Query. L’esplorazione delle chiavi Redis non è disponibile in questa versione.",
+        "redis": "Redis: esegui comandi nella scheda Query. L’esplorazione delle chiavi Redis non è disponibile nell’app per iPhone e iPad.",
         "sample": "Per esplorare prima l’app, apri Chinook, il database di esempio incluso."
     },
     "browse": {
         "title": "Esplora e modifica le tabelle",
         "paragraphs": [
             "Ogni connessione si apre sulle tabelle, con editor di query, cronologia e dettagli della connessione nelle proprie schede.",
-            "Le righe appaiono come schede, con la chiave primaria o la prima colonna come titolo e le colonne successive sotto. Ordina per qualsiasi colonna, cerca in tutte tranne quelle binarie e combina filtri con AND o OR. Scegli quante righe contiene una pagina e vai a qualsiasi pagina. Tocca un valore di chiave esterna per vedere l’anteprima della riga referenziata. La vista Struttura elenca colonne, indici e chiavi esterne della tabella.",
-            "Apri una riga per modificarla: cambia valori, imposta NULL e conferma prima del salvataggio. Puoi anche inserire ed eliminare righe, troncare o eliminare una tabella. Modifica ed eliminazione delle righe richiedono una chiave primaria e una connessione in Sola lettura non cambia nulla. In questa versione, non salvare una riga quando un testo lungo o un valore binario appare abbreviato: l’editor può sovrascrivere il valore completo con il testo abbreviato. Modifica quelle righe sul Mac."
+            "Le righe appaiono come schede, con la chiave primaria o la prima colonna come titolo e le colonne successive sotto. Ordina per qualsiasi colonna, cerca in tutte tranne quelle binarie e combina filtri con AND o OR. Scegli quante righe contiene una pagina e vai a qualsiasi pagina. Tocca un valore di chiave esterna per vedere l’anteprima della riga referenziata. La vista Structure elenca colonne, indici e chiavi esterne della tabella.",
+            "Apri una riga per modificarla: cambia valori, imposta NULL e conferma prima del salvataggio. Puoi anche inserire ed eliminare righe, troncare o eliminare una tabella. Modifica ed eliminazione delle righe richiedono una chiave primaria e su una connessione Read-Only non cambia nulla."
         ]
     },
     "query": {
@@ -42,16 +42,16 @@
         "title": "Connettiti in sicurezza",
         "paragraphs": [
             "I tunnel SSH accedono con password o chiave privata, da un file o incollata, con passphrase opzionale. Al primo accesso a un server, l’app mostra l’impronta della chiave host e chiede di considerarla attendibile.",
-            "SSL si imposta per connessione. Le connessioni MySQL, MariaDB, TiDB, OceanBase e PostgreSQL possono verificare certificato e nome host del server e presentare un certificato client da file, testo incollato o pacchetto PKCS#12. Anche Redis può farlo, ma in questa versione verifica il certificato e non il nome host. SQL Server può cifrare la connessione (Obbligatorio), ma non verifica il certificato. I certificati restano sul dispositivo e non si sincronizzano mai.",
+            "TLS si imposta per connessione. Le connessioni MySQL, MariaDB, TiDB, OceanBase e PostgreSQL possono verificare certificato e nome host del server e presentare un certificato client da file, testo incollato o pacchetto PKCS#12. Anche le connessioni Redis possono verificare il certificato e presentare un certificato client. SQL Server può cifrare la connessione (Required), ma non verifica il certificato. I certificati restano sul dispositivo e non si sincronizzano mai.",
             "Password e chiavi incollate sono conservate nel Portachiavi. Una connessione SQL Server con Microsoft Entra ID può accedere qui dopo la sincronizzazione dal Mac; l’autenticazione Windows non è supportata. Per raggiungere un server con il nome .local sulla rete, consenti l’accesso alla rete locale quando iOS lo chiede."
         ]
     },
     "safeMode": {
-        "title": "Modalità sicura e blocco dell’app",
+        "title": "Safe Mode e blocco dell’app",
         "paragraphs": [
-            "Ogni connessione ha un livello di Modalità sicura: {levels}. Conferma scritture chiede conferma prima di eseguire un’istruzione che modifica dati. Sola lettura la rifiuta prima che raggiunga il server. Un’istruzione che l’app non identifica come lettura conta come scrittura.",
+            "Ogni connessione ha un livello Safe Mode: {levels}. Confirm Writes chiede conferma prima di eseguire un’istruzione che modifica dati. Read-Only la rifiuta prima che raggiunga il server. Un’istruzione che l’app non identifica come lettura conta come scrittura.",
             "Imposta il livello di una connessione nella sezione Organizzazione e il livello iniziale delle nuove connessioni in Impostazioni. I comandi rapidi che aggiungono righe rispettano lo stesso livello.",
-            "In <ui>Settings > Security</ui>, blocca l’app con Face ID o Touch ID, usando il codice come alternativa. Una volta attivato, l’app chiede l’autenticazione a ogni avvio e dopo il tempo di Blocco automatico scelto."
+            "In <ui>Settings > Security</ui>, blocca l’app con Face ID o Touch ID, usando il codice come alternativa. Una volta attivato, l’app chiede l’autenticazione a ogni avvio e dopo il tempo di Auto-Lock scelto."
         ]
     },
     "ipad": {
@@ -64,18 +64,17 @@
     "mac": {
         "title": "Con il tuo Mac",
         "paragraphs": [
-            "Attiva la sincronizzazione iCloud durante la configurazione o in seguito in Impostazioni; connessioni, gruppi e tag si sincronizzano tra iPhone, iPad e Mac tramite il tuo account iCloud. Le password si sincronizzano solo se attivi anche Sincronizza password. Query salvate, profili SSH e impostazioni si sincronizzano solo tra Mac.",
-            "La sincronizzazione iCloud è gratuita qui. Sul Mac fa parte di una licenza Starter o Team, quindi un Mac senza licenza non si sincronizza. La <pricing>pagina dei prezzi</pricing> contiene i dettagli.",
-            "In questa versione, salvare una connessione sincronizzata su iPhone o iPad può rimuovere impostazioni usate solo dal Mac, come jump host SSH, e abbassare il livello di Modalità sicura. Modifica queste connessioni sul Mac.",
+            "Attiva iCloud Sync durante la configurazione o in seguito in Impostazioni; connessioni, gruppi e tag si sincronizzano tra iPhone, iPad e Mac tramite il tuo account iCloud. Le password si sincronizzano solo se attivi anche Sync Passwords. Query salvate, profili SSH e impostazioni si sincronizzano solo tra Mac.",
+            "iCloud Sync è gratuito qui. Sul Mac fa parte di una licenza Starter o Team, quindi un Mac senza licenza non si sincronizza. La <pricing>pagina dei prezzi</pricing> contiene i dettagli.",
             "Senza iCloud, esporta le connessioni come file .tablepro e aprilo su un altro dispositivo tramite AirDrop o File. Le password sono escluse, salvo che tu le includa; in quel caso una passphrase scelta da te cifra il file. Entrambe le opzioni sono gratuite qui; sul Mac l’esportazione con password fa parte di una licenza.",
-            "Con la sincronizzazione iCloud attiva, Handoff permette di proseguire una connessione o una tabella aperta tra Mac e iPhone o iPad. <sync>Sincronizzazione e team</sync> descrive entrambi più in dettaglio."
+            "Con iCloud Sync attivo, Handoff permette di proseguire una connessione o una tabella aperta tra Mac e iPhone o iPad. <sync>Sincronizzazione e team</sync> descrive entrambi più in dettaglio."
         ]
     },
     "automation": {
         "title": "Comandi Rapidi, widget e Spotlight",
         "paragraphs": [
-            "Open Connection apre una connessione da un comando rapido o da Siri. Add Row to Table e Add Rows to Table inseriscono in una tabella senza aprire l’app, da testo JSON o CSV oppure da file. Funzionano solo con il dispositivo sbloccato, rispettano la Modalità sicura della connessione e non funzionano con Redis. In questa versione, il CSV deve essere testo UTF-8 con terminazioni di riga LF.",
-            "I widget Connessione rapida mettono le prime connessioni nella schermata Home e un tocco ne apre una. Le connessioni compaiono anche nella ricerca Spotlight."
+            "Open Connection apre una connessione da un comando rapido o da Siri. Add Row to Table e Add Rows to Table inseriscono in una tabella senza aprire l’app, da testo JSON o CSV oppure da file. Funzionano solo con il dispositivo sbloccato, rispettano il livello Safe Mode della connessione e non funzionano con Redis.",
+            "I widget Quick Connect mettono le prime connessioni nella schermata Home e un tocco ne apre una. Le connessioni compaiono anche nella ricerca Spotlight."
         ]
     },
     "limits": {
@@ -85,7 +84,7 @@
             "L’assistente IA e il server MCP",
             "Query salvate, completamento automatico, formattazione delle query ed EXPLAIN",
             "Modifiche allo schema oltre al troncamento o all’eliminazione di una tabella e diagrammi ER",
-            "Confronta e sincronizza, Analisi delle query, Grafici dei risultati e Ripristino dati",
+            "Compare & Sync, Query Insights, Result Charts e Data Rewind",
             "Esportazione di file in formati come XLSX e importazione di file in una tabella (Comandi Rapidi può aggiungere righe)",
             "Pannello del server, utenti e ruoli e backup",
             "Plugin di driver per altri database",
@@ -94,11 +93,20 @@
         ],
         "mac": "<download>Scarica TablePro per Mac</download>"
     },
+    "knownIssues": {
+        "title": "Problemi noti nella versione {version}",
+        "items": [
+            "Nell’editor delle righe, non salvare una riga quando un testo lungo o un valore binario appare abbreviato: l’editor può sovrascrivere il valore completo con il testo abbreviato. Modifica quelle righe sul Mac.",
+            "Salvare una connessione sincronizzata su iPhone o iPad può rimuovere impostazioni usate solo dal Mac, come jump host SSH, e abbassare il livello di Safe Mode. Modifica queste connessioni sul Mac.",
+            "Quando le connessioni Redis verificano il certificato del server, verificano il certificato e non il nome host.",
+            "Nelle azioni di Comandi Rapidi che aggiungono righe, il CSV deve essere testo UTF-8 con terminazioni di riga LF."
+        ]
+    },
     "privacy": {
         "title": "Privacy",
         "paragraphs": [
-            "Nulla viene inviato a TablePro finché non attivi Condividi dati di utilizzo durante la configurazione o in seguito in <ui>Settings > Privacy</ui>. Se lo fai, l’app invia un rapporto al giorno con un hash dell’ID dispositivo, versioni dell’app e di iOS, architettura del processore, lingua, tipi di database usati, numero di connessioni e alcune date di primo utilizzo. Mai nomi host, nomi utente, password, query o righe.",
-            "L’app non verifica licenze o aggiornamenti e non richiede plugin. Le query vanno ai tuoi server, la sincronizzazione iCloud al tuo account iCloud e l’accesso Entra a Microsoft. L’<privacyIos>informativa sulla privacy</privacyIos> contiene i dettagli."
+            "Nulla viene inviato a TablePro finché non attivi Share Usage Data durante la configurazione o in seguito in <ui>Settings > Privacy</ui>. Se lo fai, l’app invia un rapporto al giorno con un hash dell’ID dispositivo, versioni dell’app e di iOS, architettura del processore, lingua, tipi di database usati, numero di connessioni e alcune date di primo utilizzo. Mai nomi host, nomi utente, password, query o righe.",
+            "L’app non verifica licenze o aggiornamenti e non richiede plugin. Le query vanno ai tuoi server, iCloud Sync al tuo account iCloud e l’accesso Entra a Microsoft. L’<privacyIos>informativa sulla privacy</privacyIos> contiene i dettagli."
         ]
     },
     "get": {
@@ -107,11 +115,11 @@
         "faq": [
             {
                 "question": "Serve l’app per Mac?",
-                "answer": "No. L’app per iPhone e iPad funziona autonomamente. Se usi anche un Mac, la sincronizzazione iCloud e Handoff collegano i due."
+                "answer": "No. L’app per iPhone e iPad funziona autonomamente. Se usi anche un Mac, iCloud Sync e Handoff collegano i due."
             },
             {
                 "question": "Serve una licenza?",
-                "answer": "No. L’app non ha funzionalità a pagamento, acquisti in-app o licenza. La sincronizzazione iCloud è gratuita qui; solo il Mac richiede una licenza Starter o Team per sincronizzarsi."
+                "answer": "No. L’app non ha funzionalità a pagamento, acquisti in-app o licenza. iCloud Sync è gratuito qui; solo il Mac richiede una licenza Starter o Team per sincronizzarsi."
             },
             {
                 "question": "È uguale all’app per Mac?",

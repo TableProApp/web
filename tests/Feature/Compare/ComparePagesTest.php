@@ -81,6 +81,28 @@ it('renders the hub with every compared product, without per-page cells, and dat
     'Vietnamese' => ['/vi/compare', 'vi'],
 ]);
 
+it('labels each hub link with the H1 of the page it opens', function (string $prefix, string $locale): void {
+    $titles = [];
+
+    foreach (CompareSlugs::ALL as $slug) {
+        $titles[$slug] = json_decode(File::get(resource_path("data/content/{$locale}/compare/{$slug}.json")), true)['header']['title'];
+    }
+
+    get("{$prefix}/compare")->assertInertia(fn(AssertableInertia $page) => $page->where('titles', $titles));
+})->with([
+    'English' => ['', 'en'],
+    'German' => ['/de', 'de'],
+]);
+
+it('sends every other comparison to a comparison page, and never the page itself', function (): void {
+    foreach (CompareSlugs::ALL as $slug) {
+        $others = array_values(array_diff(CompareSlugs::ALL, [$slug]));
+
+        get("/compare/{$slug}")->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('others', fn($sent): bool => collect($sent)->pluck('slug')->all() === $others && collect($sent)->every(fn(array $other): bool => $other['title'] !== '')));
+    }
+});
+
 it('shows the free tier note on the hub once the page copy has it', function (): void {
     $note = collect(comparedProduct('tableplus')['prices'])->firstWhere('amount', 0)['note'];
     $copy = json_decode(File::get(resource_path('data/content/en/compare/tableplus.json')), true);
@@ -151,6 +173,69 @@ it('server-renders the hub with the sections other pages link to, and no rating 
             expect($html)->toContain('/compare/' . $product['slug'] . '"');
         }
     }
+});
+
+it('server-renders TablePro’s own case on the hub, with a way to download it', function (): void {
+    $copy = json_decode(File::get(resource_path('data/content/en/compare/index.json')), true);
+    $importers = collect(json_decode(File::get(resource_path('data/facts.json')), true)['connectionImport'])->pluck('app');
+    $main = HTMLDocument::createFromString(ssrHtml('/compare'), LIBXML_NOERROR)->querySelector('main');
+    $text = (string) preg_replace('/\s+/u', ' ', $main->textContent);
+
+    expect($text)
+        ->toContain(explode('{apps}', $copy['bySituation']['tablepro'])[0])
+        ->toContain($importers->last())
+        ->toContain($copy['labels']['sources']['trademarks'])
+        // The link reads as the page's H1, not as a head-to-head the page is not.
+        ->toContain('Sequel Pro alternatives for Mac')
+        ->not->toContain('TablePro vs Sequel Pro')
+        ->not->toContain('{apps}');
+
+    expect($main->querySelectorAll('a[href="/download"]')->length)->toBeGreaterThanOrEqual(2);
+    expect($main->querySelector('#get-started a[href="/download"]'))->not->toBeNull();
+    expect($main->querySelector('nav a[href="#at-a-glance"]'))->not->toBeNull();
+
+    $vietnamese = HTMLDocument::createFromString(ssrHtml('/vi/compare'), LIBXML_NOERROR)->querySelector('main');
+
+    expect($vietnamese->querySelector('#get-started a[href="/vi/download"]'))->not->toBeNull();
+});
+
+it('server-renders Navicat’s subscription as its entry price, and DBeaver’s MCP server with both sources', function (): void {
+    $navicat = comparedProduct('navicat');
+    $monthly = collect($navicat['prices'])->where('period', 'month')->whereNull('audience')->min('amount');
+
+    expect(html_entity_decode(ssrHtml('/compare'), ENT_QUOTES | ENT_HTML5))->toContain('From $' . $monthly . ' a month per user');
+    expect(html_entity_decode(ssrHtml('/compare/navicat'), ENT_QUOTES | ENT_HTML5))
+        ->toContain('Premium Standard: $' . $monthly . ' a month per user')
+        ->toContain('Premium Standard: $1,499 once per user');
+
+    $dbeaver = comparedProduct('dbeaver');
+    $row = HTMLDocument::createFromString(ssrHtml('/compare/dbeaver'), LIBXML_NOERROR)->querySelector('#row-mcp td:last-child');
+
+    expect($row->textContent)->toContain('version ' . $dbeaver['cells']['mcp']['version'])->not->toContain('does not run an MCP server');
+    expect($row->querySelectorAll('sup a')->length)->toBe(count($dbeaver['cells']['mcp']['source']));
+});
+
+it('server-renders each comparison with a jump list, the word a searcher types, the trademark notice and the other comparisons', function (): void {
+    $labels = json_decode(File::get(resource_path('data/content/en/compare/index.json')), true)['labels'];
+
+    foreach (CompareSlugs::ALL as $slug) {
+        $main = HTMLDocument::createFromString(ssrHtml("/compare/{$slug}"), LIBXML_NOERROR)->querySelector('main');
+
+        expect($main->querySelector('header nav a[href="#short-answer"]'))->not->toBeNull("{$slug}: no jump list");
+        expect(stripos($main->textContent, 'alternative'))->not->toBeFalse("{$slug} never says alternative");
+        expect($main->querySelector('#sources')->textContent)->toContain($labels['sources']['trademarks']);
+        expect($main->querySelectorAll('#more a[href^="/compare/"]')->length)->toBe(count(CompareSlugs::ALL) - 1);
+        expect($main->querySelector('#more a[href="/compare/' . $slug . '"]'))->toBeNull();
+    }
+});
+
+it('server-renders TablePro’s device limit beside a competitor’s, and yes or no where a cell has no words', function (): void {
+    $activations = json_decode(File::get(resource_path('data/pricing.json')), true)['tiers']['starter']['activations'];
+    $document = HTMLDocument::createFromString(ssrHtml('/compare/tableplus'), LIBXML_NOERROR);
+
+    expect($document->querySelector('#row-price td')->textContent)->toContain("once, for up to {$activations} devices");
+    expect(trim($document->querySelector('#row-setapp td:last-child')->textContent))->toStartWith('Yes')->not->toContain('Supported');
+    expect($document->querySelector('#row-sync td:last-child')->textContent)->toContain('Dropbox');
 });
 
 it('server-renders a comparison with prices from data, its sources and the switching steps', function (): void {

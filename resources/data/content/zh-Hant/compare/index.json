@@ -14,6 +14,7 @@
   "bySituation": {
     "title": "依情況選擇",
     "lead": "每款一句，連結完整比較。",
+    "tablepro": "想要一款開放原始碼用戶端，既有原生 Mac App，又有獨立的 iPhone 與 iPad App，選擇 TablePro。AI 助手和 MCP 伺服器在 Mac App 中免費，還可從 {apps} 匯入已存連線。",
     "items": {
       "tableplus": "也在 Windows、Linux 工作，或連線 Vertica、Greenplum，選擇 TablePlus。",
       "dbeaver": "需要 Windows、macOS、Linux 免費用戶端，連線任何有 JDBC 驅動程式的引擎，選擇 DBeaver。",
@@ -62,6 +63,7 @@
     "sourcesLink": "來源",
     "shortAnswer": {
       "title": "簡要選擇",
+      "lead": "在 Mac 上尋找 {name} 的替代方案？下面列出兩款用戶端各自適合的情況。",
       "tablepro": "適合選擇 TablePro 的情況",
       "competitor": "適合選擇 {name} 的情況"
     },
@@ -84,8 +86,8 @@
       "import": "遷移至 TablePro"
     },
     "cell": {
-      "yes": "支援",
-      "no": "不支援",
+      "yes": "有",
+      "no": "無",
       "partial": "部分支援",
       "edition": "在 {edition} 版本提供",
       "since": "從版本 {version} 起",
@@ -128,7 +130,7 @@
     },
     "price": {
       "free": "免費",
-      "labelled": "{label}: {price}",
+      "labelled": "{label}：{price}",
       "amount": {
         "once": "一次 {amount}",
         "month": "每月 {amount}",
@@ -136,19 +138,19 @@
         "none": "{amount}"
       },
       "per": {
-        "device": "每裝置 {price}",
-        "user": "每使用者 {price}",
-        "seat": "每席次 {price}",
-        "license": "每授權 {price}",
+        "device": "{price}/裝置",
+        "user": "{price}/使用者",
+        "seat": "{price}/席位",
+        "license": "{price}/授權",
         "none": "{price}"
       },
       "units": {
-        "one": "一台裝置 {price}",
-        "other": "最多 {count} 台裝置 {price}"
+        "one": "{price}，限 1 台裝置",
+        "other": "{price}，最多 {count} 台裝置"
       },
       "minUnits": {
-        "one": "至少一個席次，{price}",
-        "other": "至少 {count} 個席次，{price}"
+        "one": "{price}，至少 1 個席位",
+        "other": "{price}，至少 {count} 個席位"
       },
       "renewal": "續費",
       "ios": "iPhone、iPad App",
@@ -171,8 +173,8 @@
     "tablepro": {
       "technology": "Swift 與原生資料庫驅動程式",
       "priceFree": "可免費使用，付費方案為 Mac App 加入選用功能。",
-      "starter": "Starter：每月 {monthly}、每年 {yearly} 或一次 {lifetime}",
-      "team": "Team：每席次每月 {monthly}、每年 {yearly} 或一次 {lifetime}，至少 {min} 個席次",
+      "starter": "每月 {monthly}、每年 {yearly} 或一次 {lifetime}",
+      "team": "每席位每月 {monthly}、每年 {yearly} 或一次 {lifetime}，至少 {min} 個席位",
       "iosPrice": "iPhone、iPad App 免費，無 App 內購買。",
       "licence": "是：{licence}，包括付費功能程式碼",
       "databases": "{engines} 等",
@@ -201,6 +203,7 @@
       "switching": "從 {name} 遷移",
       "faq": "常見問題",
       "sources": "來源",
+      "more": "更多比較",
       "cta": "取得 TablePro"
     },
     "switching": {
@@ -210,7 +213,8 @@
       "intro": "{name} 的事實於 {date} 對照這些頁面檢查。價格為稅前美元標價。",
       "retrieved": "確認於 {date}",
       "latest": "當時最新 {name} 版本：{version}，發行於 {date}。",
-      "tablepro": "TablePro 一欄描述 Mac 的 {macVersion} 及 iPhone、iPad 的 {iosVersion}。"
+      "tablepro": "TablePro 一欄描述 Mac 的 {macVersion} 及 iPhone、iPad 的 {iosVersion}。",
+      "trademarks": "TablePro 是獨立的開放原始碼專案，與此處所比較產品的開發者沒有關聯，也未獲其背書。產品名稱是其各自擁有者的商標。"
     },
     "cta": {
       "body": "TablePro 可免費下載，付費方案為 Mac App 加入選用功能。",

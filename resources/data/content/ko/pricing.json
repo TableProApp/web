@@ -16,7 +16,7 @@
     },
     "features": {
         "title": "유료 플랜이 추가하는 기능",
-        "lead": "유료 플랜이 필요한 기능은 아래 목록이 전부이며, 모두 Mac 앱에 있습니다. Team은 Starter의 모든 기능을 포함합니다. 지원하는 모든 엔진에 연결하거나 AI 어시스턴트, MCP 서버 및 안전 모드를 사용하는 데는 라이선스가 필요하지 않습니다."
+        "lead": "유료 플랜이 필요한 기능은 아래 목록이 전부이며, 모두 Mac 앱에 있습니다. Team은 Starter의 모든 기능을 포함합니다. 지원하는 모든 엔진에 연결하거나 AI 어시스턴트, MCP 서버 및 Safe Mode를 사용하는 데는 라이선스가 필요하지 않습니다."
     },
     "license": {
         "title": "라이선스 작동 방식",
@@ -27,7 +27,7 @@
             },
             "activate": {
                 "term": "활성화",
-                "body": "Mac의 TablePro에서 <ui>Settings > License</ui>에 라이선스 키를 입력하세요. 다른 Mac에서 사용하려면 <account>계정</account>의 Mac 페이지에서 이전 Mac을 제거하세요."
+                "body": "Mac의 TablePro에서 <ui>설정 > 라이선스</ui>(Settings > License)에 라이선스 키를 입력하세요. 다른 Mac에서 사용하려면 <account>계정</account>의 Mac 페이지에서 이전 Mac을 제거하세요."
             },
             "checks": {
                 "term": "검증",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "결제",
-        "merchant": "{merchant}는 TablePro의 공식 판매자입니다. 플랜 판매 및 결제를 처리하고 청구 주소를 바탕으로 판매세 또는 VAT를 계산하며 영수증과 청구서를 이메일로 보냅니다.",
+        "merchant": "{merchant}는 TablePro의 merchant of record입니다. 플랜 판매 및 결제를 처리하고 청구 주소를 바탕으로 판매세 또는 VAT를 계산하며 영수증과 청구서를 이메일로 보냅니다.",
         "renewal": "월간 및 연간 플랜은 <account>계정</account> 또는 {merchant} 고객 포털에서 취소할 때까지 자동 갱신됩니다. 취소 후에도 결제한 기간이 끝날 때까지 플랜이 작동하며, 그전에 다시 시작할 수 있습니다. 갱신 결제가 실패하면 {merchant}가 카드 정보를 업데이트하는 링크를 이메일로 보내고 약 3주 동안 결제를 재시도합니다.",
         "portal": "{merchant}를 통해 구매했다면 청구서, 영수증, 결제 수단 및 취소는 <portal>{merchant} 고객 포털</portal>에서 관리하며, 결제 시 사용한 이메일 주소로 로그인합니다. 계정의 <account>결제 및 청구서</account>에서도 포털을 열 수 있습니다."
     },
@@ -70,6 +70,10 @@
         "body": "TablePro는 유료 기능의 코드를 포함해 AGPLv3로 공개된 오픈 소스입니다. 소스에서 빌드해도 배포 앱과 동일한 방식으로 라이선스를 검증합니다.",
         "agpl": "AGPL은 회사 규모와 관계없이 업무용으로 사용하는 경우를 포함해 TablePro 실행에 조건을 부과하지 않습니다. 조건은 배포하거나 수정된 버전을 네트워크를 통해 다른 사람에게 제공하는 경우에 적용됩니다.",
         "github": "GitHub에서 보기"
+    },
+    "compare": {
+        "title": "다른 클라이언트와 비교",
+        "body": "각 비교 페이지는 상대 클라이언트의 가격을 TablePro 가격과 나란히 보여 주며 확인 날짜를 함께 표시합니다."
     },
     "faq": {
         "title": "플랜 관련 질문",

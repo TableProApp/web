@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Localization\Locales;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
@@ -297,6 +298,48 @@ it('gives the hub one line per compared product, in data order', function (): vo
         expect($hub['labels'])->toHaveKeys(['factsChecked', 'rows', 'cell', 'price', 'tablepro', 'import', 'sections', 'sources', 'hub']);
         expect(array_keys($hub['labels']['rows']))->toBe([...array_slice(COMPARE_STANDARD_ROWS, 0, 1), 'technology', ...array_slice(COMPARE_STANDARD_ROWS, 1)]);
     }
+});
+
+it('gives the hub TablePro’s own line, and every comparison a trademark notice and its search phrase', function (): void {
+    foreach (Locales::codes() as $locale) {
+        $hub = compareHubCopy($locale);
+        $where = "content/{$locale}/compare/index.json";
+
+        expect(compareTokensIn($hub['bySituation']['tablepro'] ?? ''))->toBe(['apps'], "{$where} bySituation.tablepro names the importers through {apps}");
+        expect(compareTokensIn($hub['labels']['shortAnswer']['lead'] ?? ''))->toBe(['name'], "{$where} labels.shortAnswer.lead");
+        expect($hub['labels']['sources']['trademarks'] ?? '')->toBeString()->not->toBe('', "{$where} labels.sources.trademarks");
+        expect($hub['labels']['sections']['more'] ?? '')->toBeString()->not->toBe('', "{$where} labels.sections.more");
+    }
+
+    $english = compareHubCopy('en');
+
+    expect($english['labels']['shortAnswer']['lead'])->toContain('alternative');
+    expect($english['labels']['sources']['trademarks'])->toContain('not affiliated', 'trademarks');
+    expect($english['bySituation']['tablepro'])->toStartWith('Choose TablePro if');
+});
+
+it('does not sell free AI and MCP as a difference from a product that includes both', function (): void {
+    $tableplus = comparedProductsBySlug()['tableplus'];
+
+    // The premise: TablePlus's sourced cells say it has both, and none names a paid edition for them.
+    expect($tableplus['cells']['ai']['state'])->toBe('yes');
+    expect($tableplus['cells']['mcp']['state'])->toBe('yes');
+
+    foreach (Locales::codes() as $locale) {
+        $copy = json_decode(File::get(resource_path("data/content/{$locale}/compare/tableplus.json")), true, 512, JSON_THROW_ON_ERROR);
+
+        foreach ($copy['shortAnswer']['tablepro'] as $reason) {
+            expect(str_contains($reason, 'MCP'))->toBeFalse("content/{$locale}/compare/tableplus.json gives MCP as a reason to choose TablePro: {$reason}");
+        }
+    }
+});
+
+it('says what Navicat lists beyond TablePro, not only the reverse', function (): void {
+    $copy = json_decode(File::get(resource_path('data/content/en/compare/navicat.json')), true, 512, JSON_THROW_ON_ERROR);
+    $engines = collect($copy['differs']['items'])->first(fn(array $item): bool => str_contains($item['text'], 'ClickHouse'));
+
+    expect($engines['text'])->not->toContain('connects to the engines Navicat Premium lists')->toContain('Premium Enterprise in turn lists some that TablePro does not');
+    expect($copy['notes']['navicat-databases'])->toContain('Premium Enterprise adds others');
 });
 
 it('keeps the Vietnamese currency pattern in US dollars', function (): void {

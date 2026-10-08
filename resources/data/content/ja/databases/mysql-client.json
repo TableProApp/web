@@ -44,8 +44,8 @@
             "id": "work",
             "title": "クエリと編集",
             "paragraphs": [
-                "SQL エディタはスキーマからテーブル名とカラム名を補完し、エイリアスや CTE にも対応します。カーソル下の文かスクリプト全体を実行できます。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE と EXPLAIN ANALYZE</explain> はプラン図やツリーとして描画し、EXPLAIN Compare は二回の実行の違いを示します。",
-                "行の編集は保存まで保留し、<editing>Preview SQL</editing> で正確な文を先に表示します。保存はバインドパラメータで実行し、予定と異なる行数を変更する文があれば停止します。主キーのないテーブルも編集でき、その場合は全カラムで行を特定します。",
+                "SQL エディターはスキーマからテーブル名とカラム名を補完し、エイリアスや CTE にも対応します。カーソル下の文かスクリプト全体を実行できます。<explain>EXPLAIN FORMAT=JSON、EXPLAIN FORMAT=TREE と EXPLAIN ANALYZE</explain> はプラン図やツリーとして描画し、EXPLAIN Compare は二回の実行の違いを示します。",
+                "行の編集は保存まで保留し、<editing>Preview SQL</editing> で正確な文を先に表示します。保存はバインドパラメーターで実行し、予定と異なる行数を変更する文があれば停止します。主キーのないテーブルも編集でき、その場合は全カラムで行を特定します。",
                 "すべてのセッションが utf8mb4 を使うため、絵文字やラテン文字以外のテキストも正しく往復できます。古いクライアントが Latin 1 経由で書いたデータベースのテキストは、UTF-8 via Latin 1 エンコーディングでそのクライアントと同じように読み取れます。",
                 "パーティションテーブルは <code>VALUES LESS THAN (2024)</code> などの境界とともにパーティションを表示します。テーブルとカラムのコメントはサイドバーとグリッドのカラム見出しに表示します。"
             ]
@@ -94,7 +94,7 @@
             "title": "MariaDB",
             "paragraphs": [
                 "MariaDB は MySQL と同じドライバーで接続し、同じ SSH、SSL/TLS、AWS IAM オプションを使えます。<code>mariadb://</code> URL は MariaDB 接続を作成します。",
-                "MariaDB が LONGTEXT として保存する JSON カラムは JSON エディタで開きます。仮想カラムと永続カラムを検出し、生成する INSERT と UPDATE 文から除外します。シーケンスは読み取り専用でサイドバーに表示し、システムバージョン管理テーブルは通常のテーブルとして表示します。",
+                "MariaDB が LONGTEXT として保存する JSON カラムは JSON エディターで開きます。仮想カラムと永続カラムを検出し、生成する INSERT と UPDATE 文から除外します。シーケンスは読み取り専用でサイドバーに表示し、システムバージョン管理テーブルは通常のテーブルとして表示します。",
                 "Users & Roles、Server Dashboard、テーブル保守と {dumpTool} バックアップは MySQL と同じように動作します。"
             ]
         },
@@ -104,7 +104,7 @@
             "paragraphs": [
                 "接続先は TiDB サーバーの SQL ポートにし、PD や TiKV には接続しないでください。TiDB Cloud も同じポートを使い、SSL Mode は Required に設定します。",
                 "Stop は自分のセッションに <code>KILL TIDB QUERY</code> を送ります。TiProxy やロードバランサーの背後では Global Kill が必要で、TiDB はバージョン 6.1 から既定で有効にしています。",
-                "EXPLAIN と EXPLAIN ANALYZE は TiDB のプランをテキストで表示します。TiDB 7.2 以降でクラスタが有効にすると CHECK 制約が Structure タブに表示されます。外部キーを作成でき、テーブル保守には ANALYZE TABLE があります。<administer>Users & Roles</administer> も TiDB で使えますが、接続数上限のフィールドはありません。",
+                "EXPLAIN と EXPLAIN ANALYZE は TiDB のプランをテキストで表示します。TiDB 7.2 以降でクラスターが有効にすると CHECK 制約が Structure タブに表示されます。外部キーを作成でき、テーブル保守には ANALYZE TABLE があります。<administer>Users & Roles</administer> も TiDB で使えますが、接続数上限のフィールドはありません。",
                 "接続の種類は MySQL ではなく TiDB を選び、サイドバー、型の選択と EXPLAIN を TiDB に合わせてください。"
             ]
         },
@@ -125,7 +125,7 @@
                 "Databend は HTTP API ではなく MySQL ハンドラー経由で接続します。接続の種類に Databend を選んでください。MySQL 接続で Databend に接続すると拒否され、種類の変更を求めます。",
                 "Databend Cloud では、サポートにウェアハウスの MySQL エンドポイントの有効化を依頼し、Connect ダイアログからホストとポートをコピーしてください。",
                 "Structure タブはカラムと CHECK 制約を編集し、テーブル、ビューとカラムを名前変更します。EXPLAIN と EXPLAIN ANALYZE はプランをテキストで表示し、テーブル保守には ANALYZE TABLE があります。",
-                "ARRAY、MAP と TUPLE のセルはテキストから書き込めません。エディタの UPDATE で変更してください。"
+                "ARRAY、MAP と TUPLE のセルはテキストから書き込めません。エディターの UPDATE で変更してください。"
             ]
         }
     ],
@@ -137,7 +137,7 @@
             },
             {
                 "product": "phpmyadmin",
-                "text": "phpMyAdmin は Web サーバーで動き、どのブラウザでも使えます。cPanel にも含まれます。デスクトップアプリからデータベースへの経路がなく、ホスティングパネルからしかアクセスできないサーバーに適しています。"
+                "text": "phpMyAdmin は Web サーバーで動き、どのブラウザーでも使えます。cPanel にも含まれます。デスクトップアプリからデータベースへの経路がなく、ホスティングパネルからしかアクセスできないサーバーに適しています。"
             },
             {
                 "product": "heidisql",

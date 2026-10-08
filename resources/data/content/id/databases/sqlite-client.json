@@ -31,7 +31,7 @@
             "title": "Buka berkas database",
             "paragraphs": [
                 "Pilih berkas dalam formulir koneksi atau seret ke jendela TablePro atau ikon Dock. Jalur ke berkas yang belum ada akan membuatnya saat koneksi dibuka. Berkas dibuka sebagai SQLite jika byte awalnya bertuliskan <code>SQLite format 3</code>, apa pun namanya.",
-                "Finder menampilkan TablePro pada Buka Dengan untuk berkas .db, .sqlite, .sqlite3, dan sejenisnya. Database dalam folder yang dilindungi macOS, seperti Pesan atau riwayat Safari, memerlukan Akses Disk Penuh terlebih dahulu, dan biasanya aplikasi pemiliknya harus ditutup.",
+                "Finder menampilkan TablePro pada Buka Dengan untuk berkas .db, .sqlite, .sqlite3, dan sejenisnya. Database dalam folder yang dilindungi macOS, seperti Pesan atau riwayat Safari, memerlukan Akses Disk Penuh (Full Disk Access) terlebih dahulu, dan biasanya aplikasi pemiliknya harus ditutup.",
                 "Database di komputer lain dibuka melalui <remoteFiles>panel Remote File</remoteFiles>. On the Server menjalankan pernyataan pada berkas aktif melalui SSH, tanpa pemasangan apa pun pada host selain <code>python3</code>. As a Read-Only Copy mengambil snapshot melalui SFTP dan membukanya hanya untuk dibaca.",
                 "Untuk mencoba terlebih dahulu, pilih Help > Open Sample Database. Opsi ini membuka Chinook, contoh kecil toko musik digital yang disertakan dalam aplikasi."
             ]
@@ -47,7 +47,7 @@
         },
         {
             "id": "schema",
-            "title": "Struktur",
+            "title": "Structure",
             "paragraphs": [
                 "Mengganti nama tabel atau kolom, menambah atau menghapus kolom, dan sejak SQLite 3.53 menambah atau menghapus CHECK dijalankan sebagai ALTER TABLE. Perubahan lain pada <structure>tab Structure</structure>, seperti jenis kolom atau foreign key, membangun ulang tabel: TablePro menulis skrip, menyalin baris beserta rowid, memulihkan indeks dan trigger, lalu menjalankannya hanya setelah Anda mengonfirmasi.",
                 "Mengubah jenis kolom membaca ulang nilainya menggunakan afinitas baru, sehingga <code>'007'</code> menjadi <code>7</code> dalam kolom INTEGER; lembar peninjauan memberitahukannya sebelum perintah dijalankan. Tabel virtual, seperti tabel FTS5, tidak dapat dibangun ulang, dan proses penyimpanan menyebutkan namanya.",
@@ -95,7 +95,7 @@
         {
             "id": "framework-files",
             "question": "Apakah saya dapat membuka database pengembangan aplikasi?",
-            "answer": "Ya. Buka berkas di lokasi yang digunakan framework, seperti <code>db/development.sqlite3</code> pada Rails atau <code>db.sqlite3</code> pada Django. Berkas di bawah <code>~/Library</code>, termasuk kontainer Simulator iOS, memerlukan Akses Disk Penuh."
+            "answer": "Ya. Buka berkas di lokasi yang digunakan framework, seperti <code>db/development.sqlite3</code> pada Rails atau <code>db.sqlite3</code> pada Django. Berkas di bawah <code>~/Library</code>, termasuk kontainer Simulator iOS, memerlukan Akses Disk Penuh (Full Disk Access)."
         }
     ],
     "related": [

@@ -16,7 +16,7 @@
         "homebrew": {
             "title": "Homebrew",
             "body": "Homebrew 会安装适合 Mac 芯片的构建版本。之后应用会自行保持更新。",
-            "trails": "Homebrew 的版本独立更新，可能滞后于新版本。若安装了旧版本，请选择 <ui>TablePro > Check for Updates…</ui> 获取当前版本。"
+            "trails": "Homebrew 的版本独立更新，可能滞后于新版本。若安装了旧版本，请选择 <ui>TablePro > 检查更新…</ui>（TablePro > Check for Updates…）获取当前版本。"
         },
         "releases": "GitHub Releases 上的所有构建版本",
         "source": "从源代码构建（AGPLv3）"
@@ -30,14 +30,14 @@
         "steps": [
             "从“下载”文件夹打开已下载的 .dmg 文件。",
             "将 TablePro 拖到“应用程序”文件夹。",
-            "从“应用程序”打开 TablePro。由于应用来自互联网，macOS 会在首次启动时要求确认。请选择 <ui>Open</ui>。",
-            "添加连接，或选择 <ui>Help > Open Sample Database</ui> 先体验一下。它会打开 Chinook，这是随应用提供的小型 SQLite 数据库。"
+            "从“应用程序”打开 TablePro。由于应用来自互联网，macOS 会在首次启动时要求确认。请选择<ui>打开</ui>（Open）。",
+            "添加连接，或选择<ui>帮助 > 打开示例数据库</ui>（Help > Open Sample Database）先体验一下。它会打开 Chinook，这是随应用提供的小型 SQLite 数据库。"
         ],
         "signing": "两个构建版本均使用 Developer ID 签名并经 Apple 公证，打开 TablePro 无需更改任何安全设置。",
         "drivers": "常用数据库的驱动随应用提供。其余驱动会在首次选择对应数据库时下载，需要互联网连接，并独立于应用更新。",
         "databases": "受支持的数据库",
         "guide": {
-            "label": "阅读安装指南",
+            "label": "阅读安装指南（英语）",
             "path": "/installation"
         }
     },
@@ -45,19 +45,19 @@
         "title": "更新",
         "paragraphs": [
             "TablePro 每天检查一次更新。新版本会在后台下载，并在您下次退出应用时安装。",
-            "大多数版本会在约一天半内分阶段推送至 Mac。若希望更早获取，请选择 <ui>TablePro > Check for Updates…</ui>。",
-            "可在 <ui>Settings > General</ui> 中关闭自动检查或自动安装。更新检查会访问发布版本的 GitHub，所有更新均已签名，并在安装前进行验证。"
+            "大多数版本会在约一天半内分阶段推送至 Mac。若希望更早获取，请选择 <ui>TablePro > 检查更新…</ui>（TablePro > Check for Updates…）。",
+            "可在<ui>设置 > 通用</ui>（Settings > General）中关闭自动检查或自动安装。更新检查会访问发布版本的 GitHub，所有更新均已签名，并在安装前进行验证。"
         ]
     },
     "otherPlatforms": {
         "title": "其他平台",
-        "body": "TablePro 尚未支持 {platforms}，发布日期未定。",
+        "body": "TablePro 不支持 {platforms}，也没有发布日期。",
         "faq": "常见问题中的平台说明"
     },
     "olderVersions": {
         "title": "旧版本和发行说明",
         "body": "每个版本的说明和两个磁盘映像均在 GitHub Releases 上。更新日志列出了各版本的改动。",
         "releases": "GitHub 上的所有版本",
-        "changelog": "更新日志"
+        "changelog": "更新日志（英语）"
     }
 }

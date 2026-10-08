@@ -26,9 +26,9 @@
             "id": "connect",
             "title": "Verbinden und anmelden",
             "paragraphs": [
-                "Gib Host und Port des Coordinators und einen <ui>Benutzernamen</ui> ein, unter dem die Abfragen laufen. <ui>Katalog</ui> und <ui>Schema</ui> sind optionale Startpunkte; ein leerer Katalog zeigt alle Kataloge. Eine IANA-<ui>Zeitzone</ui> unter Optionen setzt die Sitzungszone.",
-                "Melde dich mit Passwort als HTTP Basic für LDAP oder Passwortdatei oder mit JWT-Zugriffstoken als Bearer-Zugangsdaten an. Beides läuft nur über TLS: Bei SSL Deaktiviert wird eine Verbindung damit vor jedem Senden abgelehnt. Client-Zertifikat und Schlüssel im SSL-Bereich ergänzen gegenseitiges TLS.",
-                "SSL beginnt deaktiviert, also mit Klartext-HTTP; alle anderen Modi erzwingen TLS ohne Klartext-Fallback, und Port 443 aktiviert Identität prüfen. Umleitungen eines Proxys vor dem Coordinator werden nie verfolgt; der Fehler nennt das Ziel. Erreiche ihn hinter einem Bastion-Host per <network>SSH-Tunnel</network> und importiere eine <code>trino://</code>-URL mit <ui>Aus URL importieren…</ui>."
+                "Gib Host und Port des Coordinators und einen <ui>Username</ui> ein, unter dem die Abfragen laufen. <ui>Catalog</ui> und <ui>Schema</ui> sind optionale Startpunkte; ein leerer Katalog zeigt alle Kataloge. Eine IANA-<ui>Time Zone</ui> im Abschnitt Options setzt die Sitzungszone.",
+                "Melde dich mit Passwort als HTTP Basic für LDAP oder Passwortdatei oder mit JWT-Zugriffstoken als Bearer-Zugangsdaten an. Beides läuft nur über TLS: Bei SSL Disabled wird eine Verbindung damit vor jedem Senden abgelehnt. Client-Zertifikat und Schlüssel im SSL-Bereich ergänzen gegenseitiges TLS.",
+                "SSL beginnt mit Disabled, also mit Klartext-HTTP; alle anderen Modi erzwingen TLS ohne Klartext-Fallback, und Port 443 aktiviert Verify Identity. Umleitungen eines Proxys vor dem Coordinator werden nie verfolgt; der Fehler nennt das Ziel. Erreiche ihn hinter einem Bastion-Host per <network>SSH-Tunnel</network> und importiere eine <code>trino://</code>-URL mit <ui>Import from URL…</ui>."
             ]
         },
         {
@@ -37,16 +37,16 @@
             "paragraphs": [
                 "Eine Verbindung öffnet auf Katalog und Schema; jede Abfrage kann weiterhin <code>catalog.schema.table</code> vollständig nennen, etwa für einen Join zwischen Hive- und PostgreSQL-Tabellen. Die Seitenleiste klappt jeden Katalog in Schemas und Tabellen auf, mit materialisierten Sichten neben Tabellen und Sichten und Zeilenzahlen aus <code>SHOW STATS</code>.",
                 "<code>bigint</code> und <code>decimal</code> werden als exakter Text statt Fließkomma gelesen. <code>varbinary</code> erscheint als Hex, <code>array</code>, <code>map</code> und <code>row</code> als JSON; Zeitstempel behalten den Serverwert.",
-                "<explain>Ausführungsplan</explain> bietet Logisch, Verteilt, IO, Validieren und Analysieren. Validieren prüft ohne Ausführung, Analysieren führt aus und meldet tatsächliche Zeiten; jeder Plan kommt als Rohtext zurück.",
-                "<code>SET SESSION</code> gilt für den Rest der Verbindung. <ui>Abfrage > Abfrage abbrechen</ui> weist den Coordinator an, die laufende Abfrage zu beenden; so stoppst du sie, da das Abfragezeitlimit der Verbindung Trino nicht erreicht.",
+                "<explain>Explain</explain> bietet Logical, Distributed, IO, Validate und Analyze. Validate prüft ohne Ausführung, Analyze führt aus und meldet tatsächliche Zeiten; jeder Plan kommt als Rohtext zurück.",
+                "<code>SET SESSION</code> gilt für den Rest der Verbindung. <ui>Query > Cancel Query</ui> weist den Coordinator an, die laufende Abfrage zu beenden; so stoppst du sie, da das Abfragezeitlimit der Verbindung Trino nicht erreicht.",
                 "<editing>Zellenänderungen</editing> werden zu INSERT, UPDATE und DELETE mit dem Trino-Typ jedes Werts. Trino meldet keine Primärschlüssel, daher wird jede gelesene Spalte der Zeile verglichen, ohne Transaktion zum Zurückrollen. Eine von zwei identischen Zeilen zu ändern ändert beide; prüfe zuerst Duplikate."
             ]
         },
         {
             "id": "schema",
-            "title": "Struktur",
+            "title": "Structure",
             "paragraphs": [
-                "Der <structure>Struktur-Tab</structure> erstellt Tabellen und fügt Spalten hinzu, entfernt sie, benennt sie um und ändert Typen mit Autocommit. Ob eine Änderung läuft, entscheidet der Connector; Typänderungen akzeptieren die wenigsten Connectoren."
+                "Der <structure>Structure-Tab</structure> erstellt Tabellen und fügt Spalten hinzu, entfernt sie, benennt sie um und ändert Typen mit Autocommit. Ob eine Änderung läuft, entscheidet der Connector; Typänderungen akzeptieren die wenigsten Connectoren."
             ]
         },
         {

@@ -23,7 +23,7 @@
             "id": "connect",
             "title": "連線",
             "paragraphs": [
-                "輸入叢集主機和 REST 連接埠，選擇 <ui>Auth Method</ui>。Username & Password 傳送 HTTP Basic，API Key 透過 <code>Authorization: ApiKey</code> 標頭傳送欄位，請貼上建立 API 金鑰請求傳回的 <code>encoded</code> 值。None 適合關閉安全性的開發叢集。連線對應一個叢集，所以表單無 Database 欄位。",
+                "輸入叢集主機和 REST 連接埠，選擇<ui>驗證方式</ui>（Auth Method）。Username & Password 傳送 HTTP Basic，API Key 透過 <code>Authorization: ApiKey</code> 標頭傳送欄位，請貼上建立 API 金鑰請求傳回的 <code>encoded</code> 值。None 適合關閉安全性的開發叢集。連線對應一個叢集，所以表單無 Database 欄位。",
                 "新連線預設 SSL Disabled，即明文 HTTP。其他模式用 HTTPS：Preferred、Required (skip verify) 接受自我簽署憑證，Verify CA、Verify Identity 驗證憑證。Elasticsearch 8.x 預設開啟安全性和 TLS，因此通常需要 HTTPS 和認證資訊。"
             ]
         },

@@ -11,7 +11,7 @@ export default {
         "undated": "Version {version}",
         "badge": "v{version} · {date}",
         "badgeUndated": "v{version}",
-        "notes": "Versionshinweise",
+        "notes": "Versionshinweise (Englisch)",
         "unavailable": "Die Angaben zur aktuellen Version konnten nicht geladen werden. Beide Schaltflächen öffnen die neueste Version auf GitHub, wo du das Festplatten-Image für deinen Mac auswählen kannst."
     },
     "file": {

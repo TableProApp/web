@@ -9,7 +9,7 @@
     },
     "header": {
         "title": "撰寫、執行與理解查詢",
-        "lead": "適合在實際資料庫上撰寫 SQL 的使用者：參考結構撰寫查詢，執行一個陳述式或整份指令碼，儲存值得保留的查詢，並找出變慢的原因。本頁介紹的功能均在 Mac App 中，最後一節介紹 iPhone 與 iPad。",
+        "lead": "適合在實際資料庫上撰寫 SQL 的使用者：參考結構撰寫查詢，執行一個陳述式或整份指令碼，儲存值得保留的查詢，並找出變慢的原因。本頁介紹的功能均在 Mac App 中。iPhone 與 iPad App 提供其中一部分。",
         "docs": "/features/sql-editor"
     },
     "sections": [
@@ -18,12 +18,12 @@
             "title": "了解資料庫結構的編輯器",
             "paragraphs": [
                 "自動完成在輸入時讀取連線的結構：FROM 與 JOIN 後的資料表、別名對應的欄位，以及陳述式前面定義的 CTE 或子查詢的欄位。語法標示使用 tree-sitter；<kbd>⌘⇧L</kbd> 格式化游標所在陳述式，同時保留註解。",
-                "<kbd>⌘⏎</kbd> 執行游標所在陳述式或選取內容，<kbd>⌘⇧⏎</kbd> 執行全部，<kbd>⌘⌥⏎</kbd> 不限列數執行，<kbd>⌘.</kbd> 取消。一般陳述式批次在同一交易中執行，任一陳述式失敗即復原；例外包括自行管理交易的指令碼、SQL Server 指令碼、VACUUM 等不能放入交易的陳述式，以及會自行提交的 MySQL、MariaDB 與 Oracle DDL。"
+                "<kbd>⌘⏎</kbd> 執行游標所在陳述式或選取內容，<kbd>⌘⇧⏎</kbd> 執行全部，<kbd>⌘⌥⏎</kbd> 不限列數執行，<kbd>⌘.</kbd> 取消。一般陳述式批次在同一交易中執行，任一陳述式失敗即復原。例外包括自行管理交易的指令碼、SQL Server 指令碼，以及 VACUUM 等不能放入交易的陳述式。MySQL、MariaDB 與 Oracle 上的 DDL 會自行提交。"
             ],
             "points": [
                 "編輯器側欄中的陳述式標記各有獨立執行按鈕。",
                 "支援正規表示式的尋找與取代。",
-                "Vim 模式支援移動、暫存器與巨集，使用 <code>:w</code> 執行查詢。",
+                "Vim mode 支援移動、暫存器與巨集，使用 <code>:w</code> 執行查詢。",
                 "在查詢分頁中開啟、編輯與儲存 <code>.sql</code> 檔案。"
             ],
             "asset": "mac-query-autocomplete"
@@ -34,13 +34,13 @@
             "paragraphs": [
                 "在查詢中寫入 <code>:customer_id</code>，TablePro 會在執行前詢問其值與型別，並在驅動程式支援時使用原生參數繫結。",
                 "每次執行的查詢都會進入本機歷史（<kbd>⌘Y</kbd>），支援全文搜尋及來源、失敗與時間範圍篩選。預設儲存 {historyEntries} 筆紀錄，保留 {historyDays} 天，從不同步。",
-                "以 <code>dau</code> 等關鍵字儲存查詢，然後在編輯器中輸入關鍵字展開。已儲存查詢保留版本歷史。連結 SQL 檔案夾將 <code>.sql</code> 檔案夾與側欄雙向同步，並顯示各檔案的 Git 狀態字母；此功能免費，與用於共用連線檔案的 Starter 功能 Linked Folders 相互獨立。"
+                "以 <code>dau</code> 等關鍵字儲存查詢，然後在編輯器中輸入關鍵字展開。已儲存查詢保留版本歷史。連結 SQL 檔案夾將 <code>.sql</code> 檔案夾與側欄雙向同步，並顯示各檔案的 Git 狀態字母。此功能免費，與用於共用連線檔案的 Starter 功能 Linked Folders 相互獨立。"
             ],
             "asset": "mac-query-parameters-history"
         },
         {
             "id": "open-quickly",
-            "title": "快速開啟與分頁",
+            "title": "Open Quickly 與分頁",
             "paragraphs": [
                 "Open Quickly（<kbd>⌘⇧O</kbd>）在所有已開啟連線中尋找資料表、檢視表與系統資料表，也搜尋已儲存和最近的查詢。每個分頁保留自己的 SQL、排序、篩選與欄寬，結束並重新開啟 App 後會還原；<kbd>⌃Tab</kbd> 可在最近使用的分頁間切換。"
             ]
@@ -78,7 +78,7 @@
                 },
                 {
                     "id": "query-insights",
-                    "title": "查詢分析",
+                    "title": "Query Insights",
                     "paragraphs": [
                         "Query Insights 讀取此 Mac 的查詢歷史，並依執行次數、速度最慢、失敗以及比上一期間變慢的查詢進行排名。查詢依結構分類，因此使用不同值執行的同一陳述式只算一種。數據在 Mac 上計算，從不上傳。"
                     ],
@@ -98,7 +98,7 @@
             "blocks": [
                 {
                     "id": "result-charts",
-                    "title": "結果圖表",
+                    "title": "Result Charts",
                     "paragraphs": [
                         "將結果繪製為長條圖、折線圖、區域圖或散佈圖，日期使用時間軸，所選欄位的每個值對應一個數列。圖表從前 {chartInspectedRows} 列中最多繪製 {chartPoints} 個點和 {chartSeries} 個數列，未全部繪製時工具列會提示。"
                     ],
@@ -165,7 +165,7 @@
             "ios": "no"
         },
         {
-            "label": "快速開啟",
+            "label": "Open Quickly",
             "ios": "no"
         },
         {
@@ -173,12 +173,12 @@
             "ios": "no"
         },
         {
-            "label": "查詢分析",
+            "label": "Query Insights",
             "paid": "query-insights",
             "ios": "no"
         },
         {
-            "label": "結果圖表",
+            "label": "Result Charts",
             "paid": "result-charts",
             "ios": "no"
         },
@@ -214,7 +214,7 @@
             "docs": "/features/explain-visualization"
         },
         {
-            "label": "查詢分析",
+            "label": "Query Insights",
             "docs": "/features/query-insights"
         },
         {

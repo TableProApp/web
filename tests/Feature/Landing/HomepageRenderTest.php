@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DatabaseController;
 use App\Support\Localization\Locales;
+use App\Support\Localization\LocalizedUrl;
 use App\Support\Assets\AssetManifest;
 use App\Support\Seo\PageRegistry;
 use Illuminate\Support\Facades\File;
@@ -84,6 +86,7 @@ describe('props and copy', function (): void {
                 ->where('checkout.provider', fn(string $provider): bool => in_array($provider, ['polar', 'lemonsqueezy'], true))
                 ->has('checkout.couponField')
                 ->has('engines')
+                ->has('categories')
                 ->has('iosEngines.picker')
                 ->has('iosEngines.syncedOnly')
                 ->missing('productHunt')
@@ -180,6 +183,27 @@ describe('props and copy', function (): void {
         ));
     });
 
+    it('names the database categories as /databases does, in its order, in every language', function (): void {
+        $used = collect(homeData('engines.json'))->where('state', 'published')->pluck('category')->unique()->all();
+
+        foreach (Locales::codes() as $locale) {
+            $hub = homeData("content/{$locale}/databases/index.json")['categories'];
+            $expected = collect(DatabaseController::CATEGORIES)
+                ->filter(fn(string $id): bool => in_array($id, $used, true))
+                ->map(fn(string $id): array => ['id' => $id, 'title' => $hub[$id]['title']])
+                ->values()
+                ->all();
+
+            expect($expected)->not->toBeEmpty();
+
+            get(LocalizedUrl::path('/', $locale))->assertInertia(fn(AssertableInertia $page) => $page->where('categories', $expected));
+
+            // One set of labels: the homepage copy keeps no category names of its own, and no second engine list.
+            expect(array_keys(homeContent($locale)['databases']))->toBe(['title', 'lead', 'count', 'ios', 'iosSynced', 'link'], "content/{$locale}/home.json databases");
+            expect(homeContent($locale)['databases']['count'])->toContain('{count}');
+        }
+    });
+
     it('names the iPhone engines from the picker in platforms.json, plus those that open only when synced', function (): void {
         $engines = collect(homeData('engines.json'))->where('state', 'published')->keyBy('id');
         $ios = collect(homeData('platforms.json')['platforms'])->firstWhere('id', 'ios');
@@ -245,6 +269,60 @@ describe('props and copy', function (): void {
 
         expect($en['switch']['lead'])->toContain('{macApp} only');
         expect($vi['switch']['lead'])->toContain('chỉ có trong {macApp}');
+    });
+
+    it('says what native means under the hero actions, with no platform claim it cannot keep and no figure', function (): void {
+        $en = homeContent('en')['hero'];
+
+        // The app is Swift with AppKit and SwiftUI on the Mac; it ships no Electron shell and no Java runtime.
+        expect($en['native'])->toContain('written in Swift')->toContain('AppKit and SwiftUI on the Mac')->toContain('No Electron, no Java runtime');
+        expect(preg_match('/\b(Windows|Linux)\b|\d/', $en['native']))->toBe(0, 'The native line names an unreleased platform or a number');
+        // The subtitle stays one sentence about what the app does.
+        expect(substr_count($en['subtitle'], '. '))->toBe(0, 'The subtitle grew a second sentence');
+
+        foreach (Locales::codes() as $locale) {
+            $hero = homeContent($locale)['hero'];
+
+            foreach (['Swift', 'AppKit', 'SwiftUI', 'Electron', 'Java'] as $name) {
+                expect($hero['native'])->toContain($name);
+            }
+
+            expect($hero['subtitle'])->not->toContain('{deviceList}')->toContain('{featuredEngines}');
+        }
+    });
+
+    it('explains Safe Mode levels and Agent mode where they first appear, and spells out MCP once', function (): void {
+        $en = homeContent('en');
+
+        // The level names are the app's; the sentence says what each kind does before any later section relies on them.
+        foreach (['Silent runs statements as written', 'Alert asks before a write', 'Read-Only refuses writes'] as $gloss) {
+            expect($en['safety']['body'][0])->toContain($gloss);
+        }
+
+        $agent = $en['safety']['body'][1];
+        $explained = strpos($agent, 'In Agent mode the AI assistant can run statements');
+        $used = strpos($agent, 'While a connection is open in Agent mode');
+
+        expect($explained)->not->toBeFalse('Agent mode is used without saying what it is');
+        expect($used)->not->toBeFalse();
+        expect($explained)->toBeLessThan($used);
+
+        foreach (Locales::codes() as $locale) {
+            expect(implode(' ', homeContent($locale)['ai']['body']))->toContain('Model Context Protocol');
+        }
+    });
+
+    it('marks paid features with the plan first, the same way the features hub does', function (): void {
+        foreach (Locales::codes() as $locale) {
+            $home = homeContent($locale)['workflows']['paid'];
+            $hub = homeData("content/{$locale}/features/index.json")['areas']['paid'];
+
+            expect($home)->toContain('{tier}')->toContain('{features}');
+            // The homepage line is a sentence, the hub's a chip: the same words, with a full stop on the sentence.
+            expect(preg_replace('/[.。]$/u', '', $home))->toBe($hub, "content/{$locale}: the homepage and the features hub mark paid features differently");
+        }
+
+        expect(homeContent('en')['workflows']['paid'])->toBe('{tier} plan: {features}.');
     });
 
     it('names the paid $VAR references next to the free password sources, and does not say every dump tool needs installing', function (string $locale): void {
@@ -479,13 +557,89 @@ describe('server-rendered', function (): void {
         $html = ssrHome($path);
         $start = (int) strpos($html, 'id="features"');
         $workflows = substr($html, $start, (int) strpos($html, 'id="safety"') - $start);
+        $prefix = $path === '/vi' ? '/vi' : '';
 
-        expect($workflows)->toMatch('#href="' . ($path === '/vi' ? '/vi/features' : '/features') . '"#');
+        expect($workflows)->toMatch('#href="' . $prefix . '/features"#');
         expect($html)->toContain($lead);
+
+        // The row that describes the Structure tab also links the page that covers it.
+        $from = strpos($workflows, 'id="features-edit"');
+        $to = strpos($workflows, 'id="features-schema"');
+
+        expect($from)->not->toBeFalse();
+        expect($to)->not->toBeFalse();
+
+        $edit = substr($workflows, (int) $from, (int) $to - (int) $from);
+
+        expect($edit)->toContain('href="' . $prefix . '/features/data-editing"')->toContain('href="' . $prefix . '/features/schema#structure"');
+
+        // What the reader can bring leads the section; the Mac-only note closes its text.
+        $switchStart = strpos($html, 'id="switch"');
+        $switch = substr($html, (int) $switchStart, (int) strpos($html, 'id="pricing"') - (int) $switchStart);
+        $note = strpos($switch, $lead);
+        $project = strpos($switch, 'docker-compose.yml');
+
+        expect($switchStart)->not->toBeFalse();
+        expect($note)->not->toBeFalse("{$path}: the Mac-only note is missing from #switch");
+        expect($project)->not->toBeFalse();
+        expect($project)->toBeLessThan($note);
     })->with([
         ['/', 'Importing from other apps and Open Project Folder are in the Mac app only.'],
         ['/vi', 'Import từ ứng dụng khác và Open Project Folder chỉ có trong ứng dụng Mac.'],
     ]);
+
+    it('shows each featured engine once, the engine count from data and the hub\'s categories', function (string $path, string $locale): void {
+        $html = ssrHome($path);
+        preg_match('#<section[^>]*id="databases".*?</section>#s', $html, $match);
+        $section = $match[0] ?? '';
+        $engines = collect(homeData('engines.json'))->where('state', 'published');
+        $categories = array_values(array_intersect(DatabaseController::CATEGORIES, $engines->pluck('category')->all()));
+        $prefix = $locale === 'en' ? '' : "/{$locale}";
+
+        expect($section)->not->toBe('');
+        expect($categories)->not->toBeEmpty();
+
+        foreach ($engines->where('featured', true) as $engine) {
+            expect(substr_count($section, 'href="' . $prefix . '/' . $engine['slug'] . '"'))->toBe(1, "{$path}: {$engine['name']} is not linked exactly once in #databases");
+        }
+
+        // Every link in the block is a featured engine or a way into the hub: the full list lives on /databases.
+        preg_match_all('#<a\b[^>]*\bhref="([^"]+)"#', $section, $links);
+
+        expect(count($links[1]))->toBe($engines->where('featured', true)->count() + count($categories) + 1);
+
+        foreach ($categories as $category) {
+            $title = homeData("content/{$locale}/databases/index.json")['categories'][$category]['title'];
+
+            expect($section)->toMatch('~<a\b[^>]*href="' . preg_quote("{$prefix}/databases#{$category}", '~') . '"[^>]*>' . preg_quote(htmlspecialchars($title, ENT_QUOTES), '~') . '</a>~u');
+        }
+
+        expect(strip_tags($section))->toContain((string) $engines->count());
+    })->with([['/', 'en'], ['/vi', 'vi']]);
+
+    it('keeps a hyphenated compound of the databases heading on one line', function (): void {
+        // "key-" / "value" broke across two lines at 390px.
+        expect(ssrHome('/'))->toMatch('#<h2 id="databases-title"[^>]*>[^<]*<span class="whitespace-nowrap">key-value</span>#');
+    });
+
+    it('puts what native means under the hero actions, outside the headline', function (string $path, string $locale): void {
+        $html = ssrHome($path);
+        $copy = homeContent($locale)['hero'];
+        $start = strpos($html, 'id="top"');
+        $hero = html_entity_decode(strip_tags(substr($html, (int) $start, (int) strpos($html, 'id="databases"') - (int) $start)), ENT_QUOTES | ENT_HTML5);
+        preg_match('#<pricing>(.*?)</pricing>#', $copy['business'], $pricingLink);
+
+        $headline = strpos($hero, $copy['title']);
+        $pricing = strpos($hero, $pricingLink[1]);
+        $native = strpos($hero, $copy['native']);
+
+        expect($start)->not->toBeFalse();
+        expect($headline)->not->toBeFalse();
+        expect($pricing)->not->toBeFalse("{$path}: the pricing line is not in the hero");
+        expect($native)->not->toBeFalse("{$path}: the native line is not in the hero");
+        expect($pricing)->toBeGreaterThan($headline);
+        expect($native)->toBeGreaterThan($pricing);
+    })->with([['/', 'en'], ['/vi', 'vi']]);
 
     it('shows the hero window as a labelled placeholder until it is supplied', function (): void {
         if (app(AssetManifest::class)->isSupplied('mac-hero-window')) {
