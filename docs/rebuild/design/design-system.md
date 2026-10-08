@@ -679,12 +679,13 @@ Repo key:
 
 - **Structure:** a `<fieldset>` with a visually hidden `<legend>` ("Billing cycle" / "Chu kỳ thanh toán") and three native radios, each wrapped by its label.
 - **Track:** `--surface-strong`, 10px radius, 2px padding.
-- **Segments:** 36px tall, 16px padding-x, label 14/500.
+- **Segments:** 36px tall (44px on touch screens), 16px padding-x, label 14/500.
   - Unselected: `--muted-foreground`.
   - Checked: `--segment-selected` fill (`--raised` in light; a step above the track in dark, 1.36:1) + 1px `--rule` border + `--foreground` label; light mode only adds a `0 1px 2px oklch(0 0 0 / 0.06)` shadow.
 - **Focus:** the ring wraps the segment (`:has(:focus-visible)`).
-- **Caption** (§2.4): one `small` muted line below, `aria-live="polite"`, with its height reserved (min-height one line) so switching causes no CLS.
+- **Caption** (§2.4): one `small` muted line below, `aria-live="polite"`, with its height reserved (min-height one line; BillingCycleControl reserves its longest cycle's caption) so switching causes no CLS.
 - **Without JS:** the radios are server-rendered with yearly checked (the current default), so the control works before hydration.
+- **BillingCycleControl below 1024px:** the plan cards stack, so the control's row pins under the header while the plan block is on screen, with a 1px `--rule` line under it while pinned. The caption stays in the flow. A viewport under 640px tall keeps the row in the flow too.
 
 #### 5.3.6 Disclosure
 
@@ -917,11 +918,12 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 
 - Tier name (`h3` style) and a one-line `small` muted description.
 - Price at `h1` size, weight 600, tabular, with the unit in `small` muted beside it ("/ month", "/ year", "once"; Team "per seat").
+  - Every cycle's price is in the HTML, so the page states each price its structured data offers. The ones not chosen carry `hidden`.
 - Team only:
   - a seat `Stepper`: min and max from data, 44px buttons, `inputmode="numeric"`
-  - a live total line "{seats} seats · ${total} / year" (`aria-live="polite"`, height reserved)
-  - "Minimum {min} seats"
-- Activation line: "Up to 2 Macs" or "1 seat = 1 activated Mac".
+  - a live total line "{seats} seats · ${total} / year" (`aria-live="polite"`, height reserved), which follows the digits as they are typed
+  - "Minimum {min} seats"; after a typed count outside the bounds was changed, this line says which bound it was changed to
+- Activation line: "One license for one person, on up to 2 Macs" or "1 seat = 1 activated Mac".
 - **Full-width `secondary` `md` purchase button.** Free gets "Download for Mac".
 - `Includes`: a `small` list of paid features from data, with the check in `--accent-text`.
 
@@ -1503,6 +1505,7 @@ Sections and ids follow sitemap §A.1.
 PageHeader    H1 "Pricing" · one line from data: the Mac app is free; a paid plan adds features to the Mac app; the iPhone and iPad app is free
 #plans        BillingCycleControl (Monthly | Yearly | Lifetime) + caption (computed saving / one payment)
               PricingCard ×3  Free · Starter · Team   (cols 4/4/4, equal emphasis)
+              Line (small, muted)  Every paid plan can be refunded within 7 days → Refund policy
               Line (small, muted)  Prices in USD. Polar is the merchant of record and handles tax and receipts.
 #features     H2 "What a paid plan adds" / "Gói trả phí bổ sung những gì"   (positioning's wording)
               PlanMatrix  visible caption · each paid feature (linked to its feature-page anchor) + Macs + Priority support
@@ -1510,12 +1513,14 @@ PageHeader    H1 "Pricing" · one line from data: the Mac app is free; a paid pl
               Note        The iPhone and iPad app has no paid features.
               Each topic below is a Section of its own at `text` width, separated by the frame's joins (§4.7);
               its DescriptionList and FaqList rows run from rail to rail.
-#license      How licenses work (prose from licensing facts, including what happens when a subscription ends)
+#license      How licenses work (prose from licensing facts: Starter is for one person, 1 seat = 1 activated Mac,
+              what happens when a subscription ends)
 #billing      Polar, USD, tax and receipts; "Billing & invoices" in Account for Polar purchases
 #refunds      7 days on every plan → Refund policy
-#team         Seats (1 seat = 1 activated Mac; min and max from data), invites, Priority support
+#team         Seats (min and max from data), invites, changing the number of seats
 #open-source  AGPLv3; source builds gate the same features
-#faq          FaqList, licensing subset, incl. Lost your license key? → /account?locale={locale}
+#faq          FaqList, licensing subset: purchase questions the sections above do not answer,
+              incl. Lost your license key? → /account?locale={locale}
 ```
 
 The `#features` heading and the intro say "adds" / "bổ sung", never "unlock" (positioning §12, spec §9). The exact strings are positioning's; this sketch quotes its current proposal.

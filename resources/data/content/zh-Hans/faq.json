@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "一个许可证涵盖多少台 Mac？",
                     "answer": [
-                        "Starter 许可证可用于 {starterActivations} 台 Mac。Team 许可证含 {teamMinSeats} 至 {teamMaxSeats} 个席位，每个席位对应一台已激活 Mac。iPhone 和 iPad 从不占用席位，其应用没有许可证。",
+                        "Starter 许可证供一人使用，最多可用于 {starterActivations} 台 Mac。Team 许可证含 {teamMinSeats} 至 {teamMaxSeats} 个席位，每个席位对应一台已激活 Mac。iPhone 和 iPad 从不占用席位，其应用没有许可证。",
                         "若要将许可证移至另一台 Mac，请在<account>您的账户</account>移除旧设备。"
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "谁处理付款？",
                     "answer": [
                         "{merchant} 是我们的名义销售商。您向 {merchant} 购买许可证，由其收款、在结账时计算销售税或增值税并发送收据邮件。发票、付款方式和订阅可在 <portal>{merchant} 客户门户</portal>中管理，使用购买时的邮箱登录。"
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "可以使用哪些付款方式？",
+                    "answer": [
+                        "{merchant} 的结账页面支持信用卡和借记卡。"
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "可以开具公司抬头的发票吗？",
+                    "answer": [
+                        "可以。在 <portal>{merchant} 客户门户</portal>中，您可以为发票添加公司名称、增值税号和账单地址，然后下载。"
                     ]
                 },
                 {

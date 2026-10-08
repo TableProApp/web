@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "为 Mac 应用添加 Starter 功能。",
+            "description": "为 Mac 应用添加 {examples} 等功能。",
             "activation": {
-                "one": "一个许可证可用于 {count} 台 Mac。",
-                "other": "一个许可证最多可用于 {count} 台 Mac。"
+                "one": "一个许可证供一人使用，可用于 {count} 台 Mac。",
+                "other": "一个许可证供一人使用，最多可用于 {count} 台 Mac。"
             },
             "includesTitle": "免费版的全部功能，外加",
             "cta": "购买 Starter"
@@ -66,6 +66,10 @@ export default {
         "label": "席位数",
         "noun": "席位数",
         "bounds": "最少 {min} 个席位，最多 {max} 个。",
+        "clamped": {
+            "min": "已调整为最少的 {min} 个席位。",
+            "max": "已调整为最多的 {max} 个席位。"
+        },
         "total": {
             "monthly": {
                 "one": "{count} 个席位：每月 {total}",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "所有付费功能",
+    "refund": {
+        "one": "所有付费方案均可在购买后 {count} 天内退款。详见<link>退款政策</link>。",
+        "other": "所有付费方案均可在购买后 {count} 天内退款。详见<link>退款政策</link>。"
+    },
     "finePrint": "价格以美元计。{merchant} 为名义销售商，负责收款，并在结账时计算销售税或增值税。",
     "finePrintCurrency": "价格以美元计。",
     "comparePlans": "对比方案",

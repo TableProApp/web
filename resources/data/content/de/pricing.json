@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Preise",
+        "title": "Preise: Kostenlos, Starter und Team",
         "description": "TablePro ist kostenlos. Starter und Team ergänzen Mac-Funktionen mit Monatsabo, Jahresabo oder Einmalkauf. Preise in US-Dollar."
     },
     "og": {
@@ -23,11 +23,11 @@
         "items": {
             "macs": {
                 "term": "Macs",
-                "body": "Eine Starter-Lizenz lässt sich auf bis zu {activations} Macs aktivieren. Bei Team entspricht jeder Arbeitsplatz einem aktivierten Mac, einschließlich des Macs des Käufers. Die iPhone- und iPad-App benötigt nie eine Lizenz oder einen Arbeitsplatz."
+                "body": "Eine Starter-Lizenz gilt für eine Person auf bis zu {activations} Macs. Bei Team entspricht jeder Arbeitsplatz einem aktivierten Mac, einschließlich des Macs des Käufers. Wer auf zwei Macs arbeitet, benötigt also zwei Arbeitsplätze. Die iPhone- und iPad-App benötigt nie eine Lizenz oder einen Arbeitsplatz."
             },
             "activate": {
                 "term": "Aktivierung",
-                "body": "Gib deinen Lizenzschlüssel in TablePro auf deinem Mac unter <ui>Einstellungen > Lizenz</ui> ein. Um ihn auf einem anderen Mac zu nutzen, entferne den bisherigen auf der Seite „Rechner“ in <account>deinem Konto</account>."
+                "body": "Gib deinen Lizenzschlüssel in TablePro auf deinem Mac unter <ui>Einstellungen > Lizenz</ui> ein. Um ihn auf einem anderen Mac zu nutzen, entferne den bisherigen auf der Seite „Macs“ in <account>deinem Konto</account>."
             },
             "checks": {
                 "term": "Prüfungen",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Abrechnung",
-        "merchant": "{merchant} ist der verantwortliche Verkäufer für TablePro. Er verkauft dir den Tarif, nimmt die Zahlung entgegen, berechnet die Verkaufs- oder Mehrwertsteuer anhand deiner Rechnungsadresse und sendet Beleg und Rechnung per E-Mail. Die Preise sind in US-Dollar angegeben.",
+        "merchant": "{merchant} ist der verantwortliche Verkäufer für TablePro. Er verkauft dir den Tarif, nimmt die Zahlung entgegen, berechnet die Verkaufs- oder Mehrwertsteuer anhand deiner Rechnungsadresse und sendet Beleg und Rechnung per E-Mail.",
         "renewal": "Monatliche und jährliche Tarife verlängern sich automatisch, bis du sie in <account>deinem Konto</account> oder im Kundenportal von {merchant} kündigst. Nach der Kündigung bleibt der Tarif bis zum Ende des bezahlten Zeitraums aktiv; vorher kannst du ihn wieder fortsetzen. Falls eine Verlängerungszahlung fehlschlägt, sendet {merchant} dir einen Link zur Aktualisierung deiner Karte und versucht die Zahlung etwa drei Wochen lang erneut.",
         "portal": "Bei Käufen über {merchant} findest du Rechnungen, Belege, Zahlungsmethode und Kündigung im <portal>Kundenportal von {merchant}</portal>. Melde dich dort mit der beim Kauf verwendeten E-Mail-Adresse an. <account>Abrechnung und Rechnungen</account> in deinem Konto öffnet es ebenfalls."
     },
@@ -60,7 +60,7 @@
     },
     "team": {
         "title": "Team-Tarife",
-        "seats": "Ein Team-Tarif wird pro Arbeitsplatz berechnet, mit {min} bis {max} Arbeitsplätzen. Jeder Arbeitsplatz entspricht einem aktivierten Mac, einschließlich des Macs des Käufers. Wer auf zwei Macs arbeitet, benötigt also zwei Arbeitsplätze.",
+        "seats": "Ein Team-Tarif wird pro Arbeitsplatz berechnet, mit {min} bis {max} Arbeitsplätzen.",
         "invites": "Die Person, die den Tarif gekauft hat, verwaltet das Team in ihrem Konto. Sie lädt Teammitglieder per E-Mail ein. Jede Einladung ist ein einmal verwendbarer Code, der nach einer Woche abläuft und einen freien Arbeitsplatz benötigt.",
         "changes": "Bei einem monatlichen oder jährlichen Team-Tarif änderst du die Anzahl der Arbeitsplätze in deinem Konto; die Differenz erscheint auf deiner nächsten Rechnung. Für zusätzliche Arbeitsplätze bei einem einmaligen Team-Kauf schreibe an <email>{email}</email>.",
         "account": "Team in deinem Konto verwalten"
@@ -68,28 +68,20 @@
     "openSource": {
         "title": "Open Source",
         "body": "TablePro ist quelloffen unter der AGPLv3, einschließlich des Codes seiner Bezahlfunktionen. Ein Build aus dem Quellcode prüft die Lizenz genauso wie die veröffentlichte App.",
-        "agpl": "Die AGPL stellt keine Bedingungen an die Ausführung von TablePro, auch nicht am Arbeitsplatz oder in Unternehmen beliebiger Größe. Ihre Bedingungen gelten für die Weitergabe und für das Bereitstellen einer geänderten Version an andere über ein Netzwerk.",
+        "agpl": "Die AGPL stellt keine Bedingungen an die Ausführung von TablePro, auch nicht bei der Arbeit oder in Unternehmen beliebiger Größe. Ihre Bedingungen gelten für die Weitergabe und für das Bereitstellen einer geänderten Version an andere über ein Netzwerk.",
         "github": "Auf GitHub ansehen"
     },
     "faq": {
         "title": "Fragen zu den Tarifen",
         "more": "Weitere Fragen zu Tarifen und Lizenzen",
         "items": {
-            "free": {
-                "question": "Ist TablePro kostenlos?",
-                "answer": "Ja. Die Mac-App lässt sich kostenlos herunterladen und nutzen, ohne Testzeitraum oder Zeitlimit. Ein Starter- oder Team-Tarif ergänzt die Mac-App um optionale Funktionen. Die iPhone- und iPad-App ist kostenlos, ohne In-App-Käufe."
+            "payment-methods": {
+                "question": "Welche Zahlungsmethoden kann ich nutzen?",
+                "answer": "Der Bezahlvorgang von {merchant} akzeptiert Kredit- und Debitkarten."
             },
-            "ios-license": {
-                "question": "Brauche ich eine Lizenz für die iPhone- und iPad-App?",
-                "answer": "Nein. Sie hat keine Bezahlfunktionen und fragt nie nach einer Lizenz. iCloud Sync ist auf iPhone und iPad kostenlos; zum Synchronisieren mit einem Mac benötigt der Mac Starter oder Team."
-            },
-            "seats": {
-                "question": "Entspricht ein Team-Arbeitsplatz einer Person?",
-                "answer": "Nein. Ein Arbeitsplatz entspricht einem aktivierten Mac. Wer auf zwei Macs arbeitet, benötigt zwei Arbeitsplätze."
-            },
-            "offline": {
-                "question": "Brauchen die Bezahlfunktionen eine Internetverbindung?",
-                "answer": "Nur gelegentlich. Die Lizenz wird alle {revalidateDays} Tage beim TablePro-Server bestätigt; die Bezahlfunktionen funktionieren {graceDays} Tage ohne Verbindung weiter."
+            "company-invoice": {
+                "question": "Bekomme ich eine Rechnung für mein Unternehmen?",
+                "answer": "Ja. Im <portal>Kundenportal von {merchant}</portal> kannst du einer Rechnung einen Firmennamen, eine USt-IdNr. und eine Rechnungsadresse hinzufügen und sie dann herunterladen."
             },
             "lost-key": {
                 "question": "Wo finde ich meinen Lizenzschlüssel?",

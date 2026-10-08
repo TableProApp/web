@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "為 Mac App 加入 Starter 功能。",
+            "description": "為 Mac App 加入 {examples} 等功能。",
             "activation": {
-                "one": "一份授權可用於 {count} 台 Mac。",
-                "other": "一份授權最多可用於 {count} 台 Mac。"
+                "one": "一份授權供一人使用，可用於 {count} 台 Mac。",
+                "other": "一份授權供一人使用，最多可用於 {count} 台 Mac。"
             },
             "includesTitle": "免費版的所有功能，另加",
             "cta": "購買 Starter"
@@ -66,6 +66,10 @@ export default {
         "label": "席位數",
         "noun": "席位數",
         "bounds": "最少 {min} 個席位，最多 {max} 個。",
+        "clamped": {
+            "min": "已調整為最少的 {min} 個席位。",
+            "max": "已調整為最多的 {max} 個席位。"
+        },
         "total": {
             "monthly": {
                 "one": "{count} 個席位：每月 {total}",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "所有付費功能",
+    "refund": {
+        "one": "所有付費方案均可在購買後 {count} 天內退款。詳見<link>退款政策</link>。",
+        "other": "所有付費方案均可在購買後 {count} 天內退款。詳見<link>退款政策</link>。"
+    },
     "finePrint": "價格以美元計。{merchant} 為交易的登記銷售商，負責收款，並在結帳時計算銷售稅或加值稅。",
     "finePrintCurrency": "價格以美元計。",
     "comparePlans": "比較方案",

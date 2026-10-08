@@ -1,7 +1,7 @@
 {
     "seo": {
-        "title": "Tarifs",
-        "description": "TablePro est gratuit. Starter et Équipe ajoutent des fonctions Mac avec paiement mensuel, annuel ou unique. Prix en dollars américains."
+        "title": "Tarifs : Gratuit, Starter et Team",
+        "description": "TablePro est gratuit. Starter et Team ajoutent des fonctions Mac avec paiement mensuel, annuel ou unique. Prix en dollars américains."
     },
     "og": {
         "kicker": "Tarifs",
@@ -23,11 +23,11 @@
         "items": {
             "macs": {
                 "term": "Mac",
-                "body": "Une licence Starter s’active sur un maximum de {activations} Mac. Avec Team, chaque poste correspond à un Mac activé, celui de l’acheteur compris. L’application iPhone et iPad n’utilise jamais de licence ni de poste."
+                "body": "Une licence Starter est destinée à une personne, sur un maximum de {activations} Mac. Avec Team, chaque poste correspond à un Mac activé, celui de l’acheteur compris ; une personne travaillant sur deux Mac utilise donc deux postes. L’application iPhone et iPad n’utilise jamais de licence ni de poste."
             },
             "activate": {
                 "term": "Activation",
-                "body": "Saisissez votre clé de licence dans TablePro sur votre Mac, dans <ui>Réglages > Licence</ui>. Pour l’utiliser sur un autre Mac, retirez l’ancien sur la page Machines de <account>votre compte</account>."
+                "body": "Saisissez votre clé de licence dans TablePro sur votre Mac, dans <ui>Réglages > Licence</ui>. Pour l’utiliser sur un autre Mac, retirez l’ancien sur la page Macs de <account>votre compte</account>."
             },
             "checks": {
                 "term": "Vérifications",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Facturation",
-        "merchant": "{merchant} est le vendeur officiel de TablePro. Il vous vend l’offre, encaisse le paiement, calcule la taxe sur les ventes ou la TVA selon votre adresse de facturation, et vous envoie reçu et facture par e-mail. Les prix sont indiqués en dollars américains.",
+        "merchant": "{merchant} est le vendeur officiel de TablePro. Il vous vend l’offre, encaisse le paiement, calcule la taxe sur les ventes ou la TVA selon votre adresse de facturation, et vous envoie reçu et facture par e-mail.",
         "renewal": "Les offres mensuelles et annuelles se renouvellent automatiquement jusqu’à résiliation dans <account>votre compte</account> ou le portail client de {merchant}. Après résiliation, l’offre reste active jusqu’à la fin de la période payée et vous pouvez la reprendre avant cette date. Si un paiement de renouvellement échoue, {merchant} vous envoie un lien pour mettre à jour votre carte et réessaie le paiement pendant environ trois semaines.",
         "portal": "Pour les achats via {merchant}, vos factures, reçus, moyen de paiement et résiliation se trouvent dans le <portal>portail client de {merchant}</portal>, où vous vous connectez avec l’adresse e-mail utilisée lors du règlement. <account>Facturation et factures</account> dans votre compte l’ouvre également."
     },
@@ -60,7 +60,7 @@
     },
     "team": {
         "title": "Offres Team",
-        "seats": "Une offre Team est facturée par poste, de {min} à {max} postes. Chaque poste correspond à un Mac activé, celui de l’acheteur compris ; une personne travaillant sur deux Mac utilise donc deux postes.",
+        "seats": "Une offre Team est facturée par poste, de {min} à {max} postes.",
         "invites": "La personne qui a acheté l’offre gère l’équipe dans son compte. Elle invite ses collègues par e-mail ; chaque invitation est un code à usage unique, qui expire après une semaine et nécessite un poste libre.",
         "changes": "Avec une offre Team mensuelle ou annuelle, vous modifiez le nombre de postes dans votre compte et la différence apparaît sur la facture suivante. Pour ajouter des postes à un achat Team à paiement unique, écrivez à <email>{email}</email>.",
         "account": "Gérez votre équipe dans votre compte"
@@ -75,21 +75,13 @@
         "title": "Questions sur les offres",
         "more": "Autres questions sur les offres et les licences",
         "items": {
-            "free": {
-                "question": "TablePro est-il gratuit ?",
-                "answer": "Oui. L’application Mac est gratuite à télécharger et à utiliser, sans période d’essai ni limite de temps. Une offre Starter ou Team ajoute des fonctionnalités facultatives à l’application Mac. L’application iPhone et iPad est gratuite, sans achats intégrés."
+            "payment-methods": {
+                "question": "Quels moyens de paiement puis-je utiliser ?",
+                "answer": "La page de paiement de {merchant} accepte les cartes de crédit et de débit."
             },
-            "ios-license": {
-                "question": "Ai-je besoin d’une licence pour l’application iPhone et iPad ?",
-                "answer": "Non. Elle n’a aucune fonctionnalité payante et ne demande jamais de licence. iCloud Sync est gratuit sur iPhone et iPad ; pour synchroniser avec un Mac, celui-ci doit disposer de Starter ou Team."
-            },
-            "seats": {
-                "question": "Un poste Team correspond-il à une personne ?",
-                "answer": "Non. Un poste correspond à un Mac activé. Une personne travaillant sur deux Mac utilise deux postes."
-            },
-            "offline": {
-                "question": "Les fonctionnalités payantes nécessitent-elles une connexion internet ?",
-                "answer": "Seulement de temps en temps. La licence est confirmée auprès du serveur TablePro tous les {revalidateDays} jours et les fonctionnalités payantes continuent de fonctionner pendant {graceDays} jours sans connexion."
+            "company-invoice": {
+                "question": "Puis-je obtenir une facture pour mon entreprise ?",
+                "answer": "Oui. Dans le <portal>portail client de {merchant}</portal>, vous pouvez ajouter à une facture un nom d’entreprise, un numéro de TVA et une adresse de facturation, puis la télécharger."
             },
             "lost-key": {
                 "question": "Où trouver ma clé de licence ?",

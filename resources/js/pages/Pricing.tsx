@@ -92,7 +92,7 @@ function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines,
  */
 export default function Pricing({ content, paidFeatures, checkout, featuredEngines }: PricingPageProps) {
     const { canonicalBaseUrl } = usePage().props;
-    const { locale, m, fmt, plural, path } = useI18n();
+    const { locale, m, fmt, path } = useI18n();
     const values = copyValues();
 
     const account = accountHref(locale);
@@ -206,11 +206,6 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                     <p>{rich(content.team.seats)}</p>
                     <p>{rich(content.team.invites)}</p>
                     <p>{rich(content.team.changes)}</p>
-                    <DescriptionList className="frame-rows-text">
-                        <DescriptionItem term={m.pricing.prioritySupport.name}>
-                            {plural(m.pricing.prioritySupport.detail, PRICING.tiers.team.prioritySupport.responseBusinessDays)}
-                        </DescriptionItem>
-                    </DescriptionList>
                     <p>
                         <TextLink href={account} kind="standalone">
                             {content.team.account}

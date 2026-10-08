@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "一份授權涵蓋多少台 Mac？",
                     "answer": [
-                        "Starter 授權可用於 {starterActivations} 台 Mac。Team 授權含 {teamMinSeats} 至 {teamMaxSeats} 個席位，每個席位對應一台已啟用 Mac。iPhone 與 iPad 從不占用席位，其 App 沒有授權。",
+                        "Starter 授權供一人使用，最多可用於 {starterActivations} 台 Mac。Team 授權含 {teamMinSeats} 至 {teamMaxSeats} 個席位，每個席位對應一台已啟用 Mac。iPhone 與 iPad 從不占用席位，其 App 沒有授權。",
                         "若要將授權移至另一台 Mac，請在<account>您的帳戶</account>移除舊裝置。"
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "誰處理付款？",
                     "answer": [
                         "{merchant} 是我們的交易登記銷售商。您向 {merchant} 購買授權，由其收款、在結帳時計算銷售稅或加值稅並寄送收據郵件。發票、付款方式和訂閱可在 <portal>{merchant} 客戶入口網站</portal>中管理，使用購買時的電子郵件登入。"
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "可以使用哪些付款方式？",
+                    "answer": [
+                        "{merchant} 的結帳頁面支援信用卡和簽帳金融卡。"
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "可以開立公司抬頭的發票嗎？",
+                    "answer": [
+                        "可以。在 <portal>{merchant} 客戶入口網站</portal>中，您可以為發票加上公司名稱、加值稅號碼和帳單地址，然後下載。"
                     ]
                 },
                 {

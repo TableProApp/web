@@ -34,9 +34,9 @@ export default {
         },
         starter: {
             name: 'Starter',
-            description: 'Bổ sung các tính năng của gói Starter cho ứng dụng Mac.',
+            description: 'Bổ sung cho ứng dụng Mac các tính năng như {examples}.',
             activation: {
-                other: 'Một license dùng trên tối đa {count} máy Mac.',
+                other: 'Một license cho một người, dùng trên tối đa {count} máy Mac.',
             },
             includesTitle: 'Mọi thứ trong gói Miễn phí, cộng thêm',
             cta: 'Mua gói Starter',
@@ -65,6 +65,10 @@ export default {
         label: 'Số seat',
         noun: 'số seat',
         bounds: 'Tối thiểu {min} seat, tối đa {max} seat.',
+        clamped: {
+            min: 'Đã đổi thành mức tối thiểu là {min} seat.',
+            max: 'Đã đổi thành mức tối đa là {max} seat.',
+        },
         total: {
             monthly: { other: '{count} seat: {total} mỗi tháng' },
             yearly: { other: '{count} seat: {total} mỗi năm' },
@@ -78,6 +82,9 @@ export default {
         },
     },
     allFeatures: 'Tất cả tính năng trả phí',
+    refund: {
+        other: 'Mọi gói trả phí đều được hoàn tiền trong vòng {count} ngày kể từ ngày mua. Xem <link>chính sách hoàn tiền</link>.',
+    },
     finePrint: 'Giá tính bằng USD. {merchant} là merchant of record: {merchant} nhận thanh toán và tính thuế bán hàng hoặc VAT (nếu có) khi bạn thanh toán.',
     finePrintCurrency: 'Giá tính bằng USD.',
     comparePlans: 'So sánh các gói',

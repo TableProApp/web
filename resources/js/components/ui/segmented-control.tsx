@@ -54,7 +54,7 @@ export default function SegmentedControl<T extends string>({ legend, value, opti
                     <label
                         key={option.value}
                         className={cn(
-                            'inline-flex min-h-9 cursor-pointer items-center gap-2 rounded-control border border-transparent px-4 text-sm leading-[1.3] font-medium text-muted-foreground',
+                            'inline-flex min-h-9 cursor-pointer items-center gap-2 rounded-control border border-transparent px-4 text-sm leading-[1.3] font-medium text-muted-foreground pointer-coarse:min-h-11',
                             'transition-colors duration-(--dur-tap) ease-(--ease-feedback) hover:text-foreground',
                             'has-[:checked]:border-rule has-[:checked]:bg-segment-selected has-[:checked]:text-foreground has-[:checked]:shadow-[0_1px_2px_oklch(0_0_0/0.06)] dark:has-[:checked]:shadow-none',
                             'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus',

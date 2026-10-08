@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import CellGrid from '@/components/ui/cell-grid';
-import { useI18n } from '@/i18n';
+import LocaleLink from '@/components/ui/locale-link';
+import { textLinkClasses } from '@/components/ui/text-link';
+import { Trans, useI18n } from '@/i18n';
 import { PRICING, type BillingCycle, type TierId } from '@/lib/data/pricing';
+import { cn } from '@/lib/utils';
 import BillingCycleControl from './billing-cycle-control';
 import DiscountField from './discount-field';
 import PricingCard, { type PricingCardVariant } from './pricing-card';
@@ -22,8 +25,8 @@ interface PricingPlansProps {
 /**
  * The working plan block, the same on `/pricing` and on the homepage: the
  * billing-cycle control and its caption, the Free, Starter and Team cards,
- * the discount code where this site takes one, and the line on currency and
- * the merchant of record.
+ * the refund window from pricing.json, the discount code where this site
+ * takes one, and the line on currency and the merchant of record.
  *
  * Yearly is selected first, as before the rebuild, and Team starts at its
  * minimum seats. Both render on the server, so the block reads the same
@@ -33,7 +36,7 @@ interface PricingPlansProps {
  * block belongs in a wide section.
  */
 export default function PricingPlans({ checkout, variant = 'full', headingLevel = 'h3', className }: PricingPlansProps) {
-    const { m, fmt } = useI18n();
+    const { m, fmt, plural } = useI18n();
     const [cycle, setCycle] = useState<BillingCycle>('yearly');
     const [seats, setSeats] = useState<number>(PRICING.tiers.team.seats.min);
     const [discountCode, setDiscountCode] = useState<string | null>(null);
@@ -46,7 +49,8 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
     const merchantCheckout = checkout.provider === PRICING.merchantOfRecord.name.toLowerCase();
 
     return (
-        <div className={className}>
+        // While the cycle control is pinned, a focused control must not scroll in under it.
+        <div className={cn('max-lg:[&_:is(a,button,input:not([type=radio]),summary)]:scroll-mt-14', className)}>
             <BillingCycleControl value={cycle} onChange={setCycle} />
 
             <CellGrid className="mt-6 items-stretch lg:grid-cols-3">
@@ -66,6 +70,18 @@ export default function PricingPlans({ checkout, variant = 'full', headingLevel 
             </CellGrid>
 
             <div className="mt-6 grid gap-3">
+                <p className="type-small text-muted-foreground">
+                    <Trans
+                        text={plural(m.pricing.refund, PRICING.refund.days)}
+                        tags={{
+                            link: (text) => (
+                                <LocaleLink href="/refund-policy" className={textLinkClasses('inline')}>
+                                    {text}
+                                </LocaleLink>
+                            ),
+                        }}
+                    />
+                </p>
                 {checkout.couponField ? (
                     <DiscountField onApplied={setDiscountCode} />
                 ) : (

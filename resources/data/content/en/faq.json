@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "How many Macs does a license cover?",
                     "answer": [
-                        "A Starter license works on {starterActivations} Macs. A Team license has between {teamMinSeats} and {teamMaxSeats} seats, and each seat is one activated Mac. An iPhone or iPad never uses one: that app has no license.",
+                        "A Starter license is for one person, on up to {starterActivations} Macs. A Team license has between {teamMinSeats} and {teamMaxSeats} seats, and each seat is one activated Mac. An iPhone or iPad never uses one: that app has no license.",
                         "To move a license to another Mac, remove the old one in <account>your account</account>."
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "Who handles the payment?",
                     "answer": [
                         "{merchant} is our merchant of record: you buy the license from {merchant}, which takes the payment, calculates any sales tax or VAT at checkout and emails your receipt. Your invoices, payment method and subscription are in <portal>{merchant}’s customer portal</portal>, which you sign in to with the email you bought with."
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "Which payment methods can I use?",
+                    "answer": [
+                        "{merchant}’s checkout takes credit and debit cards."
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "Can I get an invoice for my company?",
+                    "answer": [
+                        "Yes. In <portal>{merchant}’s customer portal</portal> you can add a company name, a VAT number and a billing address to an invoice, then download it."
                     ]
                 },
                 {

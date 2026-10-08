@@ -34,10 +34,10 @@ export default {
         },
         "starter": {
             "name": "Starter",
-            "description": "Aggiunge le funzionalità Starter all’app per Mac.",
+            "description": "Aggiunge all’app per Mac funzionalità come {examples}.",
             "activation": {
-                "one": "Una licenza per {count} Mac.",
-                "other": "Una licenza per un massimo di {count} Mac."
+                "one": "Una licenza per una persona, su {count} Mac.",
+                "other": "Una licenza per una persona, su un massimo di {count} Mac."
             },
             "includesTitle": "Tutto il piano Gratuito, più",
             "cta": "Acquista Starter"
@@ -66,6 +66,10 @@ export default {
         "label": "Posti",
         "noun": "posti",
         "bounds": "Minimo {min} posti, massimo {max}.",
+        "clamped": {
+            "min": "Modificato al minimo di {min} posti.",
+            "max": "Modificato al massimo di {max} posti."
+        },
         "total": {
             "monthly": {
                 "one": "{count} posto: {total} al mese",
@@ -89,6 +93,10 @@ export default {
         }
     },
     "allFeatures": "Tutte le funzionalità a pagamento",
+    "refund": {
+        "one": "Ogni piano a pagamento può essere rimborsato entro {count} giorno dall’acquisto. Consulta la <link>politica di rimborso</link>.",
+        "other": "Ogni piano a pagamento può essere rimborsato entro {count} giorni dall’acquisto. Consulta la <link>politica di rimborso</link>."
+    },
     "finePrint": "Prezzi in dollari statunitensi. {merchant} è il venditore responsabile: incassa il pagamento e calcola le eventuali imposte sulle vendite o l’IVA al checkout.",
     "finePrintCurrency": "Prezzi in dollari statunitensi.",
     "comparePlans": "Confronta i piani",

@@ -1,6 +1,6 @@
 {
     "seo": {
-        "title": "Harga",
+        "title": "Harga: paket Gratis, Starter, dan Team",
         "description": "TablePro gratis. Starter dan Team menambah fitur opsional di Mac dengan pembayaran bulanan, tahunan, atau sekali bayar. Harga dalam dolar AS."
     },
     "og": {
@@ -23,11 +23,11 @@
         "items": {
             "macs": {
                 "term": "Mac",
-                "body": "Lisensi Starter dapat diaktifkan di hingga {activations} Mac. Di Team, setiap seat adalah satu Mac yang diaktifkan, termasuk milik pembeli. Aplikasi iPhone dan iPad tidak pernah menggunakan lisensi atau seat."
+                "body": "Lisensi Starter untuk satu orang, pada hingga {activations} Mac. Di Team, setiap seat adalah satu Mac yang diaktifkan, termasuk milik pembeli, sehingga orang yang bekerja di dua Mac menggunakan dua seat. Aplikasi iPhone dan iPad tidak pernah menggunakan lisensi atau seat."
             },
             "activate": {
                 "term": "Aktivasi",
-                "body": "Masukkan kunci lisensi di TablePro pada Mac Anda, melalui <ui>Settings > License</ui>. Untuk menggunakannya di Mac lain, hapus Mac lama di halaman Mesin dalam <account>akun Anda</account>."
+                "body": "Masukkan kunci lisensi di TablePro pada Mac Anda, melalui <ui>Settings > License</ui>. Untuk menggunakannya di Mac lain, hapus Mac lama di halaman Mac dalam <account>akun Anda</account>."
             },
             "checks": {
                 "term": "Pemeriksaan",
@@ -50,7 +50,7 @@
     },
     "billing": {
         "title": "Penagihan",
-        "merchant": "{merchant} adalah merchant of record untuk TablePro. Penyedia ini menjual paket kepada Anda, menerima pembayaran, menghitung pajak penjualan atau PPN berdasarkan alamat penagihan, serta mengirim tanda terima dan faktur lewat email. Harga tercantum dalam dolar AS.",
+        "merchant": "{merchant} adalah merchant of record untuk TablePro. Penyedia ini menjual paket kepada Anda, menerima pembayaran, menghitung pajak penjualan atau PPN berdasarkan alamat penagihan, serta mengirim tanda terima dan faktur lewat email.",
         "renewal": "Paket bulanan dan tahunan diperpanjang otomatis hingga Anda membatalkannya di <account>akun Anda</account> atau portal pelanggan {merchant}. Setelah dibatalkan, paket tetap berfungsi hingga akhir periode yang dibayar dan dapat dilanjutkan sebelum itu. Jika pembayaran perpanjangan gagal, {merchant} mengirim email berisi tautan untuk memperbarui kartu dan mencoba pembayaran kembali selama sekitar tiga minggu.",
         "portal": "Untuk pembelian melalui {merchant}, faktur, tanda terima, metode pembayaran, dan pembatalan tersedia di <portal>portal pelanggan {merchant}</portal>, tempat Anda masuk dengan alamat email yang digunakan saat checkout. <account>Penagihan dan faktur</account> dalam akun Anda juga membuka portal tersebut."
     },
@@ -60,7 +60,7 @@
     },
     "team": {
         "title": "Paket Team",
-        "seats": "Paket Team dihargai per seat, dari {min} hingga {max} seat. Setiap seat adalah satu Mac yang diaktifkan, termasuk milik pembeli, sehingga orang yang bekerja di dua Mac menggunakan dua seat.",
+        "seats": "Paket Team dihargai per seat, dari {min} hingga {max} seat.",
         "invites": "Pembeli paket mengelola tim dalam akunnya. Ia mengundang rekan tim lewat email; setiap undangan adalah kode sekali pakai, kedaluwarsa setelah satu minggu, dan memerlukan seat kosong.",
         "changes": "Pada paket Team bulanan atau tahunan, Anda mengubah jumlah seat dalam akun dan selisihnya muncul di faktur berikutnya. Untuk menambah seat pada pembelian Team sekali bayar, kirim email ke <email>{email}</email>.",
         "account": "Kelola tim dalam akun Anda"
@@ -75,21 +75,13 @@
         "title": "Pertanyaan tentang paket",
         "more": "Pertanyaan lain tentang paket dan lisensi",
         "items": {
-            "free": {
-                "question": "Apakah TablePro gratis?",
-                "answer": "Ya. Aplikasi Mac gratis diunduh dan digunakan, tanpa masa uji coba atau batas waktu. Paket Starter atau Team menambahkan fitur opsional ke aplikasi Mac. Aplikasi iPhone dan iPad gratis, tanpa pembelian dalam aplikasi."
+            "payment-methods": {
+                "question": "Metode pembayaran apa yang bisa saya gunakan?",
+                "answer": "Checkout {merchant} menerima kartu kredit dan kartu debit."
             },
-            "ios-license": {
-                "question": "Apakah aplikasi iPhone dan iPad memerlukan lisensi?",
-                "answer": "Tidak. Aplikasi ini tidak memiliki fitur berbayar dan tidak pernah meminta lisensi. Sinkronisasi iCloud gratis di iPhone dan iPad; untuk sinkronisasi dengan Mac, Mac memerlukan Starter atau Team."
-            },
-            "seats": {
-                "question": "Apakah satu seat Team berarti satu orang?",
-                "answer": "Tidak. Satu seat adalah satu Mac yang diaktifkan. Orang yang bekerja di dua Mac menggunakan dua seat."
-            },
-            "offline": {
-                "question": "Apakah fitur berbayar memerlukan internet?",
-                "answer": "Hanya sesekali. Lisensi dikonfirmasi ke server TablePro setiap {revalidateDays} hari, dan fitur berbayar tetap berfungsi selama {graceDays} hari tanpa koneksi."
+            "company-invoice": {
+                "question": "Bisakah saya mendapat faktur untuk perusahaan saya?",
+                "answer": "Ya. Di <portal>portal pelanggan {merchant}</portal>, Anda dapat menambahkan nama perusahaan, nomor PPN, dan alamat penagihan ke faktur, lalu mengunduhnya."
             },
             "lost-key": {
                 "question": "Di mana kunci lisensi saya?",

@@ -169,7 +169,7 @@
                     "id": "how-many-macs",
                     "question": "1 ライセンスで何台の Mac を使えますか？",
                     "answer": [
-                        "Starter ライセンスは {starterActivations} 台の Mac で使えます。Team は {teamMinSeats}～{teamMaxSeats} シートで、1 シートは有効化した Mac 1 台です。iPhone・iPad はシートを使わず、アプリにライセンスもありません。",
+                        "Starter ライセンスは 1 人用で、最大 {starterActivations} 台の Mac で使えます。Team は {teamMinSeats}～{teamMaxSeats} シートで、1 シートは有効化した Mac 1 台です。iPhone・iPad はシートを使わず、アプリにライセンスもありません。",
                         "別の Mac にライセンスを移すには、<account>アカウント</account>で古い Mac を削除してください。"
                     ]
                 },
@@ -194,6 +194,20 @@
                     "question": "支払いは誰が処理しますか？",
                     "answer": [
                         "{merchant} が正式な販売者です。お客様は {merchant} からライセンスを購入し、同社が支払いを受け取り、チェックアウト時の売上税や VAT を計算し、領収書をメールで送ります。請求書、支払い方法、サブスクリプションは <portal>{merchant} のカスタマーポータル</portal>で管理でき、購入時のメールアドレスでログインします。"
+                    ]
+                },
+                {
+                    "id": "payment-methods",
+                    "question": "どの支払い方法が使えますか？",
+                    "answer": [
+                        "{merchant} のチェックアウトでは、クレジットカードとデビットカードが使えます。"
+                    ]
+                },
+                {
+                    "id": "company-invoice",
+                    "question": "会社宛ての請求書は発行できますか？",
+                    "answer": [
+                        "はい。<portal>{merchant} のカスタマーポータル</portal>で、請求書に会社名、VAT 番号、請求先住所を追加してからダウンロードできます。"
                     ]
                 },
                 {

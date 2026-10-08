@@ -1,4 +1,4 @@
-import { useId, type ReactNode } from 'react';
+import { useId, useState, type FormEvent, type ReactNode } from 'react';
 import Button, { buttonClasses } from '@/components/ui/button';
 import Callout from '@/components/ui/callout';
 import { CheckGlyph } from '@/components/ui/glyph';
@@ -8,9 +8,10 @@ import { textLinkClasses } from '@/components/ui/text-link';
 import { useI18n } from '@/i18n';
 import { formatUsd } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
-import { highlightedFeatures, paidFeaturesForTier } from '@/lib/data/paid-features';
+import { examplesText, highlightedFeatures, paidFeaturesForTier } from '@/lib/data/paid-features';
 import { PRICING, teamTotal, tierPrice, type BillingCycle, type PaidTierId, type TierId } from '@/lib/data/pricing';
 import { cn } from '@/lib/utils';
+import { typedSeats, type SeatBound } from './seats';
 import type { Checkout } from './use-checkout';
 
 export type PricingCardVariant = 'full' | 'compact';
@@ -55,10 +56,11 @@ interface PricingCardProps {
  * column.
  */
 export default function PricingCard({ tier, cycle, variant, headingLevel, checkout, seats, onSeatsChange, discountCode }: PricingCardProps) {
-    const { m, plural } = useI18n();
+    const { m, fmt, plural } = useI18n();
     const id = useId();
     const Title = headingLevel;
     const copy = m.pricing.tiers[tier];
+    const description = tier === 'starter' ? fmt(copy.description, { examples: examplesText('starter', m.common.list) }) : copy.description;
 
     return (
         <article
@@ -72,7 +74,7 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
                 <Title id={`${id}-title`} className="type-h3 text-foreground">
                     {copy.name}
                 </Title>
-                <p className="type-small mt-1 text-muted-foreground">{copy.description}</p>
+                <p className="type-small mt-1 text-muted-foreground">{description}</p>
             </div>
 
             <div className="grid content-start gap-4 md:max-lg:col-start-1">
@@ -114,11 +116,11 @@ export default function PricingCard({ tier, cycle, variant, headingLevel, checko
     );
 }
 
-function Price({ amount, unit }: { amount: number; unit?: string }) {
+function Price({ amount, unit, hidden = false }: { amount: number; unit?: string; hidden?: boolean }) {
     const { m } = useI18n();
 
     return (
-        <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+        <p hidden={hidden} className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
             <span className="type-h1 text-foreground tabular-nums">{formatUsd(amount, m.pricing.currency)}</span>
             {unit && <span className="type-small text-muted-foreground">{unit}</span>}
         </p>
@@ -133,28 +135,63 @@ interface PaidPriceProps {
 }
 
 /**
- * A paid plan's price for the chosen cycle. Team adds the seat stepper, its
- * bounds from pricing.json and the total for the seats chosen, announced as it
- * changes. The total line keeps its height, so stepping moves nothing.
+ * A paid plan's price in every cycle, so the page's HTML states each price
+ * its structured data offers; only the chosen cycle's is shown. Team adds the
+ * seat stepper, its bounds from pricing.json and the total for the seats
+ * chosen, announced as it changes. The total line keeps its height, so
+ * stepping moves nothing.
  */
 function PaidPrice({ tier, cycle, seats, onSeatsChange }: PaidPriceProps) {
     const { m, fmt, plural } = useI18n();
     const id = useId();
+    const [bound, setBound] = useState<SeatBound | null>(null);
 
-    const price = <Price amount={tierPrice(tier, cycle)} unit={m.pricing.units[tier][cycle]} />;
+    const prices = PRICING.cycles.map((each) => <Price key={each} amount={tierPrice(tier, each)} unit={m.pricing.units[tier][each]} hidden={each !== cycle} />);
 
     if (tier === 'starter') {
-        return price;
+        return <>{prices}</>;
     }
 
     const { min, max } = PRICING.tiers.team.seats;
     const boundsId = `${id}-bounds`;
     const total = formatUsd(teamTotal(seats, cycle), m.pricing.currency);
 
+    function change(next: number): void {
+        setBound(null);
+        onSeatsChange(next);
+    }
+
+    // The shared Stepper reports a typed count only on blur or Enter. Its input's events bubble, so the total follows the digits instead.
+    function follow(event: FormEvent<HTMLDivElement>): void {
+        if (event.target instanceof HTMLInputElement) {
+            const typed = typedSeats(event.target.value, min, max).seats;
+
+            if (typed !== null) {
+                change(typed);
+            }
+        }
+    }
+
+    // Runs after the Stepper has clamped the field, to say which limit it was changed to.
+    function settle(target: EventTarget): void {
+        if (target instanceof HTMLInputElement) {
+            setBound(typedSeats(target.value, min, max).bound);
+        }
+    }
+
     return (
         <div className="grid gap-3">
-            {price}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            {prices}
+            <div
+                className="flex flex-wrap items-center gap-x-3 gap-y-2"
+                onChange={follow}
+                onBlur={(event) => settle(event.target)}
+                onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                        settle(event.target);
+                    }
+                }}
+            >
                 <span className="text-sm leading-[1.3] font-medium text-foreground" aria-hidden="true">
                     {m.pricing.seats.label}
                 </span>
@@ -163,7 +200,7 @@ function PaidPrice({ tier, cycle, seats, onSeatsChange }: PaidPriceProps) {
                     value={seats}
                     min={min}
                     max={max}
-                    onChange={onSeatsChange}
+                    onChange={change}
                     label={m.pricing.seats.label}
                     decreaseLabel={fmt(m.controls.stepper.decrease, { label: m.pricing.seats.noun })}
                     increaseLabel={fmt(m.controls.stepper.increase, { label: m.pricing.seats.noun })}
@@ -173,8 +210,8 @@ function PaidPrice({ tier, cycle, seats, onSeatsChange }: PaidPriceProps) {
             <p aria-live="polite" className="type-small min-h-[1.6em] font-medium text-foreground tabular-nums">
                 {plural(m.pricing.seats.total[cycle], seats, { total })}
             </p>
-            <p id={boundsId} className="type-caption text-muted-foreground tabular-nums">
-                {fmt(m.pricing.seats.bounds, { min, max })}
+            <p id={boundsId} aria-live="polite" className={cn('type-caption tabular-nums', bound ? 'text-foreground' : 'text-muted-foreground')}>
+                {fmt(bound ? m.pricing.seats.clamped[bound] : m.pricing.seats.bounds, { min, max })}
             </p>
         </div>
     );
