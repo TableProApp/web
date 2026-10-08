@@ -81,6 +81,9 @@ locale is a function of the URL and nothing else: no cookie, no session, no
 - Curly braces on every control structure, even single-line bodies.
 - Prefer PHPDoc blocks over inline comments; use array shapes in PHPDoc.
 - Reuse `resources/js/components/ui/*` before writing a new primitive.
+- Every page sends a Content-Security-Policy. A new third-party host (script,
+  frame, fetch, image, font) needs a source in
+  `App\Support\Security\ContentSecurityPolicy`, or the browser blocks it.
 - A few files are byte-identical with the account app (tokens, fonts, the theme
   partial, …). Change them in both repositories at once: `docs/shared-files.md`.
 
