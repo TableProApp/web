@@ -30,7 +30,37 @@ class PricingController extends Controller
             'paidFeatures' => $content->page('paid-features', $locale),
             'checkout' => $checkout->props(),
             'featuredEngines' => $this->featuredEngines(),
+            'comparisons' => $this->paidComparisons($content, $locale),
         ]);
+    }
+
+    /**
+     * The comparisons with a client that sells a paid plan, in data order,
+     * each with its page's H1 in this locale: where a reader sees another
+     * client's prices next to TablePro's.
+     *
+     * @return list<array{path: string, title: string}>
+     */
+    private function paidComparisons(ContentRepository $content, string $locale): array
+    {
+        $path = resource_path('data/comparisons.json');
+        $data = File::isFile($path) ? json_decode((string) File::get($path), true) : null;
+        $comparisons = [];
+
+        foreach (is_array($data['products'] ?? null) ? $data['products'] : [] as $product) {
+            if (! is_array($product) || ! is_string($product['slug'] ?? null)) {
+                continue;
+            }
+
+            $paid = collect($product['prices'] ?? [])->contains(fn(mixed $price): bool => is_array($price) && ($price['amount'] ?? 0) > 0);
+            $title = $content->entry('compare', $product['slug'], $locale)['header']['title'] ?? null;
+
+            if ($paid && is_string($title) && $title !== '') {
+                $comparisons[] = ['path' => '/compare/' . $product['slug'], 'title' => $title];
+            }
+        }
+
+        return $comparisons;
     }
 
     /**

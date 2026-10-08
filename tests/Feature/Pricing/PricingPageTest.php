@@ -104,6 +104,21 @@ it('names the featured, published engines for the structured data, in data order
     get('/pricing')->assertInertia(fn(AssertableInertia $page) => $page->where('featuredEngines', $expected));
 });
 
+it('links the comparison of every client that sells a paid plan, by its page title', function (): void {
+    $expected = collect(pricingPageJson('comparisons.json')['products'])
+        ->filter(fn(array $product): bool => $product['slug'] !== null && collect($product['prices'])->contains(fn(array $price): bool => $price['amount'] > 0))
+        ->map(fn(array $product): array => [
+            'path' => '/compare/' . $product['slug'],
+            'title' => pricingPageJson("content/en/compare/{$product['slug']}.json")['header']['title'],
+        ])
+        ->values()
+        ->all();
+
+    expect(array_column($expected, 'path'))->toContain('/compare/tableplus', '/compare/datagrip')->not->toContain('/compare/sequel-ace');
+
+    get('/pricing')->assertInertia(fn(AssertableInertia $page) => $page->where('comparisons', $expected));
+});
+
 it('asks for a discount code only where the provider\'s checkout does not', function (string $provider, array $expected): void {
     config(['payment.provider' => $provider]);
 

@@ -91,7 +91,9 @@ databend), `/postgresql-client` (cockroachdb, pglite), `/cassandra-client` (scyl
 
 **`otherTools`** (block 11). Each `product` is an id in `comparisons.json`. Write one fair paragraph of strengths:
 what the tool is and when to choose it. Never type its version, date, price, licence or platforms; the template
-prints them from data with the check date and sources. A tool with a comparison page gets the link automatically.
+prints them from data with the check date and sources. A tool with a comparison page gets the link automatically,
+and the block ends with the other comparisons whose product connects to this engine (`cells.databases.engines` in
+`comparisons.json`).
 For a tool with no comparison page, every note id in its `cells` needs a sentence in `notes`, listed in that item's
 `notes`. An optional `anchor` gives the tool's block an id that a link or redirect aims at: `/mongodb-client` sets
 `"anchor": "compass"` on its MongoDB Compass item, because `/blog/mongodb-native-vs-compass` redirects to

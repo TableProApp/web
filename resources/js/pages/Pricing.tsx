@@ -90,7 +90,7 @@ function pricingJsonLd({ baseUrl, inLanguage, pageUrl, content, featuredEngines,
  * features and their tiers from paid-features.json. Nothing here is
  * conversion furniture: no "most popular", no typed saving, no countdown.
  */
-export default function Pricing({ content, paidFeatures, checkout, featuredEngines }: PricingPageProps) {
+export default function Pricing({ content, paidFeatures, checkout, featuredEngines, comparisons }: PricingPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, plural, path } = useI18n();
     const values = copyValues();
@@ -230,6 +230,21 @@ export default function Pricing({ content, paidFeatures, checkout, featuredEngin
                     </p>
                 </div>
             </Section>
+
+            {comparisons.length > 0 && (
+                <Section id="compare" title={content.compare.title} width="text">
+                    <p className="type-body text-foreground">{content.compare.body}</p>
+                    <ul className="type-body mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                        {comparisons.map((comparison) => (
+                            <li key={comparison.path}>
+                                <LocaleLink href={comparison.path} className={textLinkClasses('inline')}>
+                                    {comparison.title}
+                                </LocaleLink>
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+            )}
 
             <Section id="faq" title={content.faq.title} width="text">
                 <FaqList

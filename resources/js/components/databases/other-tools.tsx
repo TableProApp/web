@@ -10,6 +10,7 @@ import type { CitedTool, DatabaseLabels, OtherToolsContent } from './types';
 interface OtherToolsProps {
     content: OtherToolsContent;
     tools: CitedTool[];
+    comparisons: { path: string; title: string }[];
     labels: DatabaseLabels;
 }
 
@@ -25,7 +26,7 @@ type PlatformName = keyof DatabaseLabels['platformNames'];
  * were checked. A tool with a comparison page links to it. The text of a
  * cited-only tool's comparison notes comes from the page's `notes`.
  */
-export default function OtherTools({ content, tools, labels }: OtherToolsProps) {
+export default function OtherTools({ content, tools, comparisons, labels }: OtherToolsProps) {
     const { m, fmt } = useI18n();
     const strings = labels.otherTools;
     const byId = new Map(tools.map((tool) => [tool.id, tool]));
@@ -49,8 +50,9 @@ export default function OtherTools({ content, tools, labels }: OtherToolsProps) 
                             ? null
                             : fmt(strings.released, { version: tool.version, date: tool.released }),
                         tool.free ? strings.free : null,
-                        tool.licence.openSource && tool.licence.name !== null
-                            ? fmt(strings.openSource, { licence: tool.licence.name })
+                        // A named licence that is not open source (SSPL) still publishes the code.
+                        tool.licence.name !== null
+                            ? fmt(tool.licence.openSource ? strings.openSource : strings.sourceAvailable, { licence: tool.licence.name })
                             : tool.licence.openSource
                               ? null
                               : strings.closedSource,
@@ -82,7 +84,7 @@ export default function OtherTools({ content, tools, labels }: OtherToolsProps) 
                             {tool.comparePath !== null && (
                                 <p>
                                     <LocaleLink href={tool.comparePath} className={textLinkClasses('standalone')}>
-                                        {fmt(strings.compare, { name: tool.name })}
+                                        {tool.compareTitle ?? fmt(strings.compare, { name: tool.name })}
                                         <span aria-hidden="true">→</span>
                                     </LocaleLink>
                                 </p>
@@ -103,6 +105,20 @@ export default function OtherTools({ content, tools, labels }: OtherToolsProps) 
                         </div>
                     );
                 })}
+                {comparisons.length > 0 && (
+                    <div id="more-comparisons" className="space-y-2">
+                        <h3 className="type-h3 text-foreground">{strings.more}</h3>
+                        <ul className="type-body flex flex-wrap gap-x-6 gap-y-2">
+                            {comparisons.map((comparison) => (
+                                <li key={comparison.path}>
+                                    <LocaleLink href={comparison.path} className={textLinkClasses('inline')}>
+                                        {comparison.title}
+                                    </LocaleLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
                 {checked !== null && <p className="type-small text-muted-foreground">{fmt(strings.checked, { date: checked })}</p>}
             </div>
         </Section>
