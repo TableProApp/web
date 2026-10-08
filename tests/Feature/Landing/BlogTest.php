@@ -22,8 +22,11 @@ require_once __DIR__ . '/../Releases/ReleaseFixtures.php';
 /*
  * The blog (sitemap §A.5, §C.5, §E.6; architecture §1.1, §1.9, §1.17).
  *
- * - `/blog` lists exactly the posts on disk, newest first. The four guides
- *   merged into other pages are gone, and their URLs redirect.
+ * - `/blog` lists exactly the posts on disk, newest first, the guides apart
+ *   from the release posts. The four old guides merged into other pages are
+ *   gone, and their URLs redirect.
+ * - A guide is written in English and Vietnamese, with no archive note and no
+ *   release notes, and relates to other guides only.
  * - Release posts are an English-only archive: the date and title as
  *   published, each figure a `blog-{slug}-{n}` slot whose
  *   manifest entry keeps the original image as its source, the `content-…`
@@ -60,10 +63,20 @@ const BLOG_PUBLISHED = [
     'tablepro-0-67' => '2026-08-21',
 ];
 
-/** The guides merged into other pages (sitemap §C.5), with where each one went. */
+/** The guides, each in English and Vietnamese, with their published dates. */
+const BLOG_GUIDES = [
+    'claude-code-cursor-database-mcp' => '2026-10-08',
+    'connect-amazon-rds-mac' => '2026-10-08',
+    'connect-postgresql-mysql-docker-mac' => '2026-10-08',
+    'import-csv-postgresql-mysql' => '2026-10-08',
+    'open-sqlite-file-mac' => '2026-10-08',
+    'postgresql-ssh-tunnel-mac' => '2026-10-08',
+];
+
 /** Tags no page covers: the one every release post carries, and a claim the site does not make. */
 const BLOG_TAGS_WITHOUT_A_PAGE = ['release', 'performance'];
 
+/** The guides merged into other pages (sitemap §C.5), with where each one went. */
 const BLOG_MERGED = [
     'mcp-database-claude' => '/features/ai-mcp#mcp',
     'cloudflare-d1-mac' => '/cloudflare-d1-client',
@@ -85,13 +98,27 @@ function blogFiles(): array
 }
 
 /**
- * A post's front matter.
+ * A post's front matter, in English or in a translation.
  *
  * @return array<string, mixed>
  */
-function blogMatter(string $slug): array
+function blogMatter(string $slug, string $locale = 'en'): array
 {
-    return YamlFrontMatter::parseFile(resource_path("blog/{$slug}.md"))->matter();
+    return YamlFrontMatter::parseFile(resource_path($locale === 'en' ? "blog/{$slug}.md" : "blog/{$locale}/{$slug}.md"))->matter();
+}
+
+/**
+ * Every post's slug in index order: the newest first, a day's posts by slug.
+ *
+ * @return list<string>
+ */
+function blogIndexOrder(): array
+{
+    $dates = [...BLOG_GUIDES, ...BLOG_PUBLISHED];
+    $slugs = array_keys($dates);
+    usort($slugs, fn(string $a, string $b): int => [$dates[$b], $a] <=> [$dates[$a], $b]);
+
+    return $slugs;
 }
 
 /**
@@ -107,7 +134,7 @@ function blogSlotIds(string $html): array
 }
 
 it('lists exactly the posts on disk, newest first', function (): void {
-    $expected = array_keys(BLOG_PUBLISHED);
+    $expected = blogIndexOrder();
 
     expect(blogFiles())->toBe(collect($expected)->sort()->values()->all());
 
@@ -127,9 +154,78 @@ it('lists exactly the posts on disk, newest first', function (): void {
             ->where('posts', fn($posts): bool => collect($posts)->pluck('slug')->all() === $expected)
             ->where('posts.0.url', '/blog/' . $expected[0])
             ->where('posts.0.locale', 'en')
-            ->where('posts.0.date', BLOG_PUBLISHED[$expected[0]])
-            ->where('posts.0.dateFormatted', 'October 2, 2026'));
+            ->where('posts.0.date', BLOG_GUIDES[$expected[0]])
+            ->where('posts.0.dateFormatted', 'October 8, 2026')
+            ->where('posts', fn($posts): bool => collect($posts)->every(
+                fn(array $post): bool => $post['kind'] === (array_key_exists($post['slug'], BLOG_GUIDES) ? 'guide' : 'release'),
+            )));
 });
+
+it('keeps the guides and the release posts apart: a guide announces no release', function (): void {
+    foreach (blogFiles() as $slug) {
+        expect(array_key_exists('release', blogMatter($slug)))->toBe(array_key_exists($slug, BLOG_PUBLISHED), "{$slug}: a release post names its release, a guide does not");
+    }
+
+    expect(array_intersect_key(BLOG_GUIDES, BLOG_PUBLISHED))->toBe([]);
+});
+
+it('renders each guide in English and Vietnamese, as a guide', function (string $slug, string $locale): void {
+    $prefix = $locale === 'en' ? '' : "/{$locale}";
+    $matter = blogMatter($slug, $locale);
+
+    $this->get("{$prefix}/blog/{$slug}")
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->component('Blog/Post')
+            ->where('locale', $locale)
+            ->where('seo.robots', 'index, follow')
+            ->where('seo.canonical', "https://localhost{$prefix}/blog/{$slug}")
+            ->where('seo.alternates', fn($alternates): bool => collect($alternates)->pluck('hreflang')->sort()->values()->all() === ['en', 'vi'])
+            ->where('post.slug', $slug)
+            ->where('post.locale', $locale)
+            ->where('post.kind', 'guide')
+            ->where('post.title', $matter['title'])
+            ->where('post.date', BLOG_GUIDES[$slug])
+            ->where('post.release', null)
+            ->where('archived', false)
+            ->where('correction', null)
+            ->where('notes', null)
+            ->where('pages', fn($pages): bool => count($pages) > 0)
+            ->has('related', 3)
+            ->where('related', fn($related): bool => collect($related)->every(
+                fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === $locale && $post['slug'] !== $slug,
+            )));
+})->with(fn(): array => collect(array_keys(BLOG_GUIDES))->crossJoin(['en', 'vi'])->all());
+
+it('gives each guide a Vietnamese version under the same slug and tags', function (): void {
+    foreach (array_keys(BLOG_GUIDES) as $slug) {
+        expect(File::exists(resource_path("blog/vi/{$slug}.md")))->toBeTrue("{$slug} has no Vietnamese version");
+        expect(blogMatter($slug, 'vi')['tags'])->toBe(blogMatter($slug)['tags'], "{$slug}: the translation links other pages than the original");
+    }
+
+    expect(glob(resource_path('blog/vi/*.md')))->toHaveCount(count(BLOG_GUIDES));
+});
+
+it('links each guide to the database and feature pages it is about', function (string $slug, array $hrefs): void {
+    $this->get("/blog/{$slug}")
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page->where('pages', fn($pages): bool => collect($pages)->pluck('href')->all() === $hrefs));
+})->with([
+    'SSH tunnel' => ['postgresql-ssh-tunnel-mac', ['/postgresql-client', '/features/connections#ssh']],
+    'Docker' => ['connect-postgresql-mysql-docker-mac', ['/postgresql-client', '/mysql-client', '/features/connections#project-folder']],
+    'SQLite' => ['open-sqlite-file-mac', ['/sqlite-client', '/features/import-export#files', '/features/querying#editor']],
+    'Amazon RDS' => ['connect-amazon-rds-mac', ['/postgresql-client', '/mysql-client', '/features/connections#cloud-auth', '/features/connections#ssh']],
+    'CSV import' => ['import-csv-postgresql-mysql', ['/postgresql-client', '/mysql-client', '/features/import-export#import', '/features/import-export#data-files']],
+    'MCP' => ['claude-code-cursor-database-mcp', ['/features/ai-mcp#mcp', '/postgresql-client', '/mysql-client']],
+]);
+
+it('relates a release post to other release posts only', function (string $slug): void {
+    $this->get("/blog/{$slug}")
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page->where('related', fn($related): bool => collect($related)->every(
+            fn(array $post): bool => $post['kind'] === 'release',
+        )));
+})->with(array_keys(BLOG_PUBLISHED));
 
 it('removes the merged guides, whose URLs now redirect', function (string $slug, string $target): void {
     expect(File::exists(resource_path("blog/{$slug}.md")))->toBeFalse();
@@ -372,8 +468,9 @@ it('chooses related posts by shared topic first, then by closeness in time, and 
     }
 });
 
-it('renders /vi/blog in Vietnamese, unindexed, listing the English posts as English', function (): void {
+it('renders /vi/blog in Vietnamese, unindexed, listing the guides in Vietnamese and the release posts as English', function (): void {
     $response = $this->get('/vi/blog');
+    $first = count(BLOG_GUIDES);
 
     $response
         ->assertOk()
@@ -384,12 +481,15 @@ it('renders /vi/blog in Vietnamese, unindexed, listing the English posts as Engl
             ->where('seo.canonical', null)
             ->where('seo.alternates', [])
             ->where('content.seo.indexable', false)
-            ->has('posts', count(BLOG_PUBLISHED))
-            ->where('posts.0.slug', 'tablepro-0-77')
-            ->where('posts.0.locale', 'en')
-            ->where('posts.0.url', '/blog/tablepro-0-77')
-            ->where('posts.0.title', blogMatter('tablepro-0-77')['title'])
-            ->where('posts.0.dateFormatted', '2 tháng 10 năm 2026')
+            ->has('posts', count(BLOG_GUIDES) + count(BLOG_PUBLISHED))
+            ->where('posts', fn($posts): bool => collect($posts)->take($first)->every(
+                fn(array $post): bool => $post['kind'] === 'guide' && $post['locale'] === 'vi' && $post['url'] === "/vi/blog/{$post['slug']}",
+            ))
+            ->where("posts.{$first}.slug", 'tablepro-0-77')
+            ->where("posts.{$first}.locale", 'en')
+            ->where("posts.{$first}.url", '/blog/tablepro-0-77')
+            ->where("posts.{$first}.title", blogMatter('tablepro-0-77')['title'])
+            ->where("posts.{$first}.dateFormatted", '2 tháng 10 năm 2026')
             ->where('localization.switcher.0.href', '/blog'));
 
     expect($response->getContent())->toContain('<html lang="vi"');
@@ -460,7 +560,7 @@ describe('with posts that exist only for the test', function (): void {
                 ->has('posts', 2));
     });
 
-    it('renders a translation in its language, related only to posts in that language', function (): void {
+    it('renders a translation in its language, related only to posts in that language and of its kind', function (): void {
         $this->get('/vi/blog/a-guide')
             ->assertOk()
             ->assertInertia(fn(AssertableInertia $page) => $page
@@ -476,7 +576,7 @@ describe('with posts that exist only for the test', function (): void {
             ->assertOk()
             ->assertInertia(fn(AssertableInertia $page) => $page
                 ->where('post.locale', 'en')
-                ->where('related', fn($related): bool => collect($related)->pluck('slug')->all() === ['a-release']));
+                ->where('related', []));
     });
 
     it('renders a post without the blog copy, with no correction', function (): void {
@@ -565,7 +665,9 @@ describe('server-rendered', function (): void {
 
     it('offers the newsletter on the index in the footer’s words', function (string $path, string $title, string $body): void {
         $main = Dom\HTMLDocument::createFromString((string) $this->get($path)->getContent(), LIBXML_NOERROR)->querySelector('main');
-        $card = $main->querySelector('section:has(input[type="email"])');
+        // The card sits inside the release notes section; the innermost section holding the form is the card.
+        $sections = $main->querySelectorAll('section:has(input[type="email"])');
+        $card = $sections->item($sections->length - 1);
 
         /*
          * The footer leaves its own copy out on this page, so both are read
@@ -577,6 +679,23 @@ describe('server-rendered', function (): void {
     })->with([
         ['/blog', 'Release notes by email', 'Occasional emails with release notes.'],
         ['/vi/blog', 'Ghi chú phát hành qua email', 'Thỉnh thoảng một email, viết bằng tiếng Anh, về các bản phát hành.'],
+    ]);
+
+    it('lists the guides, then the release posts under the line that says what they are', function (string $path, string $guides, string $releases, string $lead): void {
+        $document = Dom\HTMLDocument::createFromString((string) $this->get($path)->getContent(), LIBXML_NOERROR);
+        $main = $document->querySelector('main');
+        $sections = array_map(fn($section): string => $section->getAttribute('id'), iterator_to_array($document->querySelectorAll('main > section[id]')));
+
+        expect(array_values($sections))->toBe(['guides', 'releases'])
+            ->and($main->querySelector('#guides-title')?->textContent)->toBe($guides)
+            ->and($main->querySelector('#releases-title')?->textContent)->toBe($releases)
+            ->and($main->querySelector('#releases')?->textContent)->toContain($lead)
+            ->and($main->querySelector('h1 + *')?->textContent ?? '')->not->toContain($lead)
+            ->and($main->querySelectorAll('#guides ol > li')->length)->toBe(count(BLOG_GUIDES))
+            ->and($main->querySelectorAll('#releases ol > li')->length)->toBe(count(BLOG_PUBLISHED));
+    })->with([
+        ['/blog', 'Guides', 'Release notes', 'Not every release gets a post.'],
+        ['/vi/blog', 'Hướng dẫn', 'Ghi chú phát hành', 'Không phải phiên bản nào cũng có bài viết.'],
     ]);
 
     it('separates an English-only label from the post title with a real space', function (): void {

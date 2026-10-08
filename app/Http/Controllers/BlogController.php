@@ -23,12 +23,14 @@ use Throwable;
 /**
  * The blog: `/blog`, `/vi/blog` and `/blog/{slug}` (sitemap §A.5, §E.6).
  *
- * Every retained post is an English release announcement. `/vi/blog` lists
- * them under Vietnamese chrome, each marked as English and linked at its
- * English URL; it renders without being indexed, which `seo.indexable: false`
- * in `content/vi/blog.json` decides. `/vi/blog/{slug}` never wraps an English
- * body: `EnsurePageRenders` answers it with a 404 that links the English post
- * by its title (`MissingTranslationException::forEntry()`).
+ * Two kinds of post: release announcements, an English-only archive, and
+ * guides, each with a Vietnamese version under `resources/blog/vi`. `/vi/blog`
+ * lists the Vietnamese guides and the English release posts, each of those
+ * marked as English and linked at its English URL; it renders without being
+ * indexed, which `seo.indexable: false` in `content/vi/blog.json` decides.
+ * `/vi/blog/{slug}` never wraps an English body: `EnsurePageRenders` answers
+ * it with a 404 that links the English post by its title
+ * (`MissingTranslationException::forEntry()`).
  *
  * Only posts the page registry renders are listed or offered as related, so a
  * merged post whose file came back would still never be linked while its URL
@@ -143,9 +145,10 @@ class BlogController extends Controller
     }
 
     /**
-     * Up to three other posts in the same language: those sharing the most
-     * topics first, then those published closest in time, so a release post
-     * links its neighbours rather than whatever happens to be newest.
+     * Up to three other posts in the same language and of the same kind: those
+     * sharing the most topics first, then those published closest in time, so
+     * a release post links its neighbours rather than whatever happens to be
+     * newest, and a guide links other guides rather than version news.
      *
      * The ranking only chooses the three. They are shown newest first, like
      * every other dated list on the site: in ranking order the dates read
@@ -158,7 +161,7 @@ class BlogController extends Controller
         $topics = array_diff($post->tags, [self::COMMON_TAG]);
         $candidates = array_values(array_filter(
             $this->published($this->blog->all($post->locale)),
-            static fn(Post $other): bool => $other->slug !== $post->slug,
+            static fn(Post $other): bool => $other->slug !== $post->slug && $other->kind() === $post->kind(),
         ));
 
         $rank = static fn(Post $other): array => [

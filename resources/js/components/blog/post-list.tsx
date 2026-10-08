@@ -7,6 +7,7 @@ export interface PostSummary {
     slug: string;
     /** The language the post is written in. */
     locale: Locale;
+    kind: 'guide' | 'release';
     title: string;
     description: string;
     /** `YYYY-MM-DD`, the original publication date. */

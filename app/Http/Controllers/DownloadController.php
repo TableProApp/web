@@ -55,7 +55,7 @@ class DownloadController extends Controller
      * The newest release post whose URL is a page, in the reader's language
      * when it is written in it.
      *
-     * @return array{slug: string, locale: string, title: string, description: string, date: string, dateFormatted: string, url: string}|null
+     * @return array{slug: string, locale: string, kind: string, title: string, description: string, date: string, dateFormatted: string, url: string}|null
      */
     private function latestPost(BlogService $blog, PageRegistry $registry, string $locale): ?array
     {

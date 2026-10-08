@@ -2,7 +2,9 @@ import type { Messages } from '../../types.ts';
 
 export default {
     "index": {
-        "empty": "尚無文章。"
+        "empty": "尚無文章。",
+        "guides": "指南",
+        "releases": "版本說明"
     },
     "latest": "部分版本也會在部落格發佈文章。最新一篇是<post>{title}</post>。",
     "post": {
