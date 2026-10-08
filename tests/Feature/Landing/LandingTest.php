@@ -41,6 +41,7 @@ function landingFamilies(): array
         'landing.ios' => ['Ios', ['content', 'ios', 'engines']],
         'landing.pricing' => ['Pricing', ['content', 'checkout', 'paidFeatures']],
         'landing.faq' => ['Faq', ['content', 'facts', 'platforms']],
+        'landing.security' => ['Security', ['content.sections.0.items', 'facts.macSafeModeLevels', 'links.email']],
         'landing.privacy' => ['Privacy', ['document.title', 'document.html', 'document.toc']],
         'landing.terms' => ['Terms', ['document.title', 'document.html', 'document.toc']],
         'landing.refundPolicy' => ['RefundPolicy', ['document.title', 'document.html', 'document.toc']],

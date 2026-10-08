@@ -44,4 +44,4 @@ Route::get('/robots.txt', function () {
     return response($content, 200, ['Content-Type' => 'text/plain']);
 })->name('web.robots');
 
-Route::get('/.well-known/security.txt', SecurityTxtController::class)->name('web.security');
+Route::get(SecurityTxtController::PATH, SecurityTxtController::class)->name('web.security');

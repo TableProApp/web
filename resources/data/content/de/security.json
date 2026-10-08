@@ -1,0 +1,265 @@
+{
+    "seo": {
+        "title": "Sicherheit und Melden von Schwachstellen",
+        "description": "Wo TablePro Zugangsdaten speichert, was die Apps senden, wie sie signiert und aktualisiert werden, was Safe Mode abdeckt und wie du Lücken meldest."
+    },
+    "og": {
+        "kicker": "Sicherheit",
+        "title": "Sicherheit in TablePro"
+    },
+    "header": {
+        "title": "Sicherheit",
+        "lead": "Wo TablePro deine Zugangsdaten speichert, was die Apps senden, wie sie signiert und aktualisiert werden und wo jeder Schutz endet."
+    },
+    "breadcrumb": "Sicherheit",
+    "jump": "Auf dieser Seite",
+    "limits": "Relevante Einschränkungen",
+    "more": "Mehr dazu",
+    "sections": [
+        {
+            "id": "credentials",
+            "title": "Wo Zugangsdaten liegen",
+            "items": [
+                {
+                    "id": "mac-keychain",
+                    "title": "Auf dem Mac",
+                    "text": "Passwörter, Passphrasen von Schlüsseln, API-Schlüssel von KI-Anbietern und der Lizenzschlüssel liegen im macOS-Schlüsselbund. Die Verbindungsliste auf dem Datenträger enthält keine Passwörter, und ein SSH-Schlüssel bleibt eine Datei auf dem Datenträger."
+                },
+                {
+                    "id": "ios-keychain",
+                    "title": "Auf iPhone und iPad",
+                    "text": "Passwörter und eingefügte SSH-Schlüssel liegen im Schlüsselbund."
+                },
+                {
+                    "id": "icloud",
+                    "title": "iCloud Sync",
+                    "text": "iCloud Sync ist aus, bis du es aktivierst. Die Datensätze gehen in eine private Datenbank in deinem eigenen iCloud-Konto, die TablePro nicht lesen kann, und enthalten keine Passwörter. Passwörter werden nur synchronisiert, wenn du auf dem Mac zusätzlich <ui>Passwords</ui> oder auf iPhone und iPad <ui>Sync Passwords</ui> aktivierst, und laufen dann über den iCloud-Schlüsselbund."
+                },
+                {
+                    "id": "not-sent",
+                    "title": "Was TablePro erhält",
+                    "text": "Deine Abfragen, ihre Ergebnisse und deine Passwörter werden nicht an TablePro gesendet. Die Ausnahme ist eine Team Library, in der du bewusst veröffentlichst: Sie erhält Verbindungseinstellungen und gespeicherte Abfragen, nie Passwörter."
+                }
+            ],
+            "limits": [
+                "Auf dem Mac überträgt die Passwortsynchronisierung auch die API-Schlüssel von KI-Anbietern und den Lizenzschlüssel.",
+                "Eine Passwortquelle wie 1Password oder ein Shell-Befehl führt bei jedem Verbinden ein Programm auf deinem Mac aus."
+            ],
+            "links": [
+                {
+                    "label": "Zugangsdaten und Passwortquellen",
+                    "href": "/features/connections#credentials"
+                },
+                {
+                    "label": "Was iCloud Sync überträgt",
+                    "href": "/features/sync-and-teams#icloud-sync"
+                }
+            ]
+        },
+        {
+            "id": "network",
+            "title": "Was dein Gerät verlässt",
+            "items": [
+                {
+                    "id": "your-servers",
+                    "title": "An deine Server und Anbieter",
+                    "text": "Abfragen und Ergebnisse laufen zwischen der App und deinen eigenen Datenbankservern, nie über TablePro. KI-Anfragen gehen direkt an den Anbieter, den du hinzufügst."
+                },
+                {
+                    "id": "to-tablepro",
+                    "title": "An TablePro",
+                    "text": "Ohne aktivierte Lizenz sendet die Mac-App an TablePro nur einen täglichen Nutzungsbericht, standardmäßig aktiv und in den Einstellungen abschaltbar. Auf iPhone und iPad geht nichts an TablePro, solange du Share Usage Data nicht aktivierst. Ein Bericht enthält niemals Hostnamen, Benutzernamen, Passwörter, Abfragen oder Zeilen, und keine der beiden Apps enthält einen Absturzmelder oder eine Analysebibliothek von Dritten."
+                }
+            ],
+            "limits": [
+                "Die Mac-App sendet ihren ersten Nutzungsbericht ohne Nachfrage, und unser Server speichert die IP-Adresse jedes Berichts und jeder Lizenzprüfung."
+            ],
+            "links": [
+                {
+                    "label": "Datenschutzerklärung: was die Mac-App sendet",
+                    "href": "/privacy#mac-app"
+                },
+                {
+                    "label": "Datenschutzerklärung: was die App für iPhone und iPad sendet",
+                    "href": "/privacy#ios-app"
+                },
+                {
+                    "label": "Alle ausgehenden Anfragen",
+                    "docs": "/security/privacy"
+                }
+            ]
+        },
+        {
+            "id": "distribution",
+            "title": "Wie die Apps zu dir kommen",
+            "items": [
+                {
+                    "id": "signing",
+                    "title": "Signiert und notarisiert",
+                    "text": "Mac-Builds sind mit einer Developer ID signiert, nutzen die Hardened Runtime und sind von Apple notarisiert. Die Disk-Images liegen auf GitHub Releases, jedes mit einer SHA-256-Prüfsumme. Der Homebrew-Cask lädt dasselbe Image herunter und prüft seine SHA-256."
+                },
+                {
+                    "id": "updates",
+                    "title": "Updates",
+                    "text": "Die Mac-App aktualisiert sich über Sparkle und prüft die EdDSA-Signatur jedes Updates vor der Installation mit dem öffentlichen Schlüssel in der App. Diese Prüfung lässt sich nicht abschalten. Automatische Updates schon, in den Einstellungen oder über ein Konfigurationsprofil."
+                },
+                {
+                    "id": "plugins",
+                    "title": "Treiber-Plugins",
+                    "text": "Treiber, die nicht mit der Mac-App geliefert werden, kommen von GitHub. Jeder muss zur SHA-256 im Plugin-Verzeichnis passen und eine gültige Codesignatur tragen: die von TablePro oder die Developer ID eines anderen Entwicklers, sobald du diesem Entwickler namentlich vertraust."
+                },
+                {
+                    "id": "app-store",
+                    "title": "iPhone und iPad",
+                    "text": "Die App für iPhone und iPad ist im App Store, der auch ihre Updates liefert. Ihre Treiber sind eingebaut, und sie lädt keine Plugins herunter."
+                }
+            ],
+            "limits": [
+                "Die Mac-App nutzt keine macOS App Sandbox: Sie läuft mit dem Zugriff deines Benutzerkontos auf Dateien und Netzwerk.",
+                "Ein Treiber-Plugin läuft als Teil von TablePro und kann die Zugangsdaten jeder Verbindung lesen, die du öffnest."
+            ],
+            "links": [
+                {
+                    "label": "Download und Updates",
+                    "href": "/download#updates"
+                },
+                {
+                    "label": "Verwaltete Updates",
+                    "docs": "/security/managed-updates"
+                },
+                {
+                    "label": "Plugins",
+                    "docs": "/features/plugins"
+                }
+            ]
+        },
+        {
+            "id": "safe-mode",
+            "title": "Was eine Datenbank vor Fehlern schützt",
+            "items": [
+                {
+                    "id": "levels",
+                    "title": "Safe-Mode-Stufen",
+                    "text": "Jede Verbindung hat eine Safe-Mode-Stufe: {macSafeModeLevels}. Alert fragt vor einem Schreibvorgang, die Safe-Mode-Stufen verlangen zusätzlich Touch ID oder dein Mac-Passwort, die Stufen mit (Full) fragen auch vor Lesevorgängen, und Read-Only verweigert Schreibvorgänge. Eine Organisation kann auf ihren Macs per Konfigurationsprofil eine Mindeststufe erzwingen. Auf iPhone und iPad heißen die Stufen {iosSafeModeLevels}."
+                },
+                {
+                    "id": "destructive",
+                    "title": "Zerstörerische Anweisungen",
+                    "text": "Auf jeder Stufe am Mac stoppen DROP, TRUNCATE und ein DELETE ohne WHERE und fragen zuerst, mit der vollständigen Anweisung."
+                }
+            ],
+            "limits": [
+                "Safe Mode läuft in TablePro und schützt vor Fehlern. Er ist keine Sandbox und kein Berechtigungssystem: Für eine Regel, die gelten muss, nutze die Rechte der Datenbank selbst.",
+                "Neue Verbindungen starten mit {macSafeModeDefault}, wo Anweisungen unverändert laufen, auch ein UPDATE ohne WHERE.",
+                "In den Chat-Modi Edit und Agent kann der KI-Assistent Anweisungen ausführen, und bei {macSafeModeDefault} schreibt er ohne Nachfrage. Agent mode, der das ganze Fenster nutzt, hält seine Verbindung auf Alert oder strenger. Das ist eine Erinnerung, keine Sperre."
+            ],
+            "links": [
+                {
+                    "label": "Safe Mode für Produktionsverbindungen",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "Chat-Modi und Agent mode",
+                    "href": "/features/ai-mcp#agent-mode"
+                },
+                {
+                    "label": "Safe Mode",
+                    "docs": "/features/safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "Der MCP-Server",
+            "items": [
+                {
+                    "id": "local",
+                    "title": "Nur auf deinem Mac",
+                    "text": "Der MCP-Server gibt es nur in der Mac-App, und er bleibt aus, bis du ihn einschaltest oder ein eingerichteter Client ihn startet. Er lauscht auf {mcpHost}, ohne Remote-Modus, und Clients sehen nie ein Passwort."
+                },
+                {
+                    "id": "approval",
+                    "title": "Wie ein Client freigegeben wird",
+                    "text": "Standardmäßig braucht jede Anfrage ein Token mit einem Bereich (Read Only, Read & Write oder Full Access), und ein Dialog auf deinem Mac fragt dich, wenn ein Client zum ersten Mal auf eine Verbindung zugreift."
+                },
+                {
+                    "id": "permissions",
+                    "title": "Was ein Client darf",
+                    "text": "Jede Verbindung legt fest, was externe Clients dürfen: Blocked, Read Only (Standard) oder Read & Write. Schreibvorgänge laufen weiter durch ihre Safe-Mode-Stufe, DROP und TRUNCATE brauchen ein Full-Access-Token und jedes Mal deine Zustimmung, und jeder Aufruf wird auf deinem Mac protokolliert."
+                }
+            ],
+            "limits": [
+                "{mcpHost} sagt, wo der Server lauscht, nicht, wer ihn erreicht. Jedes Programm auf deinem Mac kann sich verbinden, ebenso eine auf claude.ai oder app.cursor.com geöffnete Seite. Jeder braucht trotzdem ein Token, also lass die Authentifizierung eingeschaltet.",
+                "Was ein Client liest, sendet er an seinen eigenen KI-Dienst, zu dessen Bedingungen."
+            ],
+            "links": [
+                {
+                    "label": "MCP-Server und Rechte der Clients",
+                    "href": "/features/ai-mcp#mcp"
+                },
+                {
+                    "label": "MCP-Token und Bereiche",
+                    "docs": "/external-api/tokens"
+                }
+            ]
+        },
+        {
+            "id": "open-source",
+            "title": "Open Source",
+            "items": [
+                {
+                    "id": "source",
+                    "title": "Der Code ist öffentlich",
+                    "text": "Beide Apps sind quelloffen unter der AGPLv3, einschließlich des Codes der Bezahlfunktionen. Was diese Seite beschreibt, lässt sich im Repository nachlesen, zusammen mit den Skripten, die jede Version signieren und notarisieren, und du kannst die Mac-App selbst bauen."
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "Quellcode auf GitHub",
+                    "to": "github"
+                },
+                {
+                    "label": "Lizenztext der AGPLv3",
+                    "to": "license"
+                },
+                {
+                    "label": "Aus dem Quellcode bauen",
+                    "docs": "/development/building"
+                }
+            ]
+        },
+        {
+            "id": "report",
+            "title": "Eine Schwachstelle melden",
+            "items": [
+                {
+                    "id": "contact",
+                    "title": "So meldest du",
+                    "text": "Schreibe an <email>{email}</email> oder <advisory>melde sie vertraulich auf GitHub</advisory>, auf Englisch oder Vietnamesisch. Eröffne für eine Schwachstelle kein öffentliches Issue, keine Diskussion und keinen Pull Request."
+                },
+                {
+                    "id": "include",
+                    "title": "Was hineingehört",
+                    "text": "Was betroffen ist und in welcher Version: die Mac-App, die App für iPhone und iPad, ein Plugin oder diese Website. Nenne die macOS- oder iOS-Version, den Datenbanktyp, wenn ein Treiber beteiligt ist, die Schritte oder einen Proof of Concept und was ein Angreifer gewinnt."
+                },
+                {
+                    "id": "fixes",
+                    "title": "Welche Versionen Korrekturen erhalten",
+                    "text": "Nur die neueste Version jeder App und jedes Plugins erhält Sicherheitskorrekturen. Prüfe daher vor der Meldung, ob das Problem in der neuesten Version noch besteht."
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "Sicherheitsrichtlinie auf GitHub",
+                    "to": "securityPolicy"
+                },
+                {
+                    "label": "security.txt",
+                    "to": "securityTxt"
+                }
+            ]
+        }
+    ]
+}

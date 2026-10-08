@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Content\SiteFacts;
+use App\Support\Localization\Locales;
 use App\Support\Localization\LocalizedUrl;
 use Illuminate\Http\Response;
 
@@ -11,6 +12,8 @@ use Illuminate\Http\Response;
  */
 class SecurityTxtController extends Controller
 {
+    public const PATH = '/.well-known/security.txt';
+
     /**
      * The date the contact below stops being vouched for. Move it forward,
      * less than a year ahead, after checking the address still reaches someone.
@@ -27,7 +30,8 @@ class SecurityTxtController extends Controller
             'Contact: mailto:' . $email,
             'Expires: ' . self::EXPIRES,
             'Preferred-Languages: en, vi',
-            'Canonical: ' . LocalizedUrl::base() . '/.well-known/security.txt',
+            'Canonical: ' . LocalizedUrl::base() . self::PATH,
+            'Policy: ' . LocalizedUrl::route('landing.security', [], Locales::default()),
         ];
 
         return response(implode("\n", $lines) . "\n", 200, ['Content-Type' => 'text/plain; charset=utf-8']);

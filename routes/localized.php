@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IosController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\PricingController;
+use App\Http\Controllers\SecurityController;
 use App\Support\Content\Slugs\CompareSlugs;
 use App\Support\Content\Slugs\DatabaseSlugs;
 use App\Support\Content\Slugs\FeatureSlugs;
@@ -48,6 +49,7 @@ Route::get('/download', DownloadController::class)->name('landing.download');
 Route::get('/ios', IosController::class)->name('landing.ios');
 Route::get('/pricing', PricingController::class)->name('landing.pricing');
 Route::get('/faq', FaqController::class)->name('landing.faq');
+Route::get('/security', SecurityController::class)->name('landing.security');
 
 Route::get('/privacy', [LegalController::class, 'privacy'])->name('landing.privacy');
 Route::get('/terms', [LegalController::class, 'terms'])->name('landing.terms');

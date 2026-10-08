@@ -47,7 +47,7 @@ beforeEach(function (): void {
 const INTERNAL_LINKS_PLATFORM = ['account', 'checkout', 'thank-you', 'newsletter', 'api', 'beta', 'discount', 'webhooks', 'platform-build'];
 
 /** Paths this app serves that are not pages: crawler files. */
-const INTERNAL_LINKS_SYSTEM = ['/robots.txt', '/sitemap.xml'];
+const INTERNAL_LINKS_SYSTEM = ['/robots.txt', '/sitemap.xml', '/.well-known/security.txt'];
 
 /**
  * An internal href as path, query and fragment, or null for an external or

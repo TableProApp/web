@@ -1,0 +1,265 @@
+{
+    "seo": {
+        "title": "Bảo mật và báo cáo lỗ hổng",
+        "description": "TablePro lưu thông tin đăng nhập ở đâu, ứng dụng gửi đi những gì, được ký và cập nhật ra sao, Safe Mode bảo vệ tới đâu, và cách báo cáo lỗ hổng bảo mật."
+    },
+    "og": {
+        "kicker": "Bảo mật",
+        "title": "Bảo mật trong TablePro"
+    },
+    "header": {
+        "title": "Bảo mật",
+        "lead": "TablePro lưu thông tin đăng nhập của bạn ở đâu, ứng dụng gửi đi những gì, được ký và cập nhật ra sao, và mỗi lớp bảo vệ dừng lại ở đâu."
+    },
+    "breadcrumb": "Bảo mật",
+    "jump": "Trong trang này",
+    "limits": "Giới hạn nên biết",
+    "more": "Xem chi tiết",
+    "sections": [
+        {
+            "id": "credentials",
+            "title": "Thông tin đăng nhập được lưu ở đâu",
+            "items": [
+                {
+                    "id": "mac-keychain",
+                    "title": "Trên Mac",
+                    "text": "Mật khẩu, passphrase của key, API key của nhà cung cấp AI và license key được lưu trong Keychain của macOS. Danh sách connection trên đĩa không chứa mật khẩu, còn SSH key vẫn là một file trên đĩa."
+                },
+                {
+                    "id": "ios-keychain",
+                    "title": "Trên iPhone và iPad",
+                    "text": "Mật khẩu và SSH key dán vào được lưu trong Keychain."
+                },
+                {
+                    "id": "icloud",
+                    "title": "iCloud Sync",
+                    "text": "iCloud Sync tắt cho tới khi bạn bật. Dữ liệu đồng bộ được lưu vào một cơ sở dữ liệu riêng tư trong tài khoản iCloud của chính bạn, nơi TablePro không đọc được, và không chứa mật khẩu. Mật khẩu chỉ được đồng bộ nếu bạn bật thêm mục <ui>Mật khẩu</ui> (Passwords) trên Mac hoặc <ui>Đồng bộ mật khẩu</ui> (Sync Passwords) trên iPhone và iPad, và khi đó đi qua iCloud Keychain."
+                },
+                {
+                    "id": "not-sent",
+                    "title": "TablePro nhận được gì",
+                    "text": "Các query bạn chạy, kết quả trả về và mật khẩu của bạn không được gửi cho TablePro. Ngoại lệ là Team Library mà bạn chủ động xuất bản lên: nơi này nhận cấu hình connection và query đã lưu, không bao giờ gồm mật khẩu."
+                }
+            ],
+            "limits": [
+                "Trên Mac, tính năng đồng bộ mật khẩu còn mang theo API key của nhà cung cấp AI và license key.",
+                "Nguồn mật khẩu như 1Password hay một lệnh shell sẽ chạy một chương trình trên máy Mac mỗi lần bạn kết nối."
+            ],
+            "links": [
+                {
+                    "label": "Thông tin đăng nhập và nguồn mật khẩu",
+                    "href": "/features/connections#credentials"
+                },
+                {
+                    "label": "iCloud Sync đồng bộ những gì",
+                    "href": "/features/sync-and-teams#icloud-sync"
+                }
+            ]
+        },
+        {
+            "id": "network",
+            "title": "Những gì rời khỏi thiết bị của bạn",
+            "items": [
+                {
+                    "id": "your-servers",
+                    "title": "Tới máy chủ và nhà cung cấp của bạn",
+                    "text": "Query và kết quả đi giữa ứng dụng và máy chủ cơ sở dữ liệu của chính bạn, không bao giờ qua TablePro. Yêu cầu AI đi thẳng tới nhà cung cấp AI mà bạn thêm vào."
+                },
+                {
+                    "id": "to-tablepro",
+                    "title": "Tới TablePro",
+                    "text": "Khi chưa kích hoạt license, yêu cầu duy nhất mà ứng dụng cho Mac gửi tới TablePro là một báo cáo sử dụng mỗi ngày, bật sẵn và có thể tắt trong Cài đặt. Trên iPhone và iPad, không có gì được gửi tới TablePro trừ khi bạn bật Chia sẻ dữ liệu sử dụng (Share Usage Data). Báo cáo không bao giờ có hostname, username, mật khẩu, query hay dữ liệu trong các dòng, và cả hai ứng dụng đều không chứa công cụ báo lỗi (crash reporter) hay thư viện phân tích của bên thứ ba."
+                }
+            ],
+            "limits": [
+                "Ứng dụng cho Mac gửi báo cáo sử dụng đầu tiên mà không hỏi trước, và máy chủ của chúng tôi lưu địa chỉ IP của mọi báo cáo và mọi lần kiểm tra license."
+            ],
+            "links": [
+                {
+                    "label": "Chính sách quyền riêng tư: ứng dụng cho Mac gửi gì",
+                    "href": "/privacy#mac-app"
+                },
+                {
+                    "label": "Chính sách quyền riêng tư: ứng dụng cho iPhone và iPad gửi gì",
+                    "href": "/privacy#ios-app"
+                },
+                {
+                    "label": "Mọi yêu cầu gửi ra ngoài",
+                    "docs": "/security/privacy"
+                }
+            ]
+        },
+        {
+            "id": "distribution",
+            "title": "Ứng dụng đến tay bạn như thế nào",
+            "items": [
+                {
+                    "id": "signing",
+                    "title": "Được ký và notarize",
+                    "text": "Các bản build cho Mac được ký bằng Developer ID, dùng Hardened Runtime và được Apple notarize. Các file .dmg nằm trên GitHub Releases, mỗi file có một checksum SHA-256. Homebrew cask tải về đúng file đó và kiểm tra SHA-256 của nó."
+                },
+                {
+                    "id": "updates",
+                    "title": "Cập nhật",
+                    "text": "Ứng dụng cho Mac cập nhật qua Sparkle và kiểm tra chữ ký EdDSA của từng bản cập nhật bằng public key có sẵn trong ứng dụng trước khi cài. Bước kiểm tra này không tắt được. Tự động cập nhật thì tắt được, trong Cài đặt hoặc bằng configuration profile."
+                },
+                {
+                    "id": "plugins",
+                    "title": "Plugin driver",
+                    "text": "Driver không có sẵn trong ứng dụng cho Mac được tải về từ GitHub. Mỗi driver phải khớp với SHA-256 trong plugin registry và có chữ ký mã (code signature) hợp lệ: của chính TablePro, hoặc Developer ID của một nhà phát triển khác sau khi bạn đồng ý tin tưởng đích danh nhà phát triển đó."
+                },
+                {
+                    "id": "app-store",
+                    "title": "iPhone và iPad",
+                    "text": "Ứng dụng cho iPhone và iPad có trên App Store, và App Store cũng phân phối các bản cập nhật của nó. Driver được tích hợp sẵn, và ứng dụng không tải về plugin nào."
+                }
+            ],
+            "limits": [
+                "Ứng dụng cho Mac không dùng App Sandbox của macOS: nó chạy với quyền truy cập file và mạng của tài khoản người dùng của bạn.",
+                "Plugin driver chạy như một phần của TablePro và đọc được thông tin đăng nhập của mọi connection bạn mở."
+            ],
+            "links": [
+                {
+                    "label": "Tải về và cập nhật",
+                    "href": "/download#updates"
+                },
+                {
+                    "label": "Quản lý cập nhật trong tổ chức",
+                    "docs": "/security/managed-updates"
+                },
+                {
+                    "label": "Plugin",
+                    "docs": "/features/plugins"
+                }
+            ]
+        },
+        {
+            "id": "safe-mode",
+            "title": "Điều gì bảo vệ cơ sở dữ liệu khỏi thao tác nhầm",
+            "items": [
+                {
+                    "id": "levels",
+                    "title": "Các mức Safe Mode",
+                    "text": "Mỗi connection có một mức Safe Mode: {macSafeModeLevels}. Alert hỏi lại trước khi chạy câu lệnh ghi, hai mức Safe Mode và Safe Mode (Full) còn yêu cầu Touch ID hoặc mật khẩu máy Mac, các mức có hậu tố (Full) hỏi cả trước câu lệnh đọc, còn Read-Only từ chối câu lệnh ghi. Tổ chức của bạn có thể áp một mức tối thiểu cho các máy Mac qua configuration profile. Trên iPhone và iPad, các mức là {iosSafeModeLevels}."
+                },
+                {
+                    "id": "destructive",
+                    "title": "Câu lệnh phá hủy",
+                    "text": "Ở mọi mức trên Mac, DROP, TRUNCATE và DELETE không có WHERE luôn dừng lại để hỏi trước, kèm toàn bộ câu lệnh."
+                }
+            ],
+            "limits": [
+                "Safe Mode chạy bên trong TablePro và giúp tránh thao tác nhầm. Đây không phải sandbox hay hệ thống phân quyền: với quy tắc bắt buộc phải được tuân thủ, hãy dùng quyền của chính cơ sở dữ liệu.",
+                "Connection mới bắt đầu ở mức {macSafeModeDefault}, câu lệnh chạy ngay như bạn viết, kể cả UPDATE không có WHERE.",
+                "Ở chế độ Edit và Agent của chat, trợ lý AI chạy được câu lệnh, và ở mức {macSafeModeDefault} câu lệnh ghi của nó chạy luôn mà không hỏi. Agent mode chiếm cả cửa sổ giữ connection ở mức Alert hoặc nghiêm ngặt hơn; đây chỉ là lời nhắc, không phải cơ chế khóa."
+            ],
+            "links": [
+                {
+                    "label": "Safe Mode cho connection production",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "Chế độ chat và Agent mode",
+                    "href": "/features/ai-mcp#agent-mode"
+                },
+                {
+                    "label": "Safe Mode",
+                    "docs": "/features/safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "MCP server",
+            "items": [
+                {
+                    "id": "local",
+                    "title": "Chỉ chạy cục bộ",
+                    "text": "MCP server chỉ có trong ứng dụng cho Mac, và chỉ chạy khi bạn bật hoặc khi một client bạn đã cấu hình khởi động nó. Server lắng nghe trên {mcpHost}, không có chế độ truy cập từ xa, và client không bao giờ thấy mật khẩu."
+                },
+                {
+                    "id": "approval",
+                    "title": "Client được duyệt như thế nào",
+                    "text": "Theo mặc định, mọi yêu cầu đều cần một token có phạm vi (Read Only, Read & Write hoặc Full Access), và lần đầu một client truy cập một connection, một hộp thoại trên máy Mac sẽ hỏi bạn."
+                },
+                {
+                    "id": "permissions",
+                    "title": "Client làm được gì",
+                    "text": "Mỗi connection quy định client bên ngoài được làm gì: Blocked, Read Only (mặc định) hoặc Read & Write. Câu lệnh ghi vẫn phải qua mức Safe Mode của connection, DROP và TRUNCATE cần token Full Access và sự đồng ý của bạn mỗi lần, và mọi lệnh gọi đều được ghi lại trên máy Mac."
+                }
+            ],
+            "limits": [
+                "{mcpHost} cho biết server lắng nghe ở đâu, chứ không cho biết ai truy cập được. Chương trình nào trên máy Mac cũng kết nối được, và một trang đang mở trên claude.ai hay app.cursor.com cũng vậy. Bên nào cũng vẫn cần token, nên hãy luôn bật yêu cầu xác thực.",
+                "Những gì client đọc được, nó gửi tới dịch vụ AI của chính nó theo điều khoản của dịch vụ đó."
+            ],
+            "links": [
+                {
+                    "label": "MCP server và quyền của client",
+                    "href": "/features/ai-mcp#mcp"
+                },
+                {
+                    "label": "Token MCP và phạm vi",
+                    "docs": "/external-api/tokens"
+                }
+            ]
+        },
+        {
+            "id": "open-source",
+            "title": "Mã nguồn mở",
+            "items": [
+                {
+                    "id": "source",
+                    "title": "Mã nguồn công khai",
+                    "text": "Cả hai ứng dụng đều là mã nguồn mở theo giấy phép AGPLv3, kể cả phần mã của các tính năng trả phí. Những gì trang này mô tả đều đọc được trong kho mã nguồn, cùng các script ký và notarize từng bản phát hành, và bạn có thể tự build ứng dụng cho Mac."
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "Mã nguồn trên GitHub",
+                    "to": "github"
+                },
+                {
+                    "label": "Nội dung giấy phép AGPLv3",
+                    "to": "license"
+                },
+                {
+                    "label": "Build từ mã nguồn",
+                    "docs": "/development/building"
+                }
+            ]
+        },
+        {
+            "id": "report",
+            "title": "Báo cáo lỗ hổng bảo mật",
+            "items": [
+                {
+                    "id": "contact",
+                    "title": "Cách báo cáo",
+                    "text": "Gửi email tới <email>{email}</email>, hoặc <advisory>báo cáo riêng trên GitHub</advisory>, bằng tiếng Anh hoặc tiếng Việt. Đừng mở issue, discussion hay pull request công khai cho một lỗ hổng."
+                },
+                {
+                    "id": "include",
+                    "title": "Cần nêu những gì",
+                    "text": "Thành phần bị ảnh hưởng và phiên bản của nó: ứng dụng cho Mac, ứng dụng cho iPhone và iPad, một plugin hay trang web này. Thêm phiên bản macOS hoặc iOS, loại cơ sở dữ liệu nếu lỗi liên quan tới driver, các bước hoặc một proof of concept để tái hiện, và kẻ tấn công thu được gì."
+                },
+                {
+                    "id": "fixes",
+                    "title": "Phiên bản nào được vá",
+                    "text": "Chỉ bản phát hành mới nhất của mỗi ứng dụng và plugin được vá lỗi bảo mật, nên hãy kiểm tra lỗi vẫn còn ở bản mới nhất trước khi báo cáo."
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "Chính sách bảo mật trên GitHub",
+                    "to": "securityPolicy"
+                },
+                {
+                    "label": "security.txt",
+                    "to": "securityTxt"
+                }
+            ]
+        }
+    ]
+}

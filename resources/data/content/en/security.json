@@ -1,0 +1,265 @@
+{
+    "seo": {
+        "title": "Security and vulnerability reporting",
+        "description": "Where TablePro keeps credentials, what its apps send, how they are signed and updated, what Safe Mode covers, and how to report a vulnerability."
+    },
+    "og": {
+        "kicker": "Security",
+        "title": "Security in TablePro"
+    },
+    "header": {
+        "title": "Security",
+        "lead": "Where TablePro keeps your credentials, what its apps send, how they are signed and updated, and where each safeguard stops."
+    },
+    "breadcrumb": "Security",
+    "jump": "On this page",
+    "limits": "Limits worth knowing",
+    "more": "More detail",
+    "sections": [
+        {
+            "id": "credentials",
+            "title": "Where credentials live",
+            "items": [
+                {
+                    "id": "mac-keychain",
+                    "title": "On the Mac",
+                    "text": "Passwords, key passphrases, AI provider keys and the license key are stored in the macOS Keychain. The connection list on disk holds no passwords, and an SSH key stays a file on disk."
+                },
+                {
+                    "id": "ios-keychain",
+                    "title": "On iPhone and iPad",
+                    "text": "Passwords and pasted SSH keys are stored in the Keychain."
+                },
+                {
+                    "id": "icloud",
+                    "title": "iCloud Sync",
+                    "text": "iCloud Sync is off until you turn it on. Records go to a private database in your own iCloud account, which TablePro cannot read, and carry no passwords. Passwords sync only if you also turn on <ui>Passwords</ui> on the Mac or <ui>Sync Passwords</ui> on iPhone and iPad, and then through iCloud Keychain."
+                },
+                {
+                    "id": "not-sent",
+                    "title": "What TablePro receives",
+                    "text": "The queries you run, their results and your passwords are not sent to TablePro. The exception is a Team Library you choose to publish to: it receives connection settings and saved queries, never passwords."
+                }
+            ],
+            "limits": [
+                "On the Mac, password sync also carries AI provider keys and the license key.",
+                "A password source such as 1Password or a shell command runs a program on your Mac each time you connect."
+            ],
+            "links": [
+                {
+                    "label": "Credentials and password sources",
+                    "href": "/features/connections#credentials"
+                },
+                {
+                    "label": "What iCloud Sync carries",
+                    "href": "/features/sync-and-teams#icloud-sync"
+                }
+            ]
+        },
+        {
+            "id": "network",
+            "title": "What leaves your device",
+            "items": [
+                {
+                    "id": "your-servers",
+                    "title": "To your servers and providers",
+                    "text": "Queries and results travel between the app and your own database servers, never through TablePro. AI requests go straight to the provider you add."
+                },
+                {
+                    "id": "to-tablepro",
+                    "title": "To TablePro",
+                    "text": "With no license activated, the only request the Mac app makes to TablePro is a daily usage report, on by default and switchable in Settings. On iPhone and iPad, nothing goes to TablePro unless you turn on Share Usage Data. A report never carries hostnames, usernames, passwords, queries or rows, and neither app contains a crash reporter or a third-party analytics library."
+                }
+            ],
+            "limits": [
+                "The Mac app sends its first usage report without asking, and our server stores the IP address of every report and license check."
+            ],
+            "links": [
+                {
+                    "label": "Privacy policy: what the Mac app sends",
+                    "href": "/privacy#mac-app"
+                },
+                {
+                    "label": "Privacy policy: what the iPhone and iPad app sends",
+                    "href": "/privacy#ios-app"
+                },
+                {
+                    "label": "Every outbound request",
+                    "docs": "/security/privacy"
+                }
+            ]
+        },
+        {
+            "id": "distribution",
+            "title": "How the apps reach you",
+            "items": [
+                {
+                    "id": "signing",
+                    "title": "Signed and notarized",
+                    "text": "Mac builds are signed with a Developer ID, use the Hardened Runtime and are notarized by Apple. The disk images are on GitHub Releases, each with a SHA-256 checksum. The Homebrew cask downloads the same image and checks its SHA-256."
+                },
+                {
+                    "id": "updates",
+                    "title": "Updates",
+                    "text": "The Mac app updates through Sparkle and checks each update’s EdDSA signature against the public key inside the app before installing it. That check has no off switch. Automatic updates do, in Settings or in a configuration profile."
+                },
+                {
+                    "id": "plugins",
+                    "title": "Driver plugins",
+                    "text": "Drivers that do not come with the Mac app download from GitHub. Each must match the SHA-256 in the plugin registry and carry a valid code signature: TablePro’s own, or another developer’s Developer ID once you agree to trust that developer by name."
+                },
+                {
+                    "id": "app-store",
+                    "title": "iPhone and iPad",
+                    "text": "The iPhone and iPad app is on the App Store, which also delivers its updates. Its drivers are built in, and it downloads no plugins."
+                }
+            ],
+            "limits": [
+                "The Mac app does not use the macOS App Sandbox: it runs with your user account’s access to files and the network.",
+                "A driver plugin runs as part of TablePro and can read the credentials of every connection you open."
+            ],
+            "links": [
+                {
+                    "label": "Download and updates",
+                    "href": "/download#updates"
+                },
+                {
+                    "label": "Managed updates",
+                    "docs": "/security/managed-updates"
+                },
+                {
+                    "label": "Plugins",
+                    "docs": "/features/plugins"
+                }
+            ]
+        },
+        {
+            "id": "safe-mode",
+            "title": "What protects a database from a mistake",
+            "items": [
+                {
+                    "id": "levels",
+                    "title": "Safe Mode levels",
+                    "text": "Each connection has a Safe Mode level: {macSafeModeLevels}. Alert asks before a write runs, the Safe Mode levels also ask for Touch ID or your Mac password, the Full levels ask before reads too, and Read-Only refuses writes. An organization can enforce a minimum level on its Macs through a configuration profile. On iPhone and iPad the levels are {iosSafeModeLevels}."
+                },
+                {
+                    "id": "destructive",
+                    "title": "Destructive statements",
+                    "text": "At every level on the Mac, DROP, TRUNCATE and a DELETE without WHERE stop and ask first, showing the whole statement."
+                }
+            ],
+            "limits": [
+                "Safe Mode runs inside TablePro and guards against mistakes. It is not a sandbox or a permission system: for a rule that has to hold, use the database’s own privileges.",
+                "New connections start at {macSafeModeDefault}, where statements run as written, an UPDATE without WHERE included.",
+                "In the chat’s Edit and Agent modes the AI assistant can run statements, and at {macSafeModeDefault} its writes run without asking. The full-window Agent mode holds its connection at Alert or stricter, which is a reminder, not a lock."
+            ],
+            "links": [
+                {
+                    "label": "Safe Mode for production connections",
+                    "href": "/features/data-editing#safe-mode"
+                },
+                {
+                    "label": "Chat modes and Agent mode",
+                    "href": "/features/ai-mcp#agent-mode"
+                },
+                {
+                    "label": "Safe Mode",
+                    "docs": "/features/safe-mode"
+                }
+            ]
+        },
+        {
+            "id": "mcp",
+            "title": "The MCP server",
+            "items": [
+                {
+                    "id": "local",
+                    "title": "Local only",
+                    "text": "The MCP server is in the Mac app only, off until you turn it on or a client you set up starts it. It listens on {mcpHost}, with no remote mode, and clients never see a password."
+                },
+                {
+                    "id": "approval",
+                    "title": "How a client is approved",
+                    "text": "By default, every request needs a token with a scope (Read Only, Read & Write or Full Access), and a dialog on your Mac asks you the first time a client reaches a connection."
+                },
+                {
+                    "id": "permissions",
+                    "title": "What a client can do",
+                    "text": "Each connection sets what outside clients may do: Blocked, Read Only (the default) or Read & Write. Writes still pass through its Safe Mode level, DROP and TRUNCATE need a Full Access token and your approval every time, and every call is logged on your Mac."
+                }
+            ],
+            "limits": [
+                "{mcpHost} says where the server listens, not who can reach it. Any program on your Mac can connect, and so can a page open on claude.ai or app.cursor.com. Each still needs a token, so keep authentication required.",
+                "What a client reads, it sends to its own AI service under that service’s terms."
+            ],
+            "links": [
+                {
+                    "label": "MCP server and client permissions",
+                    "href": "/features/ai-mcp#mcp"
+                },
+                {
+                    "label": "MCP tokens and scopes",
+                    "docs": "/external-api/tokens"
+                }
+            ]
+        },
+        {
+            "id": "open-source",
+            "title": "Open source",
+            "items": [
+                {
+                    "id": "source",
+                    "title": "The code is public",
+                    "text": "Both apps are open source under the AGPLv3, including the code for the paid features. What this page describes can be read in the repository, with the scripts that sign and notarize each release, and you can build the Mac app yourself."
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "Source code on GitHub",
+                    "to": "github"
+                },
+                {
+                    "label": "AGPLv3 license text",
+                    "to": "license"
+                },
+                {
+                    "label": "Building from source",
+                    "docs": "/development/building"
+                }
+            ]
+        },
+        {
+            "id": "report",
+            "title": "Report a vulnerability",
+            "items": [
+                {
+                    "id": "contact",
+                    "title": "How to report",
+                    "text": "Email <email>{email}</email>, or <advisory>report it privately on GitHub</advisory>, in English or Vietnamese. Do not open a public issue, discussion or pull request for a vulnerability."
+                },
+                {
+                    "id": "include",
+                    "title": "What to include",
+                    "text": "What is affected and its version: the Mac app, the iPhone and iPad app, a plugin or this website. Add the macOS or iOS version, the database type when a driver is involved, the steps or a proof of concept, and what an attacker gains."
+                },
+                {
+                    "id": "fixes",
+                    "title": "Which versions get fixes",
+                    "text": "Only the latest release of each app and plugin gets security fixes, so check that the problem is still there in the latest release before you report it."
+                }
+            ],
+            "limits": [],
+            "links": [
+                {
+                    "label": "Security policy on GitHub",
+                    "to": "securityPolicy"
+                },
+                {
+                    "label": "security.txt",
+                    "to": "securityTxt"
+                }
+            ]
+        }
+    ]
+}
