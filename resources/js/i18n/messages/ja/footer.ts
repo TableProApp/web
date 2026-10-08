@@ -23,14 +23,15 @@ export default {
         "support": {
             "title": "サポート",
             "account": "アカウント",
+            "troubleshooting": "トラブルシューティング（英語）",
             "email": "メールサポート",
             "chat": "チャットサポート"
         },
         "community": {
             "title": "コミュニティ",
+            "discussions": "GitHub Discussions",
             "discord": "Discord",
             "x": "X",
-            "facebook": "Facebook",
             "telegram": "Telegram",
             "sponsor": "TablePro を支援"
         },

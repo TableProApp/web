@@ -251,6 +251,11 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                         </li>
                         <li>
                             <a href={`mailto:${SUPPORT_EMAIL}`} className={LINK}>
+                        <li>
+                            <External href={EXTERNAL.troubleshooting} hrefLang="en">
+                                {groups.support.troubleshooting}
+                            </External>
+                        </li>
                                 {groups.support.email}
                             </a>
                         </li>
@@ -262,19 +267,22 @@ export default function SiteFooter({ newsletter = true }: { newsletter?: boolean
                     </Group>
                     <Group title={groups.community.title}>
                         <li>
+                            <External href={EXTERNAL.discussions}>{groups.community.discussions}</External>
+                        </li>
+                        <li>
                             <External href={EXTERNAL.discord}>{groups.community.discord}</External>
                         </li>
                         <li>
                             <External href={EXTERNAL.x}>{groups.community.x}</External>
                         </li>
                         <li>
-                            <External href={EXTERNAL.facebook}>{groups.community.facebook}</External>
-                        </li>
-                        <li>
-                            <External href={EXTERNAL.telegram}>{groups.community.telegram}</External>
-                        </li>
-                        <li>
                             <External href={EXTERNAL.sponsors}>{groups.community.sponsor}</External>
+                        {/* The Telegram group is in Vietnamese. */}
+                        {locale === 'vi' && (
+                            <li>
+                                <External href={EXTERNAL.telegram}>{groups.community.telegram}</External>
+                            </li>
+                        )}
                         </li>
                     </Group>
                     <Group title={groups.legal.title}>

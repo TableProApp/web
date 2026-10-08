@@ -333,6 +333,31 @@ it('groups the footer links under a hidden heading, in five groups', function (s
     expect($footer)->toMatch($vi ? '/© \d{4} TablePro\. Mã nguồn theo giấy phép AGPLv3\./u' : '/© \d{4} TablePro\. Source code under the AGPLv3\./');
 })->with('chrome locales');
 
+it('lists the community channels a reader of that language can use', function (string $path, string $locale): void {
+    $footer = chromeRegion(ssrHtml($path), 'footer');
+    $links = json_decode((string) file_get_contents(resource_path('data/facts.json')), true)['links'];
+
+    Assert::assertNotNull(chromeLink($footer, $links['discussions'], 'GitHub Discussions'), 'The footer has no GitHub Discussions link');
+    Assert::assertNotNull(chromeLink($footer, $links['discord'], 'Discord'));
+    Assert::assertNotNull(chromeLink($footer, $links['x'], 'X'));
+
+    // The Telegram group is in Vietnamese, and the Facebook page is not kept up.
+    Assert::assertSame($locale === 'vi', chromeLink($footer, $links['telegram']) !== null, 'Telegram belongs on Vietnamese pages only');
+    Assert::assertStringNotContainsString('facebook.com', $footer);
+    expect($links)->not->toHaveKey('facebook');
+
+    // Support starts with the docs page that answers most questions, before email and chat.
+    $troubleshooting = chromeLink($footer, $links['troubleshooting'], chromeCatalog($locale, 'footer')['troubleshooting']);
+
+    Assert::assertNotNull($troubleshooting, 'The footer has no Troubleshooting link');
+    Assert::assertSame('en', $troubleshooting['attrs']['hreflang'] ?? null);
+    Assert::assertLessThan(strpos($footer, 'href="mailto:'), strpos($footer, $links['troubleshooting']));
+})->with([
+    'English' => ['/download', 'en'],
+    'Vietnamese' => ['/vi/download', 'vi'],
+    'German' => ['/de/download', 'de'],
+]);
+
 it('offers the newsletter without a subscriber count', function (string $path, string $locale): void {
     $footer = chromeRegion(ssrHtml($path), 'footer');
 

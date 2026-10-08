@@ -23,14 +23,15 @@ export default {
         "support": {
             "title": "支援",
             "account": "帳戶",
+            "troubleshooting": "疑難排解（英文）",
             "email": "電子郵件支援",
             "chat": "線上聊天"
         },
         "community": {
             "title": "社群",
+            "discussions": "GitHub Discussions",
             "discord": "Discord",
             "x": "X",
-            "facebook": "Facebook",
             "telegram": "Telegram",
             "sponsor": "贊助 TablePro"
         },

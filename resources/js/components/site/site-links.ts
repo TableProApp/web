@@ -71,12 +71,13 @@ export const PLATFORM_PAGES: PlatformPage[] = platformData.platforms.flatMap((ca
 export const EXTERNAL = {
     docs: facts.links.docs,
     changelog: facts.links.changelog,
+    troubleshooting: facts.links.troubleshooting,
     github: facts.links.github,
     issues: facts.links.issues,
+    discussions: facts.links.discussions,
     sponsors: facts.links.sponsorsProgram,
     discord: facts.links.discord,
     x: facts.links.x,
-    facebook: facts.links.facebook,
     telegram: facts.links.telegram,
 } as const;
 
@@ -124,7 +125,6 @@ export function basePath(url: string): string {
     return splitLocale(url, LOCALES).path.replace(/[?#].*$/, '');
 }
 
-/**
 export interface HeaderLayout {
     nav: string;
     controls: string;
@@ -155,6 +155,7 @@ export function headerLayout(locale: string): HeaderLayout {
     return WIDE_HEADER_LOCALES.includes(locale) ? HEADER_FROM_1152 : HEADER_FROM_1024;
 }
 
+/**
  * The label inside a 64px nav link. The link keeps the full header height as
  * its target, but the focus ring is drawn here, around the words: on the
  * link itself it was a rectangle the height of the header that touched its
