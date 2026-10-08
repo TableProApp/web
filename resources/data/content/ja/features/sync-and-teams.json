@@ -17,7 +17,7 @@
             "id": "icloud-sync",
             "title": "iCloud Sync",
             "paragraphs": [
-                "iCloud Sync は、同じ iCloud アカウントでサインインしたすべての Mac、iPhone、iPad のライブラリを揃えます。レコードはそのアカウントのプライベートデータベースに保存します。同期は各デバイスで有効にするまでオフです。iPhone と iPad では無料で、Mac にはこの機能を含むプランが必要です。",
+                "iCloud Sync は、同じ iCloud アカウントでログインしたすべての Mac、iPhone、iPad のライブラリを揃えます。レコードはそのアカウントのプライベートデータベースに保存します。同期は各デバイスで有効にするまでオフです。iPhone と iPad では無料で、Mac にはこの機能を含むプランが必要です。",
                 "パスワードは、Mac の Sync Categories で <ui>Passwords</ui>、または iPhone と iPad で <ui>Sync Passwords</ui> も有効にした場合のみ同期します。同期には iCloud キーチェーンを使います。Mac では、同じスイッチで AI プロバイダーのキーやライセンスキーなど、TablePro がキーチェーンに保存する他のシークレットも同期します。接続を Local only にすると、お気に入りと保存済みクエリも含め一台の Mac にだけ保持します。"
             ],
             "points": [
@@ -117,7 +117,7 @@
             "title": "シート、招待とアカウント",
             "paragraphs": [
                 "Team ライセンスはシート単位の料金で、一つのシートは一人ではなく一台の有効化済み Mac を意味します。Web のアカウントからチームメンバーを招待すると、Mac の <ui>Settings > License</ui> に入力する一回限りのコードがメールで届きます。招待には空きシートが必要です。アプリにはチームメンバーを表示しますが、シートと招待は Web で管理します。",
-                "有効な月額・年額サブスクリプションでは自分でシート数を変更できます。一括購入の場合はサポートに連絡してください。メンバーを削除するとシートはすぐ空き、その人が Team Library に公開した内容も削除します。その人の Mac は次のライセンス確認で、{licenseCheckDays} 日以内に有料機能を失います。アカウントページはライセンス購入者向けです。"
+                "有効な月払い・年払いのサブスクリプションでは自分でシート数を変更できます。買い切りの場合はサポートに連絡してください。メンバーを削除するとシートはすぐ空き、その人が Team Library に公開した内容も削除します。その人の Mac は次のライセンス確認で、{licenseCheckDays} 日以内に有料機能を失います。アカウントページはライセンス購入者向けです。"
             ],
             "links": [
                 {
@@ -134,7 +134,7 @@
             "id": "iphone",
             "title": "iPhone と iPad では",
             "paragraphs": [
-                "iPhone と iPad アプリは iCloud 経由で接続、グループとタグを同期し、Handoff に対応します。<code>.tablepro</code> ファイルのインポートとエクスポートでは、必要に応じてパスフレーズで保護したパスワードを含められます。Linked Folders、Team Catalog と Team Library は Mac アプリ専用です。"
+                "iPhone・iPad アプリは iCloud 経由で接続、グループとタグを同期し、Handoff に対応します。<code>.tablepro</code> ファイルのインポートとエクスポートでは、必要に応じてパスフレーズで保護したパスワードを含められます。Linked Folders、Team Catalog と Team Library は Mac アプリ専用です。"
             ],
             "links": [
                 {
@@ -228,7 +228,7 @@
     ],
     "related": [
         {
-            "label": "iPhone と iPad 用 TablePro",
+            "label": "iPhone・iPad 版 TablePro",
             "href": "/ios"
         },
         {
